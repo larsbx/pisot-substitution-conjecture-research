@@ -122,3 +122,66 @@ def test_nonunit_image_lattice_digit_filter():
 
     assert lift(defect(sigma["1"][:2], "")) == (-1, 1, 0)
     assert lift(defect(sigma["2"][:2], "")) == (-1, 0, 1)
+
+
+def test_fullrank_primitive_nonpip_strict_four_state_realization():
+    # Full-rank primitive expanding, but char=(x-1)(x^2-2x-2), not PIP.
+    sigma = {"0": "10", "1": "102", "2": "211"}
+    states = [
+        ("102", "210"),
+        ("11102", "21110"),
+        ("10210211", "21110210"),
+        ("10210210210211", "21110210210210"),
+    ]
+
+    def determinant(s):
+        (a, b, c), (d, e, f), (g, h, i) = [
+            [s[str(j)].count(str(k)) for j in range(3)] for k in range(3)
+        ]
+        return a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g)
+
+    assert determinant(sigma) == -2
+    M = [[sigma[str(j)].count(str(i)) for j in range(3)] for i in range(3)]
+
+    def product(A, B):
+        return [
+            [sum(A[i][k] * B[k][j] for k in range(3)) for j in range(3)]
+            for i in range(3)
+        ]
+
+    assert all(n > 0 for row in product(product(M, M), product(M, M)) for n in row)
+    ordered = [children(infl(sigma, u), infl(sigma, v)) for u, v in states]
+    labels = {p: k for k, p in enumerate(states)}
+    assert all(p in labels for row in ordered for p in row)
+    edges = [[labels[p] for p in row] for row in ordered]
+    assert edges == [
+        [2], [3], [2, 0, 0, 1, 0], [2, 0, 0, 1, 0, 1, 0, 1, 0]
+    ]
+    for source in range(4):
+        reachable = {source}
+        while True:
+            next_reached = reachable | {dst for i in reachable for dst in edges[i]}
+            if next_reached == reachable:
+                break
+            reachable = next_reached
+        assert reachable == set(range(4))
+    h = {a: w[0] for a, w in sigma.items()}
+    g = {a: w[-1] for a, w in sigma.items()}
+    assert h == {"0": "1", "1": "1", "2": "2"}
+    assert g == {"0": "0", "1": "2", "2": "1"}
+    assert all(
+        u[0] == "1" and v[0] == "2" and u[-1] in "12" and v[-1] == "0"
+        for u, v in states
+    )
+    parent = states[2]
+    top, bottom = infl(sigma, parent[0]), infl(sigma, parent[1])
+    assert cuts(top, bottom) == [0, 8, 11, 14, 19, 22]
+    for cut, expected_address, E, correction in (
+        (8, (3, 0, 2, 2), (1, 0, 0), (-1, -1, 0)),
+        (14, (5, 1, 5, 0), (1, -1, 0), (0, 0, 1)),
+    ):
+        i, r = addr(sigma, parent[0], cut)
+        j, s = addr(sigma, parent[1], cut)
+        assert (i, r, j, s) == expected_address
+        assert defect(parent[0][:i], parent[1][:j]) == E
+        assert defect(sigma[parent[0][i]][:r], sigma[parent[1][j]][:s]) == correction
