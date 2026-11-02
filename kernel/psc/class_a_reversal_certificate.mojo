@@ -13,7 +13,7 @@ from finite_exact.checked_int import checked_add, checked_mul
 from psc.class_a_boundary_children import BoundaryLabel, geometric_state, member_transport, _run, _letter
 from psc.class_a_x_ladder import reversed_label
 from psc.class_a_x_productivity import IndexedGraph, terminal
-from psc.overlap_seed_patch import OverlapState, SeedOverlapTables, interior_overlap
+from psc.overlap_seed_patch import OverlapState, SeedOverlapTables, interior_overlap, selected_overlap_child
 
 
 struct VerifiedReversalQuotient(Copyable, Movable):
@@ -115,8 +115,10 @@ def verify_indexed_reversal_quotient(
             prev_i = i
             prev_j = j
             var child = member_transport(-1, k, n, d, w, i, j)
-            if child != g.states[dest] or not interior_overlap(tables, geometric_state(tables, child)):
-                raise Error("indexed edge has wrong typed Parikh child or strictness")
+            var physical = geometric_state(tables, child)
+            var literal = selected_overlap_child(tables, geometric_state(tables, w), i, j)
+            if child != g.states[dest] or physical != literal or not interior_overlap(tables, physical):
+                raise Error("indexed edge disagrees with independent literal-prefix transport or strictness")
             var rv = partner[v]
             var rdest = partner[dest]
             var found = False
