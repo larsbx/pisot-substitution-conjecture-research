@@ -128,3 +128,50 @@ def test_zero_prefix_lattice_condition_is_necessary_not_word_realization():
     a=matrix(0,0)
     assert iterative_parity(0,0,(1,0,0),1)[0]==(1,)
     assert cramers(a,(1,0,0)) is None
+
+
+def words(k,t):
+    n=k+t+3
+    d=k+2*t+5
+    return ((0,)+(2,)*(n+d)+(0,),
+            (1,)+(2,)*n+(0,),
+            (0,)+(2,)*(n-1)+(1,))
+
+
+def next_level_words(previous,one_level):
+    return tuple(tuple(letter for parent in previous[a]
+                       for letter in one_level[parent]) for a in range(3))
+
+
+def all_prefixes(word):
+    counts=[0,0,0]
+    result=[]
+    for letter in word:
+        result.append(tuple(counts))
+        counts[letter]+=1
+    return result
+
+
+@pytest.mark.parametrize("k,t",[(0,0),(1,0)])
+def test_real_level_one_and_two_prefix_address_filter(k,t):
+    sigma=words(k,t)
+    current=((0,),(1,),(2,))
+    checked=0
+    accepted=0
+    for level in (1,2):
+        current=next_level_words(current,sigma)
+        mp=power(matrix(k,t),level)
+        pref=[all_prefixes(word) for word in current]
+        for top,bottom in product(range(3),repeat=2):
+            for ptop in pref[top]:
+                for pbottom in pref[bottom]:
+                    difference=tuple(ptop[i]-pbottom[i] for i in range(3))
+                    inverse=cramers(mp,difference)
+                    bits,tail=iterative_parity(k,t,difference,level)
+                    assert (inverse is not None)==(not any(bits))
+                    if inverse is not None:
+                        assert tail==inverse
+                        assert matvec(mp,inverse)==difference
+                        accepted+=1
+                    checked+=1
+    assert checked>0 and accepted>0
