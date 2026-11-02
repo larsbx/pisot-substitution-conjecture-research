@@ -185,3 +185,40 @@ def test_three_level_actual_paths_match_full_expansion_and_cramer(k,t):
         (1,0):(981,5580),
         (0,1):(1027,5534),
     }[(k,t)]
+
+
+@pytest.mark.parametrize("k,t",[(0,0),(1,0),(2,0),(3,1),(4,2),(6,5)])
+def test_uniform_even_k_two_level_typed_exit_and_odd_k_obstruction(k,t):
+    sigma=words(k,t)
+    a,b=0,1
+    top=(0,1)
+    bottom=(0,2)
+    full_top=addressed_prefixes(sigma,a)
+    full_bottom=addressed_prefixes(sigma,b)
+    first={path:vector for path,vector,_ in full_top}[top]
+    second={path:vector for path,vector,_ in full_bottom}[bottom]
+    D=tuple(x-y for x,y in zip(first,second))
+    assert D==(1,-1,-1)
+    exact=cramers(power(matrix(k,t),2),D)
+    good,stage,parent=carry_pair(sigma,k,t,a,b,top,bottom)
+    assert good==(k%2==0)
+    if k%2:
+        assert stage==1 and parent is None and exact is None
+        return
+    n=k+t+3
+    d=k+2*t+5
+    p=(d+3)//2
+    q=n*d+2*n-1-(n+d)*p
+    r=(n+d)*p-n*d-2*n-d-1
+    assert exact==parent==(p,q,r)
+    # Actual first indexed children (0,0) preserve x/c; their
+    # true offset is M*w=(1,-d-2,d+1). The chosen second occurrence
+    # pair is genuinely y/y at full zero shift.
+    once=matvec(matrix(k,t),parent)
+    assert once==(1,-d-2,d+1)
+    assert sigma[0][0]==0 and sigma[1][0]==1
+    assert sigma[0][1]==2 and sigma[1][2]==2
+    low=tuple(x-y for x,y in zip(prefix(sigma[0],1),
+                                  prefix(sigma[1],2)))
+    twice=matvec(matrix(k,t),once)
+    assert tuple(twice[i]-low[i] for i in range(3))==(0,0,0)
