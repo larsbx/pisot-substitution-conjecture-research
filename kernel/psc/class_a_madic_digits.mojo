@@ -124,3 +124,21 @@ def same_power_coset(k: Int,t: Int,a: List[Int],b: List[Int],
         checked_sub(a[2],b[2]),
     ]
     return in_image_power(k,t,v,levels)
+
+
+def recover_zero_parent(k: Int,t: Int,prefix_top_minus_bottom: List[Int],
+                        levels: Int) raises -> List[Int]:
+    """The unique integral parent offset whose level-m literal child is zero.
+
+    The caller must separately supply *actual* top/bottom substitution
+    prefixes at level m. This tests only the finite-place lattice condition;
+    neither a made-up prefix vector nor an arbitrary digit word is legal.
+    For actual prefixes, strict geometry follows from the common positive-
+    length level-m child, but seed-reachability and any uniform hitting claim
+    remain separate.
+    """
+    var record = extract_digits(k,t,prefix_top_minus_bottom,levels)
+    for bit in record.bits:
+        if bit != 0:
+            raise Error("prefix difference outside M^m Z^3")
+    return record.tail
