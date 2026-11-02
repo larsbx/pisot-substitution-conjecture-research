@@ -4,7 +4,7 @@ from std.testing import assert_equal, assert_true, assert_false
 from mojo_smoke.claims import require_contract
 from psc.bpa import apply_substitution, coincidence_boundaries, decompose, normalise
 from psc.derived_system import build_derived_system
-from psc.c4_cut_alignment import classify_irreducible_birth
+from psc.c4_cut_alignment import classify_irreducible_birth, proper_prefix_residue_admissible
 from psc.words import Pair
 
 
@@ -148,8 +148,38 @@ def test_strict_nonpisot_born_cut_and_bad_inputs() raises:
     assert_true(caught)
 
 
+
+def test_nonunit_proper_prefix_image_lattice_gate() raises:
+    # Non-unit PIP: chi=x^3-x^2-2x-2, det M=2.
+    # M=[[0,1,2],[1,1,1],[0,1,0]], so an integral
+    # q belongs to M*Z^3 iff q[0]-q[2] is even.
+    var sigma: List[List[Int]] = [[1], [0, 2, 1], [0, 0, 1]]
+    assert_false(proper_prefix_residue_admissible(sigma, 1, 1))
+    assert_true(proper_prefix_residue_admissible(sigma, 1, 2))
+    assert_false(proper_prefix_residue_admissible(sigma, 2, 1))
+    assert_true(proper_prefix_residue_admissible(sigma, 2, 2))
+    # A unit Pisot incidence has the whole integral image lattice.
+    var unit: List[List[Int]] = [[0, 1], [0, 2], [0]]
+    assert_true(proper_prefix_residue_admissible(unit, 0, 1))
+    assert_true(proper_prefix_residue_admissible(unit, 1, 1))
+    # Malformed digits and singular incidence do not pass vacuously.
+    var caught = False
+    try:
+        _ = proper_prefix_residue_admissible(sigma, 1, 0)
+    except:
+        caught = True
+    assert_true(caught)
+    caught = False
+    var singular: List[List[Int]] = [[1], [0, 1, 2], [1]]
+    try:
+        _ = proper_prefix_residue_admissible(singular, 1, 1)
+    except:
+        caught = True
+    assert_true(caught)
+
 def main() raises:
     test_recurrent_pip_has_genuine_asynchronous_nonsync_cut()
     test_strict_nonpisot_born_cut_and_bad_inputs()
-    print("C4 bilateral birth: literal PIP and singular strict-control regressions passed.")
+    test_nonunit_proper_prefix_image_lattice_gate()
+    print("C4 bilateral birth: literal PIP, singular controls and nonunit modular gate passed.")
     require_contract("irreducible nonsingular parents cannot have bilaterally aligned interior born zero returns; a recurrent legal PIP source still exhibits a one-sided locally nonsynchronizing birth; singular full-rank negative is rejected; strict PIP C4 remains open")
