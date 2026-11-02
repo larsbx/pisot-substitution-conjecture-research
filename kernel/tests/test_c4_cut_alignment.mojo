@@ -2,7 +2,7 @@
 
 from std.testing import assert_equal, assert_true, assert_false
 from mojo_smoke.claims import require_contract
-from psc.bpa import apply_substitution, coincidence_boundaries, decompose, normalise
+from psc.bpa import apply_substitution, coincidence_boundaries, decompose, normalise, prefix_endpoint_map, suffix_endpoint_map
 from psc.derived_system import build_derived_system
 from psc.c4_cut_alignment import classify_irreducible_birth, proper_prefix_residue_admissible
 from psc.words import Pair
@@ -149,6 +149,58 @@ def test_strict_nonpisot_born_cut_and_bad_inputs() raises:
 
 
 
+
+def test_primitive_fullrank_strict_nonpip_countermodel() raises:
+    # Real four-state STRICT, child-closed, strongly connected countermodel
+    # for dropping irreducibility/Pisot-spectrum from C4.
+    # chi_M=(x-1)(x^2-2x-2); det=-2 and M^4 is positive.
+    var sigma: List[List[Int]] = [[1, 0], [1, 0, 2], [2, 1, 1]]
+    var states: List[Pair] = [
+        Pair([1, 0, 2], [2, 1, 0]),
+        Pair([1, 1, 1, 0, 2], [2, 1, 1, 1, 0]),
+        Pair([1, 0, 2, 1, 0, 2, 1, 1], [2, 1, 1, 1, 0, 2, 1, 0]),
+        Pair([1, 0, 2, 1, 0, 2, 1, 0, 2, 1, 0, 2, 1, 1],
+             [2, 1, 1, 1, 0, 2, 1, 0, 2, 1, 0, 2, 1, 0]),
+    ]
+    var system = build_derived_system(sigma, states)
+    assert_equal(system.size(), 4)
+    assert_equal(system.images[0], [2])
+    assert_equal(system.images[1], [3])
+    assert_equal(system.images[2], [2, 0, 0, 1, 0])
+    assert_equal(system.images[3], [2, 0, 0, 1, 0, 1, 0, 1, 0])
+    # The child words above show closure and strong connectivity
+    # (0->2->1->3->2 and 2 reaches 0).
+    var h = prefix_endpoint_map(sigma)
+    var g = suffix_endpoint_map(sigma)
+    assert_equal(h, [1, 1, 2])
+    assert_equal(g, [0, 2, 1])
+    for i in range(4):
+        ref pair = system.states[i]
+        assert_equal(pair.u[0], 1)
+        assert_equal(pair.v[0], 2)
+        assert_equal(pair.v[len(pair.v) - 1], 0)
+        assert_true(pair.u[len(pair.u) - 1] == 1 or pair.u[len(pair.u) - 1] == 2)
+    # Right adjacent pair 1/2 remains 1/2 under the prefix map,
+    # left adjacent pair 1/0 or 2/0 cycles under the suffix map.
+    # Thus every interior newborn boundary is NOT in Sync_+ or Sync_-,
+    # while all strict actual children are retained.
+    var witness = classify_irreducible_birth(sigma, system.states[2], 8)
+    assert_equal(witness.top_source, 3)
+    assert_equal(witness.bottom_source, 2)
+    assert_equal(witness.top_digit, 0)
+    assert_equal(witness.bottom_digit, 2)
+    assert_equal(witness.source_defect, [1, 0, 0])
+    assert_equal(witness.local_correction, [-1, -1, 0])
+    assert_true(proper_prefix_residue_admissible(sigma, 1, 2))
+    witness = classify_irreducible_birth(sigma, system.states[2], 14)
+    assert_equal(witness.top_source, 5)
+    assert_equal(witness.bottom_source, 5)
+    assert_equal(witness.top_digit, 1)
+    assert_equal(witness.bottom_digit, 0)
+    assert_equal(witness.source_defect, [1, -1, 0])
+    assert_equal(witness.local_correction, [0, 0, 1])
+    assert_true(proper_prefix_residue_admissible(sigma, 2, 1))
+
 def test_nonunit_proper_prefix_image_lattice_gate() raises:
     # Non-unit PIP: chi=x^3-x^2-2x-2, det M=2.
     # M=[[0,1,2],[1,1,1],[0,1,0]], so an integral
@@ -180,6 +232,7 @@ def test_nonunit_proper_prefix_image_lattice_gate() raises:
 def main() raises:
     test_recurrent_pip_has_genuine_asynchronous_nonsync_cut()
     test_strict_nonpisot_born_cut_and_bad_inputs()
+    test_primitive_fullrank_strict_nonpip_countermodel()
     test_nonunit_proper_prefix_image_lattice_gate()
-    print("C4 bilateral birth: literal PIP, singular controls and nonunit modular gate passed.")
-    require_contract("irreducible nonsingular parents cannot have bilaterally aligned interior born zero returns; a recurrent legal PIP source still exhibits a one-sided locally nonsynchronizing birth; singular full-rank negative is rejected; strict PIP C4 remains open")
+    print("C4 bilateral birth: PIP control, fullrank strict non-PIP countermodel and modular gate passed.")
+    require_contract("irreducible nonsingular parents cannot have bilaterally aligned interior born zero returns; a recurrent legal PIP source still exhibits a one-sided locally nonsynchronizing birth; singular full-rank negative is rejected; strict PIP C4 remains open; fullrank primitive non-PIP four-state strict SCC can avoid both Sync maps")
