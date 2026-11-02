@@ -14,6 +14,7 @@ For verification, m<=6; the theorem's mathematical scope has no level cap.
 from finite_linear_algebra.madic_ball import quotient_invariants
 from finite_exact.bigint_z import bigz_eq, bigz_from_i64
 from psc.class_a_madic_digits import parameters, apply_incidence
+from finite_exact.checked_int import checked_add, checked_sub, checked_mul
 
 
 def predicted_smith(k: Int, t: Int, level: Int) raises -> List[Int]:
@@ -42,7 +43,7 @@ def class_a_integer_matrix(k: Int,t: Int) raises -> List[Int]:
     var params=parameters(k,t)
     var n=params[0]
     var d=params[1]
-    return [2,1,1,0,1,1,n+d,n,n-1]
+    return [2,1,1,0,1,1,checked_add(n,d),n,checked_sub(n,1)]
 
 
 def certify_smith_against_generic(k: Int,t: Int,level: Int) raises -> List[Int]:
@@ -75,10 +76,12 @@ def cyclic_krylov_mod2(k: Int,t: Int) raises -> Bool:
         v=[0,1,1]
     var u=apply_incidence(k,t,v)
     var w=apply_incidence(k,t,u)
-    var determinant=(
-        v[0]*(u[1]*w[2]-u[2]*w[1])
-        - u[0]*(v[1]*w[2]-v[2]*w[1])
-        + w[0]*(v[1]*u[2]-v[2]*u[1])
+    var d0=checked_sub(checked_mul(u[1],w[2]),checked_mul(u[2],w[1]))
+    var d1=checked_sub(checked_mul(v[1],w[2]),checked_mul(v[2],w[1]))
+    var d2=checked_sub(checked_mul(v[1],u[2]),checked_mul(v[2],u[1]))
+    var determinant=checked_add(
+        checked_sub(checked_mul(v[0],d0),checked_mul(u[0],d1)),
+        checked_mul(w[0],d2),
     )
     if determinant%2==0:
         raise Error("selected Class-A local cyclic vector has even determinant")
