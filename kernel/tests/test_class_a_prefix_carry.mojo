@@ -71,6 +71,11 @@ def main() raises:
                                     failed_high+=1
                                 examined+=1
     assert_true(accepted>0 and failed_low>0 and failed_high>0)
+    # Independently reconstructed literal sigma^2/Cramer counts.
+    assert_equal(examined,31429)
+    assert_equal(accepted,11645)
+    assert_equal(failed_low,8766)
+    assert_equal(failed_high,11018)
 
     var first: List[Int] = [0,0]
     var other: List[Int] = [1,0]
