@@ -120,3 +120,16 @@ uniform all-descendant escape/productivity. The nonunit representation-space
 realization/coverage bridge and aligned A1′ remain separate. No refinement of
 native semantics into the Lean interface has been proved, and no governed
 claim status or general PSC assertion is promoted by these receipts.
+
+## Hosted acceptance supplement (2026-11-02)
+
+PR #447 is merged at `9ecc5f8de3411054256d4358795b126c5468be8b`.
+The exact implementation/evidence head `4ec572a60993a0e0d1d9f97ab64257fa61ee209f`
+passed dedicated hosted run 41448531108, including native execution, independent
+complete occurrence/distance/lift comparison and archive replay. Its downloaded
+artifact verifies and matches the local native log and decompressed certificate
+exactly. Original pending receipts remain historical, unchanged. See the
+[hosted supplement](../evidence/class-a-finite-hosted-acceptance-2026-11-02/README.md).
+The next [conditional Lean distance interface](finite-quotient-distance-lean-2026-11-02.md)
+makes projection, every-source lifting and typed terminal equivalence explicit;
+it does not discharge native-to-Lean semantic refinement.

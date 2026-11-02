@@ -1,0 +1,16 @@
+'PscVerif.QuotientDistance.path_lift' does not depend on any axioms
+'PscVerif.QuotientDistance.terminal_path_iff' does not depend on any axioms
+'PscVerif.QuotientDistance.no_terminal_path_iff' does not depend on any axioms
+'PscVerif.QuotientDistance.shortest_iff' does not depend on any axioms
+'PscVerif.QuotientDistance.shortest_unique' does not depend on any axioms
+'PscVerif.QuotientDistance.path_bound' does not depend on any axioms
+'PscVerif.QuotientDistance.certified_shortest' depends on axioms: [propext]
+'PscVerif.QuotientDistance.certified_quotient_distance' depends on axioms: [propext]
+'PscVerif.QuotientDistance.longer_selected_witness' depends on axioms: [propext, Quot.sound]
+'PscVerif.QuotientDistance.longer_is_not_exact' depends on axioms: [propext]
+'PscVerif.QuotientDistance.one_sided_projects' depends on axioms: [propext]
+'PscVerif.QuotientDistance.one_sided_terminal_iff' depends on axioms: [propext]
+'PscVerif.QuotientDistance.one_sided_cannot_lift' depends on axioms: [propext, Quot.sound]
+'PscVerif.QuotientDistance.one_sided_quotient_terminal_path' depends on axioms: [propext]
+'PscVerif.QuotientDistance.one_sided_original_trapped' depends on axioms: [propext]
+'PscVerif.QuotientDistance.terminal_mismatch_refused' depends on axioms: [propext]

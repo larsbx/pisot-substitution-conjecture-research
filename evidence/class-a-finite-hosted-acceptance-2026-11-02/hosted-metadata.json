@@ -1,0 +1,108 @@
+{
+  "source_revision": "4ec572a60993a0e0d1d9f97ab64257fa61ee209f",
+  "run_id": 41448531108,
+  "run_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/41448531108",
+  "status": "completed",
+  "conclusion": "success",
+  "event": "pull_request",
+  "run_attempt": 1,
+  "created_at": "2026-11-02T12:54:47Z",
+  "updated_at": "2026-11-02T13:08:36Z",
+  "jobs": [
+    {
+      "id": 125287618392,
+      "name": "exact-indexed-replay",
+      "conclusion": "success",
+      "status": "completed",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Record exact source revision and checker inputs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Independent complete graphs, indexed forests and polynomial identities",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Install Pixi",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Canonical indexed graphs and local ladder, locked native toolchain",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Compare every native typed vertex and indexed edge with the independent oracle",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Independently replay outgoing completeness, shortest distances and all lifts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Preserve exact-head finite acceptance evidence (including failures)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        }
+      ]
+    }
+  ],
+  "artifact": {
+    "id": 13144950240,
+    "name": "class-a-finite-4ec572a60993a0e0d1d9f97ab64257fa61ee209f",
+    "zip_sha256": "3cc970eb64991c6bec93b4a885d48b0122e44218edd32ec38b5f98e27815d9bc",
+    "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/41448531108/artifacts/13144950240",
+    "expires_at": "2027-01-31T12:54:47Z"
+  },
+  "merged_revision": "9ecc5f8de3411054256d4358795b126c5468be8b",
+  "independent_human_review": "not established by this machine receipt"
+}
