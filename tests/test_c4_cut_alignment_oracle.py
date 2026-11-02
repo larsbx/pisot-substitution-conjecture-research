@@ -101,3 +101,24 @@ def test_singular_incidence_breaks_bilateral_birth_rigidity():
     assert cuts(top, bottom) == [0, 1, 2]
     assert addr(sigma, "02", 1) == (1, 0)
     assert addr(sigma, "20", 1) == (1, 0)
+
+
+def test_nonunit_image_lattice_digit_filter():
+    # M=[[0,1,2],[1,1,1],[0,1,0]], det=2; integrality iff q0-q2 is even.
+    sigma = {"0": "1", "1": "021", "2": "001"}
+    for a in ("1", "2"):
+        first = defect(sigma[a][:1], "")
+        second = defect(sigma[a][:2], "")
+        assert (first[0] - first[2]) % 2 == 1
+        assert (second[0] - second[2]) % 2 == 0
+
+    def lift(q):
+        z1 = q[2]
+        assert (q[0] - q[2]) % 2 == 0
+        z2 = (q[0] - q[2]) // 2
+        z0 = q[1] - z1 - z2
+        assert (z1 + 2 * z2, z0 + z1 + z2, z1) == q
+        return z0, z1, z2
+
+    assert lift(defect(sigma["1"][:2], "")) == (-1, 1, 0)
+    assert lift(defect(sigma["2"][:2], "")) == (-1, 0, 1)
