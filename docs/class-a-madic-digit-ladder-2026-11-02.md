@@ -177,6 +177,66 @@ strict-zipper descendants, with the exact full-graph closure and geometrical
 requirements of #452. It is not enough to prove the local lowest digit can
 match, nor to abstract the prefix digits away from actual word indices.
 
+
+### Exact parity-dependent two-step typed coincidence family
+
+The carry criterion also supplies a **literal, parameter-uniform positive
+two-step example**, with a sharp negative control. In the minus Class-A
+family, take root top/bottom letters (x,c) and genuine two-level
+root-to-leaf child indices
+
+    top (0,1), bottom (0,2).
+
+Both first choices are FIRST, retaining x and c; the next choices select
+the y at index 1 of sigma(x) and the y at index 2 of sigma(c).
+All these occurrences are legal for every k,t>=0.
+
+Their actual level-two top-minus-bottom prefix vector is
+
+    D = (1,-1,-1),
+
+independent of k,t. Its first integral inverse is
+
+    c_1 = M^-1 D = (1,-d-2,d+1).
+
+The next inverse exists exactly when
+
+    1-(-d-2) = d+3 = k+2t+8
+
+is even, **equivalently k is even**. Thus for every k even, t arbitrary,
+there is a unique integer parent overlap offset
+
+    p = (d+3)/2,
+    q = n*d + 2*n - 1 - (n+d)*p,
+    r = (n+d)*p - n*d - 2*n - d - 1,
+
+and the actual ordered path
+
+    (x,c,p,q,r)
+      --(0,0)--> (x,c,1,-d-2,d+1)
+      --(1,2)--> (y,y,0,0,0).
+
+**This is a genuine strict indexed overlap path**, because the final y/y
+tile is the same positive-length physical subinterval of both level-two
+inflated source tiles; each parent and intermediate chosen tile contains
+that common subinterval. The canonical exact-Perron guard and literal
+typed Parikh child transport are replayed in Mojo for k=0,2,4 and
+t=0,1,2. For **odd k**, the exact same fixed occurrence pair has no
+integral level-two source offset, because its second carry fails the
+index-two lattice test. This does *not* prove that those substitutions
+lack other productive paths.
+
+For k=t=0, the example is
+
+    (x,c,4,-12,5) -> (x,c,1,-7,6) -> (y,y,0,0,0).
+
+It is an **existence theorem for explicitly constructed formal overlap
+states**, not a claim these starting offsets belong to the swap-seed
+forward closure or to all realized tiling overlaps. In particular it
+cannot by itself discharge issue #452 or BH #139. It demonstrates
+constructively that the new finite-place carry interface can retain
+full typed occurrence semantics rather than only rejecting bad residues.
+
 ## Canonical implementation and independent acceptance
 
 - `kernel/psc/class_a_madic_digits.mojo` supplies exact checked incidence multiplication, index-two inverse, per-stage parity extraction, reconstruction, congruence, and unique integral zero-parent recovery. Its finite budget is m<=64. Overflow, malformed vectors, missing levels and nonbinary reconstruction digits refuse rather than become false proof receipts.
