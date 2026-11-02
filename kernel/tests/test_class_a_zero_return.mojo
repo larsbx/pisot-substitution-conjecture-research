@@ -3,8 +3,8 @@
 from std.testing import assert_true, assert_equal
 from mojo_smoke.claims import require_contract
 from a1_normal_form_census import class_member, CLASS_A
-from psc.overlap_seed_patch import build_seed_overlap_tables_screened
-from psc.class_a_boundary_children import BoundaryLabel
+from psc.overlap_seed_patch import build_seed_overlap_tables_screened, interior_overlap
+from psc.class_a_boundary_children import BoundaryLabel, geometric_state, member_transport
 from psc.class_a_x_productivity import build_indexed, terminal
 from psc.class_a_zero_return import (
     zero_return_addresses, one_step_zero_at, zero_return_predecessor,
@@ -44,6 +44,12 @@ def main() raises:
                             continue
                         var w = zero_return_predecessor(k, t, top, bottom, i, j)
                         assert_true(independently_check_zero_return(k, t, w, i, j))
+                        # A positive-length common child lies inside both
+                        # inflated parent tiles, so its unique parent is
+                        # itself a genuine STRICT physical overlap.
+                        assert_true(interior_overlap(tables, geometric_state(tables, w)))
+                        var actual_child = member_transport(-1, k, n, d, w, i, j)
+                        assert_true(interior_overlap(tables, geometric_state(tables, actual_child)))
                         var interval = zero_return_addresses(k, t, w)
                         assert_true(one_step_zero_at(k, t, w, i, j))
                         if i == 0:
