@@ -139,10 +139,12 @@ M = [[0,1,2],[1,1,1],[0,1,0]], det M=2
 char_M(x)=x^3 - x^2 - 2x - 2.
 ```
 
-The characteristic polynomial has one Perron root greater than one
-and two conjugates of modulus below one (this substitution is the
-known non-unit PIP affine-pump fixture; the positive PIP classification
-is not derived from a floating-point numerical estimate here).
+Primitivity is checked exactly by `M^2>0` entrywise. The cubic has
+no rational root among `±1,±2`, hence is irreducible. Its
+discriminant is `-152`, hence it has a unique real root `beta`;
+the sign change between 2 and 3 gives `beta>2`. The complex
+conjugate pair has product `2/beta<1`, hence each has modulus below
+one. This proves PIP (without a floating-point eigenvalue test).
 For an integer column `q=(q0,q1,q2)`, direct solution gives
 
 ```text
@@ -276,8 +278,7 @@ distinction, the singular refusal and malformed input failures.
 
 An independent small standard-library Python oracle checks the same
 literal word and source-address witnesses; its finite tests are not
-the theorem's proof. **Preparation-time Python local replay: four
-tests passed**. The Mojo compiler was unavailable locally;
+the theorem's proof. **Preparation-time Python local replay: five\ntests passed**. The Mojo compiler was unavailable locally;
 **canonical Mojo checks are not reported as locally passed** and
 hosted exact-head CI must be inspected before acceptance.
 
