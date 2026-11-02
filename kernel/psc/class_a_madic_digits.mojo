@@ -95,7 +95,8 @@ def reconstruct_digits(k: Int,t: Int, digits: MAdicDigits) raises -> List[Int]:
         raise Error("malformed integral M-adic digit record")
     _ = parameters(k,t)
     var out = digits.tail.copy()
-    for j in range(len(digits.bits)-1,-1,-1):
+    for backward in range(len(digits.bits)):
+        var j = len(digits.bits)-1-backward
         var bit = digits.bits[j]
         if bit != 0 and bit != 1:
             raise Error("nonbinary finite-place digit")
