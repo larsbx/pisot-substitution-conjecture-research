@@ -1,5 +1,26 @@
 # PSC research roadmap — 2026-09-21
 
+**2026-11-02 prioritized continuation (read before the historical October
+paragraphs below):** Follow the
+[C4 ordered-word/strict-component contract](c4-ordered-word-completion-interface-2026-11-02.md)
+first. A valid C4 advance must be a size-uniform literal ordered
+hub-residual word/recognizability alignment argument or a replayable
+counterexample to an explicitly stated intermediate claim. Reuse the existing
+Mojo packet and hierarchy-offset instrumentation; do not repeat bounded
+censuses or infer universal closure from first-child phase compatibility.
+Do not conflate global G1 finite-SCC extraction with the conditional C4
+conclusion.
+
+The [2026-11-02 completion ledger](completion-ledger-2026-11-02.md)
+supersedes the prior weekly status: Class B middle plus 186 rays is accepted
+at stated scope, Class C covers `d>=6,n>=3d` and exact additional
+below-three cones, and the finite Class-A X checker (#447) and conditional
+Lean quotient lemma (#448) are merged. Next for #139: residual Class-C lower
+cone, Class-B low/high residue and `l<4`, Class-A parameter-uniform
+all-descendant carrier plus independent full non-unit realization/coverage
+bridge. None closes A1′ #138, BH #139, #84, G1 or PSC.
+
+
 **2026-10-27 class-B continuation:** the
 [class-B middle certificate](class-b-middle-certificate-2026-10-27.md) gives
 exact, independently checked unbounded-gap middle carriers and descent for
