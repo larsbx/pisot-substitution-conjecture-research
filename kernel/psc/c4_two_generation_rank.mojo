@@ -11,7 +11,8 @@ ordinals. No invented target/quotient edges or first-child-only shortcut.
 """
 
 from psc.bpa import apply_substitution, decompose
-from psc.words import Pair, is_balanced, parikh
+from psc.words import ALPHABET, Pair, is_balanced, parikh
+from substitution_dynamics.substitution import validate_word
 from psc.c4_cut_alignment import _det3
 
 
@@ -99,8 +100,8 @@ def literal_two_generation_parikh_rank(
     The result is a *bounded exact certificate* or a bounded negative
     observation, never a universal verdict. Source words <=256,
     image lengths <=16; all intermediate inflation words <=65536
-    symbols. With <=10000 stored blocks each coordinate <=65536,
-    the greedy 3x3 minor is safe in signed 64-bit machine Int.
+    symbols. Each coordinate is <=65536, so the greedy 3x3 minor
+    is safe in signed 64-bit machine Int independently of node_cap.
     The mathematical rank theorem has no such length restrictions.
     """
     if len(sigma) != 3 or node_cap < 1:
@@ -111,7 +112,11 @@ def literal_two_generation_parikh_rank(
         for k in range(len(sigma[a])):
             if sigma[a][k] < 0 or sigma[a][k] >= 3:
                 raise Error("substitution letter outside alphabet")
-    if seed.length() <= 0 or seed.length() > 256 or not is_balanced(seed):
+    if seed.length() <= 0 or seed.length() > 256 or len(seed.u) != len(seed.v):
+        raise Error("rank source lengths must be equal and within cap")
+    validate_word(seed.u, ALPHABET)
+    validate_word(seed.v, ALPHABET)
+    if not is_balanced(seed):
         raise Error("rank source must be a nonempty balanced pair within cap")
 
     var records = List[LiteralParikhOccurrence]()

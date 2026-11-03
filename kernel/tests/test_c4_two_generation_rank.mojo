@@ -85,10 +85,53 @@ def test_caps_and_unbalanced_inputs_fail_closed() raises:
     assert_true(rejected)
 
 
+def test_repeated_diagonal_parents_and_exact_cap() raises:
+    var sigma: List[List[Int]] = [[1], [0, 2], [2, 0, 2]]
+    var seed = Pair([0, 0], [0, 0])
+    var result = literal_two_generation_parikh_rank(sigma, seed, node_cap=7)
+    assert_equal(len(result.occurrences), 7)
+    assert_equal(result.independent_ids, [0, 1, 4])
+    for i in range(2):
+        assert_equal(result.occurrences[i + 1].first_ordinal, i)
+        assert_equal(result.occurrences[i + 1].counts, [0, 1, 0])
+        for j in range(2):
+            var index = 3 + 2 * i + j
+            assert_equal(result.occurrences[index].depth, 2)
+            assert_equal(result.occurrences[index].first_ordinal, i)
+            assert_equal(result.occurrences[index].second_ordinal, j)
+        assert_equal(result.occurrences[3 + 2 * i].counts, [1, 0, 0])
+        assert_equal(result.occurrences[4 + 2 * i].counts, [0, 0, 1])
+    var rejected = False
+    try:
+        _ = literal_two_generation_parikh_rank(sigma, seed, node_cap=6)
+    except:
+        rejected = True
+    assert_true(rejected)
+
+
+def test_invalid_root_digits_are_rejected_before_counting() raises:
+    var sigma: List[List[Int]] = [[1], [0, 2], [2, 0, 2]]
+    for digit in [-1, 3]:
+        var rejected = False
+        try:
+            _ = literal_two_generation_parikh_rank(sigma, Pair([digit], [0]))
+        except:
+            rejected = True
+        assert_true(rejected)
+        rejected = False
+        try:
+            _ = literal_two_generation_parikh_rank(sigma, Pair([0], [digit]))
+        except:
+            rejected = True
+        assert_true(rejected)
+
+
 def main() raises:
     test_real_secondary_is_sharp_at_second_generation()
     test_tribonacci_can_be_full_rank_earlier()
     test_fullrank_primitive_but_reducible_strict_control_stays_rank_two()
     test_caps_and_unbalanced_inputs_fail_closed()
+    test_repeated_diagonal_parents_and_exact_cap()
+    test_invalid_root_digits_are_rejected_before_counting()
     print("C4 two-generation literal Parikh rank controls passed.")
     require_contract("irreducible ternary PIP has a literal rank-three Parikh triple within two complete generations; real-secondary depth-two sharpness, productive Tribonacci early rank, reducible strict rank-two, and cap/refusal negative controls")
