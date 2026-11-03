@@ -131,3 +131,88 @@ def test_all_short_balanced_sources_on_two_named_pip_substitutions():
                         assert len(ids) == 3
                         count += 1
         assert count > 0
+
+
+def test_phase_zero_flat_rank_three_PIP_cone_needs_a_later_escape():
+    """Strong negative: rank three + genuine good edge + flat whole words to depth 2.
+
+    Every displayed edge is an actual literal ordered child, not a
+    synthetic graph transition. The cone is PRODUCTIVE after depth two,
+    so it does not refute strict PIP C4.
+    """
+    sigma = ["01", "12", "021"]
+    root = ("10", "01")
+    M = matrix(sigma)
+    assert M == [[1, 0, 1], [1, 1, 1], [0, 1, 1]]
+    # det M = 1, chi_M = x^3 - 3x^2 + 2x - 1, discriminant -23.
+    assert det((1, 1, 0), (0, 1, 1), (1, 1, 1)) == 1
+    assert all(
+        sum(M[i][k] * M[k][j] for k in range(3)) > 0
+        for i in range(3) for j in range(3)
+    )
+    assert [1**3 - 3 * 1**2 + 2 * 1 - 1,
+            (-1)**3 - 3 * (-1)**2 + 2 * (-1) - 1] == [-1, -7]
+
+    level1 = factor(inflate(sigma, root[0]), inflate(sigma, root[1]))
+    assert level1 == [("1201", "0112")]
+    level2 = factor(inflate(sigma, level1[0][0]),
+                    inflate(sigma, level1[0][1]))
+    assert level2 == [("1202101", "0112120"), ("12", "21")]
+    desc, pivots = assert_krylov_span(sigma, root)
+    assert len(desc) == 4 and pivots == [0, 1, 2]
+    assert [x[4] for x in desc] == [
+        (1, 1, 0), (1, 2, 1), (2, 3, 2), (0, 1, 1)
+    ]
+    assert det(*(desc[i][4] for i in pivots)) == 1
+
+    # Genuine Barge-Diamond-good prefix edge {0,2}: both images start 0.
+    first = [w[0] for w in sigma]
+    last = [w[-1] for w in sigma]
+    assert first == ["0", "1", "0"] and last == ["1", "2", "1"]
+    assert first[0] == first[2]
+    # Physical hub 1 is TOP on root, first child and both second-level
+    # children. Thus each actual *ordered* hub word is all-zero.
+    assert all(top[0] == "1" and bottom[0] != "1"
+               for top, bottom in [root, *level1, *level2])
+
+    def synchronizes(f, x, y):
+        for _ in range(4):
+            if x == y:
+                return True
+            x, y = f[int(x)], f[int(y)]
+        return x == y
+
+    parent = level1[0]
+    top, bottom = inflate(sigma, parent[0]), inflate(sigma, parent[1])
+    zero_returns = [i for i in range(len(top)+1)
+                    if Counter(top[:i]) == Counter(bottom[:i])]
+    assert zero_returns == [0, 7, 9]
+    assert (top[6], bottom[6]) == ("1", "0")
+    assert (top[7], bottom[7]) == ("1", "2")
+    assert not synchronizes(last, top[6], bottom[6])
+    assert not synchronizes(first, top[7], bottom[7])
+    # Literal source addresses at this newborn cut:
+    # top: source index 3, digit 0; bottom: index 3, digit 1.
+    assert (sum(map(len, [sigma[int(a)] for a in parent[0][:3]])),
+            sum(map(len, [sigma[int(a)] for a in parent[1][:3]]))) == (7, 6)
+    E = tuple(parent[0][:3].count(str(i))-parent[1][:3].count(str(i))
+              for i in range(3))
+    c = tuple(sigma[1][:0].count(str(i))-sigma[2][:1].count(str(i))
+              for i in range(3))
+    assert E == (0, -1, 1) and c == (-1, 0, 0)
+    assert tuple(x+y for x, y in zip(matvec(M, E), c)) == (0, 0, 0)
+
+    # The next depth destroys flatness: a genuinely prefix-good 0/2
+    # child is born at global depth 3. Its next inflation gives 0/0.
+    level3 = factor(inflate(sigma, level2[0][0]),
+                    inflate(sigma, level2[0][1]))
+    assert level3 == [
+        ("1202101", "0112120"), ("02112", "21120"),
+        ("0112", "2101")
+    ]
+    assert level3[1][0][0] == "0" and level3[1][1][0] == "2"
+    assert first[0] == first[2]
+    level4_exit = factor(inflate(sigma, level3[1][0]),
+                         inflate(sigma, level3[1][1]))
+    assert level4_exit[0] == ("0", "0")
+    # Actual selected ordered child ordinals: 0,0,1,0.
