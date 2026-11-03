@@ -6,6 +6,7 @@ from psc.bpa import apply_substitution, coincidence_boundaries, decompose, norma
 from psc.derived_system import build_derived_system
 from psc.c4_cut_alignment import classify_irreducible_birth, proper_prefix_residue_admissible, unresolved_local_birth_types
 from psc.words import Pair
+from psc.c4_two_generation_rank import literal_two_generation_parikh_rank
 
 
 def _contains(whole: List[Int], part: List[Int]) -> Bool:
@@ -252,6 +253,17 @@ def test_local_endpoint_and_lattice_filter_has_real_positive_control() raises:
     assert_equal(len(born), 1)
     var parent = Pair([1, 1, 2, 1, 0], [2, 1, 0, 1, 1])
     assert_equal(born[0], parent)
+    # Complete two-generation cone: genuine prefix-good edge {0,2},
+    # hub 1, all three child occurrences reverse the physical hub side.
+    assert_equal(prefix_endpoint_map(sigma), [1, 2, 1])
+    assert_equal(suffix_endpoint_map(sigma), [1, 0, 0])
+    var rank = literal_two_generation_parikh_rank(sigma, seed)
+    assert_equal(len(rank.occurrences), 4)
+    assert_equal(rank.independent_ids, [0, 1, 2])
+    assert_equal(rank.occurrences[0].counts, [1, 1, 0])
+    assert_equal(rank.occurrences[1].counts, [1, 3, 1])
+    assert_equal(rank.occurrences[2].counts, [1, 1, 1])
+    assert_equal(rank.occurrences[3].counts, [3, 5, 2])
     var witness = classify_irreducible_birth(sigma, parent, 3)
     assert_equal(witness.top_source, 1)
     assert_equal(witness.bottom_source, 1)
@@ -262,6 +274,8 @@ def test_local_endpoint_and_lattice_filter_has_real_positive_control() raises:
     var top = apply_substitution(sigma, parent.u)
     var bottom = apply_substitution(sigma, parent.v)
     assert_equal(coincidence_boundaries(top, bottom), [0, 3, 13])
+    assert_equal(top[3], 2)
+    assert_equal(bottom[3], 1)
     assert_true(top[2] != bottom[2])
     assert_true(top[3] != bottom[3])
     # An actual two-step path reaches a coincidence, keeping this

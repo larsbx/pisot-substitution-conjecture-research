@@ -324,3 +324,68 @@ functional that vanishes on just a selected lineage is insufficient.
 If established, the bridge would exclude the flat PIP case. Applying
 it to arbitrary strict components would still require a justified
 reduction to flatness or a separate argument for nonflat words.
+
+## 8. Finite-cone negative for the flat-hub bridge — 2026-11-03
+
+The already retained local-birth control `11/210/10` rules out deriving a
+mass annihilator from the constraints in just one complete depth-two cone,
+even with a genuine prefix good edge and a literal nonsynchronizing birth.
+Starting at `01/10`, the complete ordered levels are:
+
+| Depth | Raw pairs in order | Parikh columns |
+| --- | --- | --- |
+| 0 | `01/10` | `(1,1,0)` |
+| 1 | `11210/21011` | `(1,3,1)` |
+| 2 | `210/102`, `2101021011/1011210210` | `(1,1,1)`, `(3,5,2)` |
+
+The incidence matrix is `[[0,1,1],[2,1,1],[0,1,0]]`; its square is
+entrywise positive. Its characteristic polynomial is
+`f(x)=x³−x²−3x−2` with no integer root among ±1, ±2. It has exactly
+one positive root, in (2,3), by the coefficient signs and endpoint
+values. For `t≥0`, `−f(−t)=t³+(t−1)(t−2)>0`: outside [1,2]
+both terms are nonnegative with positive sum, and on [1,2] the
+first is at least 1 and the second at least −1/4. The complex
+conjugate roots have squared modulus `2/λ<1` for the positive
+root λ. This verifies PIP.
+
+The prefix map is `[1,2,1]`, so 0 and 2 merge after one step,
+while a pair with hub 1 and a leaf never merges. Hub 1 lies on
+the bottom at depth zero, the top at depth one, and the bottom
+on both depth-two blocks. Thus the complete hub-residual words
+are `[1]` and `[1,1]`. The unique interior newborn is at cut 3
+of `2102101021011/1021011210210`. The adjacent right pair is
+`(2,1)`; the adjacent left pair is `(0,2)`, which enters the
+distinct two-cycle under the suffix map `[1,0,0]`. The source
+addresses are `(1,0),(1,1)`, with `E=(0,1,−1)` and
+`c=(0,0,−1)`. The first three columns have determinant +2.
+At depth three the child `210/102` produces `1/1`, so the
+displayed cone has a productive exit.
+
+This retires the finite-cone version of the bridge, including the
+constant-phase-one case with genuine prefix synchronization of the
+leaves. A bridge for a supplied fully child-closed strict component
+must use continuation or recurrence beyond the inspected cone.
+One exact test is to ask whether the atlas constraints at recurrent
+boundary returns can transport the *same* nonzero rational
+functional to each full child word; the displayed open cone must
+pass the local cut constraints yet fail the annihilator test.
+The zero-phase-only version and the full strict-component problem
+remain separate.
+
+### Hosted follow-up
+
+The [hosted Mojo job](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/41589578786/job/125763257234)
+checked merge revision `03436b96b0e73e4171f12662e59d80d30abb5600`
+for audit head `7128449a3cdc9cecf19ca5417a4d6df31d8cb96c`.
+The rank regression passed, including the added malformed-root
+and repeated diagonal-parent/cap controls. The endpoint loop compiled,
+and the two cut suites reached a runtime refusal in the asynchronous
+inflation identity. The checker had filled one defect coordinate and
+immediately evaluated the corresponding matrix row against a partially
+filled vector. The fix fills all coordinates before multiplication.
+For the cut above, the complete second row gives `1−1=0`;
+the partial evaluation gives `1` and rejects the true return. The updated native
+cut regression also pins the finite cone and its three independent
+occurrence IDs. Replay both cut suites and the rank suite from
+`kernel/` with `mojo run -I . tests/<test-file>.mojo`.
+Post-fix hosted acceptance remains pending.

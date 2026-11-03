@@ -245,6 +245,7 @@ def classify_irreducible_birth(
     for x in range(3):
         defect[x] = pt[x] - pb[x]
         correction[x] = qt[x] - qb[x]
+    for x in range(3):
         var total = correction[x]
         for y in range(3):
             total += m[3 * x + y] * defect[y]
