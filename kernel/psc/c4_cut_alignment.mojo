@@ -111,12 +111,14 @@ def proper_prefix_residue_admissible(
 def _eventually_equal(f: List[Int], a: Int, b: Int) -> Bool:
     # An unordered off-diagonal pair has only three possibilities;
     # if equality is not reached in four steps, an off-diagonal pair repeats.
+    var left = a
+    var right = b
     for _ in range(4):
-        if a == b:
+        if left == right:
             return True
-        a = f[a]
-        b = f[b]
-    return a == b
+        left = f[left]
+        right = f[right]
+    return left == right
 
 
 def _integral_column_lift(m: List[Int], det: Int, q: List[Int]) raises -> Bool:
@@ -243,6 +245,7 @@ def classify_irreducible_birth(
     for x in range(3):
         defect[x] = pt[x] - pb[x]
         correction[x] = qt[x] - qb[x]
+    for x in range(3):
         var total = correction[x]
         for y in range(3):
             total += m[3 * x + y] * defect[y]
