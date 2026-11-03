@@ -2491,6 +2491,11 @@
       "statement_heading": "## Theorem 3: actual ordered-prefix carry criterion, without expanding sigma^m"
     },
     {
+      "source": "docs/class-a-madic-smith-trichotomy-2026-11-02.md",
+      "line": 24,
+      "statement_heading": "## Theorem: all Smith invariants for all k,t,m"
+    },
+    {
       "source": "docs/class-a-minus-line-2026-10-22.md",
       "line": 113,
       "statement_heading": "## Theorem A' (uniform forward closure)"

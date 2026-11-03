@@ -1,0 +1,41 @@
+name: PSC Class-A exact nonunit Smith trichotomy
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/class_a_madic_smith.mojo'
+      - 'kernel/tests/test_class_a_madic_smith.mojo'
+      - 'tests/test_class_a_madic_smith_oracle.py'
+      - 'docs/class-a-madic-smith-trichotomy-2026-11-02.md'
+      - '.github/workflows/class-a-madic-smith.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-smith:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Pin actual PR-head checkout
+        if: github.event_name == 'pull_request'
+        run: |
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha }}"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Independent full-integer-minor oracle
+        run: |
+          python -m pip install pytest==8.4.2
+          python -m pytest -q tests/test_class_a_madic_smith_oracle.py
+      - name: Install locked Pixi environment
+        run: |
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Canonical exact-Mojo versus existing generic Smith
+        working-directory: kernel
+        run: pixi run --locked mojo run -I . tests/test_class_a_madic_smith.mojo

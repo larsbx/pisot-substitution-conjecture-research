@@ -253,3 +253,54 @@ def test_two_sided_local_residue_and_endpoint_sieve_with_real_escape():
     g={a:sigma[a][-1] for a in sigma}
     assert not sync([int(h[str(i)]) for i in range(3)],int(top[3]),int(bottom[3]))
     assert not sync([int(g[str(i)]) for i in range(3)],int(top[2]),int(bottom[2]))
+
+
+def test_all_twelve_strict_nonpip_literal_newborn_events():
+    # Independent literal enumerator: source addresses and adjacent letter
+    # pairs are read from the original expanded words, not a signed quotient.
+    sigma = {"0": "10", "1": "102", "2": "211"}
+    states = [
+        ("102", "210"),
+        ("11102", "21110"),
+        ("10210211", "21110210"),
+        ("10210210210211", "21110210210210"),
+    ]
+    h = {a: w[0] for a, w in sigma.items()}
+    g = {a: w[-1] for a, w in sigma.items()}
+
+    def sync(f, a, b):
+        for _ in range(4):
+            if a == b:
+                return True
+            a, b = f[a], f[b]
+        return a == b
+
+    events = []
+    labels = {pair: i for i, pair in enumerate(states)}
+    for parent_id, (u, v) in enumerate(states):
+        top, bottom = infl(sigma, u), infl(sigma, v)
+        zeroes = cuts(top, bottom)
+        raw = children(top, bottom)
+        assert all(child in labels for child in raw)
+        for ordinal, t in enumerate(zeroes[1:-1], start=1):
+            i, di = addr(sigma, u, t)
+            j, dj = addr(sigma, v, t)
+            E = defect(u[:i], v[:j])
+            c = defect(sigma[u[i]][:di], sigma[v[j]][:dj])
+            M = [[sigma[str(k)].count(str(row)) for k in range(3)]
+                 for row in range(3)]
+            assert all(sum(M[k][l] * E[l] for l in range(3)) + c[k] == 0
+                       for k in range(3))
+            left, right = (top[t-1], bottom[t-1]), (top[t], bottom[t])
+            assert not sync(g, *left) and not sync(h, *right)
+            assert di > 0 or dj > 0
+            events.append((parent_id, ordinal, t, labels[raw[ordinal-1]],
+                           labels[raw[ordinal]], (i, di), (j, dj), E, c,
+                           left, right))
+    assert len(events) == 12
+    assert [sum(e[0] == i for e in events) for i in range(4)] == [0, 0, 4, 8]
+    assert events[0] == (2, 1, 8, 2, 0, (3, 0), (2, 2), (1, 0, 0),
+                         (-1, -1, 0), ("1", "0"), ("1", "2"))
+    assert events[2][:9] == (2, 3, 14, 0, 1, (5, 1), (5, 0),
+                             (1, -1, 0), (0, 0, 1))
+    assert events[-1][:7] == (3, 8, 35, 1, 0, (13, 0), (12, 2))
