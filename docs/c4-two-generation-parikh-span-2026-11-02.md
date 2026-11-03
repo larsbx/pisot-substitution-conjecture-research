@@ -389,3 +389,147 @@ cut regression also pins the finite cone and its three independent
 occurrence IDs. Replay both cut suites and the rank suite from
 `kernel/` with `mojo run -I . tests/<test-file>.mojo`.
 Post-fix hosted acceptance remains pending.
+
+
+## 9. A genuine PIP **phase-zero** complete-cone negative — 2026-11-03
+
+The finite-cone counterexample in §8 has nonzero phase. The
+following stronger exact negative retires even the **phase-zero
+version through two complete actual generations**, despite genuine
+prefix-good-edge synchronization, full rational Parikh rank and
+full integer mass-lattice saturation.
+
+Consider the three-letter substitution (zero-based)
+```text
+sigma(0)=01,  sigma(1)=12,  sigma(2)=021.
+M = [[1,0,1],[1,1,1],[0,1,1]],
+det M=1, M²=[[1,1,2],[2,2,3],[1,2,2]]>0.
+chi_M(x)=x³−3x²+2x−1, discriminant −23.
+```
+
+These facts verify the **primitive irreducible Pisot** hypotheses
+exactly. Rational roots of the monic cubic must be ±1, neither
+of which is a root. The negative discriminant gives precisely one
+real root `beta`; `f(2)=−1` and `f(3)=5` show `beta>2`.
+The conjugate pair has product `det(M)/beta=1/beta`,
+hence each has modulus `beta^{-1/2}<1`. This is a
+**unimodular**, not non-unit, PIP negative control.
+
+Fix the actual (possibly noncanonical) swap seed
+`T0=(10,01)`. Its **complete ordered literal factorization**
+through depth two is
+
+```text
+T0 = (10,01)                               p0=(1,1,0)
+  --sigma, one complete child-->
+T1 = (1201,0112)                           p1=(1,2,1)
+  --sigma, two complete children-->
+T2a = (1202101,0112120)                    p2a=(2,3,2)
+T2b = (12,21)                              p2b=(0,1,1).
+```
+
+No pair displayed above is diagonal and neither inflation
+introduces a diagonal child. The actual zero-return cut lists
+are `[0,4]` for `sigma(T0)` and `[0,7,9]`
+for `sigma(T1)`. Their *complete* child sets—not just
+selected paths—are displayed.
+
+There is a **genuine Barge–Diamond-good prefix pair**
+`G={0,2}`, since `sigma_+(0)=sigma_+(2)=0`:
+these letters are eventually coincident already at the
+first-letter selector. The complementary hub is letter `1`.
+The prefix and suffix endpoint maps are
+
+```text
+sigma_+ = [0,1,0],   sigma_- = [1,2,1].
+```
+
+In `T0,T1,T2a,T2b`, the physical top first letter is
+always hub `1` and the physical bottom first letter is
+not `1`. Therefore the **full ordered physical hub-residual
+word** is exactly `[0]` for the first inflation
+and `[0,0]` for the second. No normalization,
+orientation quotient or omitted child is involved.
+The unique interior newborn cut of `sigma(T1)` is
+at physical position `t=7`:
+
+```text
+sigma(T1).top    = 1202101 | 12
+sigma(T1).bottom = 0112120 | 21
+previous adjacent pair = (1,0);  next adjacent pair = (1,2)
+source addresses (top,bottom) = (3,0), (3,1)
+E=(0,−1,1), c=(−1,0,0), M E+c=0.
+```
+
+The left pair `1/0` stays distinct under
+`sigma_-: 1/0 -> 2/1 -> 1/2 -> ...`. The right
+pair `1/2` stays distinct under `sigma_+:
+1/2 -> 1/0 -> 1/0 -> ...`. Thus the only
+depth-two newborn is **neither** `Sync_-`
+nor `Sync_+`.
+
+Yet its complete depth-two cone already has **rank three**:
+the actual columns `p0,p1,p2a` have determinant `+1`.
+In particular the actual descendant masses already generate
+the entire lattice `Z³`. Therefore even
+`PIP + genuine BD-good edge + complete ordered depth-two
+flat zero-phase words + no diagonal so far + rank three +
+index-one descendant mass lattice` does **not** force a
+synchronizing newborn by depth two.
+
+### The exact later escape (the missing closure hypothesis)
+
+The cone above is **not** strictly child-closed. Continue from
+the actual `T2a` block, preserving all child ordinals:
+
+```text
+sigma(T2a):
+ top    = 1202101021120112
+ bottom = 0112120211202101
+ zero returns = [0,7,12,16]
+ actual ordered children:
+   ordinal 0: (1202101,0112120)
+   ordinal 1: (02112,21120)
+   ordinal 2: (0112,2101).
+```
+
+At the depth-three interior cut `t=7`, the **right**
+adjacent pair is the genuine good pair `(0,2)`.
+Thus the first depth-three child outside the hub star
+is an **actual synchronizing newborn**, not a synthetic
+edge. Along ordinal path `[0,0,1,0]`, inflating
+`(02112,21120)` produces the diagonal first child
+`(0,0)` at global depth four.
+
+The exact chronology is therefore:
+
+```text
+depth 0: genuine swap seed;
+depth 1: complete one-child zero-phase word;
+depth 2: complete two-child zero-phase word, rank 3, no Sync newborn;
+depth 3: actual interior Sync_+ newborn / hub-star exit;
+depth 4: actual diagonal child.
+```
+
+This **does not refute C4**, because the displayed source
+cone is productive and is not a finite strict child-closed
+SCC. It refutes an attempted **bounded-depth local**
+replacement for strict closure, including the zero-phase
+case that §8 left open. Any next derivation must use
+continuation under strict closure (or an independently
+proved complete recurrent legal-ancestry rule), rather than
+declare flatness plus rank three sufficient after two steps.
+No finite-depth uniform upper bound is inferred from this
+single example.
+
+**Replay:** the canonical
+`kernel/tests/test_c4_two_generation_rank.mojo`
+and independent
+`tests/test_c4_two_generation_rank_oracle.py`
+now pin all four actual depth-two occurrences, both
+endpoint maps, the exact `M E+c=0` newborn,
+the depth-three good-edge boundary and the depth-four
+diagonal ordinal path. The independent arithmetic
+and literal words were checked with exact integer
+counting in the development environment; **hosted
+exact-head acceptance remains to be established**.
