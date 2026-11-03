@@ -62,7 +62,7 @@ struct StrictConeHubAudit(Copyable, Movable):
         self.plane_eigenvalue = plane_eigenvalue
 
 
-def _consider(mut pivots: List[ConePivot], candidate: ConePivot):
+def _consider(mut pivots: List[ConePivot], candidate: ConePivot) raises:
     if len(pivots) == 0:
         if candidate.counts[0] != 0 or candidate.counts[1] != 0 or candidate.counts[2] != 0:
             pivots.append(candidate.copy())
