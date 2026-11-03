@@ -2476,6 +2476,26 @@
       "statement_heading": "**Theorem shape.** For each sign, the fitted regimes cover every residue of"
     },
     {
+      "source": "docs/class-a-madic-digit-ladder-2026-11-02.md",
+      "line": 21,
+      "statement_heading": "## Theorem 1: unique canonical binary digits at every finite level"
+    },
+    {
+      "source": "docs/class-a-madic-digit-ladder-2026-11-02.md",
+      "line": 53,
+      "statement_heading": "## Theorem 2: exact multi-level prefix zero-return filter"
+    },
+    {
+      "source": "docs/class-a-madic-digit-ladder-2026-11-02.md",
+      "line": 68,
+      "statement_heading": "## Theorem 3: actual ordered-prefix carry criterion, without expanding sigma^m"
+    },
+    {
+      "source": "docs/class-a-madic-smith-trichotomy-2026-11-02.md",
+      "line": 24,
+      "statement_heading": "## Theorem: all Smith invariants for all k,t,m"
+    },
+    {
       "source": "docs/class-a-minus-line-2026-10-22.md",
       "line": 113,
       "statement_heading": "## Theorem A' (uniform forward closure)"

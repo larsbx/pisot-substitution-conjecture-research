@@ -1,0 +1,30 @@
+name: Proof bank generated-source consistency
+
+on:
+  pull_request:
+    paths:
+      - 'proof/proof-bank.json'
+      - 'docs/proof-bank.md'
+      - 'tools/make_proof_bank.py'
+      - '.github/workflows/proof-bank-consistency.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  proof-bank-current:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Verify exact PR-head lease
+        if: github.event_name == 'pull_request'
+        run: test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha }}"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check generated proof bank against live repository source
+        run: python tools/make_proof_bank.py --check
