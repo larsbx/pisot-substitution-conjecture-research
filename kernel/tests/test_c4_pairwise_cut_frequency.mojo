@@ -85,6 +85,4 @@ def main() raises:
     test_imprimitive_period_two_is_subsequence_only()
     test_selected_recurrent_path_is_not_full_child_closure()
     print("C4 pairwise cut frequency exact controls passed.")
-    require_contract(
-        "full strict child-factor counts give positive PF frequency per first-pair on cyclic subsequences; genuine non-Pisot rotation, synthetic period-two matrix and closure refusal, no geometric or PSC claim"
-    )
+    require_contract("Complete cut counts, cyclic subsequences, and strict closure on finite controls")
