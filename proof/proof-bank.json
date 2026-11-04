@@ -2342,23 +2342,28 @@
     },
     {
       "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
-      "line": 52,
+      "line": 57,
       "statement_heading": "**Theorem A.**"
     },
     {
       "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
-      "line": 105,
+      "line": 123,
       "statement_heading": "**Theorem B.** `λ(Z_A) ≥ κ / L_max > 0`. In particular `λ(R_c ∩ R_c') > 0` for"
     },
     {
       "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
-      "line": 151,
+      "line": 177,
       "statement_heading": "**Corollary B′ (productivity from disjointness).** If the subtiles of the"
     },
     {
       "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
-      "line": 170,
+      "line": 198,
       "statement_heading": "**Theorem C.** If a strict system `C` exists, then `θ_c ≤ 1/2` for every"
+    },
+    {
+      "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
+      "line": 262,
+      "statement_heading": "**Lemma P (unimodular, one pair).** Let `σ` be primitive with irreducible Pisot"
     },
     {
       "source": "docs/c4-defect-degree-census.md",

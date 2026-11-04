@@ -4,7 +4,8 @@ Contract (docs/c4-cut-pair-productivity-2026-11-04.md, Theorem A). For a
 finite strictly child-closed system C of irreducible noncoincident balanced
 pairs, the set A(C) of unordered first-letter pairs ("cut pairs") satisfies
 
-* every balanced cut of every inflation of every state carries a pair of A(C);
+* every proper balanced cut (cut 0 included, terminal index excluded) of every
+  inflation of every state carries a pair of A(C);
 * A(C) is closed under the initial-letter map g x g, and g never collapses it;
 * no pair of A(C) is left strongly coincident.
 

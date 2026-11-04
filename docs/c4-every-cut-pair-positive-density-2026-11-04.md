@@ -2,11 +2,11 @@
 
 **Status:** Proven algebraic frequency reduction for a **supplied finite fully strict child-closed** balanced-pair SCC. The pair-specific Rauzy overlap corollary is **proposed pending independent geometric audit** of the regular-window cut-and-project step in merged PR #480. General C4, G1, BH, A1', pure discreteness and PSC remain open.
 
-**Baseline:** main a081bb0a2e258f38ad405f5b12285bcd450e9520 (merged PR #481). Research target: Issue #461. The work strengthens the union-overlap reduction of PR #480; it does not import its incorrect earlier one-pair-strong-coincidence-to-*unprimed*-disjointness claim.
+**Baseline:** main a081bb0a2e258f38ad405f5b12285bcd450e9520 (merged PR #481). Research target: Issue #461. The work strengthens the union-overlap reduction of PR #480; it imports nothing from Arnoux–Ito; see #480 §4 for the corrected convention `R_c = −X(c)'` (the positive-prefix subtiles are Arnoux–Ito's primed family, up to sign).
 
 ## Theorem A: each cut-pair grows with positive PF frequency
 
-Let sigma be primitive on three letters with primitive irreducible Pisot incidence M, spectral radius beta>1 and positive Perron left row ell. Let C={T_1,...,T_r} be a supplied **strongly connected fully strict child-closed** collection of actual irreducible balanced pairs. All *occurrences* in the complete zero-return factorisation of sigma(T_j) must lie in C. No diagonal, omitted child, or escaped child is allowed.
+Let sigma be primitive on three letters with primitive irreducible Pisot incidence M, spectral radius beta>1 and positive Perron left row ell. Let C={T_1,...,T_r} be a supplied **strongly connected fully strict child-closed** collection of actual irreducible balanced pairs. All *occurrences* in the complete zero-return factorisation of sigma(T_j) must lie in C. No diagonal, omitted child, or escaped child is allowed. Strong connectivity is essential: a cut pair carried only by transient states of a larger strict system has frequency 0 and is not covered (control: the 6-state closure of `(02,20)` under `10/102/211`, whose sink SCC carries only `{1,2}`; see #480 §5).
 
 Let P be the matrix of Parikh masses, N the exact child-incidence matrix, and L_j=ell.P_j>0. Completeness gives the exact mass identity PN=MP and consequently L^T N=beta L^T. The SCC hypothesis makes N irreducible, with PF root beta and positive right Perron vector v.
 
@@ -33,13 +33,13 @@ lim_m beta^(-mh) (N^(mh))_{ij}
       = 0             otherwise.
 ~~~
 
-The factor h follows because the PF mass sum_i v_i L_i is equal in every cyclic class, each carrying D/h. Choose the class maximizing the weighted I_e sum and j inside that nonempty class. Summing the limit over I_e gives delta_e. Passing to n=mqh does not alter the limit. The lower bound follows from maximum >= average over h classes. QED.
+The factor h follows because the PF mass is equal in every cyclic class: with m_k = sum_{i in C_k} L_i v_i, each child of a class-k state lies in class k+1, so beta m_k = sum_{j in C_k} (L^T N)_j v_j = sum_{i in C_(k+1)} L_i (N v)_i = beta m_(k+1); hence m_k = D/h. Choose j in I_e intersect C_(k*), where k* attains the maximum; this set is nonempty because the maximum is positive. Summing the limit over I_e gives delta_e. Passing to n=mqh does not alter the limit. The lower bound follows from maximum >= average over h classes. QED.
 
 This is **not** a bounded-depth strong-coincidence theorem: it guarantees positive density of each represented *noncoincident* cut-pair if such a strict component exists. It does not ensure any represented pair is the genuine Barge–Diamond good edge.
 
 ## Corollary B: per-pair subtile overlap (geometric import under review)
 
-Let E^s be M's contracting plane, pi the projection along its Perron line, and R_c the compact **positive-prefix unprimed** Rauzy subtiles for a one-sided fixed point of a power sigma^q. Define Phi(y)=(ell.y,pi y), kappa=|det Phi|>0 and planar Lebesgue measure lambda.
+Let E^s be M's contracting plane, pi the projection along its Perron line, and R_c the compact **positive-prefix** Rauzy subtiles (Arnoux–Ito's primed family up to sign; #480 §4) for a one-sided fixed point of a power sigma^q. Define Phi(y)=(ell.y,pi y), kappa=|det Phi|>0 (computed in the coordinates of E^s that define lambda) and planar Lebesgue measure lambda.
 
 Conditional on independently accepting both of these geometric inputs from PR #480, §§3 and 8:
 
@@ -52,7 +52,7 @@ Conditional on independently accepting both of these geometric inputs from PR #4
 lambda(R_c intersect R_c') >= kappa delta_e > 0.
 ~~~
 
-**Proof.** Fix j and n=mqh as in Theorem A. Each distinct factor beginning at a balanced cut of sigma^n(T_j) gives a distinct integer Parikh prefix x; there are b_e(n,j) such cuts of pair e. For any regular open-box cover U of the compact intersection, sufficiently large n put all those projections inside U, since they converge uniformly to both compact subtiles. The box count with X=beta^n L_j gives
+**Proof.** Fix j and n=mqh as in Theorem A. Each distinct factor beginning at a balanced cut of sigma^n(T_j) gives a distinct integer Parikh prefix x; there are b_e(n,j) such cuts of pair e. For any regular open-box cover U of the compact intersection, sufficiently large n put all those projections inside U, since they converge uniformly to both compact subtiles. (Compactness lemma: for compact A, B and open U ⊇ A∩B there is ε>0 with N_ε(A) ∩ N_ε(B) ⊆ U.) The box count with X=beta^n L_j gives
 
 ~~~text
 b_e(n,j) <= beta^n L_j lambda(U)/kappa + o(beta^n L_j).
@@ -62,7 +62,7 @@ Divide and use Theorem A; then infimize over regular box covers by outer regular
 
 The new information is **every represented pair**, not merely the union of pair overlaps. For imprimitive N an arbitrary single source need not see every pair on every n; the class-subsequence construction above is essential.
 
-**Important limitation:** Arnoux–Ito's implication from one positive strong-coincidence pair concerns *primed* subtiles, while their unprimed measure-disjointness theorem assumes all-pair strong coincidence. Do not silently identify these! The present conditional overlap statement alone does not contradict any known good edge or settle Issue #461. In the non-unit regime Euclidean overlap may be abundant even without a strict SCC; no adelic conclusion is claimed.
+**Scope:** the positive-prefix `R_c` are Arnoux–Ito's primed subtiles up to sign (#480 §4). In the unit case a left SC pair gives `λ(R_c∩R_c') = 0` (Lemma P of #480 §4), so Corollary B and Theorem A(4) of #480 agree on SC pairs; Corollary B adds exclusion power only on cut pairs without an SC witness, through the open disjointness question. Corollary B alone does not settle Issue #461. In the non-unit regime no adelic conclusion is claimed.
 
 ## Bounded exact controls
 
@@ -72,7 +72,7 @@ The new information is **every represented pair**, not merely the union of pair 
 
 **Fail-closed closure control:** retaining just the first state of the genuine three-state strict example omits two actual children. It must not be admitted as a closed system.
 
-Canonical Mojo and independent Python replay all literal controls and the periodic/refusal cases. Neither executable checks a geometric measure, hypothetical strict PIP existence, or general C4.
+Mojo checks the literal per-pair counts `3^(n−1)`, a period-two recursion and the exit count of the subset control. The Python oracle checks fail-closed admission, the exact ratio 1/9, and computes `δ_e = h·max_k Σ_{i∈I_e∩C_k} v_i / D` from `N` (period, cyclic classes and Perron data) for the synthetic period-two control. Neither computes `N` or `δ_e` from literal words, nor any geometric measure, hypothetical strict PIP existence, or general C4.
 
 ~~~sh
 (cd kernel && pixi run --locked mojo run -I . tests/test_c4_pairwise_cut_frequency.mojo)

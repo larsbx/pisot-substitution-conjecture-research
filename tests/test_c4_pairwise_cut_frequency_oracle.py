@@ -49,6 +49,48 @@ def mv(N, counts):
     return [sum(row[j] * counts[j] for j in range(len(counts))) for row in N]
 
 
+def pf_pair_frequency(N, beta, v, L, types):
+    """delta_e = h * max_k sum_{i in I_e and C_k} v_i / D, computed from N.
+
+    Verifies the supplied Perron data exactly (N v = beta v, L^T N = beta L^T),
+    derives the period h and cyclic classes from the support of N by BFS, and
+    checks that every class carries PF mass D/h.  Returns {type: delta}.
+    """
+    n = len(N)
+    edges = [(i, j) for j in range(n) for i in range(n) if N[i][j]]  # child i of j
+    if [sum(N[i][j] * v[j] for j in range(n)) for i in range(n)] != [beta * x for x in v]:
+        raise ValueError("v is not a right Perron vector")
+    if [sum(L[i] * N[i][j] for i in range(n)) for j in range(n)] != [beta * x for x in L]:
+        raise ValueError("L is not a left Perron vector")
+    dist = {0: 0}
+    frontier = [0]
+    while frontier:
+        nxt = []
+        for j in frontier:
+            for i in range(n):
+                if N[i][j] and i not in dist:
+                    dist[i] = dist[j] + 1
+                    nxt.append(i)
+        frontier = nxt
+    if len(dist) != n:
+        raise ValueError("N is not irreducible from state 0")
+    from math import gcd
+    h = 0
+    for i, j in edges:
+        h = gcd(h, dist[j] + 1 - dist[i])
+    h = abs(h)
+    classes = [[i for i in range(n) if dist[i] % h == k] for k in range(h)]
+    D = sum(Fraction(L[i]) * v[i] for i in range(n))
+    for cls in classes:
+        if sum(Fraction(L[i]) * v[i] for i in cls) * h != D:
+            raise ValueError("unequal cyclic-class PF mass")
+    out = {}
+    for e in set(types):
+        best = max(sum(Fraction(v[i]) for i in cls if types[i] == e) for cls in classes)
+        out[e] = h * best / D
+    return h, out
+
+
 def test_complete_strict_rotation_and_each_first_pair_frequency():
     N = exact_child_matrix(STATES)
     assert N == [[1, 1, 1]] * 3
@@ -87,7 +129,16 @@ def test_imprimitive_matrix_requires_class_subsequence():
         counts = mv(N, counts)
     assert ratios == [Fraction(int(n % 2 == 0)) for n in range(20)]
     assert sum(ratios, Fraction()) / len(ratios) == Fraction(1, 2)
-    assert Fraction(2 * 1, 2) == 1  # h * max(class r) / D
+    h, delta = pf_pair_frequency(N, 2, [1, 1], [1, 1], ["e0", "e1"])
+    assert h == 2 and delta == {"e0": Fraction(1), "e1": Fraction(1)}
+
+
+def test_uniform_control_pf_frequency_matches_literal_ratio():
+    N = [[1] * 3 for _ in range(3)]
+    types = ["{0,1}", "{1,2}", "{0,2}"]  # first pairs of STATES
+    assert [frozenset(a[0] + b[0]) for a, b in STATES] == [frozenset("01"), frozenset("12"), frozenset("02")]
+    h, delta = pf_pair_frequency(N, 3, [1, 1, 1], [3, 3, 3], types)
+    assert h == 1 and set(delta.values()) == {Fraction(1, 9)}
 
 
 def test_selected_path_or_incomplete_state_set_fails_closed():
