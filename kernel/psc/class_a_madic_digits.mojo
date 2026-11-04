@@ -103,7 +103,7 @@ def reconstruct_digits(k: Int,t: Int, digits: MAdicDigits) raises -> List[Int]:
         var shifted = apply_incidence(k,t,out)
         shifted[0] = checked_add(shifted[0],bit)
         out = shifted^
-    return out
+    return out^
 
 
 def in_image_power(k: Int,t: Int,v: List[Int],levels: Int) raises -> Bool:
@@ -142,4 +142,4 @@ def recover_zero_parent(k: Int,t: Int,prefix_top_minus_bottom: List[Int],
     for bit in record.bits:
         if bit != 0:
             raise Error("prefix difference outside M^m Z^3")
-    return record.tail
+    return record.tail.copy()
