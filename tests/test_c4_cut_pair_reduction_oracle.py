@@ -72,7 +72,7 @@ def strict_complete_system(sigma, states):
         if any(x == y or frozenset((x, y)) not in canonical for x, y in child):
             raise ValueError("not a complete strict child-closed system")
         ordered_children.append(child)
-    first = {i: sigma[i][0] for i in range(3)}
+    first = {str(i): sigma[i][0] for i in range(3)}
     for edge in A:
         a, b = sorted(edge)
         assert first[a] != first[b]

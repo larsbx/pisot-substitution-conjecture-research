@@ -1,0 +1,86 @@
+fd3b64e2e25a7d8a7a8623a52677a8822e52f6c5
+Mojo 1.1.0.dev2026090805 (34562fa1)
+
+== tests/test_c4_addressed_newborn.mojo ==
+C4 addressed overlap witnesses replay to one-step interior Sync cuts.
+contract-receipt: literal addressed diagonal transport through ordered factors to the first one-step interior synchronizing newborn
+exit status 0
+
+== tests/test_c4_complete_cone_hub_audit.mojo ==
+C4 complete strict cone rank/hub audit: exact obstruction and fail-closed controls.
+contract-receipt: all-child strict derived system audit checks literal Parikh intertwining, two-level root cone ranks, all compatible hub words and primitive integral rank-two left eigenvector; never certifies genuine good edge or general PSC
+exit status 0
+
+
+== cut_alignment ==
+C4 bilateral birth: PIP control, fullrank strict non-PIP countermodel and modular gate passed.
+contract-receipt: irreducible nonsingular parents cannot have bilaterally aligned interior born zero returns; a recurrent legal PIP source still exhibits a one-sided locally nonsynchronizing birth; singular full-rank negative is rejected; strict PIP C4 remains open; fullrank primitive non-PIP four-state strict SCC can avoid both Sync maps
+exit status 0
+
+== cut_pair_reduction ==
+At: ./substitution_dynamics/words.mojo:22:12: Assert Error: index 3 is out of bounds, valid range is 0 to 2
+#0 0x00007f11cc706a0e (/workspace/scratch/b47f2d74c0cf/mojo-local/lib/libKGENCompilerRTShared.so+0x106a0e)
+#1 0x00007f11cc703b26 (/workspace/scratch/b47f2d74c0cf/mojo-local/lib/libKGENCompilerRTShared.so+0x103b26)
+#2 0x00007f11cc7075d0 (/workspace/scratch/b47f2d74c0cf/mojo-local/lib/libKGENCompilerRTShared.so+0x1075d0)
+#3 0x00007f11ce83f330 (/lib/x86_64-linux-gnu/libc.so.6+0x45330)
+#4 0x00007f11a0011ce2
+mojo: error: execution crashed
+To get a symbolicated stack trace, compile your program using `mojo build` with debug info enabled (e.g., `-debug-level=line-tables`) and execute it separately.
+exit status 1
+
+== overlap_enclosure ==
+C4 whole-factor enclosure: 9 literal sources reach all 9 represented target occurrences.
+contract-receipt: an actual inflated overlap contains a whole balanced factor and routes to every represented target in the strict uniform control
+exit status 0
+
+== pairwise_cut_frequency ==
+kernel/tests/test_c4_pairwise_cut_frequency.mojo:21:13: warning: ref 'level' was never used, remove it?
+        for level in range(1, 6):
+            ^
+C4 pairwise cut frequency exact controls passed.
+contract-receipt: full strict child-factor counts give positive PF frequency per first-pair on cyclic subsequences; genuine non-Pisot rotation, synthetic period-two matrix and closure refusal, no geometric or PSC claim
+exit status 0
+
+== physical_hub_area ==
+Included from kernel/tests/test_c4_physical_hub_area.mojo:5:
+./psc/c4_physical_hub_area.mojo:64:22: warning: assignment to 'next_end' was never used; assign to '_' instead?
+        var next_end=0
+                     ^
+C4_WEIGHTED_PHYSICAL_HUB_AREA_PASS
+contract-receipt: exact arbitrary-positive-integer physical hub completion area equals the full scattered degree-two defect; genuine negative-interval and initial plateau controls; no C4 synchronization or PSC
+exit status 0
+
+== recurrent_flat_exits ==
+C4 recurrent flat exits: 3 ordered children, phase 1, determinant -1, diagonal at [2,1].
+contract-receipt: complete recurrent flat PIP child row with actual good-edge witness, every newborn address and both nonsync tests, exact exiting Parikh mass, and fail-closed strict audit
+contract-receipt: literal collared cut intervals with transported endpoint equality, exact cycle masses and diagonals, and reducible and productive controls
+contract-receipt: hub prefix area equals degree-two word defect, exact axis crossing and actual offset-to-diagonal witness, with strict reducible and recurrent exit controls
+exit status 0
+
+== strict_birth_atlas ==
+C4 strict literal birth atlas: 12 complete births and refusal controls.
+contract-receipt: literal strict C4 atlas validates all ordered child boundaries, source/digit addresses, Parikh corrections and endpoint non-sync, refuses partial/productive/singular/capped systems; non-PIP control only
+exit status 0
+
+== third_level_coincidence_family ==
+Imported from kernel/tests/test_c4_third_level_coincidence_family.mojo:7:
+./psc/c4_third_level_coincidence_family.mojo:216:25: error: value of type 'List[Int]' cannot be implicitly copied, it does not conform to 'ImplicitlyCopyable'
+        reversed.append(new_word)
+                        ^~~~~~~~
+Imported from kernel/tests/test_c4_third_level_coincidence_family.mojo:7:
+./psc/c4_third_level_coincidence_family.mojo:216:25: note: consider transferring the value with '^'
+        reversed.append(new_word)
+                        ^
+                                ^
+Imported from kernel/tests/test_c4_third_level_coincidence_family.mojo:7:
+./psc/c4_third_level_coincidence_family.mojo:216:25: note: you can copy it explicitly with '.copy()'
+        reversed.append(new_word)
+                        ^
+                                .copy()
+mojo: error: failed to parse the provided Mojo source module
+exit status 1
+
+== two_generation_rank ==
+C4 two-generation literal Parikh rank controls passed.
+contract-receipt: irreducible ternary PIP has a literal rank-three Parikh triple within two complete generations; real-secondary depth-two sharpness, productive Tribonacci early rank, PIP flat zero-phase depth-two nonsync countercontrol with depth-three good-edge birth and depth-four diagonal, reducible strict rank-two, and cap/refusal negative controls
+exit status 0
