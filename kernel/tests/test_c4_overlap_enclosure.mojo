@@ -4,6 +4,7 @@ from std.testing import assert_equal, assert_true
 from mojo_smoke.claims import require_contract
 from psc.bpa import apply_substitution, coincidence_boundaries, decompose, normalise, suffix_endpoint_map
 from psc.derived_system import build_derived_system, oriented_derived_word
+from psc.c4_legal_seams import legal_bigrams, phase_zero_legal_seams
 from psc.endpoint_core import endpoint_type, endpoint_type_name
 from psc.words import Pair, parikh
 from psc.symmetry import reversed_substitution, reversed_word
@@ -172,13 +173,66 @@ def test_type_d_good_edge_forces_mirrored_descendants() raises:
     assert_equal(len(hub), 3)
 
 
+def _check_good_edge(sigma: List[List[Int]], a: Int, b: Int, depth: Int, pos: Int) raises:
+    var top: List[Int] = [a]
+    var bottom: List[Int] = [b]
+    for _ in range(depth):
+        top = apply_substitution(sigma, top)
+        bottom = apply_substitution(sigma, bottom)
+    assert_equal(top[pos], bottom[pos])
+    var p = List[Int]()
+    var q = List[Int]()
+    for j in range(pos):
+        p.append(top[j])
+        q.append(bottom[j])
+    assert_equal(parikh(p), parikh(q))
+
+
+def test_paired_legal_seams_force_opposite_track_choices() raises:
+    var a: List[List[Int]] = [[0, 1], [2, 0], [1, 0, 2]]
+    var b: List[List[Int]] = [[0, 1], [2, 1], [1, 0, 2]]
+    _check_good_edge(a, 1, 2, 2, 4)
+    _check_good_edge(reversed_substitution(a), 0, 1, 2, 3)
+    _check_good_edge(b, 1, 2, 4, 27)
+    _check_good_edge(reversed_substitution(b), 0, 1, 1, 0)
+    assert_equal(legal_bigrams(a), [True, True, True, True, True, True, True, False, False])
+    assert_equal(legal_bigrams(b), [False, True, True, True, True, True, False, True, True])
+    assert_equal(phase_zero_legal_seams(a, 0, 2, True), [55, 56, 64, 65])
+    assert_equal(len(phase_zero_legal_seams(a, 0, 2, False)), 0)
+    assert_equal(len(phase_zero_legal_seams(b, 0, 2, True)), 0)
+    assert_equal(phase_zero_legal_seams(b, 0, 2, False), [46, 47])
+
+
+def test_strict_control_literal_seams_survive_filter() raises:
+    var sigma: List[List[Int]] = [[0, 2, 0], [2, 0], [1, 2]]
+    var states: List[Pair] = [
+        Pair([0, 1, 2], [1, 2, 0]), Pair([0, 2], [2, 0]),
+        Pair([0, 2, 0, 1, 2], [1, 2, 0, 2, 0]),
+    ]
+    var possible = phase_zero_legal_seams(sigma, 0, 2, True)
+    var count = 0
+    for j in range(len(states)):
+        var row = decompose(apply_substitution(sigma, states[j].u),
+                            apply_substitution(sigma, states[j].v))
+        for k in range(len(row) - 1):
+            var end = row[k].length() - 1
+            var terminal = 3 * row[k].u[end] + row[k].v[end]
+            var initial = 3 * row[k + 1].u[0] + row[k + 1].v[0]
+            assert_true(9 * terminal + initial in possible)
+            count += 1
+    assert_equal(count, 4)
+
+
 def main() raises:
     test_each_source_routes_to_all_targets()
+    test_paired_legal_seams_force_opposite_track_choices()
+    test_strict_control_literal_seams_survive_filter()
     test_phase_zero_prefix_can_force_a_terminal_reversal()
     test_suffix_transposition_alone_is_insufficient()
     test_type_c_right_hub_transfers_to_reversal()
     test_type_d_good_edge_forces_mirrored_descendants()
     print("C4 whole-factor enclosure: 9 literal sources reach all 9 represented target occurrences.")
+    require_contract("exact legal bigrams reject incompatible bilateral hub tracks and retain actual strict seams")
     require_contract("type D witnessed good edge produces swapped ordered overlap labels")
     require_contract("type C and E strict controls preserve every ordered child under right-hub reversal")
     require_contract("literal phase-zero terminal reversal and strict nonreversing suffix-transposition control")
