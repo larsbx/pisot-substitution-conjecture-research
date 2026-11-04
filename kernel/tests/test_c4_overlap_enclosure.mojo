@@ -4,7 +4,7 @@ from std.testing import assert_equal, assert_true
 from mojo_smoke.claims import require_contract
 from psc.bpa import apply_substitution, coincidence_boundaries, decompose, normalise, suffix_endpoint_map
 from psc.derived_system import build_derived_system, oriented_derived_word
-from psc.c4_legal_seams import legal_bigrams, phase_zero_legal_seams
+from psc.c4_legal_seams import legal_bigrams, phase_zero_legal_seams, phase_zero_birth_seams, phase_zero_reachable_seams
 from psc.endpoint_core import endpoint_type, endpoint_type_name
 from psc.words import Pair, parikh
 from psc.symmetry import reversed_substitution, reversed_word
@@ -210,6 +210,7 @@ def test_strict_control_literal_seams_survive_filter() raises:
         Pair([0, 2, 0, 1, 2], [1, 2, 0, 2, 0]),
     ]
     var possible = phase_zero_legal_seams(sigma, 0, 2, True)
+    var births = phase_zero_birth_seams(sigma, 0, 2, True)
     var count = 0
     for j in range(len(states)):
         var row = decompose(apply_substitution(sigma, states[j].u),
@@ -219,12 +220,31 @@ def test_strict_control_literal_seams_survive_filter() raises:
             var terminal = 3 * row[k].u[end] + row[k].v[end]
             var initial = 3 * row[k + 1].u[0] + row[k + 1].v[0]
             assert_true(9 * terminal + initial in possible)
+            assert_true(9 * terminal + initial in births)
             count += 1
     assert_equal(count, 4)
 
 
+def test_legal_seam_with_no_birth_and_inherited_only_control() raises:
+    var sigma: List[List[Int]] = [[0, 1], [1, 2, 1], [0, 1, 2]]
+    _check_good_edge(sigma, 0, 2, 1, 0)
+    _check_good_edge(sigma, 1, 2, 2, 4)
+    _check_good_edge(reversed_substitution(sigma), 0, 1, 1, 0)
+    assert_equal(len(phase_zero_legal_seams(sigma, 0, 2, True)), 0)
+    assert_equal(phase_zero_legal_seams(sigma, 0, 2, False), [46])
+    assert_equal(len(phase_zero_birth_seams(sigma, 0, 2, False)), 0)
+    assert_equal(len(phase_zero_reachable_seams(sigma, 0, 2, True)), 0)
+    assert_equal(len(phase_zero_reachable_seams(sigma, 0, 2, False)), 0)
+
+    # Omitting one of the witnessed edge exclusions, hub 1 is
+    # a calibration for an inherited-only label.
+    assert_equal(phase_zero_birth_seams(sigma, 1, 2, True), [68])
+    assert_equal(phase_zero_reachable_seams(sigma, 1, 2, True), [68, 66])
+
+
 def main() raises:
     test_each_source_routes_to_all_targets()
+    test_legal_seam_with_no_birth_and_inherited_only_control()
     test_paired_legal_seams_force_opposite_track_choices()
     test_strict_control_literal_seams_survive_filter()
     test_phase_zero_prefix_can_force_a_terminal_reversal()
@@ -232,6 +252,7 @@ def main() raises:
     test_type_c_right_hub_transfers_to_reversal()
     test_type_d_good_edge_forces_mirrored_descendants()
     print("C4 whole-factor enclosure: 9 literal sources reach all 9 represented target occurrences.")
+    require_contract("legal newborn seam residues and inherited endpoint orbits with literal controls")
     require_contract("exact legal bigrams reject incompatible bilateral hub tracks and retain actual strict seams")
     require_contract("type D witnessed good edge produces swapped ordered overlap labels")
     require_contract("type C and E strict controls preserve every ordered child under right-hub reversal")

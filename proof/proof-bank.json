@@ -2386,6 +2386,11 @@
       "statement_heading": "**Lemma.** Supply a finite strict child-closed balanced SCC with"
     },
     {
+      "source": "docs/c4-seam-birth-orbits-2026-11-04.md",
+      "line": 10,
+      "statement_heading": "**Lemma.** In a supplied finite strict child-closed phase-zero balanced"
+    },
+    {
       "source": "docs/c4-w3-low-growth-and-interface-correction.md",
       "line": 98,
       "statement_heading": "### Theorem"
