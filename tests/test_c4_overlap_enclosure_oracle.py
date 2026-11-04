@@ -37,3 +37,32 @@ def test_whole_factor_enclosure_for_every_literal_source():
                     checked += 1
             assert states == support
     assert checked == 81
+
+
+def test_phase_zero_prefix_reverses_a_represented_terminal_pair():
+    from test_c4_two_generation_rank_oracle import factor, inflate
+
+    sigma = ("01", "12", "021")
+    root = ("10", "01")
+    terminals = [(root[0][-1], root[1][-1])]
+    for size in (1, 2):
+        row = factor(*(inflate(sigma, w) for w in root))
+        assert len(row) == size
+        assert all(a[0] == "1" and b[0] != "1" for a, b in row)
+        root = row[-1]
+        terminals.append((root[0][-1], root[1][-1]))
+    assert terminals == [("0", "1"), ("1", "2"), ("2", "1")]
+    assert root == ("12", "21")
+
+
+def test_strict_control_realizes_only_nonreversing_suffix_pairs():
+    from test_c4_complete_cone_hub_audit_oracle import SIGMA, STATES, literal_system
+
+    _, rows = literal_system(SIGMA, STATES)
+    assert all((a[0], b[0]) == ("1", "2") for row in rows for a, b in row)
+    terminals = {(a[-1], b[-1]) for a, b in STATES}
+    assert terminals == {("2", "0"), ("1", "0")}
+    suffix = tuple(word[-1] for word in SIGMA)
+    assert suffix == ("0", "2", "1")
+    assert {(suffix[int(a)], suffix[int(b)]) for a, b in terminals} == terminals
+    assert all((b, a) not in terminals for a, b in terminals)

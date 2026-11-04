@@ -2,8 +2,9 @@
 
 from std.testing import assert_equal, assert_true
 from mojo_smoke.claims import require_contract
-from psc.bpa import apply_substitution, coincidence_boundaries, normalise
+from psc.bpa import apply_substitution, coincidence_boundaries, decompose, normalise, suffix_endpoint_map
 from psc.derived_system import build_derived_system, oriented_derived_word
+from psc.endpoint_core import endpoint_type, endpoint_type_name
 from psc.words import Pair, parikh
 
 
@@ -60,7 +61,54 @@ def test_each_source_routes_to_all_targets() raises:
     assert_equal(routes, 81)
 
 
+def test_phase_zero_prefix_can_force_a_terminal_reversal() raises:
+    var sigma: List[List[Int]] = [[0, 1], [1, 2], [0, 2, 1]]
+    var root = Pair([1, 0], [0, 1])
+    var suffix = suffix_endpoint_map(sigma)
+    assert_equal(endpoint_type_name(endpoint_type(suffix)), "F")
+    var terminal: List[List[Int]] = [[0, 1], [1, 2], [2, 1]]
+    for depth in range(2):
+        var row = decompose(apply_substitution(sigma, root.u), apply_substitution(sigma, root.v))
+        assert_equal(len(row), depth + 1)
+        for j in range(len(row)):
+            assert_equal(row[j].u[0], 1)
+            assert_true(row[j].v[0] != 1)
+        root = row[len(row) - 1].copy()
+        var end = root.length() - 1
+        var actual: List[Int] = [root.u[end], root.v[end]]
+        var predicted: List[Int] = [suffix[terminal[depth][0]], suffix[terminal[depth][1]]]
+        assert_equal(actual, terminal[depth + 1])
+        assert_equal(predicted, actual)
+    assert_equal(root, Pair([1, 2], [2, 1]))
+
+
+def test_suffix_transposition_alone_is_insufficient() raises:
+    var sigma: List[List[Int]] = [[1, 0], [1, 0, 2], [2, 1, 1]]
+    var states: List[Pair] = [
+        Pair([1, 0, 2], [2, 1, 0]),
+        Pair([1, 1, 1, 0, 2], [2, 1, 1, 1, 0]),
+        Pair([1, 0, 2, 1, 0, 2, 1, 1], [2, 1, 1, 1, 0, 2, 1, 0]),
+        Pair([1, 0, 2, 1, 0, 2, 1, 0, 2, 1, 0, 2, 1, 1],
+             [2, 1, 1, 1, 0, 2, 1, 0, 2, 1, 0, 2, 1, 0]),
+    ]
+    var system = build_derived_system(sigma, states)
+    var suffix = suffix_endpoint_map(sigma)
+    assert_equal(suffix, [0, 2, 1])
+    assert_equal(endpoint_type_name(endpoint_type(suffix)), "E")
+    var terminals: List[Int] = [2, 2, 1, 1]
+    for j in range(system.size()):
+        var parent = system.states[j].copy()
+        assert_equal([parent.u[0], parent.v[0]], [1, 2])
+        assert_equal([parent.u[parent.length() - 1], parent.v[parent.length() - 1]],
+                     [terminals[j], 0])
+        var row = oriented_derived_word(system, j, 1)
+        for k in range(len(row)):
+            assert_equal(row[k].sign, 1)
+
 def main() raises:
     test_each_source_routes_to_all_targets()
+    test_phase_zero_prefix_can_force_a_terminal_reversal()
+    test_suffix_transposition_alone_is_insufficient()
     print("C4 whole-factor enclosure: 9 literal sources reach all 9 represented target occurrences.")
+    require_contract("literal phase-zero terminal reversal and strict nonreversing suffix-transposition control")
     require_contract("an actual inflated overlap contains a whole balanced factor and routes to every represented target in the strict uniform control")
