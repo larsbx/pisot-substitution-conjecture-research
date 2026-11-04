@@ -2336,6 +2336,11 @@
       "statement_heading": "### Corollary (higher escape becomes one-step escape)"
     },
     {
+      "source": "docs/c4-addressed-overlap-to-newborn-2026-11-04.md",
+      "line": 22,
+      "statement_heading": "**Lemma.** Let `T` be an actual irreducible noncoincident balanced"
+    },
+    {
       "source": "docs/c4-defect-degree-census.md",
       "line": 120,
       "statement_heading": "**Proposition (bounded PIP corpus).** Among the 4,554 primitive ternary"
