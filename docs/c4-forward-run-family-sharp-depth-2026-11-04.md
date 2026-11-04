@@ -299,7 +299,9 @@ argument cannot determine it. Word order is essential.
   9x9 nonzero parameter grid, the two new literal
   witnesses, the **complete** third-level balanced
   positions in the right-zero chamber, genuine swap
-  factors, fixed-incidence depths and invalid budgets.
+  factors, fixed-incidence depths, sharp **pairwise** earliest levels,
+  literal prefix-satellite lifting, an equal-incidence/broken-order
+  countercontrol, and invalid budgets.
 * Negative controls: singular (0,0), negative/capped runs,
   earlier equal-Parikh positions with **different next
   letters**, and source pairs with earlier coincidences.
