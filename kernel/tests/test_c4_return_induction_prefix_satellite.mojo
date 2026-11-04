@@ -1,0 +1,145 @@
+"""Native exact controls: genuine Pisot return induction, word vs code prefixes."""
+
+from std.testing import assert_equal, assert_true
+from mojo_smoke.claims import require_contract
+from psc.bpa import apply_substitution
+from psc.c4_return_induction_prefix_satellite import (
+    source_sigma, source_return_words, expected_return_substitution,
+    induce_marker_zero_return, images_are_prefix_incomparable,
+    verify_exact_return_induction,
+)
+
+
+def _matmul(a: List[List[Int]], b: List[List[Int]]) -> List[List[Int]]:
+    var out = List[List[Int]]()
+    for i in range(len(a)):
+        var row = List[Int]()
+        for j in range(len(b)):
+            var acc = 0
+            for k in range(len(a)):
+                acc += a[i][k] * b[k][j]
+            row.append(acc)
+        out.append(row)
+    return out^
+
+
+def test_exact_return_images_from_actual_three_letter_substitution() raises:
+    var sigma = source_sigma()
+    var words = source_return_words()
+    assert_equal(sigma, [[0, 1], [1, 2, 1], [0, 1, 2]])
+    assert_equal(words, [
+        [0, 1, 1, 2, 1, 1, 2, 1],
+        [0, 1, 2, 1, 2, 1, 1, 2, 1],
+        [0, 1, 2, 1, 2, 1],
+        [0, 1, 1, 2, 1],
+    ])
+    var tau = induce_marker_zero_return(sigma, words)
+    assert_equal(tau, [[0, 1, 2], [3, 2, 1, 2], [3, 2, 2], [0, 2]])
+    assert_equal(tau, expected_return_substitution())
+    assert_true(images_are_prefix_incomparable(tau))
+
+
+def test_primitivity_of_induced_substitution() raises:
+    # All matrix arithmetic is exact integer: positive N^3 is a complete
+    # finite certificate of primitivity for this four-letter substitution.
+    var tau = verify_exact_return_induction(1)
+    var n: List[List[Int]] = [
+        [1, 0, 0, 1],
+        [1, 1, 0, 0],
+        [1, 2, 2, 1],
+        [0, 1, 1, 0],
+    ]
+    for i in range(4):
+        for j in range(4):
+            var count = 0
+            for c in tau[j]:
+                if c == i:
+                    count += 1
+            assert_equal(count, n[i][j])
+    var square = _matmul(n, n)
+    var cube = _matmul(square, n)
+    assert_equal(cube, [
+        [3, 4, 3, 2],
+        [3, 2, 1, 2],
+        [17, 20, 13, 10],
+        [7, 8, 5, 4],
+    ])
+    for row in cube:
+        for entry in row:
+            assert_true(entry > 0)
+
+
+def test_all_actual_return_image_factorisations_and_bounded_powers() raises:
+    var tau = verify_exact_return_induction(6)
+    assert_true(images_are_prefix_incomparable(tau))
+    # The first source return itself really occurs as an initial complete
+    # return word, not as a fabricated codeword.
+    var sigma = source_sigma()
+    var third: List[Int] = [0]
+    for _ in range(3):
+        third = apply_substitution(sigma, third)
+    assert_equal(third, [
+        0,1,1,2,1,1,2,1,0,1,2,1,2,1,
+    ])
+
+
+def test_malformed_or_incomplete_return_set_refuses() raises:
+    var sig = source_sigma()
+    var r = source_return_words()
+    # A non-closed return inventory must never yield a made-up induced edge.
+    var missing: List[List[Int]] = [r[0].copy(), r[1].copy(), r[2].copy()]
+    var malformed: List[List[Int]] = [
+        [0,1,0,2], r[1].copy(), r[2].copy(), r[3].copy(),
+    ]
+    var repeated: List[List[Int]] = [
+        r[0].copy(), r[0].copy(), r[2].copy(), r[3].copy(),
+    ]
+    for specimen in [missing, malformed, repeated]:
+        var refused = False
+        try:
+            _ = induce_marker_zero_return(sig, specimen)
+        except:
+            refused = True
+        assert_true(refused)
+    var wrong_sig: List[List[Int]] = [[0, 2], [1, 2, 1], [0, 1, 2]]
+    var refused_wrong = False
+    try:
+        _ = induce_marker_zero_return(wrong_sig, r)
+    except:
+        refused_wrong = True
+    assert_true(refused_wrong)
+    for cap in [-1, 0, 7]:
+        var refused_cap = False
+        try:
+            _ = verify_exact_return_induction(cap)
+        except:
+            refused_cap = True
+        assert_true(refused_cap)
+
+
+def test_prefix_code_refuses_literal_satellite_but_not_strong_coincidence() raises:
+    var prefix_code: List[List[Int]] = [
+        [0, 1, 2], [3, 2, 1, 2], [3, 2, 2], [0, 2]
+    ]
+    var proper_prefix: List[List[Int]] = [
+        [0, 1], [0, 1, 2], [2], [3],
+    ]
+    var duplicate: List[List[Int]] = [
+        [0, 1], [0, 1], [2], [3],
+    ]
+    assert_true(images_are_prefix_incomparable(prefix_code))
+    assert_true(not images_are_prefix_incomparable(proper_prefix))
+    assert_true(not images_are_prefix_incomparable(duplicate))
+    # The source is positively strong coincident, tested by the oracle
+    # and directly in the canonical module; loss is only a LITERAL
+    # prefix-satellite word relation in the return alphabet.
+
+
+def main() raises:
+    test_exact_return_images_from_actual_three_letter_substitution()
+    test_primitivity_of_induced_substitution()
+    test_all_actual_return_image_factorisations_and_bounded_powers()
+    test_malformed_or_incomplete_return_set_refuses()
+    test_prefix_code_refuses_literal_satellite_but_not_strong_coincidence()
+    print("C4 return induction: exact four-return code, all-power prefix-code obstruction and negative controls passed.")
+    require_contract("the PIP substitution 01/121/012 has a literal prefix satellite and level-two simultaneous coincidence, but its exact four-letter return substitution on zero is primitive with pairwise prefix-incomparable images; the all-power absence is proved by prefix-code argument, not cap exhaustion")
