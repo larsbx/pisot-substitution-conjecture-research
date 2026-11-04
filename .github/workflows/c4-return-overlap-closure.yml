@@ -1,0 +1,49 @@
+name: C4 complete decorated return-overlap closure
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/c4-return-overlap-closure.yml'
+      - 'docs/c4-return-overlap-closure-2026-11-04.md'
+      - 'kernel/psc/c4_return_overlap_closure.mojo'
+      - 'kernel/tests/test_c4_return_overlap_closure.mojo'
+      - 'tests/test_c4_return_overlap_closure_oracle.py'
+      - 'kernel/psc/c4_return_boundary_carrier.mojo'
+      - 'kernel/psc/c4_return_induction_prefix_satellite.mojo'
+      - 'tests/test_c4_return_boundary_carrier_oracle.py'
+      - 'kernel/pixi.lock'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-return-overlap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Check exact revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Independent full closure, witnesses and negative controls
+        run: |
+          python -m pip install 'pytest>=7,<10'
+          python -m pytest -q tests/test_c4_return_boundary_carrier_oracle.py tests/test_c4_return_overlap_closure_oracle.py
+      - name: Generated inventory acceptance remains separate
+        run: python tools/make_proof_bank.py --check
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          pixi-version: v0.81.0
+          manifest-path: kernel/pixi.toml
+          locked: true
+      - name: Canonical complete native graph and every occurrence
+        working-directory: kernel
+        run: |
+          set -o pipefail
+          pixi run --locked mojo run -I . tests/test_c4_return_overlap_closure.mojo | tee "$RUNNER_TEMP/return-overlap-native.log"
+      - name: Compare full native graph against independent exact oracle
+        run: python tests/test_c4_return_overlap_closure_oracle.py --native-log "$RUNNER_TEMP/return-overlap-native.log"
