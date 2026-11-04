@@ -1,5 +1,26 @@
 # Proof ladder
 
+## November 2 C4/BH/finite-quotient scope reconciliation
+
+The live [November 2 completion ledger](completion-ledger-2026-11-02.md)
+records scoped Class-B/C certificates and the Class-A finite completeness
+addition without promoting universal BH. The
+[C4 ordered-word completion interface](c4-ordered-word-completion-interface-2026-11-02.md)
+specifies the remaining ordered child/word alignment obligation on a
+**supplied finite strict child-closed** component. Issue #9's tracker closure
+was administrative; it is not a C4 proof or a G1 extraction theorem.
+
+PR #447's 22-specimen actual-occurrence completeness and PR #448's
+**conditional Lean** finite-quotient distance preservation are separate
+premises. Neither verifies a native-to-Lean semantic refinement, an
+unbounded X-carrier, or the non-unit realization bridge. The accepted
+Class-C lower-cone frontier is below plus `2n>=5d+8` /
+minus `2n>=5d+16` (for `d>=6`), with `n>=3d` already covered.
+Class B retains open low/high residue and `l<4` regions. Universal
+A1′ #138, BH #139, seedwise productivity #84, G1b-2 and PSC remain open;
+independent human review remains final validation debt.
+
+
 ## October 22 reconciliation: accepted class D and scoped G1
 
 PR #298 discharged class-D integration at accepted tree
