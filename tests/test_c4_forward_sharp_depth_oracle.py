@@ -164,3 +164,74 @@ def test_invalid_parameter_budget_refuses():
             pass
         else:
             raise AssertionError((a,b))
+
+
+def pair_cuts(words, i, j):
+    """Independent direct pairwise cut enumeration, including all alternatives."""
+    u, v = words[i], words[j]
+    pu, pv = list(prefix_mass(u)), list(prefix_mass(v))
+    return [(p, pu[p], u[p]) for p in range(min(len(u), len(v)))
+            if pu[p] == pv[p] and u[p] == v[p]]
+
+
+def test_prefix_satellite_word_identity_and_exact_cut_set_equivalence():
+    # This is a word-level identity, not merely incidence compatibility.
+    for a in range(7):
+        for b in range(7):
+            if a+b == 0:
+                continue
+            sigma = family(a,b)
+            for level in range(1,5):
+                words = [inflate(sigma,str(c),level) for c in range(3)]
+                assert words[2] == words[0] + inflate(sigma, "2", level-1)
+                assert pair_cuts(words,0,1) == all_simultaneous_cuts(sigma,level)
+
+
+def test_sharp_pairwise_minima_in_all_five_chambers():
+    for a in range(10):
+        for b in range(10):
+            if a+b==0:
+                continue
+            sigma = family(a,b)
+            n,p,Q,z = sharp_certificate(a,b)
+            pairwise = {}
+            for depth in range(1,n+1):
+                words = [inflate(sigma,str(c),depth) for c in range(3)]
+                for i,j in combinations(range(3),2):
+                    cuts = pair_cuts(words,i,j)
+                    if cuts and (i,j) not in pairwise:
+                        pairwise[i,j] = depth
+            assert pairwise == {(0,1):n,(0,2):1,(1,2):n}, (a,b,pairwise)
+            assert (p,Q,z) in pair_cuts(words,0,1)
+            assert (p,Q,z) in pair_cuts(words,1,2)
+
+
+def test_incidence_only_cannot_replace_literal_prefix_satellite():
+    # 2-images have equal letter counts in both systems, but the broken
+    # system does not have sigma(2)=sigma(0) + a suffix AS A WORD.
+    good=("10","1","100")
+    bad =("10","1","010")
+    assert all(sorted(good[i]) == sorted(bad[i]) for i in range(3))
+    assert good[2] == good[0] + "0"
+    assert bad[2] != bad[0] + "0"
+    good_words=list(good)
+    bad_words=list(bad)
+    assert (0,(0,0,0),"1") in pair_cuts(good_words,0,1)
+    assert (0,(0,0,0),"1") in pair_cuts(bad_words,0,1)
+    assert (0,(0,0,0),"1") in all_simultaneous_cuts(good,1)
+    assert (0,(0,0,0),"1") not in all_simultaneous_cuts(bad,1)
+
+
+def test_right_zero_pair_12_third_level_all_balanced_positions():
+    for a in range(2,13):
+        sig=family(a,0)
+        y=inflate(sig,"1",3)
+        z=inflate(sig,"2",3)
+        m1,m2=list(prefix_mass(y)),list(prefix_mass(z))
+        positions=[p for p in range(min(len(y),len(z)))
+                   if m1[p]==m2[p]]
+        K=a*(a+1)
+        P=K+a+3
+        assert positions==[0,K+2,P],(a,positions)
+        assert [(y[p],z[p]) for p in positions]==[
+            ("1","0"),("2","1"),("2","0")],(a,positions)
