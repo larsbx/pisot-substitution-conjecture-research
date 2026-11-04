@@ -2351,6 +2351,16 @@
       "statement_heading": "### Proposition 3"
     },
     {
+      "source": "docs/c4-legal-seams-2026-11-04.md",
+      "line": 18,
+      "statement_heading": "**Lemma.** In a finite strict child-closed balanced SCC with positive"
+    },
+    {
+      "source": "docs/c4-oriented-alignment-2026-11-04.md",
+      "line": 18,
+      "statement_heading": "**Lemma.** Under the hypotheses of"
+    },
+    {
       "source": "docs/c4-overlap-carrier-enclosure-2026-11-04.md",
       "line": 22,
       "statement_heading": "**Lemma.** Let a nonerasing substitution have positive letter lengths `ell`"
@@ -2369,6 +2379,11 @@
       "source": "docs/c4-recurrent-flat-exits-2026-11-04.md",
       "line": 40,
       "statement_heading": "**Lemma (exit mass).** For any supplied nonempty finite set of actual"
+    },
+    {
+      "source": "docs/c4-right-hub-reversal-2026-11-04.md",
+      "line": 17,
+      "statement_heading": "**Lemma.** Supply a finite strict child-closed balanced SCC with"
     },
     {
       "source": "docs/c4-w3-low-growth-and-interface-correction.md",
