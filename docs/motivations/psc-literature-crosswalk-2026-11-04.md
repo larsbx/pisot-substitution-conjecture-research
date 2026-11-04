@@ -23,7 +23,7 @@ The conjecture includes non-unimodular cases (\(|\det M|>1\)); arguments formula
 | [Sirvent–Starosta (2017 preprint)](https://arxiv.org/abs/1711.10167) | Absence of an initial balanced pair for **a pair of distinct substitutions' fixed points**; the displayed maps include a→abc, b→a, c→ac and a→cba, b→a, c→ca. | A PIP counterexample, a proof of nonproductive overlap, or failure of every possible balanced-pair scheme for one substitution. |
 | [Frettlöh–Garber (2017 preprint)](https://arxiv.org/abs/1711.01498) | Bounded-distance/cut-and-project comparisons and a *labelled conjecture* concerning Pisot substitution vertex sets (Conjecture 5.3). | That all irreducible Pisot vertex sets are cut-and-project sets, or that bounded-distance-to-lattice implies regular model-set structure. |
 
-For foundational geometric context, see [Arnoux–Ito (2001), *Pisot substitutions and Rauzy fractals*](https://www.aimsciences.org/article/doi/10.3934/dcds.2012.32.935) (linked through the later paper's reference list), and the 2015 survey. A Rauzy construction does not automatically resolve the measurable coding multiplicity.
+For foundational geometry, [Arnoux–Ito (2001), *Pisot substitutions and Rauzy fractals*](https://doi.org/10.36045/bbms/1102714169) constructs a domain exchange and finite toral extension under **primitive unimodular Pisot and an explicit combinatorial condition**, not an unconditional proof of PDS; see also the 2015 survey. A Rauzy construction does not automatically resolve measurable coding multiplicity.
 
 ## Map to this repository's live obligations
 
