@@ -236,7 +236,7 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/c4-defect-degree-census.md:120](../docs/c4-defect-degree-census.md#L120) | **Proposition (bounded PIP corpus).** Among the 4,554 primitive ternary |
 | [docs/c4-endpoint-core-program.md:124](../docs/c4-endpoint-core-program.md#L124) | ### Proposition 3 |
 | [docs/c4-forward-run-family-sharp-depth-2026-11-04.md:38](../docs/c4-forward-run-family-sharp-depth-2026-11-04.md#L38) | **Theorem (five mutually exclusive chambers).** For every a,b>=0, |
-| [docs/c4-forward-run-family-sharp-depth-2026-11-04.md:150](../docs/c4-forward-run-family-sharp-depth-2026-11-04.md#L150) | **Lemma (prefix-satellite lifting).** Let \\(\\tau\\) be any nonerasing |
+| [docs/c4-forward-run-family-sharp-depth-2026-11-04.md:150](../docs/c4-forward-run-family-sharp-depth-2026-11-04.md#L150) | **Lemma (prefix-satellite lifting).** Let \(\tau\) be any nonerasing |
 | [docs/c4-forward-run-family-sharp-depth-2026-11-04.md:184](../docs/c4-forward-run-family-sharp-depth-2026-11-04.md#L184) | **Corollary (sharp all-pairs coincidence depth).** For every member of |
 | [docs/c4-overlap-carrier-enclosure-2026-11-04.md:22](../docs/c4-overlap-carrier-enclosure-2026-11-04.md#L22) | **Lemma.** Let a nonerasing substitution have positive letter lengths ell |
 | [docs/c4-parikh-intertwiner.md:90](../docs/c4-parikh-intertwiner.md#L90) | ### Corollary 2.1 — no one- or two-state counterexample SCC |
