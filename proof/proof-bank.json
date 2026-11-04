@@ -2356,6 +2356,11 @@
       "statement_heading": "**Corollary B′ (productivity from disjointness).** If the subtiles of the"
     },
     {
+      "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
+      "line": 170,
+      "statement_heading": "**Theorem C.** If a strict system `C` exists, then `θ_c ≤ 1/2` for every"
+    },
+    {
       "source": "docs/c4-defect-degree-census.md",
       "line": 120,
       "statement_heading": "**Proposition (bounded PIP corpus).** Among the 4,554 primitive ternary"
