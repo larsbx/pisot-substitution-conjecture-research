@@ -14,6 +14,14 @@ The repository does not assume that the incidence matrix is unimodular. Its dete
 
 The main method studies overlaps between substituted tiles. An overlap is called *productive* when a sequence of genuine substitution-child occurrences leads to a coincidence: equal tile types at zero displacement. An overlap is described not only by its displacement but also by the particular letters and occurrences that produce its descendants.
 
+## The programme in the literature
+
+The **two-letter** Pisot conjecture is proved. For three or more letters, the general problem—including the unimodular case—remains open, even though special families such as Arnoux–Rauzy systems and Pisot β-substitutions are settled. A Rauzy fractal, a domain exchange, or the existence of many eigenvalues does **not automatically** establish pure discrete spectrum.
+
+The [literature-to-proof crosswalk](docs/motivations/psc-literature-crosswalk-2026-11-04.md) explains the published results, distinguishes **strong coincidence** from **overlap coincidence**, and shows why non-unimodular substitutions need additional care. In particular, Barge–Kwapisz gave geometric criteria, **not** a proof of the whole unimodular conjecture. A claimed 2024 general proof is **not imported** here; see the [Nakaishi source-level audit](docs/nakaishi-2024-first-entry-audit-2026-10-13.md).
+
+The open problems in this project are [one-seed productivity #84](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/84), its [aligned #138](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/138) and [strict-zipper #139](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/139) obstructions, and the separate [ordered-child C4 target #461](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/461). Finite-domain certificates and infinite-family theorems are real progress, not a proof for every substitution.
+
 ## The route to a proof
 
 Several of the main implications are already available. The unresolved step is to show productivity of the overlaps reachable from a suitable initial swap seed:

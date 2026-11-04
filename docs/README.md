@@ -4,6 +4,11 @@ This directory separates live proof status, source provenance, mathematical
 exposition, exact finite certificates, and historical snapshots. Start with
 the section matching the question you are asking.
 
+**PSC literature context:** See [the 2026-11-04 literature-to-proof crosswalk](motivations/psc-literature-crosswalk-2026-11-04.md)
+for source-linked theorem scopes, non-unit/strong-coincidence cautions,
+the Nakaishi audit and the open #84/#138/#139/#461 interfaces. It adds
+no proof claim or ledger promotion.
+
 **New collaborator?** Start with [`project-onboarding-2026-10-23.md`](project-onboarding-2026-10-23.md). It gives the current live theorem lane, the v6/v9 salvage firewall, the Tier-2 Plastic-A/Growth-Bridge lane, and the non-load-bearing Penrose interface map in one status-safe document.
 
 For definitions and implementation authority, use the generated
