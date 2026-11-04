@@ -1,7 +1,7 @@
 # C4 productivity: cut pairs, strong coincidence and a positive-measure subtile overlap
 
-**Status:** Repository-proved reduction (Theorem A) and a repository-proved
-measure obstruction (Theorem B) for a *supplied* strict C4 system. One import
+**Status:** scoped combinatorial proof (Theorem A) and proposed measure
+reduction (Theorem B), with its regular-box density import awaiting audit. One import
 (Arnoux–Ito pairwise disjointness, §4) is cited and not reproved. No change
 to C4, BH (#139), A1′ (#138), G1 or PSC status.
 [Issue #461](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/461).
