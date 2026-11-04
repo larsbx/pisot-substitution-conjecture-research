@@ -2366,6 +2366,26 @@
       "statement_heading": "### Proposition 3"
     },
     {
+      "source": "docs/c4-every-cut-pair-positive-density-2026-11-04.md",
+      "line": 7,
+      "statement_heading": "## Theorem A: each cut-pair grows with positive PF frequency"
+    },
+    {
+      "source": "docs/c4-every-cut-pair-positive-density-2026-11-04.md",
+      "line": 20,
+      "statement_heading": "**Theorem A.** For each e there exists a source j in I_e and a residue-zero generation subsequence n=mqh, for any fixed positive q, such that the number b_e(n,j) of *literal factor occurrences* with first pair e in the complete factorisation of sigma^n(T_j) obeys"
+    },
+    {
+      "source": "docs/c4-every-cut-pair-positive-density-2026-11-04.md",
+      "line": 40,
+      "statement_heading": "## Corollary B: per-pair subtile overlap (geometric import under review)"
+    },
+    {
+      "source": "docs/c4-every-cut-pair-positive-density-2026-11-04.md",
+      "line": 49,
+      "statement_heading": "**Corollary B (conditional on these geometric inputs):** every represented pair e={c,c'} individually satisfies"
+    },
+    {
       "source": "docs/c4-overlap-carrier-enclosure-2026-11-04.md",
       "line": 22,
       "statement_heading": "**Lemma.** Let a nonerasing substitution have positive letter lengths `ell`"
@@ -2384,6 +2404,11 @@
       "source": "docs/c4-recurrent-flat-exits-2026-11-04.md",
       "line": 40,
       "statement_heading": "**Lemma (exit mass).** For any supplied nonempty finite set of actual"
+    },
+    {
+      "source": "docs/c4-reversed-run-family-four-level-coincidence-2026-11-04.md",
+      "line": 17,
+      "statement_heading": "**Theorem (uniform reversal coincidence).** For every such a,b, the three actual iterates rho^n(0),rho^n(1),rho^n(2) admit the same Parikh prefix Q followed by the same letter z at one common physical index p, with n<=4:"
     },
     {
       "source": "docs/c4-w3-low-growth-and-interface-correction.md",
