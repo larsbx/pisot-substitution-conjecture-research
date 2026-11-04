@@ -317,3 +317,142 @@ all real PIP common-prefix witnesses, and budget refusal.
 Only a complete strict-derived-system builder can certify
 **all actual child closure**; these bounded cut-pair
 necessity tests do not replace that constructor.
+
+
+## 8. Fixed-lattice regular-box density: a self-contained sublemma
+
+The proposed density argument of §3 needs an asymptotic for the
+**specific, unshifted lattice**, not the almost-every-translate
+version for arbitrary measurable windows in Moody (2002).
+Here is an independent derivation of exactly the smaller
+regular-box statement actually used.
+
+**Fixed-lattice box lemma (scoped).** Let
+`Phi: R^3 -> R x E^s` be the invertible map
+`Phi(y)=(ell.y, pi y)`, and let
+`Lambda=Phi(Z^3)`, with covolume `kappa>0`.
+Assume that the Perron eigenline of the irreducible
+integer cubic `M` contains no nonzero rational vector
+in its annihilator (proved below). For any bounded
+finite union `U` of boxes in `E^s` whose boundary
+has two-dimensional measure zero,
+
+~~~text
+N_U(X) = # {y in Z^3 : 0 <= ell.y < X, pi y in U}
+       = X * lambda(U) / kappa + o(X) as X -> infinity.
+~~~
+
+This is the exact form needed in §3; it makes
+**no** density assertion for the potentially
+non-regular fractal overlap `Z_A` itself.
+
+**Proof of nonresonance.** Suppose that a nonzero
+integer row `m` annihilates a Perron right
+eigenvector `v`. Because `M v = beta v`,
+all rows `m, mM, mM²` annihilate `v`.
+But irreducibility of the degree-three
+characteristic polynomial implies every
+nonzero rational row is cyclic for `M^T`;
+the three displayed rows form a rational
+basis. They cannot have a nonzero common
+annihilated column. Contradiction. Hence
+no nonzero rational row annihilates the
+Perron line.
+
+**Proof of lattice density.** View the
+physical direction as `e_t=(1,0)` in
+`R x E^s` and the compact torus as
+`T=(R x E^s)/Lambda`. A nonzero dual-lattice
+character with zero frequency along the
+physical translation flow `t -> [t e_t]`
+would be a functional `(0,eta)` whose
+pullback `m=Phi^T(0,eta)` is a nonzero
+integer row. This row annihilates the
+Perron eigenline because `pi v=0`,
+contradicting nonresonance. Therefore the
+physical flow is totally irrational on
+`T`. Its time averages on continuous
+functions equal Haar averages: check
+characters explicitly (each nontrivial
+frequency contributes an averaged
+exponential tending to zero), then
+approximate continuous functions by
+finite trigonometric sums.
+
+Define the `Lambda`-periodic function
+
+~~~text
+F_U([xi]) = sum_{lambda in Lambda}
+  1_[0,1)((lambda+xi)_physical)
+  * 1_U((lambda+xi)_internal).
+~~~
+
+The sum is finite on a fundamental
+domain because `[0,1] x closure(U)`
+is compact. `F_U` is bounded and has
+Haar-null discontinuities: these are
+contained in translates of the boundary
+of that compact regular box. Continuous
+upper/lower approximations therefore
+extend the character argument to
+`F_U`, giving
+
+~~~text
+(1/X) integral_0^X F_U([-t e_t]) dt
+    -> integral_T F_U = lambda(U) / kappa.
+~~~
+
+The right-hand identity is obtained
+by unfolding over a fundamental
+domain of `Lambda` (counting
+each lattice translate exactly once).
+
+Integrating in `t` counts every
+lattice point with physical coordinate
+in `[1,X]` and internal coordinate in
+`U` with weight exactly one.
+Only the two physical endpoint strips
+of width one contribute a discrepancy.
+Each strip contains at most a
+**uniform finite** number of lattice
+points with internal coordinate in
+bounded `U`, by discreteness of
+`Lambda` and boundedness of
+`[0,2] x closure(U)` under translation.
+Thus the integral differs from
+`N_U(X)` by `O_U(1)`, proving the
+claimed asymptotic. QED.
+
+**Application.** In §3 the sets
+`R_c` are compact, their pairwise
+intersection union `Z_A` is compact,
+and the cut projections are within
+`epsilon_n -> 0` of both relevant
+subtiles. For each fixed *regular*
+open box union `U` covering
+`Z_A`, compactness forces all
+large-n cut projections inside
+`U`. Apply the scoped lemma with
+`X=beta^n L` and the physical
+cut-count lower bound, then
+take the infimum over regular box
+covers by outer regularity.
+No non-regular or almost-sure
+model-set density statement is
+silently imported.
+
+**Verification boundary.** This
+supplies the previously unstated
+fixed-origin regular-window argument.
+It does *not* prove subtile
+measure disjointness, its non-unit
+adelic analogue, or any productivity
+conclusion beyond the stated
+conditional strict-carrier obstruction.
+The argument is a written proof;
+there is no numerical Mojo
+certificate for a Lebesgue-measure
+or torus-unique-ergodicity statement.
+Human mathematical review remains
+pending and governed claim statuses
+remain unchanged.
