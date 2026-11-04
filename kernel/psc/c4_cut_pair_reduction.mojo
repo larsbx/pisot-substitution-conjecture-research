@@ -149,4 +149,9 @@ def audit_cut_pairs(
         for b in range(a + 1, ALPHABET):
             if first & pair_bit(a, b) and strong_coincidence_level(sigma, a, b, max_level) >= 0:
                 witnessed |= pair_bit(a, b)
+    if witnessed != 0:
+        # A real common-letter/equal-prefix witness makes the allegedly
+        # strictly closed input impossible, even when the separately
+        # chosen finite inflation depth has not yet reached it.
+        raise Error("cut-pair strong-coincidence witness refutes supplied strict system")
     return CutPairAudit(first, cut, image, witnessed)
