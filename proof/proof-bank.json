@@ -2366,6 +2366,26 @@
       "statement_heading": "### Proposition 3"
     },
     {
+      "source": "docs/c4-every-cut-pair-positive-density-2026-11-04.md",
+      "line": 7,
+      "statement_heading": "## Theorem A: each cut-pair grows with positive PF frequency"
+    },
+    {
+      "source": "docs/c4-every-cut-pair-positive-density-2026-11-04.md",
+      "line": 20,
+      "statement_heading": "**Theorem A.** For each e there exists a source j in I_e and a residue-zero generation subsequence n=mqh, for any fixed positive q, such that the number b_e(n,j) of *literal factor occurrences* with first pair e in the complete factorisation of sigma^n(T_j) obeys"
+    },
+    {
+      "source": "docs/c4-every-cut-pair-positive-density-2026-11-04.md",
+      "line": 40,
+      "statement_heading": "## Corollary B: per-pair subtile overlap (geometric import under review)"
+    },
+    {
+      "source": "docs/c4-every-cut-pair-positive-density-2026-11-04.md",
+      "line": 49,
+      "statement_heading": "**Corollary B (conditional on these geometric inputs):** every represented pair e={c,c'} individually satisfies"
+    },
+    {
       "source": "docs/c4-overlap-carrier-enclosure-2026-11-04.md",
       "line": 22,
       "statement_heading": "**Lemma.** Let a nonerasing substitution have positive letter lengths `ell`"
@@ -2381,9 +2401,29 @@
       "statement_heading": "### Corollary 3.1 — the three-state case is rigid"
     },
     {
+      "source": "docs/c4-periodic-parikh-phase-rigidity-2026-11-04.md",
+      "line": 21,
+      "statement_heading": "**Lemma 1.** For every positive integer h, the minimal polynomial f_h of beta^h over Q has degree three. In fact f_h=chi_(M^h) and is irreducible over Q."
+    },
+    {
+      "source": "docs/c4-periodic-parikh-phase-rigidity-2026-11-04.md",
+      "line": 36,
+      "statement_heading": "**Theorem 2 (phase-wise rank/size rigidity).** Under the exact hypotheses of §1, for every class k:"
+    },
+    {
+      "source": "docs/c4-periodic-parikh-phase-rigidity-2026-11-04.md",
+      "line": 70,
+      "statement_heading": "**Theorem 3 (exact phase balance).** Let v>0 be a right Perron vector of N, Nv=beta v (the eigenvalue equality follows from the positive left vector ell^T P of the complete strictly closed system). Write v^(k) for v restricted to class k, with zeros outside. Then"
+    },
+    {
       "source": "docs/c4-recurrent-flat-exits-2026-11-04.md",
       "line": 40,
       "statement_heading": "**Lemma (exit mass).** For any supplied nonempty finite set of actual"
+    },
+    {
+      "source": "docs/c4-reversed-run-family-four-level-coincidence-2026-11-04.md",
+      "line": 17,
+      "statement_heading": "**Theorem (uniform reversal coincidence).** For every such a,b, the three actual iterates rho^n(0),rho^n(1),rho^n(2) admit the same Parikh prefix Q followed by the same letter z at one common physical index p, with n<=4:"
     },
     {
       "source": "docs/c4-w3-low-growth-and-interface-correction.md",
@@ -3476,131 +3516,6 @@
       "statement_heading": "### Computational Proposition 2 (determinant split of the corpus). **Status: finite-domain theorem.**"
     },
     {
-      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
-      "line": 94,
-      "statement_heading": "\\begin{theorem}[Barge--\\v{S}timac--Williams~\\cite{BSW}, Corollary 2]\\label{thm:BSW}"
-    },
-    {
-      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
-      "line": 152,
-      "statement_heading": "\\begin{lemma}[$\\Z$-independence of tile lengths]\\label{lem:Z-indep}"
-    },
-    {
-      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
-      "line": 162,
-      "statement_heading": "\\begin{theorem}[Moss\\'e recognizability~\\cite{Mosse1,Mosse2}]\\label{thm:Mosse}"
-    },
-    {
-      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
-      "line": 176,
-      "statement_heading": "\\begin{theorem}[Defect theorem~\\cite{BPPR,BPR}]\\label{thm:defect}"
-    },
-    {
-      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
-      "line": 180,
-      "statement_heading": "\\begin{lemma}[Letter injectivity]\\label{lem:letter-inj}"
-    },
-    {
-      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
-      "line": 188,
-      "statement_heading": "\\begin{theorem}[Unique decodability]\\label{thm:UD}"
-    },
-    {
-      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
-      "line": 202,
-      "statement_heading": "\\begin{corollary}[\\UD\\ for powers]\\label{cor:UD-powers}"
-    },
-    {
-      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
-      "line": 218,
-      "statement_heading": "\\begin{theorem}[Unique periodic cutting]\\label{thm:upc}"
-    },
-    {
-      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
-      "line": 248,
-      "statement_heading": "\\begin{lemma}[Long coincidence run forces a phase cycle]\\label{lem:long-run-cycle}"
-    },
-    {
-      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
-      "line": 256,
-      "statement_heading": "\\begin{lemma}[A complete-cutting non-diagonal cycle gives two complete cuttings]\\label{lem:non-diag-cycle}"
-    },
-    {
-      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
-      "line": 286,
-      "statement_heading": "\\begin{hypothesis}[Finiteness, G1]\\label{thm:finiteness}"
-    },
-    {
-      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
-      "line": 324,
-      "statement_heading": "\\begin{lemma}[Unique hierarchy]\\label{lem:unique-hier}"
-    },
-    {
-      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
-      "line": 338,
-      "statement_heading": "\\begin{theorem}[Local witness injectivity]\\label{thm:winj}"
-    },
-    {
-      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
-      "line": 388,
-      "statement_heading": "\\begin{lemma}[Mass-balance spectral characterization]\\label{lem:mass-balance}"
-    },
-    {
-      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
-      "line": 413,
-      "statement_heading": "\\begin{lemma}[Algebraic structure]\\label{lem:alg-structure}"
-    },
-    {
-      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
-      "line": 438,
-      "statement_heading": "\\begin{lemma}[Dominant $K_2$-source]\\label{lem:dom-K2}"
-    },
-    {
-      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
-      "line": 446,
-      "statement_heading": "\\begin{proposition}[Spectral lower bound on $N_\\C$, closed SCC, alphabet 3]\\label{thm:v34}"
-    },
-    {
-      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
-      "line": 476,
-      "statement_heading": "\\begin{lemma}[Leg factor]\\label{lem:leg-factor}"
-    },
-    {
-      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
-      "line": 482,
-      "statement_heading": "\\begin{corollary}[Coincidence-rank floor, conditional on the bridge converse]\\label{cor:cr-floor}"
-    },
-    {
-      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
-      "line": 488,
-      "statement_heading": "\\begin{lemma}[Triple mass-balance ceiling]\\label{lem:triple-ceiling}"
-    },
-    {
-      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
-      "line": 494,
-      "statement_heading": "\\begin{proposition}[Second conditional route, unimodular case]\\label{prop:qa-crc}"
-    },
-    {
-      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
-      "line": 514,
-      "statement_heading": "\\begin{conjecture}[SCC Producer Theorem]\\label{conj:producer}"
-    },
-    {
-      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
-      "line": 520,
-      "statement_heading": "\\begin{proposition}\\label{prop:bpa-coincidence}"
-    },
-    {
-      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
-      "line": 554,
-      "statement_heading": "\\begin{theorem}[Conditional main theorem]\\label{thm:cond-main}"
-    },
-    {
-      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
-      "line": 566,
-      "statement_heading": "\\begin{theorem}\\label{thm:main}"
-    },
-    {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
       "line": 147,
       "statement_heading": "\\begin{theorem}[Two-obstruction completion theorem; \\Status{Conditional} on A and B]\\label{thm:two-obstruction-completion}"
@@ -3984,6 +3899,131 @@
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
       "line": 1163,
       "statement_heading": "\\begin{theorem}[Closed parts of $\\mathcal F$; \\Status{Theorem}, computer-assisted]\\label{thm:K-cells}"
+    },
+    {
+      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
+      "line": 94,
+      "statement_heading": "\\begin{theorem}[Barge--\\v{S}timac--Williams~\\cite{BSW}, Corollary 2]\\label{thm:BSW}"
+    },
+    {
+      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
+      "line": 152,
+      "statement_heading": "\\begin{lemma}[$\\Z$-independence of tile lengths]\\label{lem:Z-indep}"
+    },
+    {
+      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
+      "line": 162,
+      "statement_heading": "\\begin{theorem}[Moss\\'e recognizability~\\cite{Mosse1,Mosse2}]\\label{thm:Mosse}"
+    },
+    {
+      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
+      "line": 176,
+      "statement_heading": "\\begin{theorem}[Defect theorem~\\cite{BPPR,BPR}]\\label{thm:defect}"
+    },
+    {
+      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
+      "line": 180,
+      "statement_heading": "\\begin{lemma}[Letter injectivity]\\label{lem:letter-inj}"
+    },
+    {
+      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
+      "line": 188,
+      "statement_heading": "\\begin{theorem}[Unique decodability]\\label{thm:UD}"
+    },
+    {
+      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
+      "line": 202,
+      "statement_heading": "\\begin{corollary}[\\UD\\ for powers]\\label{cor:UD-powers}"
+    },
+    {
+      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
+      "line": 218,
+      "statement_heading": "\\begin{theorem}[Unique periodic cutting]\\label{thm:upc}"
+    },
+    {
+      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
+      "line": 248,
+      "statement_heading": "\\begin{lemma}[Long coincidence run forces a phase cycle]\\label{lem:long-run-cycle}"
+    },
+    {
+      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
+      "line": 256,
+      "statement_heading": "\\begin{lemma}[A complete-cutting non-diagonal cycle gives two complete cuttings]\\label{lem:non-diag-cycle}"
+    },
+    {
+      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
+      "line": 286,
+      "statement_heading": "\\begin{hypothesis}[Finiteness, G1]\\label{thm:finiteness}"
+    },
+    {
+      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
+      "line": 324,
+      "statement_heading": "\\begin{lemma}[Unique hierarchy]\\label{lem:unique-hier}"
+    },
+    {
+      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
+      "line": 338,
+      "statement_heading": "\\begin{theorem}[Local witness injectivity]\\label{thm:winj}"
+    },
+    {
+      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
+      "line": 388,
+      "statement_heading": "\\begin{lemma}[Mass-balance spectral characterization]\\label{lem:mass-balance}"
+    },
+    {
+      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
+      "line": 413,
+      "statement_heading": "\\begin{lemma}[Algebraic structure]\\label{lem:alg-structure}"
+    },
+    {
+      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
+      "line": 438,
+      "statement_heading": "\\begin{lemma}[Dominant $K_2$-source]\\label{lem:dom-K2}"
+    },
+    {
+      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
+      "line": 446,
+      "statement_heading": "\\begin{proposition}[Spectral lower bound on $N_\\C$, closed SCC, alphabet 3]\\label{thm:v34}"
+    },
+    {
+      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
+      "line": 476,
+      "statement_heading": "\\begin{lemma}[Leg factor]\\label{lem:leg-factor}"
+    },
+    {
+      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
+      "line": 482,
+      "statement_heading": "\\begin{corollary}[Coincidence-rank floor, conditional on the bridge converse]\\label{cor:cr-floor}"
+    },
+    {
+      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
+      "line": 488,
+      "statement_heading": "\\begin{lemma}[Triple mass-balance ceiling]\\label{lem:triple-ceiling}"
+    },
+    {
+      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
+      "line": 494,
+      "statement_heading": "\\begin{proposition}[Second conditional route, unimodular case]\\label{prop:qa-crc}"
+    },
+    {
+      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
+      "line": 514,
+      "statement_heading": "\\begin{conjecture}[SCC Producer Theorem]\\label{conj:producer}"
+    },
+    {
+      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
+      "line": 520,
+      "statement_heading": "\\begin{proposition}\\label{prop:bpa-coincidence}"
+    },
+    {
+      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
+      "line": 554,
+      "statement_heading": "\\begin{theorem}[Conditional main theorem]\\label{thm:cond-main}"
+    },
+    {
+      "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
+      "line": 566,
+      "statement_heading": "\\begin{theorem}\\label{thm:main}"
     }
   ],
   "input_digests": {
