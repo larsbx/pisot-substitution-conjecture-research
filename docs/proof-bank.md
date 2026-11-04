@@ -465,6 +465,31 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/uniform-coincidence-level-bound-2026-09-18.md:34](../docs/uniform-coincidence-level-bound-2026-09-18.md#L34) | **Proposition 2.1 (fixed-substitution graph bound).** If |
 | [docs/unimodular-route-gate-2026-09-17.md:31](../docs/unimodular-route-gate-2026-09-17.md#L31) | ### Lemma 1 (no unimodular patch collapse). **Status: repository-proved.** |
 | [docs/unimodular-route-gate-2026-09-17.md:71](../docs/unimodular-route-gate-2026-09-17.md#L71) | ### Computational Proposition 2 (determinant split of the corpus). **Status: finite-domain theorem.** |
+| [manuscripts/PSC_PROOF_next_source_audit.tex:94](../manuscripts/PSC_PROOF_next_source_audit.tex#L94) | \begin{theorem}[Barge--\v{S}timac--Williams~\cite{BSW}, Corollary 2]\label{thm:BSW} |
+| [manuscripts/PSC_PROOF_next_source_audit.tex:152](../manuscripts/PSC_PROOF_next_source_audit.tex#L152) | \begin{lemma}[$\Z$-independence of tile lengths]\label{lem:Z-indep} |
+| [manuscripts/PSC_PROOF_next_source_audit.tex:162](../manuscripts/PSC_PROOF_next_source_audit.tex#L162) | \begin{theorem}[Moss\'e recognizability~\cite{Mosse1,Mosse2}]\label{thm:Mosse} |
+| [manuscripts/PSC_PROOF_next_source_audit.tex:176](../manuscripts/PSC_PROOF_next_source_audit.tex#L176) | \begin{theorem}[Defect theorem~\cite{BPPR,BPR}]\label{thm:defect} |
+| [manuscripts/PSC_PROOF_next_source_audit.tex:180](../manuscripts/PSC_PROOF_next_source_audit.tex#L180) | \begin{lemma}[Letter injectivity]\label{lem:letter-inj} |
+| [manuscripts/PSC_PROOF_next_source_audit.tex:188](../manuscripts/PSC_PROOF_next_source_audit.tex#L188) | \begin{theorem}[Unique decodability]\label{thm:UD} |
+| [manuscripts/PSC_PROOF_next_source_audit.tex:202](../manuscripts/PSC_PROOF_next_source_audit.tex#L202) | \begin{corollary}[\UD\ for powers]\label{cor:UD-powers} |
+| [manuscripts/PSC_PROOF_next_source_audit.tex:218](../manuscripts/PSC_PROOF_next_source_audit.tex#L218) | \begin{theorem}[Unique periodic cutting]\label{thm:upc} |
+| [manuscripts/PSC_PROOF_next_source_audit.tex:248](../manuscripts/PSC_PROOF_next_source_audit.tex#L248) | \begin{lemma}[Long coincidence run forces a phase cycle]\label{lem:long-run-cycle} |
+| [manuscripts/PSC_PROOF_next_source_audit.tex:256](../manuscripts/PSC_PROOF_next_source_audit.tex#L256) | \begin{lemma}[A complete-cutting non-diagonal cycle gives two complete cuttings]\label{lem:non-diag-cycle} |
+| [manuscripts/PSC_PROOF_next_source_audit.tex:286](../manuscripts/PSC_PROOF_next_source_audit.tex#L286) | \begin{hypothesis}[Finiteness, G1]\label{thm:finiteness} |
+| [manuscripts/PSC_PROOF_next_source_audit.tex:324](../manuscripts/PSC_PROOF_next_source_audit.tex#L324) | \begin{lemma}[Unique hierarchy]\label{lem:unique-hier} |
+| [manuscripts/PSC_PROOF_next_source_audit.tex:338](../manuscripts/PSC_PROOF_next_source_audit.tex#L338) | \begin{theorem}[Local witness injectivity]\label{thm:winj} |
+| [manuscripts/PSC_PROOF_next_source_audit.tex:388](../manuscripts/PSC_PROOF_next_source_audit.tex#L388) | \begin{lemma}[Mass-balance spectral characterization]\label{lem:mass-balance} |
+| [manuscripts/PSC_PROOF_next_source_audit.tex:413](../manuscripts/PSC_PROOF_next_source_audit.tex#L413) | \begin{lemma}[Algebraic structure]\label{lem:alg-structure} |
+| [manuscripts/PSC_PROOF_next_source_audit.tex:438](../manuscripts/PSC_PROOF_next_source_audit.tex#L438) | \begin{lemma}[Dominant $K_2$-source]\label{lem:dom-K2} |
+| [manuscripts/PSC_PROOF_next_source_audit.tex:446](../manuscripts/PSC_PROOF_next_source_audit.tex#L446) | \begin{proposition}[Spectral lower bound on $N_\C$, closed SCC, alphabet 3]\label{thm:v34} |
+| [manuscripts/PSC_PROOF_next_source_audit.tex:476](../manuscripts/PSC_PROOF_next_source_audit.tex#L476) | \begin{lemma}[Leg factor]\label{lem:leg-factor} |
+| [manuscripts/PSC_PROOF_next_source_audit.tex:482](../manuscripts/PSC_PROOF_next_source_audit.tex#L482) | \begin{corollary}[Coincidence-rank floor, conditional on the bridge converse]\label{cor:cr-floor} |
+| [manuscripts/PSC_PROOF_next_source_audit.tex:488](../manuscripts/PSC_PROOF_next_source_audit.tex#L488) | \begin{lemma}[Triple mass-balance ceiling]\label{lem:triple-ceiling} |
+| [manuscripts/PSC_PROOF_next_source_audit.tex:494](../manuscripts/PSC_PROOF_next_source_audit.tex#L494) | \begin{proposition}[Second conditional route, unimodular case]\label{prop:qa-crc} |
+| [manuscripts/PSC_PROOF_next_source_audit.tex:514](../manuscripts/PSC_PROOF_next_source_audit.tex#L514) | \begin{conjecture}[SCC Producer Theorem]\label{conj:producer} |
+| [manuscripts/PSC_PROOF_next_source_audit.tex:520](../manuscripts/PSC_PROOF_next_source_audit.tex#L520) | \begin{proposition}\label{prop:bpa-coincidence} |
+| [manuscripts/PSC_PROOF_next_source_audit.tex:554](../manuscripts/PSC_PROOF_next_source_audit.tex#L554) | \begin{theorem}[Conditional main theorem]\label{thm:cond-main} |
+| [manuscripts/PSC_PROOF_next_source_audit.tex:566](../manuscripts/PSC_PROOF_next_source_audit.tex#L566) | \begin{theorem}\label{thm:main} |
 | [manuscripts/PSC_balanced_pair_state_2026-09-13.tex:147](../manuscripts/PSC_balanced_pair_state_2026-09-13.tex#L147) | \begin{theorem}[Two-obstruction completion theorem; \Status{Conditional} on A and B]\label{thm:two-obstruction-completion} |
 | [manuscripts/PSC_balanced_pair_state_2026-09-13.tex:168](../manuscripts/PSC_balanced_pair_state_2026-09-13.tex#L168) | \begin{corollary}[Universal completion criterion; \Status{Conditional}]\label{cor:universal-completion} |
 | [manuscripts/PSC_balanced_pair_state_2026-09-13.tex:227](../manuscripts/PSC_balanced_pair_state_2026-09-13.tex#L227) | \begin{lemma}[\Status{Theorem}]\label{lem:det} |
@@ -542,28 +567,3 @@ These are apparent statement openings, including open targets, imported results 
 | [manuscripts/PSC_balanced_pair_state_2026-09-13.tex:1143](../manuscripts/PSC_balanced_pair_state_2026-09-13.tex#L1143) | \begin{theorem}[The swap family; \Status{Theorem}]\label{thm:swap-family} |
 | [manuscripts/PSC_balanced_pair_state_2026-09-13.tex:1150](../manuscripts/PSC_balanced_pair_state_2026-09-13.tex#L1150) | \begin{theorem}[The catch-up-free determinant-two class; \Status{Theorem}]\label{thm:K} |
 | [manuscripts/PSC_balanced_pair_state_2026-09-13.tex:1163](../manuscripts/PSC_balanced_pair_state_2026-09-13.tex#L1163) | \begin{theorem}[Closed parts of $\mathcal F$; \Status{Theorem}, computer-assisted]\label{thm:K-cells} |
-| [manuscripts/PSC_PROOF_next_source_audit.tex:94](../manuscripts/PSC_PROOF_next_source_audit.tex#L94) | \begin{theorem}[Barge--\v{S}timac--Williams~\cite{BSW}, Corollary 2]\label{thm:BSW} |
-| [manuscripts/PSC_PROOF_next_source_audit.tex:152](../manuscripts/PSC_PROOF_next_source_audit.tex#L152) | \begin{lemma}[$\Z$-independence of tile lengths]\label{lem:Z-indep} |
-| [manuscripts/PSC_PROOF_next_source_audit.tex:162](../manuscripts/PSC_PROOF_next_source_audit.tex#L162) | \begin{theorem}[Moss\'e recognizability~\cite{Mosse1,Mosse2}]\label{thm:Mosse} |
-| [manuscripts/PSC_PROOF_next_source_audit.tex:176](../manuscripts/PSC_PROOF_next_source_audit.tex#L176) | \begin{theorem}[Defect theorem~\cite{BPPR,BPR}]\label{thm:defect} |
-| [manuscripts/PSC_PROOF_next_source_audit.tex:180](../manuscripts/PSC_PROOF_next_source_audit.tex#L180) | \begin{lemma}[Letter injectivity]\label{lem:letter-inj} |
-| [manuscripts/PSC_PROOF_next_source_audit.tex:188](../manuscripts/PSC_PROOF_next_source_audit.tex#L188) | \begin{theorem}[Unique decodability]\label{thm:UD} |
-| [manuscripts/PSC_PROOF_next_source_audit.tex:202](../manuscripts/PSC_PROOF_next_source_audit.tex#L202) | \begin{corollary}[\UD\ for powers]\label{cor:UD-powers} |
-| [manuscripts/PSC_PROOF_next_source_audit.tex:218](../manuscripts/PSC_PROOF_next_source_audit.tex#L218) | \begin{theorem}[Unique periodic cutting]\label{thm:upc} |
-| [manuscripts/PSC_PROOF_next_source_audit.tex:248](../manuscripts/PSC_PROOF_next_source_audit.tex#L248) | \begin{lemma}[Long coincidence run forces a phase cycle]\label{lem:long-run-cycle} |
-| [manuscripts/PSC_PROOF_next_source_audit.tex:256](../manuscripts/PSC_PROOF_next_source_audit.tex#L256) | \begin{lemma}[A complete-cutting non-diagonal cycle gives two complete cuttings]\label{lem:non-diag-cycle} |
-| [manuscripts/PSC_PROOF_next_source_audit.tex:286](../manuscripts/PSC_PROOF_next_source_audit.tex#L286) | \begin{hypothesis}[Finiteness, G1]\label{thm:finiteness} |
-| [manuscripts/PSC_PROOF_next_source_audit.tex:324](../manuscripts/PSC_PROOF_next_source_audit.tex#L324) | \begin{lemma}[Unique hierarchy]\label{lem:unique-hier} |
-| [manuscripts/PSC_PROOF_next_source_audit.tex:338](../manuscripts/PSC_PROOF_next_source_audit.tex#L338) | \begin{theorem}[Local witness injectivity]\label{thm:winj} |
-| [manuscripts/PSC_PROOF_next_source_audit.tex:388](../manuscripts/PSC_PROOF_next_source_audit.tex#L388) | \begin{lemma}[Mass-balance spectral characterization]\label{lem:mass-balance} |
-| [manuscripts/PSC_PROOF_next_source_audit.tex:413](../manuscripts/PSC_PROOF_next_source_audit.tex#L413) | \begin{lemma}[Algebraic structure]\label{lem:alg-structure} |
-| [manuscripts/PSC_PROOF_next_source_audit.tex:438](../manuscripts/PSC_PROOF_next_source_audit.tex#L438) | \begin{lemma}[Dominant $K_2$-source]\label{lem:dom-K2} |
-| [manuscripts/PSC_PROOF_next_source_audit.tex:446](../manuscripts/PSC_PROOF_next_source_audit.tex#L446) | \begin{proposition}[Spectral lower bound on $N_\C$, closed SCC, alphabet 3]\label{thm:v34} |
-| [manuscripts/PSC_PROOF_next_source_audit.tex:476](../manuscripts/PSC_PROOF_next_source_audit.tex#L476) | \begin{lemma}[Leg factor]\label{lem:leg-factor} |
-| [manuscripts/PSC_PROOF_next_source_audit.tex:482](../manuscripts/PSC_PROOF_next_source_audit.tex#L482) | \begin{corollary}[Coincidence-rank floor, conditional on the bridge converse]\label{cor:cr-floor} |
-| [manuscripts/PSC_PROOF_next_source_audit.tex:488](../manuscripts/PSC_PROOF_next_source_audit.tex#L488) | \begin{lemma}[Triple mass-balance ceiling]\label{lem:triple-ceiling} |
-| [manuscripts/PSC_PROOF_next_source_audit.tex:494](../manuscripts/PSC_PROOF_next_source_audit.tex#L494) | \begin{proposition}[Second conditional route, unimodular case]\label{prop:qa-crc} |
-| [manuscripts/PSC_PROOF_next_source_audit.tex:514](../manuscripts/PSC_PROOF_next_source_audit.tex#L514) | \begin{conjecture}[SCC Producer Theorem]\label{conj:producer} |
-| [manuscripts/PSC_PROOF_next_source_audit.tex:520](../manuscripts/PSC_PROOF_next_source_audit.tex#L520) | \begin{proposition}\label{prop:bpa-coincidence} |
-| [manuscripts/PSC_PROOF_next_source_audit.tex:554](../manuscripts/PSC_PROOF_next_source_audit.tex#L554) | \begin{theorem}[Conditional main theorem]\label{thm:cond-main} |
-| [manuscripts/PSC_PROOF_next_source_audit.tex:566](../manuscripts/PSC_PROOF_next_source_audit.tex#L566) | \begin{theorem}\label{thm:main} |
