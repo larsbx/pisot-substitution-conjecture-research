@@ -53,6 +53,94 @@ struct AsymmetricThirdLevelCoincidence(Copyable, Movable):
         self.word_lengths = word_lengths.copy()
 
 
+struct ClosedRunCoincidence(Copyable, Movable):
+    var left_run: Int
+    var right_run: Int
+    var generation: Int
+    var cut: Int
+    var next_letter: Int
+    var prefix_parikh: List[Int]
+    var word_lengths: List[Int]
+
+    def __init__(
+        out self, left_run: Int, right_run: Int, generation: Int,
+        cut: Int, next_letter: Int, prefix_parikh: List[Int],
+        word_lengths: List[Int],
+    ):
+        self.left_run = left_run
+        self.right_run = right_run
+        self.generation = generation
+        self.cut = cut
+        self.next_letter = next_letter
+        self.prefix_parikh = prefix_parikh.copy()
+        self.word_lengths = word_lengths.copy()
+
+
+def closed_run_middle_family(left_run: Int, right_run: Int) raises -> List[List[Int]]:
+    """Allow the one-sided zero-run boundaries without admitting s=0.
+
+    Same incidence for any split of fixed s=left_run+right_run>=1.
+    The 16-cap is a checked-executable budget, not the paper theorem.
+    """
+    if left_run < 0 or right_run < 0 or left_run > 16 or right_run > 16:
+        raise Error("closed-run family outside bounded input")
+    if left_run + right_run == 0:
+        raise Error("closed-run family requires a nonzero total run")
+    return closed_run_middle_family(left_run, right_run)
+
+
+def verify_closed_run_coincidence(
+    left_run: Int, right_run: Int,
+) raises -> ClosedRunCoincidence:
+    """All nonnegative run splits with positive sum, uniform generation <=4.
+
+    a=0: generation 2, index 0, next 0.
+    a,b>0: generation 3, index a(a+b+1)+1, next 1.
+    b=0: generation 4, index a^3+a^2+4a+1, next 1.
+    Each is checked against *all three* complete actual letter images,
+    with an exact prefix Parikh vector, not an endpoint-only match.
+    """
+    var sigma = closed_run_middle_family(left_run, right_run)
+    var generation = 3
+    var p = 0
+    var next_letter = 1
+    var expected: List[Int] = [0, 0, 0]
+    if left_run == 0:
+        generation = 2
+        p = 0
+        next_letter = 0
+    elif right_run == 0:
+        generation = 4
+        p = left_run * left_run * left_run + left_run * left_run + 4 * left_run + 1
+        expected = [
+            left_run + 1,
+            left_run * left_run * left_run + 2 * left_run,
+            left_run * (left_run + 1),
+        ]
+    else:
+        p = left_run * (left_run + right_run + 1) + 1
+        expected = [
+            1, left_run * (left_run + right_run), left_run,
+        ]
+
+    var lengths = List[Int]()
+    for a in range(3):
+        var word: List[Int] = [a]
+        for _ in range(generation):
+            word = apply_substitution(sigma, word)
+        if p >= len(word) or word[p] != next_letter:
+            raise Error("closed-run coincidence fails on actual letter word")
+        var prefix = List[Int]()
+        for i in range(p):
+            prefix.append(word[i])
+        if parikh(prefix) != expected:
+            raise Error("closed-run coincidence has incorrect prefix Parikh")
+        lengths.append(len(word))
+    return ClosedRunCoincidence(
+        left_run, right_run, generation, p, next_letter, expected, lengths,
+    )
+
+
 def asymmetric_middle_family(left_run: Int, right_run: Int) raises -> List[List[Int]]:
     """The exact asymmetry is in word order, not the incidence matrix.
 
