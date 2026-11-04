@@ -7,6 +7,7 @@ from psc.c4_third_level_coincidence_family import (
     symmetric_middle_family, verify_third_level_coincidence,
     asymmetric_middle_family, verify_asymmetric_third_level,
     closed_run_middle_family, verify_closed_run_coincidence,
+    verify_sharp_closed_run_coincidence,
     reversed_closed_run_family, verify_reversed_closed_run_coincidence,
 )
 
@@ -362,6 +363,93 @@ def test_reversed_family_invalid_and_caps_refuse() raises:
         refused_total = True
     assert_true(refused_total)
 
+
+def test_sharp_forward_family_all_five_parameter_chambers() raises:
+    # The new API certifies earliest *simultaneous* three-letter depth.
+    # The older exhibited-witness APIs remain unchanged for provenance.
+    for a in range(9):
+        for b in range(9):
+            if a + b == 0:
+                continue
+            var cert = verify_sharp_closed_run_coincidence(a, b)
+            var previous = verify_closed_run_coincidence(a, b)
+            var expected_level = 3
+            var expected_cut = a * (a + b + 1) + 1
+            if a == 0:
+                expected_level = 2
+                expected_cut = 0
+            elif a == 1 and b == 0:
+                expected_level = 3
+                expected_cut = 7
+            elif a == 1:
+                expected_level = 2
+                expected_cut = b + 3
+            elif b == 0:
+                expected_level = 4
+                expected_cut = a * a * a + a * a + 4 * a + 1
+            assert_equal(cert.generation, expected_level)
+            assert_equal(cert.cut, expected_cut)
+            assert_true(cert.generation <= previous.generation)
+            var sigma = closed_run_middle_family(a, b)
+            for x in range(3):
+                var word = _actual_letter_image_at_level(
+                    sigma, x, cert.generation
+                )
+                assert_equal(word[cert.cut], cert.next_letter)
+                assert_equal(len(word), cert.word_lengths[x])
+                var prefix = List[Int]()
+                for j in range(cert.cut):
+                    prefix.append(word[j])
+                # Fully check exact Parikh, not merely the next letter.
+                var counts: List[Int] = [0, 0, 0]
+                for t in prefix:
+                    counts[t] += 1
+                assert_equal(counts, cert.prefix_parikh)
+
+
+def test_sharp_forward_family_actual_swap_diagonal() raises:
+    for a in range(7):
+        for b in range(7):
+            if a + b == 0:
+                continue
+            var sigma = closed_run_middle_family(a, b)
+            var cert = verify_sharp_closed_run_coincidence(a, b)
+            for x in range(3):
+                for y in range(x + 1, 3):
+                    var top: List[Int] = [x, y]
+                    var bottom: List[Int] = [y, x]
+                    for _ in range(cert.generation):
+                        top = apply_substitution(sigma, top)
+                        bottom = apply_substitution(sigma, bottom)
+                    var before = False
+                    var after = False
+                    for p in coincidence_boundaries(top, bottom):
+                        if p == cert.cut:
+                            before = True
+                        if p == cert.cut + 1:
+                            after = True
+                    assert_true(before and after)
+                    assert_equal(top[cert.cut], cert.next_letter)
+                    assert_equal(bottom[cert.cut], cert.next_letter)
+
+
+def test_sharp_forward_family_rejects_invalid_runs() raises:
+    for a in [-1, 0, 17]:
+        var refused = False
+        try:
+            _ = verify_sharp_closed_run_coincidence(a, 0)
+        except:
+            refused = True
+        assert_true(refused)
+    for b in [-1, 17]:
+        var refused = False
+        try:
+            _ = verify_sharp_closed_run_coincidence(1, b)
+        except:
+            refused = True
+        assert_true(refused)
+
+
 def main() raises:
     test_bounded_family_simultaneous_three_letter_coincidences()
     test_all_three_balanced_swaps_have_actual_diagonal_child_by_level_three()
@@ -379,5 +467,8 @@ def main() raises:
     test_reversed_family_all_five_chambers()
     test_reversed_family_actual_swap_diagonals()
     test_reversed_family_invalid_and_caps_refuse()
+    test_sharp_forward_family_all_five_parameter_chambers()
+    test_sharp_forward_family_actual_swap_diagonal()
+    test_sharp_forward_family_rejects_invalid_runs()
     print("C4 uniform third-level family: complete literal strong coincidence controls passed.")
     require_contract("ternary symmetric middle family 01/(1^k 2 1^k)/012 has all three simultaneous depth-three balanced-prefix strong coincidences at k(2k+1)+1; actual swap BPA diagonals, bounded replay, invalid cap refusal; no global PSC promotion")
