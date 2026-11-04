@@ -253,6 +253,34 @@ not claim that arbitrary balanced roots are *first* productive
 at D; it only establishes a sharp worst-case letter-pair
 strong-coincidence horizon.
 
+### Ternary prefix-satellite exclusion criterion (general, sufficient)
+
+For **any** nonerasing substitution on three letters i,j,k with literal
+\(\tau(k)=\tau(i)W\), if the pair \(\{i,j\}\) has a
+strong-coincidence witness at generation \(n\geq1\), then **every**
+pair of distinct letters has a strong-coincidence witness by
+generation \(n\). The proof does not need Pisot spectrum:
+\(\{i,k\}\) share the initial letter of \(\tau(i)\) at
+generation 1, while both \(\{i,j\}\) and \(\{j,k\}\) have
+a witness at generation n by literal prefix lifting.
+
+Moreover every **irreducible noncoincident Parikh-balanced word pair**
+has distinct first source letters. Inflating it through the
+appropriate pairwise witness puts adjacent balanced cuts around an
+equal single letter in the complete factorization. Thus every such
+balanced root has a diagonal descendant by generation n, and there
+is **no nonempty fully strictly child-closed noncoincident
+balanced-pair system** for this substitution, finite or otherwise.
+The final assertion is a direct contradiction to complete strict
+child closure, not an assertion of global BPA termination.
+
+This is a *conditional* structural productivity criterion. It
+does **not** prove that an arbitrary Pisot substitution has a
+literal prefix-satellite pair, nor that the remaining pair ever
+coincides. For the present family both hypotheses have been
+proved uniformly; for general C4 they are new explicit premises,
+not conclusions.
+
 ## Consequence and fixed-incidence correction
 
 For each chamber, any nonempty irreducible noncoincident
