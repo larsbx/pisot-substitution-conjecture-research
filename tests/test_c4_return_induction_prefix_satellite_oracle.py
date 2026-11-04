@@ -73,8 +73,12 @@ def incidence(sub):
 
 
 def matmul(A,B):
-    return [[sum(A[i][k]*B[k][j] for k in range(len(A)))
-             for j in range(len(B))] for i in range(len(A))]
+    if not A or not B or any(len(row)!=len(B) for row in A):
+        raise ValueError("nonrectangular or incompatible matrix dimensions")
+    if any(len(row)!=len(B[0]) for row in B):
+        raise ValueError("nonrectangular right matrix")
+    return [[sum(A[i][k]*B[k][j] for k in range(len(B)))
+             for j in range(len(B[0]))] for i in range(len(A))]
 
 
 def is_prefix_free(words):
