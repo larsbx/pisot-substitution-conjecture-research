@@ -2428,7 +2428,7 @@
     {
       "source": "docs/c4-phase-lattice-index-conservation-2026-11-04.md",
       "line": 51,
-      "statement_heading": "**Proposition 3 (exactly 3h states).** If a supplied strict component has \\`|C|=3h\\`, each cyclic phase has exactly three states and its P_k is a 3x3 rationally invertible *integer* matrix. Let"
+      "statement_heading": "**Proposition 3 (exactly 3h states).** If a supplied strict component has `|C|=3h`, each cyclic phase has exactly three states and its P_k is a 3x3 rationally invertible *integer* matrix. Let"
     },
     {
       "source": "docs/c4-recurrent-flat-exits-2026-11-04.md",
