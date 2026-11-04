@@ -98,10 +98,27 @@ def test_bounded_refusal_is_not_a_mathematical_noncoincidence_verdict() raises:
         refused = True
     assert_true(refused)
 
+
+def test_positive_letter_witness_refuses_even_at_depth_zero() raises:
+    # The depth-zero literal factorization is not yet productive, but the
+    # supplied first pair {0,1} is genuinely strongly coincident at level 2.
+    # An audit MUST refuse it rather than returning a seemingly valid
+    # strict-system receipt with a nonzero witnessed_mask.
+    var pip: List[List[Int]] = [[0, 1], [1, 2, 1], [0, 1, 2]]
+    var singleton: List[Pair] = [Pair([0, 1], [1, 0])]
+    assert_equal(strong_coincidence_level(pip, 0, 1, 2), 2)
+    var refused = False
+    try:
+        _ = audit_cut_pairs(pip, singleton, 0, 2)
+    except:
+        refused = True
+    assert_true(refused)
+
 def main() raises:
     test_uniform_three_pair_control()
     test_single_pair_reducible_control()
     test_pip_family_member_refuses_every_candidate()
     test_bounded_refusal_is_not_a_mathematical_noncoincidence_verdict()
+    test_positive_letter_witness_refuses_even_at_depth_zero()
     print("C4 cut-pair reduction: strict controls keep A(C) g-closed and witness-free; PIP candidates refused.")
     require_contract("every balanced cut of every inflation of a supplied strict system carries a first-letter pair of the system, the initial-letter map preserves and never collapses that pair set, and no such pair carries a bounded strong-coincidence witness; PIP candidates and malformed/capped inputs are refused")
