@@ -79,7 +79,7 @@ def main() raises:
                     assert_equal(check.tail[2],0)
                     for other in seen:
                         assert_true(not same_power_coset(k,t,representative,other,level))
-                    seen.append(representative)
+                    seen.append(representative.copy())
                     cosets+=1
                 assert_equal(len(seen),1<<level)
 
