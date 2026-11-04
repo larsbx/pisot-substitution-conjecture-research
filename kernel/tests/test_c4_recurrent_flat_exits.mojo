@@ -17,6 +17,88 @@ from psc.words import Pair, parikh
 from substitution_dynamics.automaton import recurrent_noncoincident_sccs
 
 
+def segment(word: List[Int], start: Int, stop: Int) -> List[Int]:
+    var result = List[Int]()
+    for i in range(start, stop):
+        result.append(word[i])
+    return result^
+
+
+def check_collared_interval(
+    sigma: List[List[Int]], seed: Pair, seed_depth: Int, radius: Int,
+    positions: List[List[Int]], masses: List[List[Int]],
+    diagonals: List[List[Int]], determinant: Int,
+) raises:
+    var top = seed.u.copy()
+    var bottom = seed.v.copy()
+    for _ in range(seed_depth):
+        top = apply_substitution(sigma, top)
+        bottom = apply_substitution(sigma, bottom)
+    for level in range(3):
+        var left = positions[level][0]
+        var right = positions[level][1]
+        assert_true(left >= radius and right + radius <= len(top) and left < right)
+        var cuts = coincidence_boundaries(top, bottom)
+        var left_found = False
+        var right_found = False
+        for i in range(len(cuts)):
+            left_found = left_found or cuts[i] == left
+            right_found = right_found or cuts[i] == right
+        assert_true(left_found and right_found)
+        assert_equal(segment(top, left - radius, left + radius),
+                     segment(top, right - radius, right + radius))
+        assert_equal(segment(bottom, left - radius, left + radius),
+                     segment(bottom, right - radius, right + radius))
+        var u = segment(top, left, right)
+        var v = segment(bottom, left, right)
+        assert_equal(parikh(u), masses[level])
+        assert_equal(parikh(v), masses[level])
+        var row = decompose(u, v)
+        var actual_diagonals = List[Int]()
+        for i in range(len(row)):
+            if row[i].is_coincidence():
+                actual_diagonals.append(i)
+        assert_equal(actual_diagonals, diagonals[level])
+        if level < 2:
+            assert_equal(len(apply_substitution(sigma, segment(top, 0, left))),
+                         positions[level + 1][0])
+            assert_equal(len(apply_substitution(sigma, segment(bottom, 0, left))),
+                         positions[level + 1][0])
+            assert_equal(len(apply_substitution(sigma, segment(top, 0, right))),
+                         positions[level + 1][1])
+            assert_equal(len(apply_substitution(sigma, segment(bottom, 0, right))),
+                         positions[level + 1][1])
+            top = apply_substitution(sigma, top)
+            bottom = apply_substitution(sigma, bottom)
+    assert_equal(_rank_det(masses[0], masses[1], masses[2]), determinant)
+
+
+def test_collared_cut_controls() raises:
+    var parent = Pair([0, 2, 2, 2, 0, 2, 2, 0, 1, 2],
+                      [1, 2, 2, 0, 2, 2, 0, 2, 2, 0])
+    check_collared_interval(
+        [[1], [0, 2], [2, 2, 0]], parent, 1, 1,
+        [[10, 17], [23, 39], [52, 88]],
+        [[2, 1, 4], [5, 2, 9], [11, 5, 20]], [[], [], [5, 7]], 1,
+    )
+    var top = apply_substitution([[1], [0, 2], [2, 2, 0]], parent.u)
+    assert_false(segment(top, 8, 12) == segment(top, 15, 19))
+
+    check_collared_interval(
+        [[1, 0], [1, 0, 2], [2, 1, 1]], Pair([1, 0, 2], [2, 1, 0]), 2, 2,
+        [[11, 19], [30, 52], [82, 142]],
+        [[2, 4, 2], [6, 10, 6], [16, 28, 16]], [[], [], []], 0,
+    )
+
+    var sigma: List[List[Int]] = [[0, 1], [1, 2], [0, 2, 1]]
+    var u: List[Int] = [1, 0]
+    var v: List[Int] = [0, 1]
+    for _ in range(2):
+        u = apply_substitution(sigma, u)
+        v = apply_substitution(sigma, v)
+    assert_equal(coincidence_boundaries(u, v), [0, 7, 9])
+
+
 def test_recurrent_flat_row_with_two_exits() raises:
     var sigma: List[List[Int]] = [[1], [0, 2], [2, 2, 0]]
     var m = Mat3(substitution_incidence(sigma))
@@ -105,5 +187,7 @@ def test_recurrent_flat_row_with_two_exits() raises:
 
 def main() raises:
     test_recurrent_flat_row_with_two_exits()
+    test_collared_cut_controls()
     print("C4 recurrent flat exits: 3 ordered children, phase 1, determinant -1, diagonal at [2,1].")
     require_contract("complete recurrent flat PIP child row with actual good-edge witness, every newborn address and both nonsync tests, exact exiting Parikh mass, and fail-closed strict audit")
+    require_contract("literal collared cut intervals with transported endpoint equality, exact cycle masses and diagonals, and reducible and productive controls")

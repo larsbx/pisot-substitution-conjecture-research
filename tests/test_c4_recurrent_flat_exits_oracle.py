@@ -119,3 +119,51 @@ def test_complete_recurrent_rows_and_exiting_mass():
     assert matvec(matrix, parent_mass) == tuple(a + b for a, b in zip(parent_mass, exits))
     assert det(parent_mass, exits, matvec(matrix, exits)) == -1
     assert children(row[2])[1] == ("2", "2")
+
+
+def collared_interval(sigma, seed, depth, radius, positions, diagonals):
+    """Replay inherited cuts directly from the two physical prefixes."""
+    top, bottom = seed
+    for _ in range(depth):
+        top, bottom = inflate(sigma, top), inflate(sigma, bottom)
+    left, right = positions[0]
+    masses = []
+    for expected_positions, expected_diagonals in zip(positions, diagonals, strict=True):
+        assert (left, right) == expected_positions
+        assert radius <= left < right <= len(top) - radius
+        assert p(top[:left]) == p(bottom[:left])
+        assert p(top[:right]) == p(bottom[:right])
+        for word in (top, bottom):
+            assert word[left - radius:left + radius] == word[right - radius:right + radius]
+        row = factor(top[left:right], bottom[left:right])
+        assert [i for i, (a, b) in enumerate(row) if a == b] == expected_diagonals
+        masses.append(p(top[left:right]))
+        left, right = (len(inflate(sigma, top[:cut])) for cut in (left, right))
+        top, bottom = inflate(sigma, top), inflate(sigma, bottom)
+    return masses
+
+
+def test_equal_cut_contexts_do_not_force_a_parikh_potential():
+    top, bottom = (inflate(SIGMA, word) for word in PARENT)
+    assert (top[9:11], bottom[9:11]) == (top[16:18], bottom[16:18]) == ("01", "22")
+    assert top[8:12] != top[15:19]
+    masses = collared_interval(
+        SIGMA, PARENT, 1, 1, [(10, 17), (23, 39), (52, 88)], [[], [], [5, 7]],
+    )
+    assert masses == [(2, 1, 4), (5, 2, 9), (11, 5, 20)]
+    assert det(*masses) == 1
+
+
+def test_collared_interval_reducible_and_productive_controls():
+    masses = collared_interval(
+        ("10", "102", "211"), ("102", "210"), 2, 2,
+        [(11, 19), (30, 52), (82, 142)], [[], [], []],
+    )
+    assert masses == [(2, 4, 2), (6, 10, 6), (16, 28, 16)]
+    assert det(*masses) == 0
+    assert masses[0][0] * masses[1][1] != masses[0][1] * masses[1][0]
+    assert all(a == c for a, _, c in masses)
+
+    sigma = ("01", "12", "021")
+    top, bottom = (inflate(sigma, inflate(sigma, word)) for word in ("10", "01"))
+    assert [i for i in range(1, len(top)) if p(top[:i]) == p(bottom[:i])] == [7]
