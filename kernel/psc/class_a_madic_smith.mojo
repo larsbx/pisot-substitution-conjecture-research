@@ -56,7 +56,7 @@ def certify_smith_against_generic(k: Int,t: Int,level: Int) raises -> List[Int]:
     for i in range(3):
         if not bigz_eq(actual[i],bigz_from_i64(Int64(predicted[i]))):
             raise Error("Class-A closed Smith invariant disagrees with exact determinantal divisors")
-    return predicted
+    return predicted^
 
 
 def cyclic_krylov_mod2(k: Int,t: Int) raises -> Bool:
