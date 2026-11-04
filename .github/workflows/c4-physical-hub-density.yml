@@ -1,0 +1,41 @@
+name: PSC C4 physical hub-area frequency controls
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/c4_physical_hub_area.mojo'
+      - 'kernel/tests/test_c4_physical_hub_area.mojo'
+      - 'tests/test_c4_physical_hub_area_oracle.py'
+      - 'docs/c4-physical-hub-density-2026-11-04.md'
+      - '.github/workflows/c4-physical-hub-density.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-physical-area:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Verify exact PR source revision
+        if: github.event_name == 'pull_request'
+        run: |
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha }}"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Independent integer-time hub-area oracle
+        run: |
+          python -m pip install pytest==8.4.2
+          python -m pytest -q tests/test_c4_physical_hub_area_oracle.py
+      - name: Install locked Pixi
+        run: |
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Canonical native weighted physical completion area
+        working-directory: kernel
+        run: pixi run --locked mojo run -I . tests/test_c4_physical_hub_area.mojo
