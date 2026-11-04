@@ -124,3 +124,84 @@ def test_k_one_has_earlier_level_two_simultaneous_coincidence():
     assert [tuple(w[:4].count(str(a)) for a in range(3)) for w in words] == [
         (1, 2, 1), (1, 2, 1), (1, 2, 1)
     ]
+
+
+def asymmetric_family(left, right):
+    """Independent two-parameter literal images, with a hard oracle budget."""
+    if not (1 <= left <= 24 and 1 <= right <= 24):
+        raise ValueError("invalid/over-cap asymmetric run")
+    return ("01", "1"*left + "2" + "1"*right, "012")
+
+
+def test_all_asymmetric_literal_prefixes_and_symmetry_backcompat():
+    for left in range(1, 13):
+        for right in range(1, 13):
+            sig = asymmetric_family(left, right)
+            p = left * (left + right + 1) + 1
+            pref = (1, left * (left + right), left)
+            words = [third(sig, letter) for letter in range(3)]
+            assert all(w[p] == "1" and
+                       tuple(w[:p].count(str(i)) for i in range(3)) == pref
+                       for w in words)
+            if left == right:
+                assert sig == family(left)
+                assert p == left * (2*left + 1) + 1
+
+
+def test_asymmetric_all_three_swap_factors_are_actual_diagonals():
+    for left in range(1, 7):
+        for right in range(1, 7):
+            sig = asymmetric_family(left, right)
+            p = left*(left+right+1)+1
+            for a, b in combinations(range(3), 2):
+                u, v = str(a)+str(b), str(b)+str(a)
+                for _ in range(3):
+                    u, v = substitute(sig,u), substitute(sig,v)
+                factors = actual_balanced_factors(u,v)
+                assert (p,p+1,"1","1") in factors
+
+
+def test_same_incidence_but_distinct_literal_common_addresses():
+    # Each split has identical M_s for s=4; the *address* depends on
+    # left_run, which incidence/Perron/Parikh data alone cannot recover.
+    fixed_s=4
+    Ms=[]
+    cuts=[]
+    for left in (1,2,3):
+        sig=asymmetric_family(left,fixed_s-left)
+        Ms.append(incidence(sig))
+        words=[third(sig,i) for i in range(3)]
+        cut=left*(fixed_s+1)+1
+        cuts.append(cut)
+        assert all(tuple(w[:cut].count(str(j)) for j in range(3))
+                   == (1,left*fixed_s,left) and w[cut]=="1" for w in words)
+    assert Ms == [Ms[0]]*3
+    assert cuts == [6,11,16]
+
+
+def test_asymmetric_generalized_pisot_integer_data():
+    for left in range(1,9):
+        for right in range(1,9):
+            s=left+right
+            matrix=incidence(asymmetric_family(left,right))
+            assert matrix==[[1,0,1],[1,s,1],[0,1,1]]
+            assert det3(matrix)==s
+            square=[[sum(matrix[i][t]*matrix[t][j] for t in range(3))
+                      for j in range(3)] for i in range(3)]
+            assert square==[[1,1,2],[s+1,s*s+1,s+2],[1,s+1,2]]
+            assert all(all(x>0 for x in row) for row in square)
+            def F(z):
+                return z*z*(z-2)-s*(z-1)*(z-1)
+            assert F(s)==-s
+            assert F(s+1)==s*s-s-1>0
+            assert -s*(4*s*s-13*s+32)<0
+            assert all(F(n)!=0 for n in range(-s,s+3))
+
+
+def test_asymmetric_parameter_budget_fails_closed():
+    for a,b in ((-1,1),(0,2),(2,0),(2,-1),(25,2),(2,25)):
+        try:
+            asymmetric_family(a,b)
+        except ValueError:
+            continue
+        raise AssertionError("malformed asymmetric family admitted")
