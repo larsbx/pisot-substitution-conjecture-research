@@ -2416,6 +2416,21 @@
       "statement_heading": "**Theorem 3 (exact phase balance).** Let v>0 be a right Perron vector of N, Nv=beta v (the eigenvalue equality follows from the positive left vector ell^T P of the complete strictly closed system). Write v^(k) for v restricted to class k, with zeros outside. Then"
     },
     {
+      "source": "docs/c4-phase-lattice-index-conservation-2026-11-04.md",
+      "line": 21,
+      "statement_heading": "**Theorem 1 (phase index conservation).** Under §1, for each k modulo h,"
+    },
+    {
+      "source": "docs/c4-phase-lattice-index-conservation-2026-11-04.md",
+      "line": 45,
+      "statement_heading": "**Corollary 2 (prime-adic phase budget).** For any p dividing |m|, let a=v_p(|m|). Then"
+    },
+    {
+      "source": "docs/c4-phase-lattice-index-conservation-2026-11-04.md",
+      "line": 51,
+      "statement_heading": "**Proposition 3 (exactly 3h states).** If a supplied strict component has \\`|C|=3h\\`, each cyclic phase has exactly three states and its P_k is a 3x3 rationally invertible *integer* matrix. Let"
+    },
+    {
       "source": "docs/c4-recurrent-flat-exits-2026-11-04.md",
       "line": 40,
       "statement_heading": "**Lemma (exit mass).** For any supplied nonempty finite set of actual"
