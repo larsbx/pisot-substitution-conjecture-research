@@ -205,3 +205,109 @@ def test_asymmetric_parameter_budget_fails_closed():
         except ValueError:
             continue
         raise AssertionError("malformed asymmetric family admitted")
+
+
+def nonnegative_family(a, b):
+    """Separate boundary-domain oracle; old strictly positive API unchanged."""
+    if a < 0 or b < 0 or a > 24 or b > 24 or a+b == 0:
+        raise ValueError("nonnegative family requires 0<=a,b<=24, a+b>0")
+    return ("01", "1"*a+"2"+"1"*b, "012")
+
+
+def nonnegative_witness(a, b):
+    sig = nonnegative_family(a, b)
+    if a == 0:
+        level, cut, counts, next_letter = 2, 0, (0,0,0), "0"
+    elif b == 0:
+        level = 4
+        cut = a*a*a+a*a+4*a+1
+        counts = (a+1, a*a*a+2*a, a*(a+1))
+        next_letter = "1"
+    else:
+        level = 3
+        cut = a*(a+b+1)+1
+        counts = (1,a*(a+b),a)
+        next_letter = "1"
+    # Reconstruct from literal word substitution, not canonical Mojo.
+    words=[]
+    for letter in range(3):
+        w = str(letter)
+        for _ in range(level):
+            w=substitute(sig,w)
+        words.append(w)
+    assert all(
+        cut < len(w) and w[cut] == next_letter
+        and tuple(w[:cut].count(str(j)) for j in range(3)) == counts
+        for w in words
+    )
+    return sig, level, cut, counts, next_letter
+
+
+def test_nonnegative_run_grid_includes_both_boundary_rays():
+    for a in range(0,10):
+        for b in range(0,10):
+            if a+b==0:
+                continue
+            sigma,level,cut,q,letter=nonnegative_witness(a,b)
+            if a==0:
+                assert level==2 and cut==0 and q==(0,0,0) and letter=="0"
+            elif b==0:
+                assert level==4 and cut==a**3+a*a+4*a+1
+                assert q==(a+1,a**3+2*a,a*(a+1))
+            else:
+                assert level==3
+                assert (cut,q,letter)==(
+                    a*(a+b+1)+1,(1,a*(a+b),a),"1"
+                )
+                assert sigma==asymmetric_family(a,b)
+
+
+def test_every_boundary_swap_has_a_true_diagonal_factor():
+    for a in range(0,7):
+        for b in range(0,7):
+            if a+b==0:
+                continue
+            sigma,level,cut,q,letter=nonnegative_witness(a,b)
+            for i,j in combinations(range(3),2):
+                top,bottom=str(i)+str(j),str(j)+str(i)
+                for _ in range(level):
+                    top=substitute(sigma,top)
+                    bottom=substitute(sigma,bottom)
+                blocks=actual_balanced_factors(top,bottom)
+                assert (cut,cut+1,letter,letter) in blocks
+
+
+def test_unimodular_boundary_and_nonunit_quadrant_are_pisot_exactly():
+    for s in range(1,22):
+        for a,b in ((0,s),(s,0)):
+            sigma=nonnegative_family(a,b)
+            M=incidence(sigma)
+            assert M==[[1,0,1],[1,s,1],[0,1,1]]
+            assert det3(M)==s
+            square=[[sum(M[i][t]*M[t][j] for t in range(3))
+                     for j in range(3)] for i in range(3)]
+            assert square==[[1,1,2],[s+1,s*s+1,s+2],[1,s+1,2]]
+            assert all(all(x>0 for x in row) for row in square)
+            def f(z):return z*z*(z-2)-s*(z-1)*(z-1)
+            assert f(s)==-s
+            if s==1:
+                assert f(2)==-1 and f(3)==5
+            else:
+                assert f(s+1)==s*s-s-1>0
+            assert -s*(4*s*s-13*s+32)<0
+            assert all(f(z)!=0 for z in range(-s,s+4))
+
+
+def test_nonnegative_invalid_and_symmetric_compatibility():
+    for a,b in ((0,0),(-1,3),(3,-1),(25,2),(2,25)):
+        try:
+            nonnegative_family(a,b)
+        except ValueError:
+            continue
+        raise AssertionError("invalid domain accepted")
+    for k in range(1,9):
+        sig,level,cut,q,letter=nonnegative_witness(k,k)
+        assert sig==family(k)
+        assert (level,cut,q,letter)==(
+            3,k*(2*k+1)+1,(1,2*k*k,k),"1"
+        )
