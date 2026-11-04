@@ -59,24 +59,32 @@ of 2, its discriminant is −44, and its real root lies between
 The genuine left-good edges are witnessed for `{0,2}` at depth
 one, position 0, and for `{1,2}` at depth two, position 4.
 Thus the only unordered first pair of a strict state can be
-`{0,1}`. For phase zero orient it with 0 on top. The suffix map
-is `(1,1,2)`, type C, so the right hub is 2 by the
-[right-hub restriction](c4-right-hub-reversal-2026-11-04.md).
-Its complementary right-good edge `{0,1}` is witnessed at
-depth one, position 0 of the reversed images.
+`{0,1}`. The complementary right-good edge `{0,1}` is witnessed
+at depth one, position 0 of the reversed images. Every terminal
+pair must therefore contain 2, in either order. These facts
+require no common-phase assumption.
 
-The legal seam test leaves only `L=(1,2), R=(0,1)`, with
-right hub bottom. The top seam is `10`, absent from the interiors
-of all three images. The top cut must be on an image boundary.
-The bottom seam `21` must be internal, and its only internal
-occurrence is in `121` at digit 2. The bottom proper prefix
-`12` has Parikh vector `(0,1,1)`. The image lattice cannot
-contain it, because row 1 minus row 0 of `M` is `(0,2,0)`.
-So the sole legal seam has no possible newborn, and no
-strict phase-zero component exists for this specimen.
-In a common-phase component the first child preserves the
-ordered pair `(0,1)`, since both letters are fixed by the
-prefix map. Thus a common phase would have to be zero.
+To apply the bigram filter without choosing a track, use
+[#471's enclosure](c4-overlap-carrier-enclosure-2026-11-04.md)
+on the carrier modulo track swap. It realizes each state inside
+one single-letter supertile on each track, possibly swapped.
+Both words of every state are therefore legal, and so are both
+words on either side of every actual seam.
+
+The exact bigram set is `01,10,11,12,21`. Across the two
+possible orders of the first pair and all four terminal pairs
+containing 2, the sole compatible seam up to track swap is
+`L=(1,2), R=(0,1)`. The top seam is `10`, absent from the
+interiors of all three images. The top cut must be on an image
+boundary. The bottom seam `21` must be internal, and its only
+internal occurrence is in `121` at digit 2. The bottom proper
+prefix `12` has Parikh vector `(0,1,1)`. The image lattice
+cannot contain it, because row 1 minus row 0 of `M` is
+`(0,2,0)`. Swapping tracks only negates the correction,
+so it is equally impossible. A finite strict child-closed
+component must have an asynchronous newborn by expansion.
+Thus **this specimen admits no finite strict child-closed
+balanced component, even with mixed child orientations**.
 
 The test also checks a positive local distinction for the
 same specimen under the weaker input with left hub 1, without

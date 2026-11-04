@@ -230,6 +230,17 @@ def test_legal_seam_with_no_birth_and_inherited_only_control() raises:
     _check_good_edge(sigma, 0, 2, 1, 0)
     _check_good_edge(sigma, 1, 2, 2, 4)
     _check_good_edge(reversed_substitution(sigma), 0, 1, 1, 0)
+    var legal = legal_bigrams(sigma)
+    var raw = List[Int]()
+    var terminals: List[Int] = [2, 5, 6, 7]
+    var initials: List[Int] = [1, 3]
+    for i in range(len(terminals)):
+        for j in range(len(initials)):
+            var a = terminals[i]
+            var b = initials[j]
+            if legal[3 * (a // 3) + b // 3] and legal[3 * (a % 3) + b % 3]:
+                raw.append(9 * a + b)
+    assert_equal(raw, [46, 66])
     assert_equal(len(phase_zero_legal_seams(sigma, 0, 2, True)), 0)
     assert_equal(phase_zero_legal_seams(sigma, 0, 2, False), [46])
     assert_equal(len(phase_zero_birth_seams(sigma, 0, 2, False)), 0)

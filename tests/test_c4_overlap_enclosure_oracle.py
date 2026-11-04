@@ -212,9 +212,12 @@ def test_newborn_ancestry_rejects_sole_legal_seam_by_parity():
     last = {a: w[-1] for a, w in zip("012", sigma)}
     assert all(last[a] + first[b] in grams for a, b in grams)
     assert {"20", "22", "00"}.isdisjoint(grams)
-    # Prefix 01 is fixed. Check both possible right hub tracks.
-    assert {(r, "01") for r in ("02", "12", "20", "21")
-            if r[0] + "0" in grams and r[1] + "1" in grams} == {("12", "01")}
+    assert grams == {"01", "10", "11", "12", "21"}
+    # Both track orders and all terminal pairs avoiding the right-good edge.
+    assert {(r, l) for r in ("02", "12", "20", "21") for l in ("01", "10")
+            if r[0] + l[0] in grams and r[1] + l[1] in grams} == {
+                ("12", "01"), ("21", "10"),
+            }
     assert not any("10" in w for w in sigma)
     bottom_digits = [(w, i) for w in sigma for i in range(1, len(w)) if w[i-1:i+1] == "21"]
     assert bottom_digits == [("121", 2)]
