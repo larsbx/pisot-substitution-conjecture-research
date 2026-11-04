@@ -70,9 +70,38 @@ def test_pip_family_member_refuses_every_candidate() raises:
         assert_true(refused)
 
 
+
+def test_bounded_refusal_is_not_a_mathematical_noncoincidence_verdict() raises:
+    var sigma: List[List[Int]] = [[1, 0], [1, 0, 2], [2, 1, 1]]
+    var input: List[Pair] = [Pair([1, 0, 2], [2, 1, 0])]
+    # Zero or negative witness budget does NOT mean that no witness
+    # exists. A positive finite -1 means the *search* exhausted.
+    for budget in [-1, 0, 13]:
+        var refused = False
+        try:
+            _ = strong_coincidence_level(sigma, 1, 2, budget)
+        except:
+            refused = True
+        assert_true(refused)
+    for depth in [-1, 11]:
+        var refused = False
+        try:
+            _ = inflated_cut_pair_mask(sigma, input, depth)
+        except:
+            refused = True
+        assert_true(refused)
+    var malformed: List[Pair] = [Pair([1, 3, 2], [2, 3, 1])]
+    var refused = False
+    try:
+        _ = inflated_cut_pair_mask(sigma, malformed, 1)
+    except:
+        refused = True
+    assert_true(refused)
+
 def main() raises:
     test_uniform_three_pair_control()
     test_single_pair_reducible_control()
     test_pip_family_member_refuses_every_candidate()
+    test_bounded_refusal_is_not_a_mathematical_noncoincidence_verdict()
     print("C4 cut-pair reduction: strict controls keep A(C) g-closed and witness-free; PIP candidates refused.")
-    require_contract("every balanced cut of every inflation of a supplied strict system carries a first-letter pair of the system, the initial-letter map preserves and never collapses that pair set, and no such pair carries a bounded strong-coincidence witness; PIP candidates with all pairs coincident are refused")
+    require_contract("every balanced cut of every inflation of a supplied strict system carries a first-letter pair of the system, the initial-letter map preserves and never collapses that pair set, and no such pair carries a bounded strong-coincidence witness; PIP candidates and malformed/capped inputs are refused")
