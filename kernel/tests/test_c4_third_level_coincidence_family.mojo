@@ -7,6 +7,7 @@ from psc.c4_third_level_coincidence_family import (
     symmetric_middle_family, verify_third_level_coincidence,
     asymmetric_middle_family, verify_asymmetric_third_level,
     closed_run_middle_family, verify_closed_run_coincidence,
+    reversed_closed_run_family, verify_reversed_closed_run_coincidence,
 )
 
 
@@ -270,6 +271,97 @@ def test_closed_run_budget_and_invalid_inputs_refuse() raises:
             refused = True
         assert_true(refused)
 
+
+
+def test_reversed_family_all_five_chambers() raises:
+    for a in range(9):
+        for b in range(9):
+            if a + b == 0 or a + b > 12:
+                continue
+            var cert = verify_reversed_closed_run_coincidence(a, b)
+            var original = closed_run_middle_family(a, b)
+            var reversed = reversed_closed_run_family(a, b)
+            for letter in range(3):
+                var old = original[letter].copy()
+                var expected_word = List[Int]()
+                for j in range(len(old)):
+                    expected_word.append(old[len(old) - 1 - j])
+                assert_equal(reversed[letter], expected_word)
+                var actual = _actual_letter_image_at_level(
+                    reversed, letter, cert.generation
+                )
+                assert_equal(actual[cert.cut], cert.next_letter)
+                assert_equal(cert.word_lengths[letter], len(actual))
+            assert_true(cert.generation <= 4)
+            if b == 0:
+                assert_equal(cert.generation, 2)
+                assert_equal(cert.cut, 0)
+                assert_equal(cert.next_letter, 2)
+            elif a == 0:
+                assert_equal(cert.generation, 4)
+                assert_equal(cert.next_letter, 2)
+            elif b == 1:
+                assert_equal(cert.generation, 3)
+                assert_equal(cert.cut, a + 5)
+            else:
+                assert_equal(cert.generation, 4)
+                assert_equal(cert.next_letter, 1)
+
+
+def test_reversed_family_actual_swap_diagonals() raises:
+    for a in range(6):
+        for b in range(6):
+            if a + b == 0:
+                continue
+            var cert = verify_reversed_closed_run_coincidence(a, b)
+            var sigma = reversed_closed_run_family(a, b)
+            for x in range(3):
+                for y in range(x + 1, 3):
+                    var top: List[Int] = [x, y]
+                    var bottom: List[Int] = [y, x]
+                    for _ in range(cert.generation):
+                        top = apply_substitution(sigma, top)
+                        bottom = apply_substitution(sigma, bottom)
+                    var before = False
+                    var after = False
+                    for cut in coincidence_boundaries(top, bottom):
+                        if cut == cert.cut:
+                            before = True
+                        if cut == cert.cut + 1:
+                            after = True
+                    assert_true(before and after)
+                    assert_equal(top[cert.cut], cert.next_letter)
+                    assert_equal(bottom[cert.cut], cert.next_letter)
+                    var factors = decompose(top, bottom)
+                    var saw = False
+                    for j in range(len(factors)):
+                        if factors[j].u == [cert.next_letter] and factors[j].v == [cert.next_letter]:
+                            saw = True
+                    assert_true(saw)
+
+
+def test_reversed_family_invalid_and_caps_refuse() raises:
+    for a in [-2, 0, 9]:
+        var refused = False
+        try:
+            _ = verify_reversed_closed_run_coincidence(a, 0)
+        except:
+            refused = True
+        assert_true(refused)
+    for b in [-1, 9]:
+        var refused = False
+        try:
+            _ = verify_reversed_closed_run_coincidence(1, b)
+        except:
+            refused = True
+        assert_true(refused)
+    var refused_total = False
+    try:
+        _ = verify_reversed_closed_run_coincidence(8, 8)
+    except:
+        refused_total = True
+    assert_true(refused_total)
+
 def main() raises:
     test_bounded_family_simultaneous_three_letter_coincidences()
     test_all_three_balanced_swaps_have_actual_diagonal_child_by_level_three()
@@ -284,5 +376,8 @@ def main() raises:
     test_actual_swap_diagonal_at_both_boundary_cases()
     test_same_incidence_different_boundary_depths_and_addresses()
     test_closed_run_budget_and_invalid_inputs_refuse()
+    test_reversed_family_all_five_chambers()
+    test_reversed_family_actual_swap_diagonals()
+    test_reversed_family_invalid_and_caps_refuse()
     print("C4 uniform third-level family: complete literal strong coincidence controls passed.")
     require_contract("ternary symmetric middle family 01/(1^k 2 1^k)/012 has all three simultaneous depth-three balanced-prefix strong coincidences at k(2k+1)+1; actual swap BPA diagonals, bounded replay, invalid cap refusal; no global PSC promotion")
