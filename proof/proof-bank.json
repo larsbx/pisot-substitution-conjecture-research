@@ -2371,6 +2371,16 @@
       "statement_heading": "**Theorem (five mutually exclusive chambers).** For every a,b>=0,"
     },
     {
+      "source": "docs/c4-forward-run-family-sharp-depth-2026-11-04.md",
+      "line": 150,
+      "statement_heading": "**Lemma (prefix-satellite lifting).** Let \\(\\tau\\) be any nonerasing"
+    },
+    {
+      "source": "docs/c4-forward-run-family-sharp-depth-2026-11-04.md",
+      "line": 184,
+      "statement_heading": "**Corollary (sharp all-pairs coincidence depth).** For every member of"
+    },
+    {
       "source": "docs/c4-overlap-carrier-enclosure-2026-11-04.md",
       "line": 22,
       "statement_heading": "**Lemma.** Let a nonerasing substitution have positive letter lengths `ell`"
