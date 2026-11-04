@@ -1,0 +1,22 @@
+{
+  "check": "native-regression",
+  "started_at_utc": "2026-11-04T20:15:00Z",
+  "elapsed_seconds": 9.314,
+  "exit_code": 0,
+  "command": [
+    "/workspace/scratch/ff95d1f2448c/mojo-prefix/bin/mojo",
+    "run",
+    "-I",
+    ".",
+    "tests/test_c4_nonunit_residue_occupancy.mojo"
+  ],
+  "working_directory": "kernel",
+  "environment_overrides": {
+    "MODULAR_HOME": "/workspace/scratch/ff95d1f2448c/mojo-prefix/share/max",
+    "PSC_OCCUPANCY_NATIVE_OUTPUT": "/workspace/scratch/bb3a4dbb8418/psc-occupancy/evidence/c4-nonunit-residue-occupancy-2026-11-04/native-driver.stdout.txt",
+    "PYTHONPATH": "/workspace/scratch/bb3a4dbb8418/psc-occupancy/tools"
+  },
+  "stdout_file": "native-regression.stdout.txt",
+  "stderr_file": "native-regression.stderr.txt",
+  "kind": "local_replay"
+}

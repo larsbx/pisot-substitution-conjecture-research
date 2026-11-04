@@ -1,0 +1,20 @@
+{
+  "check": "proof-bank",
+  "started_at_utc": "2026-11-04T20:16:19Z",
+  "elapsed_seconds": 0.442,
+  "exit_code": 0,
+  "command": [
+    "/workspace/scratch/bb3a4dbb8418/validation-venv/bin/python",
+    "tools/make_proof_bank.py",
+    "--check"
+  ],
+  "working_directory": ".",
+  "environment_overrides": {
+    "MODULAR_HOME": "/workspace/scratch/ff95d1f2448c/mojo-prefix/share/max",
+    "PSC_OCCUPANCY_NATIVE_OUTPUT": "/workspace/scratch/bb3a4dbb8418/psc-occupancy/evidence/c4-nonunit-residue-occupancy-2026-11-04/native-driver.stdout.txt",
+    "PYTHONPATH": "/workspace/scratch/bb3a4dbb8418/psc-occupancy/tools"
+  },
+  "stdout_file": "proof-bank.stdout.txt",
+  "stderr_file": "proof-bank.stderr.txt",
+  "kind": "local_replay"
+}
