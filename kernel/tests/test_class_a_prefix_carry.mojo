@@ -5,7 +5,6 @@ from mojo_smoke.claims import require_contract
 from a1_normal_form_census import class_member, CLASS_A
 from psc.class_a_madic_digits import apply_incidence, in_image_power
 from psc.overlap_seed_patch import build_seed_overlap_tables_screened
-from a1_normal_form_census import class_member, CLASS_A
 from psc.class_a_prefix_carry import (
     actual_prefix_corrections, exact_prefix_pair_carry,
     unique_actual_zero_parent, replay_actual_zero_overlap_path,

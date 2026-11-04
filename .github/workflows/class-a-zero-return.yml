@@ -1,0 +1,35 @@
+name: PSC Class-A uniform one-step zero-return predecessor
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/class_a_zero_return.mojo'
+      - 'kernel/tests/test_class_a_zero_return.mojo'
+      - 'tests/test_class_a_zero_return_oracle.py'
+      - 'docs/class-a-uniform-zero-return-2026-11-02.md'
+      - '.github/workflows/class-a-zero-return.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native-and-independent:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Independent literal-word and integral-matrix oracle
+        run: |
+          python -m pip install pytest==8.4.2
+          python -m pytest -q tests/test_class_a_zero_return_oracle.py
+      - name: Install locked Mojo environment
+        run: |
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Native full indexed predecessor verification
+        working-directory: kernel
+        run: pixi run --locked mojo run -I . tests/test_class_a_zero_return.mojo

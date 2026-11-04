@@ -68,12 +68,12 @@ def actual_prefix_corrections(
             checked_sub(pa[1],pb[1]),
             checked_sub(pa[2],pb[2]),
         ]
-        corrections.append(diff)
+        corrections.append(diff.copy())
         a=_letter(-1,n,d,a,i)
         b=_letter(-1,n,d,b,j)
     var low_first=List[List[Int]]()
     for back in range(depth):
-        low_first.append(corrections[depth-1-back])
+        low_first.append(corrections[depth-1-back].copy())
     return low_first^
 
 
@@ -84,7 +84,7 @@ def exact_prefix_pair_carry(
     var digits=actual_prefix_corrections(k,t,top,bottom,top_path,bottom_path)
     var carry: List[Int] = [0,0,0]
     for level in range(len(digits)):
-        var v=digits[level]
+        var v=digits[level].copy()
         var next: List[Int] = [
             checked_add(carry[0],v[0]),
             checked_add(carry[1],v[1]),

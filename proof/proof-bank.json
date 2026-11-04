@@ -2336,6 +2336,11 @@
       "statement_heading": "### Corollary (higher escape becomes one-step escape)"
     },
     {
+      "source": "docs/c4-addressed-overlap-to-newborn-2026-11-04.md",
+      "line": 22,
+      "statement_heading": "**Lemma.** Let `T` be an actual irreducible noncoincident balanced"
+    },
+    {
       "source": "docs/c4-defect-degree-census.md",
       "line": 120,
       "statement_heading": "**Proposition (bounded PIP corpus).** Among the 4,554 primitive ternary"
@@ -2346,6 +2351,11 @@
       "statement_heading": "### Proposition 3"
     },
     {
+      "source": "docs/c4-overlap-carrier-enclosure-2026-11-04.md",
+      "line": 22,
+      "statement_heading": "**Lemma.** Let a nonerasing substitution have positive letter lengths `ell`"
+    },
+    {
       "source": "docs/c4-parikh-intertwiner.md",
       "line": 90,
       "statement_heading": "### Corollary 2.1 — no one- or two-state counterexample SCC"
@@ -2354,6 +2364,11 @@
       "source": "docs/c4-parikh-intertwiner.md",
       "line": 123,
       "statement_heading": "### Corollary 3.1 — the three-state case is rigid"
+    },
+    {
+      "source": "docs/c4-recurrent-flat-exits-2026-11-04.md",
+      "line": 40,
+      "statement_heading": "**Lemma (exit mass).** For any supplied nonempty finite set of actual"
     },
     {
       "source": "docs/c4-w3-low-growth-and-interface-correction.md",
@@ -2534,6 +2549,16 @@
       "source": "docs/class-a-typed-carrier-2026-10-21.md",
       "line": 14,
       "statement_heading": "**Proposition.** For every integer `n>=4`, the canonical exact swap-seed overlap graph has at least `6n-2` distinct vertices."
+    },
+    {
+      "source": "docs/class-a-uniform-zero-return-2026-11-02.md",
+      "line": 9,
+      "statement_heading": "## Theorem: all one-step zero predecessors"
+    },
+    {
+      "source": "docs/class-a-uniform-zero-return-2026-11-02.md",
+      "line": 72,
+      "statement_heading": "### Corollary: exactly nine affine predecessor segments"
     },
     {
       "source": "docs/class-b-gap-rays-2026-10-27.md",
@@ -3382,7 +3407,7 @@
     },
     {
       "source": "docs/proof-ladder.md",
-      "line": 293,
+      "line": 314,
       "statement_heading": "**Imported theorem:** Barge–Štimac–Williams supplies the dense-eventual-coincidence-to-PDS implication in the precise one-dimensional Pisot-family setting checked in manuscript Imported Theorem 5.37. Hence Theorem 5.38 has no G1 hypothesis."
     },
     {
