@@ -160,6 +160,45 @@ The apparent paradox clarifies exactly where return coding loses information. Al
 
 This suggests a more precise viable research interface: carry a *residual word with a substitution-level address* together with both complete return-code prefixes, and require physical seam/marker alignment before asserting any coded letter-pair coincidence. The result is a control on a naive **bounded raw suffix** state-space, not a proof that a finite-state symbolic/transducer construction is impossible.
 
+## Full-rank spectral transport still does not restore literal prefix order
+
+**Corollary (exact spectral transport with a killed return redundancy).**
+Let P be the 3-by-4 integer matrix whose columns are the Parikh vectors
+of r0,r1,r2,r3, respectively. The literal return identities above give
+
+```text
+P = [ 1 1 1 1 ]
+    [ 5 5 3 3 ]
+    [ 2 3 2 1 ]
+
+M P = P N = [ 3  4 3 2 ]
+              [13 14 9 8 ]
+              [ 7  8 5 4 ].
+```
+
+The leading 3-by-3 minor of P has determinant **2**, so P has
+rational rank 3 and kernel exactly `span{v}` with
+`v=(-1,1,-1,1)^T`. Moreover the **exact** derived incidence
+satisfies `Nv=0`. Consequently N induces M on the quotient
+`Q^4/ker(P)`, and its characteristic polynomial factors as
+
+```text
+chi_N(x) = x * chi_M(x)
+         = x * (x^3 - 4*x^2 + 4*x - 2).
+```
+
+This is the same nonzero irreducible Pisot spectrum as the source,
+plus a single zero eigenvalue from the redundant return-letter
+direction. The source-return Parikh relation in v follows directly
+from `r0=r3+B` and `r1=r2+B`: the extra letter coordinate is
+eliminated **in one derived substitution step**.
+
+Thus even a **full-rank exact Parikh intertwiner** and preservation
+of the complete nonzero Pisot spectrum do *not* imply preservation
+of literal prefix-satellite order. This is a precise limitation of
+an incidence-only or rank-only return-induction attack on #461,
+not an obstruction to a properly occurrence-labelled geometric proof.
+
 ## The stronger interface that would actually be required
 
 A correct induced-carrier proof needs a **boundary-synchronous prefix relation**: if an original word image is an initial segment of another, the extra endpoint must lie on a complete return-code boundary. Equivalently, the original literal prefix has to be expressible as the image under h of a full return-code prefix.
