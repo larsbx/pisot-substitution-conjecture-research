@@ -5,6 +5,7 @@ from mojo_smoke.claims import require_contract
 from psc.bpa import apply_substitution, coincidence_boundaries, decompose
 from psc.c4_third_level_coincidence_family import (
     symmetric_middle_family, verify_third_level_coincidence,
+    asymmetric_middle_family, verify_asymmetric_third_level,
 )
 
 
@@ -92,10 +93,89 @@ def test_invalid_and_excessive_parameters_refuse() raises:
         assert_true(refused)
 
 
+
+def test_asymmetric_family_common_depth_three_for_unequal_runs() raises:
+    # These are bounded actual letter words; the unbounded a,b theorem
+    # uses the separate symbolic A/B/C word identity.
+    for left in range(1, 9):
+        for right in range(1, 9):
+            var sigma = asymmetric_middle_family(left, right)
+            var certificate = verify_asymmetric_third_level(left, right)
+            var p = left * (left + right + 1) + 1
+            assert_equal(len(sigma[1]), left + right + 1)
+            assert_equal(certificate.left_run, left)
+            assert_equal(certificate.right_run, right)
+            assert_equal(certificate.cut, p)
+            assert_equal(certificate.prefix_parikh, [
+                1, left * (left + right), left
+            ])
+            for a in range(3):
+                var word = _third_image(sigma, a)
+                assert_equal(word[p], 1)
+                assert_equal(len(word), certificate.word_lengths[a])
+
+
+def test_asymmetric_all_three_swaps_produce_real_diagonal() raises:
+    # A complete zero-return factor, not a merely matching character:
+    # prefixes at p and p+1 are balanced on both tracks.
+    for left in range(1, 6):
+        for right in range(1, 6):
+            var sigma = asymmetric_middle_family(left, right)
+            var p = left * (left + right + 1) + 1
+            for a in range(3):
+                for b in range(a + 1, 3):
+                    var top: List[Int] = [a, b]
+                    var bottom: List[Int] = [b, a]
+                    for _ in range(3):
+                        top = apply_substitution(sigma, top)
+                        bottom = apply_substitution(sigma, bottom)
+                    var cuts = coincidence_boundaries(top, bottom)
+                    var found_left = False
+                    var found_right = False
+                    for t in cuts:
+                        if t == p:
+                            found_left = True
+                        if t == p + 1:
+                            found_right = True
+                    assert_true(found_left and found_right)
+                    assert_equal(top[p], 1)
+                    assert_equal(bottom[p], 1)
+
+
+def test_fixed_incidence_does_not_fix_third_level_address() raises:
+    # All three splittings of s=4 have identical incidence and PIP cubic,
+    # but the common *literal* address is not incidence-determined.
+    var positions = List[Int]()
+    for left in range(1, 4):
+        var result = verify_asymmetric_third_level(left, 4 - left)
+        positions.append(result.cut)
+    assert_equal(positions, [6, 11, 16])
+
+
+def test_asymmetric_nonpositive_and_excessive_runs_refuse() raises:
+    for left in [-1, 0, 17]:
+        var refused = False
+        try:
+            _ = verify_asymmetric_third_level(left, 2)
+        except:
+            refused = True
+        assert_true(refused)
+    for right in [-1, 0, 17]:
+        var refused = False
+        try:
+            _ = verify_asymmetric_third_level(2, right)
+        except:
+            refused = True
+        assert_true(refused)
+
 def main() raises:
     test_bounded_family_simultaneous_three_letter_coincidences()
     test_all_three_balanced_swaps_have_actual_diagonal_child_by_level_three()
     test_invalid_and_excessive_parameters_refuse()
     test_k_one_has_earlier_simultaneous_level_two_witness()
+    test_asymmetric_family_common_depth_three_for_unequal_runs()
+    test_asymmetric_all_three_swaps_produce_real_diagonal()
+    test_fixed_incidence_does_not_fix_third_level_address()
+    test_asymmetric_nonpositive_and_excessive_runs_refuse()
     print("C4 uniform third-level family: complete literal strong coincidence controls passed.")
     require_contract("ternary symmetric middle family 01/(1^k 2 1^k)/012 has all three simultaneous depth-three balanced-prefix strong coincidences at k(2k+1)+1; actual swap BPA diagonals, bounded replay, invalid cap refusal; no global PSC promotion")
