@@ -8,9 +8,12 @@ from psc.words import Pair
 
 def test_uniform_three_pair_control() raises:
     # Constant-length, all-ones incidence (not Pisot): A(C) is all three pairs.
+    # The ordered 3-cycle is genuinely closed; the earlier listing
+    # (012,120),(012,201),(120,201) was closed only up to track swap. This
+    # audit does not check closure (the Python oracle does and refuses it).
     var sigma: List[List[Int]] = [[0, 1, 2], [1, 2, 0], [2, 0, 1]]
     var states: List[Pair] = [
-        Pair(sigma[0], sigma[1]), Pair(sigma[0], sigma[2]), Pair(sigma[1], sigma[2]),
+        Pair(sigma[0], sigma[1]), Pair(sigma[1], sigma[2]), Pair(sigma[2], sigma[0]),
     ]
     var audit = audit_cut_pairs(sigma, states, 3, 6)
     assert_equal(audit.first_mask, 0b111)
@@ -155,12 +158,46 @@ def test_positive_letter_witness_refuses_even_at_depth_zero() raises:
         refused = True
     assert_true(refused)
 
+def test_transient_cut_pair_in_non_strongly_connected_strict_system() raises:
+    # Closure of (02,20) under 10/102/211: six states, strictly closed but not
+    # strongly connected (ordered closure is certified by the Python oracle;
+    # this audit checks only the necessary mask conditions). A(C) = {{0,2},{1,2}}; the transient pair {0,2} never
+    # labels a cut of an inflation, and g maps it into {1,2}.
+    var sigma: List[List[Int]] = [[1, 0], [1, 0, 2], [2, 1, 1]]
+    var states: List[Pair] = [
+        Pair([0, 2], [2, 0]),
+        Pair([1, 0, 2, 1, 1], [2, 1, 1, 1, 0]),
+        Pair([1, 0, 2], [2, 1, 0]),
+        Pair([1, 1, 1, 0, 2], [2, 1, 1, 1, 0]),
+        Pair([1, 0, 2, 1, 0, 2, 1, 1], [2, 1, 1, 1, 0, 2, 1, 0]),
+        Pair([1, 0, 2, 1, 0, 2, 1, 0, 2, 1, 0, 2, 1, 1],
+             [2, 1, 1, 1, 0, 2, 1, 0, 2, 1, 0, 2, 1, 0]),
+    ]
+    var audit = audit_cut_pairs(sigma, states, 3, 8)
+    assert_equal(audit.first_mask, 0b110)
+    assert_equal(audit.cut_mask, 0b100)
+    assert_equal(audit.initial_image, 0b100)
+    assert_equal(audit.witnessed_mask, 0)
+
+
+def test_unit_pip_left_witness_levels() raises:
+    # Unit PIP 01/12/021 (det 1): left strong-coincidence witnesses on all
+    # three pairs, the semantics used by Theorem A(4) and Lemma P (#480 §4).
+    var sigma: List[List[Int]] = [[0, 1], [1, 2], [0, 2, 1]]
+    assert_equal(strong_coincidence_level(sigma, 0, 2, 8), 1)
+    assert_equal(strong_coincidence_level(sigma, 0, 1, 8), 4)
+    assert_equal(strong_coincidence_level(sigma, 1, 2, 8), 4)
+    assert_equal(strong_coincidence_level(sigma, 0, 1, 3), -1)
+
+
 def main() raises:
     test_uniform_three_pair_control()
     test_single_pair_reducible_control()
+    test_transient_cut_pair_in_non_strongly_connected_strict_system()
+    test_unit_pip_left_witness_levels()
     test_pip_family_member_refuses_every_candidate()
     test_bounded_refusal_is_not_a_mathematical_noncoincidence_verdict()
     test_word_letters_are_checked_before_parikh_indexing()
     test_positive_letter_witness_refuses_even_at_depth_zero()
     print("C4 cut-pair reduction: strict controls keep A(C) g-closed and witness-free; PIP candidates refused.")
-    require_contract("every balanced cut of every inflation of a supplied strict system carries a first-letter pair of the system, the initial-letter map preserves and never collapses that pair set, and no such pair carries a bounded strong-coincidence witness; PIP candidates and malformed/capped inputs are refused")
+    require_contract("every balanced cut of every inflation of a supplied strict system carries a first-letter pair of the system, the initial-letter map preserves and never collapses that pair set, and no such pair carries a bounded strong-coincidence witness; transient pairs of non-strongly-connected strict systems are admitted; unit-PIP left witness levels are pinned; PIP candidates and malformed/capped inputs are refused")
