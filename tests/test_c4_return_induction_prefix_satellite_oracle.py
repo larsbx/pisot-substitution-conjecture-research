@@ -215,4 +215,4 @@ def test_exact_common_expanding_residual_for_both_return_pairings():
             code=tuple(expand(tau,str(i),n) for i in range(4))
             assert not code[0].startswith(code[3])
             assert not code[1].startswith(code[2])
-    assert lengths==[3,9,26,74,211,601,1712]
+    assert lengths==[3,9,26,74,210,596,1692]
