@@ -185,6 +185,128 @@ def test_hub_prefix_crossing_controls() raises:
     assert_equal([top[28], bottom[28]], [0, 0])
 
 
+def weighted_endpoints(word: List[Int], weights: List[Int]) -> List[Int]:
+    var ends: List[Int] = [0]
+    for i in range(len(word)):
+        ends.append(ends[i] + weights[word[i]])
+    return ends^
+
+
+def check_physical_hub_crossing(
+    sigma: List[List[Int]], pair: Pair, weights: List[Int],
+    expected: List[List[Int]],
+) raises:
+    var m = Mat3(substitution_incidence(sigma))
+    for letter in range(3):
+        var image: List[Int] = [letter]
+        for _ in range(2):
+            image = apply_substitution(sigma, image)
+        assert_equal(len(image), weights[letter])
+    var top = weighted_endpoints(pair.u, weights)
+    var bottom = weighted_endpoints(pair.v, weights)
+    var size = pair.length()
+    var overlaps = List[List[Int]]()
+    for i in range(size + 1):
+        var a = parikh(segment(pair.u, 0, i))
+        for j in range(size + 1):
+            var b = parikh(segment(pair.v, 0, j))
+            var defect: List[Int] = [a[0] - b[0], a[1] - b[1], a[2] - b[2]]
+            var lifted = m.apply(m.apply(defect))
+            var order = top[i] - bottom[j]
+            assert_equal(lifted[0] + lifted[1] + lifted[2], order)
+            for k in range(3):
+                if order > 0:
+                    assert_true(lifted[k] >= 0)
+                elif order < 0:
+                    assert_true(lifted[k] <= 0)
+                else:
+                    assert_equal(lifted[k], 0)
+            if i < size and j < size and pair.u[i] != 1 and pair.v[j] == 1:
+                if defect[1] == 0 and top[i] < bottom[j + 1] and bottom[j] < top[i + 1]:
+                    overlaps.append([i, j])
+    assert_equal(overlaps, expected)
+
+    var bottom_hubs = 0
+    for j in range(size):
+        if pair.v[j] == 1:
+            bottom_hubs += 1
+            var top_hubs = 0
+            for i in range(size):
+                if pair.u[i] == 1 and top[i + 1] <= bottom[j + 1]:
+                    top_hubs += 1
+            if top_hubs < bottom_hubs:
+                var i = expected[0][0]
+                assert_equal(j, expected[0][1])
+                assert_true(top[i] < bottom[j] and bottom[j] < top[i + 1])
+                assert_equal([pair.u[i], pair.v[j]], [2, 1])
+                var a = parikh(segment(pair.u, 0, i))
+                var b = parikh(segment(pair.v, 0, j))
+                assert_equal([a[0] - b[0], a[1] - b[1], a[2] - b[2]], [-1, 0, 0])
+                return
+    raise Error("expected a negative weighted hub jump")
+
+
+def addressed_prefix(
+    sigma: List[List[Int]], word: List[Int], source: Int,
+    digits: List[Int], letter: Int,
+) raises -> List[Int]:
+    var prefix = segment(word, 0, source)
+    var current = word[source]
+    for level in range(len(digits)):
+        var digit = digits[level]
+        assert_true(digit >= 0 and digit < len(sigma[current]))
+        prefix = apply_substitution(sigma, prefix)
+        for i in range(digit):
+            prefix.append(sigma[current][i])
+        current = sigma[current][digit]
+    assert_equal(current, letter)
+    return prefix^
+
+
+def test_crossing_source_separation() raises:
+    var sigma: List[List[Int]] = [[1], [0, 2], [2, 2, 0]]
+    var state = Pair([0, 1], [1, 0])
+    for _ in range(4):
+        var row = decompose(apply_substitution(sigma, state.u),
+                            apply_substitution(sigma, state.v))
+        state = row[0].copy()
+    var pair = Pair(state.v, state.u)
+    assert_equal(pair, Pair([1, 2, 2, 0, 2, 2, 0, 2, 2, 0, 1],
+                            [0, 2, 2, 2, 0, 2, 2, 0, 1, 1, 2]))
+    var legal: List[Int] = [2]
+    for _ in range(6):
+        legal = apply_substitution(sigma, legal)
+    assert_equal(segment(legal, 32, 43), pair.u)
+    assert_equal(segment(legal, 153, 164), pair.v)
+    check_hub_prefix_area(pair, 1, 7, 9)
+    assert_equal([pair.u[9], pair.v[9]], [0, 1])
+    var a = parikh(segment(pair.u, 0, 9))
+    var b = parikh(segment(pair.v, 0, 10))
+    var gap: List[Int] = [a[0] - b[0], a[1] - b[1], a[2] - b[2]]
+    assert_equal(gap, [-1, -1, 1])
+    var m = Mat3(substitution_incidence(sigma))
+    assert_equal(m.apply(gap), [0, -1, 1])
+    assert_equal(m.apply(m.apply(gap)), [0, 0, 1])
+    var outgoing = decompose(apply_substitution(sigma, pair.u),
+                             apply_substitution(sigma, pair.v))
+    assert_equal(outgoing[len(outgoing) - 1], Pair([0, 2], [2, 0]))
+    check_physical_hub_crossing(sigma, pair, [2, 4, 7], [[8, 9]])
+    var top = addressed_prefix(sigma, pair.u, 8, [1, 0, 0], 2)
+    var bottom = addressed_prefix(sigma, pair.v, 9, [1, 0, 1], 2)
+    assert_equal([len(top), len(bottom)], [104, 104])
+    assert_equal(parikh(top), [32, 14, 58])
+    assert_equal(parikh(bottom), [32, 14, 58])
+
+    sigma = [[0, 1], [1, 2], [0, 2, 1]]
+    pair = Pair([1, 2, 0, 1], [0, 1, 1, 2])
+    check_physical_hub_crossing(sigma, pair, [4, 5, 7], [[1, 2], [2, 2]])
+    top = addressed_prefix(sigma, pair.u, 1, [2, 1, 2], 1)
+    bottom = addressed_prefix(sigma, pair.v, 2, [1, 0, 1], 1)
+    assert_equal([len(top), len(bottom)], [27, 27])
+    assert_equal(parikh(top), [7, 11, 9])
+    assert_equal(parikh(bottom), [7, 11, 9])
+
+
 def test_recurrent_flat_row_with_two_exits() raises:
     var sigma: List[List[Int]] = [[1], [0, 2], [2, 2, 0]]
     var m = Mat3(substitution_incidence(sigma))
@@ -275,7 +397,9 @@ def main() raises:
     test_recurrent_flat_row_with_two_exits()
     test_collared_cut_controls()
     test_hub_prefix_crossing_controls()
+    test_crossing_source_separation()
     print("C4 recurrent flat exits: 3 ordered children, phase 1, determinant -1, diagonal at [2,1].")
     require_contract("complete recurrent flat PIP child row with actual good-edge witness, every newborn address and both nonsync tests, exact exiting Parikh mass, and fail-closed strict audit")
     require_contract("literal collared cut intervals with transported endpoint equality, exact cycle masses and diagonals, and reducible and productive controls")
     require_contract("hub prefix area equals degree-two word defect, exact axis crossing and actual offset-to-diagonal witness, with strict reducible and recurrent exit controls")
+    require_contract("integer endpoint-order certificates separate a symbolic crossing and verify genuine weighted hub overlaps with physical descendant addresses")
