@@ -48,9 +48,9 @@ true simultaneous witness (p,Q,z).
 | a>=2, b=0 | **4** | a³+a²+4a+1 | (a+1,a³+2a,a(a+1)) | 1 |
 
 The theorem proves *minimum generation*, not minimum index p
-within that generation. Some pairs of source letters may coincide
-earlier than the simultaneous all-three event: **D is not the maximum
-of the independently optimized pairwise depths unless separately proved.**
+within that generation. The pair {0,2} coincides earlier, at
+level one. Equality of D with the maximum of the *pairwise* minimum
+depths is established separately in the all-pairs corollary below.
 
 In particular, the former #479 level-three witness at a=1,b>=1
 is correct but **one generation late**. Its published p=s+2
