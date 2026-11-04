@@ -6,6 +6,7 @@ from psc.bpa import apply_substitution, coincidence_boundaries, decompose
 from psc.c4_third_level_coincidence_family import (
     symmetric_middle_family, verify_third_level_coincidence,
     asymmetric_middle_family, verify_asymmetric_third_level,
+    nonnegative_middle_family, verify_nonnegative_runs,
 )
 
 
@@ -168,6 +169,116 @@ def test_asymmetric_nonpositive_and_excessive_runs_refuse() raises:
             refused = True
         assert_true(refused)
 
+
+def test_uniform_nonnegative_run_boundary_witnesses() raises:
+    for left in range(0, 9):
+        for right in range(0, 9):
+            if left == 0 and right == 0:
+                continue
+            var sigma = nonnegative_middle_family(left, right)
+            var w = verify_nonnegative_runs(left, right)
+            var depth = 3
+            var cut = 0
+            var next_letter = 1
+            var Q: List[Int] = [0, 0, 0]
+            if left == 0:
+                depth = 2
+                next_letter = 0
+            elif right == 0:
+                depth = 4
+                cut = left * left * left + left * left + 4 * left + 1
+                Q = [left + 1, left * left * left + 2 * left, left * (left + 1)]
+            else:
+                cut = left * (left + right + 1) + 1
+                Q = [1, left * (left + right), left]
+            assert_equal(w.level, depth)
+            assert_equal(w.cut, cut)
+            assert_equal(w.common_letter, next_letter)
+            assert_equal(w.prefix_parikh, Q)
+            assert_equal(len(w.word_lengths), 3)
+            for letter in range(3):
+                var word: List[Int] = [letter]
+                for _ in range(depth):
+                    word = apply_substitution(sigma, word)
+                assert_true(cut < len(word))
+                assert_equal(word[cut], next_letter)
+                assert_equal(w.word_lengths[letter], len(word))
+
+
+def test_nonnegative_boundary_complete_balanced_swaps() raises:
+    # Complete balanced-factor proof control: the consecutive
+    # cuts at p,p+1 must enclose an ACTUAL single-letter diagonal.
+    for left in range(0, 6):
+        for right in range(0, 6):
+            if left == 0 and right == 0:
+                continue
+            var sigma = nonnegative_middle_family(left, right)
+            var cert = verify_nonnegative_runs(left, right)
+            for a in range(3):
+                for b in range(a + 1, 3):
+                    var top: List[Int] = [a, b]
+                    var bottom: List[Int] = [b, a]
+                    for _ in range(cert.level):
+                        top = apply_substitution(sigma, top)
+                        bottom = apply_substitution(sigma, bottom)
+                    var cuts = coincidence_boundaries(top, bottom)
+                    var at_p = False
+                    var at_p_plus_1 = False
+                    for value in cuts:
+                        if value == cert.cut:
+                            at_p = True
+                        if value == cert.cut + 1:
+                            at_p_plus_1 = True
+                    assert_true(at_p and at_p_plus_1)
+                    assert_equal(top[cert.cut], cert.common_letter)
+                    assert_equal(bottom[cert.cut], cert.common_letter)
+                    var found = False
+                    var blocks = decompose(top, bottom)
+                    for j in range(len(blocks)):
+                        if len(blocks[j].u) == 1 and len(blocks[j].v) == 1:
+                            if blocks[j].u[0] == cert.common_letter and blocks[j].v[0] == cert.common_letter:
+                                found = True
+                    assert_true(found)
+
+
+def test_nonnegative_boundary_exact_controls_and_refusals() raises:
+    var left_zero = verify_nonnegative_runs(0, 3)
+    assert_equal(left_zero.level, 2)
+    assert_equal(left_zero.cut, 0)
+    assert_equal(left_zero.common_letter, 0)
+    var right_zero = verify_nonnegative_runs(3, 0)
+    assert_equal(right_zero.level, 4)
+    assert_equal(right_zero.cut, 49)
+    assert_equal(right_zero.prefix_parikh, [4, 33, 12])
+    var excluded = False
+    try:
+        _ = verify_nonnegative_runs(0, 0)
+    except:
+        excluded = True
+    assert_true(excluded)
+    for left in [-1, 17]:
+        excluded = False
+        try:
+            _ = verify_nonnegative_runs(left, 2)
+        except:
+            excluded = True
+        assert_true(excluded)
+    for right in [-1, 17]:
+        excluded = False
+        try:
+            _ = verify_nonnegative_runs(2, right)
+        except:
+            excluded = True
+        assert_true(excluded)
+    # Preserve strict-positive semantics of the published API:
+    # broadening the new nonnegative verifier must not make this pass.
+    excluded = False
+    try:
+        _ = verify_asymmetric_third_level(0, 2)
+    except:
+        excluded = True
+    assert_true(excluded)
+
 def main() raises:
     test_bounded_family_simultaneous_three_letter_coincidences()
     test_all_three_balanced_swaps_have_actual_diagonal_child_by_level_three()
@@ -177,5 +288,8 @@ def main() raises:
     test_asymmetric_all_three_swaps_produce_real_diagonal()
     test_fixed_incidence_does_not_fix_third_level_address()
     test_asymmetric_nonpositive_and_excessive_runs_refuse()
+    test_uniform_nonnegative_run_boundary_witnesses()
+    test_nonnegative_boundary_complete_balanced_swaps()
+    test_nonnegative_boundary_exact_controls_and_refusals()
     print("C4 uniform third-level family: complete literal strong coincidence controls passed.")
-    require_contract("ternary symmetric middle family 01/(1^k 2 1^k)/012 has all three simultaneous depth-three balanced-prefix strong coincidences at k(2k+1)+1; actual swap BPA diagonals, bounded replay, invalid cap refusal; no global PSC promotion")
+    require_contract("all nonnegative nonzero middle runs in 01/(1^a2 1^b)/012 have uniform simultaneous strong coincidence at depth at most four (boundary cases 2 and 4, interior 3), with genuine complete swap diagonals and refusal controls; no universal PSC promotion")
