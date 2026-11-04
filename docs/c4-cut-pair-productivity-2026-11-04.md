@@ -153,6 +153,65 @@ pairs in `A(C)` are pairwise measure-disjoint, `C` cannot exist. Equivalently:
 if `R_c, R_c'` are measure-disjoint for every pair `{c,c'}`, then `σ` has no
 strict C4 system.
 
+## 3a. Theorem C — a strict system can occupy at most half of each subtile's lattice
+
+Keep the hypotheses of Theorem B. Let `f` be the letter-frequency probability
+vector, so `f` is the Perron right vector of `M` normalized to `|f|₁ = 1`.
+Let `ℓ̄ = ℓ·f` be the mean letter length. Define the **occupancy** of letter `c`:
+
+```text
+θ_c = κ f_c / (ℓ̄ λ(R_c))  ∈ (0, 1].
+```
+
+`θ_c` is the asymptotic fraction of lattice points `y` with `πy ∈ R_c` that are
+vertices of the fixed point followed by `c`. One track alone gives
+`θ_c ≤ 1`, by the count below.
+
+**Theorem C.** If a strict system `C` exists, then `θ_c ≤ 1/2` for every
+letter `c`. Contrapositively, `θ_c > 1/2` for a single letter excludes every
+strict C4 system of `σ`.
+
+*Proof.* Fix `S = (u,v) ∈ C`, `L = ℓ·p(u)`, and a letter `c`.
+1. Every occurrence of `c` on the top track `σⁿ(u)`, at index `i`, gives the
+   lattice point `y = p(σⁿ(u)[:i])`, with `ℓ·y ∈ [0, βⁿL)`. Step 1 of
+   Theorem B applies verbatim to any prefix, not just to cuts. So `πy` lies
+   within `ε_n` of `R_c`. The same holds on the bottom track.
+2. Within one track the points are distinct.
+3. Across tracks they are distinct too. If a top point equals a bottom point,
+   both have the same index `|y|₁` and the same Parikh vector, so they form a
+   balanced cut followed by `c` on both tracks. This contradicts
+   Theorem A(1).
+4. This gives `2·#_c(σⁿ(u))` distinct lattice points in the cylinder over
+   `N_{ε_n}(R_c)`. Their count satisfies `#_c(σⁿ(u)) / βⁿL → f_c / ℓ̄`, by
+   Perron–Frobenius for `M`.
+5. Take an open box-union `U ⊃ R_c` with `λ(U) < λ(R_c) + δ`. The
+   fixed-lattice regular-box count of §8, as used in Theorem B, gives `2 f_c/ℓ̄ ≤ (λ(R_c) + δ)/κ` for every
+   `δ > 0`. ∎
+
+*Dependencies.* Theorem A(1) and the §8 regular-box count only. Theorem C
+imports nothing from Arnoux–Ito and inherits the audit status of §8.
+
+*Reading.* Unimodularity is not used. The strict system is used only to make
+the two tracks' `c`-vertex sets disjoint. This is the classical
+"noncoincidence gives double covering" mechanism; the novelty claimed is only
+its appearance as a two-line consequence of Theorem A(1).
+
+Consider the unit case. The occupancy `θ_c = 1` for every `c` exactly when
+the vertex set of the fixed point is the full model set over its window.
+That is the regular-model-set characterization of pure discrete spectrum
+(Lee–Moody–Solomyak; imported, not reproved). Theorem C places C4 at the
+threshold `1/2`, not at `1`:
+
+```text
+θ_c > 1/2 for some c  ⟹  C4 for σ.
+```
+
+If the occupancy is always the reciprocal `1/m` of a covering degree `m`,
+as the multiple-tiling literature suggests for unit `σ`, then `θ > 1/2` is
+the same as `m = 1`. This is consistent with the known direction: a strict
+system implies `m ≥ 2`, hence no PDS. That reciprocal identity is **not**
+proved or relied on here.
+
 ## 4. Source-audited subtile comparison (corrected scope)
 
 This section distinguishes the **positive-prefix** and **negative/suffix**
@@ -255,6 +314,8 @@ A missing strong-coincidence witness is reported as an exhausted budget.
 
 ## 6. Non-claims and the remaining gap
 
+- Theorem C's occupancy `θ_c` is not computed exactly for any specimen here.
+  Its identification with `1/m` for a covering degree `m` is not proved.
 - No strict PIP system has been exhibited or excluded. C4, BH, A1′, G1 and PSC
   stay open.
 - Unconditional measure-disjointness of Rauzy subtiles is **not** proved and
