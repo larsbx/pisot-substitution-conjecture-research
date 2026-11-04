@@ -66,3 +66,58 @@ def test_strict_control_realizes_only_nonreversing_suffix_pairs():
     assert suffix == ("0", "2", "1")
     assert {(suffix[int(a)], suffix[int(b)]) for a, b in terminals} == terminals
     assert all((b, a) not in terminals for a, b in terminals)
+
+
+def test_right_hub_reversal_transports_complete_child_rows():
+    from test_c4_complete_cone_hub_audit_oracle import SIGMA, STATES, literal_system
+
+    sigma_c = ("020", "20", "12")
+    states_c = (("012", "120"), ("02", "20"), ("02012", "12020"))
+    ids, _ = literal_system(sigma_c, states_c)
+    assert ids == [[1, 2], [2], [1, 0, 1, 2]]
+    assert all(a[0] == "0" and b[0] != "0" for a, b in states_c)
+
+    for sigma, states, hub, top_has_hub in (
+            (sigma_c, states_c, "2", True), (SIGMA, STATES, "0", False)):
+        _, original = literal_system(sigma, states)
+        reversed_sigma = tuple(w[::-1] for w in sigma)
+        reversed_states = tuple((a[::-1], b[::-1]) for a, b in states)
+        _, reversed_rows = literal_system(reversed_sigma, reversed_states)
+        for before, after in zip(original, reversed_rows):
+            assert after == [(a[::-1], b[::-1]) for a, b in reversed(before)]
+            assert all((a[0] == hub) == top_has_hub and
+                       (b[0] == hub) != top_has_hub for a, b in after)
+
+    from test_c4_two_generation_rank_oracle import inflate, p
+
+    for sigma, a, b, depth, i in (
+            (sigma_c, "1", "2", 2, 3),
+            (tuple(w[::-1] for w in sigma_c), "0", "1", 1, 0),
+            (tuple(w[::-1] for w in SIGMA), "1", "2", 2, 7)):
+        for _ in range(depth):
+            a, b = inflate(sigma, a), inflate(sigma, b)
+        assert a[i] == b[i] and p(a[:i]) == p(b[:i])
+
+
+def test_type_d_endpoint_constraints_allow_mixed_right_hub_sides():
+    suffix = tuple("012")
+    terminals = {("1", "0"), ("2", "1")}
+    assert {(suffix[int(a)], suffix[int(b)]) for a, b in terminals} == terminals
+    assert all((b, a) not in terminals and {a, b} != {"0", "2"}
+               for a, b in terminals)
+    assert {a == "1" for a, _ in terminals} == {False, True}
+
+
+def test_type_d_good_edge_forces_mirrored_descendant_labels():
+    from test_c4_two_generation_rank_oracle import p
+
+    reversed_sigma = ("021", "102", "201")
+    assert tuple(w[0] for w in reversed_sigma) == tuple("012")
+    a, h, b = reversed_sigma
+    index = 2
+    assert a[index] == b[index] == "1"
+    assert p(a[:index]) == p(b[:index])
+    first = (h[index], a[index], tuple(x-y for x,y in zip(p(a[:index]), p(h[:index]))))
+    second = (b[index], h[index], tuple(x-y for x,y in zip(p(h[:index]), p(b[:index]))))
+    assert first == ("2", "1", (0, -1, 1))
+    assert second == (first[1], first[0], tuple(-x for x in first[2]))

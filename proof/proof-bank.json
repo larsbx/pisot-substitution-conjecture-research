@@ -2376,6 +2376,11 @@
       "statement_heading": "**Lemma (exit mass).** For any supplied nonempty finite set of actual"
     },
     {
+      "source": "docs/c4-right-hub-reversal-2026-11-04.md",
+      "line": 17,
+      "statement_heading": "**Lemma.** Supply a finite strict child-closed balanced SCC with"
+    },
+    {
       "source": "docs/c4-w3-low-growth-and-interface-correction.md",
       "line": 98,
       "statement_heading": "### Theorem"
