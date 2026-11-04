@@ -195,3 +195,24 @@ def test_zero_return_induction_not_automatically_prefix_satellite():
             assert not tau[j].startswith(tau[i])
     # This is an exact algebraic counterexample to the proposed shortcut,
     # not a negative result about strong coincidence or general C4.
+
+
+def test_exact_common_expanding_residual_for_both_return_pairings():
+    R,_=return_words_from_prefix(SOURCE,6)
+    tau=derive_return_substitution(SOURCE,R)
+    B=SOURCE[1]
+    assert (R[0],R[1]) == (R[3]+B,R[2]+B)
+    lengths=[]
+    for n in range(0,7):
+        tail=expand(SOURCE,"1",n+1)
+        assert expand(SOURCE,R[0],n)==expand(SOURCE,R[3],n)+tail
+        assert expand(SOURCE,R[1],n)==expand(SOURCE,R[2],n)+tail
+        lengths.append(len(tail))
+        if n:
+            assert len(tail)>lengths[-2]
+            # The physical prefixes continue to compare while their
+            # derived-code images at EVERY positive power do not.
+            code=tuple(expand(tau,str(i),n) for i in range(4))
+            assert not code[0].startswith(code[3])
+            assert not code[1].startswith(code[2])
+    assert lengths==[3,9,26,74,211,601,1712]
