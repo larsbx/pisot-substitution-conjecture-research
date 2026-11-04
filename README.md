@@ -93,6 +93,10 @@ These computations are useful checks on conjectures and implementations. Their s
 
 Negative examples have shaped the work just as much. Productive overlap graphs can contain directed cycles, so a rank cannot decrease strictly along every edge. Two affine states may coincide without supporting the same sequence of literal letter occurrences. The [direct-attack notes](docs/direct-attack-frontier-2026-10-23.md) and [side-notes ledger](docs/side-notes-ledger.md) record these and other unsuccessful approaches.
 
+The [non-unit occupancy certificate](docs/c4-nonunit-residue-occupancy-2026-11-04.md) replaces a scratch observation with exact upper bounds for `0→1, 1→021, 2→001`. Counts in the four classes of `Z³/M²Z³` prove that all three Euclidean occupancies are below one half, while literal strong-coincidence witnesses exclude a fully strict balanced-pair system for this specimen. Low Euclidean occupancy therefore does not by itself diagnose a productivity obstruction. The certificate gives bounds, not exact fractal areas.
+
+The companion [M-adic counting bridge](docs/c4-nonunit-madic-counting-bridge-2026-11-04.md) retains every compatible matrix-residue level. Its written proof extends the regular-window and strict-cut counting arguments to this explicitly constructed internal space, including the missing non-unit measure factor. Independent human review remains pending. A useful remaining target is an upper bound on a represented lifted overlap that contradicts the lower bound forced by strict cut frequency; the bridge alone does not establish general C4 or PSC.
+
 ## Class A: an example of the overlap calculations
 
 One family studied in detail is the *minus class-A* normal form. For integers `k,t ≥ 0`, let
