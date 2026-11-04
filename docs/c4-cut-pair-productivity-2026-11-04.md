@@ -2,7 +2,7 @@
 
 **Status:** scoped combinatorial proof (Theorem A) and proposed measure
 reduction (Theorem B), with its regular-box density import awaiting audit. One import
-(Arnoux–Ito pairwise disjointness, §4) is cited and not reproved. No change
+(Arnoux–Ito primed/all-pair disjointness, §4) is cited and not reproved. No change
 to C4, BH (#139), A1′ (#138), G1 or PSC status.
 [Issue #461](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/461).
 Baseline `main@ad164fc` (merged #476).
@@ -15,8 +15,8 @@ letter pair `{c,c'}` that labels its balanced cuts.
 
 *Prior art.*
 - [Arnoux–Ito 2001](https://projecteuclid.org/journals/bulletin-of-the-belgian-mathematical-society-simon-stevin/volume-8/issue-2/Pisot-substitutions-and-Rauzy-fractals/10.36045/bbms/1102714169.pdf):
-  the strong coincidence condition makes the subtiles measure-disjoint (unit
-  case). The paper records as open whether any unit Pisot substitution fails
+  strong coincidence on **all letter pairs** makes the **unprimed** subtiles
+  measure-disjoint (unit case). The paper records as open whether a unit Pisot substitution fails
   strong coincidence.
 - [Minervino–Thuswaldner 2014](https://arxiv.org/abs/1402.2002): the same
   result for non-unit substitutions, on the adelic representation space.
