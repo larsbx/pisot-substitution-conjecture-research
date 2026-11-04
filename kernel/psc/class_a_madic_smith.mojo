@@ -54,7 +54,7 @@ def certify_smith_against_generic(k: Int,t: Int,level: Int) raises -> List[Int]:
     if len(actual)!=3:
         raise Error("generic Smith arithmetic produced wrong dimension")
     for i in range(3):
-        if not bigz_eq(actual[i],bigz_from_i64(predicted[i])):
+        if not bigz_eq(actual[i],bigz_from_i64(Int64(predicted[i]))):
             raise Error("Class-A closed Smith invariant disagrees with exact determinantal divisors")
     return predicted
 
