@@ -97,6 +97,8 @@ The [non-unit occupancy certificate](docs/c4-nonunit-residue-occupancy-2026-11-0
 
 The companion [M-adic counting bridge](docs/c4-nonunit-madic-counting-bridge-2026-11-04.md) retains every compatible matrix-residue level. Its written proof extends the regular-window and strict-cut counting arguments to this explicitly constructed internal space, including the missing non-unit measure factor. Independent human review remains pending. A useful remaining target is an upper bound on a represented lifted overlap that contradicts the lower bound forced by strict cut frequency; the bridge alone does not establish general C4 or PSC.
 
+The [bounded cylinder-overlap verifier](docs/c4-finite-cylinder-overlap-verifier-2026-11-04.md) makes the finite upper-bound side executable. It preserves complete occurrence addresses, certifies Euclidean outer rectangles and checks matrix-residue refinements and covolume normalization. For `1/021/001`, the complete depth-two cylinders prove that the lifted subtile for letter `2` is disjoint from those for `0` and `1`. The remaining `0`–`1` pair shares the origin at every even depth; its implemented rectangle bounds stay positive despite its separately witnessed null overlap. Both implemented substitutions are productive controls. No strict Pisot component or positive strict-cut density is supplied, so the verifier reports finite upper bounds and an explicit obstruction to invoking the contradiction criterion.
+
 ## Class A: an example of the overlap calculations
 
 One family studied in detail is the *minus class-A* normal form. For integers `k,t ≥ 0`, let

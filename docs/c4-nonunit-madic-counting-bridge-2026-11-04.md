@@ -330,8 +330,18 @@ the measure of a represented lifted overlap, below the positive lower
 bound forced by its strict cut frequency. Finite residue cylinders provide
 exact arithmetic constraints for such a bound. They must be combined with
 certified Euclidean enclosures and every actual child occurrence. No finite
-residue separation alone proves all-depth separation, and equal integral
-prefix translations cannot be separated by adding more residue levels.
+residue separation in an incomplete sample proves all-depth separation. In
+contrast, disjoint residue supports in the **complete exact slice formula
+(10)** do prove an empty lifted intersection at every finer level. Equal
+integral prefix translations cannot be separated by adding residue levels.
+
+The [bounded cylinder verifier](c4-finite-cylinder-overlap-verifier-2026-11-04.md)
+implements this distinction, certified Euclidean outer rectangles and a
+separate literal density-admission check. It proves complete finite residue
+separation for two pairs of the productive `1/021/001` control. Its other
+finite hull bounds remain upper bounds only. The compact approximations
+in M3 decrease, but independently chosen rectangular slice enclosures need
+not decrease or converge to those compact approximations.
 
 This note establishes neither that upper bound nor a complete finite
 ancestry model, a degree-one multiple tiling, general strong coincidence,
