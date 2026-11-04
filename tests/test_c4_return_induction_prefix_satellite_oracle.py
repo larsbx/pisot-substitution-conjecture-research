@@ -216,3 +216,36 @@ def test_exact_common_expanding_residual_for_both_return_pairings():
             assert not code[0].startswith(code[3])
             assert not code[1].startswith(code[2])
     assert lengths==[3,9,26,74,210,596,1692]
+
+
+def test_full_rank_parikh_intertwining_and_null_eigen_direction():
+    R,_=return_words_from_prefix(SOURCE,6)
+    tau=derive_return_substitution(SOURCE,R)
+    M=incidence(SOURCE)
+    N=incidence(tau)
+    P=[[w.count(str(i)) for w in R] for i in range(3)]
+    assert P==[[1,1,1,1],[5,5,3,3],[2,3,2,1]]
+    assert matmul(M,P)==matmul(P,N)==[
+        [3,4,3,2],[13,14,9,8],[7,8,5,4]
+    ]
+    (a,b,c),(d,e,f),(g,h,i)=[row[:3] for row in P]
+    determinant=a*(e*i-f*h)-b*(d*i-f*g)+c*(d*h-e*g)
+    assert determinant==2  # rank P = 3, nontrivial 1-d kernel
+    v=(-1,1,-1,1)
+    assert all(sum(P[i][j]*v[j] for j in range(4))==0
+               for i in range(3))
+    assert all(sum(N[i][j]*v[j] for j in range(4))==0
+               for i in range(4))
+    # The char polynomial consequence x * chi_M(x) is proved using
+    # quotient action and rank. A finite direct determinant check
+    # at five integer arguments independently catches coefficient drift.
+    def determinant_integer(A):
+        if len(A)==1:
+            return A[0][0]
+        return sum((-1 if j%2 else 1)*A[0][j]*
+                   determinant_integer([row[:j]+row[j+1:] for row in A[1:]])
+                   for j in range(len(A)))
+    for x in (-2,-1,0,1,2,3,4):
+        f=x**3-4*x*x+4*x-2
+        A=[[x*int(i==j)-N[i][j] for j in range(4)] for i in range(4)]
+        assert determinant_integer(A)==x*f
