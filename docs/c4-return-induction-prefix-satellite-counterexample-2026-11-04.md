@@ -136,6 +136,30 @@ The phenomenon is subtle: the physical return words themselves are **not** prefi
 
 **What is not refuted:** Strong coincidence can hold for the induced substitution, and a more elaborate induced/return-word proof using offset-decorated partial words might still work. Only the naive inheritance (even after passing to a power) is disproved here.
 
+## Exact growth of the lost return-boundary residual
+
+**Corollary (one expanding residual suffix).** The four true physical return words satisfy the two **literal** identities
+
+```text
+r0 = r3 + B       and       r1 = r2 + B,
+B = 121 = sigma(1).
+```
+
+Consequently, for **every n>=0**,
+
+```text
+sigma^n(r0) = sigma^n(r3) + sigma^(n+1)(1)
+sigma^n(r1) = sigma^n(r2) + sigma^(n+1)(1).
+```
+
+The suffix at both comparable return-word pairs is **the same expanding physical word**, not an arbitrary collection of numerical discrepancies. The identities follow immediately by applying the morphism sigma^n to the two displayed literal equalities, with **no** finite-parameter or finite-depth extrapolation.
+
+Primitivity gives `|sigma^(n+1)(1)| -> infinity`. Thus no *uniformly bounded physical-character-length residual* can encode these pairwise prefix relations at all substitution levels. This does **not** rule out a finite **symbolic** residual representation: the missing suffix is already represented succinctly by `sigma^(n+1)(1)` plus an iteration counter.
+
+The apparent paradox clarifies exactly where return coding loses information. Although `h(tau^n(3))=sigma^n(r3)` is a physical prefix of `h(tau^n(0))=sigma^n(r0)`, the shorter encoded word `tau^n(3)` is **not** a prefix of `tau^n(0)`. The shorter physical prefix ends **inside** a return-code word in the longer segmentation; the return-code boundary is not common to both parsings. The same phenomenon holds for indices 2 and 1.
+
+This suggests a more precise viable research interface: carry a *residual word with a substitution-level address* together with both complete return-code prefixes, and require physical seam/marker alignment before asserting any coded letter-pair coincidence. The result is a control on a naive **bounded raw suffix** state-space, not a proof that a finite-state symbolic/transducer construction is impossible.
+
 ## The stronger interface that would actually be required
 
 A correct induced-carrier proof needs a **boundary-synchronous prefix relation**: if an original word image is an initial segment of another, the extra endpoint must lie on a complete return-code boundary. Equivalently, the original literal prefix has to be expressible as the image under h of a full return-code prefix.
