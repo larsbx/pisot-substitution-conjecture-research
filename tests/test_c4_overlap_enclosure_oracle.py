@@ -121,3 +121,71 @@ def test_type_d_good_edge_forces_mirrored_descendant_labels():
     second = (b[index], h[index], tuple(x-y for x,y in zip(p(h[:index]), p(b[:index]))))
     assert first == ("2", "1", (0, -1, 1))
     assert second == (first[1], first[0], tuple(-x for x in first[2]))
+
+
+def test_paired_legal_seams_by_full_word_inflation():
+    from itertools import product
+    from test_c4_two_generation_rank_oracle import inflate, p
+
+    for sigma, good, legal_expected, expected in (
+            (("01", "20", "102"), ((2, 4), (2, 3)),
+             {"00", "01", "02", "10", "11", "12", "20"},
+             ({("20", "01"), ("20", "02"), ("21", "01"), ("21", "02")}, set())),
+            (("01", "21", "102"), ((4, 27), (1, 0)),
+             {"01", "02", "10", "11", "12", "21", "22"},
+             (set(), {("12", "01"), ("12", "02")}))):
+        words = list("012")
+        found = set()
+        for _ in range(6):
+            words = [inflate(sigma, w) for w in words]
+            found.update(w[j:j + 2] for w in words for j in range(len(w) - 1))
+        assert found == legal_expected
+        first = dict(zip("012", (w[0] for w in sigma)))
+        last = dict(zip("012", (w[-1] for w in sigma)))
+        assert all(last[a] + first[b] in found for a, b in found)
+
+        def valid_pairs(hub, on_top, endpoint):
+            out = set()
+            for pair in product("012", repeat=2):
+                seen = set()
+                w = pair
+                while w not in seen and w[0] != w[1] and w[not on_top] == hub:
+                    seen.add(w)
+                    w = tuple(endpoint[a] for a in w)
+                if w in seen:
+                    out.add("".join(pair))
+            return out
+
+        left_pairs = valid_pairs("0", True, first)
+        for on_top, wanted in zip((True, False), expected):
+            terminal = valid_pairs("2", on_top, last)
+            assert {(r, l) for r in terminal for l in left_pairs
+                    if r[0] + l[0] in found and r[1] + l[1] in found} == wanted
+
+        for use_sigma, a, b, (depth, pos) in (
+                (sigma, "1", "2", good[0]),
+                (tuple(w[::-1] for w in sigma), "0", "1", good[1])):
+            for _ in range(depth):
+                a, b = inflate(use_sigma, a), inflate(use_sigma, b)
+            assert a[pos] == b[pos] and p(a[:pos]) == p(b[:pos])
+
+
+def test_strict_control_full_words_and_both_tracks_of_seams_are_legal():
+    from test_c4_complete_cone_hub_audit_oracle import literal_system
+    from test_c4_two_generation_rank_oracle import inflate
+
+    sigma = ("020", "20", "12")
+    states = (("012", "120"), ("02", "20"), ("02012", "12020"))
+    _, rows = literal_system(sigma, states)
+    words = {w for pair in states for w in pair}
+    seams = []
+    for row in rows:
+        for before, after in zip(row, row[1:]):
+            seams.append((before, after))
+            words.update(a + b for a, b in zip(before, after))
+    assert len(seams) == 4
+
+    images = list("012")
+    for _ in range(3):
+        images = [inflate(sigma, w) for w in images]
+    assert all(any(w in image for image in images) for w in words)
