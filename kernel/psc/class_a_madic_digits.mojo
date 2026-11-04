@@ -64,7 +64,7 @@ def invert_image(k: Int,t: Int,v: List[Int]) raises -> List[Int]:
     for i in range(3):
         if check[i] != v[i]:
             raise Error("inverse parity solution failed exact matrix replay")
-    return result
+    return result^
 
 
 def extract_digits(k: Int, t: Int, v: List[Int], levels: Int) raises -> MAdicDigits:
