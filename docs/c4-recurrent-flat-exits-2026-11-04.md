@@ -1,5 +1,7 @@
 # C4 recurrent flat rows and outgoing Parikh mass
 
+**Status:** Repository-proved exit-mass lemma and exact finite negative.
+
 [Issue #461](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/461).
 Baseline `main@e1ef4b1efe70d440d36b24aebd3bb8da66b1e164`, including
 [#462](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/462).
@@ -34,8 +36,6 @@ is invariant under right multiplication by the incidence matrix, or some actual
 one-step interior newborn has right pair in `Sync_+` or left pair in
 `Sync_-`. Both conclusions would exclude the stipulated strict system.
 This implication remains open.
-
-**Status:** Repository-proved algebraic identity for complete literal rows.
 
 **Lemma (exit mass).** For any supplied nonempty finite set of actual
 irreducible balanced states, let `P` contain their masses, `N_in` count
