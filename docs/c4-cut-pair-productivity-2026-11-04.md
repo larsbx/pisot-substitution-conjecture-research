@@ -292,3 +292,28 @@ The actual remaining challenge in Issue #461 is unchanged: establish
 productivity in the genuine irreducible Pisot strict-carrier setting,
 without assuming subtile measure-disjointness or an unproved adelic
 analogue. Do not promote C4, BH, A1′, G1 or PSC based on this note.
+
+### Additional fail-closed diagnostic obligation
+
+The native audit now rejects a **positive** finite strong-coincidence
+witness on any pair in `A(C)`, even when the user requests a
+shallower cut-factor scan. The explicit control `01/121/012`
+with source `(01,10)` has no diagonal at **depth zero**,
+but its initial pair `{0,1}` has a genuine level-two
+equal-prefix/next-letter witness. Such an input cannot be
+reported as a valid strict-system audit simply because
+`depth=0`; it must refuse. A **missing** witness at
+`max_level<=12`, in contrast, remains a bounded search
+exhaustion and not a general noncoincidence verdict.
+
+The canonical checker refuses negative or excessive
+witness levels and inflation depths, invalid letters,
+empty substitution images, and predicted word expansion
+beyond a fixed 100,000-letter budget. These are
+executable resource guards, not new hypotheses of
+Theorem A. The independent Python reference separately
+reconstructs both complete strict non-Pisot controls,
+all real PIP common-prefix witnesses, and budget refusal.
+Only a complete strict-derived-system builder can certify
+**all actual child closure**; these bounded cut-pair
+necessity tests do not replace that constructor.
