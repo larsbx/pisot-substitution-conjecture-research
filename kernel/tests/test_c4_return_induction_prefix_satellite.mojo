@@ -135,11 +135,51 @@ def test_prefix_code_refuses_literal_satellite_but_not_strong_coincidence() rais
     # prefix-satellite word relation in the return alphabet.
 
 
+
+def _inflate_physical(
+    sigma: List[List[Int]], input: List[Int], level: Int,
+) -> List[Int]:
+    var word = input.copy()
+    for _ in range(level):
+        word = apply_substitution(sigma, word)
+    return word^
+
+
+def test_shared_expanding_residual_is_literal_at_all_bounded_depths() raises:
+    var sigma = source_sigma()
+    var returns = source_return_words()
+    var B = sigma[1].copy()
+    var r3B = returns[3].copy()
+    var r2B = returns[2].copy()
+    for c in B:
+        r3B.append(c)
+        r2B.append(c)
+    assert_equal(returns[0], r3B)
+    assert_equal(returns[1], r2B)
+    var earlier_tail_length = 0
+    for n in range(5):
+        var tail = _inflate_physical(sigma, [1], n+1)
+        assert_true(len(tail) > earlier_tail_length)
+        earlier_tail_length = len(tail)
+        var u0 = _inflate_physical(sigma, returns[0], n)
+        var u1 = _inflate_physical(sigma, returns[1], n)
+        var u2 = _inflate_physical(sigma, returns[2], n)
+        var u3 = _inflate_physical(sigma, returns[3], n)
+        var expected0 = u3.copy()
+        var expected1 = u2.copy()
+        for c in tail:
+            expected0.append(c)
+            expected1.append(c)
+        assert_equal(u0, expected0)
+        assert_equal(u1, expected1)
+
+
 def main() raises:
     test_exact_return_images_from_actual_three_letter_substitution()
     test_primitivity_of_induced_substitution()
     test_all_actual_return_image_factorisations_and_bounded_powers()
     test_malformed_or_incomplete_return_set_refuses()
     test_prefix_code_refuses_literal_satellite_but_not_strong_coincidence()
+    test_shared_expanding_residual_is_literal_at_all_bounded_depths()
     print("C4 return induction: exact four-return code, all-power prefix-code obstruction and negative controls passed.")
     require_contract("the PIP substitution 01/121/012 has a literal prefix satellite and level-two simultaneous coincidence, but its exact four-letter return substitution on zero is primitive with pairwise prefix-incomparable images; the all-power absence is proved by prefix-code argument, not cap exhaustion")
