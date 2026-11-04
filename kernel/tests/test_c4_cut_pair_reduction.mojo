@@ -2,7 +2,7 @@
 
 from std.testing import assert_equal, assert_true
 from mojo_smoke.claims import require_contract
-from psc.c4_cut_pair_reduction import audit_cut_pairs, inflated_cut_pair_mask, strong_coincidence_level
+from psc.c4_cut_pair_reduction import audit_cut_pairs, first_pair_mask, inflated_cut_pair_mask, strong_coincidence_level
 from psc.words import Pair
 
 
@@ -90,13 +90,54 @@ def test_bounded_refusal_is_not_a_mathematical_noncoincidence_verdict() raises:
         except:
             refused = True
         assert_true(refused)
-    var malformed: List[Pair] = [Pair([1, 3, 2], [2, 3, 1])]
-    var refused = False
+
+
+def assert_word_letter_refused(states: List[Pair], expected: String) raises:
+    var sigma: List[List[Int]] = [[0], [1], [2]]
+    var first_error = String("")
     try:
-        _ = inflated_cut_pair_mask(sigma, malformed, 1)
-    except:
-        refused = True
-    assert_true(refused)
+        _ = first_pair_mask(states)
+    except e:
+        first_error = String(e)
+    assert_equal(first_error, expected)
+    for depth in [0, 1]:
+        var inflation_error = String("")
+        try:
+            _ = inflated_cut_pair_mask(sigma, states, depth)
+        except e:
+            inflation_error = String(e)
+        assert_equal(inflation_error, expected)
+    var audit_error = String("")
+    try:
+        _ = audit_cut_pairs(sigma, states, 1, 2)
+    except e:
+        audit_error = String(e)
+    assert_equal(audit_error, expected)
+
+
+def test_word_letters_are_checked_before_parikh_indexing() raises:
+    var valid = Pair([0, 2], [2, 0])
+    assert_word_letter_refused([Pair([1, 3, 2], [2, 3, 1])], "invalid top word letter")
+    for invalid in [-1, 3]:
+        assert_word_letter_refused(
+            [valid.copy(), Pair([0, invalid], [2, 0])], "invalid top word letter"
+        )
+        assert_word_letter_refused(
+            [valid.copy(), Pair([0, 2], [2, invalid])], "invalid bottom word letter"
+        )
+
+    # Both alphabet endpoints are legal. Reversing the tracks preserves the mask.
+    var sigma: List[List[Int]] = [[0], [1], [2]]
+    for state in [valid.copy(), Pair([2, 0], [0, 2])]:
+        var states: List[Pair] = [state.copy()]
+        assert_equal(first_pair_mask(states), 0b010)
+        assert_equal(inflated_cut_pair_mask(sigma, states, 0), 0b010)
+        assert_equal(inflated_cut_pair_mask(sigma, states, 1), 0b010)
+        var audit = audit_cut_pairs(sigma, states, 1, 2)
+        assert_equal(audit.first_mask, 0b010)
+        assert_equal(audit.cut_mask, 0b010)
+        assert_equal(audit.initial_image, 0b010)
+        assert_equal(audit.witnessed_mask, 0)
 
 
 def test_positive_letter_witness_refuses_even_at_depth_zero() raises:
@@ -119,6 +160,7 @@ def main() raises:
     test_single_pair_reducible_control()
     test_pip_family_member_refuses_every_candidate()
     test_bounded_refusal_is_not_a_mathematical_noncoincidence_verdict()
+    test_word_letters_are_checked_before_parikh_indexing()
     test_positive_letter_witness_refuses_even_at_depth_zero()
     print("C4 cut-pair reduction: strict controls keep A(C) g-closed and witness-free; PIP candidates refused.")
     require_contract("every balanced cut of every inflation of a supplied strict system carries a first-letter pair of the system, the initial-letter map preserves and never collapses that pair set, and no such pair carries a bounded strong-coincidence witness; PIP candidates and malformed/capped inputs are refused")
