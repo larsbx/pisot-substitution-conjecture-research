@@ -86,7 +86,13 @@ def closed_run_middle_family(left_run: Int, right_run: Int) raises -> List[List[
         raise Error("closed-run family outside bounded input")
     if left_run + right_run == 0:
         raise Error("closed-run family requires a nonzero total run")
-    return closed_run_middle_family(left_run, right_run)
+    var middle = List[Int]()
+    for _ in range(left_run):
+        middle.append(1)
+    middle.append(2)
+    for _ in range(right_run):
+        middle.append(1)
+    return [[0, 1], middle.copy(), [0, 1, 2]]
 
 
 def verify_closed_run_coincidence(
@@ -150,13 +156,7 @@ def asymmetric_middle_family(left_run: Int, right_run: Int) raises -> List[List[
     """
     if left_run <= 0 or right_run <= 0 or left_run > 16 or right_run > 16:
         raise Error("asymmetric family requires 1 <= left,right <= 16")
-    var middle = List[Int]()
-    for _ in range(left_run):
-        middle.append(1)
-    middle.append(2)
-    for _ in range(right_run):
-        middle.append(1)
-    return [[0, 1], middle.copy(), [0, 1, 2]]
+    return closed_run_middle_family(left_run, right_run)
 
 
 def verify_asymmetric_third_level(
