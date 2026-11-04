@@ -57,6 +57,39 @@ compiler and its matching `MODULAR_HOME`. The exact version and commands
 are recorded in this packet. This is distinct from a fresh hosted locked
 Pixi environment. Local and hosted results must be read separately.
 
+## Recorded local replay
+
+Locally executed source revision: `af5f3de12ec3be391a2ed9666b520fdd074dc494`.
+Published source revision: `150b92c6c2699232a400360cd4dfc73f064bbc4d`.
+Both have exactly the Git tree `9756cbfcd02b44b17891a466d72c3bbb929d5c1c`;
+publication through the connected interface changed commit metadata only.
+`source-publication.json` records this equality, and the manifest separately
+pins all relevant source-file digests. The subsequent evidence commit
+changes no executable source. The compiler reported
+`Mojo 1.1.0.dev2026090805 (34562fa1)`.
+
+| Check | Recorded result |
+| --- | --- |
+| Native complete-cylinder regression | Exit 0; scoped contract receipt reached |
+| Native literal-density regression | Exit 0; scoped contract receipt reached |
+| Native driver | Exit 0; complete 1,316-line certificate |
+| Independent Python regression | 36 tests passed, zero skips; native packet required |
+| Independent packet verifier | 1,002 occurrences, 283 slices and 18 pair bounds checked |
+| Optimized-Python empty-density input | Expected exit 1, no stdout; strict-state-count refusal |
+| Proof-bank generation check | 124 claims, 68 named Lean proofs, 355 source openings; unchanged |
+| Claim governance | All six configured audits passed |
+| Vendored synchronization | All pinned packages matched |
+| Markdown integrity and diff whitespace | Passed |
+
+The minimal local runtime printed a Crashpad-handler warning during native
+execution. Its full stderr is retained. Each native process nevertheless
+exited zero and reached its reported output or test contract; the warning
+is not suppressed or counted as a separate verification result.
+
+These are local results. This packet does not claim a hosted workflow pass.
+The final commit and any hosted status are recorded separately in the pull
+request; receipt hashes bind this replay to the executable source above.
+
 ## Scope of the mathematical result
 
 Complete residue separation gives empty lifted intersections for pairs

@@ -1,0 +1,29 @@
+{
+  "schema": "c4-evidence-document-check-v1",
+  "executable_source_commit": "af5f3de12ec3be391a2ed9666b520fdd074dc494",
+  "published_identical_source_commit": "150b92c6c2699232a400360cd4dfc73f064bbc4d",
+  "scope": "final publication metadata and evidence README; executable sources unchanged",
+  "checked_at_utc": "2026-11-04T22:00:29.029400+00:00",
+  "readme_sha256": "ddfa6bd0c487d0e4e043d8f32d4104f5ce28c599a3e1b94435776b2e83cdca72",
+  "checks": [
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/check_markdown_source.py"
+      ],
+      "exit_code": 0,
+      "stdout": "OK Markdown source integrity: 394 file(s) checked\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}
