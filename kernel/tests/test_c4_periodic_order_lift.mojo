@@ -1,11 +1,11 @@
-"""Complete 1,296-order exclusion of ONE six-state, period-two matrix packet.
+"""Complete 46,656-case exclusion for one P,N and all 36 source word orders.
 
-P=[M^2,M^2] is all-positive; PN=MP and each phase index is 4.
-Sigma=(01,121,012). No general C4 or PSC claim follows.
+Includes the original sigma=(01,121,012) 1,296-order regression.
+P=[M^2,M^2], N=[[0,M],[M,0]] are fixed. Not general C4 or PSC.
 """
 from std.testing import assert_equal, assert_true
 from mojo_smoke.claims import require_contract
-from psc.bpa import decompose
+from psc.bpa import apply_substitution, decompose
 from psc.c4_ordered_lift_certificate import validate_lift_inverse, lift_numerators
 from c4_periodic_lift_fixture import inverse_numerator
 
@@ -58,8 +58,13 @@ def _row(parent: Int, choice: Int) -> List[Int]:
     return out^
 
 
-def _no_first_state_pair(mean: List[Int]) raises:
-    # Every word with mass (1,3,1), not a sample of possible realizations.
+def _first_state_outcome(
+    sigma: List[List[Int]], mean: List[Int], expected_ids: List[Int],
+    P: List[List[Int]],
+) raises -> Int:
+    # 0=no possible irreducible word pair; 1=every pair makes a diagonal;
+    # 2=some pair avoids diagonals, but all literal rows have wrong masses;
+    # 3=necessary-condition survivor (NOT a certified realization).
     var words = List[List[Int]]()
     for zero in range(5):
         for two in range(5):
@@ -73,28 +78,62 @@ def _no_first_state_pair(mean: List[Int]) raises:
                 elif pos == two:
                     z = 2
                 word.append(z)
-            words.append(word)
+            words.append(word^)
     assert_equal(len(words), 20)
-    var hits = 0
+    var found_pair = False
+    var saw_nondiagonal = False
     for i in range(20):
-        for j in range(20):
-            if i == j:
-                continue
+        for j in range(i + 1, 20):
             var a = _area(words[i])
             var b = _area(words[j])
             var match = True
             for k in range(3):
                 if a[k] + b[k] != 2 * mean[k]:
                     match = False
-            if match:
-                var factors = decompose(words[i], words[j])
-                if len(factors) == 1:
-                    hits += 1
-    assert_equal(hits, 0)
+            if not match:
+                continue
+            var source_factors = decompose(words[i], words[j])
+            if len(source_factors) != 1:
+                continue
+            found_pair = True
+            var top = apply_substitution(sigma, words[i])
+            var bottom = apply_substitution(sigma, words[j])
+            var children = decompose(top, bottom)
+            var diagonal = False
+            var masses_agree = len(children) == len(expected_ids)
+            for c in range(len(children)):
+                if children[c].u == children[c].v:
+                    diagonal = True
+                var mass: List[Int] = [0,0,0]
+                for z in children[c].u:
+                    mass[z] += 1
+                if c < len(expected_ids):
+                    for k in range(3):
+                        if mass[k] != P[k][expected_ids[c]]:
+                            masses_agree = False
+            if not diagonal:
+                saw_nondiagonal = True
+                if masses_agree:
+                    return 3
+    if not found_pair:
+        return 0
+    if saw_nondiagonal:
+        return 2
+    return 1
 
 
-def test_all_orderings_and_exact_inverse() raises:
-    var sigma: List[List[Int]] = [[0,1], [1,2,1], [0,1,2]]
+def replay_source_orders(sigma: List[List[Int]]) raises -> List[Int]:
+    # A necessary-condition replay restricted to this EXACT incidence class.
+    if len(sigma) != 3:
+        raise Error("source must have three images")
+    var expected: List[List[Int]] = [[1,1,0],[0,2,1],[1,1,1]]
+    for j in range(3):
+        _ = _area(sigma[j])  # range check before mass indexing
+        var mass: List[Int] = [0,0,0]
+        for z in sigma[j]:
+            mass[z] += 1
+        if mass != expected[j]:
+            raise Error("source outside fixed incidence class")
     var M: List[List[Int]] = [[1,0,1], [1,2,1], [0,1,1]]
     var P: List[List[Int]] = [
         [1,1,2,1,1,2], [3,5,4,3,5,4], [1,3,2,1,3,2],
@@ -109,7 +148,7 @@ def test_all_orderings_and_exact_inverse() raises:
             if i // 3 != j // 3:
                 v = M[i % 3][j % 3]
             row.append(v)
-        N.append(row)
+        N.append(row^)
     for a in range(3):
         for j in range(6):
             var pn = 0
@@ -131,15 +170,14 @@ def test_all_orderings_and_exact_inverse() raises:
                     if a == b:
                         v -= N[j][i]
                     row.append(v)
-            S.append(row)
+            S.append(row^)
     var Q = inverse_numerator()
     validate_lift_inverse(S, Q, 1694)
     var areas = List[List[Int]]()
     for letter in range(3):
         areas.append(_area(sigma[letter]))
     var radices: List[Int] = [2,3,6,2,3,6]
-    var nonintegral = 0
-    var integral = 0
+    var report: List[Int] = [0,0,0,0,0,0]
     for code in range(1296):
         var q = code
         var choices = List[Int]()
@@ -169,13 +207,45 @@ def test_all_orderings_and_exact_inverse() raises:
             if value % 1694 != 0:
                 is_integer = False
         if is_integer:
-            integral += 1
+            report[1] += 1
             var mean: List[Int] = [values[0] // 1694, values[1] // 1694, values[2] // 1694]
-            _no_first_state_pair(mean)
+            var first_row = _row(0, choices[0])
+            var outcome = _first_state_outcome(sigma, mean, first_row, P)
+            report[2 + outcome] += 1
         else:
-            nonintegral += 1
-    assert_equal(integral, 5)
-    assert_equal(nonintegral, 1291)
+            report[0] += 1
+    assert_equal(report[0] + report[1], 1296)
+    assert_equal(report[1], report[2] + report[3] + report[4] + report[5])
+    return report^
+
+
+def test_all_orderings_and_exact_inverse() raises:
+    # The original #490 result remains a separate regression.
+    var sigma: List[List[Int]] = [[0,1], [1,2,1], [0,1,2]]
+    assert_equal(replay_source_orders(sigma), [1291,5,5,0,0,0])
+
+
+def test_complete_incidence_order_class() raises:
+    var first: List[List[Int]] = [[0,1], [1,0]]
+    var middle: List[List[Int]] = [[1,1,2], [1,2,1], [2,1,1]]
+    var last: List[List[Int]] = [
+        [0,1,2], [0,2,1], [1,0,2], [1,2,0], [2,0,1], [2,1,0],
+    ]
+    var total: List[Int] = [0,0,0,0,0,0]
+    var sources = 0
+    for i in range(2):
+        for j in range(3):
+            for k in range(6):
+                var sigma = List[List[Int]]()
+                sigma.append(first[i].copy())
+                sigma.append(middle[j].copy())
+                sigma.append(last[k].copy())
+                var receipt = replay_source_orders(sigma)
+                for t in range(6):
+                    total[t] += receipt[t]
+                sources += 1
+    assert_equal(sources, 36)
+    assert_equal(total, [46466,190,176,8,6,0])
 
 
 def test_false_certificate_and_invalid_letter_refuse() raises:
@@ -195,6 +265,7 @@ def test_false_certificate_and_invalid_letter_refuse() raises:
 
 def main() raises:
     test_all_orderings_and_exact_inverse()
+    test_complete_incidence_order_class()
     test_false_certificate_and_invalid_letter_refuse()
-    print("one six-state periodic template: all 1296 ordered lifts excluded")
-    require_contract("complete 1296-order six-state periodic mean-area replay: 1291 nonintegral, five fail actual irreducible first-state words; exact two-sided inverse and malformed-input refusal; one synthetic template only, no general C4/PSC")
+    print("fixed six-state packet: all 36 sources and 46656 ordered lifts excluded")
+    require_contract("fixed six-state periodic packet for all 36 source word orders: 46656 complete child orders, 46466 nonintegral, 176 impossible first-state words, 8 diagonal and 6 wrong literal child rows; preserve 1296-order original, no general C4/PSC")

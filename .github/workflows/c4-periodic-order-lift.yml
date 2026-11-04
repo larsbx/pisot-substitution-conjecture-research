@@ -1,16 +1,19 @@
-name: C4 periodic ordered mean-area lift
+name: C4 periodic ordered lift (36 source orders)
 on:
   pull_request:
     paths:
       - '.github/workflows/c4-periodic-order-lift.yml'
       - 'docs/c4-periodic-ordered-lift-experiment-2026-11-04.md'
+      - 'docs/c4-incidence-order-class-exclusion-2026-11-04.md'
       - 'evidence/c4-periodic-order-lift-2026-11-04/**'
+      - 'evidence/c4-incidence-order-class-2026-11-04/**'
       - 'kernel/psc/c4_ordered_lift_certificate.mojo'
       - 'kernel/psc/bpa.mojo'
       - 'kernel/psc/words.mojo'
       - 'kernel/tests/c4_periodic_lift_fixture.mojo'
       - 'kernel/tests/test_c4_periodic_order_lift.mojo'
       - 'tests/test_c4_periodic_order_lift_oracle.py'
+      - 'tests/test_c4_incidence_order_class_oracle.py'
       - 'kernel/pixi.toml'
       - 'kernel/pixi.lock'
   workflow_dispatch:
@@ -34,9 +37,11 @@ jobs:
       - name: Independent exhaustive ordering and actual-word replay
         run: |
           python -m pip install 'pytest>=7,<10'
-          python -m pytest -q tests/test_c4_periodic_order_lift_oracle.py
+          python -m pytest -q tests/test_c4_periodic_order_lift_oracle.py tests/test_c4_incidence_order_class_oracle.py
           python tests/test_c4_periodic_order_lift_oracle.py > /tmp/periodic-order-receipt.json
           python -c "import json; a=json.load(open('evidence/c4-periodic-order-lift-2026-11-04/receipt.json')); b=json.load(open('/tmp/periodic-order-receipt.json')); raise SystemExit(0 if a == b else 'receipt mismatch')"
+          python tests/test_c4_incidence_order_class_oracle.py > /tmp/incidence-order-class-receipt.json
+          python -c "import json; a=json.load(open('evidence/c4-incidence-order-class-2026-11-04/receipt.json')); b=json.load(open('/tmp/incidence-order-class-receipt.json')); raise SystemExit(0 if a == b else '36-source receipt mismatch')"
       - name: Existing generated Proof Bank consistency
         run: python tools/make_proof_bank.py --check
       - uses: prefix-dev/setup-pixi@v0.9.1
@@ -44,6 +49,6 @@ jobs:
           pixi-version: v0.81.0
           manifest-path: kernel/pixi.toml
           locked: true
-      - name: Native scaled-inverse and complete 1296-order replay
+      - name: Native exact 36-source and 46656-order replay
         working-directory: kernel
         run: pixi run --locked mojo run -I . -I tests tests/test_c4_periodic_order_lift.mojo
