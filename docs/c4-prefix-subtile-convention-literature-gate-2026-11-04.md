@@ -22,15 +22,18 @@ Euclidean). If `{c,c'}` has a left strong-coincidence witness, then
    - Def. 11 defines a *positive strong coincidence of order 1 for i, j* by
      `W_k^{(i)} = W_k^{(j)}` and `f(P_k^{(i)}) = f(P_k^{(j)})`. That is a
      left (prefix) witness.
-   - Cor. 2: the volume vector is a Perron eigenvector.
-   - Proof of Thm 2, first sentence: "if σ has a positive strong coincidence
-     of order 1 for i, j, X(i)'∩X(j)' is of measure 0". The all-pair
-     hypothesis is used only afterwards, to transfer disjointness to the
-     unprimed `X(i)`.
+   - Cor. 2: the volume vector is a Perron eigenvector, and the pieces
+     `−E0(σ)^{-1} f(P_k^{(j)}) + X(j)'` with `W_k^{(j)} = i` are pairwise
+     measure-disjoint.
+   - Proof of Thm 2, second sentence: "The corollary 2 shows that, if σ has a
+     positive strong coincidence of order 1 for i, j, X(i)'∩X(j)' is of
+     measure 0". The pairwise statement needs no all-pair hypothesis; Thm 2
+     uses that hypothesis to make all primed pairs disjoint and to transfer
+     disjointness to the unprimed `X(i)`.
 2. **Siegel–Thuswaldner**, *Topological properties of Rauzy fractals*,
-   Mém. SMF 118 (2009), Thm 2.6. Pairwise strong coincidence gives
-   measure-disjoint subtiles in the unit case. This is reported by the
-   exploration audit and not re-read here.
+   Mém. SMF 118 (2009), Thm 2.6: the set equation of the subtiles is a
+   measure-disjoint union in the unit case (the equality step of Lemma P).
+   Reported by the exploration audit; not read here.
 3. **Minervino–Thuswaldner 2014.** The non-unit analogue lives on the adelic
    representation space.
 4. **Akiyama–Barge–Berthé–Lee–Siegel 2015** survey. Unconditional
@@ -61,7 +64,8 @@ pairwise statement. That withdrawal was a labelling error.
 ## Negative controls / boundaries
 
 - No unit Pisot substitution failing pairwise strong coincidence is known
-  (Arnoux–Ito §6). The implication
+  (Arnoux–Ito, introduction; measure-disjointness without it is called
+  unknown at the start of their §6). The implication
   `SC(A(C)) ⇒ disjoint(A(C)) ⇒ no strict C` is therefore no stronger than
   Theorem A(4).
 - Nakaishi arXiv:1610.03146 is withdrawn. arXiv:2401.07771 was audited in

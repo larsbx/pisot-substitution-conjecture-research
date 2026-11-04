@@ -2276,3 +2276,13 @@ claim-ledger promotion. Evidence: `docs/occurrence-path-replay-2026-10-16.md`,
   - New controls: the transient 6-state closure of `(02,20)` under `10/102/211`, with `A(C) = {{0,2},{1,2}}` and sink SCC carrying only `{1,2}`; and the unit-PIP `01/12/021` left witness levels 1/4/4.
 
   Locator: [cut-pair note §§3, 5](c4-cut-pair-productivity-2026-11-04.md), `kernel/tests/test_c4_cut_pair_reduction.mojo`, `tests/test_c4_*_oracle.py`.
+
+- **2026-11-04 — corrections to the four preceding entries and to the earlier #482 entry (independent review of `9c77468`).**
+  - The earlier #482 entry's "unprimed" overlap is the **primed** (positive-prefix) family `R_c = −X(c)'`.
+  - The occupancy-retirement entry's non-unit statement about `1/021/001` is an **unverified scratch observation**, not a finding, until it is ported to `kernel/`. Its §3a locator covers only the unit-case argument.
+  - The GIFS-retirement entry's "PDS strength" holds **conditionally on the §3a imports** (multiple tiling of degree `d_cov`; tiling ⇔ PDS), with `λ(R)` read as `Σ_c λ(R_c)`. Its "consistent for every `d_cov ≥ 2`" is reported by the audit workflow and **not reproduced in the repository**.
+  - The Arnoux–Ito one-pair sentence is the **second** sentence of the proof of their Thm 2, resting on Cor. 2.
+  - Theorems B and C and #482 Corollary B now carry one status: repository-proved via the written §8 box count, human review pending.
+  - The §8 discontinuity set is `∂([0,1)×U)`, not `∂([0,1]×cl U)`.
+
+  Locator: [cut-pair note §§3a, 4, 6, 8](c4-cut-pair-productivity-2026-11-04.md), [literature gate](c4-prefix-subtile-convention-literature-gate-2026-11-04.md).

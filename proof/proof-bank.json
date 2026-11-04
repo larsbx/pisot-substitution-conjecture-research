@@ -2342,27 +2342,27 @@
     },
     {
       "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
-      "line": 57,
+      "line": 58,
       "statement_heading": "**Theorem A.**"
     },
     {
       "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
-      "line": 123,
+      "line": 124,
       "statement_heading": "**Theorem B.** `λ(Z_A) ≥ κ / L_max > 0`. In particular `λ(R_c ∩ R_c') > 0` for"
     },
     {
       "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
-      "line": 177,
+      "line": 178,
       "statement_heading": "**Corollary B′ (productivity from disjointness).** If the subtiles of the"
     },
     {
       "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
-      "line": 198,
+      "line": 199,
       "statement_heading": "**Theorem C.** If a strict system `C` exists, then `θ_c ≤ 1/2` for every"
     },
     {
       "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
-      "line": 262,
+      "line": 266,
       "statement_heading": "**Lemma P (unimodular, one pair).** Let `σ` be primitive with irreducible Pisot"
     },
     {
@@ -2388,12 +2388,12 @@
     {
       "source": "docs/c4-every-cut-pair-positive-density-2026-11-04.md",
       "line": 40,
-      "statement_heading": "## Corollary B: per-pair subtile overlap (geometric import under review)"
+      "statement_heading": "## Corollary B: per-pair subtile overlap (rests on #480 §3 and §8; human review pending)"
     },
     {
       "source": "docs/c4-every-cut-pair-positive-density-2026-11-04.md",
       "line": 49,
-      "statement_heading": "**Corollary B (conditional on these geometric inputs):** every represented pair e={c,c'} individually satisfies"
+      "statement_heading": "**Corollary B (given these geometric inputs, proved in #480 §3 and §8):** every represented pair e={c,c'} individually satisfies"
     },
     {
       "source": "docs/c4-overlap-carrier-enclosure-2026-11-04.md",

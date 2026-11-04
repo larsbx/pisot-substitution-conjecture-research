@@ -1,6 +1,6 @@
 # C4: every represented cut pair has positive Perron frequency (2026-11-04)
 
-**Status:** Proven algebraic frequency reduction for a **supplied finite fully strict child-closed** balanced-pair SCC. The pair-specific Rauzy overlap corollary is **proposed pending independent geometric audit** of the regular-window cut-and-project step in merged PR #480. General C4, G1, BH, A1', pure discreteness and PSC remain open.
+**Status:** Proven algebraic frequency reduction for a **supplied finite fully strict child-closed** balanced-pair SCC. The pair-specific Rauzy overlap corollary rests on the regular-window cut-and-project count with a written proof in #480 §8 (automated adversarial audits of 2026-11-04: holds); it carries that status, human review pending. General C4, G1, BH, A1', pure discreteness and PSC remain open.
 
 **Baseline:** main a081bb0a2e258f38ad405f5b12285bcd450e9520 (merged PR #481). Research target: Issue #461. The work strengthens the union-overlap reduction of PR #480; it imports nothing from Arnoux–Ito; see #480 §4 for the corrected convention `R_c = −X(c)'` (the positive-prefix subtiles are Arnoux–Ito's primed family, up to sign).
 
@@ -37,7 +37,7 @@ The factor h follows because the PF mass is equal in every cyclic class: with m_
 
 This is **not** a bounded-depth strong-coincidence theorem: it guarantees positive density of each represented *noncoincident* cut-pair if such a strict component exists. It does not ensure any represented pair is the genuine Barge–Diamond good edge.
 
-## Corollary B: per-pair subtile overlap (geometric import under review)
+## Corollary B: per-pair subtile overlap (rests on #480 §3 and §8; human review pending)
 
 Let E^s be M's contracting plane, pi the projection along its Perron line, and R_c the compact **positive-prefix** Rauzy subtiles (Arnoux–Ito's primed family up to sign; #480 §4) for a one-sided fixed point of a power sigma^q. Define Phi(y)=(ell.y,pi y), kappa=|det Phi|>0 (computed in the coordinates of E^s that define lambda) and planar Lebesgue measure lambda.
 
@@ -46,7 +46,7 @@ Conditional on independently accepting both of these geometric inputs from PR #4
 1. **Uniform cut embedding:** each common Parikh cut x of sigma^n(T_j) followed by pair {c,c'} has distance at most epsilon_n to BOTH R_c and R_c', epsilon_n->0 uniformly over finite C, for n divisible by q. The reason is the literal decomposition x=M^n p(prefix before d)+p(Q): a fixed-point prefix sigma^n(Y_d)Q c differs by M^n of one of finitely many integer prefix differences.
 2. **Fixed-origin regular-window count:** for every bounded finite union U of regular planar boxes, the lattice Phi(Z^3) has count of points with internal coordinate in U and physical coordinate [0,X) equal to X lambda(U)/kappa + o(X). Irreducibility excludes any integer functional killing the Perron line; Weyl averages of the dense physical flow on the torus and lattice unfolding yield the box statement. Do NOT substitute an almost-every-translate theorem for arbitrary measurable sets.
 
-**Corollary B (conditional on these geometric inputs):** every represented pair e={c,c'} individually satisfies
+**Corollary B (given these geometric inputs, proved in #480 §3 and §8):** every represented pair e={c,c'} individually satisfies
 
 ~~~text
 lambda(R_c intersect R_c') >= kappa delta_e > 0.
@@ -58,7 +58,7 @@ lambda(R_c intersect R_c') >= kappa delta_e > 0.
 b_e(n,j) <= beta^n L_j lambda(U)/kappa + o(beta^n L_j).
 ~~~
 
-Divide and use Theorem A; then infimize over regular box covers by outer regularity. QED conditional on the two independently audited geometric inputs.
+Divide and use Theorem A; then infimize over regular box covers by outer regularity. QED, given the two geometric inputs of #480 §3 and §8 (human review pending).
 
 The new information is **every represented pair**, not merely the union of pair overlaps. For imprimitive N an arbitrary single source need not see every pair on every n; the class-subsequence construction above is essential.
 
@@ -72,7 +72,7 @@ The new information is **every represented pair**, not merely the union of pair 
 
 **Fail-closed closure control:** retaining just the first state of the genuine three-state strict example omits two actual children. It must not be admitted as a closed system.
 
-Mojo checks the literal per-pair counts `3^(n−1)`, a period-two recursion and the exit count of the subset control. The Python oracle checks fail-closed admission, the exact ratio 1/9, and computes `δ_e = h·max_k Σ_{i∈I_e∩C_k} v_i / D` from `N` (period, cyclic classes and Perron data) for the synthetic period-two control. Neither computes `N` or `δ_e` from literal words, nor any geometric measure, hypothetical strict PIP existence, or general C4.
+Mojo checks the literal per-pair counts `3^(n−1)`, a period-two recursion and the exit count of the subset control. The Python oracle builds `N` from literal factorisations for the uniform control, computes the period and cyclic classes from the support of `N`, verifies supplied exact Perron data `(β, v, L)` (positivity and the two eigen-equations), and computes `δ_e = h·max_k Σ_{i∈I_e∩C_k} v_i / D`. For the uniform control this `δ_e = 1/9` is derived from the literal `N`; for the synthetic period-two control `N` is supplied. Neither executable computes any geometric measure, hypothetical strict PIP existence, or general C4.
 
 ~~~sh
 (cd kernel && pixi run --locked mojo run -I . tests/test_c4_pairwise_cut_frequency.mojo)
@@ -80,4 +80,4 @@ python -m pytest -q tests/test_c4_pairwise_cut_frequency_oracle.py
 python tools/make_proof_bank.py --check
 ~~~
 
-**Acceptance firewall:** exact-head CI and independent mathematics review are pending; the PF theorem and proposed geometric corollary have separate statuses. No governed C4/G1/BH/A1'/PSC promotion.
+**Acceptance firewall:** exact-head CI and independent human mathematics review are pending; the PF theorem and the geometric corollary have separate statuses (the latter inherits #480 §8). No governed C4/G1/BH/A1'/PSC promotion.

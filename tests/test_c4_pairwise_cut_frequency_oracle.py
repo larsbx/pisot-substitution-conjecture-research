@@ -52,11 +52,15 @@ def mv(N, counts):
 def pf_pair_frequency(N, beta, v, L, types):
     """delta_e = h * max_k sum_{i in I_e and C_k} v_i / D, computed from N.
 
-    Verifies the supplied Perron data exactly (N v = beta v, L^T N = beta L^T),
-    derives the period h and cyclic classes from the support of N by BFS, and
-    checks that every class carries PF mass D/h.  Returns {type: delta}.
+    Fails closed unless N is irreducible (strongly connected support) and the
+    supplied exact Perron data are positive (v > 0, L > 0, beta > 0) with
+    N v = beta v and L^T N = beta L^T; derives the period h and cyclic classes
+    from the support of N by BFS, and checks that every class carries PF mass
+    D/h.  Returns (h, {type: delta}).
     """
     n = len(N)
+    if beta <= 0 or any(x <= 0 for x in v) or any(x <= 0 for x in L):
+        raise ValueError("Perron data must be positive")
     edges = [(i, j) for j in range(n) for i in range(n) if N[i][j]]  # child i of j
     if [sum(N[i][j] * v[j] for j in range(n)) for i in range(n)] != [beta * x for x in v]:
         raise ValueError("v is not a right Perron vector")
@@ -73,7 +77,18 @@ def pf_pair_frequency(N, beta, v, L, types):
                     nxt.append(i)
         frontier = nxt
     if len(dist) != n:
-        raise ValueError("N is not irreducible from state 0")
+        raise ValueError("N is not irreducible: some state unreachable from 0")
+    back, frontier = {0}, [0]
+    while frontier:
+        nxt = []
+        for i in frontier:
+            for j in range(n):
+                if N[i][j] and j not in back:
+                    back.add(j)
+                    nxt.append(j)
+        frontier = nxt
+    if len(back) != n:
+        raise ValueError("N is not irreducible: state 0 unreachable from some state")
     from math import gcd
     h = 0
     for i, j in edges:
@@ -81,6 +96,8 @@ def pf_pair_frequency(N, beta, v, L, types):
     h = abs(h)
     classes = [[i for i in range(n) if dist[i] % h == k] for k in range(h)]
     D = sum(Fraction(L[i]) * v[i] for i in range(n))
+    if D <= 0:
+        raise ValueError("PF mass D must be positive")
     for cls in classes:
         if sum(Fraction(L[i]) * v[i] for i in cls) * h != D:
             raise ValueError("unequal cyclic-class PF mass")
@@ -134,7 +151,8 @@ def test_imprimitive_matrix_requires_class_subsequence():
 
 
 def test_uniform_control_pf_frequency_matches_literal_ratio():
-    N = [[1] * 3 for _ in range(3)]
+    N = exact_child_matrix(STATES)  # built from literal factorisations
+    assert N == [[1] * 3 for _ in range(3)]
     types = ["{0,1}", "{1,2}", "{0,2}"]  # first pairs of STATES
     assert [frozenset(a[0] + b[0]) for a, b in STATES] == [frozenset("01"), frozenset("12"), frozenset("02")]
     h, delta = pf_pair_frequency(N, 3, [1, 1, 1], [3, 3, 3], types)
@@ -158,3 +176,21 @@ def test_productive_pisot_control_contains_real_diagonal():
         bottom = "".join(sigma[int(c)] for c in bottom)
     factors = irreducible_factors(top, bottom)
     assert any(len(u) == len(v) == 1 and u == v for u, v in factors)
+
+
+def test_pf_pair_frequency_period_three_and_fail_closed():
+    cycle = [[0, 0, 1], [1, 0, 0], [0, 1, 0]]  # child i of j: 0->1->2->0
+    h, delta = pf_pair_frequency(cycle, 1, [1, 1, 1], [1, 1, 1], ["a", "a", "b"])
+    assert h == 3 and delta == {"a": Fraction(1), "b": Fraction(1)}
+    bad = [
+        (cycle, 1, [1, 1, -1], [1, 1, 1]),            # nonpositive v
+        (cycle, 2, [1, 1, 1], [1, 1, 1]),             # wrong eigenvalue
+        ([[1, 0], [1, 1]], 1, [1, 1], [1, 1]),        # reducible support
+    ]
+    for args in bad:
+        try:
+            pf_pair_frequency(*args, ["a", "b", "c"][: len(args[0])])
+        except ValueError:
+            pass
+        else:
+            raise AssertionError(f"accepted invalid PF data {args}")

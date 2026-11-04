@@ -1,8 +1,9 @@
 # C4 productivity: cut pairs, strong coincidence and a positive-measure subtile overlap
 
 **Status:** repository-proved combinatorial reduction (Theorem A) and measure
-reductions (Theorems B, C) resting on the fixed-lattice box count proved in §8;
-human review pending. The one-pair subtile statement in §4 is proved there
+reductions (Theorems B, C) resting on the fixed-lattice box count, which has a
+written proof in §8 (automated adversarial audits of 2026-11-04: holds); human
+review pending for all of them. The one-pair subtile statement in §4 is proved there
 (Lemma P, unimodular case); the all-pair statement is cited from Arnoux–Ito
 Thm 2. No change to C4, BH (#139), A1′ (#138), G1 or PSC status.
 [Issue #461](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/461).
@@ -105,7 +106,7 @@ it along the Perron line.
 *Powers.* Strict closure passes to `σ^q` and `A(C)` is unchanged; Theorem A(3)
 then holds with `g^q`. Left strong coincidence is power-invariant, because a
 witness persists under further inflation. A strict system exists for `σ` iff
-one exists for `σ^q` (take the factors of `σ^r(F)`, `r < q`). So we may replace
+one exists for `σ^q` (take the factors of `σ^r(C)`, `r < q`). So we may replace
 `σ` by a power `σ^q` with a one-sided fixed point `w`; below `β` and `M` denote
 those of the power where it matters, and Step 1 does not depend on the choice
 of `(q, w)`. Define
@@ -230,15 +231,18 @@ its appearance as a two-line consequence of Theorem A(1).
 *Unit case.* By the equality step in the proof of Lemma P (§4),
 `λ(R_c) = s f_c` for some `s > 0`, so `θ_c = κ/(ℓ̄ s)` does not depend on `c`:
 "for a single letter" means "for every letter". Conditionally on imports,
-`p = ℓ̄ s/κ`, `θ_c = 1/p` and `θ_c > 1/2 ⇔ p = 1 ⇔ PDS`. The imports are the
-self-replicating multiple tiling of degree `p` (Siegel–Thuswaldner 2009
-Prop. 3.7; Minervino–Thuswaldner 2014 Thm 9.2), the regular-model-set density
-of its type-`c` translations, and tiling ⇔ super coincidence ⇔ PDS
-(Siegel–Thuswaldner Thm 3.20; Akiyama–Barge–Berthé–Lee–Siegel 2015 Thm 5.2);
-none is reproved here, and Ito–Rao 2006 and Barge–Kwapisz 2006 were not read.
+`d_cov = ℓ̄ s/κ`, `θ_c = 1/d_cov` and `θ_c > 1/2 ⇔ d_cov = 1 ⇔ PDS`, where
+`d_cov` is the covering degree. The imports are the self-replicating multiple
+tiling of degree `d_cov` (Siegel–Thuswaldner 2009 Prop. 3.7;
+Minervino–Thuswaldner 2014 Thm 9.2), the regular-model-set density of its
+type-`c` translations, and tiling ⇔ super coincidence ⇔ PDS
+(Siegel–Thuswaldner Thm 3.20; Akiyama–Barge–Berthé–Lee–Siegel 2015 Thm 5.2).
+None is reproved here. All of these were reported by the 2026-11-04 audit
+workflow and **not read** for this note; Ito–Rao 2006 and Barge–Kwapisz 2006
+were read by no one.
 Under those imports the contrapositive of Theorem C is exactly "PDS ⇒ no strict
 system", which is already available from Theorem A(4) and Akiyama–Lee 2014
-Cor. 4.5. The novelty is limited to the elementary two-track proof, and the
+Cor. 4.5 (abstract and statement read, proof not). The novelty is limited to the elementary two-track proof, and the
 occupancy route is **retired as a C4 attack** in the unit case (it has PDS
 strength). Model-set statements hold up to a density-zero set.
 
@@ -260,7 +264,8 @@ section called `R_c` "unprimed"; that label was wrong, and the withdrawal it
 motivated is reversed below **in the unimodular case only**.
 
 **Lemma P (unimodular, one pair).** Let `σ` be primitive with irreducible Pisot
-incidence and `|det M| = 1`. If `{c,c'}` has a left strong-coincidence witness
+incidence and `|det M| = 1`; here `M` and `β` are those of `σ` itself, and `q`
+is the power with fixed point `w` from §3. If `{c,c'}` has a left strong-coincidence witness
 `σ^n(c) = PxQ`, `σ^n(c') = P'xQ'`, `p(P) = p(P')`, then `λ(R_c ∩ R_c') = 0`.
 A right witness `p(Q) = p(Q')` gives instead
 `λ((R_c + πe_c) ∩ (R_c' + πe_c')) = 0`.
@@ -285,14 +290,21 @@ are distinct (different source letters) with the same translation. Therefore
 `M_s^m π(e_c − e_c')`, and the same argument applies to the translates
 `R + πe`. ∎
 
-The equality step also gives `(λ(R_c))_c = s·f` for some `s > 0`. This is
-Arnoux–Ito Cor. 2 together with the first sentence of the proof of their
-Thm 2 ("if σ has a positive strong coincidence of order 1 for i, j,
-X(i)'∩X(j)' is of measure 0"), read through the dictionary; compare
-Siegel–Thuswaldner, Mém. SMF 118 (2009), Thm 2.6. Unimodularity is essential:
+The equality step also gives `(λ(R_c))_c = s·f`, with `s > 0` by the
+unconditional bound `λ(R_c) ≥ κ f_c/ℓ̄` of §3a. This is Arnoux–Ito Cor. 2 (the
+pieces of the set equation are pairwise measure-disjoint) together with the
+second sentence of the proof of their Thm 2 ("The corollary 2 shows that, if σ
+has a positive strong coincidence of order 1 for i, j, X(i)'∩X(j)' is of
+measure 0"), read through the dictionary; both read in the published text.
+Compare Siegel–Thuswaldner, Mém. SMF 118 (2009), Thm 2.6 (measure-disjoint
+set equation; reported by the audit, not read here). Unimodularity is essential:
 for `|det M| ≥ 2` the inequality reads `M^m v ≥ (β/|det M|)^m v` and forces
 nothing. The non-unit analogue belongs to the adelic space
 (Minervino–Thuswaldner 2014) and is **not** proved here.
+
+(Arnoux–Ito's all-pair hypothesis in Thm 2 is used only to make all primed
+pairs disjoint and transfer this to the unprimed family; the one-pair
+statement needs no all-pair hypothesis.)
 
 Valid implications (unit case):
 
@@ -320,10 +332,9 @@ proof deliberately takes an open box cover of the compact
 overlap set, counts in those regular boxes at the fixed
 lattice translate, and then uses outer regularity. The
 Rauzy overlap `Z_A` is **not** assumed regular itself.
-If the physical/internal cut-and-project density hypotheses
-are not verified, Theorem B must remain conditional on the
-stated counting lemma; the bounded Mojo tests do not
-validate measure theory.
+Theorem B therefore carries exactly the status of §8
+(repository-proved, human review pending); the bounded
+Mojo tests do not validate measure theory.
 
 In the **non-unit** case, Euclidean projection is not a
 substitute for the natural adelic representation space.
@@ -337,6 +348,11 @@ disjointness, is proved here.
 | `012/120/201`, ordered 3-cycle `(012,120),(120,201),(201,012)` | all-ones matrix; not Pisot | all three pairs | all three | none (level ≤ 6) |
 | `10/102/211`, the four strict states (#459) | primitive, nonsingular, reducible | `{{1,2}}` only | `{{1,2}}` | none (level ≤ 8) |
 | `01/121/012` (#476, k=1) | PIP, det 2 | — | — | every pair is coincident by level 2; each candidate `(01,10),(12,21),(02,20)` meets a coincident factor by depth 3 and is refused |
+
+In the second row the good edge `{0,1}` has a level-1 witness, and `g`
+collapses it (`g(0) = g(1) = 1`). A state cut on it is refused.
+`{0,2}` has no witness within level 8; this is an exhausted budget, not a
+verdict. It is not a cut pair of the component.
 
 The earlier fixture listed `{(012,120),(012,201),(120,201)}`, which is closed
 only up to track swap: `σ(012) = 012120201` and `σ(120) = 120201012` factor into
@@ -355,12 +371,7 @@ letter 0, prefix Parikh `(4,7,5)`) and `{1,2}` at level 4 (index 10, letter 1,
 prefix Parikh `(3,4,3)`). So by Theorem A(4) it has no strict system, and by
 Lemma P all three overlaps `R_c ∩ R_c'` are null.
 
-In the second row the good edge `{0,1}` has a level-1 witness, and `g`
-collapses it (`g(0) = g(1) = 1`). A state cut on it is refused.
-`{0,2}` has no witness within level 8; this is an exhausted budget, not a
-verdict. It is not a cut pair of the component.
-
-Neither strict control is PIP, so Rauzy subtiles are not defined for them.
+None of the three strict controls (uniform, row 2, transient) is PIP, so Rauzy subtiles are not defined for them.
 They calibrate Theorem A only. In particular, `|A(C)| = 1` occurs outside
 PIP.
 
@@ -382,7 +393,8 @@ A missing strong-coincidence witness is reported as an exhausted budget.
 ## 6. Non-claims and the remaining gap
 
 - Theorem C's occupancy `θ_c` is not computed exactly for any specimen here.
-  Its identification with `1/m` for a covering degree `m` is not proved.
+  Its identification with `1/d_cov` for the covering degree `d_cov` holds only
+  under the §3a imports.
 - No strict PIP system has been exhibited or excluded. C4, BH, A1′, G1 and PSC
   stay open.
 - Unconditional measure-disjointness of Rauzy subtiles is **not** proved and
@@ -393,12 +405,15 @@ A missing strong-coincidence witness is reported as an exhausted budget.
 - The adelic (non-unit) form of Theorem B is not proved.
 - The graph-directed IFS comparison proposed here earlier (cut-point sets
   `K(G)` with matrix `N^T` inside the subtiles with matrix `M^T`, common
-  contraction `M_s`) is **retired at the measure level**: an audit found the
-  two embeddings plus noncoincidence consistent for every covering degree
-  `m ≥ 2`, so a contradiction would need an upper bound `λ(R) < 2κ/ℓ̄`, which
-  has PDS strength in the unit case (see the side-notes ledger, 2026-11-04).
+  contraction `M_s`) is **retired at the measure level**. The 2026-11-04 audit
+  workflow reported (derivation **not reproduced in the repository**) that the
+  two embeddings plus noncoincidence are consistent for every covering degree
+  `d_cov ≥ 2`. A contradiction would then need `Σ_c λ(R_c) < 2κ/ℓ̄`, which,
+  conditionally on the §3a imports (multiple tiling of degree `d_cov`;
+  tiling ⇔ PDS), is equivalent to `d_cov = 1`, i.e. to PDS.
 - Next open quantifier: for unit PIP `σ` and every cut pair `{c,c'}` with no
-  left SC witness at any level, bound `λ(R_c ∩ R_c')` below `κ δ_{\{c,c'\}}(C)`
+  left SC witness at any level, bound `λ(R_c ∩ R_c')` below `κ δ_{c,c'}(C)`
+  (`δ` as in the #482 note)
   by an argument not routed through PDS. Its hypothesis class is empty on every
   computed domain (SC_all on the standing census), where C4 already follows
   from Theorem A(4).
@@ -412,11 +427,10 @@ Absence of a witness on an arbitrary selected first-letter pair does **not**
 itself imply the existence of a nonproductive closed system. The executable's
 bounded `-1` result is an exhausted search, not a proof of absence.
 
-Theorem B is a proposed mathematical density reduction with an explicit
-compact-window lattice-count step. It is **not** checked by the finite Mojo
-audit. In particular its quantitative measure lower bound requires review
-of the ambient lattice covolume normalization and the regular-box counting
-lemma, as opposed to inferring validity from the three finite fixtures.
+Theorem B is a written density reduction with an explicit compact-window
+lattice-count step, proved in §8 and found sound by the automated audits of
+2026-11-04 (human review pending). It is **not** checked by the finite Mojo
+audit, and its validity is not inferred from the finite fixtures.
 §4 now records `R_c = −X(c)'`; one left SC pair gives `λ(R_c ∩ R_c') = 0`
 in the unit case (Lemma P). No non-unit or suffix-to-prefix transfer may enter
 the C4 proof ledger.
@@ -529,9 +543,11 @@ relatively compact). `F_U` is bounded
 and Riemann-integrable on the torus:
 its discontinuities lie in the locally
 finite union of `Lambda`-translates of
-`∂([0,1] x closure(U))`, which has Haar
-measure 0, so continuous `g ≤ F_U ≤ h`
-with `∫(h−g) < ε` exist. Continuous
+`∂([0,1) x U) ⊆ ({0,1} x closure(U)) ∪
+([0,1] x ∂U)`, which has Haar measure 0
+because `λ(∂U) = 0` (Jordan
+measurability), so continuous
+`g ≤ F_U ≤ h` with `∫(h−g) < ε` exist. Continuous
 upper/lower approximations therefore
 extend the character argument to
 `F_U`, giving

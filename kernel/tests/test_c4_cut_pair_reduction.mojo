@@ -9,7 +9,8 @@ from psc.words import Pair
 def test_uniform_three_pair_control() raises:
     # Constant-length, all-ones incidence (not Pisot): A(C) is all three pairs.
     # The ordered 3-cycle is genuinely closed; the earlier listing
-    # (012,120),(012,201),(120,201) was closed only up to track swap.
+    # (012,120),(012,201),(120,201) was closed only up to track swap. This
+    # audit does not check closure (the Python oracle does and refuses it).
     var sigma: List[List[Int]] = [[0, 1, 2], [1, 2, 0], [2, 0, 1]]
     var states: List[Pair] = [
         Pair(sigma[0], sigma[1]), Pair(sigma[1], sigma[2]), Pair(sigma[2], sigma[0]),
@@ -159,7 +160,8 @@ def test_positive_letter_witness_refuses_even_at_depth_zero() raises:
 
 def test_transient_cut_pair_in_non_strongly_connected_strict_system() raises:
     # Closure of (02,20) under 10/102/211: six states, strictly closed but not
-    # strongly connected. A(C) = {{0,2},{1,2}}; the transient pair {0,2} never
+    # strongly connected (ordered closure is certified by the Python oracle;
+    # this audit checks only the necessary mask conditions). A(C) = {{0,2},{1,2}}; the transient pair {0,2} never
     # labels a cut of an inflation, and g maps it into {1,2}.
     var sigma: List[List[Int]] = [[1, 0], [1, 0, 2], [2, 1, 1]]
     var states: List[Pair] = [

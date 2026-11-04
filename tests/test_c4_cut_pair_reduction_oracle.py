@@ -60,7 +60,12 @@ def bounded_strong_coincidence(sigma, a, b, cap):
 
 
 def strict_complete_system(sigma, states):
-    """Check ORDERED strict child closure (no track-swap normalisation)."""
+    """Check ORDERED strict child closure (no track-swap normalisation).
+
+    Restriction: at most one orientation per unordered pair is admitted, so a
+    system containing both (u, v) and (v, u) is refused even when it is
+    ordered-closed (e.g. the union of both 3-cycles of 012/120/201).
+    """
     ordered = set(states)
     if len(ordered) != len(states) or len({frozenset(s) for s in states}) != len(states):
         raise ValueError("duplicate state or orientation pair")

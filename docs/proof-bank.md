@@ -230,17 +230,17 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/c3-locality-reduction.md:33](../docs/c3-locality-reduction.md#L33) | ### Lemma (newborn-cut localization) |
 | [docs/c3-locality-reduction.md:66](../docs/c3-locality-reduction.md#L66) | ### Corollary (higher escape becomes one-step escape) |
 | [docs/c4-addressed-overlap-to-newborn-2026-11-04.md:22](../docs/c4-addressed-overlap-to-newborn-2026-11-04.md#L22) | **Lemma.** Let T be an actual irreducible noncoincident balanced |
-| [docs/c4-cut-pair-productivity-2026-11-04.md:57](../docs/c4-cut-pair-productivity-2026-11-04.md#L57) | **Theorem A.** |
-| [docs/c4-cut-pair-productivity-2026-11-04.md:123](../docs/c4-cut-pair-productivity-2026-11-04.md#L123) | **Theorem B.** λ(Z_A) ≥ κ / L_max > 0. In particular λ(R_c ∩ R_c') > 0 for |
-| [docs/c4-cut-pair-productivity-2026-11-04.md:177](../docs/c4-cut-pair-productivity-2026-11-04.md#L177) | **Corollary B′ (productivity from disjointness).** If the subtiles of the |
-| [docs/c4-cut-pair-productivity-2026-11-04.md:198](../docs/c4-cut-pair-productivity-2026-11-04.md#L198) | **Theorem C.** If a strict system C exists, then θ_c ≤ 1/2 for every |
-| [docs/c4-cut-pair-productivity-2026-11-04.md:262](../docs/c4-cut-pair-productivity-2026-11-04.md#L262) | **Lemma P (unimodular, one pair).** Let σ be primitive with irreducible Pisot |
+| [docs/c4-cut-pair-productivity-2026-11-04.md:58](../docs/c4-cut-pair-productivity-2026-11-04.md#L58) | **Theorem A.** |
+| [docs/c4-cut-pair-productivity-2026-11-04.md:124](../docs/c4-cut-pair-productivity-2026-11-04.md#L124) | **Theorem B.** λ(Z_A) ≥ κ / L_max > 0. In particular λ(R_c ∩ R_c') > 0 for |
+| [docs/c4-cut-pair-productivity-2026-11-04.md:178](../docs/c4-cut-pair-productivity-2026-11-04.md#L178) | **Corollary B′ (productivity from disjointness).** If the subtiles of the |
+| [docs/c4-cut-pair-productivity-2026-11-04.md:199](../docs/c4-cut-pair-productivity-2026-11-04.md#L199) | **Theorem C.** If a strict system C exists, then θ_c ≤ 1/2 for every |
+| [docs/c4-cut-pair-productivity-2026-11-04.md:266](../docs/c4-cut-pair-productivity-2026-11-04.md#L266) | **Lemma P (unimodular, one pair).** Let σ be primitive with irreducible Pisot |
 | [docs/c4-defect-degree-census.md:120](../docs/c4-defect-degree-census.md#L120) | **Proposition (bounded PIP corpus).** Among the 4,554 primitive ternary |
 | [docs/c4-endpoint-core-program.md:124](../docs/c4-endpoint-core-program.md#L124) | ### Proposition 3 |
 | [docs/c4-every-cut-pair-positive-density-2026-11-04.md:7](../docs/c4-every-cut-pair-positive-density-2026-11-04.md#L7) | ## Theorem A: each cut-pair grows with positive PF frequency |
 | [docs/c4-every-cut-pair-positive-density-2026-11-04.md:20](../docs/c4-every-cut-pair-positive-density-2026-11-04.md#L20) | **Theorem A.** For each e there exists a source j in I_e and a residue-zero generation subsequence n=mqh, for any fixed positive q, such that the number b_e(n,j) of *literal factor occurrences* with first pair e in the complete factorisation of sigma^n(T_j) obeys |
-| [docs/c4-every-cut-pair-positive-density-2026-11-04.md:40](../docs/c4-every-cut-pair-positive-density-2026-11-04.md#L40) | ## Corollary B: per-pair subtile overlap (geometric import under review) |
-| [docs/c4-every-cut-pair-positive-density-2026-11-04.md:49](../docs/c4-every-cut-pair-positive-density-2026-11-04.md#L49) | **Corollary B (conditional on these geometric inputs):** every represented pair e={c,c'} individually satisfies |
+| [docs/c4-every-cut-pair-positive-density-2026-11-04.md:40](../docs/c4-every-cut-pair-positive-density-2026-11-04.md#L40) | ## Corollary B: per-pair subtile overlap (rests on #480 §3 and §8; human review pending) |
+| [docs/c4-every-cut-pair-positive-density-2026-11-04.md:49](../docs/c4-every-cut-pair-positive-density-2026-11-04.md#L49) | **Corollary B (given these geometric inputs, proved in #480 §3 and §8):** every represented pair e={c,c'} individually satisfies |
 | [docs/c4-overlap-carrier-enclosure-2026-11-04.md:22](../docs/c4-overlap-carrier-enclosure-2026-11-04.md#L22) | **Lemma.** Let a nonerasing substitution have positive letter lengths ell |
 | [docs/c4-parikh-intertwiner.md:90](../docs/c4-parikh-intertwiner.md#L90) | ### Corollary 2.1 — no one- or two-state counterexample SCC |
 | [docs/c4-parikh-intertwiner.md:123](../docs/c4-parikh-intertwiner.md#L123) | ### Corollary 3.1 — the three-state case is rigid |
