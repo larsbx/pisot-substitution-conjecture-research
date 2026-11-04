@@ -68,12 +68,20 @@ columns. If these columns were dependent, the span up to their first
 dependence would be a nonzero proper rational invariant subspace of
 `M`, contrary to irreducibility. Hence `f = 0`. ∎
 
-The same proof applies to a finite refinement of the context labels if an
-inherited cut's new label is a deterministic function of its old label.
-The pigeonhole argument then uses the finite refined label set. Two full,
-unbounded occurrence addresses are outside that hypothesis. In any concrete
-certificate with determinant ±1 the telescoping obstruction holds over
-every field, since the three columns remain independent after reduction.
+In fact the obstruction holds for **any fixed finite set of cut labels**
+assigned to all cuts with complete contexts, even if labels depend on
+ancestry and their update is nondeterministic. For every candidate cut in
+the long literal inflation, record the triple of labels at that cut and
+its two inherited cuts in the next two levels. There are at most `|L|³`
+triples for label set `L`. Two cuts with the same triple bound an interval
+whose endpoints agree separately at every level. The same telescoping
+argument applies. It also allows a different potential at each level, as
+long as the Parikh row `f` stays fixed. Full, unbounded occurrence
+addresses are outside the finite-label hypothesis.
+
+In any concrete certificate with determinant ±1, the telescoping
+obstruction for its three matched endpoint pairs holds over every field,
+since the three columns remain independent after reduction.
 
 ## Exact controls
 
