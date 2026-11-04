@@ -44,13 +44,29 @@ def inflated_cut_pair_mask(sigma: List[List[Int]], states: List[Pair], depth: In
     """Cut pairs of the complete balanced factorisation of sigma^depth(S), all S.
 
     Raises on a coincident factor: the supplied system is then not strict."""
-    if depth < 0:
-        raise Error("negative inflation depth")
+    _ = sigma3(sigma)
+    if depth < 0 or depth > 10:
+        raise Error("cut-pair inflation depth must lie in 0..10")
+    var image_bound = 0
+    for a in range(ALPHABET):
+        if len(sigma[a]) == 0:
+            raise Error("cut-pair substitution has an empty image")
+        image_bound = max(image_bound, len(sigma[a]))
     var mask = 0
     for s in states:
+        if s.length() <= 0 or not is_balanced(s):
+            raise Error("cut-pair input is not a nonempty balanced pair")
+        for symbol in s.u:
+            if symbol < 0 or symbol >= ALPHABET:
+                raise Error("invalid top word letter")
+        for symbol in s.v:
+            if symbol < 0 or symbol >= ALPHABET:
+                raise Error("invalid bottom word letter")
         var top = s.u.copy()
         var bottom = s.v.copy()
         for _ in range(depth):
+            if len(top) > 100000 // image_bound or len(bottom) > 100000 // image_bound:
+                raise Error("cut-pair inflation budget exhausted")
             top = apply_substitution(sigma, top)
             bottom = apply_substitution(sigma, bottom)
         var cuts = coincidence_boundaries(top, bottom)
@@ -80,9 +96,19 @@ def strong_coincidence_level(sigma: List[List[Int]], a: Int, b: Int, max_level: 
 
     Returns -1 when the budget is exhausted (not a non-coincidence verdict)."""
     _ = pair_bit(a, b)
+    _ = sigma3(sigma)
+    if max_level <= 0 or max_level > 12:
+        raise Error("bounded strong coincidence requires 1 <= level <= 12")
+    var image_bound = 0
+    for letter in range(ALPHABET):
+        if len(sigma[letter]) == 0:
+            raise Error("strong coincidence substitution has an empty image")
+        image_bound = max(image_bound, len(sigma[letter]))
     var top: List[Int] = [a]
     var bottom: List[Int] = [b]
     for n in range(1, max_level + 1):
+        if len(top) > 100000 // image_bound or len(bottom) > 100000 // image_bound:
+            raise Error("strong coincidence word budget exhausted")
         top = apply_substitution(sigma, top)
         bottom = apply_substitution(sigma, bottom)
         var delta: List[Int] = [0, 0, 0]
