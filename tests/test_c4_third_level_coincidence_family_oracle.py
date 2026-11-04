@@ -114,3 +114,13 @@ def test_refuse_invalid_or_excessive_parameters():
         except ValueError:
             continue
         raise AssertionError("invalid family budget accepted")
+
+
+def test_k_one_has_earlier_level_two_simultaneous_coincidence():
+    sigma = family(1)  # 01/121/012, the exact singleton in PR #475.
+    words = [substitute(sigma, sigma[i]) for i in range(3)]
+    assert words == ["01121", "121012121", "01121012"]
+    assert all(w[4] == "1" for w in words)
+    assert [tuple(w[:4].count(str(a)) for a in range(3)) for w in words] == [
+        (1, 2, 1), (1, 2, 1), (1, 2, 1)
+    ]

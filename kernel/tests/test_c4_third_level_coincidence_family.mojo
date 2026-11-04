@@ -64,6 +64,24 @@ def test_all_three_balanced_swaps_have_actual_diagonal_child_by_level_three() ra
                 assert_true(found)
 
 
+
+def test_k_one_has_earlier_simultaneous_level_two_witness() raises:
+    # The #475 specimen does not require the seam-residue exclusion
+    # even for its third remaining candidate first edge {0,1}.
+    var sigma = symmetric_middle_family(1)
+    var words = List[List[Int]]()
+    for a in range(3):
+        words.append(apply_substitution(sigma, sigma[a]))
+    assert_equal(words[0], [0, 1, 1, 2, 1])
+    assert_equal(words[1], [1, 2, 1, 0, 1, 2, 1, 2, 1])
+    assert_equal(words[2], [0, 1, 1, 2, 1, 0, 1, 2])
+    for i in range(3):
+        assert_equal(words[i][4], 1)
+        var counts: List[Int] = [0, 0, 0]
+        for j in range(4):
+            counts[words[i][j]] += 1
+        assert_equal(counts, [1, 2, 1])
+
 def test_invalid_and_excessive_parameters_refuse() raises:
     for k in [-3, 0, 17, 1000000]:
         var refused = False
@@ -78,5 +96,6 @@ def main() raises:
     test_bounded_family_simultaneous_three_letter_coincidences()
     test_all_three_balanced_swaps_have_actual_diagonal_child_by_level_three()
     test_invalid_and_excessive_parameters_refuse()
+    test_k_one_has_earlier_simultaneous_level_two_witness()
     print("C4 uniform third-level family: complete literal strong coincidence controls passed.")
     require_contract("ternary symmetric middle family 01/(1^k 2 1^k)/012 has all three simultaneous depth-three balanced-prefix strong coincidences at k(2k+1)+1; actual swap BPA diagonals, bounded replay, invalid cap refusal; no global PSC promotion")

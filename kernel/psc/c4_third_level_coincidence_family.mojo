@@ -44,7 +44,7 @@ def symmetric_middle_family(k: Int) raises -> List[List[Int]]:
     middle.append(2)
     for _ in range(k):
         middle.append(1)
-    return [[0, 1], middle^, [0, 1, 2]]
+    return [[0, 1], middle.copy(), [0, 1, 2]]
 
 
 def verify_third_level_coincidence(k: Int) raises -> ThirdLevelCoincidence:

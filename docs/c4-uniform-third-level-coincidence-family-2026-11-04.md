@@ -98,6 +98,28 @@ simultaneously by substitution level 3, with the *same* exact
 address (p_k, letter 1). This is stronger than a collection of
 unrelated finite good-edge witnesses.
 
+### Sharper base case k=1
+
+The specific substitution 01/121/012 in draft #475 admits a
+**generation-two** simultaneous coincidence, not merely the common
+level-three witness. Directly:
+
+~~~text
+sigma²(0)=01121
+sigma²(1)=121012121
+sigma²(2)=01121012
+~~~
+
+All three words have the exact Parikh prefix (1,2,1) at
+zero-based position 4, followed by the letter 1.
+In particular, the *remaining* unordered first pair {0,1}
+left undecided by the two-good-edge restriction in #475 is
+itself already strongly coincident at depth two.
+Thus that singleton no-strict-component exclusion has
+a shorter independent proof, without the local seam-residue
+calculation. The latter remains a useful filter for
+substitutions not exhibiting this stronger coincidence.
+
 ## Exact balanced-pair consequence (family-scoped)
 
 Let T=(u,v) be **any** nonempty irreducible noncoincident
