@@ -1,10 +1,12 @@
-name: C4 uniform third-level family coincidence
+name: C4 Pisot nonnegative-run family coincidence
 
 on:
   pull_request:
     paths:
       - '.github/workflows/c4-third-level-family.yml'
       - 'docs/c4-uniform-third-level-coincidence-family-2026-11-04.md'
+      - 'docs/c4-asymmetric-third-level-coincidence-2026-11-04.md'
+      - 'docs/c4-nonnegative-runs-uniform-four-level-2026-11-04.md'
       - 'kernel/psc/c4_third_level_coincidence_family.mojo'
       - 'kernel/tests/test_c4_third_level_coincidence_family.mojo'
       - 'tests/test_c4_third_level_coincidence_family_oracle.py'
@@ -40,6 +42,6 @@ jobs:
           pixi-version: v0.81.0
           manifest-path: kernel/pixi.toml
           locked: true
-      - name: Canonical bounded Mojo actual-letter and BPA proof controls
+      - name: Canonical bounded Mojo actual-letter and BPA proof controls (three chambers)
         working-directory: kernel
         run: pixi run --locked mojo run -I . tests/test_c4_third_level_coincidence_family.mojo
