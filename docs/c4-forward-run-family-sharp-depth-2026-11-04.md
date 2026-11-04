@@ -141,6 +141,118 @@ The bounded oracle's exhaustive lower-level searches
 are independent regression checks, **not** the proof
 of minimality for unbounded parameters.
 
+
+## Prefix-satellite lifting and exact all-pairs depths
+
+The family has an elementary but useful **word-level structure** which
+does not follow from its incidence spectrum:
+
+**Lemma (prefix-satellite lifting).** Let \(\tau\) be any nonerasing
+substitution on an alphabet and suppose \(\tau(k)=\tau(i)W\) as
+*literal words* for distinct source letters \(i,j,k\) and some word
+\(W\) (possibly empty). For every \(n\geq1\),
+
+\[
+\tau^n(k)=\tau^n(i)\,\tau^{n-1}(W).
+\]
+
+Therefore every equal-Parikh-prefix/common-next-letter witness for
+the pair \((i,j)\) at depth \(n\) is *automatically* a simultaneous
+witness for the triple \((i,j,k)\) at the **same cut and depth**.
+Conversely every triple witness is a pair witness. In particular the
+*minimum* simultaneous triple depth equals the minimum pair depth
+\(D_{ij}\), including the possibility that both are infinite.
+
+**Proof.** Apply \(\tau^{n-1}\) to the literal word equation
+\(\tau(k)=\tau(i)W\) and use multiplicativity of substitutions
+under concatenation. The word \(\tau^n(i)\) is an exact prefix of
+\(\tau^n(k)\); its Parikh prefix and next letter at every legal
+cut agree with those for \(\tau^n(k)\). The equivalence is immediate.
+No Pisot assumption, periodicity assumption, or finite BPA state
+set is needed. The statement is *about a supplied prefix relation*,
+not an assertion that such a relation always exists.
+
+Here \(\sigma(2)=\sigma(0)2\) exactly; hence
+
+\[
+\sigma^n(2)=\sigma^n(0)\sigma^{n-1}(2).
+\]
+
+Thus the minimum simultaneous depth found above equals the minimum
+ordinary **(0,1) strong-coincidence depth**, not just an upper bound.
+
+**Corollary (sharp all-pairs coincidence depth).** For every member of
+this forward family, the minimum strong-coincidence depth for the pair
+\(\{0,2\}\) is **1**. For each of \(\{0,1\}\) and \(\{1,2\}\)
+it equals the value \(D(a,b)\) in the five-chamber table above.
+Consequently the minimum generation by which **all three pairs**
+have individually become strongly coincident is *exactly* \(D(a,b)\).
+This is stronger than an upper-bound certificate: the earliest
+all-pairs level is explicit and it varies at fixed incidence.
+
+**Proof.** At generation one, \(\sigma(0)=01\) and
+\(\sigma(2)=012\) share the first letter 0 (the empty prefix).
+The prefix-satellite lemma and the five-chamber lower bound give
+\(D_{01}=D\) and a level-\(D\) certificate for \(\{1,2\}\).
+It remains to exclude earlier \(\{1,2\}\) witnesses in the
+chambers where \(D>2\).
+
+At level one, \(\sigma(1)=B\) has **no zero** while
+\(\sigma(2)=012\) starts with zero, so no witness exists:
+at p=0 the first letters differ, and for p>0 the zero counts
+cannot match.
+
+At level two and \(a\geq2\), the true words are
+\(G=B^aCB^b\) and \(H=ABC\). The former has just **one zero**
+and the latter two. The first zero of G is at index
+\(a(s+1)\), strictly *after* the second zero of H
+at index \(s+3\), because \(a\geq2\), \(s\geq2\).
+Before G reaches its first zero its prefixes have zero
+zeros, while H already has at least one. Afterward,
+G has one zero and H already has two. Hence there is
+**not even a nonempty equal-Parikh-prefix cut**.
+For \((a,b)=(1,0)\), the literal words are G=`12012`,
+H=`0112012`; their only equal-Parikh-prefix indices
+inside G are 0 and 4, and their next letters are respectively
+1/0 and 2/0. This excludes level two on the last remaining
+\(D>2\) boundary.
+
+At level three for \(a\geq2,b=0\), use
+\(Y=G^aH=\sigma^3(1)\), \(Z=FGH=\sigma^3(2)\), with
+\(K=a(a+1)\), \(P=K+a+3\), \(L=K+a+6\). Up to cut
+\(p\leq P\), Z has exactly the same prefix as
+\(X=FG=\sigma^3(0)\), and the earlier proof classified
+**all** balanced prefix cuts as 0,K+2,P, with mismatching
+next letters. For p>P, separate the remaining parameter
+regimes:
+
+* \(a\geq4\): Z has at least two zeros, while Y has exactly
+  one zero throughout its remaining comparison range
+  \(p<|Z|=K+2a+12\). The *second* zero of Y appears at
+  \(2K+3\geq|Z|\).
+* \(a=3\): Z has a second zero at P=18, third at L=21
+  and fourth at 27. Y has its second zero at 27.
+  Thus from p=19 through 27, Z has more zeros than Y,
+  and for p=28,29, Z has four while Y has two.
+* \(a=2\): Z has zero positions 0,11,14,19;
+  Y has zeros at 6,15,18 (the fourth occurs after Z ends).
+  All p>11 have unequal zero counts **except p=19**.
+  At p=19 the prefix difference
+  \(\operatorname{Parikh}(Y[:19])-\operatorname{Parikh}(Z[:19])
+    =(0,-1,1)\ne0\), ruling out that last candidate.
+
+Therefore there is no \(\{1,2\}\) witness at any
+generation below \(D\). At generation D the literal
+three-letter certificate supplies one, completing the proof.
+
+**Scope.** This pairwise-completeness argument depends on the exact
+forward word order. The arbitrary prefix-satellite lemma is general,
+but the five-chamber classification is not. Neither resolves C4
+for unrelated primitive irreducible Pisot substitutions. It does
+not claim that arbitrary balanced roots are *first* productive
+at D; it only establishes a sharp worst-case letter-pair
+strong-coincidence horizon.
+
 ## Consequence and fixed-incidence correction
 
 For each chamber, any nonempty irreducible noncoincident
