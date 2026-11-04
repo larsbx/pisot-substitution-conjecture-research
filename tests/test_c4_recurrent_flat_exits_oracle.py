@@ -167,3 +167,61 @@ def test_collared_interval_reducible_and_productive_controls():
     sigma = ("01", "12", "021")
     top, bottom = (inflate(sigma, inflate(sigma, word)) for word in ("10", "01"))
     assert [i for i in range(1, len(top)) if p(top[:i]) == p(bottom[:i])] == [7]
+
+
+def hub_profile(pair, hub):
+    u, v = pair if pair[0][0] == hub else pair[::-1]
+    assert u[0] == hub and v[0] != hub
+    prefix = [u[:i].count(hub) - v[:i].count(hub) for i in range(len(u) + 1)]
+    assert prefix[1] == 1 and prefix[-1] == 0
+    area = sum(prefix)
+    pair_counts = [
+        sum(word[i] == hub and word[j] != hub for i, j in combinations(range(len(word)), 2))
+        for word in (u, v)
+    ]
+    assert area == pair_counts[0] - pair_counts[1]
+    crossing = next((i for i in range(len(u)) if prefix[i + 1] < 0), -1)
+    return area, crossing
+
+
+def test_hub_prefix_crossing_controls_and_actual_offset_cancellation():
+    from test_c4_complete_cone_hub_audit_oracle import SIGMA as REDUCIBLE, STATES
+    from test_c4_two_generation_rank_oracle import matrix
+
+    assert REDUCIBLE[0][0] == REDUCIBLE[1][0] == "1"
+    assert [hub_profile(pair, "2") for pair in STATES] == [(2, -1), (4, -1), (2, -1), (2, -1)]
+    assert [hub_profile(pair, "1") for pair in [PARENT, *children(PARENT)]] == [
+        (8, -1), (8, -1), (5, -1), (5, -1),
+    ]
+
+    sigma = ("01", "12", "021")
+    seed = ("10", "01")
+    (pair,) = factor(*(inflate(sigma, word) for word in seed))
+    row = factor(*(inflate(sigma, word) for word in pair))
+    assert [hub_profile(z, "1") for z in (seed, pair, *row)] == [
+        (1, -1), (0, 2), (-3, 2), (1, -1),
+    ]
+    top, bottom = pair
+    assert (top[2], bottom[2]) == ("0", "1")
+    defect = tuple(a - b for a, b in zip(p(top[:2]), p(bottom[:2])))
+    assert defect == (-1, 0, 1)
+
+    def inflate_addressed(letter):
+        cells = [(letter, ())]
+        for _ in range(3):
+            cells = [(b, path + (i,)) for a, path in cells for i, b in enumerate(sigma[int(a)])]
+        return cells
+
+    a, b = (inflate_addressed(word[2]) for word in pair)
+    assert (a[0], b[7]) == (("0", (0, 0, 0)), ("0", (1, 1, 0)))
+    for _ in range(3):
+        defect = matvec(matrix(sigma), defect)
+    assert defect == p("".join(letter for letter, _ in b[:7])) == (2, 3, 2)
+
+    prefixes = [word[:2] for word in pair]
+    for _ in range(3):
+        top, bottom = (inflate(sigma, word) for word in (top, bottom))
+        prefixes = [inflate(sigma, word) for word in prefixes]
+    assert (len(prefixes[0]), len(prefixes[1]) + 7) == (28, 28)
+    assert p(top[:28]) == p(bottom[:28]) == (7, 12, 9)
+    assert factor(top[28:29], bottom[28:29]) == [("0", "0")]

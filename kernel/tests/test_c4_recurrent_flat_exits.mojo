@@ -13,7 +13,7 @@ from psc.c4_cut_alignment import classify_irreducible_birth
 from psc.c4_two_generation_rank import _rank_det, literal_two_generation_parikh_rank
 from psc.carrier import profile_component
 from psc.pisot import is_pip
-from psc.words import Pair, parikh
+from psc.words import Pair, k2, parikh
 from substitution_dynamics.automaton import recurrent_noncoincident_sccs
 
 
@@ -97,6 +97,92 @@ def test_collared_cut_controls() raises:
         u = apply_substitution(sigma, u)
         v = apply_substitution(sigma, v)
     assert_equal(coincidence_boundaries(u, v), [0, 7, 9])
+
+
+def check_hub_prefix_area(pair: Pair, hub: Int, area: Int, crossing: Int) raises:
+    assert_true(pair.u[0] == hub and pair.v[0] != hub)
+    var discrepancy = 0
+    var accumulated = 0
+    var first_crossing = -1
+    for i in range(pair.length()):
+        accumulated += discrepancy
+        discrepancy += Int(pair.u[i] == hub) - Int(pair.v[i] == hub)
+        if discrepancy < 0 and first_crossing == -1:
+            first_crossing = i
+    assert_equal(discrepancy, 0)
+    assert_equal(accumulated, area)
+    assert_equal(first_crossing, crossing)
+    var counts = k2(pair)
+    var wedge_area = 0
+    for letter in range(3):
+        wedge_area += counts[3 * hub + letter]
+    assert_equal(wedge_area, area)
+
+
+def test_hub_prefix_crossing_controls() raises:
+    # The strict reducible control has a genuine good edge 0/1 and hub 2.
+    var reducible: List[List[Int]] = [[1, 0], [1, 0, 2], [2, 1, 1]]
+    assert_equal(reducible[0][0], reducible[1][0])
+    check_hub_prefix_area(Pair([2, 1, 0], [1, 0, 2]), 2, 2, -1)
+    check_hub_prefix_area(Pair([2, 1, 1, 1, 0], [1, 1, 1, 0, 2]), 2, 4, -1)
+    check_hub_prefix_area(Pair([2, 1, 1, 1, 0, 2, 1, 0], [1, 0, 2, 1, 0, 2, 1, 1]), 2, 2, -1)
+    check_hub_prefix_area(
+        Pair([2, 1, 1, 1, 0, 2, 1, 0, 2, 1, 0, 2, 1, 0],
+             [1, 0, 2, 1, 0, 2, 1, 0, 2, 1, 0, 2, 1, 1]), 2, 2, -1,
+    )
+
+    var exits: List[List[Int]] = [[1], [0, 2], [2, 2, 0]]
+    var parent = Pair([1, 2, 2, 0, 2, 2, 0, 2, 2, 0],
+                      [0, 2, 2, 2, 0, 2, 2, 0, 1, 2])
+    check_hub_prefix_area(parent, 1, 8, -1)
+    var exit_row = decompose(apply_substitution(exits, parent.u),
+                             apply_substitution(exits, parent.v))
+    var expected_areas: List[Int] = [8, 5, 5]
+    assert_equal(len(exit_row), len(expected_areas))
+    for i in range(len(exit_row)):
+        check_hub_prefix_area(Pair(exit_row[i].v, exit_row[i].u), 1, expected_areas[i], -1)
+
+    var sigma: List[List[Int]] = [[0, 1], [1, 2], [0, 2, 1]]
+    var seed = Pair([1, 0], [0, 1])
+    check_hub_prefix_area(seed, 1, 1, -1)
+    var first = decompose(apply_substitution(sigma, seed.u), apply_substitution(sigma, seed.v))
+    assert_equal(len(first), 1)
+    check_hub_prefix_area(first[0], 1, 0, 2)
+    var second = decompose(apply_substitution(sigma, first[0].u),
+                           apply_substitution(sigma, first[0].v))
+    assert_equal(len(second), 2)
+    check_hub_prefix_area(second[0], 1, -3, 2)
+    check_hub_prefix_area(second[1], 1, 1, -1)
+
+    # Reconstruct the offset cancellation at that crossing, then verify
+    # that it gives an actual diagonal in the full physical words.
+    var top = first[0].u.copy()
+    var bottom = first[0].v.copy()
+    assert_equal([top[2], bottom[2]], [0, 1])
+    var top_prefix = segment(top, 0, 2)
+    var bottom_prefix = segment(bottom, 0, 2)
+    var a = parikh(top_prefix)
+    var b = parikh(bottom_prefix)
+    var defect: List[Int] = [a[0] - b[0], a[1] - b[1], a[2] - b[2]]
+    assert_equal(defect, [-1, 0, 1])
+    var top_image: List[Int] = [top[2]]
+    var bottom_image: List[Int] = [bottom[2]]
+    var m = Mat3(substitution_incidence(sigma))
+    for _ in range(3):
+        top = apply_substitution(sigma, top)
+        bottom = apply_substitution(sigma, bottom)
+        top_prefix = apply_substitution(sigma, top_prefix)
+        bottom_prefix = apply_substitution(sigma, bottom_prefix)
+        top_image = apply_substitution(sigma, top_image)
+        bottom_image = apply_substitution(sigma, bottom_image)
+        defect = m.apply(defect)
+    assert_equal(defect, [2, 3, 2])
+    assert_equal(parikh(segment(bottom_image, 0, 7)), defect)
+    assert_equal([top_image[0], bottom_image[7]], [0, 0])
+    assert_equal([len(top_prefix), len(bottom_prefix) + 7], [28, 28])
+    assert_equal(parikh(segment(top, 0, 28)), [7, 12, 9])
+    assert_equal(parikh(segment(bottom, 0, 28)), [7, 12, 9])
+    assert_equal([top[28], bottom[28]], [0, 0])
 
 
 def test_recurrent_flat_row_with_two_exits() raises:
@@ -188,6 +274,8 @@ def test_recurrent_flat_row_with_two_exits() raises:
 def main() raises:
     test_recurrent_flat_row_with_two_exits()
     test_collared_cut_controls()
+    test_hub_prefix_crossing_controls()
     print("C4 recurrent flat exits: 3 ordered children, phase 1, determinant -1, diagonal at [2,1].")
     require_contract("complete recurrent flat PIP child row with actual good-edge witness, every newborn address and both nonsync tests, exact exiting Parikh mass, and fail-closed strict audit")
     require_contract("literal collared cut intervals with transported endpoint equality, exact cycle masses and diagonals, and reducible and productive controls")
+    require_contract("hub prefix area equals degree-two word defect, exact axis crossing and actual offset-to-diagonal witness, with strict reducible and recurrent exit controls")
