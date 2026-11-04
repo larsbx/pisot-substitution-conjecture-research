@@ -1,6 +1,6 @@
 # C4: every represented cut pair has positive Perron frequency (2026-11-04)
 
-**Status:** Proven algebraic frequency reduction for a **supplied finite fully strict child-closed** balanced-pair SCC. The pair-specific Rauzy overlap corollary is **proposed pending independent geometric audit** of the regular-window cut-and-project step in draft PR #480. General C4, G1, BH, A1', pure discreteness and PSC remain open.
+**Status:** Proven algebraic frequency reduction for a **supplied finite fully strict child-closed** balanced-pair SCC. The pair-specific Rauzy overlap corollary is **proposed pending independent geometric audit** of the regular-window cut-and-project step in merged PR #480. General C4, G1, BH, A1', pure discreteness and PSC remain open.
 
 **Baseline:** main a081bb0a2e258f38ad405f5b12285bcd450e9520 (merged PR #481). Research target: Issue #461. The work strengthens the union-overlap reduction of PR #480; it does not import its incorrect earlier one-pair-strong-coincidence-to-*unprimed*-disjointness claim.
 

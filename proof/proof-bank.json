@@ -2341,6 +2341,21 @@
       "statement_heading": "**Lemma.** Let `T` be an actual irreducible noncoincident balanced"
     },
     {
+      "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
+      "line": 52,
+      "statement_heading": "**Theorem A.**"
+    },
+    {
+      "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
+      "line": 105,
+      "statement_heading": "**Theorem B.** `λ(Z_A) ≥ κ / L_max > 0`. In particular `λ(R_c ∩ R_c') > 0` for"
+    },
+    {
+      "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
+      "line": 151,
+      "statement_heading": "**Corollary B′ (productivity from disjointness).** If the subtiles of the"
+    },
+    {
       "source": "docs/c4-defect-degree-census.md",
       "line": 120,
       "statement_heading": "**Proposition (bounded PIP corpus).** Among the 4,554 primitive ternary"
