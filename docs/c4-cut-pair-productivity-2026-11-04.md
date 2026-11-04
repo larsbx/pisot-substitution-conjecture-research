@@ -51,16 +51,16 @@ A(C) = { {u_0, v_0} : (u,v) ∈ C }   (unordered letter pairs).
 
 **Theorem A.**
 1. Every state has `u_0 ≠ v_0`. Hence `A(C)` is a nonempty set of off-diagonal pairs.
-2. Every balanced cut of every inflation `σ^n(S)`, `S ∈ C`, is followed on
-   the two tracks by the two letters of a pair in `A(C)`.
+2. Every **proper** balanced cut of every inflation `σ^n(S)`, `S ∈ C`,
+   is followed by the two letters of a pair in `A(C)`.
 3. `(g×g)(A(C)) ⊆ A(C)` and `g(c) ≠ g(c')` on `A(C)`, where `g(a)` is the
    first letter of `σ(a)`.
 4. No pair of `A(C)` is left strongly coincident.
 5. Conversely, suppose `σ` has a balanced pair `T` that never produces a
    coincident factor in any inflation, and suppose the set of irreducible
-   factors reachable from `T` is finite. Then a strict `C` exists. So, modulo
-   G1-type finiteness, *productivity of strict systems* is exactly *strong
-   coincidence on the cut pairs*.
+   factors reachable from `T` is finite. Then a strict `C` exists. This is a
+   **conditional finite-sink converse**, not an equivalence between absence
+   of pairwise strong coincidence and nonproductivity.
 
 *Proof.*
 1. If `u_0 = v_0`, the prefixes of length one balance, so irreducibility
@@ -153,27 +153,73 @@ pairs in `A(C)` are pairwise measure-disjoint, `C` cannot exist. Equivalently:
 if `R_c, R_c'` are measure-disjoint for every pair `{c,c'}`, then `σ` has no
 strict C4 system.
 
-## 4. Where this sits
+## 4. Source-audited subtile comparison (corrected scope)
 
-For a unit PIP `σ` and one letter pair `{c,c'}`:
+This section distinguishes the **positive-prefix** and **negative/suffix**
+Rauzy subtiles of Arnoux–Ito. The stronger claim in the previous revision
+that a positive strong-coincidence witness for *just one* pair implies
+`λ(R_c ∩ R_c')=0` for the **unprimed positive-prefix subtiles** is
+**NOT** supplied by the cited theorem, and is withdrawn as an import.
+It must not be used in any proof dependency.
 
-```text
-SC(c,c')  ⟹  λ(R_c ∩ R_c') = 0          [Arnoux–Ito, applied to one pair; import]
-λ(R_c ∩ R_c') = 0 on all of A(C)  ⟹  no strict C (C4)   [Theorem B]
-no strict C  ⟸  SC on all of A(C)       [Theorem A(4)]
-```
+Arnoux–Ito (2001), Corollary 2 and Theorem 2, show:
 
-So the measure condition sits *between* strong coincidence and C4.
+- A positive strong coincidence on **one pair** `(c,c')`
+  gives measure-zero overlap of the corresponding **primed** subtiles
+  `X(c)' ∩ X(c')'` in their notation, by measure-disjointness
+  of the set-equation pieces.
+- If positive strong coincidence holds for **every pair of letters**,
+  then **all** unprimed subtiles `X(c)` are pairwise measure-disjoint
+  (Theorem 2, in the unimodular primitive Pisot setting).
+  Passing from primed pairwise disjointness to the unprimed
+  conclusion uses the global partition / union construction.
+  The source does not give the unprimed statement for one
+  arbitrary positively coincident pair alone.
 
-The import is pairwise. A strong-coincidence witness `σ^n(c) = P x Q`,
-`σ^n(c') = P' x Q'`, `p(P) = p(P')` places `M_s^n R_c + π p(P)` and
-`M_s^n R_c' + π p(P)` as two pieces of the `n`-th set equation for `R_x`. The
-unit set equation is a measure-disjoint union, so `λ(R_c ∩ R_c') = 0`.
+This is not a minor notational distinction: Theorem B's
+`R_c` were explicitly defined from **positive prefixes** of
+a fixed point, and cannot be silently replaced by the primed
+family without reworking the projection and density proof.
 
-Theorem B is therefore **strictly stronger** than Theorem A(4) as a
-conclusion. A strict system does not merely break strong coincidence on a cut
-pair: it makes the corresponding subtiles overlap on a set of measure at
-least `κ/L_max`.
+The logically valid implications are therefore:
+
+~~~text
+SC(c,c') for one pair   => primed pair overlap is null     [Arnoux–Ito]
+SC on ALL letter pairs  => ALL unprimed subtiles disjoint  [Arnoux–Ito]
+disjoint unprimed R_c/R_c' for every pair of A(C)
+                        => no strict C                     [Theorem B]
+strict C                => no SC on A(C)                   [Theorem A]
+strict C                => positive unprimed overlap
+                           on at least one pair of A(C)   [Theorem B]
+~~~
+
+**No pairwise `SC(c,c') => λ(R_c∩R_c')=0` claim is
+retained.** Theorem B itself uses only the compact
+positive-prefix subtiles and elementary lattice density;
+it does *not* import any Arnoux–Ito strong-coincidence
+implication. Thus this correction changes attribution
+and a proposed "between" ordering, not the standalone
+density argument.
+
+**Density scope:** The lattice-point equality in §3 uses
+the *regular-window* case of cut-and-project uniform density,
+applied **only to finite unions of bounded boxes with
+measure-zero boundaries**. Moody's general measurable-window
+"almost every translate" theorem must not be read as an
+all-translates count for arbitrary fractal overlaps. The
+proof deliberately takes an open box cover of the compact
+overlap set, counts in those regular boxes at the fixed
+lattice translate, and then uses outer regularity. The
+Rauzy overlap `Z_A` is **not** assumed regular itself.
+If the physical/internal cut-and-project density hypotheses
+are not verified, Theorem B must remain conditional on the
+stated counting lemma; the bounded Mojo tests do not
+validate measure theory.
+
+In the **non-unit** case, Euclidean projection is not a
+substitute for the natural adelic representation space.
+No adelic version, nor general positive-measure-subtile
+disjointness, is proved here.
 
 ## 5. Exact controls
 
@@ -223,3 +269,26 @@ A missing strong-coincidence witness is reported as an exhausted budget.
   is inconsistent for an irreducible cubic. That is a finite-algebra question
   about two graph-directed IFS with a common contraction, and the place where
   the Pisot spectrum would have to enter.
+
+## 7. Independent source and acceptance audit — 2026-11-04
+
+The original "Theorem A productivity is exactly strong coincidence" wording
+is sharpened to the *necessary* absence of a cut-pair witness for every
+strict component and the *conditional* finite-reachable-sink converse.
+Absence of a witness on an arbitrary selected first-letter pair does **not**
+itself imply the existence of a nonproductive closed system. The executable's
+bounded `-1` result is an exhausted search, not a proof of absence.
+
+Theorem B is a proposed mathematical density reduction with an explicit
+compact-window lattice-count step. It is **not** checked by the finite Mojo
+audit. In particular its quantitative measure lower bound requires review
+of the ambient lattice covolume normalization and the regular-box counting
+lemma, as opposed to inferring validity from the three finite fixtures.
+The Arnoux–Ito pairwise **primed** versus global **unprimed** result is
+corrected in §4; no arbitrary pairwise strong-coincidence-to-unprimed-measure
+implication may enter the C4 proof ledger.
+
+The actual remaining challenge in Issue #461 is unchanged: establish
+productivity in the genuine irreducible Pisot strict-carrier setting,
+without assuming subtile measure-disjointness or an unproved adelic
+analogue. Do not promote C4, BH, A1′, G1 or PSC based on this note.
