@@ -140,6 +140,11 @@ def audit_phase_lattice_index(
         classes.append(ids.copy())
         indices.append(idx)
 
+    # Integrality is a cross-check between independently computed data (the
+    # minor gcds g_k) and the verified inputs: given P N = M P and the phase
+    # edges checked above, M L_k lies inside L_(k+1), so g_(k+1) divides
+    # |det M| g_k (Theorem 1). It refuses no packet that passed the input
+    # checks; a failure signals an implementation defect.
     var transitions = List[Int]()
     var product = 1
     for k in range(period):
@@ -148,53 +153,65 @@ def audit_phase_lattice_index(
         if numerator % indices[next] != 0:
             raise Error("nonintegral phase-lattice transition index")
         var t = numerator // indices[next]
+        # Invariant (cannot fail): numerator and indices are positive.
         if t <= 0:
-            raise Error("nonpositive phase transition")
-        var residual = t
+            raise Error("internal invariant violated: nonpositive phase transition")
+        transitions.append(t)
+        product *= t
+
+    # The checks below are ALGEBRAIC IDENTITIES once every t_k is defined as
+    # |det M| g_k / g_(k+1) and is integral: the g_k cancel cyclically, so
+    # prod t_k = |det M|^h; each t_k then divides |det M|^h, so its prime
+    # support lies in that of det M; and for |det M| = 1 every positive
+    # integer t_k equals 1, forcing g_k constant. They are kept only as
+    # internal invariant asserts (fail closed on a defect); they do not test
+    # any independently supplied allocation, and no caller can supply one.
+    var expected_product = 1
+    for _ in range(period):
+        expected_product *= absdet
+    if product != expected_product:
+        raise Error("internal invariant violated: cyclic index product")
+    for k in range(period):
+        var residual = transitions[k]
         var shared = _int_gcd(residual, absdet)
         while shared > 1:
             residual //= shared
             shared = _int_gcd(residual, absdet)
         if residual != 1:
-            raise Error("transition index has unexpected prime support")
-        transitions.append(t)
-        product *= t
-
-    var expected_product = 1
-    for _ in range(period):
-        expected_product *= absdet
-    if product != expected_product:
-        raise Error("cyclic index determinant budget violated")
-
+            raise Error("internal invariant violated: transition prime support")
     if absdet == 1:
         for k in range(period):
             if indices[k] != indices[0] or transitions[k] != 1:
-                raise Error("unimodular phase lattice leakage")
+                raise Error("internal invariant violated: unimodular phase transport")
 
-    # Equality case |C|=3h: every one-step phase transition MUST be
-    # nonsingular, with |det block| equal to the exact lattice index.
+    # Cross-check on the literal N blocks (Proposition 3): in the equality
+    # case |C|=3h every one-step phase transition block is nonsingular with
+    # |det block| equal to the lattice index. This, too, follows from the
+    # verified P N = M P (P_(k+1) A_k = M P_k with P_k, P_(k+1) invertible),
+    # but it reads N directly rather than the derived t_k, so it guards the
+    # minor/index computation against a defect.
     if r == 3 * period:
         var signed_product = 1
         for k in range(period):
-            var src = classes[k]
-            var dst = classes[(k + 1) % period]
+            var src = classes[k].copy()
+            var dst = classes[(k + 1) % period].copy()
             var block = List[List[Int]]()
             for i in range(3):
                 var row = List[Int]()
                 for j in range(3):
                     row.append(N[dst[i]][src[j]])
-                block.append(row)
+                block.append(row^)
             var c0: List[Int] = [block[0][0],block[1][0],block[2][0]]
             var c1: List[Int] = [block[0][1],block[1][1],block[2][1]]
             var c2: List[Int] = [block[0][2],block[1][2],block[2][2]]
             var detA = _rank_det(c0, c1, c2)
             if detA == 0 or _positive_abs(detA) != transitions[k]:
-                raise Error("equality-size phase child block determinant invalid")
+                raise Error("internal cross-check failed: equality-size phase child block determinant")
             signed_product *= detA
         var expected_signed = 1
         for _ in range(period):
             expected_signed *= determinant
         if signed_product != expected_signed:
-            raise Error("one-step signed determinant product invalid")
+            raise Error("internal cross-check failed: one-step signed determinant product")
 
     return PhaseLatticeIndex(determinant, indices, transitions)

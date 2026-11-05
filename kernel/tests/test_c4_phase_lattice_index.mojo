@@ -155,6 +155,4 @@ def main() raises:
     test_bad_intertwiner_and_phase_labels_fail_closed()
     test_real_strict_reducible_rank_two_is_not_pip()
     print("C4 phase-lattice indices and exact determinant budgets passed.")
-    require_contract(
-        "supplied finite strict Pisot SCC phases have integer index transports whose product is abs(det M)^h; unit transport is exact lattice equality, 3h transition blocks nonsingular; synthetic unit/nonunit controls and false-phase/low-rank refusals; no actual PIP SCC or C4/PSC conclusion"
-    )
+    require_contract("supplied finite strict Pisot SCC phases have integer index transports whose product is abs(det M)^h; unit transport is exact lattice equality, 3h transition blocks nonsingular; synthetic unit/nonunit controls and false-phase/low-rank refusals; no actual PIP SCC or C4/PSC conclusion")

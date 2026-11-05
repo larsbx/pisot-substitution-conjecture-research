@@ -64,6 +64,8 @@ Thus **every transition block is nonsingular**, not just the h-step return block
 
 **Why this does not finish C4:** These are necessary *integer* tests. A nonnegative P_k can consist of basis columns that cannot be masses of noncoincident irreducible pairs; even requiring each column to contain all three letters does not imply the child rows arise from a genuine substitution. Conversely, positive-dimensional Rauzy subtile overlaps from #480–#485 do not imply the literal synchronized newborn in Issue #461. No geometric-disjointness or one-pair primed-to-unprimed argument is imported.
 
+**Update (2026-11-05).** The preceding sentence predates two results now on main. Lemma P (unit case; commit `9c77468`, [cut-pair note §4](c4-cut-pair-productivity-2026-11-04.md)) gives a null primed-subtile overlap from one left strong-coincidence pair, and the non-unit compact M-adic counting bridge (commit `86742c6`, [bridge note](c4-nonunit-madic-counting-bridge-2026-11-04.md)) gives the lifted analogue. Neither excludes the strict SCC studied here: every pair in a strict component's set A(C) has **no** strong-coincidence witness, which is exactly the input both results require. The natural link from this note to that geometry is Corollary 2: the `p | det M` part of the transition indices is what the `Z^3/M^q Z^3` residue tables of the [non-unit occupancy note](c4-nonunit-residue-occupancy-2026-11-04.md) and the M-adic bridge see, while the `p ∤ det M` part is rigid. No such link is proved here.
+
 ## 4. Exact saturations and negative controls (non-word systems!)
 
 Let
@@ -79,18 +81,18 @@ The (4,1) allocation results by interchanging the two phase roles of the first p
 For a **unit** control, take the Tribonacci incidence
 `M_1=[[1,1,1],[1,0,0],[0,1,0]]`, det=1, irreducible Pisot. With `P=[M_1^3,M_1^3]` and `N=[[0,M_1],[M_1,0]]`, all six synthetic P columns have support on all three letters, both lattice indices are one, and both transition blocks are unimodular. This demonstrates that positive mass support and unimodular phase transport alone do **not** exclude a synthetic strict template.
 
-Negative controls: a broken PN=MP equation, incorrect phase edges, singular period phase P, or an incorrect t_k allocation must be refused. The real four-state strict **reducible-characteristic** control (10/102/211) has global rank two and is not an admissible PIP phase packet. The original one-state selected path in #482 is not fully child-closed.
+Negative controls: a broken PN=MP equation, incorrect phase edges, a missing child column, singular M, or a rank-deficient phase P must be refused, and the tests pin these refusals. *Correction (2026-11-05):* an earlier version also listed "an incorrect t_k allocation". No such control exists: t_k is computed as |m|g_k/g_(k+1) and no entry point accepts a caller-supplied allocation. Given that definition and integrality, the product identity, the prime-support condition and the unimodular equality are algebraic identities, and the audit keeps them only as internal invariant asserts. Integrality and the equality-size block-determinant condition also follow from the verified PN=MP and phase edges; they are cross-checks computed from independent data (minor gcds, literal N blocks), not further refusal criteria. The real four-state strict **reducible-characteristic** control (10/102/211) has global rank two and is not an admissible PIP phase packet. The original one-state selected path in #482 is not fully child-closed.
 
 ## 5. Acceptance, reproducibility and next eliminator
 
-The canonical Mojo code is a bounded integer **necessary-condition audit** of supplied M,P,N and phase labels, not an independent SCC constructor. It computes every 3x3 minor gcd, exact t_k, prime support and the size=3h determinant condition; refuse malformed dimensions, singular M, missing child columns, non-cyclic edges, low phase rank, or unsafe size limits. The independent Python oracle reconstructs the algebraic packets, three h=2 nonunit allocations, the unit all-positive packet, negative mutations, and exact Smith/gcd indices.
+The canonical Mojo code is a bounded integer **necessary-condition audit** of supplied M,P,N and phase labels, not an independent SCC constructor. It computes every 3x3 minor gcd, exact t_k and the size=3h block determinants, with the identities of Theorem 1 as internal invariant asserts; it refuses malformed dimensions, singular M, missing child columns, non-cyclic edges, low phase rank, or unsafe size limits. The independent Python oracle reconstructs the algebraic packets, three h=2 nonunit allocations, the unit all-positive packet, negative mutations, and exact Smith/gcd indices.
 
 ~~~sh
-(cd kernel && pixi run --locked mojo run -I . tests/test_c4_phase_lattice_index.mojo)
+(cd kernel && pixi run --locked mojo run -I . -I tests tests/test_c4_phase_lattice_index.mojo)
 python -m pytest -q tests/test_c4_phase_lattice_index_oracle.py
 python tools/make_proof_bank.py --check
 ~~~
 
 **Next actual C4 eliminator:** Feed the *real occurrence-labelled* strict component constructor (not synthetic P,N) into this index audit. For a hypothetical equality-size r=3h candidate, require every ordered 3x3 transition block to be integral, nonnegative and nonsingular, then independently verify every factor's two actual words, source/digit addresses, newborns, legal contexts and exact full closure. No candidate passes by matrix criteria alone.
 
-**Stop/go:** Keep the formal ranks/index theorem and all synthetic controls separate from any claim of actual strict PIP existence or nonexistence. No general C4, G1, BH, A1', PDS or PSC promotion; hosted exact-head and independent mathematical acceptance pending.
+**Stop/go:** see the [literature gate](c4-phase-lattice-index-literature-gate-2026-11-05.md) (decision: proceed, narrowed). Keep the formal ranks/index theorem and all synthetic controls separate from any claim of actual strict PIP existence or nonexistence. No general C4, G1, BH, A1', PDS or PSC promotion; hosted exact-head and independent mathematical acceptance pending.

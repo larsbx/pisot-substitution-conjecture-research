@@ -96,6 +96,8 @@ def audit(m,p,n,phase,h):
         if numerator%denominator:
             raise ValueError("nonintegral lattice transition")
         transitions.append(numerator//denominator)
+    # The asserts below are algebraic identities once t_k=|m|g_k/g_(k+1) is
+    # integral (cyclic cancellation); they are invariant checks, not controls.
     assert all(t>=1 for t in transitions)
     assert reduce(lambda a,b:a*b,transitions,1)==mass**h
     for t in transitions:
