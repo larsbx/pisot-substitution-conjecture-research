@@ -37,8 +37,11 @@ overlap-certificate argument: fixed-iterate uniqueness and period-three
 compatibility, a kernel-decidable integer occurrence-graph checker and its
 real soundness theorem, complete-cover measure subadditivity, null-overlap
 inference, and exclusion of a positive-measure carrier covered by null roots.
-Parallel occurrences remain separate. The concrete 18 graphs, their geometric
-coverage, the M-adic construction and the strict-cut counting lower bound are
-not supplied by the formal checker. See the
+Parallel occurrences remain separate. `PscVerif.OverlapPacket` adds a checked
+external-data format, typed-certificate binding and kernel rejection controls.
+The [concrete replay gate](../../docs/c4-overlap-lean-packet-binding-2026-11-05.md)
+requires all generated proofs, declaration audits and full emitted-packet parity
+before crediting class acceptance. Geometric coverage, the M-adic construction
+and the strict-cut counting lower bound remain separate obligations. See the
 [overlap Lean interface](../../docs/c4-overlap-lean-interface-2026-11-05.md)
 for the exact hypotheses and remaining bindings. No C4 or PSC status changes.

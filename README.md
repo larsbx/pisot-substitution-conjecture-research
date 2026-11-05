@@ -146,7 +146,7 @@ The mathematical entrypoints are the [proof ladder](docs/proof-ladder.md), [dire
 
 Executable research is primarily written in [Mojo](kernel/); [Python oracles](oracles/) provide independent checks. The repository also contains [Lean proofs](proof/PscVerif/) and [TLA+ models](proof/tla/) at their documented scopes.
 
-The [overlap Lean layer](docs/c4-overlap-lean-interface-2026-11-05.md) verifies the deductive certificate interface: period-three compatibility with two-step refinement, exact integer subinvariant soundness, and null-overlap inference from complete occurrence covers and measure scaling. The 18 concrete graph packets and their M-adic geometry/counting bindings remain outside that formal proof. This is not a complete Lean verification of PR #496 or PSC.
+The [overlap Lean layer](docs/c4-overlap-lean-interface-2026-11-05.md) verifies the deductive certificate interface: period-three compatibility with two-step refinement, exact integer subinvariant soundness, and null-overlap inference from complete occurrence covers and measure scaling. A [concrete packet binding](docs/c4-overlap-lean-packet-binding-2026-11-05.md) adds exhaustive kernel checks and full native/oracle parity as a separate replay gate. Its completed acceptance scope is recorded separately; M-adic geometry and counting remain outside the formal proof. This is not a complete Lean verification of PR #496 or PSC.
 
 The main verification commands are:
 

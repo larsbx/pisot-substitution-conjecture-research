@@ -40,9 +40,10 @@ inequality before the real soundness theorem applies.
 Each row has its own finite occurrence type `Fin (degree i)`. Two occurrences
 with the same target remain two different indices and two terms in the sum.
 The checker never replaces an occurrence list by its set of target vertices.
-Typed targets exclude out-of-range indices inside the Lean model. A future
-external packet decoder must prove that it constructs exactly these rows;
-the type alone does not authenticate a packet.
+Typed targets exclude out-of-range indices inside the Lean model. The concrete packet binding is implemented separately in
+[`OverlapPacket`](c4-overlap-lean-packet-binding-2026-11-05.md); its acceptance
+requires generated kernel proofs and a full emitted-packet oracle comparison.
+The type alone does not authenticate a packet.
 
 The measure theorem uses finite-union subadditivity, not measure-disjointness.
 It first proves the inequality in extended nonnegative reals, then converts
@@ -67,8 +68,10 @@ them as discharged:
 
 1. Import all 18 canonical graph packets and weights into typed Lean data,
    preserving state order, occurrence multiplicity, all rows and the complete
-   finite source domain. Then establish `Certificate.check = true` by
-   kernel-checked computation. The small controls above are not a substitute
+   finite source domain. The [new replay implementation](c4-overlap-lean-packet-binding-2026-11-05.md)
+   establishes `Certificate.check = true` by kernel computation only when all
+   generated proofs and packet comparisons complete. Its evidence directory
+   records completed scope; controls and pending workflows are not a substitute
    for the 285,786-state packet.
 2. Prove the graph-construction refinement: actual paired prefix occurrences
    give the recorded targets; nonintegrality and strict box separation are
@@ -109,7 +112,8 @@ checks out the exact PR head and retains the audit log as an artifact.
 Local validation records are in
 [`evidence/c4-overlap-lean-2026-11-05`](../evidence/c4-overlap-lean-2026-11-05/README.md).
 Compilation of the generic module is separate from validation of all 18
-concrete packets. The latter remains explicitly unimplemented here.
+concrete packets. The latter has a separate [packet binding and replay gate](c4-overlap-lean-packet-binding-2026-11-05.md);
+implementation and completed acceptance are distinguished in its evidence.
 
 ## Prior art and decision
 

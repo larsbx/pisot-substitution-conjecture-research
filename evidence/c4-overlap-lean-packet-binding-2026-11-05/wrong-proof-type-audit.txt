@@ -1,0 +1,20 @@
+/workspace/scratch/6091070274cc/negative-binding-pilot/audit-negative-control/Audit0.lean:4:2: error: Type mismatch
+  PscVerif.OverlapGenerated.Source0.accepted
+has type
+  True
+but is expected to have type
+  PscVerif.OverlapGenerated.Source0.packet.check = true
+/workspace/scratch/6091070274cc/negative-binding-pilot/audit-negative-control/Audit0.lean:7:4: error: Application type mismatch: The argument
+  PscVerif.OverlapGenerated.Source0.accepted
+has type
+  True
+but is expected to have type
+  PscVerif.OverlapGenerated.Source0.packet.check = true
+in the application
+  (PscVerif.OverlapPacket.Packet.check_iff PscVerif.OverlapGenerated.Source0.packet).mp
+    PscVerif.OverlapGenerated.Source0.accepted
+PSC_PACKET_AXIOMS 0	PscVerif.OverlapGenerated.Source0.accepted	
+PSC_PACKET_AXIOMS 0	PscVerif.OverlapGenerated.Source0.emit	propext
+PSC_PACKET_AXIOMS 0	PscVerif.OverlapGenerated.Source0.typed_accepted	
+PSC_PACKET_AXIOMS 0	PscVerif.OverlapGenerated.Source0.packet	
+PSC_PACKET_AUDIT_COMPLETE 0	4	2
