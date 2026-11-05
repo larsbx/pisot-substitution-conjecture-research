@@ -315,7 +315,10 @@ strong-coincidence witness, `int(R_c ∩ R_c′) = ∅`. On that class it is
 equivalent to C4. Its hypothesis class is empty on every computed domain
 (SC_all on the corpus) and constrained by `dim H¹ ≥ 5`. The concrete finite
 step that would narrow it is a `dim H¹(Ω_σ)` census over the 2,628 unimodular
-specimens. For `cr ≥ 3` the open sub-questions are cross-state disjointness
+specimens. That census is done ([`dim H¹` census note](c4-h1-census-2026-11-05.md)):
+2,136 unimodular specimens have `dim H¹ ≤ 4`, where Barge 2015 Thm 22 is
+incompatible with `cr = 2`, and the `cr = 2` wall can live only among the
+remaining 492 (408 at rank 5, 84 at rank 7). For `cr ≥ 3` the open sub-questions are cross-state disjointness
 `λ(K_S ∩ K_T) = 0` and whether a PIP strict pair must have a branching over a
 cut pair (which would force `cr ≥ 3` and iterate).
 
