@@ -2336,6 +2336,36 @@
       "statement_heading": "### Corollary (higher escape becomes one-step escape)"
     },
     {
+      "source": "docs/c4-addressed-overlap-to-newborn-2026-11-04.md",
+      "line": 22,
+      "statement_heading": "**Lemma.** Let `T` be an actual irreducible noncoincident balanced"
+    },
+    {
+      "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
+      "line": 58,
+      "statement_heading": "**Theorem A.**"
+    },
+    {
+      "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
+      "line": 124,
+      "statement_heading": "**Theorem B.** `λ(Z_A) ≥ κ / L_max > 0`. In particular `λ(R_c ∩ R_c') > 0` for"
+    },
+    {
+      "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
+      "line": 178,
+      "statement_heading": "**Corollary B′ (productivity from disjointness).** If the subtiles of the"
+    },
+    {
+      "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
+      "line": 199,
+      "statement_heading": "**Theorem C.** If a strict system `C` exists, then `θ_c ≤ 1/2` for every"
+    },
+    {
+      "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
+      "line": 266,
+      "statement_heading": "**Lemma P (unimodular, one pair).** Let `σ` be primitive with irreducible Pisot"
+    },
+    {
       "source": "docs/c4-defect-degree-census.md",
       "line": 120,
       "statement_heading": "**Proposition (bounded PIP corpus).** Among the 4,554 primitive ternary"
@@ -2346,6 +2376,81 @@
       "statement_heading": "### Proposition 3"
     },
     {
+      "source": "docs/c4-every-cut-pair-positive-density-2026-11-04.md",
+      "line": 7,
+      "statement_heading": "## Theorem A: each cut-pair grows with positive PF frequency"
+    },
+    {
+      "source": "docs/c4-every-cut-pair-positive-density-2026-11-04.md",
+      "line": 20,
+      "statement_heading": "**Theorem A.** For each e there exists a source j in I_e and a residue-zero generation subsequence n=mqh, for any fixed positive q, such that the number b_e(n,j) of *literal factor occurrences* with first pair e in the complete factorisation of sigma^n(T_j) obeys"
+    },
+    {
+      "source": "docs/c4-every-cut-pair-positive-density-2026-11-04.md",
+      "line": 40,
+      "statement_heading": "## Corollary B: per-pair subtile overlap (rests on #480 §3 and §8; human review pending)"
+    },
+    {
+      "source": "docs/c4-every-cut-pair-positive-density-2026-11-04.md",
+      "line": 49,
+      "statement_heading": "**Corollary B (given these geometric inputs, proved in #480 §3 and §8):** every represented pair e={c,c'} individually satisfies"
+    },
+    {
+      "source": "docs/c4-forward-run-family-sharp-depth-2026-11-04.md",
+      "line": 46,
+      "statement_heading": "**Theorem (five mutually exclusive chambers).** For every a,b>=0,"
+    },
+    {
+      "source": "docs/c4-forward-run-family-sharp-depth-2026-11-04.md",
+      "line": 163,
+      "statement_heading": "**Lemma (prefix-satellite lifting).** Let \\(\\tau\\) be any nonerasing"
+    },
+    {
+      "source": "docs/c4-forward-run-family-sharp-depth-2026-11-04.md",
+      "line": 200,
+      "statement_heading": "**Corollary (sharp all-pairs coincidence depth).** For every member of"
+    },
+    {
+      "source": "docs/c4-nonunit-madic-counting-bridge-2026-11-04.md",
+      "line": 206,
+      "statement_heading": "**Theorem M1 (lifted cut-pair bound).**"
+    },
+    {
+      "source": "docs/c4-nonunit-madic-counting-bridge-2026-11-04.md",
+      "line": 231,
+      "statement_heading": "**Theorem M2 (lifted two-track bound).** For every letter `c`,"
+    },
+    {
+      "source": "docs/c4-nonunit-madic-counting-bridge-2026-11-04.md",
+      "line": 255,
+      "statement_heading": "**Corollary M3 (finite-cylinder approximation).** For a compact"
+    },
+    {
+      "source": "docs/c4-nonunit-residue-occupancy-2026-11-04.md",
+      "line": 65,
+      "statement_heading": "### Lemma R1 (fixed-coset density)"
+    },
+    {
+      "source": "docs/c4-nonunit-residue-occupancy-2026-11-04.md",
+      "line": 94,
+      "statement_heading": "**Theorem R2 (residue occupancy bound).** For every `c` and `q`,"
+    },
+    {
+      "source": "docs/c4-nonunit-residue-occupancy-2026-11-04.md",
+      "line": 122,
+      "statement_heading": "### Corollary R3 (monotonicity and the unit control)"
+    },
+    {
+      "source": "docs/c4-nonunit-residue-occupancy-2026-11-04.md",
+      "line": 142,
+      "statement_heading": "### Corollary R4 (stronger necessary condition for a strict system)"
+    },
+    {
+      "source": "docs/c4-overlap-carrier-enclosure-2026-11-04.md",
+      "line": 22,
+      "statement_heading": "**Lemma.** Let a nonerasing substitution have positive letter lengths `ell`"
+    },
+    {
       "source": "docs/c4-parikh-intertwiner.md",
       "line": 90,
       "statement_heading": "### Corollary 2.1 — no one- or two-state counterexample SCC"
@@ -2354,6 +2459,16 @@
       "source": "docs/c4-parikh-intertwiner.md",
       "line": 123,
       "statement_heading": "### Corollary 3.1 — the three-state case is rigid"
+    },
+    {
+      "source": "docs/c4-recurrent-flat-exits-2026-11-04.md",
+      "line": 40,
+      "statement_heading": "**Lemma (exit mass).** For any supplied nonempty finite set of actual"
+    },
+    {
+      "source": "docs/c4-reversed-run-family-four-level-coincidence-2026-11-04.md",
+      "line": 17,
+      "statement_heading": "**Theorem (uniform reversal coincidence).** For every such a,b, the three actual iterates rho^n(0),rho^n(1),rho^n(2) admit the same Parikh prefix Q followed by the same letter z at one common physical index p, with n<=4:"
     },
     {
       "source": "docs/c4-w3-low-growth-and-interface-correction.md",
@@ -2534,6 +2649,16 @@
       "source": "docs/class-a-typed-carrier-2026-10-21.md",
       "line": 14,
       "statement_heading": "**Proposition.** For every integer `n>=4`, the canonical exact swap-seed overlap graph has at least `6n-2` distinct vertices."
+    },
+    {
+      "source": "docs/class-a-uniform-zero-return-2026-11-02.md",
+      "line": 9,
+      "statement_heading": "## Theorem: all one-step zero predecessors"
+    },
+    {
+      "source": "docs/class-a-uniform-zero-return-2026-11-02.md",
+      "line": 72,
+      "statement_heading": "### Corollary: exactly nine affine predecessor segments"
     },
     {
       "source": "docs/class-b-gap-rays-2026-10-27.md",
@@ -3382,7 +3507,7 @@
     },
     {
       "source": "docs/proof-ladder.md",
-      "line": 293,
+      "line": 314,
       "statement_heading": "**Imported theorem:** Barge–Štimac–Williams supplies the dense-eventual-coincidence-to-PDS implication in the precise one-dimensional Pisot-family setting checked in manuscript Imported Theorem 5.37. Hence Theorem 5.38 has no G1 hypothesis."
     },
     {

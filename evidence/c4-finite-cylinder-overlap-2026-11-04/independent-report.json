@@ -1,0 +1,410 @@
+{
+  "schema": "c4-finite-cylinder-independent-replay-v1",
+  "scope": "two productive controls; finite upper bounds only",
+  "measure_proof": "written, not machine verified",
+  "equation_11_certificate": false,
+  "controls": [
+    {
+      "images": [
+        "1",
+        "021",
+        "001"
+      ],
+      "chart": "ell0=1;W=(x0-a*x1,x2-b*x1);haar=probability",
+      "outer_certificate": {
+        "rho_upper": "2706425564778348067830329506750371542755948494706021823847/3138550867693340381917894711603833208051177722232017256448",
+        "digit_upper": "27775530474068656276040122172244210581231787202552297316967/6277101735386680763835789423207666416102355444464034512896",
+        "radius": 40,
+        "block": 12
+      },
+      "strong_coincidences": [
+        {
+          "pair": [
+            0,
+            1
+          ],
+          "depth": 5,
+          "position": 31,
+          "prefix": [
+            12,
+            13,
+            6
+          ],
+          "letter": 1
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "depth": 6,
+          "position": 31,
+          "prefix": [
+            12,
+            13,
+            6
+          ],
+          "letter": 1
+        },
+        {
+          "pair": [
+            1,
+            2
+          ],
+          "depth": 1,
+          "position": 0,
+          "prefix": [
+            0,
+            0,
+            0
+          ],
+          "letter": 0
+        }
+      ],
+      "depths": [
+        {
+          "depth": 2,
+          "quotient_index": 4,
+          "occurrences": 15,
+          "nonempty_slices": 6,
+          "pairs": [
+            {
+              "pair": [
+                0,
+                1
+              ],
+              "common_residues": 2,
+              "summed_area": "4792739/256",
+              "upper": "4792739/1024",
+              "best_upper_through_depth": "4792739/1024",
+              "passes_necessary_upper_screen_U_lt_2": false,
+              "residue_separation": false
+            },
+            {
+              "pair": [
+                0,
+                2
+              ],
+              "common_residues": 0,
+              "summed_area": "0",
+              "upper": "0",
+              "best_upper_through_depth": "0",
+              "passes_necessary_upper_screen_U_lt_2": true,
+              "residue_separation": true
+            },
+            {
+              "pair": [
+                1,
+                2
+              ],
+              "common_residues": 0,
+              "summed_area": "0",
+              "upper": "0",
+              "best_upper_through_depth": "0",
+              "passes_necessary_upper_screen_U_lt_2": true,
+              "residue_separation": true
+            }
+          ]
+        },
+        {
+          "depth": 4,
+          "quotient_index": 16,
+          "occurrences": 79,
+          "nonempty_slices": 19,
+          "pairs": [
+            {
+              "pair": [
+                0,
+                1
+              ],
+              "common_residues": 5,
+              "summed_area": "6856349/256",
+              "upper": "6856349/4096",
+              "best_upper_through_depth": "6856349/4096",
+              "passes_necessary_upper_screen_U_lt_2": false,
+              "residue_separation": false
+            },
+            {
+              "pair": [
+                0,
+                2
+              ],
+              "common_residues": 0,
+              "summed_area": "0",
+              "upper": "0",
+              "best_upper_through_depth": "0",
+              "passes_necessary_upper_screen_U_lt_2": true,
+              "residue_separation": true
+            },
+            {
+              "pair": [
+                1,
+                2
+              ],
+              "common_residues": 0,
+              "summed_area": "0",
+              "upper": "0",
+              "best_upper_through_depth": "0",
+              "passes_necessary_upper_screen_U_lt_2": true,
+              "residue_separation": true
+            }
+          ]
+        },
+        {
+          "depth": 6,
+          "quotient_index": 64,
+          "occurrences": 407,
+          "nonempty_slices": 69,
+          "pairs": [
+            {
+              "pair": [
+                0,
+                1
+              ],
+              "common_residues": 16,
+              "summed_area": "23336309/256",
+              "upper": "23336309/16384",
+              "best_upper_through_depth": "23336309/16384",
+              "passes_necessary_upper_screen_U_lt_2": false,
+              "residue_separation": false
+            },
+            {
+              "pair": [
+                0,
+                2
+              ],
+              "common_residues": 0,
+              "summed_area": "0",
+              "upper": "0",
+              "best_upper_through_depth": "0",
+              "passes_necessary_upper_screen_U_lt_2": true,
+              "residue_separation": true
+            },
+            {
+              "pair": [
+                1,
+                2
+              ],
+              "common_residues": 0,
+              "summed_area": "0",
+              "upper": "0",
+              "best_upper_through_depth": "0",
+              "passes_necessary_upper_screen_U_lt_2": true,
+              "residue_separation": true
+            }
+          ]
+        }
+      ],
+      "strict_component_supplied": false
+    },
+    {
+      "images": [
+        "1",
+        "012",
+        "001"
+      ],
+      "chart": "ell0=1;W=(x0-a*x1,x2-b*x1);haar=probability",
+      "outer_certificate": {
+        "rho_upper": "2706425564778348067830329506750371542755948494706021823847/3138550867693340381917894711603833208051177722232017256448",
+        "digit_upper": "28639649711961593567962287264120552597648759010763190803967/6277101735386680763835789423207666416102355444464034512896",
+        "radius": 40,
+        "block": 12
+      },
+      "strong_coincidences": [
+        {
+          "pair": [
+            0,
+            1
+          ],
+          "depth": 3,
+          "position": 4,
+          "prefix": [
+            1,
+            2,
+            1
+          ],
+          "letter": 0
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "depth": 4,
+          "position": 4,
+          "prefix": [
+            1,
+            2,
+            1
+          ],
+          "letter": 0
+        },
+        {
+          "pair": [
+            1,
+            2
+          ],
+          "depth": 1,
+          "position": 0,
+          "prefix": [
+            0,
+            0,
+            0
+          ],
+          "letter": 0
+        }
+      ],
+      "depths": [
+        {
+          "depth": 2,
+          "quotient_index": 4,
+          "occurrences": 15,
+          "nonempty_slices": 9,
+          "pairs": [
+            {
+              "pair": [
+                0,
+                1
+              ],
+              "common_residues": 3,
+              "summed_area": "1797415/64",
+              "upper": "1797415/256",
+              "best_upper_through_depth": "1797415/256",
+              "passes_necessary_upper_screen_U_lt_2": false,
+              "residue_separation": false
+            },
+            {
+              "pair": [
+                0,
+                2
+              ],
+              "common_residues": 1,
+              "summed_area": "9275",
+              "upper": "9275/4",
+              "best_upper_through_depth": "9275/4",
+              "passes_necessary_upper_screen_U_lt_2": false,
+              "residue_separation": false
+            },
+            {
+              "pair": [
+                1,
+                2
+              ],
+              "common_residues": 2,
+              "summed_area": "2396867/128",
+              "upper": "2396867/512",
+              "best_upper_through_depth": "2396867/512",
+              "passes_necessary_upper_screen_U_lt_2": false,
+              "residue_separation": false
+            }
+          ]
+        },
+        {
+          "depth": 4,
+          "quotient_index": 16,
+          "occurrences": 79,
+          "nonempty_slices": 36,
+          "pairs": [
+            {
+              "pair": [
+                0,
+                1
+              ],
+              "common_residues": 12,
+              "summed_area": "16394203/256",
+              "upper": "16394203/4096",
+              "best_upper_through_depth": "16394203/4096",
+              "passes_necessary_upper_screen_U_lt_2": false,
+              "residue_separation": false
+            },
+            {
+              "pair": [
+                0,
+                2
+              ],
+              "common_residues": 4,
+              "summed_area": "5412111/256",
+              "upper": "5412111/4096",
+              "best_upper_through_depth": "5412111/4096",
+              "passes_necessary_upper_screen_U_lt_2": false,
+              "residue_separation": false
+            },
+            {
+              "pair": [
+                1,
+                2
+              ],
+              "common_residues": 8,
+              "summed_area": "10899051/256",
+              "upper": "10899051/4096",
+              "best_upper_through_depth": "10899051/4096",
+              "passes_necessary_upper_screen_U_lt_2": false,
+              "residue_separation": false
+            }
+          ]
+        },
+        {
+          "depth": 6,
+          "quotient_index": 64,
+          "occurrences": 407,
+          "nonempty_slices": 144,
+          "pairs": [
+            {
+              "pair": [
+                0,
+                1
+              ],
+              "common_residues": 48,
+              "summed_area": "70053559/256",
+              "upper": "70053559/16384",
+              "best_upper_through_depth": "16394203/4096",
+              "passes_necessary_upper_screen_U_lt_2": false,
+              "residue_separation": false
+            },
+            {
+              "pair": [
+                0,
+                2
+              ],
+              "common_residues": 16,
+              "summed_area": "23089531/256",
+              "upper": "23089531/16384",
+              "best_upper_through_depth": "5412111/4096",
+              "passes_necessary_upper_screen_U_lt_2": false,
+              "residue_separation": false
+            },
+            {
+              "pair": [
+                1,
+                2
+              ],
+              "common_residues": 32,
+              "summed_area": "11630589/64",
+              "upper": "11630589/4096",
+              "best_upper_through_depth": "10899051/4096",
+              "passes_necessary_upper_screen_U_lt_2": false,
+              "residue_separation": false
+            }
+          ]
+        }
+      ],
+      "strict_component_supplied": false
+    }
+  ],
+  "verified_occurrences": 1002,
+  "verified_slices": 283,
+  "verified_pair_bounds": 18,
+  "necessary_density_screen": {
+    "physical_minimum_letter_length": "1",
+    "minimum_noncoincident_balanced_state_length": "2",
+    "pair_cut_density_upper": "1/2",
+    "covolume_strict_upper": "4",
+    "required_upper_bound": "U < 2 (necessary only)"
+  },
+  "obstruction": [
+    "No genuine fully strict component or positive strict-cut density is supplied.",
+    "All pairs in both supported controls have literal strong-coincidence witnesses.",
+    "The zero prefix of letters 0 and 1 occupies the same residue at every even depth.",
+    "Fixed-depth slice hulls are outer bounds; M3 does not assert their convergence or an effective rate."
+  ]
+}

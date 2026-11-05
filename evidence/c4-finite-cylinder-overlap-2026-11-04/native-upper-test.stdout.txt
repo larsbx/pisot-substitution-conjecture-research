@@ -1,0 +1,2 @@
+[PASS] bounded complete cylinders, certified boxes, exact overlap uppers and adversarial refusals
+contract-receipt: Two named period-two controls, depths 2/4/6: complete occurrence-indexed residue slices, certified fixed-radius rational boxes and finite overlap upper bounds; equation eleven requires authenticated literal strict-density premises and strict separation; no measure proof or general C4 claim

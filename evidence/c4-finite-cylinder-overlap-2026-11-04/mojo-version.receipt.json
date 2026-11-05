@@ -1,0 +1,24 @@
+{
+  "schema": "c4-finite-cylinder-local-receipt-v1",
+  "name": "mojo-version",
+  "source_commit": "af5f3de12ec3be391a2ed9666b520fdd074dc494",
+  "command": [
+    "/workspace/scratch/ff95d1f2448c/mojo-prefix/bin/mojo",
+    "--version"
+  ],
+  "cwd_from_repository_root": ".",
+  "explicit_environment_overrides": {
+    "MODULAR_HOME": "/workspace/scratch/ff95d1f2448c/mojo-prefix/share/max"
+  },
+  "started_at_utc": "2026-11-04T21:56:53.562118+00:00",
+  "elapsed_seconds": 0.014,
+  "process_exit_code": 0,
+  "expected_exit_code": 0,
+  "expected_status_observed": true,
+  "stdout": "mojo-version.stdout.txt",
+  "stdout_sha256": "ac5aa63e9dfe8a304334afcf9633405b949e1e05d4c9c6da6817731a4beaebb8",
+  "stderr": "mojo-version.stderr.txt",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "finite_replay_only": true,
+  "machine_verification_of_measure_proofs": false
+}
