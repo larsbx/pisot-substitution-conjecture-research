@@ -7,6 +7,7 @@ from psc.c4_third_level_coincidence_family import (
     symmetric_middle_family, verify_third_level_coincidence,
     asymmetric_middle_family, verify_asymmetric_third_level,
     closed_run_middle_family, verify_closed_run_coincidence,
+    verify_sharp_closed_run_coincidence,
     reversed_closed_run_family, verify_reversed_closed_run_coincidence,
 )
 
@@ -362,6 +363,155 @@ def test_reversed_family_invalid_and_caps_refuse() raises:
         refused_total = True
     assert_true(refused_total)
 
+
+def test_sharp_forward_family_all_five_parameter_chambers() raises:
+    # The new API certifies earliest *simultaneous* three-letter depth.
+    # The older exhibited-witness APIs remain unchanged for provenance.
+    for a in range(9):
+        for b in range(9):
+            if a + b == 0:
+                continue
+            var cert = verify_sharp_closed_run_coincidence(a, b)
+            var previous = verify_closed_run_coincidence(a, b)
+            var expected_level = 3
+            var expected_cut = a * (a + b + 1) + 1
+            if a == 0:
+                expected_level = 2
+                expected_cut = 0
+            elif a == 1 and b == 0:
+                expected_level = 3
+                expected_cut = 7
+            elif a == 1:
+                expected_level = 2
+                expected_cut = b + 3
+            elif b == 0:
+                expected_level = 4
+                expected_cut = a * a * a + a * a + 4 * a + 1
+            assert_equal(cert.generation, expected_level)
+            assert_equal(cert.cut, expected_cut)
+            assert_true(cert.generation <= previous.generation)
+            var sigma = closed_run_middle_family(a, b)
+            for x in range(3):
+                var word = _actual_letter_image_at_level(
+                    sigma, x, cert.generation
+                )
+                assert_equal(word[cert.cut], cert.next_letter)
+                assert_equal(len(word), cert.word_lengths[x])
+                var prefix = List[Int]()
+                for j in range(cert.cut):
+                    prefix.append(word[j])
+                # Fully check exact Parikh, not merely the next letter.
+                var counts: List[Int] = [0, 0, 0]
+                for t in prefix:
+                    counts[t] += 1
+                assert_equal(counts, cert.prefix_parikh)
+
+
+def test_sharp_forward_family_actual_swap_diagonal() raises:
+    for a in range(7):
+        for b in range(7):
+            if a + b == 0:
+                continue
+            var sigma = closed_run_middle_family(a, b)
+            var cert = verify_sharp_closed_run_coincidence(a, b)
+            for x in range(3):
+                for y in range(x + 1, 3):
+                    var top: List[Int] = [x, y]
+                    var bottom: List[Int] = [y, x]
+                    for _ in range(cert.generation):
+                        top = apply_substitution(sigma, top)
+                        bottom = apply_substitution(sigma, bottom)
+                    var before = False
+                    var after = False
+                    for p in coincidence_boundaries(top, bottom):
+                        if p == cert.cut:
+                            before = True
+                        if p == cert.cut + 1:
+                            after = True
+                    assert_true(before and after)
+                    assert_equal(top[cert.cut], cert.next_letter)
+                    assert_equal(bottom[cert.cut], cert.next_letter)
+
+
+def test_sharp_forward_family_rejects_invalid_runs() raises:
+    for a in [-1, 0, 17]:
+        var refused = False
+        try:
+            _ = verify_sharp_closed_run_coincidence(a, 0)
+        except:
+            refused = True
+        assert_true(refused)
+    for b in [-1, 17]:
+        var refused = False
+        try:
+            _ = verify_sharp_closed_run_coincidence(1, b)
+        except:
+            refused = True
+        assert_true(refused)
+
+
+
+def _letter_pair_strong_coincidence_at_level(
+    sigma: List[List[Int]], x: Int, y: Int, level: Int,
+) -> Bool:
+    """Search ALL equal-Parikh/common-next-letter cuts, not only a preset p."""
+    var u = _actual_letter_image_at_level(sigma, x, level)
+    var v = _actual_letter_image_at_level(sigma, y, level)
+    var limit = len(u)
+    if len(v) < limit:
+        limit = len(v)
+    var pu: List[Int] = [0, 0, 0]
+    var pv: List[Int] = [0, 0, 0]
+    for p in range(limit):
+        if pu == pv and u[p] == v[p]:
+            return True
+        pu[u[p]] += 1
+        pv[v[p]] += 1
+    return False
+
+
+def test_sharp_forward_family_complete_pairwise_depths() raises:
+    # For every member of the bounded test grid the three distinct
+    # letter pairs attain their first witnesses at (D,1,D), respectively.
+    # This validates a finite exact oracle; the uniform mathematical
+    # lower bounds are independent and appear in the paper proof.
+    for a in range(9):
+        for b in range(9):
+            if a + b == 0:
+                continue
+            var sigma = closed_run_middle_family(a, b)
+            var sharp = verify_sharp_closed_run_coincidence(a, b)
+            for level in range(1, sharp.generation + 1):
+                assert_true(_letter_pair_strong_coincidence_at_level(
+                    sigma, 0, 2, level
+                ))
+                var expected = level == sharp.generation
+                assert_equal(_letter_pair_strong_coincidence_at_level(
+                    sigma, 0, 1, level
+                ), expected)
+                assert_equal(_letter_pair_strong_coincidence_at_level(
+                    sigma, 1, 2, level
+                ), expected)
+
+
+def test_forward_prefix_satellite_is_literal_at_all_bounded_depths() raises:
+    # sigma(2)=sigma(0) + [2]; hence sigma^n(2)=
+    # sigma^n(0) + sigma^(n-1)(2). Not an incidence-only identity.
+    for a in range(7):
+        for b in range(7):
+            if a + b == 0:
+                continue
+            var sigma = closed_run_middle_family(a, b)
+            for level in range(1, 5):
+                var w0 = _actual_letter_image_at_level(sigma, 0, level)
+                var w2 = _actual_letter_image_at_level(sigma, 2, level)
+                var tail = _actual_letter_image_at_level(sigma, 2, level - 1)
+                var full = w0.copy()
+                for c in tail:
+                    full.append(c)
+                assert_equal(w2, full)
+
+
 def main() raises:
     test_bounded_family_simultaneous_three_letter_coincidences()
     test_all_three_balanced_swaps_have_actual_diagonal_child_by_level_three()
@@ -379,5 +529,10 @@ def main() raises:
     test_reversed_family_all_five_chambers()
     test_reversed_family_actual_swap_diagonals()
     test_reversed_family_invalid_and_caps_refuse()
+    test_sharp_forward_family_all_five_parameter_chambers()
+    test_sharp_forward_family_actual_swap_diagonal()
+    test_sharp_forward_family_rejects_invalid_runs()
+    test_sharp_forward_family_complete_pairwise_depths()
+    test_forward_prefix_satellite_is_literal_at_all_bounded_depths()
     print("C4 uniform third-level family: complete literal strong coincidence controls passed.")
-    require_contract("ternary symmetric middle family 01/(1^k 2 1^k)/012 has all three simultaneous depth-three balanced-prefix strong coincidences at k(2k+1)+1; actual swap BPA diagonals, bounded replay, invalid cap refusal; no global PSC promotion")
+    require_contract("ternary symmetric middle family 01/(1^k 2 1^k)/012 has all three simultaneous depth-three balanced-prefix strong coincidences at k(2k+1)+1; forward run family 01/(1^a 2 1^b)/012 has sharp simultaneous left-coincidence depth D(a,b) in {2,3,4} by five chambers with pairwise minimum depths ({0,1},{0,2},{1,2})=(D,1,D) by exhaustive earlier-cut scan and the literal prefix-satellite identity sigma^n(2)=sigma^n(0)sigma^(n-1)(2) on the bounded grid; actual swap BPA diagonals, bounded replay, invalid cap refusal; no global PSC promotion")
