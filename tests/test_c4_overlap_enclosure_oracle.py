@@ -189,3 +189,47 @@ def test_strict_control_full_words_and_both_tracks_of_seams_are_legal():
     for _ in range(3):
         images = [inflate(sigma, w) for w in images]
     assert all(any(w in image for image in images) for w in words)
+
+
+def test_newborn_ancestry_rejects_sole_legal_seam_by_parity():
+    from test_c4_two_generation_rank_oracle import inflate, p
+
+    sigma = ("01", "121", "012")
+    reversed_sigma = tuple(w[::-1] for w in sigma)
+    for images, a, b, depth, pos in (
+            (sigma, "0", "2", 1, 0), (sigma, "1", "2", 2, 4),
+            (reversed_sigma, "0", "1", 1, 0)):
+        for _ in range(depth):
+            a, b = inflate(images, a), inflate(images, b)
+        assert a[pos] == b[pos] and p(a[:pos]) == p(b[:pos])
+
+    words = list("012")
+    grams = set()
+    for _ in range(6):
+        words = [inflate(sigma, w) for w in words]
+        grams |= {w[i:i+2] for w in words for i in range(len(w)-1)}
+    first = {a: w[0] for a, w in zip("012", sigma)}
+    last = {a: w[-1] for a, w in zip("012", sigma)}
+    assert all(last[a] + first[b] in grams for a, b in grams)
+    assert {"20", "22", "00"}.isdisjoint(grams)
+    assert grams == {"01", "10", "11", "12", "21"}
+    # Both track orders and all terminal pairs avoiding the right-good edge.
+    assert {(r, l) for r in ("02", "12", "20", "21") for l in ("01", "10")
+            if r[0] + l[0] in grams and r[1] + l[1] in grams} == {
+                ("12", "01"), ("21", "10"),
+            }
+    assert not any("10" in w for w in sigma)
+    bottom_digits = [(w, i) for w in sigma for i in range(1, len(w)) if w[i-1:i+1] == "21"]
+    assert bottom_digits == [("121", 2)]
+    assert tuple(p(w)[1] - p(w)[0] for w in sigma) == (0, 2, 0)
+    assert p("12")[1] - p("12")[0] == 1
+
+    # Local positive calibration for the weaker hub-1 input.
+    # Both cuts can be internal to 121. Prefix 12 minus prefix 1
+    # equals e_2, which is the difference of incidence columns 2 and 0.
+    assert sigma[1][1:3] == "21" and sigma[1][:2] == "12"
+    q = tuple(a-b for a,b in zip(p(sigma[1][:2]), p(sigma[1][:1])))
+    assert q == (0, 0, 1)
+    assert tuple(a-b for a,b in zip(p(sigma[2]), p(sigma[0]))) == q
+    assert "".join(last[a] for a in "21") == "21"
+    assert "".join(first[a] for a in "12") == "10"
