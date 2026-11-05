@@ -3,9 +3,24 @@
 M=[[1,0,1],[1,2,1],[0,1,1]] is primitive irreducible Pisot.
 The h=2,3 block cyclic packets are SYNTHETIC, not balanced word SCCs.
 """
-from std.testing import assert_equal, assert_true
+from std.testing import assert_equal
 from mojo_smoke.claims import require_contract
 from psc.c4_periodic_parikh_phase import audit_periodic_parikh_phase_rank
+
+
+def refusal_reason(
+    M: List[List[Int]],
+    P: List[List[Int]],
+    N: List[List[Int]],
+    phases: List[Int],
+    period: Int,
+) raises -> String:
+    """The audit's error message, or "" if it accepted the packet."""
+    try:
+        _ = audit_periodic_parikh_phase_rank(M, P, N, phases, period)
+    except e:
+        return String(e)
+    return String("")
 
 
 def test_pip_synthetic_six_state_period_two_saturates_bound() raises:
@@ -72,27 +87,26 @@ def test_broken_intertwiner_and_phase_fail_closed() raises:
     var broken_P: List[List[Int]] = [
         [1,0,0,2,0,1], [0,1,0,1,2,1], [0,0,1,0,1,1],
     ]
-    var bad = False
-    try:
-        _ = audit_periodic_parikh_phase_rank(M, broken_P, N, phases, 2)
-    except:
-        bad = True
-    assert_true(bad)
+    # Refused by the exact intertwiner check, not by a budget guard.
+    assert_equal(
+        refusal_reason(M, broken_P, N, phases, 2),
+        "exact Parikh intertwiner P N = M P fails",
+    )
 
+    # Refused by the phase-transition logic: state 0 is labelled phase 1,
+    # but its child (state 3) is also phase 1, not phase 0.
     var wrong_phase: List[Int] = [1,0,0,1,1,1]
-    bad = False
-    try:
-        _ = audit_periodic_parikh_phase_rank(M, P, N, wrong_phase, 2)
-    except:
-        bad = True
-    assert_true(bad)
+    assert_equal(
+        refusal_reason(M, P, N, wrong_phase, 2),
+        "child violates supplied phase transition",
+    )
 
-    bad = False
-    try:
-        _ = audit_periodic_parikh_phase_rank(M, P, N, phases, 3)
-    except:
-        bad = True
-    assert_true(bad)
+    # Refused ONLY by the input budget guard r >= 3*period (6 < 9): this
+    # is a resource/shape refusal, not a phase-rank verdict.
+    assert_equal(
+        refusal_reason(M, P, N, phases, 3),
+        "invalid periodic class size/period budget",
+    )
 
 
 def test_real_strict_primitive_but_reducible_four_state_refuses() raises:
@@ -108,12 +122,12 @@ def test_real_strict_primitive_but_reducible_four_state_refuses() raises:
         [0,0,3,5], [0,0,1,3], [1,0,1,1], [0,1,0,0],
     ]
     var phases: List[Int] = [0,0,0,0]
-    var refused = False
-    try:
-        _ = audit_periodic_parikh_phase_rank(M, P, N, phases, 1)
-    except:
-        refused = True
-    assert_true(refused)
+    # PN=MP holds and every phase edge is valid; the packet passes the
+    # budget guard (r=4 >= 3) and is refused by the rank logic itself.
+    assert_equal(
+        refusal_reason(M, P, N, phases, 1),
+        "period class has rational Parikh rank less than three",
+    )
 
 
 def main() raises:
@@ -122,6 +136,4 @@ def main() raises:
     test_broken_intertwiner_and_phase_fail_closed()
     test_real_strict_primitive_but_reducible_four_state_refuses()
     print("C4 periodic class Parikh rank controls passed.")
-    require_contract(
-        "a supplied complete strict ternary irreducible Pisot SCC of period h has full Parikh rank three in EACH phase and at least 3h states; exact synthetic period-2/3 saturations, real reducible strict rank-two refusal, no claim of actual Pisot SCC"
-    )
+    require_contract("a supplied complete strict ternary irreducible Pisot SCC of period h has full Parikh rank three in EACH phase and at least 3h states; exact synthetic period-2/3 saturations, real reducible strict rank-two refusal, no claim of actual Pisot SCC")
