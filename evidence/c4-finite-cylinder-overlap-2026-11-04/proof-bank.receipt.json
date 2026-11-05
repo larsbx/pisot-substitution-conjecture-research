@@ -1,0 +1,23 @@
+{
+  "schema": "c4-finite-cylinder-local-receipt-v1",
+  "name": "proof-bank",
+  "source_commit": "af5f3de12ec3be391a2ed9666b520fdd074dc494",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "tools/make_proof_bank.py",
+    "--check"
+  ],
+  "cwd_from_repository_root": ".",
+  "explicit_environment_overrides": {},
+  "started_at_utc": "2026-11-04T21:56:57.074088+00:00",
+  "elapsed_seconds": 0.337,
+  "process_exit_code": 0,
+  "expected_exit_code": 0,
+  "expected_status_observed": true,
+  "stdout": "proof-bank.stdout.txt",
+  "stdout_sha256": "0eda91b4471dc529b57e2a4c8a83618cf29a25eff1214ef31f250b236c0bbeca",
+  "stderr": "proof-bank.stderr.txt",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "finite_replay_only": true,
+  "machine_verification_of_measure_proofs": false
+}

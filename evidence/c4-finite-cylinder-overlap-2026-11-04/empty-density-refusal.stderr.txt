@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/bbdcd3788da9/psc-cylinder/oracles/python/c4_finite_cylinder_overlap.py", line 700, in <module>
+    main()
+  File "/workspace/scratch/bbdcd3788da9/psc-cylinder/oracles/python/c4_finite_cylinder_overlap.py", line 668, in main
+    result = compare_equation_11(packet,**density)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/bbdcd3788da9/psc-cylinder/oracles/python/c4_finite_cylinder_overlap.py", line 526, in compare_equation_11
+    verify_normalized_density(packet,fixture,pair,supplied_states,steps,
+  File "/workspace/scratch/bbdcd3788da9/psc-cylinder/oracles/python/c4_finite_cylinder_overlap.py", line 509, in verify_normalized_density
+    states,children = literal_strict_system(sigma,supplied_states)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/bbdcd3788da9/psc-cylinder/oracles/python/c4_finite_cylinder_overlap.py", line 442, in literal_strict_system
+    require(0 < len(supplied_states) <= 128, "strict state count cap")
+  File "/workspace/scratch/bbdcd3788da9/psc-cylinder/oracles/python/c4_finite_cylinder_overlap.py", line 38, in require
+    raise InvalidCertificate(message)
+InvalidCertificate: strict state count cap

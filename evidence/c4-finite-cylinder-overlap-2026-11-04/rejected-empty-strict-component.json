@@ -1,0 +1,10 @@
+{
+  "schema": "c4-strict-cut-density-v1",
+  "fixture": 0,
+  "depth": 2,
+  "pair": [0, 2],
+  "supplied_states": [],
+  "steps": 1,
+  "proposed_lower": "1/100",
+  "normalization": "ell0=1;W=(x0-a*x1,x2-b*x1);haar=probability"
+}

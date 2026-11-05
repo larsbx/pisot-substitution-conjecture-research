@@ -1,0 +1,22 @@
+{
+  "schema": "c4-finite-cylinder-local-receipt-v1",
+  "name": "vendored-sync",
+  "source_commit": "af5f3de12ec3be391a2ed9666b520fdd074dc494",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "tools/vendoring/check_vendored_sync.py"
+  ],
+  "cwd_from_repository_root": ".",
+  "explicit_environment_overrides": {},
+  "started_at_utc": "2026-11-04T21:56:57.068244+00:00",
+  "elapsed_seconds": 0.056,
+  "process_exit_code": 0,
+  "expected_exit_code": 0,
+  "expected_status_observed": true,
+  "stdout": "vendored-sync.stdout.txt",
+  "stdout_sha256": "e8d155882db130e44383ec6d1f0767dd421fc94c07aaa3fe2263b786200eea5b",
+  "stderr": "vendored-sync.stderr.txt",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "finite_replay_only": true,
+  "machine_verification_of_measure_proofs": false
+}

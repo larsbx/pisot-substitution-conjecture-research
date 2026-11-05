@@ -1,0 +1,2 @@
+C4 pairwise cut frequency exact controls passed.
+contract-receipt: Complete cut counts, cyclic subsequences, and strict closure on finite controls

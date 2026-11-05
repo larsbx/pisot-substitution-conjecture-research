@@ -2396,6 +2396,41 @@
       "statement_heading": "**Corollary B (given these geometric inputs, proved in #480 §3 and §8):** every represented pair e={c,c'} individually satisfies"
     },
     {
+      "source": "docs/c4-nonunit-madic-counting-bridge-2026-11-04.md",
+      "line": 206,
+      "statement_heading": "**Theorem M1 (lifted cut-pair bound).**"
+    },
+    {
+      "source": "docs/c4-nonunit-madic-counting-bridge-2026-11-04.md",
+      "line": 231,
+      "statement_heading": "**Theorem M2 (lifted two-track bound).** For every letter `c`,"
+    },
+    {
+      "source": "docs/c4-nonunit-madic-counting-bridge-2026-11-04.md",
+      "line": 255,
+      "statement_heading": "**Corollary M3 (finite-cylinder approximation).** For a compact"
+    },
+    {
+      "source": "docs/c4-nonunit-residue-occupancy-2026-11-04.md",
+      "line": 65,
+      "statement_heading": "### Lemma R1 (fixed-coset density)"
+    },
+    {
+      "source": "docs/c4-nonunit-residue-occupancy-2026-11-04.md",
+      "line": 94,
+      "statement_heading": "**Theorem R2 (residue occupancy bound).** For every `c` and `q`,"
+    },
+    {
+      "source": "docs/c4-nonunit-residue-occupancy-2026-11-04.md",
+      "line": 122,
+      "statement_heading": "### Corollary R3 (monotonicity and the unit control)"
+    },
+    {
+      "source": "docs/c4-nonunit-residue-occupancy-2026-11-04.md",
+      "line": 142,
+      "statement_heading": "### Corollary R4 (stronger necessary condition for a strict system)"
+    },
+    {
       "source": "docs/c4-overlap-carrier-enclosure-2026-11-04.md",
       "line": 22,
       "statement_heading": "**Lemma.** Let a nonerasing substitution have positive letter lengths `ell`"

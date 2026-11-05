@@ -1,0 +1,24 @@
+{
+  "schema": "c4-finite-cylinder-local-receipt-v1",
+  "name": "python-tests",
+  "source_commit": "af5f3de12ec3be391a2ed9666b520fdd074dc494",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "tests/test_c4_finite_cylinder_overlap_oracle.py"
+  ],
+  "cwd_from_repository_root": ".",
+  "explicit_environment_overrides": {
+    "PSC_CYLINDER_NATIVE_OUTPUT": "/workspace/scratch/bbdcd3788da9/psc-cylinder/evidence/c4-finite-cylinder-overlap-2026-11-04/native-driver.stdout.txt"
+  },
+  "started_at_utc": "2026-11-04T21:57:07.958718+00:00",
+  "elapsed_seconds": 7.206,
+  "process_exit_code": 0,
+  "expected_exit_code": 0,
+  "expected_status_observed": true,
+  "stdout": "python-tests.stdout.txt",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr": "python-tests.stderr.txt",
+  "stderr_sha256": "73d9dbffe5c8877bf110736e4de7292cd1eb402d2ebbc4f5c0cd38cfe2e0f799",
+  "finite_replay_only": true,
+  "machine_verification_of_measure_proofs": false
+}

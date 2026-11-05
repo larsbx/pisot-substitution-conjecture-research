@@ -611,3 +611,21 @@ or torus-unique-ergodicity statement.
 Human mathematical review remains
 pending and governed claim statuses
 remain unchanged.
+
+## 9. Non-unit follow-up: exact residue bounds and a compact lift
+
+The [non-unit occupancy certificate](c4-nonunit-residue-occupancy-2026-11-04.md)
+independently establishes the below-half Euclidean occupancy conclusion for
+`1/021/001` using a complete depth-two residue table and exact algebraic
+upper bounds. It does not validate the historical scratch program or compute
+exact fractal areas. Literal strong-coincidence witnesses exclude a strict
+system for this specimen, so low Euclidean occupancy is not a converse to
+Theorem C.
+
+The [compact M-adic counting bridge](c4-nonunit-madic-counting-bridge-2026-11-04.md)
+proves counterparts of Theorems B and C in the explicitly constructed
+space `E^s x lim_q Z^3/M^q Z^3`, and gives a finite-cylinder upper-certificate
+target. Its one-pair null-overlap statement concerns lifted sets, not their
+Euclidean projections. These are separate written scoped proofs, human
+review pending; identifying the compact construction with a particular
+localized adelic model remains a distinct task if needed downstream.
