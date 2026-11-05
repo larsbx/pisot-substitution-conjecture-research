@@ -35,12 +35,15 @@ def main() raises:
     except:
         refused = True
     assert_true(refused)
-    refused = False
+    # Step 2 on a period-three source is outside the period-aware route's
+    # premise (the common-attractor route accepts it); the refusal is a scope
+    # boundary of this recorded variant, not a validity verdict.
+    var scope_error = String("")
     try:
         _ = build_source_class_graph(12,2)
-    except:
-        refused = True
-    assert_true(refused)
+    except e:
+        scope_error = String(e)
+    assert_equal(scope_error,"fixed-point step outside the period-aware route's premise; see the common-attractor route")
     refused = False
     try:
         _ = build_source_class_graph(0,0,3)
@@ -57,4 +60,4 @@ def main() raises:
     assert_true(not outside_source_box(48,0,24,24,12))
     assert_true(outside_source_box(49,0,0,24,12))
     print("source-class domains, period-three graph and refusal controls passed")
-    require_contract("all 18 fixed-incidence sources use authenticated fixed-point periods; complete interval/quotient graph and positive integer subinvariance; period-three and wrong-period controls; written compact measure argument, no general PSC")
+    require_contract("all 18 fixed-incidence sources use authenticated fixed-point periods; complete interval/quotient graph and positive integer subinvariance; period-three and outside-premise step controls; written compact measure argument, no general PSC")

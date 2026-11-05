@@ -42,11 +42,15 @@ def main() raises:
         except:
             refused = True
         assert_true(refused)
-    var refused = False
+    # State-cap refusal control: a budget of three states is exhausted before
+    # the graph closes, and the run must report an inconclusive budget, not a
+    # verdict.  (It is not a prefix-period control: the attractor's 12 % period
+    # check is an invariant on a three-letter alphabet and cannot fail.)
+    var cap_error = String("")
     try:
-        _ = build_source_order_graph(5,3)
-    except:
-        refused = True
-    assert_true(refused)
+        _ = build_source_order_graph(5,state_cap=3)
+    except e:
+        cap_error = String(e)
+    assert_equal(cap_error,"state budget exhausted; inconclusive")
     print("all 18 source-order pair graphs passed exact contraction")
     require_contract("complete 18-source nonunit incidence class: all paired occurrences, certified common box, positive integer rate 51/10 below beta squared, original controls retained; no SC input, no general PSC or PDS inference")

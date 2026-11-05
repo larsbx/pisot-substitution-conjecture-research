@@ -1,8 +1,9 @@
 # Complete paired-occurrence graphs give a contractive overlap certificate
 
 **Status:** written sufficiency argument plus executed exact Python replay for
-two named non-unit controls; independent human review pending. Native Mojo,
-full-repository governance and hosted exact-head execution are not claimed.
+two named non-unit controls; independent human review pending. Native Mojo
+tests and driver/oracle packet parity were replayed in a follow-up (see §7);
+hosted exact-head execution is a separate CI receipt.
 No general C4, G1, BH, A1', pure discreteness or PSC status is promoted.
 
 Baseline: `main@60536272b3d68b4f53ce772e7674efabce840fde`, including merged
@@ -214,7 +215,16 @@ word inflation and radius checks. Mojo/pixi are not installed in this local
 runtime, so compilation and native/reference parity remain PENDING, as do
 the full-repository Proof Bank, governance and hosted suites. The focused
 workflow retains these obligations. No hosted pass or independent human
-proof review is claimed.
+proof review is claimed. (Historical: superseded by the replay below.)
+
+**Native replay (2026-11-05 follow-up on #496, Mojo 1.1.0.dev2026090805):**
+`tests/test_c4_pair_overlap_graph.mojo`, `tests/test_c4_pair_overlap_source_class.mojo`
+and `tests/test_c4_pair_overlap_class.mojo` pass, and the three drivers
+`c4_pair_overlap_{graph,source_class,class}.mojo` were run and their full
+packets accepted by the matching Python oracle `--native` verifier, each
+reproducing the committed `receipt.json` exactly. The earlier "not compiled"
+statements and the `local-validation.json` records predating this replay are
+kept as historical records of what had run at that time.
 
 ## 8. Research consequence and remaining target
 

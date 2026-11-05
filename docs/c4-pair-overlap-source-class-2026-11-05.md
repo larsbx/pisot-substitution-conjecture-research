@@ -1,8 +1,19 @@
 # Complete overlap contraction for all 18 source orders
 
 **Status:** written finite sufficiency proof plus executed exact arithmetic
-replay, independent human review pending. Native compilation/parity and
-hosted acceptance remain separate obligations. No general C4, G1, BH,
+replay, independent human review pending. Native tests and driver/oracle
+parity were replayed in a follow-up (see the evidence boundary below);
+hosted acceptance remains a separate obligation.
+
+**Route status.** This period-aware route (step 2 for prefix periods 1 and 2,
+step 3 for the four period-three sources 12, 13, 15, 16) is a recorded
+earlier variant. The canonical route for the 18-source-order certificate is
+the common-attractor two-step route of
+[c4-pair-overlap-class-2026-11-05.md](c4-pair-overlap-class-2026-11-05.md)
+(`kernel/psc/c4_pair_overlap_attractor.mojo`). A step-2 request on a
+period-three source is refused here because it lies outside THIS route's
+premise, not because step 2 is invalid there: the attractor route proves
+and accepts it. No general C4, G1, BH,
 A1', PDS or PSC claim status is changed.
 
 This extends draft #496 at `d5833e3ad2908cec847002b797d12c73d48045a4`,
@@ -152,7 +163,7 @@ python oracles/python/c4_pair_overlap_source_class.py --native /tmp/class-native
 The new tests reconstruct every candidate paired edge for all 18 sources
 with a separately coded integer cofactor/adjugate route and independently
 rescanned literal prefixes. They preserve full multiplicities and rejection
-counts; check exact source-domain coverage, wrong-period refusal, boundary
+counts; check exact source-domain coverage, outside-premise step refusal, boundary
 contact, false weights, omitted repeated edges, caps, optimized-Python
 admission, and complete packet reconstruction. A reference-generated packet
 is calibration, not a native execution receipt.
@@ -172,7 +183,16 @@ logs and hashes are recorded in the new evidence folder.
 Mojo/pixi are absent locally, so native compilation/execution and parity are
 NOT claimed. Full-repository Proof Bank/governance, fresh hosted acceptance
 and independent human mathematical review remain pending. No generated
-claim status is manually edited.
+claim status is manually edited. (Historical: superseded by the replay below.)
+
+**Native replay (2026-11-05 follow-up on #496, Mojo 1.1.0.dev2026090805):**
+`tests/test_c4_pair_overlap_graph.mojo`, `tests/test_c4_pair_overlap_source_class.mojo`
+and `tests/test_c4_pair_overlap_class.mojo` pass, and the three drivers
+`c4_pair_overlap_{graph,source_class,class}.mojo` were run and their full
+packets accepted by the matching Python oracle `--native` verifier, each
+reproducing the committed `receipt.json` exactly. The earlier "not compiled"
+statements and the `local-validation.json` records predating this replay are
+kept as historical records of what had run at that time.
 
 ## Prior art and remaining target
 
@@ -181,7 +201,9 @@ Akiyama--Lee, arXiv:1003.2898, and the #496 source discussion. For classical
 non-unit Rauzy spaces see Minervino--Thuswaldner, arXiv:1402.2002. The current
 continuation checked the abstracts; it does not newly audit or import their
 full PDS/tiling theorems. This argument instead uses the repository's scoped
-compact-space proof and a complete occurrence graph.
+compact-space proof and a complete occurrence graph. The stop/go record for
+this route is §2 of
+[c4-pair-overlap-graph-2026-11-05.md](c4-pair-overlap-graph-2026-11-05.md).
 
 The additional coverage is sixteen source orders and authenticated period-
 three recursions, not a universal result on arbitrary incidence matrices.

@@ -335,7 +335,12 @@ def source_class_step(index: Int) raises -> Int:
 def build_source_class_graph(index: Int, requested_step: Int = 0, state_cap: Int = 20000) raises -> PairGraph:
     var images = source_class_images(index)
     var step = source_class_step(index)
+    # Recorded earlier variant: this period-aware route only covers the step
+    # equal to the source's prefix period.  Other steps (e.g. step 2 on the
+    # period-three sources 12, 13, 15, 16) lie outside its premise, not outside
+    # validity: psc.c4_pair_overlap_attractor authenticates step 2 for all 18
+    # sources by the common-attractor lemma and is the canonical route.
     if requested_step != 0 and requested_step != step:
-        raise Error("unauthenticated fixed-point step")
+        raise Error("fixed-point step outside the period-aware route's premise; see the common-attractor route")
     _certify_source_box(images,[24,12],[Q(13,2),Q(4,1)])
     return _build_source_graph(images,index,step,[24,12],state_cap,64)

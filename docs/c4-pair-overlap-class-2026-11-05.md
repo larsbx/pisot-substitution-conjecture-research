@@ -1,9 +1,11 @@
 # Common-attractor refinement: two-step certificates for all 18 source orders
 
 **Status:** written scoped sufficiency proof plus executed exact finite Python
-certificates; independent human mathematical review pending. Native Mojo,
-native/reference parity, full-repository governance and hosted exact-head
-acceptance have NOT been run locally. No general C4/G1/BH/A1'/PDS/PSC
+certificates; independent human mathematical review pending. Native Mojo
+tests and native/reference packet parity were replayed in a follow-up (§6);
+hosted exact-head acceptance is a separate CI receipt. **This common-attractor
+two-step route is the canonical route for the 18-source-order certificate;**
+the period-aware route is kept as a recorded earlier variant. No general C4/G1/BH/A1'/PDS/PSC
 claim status is changed.
 
 Independent continuation begun at #496 head
@@ -230,8 +232,14 @@ wrappers remain unchanged. A small new `c4_pair_overlap_attractor.mojo`
 entry point authenticates the common-attractor premises, calls the SAME
 complete graph constructor at step two, and uses ordered integer weight
 sweeps. The old period-aware constructor still refuses an unqualified
-step-two request on a period-three source: the new written argument is
-an additional premise, not a deleted check. No second native graph engine
+step-two request on a period-three source, now with the message "fixed-point
+step outside the period-aware route's premise; see the common-attractor
+route": that step lies outside that route's premise, not outside validity.
+The new written argument is an additional premise, not a deleted check.
+The attractor's `12 % period` test is an invariant assert (every prefix
+period on three letters divides 12), not a negative control; the native
+`build_source_order_graph(5, state_cap=3)` call is a state-cap refusal
+control asserting "state budget exhausted; inconclusive". No second native graph engine
 is introduced. Native adapter edits during reconciliation were not executed;
 the tested independent Python source and receipt values remain unchanged.
 
@@ -240,6 +248,16 @@ resolution. Native compilation/parity, full-repository Proof Bank/governance
 and hosted checks remain pending. A Python-generated packet is not native
 evidence. The exact-head workflow requires actual native output and both
 old and new packet comparisons. No governed status is promoted.
+(Historical: superseded by the replay below.)
+
+**Native replay (2026-11-05 follow-up on #496, Mojo 1.1.0.dev2026090805):**
+`tests/test_c4_pair_overlap_graph.mojo`, `tests/test_c4_pair_overlap_source_class.mojo`
+and `tests/test_c4_pair_overlap_class.mojo` pass, and the three drivers
+`c4_pair_overlap_{graph,source_class,class}.mojo` were run and their full
+packets accepted by the matching Python oracle `--native` verifier, each
+reproducing the committed `receipt.json` exactly. The earlier "not compiled"
+statements and the `local-validation.json` records predating this replay are
+kept as historical records of what had run at that time.
 
 ## 7. Literature and next boundary
 
@@ -249,7 +267,8 @@ Section 2.1 and Theorem 8.3, were consulted for periodic-point and
 prefix-graph context (arXiv PDF pages 3 and 19 inspected). Their adelic
 tiling conclusions are not imported into this compact model. Graph-directed
 contraction and spectral/subinvariant-vector criteria are established
-methods; the parent #496 note records the Akiyama--Lee comparison.
+methods; the parent #496 note records the Akiyama--Lee comparison
+(stop/go record: §2 of `c4-pair-overlap-graph-2026-11-05.md`).
 
 The contribution relative to the concurrent 18-source extension is the
 explicit period-three compatibility proof, a separately reconstructed

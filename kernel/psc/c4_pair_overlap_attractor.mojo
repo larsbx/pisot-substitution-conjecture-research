@@ -1,6 +1,7 @@
 """Two-step overlap graphs justified by the common compact-attractor argument.
 
-The period-aware constructor remains unchanged. This separate theorem-facing
+This is the canonical route for the 18-source-order certificate. The
+period-aware constructor is kept unchanged as a recorded earlier variant. This separate theorem-facing
 entry point uses the written F^12 uniqueness lemma to authenticate F^2 for
 period-three prefix words as well. The graph engine and finite inequality
 verifier are shared with the period-aware implementation; no SC input.
@@ -27,6 +28,8 @@ def build_source_order_graph(index: Int, state_cap: Int = 16000) raises -> PairG
             count += 1
             letter = images[letter][0]
         var period = count-seen[letter]
+        # Invariant assert, not a negative control: on a three-letter
+        # alphabet every prefix period is 1, 2 or 3, all dividing 12.
         if period < 1 or 12 % period != 0:
             raise Error("unsupported attractor block/prefix period")
     _certify_source_box(images,[24,12],[Q(13,2),Q(4,1)])

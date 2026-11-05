@@ -120,7 +120,7 @@ class ClassGraph:
 def build_graph(index, *, step=None, state_cap=STATE_CAP):
     chart = certify_chart(index)
     actual_step = chart['graph_step']
-    require(step is None or (type(step) is int and step == actual_step), 'unauthenticated fixed-point step')
+    require(step is None or (type(step) is int and step == actual_step), "fixed-point step outside the period-aware route's premise; see the common-attractor route")
     step = actual_step
     require(type(state_cap) is int and 3 <= state_cap <= STATE_CAP, 'state budget domain')
     digits = [[] for _ in range(3)]

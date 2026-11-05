@@ -25,7 +25,7 @@ on:
 permissions:
   contents: read
 jobs:
-  exact-pair-graph:
+  exact-pair-attractor:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
