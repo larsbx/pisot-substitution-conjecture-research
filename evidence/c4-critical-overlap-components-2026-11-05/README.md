@@ -8,6 +8,10 @@ measure equation. Its written mathematical proof and geometric input are
 separate from these finite executable checks. Independent human review
 remains pending; no general C4, G1, BH, A1', SC, PDS or PSC status changes.
 
+**Latest replay:** [integration of main at ea870c84](integration-main-ea870c84/README.md)
+repeats every focused check on the combined tree after the concurrent
+mainline merges. The original source/replay records below are retained.
+
 ## Certified finite result
 
 The sources are `11/{012,021,102,120,201,210}/{01,10}`. The exact threshold
@@ -141,7 +145,7 @@ installation, distinct from the full fresh locked Pixi environment used
 by hosted CI. Exact-source replay and live hosted status are reported
 separately; no hosted result is inferred from local execution.
 
-## Final local replay record
+## Initial exact-source replay record
 
 The tested source is published at
 [`69b6ea30bd9ccc8ce192d46d6795550b229b45d8`](https://github.com/larsbx/pisot-substitution-conjecture-research/commit/69b6ea30bd9ccc8ce192d46d6795550b229b45d8).
@@ -168,3 +172,16 @@ runtime scope and preserved refusals. The earlier weight-certificate
 evidence remains unchanged in its separate directory. These checks cover
 this target and its relevant governance surfaces; they do not claim a
 run of the repository's unrelated complete census, Lean or TLA+ suites.
+
+## Replay after main integration
+
+The integrated source is
+[`647cd56e8bb79ca3de50c66906cec5fef3ee264b`](https://github.com/larsbx/pisot-substitution-conjecture-research/commit/647cd56e8bb79ca3de50c66906cec5fef3ee264b),
+tree `bfd53bd5575aaaa0ab677eb6af755fb3794e8195`. It adds main parent
+`ea870c846f6575e51aaa78ef4659e533da636b0a` and resolves the ledger and
+generated proof inventory without changing the SCC proof or code. All
+nine checks passed again, including 29 oracle tests and 61 inventory/link
+tests. Native output is identical. The combined inventory has 376 source
+openings and 407 Markdown files were checked at that source revision.
+See the [integration receipts and manifest](integration-main-ea870c84/README.md)
+for the exact merged-tree record.
