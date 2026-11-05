@@ -1,0 +1,28 @@
+{
+  "name": "inventory-tests",
+  "started_utc": "2026-11-05T08:49:03.150366+00:00",
+  "duration_seconds": 10.17463,
+  "executed_local_commit": "b863dc5093e55f40fed487455588104abbe04400",
+  "source_tree": "3248cf2d72b2b1be72bf7326d2f95758c470bef2",
+  "cwd": "/workspace/scratch/bb3a4dbb8418/psc-publish",
+  "command": [
+    "/workspace/scratch/bb3a4dbb8418/psc-validation/bin/python",
+    "-m",
+    "pytest",
+    "--assert=plain",
+    "-o",
+    "addopts=",
+    "-q",
+    "tests/test_markdown_links.py",
+    "tests/test_proof_bank.py"
+  ],
+  "explicit_environment": {
+    "MODULAR_HOME": "/workspace/scratch/ff95d1f2448c/mojo-prefix/share/max",
+    "PYTHONPATH": "/workspace/scratch/bb3a4dbb8418/psc-publish/tools"
+  },
+  "exit_code": 0,
+  "stdout": "/workspace/scratch/bb3a4dbb8418/psc-publish/evidence/c4-pair-overlap-new-incidence-2026-11-05/inventory-tests.stdout.txt",
+  "stderr": "inventory-tests.stderr.txt",
+  "stdout_sha256": "3be885b5b748a8b57d9929d1020b34228ad96ea81b361eccd145e277165ed1ec",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

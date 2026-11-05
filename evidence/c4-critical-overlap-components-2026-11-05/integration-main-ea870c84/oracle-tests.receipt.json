@@ -1,0 +1,28 @@
+{
+  "name": "oracle-tests",
+  "started_utc": "2026-11-05T10:51:48.514656+00:00",
+  "duration_seconds": 28.511735,
+  "executed_local_commit": "dcfdded757b12e8fa9c630820e6d59a2ec7e0fd5",
+  "source_tree": "bfd53bd5575aaaa0ab677eb6af755fb3794e8195",
+  "cwd": "/workspace/scratch/bb3a4dbb8418/psc-critical",
+  "command": [
+    "/workspace/scratch/bb3a4dbb8418/psc-validation/bin/python",
+    "-m",
+    "pytest",
+    "--assert=plain",
+    "-o",
+    "addopts=",
+    "-q",
+    "tests/test_c4_overlap_scc_obstruction_oracle.py"
+  ],
+  "explicit_environment": {
+    "MODULAR_HOME": "/workspace/scratch/bb3a4dbb8418/mojo-prefix/share/max",
+    "PYTHONPATH": "/workspace/scratch/bb3a4dbb8418/psc-critical/tools",
+    "PSC_OVERLAP_SCC_NATIVE_OUTPUT": "/tmp/psc-scc-integration-native.txt"
+  },
+  "exit_code": 0,
+  "stdout": "/workspace/scratch/bb3a4dbb8418/psc-critical/evidence/c4-critical-overlap-components-2026-11-05/integration-main-ea870c84/oracle-tests.stdout.txt",
+  "stderr": "oracle-tests.stderr.txt",
+  "stdout_sha256": "73c03400723285c4760783d035b3e89093b0492984b463ec78c1e9a3755aa1ad",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

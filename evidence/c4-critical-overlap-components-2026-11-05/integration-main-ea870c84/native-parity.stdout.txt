@@ -1,0 +1,644 @@
+{
+  "schema": "c4-overlap-scc-obstruction-v1",
+  "canonical_language": "Mojo",
+  "source_count": 12,
+  "root_count": 36,
+  "minimal_polynomial": [
+    -4,
+    5,
+    -7,
+    1
+  ],
+  "scale_bracket": [
+    [
+      63,
+      10
+    ],
+    [
+      32,
+      5
+    ]
+  ],
+  "matrix_budget": 768,
+  "prime_budget": [
+    101,
+    103,
+    107
+  ],
+  "total_states": 43915,
+  "total_edges": 253395,
+  "total_components": 40793,
+  "degree_exclusions": 40765,
+  "modular_exclusions": 28,
+  "unresolved": 0,
+  "zero_states": 43915,
+  "previous_positive_weights_consumed": false,
+  "sources": [
+    {
+      "source": 0,
+      "images": [
+        "11",
+        "012",
+        "01"
+      ],
+      "states": 3664,
+      "edges": 21151,
+      "scc_count": 3518,
+      "max_scc_size": 143,
+      "degree_exclusions": 3516,
+      "modular_exclusions": 2,
+      "unresolved": 0,
+      "zero_states": 3664,
+      "root_zero": [
+        true,
+        true,
+        true
+      ],
+      "modular_blocks": [
+        {
+          "component": 0,
+          "size": 143,
+          "attempts": [
+            [
+              101,
+              143,
+              79
+            ]
+          ]
+        },
+        {
+          "component": 108,
+          "size": 5,
+          "attempts": [
+            [
+              101,
+              5,
+              35
+            ]
+          ]
+        }
+      ],
+      "certificate_sha256": "d44ce47c93443fc4a1b24c7d5ae454cb13c5544ad74480e9ddde3c45ff1b92ba"
+    },
+    {
+      "source": 1,
+      "images": [
+        "11",
+        "012",
+        "10"
+      ],
+      "states": 3649,
+      "edges": 21164,
+      "scc_count": 3259,
+      "max_scc_size": 391,
+      "degree_exclusions": 3258,
+      "modular_exclusions": 1,
+      "unresolved": 0,
+      "zero_states": 3649,
+      "root_zero": [
+        true,
+        true,
+        true
+      ],
+      "modular_blocks": [
+        {
+          "component": 0,
+          "size": 391,
+          "attempts": [
+            [
+              101,
+              391,
+              14
+            ]
+          ]
+        }
+      ],
+      "certificate_sha256": "eeff26101508393edd3cf2d5855b481c53c32824686e1d2d1b1bd6b7cbd2f886"
+    },
+    {
+      "source": 2,
+      "images": [
+        "11",
+        "021",
+        "01"
+      ],
+      "states": 3667,
+      "edges": 21103,
+      "scc_count": 3518,
+      "max_scc_size": 123,
+      "degree_exclusions": 3516,
+      "modular_exclusions": 2,
+      "unresolved": 0,
+      "zero_states": 3667,
+      "root_zero": [
+        true,
+        true,
+        true
+      ],
+      "modular_blocks": [
+        {
+          "component": 2,
+          "size": 123,
+          "attempts": [
+            [
+              101,
+              123,
+              53
+            ]
+          ]
+        },
+        {
+          "component": 14,
+          "size": 28,
+          "attempts": [
+            [
+              101,
+              28,
+              35
+            ]
+          ]
+        }
+      ],
+      "certificate_sha256": "b9301724fb75be20685aa9083bcacaff641178a4be57c89acf155a9151f45cfb"
+    },
+    {
+      "source": 3,
+      "images": [
+        "11",
+        "021",
+        "10"
+      ],
+      "states": 3667,
+      "edges": 21033,
+      "scc_count": 3031,
+      "max_scc_size": 622,
+      "degree_exclusions": 3027,
+      "modular_exclusions": 4,
+      "unresolved": 0,
+      "zero_states": 3667,
+      "root_zero": [
+        true,
+        true,
+        true
+      ],
+      "modular_blocks": [
+        {
+          "component": 0,
+          "size": 622,
+          "attempts": [
+            [
+              101,
+              622,
+              95
+            ]
+          ]
+        },
+        {
+          "component": 17,
+          "size": 12,
+          "attempts": [
+            [
+              101,
+              12,
+              73
+            ]
+          ]
+        },
+        {
+          "component": 180,
+          "size": 3,
+          "attempts": [
+            [
+              101,
+              3,
+              46
+            ]
+          ]
+        },
+        {
+          "component": 387,
+          "size": 3,
+          "attempts": [
+            [
+              101,
+              3,
+              46
+            ]
+          ]
+        }
+      ],
+      "certificate_sha256": "9d0dc368bf5338d1adf2670cd468f0e09e9539f1968e09d3c040321b206bcb2e"
+    },
+    {
+      "source": 4,
+      "images": [
+        "11",
+        "102",
+        "01"
+      ],
+      "states": 3653,
+      "edges": 21186,
+      "scc_count": 3564,
+      "max_scc_size": 56,
+      "degree_exclusions": 3561,
+      "modular_exclusions": 3,
+      "unresolved": 0,
+      "zero_states": 3653,
+      "root_zero": [
+        true,
+        true,
+        true
+      ],
+      "modular_blocks": [
+        {
+          "component": 0,
+          "size": 56,
+          "attempts": [
+            [
+              101,
+              56,
+              5
+            ]
+          ]
+        },
+        {
+          "component": 9,
+          "size": 21,
+          "attempts": [
+            [
+              101,
+              21,
+              37
+            ]
+          ]
+        },
+        {
+          "component": 10,
+          "size": 15,
+          "attempts": [
+            [
+              101,
+              15,
+              42
+            ]
+          ]
+        }
+      ],
+      "certificate_sha256": "03f5cc7dad72b533c17dc331673d163ce8fe3a2d8febf877fa0ef80f9bae497e"
+    },
+    {
+      "source": 5,
+      "images": [
+        "11",
+        "102",
+        "10"
+      ],
+      "states": 3667,
+      "edges": 21168,
+      "scc_count": 3516,
+      "max_scc_size": 119,
+      "degree_exclusions": 3514,
+      "modular_exclusions": 2,
+      "unresolved": 0,
+      "zero_states": 3667,
+      "root_zero": [
+        true,
+        true,
+        true
+      ],
+      "modular_blocks": [
+        {
+          "component": 4,
+          "size": 119,
+          "attempts": [
+            [
+              101,
+              119,
+              43
+            ]
+          ]
+        },
+        {
+          "component": 57,
+          "size": 34,
+          "attempts": [
+            [
+              101,
+              34,
+              41
+            ]
+          ]
+        }
+      ],
+      "certificate_sha256": "17e3d83b940995302ced4e1c4ce693d49809178caa8f68b0dad79a3ce12955b5"
+    },
+    {
+      "source": 6,
+      "images": [
+        "11",
+        "120",
+        "01"
+      ],
+      "states": 3693,
+      "edges": 21144,
+      "scc_count": 3057,
+      "max_scc_size": 622,
+      "degree_exclusions": 3053,
+      "modular_exclusions": 4,
+      "unresolved": 0,
+      "zero_states": 3693,
+      "root_zero": [
+        true,
+        true,
+        true
+      ],
+      "modular_blocks": [
+        {
+          "component": 0,
+          "size": 622,
+          "attempts": [
+            [
+              101,
+              622,
+              95
+            ]
+          ]
+        },
+        {
+          "component": 108,
+          "size": 12,
+          "attempts": [
+            [
+              101,
+              12,
+              73
+            ]
+          ]
+        },
+        {
+          "component": 310,
+          "size": 3,
+          "attempts": [
+            [
+              101,
+              3,
+              46
+            ]
+          ]
+        },
+        {
+          "component": 321,
+          "size": 3,
+          "attempts": [
+            [
+              101,
+              3,
+              46
+            ]
+          ]
+        }
+      ],
+      "certificate_sha256": "2436252569214d9fea03d936a22388e06ed19b73e51c9a38861445e5f4bdaef8"
+    },
+    {
+      "source": 7,
+      "images": [
+        "11",
+        "120",
+        "10"
+      ],
+      "states": 3674,
+      "edges": 21203,
+      "scc_count": 3525,
+      "max_scc_size": 123,
+      "degree_exclusions": 3523,
+      "modular_exclusions": 2,
+      "unresolved": 0,
+      "zero_states": 3674,
+      "root_zero": [
+        true,
+        true,
+        true
+      ],
+      "modular_blocks": [
+        {
+          "component": 0,
+          "size": 123,
+          "attempts": [
+            [
+              101,
+              123,
+              53
+            ]
+          ]
+        },
+        {
+          "component": 6,
+          "size": 28,
+          "attempts": [
+            [
+              101,
+              28,
+              35
+            ]
+          ]
+        }
+      ],
+      "certificate_sha256": "7a9df8477810e55c000aeabac6cec7181f7eef7c9e6328e9c0ba40f7dd53fe00"
+    },
+    {
+      "source": 8,
+      "images": [
+        "11",
+        "201",
+        "01"
+      ],
+      "states": 3643,
+      "edges": 20976,
+      "scc_count": 3492,
+      "max_scc_size": 119,
+      "degree_exclusions": 3490,
+      "modular_exclusions": 2,
+      "unresolved": 0,
+      "zero_states": 3643,
+      "root_zero": [
+        true,
+        true,
+        true
+      ],
+      "modular_blocks": [
+        {
+          "component": 0,
+          "size": 119,
+          "attempts": [
+            [
+              101,
+              119,
+              43
+            ]
+          ]
+        },
+        {
+          "component": 46,
+          "size": 34,
+          "attempts": [
+            [
+              101,
+              34,
+              41
+            ]
+          ]
+        }
+      ],
+      "certificate_sha256": "1c78e14ac528baec3b2cd1087cf9b2a21335ea25e940855f6fbbcc2859d2646d"
+    },
+    {
+      "source": 9,
+      "images": [
+        "11",
+        "201",
+        "10"
+      ],
+      "states": 3643,
+      "edges": 21054,
+      "scc_count": 3554,
+      "max_scc_size": 56,
+      "degree_exclusions": 3551,
+      "modular_exclusions": 3,
+      "unresolved": 0,
+      "zero_states": 3643,
+      "root_zero": [
+        true,
+        true,
+        true
+      ],
+      "modular_blocks": [
+        {
+          "component": 0,
+          "size": 56,
+          "attempts": [
+            [
+              101,
+              56,
+              5
+            ]
+          ]
+        },
+        {
+          "component": 4,
+          "size": 15,
+          "attempts": [
+            [
+              101,
+              15,
+              42
+            ]
+          ]
+        },
+        {
+          "component": 10,
+          "size": 21,
+          "attempts": [
+            [
+              101,
+              21,
+              37
+            ]
+          ]
+        }
+      ],
+      "certificate_sha256": "5b2c5af345721aa4f6d068b107eca61929149420e9d58f250839bef767ceaa00"
+    },
+    {
+      "source": 10,
+      "images": [
+        "11",
+        "210",
+        "01"
+      ],
+      "states": 3646,
+      "edges": 21095,
+      "scc_count": 3256,
+      "max_scc_size": 391,
+      "degree_exclusions": 3255,
+      "modular_exclusions": 1,
+      "unresolved": 0,
+      "zero_states": 3646,
+      "root_zero": [
+        true,
+        true,
+        true
+      ],
+      "modular_blocks": [
+        {
+          "component": 0,
+          "size": 391,
+          "attempts": [
+            [
+              101,
+              391,
+              14
+            ]
+          ]
+        }
+      ],
+      "certificate_sha256": "ecca87b11142e67cdcf30a79e546a7a4bc87adb5b2e870e7bbd2988e99082a8a"
+    },
+    {
+      "source": 11,
+      "images": [
+        "11",
+        "210",
+        "10"
+      ],
+      "states": 3649,
+      "edges": 21118,
+      "scc_count": 3503,
+      "max_scc_size": 143,
+      "degree_exclusions": 3501,
+      "modular_exclusions": 2,
+      "unresolved": 0,
+      "zero_states": 3649,
+      "root_zero": [
+        true,
+        true,
+        true
+      ],
+      "modular_blocks": [
+        {
+          "component": 0,
+          "size": 143,
+          "attempts": [
+            [
+              101,
+              143,
+              79
+            ]
+          ]
+        },
+        {
+          "component": 104,
+          "size": 5,
+          "attempts": [
+            [
+              101,
+              5,
+              35
+            ]
+          ]
+        }
+      ],
+      "certificate_sha256": "acf8773521c08152a522ae23b16063c97ef193d0c3965610878263b3e8ced38c"
+    }
+  ],
+  "normalized_packet_sha256": "3d3681a85a5b4f1bc4cca5839c5fe2ac37a91ab50b9014e947b984d020a4037d",
+  "scope": "complete source graphs, exact component exclusions, and zero propagation; the written measure equality supplies the geometric interpretation",
+  "non_claims": [
+    "general C4",
+    "SC",
+    "BPA termination",
+    "geometric positivity from an eigencone",
+    "PDS",
+    "PSC"
+  ]
+}
