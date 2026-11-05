@@ -12,6 +12,7 @@ Reachable == {
     "C3Local",
     "C3Locality",
     "C4",
+    "C4FromStrongCoincidence",
     "ClassABoundaryHittingHighGaps",
     "ClassABoundaryHittingLowGaps",
     "ClassCBoundaryHittingLowGaps",

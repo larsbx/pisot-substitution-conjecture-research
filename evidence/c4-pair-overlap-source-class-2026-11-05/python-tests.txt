@@ -1,0 +1,10 @@
+.......                                                                  [100%]
+============================= slowest 7 durations ==============================
+26.52s call     tests/test_c4_pair_overlap_source_class_oracle.py::test_all_eighteen_certificates_and_full_receipt
+4.12s call     tests/test_c4_pair_overlap_source_class_oracle.py::test_every_edge_by_independent_literal_adjugate_reconstruction
+3.55s call     tests/test_c4_pair_overlap_source_class_oracle.py::test_optimization_does_not_disable_admission
+3.17s call     tests/test_c4_pair_overlap_source_class_oracle.py::test_full_packet_replay_and_native_is_separate
+2.16s call     tests/test_c4_pair_overlap_source_class_oracle.py::test_component_solver_equals_simple_synchronous_integer_recurrence
+0.68s call     tests/test_c4_pair_overlap_source_class_oracle.py::test_caps_missing_occurrences_false_weights_and_boundary_contact
+0.35s call     tests/test_c4_pair_overlap_source_class_oracle.py::test_exact_complete_source_domain_and_fixed_point_powers
+7 passed in 40.55s
