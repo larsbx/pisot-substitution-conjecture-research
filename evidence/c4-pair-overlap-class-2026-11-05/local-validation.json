@@ -1,0 +1,144 @@
+{
+  "concurrent_reconciliation": "Preserve all period-aware source-class files and receipts; add common-attractor adapter to their shared native graph engine. Python oracle/tests and certificate values unchanged. Native adapter edits have not been compiled.",
+  "executed": {
+    "commands": [
+      {
+        "argv": [
+          "python",
+          "-m",
+          "pytest",
+          "-q",
+          "tests/test_c4_pair_overlap_class_oracle.py::test_complete_source_graph_receipt_and_independent_rows[0]",
+          "tests/test_c4_pair_overlap_class_oracle.py::test_complete_source_graph_receipt_and_independent_rows[1]",
+          "tests/test_c4_pair_overlap_class_oracle.py::test_complete_source_graph_receipt_and_independent_rows[2]",
+          "tests/test_c4_pair_overlap_class_oracle.py::test_complete_source_graph_receipt_and_independent_rows[3]",
+          "tests/test_c4_pair_overlap_class_oracle.py::test_complete_source_graph_receipt_and_independent_rows[4]",
+          "tests/test_c4_pair_overlap_class_oracle.py::test_complete_source_graph_receipt_and_independent_rows[5]"
+        ],
+        "exit_code": 0,
+        "passed": 6
+      },
+      {
+        "argv": [
+          "python",
+          "-m",
+          "pytest",
+          "-q",
+          "tests/test_c4_pair_overlap_class_oracle.py::test_complete_source_graph_receipt_and_independent_rows[6]",
+          "tests/test_c4_pair_overlap_class_oracle.py::test_complete_source_graph_receipt_and_independent_rows[7]",
+          "tests/test_c4_pair_overlap_class_oracle.py::test_complete_source_graph_receipt_and_independent_rows[8]",
+          "tests/test_c4_pair_overlap_class_oracle.py::test_complete_source_graph_receipt_and_independent_rows[9]",
+          "tests/test_c4_pair_overlap_class_oracle.py::test_complete_source_graph_receipt_and_independent_rows[10]",
+          "tests/test_c4_pair_overlap_class_oracle.py::test_complete_source_graph_receipt_and_independent_rows[11]"
+        ],
+        "exit_code": 0,
+        "passed": 6
+      },
+      {
+        "argv": [
+          "python",
+          "-m",
+          "pytest",
+          "-q",
+          "tests/test_c4_pair_overlap_class_oracle.py::test_complete_source_graph_receipt_and_independent_rows[12]",
+          "tests/test_c4_pair_overlap_class_oracle.py::test_complete_source_graph_receipt_and_independent_rows[13]",
+          "tests/test_c4_pair_overlap_class_oracle.py::test_complete_source_graph_receipt_and_independent_rows[14]",
+          "tests/test_c4_pair_overlap_class_oracle.py::test_complete_source_graph_receipt_and_independent_rows[15]",
+          "tests/test_c4_pair_overlap_class_oracle.py::test_complete_source_graph_receipt_and_independent_rows[16]",
+          "tests/test_c4_pair_overlap_class_oracle.py::test_complete_source_graph_receipt_and_independent_rows[17]"
+        ],
+        "exit_code": 0,
+        "passed": 6
+      },
+      {
+        "argv": [
+          "python",
+          "-m",
+          "pytest",
+          "-q",
+          "tests/test_c4_pair_overlap_class_oracle.py",
+          "-k",
+          "not complete_source_graph"
+        ],
+        "exit_code": 0,
+        "passed": 4
+      },
+      {
+        "argv": [
+          "python",
+          "-m",
+          "pytest",
+          "-q",
+          "tests/test_c4_pair_overlap_graph_oracle.py"
+        ],
+        "exit_code": 0,
+        "passed": 9
+      }
+    ],
+    "legacy_tests": 9,
+    "new_tests": 22,
+    "outputs": "python-tests.txt",
+    "receipt_generation": "all source indices 0..17, reconstructed independently in per-source tests",
+    "receipt_serialization": "compact JSON roundtrip equality checked after sharded replay; no certificate values changed",
+    "sharded": true,
+    "total_tests": 31
+  },
+  "experiment_base_head": "d5833e3ad2908cec847002b797d12c73d48045a4",
+  "files": {
+    ".github/workflows/c4-pair-overlap-attractor.yml": {
+      "bytes": 3619,
+      "git_blob_sha": "f96a99b0bfa6a22250533fad3ee41e18777df118",
+      "sha256": "b3ea0bb388ceae981fabe4be8641147cf4653a0f4d96b0985393cfce0501dbf0"
+    },
+    "docs/c4-pair-overlap-class-2026-11-05.md": {
+      "bytes": 13115,
+      "git_blob_sha": "5c110525ca229c80760021dcfb6d45ffe7e8cd41",
+      "sha256": "d7ca19062179c1e523612b1696233e7d32b12844b2888631ddcd59a6be11d33a"
+    },
+    "evidence/c4-pair-overlap-class-2026-11-05/python-tests.txt": {
+      "bytes": 669,
+      "git_blob_sha": "ca94a3e08c9b2280374f1a0c102b4c8ea3c72a60",
+      "sha256": "983076ac2873743a2eea89d9c8147b9c42f6c628535228aeedc15945fd27d07c"
+    },
+    "evidence/c4-pair-overlap-class-2026-11-05/receipt.json": {
+      "bytes": 15069,
+      "git_blob_sha": "45330374f4c4beff16629f7c5a4fb46984ffd55a",
+      "sha256": "5903b8bdc8dd63aca0fd006fbaf0edddacc3a6f4671174fa5d0c216ec54b32df"
+    },
+    "kernel/c4_pair_overlap_class.mojo": {
+      "bytes": 1027,
+      "git_blob_sha": "00fb187950a65a5c23cc59795d0dc2df12400b62",
+      "sha256": "388c14db2be09bc449b1509e777c67a5fdb9c6097465f1d8708ef3ab0f75ec92"
+    },
+    "kernel/psc/c4_pair_overlap_attractor.mojo": {
+      "bytes": 2974,
+      "git_blob_sha": "fc2b5d2df4d7aa836a54ec0eab6f9ecf1a3b0566",
+      "sha256": "bf19223a5d68b49e3b39cf0b1b5aeb0ad5079169271fc9a10e05100c231ef5df"
+    },
+    "kernel/tests/test_c4_pair_overlap_class.mojo": {
+      "bytes": 2809,
+      "git_blob_sha": "65803a2984d84bc53484c779af54e335deb93545",
+      "sha256": "fcedf3f368f28b5cee5f7480d634e6675eaeabea22a4491ebdd3ea9524a4b99e"
+    },
+    "oracles/python/c4_pair_overlap_class.py": {
+      "bytes": 10587,
+      "git_blob_sha": "c93bc00181a41450a8a662fbde98640b7f0ae5ee",
+      "sha256": "435c828c5a43c9dd9d802c428393ed96308eda4f2c371504513d5762673db2ce"
+    },
+    "tests/test_c4_pair_overlap_class_oracle.py": {
+      "bytes": 5865,
+      "git_blob_sha": "a0b10f852d86111cb88fba6c6571e884f2b636b8",
+      "sha256": "c8845c0b6e34d2ac83a0d4cc586f8163dba05ee7b1b497c7e36bc278196019e1"
+    }
+  },
+  "integration_parent": "cea416ffae3c48875a457e2fed5535f5daa4e126",
+  "not_executed": [
+    "Mojo compilation/execution",
+    "native/Python parity",
+    "full repository Proof Bank/governance",
+    "hosted CI",
+    "independent human review"
+  ],
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]"
+}
