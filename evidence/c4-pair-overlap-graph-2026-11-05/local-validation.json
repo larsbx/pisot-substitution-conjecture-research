@@ -1,0 +1,63 @@
+{
+  "base_main": "60536272b3d68b4f53ce772e7674efabce840fde",
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "executed": [
+    {
+      "command": "python -m pytest -q tests/test_c4_pair_overlap_graph_oracle.py",
+      "exit_code": 0,
+      "result": "9 passed in 22.29s",
+      "output": "python-tests.txt"
+    },
+    {
+      "command": "python oracles/python/c4_pair_overlap_graph.py",
+      "exit_code": 0,
+      "result": "exact receipt reconstructed"
+    }
+  ],
+  "not_executed": [
+    "Mojo compilation and execution",
+    "native/Python parity",
+    "full-repository proof-bank and governance",
+    "hosted workflows",
+    "independent human review"
+  ],
+  "files": {
+    ".github/workflows/c4-pair-overlap-graph.yml": {
+      "sha256": "f004c1117a3b2a1dd5f77e96b6ab4305696b0c77b1a49a3cbf9e7ad04b77f81c",
+      "git_blob_sha": "fe2e26a0260e396d3ad45d2a4bcff61326114970"
+    },
+    "docs/c4-pair-overlap-graph-2026-11-05.md": {
+      "sha256": "43328fa5b6117e44030a0a9d7bc2511fcd9573ff63e19772eac1bd38bcd58f37",
+      "git_blob_sha": "37bf2cb6c93692368234c9517649a475ae7d08b6"
+    },
+    "evidence/c4-pair-overlap-graph-2026-11-05/python-tests.txt": {
+      "sha256": "cb2833a78ea4f5b34697d18b1c03a55586aba29839e0b838b64b93da750f0b78",
+      "git_blob_sha": "3f2029f65e994564a4fc042cd0474d92a2681d7b"
+    },
+    "evidence/c4-pair-overlap-graph-2026-11-05/receipt.json": {
+      "sha256": "6c33772304f677a1d90e1674e6064dfb6b055fcdd370557350426162f6785dda",
+      "git_blob_sha": "2ecb1e5701064f9e4b06aaa10fb967e57ef5a693"
+    },
+    "kernel/c4_pair_overlap_graph.mojo": {
+      "sha256": "4bc39418d97300786d1e63219b674d62b989220ea2f86f621f7d7be37ecc4e59",
+      "git_blob_sha": "f9e4a9be14eac71aa5e59a771f0a6047781dc4b8"
+    },
+    "kernel/psc/c4_pair_overlap_graph.mojo": {
+      "sha256": "4758e9c6afd82005d2be8f2ff16d8ed17455d036d4aec9ada0788afa68ea387f",
+      "git_blob_sha": "6cd1e1d7dbdfcef761d5365acbf6d8e2b6ea86b8"
+    },
+    "kernel/tests/test_c4_pair_overlap_graph.mojo": {
+      "sha256": "6909ef069ec542cc3f13d5220e0c1a02c4e101bc37fb45477029d1855e4eb874",
+      "git_blob_sha": "a945e3e2ac059807efddc4ed0f00b242db6c2a9a"
+    },
+    "oracles/python/c4_pair_overlap_graph.py": {
+      "sha256": "118297f5549b603a48100828f24e24b51e7d561a93df3283b010a213b338ee2f",
+      "git_blob_sha": "2e5a74477229ec82d7c0e5ff163e1187470a1bef"
+    },
+    "tests/test_c4_pair_overlap_graph_oracle.py": {
+      "sha256": "74bd20322124109af68081a2a2d3f70f5c3d8670061727cf3f44c12726c8c235",
+      "git_blob_sha": "6f9529292fa38dbe34db81d83af700990675d3b4"
+    }
+  }
+}
