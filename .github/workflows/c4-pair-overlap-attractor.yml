@@ -1,0 +1,72 @@
+name: C4 common-attractor two-step refinement
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/c4-pair-overlap-attractor.yml'
+      - 'kernel/psc/c4_pair_overlap_attractor.mojo'
+      - 'docs/c4-pair-overlap-graph-2026-11-05.md'
+      - 'evidence/c4-pair-overlap-graph-2026-11-05/**'
+      - 'oracles/python/c4_pair_overlap_graph.py'
+      - 'tests/test_c4_pair_overlap_graph_oracle.py'
+      - 'kernel/c4_pair_overlap_graph.mojo'
+      - 'kernel/psc/c4_pair_overlap_graph.mojo'
+      - 'kernel/tests/test_c4_pair_overlap_graph.mojo'
+      - 'kernel/psc/c4_finite_cylinder_overlap.mojo'
+      - 'kernel/psc/c4_nonunit_residue_occupancy.mojo'
+      - 'docs/c4-pair-overlap-class-2026-11-05.md'
+      - 'evidence/c4-pair-overlap-class-2026-11-05/**'
+      - 'oracles/python/c4_pair_overlap_class.py'
+      - 'tests/test_c4_pair_overlap_class_oracle.py'
+      - 'kernel/c4_pair_overlap_class.mojo'
+      - 'kernel/tests/test_c4_pair_overlap_class.mojo'
+      - 'kernel/pixi.toml'
+      - 'kernel/pixi.lock'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-pair-graph:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Exact revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Independent complete graph and adversarial checks
+        run: |
+          python -m pip install 'pytest>=7,<10'
+          python -m pytest -q tests/test_c4_pair_overlap_graph_oracle.py tests/test_c4_pair_overlap_class_oracle.py
+          python oracles/python/c4_pair_overlap_graph.py > /tmp/pair-graph-receipt.json
+          python -c "import json; a=json.load(open('evidence/c4-pair-overlap-graph-2026-11-05/receipt.json')); b=json.load(open('/tmp/pair-graph-receipt.json')); raise SystemExit(0 if a==b else 'receipt mismatch')"
+          python oracles/python/c4_pair_overlap_class.py > /tmp/pair-class-receipt.json
+          python -c "import json; a=json.load(open('evidence/c4-pair-overlap-class-2026-11-05/receipt.json')); b=json.load(open('/tmp/pair-class-receipt.json')); raise SystemExit(0 if a==b else 'class receipt mismatch')"
+      - name: Generated inventory consistency
+        run: python tools/make_proof_bank.py --check
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          pixi-version: v0.81.0
+          manifest-path: kernel/pixi.toml
+          locked: true
+      - name: Native complete graph regression and packet
+        working-directory: kernel
+        run: |
+          pixi run --locked mojo run -I . tests/test_c4_pair_overlap_graph.mojo
+          pixi run --locked mojo run -I . c4_pair_overlap_graph.mojo > /tmp/native-pair-graph.txt
+          pixi run --locked mojo run -I . tests/test_c4_pair_overlap_class.mojo
+          pixi run --locked mojo run -I . c4_pair_overlap_class.mojo > /tmp/native-pair-class.txt
+      - name: Independent full native parity required
+        env:
+          PSC_PAIR_GRAPH_NATIVE_OUTPUT: /tmp/native-pair-graph.txt
+        run: |
+          test -s "$PSC_PAIR_GRAPH_NATIVE_OUTPUT"
+          python -m pytest -q tests/test_c4_pair_overlap_graph_oracle.py
+          python oracles/python/c4_pair_overlap_graph.py --native "$PSC_PAIR_GRAPH_NATIVE_OUTPUT"
+          test -s /tmp/native-pair-class.txt
+          python oracles/python/c4_pair_overlap_class.py --native /tmp/native-pair-class.txt
