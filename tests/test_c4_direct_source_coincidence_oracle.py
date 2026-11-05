@@ -232,7 +232,7 @@ def test_receipt_and_native_fixture_recompute():
     assert receipt() == expected
     import ast
     content = (root/'kernel/tests/test_c4_direct_source_coincidence.mojo').read_text()
-    table = ast.literal_eval(content.split('# BEGIN CERTIFICATE TABLE\n',1)[1].split('# END CERTIFICATE TABLE',1)[0].strip())
+    table = ast.literal_eval('[' + content.split('# BEGIN CERTIFICATE TABLE\n',1)[1].split('# END CERTIFICATE TABLE',1)[0] + ']')
     assert table == [[r['generation'],r['cut'],*r['prefix_parikh'],int(r['next_letter'])] for r in expected['certificates']]
 
 
