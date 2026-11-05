@@ -8,6 +8,7 @@ subtile, no C4/PSC conclusion is computed here.
 """
 import collections
 import itertools
+import pytest
 from fractions import Fraction as Fr
 
 from psc_research.pip_screen import pip_corpus
@@ -167,8 +168,40 @@ def factorise(u, v):
     return [(tuple(u[c[k]:c[k + 1]]), tuple(v[c[k]:c[k + 1]]), c[k]) for k in range(len(c) - 1)]
 
 
-def strict_closure(sig, seed):
+def validate_states(sig, states):
+    if len(sig) != 3 or any(not w or any(a not in range(3) for a in w) for w in sig):
+        raise ValueError("malformed substitution")
+    if not states or len(set(states)) != len(states):
+        raise ValueError("empty or duplicate state table")
+    for u, v in states:
+        if not u or not v or any(a not in range(3) for a in u + v):
+            raise ValueError("malformed state")
+        if parikh(u) != parikh(v) or cuts(u, v) != [0, len(u)] or u == v:
+            raise ValueError("state is not irreducible, balanced and noncoincident")
+
+
+def validate_closure(sig, states, rows=None):
+    """Independently reconstruct every child; optionally compare supplied rows."""
+    validate_states(sig, states)
+    expected = []
+    for u, v in states:
+        row = []
+        for a, b, _ in factorise(apply(sig, u), apply(sig, v)):
+            if a == b:
+                raise ValueError("coincident factor")
+            if (a, b) not in states:
+                raise ValueError("missing child state")
+            row.append(states.index((a, b)))
+        expected.append(row)
+    if rows is not None and rows != expected:
+        raise ValueError("child occurrences differ from exact ordered factors")
+
+
+def strict_closure(sig, seed, cap=256):
     """Ordered breadth-first child closure; raises on a coincident factor."""
+    validate_states(sig, [seed])
+    if cap <= 0:
+        raise ValueError("state cap must be positive")
     states, idx, rows, q = [seed], {seed: 0}, [], 0
     while q < len(states):
         u, v = states[q]
@@ -179,6 +212,8 @@ def strict_closure(sig, seed):
                 raise ValueError("coincident factor")
             S = (a, b)
             if S not in idx:
+                if len(states) >= cap:
+                    raise ValueError("state cap exhausted")
                 idx[S] = len(states)
                 states.append(S)
             kids.append(idx[S])
@@ -196,9 +231,10 @@ def locate(sig, word, pos):
     raise RuntimeError
 
 
-def interior_edges(sig, states):
+def interior_edges(sig, states, rows=None):
     """(parent, child-first-letters, d, i, Q, i', Q') for every interior cut, with
     the Lemma N identities asserted."""
+    validate_closure(sig, states, rows)
     M = incidence(sig)
     out = []
     for F, (u, v) in enumerate(states):
@@ -212,12 +248,13 @@ def interior_edges(sig, states):
             assert d == vadd(matvec(M, parikh(u[:i])), parikh(Q))
             assert d == vadd(matvec(M, parikh(v[:i2])), parikh(Q2))
             assert sig[u[i]][len(Q)] == a[0] and sig[v[i2]][len(Q2)] == b[0]
-            assert parikh(u[:i]) != parikh(v[:i2])
+            assert (parikh(u[:i]), u[i]) != (parikh(v[:i2]), v[i2])
             out.append((F, (a[0], b[0]), d, i, Q, i2, Q2))
     return out
 
 
 def recursion_holds(sig, states, depth):
+    validate_closure(sig, states)
     M = incidence(sig)
     r = len(states)
     dvec = {}
@@ -288,7 +325,7 @@ def test_reducible_strict_control_bookkeeping():
         for T in range(r):
             lhs = K.add(lhs, K.scal(N[T][S], L[T]))
         assert K.iszero(K.sub(lhs, K.mul(beta, L[S])))
-    edges = interior_edges(sig, states)
+    edges = interior_edges(sig, states, rows)
     assert len(edges) == 12
     assert sum(1 for F, _p, _d, i, _Q, _i2, _Q2 in edges if states[F][0][i] != states[F][0][0]) == 8
     assert all(p == (1, 2) or p == (2, 1) for _F, p, *_ in edges)
@@ -329,6 +366,48 @@ def test_uniform_control_and_lemma_f_negative():
     common = len(u) + 1
     balanced = sum(1 for i in range(len(u) + 1) if parikh(u[:i]) == parikh(v[:i]))
     assert (common, balanced) == (28, 10)
+
+
+def test_powered_uniform_zero_source_defect():
+    sig = [apply(UNIFORM, w) for w in UNIFORM]
+    assert sig[:2] == [[0, 1, 2, 1, 2, 0, 2, 0, 1], [1, 2, 0, 2, 0, 1, 0, 1, 2]]
+    states, rows = strict_closure(sig, ((0, 1, 2), (1, 2, 0)))
+    assert len(states) == 3
+    assert [[rows[S].count(T) for S in range(3)] for T in range(3)] == [[3, 3, 3]] * 3
+    edges = interior_edges(sig, states, rows)
+    assert len(edges) == 24
+    assert edges[0] == (0, (1, 2), (1, 1, 1), 0, (0, 1, 2), 0, (1, 2, 0))
+    zero = [e for e in edges if parikh(states[e[0]][0][:e[3]]) == parikh(states[e[0]][1][:e[5]])]
+    assert len(zero) == 6
+    assert all(states[F][0][i] != states[F][1][i2] for F, _p, _d, i, _Q, i2, _Q2 in zero)
+    assert sum(states[F][0][i] != states[F][0][0] for F, _p, _d, i, *_ in edges) == 18
+    assert recursion_holds(sig, states, 3)
+
+
+def test_malformed_closures_and_missing_occurrences_are_refused():
+    states, rows = strict_closure(UNIFORM, ((0, 1, 2), (1, 2, 0)))
+    for bad_states in ([], states[:-1], states + [states[0]],
+                       [((0,), (0,))], [((0, 1), (1, 2))],
+                       [((0, 1, 0, 1), (1, 0, 1, 0))], [((0, 3), (3, 0))]):
+        with pytest.raises(ValueError):
+            interior_edges(UNIFORM, bad_states)
+        with pytest.raises(ValueError):
+            recursion_holds(UNIFORM, bad_states, 1)
+    for bad_row in (rows[0][:-1], rows[0][1:], rows[0] + [rows[0][0]],
+                    [-1] + rows[0][1:], [len(states)] + rows[0][1:],
+                    [rows[0][1], rows[0][0], rows[0][2]]):
+        with pytest.raises(ValueError):
+            interior_edges(UNIFORM, states, [bad_row] + rows[1:])
+    with pytest.raises(ValueError):
+        interior_edges(UNIFORM, states, rows[:-1])
+    with pytest.raises(ValueError):
+        interior_edges(UNIT_PIP, [((1, 0), (0, 1))])
+    for seed in (((0,), (0,)), ((0, 1), (1, 2)),
+                 ((0, 1, 0, 1), (1, 0, 1, 0)), ((0, 3), (3, 0))):
+        with pytest.raises(ValueError):
+            strict_closure(UNIFORM, seed)
+    with pytest.raises(ValueError):
+        strict_closure(UNIFORM, ((0, 1, 2), (1, 2, 0)), cap=2)
 
 
 def test_unit_pip_common_vertices_are_balanced_cuts():

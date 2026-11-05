@@ -236,12 +236,12 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/c4-cut-attractor-window-2026-11-05.md:33](../docs/c4-cut-attractor-window-2026-11-05.md#L33) | **Lemma F.** |
 | [docs/c4-cut-attractor-window-2026-11-05.md:78](../docs/c4-cut-attractor-window-2026-11-05.md#L78) | ## 2. Lemma N (all-position nesting) and Lemma G (the cut attractor) |
 | [docs/c4-cut-attractor-window-2026-11-05.md:96](../docs/c4-cut-attractor-window-2026-11-05.md#L96) | **Lemma N (all-position nesting; no determinant hypothesis).** For every |
-| [docs/c4-cut-attractor-window-2026-11-05.md:122](../docs/c4-cut-attractor-window-2026-11-05.md#L122) | **Lemma G (window form).** |
-| [docs/c4-cut-attractor-window-2026-11-05.md:189](../docs/c4-cut-attractor-window-2026-11-05.md#L189) | ## 4. Proposition R (coincidence rank two; conditional) |
-| [docs/c4-cut-attractor-window-2026-11-05.md:199](../docs/c4-cut-attractor-window-2026-11-05.md#L199) | **Proposition R.** If cr(σ) = 2 and int(R_c ∩ R_c′) ≠ ∅ for some c ≠ c′, |
-| [docs/c4-cut-attractor-window-2026-11-05.md:225](../docs/c4-cut-attractor-window-2026-11-05.md#L225) | **Proposition 1 (finite).** Exactly 54 triples (g, good edge, A) satisfy |
-| [docs/c4-cut-attractor-window-2026-11-05.md:239](../docs/c4-cut-attractor-window-2026-11-05.md#L239) | **Proposition 2.** For primitive σ: SC_all(σ) ⇔ A1′(σ) ∧ A1′(σ²) ∧ A1′(σ³); |
-| [docs/c4-cut-attractor-window-2026-11-05.md:246](../docs/c4-cut-attractor-window-2026-11-05.md#L246) | **Proposition 3.** For primitive σ the following are equivalent: (i) σ has |
+| [docs/c4-cut-attractor-window-2026-11-05.md:132](../docs/c4-cut-attractor-window-2026-11-05.md#L132) | **Lemma G (window form).** |
+| [docs/c4-cut-attractor-window-2026-11-05.md:201](../docs/c4-cut-attractor-window-2026-11-05.md#L201) | ## 4. Proposition R (coincidence rank two; conditional) |
+| [docs/c4-cut-attractor-window-2026-11-05.md:211](../docs/c4-cut-attractor-window-2026-11-05.md#L211) | **Proposition R.** If cr(σ) = 2 and int(R_c ∩ R_c′) ≠ ∅ for some c ≠ c′, |
+| [docs/c4-cut-attractor-window-2026-11-05.md:237](../docs/c4-cut-attractor-window-2026-11-05.md#L237) | **Proposition 1 (finite).** Exactly 54 triples (g, good edge, A) satisfy |
+| [docs/c4-cut-attractor-window-2026-11-05.md:251](../docs/c4-cut-attractor-window-2026-11-05.md#L251) | **Proposition 2.** For primitive σ: SC_all(σ) ⇔ A1′(σ) ∧ A1′(σ²) ∧ A1′(σ³); |
+| [docs/c4-cut-attractor-window-2026-11-05.md:258](../docs/c4-cut-attractor-window-2026-11-05.md#L258) | **Proposition 3.** For primitive σ the following are equivalent: (i) σ has |
 | [docs/c4-cut-pair-productivity-2026-11-04.md:58](../docs/c4-cut-pair-productivity-2026-11-04.md#L58) | **Theorem A.** |
 | [docs/c4-cut-pair-productivity-2026-11-04.md:124](../docs/c4-cut-pair-productivity-2026-11-04.md#L124) | **Theorem B.** λ(Z_A) ≥ κ / L_max > 0. In particular λ(R_c ∩ R_c') > 0 for |
 | [docs/c4-cut-pair-productivity-2026-11-04.md:178](../docs/c4-cut-pair-productivity-2026-11-04.md#L178) | **Corollary B′ (productivity from disjointness).** If the subtiles of the |

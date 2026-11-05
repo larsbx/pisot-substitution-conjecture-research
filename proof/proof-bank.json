@@ -2389,32 +2389,32 @@
     },
     {
       "source": "docs/c4-cut-attractor-window-2026-11-05.md",
-      "line": 122,
+      "line": 132,
       "statement_heading": "**Lemma G (window form).**"
     },
     {
       "source": "docs/c4-cut-attractor-window-2026-11-05.md",
-      "line": 189,
+      "line": 201,
       "statement_heading": "## 4. Proposition R (coincidence rank two; conditional)"
     },
     {
       "source": "docs/c4-cut-attractor-window-2026-11-05.md",
-      "line": 199,
+      "line": 211,
       "statement_heading": "**Proposition R.** If `cr(σ) = 2` and `int(R_c ∩ R_c′) ≠ ∅` for some `c ≠ c′`,"
     },
     {
       "source": "docs/c4-cut-attractor-window-2026-11-05.md",
-      "line": 225,
+      "line": 237,
       "statement_heading": "**Proposition 1 (finite).** Exactly 54 triples `(g, good edge, A)` satisfy"
     },
     {
       "source": "docs/c4-cut-attractor-window-2026-11-05.md",
-      "line": 239,
+      "line": 251,
       "statement_heading": "**Proposition 2.** For primitive `σ`: `SC_all(σ) ⇔ A1′(σ) ∧ A1′(σ²) ∧ A1′(σ³)`;"
     },
     {
       "source": "docs/c4-cut-attractor-window-2026-11-05.md",
-      "line": 246,
+      "line": 258,
       "statement_heading": "**Proposition 3.** For primitive `σ` the following are equivalent: (i) `σ` has"
     },
     {

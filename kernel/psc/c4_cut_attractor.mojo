@@ -9,7 +9,8 @@ closure `C` of a seed:
   `sigma(u_F[i]) = Q c s` and one bottom image `sigma(v_F[i']) = Q' c' s'`
   with `d = M p(u_F[:i]) + p(Q) = M p(v_F[:i']) + p(Q')`, the letters after
   the cut are the child's first letters, and `e = p(u_F[:i]) - p(v_F[:i'])`
-  is nonzero (the nesting data of Lemma N; the attractor `K_S` is the limit
+  may be zero when the source letters differ (a parent tile is identified by
+  its source-prefix vector AND its letter; the attractor `K_S` is the limit
   of these translations along backward paths and is not computed here);
 * the cut lattice of `sigma^n(S)` is the multiplicity-one union
   `X_{n+1}(S) = U (M X_n(F) + d_{F,j})` (the recursion behind Lemma G);
@@ -244,10 +245,52 @@ def _locate(sigma: List[List[Int]], word: List[Int], pos: Int) raises -> List[In
     raise Error("cut position lies outside the inflated word")
 
 
+def validate_strict_closure(sigma: List[List[Int]], c: StrictClosure) raises:
+    """Check a supplied closure against every actual ordered factor occurrence.
+    Counts/PN=MP alone cannot detect a missing, reordered or forged occurrence.
+    No reachability from a distinguished seed or sink-SCC hypothesis is imposed.
+    """
+    _ = sigma3(sigma)
+    var n = c.size()
+    if n == 0 or len(c.rows) != n or len(c.cuts) != n:
+        raise Error("strict closure has inconsistent outer dimensions")
+    for f in range(n):
+        var p = c.states[f].copy()
+        _check_letters(p.u)
+        _check_letters(p.v)
+        if p.length() == 0 or not is_balanced(p):
+            raise Error("strict closure state is not a nonempty balanced pair")
+        if p.is_coincidence():
+            raise Error("strict closure contains coincident parent tiles")
+        if len(coincidence_boundaries(p.u, p.v)) != 2:
+            raise Error("strict closure state is reducible")
+        for g in range(f):
+            if c.states[g] == p:
+                raise Error("strict closure contains a duplicate state")
+    for f in range(n):
+        var top = apply_substitution(sigma, c.states[f].u)
+        var bottom = apply_substitution(sigma, c.states[f].v)
+        var bounds = coincidence_boundaries(top, bottom)
+        if len(c.rows[f]) != len(bounds) - 1 or len(c.cuts[f]) != len(bounds) - 1:
+            raise Error("strict closure is missing or has extra child occurrences")
+        for j in range(len(bounds) - 1):
+            var t = c.rows[f][j]
+            if t < 0 or t >= n:
+                raise Error("strict closure child index is outside the state table")
+            if c.cuts[f][j] != bounds[j]:
+                raise Error("strict closure cut is not the actual ordered boundary")
+            var actual = Pair(_slice(top, bounds[j], bounds[j + 1]), _slice(bottom, bounds[j], bounds[j + 1]))
+            if actual.is_coincidence():
+                raise Error("strict closure inflation contains coincident parent tiles")
+            if c.states[t] != actual:
+                raise Error("strict closure child is not the actual factor occurrence")
+
+
 def cut_edges(sigma: List[List[Int]], c: StrictClosure) raises -> List[CutEdge]:
-    """The interior child edges with the identities of Lemma N checked exactly;
-    an identity failure raises, because it would contradict a proved statement
-    and so signals corrupted input."""
+    """Interior edges of a validated strict closure, with exact two-track
+    translations and source tile identities checked. No nonzero-defect premise.
+    """
+    validate_strict_closure(sigma, c)
     var inc = substitution_incidence(sigma)
     var out = List[CutEdge]()
     for f in range(c.size()):
@@ -274,8 +317,8 @@ def cut_edges(sigma: List[List[Int]], c: StrictClosure) raises -> List[CutEdge]:
                 raise Error("letter after the cut is not the child's first letter")
             var pu = parikh(_slice(u, 0, i))
             var pv = parikh(_slice(v, 0, i2))
-            if pu == pv:
-                raise Error("zero source defect at an interior cut: the parent tiles coincide")
+            if pu == pv and u[i] == v[i2]:
+                raise Error("same source-prefix vector and letter: the parent tiles coincide")
             out.append(CutEdge(f, c.rows[f][j], pos, d, i, q, i2, q2))
     return out^
 
@@ -305,6 +348,7 @@ def cut_lattice_recursion_holds(sigma: List[List[Int]], c: StrictClosure, depth:
     `sigma^n(root)`. A factor outside the closure raises."""
     if depth < 1 or depth > 6:
         raise Error("recursion depth must lie in 1..6")
+    validate_strict_closure(sigma, c)
     var inc = substitution_incidence(sigma)
     var n = c.size()
     # translation of every child edge, including the first child (zero).

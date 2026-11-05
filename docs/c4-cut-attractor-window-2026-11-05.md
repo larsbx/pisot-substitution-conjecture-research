@@ -119,6 +119,16 @@ have `u_F[i] ≠ u_F[0]` (`kernel/tests/test_c4_cut_attractor.mojo`). So the
 nesting is piecewise, by translates, and not a vertex map of the two GIFS
 graphs; "sub-GIFS" was the wrong word.
 
+**Software correction (2026-11-05).** The source defect at an interior child
+cut need not be nonzero: equal source-prefix Parikh vectors can accompany
+different source letters. Squaring the uniform control gives six such cuts
+among 24 interior edges. Source tile addresses compare both prefix vector and
+letter. The canonical implementation and independent oracle now admit these
+cuts while checking every ordered child occurrence; see the
+[regression repair and replay](c4-cut-attractor-zero-defect-repair-2026-11-05.md).
+This repairs finite bookkeeping, without promoting the written arguments above
+or below or changing the separate cohomology census.
+
 **Lemma G (window form).**
 1. For every `t ≥ 0` and `S ∈ C′` there is `y ∈ ℤ³` with `ℓ·y ∈ [t, t + L_S]`
    and `πy ∈ K_S`, where `L_S = 2β^{m_0}L_max` and `m_0` is a multiple of the
@@ -164,7 +174,9 @@ the cut lattice obeys `X_{n+1}(S) = ⊔ (M X_n(F) + d_{F,j})` with multiplicity
 one for `n ≤ 3` from every root, the two-track identity
 `d = M p(u_F[:i]) + p(Q) = M p(v_F[:i′]) + p(Q′)` holds at every interior
 cut with the letters after the cut equal to the child's first letters and
-`p(u_F[:i]) ≠ p(v_F[:i′])`, and `P N = M P`
+the two source tiles distinct (`p(u_F[:i]) = p(v_F[:i′])` forces `i = i′ = 0`
+by irreducibility, so a zero source defect occurs exactly for cuts inside the
+two first images, whose source letters differ), and `P N = M P`
 (`kernel/psc/c4_cut_attractor.mojo`). On `10/102/211` from `(102,210)`:
 four states, `N = [[0,3,0,5],[1,1,0,1],[0,1,0,3],[0,0,1,0]]`, and
 `Lᵀ N = β Lᵀ` exactly in `ℚ(√3)` (oracle).
