@@ -51,8 +51,8 @@ Pisot-source coverage.
   the repaired mutable-cache authentication defect.
 - [runtime-install.json](runtime-install.json) records package SHA-256
   checks and the package-declared prefix relocations for the local runtime.
-- Command receipts, process logs and a source manifest are added in the
-  evidence archival commit after exact-revision replay.
+- Command receipts, process logs and the [source manifest](manifest.json)
+  bind the exact-revision replay recorded in the final section below.
 
 The native packet has **210,252 lines / 6,346,587 bytes**, with SHA-256
 `3d3681a85a5b4f1bc4cca5839c5fe2ac37a91ab50b9014e947b984d020a4037d`.
@@ -140,3 +140,31 @@ declared text-prefix relocations applied. It is a minimal local compiler
 installation, distinct from the full fresh locked Pixi environment used
 by hosted CI. Exact-source replay and live hosted status are reported
 separately; no hosted result is inferred from local execution.
+
+## Final local replay record
+
+The tested source is published at
+[`69b6ea30bd9ccc8ce192d46d6795550b229b45d8`](https://github.com/larsbx/pisot-substitution-conjecture-research/commit/69b6ea30bd9ccc8ce192d46d6795550b229b45d8).
+Its full Git tree is `4b57fc3ed8e0c98c808a905879da579e200929db`,
+exactly equal to the local executed source tree. Local and GitHub commit
+identities differ; complete tree equality was checked before recording
+the published source. The following archival commit adds only evidence
+records and summaries, without altering the source algorithms or proofs.
+
+| Check | Result | Receipt |
+| --- | --- | --- |
+| Canonical native regression | Exit 0; final contract reached | [native-test](native-test.receipt.json) |
+| Full native driver | Exit 0; archived packet exactly reproduced | [native-driver](native-driver.receipt.json) |
+| Independent/adversarial oracle suite | 29 passed with native packet supplied | [oracle-tests](oracle-tests.receipt.json) |
+| Complete independent packet authentication | Exit 0; exact committed receipt equality | [native-parity](native-parity.receipt.json) |
+| Claim governance | All six audit categories passed | [governance](governance.receipt.json) |
+| Generated proof bank | Current: 124 claims, 68 Lean proofs, 370 source openings | [proof-bank](proof-bank.receipt.json) |
+| Markdown source integrity | 400 files checked | [markdown](markdown.receipt.json) |
+| Vendored packages | All pins match; no vendor changes | [vendor-pins](vendor-pins.receipt.json) |
+| Proof-bank and Markdown-link regressions | 61 passed | [inventory-tests](inventory-tests.receipt.json) |
+
+The [manifest](manifest.json) binds source hashes, command receipts, local
+runtime scope and preserved refusals. The earlier weight-certificate
+evidence remains unchanged in its separate directory. These checks cover
+this target and its relevant governance surfaces; they do not claim a
+run of the repository's unrelated complete census, Lean or TLA+ suites.

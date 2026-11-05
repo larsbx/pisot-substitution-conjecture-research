@@ -56,6 +56,14 @@ The full twelve-source replay belongs to the separate parent execution.
 
 ## Remaining boundaries
 
+The subsequent physical-mass comparison was also checked independently.
+Under the additional strictly positive premise `T^t H<=theta H`, every
+critical SCC has no incoming T edges, hence contains a declared root when
+the complete graph is root-reachable. This direction and the bound of at
+most three candidate components are correct conditionally. Neither the
+physical premise nor the separately reported Python artifacts are accepted
+as new native evidence here; they set the next authentication target.
+
 No review identifies feasible eigenvectors with actual positive overlap
 measure, promotes arbitrary modular singularity to Perron criticality,
 or imports tiling/Meyer/degree-one hypotheses from the literature.
