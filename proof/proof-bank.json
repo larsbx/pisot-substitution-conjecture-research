@@ -2461,6 +2461,21 @@
       "statement_heading": "### Corollary 3.1 — the three-state case is rigid"
     },
     {
+      "source": "docs/c4-periodic-parikh-phase-rigidity-2026-11-04.md",
+      "line": 21,
+      "statement_heading": "**Lemma 1.** For every positive integer h, the minimal polynomial f_h of beta^h over Q has degree three. In fact f_h=chi_(M^h) and is irreducible over Q."
+    },
+    {
+      "source": "docs/c4-periodic-parikh-phase-rigidity-2026-11-04.md",
+      "line": 36,
+      "statement_heading": "**Theorem 2 (phase-wise rank/size rigidity).** Under the exact hypotheses of §1, for every class k:"
+    },
+    {
+      "source": "docs/c4-periodic-parikh-phase-rigidity-2026-11-04.md",
+      "line": 70,
+      "statement_heading": "**Theorem 3 (exact phase balance).** Let v>0 be a right Perron vector of N, Nv=beta v (the eigenvalue equality follows from the positive left vector ell^T P of the complete strictly closed system). Write v^(k) for v restricted to class k, with zeros outside. Then"
+    },
+    {
       "source": "docs/c4-recurrent-flat-exits-2026-11-04.md",
       "line": 40,
       "statement_heading": "**Lemma (exit mass).** For any supplied nonempty finite set of actual"
