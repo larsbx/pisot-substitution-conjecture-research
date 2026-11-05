@@ -287,3 +287,95 @@ def verify_third_level_coincidence(k: Int) raises -> ThirdLevelCoincidence:
         k, result.cut, result.prefix_parikh.copy(),
         result.word_lengths.copy(),
     )
+
+
+def _has_three_letter_common_prefix_cut(
+    sigma: List[List[Int]], level: Int,
+) raises -> Bool:
+    """Check *every* simultaneous equal-Parikh-prefix/common-letter cut.
+
+    Called only at strictly earlier levels of the bounded sharp-depth oracle.
+    A negative finite result is never promoted to an unbounded theorem.
+    """
+    var images = List[List[Int]]()
+    for letter in range(3):
+        var word: List[Int] = [letter]
+        for _ in range(level):
+            word = apply_substitution(sigma, word)
+        images.append(word^)
+    var limit = len(images[0])
+    for i in range(1, 3):
+        if len(images[i]) < limit:
+            limit = len(images[i])
+    var q0: List[Int] = [0, 0, 0]
+    var q1: List[Int] = [0, 0, 0]
+    var q2: List[Int] = [0, 0, 0]
+    for p in range(limit):
+        if q0 == q1 and q1 == q2:
+            if images[0][p] == images[1][p] and images[1][p] == images[2][p]:
+                return True
+        q0[images[0][p]] += 1
+        q1[images[1][p]] += 1
+        q2[images[2][p]] += 1
+    return False
+
+
+def verify_sharp_closed_run_coincidence(
+    left_run: Int, right_run: Int,
+) raises -> ClosedRunCoincidence:
+    """Minimum *simultaneous three-letter* left strong-coincidence level.
+
+    Exact uniform proof: docs/c4-forward-run-family-sharp-depth-2026-11-04.md.
+    This deliberately preserves verify_closed_run_coincidence's older
+    exhibited witnesses and does NOT claim pairwise-minimal levels.
+    No unbounded exhaustion: bounded 0..16 inputs and checks of all smaller
+    levels only, with paper proof separately ruling out smaller levels.
+    """
+    var sigma = closed_run_middle_family(left_run, right_run)
+    var generation = 3
+    var p = 0
+    var next_letter = 1
+    var expected: List[Int] = [0, 0, 0]
+    if left_run == 0:
+        generation = 2
+        next_letter = 0
+    elif left_run == 1 and right_run == 0:
+        generation = 3
+        p = 7
+        expected = [2, 3, 2]
+    elif left_run == 1:
+        generation = 2
+        p = right_run + 3
+        expected = [1, right_run + 1, 1]
+    elif right_run == 0:
+        generation = 4
+        p = left_run * left_run * left_run + left_run * left_run + 4 * left_run + 1
+        expected = [
+            left_run + 1,
+            left_run * left_run * left_run + 2 * left_run,
+            left_run * (left_run + 1),
+        ]
+    else:
+        p = left_run * (left_run + right_run + 1) + 1
+        expected = [1, left_run * (left_run + right_run), left_run]
+
+    var lengths = List[Int]()
+    for letter in range(3):
+        var word: List[Int] = [letter]
+        for _ in range(generation):
+            word = apply_substitution(sigma, word)
+        if p >= len(word) or word[p] != next_letter:
+            raise Error("sharp closed-run witness not in actual word")
+        var prefix = List[Int]()
+        for j in range(p):
+            prefix.append(word[j])
+        if parikh(prefix) != expected:
+            raise Error("sharp closed-run Parikh prefix mismatch")
+        lengths.append(len(word))
+
+    for earlier in range(1, generation):
+        if _has_three_letter_common_prefix_cut(sigma, earlier):
+            raise Error("claimed sharp closed-run level has an earlier witness")
+    return ClosedRunCoincidence(
+        left_run, right_run, generation, p, next_letter, expected, lengths,
+    )
