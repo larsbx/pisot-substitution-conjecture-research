@@ -65,3 +65,6 @@ claim = "HistoricalDegree3Capture"
 coverage = "partial"
 declarations = ["Psc.Aq_not_conj_cyclicPlus", "Psc.Aq_not_conj_cyclicMinus"]
 note = "Restricted historical result: Lean supports its trace obstruction, not the whole spectral argument."
+[[evidence]]
+claim = "C4StandingCorpus"
+source = "docs/c4-finite-domain-closure-2026-11-05.md, section 3; exact affine-automaton witnesses for all 13,662 letter pairs with the cut-pair reduction Theorem A(4); domain-specific, not a universal theorem"

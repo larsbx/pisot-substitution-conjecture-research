@@ -317,10 +317,37 @@
     },
     {
       "name": "C4",
-      "status": "open",
-      "source": "open sufficiency premise of the C4 route",
+      "status": "conditional",
+      "source": "docs/c4-finite-domain-closure-2026-11-05.md; the implication is the cut-pair reduction, the premise is UniversalAlignedCoincidence (issue #138); general C4 is equivalent to bounded-gap A1-prime (docs/c4-cut-attractor-window-2026-11-05.md, Proposition 3)",
+      "dependencies": [
+        "C4FromStrongCoincidence",
+        "UniversalAlignedCoincidence"
+      ],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "C4FromStrongCoincidence",
+      "status": "proved",
+      "source": "docs/c4-cut-pair-productivity-2026-11-04.md, Theorem A(4); docs/c4-cut-attractor-window-2026-11-05.md, Propositions 2 and 3; docs/c4-finite-domain-closure-2026-11-05.md; human review pending",
       "dependencies": [],
       "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "C4StandingCorpus",
+      "status": "finite-domain",
+      "source": "docs/c4-finite-domain-closure-2026-11-05.md, section 3; exact affine-automaton witnesses for all 13,662 letter pairs with the cut-pair reduction Theorem A(4); domain-specific, not a universal theorem",
+      "dependencies": [],
+      "ledger_node": false,
       "lean_support": {
         "coverage": "none",
         "declarations": [],
@@ -2446,6 +2473,11 @@
       "statement_heading": "**Corollary B (given these geometric inputs, proved in #480 §3 and §8):** every represented pair e={c,c'} individually satisfies"
     },
     {
+      "source": "docs/c4-finite-domain-closure-2026-11-05.md",
+      "line": 35,
+      "statement_heading": "**Theorem A(4)** of the cut-pair note: every first-letter pair of a strict"
+    },
+    {
       "source": "docs/c4-forward-run-family-sharp-depth-2026-11-04.md",
       "line": 46,
       "statement_heading": "**Theorem (five mutually exclusive chambers).** For every a,b>=0,"
@@ -4152,7 +4184,7 @@
     }
   ],
   "input_digests": {
-    "claim_governance.toml": "6ce46dc8609f791de057dc086f1fb2da667f7546fddb170f63cb42df06879a18",
+    "claim_governance.toml": "5642e664f9a79064ffbaf770719cf0acba52accc75fca568711d4b554a08803e",
     "proof/PscVerif/ProofBankAudit.lean": "df46d0e65bf4aa0b6c2ca184a784974970c58f8c2c3de38eb4ed713efacce904",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
@@ -4169,9 +4201,9 @@
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
-    "proof/proof-bank.toml": "847712aeb80710dbbd96cfac7cd4cfd310516585529412fddf4d9baf21acb42c",
+    "proof/proof-bank.toml": "3573fcd616cec1eabd90496664b6e7da53faf469b6ab54f19cbe4c5a40b8d73d",
     "tools/check_lean.sh": "04078a19300533b800e2cca6f0a3573fe8b116fec0ae8ace8a2d4ffc1ae9613b",
-    "tools/make_ledger.py": "9798698af29a039e9d2c785b8c231080d347d5deff1a63f97dfae14db4e03bab",
+    "tools/make_ledger.py": "2d64f2c5e3ee8df0bc709bcb8a09ab435ac0a1e9b9e84e67cbbcfea1ed647f9d",
     "tools/make_proof_bank.py": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8",
     "tools/setup_lean.sh": "b2c35ccc8d0b180a75275f8234f519a00d32efcbc8a9517f8b3d74a96b3ef8da"
   }
