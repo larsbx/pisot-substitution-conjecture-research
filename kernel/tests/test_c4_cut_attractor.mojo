@@ -4,6 +4,7 @@ the endpoint-collapse survey and the deep strong-coincidence class."""
 from std.testing import assert_equal, assert_false, assert_true
 from mojo_smoke.claims import require_contract
 from psc.c4_cut_attractor import (
+    StrictClosure,
     child_matrix,
     configuration_census,
     cut_edges,
@@ -18,6 +19,7 @@ from psc.c4_cut_attractor import (
     strict_closure,
 )
 from psc.corpus import pip_corpus
+from psc.bpa import apply_substitution
 from psc.words import Pair
 
 
@@ -64,6 +66,120 @@ def test_uniform_strict_control() raises:
     assert_equal(shifted_source_count(c, edges), 6)
     assert_true(cut_lattice_recursion_holds(sigma, c, 3))
     assert_equal(inflated_first_pair_mask(sigma, c, 3), 0b111)
+
+
+def test_powered_uniform_zero_source_defect() raises:
+    var base: List[List[Int]] = [[0, 1, 2], [1, 2, 0], [2, 0, 1]]
+    var sigma = List[List[Int]]()
+    for a in range(3):
+        sigma.append(apply_substitution(base, base[a]))
+    assert_equal(sigma[0], [0, 1, 2, 1, 2, 0, 2, 0, 1])
+    assert_equal(sigma[1], [1, 2, 0, 2, 0, 1, 0, 1, 2])
+    var c = strict_closure(sigma, Pair([0, 1, 2], [1, 2, 0]))
+    assert_equal(c.size(), 3)
+    for row in child_matrix(c):
+        assert_equal(row, [3, 3, 3])
+    assert_true(intertwines(sigma, c))
+    var edges = cut_edges(sigma, c)
+    assert_equal(len(edges), 24)
+    # Same start (empty source prefixes), different parent letters 0 and 1.
+    assert_equal(edges[0].parent, 0)
+    assert_equal(edges[0].cut, 3)
+    assert_equal(edges[0].translation, [1, 1, 1])
+    assert_equal(edges[0].top_source, 0)
+    assert_equal(edges[0].bottom_source, 0)
+    assert_equal(edges[0].top_prefix, 3)
+    assert_equal(edges[0].bottom_prefix, 3)
+    assert_equal(c.states[0].u[0], 0)
+    assert_equal(c.states[0].v[0], 1)
+    var zero_defects = 0
+    for edge in edges:
+        var u = c.states[edge.parent].u.copy()
+        var v = c.states[edge.parent].v.copy()
+        var pu: List[Int] = [0, 0, 0]
+        var pv: List[Int] = [0, 0, 0]
+        for i in range(edge.top_source):
+            pu[u[i]] += 1
+        for i in range(edge.bottom_source):
+            pv[v[i]] += 1
+        if pu == pv:
+            zero_defects += 1
+            assert_true(u[edge.top_source] != v[edge.bottom_source])
+    assert_equal(zero_defects, 6)
+    assert_equal(shifted_source_count(c, edges), 18)
+    assert_true(cut_lattice_recursion_holds(sigma, c, 3))
+    assert_equal(inflated_first_pair_mask(sigma, c, 3), 0b111)
+
+
+def assert_bad_closure(sigma: List[List[Int]], c: StrictClosure) raises:
+    var refused = False
+    try:
+        _ = cut_edges(sigma, c)
+    except:
+        refused = True
+    assert_true(refused)
+    refused = False
+    try:
+        _ = cut_lattice_recursion_holds(sigma, c, 1)
+    except:
+        refused = True
+    assert_true(refused)
+
+
+def test_supplied_closure_validation() raises:
+    var sigma: List[List[Int]] = [[0, 1, 2], [1, 2, 0], [2, 0, 1]]
+    var c = strict_closure(sigma, Pair([0, 1, 2], [1, 2, 0]))
+    for mode in range(14):
+        var bad = StrictClosure(c.states, c.rows, c.cuts)
+        if mode == 0:
+            _ = bad.rows.pop()
+        elif mode == 1:
+            _ = bad.cuts.pop()
+        elif mode == 2:
+            # Remove an actual occurrence, leaving both row lengths consistent.
+            _ = bad.rows[0].pop()
+            _ = bad.cuts[0].pop()
+        elif mode == 3:
+            bad.cuts[0][1] = 99
+        elif mode == 4:
+            bad.rows[0][1] = -1
+        elif mode == 5:
+            bad.rows[0][1] = c.size()
+        elif mode == 6:
+            # Preserve child multiplicities and PN=MP, corrupt occurrence order.
+            var tmp = bad.rows[0][0]
+            bad.rows[0][0] = bad.rows[0][1]
+            bad.rows[0][1] = tmp
+            assert_true(intertwines(sigma, bad))
+        elif mode == 7:
+            bad.cuts[0][0] = 3
+        elif mode == 8:
+            bad.states[0] = Pair([0, 1], [1, 2])  # unbalanced
+        elif mode == 9:
+            bad.states[0] = Pair([0, 1, 0, 1], [1, 0, 1, 0])  # reducible
+        elif mode == 10:
+            bad.states[0] = Pair([0, 3], [3, 0])
+        elif mode == 11:
+            bad.states[0] = bad.states[1].copy()  # duplicate state identity
+        elif mode == 12:
+            bad.rows[0].append(bad.rows[0][0])
+            bad.cuts[0].append(0)  # extra occurrence
+        else:
+            bad.states[0] = Pair(List[Int](), List[Int]())
+        assert_bad_closure(sigma, bad)
+    # Genuine same-start, same-letter parent tile; zero defect is now correctly
+    # refused on tile identity rather than on the vector alone.
+    var coincident: List[Pair] = [Pair([0], [0])]
+    var row: List[List[Int]] = [[0]]
+    assert_bad_closure(sigma, StrictClosure(coincident, row, row))
+    var empty_states = List[Pair]()
+    var empty_rows = List[List[Int]]()
+    assert_bad_closure(sigma, StrictClosure(empty_states, empty_rows, empty_rows))
+    # An otherwise irreducible noncoincident state whose inflation has a
+    # coincidence must still fail, even when a supplied row hides the factor.
+    var pip: List[List[Int]] = [[0, 1], [1, 2], [0, 2, 1]]
+    var swap: List[Pair] = [Pair([1, 0], [0, 1])]
+    assert_bad_closure(pip, StrictClosure(swap, row, row))
 
 
 def test_pip_seed_and_malformed_inputs_are_refused() raises:
@@ -153,9 +269,11 @@ def test_deep_strong_coincidence_class() raises:
 def main() raises:
     test_reducible_strict_control()
     test_uniform_strict_control()
+    test_powered_uniform_zero_source_defect()
+    test_supplied_closure_validation()
     test_pip_seed_and_malformed_inputs_are_refused()
     test_configuration_census()
     test_endpoint_collapse_survey()
     test_deep_strong_coincidence_class()
-    print("C4 cut attractor: strict-control bookkeeping, 54 configurations, endpoint collapse 1896/1896/3012, deep class 1/2/01.")
-    require_contract("cut-attractor bookkeeping of a supplied strict system: ordered closure, P N = M P, two-track nesting at every interior cut, multiplicity-one cut-lattice recursion, cut pairs inside A(C), hub on one track; the 54 first-letter configurations of Theorem A(3); endpoint-collapse census 1896/1896/3012/1542; bounded left witnesses with exhausted budgets reported as -1")
+    print("C4 cut attractor: strict-control bookkeeping; powered uniform 24 edges / 6 zero defects; malformed closure refusals; 54 configurations; endpoint collapse 1896/1896/3012; deep class 1/2/01.")
+    require_contract("cut-attractor bookkeeping of a supplied strict system: exact ordered factor occurrences, P N = M P, two-track nesting at every interior cut including valid zero source defects, source tile identity includes the letter, multiplicity-one cut-lattice recursion, cut pairs inside A(C), hub on one track; malformed closures and missing occurrences refuse; the 54 first-letter configurations of Theorem A(3); endpoint-collapse census 1896/1896/3012/1542; bounded left witnesses with exhausted budgets reported as -1")

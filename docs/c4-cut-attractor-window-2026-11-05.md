@@ -119,6 +119,16 @@ have `u_F[i] ≠ u_F[0]` (`kernel/tests/test_c4_cut_attractor.mojo`). So the
 nesting is piecewise, by translates, and not a vertex map of the two GIFS
 graphs; "sub-GIFS" was the wrong word.
 
+**Software correction (2026-11-05).** The source defect at an interior child
+cut need not be nonzero: equal source-prefix Parikh vectors can accompany
+different source letters. Squaring the uniform control gives six such cuts
+among 24 interior edges. Source tile addresses compare both prefix vector and
+letter. The canonical implementation and independent oracle now admit these
+cuts while checking every ordered child occurrence; see the
+[regression repair and replay](c4-cut-attractor-zero-defect-repair-2026-11-05.md).
+This repairs finite bookkeeping, without promoting the written arguments above
+or below or changing the separate cohomology census.
+
 **Lemma G (window form).**
 1. For every `t ≥ 0` and `S ∈ C′` there is `y ∈ ℤ³` with `ℓ·y ∈ [t, t + L_S]`
    and `πy ∈ K_S`, where `L_S = 2β^{m_0}L_max` and `m_0` is a multiple of the
