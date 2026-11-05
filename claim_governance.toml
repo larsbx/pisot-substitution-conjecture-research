@@ -241,6 +241,15 @@ anchor = "| Finite-domain pure discrete spectrum |"
 window_lines = 0
 
 [[claim]]
+name = "C4StandingCorpus"
+status = "finite-domain"
+aliases = ["C4 on the standing corpus"]
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| C4 on the standing corpus |"
+window_lines = 0
+
+[[claim]]
 name = "OrderedAffineCycleIdentity"
 status = "proved"
 aliases = ["ordered affine overlap-cycle identity"]
@@ -608,16 +617,31 @@ window_lines = 0
 
 [[claim]]
 name = "C4"
-status = "open"
+status = "conditional"
 [[claim.surfaces]]
 path = "proof/tla/Ledger.tla"
 anchor = '"C4"'
 section = "ProvedDef == {"
 section_end = "}"
-expect = "absent"
+expect = "present"
 [[claim.surfaces]]
 path = "docs/ledger-index.md"
 anchor = '| C4 |'
+window_lines = 0
+
+[[claim]]
+name = "C4FromStrongCoincidence"
+status = "proved"
+aliases = ["cut-pair reduction", "Theorem A(4)"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"C4FromStrongCoincidence"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| C4FromStrongCoincidence |'
 window_lines = 0
 
 [[claim]]

@@ -411,6 +411,13 @@ A missing strong-coincidence witness is reported as an exhausted budget.
   `d_cov ≥ 2`. A contradiction would then need `Σ_c λ(R_c) < 2κ/ℓ̄`, which,
   conditionally on the §3a imports (multiple tiling of degree `d_cov`;
   tiling ⇔ PDS), is equivalent to `d_cov = 1`, i.e. to PDS.
+- 2026-11-05: the [cut-attractor note](c4-cut-attractor-window-2026-11-05.md)
+  shows that a strict system forces `int(R_c ∩ R_c')` nonempty on a cut pair
+  (Lemma G, no determinant hypothesis), that a strict system is exactly an
+  A1′ configuration plus bounded common-vertex gaps (Proposition 3), and
+  that at coincidence rank 2 the open-overlap condition is *equivalent* to
+  the existence of a strict system (Proposition R, conditional). The next
+  open quantifier is sharpened there: at `cr = 2` it is equivalent to C4.
 - Next open quantifier: for unit PIP `σ` and every cut pair `{c,c'}` with no
   left SC witness at any level, bound `λ(R_c ∩ R_c')` below `κ δ_{c,c'}(C)`
   (`δ` as in the #482 note)
