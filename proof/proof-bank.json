@@ -2341,6 +2341,36 @@
       "statement_heading": "**Lemma.** Let `T` be an actual irreducible noncoincident balanced"
     },
     {
+      "source": "docs/c4-critical-overlap-components-2026-11-05.md",
+      "line": 61,
+      "statement_heading": "**Lemma CE1 (support propagation; written proof, human review pending).**"
+    },
+    {
+      "source": "docs/c4-critical-overlap-components-2026-11-05.md",
+      "line": 72,
+      "statement_heading": "**Lemma CE2 (component trichotomy; written proof, human review pending).**"
+    },
+    {
+      "source": "docs/c4-critical-overlap-components-2026-11-05.md",
+      "line": 137,
+      "statement_heading": "**Theorem CE3 (eligible critical rays; classical theorem, written"
+    },
+    {
+      "source": "docs/c4-critical-overlap-components-2026-11-05.md",
+      "line": 208,
+      "statement_heading": "**Corollary CE4 (root feasibility; written proof, human review pending).**"
+    },
+    {
+      "source": "docs/c4-critical-overlap-components-2026-11-05.md",
+      "line": 250,
+      "statement_heading": "**Corollary CE5 (positive upper bounds preserve ray feasibility; written"
+    },
+    {
+      "source": "docs/c4-critical-overlap-components-2026-11-05.md",
+      "line": 277,
+      "statement_heading": "**Lemma CE6 (block polynomial certificates; written proof, human review"
+    },
+    {
       "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
       "line": 58,
       "statement_heading": "**Theorem A.**"
