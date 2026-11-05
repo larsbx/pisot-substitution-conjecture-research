@@ -39,10 +39,52 @@ on:
       - 'oracles/python/c4_pair_overlap_class.py'
       - 'oracles/python/c4_pair_overlap_graph.py'
       - 'evidence/c4-pair-overlap-class-2026-11-05/receipt.json'
+  # PR events are suppressed while newer main conflicts with this fixed-baseline
+  # verification draft. Run the same exact-head gate on its branch pushes.
+  push:
+    branches:
+      - 'proof/c4-overlap-lean-2026-11-05'
+    paths:
+      - '.github/workflows/c4-overlap-lean-packets.yml'
+      - 'proof/PscVerif/PscVerif.lean'
+      - 'proof/PscVerif/ProofBankAudit.lean'
+      - 'proof/PscVerif/PscVerif/OverlapPacket.lean'
+      - 'proof/PscVerif/PscVerif/OverlapContraction.lean'
+      - 'proof/PscVerif/lean-toolchain'
+      - 'proof/PscVerif/lakefile.toml'
+      - 'proof/PscVerif/lake-manifest.json'
+      - 'tools/setup_lean.sh'
+      - 'tools/check_lean.sh'
+      - 'tools/make_proof_bank.py'
+      - 'tools/replay_overlap_lean_packets.py'
+      - 'tests/test_overlap_lean_packet_replay.py'
+      - 'tests/fixtures/c4_overlap_bad_binding.lean'
+      - 'kernel/c4_overlap_lean_export.mojo'
+      - 'kernel/tests/test_c4_overlap_lean_export.mojo'
+      - 'kernel/psc/c4_pair_overlap_attractor.mojo'
+      - 'kernel/psc/c4_pair_overlap_graph.mojo'
+      - 'kernel/psc/c4_finite_cylinder_overlap.mojo'
+      - 'kernel/psc/c4_nonunit_residue_occupancy.mojo'
+      - 'kernel/psc/c4_cylinder_density.mojo'
+      - 'kernel/psc/derived_system.mojo'
+      - 'kernel/psc/exact.mojo'
+      - 'kernel/psc/words.mojo'
+      - 'kernel/psc/bpa.mojo'
+      - 'kernel/finite_exact/**'
+      - 'kernel/finite_linear_algebra/**'
+      - 'kernel/substitution_dynamics/**'
+      - 'kernel/finite_graph/scc.mojo'
+      - 'kernel/mojo_smoke/claims.mojo'
+      - 'kernel/pixi.toml'
+      - 'kernel/pixi.lock'
+      - 'vendored.toml'
+      - 'oracles/python/c4_pair_overlap_class.py'
+      - 'oracles/python/c4_pair_overlap_graph.py'
+      - 'evidence/c4-pair-overlap-class-2026-11-05/receipt.json'
   workflow_dispatch:
 
 concurrency:
-  group: c4-overlap-lean-packets-${{ github.event.pull_request.number || github.ref }}
+  group: c4-overlap-lean-packets-${{ github.event.pull_request.head.ref || github.ref_name }}
   cancel-in-progress: true
 
 permissions:

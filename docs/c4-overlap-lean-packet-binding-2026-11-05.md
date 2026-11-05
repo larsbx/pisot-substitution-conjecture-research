@@ -125,7 +125,11 @@ upstream Mathlib cache trust inputs are the same as the existing isolated gate.
 
 The dedicated exact-head workflow applies only to the packet bridge's dependency
 closure, keeping routine documentation changes out of this expensive replay.
-Its artifact includes partial logs on failure. The generic Lean workflow remains
+Its artifact includes partial logs on failure. The draft currently conflicts
+with newer main, which suppresses PR-triggered runs. A path-filtered push event
+for the dedicated verification branch runs the same exact-head gate without
+merging or incorporating main's mathematical status changes; push and PR events
+share a branch concurrency group. The generic Lean workflow remains
 separate and retains its own exact-head declaration audit.
 
 ## Negative controls
