@@ -144,7 +144,11 @@ The scope of each result matters. The standing assumptions are primitivity, nonz
 
 The mathematical entrypoints are the [proof ladder](docs/proof-ladder.md), [direct-attack analysis](docs/direct-attack-frontier-2026-10-23.md), and [state-of-program manuscript](manuscripts/PSC_balanced_pair_state_2026-09-13.tex). For the precise status and evidence behind a particular assertion, consult [claim governance](claim_governance.toml), the [claim/source map](docs/claim-status-and-source-map-2026-09-13.md), and the [proof bank](docs/proof-bank.md).
 
-Executable research is primarily written in [Mojo](kernel/); [Python oracles](oracles/) provide independent checks. The repository also contains [Lean proofs](proof/PscVerif/) and [TLA+ models](proof/tla/) at their documented scopes. The main verification commands are:
+Executable research is primarily written in [Mojo](kernel/); [Python oracles](oracles/) provide independent checks. The repository also contains [Lean proofs](proof/PscVerif/) and [TLA+ models](proof/tla/) at their documented scopes.
+
+The [overlap Lean layer](docs/c4-overlap-lean-interface-2026-11-05.md) verifies the deductive certificate interface: period-three compatibility with two-step refinement, exact integer subinvariant soundness, and null-overlap inference from complete occurrence covers and measure scaling. The 18 concrete graph packets and their M-adic geometry/counting bindings remain outside that formal proof. This is not a complete Lean verification of PR #496 or PSC.
+
+The main verification commands are:
 
 ```bash
 ./tools/verify_all.sh

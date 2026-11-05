@@ -1,4 +1,4 @@
-# PscVerif — Lean 4 proofs for the PSC Spectral module
+# PscVerif — Lean 4 proofs for PSC research
 
 Lean checks the exact algebraic statements in these modules. A partial binding
 does not prove its full parent claim; the tensor, intertwining, semisimplicity
@@ -31,3 +31,14 @@ and all-edge closure hypotheses. Its finite counterexample proves why local
 selected ranks alone do not supply closure. Mojo-to-Lean implementation
 refinement and uniform X-descendant productivity remain separate obligations;
 see the [selected-rank interface](../../docs/selected-rank-soundness-2026-10-31.md).
+
+`PscVerif.OverlapContraction` provides the deductive layer for PR #496's
+overlap-certificate argument: fixed-iterate uniqueness and period-three
+compatibility, a kernel-decidable integer occurrence-graph checker and its
+real soundness theorem, complete-cover measure subadditivity, null-overlap
+inference, and exclusion of a positive-measure carrier covered by null roots.
+Parallel occurrences remain separate. The concrete 18 graphs, their geometric
+coverage, the M-adic construction and the strict-cut counting lower bound are
+not supplied by the formal checker. See the
+[overlap Lean interface](../../docs/c4-overlap-lean-interface-2026-11-05.md)
+for the exact hypotheses and remaining bindings. No C4 or PSC status changes.
