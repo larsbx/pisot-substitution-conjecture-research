@@ -60,19 +60,25 @@ def bounded_strong_coincidence(sigma, a, b, cap):
 
 
 def strict_complete_system(sigma, states):
-    canonical = {frozenset((u, v)) for u, v in states}
-    if len(canonical) != len(states):
-        raise ValueError("duplicate orientation pair")
+    """Check ORDERED strict child closure (no track-swap normalisation).
+
+    Restriction: at most one orientation per unordered pair is admitted, so a
+    system containing both (u, v) and (v, u) is refused even when it is
+    ordered-closed (e.g. the union of both 3-cycles of 012/120/201).
+    """
+    ordered = set(states)
+    if len(ordered) != len(states) or len({frozenset(s) for s in states}) != len(states):
+        raise ValueError("duplicate state or orientation pair")
     A = set()
     ordered_children = []
     for u, v in states:
         assert cuts(u, v) == [0, len(u)]
         A.add(pair(u[0], v[0]))
         child = factors(inflate(sigma, u), inflate(sigma, v))
-        if any(x == y or frozenset((x, y)) not in canonical for x, y in child):
+        if any(x == y or (x, y) not in ordered for x, y in child):
             raise ValueError("not a complete strict child-closed system")
         ordered_children.append(child)
-    first = {i: sigma[i][0] for i in range(3)}
+    first = {str(i): sigma[i][0] for i in range(3)}
     for edge in A:
         a, b = sorted(edge)
         assert first[a] != first[b]
@@ -97,8 +103,16 @@ def test_reducible_fullrank_strict_actual_cut_pairs_are_one_type():
 
 def test_constant_length_nonpisot_has_all_three_cut_pairs():
     sigma = ("012", "120", "201")
-    states = ((sigma[0], sigma[1]), (sigma[0], sigma[2]),
-              (sigma[1], sigma[2]))
+    # The earlier listing is closed only up to track swap: (201,012) is a
+    # child and is missing. Ordered closure must refuse it.
+    swapped = ((sigma[0], sigma[1]), (sigma[0], sigma[2]), (sigma[1], sigma[2]))
+    try:
+        strict_complete_system(sigma, swapped)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("track-swap-only closure was accepted as ordered")
+    states = ((sigma[0], sigma[1]), (sigma[1], sigma[2]), (sigma[2], sigma[0]))
     A, children = strict_complete_system(sigma, states)
     assert A == {frozenset((str(a), str(b)))
                  for a, b in combinations(range(3), 2)}
@@ -125,3 +139,21 @@ def test_pisot_pairwise_strong_coincidence_is_a_real_prefix_witness():
             pass
         else:
             raise AssertionError("bad search budget was accepted")
+
+
+def test_transient_pair_six_state_strict_closure():
+    sigma = ("10", "102", "211")
+    states = (
+        ("02", "20"), ("10211", "21110"), ("102", "210"), ("11102", "21110"),
+        ("10210211", "21110210"), ("10210210210211", "21110210210210"),
+    )
+    A, _ = strict_complete_system(sigma, states)
+    assert A == {frozenset("02"), frozenset("12")}
+    assert bounded_strong_coincidence(sigma, 0, 2, 8) is None
+
+
+def test_unit_pip_left_witness_levels():
+    sigma = ("01", "12", "021")
+    assert bounded_strong_coincidence(sigma, 0, 2, 8) == 1
+    assert bounded_strong_coincidence(sigma, 0, 1, 8) == 4
+    assert bounded_strong_coincidence(sigma, 1, 2, 8) == 4

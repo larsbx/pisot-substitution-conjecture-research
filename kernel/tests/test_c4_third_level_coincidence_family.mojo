@@ -535,4 +535,4 @@ def main() raises:
     test_sharp_forward_family_complete_pairwise_depths()
     test_forward_prefix_satellite_is_literal_at_all_bounded_depths()
     print("C4 uniform third-level family: complete literal strong coincidence controls passed.")
-    require_contract("ternary symmetric middle family 01/(1^k 2 1^k)/012 has all three simultaneous depth-three balanced-prefix strong coincidences at k(2k+1)+1; actual swap BPA diagonals, bounded replay, invalid cap refusal; no global PSC promotion")
+    require_contract("ternary symmetric middle family 01/(1^k 2 1^k)/012 has all three simultaneous depth-three balanced-prefix strong coincidences at k(2k+1)+1; forward run family 01/(1^a 2 1^b)/012 has sharp simultaneous left-coincidence depth D(a,b) in {2,3,4} by five chambers with pairwise minimum depths ({0,1},{0,2},{1,2})=(D,1,D) by exhaustive earlier-cut scan and the literal prefix-satellite identity sigma^n(2)=sigma^n(0)sigma^(n-1)(2) on the bounded grid; actual swap BPA diagonals, bounded replay, invalid cap refusal; no global PSC promotion")

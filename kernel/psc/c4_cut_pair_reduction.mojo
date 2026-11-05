@@ -4,7 +4,8 @@ Contract (docs/c4-cut-pair-productivity-2026-11-04.md, Theorem A). For a
 finite strictly child-closed system C of irreducible noncoincident balanced
 pairs, the set A(C) of unordered first-letter pairs ("cut pairs") satisfies
 
-* every balanced cut of every inflation of every state carries a pair of A(C);
+* every proper balanced cut (cut 0 included, terminal index excluded) of every
+  inflation of every state carries a pair of A(C);
 * A(C) is closed under the initial-letter map g x g, and g never collapses it;
 * no pair of A(C) is left strongly coincident.
 
@@ -27,13 +28,26 @@ def pair_bit(a: Int, b: Int) raises -> Int:
     return 1 << (a + b - 1)
 
 
+def require_balanced_letters(s: Pair) raises:
+    """Range-check every letter before any Parikh indexing, then balance."""
+    if s.length() <= 0:
+        raise Error("cut-pair input is empty")
+    for symbol in s.u:
+        if symbol < 0 or symbol >= ALPHABET:
+            raise Error("invalid top word letter")
+    for symbol in s.v:
+        if symbol < 0 or symbol >= ALPHABET:
+            raise Error("invalid bottom word letter")
+    if not is_balanced(s):
+        raise Error("cut-pair input is not balanced")
+
+
 def first_pair_mask(states: List[Pair]) raises -> Int:
     if len(states) == 0:
         raise Error("empty supplied system")
     var mask = 0
     for s in states:
-        if s.length() == 0 or not is_balanced(s):
-            raise Error("supplied state is empty or unbalanced")
+        require_balanced_letters(s)
         if len(coincidence_boundaries(s.u, s.v)) != 2:
             raise Error("supplied state is reducible")
         mask |= pair_bit(s.u[0], s.v[0])
@@ -54,14 +68,7 @@ def inflated_cut_pair_mask(sigma: List[List[Int]], states: List[Pair], depth: In
         image_bound = max(image_bound, len(sigma[a]))
     var mask = 0
     for s in states:
-        if s.length() <= 0 or not is_balanced(s):
-            raise Error("cut-pair input is not a nonempty balanced pair")
-        for symbol in s.u:
-            if symbol < 0 or symbol >= ALPHABET:
-                raise Error("invalid top word letter")
-        for symbol in s.v:
-            if symbol < 0 or symbol >= ALPHABET:
-                raise Error("invalid bottom word letter")
+        require_balanced_letters(s)
         var top = s.u.copy()
         var bottom = s.v.copy()
         for _ in range(depth):

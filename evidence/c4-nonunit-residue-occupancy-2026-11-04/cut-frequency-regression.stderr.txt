@@ -1,0 +1,4 @@
+Failed to initialize Crashpad.  Crash reporting will not be available.  Cause: while locating crashpad handler: unable to locate crashpad handler executable
+/workspace/scratch/bb3a4dbb8418/psc-occupancy/kernel/tests/test_c4_pairwise_cut_frequency.mojo:21:13: warning: ref 'level' was never used, remove it?
+        for level in range(1, 6):
+            ^

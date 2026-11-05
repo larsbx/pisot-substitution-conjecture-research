@@ -213,7 +213,7 @@ def reversed_closed_run_family(left_run: Int, right_run: Int) raises -> List[Lis
         var new_word = List[Int]()
         for j in range(len(old_word)):
             new_word.append(old_word[len(old_word) - 1 - j])
-        reversed.append(new_word)
+        reversed.append(new_word^)
     return reversed^
 
 
@@ -302,7 +302,7 @@ def _has_three_letter_common_prefix_cut(
         var word: List[Int] = [letter]
         for _ in range(level):
             word = apply_substitution(sigma, word)
-        images.append(word)
+        images.append(word^)
     var limit = len(images[0])
     for i in range(1, 3):
         if len(images[i]) < limit:

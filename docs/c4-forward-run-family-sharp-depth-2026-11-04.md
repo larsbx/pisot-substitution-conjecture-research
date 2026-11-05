@@ -1,6 +1,11 @@
 # Forward Pisot run family: exact minimum simultaneous left-coincidence generation — 2026-11-04
 
-**Status and scope.** This is a family-specific *sharp-depth* refinement of merged
+**Status:** repository-proved, family-specific (the Theorem, Lemma and
+Corollary below are written uniform arguments with bounded exact Mojo and
+independent Python replay; human review pending). No governed claim status
+changes. Literature stop/go: [c4-forward-sharp-depth-literature-gate-2026-11-04.md](c4-forward-sharp-depth-literature-gate-2026-11-04.md).
+
+**Scope.** This is a family-specific *sharp-depth* refinement of merged
 [#479](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/479)
 and the historical positive-run [#477](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/477).
 The result is a uniform algebraic argument over unbounded nonnegative
@@ -34,6 +39,9 @@ proved in #479 and are not strengthened here. All splittings at fixed s
 have **identical incidence**, not identical word order.
 
 ## The sharp-depth theorem
+
+*Status: repository-proved for this family (uniform argument below;
+bounded exact replay; human review pending).*
 
 **Theorem (five mutually exclusive chambers).** For every a,b>=0,
 a+b>=1, the following table gives exactly D(a,b), together with one
@@ -147,6 +155,11 @@ of minimality for unbounded parameters.
 The family has an elementary but useful **word-level structure** which
 does not follow from its incidence spectrum:
 
+*Status: repository-proved (elementary word identity; no Pisot hypothesis;
+human review pending). It is a same-level variant of the repository's
+prefix-transfer Lemma T ([A1′ note §3c](p1a-a1-prime-2026-10-05.md));
+see the [literature gate](c4-forward-sharp-depth-literature-gate-2026-11-04.md).*
+
 **Lemma (prefix-satellite lifting).** Let \(\tau\) be any nonerasing
 substitution on an alphabet and suppose \(\tau(k)=\tau(i)W\) as
 *literal words* for distinct source letters \(i,j,k\) and some word
@@ -180,6 +193,9 @@ Here \(\sigma(2)=\sigma(0)2\) exactly; hence
 
 Thus the minimum simultaneous depth found above equals the minimum
 ordinary **(0,1) strong-coincidence depth**, not just an upper bound.
+
+*Status: repository-proved for this family (uniform argument below;
+bounded exact replay; human review pending).*
 
 **Corollary (sharp all-pairs coincidence depth).** For every member of
 this forward family, the minimum strong-coincidence depth for the pair
@@ -240,6 +256,15 @@ regimes:
   At p=19 the prefix difference
   \(\operatorname{Parikh}(Y[:19])-\operatorname{Parikh}(Z[:19])
     =(0,-1,1)\ne0\), ruling out that last candidate.
+  *Derivation.* For a=2,b=0 the words are B=`112`,
+  F=AB=`01112` (Parikh (1,3,1), length 5),
+  G=B²C=`112112012` (Parikh (1,5,3), length 9) and
+  H=ABC=`01112012` (length 8). Hence |G²|=18, so
+  Y[:19]=G·G·`0` with Parikh 2(1,5,3)+(1,0,0)=(3,10,6),
+  while |FG|=14, so Z[:19]=F·G·H[:5]=F·G·`01112` with
+  Parikh (1,3,1)+(1,5,3)+(1,3,1)=(3,11,5). The difference is
+  (3,10,6)−(3,11,5)=(0,−1,1). (The next letters, Y[19]=1 and
+  Z[19]=0, differ as well.)
 
 Therefore there is no \(\{1,2\}\) witness at any
 generation below \(D\). At generation D the literal
@@ -304,6 +329,28 @@ Hence even the **minimal simultaneous depth**
 varies within the same full incidence matrix M_s
 (and the same Perron/Pisot data), so an incidence-only
 argument cannot determine it. Word order is essential.
+
+## Literature and novelty boundary
+
+Strong coincidence (equal abelianized prefix and equal next letter in
+\(\sigma^n(i)\), \(\sigma^n(j)\)) is the Arnoux–Ito condition
+(P. Arnoux, S. Ito, *Pisot substitutions and Rauzy fractals*, Bull. Belg.
+Math. Soc. Simon Stevin 8 (2001), 181–207). Barge–Diamond
+(*Coincidence for substitutions of Pisot type*, Bull. Soc. Math. France 130
+(2002), 619–626) prove that some pair of distinct letters is strongly
+coincident for every Pisot substitution; the all-pairs condition on three
+letters is open in general. Its constant-length ancestor is Dekking's column
+coincidence (F. M. Dekking, *The spectrum of dynamical systems arising from
+substitutions of constant length*, Z. Wahrscheinlichkeitstheorie verw. Gebiete
+41 (1978), 221–239). The balanced-pair algorithm and its termination
+equivalence are Sirvent–Solomyak (*Pure discrete spectrum for one-dimensional
+substitution systems of Pisot type*, Canad. Math. Bull. 45 (2002), 697–710),
+surveyed in Akiyama–Barge–Berthé–Lee–Siegel, *On the Pisot substitution
+conjecture*, Mathematics of Aperiodic Order, Progr. Math. 309 (2015). The new
+content here is restricted to the **specialization**: the exact sharp depth
+D(a,b) for this family and the prefix-satellite sufficient criterion
+(a same-level variant of the repository's Lemma T). See the
+[literature gate](c4-forward-sharp-depth-literature-gate-2026-11-04.md).
 
 ## Execution, negative controls, trust boundary
 
