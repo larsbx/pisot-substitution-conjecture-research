@@ -1,0 +1,2 @@
+C4 cut-pair reduction: strict controls keep A(C) g-closed and witness-free; PIP candidates refused.
+contract-receipt: every balanced cut of every inflation of a supplied strict system carries a first-letter pair of the system, the initial-letter map preserves and never collapses that pair set, and no such pair carries a bounded strong-coincidence witness; transient pairs of non-strongly-connected strict systems are admitted; unit-PIP left witness levels are pinned; PIP candidates and malformed/capped inputs are refused

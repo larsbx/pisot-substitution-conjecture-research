@@ -213,7 +213,7 @@ def reversed_closed_run_family(left_run: Int, right_run: Int) raises -> List[Lis
         var new_word = List[Int]()
         for j in range(len(old_word)):
             new_word.append(old_word[len(old_word) - 1 - j])
-        reversed.append(new_word)
+        reversed.append(new_word^)
     return reversed^
 
 

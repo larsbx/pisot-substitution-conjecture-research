@@ -2342,18 +2342,28 @@
     },
     {
       "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
-      "line": 52,
+      "line": 58,
       "statement_heading": "**Theorem A.**"
     },
     {
       "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
-      "line": 105,
+      "line": 124,
       "statement_heading": "**Theorem B.** `λ(Z_A) ≥ κ / L_max > 0`. In particular `λ(R_c ∩ R_c') > 0` for"
     },
     {
       "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
-      "line": 151,
+      "line": 178,
       "statement_heading": "**Corollary B′ (productivity from disjointness).** If the subtiles of the"
+    },
+    {
+      "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
+      "line": 199,
+      "statement_heading": "**Theorem C.** If a strict system `C` exists, then `θ_c ≤ 1/2` for every"
+    },
+    {
+      "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
+      "line": 266,
+      "statement_heading": "**Lemma P (unimodular, one pair).** Let `σ` be primitive with irreducible Pisot"
     },
     {
       "source": "docs/c4-defect-degree-census.md",
@@ -2378,12 +2388,47 @@
     {
       "source": "docs/c4-every-cut-pair-positive-density-2026-11-04.md",
       "line": 40,
-      "statement_heading": "## Corollary B: per-pair subtile overlap (geometric import under review)"
+      "statement_heading": "## Corollary B: per-pair subtile overlap (rests on #480 §3 and §8; human review pending)"
     },
     {
       "source": "docs/c4-every-cut-pair-positive-density-2026-11-04.md",
       "line": 49,
-      "statement_heading": "**Corollary B (conditional on these geometric inputs):** every represented pair e={c,c'} individually satisfies"
+      "statement_heading": "**Corollary B (given these geometric inputs, proved in #480 §3 and §8):** every represented pair e={c,c'} individually satisfies"
+    },
+    {
+      "source": "docs/c4-nonunit-madic-counting-bridge-2026-11-04.md",
+      "line": 206,
+      "statement_heading": "**Theorem M1 (lifted cut-pair bound).**"
+    },
+    {
+      "source": "docs/c4-nonunit-madic-counting-bridge-2026-11-04.md",
+      "line": 231,
+      "statement_heading": "**Theorem M2 (lifted two-track bound).** For every letter `c`,"
+    },
+    {
+      "source": "docs/c4-nonunit-madic-counting-bridge-2026-11-04.md",
+      "line": 255,
+      "statement_heading": "**Corollary M3 (finite-cylinder approximation).** For a compact"
+    },
+    {
+      "source": "docs/c4-nonunit-residue-occupancy-2026-11-04.md",
+      "line": 65,
+      "statement_heading": "### Lemma R1 (fixed-coset density)"
+    },
+    {
+      "source": "docs/c4-nonunit-residue-occupancy-2026-11-04.md",
+      "line": 94,
+      "statement_heading": "**Theorem R2 (residue occupancy bound).** For every `c` and `q`,"
+    },
+    {
+      "source": "docs/c4-nonunit-residue-occupancy-2026-11-04.md",
+      "line": 122,
+      "statement_heading": "### Corollary R3 (monotonicity and the unit control)"
+    },
+    {
+      "source": "docs/c4-nonunit-residue-occupancy-2026-11-04.md",
+      "line": 142,
+      "statement_heading": "### Corollary R4 (stronger necessary condition for a strict system)"
     },
     {
       "source": "docs/c4-overlap-carrier-enclosure-2026-11-04.md",

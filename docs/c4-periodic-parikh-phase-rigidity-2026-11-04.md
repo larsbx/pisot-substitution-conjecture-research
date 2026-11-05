@@ -2,13 +2,13 @@
 
 **Status:** New conditional algebraic theorem for supplied complete finite strict Pisot balanced-pair SCCs. It does not exhibit or exclude such an SCC. Independent written-proof review and exact-head hosted checks are pending. No general C4, G1, BH, A1', PDS, or PSC status change.
 
-**Baseline:** \`main@fd3b64e2e25a7d8a7a8623a52677a8822e52f6c5\`, including merged [#482](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/482). Target: [Issue #461](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/461). This strengthens the earlier **global** rank-three theorem and the period-sensitive positive-frequency theorem in #482.
+**Baseline:** `main@fd3b64e2e25a7d8a7a8623a52677a8822e52f6c5`, including merged [#482](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/482). Target: [Issue #461](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/461). This strengthens the earlier **global** rank-three theorem and the period-sensitive positive-frequency theorem in #482.
 
 ## 1. Exact hypotheses and scope
 
 Let sigma be a **primitive irreducible ternary Pisot** substitution, M its integral 3x3 incidence matrix and beta>1 its Perron root. Let C be a nonempty finite **strongly connected, completely strict child-closed** set of actual irreducible noncoincident balanced word pairs T_i. The *entire occurrence-indexed complete zero-return factorisation* of sigma(T_j), with repetitions, is required to consist solely of members of C. A selected recurrent path, missing/escaping child, or diagonal child is not acceptable.
 
-Define P in Z_{\u22650}^{3xr} by its nonzero balanced-state Parikh columns, and N in Z_{\u22650}^{rxr} by the multiplicities of ALL literal child occurrences (row child, column parent). Then
+Define P in Z_{≥0}^{3xr} by its nonzero balanced-state Parikh columns, and N in Z_{≥0}^{rxr} by the multiplicities of ALL literal child occurrences (row child, column parent). Then
 
 ~~~text
 P N = M P.
@@ -106,6 +106,8 @@ The canonical bounded Mojo checker checks the supplied integer M,P,N, phase labe
 Before attempting to construct or exclude an imprimitive strict carrier for Issue #461, its **every cyclic phase** must separately have at least three actual noncoincident balanced factors with independent masses. For |C|<6, the matrix N must be primitive, so the all-generation/every-source Perron frequency formula of merged #482 applies without selecting a cyclic subsequence.
 
 A reproducible next eliminator is the equality case |C|=3h: test all nonnegative integral rational-conjugacy templates B_k=P_k^(-1) M^h P_k with **actual** endpoint-signature, newborn and literal child-closure constraints; reject synthetic templates before calling them balanced-pair realizations.
+
+**Note (2026-11-05): this next test is moot for the sources with incidence M_2.** Merged [#491](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/491) ([direct source certificates](c4-direct-source-coincidence-2026-11-04.md)) gives, for each of the 36 corpus sources with incidence matrix M_2, a simultaneous literal source-level coincidence witness, which excludes *every* nonempty fully strict child-closed component for that source with no restriction on P, N, the number of states or the phase period (that note's own status: independent Python replay executed, native Mojo and hosted acceptance pending). So the equality-case template enumeration above would only re-exclude components already excluded there, and should not be run for the M_2 sources. The synthetic M_2 packets of §5 remain valid *algebraic* saturation controls for Theorem 2; they never claimed realizability. Theorems 2 and 3, being stated for an arbitrary primitive irreducible ternary Pisot incidence, are unaffected, and the equality-case test remains open only for sources outside the reach of such direct certificates.
 
 ~~~sh
 (cd kernel && pixi run --locked mojo run -I . tests/test_c4_periodic_parikh_rigidity.mojo)

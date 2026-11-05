@@ -214,17 +214,20 @@ def test_missing_children_wrong_phase_and_incorrect_parikh_refuse():
     p,n,phases=phase_lift(2)
     bad_n=[row.copy() for row in n]
     bad_n[3][0]=0
-    for pp,nn,labels,h in (
-        (p,bad_n,phases,2),
-        (p,n,[1]+phases[1:],2),
+    # Each control names the check that refuses it. Only the last is a
+    # budget/shape refusal (r=6 < 3h=9); the others are refused by the
+    # intertwiner or phase-edge logic.
+    for pp,nn,labels,h,reason in (
+        (p,bad_n,phases,2,"Parikh intertwiner failed"),
+        (p,n,[1]+phases[1:],2,"incompatible phase edge"),
         ([[p[i][j]+int(i==0 and j==3) for j in range(6)]
-          for i in range(3)],n,phases,2),
-        (p,n,phases,3),
+          for i in range(3)],n,phases,2,"Parikh intertwiner failed"),
+        (p,n,phases,3,"invalid phase/alphabet budget"),
     ):
         try:
             audit_intertwiner_phase_minors(M,pp,nn,labels,h)
-        except ValueError:
-            pass
+        except ValueError as exc:
+            assert str(exc) == reason, (str(exc), reason)
         else:
             raise AssertionError("invalid periodic system accepted")
 
@@ -239,6 +242,6 @@ def test_real_strict_reducible_case_does_not_pass_rank_gate():
     try:
         audit_intertwiner_phase_minors(m,p,n,[0]*4,1)
     except ValueError as exc:
-        assert "rank" in str(exc)
+        assert str(exc) == "cyclic phase rank < 3", str(exc)
     else:
         raise AssertionError("reducible rank-two strict fixture admitted")
