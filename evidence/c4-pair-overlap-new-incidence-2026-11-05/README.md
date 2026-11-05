@@ -123,3 +123,30 @@ Crashpad-handler warning is retained in stderr; both processes exited zero.
 The independent full-packet comparison and adversarial oracle tests passed.
 The replay manifest records the final exact-tree results; hosted CI status
 is reported separately in the pull request.
+
+## Final local replay record
+
+The tested source is published as
+[`0370132a6497646939a22f03571b1ce2f4b96fbb`](https://github.com/larsbx/pisot-substitution-conjecture-research/commit/0370132a6497646939a22f03571b1ce2f4b96fbb).
+Its complete Git tree is
+`3248cf2d72b2b1be72bf7326d2f95758c470bef2`, exactly equal to the locally
+executed source tree. GitHub and the local executor assign different commit
+identities; this equality was checked before recording the published source.
+The archival commit adds only evidence records and summaries.
+
+| Check | Result | Receipt |
+| --- | --- | --- |
+| Canonical native regression | Exit 0; final contract receipt reached | [native-test](native-test.receipt.json) |
+| Full canonical native driver | Exit 0; byte-for-byte archived packet match | [native-driver](native-driver.receipt.json) |
+| Independent and adversarial oracle suite | 22 passed; native packet supplied | [oracle-tests](oracle-tests.receipt.json) |
+| Independent complete packet authentication | Exit 0; committed receipt equality | [native-parity](native-parity.receipt.json) |
+| Claim governance | All six audit categories passed | [governance](governance.receipt.json) |
+| Generated proof bank | Current; 124 claims, 68 Lean proofs, 364 source openings | [proof-bank](proof-bank.receipt.json) |
+| Markdown source integrity | 398 files checked | [markdown](markdown.receipt.json) |
+| Vendored packages | Pins match; no vendor changes | [vendor-pins](vendor-pins.receipt.json) |
+| Proof-bank and Markdown-link regressions | 61 passed | [inventory-tests](inventory-tests.receipt.json) |
+
+The [manifest](manifest.json) binds these receipts, runtime scope and source
+hashes. The [review record](review.md) records the mathematical and code
+review scope. This is focused validation of the new target, not a claim
+that the repository's entire unrelated census, Lean and TLA+ suite ran.
