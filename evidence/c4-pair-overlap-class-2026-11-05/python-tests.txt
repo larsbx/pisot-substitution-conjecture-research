@@ -1,0 +1,20 @@
+=== source indices 0..5 ===
+......                                                                   [100%]
+6 passed in 26.99s
+
+=== source indices 6..11 ===
+......                                                                   [100%]
+6 passed in 24.57s
+
+=== source indices 12..17 ===
+......                                                                   [100%]
+6 passed in 26.09s
+
+=== new refusal/domain tests ===
+....                                                                     [100%]
+4 passed, 18 deselected in 4.99s
+
+=== original two-control suite ===
+.........                                                                [100%]
+9 passed in 21.74s
+
