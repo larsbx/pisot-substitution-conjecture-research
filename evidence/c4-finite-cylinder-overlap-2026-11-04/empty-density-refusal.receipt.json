@@ -1,0 +1,26 @@
+{
+  "schema": "c4-finite-cylinder-local-receipt-v1",
+  "name": "empty-density-refusal",
+  "source_commit": "af5f3de12ec3be391a2ed9666b520fdd074dc494",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-O",
+    "oracles/python/c4_finite_cylinder_overlap.py",
+    "/workspace/scratch/bbdcd3788da9/psc-cylinder/evidence/c4-finite-cylinder-overlap-2026-11-04/native-driver.stdout.txt",
+    "--density-input",
+    "/workspace/scratch/bbdcd3788da9/psc-cylinder/evidence/c4-finite-cylinder-overlap-2026-11-04/rejected-empty-strict-component.json"
+  ],
+  "cwd_from_repository_root": ".",
+  "explicit_environment_overrides": {},
+  "started_at_utc": "2026-11-04T21:57:07.955473+00:00",
+  "elapsed_seconds": 1.817,
+  "process_exit_code": 1,
+  "expected_exit_code": 1,
+  "expected_status_observed": true,
+  "stdout": "empty-density-refusal.stdout.txt",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr": "empty-density-refusal.stderr.txt",
+  "stderr_sha256": "b66d853b87f2a9dec3c0c35e3f769b2c3ce3296b16d75cba26bb8fc3bd85a075",
+  "finite_replay_only": true,
+  "machine_verification_of_measure_proofs": false
+}

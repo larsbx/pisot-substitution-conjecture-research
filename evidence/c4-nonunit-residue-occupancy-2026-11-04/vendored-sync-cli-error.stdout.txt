@@ -1,0 +1,37 @@
+Check vendored packages against the digests pinned in ``vendored.toml``.
+
+A consumer repository copies each upstream package directory byte-for-byte
+and records, per package, the upstream repository, the upstream commit, the
+local root that acts as the Mojo include path, and the SHA-256 of every
+vendored file. This script verifies that every pinned file exists with the
+pinned digest and that no unlisted file (bytecode caches aside) sits inside a
+vendored package directory, so no local patch can land unnoticed. Protocol:
+the README of each consumer repository.
+
+Usage:
+    check_vendored_sync.py                 check every package; exit 1 on drift
+    check_vendored_sync.py pin NAME COMMIT re-pin NAME's digests from the local
+                                           files after replacing the package
+                                           directory with a clean copy from
+                                           COMMIT (a file upstream removed
+                                           drops out; re-derives the
+                                           ESTATE.toml pins too)
+    check_vendored_sync.py estate          re-derive the ESTATE.toml pins only
+
+A consumer whose ESTATE.toml pins a vendoring source with a [[dep]] gets that
+``pin`` checked too: it is the digest the estate audit computes over
+vendored.toml (metadata plus file contents), derived and never hand-written.
+``check`` fails when it disagrees and ``pin`` / ``estate`` rewrite it. A
+consumer without ESTATE.toml has no estate pins to keep.
+
+Manifest shape::
+
+    [[package]]
+    name = "finite_exact"
+    repository = "larsbx/finite_exact"
+    commit = "<40 hex>"
+    root = "mojo"                      # local include root; "." for the repo root
+
+    [package.files]
+    "finite_exact/__init__.mojo" = "<sha256>"
+

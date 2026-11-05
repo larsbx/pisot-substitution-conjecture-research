@@ -1,0 +1,3 @@
+kernel/tests/test_c4_pairwise_cut_frequency.mojo: [coverage/declaration] test names no ledger claim and no contract
+
+claim governance audit of larsbx/pisot-substitution-conjecture-research failed: 1 finding(s) [terminology, claims, coverage, promotion, numerics, consistency]
