@@ -71,6 +71,20 @@ theorem sharp_no_generation_four : ¬ SourceWitness (source t120 0 2) 4 z t := b
 theorem sharp_generation_five : SourceWitness (source t120 0 2) 5 z t := by
   exact uniform_pairwise_five t120 0 2 (by decide) z t
 
+theorem sharp_all_lower (n : ℕ) (hn : n < 5) :
+    ¬ SourceWitness (source t120 0 2) n z t := by
+  interval_cases n
+  · exact sharp_no_generation_zero
+  · exact sharp_no_generation_one
+  · exact sharp_no_generation_two
+  · exact sharp_no_generation_three
+  · exact sharp_no_generation_four
+
+theorem no_smaller_common_bound (n : ℕ) (hn : n < 5) :
+    ¬ (∀ tail a b, 1 ≤ a+b → PairwiseAt (source tail a b) n) := by
+  intro h
+  exact sharp_all_lower n hn (h t120 0 2 (by decide) z t)
+
 #print axioms sharp_no_generation_four
 #print axioms sharp_generation_five
 #print axioms reject_large102_b2

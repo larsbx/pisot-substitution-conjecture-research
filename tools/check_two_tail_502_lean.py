@@ -29,7 +29,9 @@ def main():
     if revision != args.expected_revision or command(["git", "status", "--porcelain"]):
         raise SystemExit("refusing a dirty or unreviewed starting revision")
     args.output.mkdir(parents=True, exist_ok=True)
-    files = sorted(SOURCES.glob("*.lean"))
+    files = [PROJECT / "TwoTail502.lean"] + sorted(SOURCES.glob("*.lean"))
+    if (PROJECT / "lakefile.toml").read_text() != (PIN_PROJECT / "lakefile.toml").read_text().replace("PscVerif", "TwoTail502"):
+        raise SystemExit("dedicated Lake configuration differs from repository pins")
     for pin in ["lean-toolchain", "lake-manifest.json"]:
         original = (PIN_PROJECT / pin).read_text()
         dedicated = (PROJECT / pin).read_text()
@@ -43,12 +45,15 @@ def main():
     for pin in ["lean-toolchain", "lake-manifest.json", "lakefile.toml"]:
         shutil.copy2(PROJECT / pin, work / pin)
     shutil.copytree(SOURCES, work / "TwoTail502")
+    shutil.copy2(PROJECT / "TwoTail502.lean", work / "TwoTail502.lean")
     (work / ".lake").mkdir()
     # Provisioned pinned upstream dependencies only. No local TwoTail502 build
     # artifact enters this fresh workspace.
     (work / ".lake/packages").symlink_to((PIN_PROJECT / ".lake/packages").resolve(),
                                         target_is_directory=True)
-    hashes = {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in files}
+    inputs = files + [PROJECT / pin for pin in ["lean-toolchain", "lakefile.toml", "lake-manifest.json"]]
+    inputs += [ROOT / "tools/check_two_tail_502_lean.py"]
+    hashes = {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in inputs}
     receipt = {"revision": revision, "source_sha256": hashes, "status": "running",
                "scope": "PR502 exact source words only; no PSC promotion",
                "lean": command(["lean", "--version"], work), "commands": []}
@@ -62,7 +67,7 @@ def main():
             source = p.read_text()
             if re.search(r"\b(sorry|admit|axiom|native_decide|unsafe)\b", source):
                 raise RuntimeError("forbidden proof escape in " + str(p))
-        modules = ["TwoTail502." + p.stem for p in files]
+        modules = [".".join(p.relative_to(PROJECT).with_suffix("").parts) for p in files]
         cmd = ["lake", "build"] + modules
         receipt["commands"].append(cmd)
         with (args.output / "build.log").open("w") as log:
@@ -92,7 +97,13 @@ def main():
                 if any(a.strip() not in {"propext", "Classical.choice", "Quot.sound"}
                        for a in axioms.split(",") if a.strip()):
                     raise RuntimeError("unapproved axiom: " + line)
-        if hashes != {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in files}:
+        for pin in ["lean-toolchain", "lakefile.toml", "lake-manifest.json"]:
+            if (work / pin).read_bytes() != (PROJECT / pin).read_bytes():
+                raise RuntimeError("Lake changed a pinned project input: " + pin)
+        for name in names:
+            if audit_log.count("'TwoTail502." + name + "'") != 1:
+                raise RuntimeError("missing or duplicate axiom output: " + name)
+        if hashes != {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in inputs}:
             raise RuntimeError("sources changed during validation")
         if command(["git", "rev-parse", "HEAD"]) != revision or command(["git", "status", "--porcelain"]):
             raise RuntimeError("checkout changed during validation")

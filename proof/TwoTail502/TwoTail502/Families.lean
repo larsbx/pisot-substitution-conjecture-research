@@ -153,7 +153,7 @@ theorem positive102_counts (a b : ℕ) :
       | o => a*((a+b)^2+1)+(a+b)+1
       | t => a*(a+b+1)+1 := by
   funext c
-  cases c <;> simp [parikh,F,G,B,A,C,List.count_cons] <;> ring
+  cases c <;> simp [parikh,F,G,B,A,C,List.count_cons] <;> ring_nf <;> simp
 
 theorem positive120_counts (a b : ℕ) :
     parikh (F a b ++ power (G t120 a b) a ++ power (B a b) a ++ C t120) =
@@ -162,7 +162,7 @@ theorem positive120_counts (a b : ℕ) :
       | o => a*((a+b)^2+(a+b)+1)+(a+b)+2
       | t => a*(a+b+2)+2 := by
   funext c
-  cases c <;> simp [parikh,F,G,B,A,C,List.count_cons] <;> ring
+  cases c <;> simp [parikh,F,G,B,A,C,List.count_cons] <;> ring_nf <;> simp
 
 theorem large102_counts (b : ℕ) :
     parikh (large102_left b) = fun c => match c with
