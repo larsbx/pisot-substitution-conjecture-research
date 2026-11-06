@@ -2506,6 +2506,86 @@
       "declaration": "theorem reduction_limit (S : ChildSystem α) (hs : ∀ a, S.s a ≠ [])"
     },
     {
+      "name": "Psc.GaloisOrbit.root_eq_of_three",
+      "module": "PscVerif.GaloisOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GaloisOrbit.lean",
+      "line": 73,
+      "declaration": "theorem root_eq_of_three {f : ℚ[X]} (hf0 : f ≠ 0) (hdeg : f.natDegree = 3) {β α γ : ℂ}"
+    },
+    {
+      "name": "Psc.GaloisOrbit.isPerm3_of",
+      "module": "PscVerif.GaloisOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GaloisOrbit.lean",
+      "line": 103,
+      "declaration": "theorem isPerm3_of {β α γ x y z : ℂ}"
+    },
+    {
+      "name": "Psc.GaloisOrbit.exists_conj",
+      "module": "PscVerif.GaloisOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GaloisOrbit.lean",
+      "line": 113,
+      "declaration": "theorem exists_conj {f : ℚ[X]} (hf : Irreducible f) (hdeg : f.natDegree = 3) {β α γ : ℂ}"
+    },
+    {
+      "name": "Psc.GaloisOrbit.of_eq",
+      "module": "PscVerif.GaloisOrbit",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/GaloisOrbit.lean",
+      "line": 202,
+      "declaration": "private theorem of_eq {q : ℚ[X]} {u v : ℂ} (h : u = v) (hu : aeval u q = 0) : aeval v q = 0 := h ▸ hu"
+    },
+    {
+      "name": "Psc.GaloisOrbit.orbit_exponent_on_beta",
+      "module": "PscVerif.GaloisOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GaloisOrbit.lean",
+      "line": 213,
+      "declaration": "theorem orbit_exponent_on_beta (q : ℚ[X]) (a b c : ℕ)"
+    },
+    {
+      "name": "Psc.GaloisOrbit.orbit_220_both",
+      "module": "PscVerif.GaloisOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GaloisOrbit.lean",
+      "line": 239,
+      "declaration": "theorem orbit_220_both (q : ℚ[X]) (a b c : ℕ)"
+    },
+    {
+      "name": "Psc.GaloisOrbit.orbit_310_excluded",
+      "module": "PscVerif.GaloisOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GaloisOrbit.lean",
+      "line": 266,
+      "declaration": "theorem orbit_310_excluded (hβ1 : 1 < ‖β‖) (hα1 : ‖α‖ < 1) (hγ1 : ‖γ‖ < 1)"
+    },
+    {
+      "name": "Psc.GaloisOrbit.orbit_211_forces_unit",
+      "module": "PscVerif.GaloisOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GaloisOrbit.lean",
+      "line": 299,
+      "declaration": "theorem orbit_211_forces_unit (hdet : 1 ≤ ‖β * α * γ‖) (q : ℚ[X]) (a b c : ℕ)"
+    },
+    {
+      "name": "Psc.GaloisOrbit.im_ne_zero_of_norm_eq",
+      "module": "PscVerif.GaloisOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GaloisOrbit.lean",
+      "line": 327,
+      "declaration": "theorem im_ne_zero_of_norm_eq (hβ1 : 1 < ‖β‖) (hunit : ‖β * α * γ‖ = 1) (hαγn : ‖α‖ = ‖γ‖) :"
+    },
+    {
+      "name": "Psc.GaloisOrbit.orbit_220_forces_complex_unit",
+      "module": "PscVerif.GaloisOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GaloisOrbit.lean",
+      "line": 401,
+      "declaration": "theorem orbit_220_forces_complex_unit (hβ1 : 1 < ‖β‖) (hdet : 1 ≤ ‖β * α * γ‖) (q : ℚ[X])"
+    },
+    {
       "name": "Psc.M0Pisot.M0_eq_m0",
       "module": "PscVerif.M0Pisot",
       "private": false,
@@ -3174,7 +3254,7 @@
       "module": "PscVerif.WeightModulus",
       "private": false,
       "source": "proof/PscVerif/PscVerif/WeightModulus.lean",
-      "line": 71,
+      "line": 72,
       "declaration": "theorem norm_d (hβ : 1 < β) (hdet : (β : ℂ) * α * γ = d) :"
     },
     {
@@ -3182,7 +3262,7 @@
       "module": "PscVerif.WeightModulus",
       "private": false,
       "source": "proof/PscVerif/PscVerif/WeightModulus.lean",
-      "line": 77,
+      "line": 78,
       "declaration": "theorem inv_lt_norm_left (hβ : 1 < β) (hγ : ‖γ‖ < 1)"
     },
     {
@@ -3190,7 +3270,7 @@
       "module": "PscVerif.WeightModulus",
       "private": false,
       "source": "proof/PscVerif/PscVerif/WeightModulus.lean",
-      "line": 94,
+      "line": 95,
       "declaration": "theorem inv_lt_norm_right (hβ : 1 < β) (hα : ‖α‖ < 1)"
     },
     {
@@ -3198,7 +3278,7 @@
       "module": "PscVerif.WeightModulus",
       "private": true,
       "source": "proof/PscVerif/PscVerif/WeightModulus.lean",
-      "line": 99,
+      "line": 100,
       "declaration": "private theorem cube_bound (hβ : 1 < β) {x : ℂ} (hx : β⁻¹ < ‖x‖) :"
     },
     {
@@ -3206,7 +3286,7 @@
       "module": "PscVerif.WeightModulus",
       "private": false,
       "source": "proof/PscVerif/PscVerif/WeightModulus.lean",
-      "line": 109,
+      "line": 110,
       "declaration": "theorem weight_310 (hβ : 1 < β) (hα : ‖α‖ < 1) (hγ : ‖γ‖ < 1)"
     },
     {
@@ -3214,7 +3294,7 @@
       "module": "PscVerif.WeightModulus",
       "private": false,
       "source": "proof/PscVerif/PscVerif/WeightModulus.lean",
-      "line": 120,
+      "line": 121,
       "declaration": "theorem weight_220 (hβ : 1 < β)"
     },
     {
@@ -3222,7 +3302,7 @@
       "module": "PscVerif.WeightModulus",
       "private": false,
       "source": "proof/PscVerif/PscVerif/WeightModulus.lean",
-      "line": 173,
+      "line": 174,
       "declaration": "theorem weight_211 (hβ : 1 < β) (hd : 1 ≤ ‖d‖) (h : ‖d * (β : ℂ)‖ ≤ β) :"
     },
     {
@@ -3230,7 +3310,7 @@
       "module": "PscVerif.WeightModulus",
       "private": false,
       "source": "proof/PscVerif/PscVerif/WeightModulus.lean",
-      "line": 182,
+      "line": 183,
       "declaration": "theorem weight_211_moduli (hβ : 1 < β) (hα : ‖α‖ < 1) (hγ : ‖γ‖ < 1)"
     },
     {
@@ -3238,7 +3318,7 @@
       "module": "PscVerif.WeightModulus",
       "private": false,
       "source": "proof/PscVerif/PscVerif/WeightModulus.lean",
-      "line": 196,
+      "line": 197,
       "declaration": "theorem weight_111 (hβ : 1 < β) (hα : ‖α‖ < 1) (hγ : ‖γ‖ < 1)"
     },
     {
@@ -3246,7 +3326,7 @@
       "module": "PscVerif.WeightModulus",
       "private": false,
       "source": "proof/PscVerif/PscVerif/WeightModulus.lean",
-      "line": 220,
+      "line": 221,
       "declaration": "theorem aeval_monomial_algHom {K : Type*} [CommRing K] [Algebra ℚ K]"
     },
     {
@@ -3254,7 +3334,7 @@
       "module": "PscVerif.WeightModulus",
       "private": false,
       "source": "proof/PscVerif/PscVerif/WeightModulus.lean",
-      "line": 232,
+      "line": 233,
       "declaration": "theorem gal_monomial_relation (f : ℚ[X]) (σ : f.Gal) (β α γ : f.SplittingField)"
     },
     {
@@ -5278,6 +5358,7 @@
     "proof/PscVerif/PscVerif/Cyclicity.lean": "a45da70d91ae61b295d9306910b5c55e97707f641ee541306076f0d9bae55691",
     "proof/PscVerif/PscVerif/Degree4Sector.lean": "7afc131498833c8346b21872981c6f7aa4b7a736fdc952ff84b9b8c071b86f63",
     "proof/PscVerif/PscVerif/FixedPointLimit.lean": "9a6a957736d543b8fe48f3d1c1a748e19e15ee1b0f6ac74aaf6579eb59365cfb",
+    "proof/PscVerif/PscVerif/GaloisOrbit.lean": "525697bd68968a44d342fb5326d2a74a13064dab9dc0f1e2b60ffeb702f4378c",
     "proof/PscVerif/PscVerif/M0Pisot.lean": "65d17cf0aa71cdac825d16da73ad601dd49c214cd0b47ac58f124cb51a64a304",
     "proof/PscVerif/PscVerif/PerronCore.lean": "1f06da1e0b57e74b31fc03d753bd314f25561a37e512b3a8f7f05fda0d75458c",
     "proof/PscVerif/PscVerif/PerronSimple.lean": "e6938b72b99f57883cb6b2911b4847c8a8029eadff01795c882490715a85b749",
@@ -5287,9 +5368,9 @@
     "proof/PscVerif/PscVerif/Shuffle.lean": "fe99c7b71174cd665633b425c0f9d1e6f6893f541387e261fb5d945bba48614c",
     "proof/PscVerif/PscVerif/Spectral.lean": "f7a43295221c293c670593d4be8e916d87ce51f3241ec911456ef4a4ce0b39d3",
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
-    "proof/PscVerif/PscVerif/WeightModulus.lean": "477a6acdbb744fa03441bd31c6b25328ff180d9af13629a1162d27cee4de5f27",
-    "proof/PscVerif/PscVerif/Wielandt.lean": "09a6d1a08fe4234ea3b4a833dd4da30ca68cb8f990b9b3c8ae221cbdfaf24d45",
-    "proof/PscVerif/PscVerif.lean": "1a87307b87a13151e0d21c221eb4fa0068c1ffb3dbe60de294e34cc33b635149",
+    "proof/PscVerif/PscVerif/WeightModulus.lean": "8d50416f126e7806f82e5db0405cbc0e552a6685e6c8240cba31c7a4441a494e",
+    "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
+    "proof/PscVerif/PscVerif.lean": "3edd066311c1a045776133b2f1e6d5b7f1459e25bd3db12679a88233133b657e",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

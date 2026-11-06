@@ -21,3 +21,4 @@ import PscVerif.Cyclicity
 import PscVerif.WeightModulus
 import PscVerif.FixedPointLimit
 import PscVerif.M0Pisot
+import PscVerif.GaloisOrbit

@@ -23,11 +23,12 @@ weight orbit.
 * `weight_310`: `β² < ‖β³α‖`, `β² < ‖β³γ‖`, and hence `β < ‖β³α‖`,
   `β < ‖β³γ‖`: the moduli of `β³α`, `β³γ` exceed `β`.  Excluding the whole
   `(3,1,0)` orbit also needs the Galois-orbit step (some conjugate of an
-  eigenvalue puts the exponent `3` on `β`), not formalized in this module.
+  eigenvalue puts the exponent `3` on `β`), proved in `PscVerif.GaloisOrbit`, whose
+  `orbit_310_excluded` and `orbit_220_forces_complex_unit` call these lemmas.
 * `weight_220`: if `‖β²α²‖ ≤ β` and `‖β²γ²‖ ≤ β`, then `‖d‖ = 1`,
   `‖α‖ = ‖γ‖` and `‖β²α²‖ = β` (the `(2,2,0)` orbit survives the modulus test
   only if `|d| = 1` and `|α| = |γ|`, with modulus exactly `β`; that `α` is then
-  non-real uses irreducibility and is not formalized in this module).  This
+  non-real uses irreducibility and is `GaloisOrbit.im_ne_zero_of_norm_eq`).  This
   theorem does not need `‖α‖ < 1`, `‖γ‖ < 1`, so they are omitted from it.
 * `weight_211`: if `‖d β‖ ≤ β` then `‖d‖ = 1`.
 * `weight_211_moduli`: if `‖d‖ = 1`, the three `(2,1,1)` eigenvalues

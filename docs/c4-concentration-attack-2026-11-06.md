@@ -209,9 +209,9 @@ The following are not claimed:
 
 ## 8. Lean formalization (`proof/PscVerif`)
 
-Eleven modules, all checked by the proof-bank axiom audit (`propext`,
+Twelve modules, all checked by the proof-bank axiom audit (`propext`,
 `Classical.choice` and `Quot.sound` only; no `sorry`, no local axioms, no
-`native_decide`; the whole library: 584 declarations, 394 theorems).
+`native_decide`; the whole library: 603 declarations, 408 theorems).
 - *Full* means the formal statement is the stated result.
 - *Given X* means the formal statement assumes X, and X is named.
 
@@ -228,7 +228,8 @@ Eleven modules, all checked by the proof-bank axiom audit (`propext`,
 | Theorem A(iii): real `S`, eigenvalue `±β` ⇒ `S = ±D N D` with `D ∈ {±1}` | `Psc.Wielandt.gauge_of_real` | given `L` |
 | Cycle relation `(μ/β)^{2ℓ} = 1` | `Psc.Wielandt.cycle_relation` | given `L` |
 | Theorem A(ii), `(2,2,0)` eigenvalue `β²α²` impossible for PIP | `Psc.Wielandt.no_220_eigenvalue`, `Psc.Degree4Sector.*` | given `L` and that `β²α²` is an eigenvalue of `S` |
-| Theorem A(ii), modulus eliminations `(3,1,0)`, `(2,2,0)`, `(2,1,1)`, `(1,1,1)` | `Psc.WeightModulus.weight_310`, `weight_220`, `weight_211`, `weight_111` | full as inequalities; the Galois-orbit step (a conjugate puts the largest exponent on `β`) is being formalized in `GaloisOrbit`, not yet in this revision |
+| Theorem A(ii), modulus eliminations `(3,1,0)`, `(2,2,0)`, `(2,1,1)`, `(1,1,1)` | `Psc.WeightModulus.weight_310`, `weight_220`, `weight_211`, `weight_111` | full as inequalities |
+| Theorem A(ii), Galois-orbit step: some conjugate of a weight puts the largest exponent on `β`, and is again a root of the rational `q`; hence `(3,1,0)` forces a root of `q` of modulus `> β²`, `(2,1,1)` forces `\|d\| = 1`, and `(2,2,0)` forces `\|d\| = 1`, `\|α\| = \|γ\|` and `α, γ` non-real | `Psc.GaloisOrbit.exists_conj`, `orbit_exponent_on_beta`, `orbit_310_excluded`, `orbit_211_forces_unit`, `orbit_220_both`, `orbit_220_forces_complex_unit`, `im_ne_zero_of_norm_eq` | given `q ∈ ℚ[X]` vanishing at one weight, the bound `ρ(S) ≤ β` as a hypothesis on the roots of `q`, and `1 ≤ \|d\|`; `Φ`, `Q₄`, `χ_S` and the Witt weights are not formalized; non-vacuity witnessed numerically by Tribonacci (module docstring) |
 | Theorem A(iv): Perron simplicity gives `ker P ∩ ker χ_M(N) = 0`, hence the split hypothesis and `Q = L'∘P` | `Psc.PerronSimple.charpoly_kerP_injective`, `hsplit_of_perron`, `factor_through_parikh` | given `L = ℓP > 0`, `χ_M` irreducible, `P` onto |
 | Theorem A(iv), injectivity of `L` | `Psc.ConcentrationAlgebra.injective_of_irreducible` | full |
 | Control `T13`/`M0`: irreducible, `∼₂`, `K₃ ≠ 0`, `M0^{⊗3}K₃ = det(M0)·K₃`, `det M0 = −2` | `Psc.ConcentrationControls.t13_*`, `m0_*` | full (kernel `decide`) |

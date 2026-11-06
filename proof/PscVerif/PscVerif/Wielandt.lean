@@ -312,7 +312,7 @@ and `β α ᾱ = d`, `d² = 1`.  If `N`, `L` are as in `PerronCore` for this `β
 then no real matrix `S` with `|S i j| ≤ N i j` has the eigenvalue `β² α²`.
 Since `d = β|α|² > 0` here, `d² = 1` is equivalent to `d = 1` (`|det M| = 1`
 with `det M = β|α|²` positive).  Which eigenvalue of `S` lies in the
-`(2,2,0)` orbit is a Galois-orbit question, not formalized in this module. -/
+`(2,2,0)` orbit is selected by `PscVerif.GaloisOrbit.orbit_220_both`. -/
 theorem no_220_eigenvalue (f : Polynomial ℚ) (hf : Irreducible f) (hdeg : f.natDegree = 3)
     (β : ℝ) (hβ1 : 1 < β) (hβf : Polynomial.aeval (β : ℂ) f = 0) (α : ℂ)
     (hαf : Polynomial.aeval α f = 0) (hnr : α.im ≠ 0) (hα1 : ‖α‖ < 1) (d : ℂ)

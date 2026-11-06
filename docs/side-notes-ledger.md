@@ -2381,3 +2381,11 @@ claim-ledger promotion. Evidence: `docs/occurrence-path-replay-2026-10-16.md`,
   - `M0Pisot`: the rational root theorem and IVT.
 
   The whole library now has 584 declarations and 394 theorems, standard axioms only. Two adversarial reviewers found one blocker (the modules were not yet in the root import closure, so `make_proof_bank.py --check` rejected them) and minor docstring overclaims and duplicated helpers; all are fixed. Not formalized: the `Lie₄` Witt weights, `Q_r S = Φ_r Q_r` and `ρ(S) ≤ β`, and the identification with an actual strict component. Locator: [Concentration attack §8](c4-concentration-attack-2026-11-06.md).
+
+- **2026-11-06 — Lean: the Galois-orbit step of Theorem A(ii).** `proof/PscVerif/PscVerif/GaloisOrbit.lean`:
+  - transitivity via `Normal.minpoly_eq_iff_mem_orbit` on the splitting field inside `ℂ`, so any exponent of a weight can be moved onto `β`, the conjugate again being a root of the rational `q`;
+  - `(3,1,0)` forces a root of modulus `> β²`;
+  - `(2,1,1)` forces `|d| = 1`;
+  - `(2,2,0)` forces `|d| = 1`, `|α| = |γ|` and a non-real pair (if `α` were real, `γ = −α` and `α² ∈ ℚ`, contradicting the cubic).
+
+  The modulus steps call `WeightModulus.weight_310` and `weight_220` at `‖β‖`, so there is no duplicated arithmetic. Non-vacuity is witnessed numerically by Tribonacci. Library: 603 declarations, 408 theorems, standard axioms only. With this, everything in Theorem A except the representation-theoretic inputs is formalized: the `Lie₄` weights, `Φ` semisimplicity, `Q_r S = Φ_r Q_r`, `ρ(S) ≤ β`, and the identification with an actual component. Locator: [Concentration attack §8](c4-concentration-attack-2026-11-06.md).
