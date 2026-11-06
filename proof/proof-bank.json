@@ -2797,6 +2797,46 @@
       "statement_heading": "**Corollary (sharp all-pairs coincidence depth).** For every member of"
     },
     {
+      "source": "docs/c4-general-structure-2026-11-06.md",
+      "line": 147,
+      "statement_heading": "## 2. Proposition Q (any alphabet, any primitive substitution)"
+    },
+    {
+      "source": "docs/c4-general-structure-2026-11-06.md",
+      "line": 149,
+      "statement_heading": "**Proposition Q.** Let `σ` be a primitive nonerasing substitution on `d`"
+    },
+    {
+      "source": "docs/c4-general-structure-2026-11-06.md",
+      "line": 204,
+      "statement_heading": "**Corollary Q1.** If `M` has no eigenvalue that is 0 or a root of unity, then"
+    },
+    {
+      "source": "docs/c4-general-structure-2026-11-06.md",
+      "line": 237,
+      "statement_heading": "**Lemma 0** (manuscript `thm:defect-intertwiner`;"
+    },
+    {
+      "source": "docs/c4-general-structure-2026-11-06.md",
+      "line": 280,
+      "statement_heading": "**Theorem R2.** If some finite child-closed set `C` (coincidences admitted)"
+    },
+    {
+      "source": "docs/c4-general-structure-2026-11-06.md",
+      "line": 300,
+      "statement_heading": "**Theorem R3.** If both non-Perron roots of an irreducible cubic `χ_M` have"
+    },
+    {
+      "source": "docs/c4-general-structure-2026-11-06.md",
+      "line": 323,
+      "statement_heading": "**Proposition B′ (termination forces the conjugates into the disc; any"
+    },
+    {
+      "source": "docs/c4-general-structure-2026-11-06.md",
+      "line": 346,
+      "statement_heading": "**Corollary B (the balanced pair algorithm off the Pisot cone).** Let `σ` be"
+    },
+    {
       "source": "docs/c4-nonunit-madic-counting-bridge-2026-11-04.md",
       "line": 206,
       "statement_heading": "**Theorem M1 (lifted cut-pair bound).**"
