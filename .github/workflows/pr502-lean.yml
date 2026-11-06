@@ -1,0 +1,51 @@
+name: PR502 dedicated Lean source-word verification
+on:
+  pull_request:
+    paths:
+      - 'proof/PscVerif/PscVerif/TwoTail502/**'
+      - 'tools/check_two_tail_502_lean.py'
+      - 'docs/pr502-lean-verification.md'
+      - '.github/workflows/pr502-lean.yml'
+  push:
+    branches: ['verification/pr502-lean-2026-11-06']
+    paths:
+      - 'proof/PscVerif/PscVerif/TwoTail502/**'
+      - 'tools/check_two_tail_502_lean.py'
+      - '.github/workflows/pr502-lean.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  lean-source-words:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Exact clean revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test -z "$(git status --porcelain)"
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.elan
+            proof/PscVerif/.lake/packages
+          key: pr502-lean-${{ runner.os }}-${{ hashFiles('proof/PscVerif/lean-toolchain', 'proof/PscVerif/lake-manifest.json') }}
+      - name: Provision repository-pinned Lean and Mathlib
+        run: bash tools/setup_lean.sh
+      - name: Compile independent source-word modules
+        run: |
+          export PATH="$HOME/.elan/bin:$PATH"
+          python3 tools/check_two_tail_502_lean.py --expected-revision "$(git rev-parse HEAD)" --output "$RUNNER_TEMP/pr502-lean"
+      - name: Existing generated Proof Bank consistency
+        run: python3 tools/make_proof_bank.py --check
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr502-lean-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/pr502-lean
+          if-no-files-found: error
