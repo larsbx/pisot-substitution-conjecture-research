@@ -290,7 +290,7 @@ theorem orbit_310_excluded (hβ1 : 1 < ‖β‖) (hα1 : ‖α‖ < 1) (hγ1 : �
   have hdn : 1 ≤ ‖((‖β‖ : ℝ) : ℂ) * α * γ‖ := by simpa [norm_mul] using hdet
   obtain ⟨h1, h2, h3, h4⟩ := Psc.WeightModulus.weight_310 hβ1 hα1 hγ1 rfl hdn
   have e : ∀ x : ℂ, ‖((‖β‖ : ℝ) : ℂ) ^ 3 * x‖ = ‖β ^ 3 * x‖ := fun x => by
-    simp [norm_mul, norm_pow]
+    simp [norm_pow]
   rcases hδ with h | h
   · rw [h, ← e]; exact ⟨h3, h1⟩
   · rw [h, ← e]; exact ⟨h4, h2⟩
@@ -406,7 +406,7 @@ theorem orbit_220_forces_complex_unit (hβ1 : 1 < ‖β‖) (hdet : 1 ≤ ‖β 
   obtain ⟨hA, hG⟩ := orbit_220_both hf hdeg hβ hα hγ hβα hβγ hαγ q a b c habc hq
   -- the modulus step is `WeightModulus.weight_220` at the real number `‖β‖`
   have e : ∀ x : ℂ, ‖((‖β‖ : ℝ) : ℂ) ^ 2 * x ^ 2‖ = ‖β ^ 2 * x ^ 2‖ := fun x => by
-    simp [norm_mul, norm_pow]
+    simp [norm_pow]
   have hdn : 1 ≤ ‖((‖β‖ : ℝ) : ℂ) * α * γ‖ := by simpa [norm_mul] using hdet
   obtain ⟨hunit', hαγn, -⟩ := Psc.WeightModulus.weight_220 hβ1 rfl hdn
     (by rw [e]; exact hbound _ hA) (by rw [e]; exact hbound _ hG)

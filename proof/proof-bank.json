@@ -1798,7 +1798,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 45,
+      "line": 49,
       "declaration": "theorem n2_append (x y : List α) (a b : α) :"
     },
     {
@@ -1806,7 +1806,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 62,
+      "line": 66,
       "declaration": "theorem Equiv1.append {x x' y y' : List α} (hx : Equiv1 x x') (hy : Equiv1 y y') :"
     },
     {
@@ -1814,7 +1814,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 65,
+      "line": 69,
       "declaration": "theorem Equiv2.append {x x' y y' : List α} (hx : Equiv2 x x') (hy : Equiv2 y y') :"
     },
     {
@@ -1822,7 +1822,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 69,
+      "line": 73,
       "declaration": "theorem Equiv2.refl (x : List α) : Equiv2 x x := ⟨fun _ => rfl, fun _ _ => rfl⟩"
     },
     {
@@ -1830,7 +1830,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 72,
+      "line": 76,
       "declaration": "theorem Equiv1.length_eq {x y : List α} (h : Equiv1 x y) : x.length = y.length :="
     },
     {
@@ -1838,7 +1838,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 77,
+      "line": 81,
       "declaration": "theorem equiv2_join (bs : List (List α × List α)) (h : ∀ T ∈ bs, Equiv2 T.1 T.2) :"
     },
     {
@@ -1846,7 +1846,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 86,
+      "line": 90,
       "declaration": "theorem equiv2_at_cuts (bs : List (List α × List α)) (h : ∀ T ∈ bs, Equiv2 T.1 T.2)"
     },
     {
@@ -1854,7 +1854,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 95,
+      "line": 99,
       "declaration": "theorem subst_append (s : α → List α) (x y : List α) :"
     },
     {
@@ -1862,7 +1862,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 98,
+      "line": 102,
       "declaration": "theorem subst_prefix (s : α → List α) {x y : List α} (h : x <+: y) :"
     },
     {
@@ -1870,7 +1870,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 102,
+      "line": 106,
       "declaration": "theorem iterate_subst_append (s : α → List α) (n : ℕ) (x y : List α) :"
     },
     {
@@ -1878,7 +1878,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 108,
+      "line": 112,
       "declaration": "theorem iterate_subst_nil (s : α → List α) (n : ℕ) : (subst s)^[n] [] = [] :="
     },
     {
@@ -1886,15 +1886,23 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 111,
+      "line": 115,
       "declaration": "theorem iterate_subst_flatten (s : α → List α) (n : ℕ) (ws : List (List α)) :"
+    },
+    {
+      "name": "Psc.Binomial.subst_power",
+      "module": "PscVerif.Binomial",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Binomial.lean",
+      "line": 126,
+      "declaration": "theorem subst_power (s : α → List α) (k : ℕ) : subst (power s k) = (subst s)^[k] := by"
     },
     {
       "name": "Psc.Binomial.ChildSystem.desc_mem",
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 138,
+      "line": 157,
       "declaration": "theorem desc_mem (n : ℕ) : ∀ T ∈ S.C, ∀ U ∈ S.desc n T, U ∈ S.C := by"
     },
     {
@@ -1902,7 +1910,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 149,
+      "line": 168,
       "declaration": "theorem desc_top (n : ℕ) : ∀ T ∈ S.C,"
     },
     {
@@ -1910,15 +1918,23 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 161,
+      "line": 180,
       "declaration": "theorem desc_bot (n : ℕ) : ∀ T ∈ S.C,"
+    },
+    {
+      "name": "Psc.Binomial.ChildSystem.desc_ne_nil",
+      "module": "PscVerif.Binomial",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Binomial.lean",
+      "line": 193,
+      "declaration": "theorem desc_ne_nil (n : ℕ) : ∀ T ∈ S.C, S.desc n T ≠ [] := by"
     },
     {
       "name": "Psc.Binomial.ChildSystem.first_mem",
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 176,
+      "line": 216,
       "declaration": "theorem first_mem : ∀ T ∈ S.C, S.first T ∈ S.C := by"
     },
     {
@@ -1926,7 +1942,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 183,
+      "line": 223,
       "declaration": "theorem first_prefix_top : ∀ T ∈ S.C, (S.first T).1 <+: subst S.s T.1 := by"
     },
     {
@@ -1934,7 +1950,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 191,
+      "line": 231,
       "declaration": "theorem first_prefix_bot : ∀ T ∈ S.C, (S.first T).2 <+: subst S.s T.2 := by"
     },
     {
@@ -1942,7 +1958,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 199,
+      "line": 239,
       "declaration": "theorem iterate_first_mem (n : ℕ) : ∀ T ∈ S.C, S.first^[n] T ∈ S.C := by"
     },
     {
@@ -1950,7 +1966,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 204,
+      "line": 244,
       "declaration": "theorem iterate_first_prefix (n : ℕ) : ∀ T ∈ S.C,"
     },
     {
@@ -1958,7 +1974,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 217,
+      "line": 257,
       "declaration": "theorem exists_periodic (T : List α × List α) (hT : T ∈ S.C) :"
     },
     {
@@ -1966,7 +1982,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 234,
+      "line": 274,
       "declaration": "theorem reduction_lemma (T : List α × List α) (hT : T ∈ S.C)"
     },
     {
@@ -1974,7 +1990,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 257,
+      "line": 297,
       "declaration": "theorem heads_ne {a b : α} {u v : List α} (hbal : Equiv1 (a :: u) (b :: v))"
     },
     {
@@ -2240,6 +2256,62 @@
       "source": "proof/PscVerif/PscVerif/ConcentrationControls.lean",
       "line": 87,
       "declaration": "theorem factors_occur :"
+    },
+    {
+      "name": "Psc.CountBridge.N_eq_count",
+      "module": "PscVerif.CountBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CountBridge.lean",
+      "line": 37,
+      "declaration": "theorem N_eq_count (a : Letter) (w : Word) : N a w = (w.count a : ℤ) := by"
+    },
+    {
+      "name": "Psc.CountBridge.N₂_eq_n2",
+      "module": "PscVerif.CountBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CountBridge.lean",
+      "line": 44,
+      "declaration": "theorem N₂_eq_n2 (a b : Letter) (w : Word) : N₂ a b w = (n2 w a b : ℤ) := by"
+    },
+    {
+      "name": "Psc.CountBridge.N₃_eq_n3",
+      "module": "PscVerif.CountBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CountBridge.lean",
+      "line": 51,
+      "declaration": "theorem N₃_eq_n3 (a b c : Letter) (w : Word) :"
+    },
+    {
+      "name": "Psc.CountBridge.K₂_eq_K2",
+      "module": "PscVerif.CountBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CountBridge.lean",
+      "line": 59,
+      "declaration": "theorem K₂_eq_K2 (s : BalancedPair) (a b : Letter) :"
+    },
+    {
+      "name": "Psc.CountBridge.K₃_eq_K3",
+      "module": "PscVerif.CountBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CountBridge.lean",
+      "line": 63,
+      "declaration": "theorem K₃_eq_K3 (s : BalancedPair) (a b c : Letter) :"
+    },
+    {
+      "name": "Psc.CountBridge.controls_n3_eq",
+      "module": "PscVerif.CountBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CountBridge.lean",
+      "line": 67,
+      "declaration": "theorem controls_n3_eq (w : List (Fin 3)) (a b c : Fin 3) :"
+    },
+    {
+      "name": "Psc.CountBridge.controls_k3_eq",
+      "module": "PscVerif.CountBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CountBridge.lean",
+      "line": 73,
+      "declaration": "theorem controls_k3_eq (a b c : Fin 3) :"
     },
     {
       "name": "Psc.Cyclicity.cyclic_of_irreducible",
@@ -2586,6 +2658,238 @@
       "declaration": "theorem orbit_220_forces_complex_unit (hβ1 : 1 < ‖β‖) (hdet : 1 ≤ ‖β * α * γ‖) (q : ℚ[X])"
     },
     {
+      "name": "Psc.Incidence.subst_cons",
+      "module": "PscVerif.Incidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Incidence.lean",
+      "line": 39,
+      "declaration": "theorem subst_cons (s : α → List α) (c : α) (w : List α) :"
+    },
+    {
+      "name": "Psc.Incidence.n3_nil",
+      "module": "PscVerif.Incidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Incidence.lean",
+      "line": 49,
+      "declaration": "@[simp] theorem n3_nil (a b c : α) : n3 ([] : List α) a b c = 0 := rfl"
+    },
+    {
+      "name": "Psc.Incidence.n3_cons",
+      "module": "PscVerif.Incidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Incidence.lean",
+      "line": 51,
+      "declaration": "theorem n3_cons (x : α) (t : List α) (a b c : α) :"
+    },
+    {
+      "name": "Psc.Incidence.n3_append",
+      "module": "PscVerif.Incidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Incidence.lean",
+      "line": 55,
+      "declaration": "theorem n3_append (x y : List α) (a b c : α) :"
+    },
+    {
+      "name": "Psc.Incidence.inc_apply",
+      "module": "PscVerif.Incidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Incidence.lean",
+      "line": 73,
+      "declaration": "@[simp] theorem inc_apply (s : α → List α) (a c : α) : inc s a c = (s c).count a := rfl"
+    },
+    {
+      "name": "Psc.Incidence.count_subst",
+      "module": "PscVerif.Incidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Incidence.lean",
+      "line": 80,
+      "declaration": "theorem count_subst (s : α → List α) (w : List α) (a : α) :"
+    },
+    {
+      "name": "Psc.Incidence.count_iterate_subst",
+      "module": "PscVerif.Incidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Incidence.lean",
+      "line": 92,
+      "declaration": "theorem count_iterate_subst (s : α → List α) (k : ℕ) (a c : α) :"
+    },
+    {
+      "name": "Psc.Incidence.n2_subst",
+      "module": "PscVerif.Incidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Incidence.lean",
+      "line": 104,
+      "declaration": "theorem n2_subst (s : α → List α) (w : List α) (a b : α) :"
+    },
+    {
+      "name": "Psc.Intertwiner2.n2_add_n2_swap",
+      "module": "PscVerif.Intertwiner2",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Intertwiner2.lean",
+      "line": 75,
+      "declaration": "theorem n2_add_n2_swap (w : List α) {a b : α} (hab : a ≠ b) :"
+    },
+    {
+      "name": "Psc.Intertwiner2.n2_self",
+      "module": "PscVerif.Intertwiner2",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Intertwiner2.lean",
+      "line": 97,
+      "declaration": "theorem n2_self (w : List α) (a : α) : n2 w a a = (w.count a).choose 2 := by"
+    },
+    {
+      "name": "Psc.Intertwiner2.k2_swap",
+      "module": "PscVerif.Intertwiner2",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Intertwiner2.lean",
+      "line": 112,
+      "declaration": "theorem k2_swap (u v : List α) (a b : α) : K2 v u a b = - K2 u v a b := by"
+    },
+    {
+      "name": "Psc.Intertwiner2.k2_antisymm",
+      "module": "PscVerif.Intertwiner2",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Intertwiner2.lean",
+      "line": 116,
+      "declaration": "theorem k2_antisymm {u v : List α} (h : Equiv1 u v) {a b : α} (hab : a ≠ b) :"
+    },
+    {
+      "name": "Psc.Intertwiner2.k2_self",
+      "module": "PscVerif.Intertwiner2",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Intertwiner2.lean",
+      "line": 127,
+      "declaration": "theorem k2_self {u v : List α} (h : Equiv1 u v) (a : α) : K2 u v a a = 0 := by"
+    },
+    {
+      "name": "Psc.Intertwiner2.equiv1_join",
+      "module": "PscVerif.Intertwiner2",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Intertwiner2.lean",
+      "line": 131,
+      "declaration": "theorem equiv1_join (bs : List (List α × List α)) (h : ∀ T ∈ bs, Equiv1 T.1 T.2) :"
+    },
+    {
+      "name": "Psc.Intertwiner2.k2_join",
+      "module": "PscVerif.Intertwiner2",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Intertwiner2.lean",
+      "line": 140,
+      "declaration": "theorem k2_join (bs : List (List α × List α)) (h : ∀ T ∈ bs, Equiv1 T.1 T.2) (a b : α) :"
+    },
+    {
+      "name": "Psc.Intertwiner2.k2_subst",
+      "module": "PscVerif.Intertwiner2",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Intertwiner2.lean",
+      "line": 160,
+      "declaration": "theorem k2_subst (s : α → List α) {u v : List α} (h : Equiv1 u v) (a b : α) :"
+    },
+    {
+      "name": "Psc.Intertwiner2.kw_swap",
+      "module": "PscVerif.Intertwiner2",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Intertwiner2.lean",
+      "line": 185,
+      "declaration": "theorem kw_swap (u v : List (Fin 3)) : kw v u = - kw u v := by"
+    },
+    {
+      "name": "Psc.Intertwiner2.kw_subst",
+      "module": "PscVerif.Intertwiner2",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Intertwiner2.lean",
+      "line": 191,
+      "declaration": "theorem kw_subst (s : Fin 3 → List (Fin 3)) {u v : List (Fin 3)} (h : Equiv1 u v) :"
+    },
+    {
+      "name": "Psc.Intertwiner2.kw_children",
+      "module": "PscVerif.Intertwiner2",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Intertwiner2.lean",
+      "line": 209,
+      "declaration": "theorem kw_children (S : ChildSystem (Fin 3)) {T : List (Fin 3) × List (Fin 3)}"
+    },
+    {
+      "name": "Psc.Intertwiner2.wedge2_mulVec_kw_eq_sum_children",
+      "module": "PscVerif.Intertwiner2",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Intertwiner2.lean",
+      "line": 223,
+      "declaration": "theorem wedge2_mulVec_kw_eq_sum_children (S : ChildSystem (Fin 3))"
+    },
+    {
+      "name": "Psc.Intertwiner3.k3_swap",
+      "module": "PscVerif.Intertwiner3",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Intertwiner3.lean",
+      "line": 80,
+      "declaration": "theorem k3_swap (u v : List α) (a b c : α) : K3 v u a b c = - K3 u v a b c := by"
+    },
+    {
+      "name": "Psc.Intertwiner3.k3_additive",
+      "module": "PscVerif.Intertwiner3",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Intertwiner3.lean",
+      "line": 85,
+      "declaration": "theorem k3_additive {x x' y y' : List α} (hx : Equiv2 x x') (hy : Equiv2 y y')"
+    },
+    {
+      "name": "Psc.Intertwiner3.k3_join",
+      "module": "PscVerif.Intertwiner3",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Intertwiner3.lean",
+      "line": 94,
+      "declaration": "theorem k3_join (bs : List (List α × List α)) (h : ∀ T ∈ bs, Equiv2 T.1 T.2)"
+    },
+    {
+      "name": "Psc.Intertwiner3.equiv2_subst",
+      "module": "PscVerif.Intertwiner3",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Intertwiner3.lean",
+      "line": 108,
+      "declaration": "theorem equiv2_subst (s : α → List α) {u v : List α} (h : Equiv2 u v) :"
+    },
+    {
+      "name": "Psc.Intertwiner3.n3_subst",
+      "module": "PscVerif.Intertwiner3",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Intertwiner3.lean",
+      "line": 119,
+      "declaration": "theorem n3_subst (s : α → List α) (w : List α) (a b e : α) :"
+    },
+    {
+      "name": "Psc.Intertwiner3.k3_subst",
+      "module": "PscVerif.Intertwiner3",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Intertwiner3.lean",
+      "line": 167,
+      "declaration": "theorem k3_subst (s : α → List α) {u v : List α} (h : Equiv2 u v) (a b e : α) :"
+    },
+    {
+      "name": "Psc.Intertwiner3.equiv2_iterate_subst",
+      "module": "PscVerif.Intertwiner3",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Intertwiner3.lean",
+      "line": 187,
+      "declaration": "theorem equiv2_iterate_subst (s : α → List α) {u v : List α} (h : Equiv2 u v) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.Intertwiner3.equiv2_example",
+      "module": "PscVerif.Intertwiner3",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Intertwiner3.lean",
+      "line": 200,
+      "declaration": "theorem equiv2_example : Equiv2 ([0, 1, 1, 0] : List (Fin 2)) [1, 0, 0, 1] := by"
+    },
+    {
+      "name": "Psc.Intertwiner3.k3_example",
+      "module": "PscVerif.Intertwiner3",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Intertwiner3.lean",
+      "line": 205,
+      "declaration": "theorem k3_example : K3 ([0, 1, 1, 0] : List (Fin 2)) [1, 0, 0, 1] 0 1 0 = 2 := by"
+    },
+    {
       "name": "Psc.M0Pisot.M0_eq_m0",
       "module": "PscVerif.M0Pisot",
       "private": false,
@@ -2720,6 +3024,206 @@
       "source": "proof/PscVerif/PscVerif/M0Pisot.lean",
       "line": 147,
       "declaration": "theorem m0_pisot : ∃ b : ℝ, 1 < b ∧ aeval (b : ℂ) f = 0 ∧"
+    },
+    {
+      "name": "Psc.ParikhIntertwiner.parikh_append",
+      "module": "PscVerif.ParikhIntertwiner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ParikhIntertwiner.lean",
+      "line": 55,
+      "declaration": "theorem parikh_append (x y : List α) : parikh (x ++ y) = parikh x + parikh y := by"
+    },
+    {
+      "name": "Psc.ParikhIntertwiner.parikh_nil",
+      "module": "PscVerif.ParikhIntertwiner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ParikhIntertwiner.lean",
+      "line": 59,
+      "declaration": "theorem parikh_nil : parikh ([] : List α) = 0 := by"
+    },
+    {
+      "name": "Psc.ParikhIntertwiner.parikh_flatten",
+      "module": "PscVerif.ParikhIntertwiner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ParikhIntertwiner.lean",
+      "line": 63,
+      "declaration": "theorem parikh_flatten (ws : List (List α)) :"
+    },
+    {
+      "name": "Psc.ParikhIntertwiner.inc_mulVec_single",
+      "module": "PscVerif.ParikhIntertwiner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ParikhIntertwiner.lean",
+      "line": 71,
+      "declaration": "theorem inc_mulVec_single (s : α → List α) (c : α) :"
+    },
+    {
+      "name": "Psc.ParikhIntertwiner.parikh_subst",
+      "module": "PscVerif.ParikhIntertwiner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ParikhIntertwiner.lean",
+      "line": 83,
+      "declaration": "theorem parikh_subst (s : α → List α) (w : List α) :"
+    },
+    {
+      "name": "Psc.ParikhIntertwiner.parikh_children_top",
+      "module": "PscVerif.ParikhIntertwiner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ParikhIntertwiner.lean",
+      "line": 89,
+      "declaration": "theorem parikh_children_top (S : ChildSystem α) (T : List α × List α) (hT : T ∈ S.C) :"
+    },
+    {
+      "name": "Psc.ParikhIntertwiner.parikh_children_bot",
+      "module": "PscVerif.ParikhIntertwiner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ParikhIntertwiner.lean",
+      "line": 95,
+      "declaration": "theorem parikh_children_bot (S : ChildSystem α) (T : List α × List α) (hT : T ∈ S.C) :"
+    },
+    {
+      "name": "Psc.ParikhIntertwiner.parikh_tracks_eq",
+      "module": "PscVerif.ParikhIntertwiner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ParikhIntertwiner.lean",
+      "line": 102,
+      "declaration": "theorem parikh_tracks_eq {u v : List α} (h : Equiv1 u v) : parikh u = parikh v := by"
+    },
+    {
+      "name": "Psc.ParikhIntertwiner.parikh_children_balanced",
+      "module": "PscVerif.ParikhIntertwiner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ParikhIntertwiner.lean",
+      "line": 106,
+      "declaration": "theorem parikh_children_balanced (S : ChildSystem α) (T : List α × List α) (hT : T ∈ S.C)"
+    },
+    {
+      "name": "Psc.ParikhIntertwiner.Lfun_append",
+      "module": "PscVerif.ParikhIntertwiner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ParikhIntertwiner.lean",
+      "line": 117,
+      "declaration": "theorem Lfun_append (ℓ : α → ℝ) (x y : List α) :"
+    },
+    {
+      "name": "Psc.ParikhIntertwiner.Lfun_nil",
+      "module": "PscVerif.ParikhIntertwiner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ParikhIntertwiner.lean",
+      "line": 122,
+      "declaration": "theorem Lfun_nil (ℓ : α → ℝ) : Lfun ℓ ([] : List α) = 0 := by"
+    },
+    {
+      "name": "Psc.ParikhIntertwiner.Lfun_flatten",
+      "module": "PscVerif.ParikhIntertwiner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ParikhIntertwiner.lean",
+      "line": 125,
+      "declaration": "theorem Lfun_flatten (ℓ : α → ℝ) (ws : List (List α)) :"
+    },
+    {
+      "name": "Psc.ParikhIntertwiner.Lfun_pos",
+      "module": "PscVerif.ParikhIntertwiner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ParikhIntertwiner.lean",
+      "line": 134,
+      "declaration": "theorem Lfun_pos (ℓ : α → ℝ) (hℓ : ∀ a, 0 < ℓ a) (w : List α) (hw : w ≠ []) :"
+    },
+    {
+      "name": "Psc.ParikhIntertwiner.Lfun_subst",
+      "module": "PscVerif.ParikhIntertwiner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ParikhIntertwiner.lean",
+      "line": 147,
+      "declaration": "theorem Lfun_subst (s : α → List α) (ℓ : α → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.ParikhIntertwiner.Lfun_children_top",
+      "module": "PscVerif.ParikhIntertwiner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ParikhIntertwiner.lean",
+      "line": 160,
+      "declaration": "theorem Lfun_children_top (S : ChildSystem α) (ℓ : α → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.ParikhIntertwiner.Lfun_children_bot",
+      "module": "PscVerif.ParikhIntertwiner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ParikhIntertwiner.lean",
+      "line": 168,
+      "declaration": "theorem Lfun_children_bot (S : ChildSystem α) (ℓ : α → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.ParikhIntertwiner.spectral_bound_of_subinvariant",
+      "module": "PscVerif.ParikhIntertwiner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ParikhIntertwiner.lean",
+      "line": 189,
+      "declaration": "theorem spectral_bound_of_subinvariant (N : Matrix ι ι ℝ) (L : ι → ℝ) (hL : ∀ i, 0 < L i)"
+    },
+    {
+      "name": "Psc.ParikhIntertwiner.spectral_bound",
+      "module": "PscVerif.ParikhIntertwiner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ParikhIntertwiner.lean",
+      "line": 222,
+      "declaration": "theorem spectral_bound (N : Matrix ι ι ℝ) (L : ι → ℝ) (hL : ∀ i, 0 < L i) (β : ℝ)"
+    },
+    {
+      "name": "Psc.ParikhIntertwiner.Nc_apply",
+      "module": "PscVerif.ParikhIntertwiner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ParikhIntertwiner.lean",
+      "line": 244,
+      "declaration": "@[simp] theorem Nc_apply (i j : State S) : Nc S i j = (S.children j.1).count i.1 := rfl"
+    },
+    {
+      "name": "Psc.ParikhIntertwiner.Pc_apply",
+      "module": "PscVerif.ParikhIntertwiner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ParikhIntertwiner.lean",
+      "line": 251,
+      "declaration": "@[simp] theorem Pc_apply (a : α) (j : State S) : Pc S a j = j.1.1.count a := rfl"
+    },
+    {
+      "name": "Psc.ParikhIntertwiner.sum_children_eq_sum_state",
+      "module": "PscVerif.ParikhIntertwiner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ParikhIntertwiner.lean",
+      "line": 258,
+      "declaration": "theorem sum_children_eq_sum_state {M : Type*} [AddCommMonoid M]"
+    },
+    {
+      "name": "Psc.ParikhIntertwiner.pc_nc",
+      "module": "PscVerif.ParikhIntertwiner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ParikhIntertwiner.lean",
+      "line": 275,
+      "declaration": "theorem pc_nc : Pc S * Nc S = inc S.s * Pc S := by"
+    },
+    {
+      "name": "Psc.ParikhIntertwiner.lc_nc",
+      "module": "PscVerif.ParikhIntertwiner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ParikhIntertwiner.lean",
+      "line": 287,
+      "declaration": "theorem lc_nc (ℓ : α → ℝ) (β : ℝ) (hℓ : ℓ ᵥ* (inc S.s).map (Nat.cast : ℕ → ℝ) = β • ℓ) :"
+    },
+    {
+      "name": "Psc.ParikhIntertwiner.lc_pos",
+      "module": "PscVerif.ParikhIntertwiner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ParikhIntertwiner.lean",
+      "line": 297,
+      "declaration": "theorem lc_pos (ℓ : α → ℝ) (hℓ : ∀ a, 0 < ℓ a) (hne : ∀ T ∈ S.C, T.1 ≠ []) (j : State S) :"
+    },
+    {
+      "name": "Psc.ParikhIntertwiner.spectral_bound_childSystem",
+      "module": "PscVerif.ParikhIntertwiner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ParikhIntertwiner.lean",
+      "line": 309,
+      "declaration": "theorem spectral_bound_childSystem (ℓ : α → ℝ) (hℓ : ∀ a, 0 < ℓ a)"
     },
     {
       "name": "Psc.PerronCore.super_eigen_eq",
@@ -2880,6 +3384,94 @@
       "source": "proof/PscVerif/PscVerif/PerronSimple.lean",
       "line": 330,
       "declaration": "theorem factor_through_parikh (N : Matrix ι ι ℚ) (hN : ∀ i j, 0 ≤ N i j)"
+    },
+    {
+      "name": "Psc.PrimitiveExpansion.one_le_of_pos_pow",
+      "module": "PscVerif.PrimitiveExpansion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrimitiveExpansion.lean",
+      "line": 85,
+      "declaration": "theorem one_le_of_pos_pow [Fintype α] (s : α → List α) (hcard : 2 ≤ Fintype.card α)"
+    },
+    {
+      "name": "Psc.PrimitiveExpansion.card_le_length_of_pos_pow",
+      "module": "PscVerif.PrimitiveExpansion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrimitiveExpansion.lean",
+      "line": 96,
+      "declaration": "theorem card_le_length_of_pos_pow [Fintype α] (s : α → List α) {k : ℕ}"
+    },
+    {
+      "name": "Psc.PrimitiveExpansion.two_mul_length_le",
+      "module": "PscVerif.PrimitiveExpansion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrimitiveExpansion.lean",
+      "line": 109,
+      "declaration": "theorem two_mul_length_le (s : α → List α) (k : ℕ)"
+    },
+    {
+      "name": "Psc.PrimitiveExpansion.expanding_of_pos_pow",
+      "module": "PscVerif.PrimitiveExpansion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrimitiveExpansion.lean",
+      "line": 124,
+      "declaration": "theorem expanding_of_pos_pow [Fintype α] (s : α → List α) (hcard : 2 ≤ Fintype.card α)"
+    },
+    {
+      "name": "Psc.PrimitiveExpansion.expanding_power",
+      "module": "PscVerif.PrimitiveExpansion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrimitiveExpansion.lean",
+      "line": 144,
+      "declaration": "theorem expanding_power [Fintype α] (s : α → List α)"
+    },
+    {
+      "name": "Psc.PrimitiveExpansion.card_two_needed",
+      "module": "PscVerif.PrimitiveExpansion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrimitiveExpansion.lean",
+      "line": 155,
+      "declaration": "theorem card_two_needed :"
+    },
+    {
+      "name": "Psc.PrimitiveExpansion.tracks_ne_nil",
+      "module": "PscVerif.PrimitiveExpansion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrimitiveExpansion.lean",
+      "line": 170,
+      "declaration": "theorem tracks_ne_nil {u v : List α} (hb : Equiv1 u v) (hnc : u ≠ v) : u ≠ [] ∧ v ≠ [] := by"
+    },
+    {
+      "name": "Psc.PrimitiveExpansion.reduction_limit_of_pos_pow",
+      "module": "PscVerif.PrimitiveExpansion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrimitiveExpansion.lean",
+      "line": 183,
+      "declaration": "theorem reduction_limit_of_pos_pow [Fintype α] (s : α → List α)"
+    },
+    {
+      "name": "Psc.PrimitiveExpansion.reduction_limit_primitive",
+      "module": "PscVerif.PrimitiveExpansion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrimitiveExpansion.lean",
+      "line": 212,
+      "declaration": "theorem reduction_limit_primitive [Fintype α] (s : α → List α)"
+    },
+    {
+      "name": "Psc.PrimitiveExpansion.nonerasing_of_primitive",
+      "module": "PscVerif.PrimitiveExpansion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrimitiveExpansion.lean",
+      "line": 232,
+      "declaration": "theorem nonerasing_of_primitive [Fintype α] (s : α → List α)"
+    },
+    {
+      "name": "Psc.PrimitiveExpansion.reduction_limit_of_primitive",
+      "module": "PscVerif.PrimitiveExpansion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrimitiveExpansion.lean",
+      "line": 252,
+      "declaration": "theorem reduction_limit_of_primitive [Fintype α] (S : ChildSystem α)"
     },
     {
       "name": "PscVerif.QuotientDistance.path_lift",
@@ -5348,20 +5940,26 @@
     "claim_governance.toml": "5642e664f9a79064ffbaf770719cf0acba52accc75fca568711d4b554a08803e",
     "proof/PscVerif/ProofBankAudit.lean": "df46d0e65bf4aa0b6c2ca184a784974970c58f8c2c3de38eb4ed713efacce904",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
-    "proof/PscVerif/PscVerif/Binomial.lean": "f70ba3de093bd2a282152d16f462afc19bf1d1034685167252ad481ab1257f68",
+    "proof/PscVerif/PscVerif/Binomial.lean": "72a5f35602043412261c752e6c27bb27b1f41be56054a24a98598f3ef2ed26fd",
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
     "proof/PscVerif/PscVerif/BoundarySeedPath.lean": "bea69cb93d5bcd15b1b88c48062b4404a721908092af1b5f5b42e6184f7abae3",
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
     "proof/PscVerif/PscVerif/ClassBRegime.lean": "1c873d0aea0201c3a60486dc90bce00e9f9612019ad72c5344cfa927d93a23e6",
     "proof/PscVerif/PscVerif/ConcentrationAlgebra.lean": "99ca8d13f6ef41ad91147883629c5aa2ec34736b09ea12773ebbb5f2c5e7d56a",
     "proof/PscVerif/PscVerif/ConcentrationControls.lean": "427a2b1a92b492a06447c0109bb7eaea2607c89fee743a0f5a6bcada47eb5964",
+    "proof/PscVerif/PscVerif/CountBridge.lean": "95e25901af3c17978659a3b49fce3cf8261ff4ba6815204007244769b1c6fe1a",
     "proof/PscVerif/PscVerif/Cyclicity.lean": "a45da70d91ae61b295d9306910b5c55e97707f641ee541306076f0d9bae55691",
     "proof/PscVerif/PscVerif/Degree4Sector.lean": "7afc131498833c8346b21872981c6f7aa4b7a736fdc952ff84b9b8c071b86f63",
     "proof/PscVerif/PscVerif/FixedPointLimit.lean": "9a6a957736d543b8fe48f3d1c1a748e19e15ee1b0f6ac74aaf6579eb59365cfb",
-    "proof/PscVerif/PscVerif/GaloisOrbit.lean": "525697bd68968a44d342fb5326d2a74a13064dab9dc0f1e2b60ffeb702f4378c",
+    "proof/PscVerif/PscVerif/GaloisOrbit.lean": "04e6f78849d4a560f234a2f7d4acfffef5c435c7e28365894a859d7e43dc917d",
+    "proof/PscVerif/PscVerif/Incidence.lean": "272b605d6fbc8e65614a97b36d50bb8af5027857016092aa81e7078d18caf307",
+    "proof/PscVerif/PscVerif/Intertwiner2.lean": "5d30442e39af4cf34bff1117bb90b38776c2dcd87946fe8a8e37af28e8e85368",
+    "proof/PscVerif/PscVerif/Intertwiner3.lean": "5431e93b6b862c5e3624206b884fbb4855355c1e353d6cb0db360405f281e22c",
     "proof/PscVerif/PscVerif/M0Pisot.lean": "65d17cf0aa71cdac825d16da73ad601dd49c214cd0b47ac58f124cb51a64a304",
+    "proof/PscVerif/PscVerif/ParikhIntertwiner.lean": "22314259175100ce91f20b84cea582b9322c2148d778a037209d854f17c12c53",
     "proof/PscVerif/PscVerif/PerronCore.lean": "1f06da1e0b57e74b31fc03d753bd314f25561a37e512b3a8f7f05fda0d75458c",
     "proof/PscVerif/PscVerif/PerronSimple.lean": "e6938b72b99f57883cb6b2911b4847c8a8029eadff01795c882490715a85b749",
+    "proof/PscVerif/PscVerif/PrimitiveExpansion.lean": "4081ccf663a21d352a0d251ff85d058160516a64e545340ceba60ba7d6123a32",
     "proof/PscVerif/PscVerif/QuotientDistance.lean": "1431961ca4d26d60e5bf5165c7773440e7a708b51377697e339f94f7cf5896ef",
     "proof/PscVerif/PscVerif/Seeds.lean": "224a67ea3d89c8cd54747164d4e1fbbc9b733aa5eb404465119999b738dce747",
     "proof/PscVerif/PscVerif/SelectedRank.lean": "0ab6fc76698ebcfd14ce1b319b121f0eaee9d2d64fceb26d3cf9e6a59b26c396",
@@ -5370,7 +5968,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "8d50416f126e7806f82e5db0405cbc0e552a6685e6c8240cba31c7a4441a494e",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "3edd066311c1a045776133b2f1e6d5b7f1459e25bd3db12679a88233133b657e",
+    "proof/PscVerif/PscVerif.lean": "63b32f28e297dca37a01cebcf162157ac4a1260e13f6b4fdc176510cf59a6f6e",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

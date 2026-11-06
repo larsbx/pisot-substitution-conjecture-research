@@ -19,6 +19,10 @@ Proved here, in full:
   `σᵖ`-images, and for every `n` the pair `(σ^{pn} u₀, σ^{pn} v₀)` is a
   concatenation of states of the system — so the two words are 2-binomially
   equivalent at every block boundary;
+* `power`, `subst_power`: the power substitution `a ↦ σᵏ [a]` acts on words
+  as `σᵏ`; `ChildSystem.desc_ne_nil` and `ChildSystem.pow`: the depth-`k`
+  descendants of a child system form a child system of the power substitution
+  on the same states;
 * `heads_ne`: an irreducible noncoincident balanced pair has distinct first
   letters.
 
@@ -114,6 +118,21 @@ theorem iterate_subst_flatten (s : α → List α) (n : ℕ) (ws : List (List α
   | nil => simp [iterate_subst_nil]
   | cons w ws ih => simp [iterate_subst_append, ih]
 
+/-- The `k`-th power substitution `a ↦ σᵏ [a]`. -/
+def power (s : α → List α) (k : ℕ) : α → List α := fun a => (subst s)^[k] [a]
+
+/-- `subst (power s k) = σᵏ`: the power substitution acts on words as the
+`k`-th iterate. -/
+theorem subst_power (s : α → List α) (k : ℕ) : subst (power s k) = (subst s)^[k] := by
+  funext w
+  induction w with
+  | nil => simp [subst, iterate_subst_nil]
+  | cons a t ih =>
+    have e1 : subst (power s k) (a :: t) = power s k a ++ subst (power s k) t := by
+      simp [subst]
+    rw [e1, ih, show a :: t = [a] ++ t from rfl, iterate_subst_append]
+    rfl
+
 /-- A finite system of ordered pairs with a children map whose blocks
 concatenate, on each track, to the image of the parent; closed under children;
 every child list nonempty. -/
@@ -169,6 +188,27 @@ theorem desc_bot (n : ℕ) : ∀ T ∈ S.C,
     congr 1
     refine List.map_congr_left fun V hV => ?_
     simpa [Function.comp] using ih V (S.closed T hT V hV)
+
+/-- Every state has a nonempty list of depth-`n` descendants. -/
+theorem desc_ne_nil (n : ℕ) : ∀ T ∈ S.C, S.desc n T ≠ [] := by
+  induction n with
+  | zero => intro T _; simp [desc]
+  | succ n ih =>
+    intro T hT
+    obtain ⟨V, hV⟩ := List.exists_mem_of_ne_nil _ (S.nonempty T hT)
+    simp only [desc, ne_eq, List.flatten_eq_nil_iff, List.mem_map, not_forall]
+    exact ⟨_, ⟨V, hV, rfl⟩, ih V (S.closed T hT V hV)⟩
+
+/-- The `k`-step child system: the same states, depth-`k` descendants as
+children, and the power substitution `a ↦ σᵏ [a]` (`power`). -/
+def pow (S : ChildSystem α) (k : ℕ) : ChildSystem α where
+  s := power S.s k
+  C := S.C
+  children := S.desc k
+  top := fun T hT => by rw [subst_power]; exact S.desc_top k T hT
+  bot := fun T hT => by rw [subst_power]; exact S.desc_bot k T hT
+  closed := fun T hT U hU => S.desc_mem k T hT U hU
+  nonempty := fun T hT => S.desc_ne_nil k T hT
 
 /-- The first-child map. -/
 def first (T : List α × List α) : List α × List α := ((S.children T).head?).getD T

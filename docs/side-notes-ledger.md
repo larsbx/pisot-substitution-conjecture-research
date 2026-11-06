@@ -2389,3 +2389,13 @@ claim-ledger promotion. Evidence: `docs/occurrence-path-replay-2026-10-16.md`,
   - `(2,2,0)` forces `|d| = 1`, `|α| = |γ|` and a non-real pair (if `α` were real, `γ = −α` and `α² ∈ ℚ`, contradicting the cubic).
 
   The modulus steps call `WeightModulus.weight_310` and `weight_220` at `‖β‖`, so there is no duplicated arithmetic. Non-vacuity is witnessed numerically by Tribonacci. Library: 603 declarations, 408 theorems, standard axioms only. With this, everything in Theorem A except the representation-theoretic inputs is formalized: the `Lie₄` weights, `Φ` semisimplicity, `Q_r S = Φ_r Q_r`, `ρ(S) ≤ β`, and the identification with an actual component. Locator: [Concentration attack §8](c4-concentration-attack-2026-11-06.md).
+
+- **2026-11-06 — Lean: the word-level inputs of Theorem A.** Six more `proof/PscVerif` modules:
+  - `Incidence`: the single home of the incidence matrix and the count, `n2` and `n3` substitution laws;
+  - `CountBridge`: bridges to the older `Psc.N₂`/`N₃`/`K₂`/`K₃` and `ConcentrationControls.n3`;
+  - `ParikhIntertwiner`: `P_C N_C = M P_C`, `λN_C = βλ`, `λ > 0`, and `ρ ≤ β` for every matrix dominated by `N_C`, also under subinvariance;
+  - `Intertwiner2`: `K₂` push-forward, antisymmetry, `kw(σu,σv) = Λ²M·kw(u,v)`, block additivity;
+  - `Intertwiner3`: `K₃` additivity for `∼₂` blocks and `K₃(σu,σv) = M^{⊗3}K₃(u,v)`;
+  - `PrimitiveExpansion`: `count_iterate_subst = (inc s)^k`, and the reduction lemma, limit form, for a primitive `σ` via `ChildSystem.pow` (added to `Binomial`).
+
+  Library: 741 declarations, 524 theorems, standard axioms only. A container restart killed the refactor workflow mid-run. The surviving partial edits were completed by hand, with one fix: `List.count` on pairs was elaborated with two different lawful `BEq` instances, so `Finset.sum_subset` would not unify until `convert` exposed the mismatch. Pitfall: σ itself need not lengthen strict states (`012/2/0` with state `(12, 21)`), which is why the power is needed; `PrimitiveExpansion.card_two_needed` is the one-letter negative control. Locator: [Concentration attack §8](c4-concentration-attack-2026-11-06.md).

@@ -209,9 +209,9 @@ The following are not claimed:
 
 ## 8. Lean formalization (`proof/PscVerif`)
 
-Twelve modules, all checked by the proof-bank axiom audit (`propext`,
+Eighteen modules, all checked by the proof-bank axiom audit (`propext`,
 `Classical.choice` and `Quot.sound` only; no `sorry`, no local axioms, no
-`native_decide`; the whole library: 603 declarations, 408 theorems).
+`native_decide`; the whole library: 741 declarations, 524 theorems).
 - *Full* means the formal statement is the stated result.
 - *Given X* means the formal statement assumes X, and X is named.
 
@@ -219,9 +219,14 @@ Twelve modules, all checked by the proof-bank axiom audit (`propext`,
 |---|---|---|
 | Block additivity of `K₂`: `n2 (x++y) = n2 x + n2 y + \|x\|_a\|y\|_b`, so concatenations of `∼₂` blocks are `∼₂` at every cut | `Psc.Binomial.n2_append`, `Equiv2.append`, `equiv2_join`, `equiv2_at_cuts` | full |
 | Reduction lemma, finite form | `Psc.Binomial.ChildSystem.reduction_lemma` | full |
-| Reduction lemma, limit form: two `σᵖ`-invariant limit words with different first letters, `∼₂` on a syndetic set of prefix lengths, gaps at most the maximal state length | `Psc.FixedPointLimit.reduction_limit` (with `limit_spec`, `limit_fixed`, `limit_zero`, `grow_of_nonerasing`, `fixed_points_equiv2_syndetic`) | given a nonerasing `σ` under which every state is strictly lengthened (true for a suitable power of a primitive `σ`, not formalized) |
+| Reduction lemma, limit form: two `σᵖ`-invariant limit words with different first letters, `∼₂` on a syndetic set of prefix lengths, gaps at most the maximal state length | `Psc.FixedPointLimit.reduction_limit` (with `limit_spec`, `limit_fixed`, `limit_zero`, `grow_of_nonerasing`, `fixed_points_equiv2_syndetic`) | full for a primitive `σ` on at least two letters: `Psc.PrimitiveExpansion.reduction_limit_of_primitive` passes to the power child system `ChildSystem.pow` and discharges the expansion hypothesis |
 | Irreducible noncoincident balanced pairs have distinct first letters | `Psc.Binomial.heads_ne` | full |
-| Galois lemma: an eigen-row of `Λ²M` vanishing on a nonzero rational vector is zero | `Psc.Cyclicity.eigenrow_wedge2` (via `cyclic_of_irreducible`, `irreducible_wedge2`, `ConcentrationAlgebra.eigenrow_eq_zero`) | given `χ_M` irreducible; that `K₂(σT) = Λ²M·K₂(T)` in these coordinates is `prop:midarea`, not formalized |
+| Galois lemma: an eigen-row of `Λ²M` vanishing on a nonzero rational vector is zero | `Psc.Cyclicity.eigenrow_wedge2` (via `cyclic_of_irreducible`, `irreducible_wedge2`, `ConcentrationAlgebra.eigenrow_eq_zero`) | given `χ_M` irreducible; the coordinates are those of `kw` below, so it applies to actual `K₂` vectors |
+| Incidence and count layer: `inc s`, `count_subst`, `count_iterate_subst = (inc s)^k`, `n2_subst`, `n3`, `n3_append`; bridges to `Psc.N₂`/`N₃`/`K₂`/`K₃` and `ConcentrationControls.n3` | `Psc.Incidence.*`, `Psc.CountBridge.*` | full |
+| Degree-2 intertwiner on words: `K₂(σu,σv) = (M⊗M)K₂(u,v)`, antisymmetry, wedge coordinates `kw(σu,σv) = Λ²M·kw(u,v)`, block additivity over children, swap | `Psc.Intertwiner2.k2_subst`, `k2_antisymm`, `kw_subst`, `kw_children`, `k2_swap`, `kw_swap` | full over raw ordered (unsigned) children; the signed normalised form and `prop:midarea`'s area/`H` identity are not formalized |
+| Degree-3 intertwiner on words (Lemma 0 at `r = 3`): for `∼₂` pairs, `K₃` is additive over concatenation and `K₃(σu,σv) = M^{⊗3}K₃(u,v)` | `Psc.Intertwiner3.n3_append`, `k3_additive`, `k3_join`, `n3_subst`, `k3_subst` | full over raw ordered children; `K₃ ∈ Lie₃` and degrees `r ≥ 4` are not formalized here |
+| `thm:parikh` in matrix form for a child system: `P_C N_C = M P_C`, `λ N_C = βλ` with `λ = ℓᵀP_C > 0` | `Psc.ParikhIntertwiner.pc_nc`, `lc_nc`, `lc_pos` (with `parikh_subst`, `parikh_children_top/bot`, `Lfun_subst`) | full, given a positive left eigenvector `ℓ` of the incidence matrix |
+| `prop:cocycle`'s `ρ(S) ≤ β`: every eigenvalue of a matrix dominated by `N_C` has modulus `≤ β`; also under subinvariance `λN ≤ βλ` (the escape/leak remark after `thm:parikh`) | `Psc.ParikhIntertwiner.spectral_bound_childSystem`, `spectral_bound_of_subinvariant`, `spectral_bound` | full for any dominated matrix; the cocycle matrix `S` itself (signed children) is not constructed |
 | Invariant subspaces of an irreducible `3×3` matrix are `0` or everything | `Psc.Cyclicity.invariant_eq_bot_or_top` | full |
 | Positivity core: `N|v| ≥ β|v| ⇒ =`; nonnegative eigenvectors have full support; `\|x\|` is an eigenvector when `x` is one for `S` with `\|S\| ≤ N` | `Psc.PerronCore.*` | given a positive left `β`-eigenvector `L` of `N` (from `thm:parikh`: `L = ℓP`) |
 | Wielandt's equality case: `S = c·D N D⁻¹`, `\|c\| = 1`, `\|D\| = 1` | `Psc.Wielandt.wielandt` | given `L` as above; the Perron–Frobenius existence theorem is not needed |
@@ -237,11 +242,15 @@ Twelve modules, all checked by the proof-bank axiom audit (`propext`,
 | Control `011/2/120`: `0112201 ∼₂ 1200112`, both factors of `σ⁶(0)` | `Psc.ConcentrationControls.factors_equiv2`, `factors_occur` | full (kernel `decide`) |
 
 **Not formalized.** These remain manuscript results:
-- the weight list of `Lie₄(ℚ³)` (Witt formula) and the semisimplicity of `Φ`;
-- the first-defect intertwiner `Q_r S = Φ_r Q_r` and the bound `ρ(S) ≤ β`
-  (`thm:defect-intertwiner`, `prop:cocycle`);
-- the identification of `N`, `S`, `P`, `L` with the data of an actual strict
-  component (`thm:parikh`).
+- the weight list of `Lie₄(ℚ³)` (Witt formula), the semisimplicity of `Φ`, and
+  `K_r ∈ Lie_r` for `r ≥ 3`;
+- the first-defect intertwiner at degrees `r ≥ 4`, and at every degree its
+  signed form `Q_r S = Φ_r Q_r` over normalised representatives with cocycle
+  signs. Degrees 2 and 3 are formalized over raw ordered children.
+- the construction of the cocycle matrix `S` of `prop:cocycle`. The bound
+  `ρ(S) ≤ β` is formalized for every matrix dominated by `N_C`, and `S` is one.
+- the existence of the positive left Perron eigenvector `ℓ` of the incidence
+  matrix, which is assumed.
 
 The Lean results are the algebraic and analytic steps of §§2–3 applied to
 those inputs. A mutant of `t13_det_sector` with `det` replaced by `2` fails to
