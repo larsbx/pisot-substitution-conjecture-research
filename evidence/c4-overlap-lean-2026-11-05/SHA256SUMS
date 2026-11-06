@@ -1,0 +1,5 @@
+c0c8d06cf8d6041abaa790d200c2ac84c9c5f8b2044855b03ff4cc943c9fab5e  ./README.md
+97246ffaa7eaa0ba843adfd189227c324092ad4de9651052fed8959fe440250b  ./host-proc-path.c
+59f41a6e55609a6b696347f29e2a6434e421651deb48ca7a32c9b998d539089b  ./isolated-audit.log
+aad5da31e937664aa99465f53fe206ede4d1a7d1d39a349fbebb9518571a477f  ./local-validation.json
+7b0d3b1c5ed701b75c2eea7b13c89453fdd20c2adb529f403df2dafea664a6f9  ./module-build.log

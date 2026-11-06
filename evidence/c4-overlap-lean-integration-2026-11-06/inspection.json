@@ -1,0 +1,22 @@
+{
+  "schema": "c4-overlap-integration-inspection-v1",
+  "verification_head": "654c24561dae1172acc973c43f3db67322a17fb8",
+  "integrated_main": "ba09fdbd770248905a297303b8de45b3d7c5018d",
+  "hosted_run_id": 42109144786,
+  "artifact_id": 13457433206,
+  "artifact_sha256": "1a28b804be6cd045ed5daf5926eaf6608944d336fac3dfe3c1a40110f12097e2",
+  "all_18_source_and_log_hashes_match": true,
+  "all_independent_importer_sources_match": true,
+  "all_generated_audits_reparsed": true,
+  "full_packet_reextracted_byte_equal": true,
+  "full_python_oracle_rerun_matches_committed_receipt": true,
+  "all_106_current_named_proofs_present_in_old_audit": true,
+  "old_generic_declarations": 531,
+  "old_generic_theorem_declarations": 275,
+  "main_only_implementation_files_preserved": true,
+  "pr_packet_implementation_files_preserved": true,
+  "focused_python_tests_passed": 96,
+  "current_revision_lean_kernel_replay_completed": false,
+  "geometry_formalized": false,
+  "scope": "artifact inspection and independent oracle replay; not integrated-revision Lean acceptance"
+}

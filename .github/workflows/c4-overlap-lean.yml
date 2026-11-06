@@ -1,0 +1,52 @@
+name: C4 overlap Lean verification
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/c4-overlap-lean.yml'
+      - 'proof/PscVerif/**'
+      - 'proof/proof-bank.toml'
+      - 'proof/proof-bank.json'
+      - 'docs/proof-bank.md'
+      - 'docs/c4-overlap-lean-interface-2026-11-05.md'
+      - 'evidence/c4-overlap-lean-2026-11-05/**'
+      - 'tools/setup_lean.sh'
+      - 'tools/check_lean.sh'
+      - 'tools/make_proof_bank.py'
+      - 'tools/make_ledger.py'
+      - 'tools/claim_governance/**'
+      - 'claim_governance.toml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  overlap-proof-bank:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Verify exact revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+      - name: Provision the pinned Lean release and dependency sources
+        run: |
+          ./tools/setup_lean.sh
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Compile from isolated sources and audit every local declaration
+        shell: bash
+        run: |
+          set -o pipefail
+          ./tools/check_lean.sh | tee /tmp/c4-overlap-lean-audit.log
+      - name: Retain the exact-head audit receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: c4-overlap-lean-${{ github.event.pull_request.head.sha || github.sha }}
+          path: /tmp/c4-overlap-lean-audit.log
+          if-no-files-found: error
+          retention-days: 30

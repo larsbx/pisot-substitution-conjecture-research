@@ -1,0 +1,15 @@
+{
+  "canonical_packet_and_protocol_unittest": {
+    "tests": 11,
+    "passed": true
+  },
+  "complete_class_oracle_pytest": {
+    "tests": 22,
+    "passed": true,
+    "command": "uv run --offline --no-project --with pytest python -m pytest tests/test_c4_pair_overlap_class_oracle.py -q"
+  },
+  "proof_bank_check_passed": true,
+  "retained_payload_and_generic_axiom_scan_passed": true,
+  "new_lean_mathematical_changes": false,
+  "fresh_local_lean_kernel_run": false
+}

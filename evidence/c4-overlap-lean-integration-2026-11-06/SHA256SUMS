@@ -1,0 +1,9 @@
+4f03518de84a3663a6bf21a92e564bc541a277eeabb50660979c7e02096faa5c  ./README.md
+47667aafad0e2b209f415e6f1ca48629c2d3ab8bdb55a5798c03dc727d542593  ./focused-python-tests.log
+cac2bd4c8c4a53cc9c163ecbf41b5b1b59301953772d461e949aef7ea9c8acb2  ./inspection.json
+0514b974b92d65f7e303a99bf865f8a02223015981d908168eb72ba3ef0c6b9f  ./local-lean-provisioning.log
+fb3f5ed8bd31983fd0030a3cf8a9a313d2f2b89d8da3dc2a2c6c6eabe450c0e0  ./local-mojo-provisioning.log
+5a6f14d7f6c4f5722cb858e8033f59124766f30e7e0ca08eb6618cea0b3c0908  ./preintegration-generic-audit.log.gz
+a204a653cfa01b17d57caf7f0d0cc979752274c3d13509d9e1a95b008bb54044  ./preintegration-negative-control.json
+d1981e1e6a66b4c938479bfd1e457becd5b287ba28932f59d0acc3b06c3ae50b  ./preintegration-oracle-receipt.json
+0ffe441e687284c008e643c6f54530d6acf0bca79b2eb1d78dd787d964c6082b  ./preintegration-packet-receipt.json
