@@ -6,16 +6,23 @@ structural facts used here were already in the repository: the manuscript
 `thm:defect-intertwiner`, `thm:deg23`, `thm:sieve`, `prop:wedge-dichotomy`,
 `sec:synthetic`) and the notes it rests on. They are cited where they are used.
 
-New here, and repository-proved by written proofs (each re-derived by an
-independent audit verifier; human review pending):
+New here, and repository-proved by written proofs (human review pending):
 - Proposition Q(b), a neutral quotient spectrum for any finite child-closed
   system on any alphabet;
 - Theorems R2 and R3 and the non-Pisot part of R3′, i.e. the manuscript's
-  first-defect machinery run without the Pisot hypothesis, and their
-  balanced-pair-algorithm consequence, Corollary B. Corollary B is
-  literature-facing; at this revision its adversarial check (proof, prior
-  art, attribution; workflow `wf_7fa1fcb8-25a`) is still in progress;
-- R5 and the ordered refinement R1(c).
+  first-defect machinery run without the Pisot hypothesis;
+- Proposition B′: a terminating prefix-seeded balanced-pair algorithm forces
+  every conjugate of `β` into the closed unit disc, on any alphabet;
+- their consequence for the balanced-pair algorithm off the Pisot cone,
+  Corollary B;
+- R5.
+
+Q(b), R2, R3, R3′ and R5 were re-derived by the §9 audit verifiers. R2 and R3
+in their strictness-free form, Corollary B and Proposition B′ were re-derived
+in a second adversarial pass, `wf_7fa1fcb8-25a`. That pass found Proposition
+B′ itself, and the author then re-derived it. These statements are
+literature-facing, and their prior-art status is limited to the sources read
+(§1). Their brevity makes it plausible that they are folklore.
 
 Proposition Q is calibrated by a canonical Mojo regression and an
 independent oracle on 28 strict-carrier classes, on three letters only. The
@@ -28,10 +35,12 @@ Baseline: branch `ccr-5059e568-lh2509` at `8d97d7d` (PR #499).
 irreducible factors of `(σ(u), σ(v))`, with the top word taken from `σ(u)`. A
 set `C` of ordered balanced pairs is **child-closed** if it contains every
 child of each member. Coincidences `(a,a)` count as members, so a
-child-closed set may contain them. A **strict system** is a finite nonempty
+child-closed set may contain them. A pair `(u,v)` is **noncoincident** if
+`u ≠ v`. A reducible pair such as `(01,01)` is not a coincidence block, but it
+is not noncoincident either. A **strict system** is a finite nonempty
 child-closed set of irreducible pairs with no coincidence. It is the ordered
 lift of the manuscript's *strict component*, a finite closed nonproductive
-recurrent noncoincident SCC on normalized states (manuscript §5.1). A
+recurrent noncoincident SCC on normalized states (manuscript `sec:parikh`). A
 normalized component of `m` states lifts to `m` ordered states when its
 orientation cocycle is gauge-trivial, and to `2m` (the oriented double cover)
 otherwise; see manuscript `prop:cocycle` and the
@@ -50,13 +59,14 @@ is stronger, because it imposes no reachability. The standing corpus is done
 
 ## 1. Stop/go literature check (revised)
 
-The first version of this section examined Proposition Q only. The audit of
-§9 found that incomplete under the repository's stop/go rule. The prior art
-is as follows.
+The first version's novelty search covered Proposition Q only and checked no
+repository prior art. The audit of §9 found that incomplete under the
+repository's stop/go rule. The prior art is as follows.
 
 - **Repository manuscript (2026-09-13).**
   - `thm:parikh`: `PN = MP`, `rank P = d`, `|C| ≥ d`, `χ_M | χ_N`,
-    `ρ(N) = β`, for irreducible `χ_M` on any `d`.
+    `ρ(N) = β`. It is stated under PIP, but the proof uses only primitivity and
+    irreducibility, on any `d`.
   - `lem:descendants` and `lem:return-gap`: uniform return gaps, with no
     Pisot hypothesis.
   - `thm:defect-intertwiner`: `Q_r S = Φ_r Q_r`, `K_r ∈ Lie_r`, `ρ ≤ β` on
@@ -64,7 +74,8 @@ is as follows.
   - `thm:deg23`: (i) `χ_{Λ²M}` is irreducible. (ii) `r = 2` gives
     `rank Q₂ = 3`, `χ_{Λ²M} | χ_S` and a mod-2 size floor in `{3,…,6}`.
     (iii) `r = 3` gives `im Q₃ ⊆ ker(Φ₃ − det M)`, a two-dimensional space.
-  - `thm:sieve`: the Galois-orbit, log-modulus sieve at every degree, for PIP.
+  - `thm:sieve`: the Galois-orbit, log-modulus sieve at every degree
+    `r ≥ 4`, for PIP; degrees 2–3 are `thm:deg23`.
   - `prop:wedge-dichotomy` and `prop:v34`.
   - `ex:nonpisot`: a reducible non-Pisot strict component, class `1/012/1`.
   - `sec:synthetic`: a three-state system for a PIP, on realised states. It
@@ -82,24 +93,36 @@ is as follows.
   - [W₃ low growth](c4-w3-low-growth-and-interface-correction.md) (`W3LowGrowth`).
   - [P1-A degree three](p1a-degree3-partial-theorem.md) (`BoundedDegree3Exclusion`).
   - [Degree-two synthetic realizability](c4-degree2-synthetic-realizability.md).
-  - `archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md` §§3, 5 and
-    8–10: `Lie₃ ≅ sl(V) ⊗ det` and `Φ₃ = det(M)·Ad_M`, with ledger nodes
-    `PhiSemisimplicity` and `ThetaIntertwining`.
+  - `archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md` §§3, 5:
+    `Lie₃ ≅ sl(V) ⊗ det` and `Φ₃ = det(M)·Ad_M`, with ledger nodes
+    `PhiSemisimplicity` and `ThetaIntertwining`. Its §§8–10 are the
+    degree-3 dominant capture for six seeds.
+  - The [bpa / overlap-depth literature gate](bpa-overlap-depth-literature-gate-2026-10-02.md):
+    Sirvent–Solomyak Theorems 5.1 and 5.6, and Akiyama–Barge–Berthé–Lee–Siegel
+    Theorem 5.3, by which one seed `(ij, ji)` suffices for irreducible Pisot.
 - **Literature.**
-  - Sirvent–Solomyak 2002 (Canad. Math. Bull. 45), §3. It defines `bpa-W` and
-    says "the bpa-W terminates if `I(W)` is finite". Remark 2 after Theorem
-    3.1 reads: "it seems that if the characteristic polynomial of the
-    substitution matrix is irreducible and the Perron-Frobenius eigenvalue is
-    not Pisot, then ζ does not have pure discrete spectrum and the bpa does not
-    terminate. We do not know if these claims have been proved in full
-    generality". It cites partial spectral results, Solomyak 1992 and
-    Ferenczi–Mauduit–Nogueira 1996.
+  - Sirvent–Solomyak 2002 (Canad. Math. Bull. 45, doi:10.4153/CMB-2002-062-3),
+    §3, pp. 700–701. It defines `I₁(W)` as "the set of irreducible balanced
+    pairs arising in the reduction of [u, σ^{|W|} u]". It defines `I_n(W)` as
+    the irreducible subpairs of `[ζ(V), ζ(Z)]` for `[V,Z] ∈ I_{n−1}(W)`,
+    "equivalently … the set of all irreducible balanced pairs that arise from
+    the reduction of [u, σ^{|ζ^{n−1}(W)|} u]". "We say that the bpa-W
+    terminates if I(W) is finite."
+
+    Remark 2 after Theorem 3.1 reads: "it seems that if the characteristic
+    polynomial of the substitution matrix is irreducible and the
+    Perron-Frobenius eigenvalue is not Pisot, then ζ does not have pure
+    discrete spectrum and the bpa does not terminate. We do not know if these
+    claims have been proved in full generality". It cites partial results:
+    Ferenczi–Mauduit–Nogueira 1996, which is spectral (eigenvalues and weak
+    mixing), and Solomyak 1992, which was not inspected.
   - Adamczewski 2003 (Theoret. Comput. Sci. 307), Theorem 13 and Corollaries
     15 and 17: bounded discrepancy against the eigenvalues of `M`, with a 0 /
     root-of-unity conclusion.
-  - Martensen 2004 (Topology Proc. 28): the balanced-pair algorithm in the
-    reducible case, with root-of-unity eigenspaces as the obstruction to
-    termination (stated as a hope).
+  - Martensen 2004 (Topology Proc. 28): a generalized algorithm for the
+    reducible case. The standard one need not terminate outside the
+    irreducible, Perron-length setting (gate note). Root-of-unity eigenspaces
+    are the channel that matters, and termination is "our hope" (§4).
   - Baker–Barge–Kwapisz 2006 Theorem 4.2: fibres are finite-to-one, so fibre
     cardinality is not a lever.
   - Barge–Štimac–Williams 2013: the branching contradiction needs the
@@ -110,8 +133,15 @@ is as follows.
     from PSC; it rests on Barge–Kwapisz 2006, and Barge–Štimac–Williams
     report a gap there.
 
+Several sources could not be read: Livshits 1987/1992, Hollander's 1996
+thesis, the body of Hollander–Solomyak 2003 (only its abstract was read),
+Solomyak 1992, and Barge–Kwapisz 2006. Sirvent–Solomyak, writing in 2002 with
+the earlier ones available to them, did not know a proof. That is indirect
+evidence only.
+
 **Decision: proceed, narrowed** to Proposition Q(b), R2, R3, the non-Pisot
-part of R3′, Corollary B, R5 and R1(c), with every other fact attributed.
+part of R3′, Proposition B′, Corollary B and R5, with every other fact
+attributed.
 Both experiments proposed in the first version of §5 are withdrawn (§5).
 
 ## 2. Proposition Q (any alphabet, any primitive substitution)
@@ -128,9 +158,10 @@ characteristic polynomial of `M` on `ℚ^d / V`, and both factors are monic in
 (b) every root of `χ̄` is 0 or a root of unity.
 
 Closure under *all* children is essential. Under the manuscript's
-`closed`, coincidence children may lie outside `C`. For such a set, (a) fails:
-closed productive SCCs with `ρ(N) < β` exist (remark after `thm:parikh`),
-which `PN = MP` and `L = ℓP > 0` would forbid.
+`closed`, coincidence children may lie outside `C`. For such a set the
+identity `PN = MP` behind (a) fails: closed productive SCCs with `ρ(N) < β`
+exist (remark after `thm:parikh`), which `PN = MP` and `L = ℓP > 0` would
+forbid.
 
 *Proof.* (a) `M p(u_S) = p(σ(u_S))` is the sum of the Parikh vectors of the
 children of `S`, all in `C`. A rational invariant subspace splits `χ_M` into
@@ -173,11 +204,13 @@ irreducibility nor Pisot. The executable calibration covers `d = 3` only.
 **Corollary Q1.** If `M` has no eigenvalue that is 0 or a root of unity, then
 every finite child-closed system has `V = ℚ^d`, i.e. `rank P = d`.
 
-The irreducible case holds on any alphabet and is already in four places:
-manuscript `thm:parikh`, archived v15 Lemma `alg-structure`(ii), Proposition 2
-of the [Parikh-intertwiner note](c4-parikh-intertwiner.md), and PR #460. All
-use irreducibility only. Q1 is new only for reducible `M` without a neutral
-eigenvalue. On three letters that is a rational root outside `{0, ±1}`.
+The irreducible case is already proved on any alphabet in manuscript
+`thm:parikh` and archived v15 Lemma `alg-structure`(ii), and on three letters
+in Proposition 2 of the [Parikh-intertwiner note](c4-parikh-intertwiner.md)
+and PR #460. All use irreducibility only. Q1 is new only for reducible `M`
+without a neutral eigenvalue. On three letters that means a linear factor
+with root outside `{0, ±1}` and a cofactor with no root 0 or root of unity:
+not divisible by `x` or `x ∓ 1`, and not `Φ₃`, `Φ₄` or `Φ₆`.
 
 A neutral quotient of the Parikh span is the only mechanism Proposition Q
 detects. Its first recorded instances are manuscript `ex:nonpisot` (quotient
@@ -206,8 +239,9 @@ have `K_r ≡ 0`.
 `r = r(C)`, `D_r N = M^{⊗r} D_r` and every `K_r(S)` lies in `Lie_r(ℚ³)`. At
 `r = 2` this holds for every such `C`, with `W = Λ²M`.
 
-On ordered pairs no signs occur. The children concatenate on both tracks with
-equal lower defects, so the cross terms cancel. Only the lower-defect vanishing
+On ordered pairs no signs occur. The children concatenate on both tracks, and
+their defects of degree below `r` vanish (equal lower-degree subword counts on
+both tracks), so the cross terms cancel. Only the lower-defect vanishing
 is used, which is why coincidences may be members.
 
 **R0** (prior: [cut-pair note](c4-cut-pair-productivity-2026-11-04.md),
@@ -218,18 +252,23 @@ is an eigenvalue.
 
 **R1.** (a) and (b) are prior: manuscript `thm:deg23`(i)–(ii) and
 `prop:wedge-dichotomy`. Coprimality with `χ_M` is the Sylvester remark after
-`prop:midarea`.
+`prop:midarea`. (c) is an elementary corollary of these, stated for ordered
+systems.
 - (a) `Λ²M` is rationally similar to `det(M)·M^{−T}`, so
   `spec W = {det/β, det/α₂, det/α₃}`; `χ_W` is irreducible and coprime to
   `χ_M`.
 - (b) If some state has `K₂ ≠ 0`, then `im D₂ = ℚ³`.
-- (c) *New, for ordered systems.* If moreover `C` is a strict system, then
-  `D₂(ker P) = ℚ³`. The map `(P, D₂)` is onto `ℚ³ ⊕ Λ²ℚ³`, so
-  `|C| ≥ 6` *ordered* states and `χ_M χ_W | χ_N`.
+- (c) If moreover `C` is a strict system, then `D₂(ker P) = ℚ³`. The map
+  `(P, D₂)` is onto `ℚ³ ⊕ Λ²ℚ³`, so `|C| ≥ 6` *ordered* states and
+  `χ_M χ_W | χ_N`.
 
-For a normalized component of `m` states, the double-cover case of (c) gives
-only `m ≥ 3`, which is the orientation-spectrum fact. The gauge-trivial case
-gives `m ≥ 6`, which sharpens the manuscript's mod-2 floor.
+The size and divisibility statements in (c) already follow from
+`χ_M | χ_N`, `χ_W | χ_N` and coprimality. For a normalized component of `m`
+states, the double-cover case gives only `m ≥ 3`, which is Parikh-intertwiner
+Corollary 2.1. In the gauge-trivial case `S` is diagonally similar to `N`
+(`prop:cocycle`), so `m ≥ 6` is a two-line corollary of `thm:parikh`,
+`thm:deg23`(ii) and the Sylvester remark. Only the joint statement
+`D₂(ker P) = ℚ³` is formulated here for the first time.
 
 *Proof of (c).* `P` is onto by Corollary Q1. `ker P` is `N`-invariant because
 `PN = MP`, so `D₂(ker P)` is a `W`-invariant rational subspace. If it were 0,
@@ -254,8 +293,8 @@ use irreducibility only. An equivalent route is `prop:wedge-dichotomy` +
 `prop:v34`. The manuscript ran the chain under PIP, where it "yields no
 contradiction". New is the observation that without Pisot it forces
 `|α_j| ≤ 1`, together with the exclusion of `|α_j| = 1`. Irreducibility is
-necessary: `ex:nonpisot` (`χ_M = x(x−2)(x+1)`) is a strict system with
-`K₂ ≠ 0`. Among irreducible cubics, then, strict systems of first defect
+necessary: `ex:nonpisot` (`χ_M = x(x−2)(x+1)`, a root `−1` on the circle) is
+a strict system with `K₂ ≠ 0`. Among irreducible cubics, then, strict systems of first defect
 degree two occur only for Pisot.
 
 **Theorem R3.** If both non-Perron roots of an irreducible cubic `χ_M` have
@@ -281,31 +320,59 @@ two exponents vanish, the modulus is `β^r > β`. Otherwise it is
 only in the PIP cone. New is its application to this class, where no weight
 survives at any degree, and the observation that strictness is not used.
 
+**Proposition B′ (termination forces the conjugates into the disc; any
+alphabet).** Let `ζ` be primitive on `d` letters with irreducible `χ_M`, `u` a
+fixed point and `W` a nonempty prefix of `u`. If the `bpa-W` of
+Sirvent–Solomyak terminates, then every Galois conjugate `λ ≠ β` satisfies
+`|λ| ≤ 1`, so `β` is Pisot or Salem. On three letters there are no Salem
+cubics, so `χ_M` is Pisot.
+
+*Proof.* Let `ℓ` bound the lengths of the pairs of the finite set `I(W)`, let
+`w = p(W)` and `t_n = |ζⁿ(W)|`. By Sirvent–Solomyak's identity (quoted in §1),
+`[u, S^{t_n}u]` reduces into pairs of `I(W)`, so it has cuts with gaps at most
+`ℓ`. Hence `‖p(u[0,k)) − p(u[t_n, t_n+k))‖_∞ ≤ ℓ` for every `k`. Since
+`p(u[0,k)) − p(u[t_n, t_n+k)) = p(u[0,t_n)) − p(u[k, k+t_n))`, every factor of
+`u` of length `t_n` has Parikh vector within `ℓ` of `p(u[0,t_n)) = Mⁿw`.
+
+Averaging over `k` with the uniform letter frequencies `f` (`|f|₁ = 1`) gives
+`‖Mⁿw − t_n f‖_∞ ≤ ℓ` for all `n`. Write `w = Σ_λ c_λ e_λ` with `e_β = f`,
+taking the `e_λ` and the left eigenvectors as Galois conjugates of the Perron
+ones. Then the `c_λ` are the conjugates of `c_β > 0`, so all are nonzero, and
+`Mⁿw − t_n f = Σ_{λ≠β} c_λ λⁿ (e_λ − (𝟙·e_λ) f)`. The vectors in brackets are
+linearly independent, being the images of a basis complementary to `f` under
+the projection along `f`. Boundedness forces `|λ| ≤ 1`. An irreducible cubic
+has no root on the unit circle, so on three letters `|λ| < 1`. ∎
+
 **Corollary B (the balanced pair algorithm off the Pisot cone).** Let `σ` be
 primitive on three letters with irreducible, non-Pisot `χ_M`.
-- (i) If both non-Perron roots lie outside the closed unit disc, the child
-  closure of every noncoincident balanced pair is infinite. In particular,
-  for every prefix `W` of a fixed point, the `bpa-W` of Sirvent–Solomyak does
-  not terminate.
-- (ii) In all cases, the child closure of any balanced pair with `K₂ ≠ 0` is
-  infinite. Examples are the swap pairs `(ab, ba)`, which seed the
-  manuscript's automaton `B_σ`, so `B_σ` is infinite. A terminating `bpa-W`
-  has `K₂ ≡ 0` on `I(W)`, and `r(I(W))` obeys R3′.
+- (i) For every prefix `W` of a fixed point, the `bpa-W` does not terminate
+  (Proposition B′). The same holds on any alphabet when `χ_M` is irreducible
+  with a conjugate outside the closed unit disc.
+- (ii) If both non-Perron roots lie outside the closed unit disc, the child
+  closure of every noncoincident pair (`u ≠ v`) is infinite (R3).
+- (iii) In all cases, the child closure of any balanced pair with `K₂ ≠ 0` is
+  infinite (R2). Examples are the swap pairs `(ab, ba)`, which seed the
+  manuscript's automaton `B_σ`, so `B_σ` is infinite.
 
-*Proof.* `I(W)` contains every irreducible subpair that arises, coincidences
-included (Sirvent–Solomyak §3: coincidences "need not be in `I(W)`, but if
-they are …"), so it is child-closed. The fixed point `u` is not eventually
-periodic, because its letter frequencies span a cubic field. Hence
-`[u, S^{|W|}u]` has a noncoincident irreducible factor in `I₁(W)`. Apply R3
-for (i). For (ii), apply R2 to the closure, noting `K₂(ab, ba) ≠ 0`. ∎
+*Proof of (ii)–(iii).* A child closure is child-closed by definition. Apply
+R3, or R2 with `K₂(ab, ba)_{ab} = 1`. ∎
 
-This proves the *non-termination* half of Sirvent–Solomyak's Remark 2 in case
-(i) on three letters. In case (ii) it proves non-termination only for seeds
-with `K₂ ≠ 0`. It does not reach prefix seeds in the one-outside class, nor
-the spectral half of the remark. We found no proof of these statements in the
-sources of §1; the partial results that Sirvent–Solomyak cite concern the
-spectrum. Among irreducible cubics, (ii) also calibrates the finiteness
-hypothesis G1: `B_σ` can be finite only in the Pisot case.
+In (i), `I(W)` is child-closed with coincidences admitted, and it contains a
+noncoincident pair. The reason: `u` is not eventually periodic, since its
+letter frequencies span a cubic field, so some block `[WU_i, U_iW]` of
+`[u, S^{|W|}u]` has `WU_i ≠ U_iW`. Proposition B′, however, does not need
+this.
+
+So the *non-termination* half of Sirvent–Solomyak's Remark 2 holds, for
+prefix-seeded `bpa-W`, whenever `β` is neither Pisot nor Salem: on three
+letters for every irreducible non-Pisot cubic. Its spectral half is not
+addressed. We found no proof of these statements in the sources read (§1).
+
+Among irreducible cubics, (iii) also calibrates the finiteness hypothesis G1:
+`B_σ` can be finite only in the Pisot case. Seeds other than prefixes and
+swap pairs are covered by (ii) in the both-outside class only. In the
+one-outside class, a finite child-closed set with a noncoincident pair must
+have `K₂ ≡ 0` and obey R3′; that is the open conjunct of (H).
 
 **R3′** (exactly one non-Perron root outside the unit disc). Let
 `|α₂| > 1 > |α₃|`; then both roots are real, since a complex pair has equal
@@ -352,7 +419,7 @@ primary component of `ℚ^{C′}` for a factor coprime to `χ_M`, because its im
 would be a primary part of `(ℚ³, M)` for a coprime polynomial. So `P` maps the
 three-dimensional `χ_M`-primary component isomorphically onto `ℚ³`, and any
 equivariant `φ` factors as `Φ∘P` with `Φ` commuting with `M`. `M` is cyclic,
-so `Φ ∈ ℚ[M]` (the rational centralizer, recorded in the W₃ note §3). The
+so `Φ ∈ ℚ[M]` (the rational centralizer, recorded in the W₃ note §4). The
 statement can fail for the whole `N` when there are several sinks. ∎
 
 **The strengthening (H).** Call (H) the statement "a primitive substitution on
@@ -367,9 +434,10 @@ non-Perron roots are both inside (PIP), both outside, or straddle the circle
 ```
 
 R3 decides the remaining class, which includes every irreducible complex
-non-Pisot cubic. No prior statement of (H) or of this split was found; the
-only published expectation nearby is Sirvent–Solomyak's Remark 2, which
-concerns non-termination and spectrum.
+non-Pisot cubic. No prior statement of (H) or of this split was found. The
+only published expectation nearby is Sirvent–Solomyak's Remark 2, about
+non-termination and spectrum; Proposition B′ covers its prefix-seeded
+non-termination half.
 
 ## 4. Negative controls
 
@@ -397,9 +465,10 @@ concerns non-termination and spectrum.
     admits only `(±4,0,0)`, `(±5,0,0)` and `(±6,0,0)`.
 
   It is kept as a record only.
-- **The branching route (A7), scratch only.** The question whether a branching
-  over a cut pair forces `cr ≥ 3` was posed in the
-  [cut-attractor note](c4-cut-attractor-window-2026-11-05.md) §8. The repaired
+- **The branching route (A7), scratch only.** The question whether a PIP
+  strict pair must branch over a cut pair (which, it is asserted there, would
+  force `cr ≥ 3`) is in the
+  [cut-attractor note](c4-cut-attractor-window-2026-11-05.md) §7. The repaired
   statement A7′ is conditional and exists only in scratch. It concerns unit
   PIP and depends on Barge–Kwapisz 2006 (7.2), Thm 5.3 and Thm 7.3, with the
   coincidence rank of Baker–Barge–Kwapisz Def. 4.1. It says that a one-track
@@ -428,9 +497,11 @@ For PIP every linear and spectral fact in play is already in the manuscript:
 The synthetic template shows that the Parikh, signed degree-two and endpoint
 constraints are jointly satisfiable on realised states for a PIP; it is
 rejected only by the mid-area identity. The manuscript's conclusion stands:
-no invariant coarser than the factorization itself closes the problem. What
-remains is Open Problems Concentration and Wedge productivity, which together
-are NS for PIP split by first defect degree. Equivalently,
+no invariant coarser than the factorization itself closes the problem.
+
+What remains is Open Problems Concentration and Wedge productivity. Together
+they are the nonexistence of *reachable* strict components, split by first
+defect degree, which is weaker than NS. NS itself satisfies
 `NS(σ) ⟺ bounded-gap A1′ for every power of σ`
 ([cut-attractor note](c4-cut-attractor-window-2026-11-05.md), Proposition 3).
 
@@ -449,16 +520,21 @@ are NS for PIP split by first defect degree. Equivalently,
    (`thm:deg23`(iii), `W3LowGrowth`). It is implemented in centralizer form
    `[M, Θ(K₃)] = 0` and run on every reachable degree-3 corpus state
    (`BoundedDegree3Exclusion`), and on the six length-7 seeds for every PIP
-   `M` (`Target1`). Lean `Psc.target1` also supplies an `M`-independent
-   prefilter: `Θ(K₃)` with a rational eigenvalue commutes with no PIP `M`.
+   `M` (`Target1`; Lean `Psc.target1` covers the six seed matrices).
+
+   An `M`-independent prefilter also holds: a nonzero traceless `Θ(K₃)` with a
+   rational eigenvalue commutes with no PIP `M`. Its rational eigenspace, of
+   dimension 1 or 2, would be `M`-invariant and make `χ_M` reducible. The
+   one-dimensional case is Lean `Psc.no_commuting_of_no_eigenvalue`.
    Testing unreachable `K₂ = 0` pairs is already the remaining task of the
    W₃ note §7, and without a length cap it has no finite domain.
 
-**What this note adds off the Pisot cone.** The only open non-Pisot class of
-(H) is the one-outside class. There a strict system, or a terminating
-`bpa-W`, must have `K₂ ≡ 0` and first defect degree `≢ 2 (mod 3)`, with the
-eigenvalues of R3′. The scratch landscape (§6) found no strict system there
-with all states of length at most 7.
+**What this note adds off the Pisot cone.** Among irreducible cubics, no
+prefix-seeded `bpa-W` and no swap-seeded closure terminates unless `χ_M` is
+Pisot (Corollary B). The only open non-Pisot class of (H) is the one-outside
+class. There a strict system must have `K₂ ≡ 0` and first defect degree
+`≢ 2 (mod 3)`, with the eigenvalues of R3′. The scratch landscape (§6) found
+no strict system there with all states of length at most 7.
 
 ## 6. The strict-system landscape (scratch evidence)
 
@@ -515,16 +591,24 @@ message. A fifth guard (the Perron factor not dividing `χ_M`) is unreachable,
 because an integral eigenvalue of `M` is a root of `χ_M`. The oracle uses a
 different construction, an exact rational change of basis and the quotient
 block. It decides neutrality by exact divisibility into `x²(x¹²−1)²` rather
-than by a table, and builds its closures from scratch. Theorems R2 and R3 and
-Corollary B rest on their written proofs; no executable claim is made for
-them.
+than by a table, and builds its closures from scratch. Theorems R2 and R3, Proposition B′ and Corollary B rest on their written
+proofs, and no executable claim is made for them. As consistency evidence
+only, the second audit pass (scratch, exact) ran the swap-seeded closures of
+two one-outside and three both-outside specimens. Examples include
+`σ = (1,2,001)` with `χ = x³ − x − 2`, and `(01,002,122)` with
+`χ = x³ − 3x² − x + 5`, which has three real roots. The closures grew about
+one state per level, with state length growing by a factor of about `β` per
+level. They reached a budget of 10⁶ letters without closing, which is an
+exhausted budget, not a verdict. The reducible `ex:nonpisot` closes with 4
+states, all with `K₂ ≠ 0`.
 
 ## 8. Non-claims
 
 The following are not claimed: NS for PIP (general C4), the ledger node C4,
-BH, A1′, G1, PSC and SC_all. Nor is (H) beyond the class decided by R3, or
-Corollary B for prefix seeds in the one-outside class. The spectral half of
-Sirvent–Solomyak's Remark 2 is not claimed, and neither is (N0) in general
+BH, A1′, G1, PSC and SC_all. Nor is (H) beyond the class decided by R3,
+non-termination for arbitrary seeds with `K₂ = 0` in the one-outside class, or
+Proposition B′ in the Salem case. The spectral half of Sirvent–Solomyak's
+Remark 2 is not claimed, and neither is (N0) in general
 (no mechanism is known; it holds on the decided domain only). Nothing is
 claimed about strict systems with states longer than the census bounds.
 
@@ -545,16 +629,19 @@ scratchpad. Changes:
   - R0, Lemma 0, R1(a)–(b), Q(a), the irreducible case of Q1 (on any
     alphabet), the Pisot sector list and the degree-3 det-sector are prior,
     and are now cited.
-  - The first version presented them as derived here and equated ordered
-    strict systems with the manuscript's components.
-  - The §1 check covered Proposition Q only.
+  - In the first version Lemma 0 and the three-letter irreducible case of Q1
+    were cited to notes but not to the manuscript. The rest was uncited, and
+    ordered strict systems were equated with the manuscript's components.
+  - The first version's novelty search covered Proposition Q only.
 - **Scope.**
   - R1's `|C| ≥ 6` counts ordered states. Read on normalized components it
-    contradicted `thm:deg23`(ii).
+    was overstated: unproved for non-gauge components, where only `m ≥ 3`
+    follows.
   - R2 and R3 are stated without strictness, which yields Corollary B.
 - **Proofs.**
-  - R1(c) now proves `D₂(ker P) = ℚ³`; the first version proved only that it
-    is nonzero.
+  - R1(c)'s proof is rewritten via `D₂(ker P)`. The first version's
+    primary-component argument was already complete, though terse, and the
+    earlier entry of this record wrongly called it partial.
   - The `ℤ/3` case of R3′ is written out; the claim "either bound forces
     `x − z ≤ 1`" was false for bound (2) alone.
   - Lemma 0 now records `K_r ∈ Lie_r`, which the degree-3 count needs.
@@ -565,3 +652,16 @@ scratchpad. Changes:
     exclude non-unimodular PIP.
   - "(H1) is false", reframed as a calibration.
 - **Renamed.** "(H2)" is now (N0).
+- **Second pass** (`wf_7fa1fcb8-25a`: proof, literature and attribution
+  lenses).
+  - Proof lens: R2/R3 without strictness, Corollary B and R3′ were confirmed;
+    "noncoincident" is now defined as `u ≠ v`.
+  - Literature lens: no earlier proof was found in the sources read; the
+    sources it could not read are listed in §1. It refuted the earlier
+    non-claim about prefix seeds in the one-outside class by the argument
+    now stated as Proposition B′.
+  - Attribution lens: corrected the §9 wording above, the `thm:sieve` degree
+    range, the certificate, W₃ and cut-attractor locators, the scope of Q1's
+    prior proofs, the three-letter condition of Q1, and the open-problem
+    versus NS distinction. Corollary B was listed as proved while its check
+    was pending.
