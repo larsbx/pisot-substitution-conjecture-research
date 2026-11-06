@@ -143,7 +143,7 @@ def CutAt (u v : Word) (p : ℕ) (c : Letter) : Prop :=
   Balanced (u.take p) (v.take p) ∧
     (u.take p ++ [c]).IsPrefix u ∧ (v.take p ++ [c]).IsPrefix v
 instance (u v : Word) (p : ℕ) (c : Letter) : Decidable (CutAt u v p c) := by
-  unfold CutAt Balanced parikh
+  unfold CutAt
   infer_instance
 theorem cut_witness {u v : Word} {p : ℕ} {c : Letter} (h : CutAt u v p c) :
     Witness u v := ⟨u.take p,v.take p,c,h⟩

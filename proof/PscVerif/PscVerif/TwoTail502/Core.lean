@@ -4,7 +4,7 @@ import Mathlib.Tactic
 /-! Exact source-word coincidence, independent of overlap certificates.
 No geometric, Pisot, or finite-census hypothesis is used. -/
 namespace TwoTail502
-inductive Letter | z | o | t deriving DecidableEq, Repr, Fintype
+inductive Letter | z | o | t deriving DecidableEq, Repr
 open Letter
 abbrev Word := List Letter
 abbrev Substitution := Letter → Word
@@ -48,13 +48,15 @@ theorem iterate_add (σ : Substitution) (n k : ℕ) (w : Word) :
     iterate σ (n+k) w = iterate σ k (iterate σ n w) := by
   induction k with
   | zero => rfl
-  | succ k ih => simp only [iterate, ih, Nat.add_succ]
+  | succ k ih =>
+    change inflate σ (iterate σ (n+k) w) = inflate σ (iterate σ k (iterate σ n w))
+    rw [ih]
 theorem iterate_substitute (σ : Substitution) (n : ℕ) (w : Word) :
     iterate σ n w = w.flatMap (fun c => iterate σ n [c]) := by
   induction w with
   | nil => simp
   | cons c w ih =>
-    simpa only [List.flatMap_cons, ← ih] using iterate_append σ n [c] w
+    simpa only [List.flatMap_cons, ← ih, List.cons_append, List.nil_append] using iterate_append σ n [c] w
 @[simp] theorem iterate_power (σ : Substitution) (n : ℕ) (w : Word) (k : ℕ) :
     iterate σ n (power w k) = power (iterate σ n w) k := by
   induction k with
@@ -63,6 +65,18 @@ theorem iterate_substitute (σ : Substitution) (n : ℕ) (w : Word) :
 
 theorem balanced_iff_perm (u v : Word) : Balanced u v ↔ u.Perm v := by
   simp only [Balanced, parikh, funext_iff, List.perm_iff_count]
+theorem balanced_iff_counts (u v : Word) :
+    Balanced u v ↔ u.count z = v.count z ∧ u.count o = v.count o ∧ u.count t = v.count t := by
+  constructor
+  · intro h; exact ⟨congrFun h z,congrFun h o,congrFun h t⟩
+  · rintro ⟨hz,ho,ht⟩
+    funext c; cases c
+    · exact hz
+    · exact ho
+    · exact ht
+instance (u v : Word) : Decidable (Balanced u v) :=
+  decidable_of_iff _ (balanced_iff_counts u v).symm
+
 theorem balanced_inflate (σ : Substitution) {u v : Word} (h : Balanced u v) :
     Balanced (inflate σ u) (inflate σ v) := by
   exact (balanced_iff_perm _ _).2 (((balanced_iff_perm _ _).1 h).flatMap_right σ)
@@ -136,8 +150,9 @@ theorem iterate_nonerasing (σ : Substitution) (hne : Nonerasing σ) (n : ℕ)
     cases he : iterate σ n w with
     | nil => exact False.elim (ih he)
     | cons c r =>
-      simp only [iterate, he, inflate_cons, List.append_eq_nil, not_and]
-      exact fun hc => False.elim (hne c hc)
+      cases hs : σ c with
+      | nil => exact False.elim (hne c hs)
+      | cons d s => simp [iterate,he,inflate_cons,hs]
 
 theorem witness_diagonal {u v : Word} (hb : Balanced u v) (h : Witness u v) :
     DiagonalFactor u v := by
