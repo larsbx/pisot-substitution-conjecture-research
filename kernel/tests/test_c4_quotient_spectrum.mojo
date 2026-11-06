@@ -1,10 +1,11 @@
 """Proposition Q on every strict-carrier class with images of length at most
 three: the Parikh span is invariant and its quotient spectrum is neutral; the
-rank-three strict system of 01/2/120; refusals."""
+rank-three strict system of 01/2/120 (lattice index 1, every first-letter
+pair); refusals, including every reachable non-invariance branch."""
 
 from std.testing import assert_equal, assert_false, assert_true
 from mojo_smoke.claims import require_contract
-from psc.c4_cut_attractor import intertwines, strict_closure
+from psc.c4_cut_attractor import StrictClosure, intertwines, parikh_matrix, strict_closure
 from psc.c4_quotient_spectrum import is_neutral, parikh_span_basis, quotient_charpoly
 from psc.words import Pair
 
@@ -62,6 +63,51 @@ def carriers() -> List[Carrier]:
     return out^
 
 
+def _det3(P: List[List[Int]], a: Int, b: Int, c: Int) -> Int:
+    return (P[0][a] * (P[1][b] * P[2][c] - P[2][b] * P[1][c])
+            - P[0][b] * (P[1][a] * P[2][c] - P[2][a] * P[1][c])
+            + P[0][c] * (P[1][a] * P[2][b] - P[2][a] * P[1][b]))
+
+
+def _gcd(a: Int, b: Int) -> Int:
+    var x = a if a >= 0 else -a
+    var y = b if b >= 0 else -b
+    while y != 0:
+        var t = x % y
+        x = y
+        y = t
+    return x
+
+
+def _minor_gcd(P: List[List[Int]]) -> Int:
+    """gcd of the 3 x 3 minors of a 3 x n integer matrix: the index of its
+    column lattice in Z^3 (0 when the rank is below 3)."""
+    var g = 0
+    var n = len(P[0])
+    for a in range(n):
+        for b in range(a + 1, n):
+            for c in range(b + 1, n):
+                g = _gcd(g, _det3(P, a, b, c))
+    return g
+
+
+def _bare(states: List[Pair]) -> StrictClosure:
+    """A hand-made state set with no child rows: not child-closed."""
+    var rows = List[List[Int]]()
+    for _ in range(len(states)):
+        rows.append(List[Int]())
+    return StrictClosure(states, rows, rows)
+
+
+def _refuses(sigma: List[List[Int]], states: List[Pair], branch: String) -> Bool:
+    """Whether `quotient_charpoly` refuses with the message of `branch`."""
+    try:
+        _ = quotient_charpoly(sigma, _bare(states))
+    except e:
+        return branch in String(e)
+    return False
+
+
 def test_proposition_q_on_all_carrier_classes() raises:
     var cs = carriers()
     assert_equal(len(cs), 28)
@@ -87,6 +133,8 @@ def test_rank_three_strict_system_of_a_singular_incidence() raises:
     assert_equal(c.size(), 20)
     assert_equal(len(parikh_span_basis(c)), 3)
     assert_equal(quotient_charpoly(sigma, c), [1])
+    assert_equal(c.first_pair_mask(), 0b111)      # A(C) holds all three unordered pairs
+    assert_equal(_minor_gcd(parikh_matrix(c)), 1)  # Parikh lattice index 1 in Z^3
 
 
 def test_neutral_polynomials_and_refusals() raises:
@@ -113,9 +161,23 @@ def test_neutral_polynomials_and_refusals() raises:
     assert_true(refused)
 
 
+def test_non_invariant_spans_refuse() raises:
+    # sigma = 01/12/021, M = [[1,0,1],[1,1,1],[0,1,1]]; the state sets are not child-closed
+    var sigma: List[List[Int]] = [[0, 1], [1, 2], [0, 2, 1]]
+    # rank 1, p = (2,1,1), (Mp)_0 = 3: no integral eigenvalue
+    assert_true(_refuses(sigma, [Pair([0, 0, 1, 2], [1, 2, 0, 0])], "not an integral eigenvector"))
+    # rank 1, p = (1,1,0), Mp = (1,2,1): not an eigenvector
+    assert_true(_refuses(sigma, [Pair([0, 1], [1, 0])], "Parikh vector is not an eigenvector"))
+    # rank 2, n = (1,1,0) x (1,0,1) = (1,-1,-1), nM = (0,-2,-1): not a left eigenvector
+    assert_true(_refuses(sigma, [Pair([0, 1], [1, 0]), Pair([0, 2], [2, 0])], "not a left eigenvector"))
+    # rank 2, n = (0,1,1) x (1,0,2) = (2,1,-1), (nM)_0 = 3: no integral eigenvalue
+    assert_true(_refuses(sigma, [Pair([1, 2], [2, 1]), Pair([0, 2, 2], [2, 2, 0])], "eigenvalue is not an integer"))
+
+
 def main() raises:
     test_proposition_q_on_all_carrier_classes()
     test_rank_three_strict_system_of_a_singular_incidence()
     test_neutral_polynomials_and_refusals()
-    print("Proposition Q: 28 strict-carrier classes, ranks 10/17/1, every quotient spectrum neutral; rank-3 system of 01/2/120.")
-    require_contract("Proposition Q on a finite child-closed balanced-pair system: the Parikh span is M-invariant and its quotient characteristic polynomial is a product of x and cyclotomic factors, pinned on one strict system of each of the 28 strict-carrier classes with images of length at most three (ranks 1/2/3: 10/17/1) and on the rank-three system of 01/2/120; non-monic input refuses")
+    test_non_invariant_spans_refuse()
+    print("Proposition Q: 28 strict-carrier classes, ranks 10/17/1, every quotient spectrum neutral; rank-3 system of 01/2/120; four non-invariant spans refused.")
+    require_contract("Proposition Q on a finite child-closed balanced-pair system: the Parikh span is M-invariant and its quotient characteristic polynomial is a product of x and cyclotomic factors, pinned on one strict system of each of the 28 strict-carrier classes with images of length at most three (ranks 1/2/3: 10/17/1) and on the rank-three system of 01/2/120 (20 states, lattice index 1, all three first-letter pairs); non-monic input refuses, and a non-invariant span refuses on each reachable branch (rank-1 non-integral or non-eigenvector, rank-2 non-integral or non-left-eigenvector normal)")

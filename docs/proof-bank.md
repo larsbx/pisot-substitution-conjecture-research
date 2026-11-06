@@ -257,12 +257,12 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/c4-forward-run-family-sharp-depth-2026-11-04.md:46](../docs/c4-forward-run-family-sharp-depth-2026-11-04.md#L46) | **Theorem (five mutually exclusive chambers).** For every a,b>=0, |
 | [docs/c4-forward-run-family-sharp-depth-2026-11-04.md:163](../docs/c4-forward-run-family-sharp-depth-2026-11-04.md#L163) | **Lemma (prefix-satellite lifting).** Let \(\tau\) be any nonerasing |
 | [docs/c4-forward-run-family-sharp-depth-2026-11-04.md:200](../docs/c4-forward-run-family-sharp-depth-2026-11-04.md#L200) | **Corollary (sharp all-pairs coincidence depth).** For every member of |
-| [docs/c4-general-structure-2026-11-06.md:41](../docs/c4-general-structure-2026-11-06.md#L41) | ## 2. Proposition Q (any alphabet, any primitive substitution) |
-| [docs/c4-general-structure-2026-11-06.md:43](../docs/c4-general-structure-2026-11-06.md#L43) | **Proposition Q.** Let σ be a primitive nonerasing substitution on d |
-| [docs/c4-general-structure-2026-11-06.md:72](../docs/c4-general-structure-2026-11-06.md#L72) | **Corollary Q1.** If M has no eigenvalue that is 0 or a root of unity — |
-| [docs/c4-general-structure-2026-11-06.md:90](../docs/c4-general-structure-2026-11-06.md#L90) | **Lemma 0** ([lowest-defect intertwiner](c4-lowest-defect-intertwiner.md)). |
-| [docs/c4-general-structure-2026-11-06.md:108](../docs/c4-general-structure-2026-11-06.md#L108) | **Theorem R2.** If an irreducible-cubic substitution has a strict system with |
-| [docs/c4-general-structure-2026-11-06.md:117](../docs/c4-general-structure-2026-11-06.md#L117) | **Theorem R3.** If both non-Perron roots of an irreducible cubic χ_M have |
+| [docs/c4-general-structure-2026-11-06.md:44](../docs/c4-general-structure-2026-11-06.md#L44) | ## 2. Proposition Q (any alphabet, any primitive substitution) |
+| [docs/c4-general-structure-2026-11-06.md:46](../docs/c4-general-structure-2026-11-06.md#L46) | **Proposition Q.** Let σ be a primitive nonerasing substitution on d |
+| [docs/c4-general-structure-2026-11-06.md:75](../docs/c4-general-structure-2026-11-06.md#L75) | **Corollary Q1.** If M has no eigenvalue that is 0 or a root of unity, then |
+| [docs/c4-general-structure-2026-11-06.md:98](../docs/c4-general-structure-2026-11-06.md#L98) | **Lemma 0** ([lowest-defect intertwiner](c4-lowest-defect-intertwiner.md)). |
+| [docs/c4-general-structure-2026-11-06.md:116](../docs/c4-general-structure-2026-11-06.md#L116) | **Theorem R2.** If an irreducible-cubic substitution has a strict system with |
+| [docs/c4-general-structure-2026-11-06.md:125](../docs/c4-general-structure-2026-11-06.md#L125) | **Theorem R3.** If both non-Perron roots of an irreducible cubic χ_M have |
 | [docs/c4-nonunit-madic-counting-bridge-2026-11-04.md:206](../docs/c4-nonunit-madic-counting-bridge-2026-11-04.md#L206) | **Theorem M1 (lifted cut-pair bound).** |
 | [docs/c4-nonunit-madic-counting-bridge-2026-11-04.md:231](../docs/c4-nonunit-madic-counting-bridge-2026-11-04.md#L231) | **Theorem M2 (lifted two-track bound).** For every letter c, |
 | [docs/c4-nonunit-madic-counting-bridge-2026-11-04.md:255](../docs/c4-nonunit-madic-counting-bridge-2026-11-04.md#L255) | **Corollary M3 (finite-cylinder approximation).** For a compact |

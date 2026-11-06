@@ -47,7 +47,29 @@ CARRIERS = [
     ("102/210/021", "021", "102", 3, 1, [1, 0, 0]),
 ]
 
-NEUTRAL_DEGREE_2 = {(0, 0), (-1, 0), (1, 0), (-2, 1), (2, 1), (0, -1), (1, 1), (0, 1), (-1, 1)}
+def polymul(a, b):
+    out = [0] * (len(a) + len(b) - 1)
+    for i, x in enumerate(a):
+        for j, y in enumerate(b):
+            out[i + j] += x * y
+    return out
+
+
+# x^2 (x^12 - 1)^2, leading first: every monic integer polynomial of degree <= 2 whose
+# roots are 0 or roots of unity divides it (the cyclotomic factors of degree <= 2 are
+# Phi_1, Phi_2, Phi_3, Phi_4, Phi_6, all dividing x^12 - 1), and conversely
+NEUTRAL_MULTIPLE = polymul(polymul([1, 0, 0], [1] + [0] * 11 + [-1]), [1] + [0] * 11 + [-1])
+
+
+def divides(d, n):
+    """Exact long division of n by the monic d (both leading first)."""
+    assert d[0] == 1
+    r = list(n)
+    for i in range(len(n) - len(d) + 1):
+        f = r[i]
+        for j in range(len(d)):
+            r[i + j] -= f * d[j]
+    return all(x == 0 for x in r)
 
 
 def parse(s):
@@ -169,11 +191,7 @@ def quotient_poly(sig, states):
 
 
 def neutral(poly):
-    if len(poly) == 1:
-        return True
-    if len(poly) == 2:
-        return poly[1] in (0, 1, -1)
-    return (poly[1], poly[2]) in NEUTRAL_DEGREE_2
+    return divides(poly, NEUTRAL_MULTIPLE)
 
 
 def test_quotient_spectrum_on_all_28_carrier_classes():
@@ -187,6 +205,14 @@ def test_quotient_spectrum_on_all_28_carrier_classes():
         assert neutral(q), sigma
         ranks[r] = ranks.get(r, 0) + 1
     assert ranks == {1: 10, 2: 17, 3: 1}
+
+
+def test_neutrality_by_division():
+    for poly in ([1], [1, 0], [1, 1], [1, -1], [1, 0, 0], [1, -2, 1], [1, 2, 1], [1, 0, -1],
+                 [1, 1, 1], [1, 0, 1], [1, -1, 1], [1, 1, 0], [1, -1, 0]):
+        assert neutral(poly), poly
+    for poly in ([1, -2], [1, 2], [1, -2, -2], [1, 0, -2], [1, -1, -1], [1, 3, 1], [1, 0, 2]):
+        assert not neutral(poly), poly
 
 
 def test_rank_three_strict_system_with_singular_incidence():
