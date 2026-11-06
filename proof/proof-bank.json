@@ -2368,6 +2368,31 @@
       "statement_heading": "**Lemma.** Let `T` be an actual irreducible noncoincident balanced"
     },
     {
+      "source": "docs/c4-concentration-attack-2026-11-06.md",
+      "line": 48,
+      "statement_heading": "## 2. Theorem A: first defect degree four"
+    },
+    {
+      "source": "docs/c4-concentration-attack-2026-11-06.md",
+      "line": 50,
+      "statement_heading": "**Theorem A.** Let `σ` be PIP on `{0,1,2}`, with roots `β, α, γ` and"
+    },
+    {
+      "source": "docs/c4-concentration-attack-2026-11-06.md",
+      "line": 110,
+      "statement_heading": "**Lemma.** Let `σ` be primitive with Perron root `> 1`, and let `C` be a"
+    },
+    {
+      "source": "docs/c4-concentration-attack-2026-11-06.md",
+      "line": 126,
+      "statement_heading": "**Corollary.** If distinct factors of `L(σ)` of equal length are never"
+    },
+    {
+      "source": "docs/c4-concentration-attack-2026-11-06.md",
+      "line": 132,
+      "statement_heading": "**Corollary T (conditional).** Concentration holds for the Tribonacci"
+    },
+    {
       "source": "docs/c4-cut-attractor-window-2026-11-05.md",
       "line": 25,
       "statement_heading": "## 1. Lemma F (common vertices are balanced cuts)"
