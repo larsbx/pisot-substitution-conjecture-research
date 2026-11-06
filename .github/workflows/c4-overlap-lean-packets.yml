@@ -4,6 +4,13 @@ on:
   pull_request:
     paths:
       - '.github/workflows/c4-overlap-lean-packets.yml'
+      - 'proof/PscVerif/**'
+      - 'proof/proof-bank.toml'
+      - 'proof/proof-bank.json'
+      - 'docs/proof-bank.md'
+      - 'tools/make_ledger.py'
+      - 'tools/claim_governance/**'
+      - 'claim_governance.toml'
       - 'proof/PscVerif/PscVerif.lean'
       - 'proof/PscVerif/ProofBankAudit.lean'
       - 'proof/PscVerif/PscVerif/OverlapPacket.lean'
@@ -39,13 +46,20 @@ on:
       - 'oracles/python/c4_pair_overlap_class.py'
       - 'oracles/python/c4_pair_overlap_graph.py'
       - 'evidence/c4-pair-overlap-class-2026-11-05/receipt.json'
-  # PR events are suppressed while newer main conflicts with this fixed-baseline
-  # verification draft. Run the same exact-head gate on its branch pushes.
+  # Keep exact-head replay available on branch pushes as well as PR events.
+  # Governed inventory changes must replay against the merged source inventory.
   push:
     branches:
       - 'proof/c4-overlap-lean-2026-11-05'
     paths:
       - '.github/workflows/c4-overlap-lean-packets.yml'
+      - 'proof/PscVerif/**'
+      - 'proof/proof-bank.toml'
+      - 'proof/proof-bank.json'
+      - 'docs/proof-bank.md'
+      - 'tools/make_ledger.py'
+      - 'tools/claim_governance/**'
+      - 'claim_governance.toml'
       - 'proof/PscVerif/PscVerif.lean'
       - 'proof/PscVerif/ProofBankAudit.lean'
       - 'proof/PscVerif/PscVerif/OverlapPacket.lean'
@@ -101,7 +115,9 @@ jobs:
       - name: Verify exact revision
         env:
           EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
-        run: test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          git rev-parse HEAD > /tmp/c4-overlap-lean-revision.txt
       - name: Provision the pinned Lean release and dependency sources
         run: |
           ./tools/setup_lean.sh
@@ -128,6 +144,7 @@ jobs:
         with:
           name: c4-overlap-lean-packets-${{ github.event.pull_request.head.sha || github.sha }}
           path: |
+            /tmp/c4-overlap-lean-revision.txt
             /tmp/c4-overlap-lean-audit.log
             /tmp/c4-overlap-lean-packets
           if-no-files-found: error

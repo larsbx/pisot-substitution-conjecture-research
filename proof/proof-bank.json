@@ -317,10 +317,37 @@
     },
     {
       "name": "C4",
-      "status": "open",
-      "source": "open sufficiency premise of the C4 route",
+      "status": "conditional",
+      "source": "docs/c4-finite-domain-closure-2026-11-05.md; the implication is the cut-pair reduction, the premise is UniversalAlignedCoincidence (issue #138); general C4 is equivalent to bounded-gap A1-prime (docs/c4-cut-attractor-window-2026-11-05.md, Proposition 3)",
+      "dependencies": [
+        "C4FromStrongCoincidence",
+        "UniversalAlignedCoincidence"
+      ],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "C4FromStrongCoincidence",
+      "status": "proved",
+      "source": "docs/c4-cut-pair-productivity-2026-11-04.md, Theorem A(4); docs/c4-cut-attractor-window-2026-11-05.md, Propositions 2 and 3; docs/c4-finite-domain-closure-2026-11-05.md; human review pending",
       "dependencies": [],
       "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "C4StandingCorpus",
+      "status": "finite-domain",
+      "source": "docs/c4-finite-domain-closure-2026-11-05.md, section 3; exact affine-automaton witnesses for all 13,662 letter pairs with the cut-pair reduction Theorem A(4); domain-specific, not a universal theorem",
+      "dependencies": [],
+      "ledger_node": false,
       "lean_support": {
         "coverage": "none",
         "declarations": [],
@@ -2645,6 +2672,56 @@
       "statement_heading": "**Lemma.** Let `T` be an actual irreducible noncoincident balanced"
     },
     {
+      "source": "docs/c4-cut-attractor-window-2026-11-05.md",
+      "line": 25,
+      "statement_heading": "## 1. Lemma F (common vertices are balanced cuts)"
+    },
+    {
+      "source": "docs/c4-cut-attractor-window-2026-11-05.md",
+      "line": 33,
+      "statement_heading": "**Lemma F.**"
+    },
+    {
+      "source": "docs/c4-cut-attractor-window-2026-11-05.md",
+      "line": 78,
+      "statement_heading": "## 2. Lemma N (all-position nesting) and Lemma G (the cut attractor)"
+    },
+    {
+      "source": "docs/c4-cut-attractor-window-2026-11-05.md",
+      "line": 96,
+      "statement_heading": "**Lemma N (all-position nesting; no determinant hypothesis).** For every"
+    },
+    {
+      "source": "docs/c4-cut-attractor-window-2026-11-05.md",
+      "line": 132,
+      "statement_heading": "**Lemma G (window form).**"
+    },
+    {
+      "source": "docs/c4-cut-attractor-window-2026-11-05.md",
+      "line": 201,
+      "statement_heading": "## 4. Proposition R (coincidence rank two; conditional)"
+    },
+    {
+      "source": "docs/c4-cut-attractor-window-2026-11-05.md",
+      "line": 211,
+      "statement_heading": "**Proposition R.** If `cr(σ) = 2` and `int(R_c ∩ R_c′) ≠ ∅` for some `c ≠ c′`,"
+    },
+    {
+      "source": "docs/c4-cut-attractor-window-2026-11-05.md",
+      "line": 237,
+      "statement_heading": "**Proposition 1 (finite).** Exactly 54 triples `(g, good edge, A)` satisfy"
+    },
+    {
+      "source": "docs/c4-cut-attractor-window-2026-11-05.md",
+      "line": 251,
+      "statement_heading": "**Proposition 2.** For primitive `σ`: `SC_all(σ) ⇔ A1′(σ) ∧ A1′(σ²) ∧ A1′(σ³)`;"
+    },
+    {
+      "source": "docs/c4-cut-attractor-window-2026-11-05.md",
+      "line": 258,
+      "statement_heading": "**Proposition 3.** For primitive `σ` the following are equivalent: (i) `σ` has"
+    },
+    {
       "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
       "line": 58,
       "statement_heading": "**Theorem A.**"
@@ -2698,6 +2775,11 @@
       "source": "docs/c4-every-cut-pair-positive-density-2026-11-04.md",
       "line": 49,
       "statement_heading": "**Corollary B (given these geometric inputs, proved in #480 §3 and §8):** every represented pair e={c,c'} individually satisfies"
+    },
+    {
+      "source": "docs/c4-finite-domain-closure-2026-11-05.md",
+      "line": 35,
+      "statement_heading": "**Theorem A(4)** of the cut-pair note: every first-letter pair of a strict"
     },
     {
       "source": "docs/c4-forward-run-family-sharp-depth-2026-11-04.md",
@@ -4406,7 +4488,7 @@
     }
   ],
   "input_digests": {
-    "claim_governance.toml": "6ce46dc8609f791de057dc086f1fb2da667f7546fddb170f63cb42df06879a18",
+    "claim_governance.toml": "5642e664f9a79064ffbaf770719cf0acba52accc75fca568711d4b554a08803e",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
@@ -4425,9 +4507,9 @@
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
-    "proof/proof-bank.toml": "847712aeb80710dbbd96cfac7cd4cfd310516585529412fddf4d9baf21acb42c",
+    "proof/proof-bank.toml": "3573fcd616cec1eabd90496664b6e7da53faf469b6ab54f19cbe4c5a40b8d73d",
     "tools/check_lean.sh": "34d3f59b3ee45adcfa8c6b505cf69041566403c1c0a9c7d2246fc7cd6dbd82af",
-    "tools/make_ledger.py": "9798698af29a039e9d2c785b8c231080d347d5deff1a63f97dfae14db4e03bab",
+    "tools/make_ledger.py": "2d64f2c5e3ee8df0bc709bcb8a09ab435ac0a1e9b9e84e67cbbcfea1ed647f9d",
     "tools/make_proof_bank.py": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8",
     "tools/setup_lean.sh": "b2c35ccc8d0b180a75275f8234f519a00d32efcbc8a9517f8b3d74a96b3ef8da"
   }

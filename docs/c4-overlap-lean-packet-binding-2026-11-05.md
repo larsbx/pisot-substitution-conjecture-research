@@ -173,3 +173,14 @@ geometric hypotheses, and do not import a tiling/PDS equivalence. Kernel
 performance choices follow the pinned Lean sources: `Array` has list semantics
 in kernel reduction; `Nat.allLTTR_eq_true` justifies a Boolean bounded loop;
 `Lean.Util.CollectAxioms` supplies imported axiom-cache inspection.
+
+## November 6 integration update
+
+The earlier pending all-18 observation above is historical. Exact-head push run
+[42109144786](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42109144786)
+subsequently passed at `654c24561dae1172acc973c43f3db67322a17fb8`, including sources
+13, 15 and 16. All complete retained receipts and generated audit/packet logs
+were inspected and the full Python parity replay repeated. See the
+[integration note](c4-overlap-lean-integration-2026-11-06.md) for conflict
+resolutions, exact scope, local execution dependencies and the separate
+integrated-revision acceptance requirement. No geometric hypothesis is discharged.
