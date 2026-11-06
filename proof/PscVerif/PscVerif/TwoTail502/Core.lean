@@ -4,7 +4,7 @@ import Mathlib.Tactic
 /-! Exact source-word coincidence, independent of overlap certificates.
 No geometric, Pisot, or finite-census hypothesis is used. -/
 namespace TwoTail502
-inductive Letter | z | o | t deriving DecidableEq, Repr
+inductive Letter | z | o | t deriving DecidableEq, Repr, Fintype
 open Letter
 abbrev Word := List Letter
 abbrev Substitution := Letter → Word
