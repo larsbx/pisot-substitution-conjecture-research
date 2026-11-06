@@ -2493,6 +2493,36 @@
       "statement_heading": "**Corollary (sharp all-pairs coincidence depth).** For every member of"
     },
     {
+      "source": "docs/c4-general-structure-2026-11-06.md",
+      "line": 41,
+      "statement_heading": "## 2. Proposition Q (any alphabet, any primitive substitution)"
+    },
+    {
+      "source": "docs/c4-general-structure-2026-11-06.md",
+      "line": 43,
+      "statement_heading": "**Proposition Q.** Let `σ` be a primitive nonerasing substitution on `d`"
+    },
+    {
+      "source": "docs/c4-general-structure-2026-11-06.md",
+      "line": 72,
+      "statement_heading": "**Corollary Q1.** If `M` has no eigenvalue that is 0 or a root of unity —"
+    },
+    {
+      "source": "docs/c4-general-structure-2026-11-06.md",
+      "line": 90,
+      "statement_heading": "**Lemma 0** ([lowest-defect intertwiner](c4-lowest-defect-intertwiner.md))."
+    },
+    {
+      "source": "docs/c4-general-structure-2026-11-06.md",
+      "line": 108,
+      "statement_heading": "**Theorem R2.** If an irreducible-cubic substitution has a strict system with"
+    },
+    {
+      "source": "docs/c4-general-structure-2026-11-06.md",
+      "line": 117,
+      "statement_heading": "**Theorem R3.** If both non-Perron roots of an irreducible cubic `χ_M` have"
+    },
+    {
       "source": "docs/c4-nonunit-madic-counting-bridge-2026-11-04.md",
       "line": 206,
       "statement_heading": "**Theorem M1 (lifted cut-pair bound).**"
