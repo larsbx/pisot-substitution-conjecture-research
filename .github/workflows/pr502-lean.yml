@@ -2,14 +2,14 @@ name: PR502 dedicated Lean source-word verification
 on:
   pull_request:
     paths:
-      - 'proof/PscVerif/PscVerif/TwoTail502/**'
+      - 'proof/TwoTail502/**'
       - 'tools/check_two_tail_502_lean.py'
       - 'docs/pr502-lean-verification.md'
       - '.github/workflows/pr502-lean.yml'
   push:
     branches: ['verification/pr502-lean-2026-11-06']
     paths:
-      - 'proof/PscVerif/PscVerif/TwoTail502/**'
+      - 'proof/TwoTail502/**'
       - 'tools/check_two_tail_502_lean.py'
       - '.github/workflows/pr502-lean.yml'
   workflow_dispatch:

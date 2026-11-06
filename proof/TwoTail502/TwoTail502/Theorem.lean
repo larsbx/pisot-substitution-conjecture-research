@@ -1,4 +1,4 @@
-import PscVerif.TwoTail502.Prefixes
+import TwoTail502.Prefixes
 
 namespace TwoTail502
 open Letter Tail

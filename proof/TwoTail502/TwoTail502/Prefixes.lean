@@ -1,4 +1,4 @@
-import PscVerif.TwoTail502.Families
+import TwoTail502.Families
 
 set_option maxRecDepth 100000
 set_option maxHeartbeats 2000000

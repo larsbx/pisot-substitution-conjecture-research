@@ -7,10 +7,13 @@ import pathlib
 import re
 import subprocess
 import sys
+import shutil
+import tempfile
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-PROJECT = ROOT / "proof/PscVerif"
-SOURCES = PROJECT / "PscVerif/TwoTail502"
+PROJECT = ROOT / "proof/TwoTail502"
+PIN_PROJECT = ROOT / "proof/PscVerif"
+SOURCES = PROJECT / "TwoTail502"
 
 def command(args, cwd=ROOT):
     return subprocess.check_output(args, cwd=cwd, text=True).strip()
@@ -27,10 +30,28 @@ def main():
         raise SystemExit("refusing a dirty or unreviewed starting revision")
     args.output.mkdir(parents=True, exist_ok=True)
     files = sorted(SOURCES.glob("*.lean"))
+    for pin in ["lean-toolchain", "lake-manifest.json"]:
+        original = (PIN_PROJECT / pin).read_text()
+        dedicated = (PROJECT / pin).read_text()
+        if pin.endswith(".json"):
+            original = json.loads(original)
+            dedicated = json.loads(dedicated)
+            original["name"] = "TwoTail502"
+        if original != dedicated:
+            raise SystemExit("dedicated project differs from repository dependency pins")
+    work = pathlib.Path(tempfile.mkdtemp(prefix="pr502-lean-"))
+    for pin in ["lean-toolchain", "lake-manifest.json", "lakefile.toml"]:
+        shutil.copy2(PROJECT / pin, work / pin)
+    shutil.copytree(SOURCES, work / "TwoTail502")
+    (work / ".lake").mkdir()
+    # Provisioned pinned upstream dependencies only. No local TwoTail502 build
+    # artifact enters this fresh workspace.
+    (work / ".lake/packages").symlink_to((PIN_PROJECT / ".lake/packages").resolve(),
+                                        target_is_directory=True)
     hashes = {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in files}
     receipt = {"revision": revision, "source_sha256": hashes, "status": "running",
                "scope": "PR502 exact source words only; no PSC promotion",
-               "lean": command(["lean", "--version"], PROJECT), "commands": []}
+               "lean": command(["lean", "--version"], work), "commands": []}
     receipt_path = args.output / "receipt.json"
     def save():
         receipt_path.write_text(json.dumps(receipt, indent=2) + "\n")
@@ -41,11 +62,11 @@ def main():
             source = p.read_text()
             if re.search(r"\b(sorry|admit|axiom|native_decide|unsafe)\b", source):
                 raise RuntimeError("forbidden proof escape in " + str(p))
-        modules = ["PscVerif.TwoTail502." + p.stem for p in files]
+        modules = ["TwoTail502." + p.stem for p in files]
         cmd = ["lake", "build"] + modules
         receipt["commands"].append(cmd)
         with (args.output / "build.log").open("w") as log:
-            result = subprocess.run(cmd, cwd=PROJECT, stdout=log, stderr=subprocess.STDOUT)
+            result = subprocess.run(cmd, cwd=work, stdout=log, stderr=subprocess.STDOUT)
         print((args.output / "build.log").read_text(), end="")
         if result.returncode:
             raise RuntimeError("Lean build failed")
@@ -60,7 +81,7 @@ def main():
         cmd = ["lake", "env", "lean", str(audit_path)]
         receipt["commands"].append(cmd)
         with (args.output / "axioms.log").open("w") as log:
-            result = subprocess.run(cmd, cwd=PROJECT, stdout=log, stderr=subprocess.STDOUT)
+            result = subprocess.run(cmd, cwd=work, stdout=log, stderr=subprocess.STDOUT)
         audit_log = (args.output / "axioms.log").read_text()
         print(audit_log, end="")
         if result.returncode or "sorryAx" in audit_log:
@@ -82,6 +103,7 @@ def main():
         raise
     finally:
         save()
+        shutil.rmtree(work)
 
 if __name__ == "__main__":
     main()

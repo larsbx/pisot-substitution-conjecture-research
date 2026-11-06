@@ -63,6 +63,14 @@ theorem iterate_substitute (σ : Substitution) (n : ℕ) (w : Word) :
   | zero => simp
   | succ k ih => simp only [power_succ, iterate_append, ih]
 
+@[simp] theorem iterate_two_letters (σ : Substitution) (n : ℕ) (c d : Letter) :
+    iterate σ n [c,d] = iterate σ n [c] ++ iterate σ n [d] := by
+  simpa only [List.cons_append,List.nil_append] using iterate_append σ n [c] [d]
+@[simp] theorem iterate_three_letters (σ : Substitution) (n : ℕ) (c d e : Letter) :
+    iterate σ n [c,d,e] = iterate σ n [c] ++ iterate σ n [d] ++ iterate σ n [e] := by
+  simpa only [List.cons_append,List.nil_append,iterate_two_letters,List.append_assoc] using
+    iterate_append σ n [c] [d,e]
+
 theorem balanced_iff_perm (u v : Word) : Balanced u v ↔ u.Perm v := by
   simp only [Balanced, parikh, funext_iff, List.perm_iff_count]
 theorem balanced_iff_counts (u v : Word) :

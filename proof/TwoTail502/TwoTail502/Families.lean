@@ -1,4 +1,4 @@
-import PscVerif.TwoTail502.Core
+import TwoTail502.Core
 
 set_option maxRecDepth 100000
 set_option maxHeartbeats 2000000
@@ -43,7 +43,9 @@ theorem power_succ_right (w : Word) (n : ℕ) :
     power w (n+1) = power w n ++ w := by
   induction n with
   | zero => simp [power]
-  | succ n ih => simp only [power_succ, ih, List.append_assoc]
+  | succ n ih =>
+    change w ++ power w (n+1) = (w ++ power w n) ++ w
+    rw [ih,List.append_assoc]
 theorem power_comm (w : Word) (n : ℕ) :
     w ++ power w n = power w n ++ w := by
   rw [← power_succ, power_succ_right]
@@ -60,6 +62,12 @@ theorem level_two (tail : Tail) (a b : ℕ) :
   cases tail <;>
     simp [iterate, source, A, B, C, F, G, H, inflate_power, List.append_assoc]
 
+@[simp] theorem iterate_B (σ : Substitution) (n a b : ℕ) :
+    iterate σ n (B a b) =
+      power (iterate σ n [o]) a ++ iterate σ n [t] ++ power (iterate σ n [o]) b := by
+  unfold B
+  rw [iterate_append,iterate_append,iterate_power,iterate_power]
+
 theorem level_three (tail : Tail) (a b : ℕ) :
     iterate (source tail a b) 3 [z] = U tail a b ∧
     iterate (source tail a b) 3 [o] = V tail a b ∧
@@ -72,7 +80,7 @@ theorem level_three (tail : Tail) (a b : ℕ) :
   constructor
   · rw [hi]; simp [source, A, U, h.1, h.2.1]
   constructor
-  · rw [hi]; simp [source, B, V, h.2.1, h.2.2]
+  · rw [hi]; simp [source, V, h.2.1, h.2.2]
   · rw [hi]; cases tail <;> simp [source, C, W, h.1, h.2.1, h.2.2, List.append_assoc]
 
 theorem level_four (tail : Tail) (a b : ℕ) :
@@ -87,7 +95,7 @@ theorem level_four (tail : Tail) (a b : ℕ) :
   constructor
   · rw [hi]; simp [source, A, X, h.1, h.2.1]
   constructor
-  · rw [hi]; simp [source, B, Y, h.2.1, h.2.2]
+  · rw [hi]; simp [source, Y, h.2.1, h.2.2]
   · rw [hi]; cases tail <;> simp [source, C, Z, h.1, h.2.1, h.2.2, List.append_assoc]
 
 theorem level_five (tail : Tail) (a b : ℕ) (c : Letter) :
@@ -104,7 +112,7 @@ theorem level_five (tail : Tail) (a b : ℕ) (c : Letter) :
     (iterate_commute _ 4 [c]).symm.trans (by simp)
   rw [hi]
   cases c <;> cases tail <;>
-    simp [source, A, B, C, h.1, h.2.1, h.2.2, List.append_assoc]
+    simp [source, A, C, h.1, h.2.1, h.2.2, List.append_assoc]
 
 /- These are symbolic identities for arbitrary natural parameters, not samples. -/
 theorem positive102_mass (a b : ℕ) :
@@ -136,6 +144,34 @@ theorem large102_mass (b : ℕ) : Balanced (large102_left b) (large102_right b) 
   cases c <;>
     simp [parikh, large102_left, large102_right, Z, V, U, W, F, H, G, B, A, C,
       power_succ, List.count_cons, List.count_append] <;> ring
+
+
+theorem positive102_counts (a b : ℕ) :
+    parikh (F a b ++ power (G t102 a b) a) =
+      fun c => match c with
+      | z => a+1
+      | o => a*((a+b)^2+1)+(a+b)+1
+      | t => a*(a+b+1)+1 := by
+  funext c
+  cases c <;> simp [parikh,F,G,B,A,C,List.count_cons] <;> ring
+
+theorem positive120_counts (a b : ℕ) :
+    parikh (F a b ++ power (G t120 a b) a ++ power (B a b) a ++ C t120) =
+      fun c => match c with
+      | z => a+2
+      | o => a*((a+b)^2+(a+b)+1)+(a+b)+2
+      | t => a*(a+b+2)+2 := by
+  funext c
+  cases c <;> simp [parikh,F,G,B,A,C,List.count_cons] <;> ring
+
+theorem large102_counts (b : ℕ) :
+    parikh (large102_left b) = fun c => match c with
+      | z => b+10
+      | o => b^3+3*b^2+5*b+10
+      | t => b^2+4*b+10 := by
+  funext c
+  cases c <;>
+    simp [parikh,large102_left,Z,V,U,W,F,G,H,B,A,C,power_succ,List.count_cons] <;> ring
 
 /- Predicate for exact finite cut controls. Only this decidable predicate is
 computed; the infinite-family results below require symbolic prefix proofs. -/
