@@ -1,0 +1,9 @@
+{
+  "independent_source_prefix_checks": 288,
+  "literal_checks_included": 168,
+  "producer_imported": false,
+  "receipt_examples": 24,
+  "result": "passed",
+  "scope": "finite replay plus exact polynomial identities; written word inclusions still separate",
+  "symbolic_checks": 8
+}
