@@ -1794,6 +1794,182 @@
       "declaration": "@[simp] theorem K₁_eq_zero (a : Letter) : s.K₁ a = 0 := by"
     },
     {
+      "name": "Psc.Binomial.n2_append",
+      "module": "PscVerif.Binomial",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Binomial.lean",
+      "line": 45,
+      "declaration": "theorem n2_append (x y : List α) (a b : α) :"
+    },
+    {
+      "name": "Psc.Binomial.Equiv1.append",
+      "module": "PscVerif.Binomial",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Binomial.lean",
+      "line": 62,
+      "declaration": "theorem Equiv1.append {x x' y y' : List α} (hx : Equiv1 x x') (hy : Equiv1 y y') :"
+    },
+    {
+      "name": "Psc.Binomial.Equiv2.append",
+      "module": "PscVerif.Binomial",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Binomial.lean",
+      "line": 65,
+      "declaration": "theorem Equiv2.append {x x' y y' : List α} (hx : Equiv2 x x') (hy : Equiv2 y y') :"
+    },
+    {
+      "name": "Psc.Binomial.Equiv2.refl",
+      "module": "PscVerif.Binomial",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Binomial.lean",
+      "line": 69,
+      "declaration": "theorem Equiv2.refl (x : List α) : Equiv2 x x := ⟨fun _ => rfl, fun _ _ => rfl⟩"
+    },
+    {
+      "name": "Psc.Binomial.equiv2_join",
+      "module": "PscVerif.Binomial",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Binomial.lean",
+      "line": 73,
+      "declaration": "theorem equiv2_join (bs : List (List α × List α)) (h : ∀ T ∈ bs, Equiv2 T.1 T.2) :"
+    },
+    {
+      "name": "Psc.Binomial.equiv2_at_cuts",
+      "module": "PscVerif.Binomial",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Binomial.lean",
+      "line": 82,
+      "declaration": "theorem equiv2_at_cuts (bs : List (List α × List α)) (h : ∀ T ∈ bs, Equiv2 T.1 T.2)"
+    },
+    {
+      "name": "Psc.Binomial.subst_append",
+      "module": "PscVerif.Binomial",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Binomial.lean",
+      "line": 91,
+      "declaration": "theorem subst_append (s : α → List α) (x y : List α) :"
+    },
+    {
+      "name": "Psc.Binomial.subst_prefix",
+      "module": "PscVerif.Binomial",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Binomial.lean",
+      "line": 94,
+      "declaration": "theorem subst_prefix (s : α → List α) {x y : List α} (h : x <+: y) :"
+    },
+    {
+      "name": "Psc.Binomial.iterate_subst_append",
+      "module": "PscVerif.Binomial",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Binomial.lean",
+      "line": 98,
+      "declaration": "theorem iterate_subst_append (s : α → List α) (n : ℕ) (x y : List α) :"
+    },
+    {
+      "name": "Psc.Binomial.iterate_subst_nil",
+      "module": "PscVerif.Binomial",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Binomial.lean",
+      "line": 104,
+      "declaration": "theorem iterate_subst_nil (s : α → List α) (n : ℕ) : (subst s)^[n] [] = [] :="
+    },
+    {
+      "name": "Psc.Binomial.iterate_subst_flatten",
+      "module": "PscVerif.Binomial",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Binomial.lean",
+      "line": 107,
+      "declaration": "theorem iterate_subst_flatten (s : α → List α) (n : ℕ) (ws : List (List α)) :"
+    },
+    {
+      "name": "Psc.Binomial.ChildSystem.desc_mem",
+      "module": "PscVerif.Binomial",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Binomial.lean",
+      "line": 134,
+      "declaration": "theorem desc_mem (n : ℕ) : ∀ T ∈ S.C, ∀ U ∈ S.desc n T, U ∈ S.C := by"
+    },
+    {
+      "name": "Psc.Binomial.ChildSystem.desc_top",
+      "module": "PscVerif.Binomial",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Binomial.lean",
+      "line": 145,
+      "declaration": "theorem desc_top (n : ℕ) : ∀ T ∈ S.C,"
+    },
+    {
+      "name": "Psc.Binomial.ChildSystem.desc_bot",
+      "module": "PscVerif.Binomial",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Binomial.lean",
+      "line": 157,
+      "declaration": "theorem desc_bot (n : ℕ) : ∀ T ∈ S.C,"
+    },
+    {
+      "name": "Psc.Binomial.ChildSystem.first_mem",
+      "module": "PscVerif.Binomial",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Binomial.lean",
+      "line": 172,
+      "declaration": "theorem first_mem : ∀ T ∈ S.C, S.first T ∈ S.C := by"
+    },
+    {
+      "name": "Psc.Binomial.ChildSystem.first_prefix_top",
+      "module": "PscVerif.Binomial",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Binomial.lean",
+      "line": 179,
+      "declaration": "theorem first_prefix_top : ∀ T ∈ S.C, (S.first T).1 <+: subst S.s T.1 := by"
+    },
+    {
+      "name": "Psc.Binomial.ChildSystem.first_prefix_bot",
+      "module": "PscVerif.Binomial",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Binomial.lean",
+      "line": 187,
+      "declaration": "theorem first_prefix_bot : ∀ T ∈ S.C, (S.first T).2 <+: subst S.s T.2 := by"
+    },
+    {
+      "name": "Psc.Binomial.ChildSystem.iterate_first_mem",
+      "module": "PscVerif.Binomial",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Binomial.lean",
+      "line": 195,
+      "declaration": "theorem iterate_first_mem (n : ℕ) : ∀ T ∈ S.C, S.first^[n] T ∈ S.C := by"
+    },
+    {
+      "name": "Psc.Binomial.ChildSystem.iterate_first_prefix",
+      "module": "PscVerif.Binomial",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Binomial.lean",
+      "line": 200,
+      "declaration": "theorem iterate_first_prefix (n : ℕ) : ∀ T ∈ S.C,"
+    },
+    {
+      "name": "Psc.Binomial.ChildSystem.exists_periodic",
+      "module": "PscVerif.Binomial",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Binomial.lean",
+      "line": 213,
+      "declaration": "theorem exists_periodic (T : List α × List α) (hT : T ∈ S.C) :"
+    },
+    {
+      "name": "Psc.Binomial.ChildSystem.reduction_lemma",
+      "module": "PscVerif.Binomial",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Binomial.lean",
+      "line": 230,
+      "declaration": "theorem reduction_lemma (T : List α × List α) (hT : T ∈ S.C)"
+    },
+    {
+      "name": "Psc.Binomial.heads_ne",
+      "module": "PscVerif.Binomial",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Binomial.lean",
+      "line": 253,
+      "declaration": "theorem heads_ne {a b : α} {u v : List α} (hbal : Equiv1 (a :: u) (b :: v))"
+    },
+    {
       "name": "PscVerif.BoundaryRounding.first_run",
       "module": "PscVerif.BoundaryRounding",
       "private": false,
@@ -1936,6 +2112,150 @@
       "source": "proof/PscVerif/PscVerif/ClassBRegime.lean",
       "line": 56,
       "declaration": "theorem rank_reaches_with_bound {α : Type} (carrier target : α → Prop)"
+    },
+    {
+      "name": "Psc.ConcentrationAlgebra.eigenrow_eq_zero",
+      "module": "PscVerif.ConcentrationAlgebra",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ConcentrationAlgebra.lean",
+      "line": 37,
+      "declaration": "theorem eigenrow_eq_zero (W : Matrix (Fin 3) (Fin 3) F)"
+    },
+    {
+      "name": "Psc.ConcentrationAlgebra.comp_pow_of_intertwine",
+      "module": "PscVerif.ConcentrationAlgebra",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ConcentrationAlgebra.lean",
+      "line": 85,
+      "declaration": "theorem comp_pow_of_intertwine (Q : V →ₗ[F] Y) (N : V →ₗ[F] V) (R : Y →ₗ[F] Y)"
+    },
+    {
+      "name": "Psc.ConcentrationAlgebra.comp_aeval_of_intertwine",
+      "module": "PscVerif.ConcentrationAlgebra",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ConcentrationAlgebra.lean",
+      "line": 91,
+      "declaration": "theorem comp_aeval_of_intertwine (Q : V →ₗ[F] Y) (N : V →ₗ[F] V) (R : Y →ₗ[F] Y)"
+    },
+    {
+      "name": "Psc.ConcentrationAlgebra.exists_factor_through",
+      "module": "PscVerif.ConcentrationAlgebra",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ConcentrationAlgebra.lean",
+      "line": 100,
+      "declaration": "theorem exists_factor_through (P : V →ₗ[F] X) (Q : V →ₗ[F] Y) (N : V →ₗ[F] V)"
+    },
+    {
+      "name": "Psc.ConcentrationAlgebra.injective_of_irreducible",
+      "module": "PscVerif.ConcentrationAlgebra",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ConcentrationAlgebra.lean",
+      "line": 120,
+      "declaration": "theorem injective_of_irreducible (L : X →ₗ[F] Y) (M : X →ₗ[F] X) (R : Y →ₗ[F] Y)"
+    },
+    {
+      "name": "Psc.ConcentrationControls.t13_irreducible",
+      "module": "PscVerif.ConcentrationControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ConcentrationControls.lean",
+      "line": 40,
+      "declaration": "theorem t13_irreducible : Irreducible u13 v13 := by decide +kernel"
+    },
+    {
+      "name": "Psc.ConcentrationControls.t13_equiv2",
+      "module": "PscVerif.ConcentrationControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ConcentrationControls.lean",
+      "line": 41,
+      "declaration": "theorem t13_equiv2 : Equiv2 u13 v13 := by decide +kernel"
+    },
+    {
+      "name": "Psc.ConcentrationControls.m0_det",
+      "module": "PscVerif.ConcentrationControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ConcentrationControls.lean",
+      "line": 58,
+      "declaration": "theorem m0_det : det3 m0 = -2 := by decide +kernel"
+    },
+    {
+      "name": "Psc.ConcentrationControls.m0_positive",
+      "module": "PscVerif.ConcentrationControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ConcentrationControls.lean",
+      "line": 59,
+      "declaration": "theorem m0_positive : ∀ i j, 0 < m0 i j := by decide +kernel"
+    },
+    {
+      "name": "Psc.ConcentrationControls.t13_k3_ne_zero",
+      "module": "PscVerif.ConcentrationControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ConcentrationControls.lean",
+      "line": 61,
+      "declaration": "theorem t13_k3_ne_zero : ∃ a b c, k3 a b c ≠ 0 := ⟨0, 2, 1, by decide +kernel⟩"
+    },
+    {
+      "name": "Psc.ConcentrationControls.t13_det_sector",
+      "module": "PscVerif.ConcentrationControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ConcentrationControls.lean",
+      "line": 64,
+      "declaration": "theorem t13_det_sector : ∀ a b c,"
+    },
+    {
+      "name": "Psc.ConcentrationControls.chi_is_charpoly",
+      "module": "PscVerif.ConcentrationControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ConcentrationControls.lean",
+      "line": 70,
+      "declaration": "theorem chi_is_charpoly (x : ℤ) :"
+    },
+    {
+      "name": "Psc.ConcentrationControls.m0_charpoly_values",
+      "module": "PscVerif.ConcentrationControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ConcentrationControls.lean",
+      "line": 74,
+      "declaration": "theorem m0_charpoly_values :"
+    },
+    {
+      "name": "Psc.ConcentrationControls.factors_equiv2",
+      "module": "PscVerif.ConcentrationControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ConcentrationControls.lean",
+      "line": 85,
+      "declaration": "theorem factors_equiv2 : Equiv2 x7 y7 ∧ x7 ≠ y7 := by decide +kernel"
+    },
+    {
+      "name": "Psc.ConcentrationControls.factors_occur",
+      "module": "PscVerif.ConcentrationControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ConcentrationControls.lean",
+      "line": 87,
+      "declaration": "theorem factors_occur :"
+    },
+    {
+      "name": "Psc.Degree4Sector.pow_eq_conj_pow_of_cycle",
+      "module": "PscVerif.Degree4Sector",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree4Sector.lean",
+      "line": 27,
+      "declaration": "theorem pow_eq_conj_pow_of_cycle (β α d : ℂ) (hα : α ≠ 0) (hconj : (starRingEnd ℂ) α ≠ 0)"
+    },
+    {
+      "name": "Psc.Degree4Sector.root_pow_eq_of_pow_eq_conj_pow",
+      "module": "PscVerif.Degree4Sector",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree4Sector.lean",
+      "line": 38,
+      "declaration": "theorem root_pow_eq_of_pow_eq_conj_pow (f : ℚ[X]) (hf : Irreducible f) (hdeg : f.natDegree = 3)"
+    },
+    {
+      "name": "Psc.Degree4Sector.no_220_sector",
+      "module": "PscVerif.Degree4Sector",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree4Sector.lean",
+      "line": 85,
+      "declaration": "theorem no_220_sector (f : ℚ[X]) (hf : Irreducible f) (hdeg : f.natDegree = 3)"
     },
     {
       "name": "PscVerif.QuotientDistance.path_lift",
@@ -4252,17 +4572,21 @@
     "claim_governance.toml": "5642e664f9a79064ffbaf770719cf0acba52accc75fca568711d4b554a08803e",
     "proof/PscVerif/ProofBankAudit.lean": "df46d0e65bf4aa0b6c2ca184a784974970c58f8c2c3de38eb4ed713efacce904",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
+    "proof/PscVerif/PscVerif/Binomial.lean": "8b868b37e1ea08d48682109536229c071aa1a53d28c2770f3682243f5851e9bb",
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
     "proof/PscVerif/PscVerif/BoundarySeedPath.lean": "bea69cb93d5bcd15b1b88c48062b4404a721908092af1b5f5b42e6184f7abae3",
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
     "proof/PscVerif/PscVerif/ClassBRegime.lean": "1c873d0aea0201c3a60486dc90bce00e9f9612019ad72c5344cfa927d93a23e6",
+    "proof/PscVerif/PscVerif/ConcentrationAlgebra.lean": "99ca8d13f6ef41ad91147883629c5aa2ec34736b09ea12773ebbb5f2c5e7d56a",
+    "proof/PscVerif/PscVerif/ConcentrationControls.lean": "427a2b1a92b492a06447c0109bb7eaea2607c89fee743a0f5a6bcada47eb5964",
+    "proof/PscVerif/PscVerif/Degree4Sector.lean": "511887cc68608abe701fc320b005f4053c99ad8c76f4fcdc2d2980af47315a80",
     "proof/PscVerif/PscVerif/QuotientDistance.lean": "1431961ca4d26d60e5bf5165c7773440e7a708b51377697e339f94f7cf5896ef",
     "proof/PscVerif/PscVerif/Seeds.lean": "224a67ea3d89c8cd54747164d4e1fbbc9b733aa5eb404465119999b738dce747",
     "proof/PscVerif/PscVerif/SelectedRank.lean": "0ab6fc76698ebcfd14ce1b319b121f0eaee9d2d64fceb26d3cf9e6a59b26c396",
     "proof/PscVerif/PscVerif/Shuffle.lean": "fe99c7b71174cd665633b425c0f9d1e6f6893f541387e261fb5d945bba48614c",
     "proof/PscVerif/PscVerif/Spectral.lean": "f7a43295221c293c670593d4be8e916d87ce51f3241ec911456ef4a4ce0b39d3",
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
-    "proof/PscVerif/PscVerif.lean": "de9fd2b351410e6db27ad63f118c7220959906db5a56917333bbc2fe87680b0e",
+    "proof/PscVerif/PscVerif.lean": "bc94d0fc07146667d3b26021d7bc22d773d5dfe7339fcf08fc732f90dcd5ce14",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

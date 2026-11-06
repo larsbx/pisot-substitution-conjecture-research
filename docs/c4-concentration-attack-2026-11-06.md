@@ -7,7 +7,7 @@ three letters has `K₂ ≡ 0`.
 This note records what a four-route attack established, by status:
 - **Theorem A** (degree four) and the **reduction lemma** (§3) are written
   proofs, each checked step by step by the author after an agent produced
-  it. Human review is pending.
+  it. Human review is pending. Their formalized parts are listed in §8.
 - **Corollary T** (Tribonacci) is conditional on a computer-assisted
   published theorem.
 - §4 lists agent proofs that the author has not checked, labelled as such.
@@ -207,8 +207,32 @@ The following are not claimed:
   letters has a strict system with `K₂ ≡ 0`. It is supported only by the §4
   windows.
 
-## 8. Replay
+## 8. Lean formalization (`proof/PscVerif`)
+
+Four modules, which the proof-bank axiom audit checks (`propext`,
+`Classical.choice` and `Quot.sound` only; no `sorry`, no local axioms, no
+`native_decide`). "Full" means the formal statement is the stated result;
+"step" means one step of a longer proof.
+
+| Result | Lean | Coverage |
+|---|---|---|
+| Block additivity of `K₂`: `n2 (x++y) = n2 x + n2 y + \|x\|_a\|y\|_b`, so concatenations of `∼₂` blocks are `∼₂` at every cut | `Psc.Binomial.n2_append`, `Equiv2.append`, `equiv2_join`, `equiv2_at_cuts` | full |
+| Reduction lemma, finite form: first-child periodicity, `T₀` a prefix of its `σᵖ`-image, `σ^{pn}(T₀)` a concatenation of states with `∼₂` prefixes at every boundary | `Psc.Binomial.ChildSystem.reduction_lemma` (with `desc_top`, `desc_bot`, `exists_periodic`, `iterate_first_prefix`) | full in finite form; the limit to one-sided fixed points is not formalized |
+| An irreducible noncoincident balanced pair has distinct first letters | `Psc.Binomial.heads_ne` | full |
+| Galois lemma, eigen-functional form: an eigen-row of a cyclic `3×3` matrix vanishing on a nonzero rational vector is zero | `Psc.ConcentrationAlgebra.eigenrow_eq_zero` | full given cyclicity; cyclicity of `Λ²M` from irreducibility of `χ_{Λ²M}` is not formalized |
+| Theorem A(iv), factorization `Q₄D = L∘P` | `Psc.ConcentrationAlgebra.exists_factor_through` | step; the hypothesis "`f(N)` maps `ker P` onto itself" encodes Perron simplicity and is not derived |
+| Theorem A(iv), injectivity of `L` | `Psc.ConcentrationAlgebra.injective_of_irreducible` | full given no invariant subspace |
+| Theorem A(ii), `(2,2,0)` sector: `(βα²)^{2ℓ} = 1 ⇒ α^{2ℓ} = ᾱ^{2ℓ}` | `Psc.Degree4Sector.pow_eq_conj_pow_of_cycle` | full |
+| Theorem A(ii), `(2,2,0)` sector: a non-real root with `αⁿ = ᾱⁿ` forces `ρⁿ = αⁿ` for all roots; impossible for PIP | `Psc.Degree4Sector.root_pow_eq_of_pow_eq_conj_pow`, `no_220_sector` | full |
+| Wielandt's theorem; the `(3,1,0)` and `(2,1,1)` modulus eliminations; Theorem A(iii) | none | not formalized (Wielandt is not in Mathlib) |
+| Control `T13`/`M0`: irreducible, `∼₂`, `K₃ ≠ 0`, `M0^{⊗3}K₃ = det(M0)·K₃`, `det M0 = −2`, `M0 > 0`, `χ` values | `Psc.ConcentrationControls.t13_*`, `m0_*`, `chi_is_charpoly` | full (kernel `decide`); the inference "irreducible Pisot" from the `χ` values is not formalized |
+| Control `011/2/120`: `0112201 ∼₂ 1200112`, both factors of `σ⁶(0)` | `Psc.ConcentrationControls.factors_equiv2`, `factors_occur` | full (kernel `decide`) |
+
+A mutant of `t13_det_sector` with `det` replaced by `2` fails to compile.
+
+## 9. Replay
 
 ```sh
 (cd kernel && pixi run --locked mojo run -I . -I tests tests/test_c4_concentration_controls.mojo)
+./tools/check_lean.sh
 ```
