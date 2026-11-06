@@ -209,26 +209,42 @@ The following are not claimed:
 
 ## 8. Lean formalization (`proof/PscVerif`)
 
-Four modules, which the proof-bank axiom audit checks (`propext`,
+Eleven modules, all checked by the proof-bank axiom audit (`propext`,
 `Classical.choice` and `Quot.sound` only; no `sorry`, no local axioms, no
-`native_decide`). "Full" means the formal statement is the stated result;
-"step" means one step of a longer proof.
+`native_decide`; the whole library: 584 declarations, 394 theorems).
+- *Full* means the formal statement is the stated result.
+- *Given X* means the formal statement assumes X, and X is named.
 
 | Result | Lean | Coverage |
 |---|---|---|
 | Block additivity of `K₂`: `n2 (x++y) = n2 x + n2 y + \|x\|_a\|y\|_b`, so concatenations of `∼₂` blocks are `∼₂` at every cut | `Psc.Binomial.n2_append`, `Equiv2.append`, `equiv2_join`, `equiv2_at_cuts` | full |
-| Reduction lemma, finite form: first-child periodicity, `T₀` a prefix of its `σᵖ`-image, `σ^{pn}(T₀)` a concatenation of states with `∼₂` prefixes at every boundary | `Psc.Binomial.ChildSystem.reduction_lemma` (with `desc_top`, `desc_bot`, `exists_periodic`, `iterate_first_prefix`) | full in finite form; the limit to one-sided fixed points is not formalized |
-| An irreducible noncoincident balanced pair has distinct first letters | `Psc.Binomial.heads_ne` | full |
-| Galois lemma, eigen-functional form: an eigen-row of a cyclic `3×3` matrix vanishing on a nonzero rational vector is zero | `Psc.ConcentrationAlgebra.eigenrow_eq_zero` | full given cyclicity; cyclicity of `Λ²M` from irreducibility of `χ_{Λ²M}` is not formalized |
-| Theorem A(iv), factorization `Q₄D = L∘P` | `Psc.ConcentrationAlgebra.exists_factor_through` | step; the hypothesis "`f(N)` maps `ker P` onto itself" encodes Perron simplicity and is not derived |
-| Theorem A(iv), injectivity of `L` | `Psc.ConcentrationAlgebra.injective_of_irreducible` | full given no invariant subspace |
-| Theorem A(ii), `(2,2,0)` sector: `(βα²)^{2ℓ} = 1 ⇒ α^{2ℓ} = ᾱ^{2ℓ}` | `Psc.Degree4Sector.pow_eq_conj_pow_of_cycle` | full |
-| Theorem A(ii), `(2,2,0)` sector: a non-real root with `αⁿ = ᾱⁿ` forces `ρⁿ = αⁿ` for all roots; impossible for PIP | `Psc.Degree4Sector.root_pow_eq_of_pow_eq_conj_pow`, `no_220_sector` | full |
-| Wielandt's theorem; the `(3,1,0)` and `(2,1,1)` modulus eliminations; Theorem A(iii) | none | not formalized (Wielandt is not in Mathlib) |
-| Control `T13`/`M0`: irreducible, `∼₂`, `K₃ ≠ 0`, `M0^{⊗3}K₃ = det(M0)·K₃`, `det M0 = −2`, `M0 > 0`, `χ` values | `Psc.ConcentrationControls.t13_*`, `m0_*`, `chi_is_charpoly` | full (kernel `decide`); the inference "irreducible Pisot" from the `χ` values is not formalized |
+| Reduction lemma, finite form | `Psc.Binomial.ChildSystem.reduction_lemma` | full |
+| Reduction lemma, limit form: two `σᵖ`-invariant limit words with different first letters, `∼₂` on a syndetic set of prefix lengths, gaps at most the maximal state length | `Psc.FixedPointLimit.reduction_limit` (with `limit_spec`, `limit_fixed`, `limit_zero`, `grow_of_nonerasing`, `fixed_points_equiv2_syndetic`) | given a nonerasing `σ` under which every state is strictly lengthened (true for a suitable power of a primitive `σ`, not formalized) |
+| Irreducible noncoincident balanced pairs have distinct first letters | `Psc.Binomial.heads_ne` | full |
+| Galois lemma: an eigen-row of `Λ²M` vanishing on a nonzero rational vector is zero | `Psc.Cyclicity.eigenrow_wedge2` (via `cyclic_of_irreducible`, `irreducible_wedge2`, `ConcentrationAlgebra.eigenrow_eq_zero`) | given `χ_M` irreducible; that `K₂(σT) = Λ²M·K₂(T)` in these coordinates is `prop:midarea`, not formalized |
+| Invariant subspaces of an irreducible `3×3` matrix are `0` or everything | `Psc.Cyclicity.invariant_eq_bot_or_top` | full |
+| Positivity core: `N|v| ≥ β|v| ⇒ =`; nonnegative eigenvectors have full support; `\|x\|` is an eigenvector when `x` is one for `S` with `\|S\| ≤ N` | `Psc.PerronCore.*` | given a positive left `β`-eigenvector `L` of `N` (from `thm:parikh`: `L = ℓP`) |
+| Wielandt's equality case: `S = c·D N D⁻¹`, `\|c\| = 1`, `\|D\| = 1` | `Psc.Wielandt.wielandt` | given `L` as above; the Perron–Frobenius existence theorem is not needed |
+| Theorem A(iii): real `S`, eigenvalue `±β` ⇒ `S = ±D N D` with `D ∈ {±1}` | `Psc.Wielandt.gauge_of_real` | given `L` |
+| Cycle relation `(μ/β)^{2ℓ} = 1` | `Psc.Wielandt.cycle_relation` | given `L` |
+| Theorem A(ii), `(2,2,0)` eigenvalue `β²α²` impossible for PIP | `Psc.Wielandt.no_220_eigenvalue`, `Psc.Degree4Sector.*` | given `L` and that `β²α²` is an eigenvalue of `S` |
+| Theorem A(ii), modulus eliminations `(3,1,0)`, `(2,2,0)`, `(2,1,1)`, `(1,1,1)` | `Psc.WeightModulus.weight_310`, `weight_220`, `weight_211`, `weight_111` | full as inequalities; the Galois-orbit step (a conjugate puts the largest exponent on `β`) is being formalized in `GaloisOrbit`, not yet in this revision |
+| Theorem A(iv): Perron simplicity gives `ker P ∩ ker χ_M(N) = 0`, hence the split hypothesis and `Q = L'∘P` | `Psc.PerronSimple.charpoly_kerP_injective`, `hsplit_of_perron`, `factor_through_parikh` | given `L = ℓP > 0`, `χ_M` irreducible, `P` onto |
+| Theorem A(iv), injectivity of `L` | `Psc.ConcentrationAlgebra.injective_of_irreducible` | full |
+| Control `T13`/`M0`: irreducible, `∼₂`, `K₃ ≠ 0`, `M0^{⊗3}K₃ = det(M0)·K₃`, `det M0 = −2` | `Psc.ConcentrationControls.t13_*`, `m0_*` | full (kernel `decide`) |
+| `χ_{M0} = x³ − 32x² + 5x + 2` is monic integral, irreducible, and Pisot | `Psc.M0Pisot.f_is_charpoly`, `f_monic`, `f_eq_map`, `f_irreducible`, `m0_pisot` | full |
 | Control `011/2/120`: `0112201 ∼₂ 1200112`, both factors of `σ⁶(0)` | `Psc.ConcentrationControls.factors_equiv2`, `factors_occur` | full (kernel `decide`) |
 
-A mutant of `t13_det_sector` with `det` replaced by `2` fails to compile.
+**Not formalized.** These remain manuscript results:
+- the weight list of `Lie₄(ℚ³)` (Witt formula) and the semisimplicity of `Φ`;
+- the first-defect intertwiner `Q_r S = Φ_r Q_r` and the bound `ρ(S) ≤ β`
+  (`thm:defect-intertwiner`, `prop:cocycle`);
+- the identification of `N`, `S`, `P`, `L` with the data of an actual strict
+  component (`thm:parikh`).
+
+The Lean results are the algebraic and analytic steps of §§2–3 applied to
+those inputs. A mutant of `t13_det_sector` with `det` replaced by `2` fails to
+compile.
 
 ## 9. Replay
 

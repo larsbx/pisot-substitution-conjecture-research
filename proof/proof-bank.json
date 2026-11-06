@@ -1826,11 +1826,19 @@
       "declaration": "theorem Equiv2.refl (x : List α) : Equiv2 x x := ⟨fun _ => rfl, fun _ _ => rfl⟩"
     },
     {
+      "name": "Psc.Binomial.Equiv1.length_eq",
+      "module": "PscVerif.Binomial",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Binomial.lean",
+      "line": 72,
+      "declaration": "theorem Equiv1.length_eq {x y : List α} (h : Equiv1 x y) : x.length = y.length :="
+    },
+    {
       "name": "Psc.Binomial.equiv2_join",
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 73,
+      "line": 77,
       "declaration": "theorem equiv2_join (bs : List (List α × List α)) (h : ∀ T ∈ bs, Equiv2 T.1 T.2) :"
     },
     {
@@ -1838,7 +1846,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 82,
+      "line": 86,
       "declaration": "theorem equiv2_at_cuts (bs : List (List α × List α)) (h : ∀ T ∈ bs, Equiv2 T.1 T.2)"
     },
     {
@@ -1846,7 +1854,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 91,
+      "line": 95,
       "declaration": "theorem subst_append (s : α → List α) (x y : List α) :"
     },
     {
@@ -1854,7 +1862,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 94,
+      "line": 98,
       "declaration": "theorem subst_prefix (s : α → List α) {x y : List α} (h : x <+: y) :"
     },
     {
@@ -1862,7 +1870,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 98,
+      "line": 102,
       "declaration": "theorem iterate_subst_append (s : α → List α) (n : ℕ) (x y : List α) :"
     },
     {
@@ -1870,7 +1878,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 104,
+      "line": 108,
       "declaration": "theorem iterate_subst_nil (s : α → List α) (n : ℕ) : (subst s)^[n] [] = [] :="
     },
     {
@@ -1878,7 +1886,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 107,
+      "line": 111,
       "declaration": "theorem iterate_subst_flatten (s : α → List α) (n : ℕ) (ws : List (List α)) :"
     },
     {
@@ -1886,7 +1894,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 134,
+      "line": 138,
       "declaration": "theorem desc_mem (n : ℕ) : ∀ T ∈ S.C, ∀ U ∈ S.desc n T, U ∈ S.C := by"
     },
     {
@@ -1894,7 +1902,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 145,
+      "line": 149,
       "declaration": "theorem desc_top (n : ℕ) : ∀ T ∈ S.C,"
     },
     {
@@ -1902,7 +1910,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 157,
+      "line": 161,
       "declaration": "theorem desc_bot (n : ℕ) : ∀ T ∈ S.C,"
     },
     {
@@ -1910,7 +1918,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 172,
+      "line": 176,
       "declaration": "theorem first_mem : ∀ T ∈ S.C, S.first T ∈ S.C := by"
     },
     {
@@ -1918,7 +1926,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 179,
+      "line": 183,
       "declaration": "theorem first_prefix_top : ∀ T ∈ S.C, (S.first T).1 <+: subst S.s T.1 := by"
     },
     {
@@ -1926,7 +1934,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 187,
+      "line": 191,
       "declaration": "theorem first_prefix_bot : ∀ T ∈ S.C, (S.first T).2 <+: subst S.s T.2 := by"
     },
     {
@@ -1934,7 +1942,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 195,
+      "line": 199,
       "declaration": "theorem iterate_first_mem (n : ℕ) : ∀ T ∈ S.C, S.first^[n] T ∈ S.C := by"
     },
     {
@@ -1942,7 +1950,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 200,
+      "line": 204,
       "declaration": "theorem iterate_first_prefix (n : ℕ) : ∀ T ∈ S.C,"
     },
     {
@@ -1950,7 +1958,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 213,
+      "line": 217,
       "declaration": "theorem exists_periodic (T : List α × List α) (hT : T ∈ S.C) :"
     },
     {
@@ -1958,7 +1966,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 230,
+      "line": 234,
       "declaration": "theorem reduction_lemma (T : List α × List α) (hT : T ∈ S.C)"
     },
     {
@@ -1966,7 +1974,7 @@
       "module": "PscVerif.Binomial",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Binomial.lean",
-      "line": 253,
+      "line": 257,
       "declaration": "theorem heads_ne {a b : α} {u v : List α} (hbal : Equiv1 (a :: u) (b :: v))"
     },
     {
@@ -2234,11 +2242,99 @@
       "declaration": "theorem factors_occur :"
     },
     {
+      "name": "Psc.Cyclicity.cyclic_of_irreducible",
+      "module": "PscVerif.Cyclicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Cyclicity.lean",
+      "line": 69,
+      "declaration": "theorem cyclic_of_irreducible (W : Matrix (Fin 3) (Fin 3) F)"
+    },
+    {
+      "name": "Psc.Cyclicity.invariant_eq_bot_or_top",
+      "module": "PscVerif.Cyclicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Cyclicity.lean",
+      "line": 107,
+      "declaration": "theorem invariant_eq_bot_or_top (W : Matrix (Fin 3) (Fin 3) F)"
+    },
+    {
+      "name": "Psc.Cyclicity.wedge2_transpose_mul_mul",
+      "module": "PscVerif.Cyclicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Cyclicity.lean",
+      "line": 149,
+      "declaration": "theorem wedge2_transpose_mul_mul (M : Matrix (Fin 3) (Fin 3) R) :"
+    },
+    {
+      "name": "Psc.Cyclicity.exists_eigenvector_of_isRoot",
+      "module": "PscVerif.Cyclicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Cyclicity.lean",
+      "line": 165,
+      "declaration": "theorem exists_eigenvector_of_isRoot (A : Matrix (Fin 3) (Fin 3) F) (r : F)"
+    },
+    {
+      "name": "Psc.Cyclicity.isRoot_of_left_eigen",
+      "module": "PscVerif.Cyclicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Cyclicity.lean",
+      "line": 174,
+      "declaration": "theorem isRoot_of_left_eigen (A : Matrix (Fin 3) (Fin 3) F) (μ : F) (u : Fin 3 → F)"
+    },
+    {
+      "name": "Psc.Cyclicity.not_isRoot_of_irreducible",
+      "module": "PscVerif.Cyclicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Cyclicity.lean",
+      "line": 180,
+      "declaration": "theorem not_isRoot_of_irreducible (A : Matrix (Fin 3) (Fin 3) F)"
+    },
+    {
+      "name": "Psc.Cyclicity.det_ne_zero_of_irreducible",
+      "module": "PscVerif.Cyclicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Cyclicity.lean",
+      "line": 188,
+      "declaration": "theorem det_ne_zero_of_irreducible (A : Matrix (Fin 3) (Fin 3) F)"
+    },
+    {
+      "name": "Psc.Cyclicity.vecMul_wedgePairing_ne_zero",
+      "module": "PscVerif.Cyclicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Cyclicity.lean",
+      "line": 194,
+      "declaration": "theorem vecMul_wedgePairing_ne_zero (v : Fin 3 → F) (hv : v ≠ 0) :"
+    },
+    {
+      "name": "Psc.Cyclicity.irreducible_wedge2_of_field",
+      "module": "PscVerif.Cyclicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Cyclicity.lean",
+      "line": 205,
+      "declaration": "theorem irreducible_wedge2_of_field (M : Matrix (Fin 3) (Fin 3) F)"
+    },
+    {
+      "name": "Psc.Cyclicity.irreducible_wedge2",
+      "module": "PscVerif.Cyclicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Cyclicity.lean",
+      "line": 230,
+      "declaration": "theorem irreducible_wedge2 (M : Matrix (Fin 3) (Fin 3) ℚ)"
+    },
+    {
+      "name": "Psc.Cyclicity.eigenrow_wedge2",
+      "module": "PscVerif.Cyclicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Cyclicity.lean",
+      "line": 238,
+      "declaration": "theorem eigenrow_wedge2 {K : Type*} [Field K] [Algebra ℚ K]"
+    },
+    {
       "name": "Psc.Degree4Sector.pow_eq_conj_pow_of_cycle",
       "module": "PscVerif.Degree4Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree4Sector.lean",
-      "line": 27,
+      "line": 28,
       "declaration": "theorem pow_eq_conj_pow_of_cycle (β α d : ℂ) (hα : α ≠ 0) (hconj : (starRingEnd ℂ) α ≠ 0)"
     },
     {
@@ -2246,7 +2342,7 @@
       "module": "PscVerif.Degree4Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree4Sector.lean",
-      "line": 38,
+      "line": 39,
       "declaration": "theorem root_pow_eq_of_pow_eq_conj_pow (f : ℚ[X]) (hf : Irreducible f) (hdeg : f.natDegree = 3)"
     },
     {
@@ -2254,8 +2350,456 @@
       "module": "PscVerif.Degree4Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree4Sector.lean",
-      "line": 85,
+      "line": 86,
       "declaration": "theorem no_220_sector (f : ℚ[X]) (hf : Irreducible f) (hdeg : f.natDegree = 3)"
+    },
+    {
+      "name": "Psc.FixedPointLimit.iterate_subst_prefix",
+      "module": "PscVerif.FixedPointLimit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FixedPointLimit.lean",
+      "line": 79,
+      "declaration": "theorem iterate_subst_prefix (s : α → List α) (k : ℕ) {x y : List α} (h : x <+: y) :"
+    },
+    {
+      "name": "Psc.FixedPointLimit.iterate_mul_succ",
+      "module": "PscVerif.FixedPointLimit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FixedPointLimit.lean",
+      "line": 87,
+      "declaration": "theorem iterate_mul_succ (s : α → List α) (u : List α) (p n : ℕ) :"
+    },
+    {
+      "name": "Psc.FixedPointLimit.chain_succ",
+      "module": "PscVerif.FixedPointLimit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FixedPointLimit.lean",
+      "line": 93,
+      "declaration": "theorem chain_succ (s : α → List α) {u : List α} {p : ℕ} (hu : u <+: (subst s)^[p] u)"
+    },
+    {
+      "name": "Psc.FixedPointLimit.chain_mono",
+      "module": "PscVerif.FixedPointLimit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FixedPointLimit.lean",
+      "line": 101,
+      "declaration": "theorem chain_mono (s : α → List α) {u : List α} {p : ℕ} (hu : u <+: (subst s)^[p] u) :"
+    },
+    {
+      "name": "Psc.FixedPointLimit.pos_of_grow",
+      "module": "PscVerif.FixedPointLimit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FixedPointLimit.lean",
+      "line": 109,
+      "declaration": "theorem pos_of_grow (s : α → List α) (u : List α) (p : ℕ)"
+    },
+    {
+      "name": "Psc.FixedPointLimit.limit_spec",
+      "module": "PscVerif.FixedPointLimit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FixedPointLimit.lean",
+      "line": 126,
+      "declaration": "theorem limit_spec (s : α → List α) {u : List α} {p : ℕ} (hu : u <+: (subst s)^[p] u)"
+    },
+    {
+      "name": "Psc.FixedPointLimit.ofFn_limit_eq_take",
+      "module": "PscVerif.FixedPointLimit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FixedPointLimit.lean",
+      "line": 140,
+      "declaration": "theorem ofFn_limit_eq_take (s : α → List α) {u : List α} {p : ℕ}"
+    },
+    {
+      "name": "Psc.FixedPointLimit.ofFn_limit_of_prefix",
+      "module": "PscVerif.FixedPointLimit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FixedPointLimit.lean",
+      "line": 155,
+      "declaration": "theorem ofFn_limit_of_prefix (s : α → List α) {u : List α} {p : ℕ}"
+    },
+    {
+      "name": "Psc.FixedPointLimit.limit_fixed_eq",
+      "module": "PscVerif.FixedPointLimit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FixedPointLimit.lean",
+      "line": 165,
+      "declaration": "theorem limit_fixed_eq (s : α → List α) {u : List α} {p : ℕ}"
+    },
+    {
+      "name": "Psc.FixedPointLimit.limit_fixed",
+      "module": "PscVerif.FixedPointLimit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FixedPointLimit.lean",
+      "line": 182,
+      "declaration": "theorem limit_fixed (s : α → List α) {u : List α} {p : ℕ}"
+    },
+    {
+      "name": "Psc.FixedPointLimit.exists_cut",
+      "module": "PscVerif.FixedPointLimit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FixedPointLimit.lean",
+      "line": 194,
+      "declaration": "theorem exists_cut (B : ℕ) : ∀ (ws : List (List α)), (∀ w ∈ ws, w.length ≤ B) →"
+    },
+    {
+      "name": "Psc.FixedPointLimit.fixed_points_equiv2_syndetic",
+      "module": "PscVerif.FixedPointLimit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FixedPointLimit.lean",
+      "line": 219,
+      "declaration": "theorem fixed_points_equiv2_syndetic (S : ChildSystem α) {T₀ : List α × List α}"
+    },
+    {
+      "name": "Psc.FixedPointLimit.subst_ne_nil",
+      "module": "PscVerif.FixedPointLimit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FixedPointLimit.lean",
+      "line": 267,
+      "declaration": "theorem subst_ne_nil (s : α → List α) (hs : ∀ a, s a ≠ []) {w : List α} (hw : w ≠ []) :"
+    },
+    {
+      "name": "Psc.FixedPointLimit.iterate_subst_ne_nil",
+      "module": "PscVerif.FixedPointLimit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FixedPointLimit.lean",
+      "line": 272,
+      "declaration": "theorem iterate_subst_ne_nil (s : α → List α) (hs : ∀ a, s a ≠ []) (k : ℕ) {w : List α}"
+    },
+    {
+      "name": "Psc.FixedPointLimit.length_le_subst",
+      "module": "PscVerif.FixedPointLimit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FixedPointLimit.lean",
+      "line": 279,
+      "declaration": "theorem length_le_subst (s : α → List α) (hs : ∀ a, s a ≠ []) (w : List α) :"
+    },
+    {
+      "name": "Psc.FixedPointLimit.length_le_iterate_subst",
+      "module": "PscVerif.FixedPointLimit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FixedPointLimit.lean",
+      "line": 288,
+      "declaration": "theorem length_le_iterate_subst (s : α → List α) (hs : ∀ a, s a ≠ []) (k : ℕ) (w : List α) :"
+    },
+    {
+      "name": "Psc.FixedPointLimit.grow_of_nonerasing",
+      "module": "PscVerif.FixedPointLimit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FixedPointLimit.lean",
+      "line": 298,
+      "declaration": "theorem grow_of_nonerasing (s : α → List α) (hs : ∀ a, s a ≠ []) {u : List α} {p : ℕ}"
+    },
+    {
+      "name": "Psc.FixedPointLimit.limit_zero",
+      "module": "PscVerif.FixedPointLimit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FixedPointLimit.lean",
+      "line": 321,
+      "declaration": "theorem limit_zero (s : α → List α) {u : List α} {p : ℕ} (hu : u <+: (subst s)^[p] u)"
+    },
+    {
+      "name": "Psc.FixedPointLimit.reduction_limit",
+      "module": "PscVerif.FixedPointLimit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FixedPointLimit.lean",
+      "line": 338,
+      "declaration": "theorem reduction_limit (S : ChildSystem α) (hs : ∀ a, S.s a ≠ [])"
+    },
+    {
+      "name": "Psc.M0Pisot.M0_eq_m0",
+      "module": "PscVerif.M0Pisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/M0Pisot.lean",
+      "line": 46,
+      "declaration": "theorem M0_eq_m0 : ∀ i j, M0 i j = (Psc.ConcentrationControls.m0 i j : ℚ) := by"
+    },
+    {
+      "name": "Psc.M0Pisot.aeval_f",
+      "module": "PscVerif.M0Pisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/M0Pisot.lean",
+      "line": 50,
+      "declaration": "theorem aeval_f {A : Type*} [CommRing A] [Algebra ℚ A] (z : A) :"
+    },
+    {
+      "name": "Psc.M0Pisot.aeval_fZ",
+      "module": "PscVerif.M0Pisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/M0Pisot.lean",
+      "line": 54,
+      "declaration": "theorem aeval_fZ {A : Type*} [CommRing A] [Algebra ℤ A] (z : A) :"
+    },
+    {
+      "name": "Psc.M0Pisot.natDegree_f",
+      "module": "PscVerif.M0Pisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/M0Pisot.lean",
+      "line": 58,
+      "declaration": "theorem natDegree_f : f.natDegree = 3 := by"
+    },
+    {
+      "name": "Psc.M0Pisot.monic_fZ",
+      "module": "PscVerif.M0Pisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/M0Pisot.lean",
+      "line": 61,
+      "declaration": "theorem monic_fZ : fZ.Monic := by"
+    },
+    {
+      "name": "Psc.M0Pisot.coeff_zero_fZ",
+      "module": "PscVerif.M0Pisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/M0Pisot.lean",
+      "line": 64,
+      "declaration": "theorem coeff_zero_fZ : fZ.coeff 0 = 2 := by"
+    },
+    {
+      "name": "Psc.M0Pisot.f_eq_map",
+      "module": "PscVerif.M0Pisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/M0Pisot.lean",
+      "line": 69,
+      "declaration": "theorem f_eq_map : f = fZ.map (Int.castRingHom ℚ) := by"
+    },
+    {
+      "name": "Psc.M0Pisot.f_monic",
+      "module": "PscVerif.M0Pisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/M0Pisot.lean",
+      "line": 73,
+      "declaration": "theorem f_monic : f.Monic := by"
+    },
+    {
+      "name": "Psc.M0Pisot.f_irreducible",
+      "module": "PscVerif.M0Pisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/M0Pisot.lean",
+      "line": 76,
+      "declaration": "theorem f_irreducible : Irreducible f := by"
+    },
+    {
+      "name": "Psc.M0Pisot.f_is_charpoly",
+      "module": "PscVerif.M0Pisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/M0Pisot.lean",
+      "line": 93,
+      "declaration": "theorem f_is_charpoly : M0.charpoly = f := by"
+    },
+    {
+      "name": "Psc.M0Pisot.sum_of_distinct_roots",
+      "module": "PscVerif.M0Pisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/M0Pisot.lean",
+      "line": 100,
+      "declaration": "theorem sum_of_distinct_roots {K : Type*} [Field K] {a b c : K}"
+    },
+    {
+      "name": "Psc.M0Pisot.g_continuous",
+      "module": "PscVerif.M0Pisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/M0Pisot.lean",
+      "line": 124,
+      "declaration": "theorem g_continuous : Continuous g := by unfold g; fun_prop"
+    },
+    {
+      "name": "Psc.M0Pisot.exists_root_neg",
+      "module": "PscVerif.M0Pisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/M0Pisot.lean",
+      "line": 126,
+      "declaration": "theorem exists_root_neg : ∃ r ∈ Set.Ioo (-1 : ℝ) 0, g r = 0 := by"
+    },
+    {
+      "name": "Psc.M0Pisot.exists_root_small",
+      "module": "PscVerif.M0Pisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/M0Pisot.lean",
+      "line": 130,
+      "declaration": "theorem exists_root_small : ∃ r ∈ Set.Ioo (0 : ℝ) 1, g r = 0 := by"
+    },
+    {
+      "name": "Psc.M0Pisot.exists_root_big",
+      "module": "PscVerif.M0Pisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/M0Pisot.lean",
+      "line": 134,
+      "declaration": "theorem exists_root_big : ∃ r ∈ Set.Ioo (1 : ℝ) 32, g r = 0 := by"
+    },
+    {
+      "name": "Psc.M0Pisot.aeval_ofReal_f",
+      "module": "PscVerif.M0Pisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/M0Pisot.lean",
+      "line": 138,
+      "declaration": "theorem aeval_ofReal_f (r : ℝ) (hr : g r = 0) : aeval (r : ℂ) f = 0 := by"
+    },
+    {
+      "name": "Psc.M0Pisot.m0_pisot",
+      "module": "PscVerif.M0Pisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/M0Pisot.lean",
+      "line": 147,
+      "declaration": "theorem m0_pisot : ∃ b : ℝ, 1 < b ∧ aeval (b : ℂ) f = 0 ∧"
+    },
+    {
+      "name": "Psc.PerronCore.super_eigen_eq",
+      "module": "PscVerif.PerronCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PerronCore.lean",
+      "line": 69,
+      "declaration": "theorem super_eigen_eq (N : Matrix ι ι ℝ) (L : ι → ℝ) (hL : ∀ i, 0 < L i) (β : ℝ)"
+    },
+    {
+      "name": "Psc.PerronCore.eq_zero_of_edge",
+      "module": "PscVerif.PerronCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PerronCore.lean",
+      "line": 92,
+      "declaration": "theorem eq_zero_of_edge (N : Matrix ι ι ℝ) (hN : ∀ i j, 0 ≤ N i j) (β : ℝ) (v : ι → ℝ)"
+    },
+    {
+      "name": "Psc.PerronCore.eq_zero_of_transGen",
+      "module": "PscVerif.PerronCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PerronCore.lean",
+      "line": 105,
+      "declaration": "theorem eq_zero_of_transGen (N : Matrix ι ι ℝ) (hN : ∀ i j, 0 ≤ N i j) (β : ℝ) (v : ι → ℝ)"
+    },
+    {
+      "name": "Psc.PerronCore.pos_of_eigen",
+      "module": "PscVerif.PerronCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PerronCore.lean",
+      "line": 114,
+      "declaration": "theorem pos_of_eigen (N : Matrix ι ι ℝ) (hN : ∀ i j, 0 ≤ N i j) (hSC : StronglyConnected N)"
+    },
+    {
+      "name": "Psc.PerronCore.row_chain",
+      "module": "PscVerif.PerronCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PerronCore.lean",
+      "line": 126,
+      "declaration": "theorem row_chain (N : Matrix ι ι ℝ) (S : Matrix ι ι ℂ) (hS : ∀ i j, ‖S i j‖ ≤ N i j)"
+    },
+    {
+      "name": "Psc.PerronCore.norm_eigen",
+      "module": "PscVerif.PerronCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PerronCore.lean",
+      "line": 143,
+      "declaration": "theorem norm_eigen (N : Matrix ι ι ℝ) (L : ι → ℝ) (hL : ∀ i, 0 < L i) (β : ℝ)"
+    },
+    {
+      "name": "Psc.PerronCore.norm_eigen_pos",
+      "module": "PscVerif.PerronCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PerronCore.lean",
+      "line": 164,
+      "declaration": "theorem norm_eigen_pos (N : Matrix ι ι ℝ) (hSC : StronglyConnected N) (L : ι → ℝ)"
+    },
+    {
+      "name": "Psc.PerronCore.abs_eigen_real",
+      "module": "PscVerif.PerronCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PerronCore.lean",
+      "line": 197,
+      "declaration": "theorem abs_eigen_real (N : Matrix ι ι ℝ) (L : ι → ℝ) (hL : ∀ i, 0 < L i) (β : ℝ)"
+    },
+    {
+      "name": "Psc.PerronCore.abs_eigen_real_pos",
+      "module": "PscVerif.PerronCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PerronCore.lean",
+      "line": 207,
+      "declaration": "theorem abs_eigen_real_pos (N : Matrix ι ι ℝ) (hSC : StronglyConnected N) (L : ι → ℝ)"
+    },
+    {
+      "name": "Psc.PerronCore.beta_nonneg",
+      "module": "PscVerif.PerronCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PerronCore.lean",
+      "line": 228,
+      "declaration": "theorem beta_nonneg (i : ι) : 0 ≤ β := by"
+    },
+    {
+      "name": "Psc.PerronCore.abs_eigen",
+      "module": "PscVerif.PerronCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PerronCore.lean",
+      "line": 240,
+      "declaration": "theorem abs_eigen (hβ : 0 ≤ β) (w : ι → ℝ) (hw : A *ᵥ w = β • w) :"
+    },
+    {
+      "name": "Psc.PerronCore.full_support",
+      "module": "PscVerif.PerronCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PerronCore.lean",
+      "line": 256,
+      "declaration": "theorem full_support (hSC : StronglyConnected A) (hβ : 0 ≤ β) (w : ι → ℝ)"
+    },
+    {
+      "name": "Psc.PerronSimple.mul_aeval_of_intertwine",
+      "module": "PscVerif.PerronSimple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PerronSimple.lean",
+      "line": 93,
+      "declaration": "theorem mul_aeval_of_intertwine {R m n : Type*} [CommRing R] [Fintype m] [DecidableEq m]"
+    },
+    {
+      "name": "Psc.PerronSimple.cast_mulVec",
+      "module": "PscVerif.PerronSimple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PerronSimple.lean",
+      "line": 107,
+      "declaration": "theorem cast_mulVec {m n : Type*} [Fintype n] (A : Matrix m n ℚ) (v : n → ℚ) :"
+    },
+    {
+      "name": "Psc.PerronSimple.cast_aeval",
+      "module": "PscVerif.PerronSimple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PerronSimple.lean",
+      "line": 113,
+      "declaration": "theorem cast_aeval (N : Matrix ι ι ℚ) (p : ℚ[X]) :"
+    },
+    {
+      "name": "Psc.PerronSimple.eq_zero_of_aeval_of_degree_lt",
+      "module": "PscVerif.PerronSimple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PerronSimple.lean",
+      "line": 122,
+      "declaration": "theorem eq_zero_of_aeval_of_degree_lt {F n : Type*} [Field F] [Fintype n] [DecidableEq n]"
+    },
+    {
+      "name": "Psc.PerronSimple.isRoot_of_real_left_eigen",
+      "module": "PscVerif.PerronSimple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PerronSimple.lean",
+      "line": 133,
+      "declaration": "theorem isRoot_of_real_left_eigen {n : Type*} [Fintype n] [DecidableEq n] (M : Matrix n n ℚ)"
+    },
+    {
+      "name": "Psc.PerronSimple.charpoly_kerP_injective",
+      "module": "PscVerif.PerronSimple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PerronSimple.lean",
+      "line": 148,
+      "declaration": "theorem charpoly_kerP_injective (N : Matrix ι ι ℚ) (hN : ∀ i j, 0 ≤ N i j)"
+    },
+    {
+      "name": "Psc.PerronSimple.hsplit_of_perron",
+      "module": "PscVerif.PerronSimple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PerronSimple.lean",
+      "line": 289,
+      "declaration": "theorem hsplit_of_perron (N : Matrix ι ι ℚ) (hN : ∀ i j, 0 ≤ N i j)"
+    },
+    {
+      "name": "Psc.PerronSimple.factor_through_parikh",
+      "module": "PscVerif.PerronSimple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PerronSimple.lean",
+      "line": 330,
+      "declaration": "theorem factor_through_parikh (N : Matrix ι ι ℚ) (hN : ∀ i j, 0 ≤ N i j)"
     },
     {
       "name": "PscVerif.QuotientDistance.path_lift",
@@ -2624,6 +3168,158 @@
       "source": "proof/PscVerif/PscVerif/TraceLemma.lean",
       "line": 67,
       "declaration": "theorem Aq_not_conj_cyclicMinus (k : Fin 6) (P Q : Matrix (Fin 3) (Fin 3) ℚ)"
+    },
+    {
+      "name": "Psc.WeightModulus.norm_d",
+      "module": "PscVerif.WeightModulus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WeightModulus.lean",
+      "line": 71,
+      "declaration": "theorem norm_d (hβ : 1 < β) (hdet : (β : ℂ) * α * γ = d) :"
+    },
+    {
+      "name": "Psc.WeightModulus.inv_lt_norm_left",
+      "module": "PscVerif.WeightModulus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WeightModulus.lean",
+      "line": 77,
+      "declaration": "theorem inv_lt_norm_left (hβ : 1 < β) (hγ : ‖γ‖ < 1)"
+    },
+    {
+      "name": "Psc.WeightModulus.inv_lt_norm_right",
+      "module": "PscVerif.WeightModulus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WeightModulus.lean",
+      "line": 94,
+      "declaration": "theorem inv_lt_norm_right (hβ : 1 < β) (hα : ‖α‖ < 1)"
+    },
+    {
+      "name": "Psc.WeightModulus.cube_bound",
+      "module": "PscVerif.WeightModulus",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/WeightModulus.lean",
+      "line": 99,
+      "declaration": "private theorem cube_bound (hβ : 1 < β) {x : ℂ} (hx : β⁻¹ < ‖x‖) :"
+    },
+    {
+      "name": "Psc.WeightModulus.weight_310",
+      "module": "PscVerif.WeightModulus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WeightModulus.lean",
+      "line": 109,
+      "declaration": "theorem weight_310 (hβ : 1 < β) (hα : ‖α‖ < 1) (hγ : ‖γ‖ < 1)"
+    },
+    {
+      "name": "Psc.WeightModulus.weight_220",
+      "module": "PscVerif.WeightModulus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WeightModulus.lean",
+      "line": 120,
+      "declaration": "theorem weight_220 (hβ : 1 < β)"
+    },
+    {
+      "name": "Psc.WeightModulus.weight_211",
+      "module": "PscVerif.WeightModulus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WeightModulus.lean",
+      "line": 173,
+      "declaration": "theorem weight_211 (hβ : 1 < β) (hd : 1 ≤ ‖d‖) (h : ‖d * (β : ℂ)‖ ≤ β) :"
+    },
+    {
+      "name": "Psc.WeightModulus.weight_211_moduli",
+      "module": "PscVerif.WeightModulus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WeightModulus.lean",
+      "line": 182,
+      "declaration": "theorem weight_211_moduli (hβ : 1 < β) (hα : ‖α‖ < 1) (hγ : ‖γ‖ < 1)"
+    },
+    {
+      "name": "Psc.WeightModulus.weight_111",
+      "module": "PscVerif.WeightModulus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WeightModulus.lean",
+      "line": 196,
+      "declaration": "theorem weight_111 (hβ : 1 < β) (hα : ‖α‖ < 1) (hγ : ‖γ‖ < 1)"
+    },
+    {
+      "name": "Psc.WeightModulus.aeval_monomial_algHom",
+      "module": "PscVerif.WeightModulus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WeightModulus.lean",
+      "line": 220,
+      "declaration": "theorem aeval_monomial_algHom {K : Type*} [CommRing K] [Algebra ℚ K]"
+    },
+    {
+      "name": "Psc.WeightModulus.gal_monomial_relation",
+      "module": "PscVerif.WeightModulus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WeightModulus.lean",
+      "line": 232,
+      "declaration": "theorem gal_monomial_relation (f : ℚ[X]) (σ : f.Gal) (β α γ : f.SplittingField)"
+    },
+    {
+      "name": "Psc.Wielandt.eq_norm_mul_of_re_eq",
+      "module": "PscVerif.Wielandt",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Wielandt.lean",
+      "line": 63,
+      "declaration": "theorem eq_norm_mul_of_re_eq {u w : ℂ} (hu : ‖u‖ = 1)"
+    },
+    {
+      "name": "Psc.Wielandt.eq_norm_mul_of_norm_sum_eq",
+      "module": "PscVerif.Wielandt",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Wielandt.lean",
+      "line": 82,
+      "declaration": "theorem eq_norm_mul_of_norm_sum_eq {κ : Type*} [Fintype κ] (z : κ → ℂ)"
+    },
+    {
+      "name": "Psc.Wielandt.beta_pos",
+      "module": "PscVerif.Wielandt",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Wielandt.lean",
+      "line": 106,
+      "declaration": "theorem beta_pos (N : Matrix ι ι ℝ) (hSC : StronglyConnected N) (L : ι → ℝ)"
+    },
+    {
+      "name": "Psc.Wielandt.wielandt",
+      "module": "PscVerif.Wielandt",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Wielandt.lean",
+      "line": 129,
+      "declaration": "theorem wielandt (N : Matrix ι ι ℝ) (hSC : StronglyConnected N) (L : ι → ℝ)"
+    },
+    {
+      "name": "Psc.Wielandt.eq_one_or_neg_one_of_real",
+      "module": "PscVerif.Wielandt",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Wielandt.lean",
+      "line": 166,
+      "declaration": "theorem eq_one_or_neg_one_of_real {q : ℂ} (r : ℝ) (hqr : q = r) (hq : ‖q‖ = 1) :"
+    },
+    {
+      "name": "Psc.Wielandt.gauge_of_real",
+      "module": "PscVerif.Wielandt",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Wielandt.lean",
+      "line": 176,
+      "declaration": "theorem gauge_of_real (N : Matrix ι ι ℝ) (hSC : StronglyConnected N) (L : ι → ℝ)"
+    },
+    {
+      "name": "Psc.Wielandt.cycle_relation",
+      "module": "PscVerif.Wielandt",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Wielandt.lean",
+      "line": 260,
+      "declaration": "theorem cycle_relation (N : Matrix ι ι ℝ) (hSC : StronglyConnected N) (L : ι → ℝ)"
+    },
+    {
+      "name": "Psc.Wielandt.no_220_eigenvalue",
+      "module": "PscVerif.Wielandt",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Wielandt.lean",
+      "line": 316,
+      "declaration": "theorem no_220_eigenvalue (f : Polynomial ℚ) (hf : Irreducible f) (hdeg : f.natDegree = 3)"
     }
   ],
   "source_statements": [
@@ -4572,21 +5268,28 @@
     "claim_governance.toml": "5642e664f9a79064ffbaf770719cf0acba52accc75fca568711d4b554a08803e",
     "proof/PscVerif/ProofBankAudit.lean": "df46d0e65bf4aa0b6c2ca184a784974970c58f8c2c3de38eb4ed713efacce904",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
-    "proof/PscVerif/PscVerif/Binomial.lean": "8b868b37e1ea08d48682109536229c071aa1a53d28c2770f3682243f5851e9bb",
+    "proof/PscVerif/PscVerif/Binomial.lean": "f70ba3de093bd2a282152d16f462afc19bf1d1034685167252ad481ab1257f68",
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
     "proof/PscVerif/PscVerif/BoundarySeedPath.lean": "bea69cb93d5bcd15b1b88c48062b4404a721908092af1b5f5b42e6184f7abae3",
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
     "proof/PscVerif/PscVerif/ClassBRegime.lean": "1c873d0aea0201c3a60486dc90bce00e9f9612019ad72c5344cfa927d93a23e6",
     "proof/PscVerif/PscVerif/ConcentrationAlgebra.lean": "99ca8d13f6ef41ad91147883629c5aa2ec34736b09ea12773ebbb5f2c5e7d56a",
     "proof/PscVerif/PscVerif/ConcentrationControls.lean": "427a2b1a92b492a06447c0109bb7eaea2607c89fee743a0f5a6bcada47eb5964",
-    "proof/PscVerif/PscVerif/Degree4Sector.lean": "511887cc68608abe701fc320b005f4053c99ad8c76f4fcdc2d2980af47315a80",
+    "proof/PscVerif/PscVerif/Cyclicity.lean": "a45da70d91ae61b295d9306910b5c55e97707f641ee541306076f0d9bae55691",
+    "proof/PscVerif/PscVerif/Degree4Sector.lean": "7afc131498833c8346b21872981c6f7aa4b7a736fdc952ff84b9b8c071b86f63",
+    "proof/PscVerif/PscVerif/FixedPointLimit.lean": "9a6a957736d543b8fe48f3d1c1a748e19e15ee1b0f6ac74aaf6579eb59365cfb",
+    "proof/PscVerif/PscVerif/M0Pisot.lean": "65d17cf0aa71cdac825d16da73ad601dd49c214cd0b47ac58f124cb51a64a304",
+    "proof/PscVerif/PscVerif/PerronCore.lean": "1f06da1e0b57e74b31fc03d753bd314f25561a37e512b3a8f7f05fda0d75458c",
+    "proof/PscVerif/PscVerif/PerronSimple.lean": "e6938b72b99f57883cb6b2911b4847c8a8029eadff01795c882490715a85b749",
     "proof/PscVerif/PscVerif/QuotientDistance.lean": "1431961ca4d26d60e5bf5165c7773440e7a708b51377697e339f94f7cf5896ef",
     "proof/PscVerif/PscVerif/Seeds.lean": "224a67ea3d89c8cd54747164d4e1fbbc9b733aa5eb404465119999b738dce747",
     "proof/PscVerif/PscVerif/SelectedRank.lean": "0ab6fc76698ebcfd14ce1b319b121f0eaee9d2d64fceb26d3cf9e6a59b26c396",
     "proof/PscVerif/PscVerif/Shuffle.lean": "fe99c7b71174cd665633b425c0f9d1e6f6893f541387e261fb5d945bba48614c",
     "proof/PscVerif/PscVerif/Spectral.lean": "f7a43295221c293c670593d4be8e916d87ce51f3241ec911456ef4a4ce0b39d3",
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
-    "proof/PscVerif/PscVerif.lean": "bc94d0fc07146667d3b26021d7bc22d773d5dfe7339fcf08fc732f90dcd5ce14",
+    "proof/PscVerif/PscVerif/WeightModulus.lean": "477a6acdbb744fa03441bd31c6b25328ff180d9af13629a1162d27cee4de5f27",
+    "proof/PscVerif/PscVerif/Wielandt.lean": "09a6d1a08fe4234ea3b4a833dd4da30ca68cb8f990b9b3c8ae221cbdfaf24d45",
+    "proof/PscVerif/PscVerif.lean": "1a87307b87a13151e0d21c221eb4fa0068c1ffb3dbe60de294e34cc33b635149",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

@@ -3,8 +3,9 @@
 
 `docs/c4-concentration-attack-2026-11-06.md` §2.  In the complex unimodular
 case, Wielandt's theorem applied to the eigenvalue `β²α²` yields
-`(βα²)^{2ℓ} = 1` along a directed cycle of length `ℓ` (that step, and Wielandt's
-theorem itself, are not formalized here).  This module proves the rest:
+`(βα²)^{2ℓ} = 1` along a directed cycle of length `ℓ`; that step is
+`PscVerif.Wielandt.cycle_relation`, and the end-to-end exclusion is
+`PscVerif.Wielandt.no_220_eigenvalue`.  This module proves the algebraic tail:
 
 * `pow_eq_conj_pow_of_cycle`: if `βαᾱ = d` with `d² = 1` and
   `(βα²)^{2ℓ} = 1`, then `α^{2ℓ} = ᾱ^{2ℓ}`;

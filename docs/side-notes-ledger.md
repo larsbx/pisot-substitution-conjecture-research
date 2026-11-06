@@ -2370,3 +2370,14 @@ claim-ledger promotion. Evidence: `docs/occurrence-path-replay-2026-10-16.md`,
   - `ConcentrationControls`: both negative controls, by kernel `decide`.
 
   Not formalized: Wielandt's theorem (absent from Mathlib), so Theorem A(iii) and the cycle relation; the Perron-simplicity derivation of the `ker P` hypothesis; cyclicity of `Λ²M`; the limit to one-sided fixed points. Pitfall: `lake env lean` cannot see a new project module until `lake build PscVerif.<Module>` has built it. Locator: [Concentration attack §8](c4-concentration-attack-2026-11-06.md), `proof/PscVerif/PscVerif/{Binomial,ConcentrationAlgebra,Degree4Sector,ConcentrationControls}.lean`.
+
+- **2026-11-06 — Lean: the remaining Concentration gaps closed, except the representation-theoretic inputs.** Seven more `proof/PscVerif` modules:
+  - `PerronCore`: positivity and the `|x|`-eigenvector lemmas;
+  - `Wielandt`: Wielandt's equality case, Theorem A(iii), the cycle relation, and the `(2,2,0)` exclusion end to end;
+  - `PerronSimple`: the `ker P` hypothesis derived from Perron simplicity, using a real `β`-eigenvector in `ker P` and a ℚ-linear functional `ℝ → ℚ`, with no Perron–Frobenius existence theorem and no Galois theory;
+  - `Cyclicity`: cyclic vectors; irreducibility of `χ_{Λ²M}` via `(Λ²M)ᵀPM = det M·P`;
+  - `WeightModulus`: the modulus eliminations;
+  - `FixedPointLimit`: limit words, with distinct first letters and syndetic `∼₂` cuts;
+  - `M0Pisot`: the rational root theorem and IVT.
+
+  The whole library now has 584 declarations and 394 theorems, standard axioms only. Two adversarial reviewers found one blocker (the modules were not yet in the root import closure, so `make_proof_bank.py --check` rejected them) and minor docstring overclaims and duplicated helpers; all are fixed. Not formalized: the `Lie₄` Witt weights, `Q_r S = Φ_r Q_r` and `ρ(S) ≤ β`, and the identification with an actual strict component. Locator: [Concentration attack §8](c4-concentration-attack-2026-11-06.md).

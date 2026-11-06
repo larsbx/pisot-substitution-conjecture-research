@@ -14,3 +14,10 @@ import PscVerif.Binomial
 import PscVerif.ConcentrationControls
 import PscVerif.ConcentrationAlgebra
 import PscVerif.Degree4Sector
+import PscVerif.PerronCore
+import PscVerif.Wielandt
+import PscVerif.PerronSimple
+import PscVerif.Cyclicity
+import PscVerif.WeightModulus
+import PscVerif.FixedPointLimit
+import PscVerif.M0Pisot

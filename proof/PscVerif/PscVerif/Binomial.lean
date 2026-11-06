@@ -68,6 +68,10 @@ theorem Equiv2.append {x x' y y' : List α} (hx : Equiv2 x x') (hy : Equiv2 y y'
 
 theorem Equiv2.refl (x : List α) : Equiv2 x x := ⟨fun _ => rfl, fun _ _ => rfl⟩
 
+/-- Words with the same letter counts have the same length. -/
+theorem Equiv1.length_eq {x y : List α} (h : Equiv1 x y) : x.length = y.length :=
+  (List.perm_iff_count.mpr h).length_eq
+
 /-- A list of pairs, all 2-binomially equivalent, concatenates to a 2-binomially
 equivalent pair. -/
 theorem equiv2_join (bs : List (List α × List α)) (h : ∀ T ∈ bs, Equiv2 T.1 T.2) :
@@ -253,8 +257,7 @@ def Irreducible (u v : List α) : Prop :=
 theorem heads_ne {a b : α} {u v : List α} (hbal : Equiv1 (a :: u) (b :: v))
     (hirr : Irreducible (a :: u) (b :: v)) (hnc : a :: u ≠ b :: v) : a ≠ b := by
   rintro rfl
-  have hlen : u.length = v.length := by
-    simpa using (List.perm_iff_count.mpr hbal).length_eq
+  have hlen : u.length = v.length := by simpa using hbal.length_eq
   rcases Nat.eq_zero_or_pos u.length with h0 | hpos
   · apply hnc
     have hv : v = [] := List.length_eq_zero_iff.mp (by omega)
