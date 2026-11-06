@@ -2494,33 +2494,38 @@
     },
     {
       "source": "docs/c4-general-structure-2026-11-06.md",
-      "line": 44,
+      "line": 117,
       "statement_heading": "## 2. Proposition Q (any alphabet, any primitive substitution)"
     },
     {
       "source": "docs/c4-general-structure-2026-11-06.md",
-      "line": 46,
+      "line": 119,
       "statement_heading": "**Proposition Q.** Let `σ` be a primitive nonerasing substitution on `d`"
     },
     {
       "source": "docs/c4-general-structure-2026-11-06.md",
-      "line": 75,
+      "line": 173,
       "statement_heading": "**Corollary Q1.** If `M` has no eigenvalue that is 0 or a root of unity, then"
     },
     {
       "source": "docs/c4-general-structure-2026-11-06.md",
-      "line": 98,
-      "statement_heading": "**Lemma 0** ([lowest-defect intertwiner](c4-lowest-defect-intertwiner.md))."
+      "line": 204,
+      "statement_heading": "**Lemma 0** (manuscript `thm:defect-intertwiner`;"
     },
     {
       "source": "docs/c4-general-structure-2026-11-06.md",
-      "line": 116,
-      "statement_heading": "**Theorem R2.** If an irreducible-cubic substitution has a strict system with"
+      "line": 241,
+      "statement_heading": "**Theorem R2.** If some finite child-closed set `C` (coincidences admitted)"
     },
     {
       "source": "docs/c4-general-structure-2026-11-06.md",
-      "line": 125,
+      "line": 261,
       "statement_heading": "**Theorem R3.** If both non-Perron roots of an irreducible cubic `χ_M` have"
+    },
+    {
+      "source": "docs/c4-general-structure-2026-11-06.md",
+      "line": 284,
+      "statement_heading": "**Corollary B (the balanced pair algorithm off the Pisot cone).** Let `σ` be"
     },
     {
       "source": "docs/c4-nonunit-madic-counting-bridge-2026-11-04.md",
