@@ -13,6 +13,9 @@ on:
       - 'tools/check_two_tail_502_lean.py'
       - '.github/workflows/pr502-lean.yml'
   workflow_dispatch:
+concurrency:
+  group: pr502-lean-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
@@ -30,13 +33,22 @@ jobs:
           test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
           test -z "$(git status --porcelain)"
       - uses: actions/cache@v4
+        id: lean-cache
         with:
           path: |
             ~/.elan
             proof/PscVerif/.lake/packages
           key: pr502-lean-${{ runner.os }}-${{ hashFiles('proof/PscVerif/lean-toolchain', 'proof/PscVerif/lake-manifest.json') }}
       - name: Provision repository-pinned Lean and Mathlib
+        id: provision
         run: bash tools/setup_lean.sh
+      - uses: actions/cache/save@v4
+        if: always() && steps.provision.outcome == 'success' && steps.lean-cache.outputs.cache-hit != 'true'
+        with:
+          path: |
+            ~/.elan
+            proof/PscVerif/.lake/packages
+          key: pr502-lean-${{ runner.os }}-${{ hashFiles('proof/PscVerif/lean-toolchain', 'proof/PscVerif/lake-manifest.json') }}
       - name: Compile independent source-word modules
         run: |
           export PATH="$HOME/.elan/bin:$PATH"
