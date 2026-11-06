@@ -1,0 +1,51 @@
+{
+  "base_main": "ba09fdbd770248905a297303b8de45b3d7c5018d",
+  "bundle_git_tree": "6bf56cdbe6e7238ceacf248fc52aa759fc872714",
+  "wrapper_git_blob": "32ea0a21d20d7c01d8f3d065608c536aa92379ea",
+  "workflow_git_blob": "171f32ec276abd547e9d1c840513c293cd432335",
+  "integration_note_git_blob": "387f42e90bb0ec56899b691239c5e6a1c9aaae76",
+  "command": "python tools/check_c4_two_tail_uniform_bundle.py --output /mnt/data/two_tail_integration/staged_replay",
+  "execution_scope": "local staged integration files, not a full repository checkout or hosted run",
+  "authenticated_files": 18,
+  "native_or_lean_validation": false,
+  "runs": [
+    {
+      "argv": ["/opt/pyvenv/bin/python", "-m", "pytest", "-q", "tests/test_two_tail_uniform.py"],
+      "exit_code": 0,
+      "label": "python-tests",
+      "result": "...................                                                      [100%]\n19 passed in 2.38s",
+      "seconds": 3.535
+    },
+    {
+      "argv": ["/opt/pyvenv/bin/python", "tools/independent_replay.py"],
+      "exit_code": 0,
+      "label": "independent-replay",
+      "result": {
+        "independent_source_prefix_checks": 288,
+        "literal_checks_included": 168,
+        "producer_imported": false,
+        "receipt_examples": 24,
+        "result": "passed",
+        "scope": "finite replay plus exact polynomial identities; written word inclusions still separate",
+        "symbolic_checks": 8
+      },
+      "seconds": 1.205
+    },
+    {
+      "argv": ["/opt/pyvenv/bin/python", "oracles/two_tail_uniform.py", "--receipt"],
+      "exit_code": 0,
+      "label": "receipt-regenerated",
+      "receipt_equal": true,
+      "seconds": 0.691
+    }
+  ],
+  "scope": "finite exact replay and symbolic identities; universal word proof is separate",
+  "status": "passed",
+  "not_executed": [
+    "native Mojo port or execution",
+    "Lean formalization",
+    "full-repository Proof Bank and governance",
+    "hosted workflows",
+    "independent human mathematical review"
+  ]
+}
