@@ -1,0 +1,21 @@
+{
+  "fresh_isolated_build_and_original_full_audit": "passed",
+  "declarations": 531,
+  "theorem_declarations": 275,
+  "named_proofs_reached": 106,
+  "allowed_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "owned_module_audit": "passed",
+  "exact_audit_declaration_rows_equal": true,
+  "prior_global_scanner_sha256": "9df4c214c72cf7544de3f72dd0439c7ec205f00df31e948e64f5e9bcacd3231c",
+  "owned_module_audit_sha256": "c9a8344ef6c7bd23317753fdf3c4f76d7fc144bd88bcb59de47e979974c87f0a",
+  "all_18_concrete_sources_verified": false,
+  "generic_model_source_sha256": "572fd9fc85082e05377321fa812670558fff66ebed16e319a81816b22950a853",
+  "local_concrete_sources_verified": [
+    0,
+    12
+  ]
+}

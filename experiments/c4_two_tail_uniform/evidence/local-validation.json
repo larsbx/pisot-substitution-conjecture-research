@@ -1,0 +1,161 @@
+{
+  "compiler_availability": {
+    "lake": null,
+    "lean": null,
+    "mojo": null,
+    "pixi": null
+  },
+  "date": "2026-11-06",
+  "executed": [
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_two_tail_uniform.py"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "label": "python-tests",
+      "seconds": 3.248,
+      "stderr": "python-tests.stderr.txt",
+      "stdout": "python-tests.stdout.txt"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "tools/independent_replay.py"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "label": "independent-replay",
+      "seconds": 1.301,
+      "stderr": "independent-replay.stderr.txt",
+      "stdout": "independent-replay.stdout.txt"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "oracles/two_tail_uniform.py",
+        "--receipt"
+      ],
+      "committed_receipt_equal": true,
+      "cwd": ".",
+      "exit_code": 0,
+      "label": "receipt-regenerated",
+      "seconds": 0.889,
+      "stderr": "receipt-regenerated.stderr.txt",
+      "stdout": "receipt-regenerated.stdout.txt"
+    }
+  ],
+  "not_executed": [
+    "native Mojo",
+    "Lean/proof-assistant formalization",
+    "hosted CI",
+    "repository-wide gates",
+    "independent human review"
+  ],
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "previous_failed_attempt": {
+    "exit_code": 1,
+    "reason": "SymPy same-named symbols with different assumptions; cross-check harness repaired",
+    "stderr": "independent-initial.stderr.txt",
+    "stdout": "independent-initial.stdout.txt"
+  },
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "repo_main_inspected": "ba09fdbd770248905a297303b8de45b3d7c5018d",
+  "scope": "two infinite literal run families; unbounded proof separate from finite controls",
+  "source_hashes": {
+    "README.md": {
+      "bytes": 2501,
+      "git_blob_sha": "4e8df703c04917f3da5d41ef929ba7517ced8ea9",
+      "sha256": "b6eb9a36d660fcdcc02209509f610f1013a681c01dca048e85426bbf7a82c6a9"
+    },
+    "docs/two-tail-uniform.md": {
+      "bytes": 15452,
+      "git_blob_sha": "8b6eab91f26511a25a0a37dc0421e43feb99ffdf",
+      "sha256": "06cdc76eb6ab63514469fb0ff60ebf3f17e38b503a2c563fed5e5178ddf8647e"
+    },
+    "evidence/independent-initial.exitcode.txt": {
+      "bytes": 2,
+      "git_blob_sha": "d00491fd7e5bb6fa28c517a0bb32b8b506539d4d",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "evidence/independent-initial.stderr.txt": {
+      "bytes": 251,
+      "git_blob_sha": "e92b4e5b646e464926ec2a07b1f714b9b4a6c36f",
+      "sha256": "8443f29c44fbffbe953e731e4fe6f1731bfcb4423f98ce4593fb8c31c4ef125a"
+    },
+    "evidence/independent-initial.stdout.txt": {
+      "bytes": 0,
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/independent-replay.json": {
+      "bytes": 283,
+      "git_blob_sha": "3c1b7d0838e1055593efa6ba5d496760e5127997",
+      "sha256": "46e8faa2ef5900038df4bf75a6df3f3b9027d18210b592cfdb494f4470ed5f13"
+    },
+    "evidence/independent-replay.stderr.txt": {
+      "bytes": 0,
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/independent-replay.stdout.txt": {
+      "bytes": 283,
+      "git_blob_sha": "3c1b7d0838e1055593efa6ba5d496760e5127997",
+      "sha256": "46e8faa2ef5900038df4bf75a6df3f3b9027d18210b592cfdb494f4470ed5f13"
+    },
+    "evidence/python-tests.stderr.txt": {
+      "bytes": 0,
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/python-tests.stdout.txt": {
+      "bytes": 99,
+      "git_blob_sha": "b64c5943b5b16058bb07249124f6d925cc5e152d",
+      "sha256": "64f20dadb3821c27594cb74b54d780b2cefe6ac834fce0526bec3b7f4fa74fd2"
+    },
+    "evidence/python-tests.txt": {
+      "bytes": 99,
+      "git_blob_sha": "8edfc8440bdafddd1ae80d862b6e2af6c5a77d42",
+      "sha256": "0cf7a2dc9e50a0c2e8c04c56eba9aade1c7593d86fe5be2532f0f9825e5e2df7"
+    },
+    "evidence/receipt-regenerated.stderr.txt": {
+      "bytes": 0,
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/receipt-regenerated.stdout.txt": {
+      "bytes": 150422,
+      "git_blob_sha": "a42c2dbd1fb68c96ce3d1256d29ca113231c36d4",
+      "sha256": "8e91cd822a7d504ac4c30abbd8251c889164958b31fb9703dd0bb32aa578d341"
+    },
+    "evidence/receipt.json": {
+      "bytes": 150422,
+      "git_blob_sha": "a42c2dbd1fb68c96ce3d1256d29ca113231c36d4",
+      "sha256": "8e91cd822a7d504ac4c30abbd8251c889164958b31fb9703dd0bb32aa578d341"
+    },
+    "oracles/two_tail_uniform.py": {
+      "bytes": 10864,
+      "git_blob_sha": "31b91abd653b11b25dfd3a8e27d050afbbaacfdc",
+      "sha256": "fab48901d2a69aeb77206b18208159f0a6fdae6ac20d43add6c1727c61f350ae"
+    },
+    "tests/test_two_tail_uniform.py": {
+      "bytes": 9721,
+      "git_blob_sha": "c8c154ab5474bb866eeccebbc712c6cbf3013c12",
+      "sha256": "1fca6c386005faa58de3d18d00145b42be2aca1627b067b8a1f6fb7cc8efe05d"
+    },
+    "tools/independent_replay.py": {
+      "bytes": 3878,
+      "git_blob_sha": "e5f49e2d69c11d9f05bf428d1854102684192a47",
+      "sha256": "e2f2a0f7c5417b1eef37ca9a8cc78a4baf22a980c5dee3b7c4022c4b490337d6"
+    },
+    "tools/run_validation.py": {
+      "bytes": 3038,
+      "git_blob_sha": "c15a4821fb1c6a36cd44a0208a09d6511c0de408",
+      "sha256": "5ba47cd9ccbe2d79354ad04adaa9c62e9acab1791aeab46e122aa1eaf2371978"
+    }
+  }
+}

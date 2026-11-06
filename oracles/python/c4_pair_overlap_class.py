@@ -205,14 +205,24 @@ def receipt():
             "sources": [summary(i) for i in range(18)]}
 
 
+def verify_source_stream(stream, index):
+    """Compare every serialized field with the independently rebuilt source.
+
+    Deliberately stronger than integer-weight validation: deleting an occurrence
+    can preserve every row inequality while destroying canonical data parity.
+    The caller owns schema, complete source-domain and end-of-file checks.
+    """
+    graph, w, sweeps, _ = reference(index)
+    for line in packet_lines(graph, w, sweeps):
+        require(stream.readline().rstrip("\n") == line, "native complete graph mismatch")
+
+
 def verify_native_file(path):
     require(path.stat().st_size <= 40000000, "native packet byte budget")
     with path.open() as stream:
         require(stream.readline().rstrip("\n") == "schema "+SCHEMA, "wrong class schema")
         for index in range(18):
-            graph, w, sweeps, _ = reference(index)
-            for line in packet_lines(graph, w, sweeps):
-                require(stream.readline().rstrip("\n") == line, "native complete graph mismatch")
+            verify_source_stream(stream, index)
         require(stream.read() == "", "trailing or duplicate native records")
     return receipt()
 

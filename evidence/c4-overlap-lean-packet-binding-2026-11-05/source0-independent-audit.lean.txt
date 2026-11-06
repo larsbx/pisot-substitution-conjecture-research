@@ -1,0 +1,29 @@
+import Source0
+import Lean.Util.CollectAxioms
+example : PscVerif.OverlapGenerated.Source0.packet.check = true :=
+  PscVerif.OverlapGenerated.Source0.accepted
+example : (PscVerif.OverlapGenerated.Source0.packet.toCertificate
+  (PscVerif.OverlapGenerated.Source0.packet.check_iff.mp
+    PscVerif.OverlapGenerated.Source0.accepted)).check = true :=
+  PscVerif.OverlapGenerated.Source0.typed_accepted
+open Lean Elab Command in
+run_cmd do
+  let env ← getEnv
+  let some idx := env.getModuleIdx? `Source0 | throwError "Missing generated module"
+  let data := env.header.moduleData[idx.toNat]!
+  let mut count := 0
+  let mut proofs := 0
+  let allowed := #[`propext, `Classical.choice, `Quot.sound]
+  for info in data.constants do
+    let name := info.name
+    if info.isAxiom then throwError "Local generated axiom"
+    let axs ← collectAxioms name
+    for ax in axs do
+      if !allowed.contains ax then throwError "Nonstandard generated axiom"
+    count := count+1
+    if info.isTheorem then proofs := proofs+1
+    let names := String.intercalate "," (axs.toList.map toString)
+    liftIO <| IO.println s!"PSC_PACKET_AXIOMS 0\t{name}\t{names}"
+  if proofs < 2 then throwError "Missing generated proofs"
+  liftIO <| IO.println s!"PSC_PACKET_AUDIT_COMPLETE 0\t{count}\t{proofs}"
+def main : IO Unit := PscVerif.OverlapPacket.Packet.emit PscVerif.OverlapGenerated.Source0.packet
