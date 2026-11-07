@@ -28,10 +28,54 @@ theorem shift_factor_identity (P : ℕ → ℤ) (t k : ℕ) :
   rw [Nat.add_comm t k]
   ring
 
+
+/-- Telescoping scalar prefix increments over a fixed-width window;
+this is exact over integers and independent of the substitution. -/
+theorem telescoping_prefix_increments
+    (P : ℕ → ℤ) (K t : ℕ) :
+    (∑ j ∈ Finset.range t, (P (K + j + 1) - P (K + j))) =
+      P (K + t) - P K := by
+  induction t with
+  | zero => simp
+  | succ t ih =>
+      rw [Finset.sum_range_succ, ih]
+      have hidx : K + t + 1 = K + (t + 1) := by omega
+      rw [hidx]
+      ring
+
+/-- Exact double-Cesàro transport: sums of all windows of length t
+equal sums of t long-range prefix increments. Frequency averaging
+will require an independent primitive-substitution frequency theorem. -/
+theorem sliding_factor_sum_identity
+    (P : ℕ → ℤ) (t K : ℕ) :
+    (∑ k ∈ Finset.range K, (P (k + t) - P k)) =
+      ∑ j ∈ Finset.range t, (P (K + j) - P j) := by
+  induction K with
+  | zero => simp
+  | succ K ih =>
+      rw [Finset.sum_range_succ, ih]
+      calc
+        (∑ j ∈ Finset.range t, (P (K + j) - P j)) +
+            (P (K + t) - P K) =
+          (∑ j ∈ Finset.range t, (P (K + j) - P j)) +
+            (∑ j ∈ Finset.range t,
+              (P (K + j + 1) - P (K + j))) := by
+              rw [telescoping_prefix_increments]
+        _ = ∑ j ∈ Finset.range t,
+              (P ((K + 1) + j) - P j) := by
+              rw [← Finset.sum_add_distrib]
+              apply Finset.sum_congr rfl
+              intro j _
+              have hidx : K + j + 1 = (K + 1) + j := by omega
+              rw [hidx]
+              ring
+
 end PscRoutes.R3
 
 #print axioms PscRoutes.R3.bounded_block_coordinate
 #print axioms PscRoutes.R3.shift_factor_identity
+#print axioms PscRoutes.R3.telescoping_prefix_increments
+#print axioms PscRoutes.R3.sliding_factor_sum_identity
 
 /- Fail-closed exact-declaration axiom audit for this standalone branch.
    All declared helper theorems must use only the standard Lean axioms.
@@ -39,7 +83,7 @@ end PscRoutes.R3
 open Lean Elab Command in
 run_cmd do
   let allowed := #[`propext, `Classical.choice, `Quot.sound]
-  for name in #[`PscRoutes.R3.bounded_block_coordinate, `PscRoutes.R3.shift_factor_identity] do
+  for name in #[`PscRoutes.R3.bounded_block_coordinate, `PscRoutes.R3.shift_factor_identity, `PscRoutes.R3.telescoping_prefix_increments, `PscRoutes.R3.sliding_factor_sum_identity] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
