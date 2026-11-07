@@ -70,12 +70,25 @@ theorem sliding_factor_sum_identity
               rw [hidx]
               ring
 
+
+/-- Per-letter Parikh counting inherits the sliding-factor sum identity
+coordinatewise on any finite alphabet. This is an exact integer
+identity; primitive letter-frequency limits are a separate import. -/
+theorem vector_sliding_factor_sum_identity
+    {d : ℕ} (P : ℕ → Fin d → ℤ) (t K : ℕ) (letter : Fin d) :
+    (∑ k ∈ Finset.range K,
+      (P (k + t) letter - P k letter)) =
+    ∑ j ∈ Finset.range t,
+      (P (K + j) letter - P j letter) := by
+  exact sliding_factor_sum_identity (fun k => P k letter) t K
+
 end PscRoutes.R3
 
 #print axioms PscRoutes.R3.bounded_block_coordinate
 #print axioms PscRoutes.R3.shift_factor_identity
 #print axioms PscRoutes.R3.telescoping_prefix_increments
 #print axioms PscRoutes.R3.sliding_factor_sum_identity
+#print axioms PscRoutes.R3.vector_sliding_factor_sum_identity
 
 /- Fail-closed exact-declaration axiom audit for this standalone branch.
    All declared helper theorems must use only the standard Lean axioms.
@@ -83,7 +96,7 @@ end PscRoutes.R3
 open Lean Elab Command in
 run_cmd do
   let allowed := #[`propext, `Classical.choice, `Quot.sound]
-  for name in #[`PscRoutes.R3.bounded_block_coordinate, `PscRoutes.R3.shift_factor_identity, `PscRoutes.R3.telescoping_prefix_increments, `PscRoutes.R3.sliding_factor_sum_identity] do
+  for name in #[`PscRoutes.R3.bounded_block_coordinate, `PscRoutes.R3.shift_factor_identity, `PscRoutes.R3.telescoping_prefix_increments, `PscRoutes.R3.sliding_factor_sum_identity, `PscRoutes.R3.vector_sliding_factor_sum_identity] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
