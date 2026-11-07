@@ -312,6 +312,7 @@ end PscRoutes.R1Modular
 
 #print axioms PscRoutes.R1Modular.no_mod_solution_from_left_null
 #print axioms PscRoutes.R1Modular.no_integral_solution_from_modular_witness
+#print axioms PscRoutes.R1Modular.realized_integer_cycle_cannot_be_modularly_obstructed
 #print axioms PscRoutes.R1Modular.no_mod_two_solution_to_zero_times_x_eq_one
 #print axioms PscRoutes.R1Modular.tribonacci_e0_forced_period_one_impossible
 #print axioms PscRoutes.R1Modular.tribonacci_e0_mod_two_left_null
@@ -327,15 +328,30 @@ end PscRoutes.R1Modular
 #print axioms PscRoutes.R1Modular.four_x_eq_two_is_solvable_mod_two
 #print axioms PscRoutes.R1Modular.four_x_eq_two_is_solvable_mod_three
 #print axioms PscRoutes.R1Modular.four_x_eq_two_has_no_solution_mod_four
-#print axioms PscRoutes.R1Modular.realized_integer_cycle_cannot_be_modularly_obstructed
 
+/- An exact-declaration audit. Every theorem above is included by name;
+   no source-level theorem can be accepted by a silent count reduction. -/
 open Lean Elab Command in
 run_cmd do
   let allowed := #[`propext, `Classical.choice, `Quot.sound]
   for name in #[`PscRoutes.R1Modular.no_mod_solution_from_left_null,
-      `PscRoutes.R1Modular.no_integral_solution_from_modular_witness,
-      `PscRoutes.R1Modular.no_mod_two_solution_to_zero_times_x_eq_one,
-      `PscRoutes.R1Modular.realized_integer_cycle_cannot_be_modularly_obstructed] do
+    `PscRoutes.R1Modular.no_integral_solution_from_modular_witness,
+    `PscRoutes.R1Modular.realized_integer_cycle_cannot_be_modularly_obstructed,
+    `PscRoutes.R1Modular.no_mod_two_solution_to_zero_times_x_eq_one,
+    `PscRoutes.R1Modular.tribonacci_e0_forced_period_one_impossible,
+    `PscRoutes.R1Modular.tribonacci_e0_mod_two_left_null,
+    `PscRoutes.R1Modular.tribonacci_incidence_matches_literal_images,
+    `PscRoutes.R1Modular.tribonacci_e0_is_actual_proper_prefix,
+    `PscRoutes.R1Modular.tribonacci_period_one_e0_digit_even,
+    `PscRoutes.R1Modular.tribonacci_period_one_small_digit_only_trivial,
+    `PscRoutes.R1Modular.tribonacci_locally_admissible_nonzero_period_three,
+    `PscRoutes.R1Modular.tribonacci_negative_e0_is_local_prefix_difference,
+    `PscRoutes.R1Modular.tribonacci_proper_prefix_cases,
+    `PscRoutes.R1Modular.tribonacci_all_proper_prefix_differences,
+    `PscRoutes.R1Modular.prime_field_certificates_are_not_integrally_complete,
+    `PscRoutes.R1Modular.four_x_eq_two_is_solvable_mod_two,
+    `PscRoutes.R1Modular.four_x_eq_two_is_solvable_mod_three,
+    `PscRoutes.R1Modular.four_x_eq_two_has_no_solution_mod_four] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
