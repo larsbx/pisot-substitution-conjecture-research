@@ -12,8 +12,8 @@ module PscR1Modular {
   val residueBound = x == 0 or x == 1
   val noSolution = 0 * x != 1
 
-  run zeroResidueRejected =
+  run zeroResidueRejectedTest =
     init.then(chooseZero).expect(x == 0 and noSolution)
-  run oneResidueRejected =
+  run oneResidueRejectedTest =
     init.then(chooseOne).expect(x == 1 and noSolution)
 }
