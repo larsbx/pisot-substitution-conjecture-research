@@ -44,11 +44,42 @@ theorem integral_address_small_implies_zero
   funext i
   exact integer_offset_small_implies_zero (address i) (hsmall i)
 
+
+/-- A finite set of independently certified positive *rational*
+separations has a common positive rational lower bound. The hard
+geometric burden is proving positivity and exhaustiveness of the
+actual exact-address candidate set, not this finite minimum lemma. -/
+theorem finite_positive_separation_radius
+    {Address : Type*} [DecidableEq Address] (distance : Address → ℚ) :
+    ∀ S : Finset Address,
+      (∀ x ∈ S, 0 < distance x) →
+      ∃ delta : ℚ, 0 < delta ∧ ∀ x ∈ S, delta ≤ distance x := by
+  intro S
+  induction S using Finset.induction_on with
+  | empty =>
+      intro _
+      refine ⟨1, by norm_num, ?_⟩
+      simp
+  | @insert a s ha ih =>
+      intro hpos
+      have hapos : 0 < distance a := hpos a (Finset.mem_insert_self a s)
+      have hspos : ∀ x ∈ s, 0 < distance x := by
+        intro x hx
+        exact hpos x (Finset.mem_insert_of_mem hx)
+      obtain ⟨delta, hdpos, hmin⟩ := ih hspos
+      refine ⟨min delta (distance a), lt_min hdpos hapos, ?_⟩
+      intro x hx
+      rcases Finset.mem_insert.mp hx with hxa | hxs
+      · subst x
+        exact min_le_right _ _
+      · exact (min_le_left _ _).trans (hmin x hxs)
+
 end PscRoutes.R4
 
 #print axioms PscRoutes.R4.separated_window_forces_zero
 #print axioms PscRoutes.R4.integer_offset_small_implies_zero
 #print axioms PscRoutes.R4.integral_address_small_implies_zero
+#print axioms PscRoutes.R4.finite_positive_separation_radius
 
 /- Fail-closed exact-declaration axiom audit for this standalone branch.
    All declared helper theorems must use only the standard Lean axioms.
@@ -56,7 +87,7 @@ end PscRoutes.R4
 open Lean Elab Command in
 run_cmd do
   let allowed := #[`propext, `Classical.choice, `Quot.sound]
-  for name in #[`PscRoutes.R4.separated_window_forces_zero, `PscRoutes.R4.integer_offset_small_implies_zero, `PscRoutes.R4.integral_address_small_implies_zero] do
+  for name in #[`PscRoutes.R4.separated_window_forces_zero, `PscRoutes.R4.integer_offset_small_implies_zero, `PscRoutes.R4.integral_address_small_implies_zero, `PscRoutes.R4.finite_positive_separation_radius] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
