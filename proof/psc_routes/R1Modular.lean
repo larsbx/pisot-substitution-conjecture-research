@@ -150,6 +150,47 @@ theorem tribonacci_e0_is_actual_proper_prefix :
   funext i
   fin_cases i <;> norm_num [trParikh, trImage]
 
+
+/-- Every integral period-one cycle for the **actual** Tribonacci
+incidence and a correction along e₀ requires an even first-coordinate
+digit. This is the integer lift of the ZMod 2 left-null witness. -/
+theorem tribonacci_period_one_e0_digit_even
+    (x : Fin 3 → ℤ) (delta : ℤ)
+    (hcycle : ∀ i : Fin 3,
+      x i = tribonacciIncidence x i +
+        (if i = 0 then delta else 0)) :
+    ∃ k : ℤ, delta = 2 * k := by
+  have h0 := hcycle 0
+  have h1 := hcycle 1
+  have h2 := hcycle 2
+  simp [tribonacciIncidence] at h0 h1 h2
+  refine ⟨-(x 0), ?_⟩
+  omega
+
+/-- Complete exclusion of nonzero period-one **integral** ancestry
+cycles for the locally permitted digit alphabet {−e₀,0,+e₀}.
+The digit-alphabet assumption is explicit; a word-level lemma
+covering ALL proper local prefixes remains a separate refinement. -/
+theorem tribonacci_period_one_small_digit_only_trivial
+    (x : Fin 3 → ℤ) (delta : ℤ)
+    (hsmall : -1 ≤ delta ∧ delta ≤ 1)
+    (hcycle : ∀ i : Fin 3,
+      x i = tribonacciIncidence x i +
+        (if i = 0 then delta else 0)) :
+    x 0 = 0 ∧ x 1 = 0 ∧ x 2 = 0 ∧ delta = 0 := by
+  have h0 := hcycle 0
+  have h1 := hcycle 1
+  have h2 := hcycle 2
+  simp [tribonacciIncidence] at h0 h1 h2
+  rcases hsmall with ⟨hlo, hhi⟩
+  constructor
+  · omega
+  constructor
+  · omega
+  constructor
+  · omega
+  · omega
+
 end PscRoutes.R1Modular
 
 #print axioms PscRoutes.R1Modular.no_mod_solution_from_left_null
@@ -159,6 +200,8 @@ end PscRoutes.R1Modular
 #print axioms PscRoutes.R1Modular.tribonacci_e0_mod_two_left_null
 #print axioms PscRoutes.R1Modular.tribonacci_incidence_matches_literal_images
 #print axioms PscRoutes.R1Modular.tribonacci_e0_is_actual_proper_prefix
+#print axioms PscRoutes.R1Modular.tribonacci_period_one_e0_digit_even
+#print axioms PscRoutes.R1Modular.tribonacci_period_one_small_digit_only_trivial
 #print axioms PscRoutes.R1Modular.realized_integer_cycle_cannot_be_modularly_obstructed
 
 open Lean Elab Command in
