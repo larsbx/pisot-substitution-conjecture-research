@@ -46,3 +46,40 @@ No new universal theorem about the Pisot Substitution Conjecture, C4, BH, A1′,
 - **In-repo canonical controls:** `docs/c4-pisot-ancestry-finiteness.md`, `docs/c4-prefix-difference-return-calculus.md` and R1's dedicated 2026-11-07 targeted literature check.
 
 **Decision: PROCEED NARROWED as a certificate-mechanism experiment**, with no novelty claim for reduction modulo primes or the left-null contradiction. Independent human mathematical/originality review remains deferred until PSC closure; this small automated prior-art gate is complete for the scoped mechanism.
+
+## 2026-11-07 adversarial correction: the realizability firewall
+
+An important logical limitation is now made an explicit Lean theorem:
+`realized_integer_cycle_cannot_be_modularly_obstructed`.
+
+If an ancestry cycle is already **actually realized** by an integral defect
+`x_0`, then the periodicity equation `(I−M^k)x_0=b` has the integral
+solution `x_0`. Reduction of this actual solution modulo **every prime**
+solves every faithfully reduced modular equation. Therefore there can be
+**no valid left-null witness** `qA_p=0, q b_p≠0` for that observed cycle.
+
+The correct research target is narrower: enumerate cycles in an **abstract
+finite, decorated occurrence-state superset** that satisfy local transition
+conditions but are not yet known to be realizable globally; use modular
+inconsistency to reject those **candidate** cycles *before* claiming they
+have integral ancestry realizations. If the decorated state already includes
+a consistent integral defect and every edge enforces the exact affine
+recurrence, an authentic closed cycle necessarily satisfies the equation,
+and this particular modular filter gives no additional exclusion. Do not
+run repeated mod-p searches against already verified physical cycles expecting
+a contradiction; that would be a wasted or misleading research direction.
+
+**Stop/go decision: REDIRECT.** The next independent obligation is to
+identify a *necessary but incomplete* abstraction of strict component
+occurrence cycles (e.g., permitted correction words with incomplete defect
+bindings) and construct complete/sound lifting criteria. Modular certificates
+can prune its false positives. This route alone cannot prove C4 unless an
+independent theorem shows all hypothetical strict configurations would
+generate a *nonrealizable abstract* cycle. Human review remains deferred.
+
+**CI correction:** Quint 0.33.1 discovers tests whose names end in
+`Test`. Previous run `42401212421` executed zero named tests because
+`zeroResidueRejected` and `oneResidueRejected` lacked that suffix; its
+test-count gate correctly failed. Both are now renamed with `Test`,
+and the exact-head Lean audit requires four scoped declarations, including
+the no-false-rejection theorem.
