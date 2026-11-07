@@ -17,6 +17,7 @@ structure WeightedEdge (n : ℕ) where
   source : Fin n
   target : Fin n
   weight : ℚ
+  deriving DecidableEq
 
 /-- The statement certified by a complete finite edge list. -/
 def SatisfiesEdges {n : ℕ}
@@ -26,7 +27,7 @@ def SatisfiesEdges {n : ℕ}
 /-- Executable Boolean checker using decidable exact rational equality. -/
 def checkPotential {n : ℕ}
     (edges : List (WeightedEdge n)) (potential : Fin n → ℚ) : Bool :=
-  decide (SatisfiesEdges edges potential)
+  edges.all fun e => decide (e.weight = potential e.target - potential e.source)
 
 /-- Soundness is with respect to the *provided* edge list; it does not
 establish that every child occurrence has been included. -/
@@ -34,7 +35,8 @@ theorem checkPotential_sound {n : ℕ}
     (edges : List (WeightedEdge n)) (potential : Fin n → ℚ)
     (hchecked : checkPotential edges potential = true) :
     SatisfiesEdges edges potential := by
-  exact of_decide_true hchecked
+  intro e he
+  exact of_decide_eq_true (List.all_eq_true.mp hchecked e he)
 
 /-- Any one-cycle graph with total nonzero rational edge score
 cannot be the gradient of a vertex potential. -/
@@ -75,7 +77,7 @@ theorem omitted_edge_false_acceptance :
     checkPotential [⟨0, 1, 1⟩] omittedEdgePotential = true ∧
     checkPotential [⟨0, 1, 1⟩, ⟨1, 0, 0⟩] omittedEdgePotential = false := by
   constructor
-  · decide
+  · norm_num [checkPotential, omittedEdgePotential]
   · exact positive_cycle_checker_refuses omittedEdgePotential
 
 
