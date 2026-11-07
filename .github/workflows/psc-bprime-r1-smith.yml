@@ -35,7 +35,7 @@ jobs:
             echo "Refusing unverified Lean declarations" >&2
             exit 1
           fi
-          test "$(grep -c 'PSC_R1SMITH_AXIOMS_OK' "$RUNNER_TEMP/r1-smith-lean.log")" -eq 13
+          test "$(grep -c 'PSC_R1SMITH_AXIOMS_OK' "$RUNNER_TEMP/r1-smith-lean.log")" -eq 14
       - uses: actions/upload-artifact@v4
         if: always()
         with:
