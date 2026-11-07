@@ -101,6 +101,34 @@ theorem deck_symmetric_separator_vanishes
   have hhere := hnonneg s
   linarith
 
+
+/-- The orientation-indexed functional is *even* under the simultaneous
+deck transform (orientation reversal, defect negation). Unlike a
+sign-blind functional, it can consistently retain strictly positive
+values on an orientation pair. This is only an algebraic interface;
+it is not a source-valid positive-density certificate. -/
+def orientedScore {V : Type*} [AddCommGroup V]
+    (h : V →+ ℚ) (orientation : Bool) (x : V) : ℚ :=
+  if orientation then h x else -(h x)
+
+/-- Orientation and defect must be transformed simultaneously. -/
+theorem orientedScore_deck_invariant
+    {V : Type*} [AddCommGroup V]
+    (h : V →+ ℚ) (orientation : Bool) (x : V) :
+    orientedScore h (!orientation) (-x) = orientedScore h orientation x := by
+  cases orientation <;> simp [orientedScore, map_neg]
+
+/-- A positive orientation-dependent potential on one lift remains
+positive on the deck-reversed lift, in contrast to an ordinary
+nonnegative separator over both signed defects. -/
+theorem orientedScore_deck_positivity
+    {V : Type*} [AddCommGroup V]
+    (h : V →+ ℚ) (orientation : Bool) (x : V)
+    (hpos : 0 < orientedScore h orientation x) :
+    0 < orientedScore h (!orientation) (-x) := by
+  rw [orientedScore_deck_invariant]
+  exact hpos
+
 end PscRoutes.R2
 
 #print axioms PscRoutes.R2.good_mass_lower_bound
@@ -109,6 +137,8 @@ end PscRoutes.R2
 #print axioms PscRoutes.R2.no_two_sided_strict_positive_separator
 #print axioms PscRoutes.R2.density_excludes_small_mean
 #print axioms PscRoutes.R2.deck_symmetric_separator_vanishes
+#print axioms PscRoutes.R2.orientedScore_deck_invariant
+#print axioms PscRoutes.R2.orientedScore_deck_positivity
 
 /- Fail-closed exact-declaration axiom audit for this standalone branch.
    All declared helper theorems must use only the standard Lean axioms.
@@ -116,7 +146,7 @@ end PscRoutes.R2
 open Lean Elab Command in
 run_cmd do
   let allowed := #[`propext, `Classical.choice, `Quot.sound]
-  for name in #[`PscRoutes.R2.good_mass_lower_bound, `PscRoutes.R2.positive_density_contradiction, `PscRoutes.R2.symmetric_orientation_forces_zero, `PscRoutes.R2.no_two_sided_strict_positive_separator, `PscRoutes.R2.density_excludes_small_mean, `PscRoutes.R2.deck_symmetric_separator_vanishes] do
+  for name in #[`PscRoutes.R2.good_mass_lower_bound, `PscRoutes.R2.positive_density_contradiction, `PscRoutes.R2.symmetric_orientation_forces_zero, `PscRoutes.R2.no_two_sided_strict_positive_separator, `PscRoutes.R2.density_excludes_small_mean, `PscRoutes.R2.deck_symmetric_separator_vanishes, `PscRoutes.R2.orientedScore_deck_invariant, `PscRoutes.R2.orientedScore_deck_positivity] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
