@@ -64,18 +64,34 @@ theorem positive_cycle_checker_refuses
     hvalid ⟨1, 0, 0⟩ (by simp)
   exact positive_two_edge_cycle_forbids_potential potential hf hb
 
+
+/-- Explicit omission adversary: a rational potential correctly passes a
+truncated one-edge packet but fails the complete two-edge packet.
+Therefore a successful per-edge checker is NOT a completeness proof. -/
+def omittedEdgePotential : Fin 2 → ℚ :=
+  fun i => if i = 0 then 0 else 1
+
+theorem omitted_edge_false_acceptance :
+    checkPotential [⟨0, 1, 1⟩] omittedEdgePotential = true ∧
+    checkPotential [⟨0, 1, 1⟩, ⟨1, 0, 0⟩] omittedEdgePotential = false := by
+  constructor
+  · decide
+  · exact positive_cycle_checker_refuses omittedEdgePotential
+
 end PscRoutes.R2C
 
 #print axioms PscRoutes.R2C.checkPotential_sound
 #print axioms PscRoutes.R2C.positive_two_edge_cycle_forbids_potential
 #print axioms PscRoutes.R2C.positive_cycle_checker_refuses
+#print axioms PscRoutes.R2C.omitted_edge_false_acceptance
 
 open Lean Elab Command in
 run_cmd do
   let allowed := #[`propext, `Classical.choice, `Quot.sound]
   for name in #[`PscRoutes.R2C.checkPotential_sound,
       `PscRoutes.R2C.positive_two_edge_cycle_forbids_potential,
-      `PscRoutes.R2C.positive_cycle_checker_refuses] do
+      `PscRoutes.R2C.positive_cycle_checker_refuses,
+      `PscRoutes.R2C.omitted_edge_false_acceptance] do
     let axs ← collectAxioms name
     for ax in axs do
       if !allowed.contains ax then
