@@ -224,6 +224,58 @@ theorem tribonacci_negative_e0_is_local_prefix_difference :
   funext i
   fin_cases i <;> norm_num [trParikh, trImage]
 
+
+/-- Every proper prefix of an image of the **literal**
+Tribonacci substitution is either empty or the singleton [0]. -/
+theorem tribonacci_proper_prefix_cases
+    (a : Fin 3) (r : ℕ) (hr : r < (trImage a).length) :
+    (trImage a).take r = [] ∨ (trImage a).take r = [0] := by
+  fin_cases a
+  · have hr' : r < 2 := by simpa [trImage] using hr
+    have hcases : r = 0 ∨ r = 1 := by omega
+    rcases hcases with h | h <;> subst r <;> simp [trImage]
+  · have hr' : r < 2 := by simpa [trImage] using hr
+    have hcases : r = 0 ∨ r = 1 := by omega
+    rcases hcases with h | h <;> subst r <;> simp [trImage]
+  · have hr' : r < 1 := by simpa [trImage] using hr
+    have hzero : r = 0 := by omega
+    subst r
+    simp [trImage]
+
+/-- Complete **local correction alphabet** for two independently
+properly addressed images of Tribonacci. The Parikh correction
+is (δ,0,0) with δ ∈ {−1,0,+1}. This does not assert
+the two source addresses are compatible with any *global* strict
+word-level ancestry, only that every proper local prefix produces
+one of these three digits. -/
+theorem tribonacci_all_proper_prefix_differences
+    (a b : Fin 3) (r s : ℕ)
+    (hr : r < (trImage a).length) (hs : s < (trImage b).length) :
+    ∃ delta : ℤ, -1 ≤ delta ∧ delta ≤ 1 ∧
+      (fun i : Fin 3 =>
+        trParikh ((trImage a).take r) i -
+          trParikh ((trImage b).take s) i) =
+      (fun i : Fin 3 => if i = 0 then delta else 0) := by
+  rcases tribonacci_proper_prefix_cases a r hr with ha | ha
+  · rcases tribonacci_proper_prefix_cases b s hs with hb | hb
+    · refine ⟨0, by omega, by omega, ?_⟩
+      rw [ha, hb]
+      funext i
+      fin_cases i <;> norm_num [trParikh]
+    · refine ⟨-1, by omega, by omega, ?_⟩
+      rw [ha, hb]
+      funext i
+      fin_cases i <;> norm_num [trParikh]
+  · rcases tribonacci_proper_prefix_cases b s hs with hb | hb
+    · refine ⟨1, by omega, by omega, ?_⟩
+      rw [ha, hb]
+      funext i
+      fin_cases i <;> norm_num [trParikh]
+    · refine ⟨0, by omega, by omega, ?_⟩
+      rw [ha, hb]
+      funext i
+      fin_cases i <;> norm_num [trParikh]
+
 end PscRoutes.R1Modular
 
 #print axioms PscRoutes.R1Modular.no_mod_solution_from_left_null
@@ -237,6 +289,8 @@ end PscRoutes.R1Modular
 #print axioms PscRoutes.R1Modular.tribonacci_period_one_small_digit_only_trivial
 #print axioms PscRoutes.R1Modular.tribonacci_locally_admissible_nonzero_period_three
 #print axioms PscRoutes.R1Modular.tribonacci_negative_e0_is_local_prefix_difference
+#print axioms PscRoutes.R1Modular.tribonacci_proper_prefix_cases
+#print axioms PscRoutes.R1Modular.tribonacci_all_proper_prefix_differences
 #print axioms PscRoutes.R1Modular.realized_integer_cycle_cannot_be_modularly_obstructed
 
 open Lean Elab Command in
