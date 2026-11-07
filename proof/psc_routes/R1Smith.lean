@@ -245,6 +245,74 @@ theorem ancestry_smith_cycle_criterion
       matrix_smith_certificate_complete A U Uinv V Vinv diagonal
         (ancestryForcedDigits M correction n) hU hV hdiag
 
+
+/-! ### Fully specified integral Smith certificate for the Tribonacci
+    period-one ancestry operator `I-M`.
+
+The following six literal matrices can be checked by ring arithmetic
+over Z. Their existence supplies a **concrete** diagonal certificate
+without trusting a numerical eigensolver or prime-field oracle. -/
+
+def tribonacciCycleA : Matrix (Fin 3) (Fin 3) ℤ :=
+  !![0, -1, -1; -1, 1, 0; 0, -1, 1]
+
+def tribonacciSmithU : Matrix (Fin 3) (Fin 3) ℤ :=
+  !![0, -1, 0; -1, 0, 0; -1, 0, 1]
+
+def tribonacciSmithUinv : Matrix (Fin 3) (Fin 3) ℤ :=
+  !![0, -1, 0; -1, 0, 0; 0, -1, 1]
+
+def tribonacciSmithV : Matrix (Fin 3) (Fin 3) ℤ :=
+  !![1, 1, -1; 0, 1, -1; 0, 0, 1]
+
+def tribonacciSmithVinv : Matrix (Fin 3) (Fin 3) ℤ :=
+  !![1, -1, 0; 0, 1, 1; 0, 0, 1]
+
+def tribonacciSmithDiagonal : Fin 3 → ℤ := ![1, 1, 2]
+
+/-- Integer left inverse; no rational denominators. -/
+theorem tribonacci_smith_U_left_inverse :
+    tribonacciSmithUinv * tribonacciSmithU = 1 := by
+  first
+  | decide
+  | (ext i j; fin_cases i <;> fin_cases j <;>
+      norm_num [tribonacciSmithUinv, tribonacciSmithU, Matrix.mul_apply])
+
+/-- Integer right inverse; no rational denominators. -/
+theorem tribonacci_smith_V_right_inverse :
+    tribonacciSmithV * tribonacciSmithVinv = 1 := by
+  first
+  | decide
+  | (ext i j; fin_cases i <;> fin_cases j <;>
+      norm_num [tribonacciSmithV, tribonacciSmithVinv, Matrix.mul_apply])
+
+/-- Exact Smith diagonal U*(I−M)*V = diag(1,1,2). -/
+theorem tribonacci_smith_matrix_certificate :
+    tribonacciSmithU * tribonacciCycleA * tribonacciSmithV =
+      Matrix.diagonal tribonacciSmithDiagonal := by
+  first
+  | decide
+  | (ext i j; fin_cases i <;> fin_cases j <;>
+      norm_num [tribonacciSmithU, tribonacciCycleA,
+        tribonacciSmithV, tribonacciSmithDiagonal, Matrix.mul_apply,
+        Matrix.diagonal])
+
+/-- A fully concrete, kernel-checkable integer divisibility criterion
+for *every* possible right-hand-side of the Tribonacci period-one
+matrix equation. **Still not** a theorem on occurrence-compatible
+ancestry: this is the algebraic part only. -/
+theorem tribonacci_smith_membership (rhs : Fin 3 → ℤ) :
+    (∃ x : Fin 3 → ℤ, tribonacciCycleA.mulVec x = rhs) ↔
+      (∀ i : Fin 3, tribonacciSmithDiagonal i ∣
+         (tribonacciSmithU.mulVec rhs) i) := by
+  exact matrix_smith_certificate_complete
+    tribonacciCycleA tribonacciSmithU tribonacciSmithUinv
+    tribonacciSmithV tribonacciSmithVinv
+    tribonacciSmithDiagonal rhs
+    tribonacci_smith_U_left_inverse
+    tribonacci_smith_V_right_inverse
+    tribonacci_smith_matrix_certificate
+
 end PscRoutes.R1Smith
 
 #print axioms PscRoutes.R1Smith.scalar_solvability_iff_dvd
@@ -256,6 +324,10 @@ end PscRoutes.R1Smith
 #print axioms PscRoutes.R1Smith.ancestryOrbit_unroll
 #print axioms PscRoutes.R1Smith.ancestryOrbit_closed_iff_cycle_equation
 #print axioms PscRoutes.R1Smith.ancestry_smith_cycle_criterion
+#print axioms PscRoutes.R1Smith.tribonacci_smith_U_left_inverse
+#print axioms PscRoutes.R1Smith.tribonacci_smith_V_right_inverse
+#print axioms PscRoutes.R1Smith.tribonacci_smith_matrix_certificate
+#print axioms PscRoutes.R1Smith.tribonacci_smith_membership
 
 open Lean Elab Command in
 run_cmd do
@@ -268,7 +340,11 @@ run_cmd do
     `PscRoutes.R1Smith.matrix_smith_certificate_complete,
     `PscRoutes.R1Smith.ancestryOrbit_unroll,
     `PscRoutes.R1Smith.ancestryOrbit_closed_iff_cycle_equation,
-    `PscRoutes.R1Smith.ancestry_smith_cycle_criterion] do
+    `PscRoutes.R1Smith.ancestry_smith_cycle_criterion,
+    `PscRoutes.R1Smith.tribonacci_smith_U_left_inverse,
+    `PscRoutes.R1Smith.tribonacci_smith_V_right_inverse,
+    `PscRoutes.R1Smith.tribonacci_smith_matrix_certificate,
+    `PscRoutes.R1Smith.tribonacci_smith_membership] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
