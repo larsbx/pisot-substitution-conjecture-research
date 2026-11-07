@@ -42,4 +42,11 @@ module PscR3PrefixReturns {
 
   val withinBound = sinceCut >= 0 and sinceCut <= 2
     and discrepancy <= sinceCut and -discrepancy <= sinceCut
+
+
+  // Two complete balanced blocks with common cuts, no diagonal event.
+  run balancedReturnsWithoutCoincidenceTest =
+    init.then(topLetter).then(bottomLetter).then(balancedReset)
+      .then(topLetter).then(bottomLetter).then(balancedReset)
+      .expect(cuts == 2 and sinceCut == 0 and not(coincidenceSeen))
 }
