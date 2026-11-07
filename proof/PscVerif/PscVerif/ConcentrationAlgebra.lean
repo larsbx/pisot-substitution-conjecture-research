@@ -15,7 +15,7 @@
   `f(N)` maps `ker P` onto itself, then `Q = L ∘ P` for a linear `L`.  The
   hypothesis on `ker P` is what Perron simplicity of `β` supplies when
   `f = χ_M`: then `χ_{N | ker P} = χ_N / χ_M` is coprime to `χ_M`.  That
-  deduction is not formalized here.
+  deduction is `Psc.KernelCofactor.isCoprime_charpoly_kerRestrict`.
 * `injective_of_irreducible` (**Theorem A(iv)**, injectivity): an intertwiner
   `L ≠ 0` out of a module with no proper nonzero invariant subspace is injective.
 * `isRoot_of_left_eigen`: over a field, a non-zero left eigen-row

@@ -55,7 +55,9 @@ the equality case (`Psc.Wielandt` treats it abstractly), and the existence of
 the positive left eigenvector `ℓ` (a hypothesis).  `swap_mem` and
 `children_swap` are hypotheses here; in the manuscript they follow from
 computing children by zero-return reduction.  That a different choice of `R`
-conjugates `S` by a diagonal `±1` matrix is not proved.
+conjugates `S` by a diagonal `±1` matrix is not proved here.  The gauge criterion,
+the strict inequality, the primitive equality case and the choice of `R` are
+`Psc.CocycleSpectrum`; `ℓ` for a primitive substitution is `Psc.PerronExistence`.
 -/
 import PscVerif.ParikhIntertwiner
 

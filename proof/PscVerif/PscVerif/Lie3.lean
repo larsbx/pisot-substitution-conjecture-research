@@ -62,7 +62,8 @@ Words are lists over an alphabet `α` with decidable equality; `n2` is
 
 ## What is not proved here
 
-* Ree's theorem in general (other degrees, other alphabet sizes), and the
+* Ree's theorem in general (other degrees, other alphabet sizes; degree four
+  on three letters is `Psc.LieWeights`), and the
   identification of the span of the brackets with the free Lie algebra as an
   abstract object: `Lie₃` here *means* the span of the eight explicit
   bracket vectors in `(ℚ³)^{⊗3}`.

@@ -2419,3 +2419,26 @@ claim-ledger promotion. Evidence: `docs/occurrence-path-replay-2026-10-16.md`,
   - **Tooling pitfall.** Inside `first | ring | …`, a failing `ring` does not fail: it falls back to `ring_nf`, leaves the goal, and `first` commits to it. Use `ring1`.
 
   Library: 34 modules, 1049 declarations, 767 theorems, standard axioms only. Locator: [Concentration attack §8](c4-concentration-attack-2026-11-06.md).
+
+- **2026-11-07 — Lean: descendants, kernel cofactor, degree-2 sector, cocycle spectrum, Perron–Frobenius, degree-4 defect, Lie weights.**
+  - **New modules.** Eight modules join `PscVerif`: `Descendants`, `KernelCofactor`, `Degree2Sector`, `CocycleSpectrum`, `PerronExistence`, `Defect4`, `LieWeights` and `Defect4Lie`. Each was implemented, adversarially reviewed and fixed before integration. Coverage is in the §8 rows.
+  - **Manuscript reading (`lem:descendants`).** The lemma holds in the child graph where the children of coincidence blocks are also formed. Read on `B_σ`, where coincidence blocks are terminal, it fails. For Fibonacci `0↦01, 1↦0`, `red(σ²01, σ²10)` contains `(1,1)`, which is not a vertex of `B_σ`. The two graphs agree on noncoincident states and are finite together. The manuscript is archived and not edited here. Locator: `Psc.Descendants.fib_descR_two`, `fib_bpaStatesNC`, `mem_bpaStatesNC_iff`, `finite_bpaStates_iff`.
+  - **Manuscript reading (`lem:conc-subst` (iii) at `r = 4`).** As printed, it is false on repeated letters at degree four, as at degree three (D2 of `docs/verification-architecture.md`). Products of scattered counts are infiltration products. Their corrections have degree `< 4` and cancel under `∼₃`, so the relations of `K₄` hold. Locator: `Psc.Defect4.count_mul_n3`, `n3_mul_count`, `n2_mul_n2`.
+  - **Finite observations.**
+    - At degree four `ab ⧢ cd` is not redundant (`LieWeights.r1_not_shuffleAnnih4`), unlike degree three, where `ab ⧢ c` is a re-indexing.
+    - A binary `∼₂` pair satisfies every `ab ⧢ cd` relation (`Defect4.k4_shuffle_two_binary`), so its negative control must be ternary.
+    - `ρ(N_C) = β` on representatives needs only `ℓ > 0` and balance, not irreducibility of `N_C` (`PerronExistence.perron_root_rep_of_primitive`, `KernelCofactor.perron_root_of_intertwine`).
+    - Given a normalisation, balance makes the nonempty-track hypothesis `hne` redundant (`Degree2Sector.ne_nil_of_balanced`).
+  - **Counter-calibrations.**
+    - Strong connectivity is needed in the strict bound and in the gauge criterion (`CocycleSpectrum.neg_sc_strict`, `neg_sc_gauge`).
+    - Primitivity is needed in the equality case: `pNorm` has eigenvalue `i`, of modulus `β = 1` (`neg_primitive`).
+    - Each of surjectivity, strong connectivity and irreducibility is needed for the cofactor and simplicity statements (`KernelCofactor.neg_surjective_needed`, `neg_sc_needed`, `wT_no_cofactor`).
+  - **Vacuity, stated.** The representative theorems of `KernelCofactor` and `Degree2Sector` have no control meeting every hypothesis. They are reductio lemmas about a hypothetical strict component. Their controls reach every hypothesis except irreducibility of `χ_M` (`wT_rep_hyps`, `exA_sector`); `plastic` meets the matrix-level ones.
+  - **Caught in review.**
+    - `LieWeights` first compared Lyndon counts with a Witt quotient taken by integer floor division, so `⌊3/4⌋ = 0` passed. It now proves the exact identity `r·m(κ) = wittSum κ`.
+    - A draft minimality claim about the `∼₃` control pair `w4Pair` came from an unpinned scratch search and was withdrawn. So was a scratch BPA search figure; neither is cited.
+  - **Tooling pitfalls.**
+    - A module outside `PscVerif.lean` has no olean, so sibling modules cannot import it. The `K₄ ∈ Lie₄` bridge (`Defect4Lie`) had to wait for integration.
+    - Passing a concrete representation to a lemma generic in `[AddCommGroup V]` can time out at `whnf` unless `(V := …)` is given explicitly.
+
+  Library: 42 modules, 2038 declarations, 1575 theorems, standard axioms only. Locator: [Concentration attack §8](c4-concentration-attack-2026-11-06.md).

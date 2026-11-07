@@ -33,3 +33,11 @@ import PscVerif.Reduction
 import PscVerif.ParikhRank
 import PscVerif.SignedIntertwiner
 import PscVerif.Lie3
+import PscVerif.Descendants
+import PscVerif.KernelCofactor
+import PscVerif.Degree2Sector
+import PscVerif.CocycleSpectrum
+import PscVerif.PerronExistence
+import PscVerif.Defect4
+import PscVerif.LieWeights
+import PscVerif.Defect4Lie

@@ -42,7 +42,7 @@ Two instantiations, over a `Psc.Binomial.ChildSystem S` on `Fin 3` with
 
 Not proved here: the identification of the cofactor `χ_{N_C} / χ_M` with the
 characteristic polynomial of `N_C` on `ker P_C`, and Perron simplicity of `β`
-for `N_C`.  The hypotheses `C` nonempty and nonempty top tracks exclude the
+for `N_C` (both in `Psc.KernelCofactor`).  The hypotheses `C` nonempty and nonempty top tracks exclude the
 degenerate `P = 0`.
 -/
 import PscVerif.ParikhIntertwiner

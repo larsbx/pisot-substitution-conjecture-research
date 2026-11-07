@@ -57,7 +57,9 @@ the depth-`n` descendants, i.e. that `red` commutes with inflation of the
 block boundaries; `ChildSystem.desc` is not compared with `red` at depth
 `n > 1`), the inherited/newborn distinction of `lem:inherited`, reachability
 from the seeds, coincidence blocks being terminal, and the finiteness
-hypothesis G1 (here `C` is an arbitrary given finite set).
+hypothesis G1 (here `C` is an arbitrary given finite set).  `lem:descendants`,
+reachability from the seeds and coincidence blocks being terminal are treated in
+`Psc.Descendants`.
 -/
 import PscVerif.SignedCocycle
 import PscVerif.FixedPointLimit
