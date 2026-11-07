@@ -54,12 +54,43 @@ theorem no_two_sided_strict_positive_separator
   have hzero := symmetric_orientation_forces_zero h x (le_of_lt hforward) hreversed
   linarith
 
+
+/-- Finite source-bound density gate: a uniform positive density of
+strictly oriented good indices is incompatible with a sufficiently
+small nonnegative mean. Both the actual sign certificate and the
+mean control are external hypotheses requiring independent proof. -/
+theorem density_excludes_small_mean
+    (allIndices good : Finset ι) (value : ι → ℚ)
+    (delta rho eps : ℚ)
+    (hsubset : good ⊆ allIndices)
+    (hvalue : ∀ i ∈ allIndices, 0 ≤ value i)
+    (hgood : ∀ i ∈ good, delta ≤ value i)
+    (hdelta : 0 ≤ delta)
+    (hnonempty : 0 < (allIndices.card : ℚ))
+    (hdensity : rho * (allIndices.card : ℚ) ≤ (good.card : ℚ))
+    (hmean : (∑ i ∈ allIndices, value i) ≤
+        eps * (allIndices.card : ℚ))
+    (hgap : eps < rho * delta) : False := by
+  have hcount := good_mass_lower_bound allIndices good value delta
+    hsubset hvalue hgood
+  have hscale : (rho * (allIndices.card : ℚ)) * delta ≤
+      (good.card : ℚ) * delta :=
+    mul_le_mul_of_nonneg_right hdensity hdelta
+  have hupper : (good.card : ℚ) * delta ≤
+      eps * (allIndices.card : ℚ) := le_trans hcount hmean
+  have hstrict :
+      eps * (allIndices.card : ℚ) <
+      (rho * delta) * (allIndices.card : ℚ) :=
+    mul_lt_mul_of_pos_right hgap hnonempty
+  nlinarith
+
 end PscRoutes.R2
 
 #print axioms PscRoutes.R2.good_mass_lower_bound
 #print axioms PscRoutes.R2.positive_density_contradiction
 #print axioms PscRoutes.R2.symmetric_orientation_forces_zero
 #print axioms PscRoutes.R2.no_two_sided_strict_positive_separator
+#print axioms PscRoutes.R2.density_excludes_small_mean
 
 /- Fail-closed exact-declaration axiom audit for this standalone branch.
    All declared helper theorems must use only the standard Lean axioms.
@@ -67,7 +98,7 @@ end PscRoutes.R2
 open Lean Elab Command in
 run_cmd do
   let allowed := #[`propext, `Classical.choice, `Quot.sound]
-  for name in #[`PscRoutes.R2.good_mass_lower_bound, `PscRoutes.R2.positive_density_contradiction, `PscRoutes.R2.symmetric_orientation_forces_zero, `PscRoutes.R2.no_two_sided_strict_positive_separator] do
+  for name in #[`PscRoutes.R2.good_mass_lower_bound, `PscRoutes.R2.positive_density_contradiction, `PscRoutes.R2.symmetric_orientation_forces_zero, `PscRoutes.R2.no_two_sided_strict_positive_separator, `PscRoutes.R2.density_excludes_small_mean] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
