@@ -157,6 +157,25 @@ theorem no_negative_periodic_orbit_with_nonpositive_digits
   rw [hsign] at hsum
   linarith
 
+
+/-- Actual Tribonacci incidence action for 1↦12, 2↦13, 3↦1
+with an integral first-coordinate correction. This *finite* negative
+control checks the exact recurrence from the existing ancestry notes;
+it does not by itself construct an indefinitely repeating strict PIP
+component or certify literal descendant occurrence addresses. -/
+def tribonacciAncestryStep (x : ℤ × ℤ × ℤ) (digit : ℤ) :
+    ℤ × ℤ × ℤ :=
+  (x.1 + x.2.1 + x.2.2 + digit, x.1, x.2.1)
+
+/-- The three-step nonzero defect cycle requires both signs of a
+source-prefix correction; it is an explicit counter-calibration to
+an unrestricted nonnegative-digit premise. -/
+theorem tribonacci_three_step_signed_forcing :
+    tribonacciAncestryStep (1, -1, 0) 0 = (0, 1, -1) ∧
+    tribonacciAncestryStep (0, 1, -1) (-1) = (-1, 0, 1) ∧
+    tribonacciAncestryStep (-1, 0, 1) 1 = (1, -1, 0) := by
+  norm_num [tribonacciAncestryStep]
+
 end PscRoutes.R1
 
 #print axioms PscRoutes.R1.height_on_orbit
@@ -167,6 +186,7 @@ end PscRoutes.R1
 #print axioms PscRoutes.R1.forcedDigitSum_nonneg
 #print axioms PscRoutes.R1.no_positive_periodic_orbit_with_nonnegative_digits
 #print axioms PscRoutes.R1.no_negative_periodic_orbit_with_nonpositive_digits
+#print axioms PscRoutes.R1.tribonacci_three_step_signed_forcing
 
 /- Fail-closed exact-declaration axiom audit for this standalone branch.
    All declared helper theorems must use only the standard Lean axioms.
@@ -174,7 +194,7 @@ end PscRoutes.R1
 open Lean Elab Command in
 run_cmd do
   let allowed := #[`propext, `Classical.choice, `Quot.sound]
-  for name in #[`PscRoutes.R1.height_on_orbit, `PscRoutes.R1.correction_free_run_exclusion, `PscRoutes.R1.nonzero_fixed_height_requires_forcing, `PscRoutes.R1.forced_orbit_expansion, `PscRoutes.R1.period_forcing_certificate, `PscRoutes.R1.forcedDigitSum_nonneg, `PscRoutes.R1.no_positive_periodic_orbit_with_nonnegative_digits, `PscRoutes.R1.no_negative_periodic_orbit_with_nonpositive_digits] do
+  for name in #[`PscRoutes.R1.height_on_orbit, `PscRoutes.R1.correction_free_run_exclusion, `PscRoutes.R1.nonzero_fixed_height_requires_forcing, `PscRoutes.R1.forced_orbit_expansion, `PscRoutes.R1.period_forcing_certificate, `PscRoutes.R1.forcedDigitSum_nonneg, `PscRoutes.R1.no_positive_periodic_orbit_with_nonnegative_digits, `PscRoutes.R1.no_negative_periodic_orbit_with_nonpositive_digits, `PscRoutes.R1.tribonacci_three_step_signed_forcing] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
