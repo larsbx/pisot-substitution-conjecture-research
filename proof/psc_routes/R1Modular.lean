@@ -81,11 +81,52 @@ theorem no_mod_two_solution_to_zero_times_x_eq_one :
   rintro ⟨x, hx⟩
   norm_num at hx
 
+
+/-- Explicit integer incidence action for the Tribonacci substitution
+0 ↦ 01, 1 ↦ 02, 2 ↦ 0. Its columns are the Parikh vectors
+(1,1,0), (1,0,1), (1,0,0), respectively. -/
+def tribonacciIncidence (x : Fin 3 → ℤ) : Fin 3 → ℤ :=
+  fun i => if i = 0 then x 0 + x 1 + x 2
+    else if i = 1 then x 0 else x 1
+
+/-- An e₀ local correction is arithmetically admissible:
+the proper one-letter prefix of 01 contributes a single 0.
+But it cannot form a period-one *integral* ancestry cycle under
+the true Tribonacci incidence. Exact parity provides the obstruction.
+This is NOT a claim that a corresponding strict occurrence self-loop
+exists or that all possible actual cycles are excluded. -/
+theorem tribonacci_e0_forced_period_one_impossible :
+    ¬ ∃ x : Fin 3 → ℤ,
+        ∀ i : Fin 3,
+          x i = tribonacciIncidence x i + (if i = 0 then 1 else 0) := by
+  rintro ⟨x, hx⟩
+  have h0 := hx 0
+  have h2 := hx 2
+  simp [tribonacciIncidence] at h0 h2
+  omega
+
+/-- The parity obstruction is a concrete ZMod 2 left-null test:
+the first and third rows of I-M agree modulo 2, whereas the
+e₀ correction pairs nontrivially with their sum. -/
+theorem tribonacci_e0_mod_two_left_null
+    (x0 x1 x2 : ZMod 2) :
+    ¬ ((-x1 - x2 = (1 : ZMod 2)) ∧ (x2 - x1 = 0)) := by
+  intro h
+  rcases h with ⟨h0, h2⟩
+  have hsum : (-x1 - x2) + (x2 - x1) = (0 : ZMod 2) := by
+    calc
+      (-x1 - x2) + (x2 - x1) = -(2 : ZMod 2) * x1 := by ring
+      _ = 0 := by norm_num
+  rw [h0, h2] at hsum
+  norm_num at hsum
+
 end PscRoutes.R1Modular
 
 #print axioms PscRoutes.R1Modular.no_mod_solution_from_left_null
 #print axioms PscRoutes.R1Modular.no_integral_solution_from_modular_witness
 #print axioms PscRoutes.R1Modular.no_mod_two_solution_to_zero_times_x_eq_one
+#print axioms PscRoutes.R1Modular.tribonacci_e0_forced_period_one_impossible
+#print axioms PscRoutes.R1Modular.tribonacci_e0_mod_two_left_null
 #print axioms PscRoutes.R1Modular.realized_integer_cycle_cannot_be_modularly_obstructed
 
 open Lean Elab Command in
