@@ -35,7 +35,7 @@ jobs:
             echo "Unaccepted axiom or Lean error" >&2
             exit 1
           fi
-          test "$(grep -c 'PSC_R1F_AXIOMS_OK' "$RUNNER_TEMP/r1f-lean.log")" -eq 17
+          test "$(grep -c 'PSC_R1F_AXIOMS_OK' "$RUNNER_TEMP/r1f-lean.log")" -eq 18
       - uses: actions/upload-artifact@v4
         if: always()
         with:
