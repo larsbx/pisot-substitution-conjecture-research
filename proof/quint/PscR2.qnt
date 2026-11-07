@@ -18,7 +18,7 @@ module PscR2OrientedAverage {
     displacement' = -displacement,
     cumulative' = cumulative + displacement,
     samples' = samples + 1,
-    zeroSeen' = zeroSeen or displacement == 0,
+    zeroSeen' = if (displacement == 0) true else zeroSeen,
   }
 
   action step = alternate
@@ -32,5 +32,5 @@ module PscR2OrientedAverage {
   // yet no individual defect is zero.
   run meanZeroWithoutReturnTest =
     init.then(12.reps(_ => alternate))
-      .expect(cumulative == 0 and samples == 12 and noZeroWitness)
+      .expect(cumulative == 0 and samples == 12 and (zeroSeen == false))
 }
