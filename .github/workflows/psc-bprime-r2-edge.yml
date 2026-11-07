@@ -33,7 +33,7 @@ jobs:
           set -euo pipefail
           "$HOME/.elan/bin/lake" env lean ../../proof/psc_routes/R2EdgeCertificate.lean | tee "$RUNNER_TEMP/r2c-lean.log"
           ! grep -Eq 'sorryAx|error:' "$RUNNER_TEMP/r2c-lean.log"
-          test "$(grep -c 'PSC_R2C_AXIOMS_OK' "$RUNNER_TEMP/r2c-lean.log")" -eq 4
+          test "$(grep -c 'PSC_R2C_AXIOMS_OK' "$RUNNER_TEMP/r2c-lean.log")" -eq 6
       - uses: actions/upload-artifact@v4
         if: always()
         with:
