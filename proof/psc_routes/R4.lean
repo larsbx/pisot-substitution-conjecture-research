@@ -97,7 +97,9 @@ theorem zero_address_not_enough_for_labeled_coincidence :
     ∃ packet : LabeledOverlapPacket 1 Bool,
       IsCommonVertex packet ∧ ¬ IsLabeledCoincidence packet := by
   refine ⟨⟨fun _ => 0, true, false⟩, ?_, ?_⟩
-  · simp [IsCommonVertex]
+  · change (fun _ : Fin 1 => (0 : ℤ)) = (0 : Fin 1 → ℤ)
+    funext i
+    rfl
   · simp [IsLabeledCoincidence]
 
 
