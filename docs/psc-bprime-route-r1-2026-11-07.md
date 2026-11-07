@@ -54,3 +54,19 @@ Lean sublemma acceptance, if CI passes, is **not** a PSC/C4/A1′/BH/PDS closure
 **Hypothesis transfer:** PIP's β>1, rational cyclicity and finite integral ancestry transfer; bounded gaps/forced digits are **not** assumed zero. The repo's illegal swap states cannot be treated as fixed-point prefixes.
 
 **Decision: PROCEED NARROWED.** Formalize the conditional growth lemma and exhibit a forced-cycle countermodel; next prove or refute a **strictness + occurrence-compatible lineage ⇒ long correction-free stretch** statement. Do not promote a result unless the actual ordered-state premise is established. This automated targeted check satisfies research-design provenance while **independent human review remains deferred until after PSC closure**.
+
+## 2026-11-07 — source-word transport and independent Tribonacci adversary
+
+**New formal interface:** `wordMass_append`, `wordMass_substitution`, and `asynchronous_word_mass_transport` operate on literal lists over any alphabet and an additive Parikh-valued map. Under an explicit **per-letter incidence equality** `M (label a)=wordMass (σ a)`, the claimed asynchronous identity follows exactly:
+[
+\mathrm{mass}(\sigma(U)+U_{local})-\mathrm{mass}(\sigma(V)+V_{local})
+=M(\mathrm{mass}(U)-\mathrm{mass}(V))
++\mathrm{mass}(U_{local})-\mathrm{mass}(V_{local}).
+]
+There is **no** claim yet that the supplied local fragments are canonical proper source-image prefixes or correspond to actual legal occurrence addresses. That is the next refinement obligation.
+
+**Adversarial control:** the real 3×3 Tribonacci incidence action on the existing recorded defects has an exact three-step signed-correction loop `(1,−1,0) → (0,1,−1) → (−1,0,1) → (1,−1,0)`, with first-coordinate corrections `0,−1,+1`. The Lean equality is finite arithmetic; `PscR1TribonacciArithmetic` is a *separate* Quint module whose test now must be invoked with `--main=PscR1TribonacciArithmetic`. This reproduces only the matrix/correction arithmetic; the existing Python ancestry test is still the source locator for literal cut occurrences.
+
+**Important exact-head failure retained:** hosted run `42398141936` at `762cdd7247eb1a30378252645877d2f0fedf86da` failed its Lean axiom check because the proof of digit-negation improperly inducted on `n` while retaining the period and height hypotheses. The resulting dependent induction was incomplete and Lean introduced `sorryAx`; the fail-closed audit rejected the declaration. Fixed by an *independent unconditional induction* `forcedDigitSum_neg` in follow-up commit `a413841d3e3a68ecd2cf81f8726d2471c2041804`. The fix and new source-word bridge require exact-head replay.
+
+**Required closure gate:** demonstrate that every recurrent, **strict** and **occurrence-compatible** PIP ancestry yields a cycle whose actual correction digits violate the periodic rational/algebraic certificate. Neither a mere cycle nor correction-free growth alone proves this. Reversed-orientation cycles must remain legal counter-calibrations. Universal PSC/BH/C4 status unchanged.
