@@ -10,8 +10,11 @@ same `n2` counts; `K₂(u,v) = 0` for a balanced pair is exactly `Equiv2 u v`.
 Proved here, in full:
 
 * `n2_append`: `n2 (x ++ y) = n2 x + n2 y + |x|_a * |y|_b`;
-* `Equiv2.append`, `equiv2_join`: concatenations of pairwise 2-binomially
-  equivalent blocks are 2-binomially equivalent (block additivity of `K₂`);
+* `n2_add_n2_swap`: for `a ≠ b`, `n2 w a b + n2 w b a = |w|_a · |w|_b`;
+  `n2_self`: `n2 w a a = (|w|_a).choose 2`;
+* `Equiv1.append`, `equiv1_join`, `Equiv2.append`, `equiv2_join`:
+  concatenations of pairwise balanced (resp. 2-binomially equivalent) blocks
+  are balanced (resp. 2-binomially equivalent; block additivity of `K₂`);
 * the **reduction lemma** in finite form, `reduction_lemma`: in a finite
   child-closed system of 2-binomially equivalent pairs whose children
   concatenate to the images, some state `T₀` returns to itself as the first
@@ -23,8 +26,13 @@ Proved here, in full:
   as `σᵏ`; `ChildSystem.desc_ne_nil` and `ChildSystem.pow`: the depth-`k`
   descendants of a child system form a child system of the power substitution
   on the same states;
-* `heads_ne`: an irreducible noncoincident balanced pair has distinct first
-  letters.
+* `heads_ne`: an irreducible (`IrreduciblePair`) noncoincident balanced pair
+  has distinct first letters;
+* over a finite alphabet, `Equiv1`, `Equiv2` and `IrreduciblePair` are
+  decidable (instances used by the `decide` controls);
+* `thueMorse`: the Thue–Morse child system (`0 ↦ 01`, `1 ↦ 10`, states
+  `(01, 10)` and `(10, 01)`, children `T, T.swap`), a concrete instance used as
+  a control in `PscVerif.PrimitiveExpansion` and `PscVerif.SignedCocycle`.
 
 The passage from the finite statement to the two one-sided fixed points is the
 standard limit of an increasing sequence of prefixes and is not formalized.
@@ -33,13 +41,13 @@ import Mathlib.Data.List.Basic
 import Mathlib.Data.Fintype.Card
 import Mathlib.Logic.Function.Iterate
 import Mathlib.Data.Fintype.Pigeonhole
+import Mathlib.Data.Nat.Choose.Basic
 import Mathlib.Tactic.Ring
+import Mathlib.Tactic.Linarith
 
 namespace Psc.Binomial
 
 variable {α : Type*} [DecidableEq α]
-
-set_option linter.unusedSectionVars false
 
 /-- Scattered occurrences of the length-two word `a b` in `w`. -/
 def n2 : List α → α → α → ℕ
@@ -72,9 +80,52 @@ theorem Equiv2.append {x x' y y' : List α} (hx : Equiv2 x x') (hy : Equiv2 y y'
 
 theorem Equiv2.refl (x : List α) : Equiv2 x x := ⟨fun _ => rfl, fun _ _ => rfl⟩
 
+/-- For distinct letters, `n2 w a b + n2 w b a = |w|_a · |w|_b`. -/
+theorem n2_add_n2_swap (w : List α) {a b : α} (hab : a ≠ b) :
+    n2 w a b + n2 w b a = w.count a * w.count b := by
+  induction w with
+  | nil => simp [n2]
+  | cons c w ih =>
+    simp only [n2, List.count_cons]
+    by_cases hca : c = a
+    · subst hca
+      have : (c == b) = false := by simpa using hab
+      simp [this, hab]
+      nlinarith [ih]
+    · by_cases hcb : c = b
+      · subst hcb
+        have : (c == a) = false := by simpa using hca
+        simp [this, hca]
+        nlinarith [ih]
+      · have h1 : (c == a) = false := by simpa using hca
+        have h2 : (c == b) = false := by simpa using hcb
+        simp [h1, h2, hca, hcb]
+        omega
+
+/-- `n2 w a a = C(|w|_a, 2)`. -/
+theorem n2_self (w : List α) (a : α) : n2 w a a = (w.count a).choose 2 := by
+  induction w with
+  | nil => simp [n2]
+  | cons c w ih =>
+    simp only [n2, List.count_cons, ih]
+    by_cases hca : c = a
+    · subst hca
+      simp [Nat.choose_succ_succ']
+    · have : (c == a) = false := by simpa using hca
+      simp [this, hca]
+
 /-- Words with the same letter counts have the same length. -/
 theorem Equiv1.length_eq {x y : List α} (h : Equiv1 x y) : x.length = y.length :=
   (List.perm_iff_count.mpr h).length_eq
+
+/-- A list of balanced pairs concatenates to a balanced pair. -/
+theorem equiv1_join (bs : List (List α × List α)) (h : ∀ T ∈ bs, Equiv1 T.1 T.2) :
+    Equiv1 (bs.map Prod.fst).flatten (bs.map Prod.snd).flatten := by
+  induction bs with
+  | nil => intro a; rfl
+  | cons T bs ih =>
+    simp only [List.map_cons, List.flatten_cons]
+    exact (h T (by simp)).append (ih fun T' hT' => h T' (by simp [hT']))
 
 /-- A list of pairs, all 2-binomially equivalent, concatenates to a 2-binomially
 equivalent pair. -/
@@ -96,22 +147,27 @@ theorem equiv2_at_cuts (bs : List (List α × List α)) (h : ∀ T ∈ bs, Equiv
 /-- The image of a word under a substitution `s : α → List α`. -/
 def subst (s : α → List α) (w : List α) : List α := (w.map s).flatten
 
+omit [DecidableEq α] in
 theorem subst_append (s : α → List α) (x y : List α) :
     subst s (x ++ y) = subst s x ++ subst s y := by simp [subst]
 
+omit [DecidableEq α] in
 theorem subst_prefix (s : α → List α) {x y : List α} (h : x <+: y) :
     subst s x <+: subst s y := by
   obtain ⟨t, rfl⟩ := h; exact ⟨subst s t, (subst_append s x t).symm⟩
 
+omit [DecidableEq α] in
 theorem iterate_subst_append (s : α → List α) (n : ℕ) (x y : List α) :
     (subst s)^[n] (x ++ y) = (subst s)^[n] x ++ (subst s)^[n] y := by
   induction n generalizing x y with
   | zero => rfl
   | succ n ih => simp only [Function.iterate_succ_apply', ih, subst_append]
 
+omit [DecidableEq α] in
 theorem iterate_subst_nil (s : α → List α) (n : ℕ) : (subst s)^[n] [] = [] :=
   Function.iterate_fixed (by simp [subst]) n
 
+omit [DecidableEq α] in
 theorem iterate_subst_flatten (s : α → List α) (n : ℕ) (ws : List (List α)) :
     (subst s)^[n] ws.flatten = (ws.map (subst s)^[n]).flatten := by
   induction ws with
@@ -121,6 +177,7 @@ theorem iterate_subst_flatten (s : α → List α) (n : ℕ) (ws : List (List α
 /-- The `k`-th power substitution `a ↦ σᵏ [a]`. -/
 def power (s : α → List α) (k : ℕ) : α → List α := fun a => (subst s)^[k] [a]
 
+omit [DecidableEq α] in
 /-- `subst (power s k) = σᵏ`: the power substitution acts on words as the
 `k`-th iterate. -/
 theorem subst_power (s : α → List α) (k : ℕ) : subst (power s k) = (subst s)^[k] := by
@@ -156,7 +213,7 @@ def desc (S : ChildSystem α) : ℕ → List α × List α → List (List α × 
 
 theorem desc_mem (n : ℕ) : ∀ T ∈ S.C, ∀ U ∈ S.desc n T, U ∈ S.C := by
   induction n with
-  | zero => intro T hT U hU; simp [desc] at hU; exact hU ▸ hT
+  | zero => intro T hT U hU; simp only [desc, List.mem_singleton] at hU; exact hU ▸ hT
   | succ n ih =>
     intro T hT U hU
     simp only [desc, List.mem_flatten, List.mem_map] at hU
@@ -290,12 +347,29 @@ end ChildSystem
 
 /-! ### Irreducible noncoincident pairs have distinct first letters -/
 
-/-- `(u, v)` is irreducible: no proper nonempty prefixes with equal letter counts. -/
-def Irreducible (u v : List α) : Prop :=
+/-- The pair `(u, v)` is irreducible (as a balanced pair): no proper nonempty
+prefixes with equal letter counts.  Named `IrreduciblePair` so that it does not
+shadow Mathlib's `Irreducible` under `open Psc.Binomial`. -/
+def IrreduciblePair (u v : List α) : Prop :=
   ∀ k, 0 < k → k < u.length → ¬ Equiv1 (u.take k) (v.take k)
 
+/-- Over a finite alphabet the three pair predicates are decidable (used by the
+`decide` controls; `IrreduciblePair` quantifies over the bounded range
+`k < |u|`). -/
+instance [Fintype α] (x y : List α) : Decidable (Equiv1 x y) := by
+  unfold Equiv1; infer_instance
+
+instance [Fintype α] (x y : List α) : Decidable (Equiv2 x y) := by
+  unfold Equiv2; infer_instance
+
+instance [Fintype α] (u v : List α) : Decidable (IrreduciblePair u v) := by
+  unfold IrreduciblePair
+  exact decidable_of_iff (∀ k ∈ List.range u.length, 0 < k → ¬ Equiv1 (u.take k) (v.take k))
+    ⟨fun h k hk hl => h k (List.mem_range.2 hl) hk,
+      fun h k hm hk => h k hk (List.mem_range.1 hm)⟩
+
 theorem heads_ne {a b : α} {u v : List α} (hbal : Equiv1 (a :: u) (b :: v))
-    (hirr : Irreducible (a :: u) (b :: v)) (hnc : a :: u ≠ b :: v) : a ≠ b := by
+    (hirr : IrreduciblePair (a :: u) (b :: v)) (hnc : a :: u ≠ b :: v) : a ≠ b := by
   rintro rfl
   have hlen : u.length = v.length := by simpa using hbal.length_eq
   rcases Nat.eq_zero_or_pos u.length with h0 | hpos
@@ -303,5 +377,25 @@ theorem heads_ne {a b : α} {u v : List α} (hbal : Equiv1 (a :: u) (b :: v))
     have hv : v = [] := List.length_eq_zero_iff.mp (by omega)
     rw [List.length_eq_zero_iff.mp h0, hv]
   · exact hirr 1 Nat.one_pos (by simp; omega) (fun c => by simp)
+
+/-! ### A concrete child system: Thue–Morse -/
+
+/-- The Thue–Morse substitution `0 ↦ 01`, `1 ↦ 10`. -/
+def thueMorseSubst : Fin 2 → List (Fin 2) := fun a => if a = 0 then [0, 1] else [1, 0]
+
+/-- The balanced pair `(01, 10)`. -/
+def tmPair : List (Fin 2) × List (Fin 2) := ([0, 1], [1, 0])
+
+/-- The Thue–Morse child system on the two states `(01, 10)` and `(10, 01)`:
+`σ(01, 10) = (01·10, 10·01)` and `σ(10, 01) = (10·01, 01·10)`, so the children
+of a state `T` are `T, T.swap`. -/
+def thueMorse : ChildSystem (Fin 2) where
+  s := thueMorseSubst
+  C := {tmPair, tmPair.swap}
+  children := fun T => [T, T.swap]
+  top := by decide
+  bot := by decide
+  closed := by decide
+  nonempty := by decide
 
 end Psc.Binomial

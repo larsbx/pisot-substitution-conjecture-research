@@ -3,7 +3,9 @@
 
 `docs/c4-concentration-attack-2026-11-06.md` §3;
 `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`, `thm:parikh` (letter
-counts) and `lem:conc-subst` (i), (ii) at `r = 2, 3`.
+counts), `lem:conc-subst` (i) at `r = 3` (`n3_append`; the `r = 2` case is
+`Psc.Binomial.n2_append`) and `lem:conc-subst` (ii) at `r = 2` (`n2_subst`) and
+`r = 3` (`n3_subst`).
 
 This module is the single home of the incidence matrix of a substitution and of
 the word-level formulas that the intertwiner modules (`PscVerif.ParikhIntertwiner`,
@@ -23,7 +25,17 @@ Proved here, in full:
   - `count_subst` (Parikh identity): `|σ w|_a = Σ_c inc s a c · |w|_c`;
   - `count_iterate_subst`: `|σᵏ [c]|_a = (inc s ^ k) a c`;
   - `n2_subst` (`lem:conc-subst` (ii), `r = 2`):
-    `n2 (σ w) a b = Σ_c Σ_d inc s a c · inc s b d · n2 w c d + Σ_c |w|_c · n2 (s c) a b`.
+    `n2 (σ w) a b = Σ_c Σ_d inc s a c · inc s b d · n2 w c d + Σ_c |w|_c · n2 (s c) a b`;
+  - `equiv2_subst`: `Equiv2` (`K₁ = K₂ = 0`) is preserved by `σ`;
+  - `n3_subst` (`lem:conc-subst` (ii), `r = 3`, with the correction term explicit):
+    ```
+    n3 (σ w) a b e = Σ_{x,y,z} M a x · M b y · M e z · n3 w x y z
+                   + Σ_{x,z} M a x · n2 (s z) b e · n2 w x z
+                   + Σ_{x,z} n2 (s x) a b · M e z · n2 w x z
+                   + Σ_x |w|_x · n3 (s x) a b e,
+    ```
+    where `M = inc s`; the three correction sums are linear in `N₂(w)` and
+    `N₁(w)` with coefficients depending only on `s`.
 -/
 import PscVerif.Binomial
 import Mathlib.Data.Matrix.Mul
@@ -120,6 +132,63 @@ theorem n2_subst (s : α → List α) (w : List α) (a b : α) :
     have e2 : (∑ x : α, (if (c == x) = true then 1 else 0) * n2 (s x) a b) = n2 (s c) a b := by
       simp [beq_iff_eq]
     rw [e1, e2]
+    simp only [inc_apply]
+    ring
+
+/-- `Equiv2` is preserved by a substitution. -/
+theorem equiv2_subst (s : α → List α) {u v : List α} (h : Equiv2 u v) :
+    Equiv2 (subst s u) (subst s v) := by
+  refine ⟨fun a => ?_, fun a b => ?_⟩
+  · rw [count_subst, count_subst]
+    exact Finset.sum_congr rfl fun c _ => by rw [h.1 c]
+  · rw [n2_subst, n2_subst]
+    congr 1
+    · exact Finset.sum_congr rfl fun c _ => Finset.sum_congr rfl fun d _ => by rw [h.2 c d]
+    · exact Finset.sum_congr rfl fun c _ => by rw [h.1 c]
+
+/-- **`lem:conc-subst` (ii) at `r = 3`**, with the correction term explicit. -/
+theorem n3_subst (s : α → List α) (w : List α) (a b e : α) :
+    n3 (subst s w) a b e =
+      (∑ x, ∑ y, ∑ z, inc s a x * inc s b y * inc s e z * n3 w x y z)
+      + (∑ x, ∑ z, inc s a x * n2 (s z) b e * n2 w x z)
+      + (∑ x, ∑ z, n2 (s x) a b * inc s e z * n2 w x z)
+      + ∑ x, w.count x * n3 (s x) a b e := by
+  induction w with
+  | nil => simp [subst, n2]
+  | cons c w ih =>
+    rw [subst_cons, n3_append, ih, n2_subst, count_subst]
+    simp only [n3, n2, List.count_cons, mul_add, add_mul, Finset.sum_add_distrib]
+    have e1 : (∑ x, ∑ y, ∑ z,
+        inc s a x * inc s b y * inc s e z * (if c = x then n2 w y z else 0)) =
+        inc s a c * ∑ y, ∑ z, inc s b y * inc s e z * n2 w y z := by
+      rw [Finset.sum_eq_single c]
+      · simp only [ite_true, Finset.mul_sum]
+        refine Finset.sum_congr rfl fun y _ => Finset.sum_congr rfl fun z _ => ?_
+        ring
+      · intro x _ hx; simp [Ne.symm hx]
+      · simp
+    have e2 : (∑ x, ∑ z, inc s a x * n2 (s z) b e * (if c = x then w.count z else 0)) =
+        inc s a c * ∑ z, n2 (s z) b e * w.count z := by
+      rw [Finset.sum_eq_single c]
+      · simp only [ite_true, Finset.mul_sum]
+        refine Finset.sum_congr rfl fun z _ => ?_
+        ring
+      · intro x _ hx; simp [Ne.symm hx]
+      · simp
+    have e3 : (∑ x, ∑ z, n2 (s x) a b * inc s e z * (if c = x then w.count z else 0)) =
+        n2 (s c) a b * ∑ z, inc s e z * w.count z := by
+      rw [Finset.sum_eq_single c]
+      · simp only [ite_true, Finset.mul_sum]
+        refine Finset.sum_congr rfl fun z _ => ?_
+        ring
+      · intro x _ hx; simp [Ne.symm hx]
+      · simp
+    have e4 : (∑ x : α, (if (c == x) = true then 1 else 0) * n3 (s x) a b e) =
+        n3 (s c) a b e := by
+      simp [beq_iff_eq]
+    have e5 : (∑ y, w.count y * n2 (s y) b e) = ∑ z, n2 (s z) b e * w.count z :=
+      Finset.sum_congr rfl fun _ _ => mul_comm _ _
+    rw [e1, e2, e3, e4, e5]
     simp only [inc_apply]
     ring
 

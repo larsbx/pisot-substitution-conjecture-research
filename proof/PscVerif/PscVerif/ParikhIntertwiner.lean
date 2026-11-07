@@ -26,19 +26,53 @@ Proved here, in full:
   eigenvector of `N` (as a real matrix), `ℓ ᵥ* N = β • ℓ`, then
   `L ℓ (subst s w) = β * L ℓ w`, and in a child system
   `∑_{U child of T} L ℓ U.i = β * L ℓ T.i` on each track `i`;
-* `spectral_bound` (`prop:cocycle`, `ρ(S) ≤ β`): for a real matrix `N` with a
-  strictly positive left eigenvector `L ᵥ* N = β • L`, any complex matrix `S`
-  entrywise dominated by `N` (`‖S i j‖ ≤ N i j`) and any eigenpair
-  `S *ᵥ x = μ • x` with `x ≠ 0`, we have `‖μ‖ ≤ β`.
+* `spectral_bound_of_subinvariant` (`prop:cocycle`, `ρ(S) ≤ β`, abstract
+  matrix lemma in row form): for a real matrix `N` with a strictly positive
+  row vector `L` that is subinvariant, `(L ᵥ* N) j ≤ β * L j` for every `j`
+  (i.e. `λ N ≤ β λ`; the remark after `thm:parikh` writes the same condition
+  transposed, `N_C L ≤ β L`), any complex matrix `S` entrywise dominated by `N`
+  (`‖S i j‖ ≤ N i j`) and any eigenpair `S *ᵥ x = μ • x` with `x ≠ 0`, we have
+  `‖μ‖ ≤ β`.  That the state system of an escaping SCC is subinvariant is
+  **not** derived here; subinvariance is a hypothesis;
+* `spectral_bound`: the special case `L ᵥ* N = β • L` (a strictly positive
+  left eigenvector).
+
+State-indexed matrices of a child system (section `ChildMatrices`, `thm:parikh`
+in matrix form), for a `ChildSystem S` over a finite alphabet:
+
+* `State S`, the states `{T // T ∈ S.C}` as a finite type;
+* `Nc S`, the state matrix: `Nc S i j` is the number of times `i` occurs among
+  the **raw ordered children** of `j` (with multiplicity, no signs).  Caveat:
+  this is not the manuscript's representative matrix `N_C = A + B` on
+  unordered/normalised states; for a swap-closed `C` (with every `(u, v)` also
+  `(v, u)`) `Nc S` is the oriented double cover of it;
+* `Pc S`, the Parikh matrix of the top tracks, and `Lc S ℓ`, the state
+  functional `λ = ℓᵀ P_C` (`Lc S ℓ j = L ℓ (top track of j)`);
+* `sum_children_eq_sum_state`: a sum over the children of a state regrouped by
+  state with multiplicity `Nc S`;
+* `pc_nc`: `P_C N_C = N P_C` (`Pc S * Nc S = inc S.s * Pc S`);
+* `lc_nc`: if `ℓ ᵥ* N = β • ℓ` then `λ N_C = β λ`;
+* `lc_pos`: `λ > 0` when `ℓ > 0` and every state has a nonempty top track;
+* `spectral_bound_childSystem`: combining these with `spectral_bound`, any
+  complex state matrix entrywise dominated by `Nc S` has every eigenvalue of
+  modulus at most `β`;
+* `perron_root_childSystem`: under the same hypotheses and `C` nonempty, `β`
+  is an eigenvalue of `Nc S` (`λ N_C = β λ` with `λ ≠ 0` gives
+  `det (N_C - β) = 0`, hence a right eigenvector) and every complex eigenvalue
+  has modulus at most `β`, so `ρ(N_C) = β`.
+
+The specific cocycle `S = A - B` of `prop:cocycle` on normalised
+representatives, its antisymmetric lift to `Nc S`, and `ρ(S) ≤ β` are in
+`PscVerif.SignedCocycle`.
 
 Not proved here: existence of the positive left eigenvector (Perron–Frobenius
-for a primitive incidence matrix), its identification with the Perron root, and
-any statement about the specific cocycle `S` of `prop:cocycle` (only the
-abstract domination bound is formalized; nonnegativity of `N` is implied by the
-domination hypothesis and not assumed separately).
+for a primitive incidence matrix; it is a hypothesis), and that `β` is the
+Perron root of the incidence matrix itself (nonnegativity of `N` is implied by
+the domination hypothesis and not assumed separately).
 -/
 import PscVerif.Incidence
 import PscVerif.PerronCore
+import PscVerif.ConcentrationAlgebra
 
 namespace Psc.ParikhIntertwiner
 
@@ -180,14 +214,16 @@ section Spectral
 
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
-/-- **`prop:cocycle`, `ρ(S) ≤ β`, subinvariant form.**  If `L` is strictly
-positive and subinvariant for `N`, `(L ᵥ* N) j ≤ β * L j` for every `j`, and the
+/-- **`prop:cocycle`, `ρ(S) ≤ β`, subinvariant form** (an abstract matrix
+lemma).  If the row vector `L` is strictly positive and subinvariant for `N` in
+row form, `λ N ≤ β λ`, i.e. `(L ᵥ* N) j ≤ β * L j` for every `j`, and the
 complex matrix `S` is entrywise dominated by `N`, then every eigenvalue `μ` of
-`S` (with eigenvector `x ≠ 0`) satisfies `‖μ‖ ≤ β`.  This is the form used by the
-escape/leak remark after `thm:parikh` (`N_C L ≤ β L` when children may leave
-`C`). -/
-theorem spectral_bound_of_subinvariant (N : Matrix ι ι ℝ) (L : ι → ℝ) (hL : ∀ i, 0 < L i)
-    (β : ℝ) (hLN : ∀ j, (L ᵥ* N) j ≤ β * L j) (S : Matrix ι ι ℂ)
+`S` (with eigenvector `x ≠ 0`) satisfies `‖μ‖ ≤ β`.  The escape/leak remark
+after `thm:parikh` writes the subinvariance transposed (`N_C L ≤ β L` when
+children may leave `C`); that an escaping SCC is subinvariant is not derived
+here. -/
+theorem spectral_bound_of_subinvariant (N : Matrix ι ι ℝ) (L : ι → ℝ)
+    (hL : ∀ i, 0 < L i) (β : ℝ) (hLN : ∀ j, (L ᵥ* N) j ≤ β * L j) (S : Matrix ι ι ℂ)
     (hS : ∀ i j, ‖S i j‖ ≤ N i j) (x : ι → ℂ) (hx0 : x ≠ 0) (μ : ℂ) (hx : S *ᵥ x = μ • x) :
     ‖μ‖ ≤ β := by
   set a : ι → ℝ := fun i => ‖x i‖
@@ -218,7 +254,8 @@ theorem spectral_bound_of_subinvariant (N : Matrix ι ι ℝ) (L : ι → ℝ) (
 /-- **`prop:cocycle`, `ρ(S) ≤ β`.**  If `N` has a strictly positive left
 eigenvector `L ᵥ* N = β • L` and the complex matrix `S` is entrywise dominated
 by `N`, then every eigenvalue `μ` of `S` (with eigenvector `x ≠ 0`) satisfies
-`‖μ‖ ≤ β`.  The equality case of `spectral_bound_of_subinvariant`. -/
+`‖μ‖ ≤ β`.  The special case `L ᵥ* N = β • L` of
+`spectral_bound_of_subinvariant`. -/
 theorem spectral_bound (N : Matrix ι ι ℝ) (L : ι → ℝ) (hL : ∀ i, 0 < L i) (β : ℝ)
     (hLN : L ᵥ* N = β • L) (S : Matrix ι ι ℂ) (hS : ∀ i j, ‖S i j‖ ≤ N i j)
     (x : ι → ℂ) (hx0 : x ≠ 0) (μ : ℂ) (hx : S *ᵥ x = μ • x) :
@@ -237,7 +274,9 @@ variable {α : Type*} [Fintype α] [DecidableEq α] (S : ChildSystem α)
 abbrev State := {T // T ∈ S.C}
 
 /-- The state matrix `N_C`: `Nc i j` is the number of times `i` occurs among the
-raw ordered children of `j` (with multiplicity, no signs). -/
+raw ordered children of `j` (with multiplicity, no signs).  For a swap-closed
+`C` this is the oriented double cover of the manuscript's representative matrix
+`N_C = A + B`, not that matrix itself. -/
 def Nc : Matrix (State S) (State S) ℕ := Matrix.of fun i j => (S.children j.1).count i.1
 
 omit [Fintype α] in
@@ -259,8 +298,8 @@ theorem sum_children_eq_sum_state {M : Type*} [AddCommMonoid M]
     (f : List α × List α → M) (j : State S) :
     ((S.children j.1).map f).sum = ∑ i : State S, Nc S i j • f i.1 := by
   simp only [Nc_apply]
-  rw [Finset.sum_list_map_count (S.children j.1) f,
-    Finset.sum_coe_sort S.C (fun x : List α × List α => ((S.children j.1).count x • f x : M))]
+  rw [Finset.sum_list_map_count (S.children j.1) f, Finset.sum_coe_sort S.C
+    (fun x : List α × List α => ((S.children j.1).count x • f x : M))]
   convert Finset.sum_subset (s₁ := (S.children j.1).toFinset) (s₂ := S.C)
     (f := fun x => (S.children j.1).count x • f x) ?_ ?_ using 1
   · refine Finset.sum_congr rfl fun m _ => ?_
@@ -304,8 +343,9 @@ nonempty top track, then any complex state matrix `S'` entrywise dominated by
 `N_C` (`‖S' i j‖ ≤ Nc i j`) has every eigenvalue of modulus at most `β`.
 
 The cocycle matrix of `prop:cocycle` (signed children, normalised
-representatives) is such an `S'`, but it is not constructed here: only the
-domination bound is formalized. -/
+representatives) is treated in `PscVerif.SignedCocycle`
+(`Psc.SignedCocycle.Normalisation.cocycle_spectral_bound`, via its
+antisymmetric lift to `N_C`). -/
 theorem spectral_bound_childSystem (ℓ : α → ℝ) (hℓ : ∀ a, 0 < ℓ a)
     (hne : ∀ T ∈ S.C, T.1 ≠ []) (β : ℝ)
     (hℓN : ℓ ᵥ* (inc S.s).map (Nat.cast : ℕ → ℝ) = β • ℓ)
@@ -314,6 +354,27 @@ theorem spectral_bound_childSystem (ℓ : α → ℝ) (hℓ : ∀ a, 0 < ℓ a)
     ‖μ‖ ≤ β :=
   spectral_bound ((Nc S).map (Nat.cast : ℕ → ℝ)) (Lc S ℓ) (lc_pos S ℓ hℓ hne) β
     (lc_nc S ℓ β hℓN) S' (fun i j => by simpa using hS' i j) x hx0 μ hx
+
+/-- **The Perron root of the raw state matrix is `β`.**  Under the hypotheses of
+`spectral_bound_childSystem` and with `C` nonempty, `β` is an eigenvalue of
+`Nc` (the positive left eigenvector `λ` of `lc_nc` makes `β` a root of `χ_Nc`,
+hence a right eigenvalue), and every complex eigenvalue of `Nc` has modulus at
+most `β`; so `ρ(Nc) = β`.  `Nc` counts raw ordered children (for a swap-closed
+system, the oriented double cover); `ρ(Nrep) = β` for the manuscript's
+representative matrix `N_C = A + B` is not derived here. -/
+theorem perron_root_childSystem (ℓ : α → ℝ) (hℓ : ∀ a, 0 < ℓ a)
+    (hne : ∀ T ∈ S.C, T.1 ≠ []) (β : ℝ)
+    (hℓN : ℓ ᵥ* (inc S.s).map (Nat.cast : ℕ → ℝ) = β • ℓ) (hC : S.C.Nonempty) :
+    (∃ v : State S → ℝ, v ≠ 0 ∧ (Nc S).map (Nat.cast : ℕ → ℝ) *ᵥ v = β • v) ∧
+      ∀ x : State S → ℂ, x ≠ 0 → ∀ μ : ℂ,
+        (Nc S).map (Nat.cast : ℕ → ℂ) *ᵥ x = μ • x → ‖μ‖ ≤ β := by
+  refine ⟨?_, fun x hx0 μ hx =>
+    spectral_bound_childSystem S ℓ hℓ hne β hℓN _ (fun i j => by simp) x hx0 μ hx⟩
+  obtain ⟨T, hT⟩ := hC
+  have hL0 : Lc S ℓ ≠ 0 := fun h => (lc_pos S ℓ hℓ hne ⟨T, hT⟩).ne' (congrFun h _)
+  obtain ⟨v, hv0, hv⟩ := Psc.ConcentrationAlgebra.exists_eigenvector_of_isRoot _ β
+    (Psc.ConcentrationAlgebra.isRoot_of_left_eigen _ β (Lc S ℓ) hL0 (lc_nc S ℓ β hℓN))
+  exact ⟨v, hv0, hv⟩
 
 end ChildMatrices
 

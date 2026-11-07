@@ -68,3 +68,8 @@ note = "Restricted historical result: Lean supports its trace obstruction, not t
 [[evidence]]
 claim = "C4StandingCorpus"
 source = "docs/c4-finite-domain-closure-2026-11-05.md, section 3; exact affine-automaton witnesses for all 13,662 letter pairs with the cut-pair reduction Theorem A(4); domain-specific, not a universal theorem"
+[[lean_support]]
+claim = "OrientationSpectrum"
+coverage = "partial"
+declarations = ["Psc.SignedCocycle.Normalisation.lift_eigen", "Psc.SignedCocycle.Normalisation.cocycle_spectral_bound", "Psc.SignedCocycle.Normalisation.cocycle_spectral_bound_rep", "Psc.SignedCocycle.Normalisation.rep_eigen", "Psc.SignedCocycle.Normalisation.ssign_abs_le", "Psc.ParikhIntertwiner.perron_root_childSystem"]
+note = "Lean proves the odd-sector lift of the signed cocycle S = A - B into the raw ordered (double-cover) state matrix, the Perron comparison rho(S) <= beta on normalised representatives (two routes), lambda N_C = beta lambda on representatives and |S| <= N_C. The gauge/voltage-graph statements, the strict inequality, the equality case and the existence of the positive left eigenvector are not formalized; swap closure and children_swap are hypotheses."

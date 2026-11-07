@@ -129,18 +129,13 @@ theorem eq_zero_of_aeval_of_degree_lt {F n : Type*} [Field F] [Fintype n] [Decid
   rw [← this, map_add, map_mul, map_mul, add_mulVec, ← mulVec_mulVec, ← mulVec_mulVec, hfx, hgx,
     mulVec_zero, mulVec_zero, add_zero]
 
-/-- A non-zero real left eigenvector of `M` for `β` makes `β` a root of `χ_M`. -/
-theorem isRoot_of_real_left_eigen {n : Type*} [Fintype n] [DecidableEq n] (M : Matrix n n ℚ)
-    (ℓ : n → ℝ) (β : ℝ) (hℓ0 : ℓ ≠ 0) (hℓ : ℓ ᵥ* M.map ((↑) : ℚ → ℝ) = β • ℓ) :
-    aeval β M.charpoly = 0 := by
-  rw [← eval_map_algebraMap, ← charpoly_map, eval_charpoly]
-  apply (exists_vecMul_eq_zero_iff).1
-  refine ⟨ℓ, hℓ0, ?_⟩
-  rw [vecMul_sub]
-  have h1 : M.map (algebraMap ℚ ℝ) = M.map ((↑) : ℚ → ℝ) := rfl
-  rw [h1, hℓ, scalar_apply, ← smul_one_eq_diagonal, vecMul_smul, vecMul_one, sub_self]
-
-
+/-- A non-zero real left eigenvector of `M` for `β` makes `β` a root of `χ_M`
+(`Psc.ConcentrationAlgebra.isRoot_of_left_eigen` for `M` mapped to `ℝ`). -/
+theorem isRoot_of_real_left_eigen {n : Type*} [Fintype n] [DecidableEq n]
+    (M : Matrix n n ℚ) (ℓ : n → ℝ) (β : ℝ) (hℓ0 : ℓ ≠ 0)
+    (hℓ : ℓ ᵥ* M.map ((↑) : ℚ → ℝ) = β • ℓ) : aeval β M.charpoly = 0 := by
+  rw [← eval_map_algebraMap, ← charpoly_map]
+  exact Psc.ConcentrationAlgebra.isRoot_of_left_eigen _ β ℓ hℓ0 hℓ
 
 /-! ### The main theorems -/
 

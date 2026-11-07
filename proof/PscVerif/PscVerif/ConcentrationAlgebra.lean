@@ -18,8 +18,13 @@
   deduction is not formalized here.
 * `injective_of_irreducible` (**Theorem A(iv)**, injectivity): an intertwiner
   `L ≠ 0` out of a module with no proper nonzero invariant subspace is injective.
+* `isRoot_of_left_eigen`: over a field, a non-zero left eigen-row
+  `u ᵥ* A = μ • u` of a square matrix indexed by any finite type makes `μ` a
+  root of `χ_A` (used by `PscVerif.Cyclicity` and `PscVerif.PerronSimple`).
 -/
 import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+import Mathlib.LinearAlgebra.Matrix.Charpoly.Basic
+import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
 import Mathlib.LinearAlgebra.Matrix.ToLin
 import Mathlib.LinearAlgebra.Quotient.Basic
 import Mathlib.Algebra.Polynomial.AlgebraMap
@@ -27,6 +32,26 @@ import Mathlib.Algebra.Polynomial.AlgebraMap
 namespace Psc.ConcentrationAlgebra
 
 open Matrix Polynomial
+
+/-! ### Left eigen-rows give roots of the characteristic polynomial -/
+
+/-- A non-zero left eigen-row `u ᵥ* A = μ • u` makes `μ` a root of `χ_A`. -/
+theorem isRoot_of_left_eigen {F n : Type*} [Field F] [Fintype n] [DecidableEq n]
+    (A : Matrix n n F) (μ : F) (u : n → F) (hu0 : u ≠ 0) (hu : u ᵥ* A = μ • u) :
+    A.charpoly.eval μ = 0 := by
+  rw [eval_charpoly]
+  refine exists_vecMul_eq_zero_iff.mp ⟨u, hu0, ?_⟩
+  rw [vecMul_sub, scalar_apply, ← smul_one_eq_diagonal, vecMul_smul, vecMul_one, hu, sub_self]
+
+/-- A root `r` of `χ_A` is an eigenvalue: there is `v ≠ 0` with `A v = r v`. -/
+theorem exists_eigenvector_of_isRoot {F n : Type*} [Field F] [Fintype n] [DecidableEq n]
+    (A : Matrix n n F) (r : F) (hr : A.charpoly.eval r = 0) : ∃ v ≠ 0, A *ᵥ v = r • v := by
+  rw [eval_charpoly] at hr
+  obtain ⟨v, hv0, hv⟩ := exists_mulVec_eq_zero_iff.mpr hr
+  refine ⟨v, hv0, ?_⟩
+  rw [sub_mulVec, scalar_apply, ← smul_one_eq_diagonal, smul_mulVec, one_mulVec,
+    sub_eq_zero] at hv
+  exact hv.symm
 
 /-! ### The eigen-functional (Galois) lemma -/
 

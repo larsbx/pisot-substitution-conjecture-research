@@ -162,21 +162,6 @@ section Irreducible
 variable {F : Type*} [Field F]
 
 /-- A root of the characteristic polynomial gives an eigenvector. -/
-theorem exists_eigenvector_of_isRoot (A : Matrix (Fin 3) (Fin 3) F) (r : F)
-    (hr : A.charpoly.eval r = 0) : ∃ v ≠ 0, A *ᵥ v = r • v := by
-  rw [eval_charpoly] at hr
-  obtain ⟨v, hv0, hv⟩ := exists_mulVec_eq_zero_iff.mpr hr
-  refine ⟨v, hv0, ?_⟩
-  rw [sub_mulVec, scalar_apply, ← smul_one_eq_diagonal, smul_mulVec, one_mulVec, sub_eq_zero] at hv
-  exact hv.symm
-
-/-- A left eigen-row gives a root of the characteristic polynomial. -/
-theorem isRoot_of_left_eigen (A : Matrix (Fin 3) (Fin 3) F) (μ : F) (u : Fin 3 → F)
-    (hu0 : u ≠ 0) (hu : u ᵥ* A = μ • u) : A.charpoly.eval μ = 0 := by
-  rw [eval_charpoly]
-  refine exists_vecMul_eq_zero_iff.mp ⟨u, hu0, ?_⟩
-  rw [vecMul_sub, scalar_apply, ← smul_one_eq_diagonal, vecMul_smul, vecMul_one, hu, sub_self]
-
 theorem not_isRoot_of_irreducible (A : Matrix (Fin 3) (Fin 3) F)
     (hA : Irreducible A.charpoly) (r : F) : A.charpoly.eval r ≠ 0 := by
   intro hr
@@ -207,7 +192,7 @@ theorem irreducible_wedge2_of_field (M : Matrix (Fin 3) (Fin 3) F)
   apply irreducible_of_degree_le_three_of_not_isRoot
   · simp
   intro r hr
-  obtain ⟨v, hv0, hv⟩ := exists_eigenvector_of_isRoot (wedge2 M) r hr
+  obtain ⟨v, hv0, hv⟩ := Psc.ConcentrationAlgebra.exists_eigenvector_of_isRoot (wedge2 M) r hr
   set u := v ᵥ* (wedgePairing : Matrix (Fin 3) (Fin 3) F) with hu
   have hu0 : u ≠ 0 := vecMul_wedgePairing_ne_zero v hv0
   have hdet := det_ne_zero_of_irreducible M hM
@@ -224,7 +209,7 @@ theorem irreducible_wedge2_of_field (M : Matrix (Fin 3) (Fin 3) F)
   · rw [hr0, zero_smul] at key
     exact hdet (smul_eq_zero.mp key.symm |>.resolve_right hu0)
   · apply not_isRoot_of_irreducible M hM (M.det / r)
-    apply isRoot_of_left_eigen M _ u hu0
+    apply Psc.ConcentrationAlgebra.isRoot_of_left_eigen M _ u hu0
     rw [div_eq_inv_mul, mul_smul, ← key, smul_smul, inv_mul_cancel₀ hr0, one_smul]
 
 theorem irreducible_wedge2 (M : Matrix (Fin 3) (Fin 3) ℚ)

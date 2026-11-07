@@ -23,10 +23,11 @@ Pisot hypothesis is used anywhere in this file).  The incidence matrix is
 
 ## What is proved, in full
 
-* (`Psc.Incidence.count_subst`, `Psc.Incidence.n2_subst`: the Parikh identity
-  and `lem:conc-subst` at degree two, used here.)
-* `n2_add_n2_swap`: for `a ≠ b`, `n2 w a b + n2 w b a = |w|_a · |w|_b`;
-  `n2_self`: `n2 w a a = (|w|_a).choose 2`.
+* (Used here: `Psc.Incidence.count_subst`, `Psc.Incidence.n2_subst`, the
+  Parikh identity and `lem:conc-subst` (ii) at degree two;
+  `Psc.Binomial.n2_append`, `lem:conc-subst` (i) at degree two;
+  `Psc.Binomial.n2_add_n2_swap`, `Psc.Binomial.n2_self`,
+  `Psc.Binomial.equiv1_join`.)
 * `k2_swap`: `K2 v u a b = - K2 u v a b` (for any two words).
 * `k2_subst`: for balanced `u, v`,
   `K2 (σ u) (σ v) a b = Σ_c Σ_d M a c · M b d · K2 u v c d`
@@ -71,40 +72,6 @@ section General
 
 variable {α : Type*} [DecidableEq α]
 
-/-- For distinct letters, `n2 w a b + n2 w b a = |w|_a · |w|_b`. -/
-theorem n2_add_n2_swap (w : List α) {a b : α} (hab : a ≠ b) :
-    n2 w a b + n2 w b a = w.count a * w.count b := by
-  induction w with
-  | nil => simp [n2]
-  | cons c w ih =>
-    simp only [n2, List.count_cons]
-    by_cases hca : c = a
-    · subst hca
-      have : (c == b) = false := by simpa using hab
-      simp [this, hab]
-      nlinarith [ih]
-    · by_cases hcb : c = b
-      · subst hcb
-        have : (c == a) = false := by simpa using hca
-        simp [this, hca]
-        nlinarith [ih]
-      · have h1 : (c == a) = false := by simpa using hca
-        have h2 : (c == b) = false := by simpa using hcb
-        simp [h1, h2, hca, hcb]
-        omega
-
-/-- `n2 w a a = C(|w|_a, 2)`. -/
-theorem n2_self (w : List α) (a : α) : n2 w a a = (w.count a).choose 2 := by
-  induction w with
-  | nil => simp [n2]
-  | cons c w ih =>
-    simp only [n2, List.count_cons, ih]
-    by_cases hca : c = a
-    · subst hca
-      simp [Nat.choose_succ_succ']
-    · have : (c == a) = false := by simpa using hca
-      simp [this, hca]
-
 /-- The degree-two defect of a pair of words, in `ℤ`. -/
 def K2 (u v : List α) (a b : α) : ℤ := (n2 u a b : ℤ) - n2 v a b
 
@@ -127,14 +94,6 @@ theorem k2_antisymm {u v : List α} (h : Equiv1 u v) {a b : α} (hab : a ≠ b) 
 theorem k2_self {u v : List α} (h : Equiv1 u v) (a : α) : K2 u v a a = 0 := by
   unfold K2
   rw [n2_self, n2_self, h a, sub_self]
-
-theorem equiv1_join (bs : List (List α × List α)) (h : ∀ T ∈ bs, Equiv1 T.1 T.2) :
-    Equiv1 (bs.map Prod.fst).flatten (bs.map Prod.snd).flatten := by
-  induction bs with
-  | nil => intro a; rfl
-  | cons T bs ih =>
-    simp only [List.map_cons, List.flatten_cons]
-    exact (h T (by simp)).append (ih fun T' hT' => h T' (by simp [hT']))
 
 /-- Block additivity of `K2` over balanced blocks. -/
 theorem k2_join (bs : List (List α × List α)) (h : ∀ T ∈ bs, Equiv1 T.1 T.2) (a b : α) :
@@ -200,8 +159,8 @@ theorem kw_subst (s : Fin 3 → List (Fin 3)) {u v : List (Fin 3)} (h : Equiv1 u
   simp only [kw]
   rw [k2_subst s h]
   fin_cases I <;>
-    simp [kw, wedge2, Matrix.map_apply, pairFst, pairSnd, Matrix.mulVec, dotProduct, Fin.sum_univ_three,
-      h00, h11, h22, h10, h20, h21] <;> ring
+    simp [kw, wedge2, Matrix.map_apply, pairFst, pairSnd, Matrix.mulVec, dotProduct,
+      Fin.sum_univ_three, h00, h11, h22, h10, h20, h21] <;> ring
 
 /-- **`prop:midarea` (iii), block additivity**, over the raw ordered
 (unsigned) children of a child-system state: the wedge coordinates of the image
@@ -223,7 +182,8 @@ theorem kw_children (S : ChildSystem (Fin 3)) {T : List (Fin 3) × List (Fin 3)}
 theorem wedge2_mulVec_kw_eq_sum_children (S : ChildSystem (Fin 3))
     {T : List (Fin 3) × List (Fin 3)} (hT : T ∈ S.C) (hbal : Equiv1 T.1 T.2)
     (hch : ∀ U ∈ S.children T, Equiv1 U.1 U.2) :
-    wedge2 ((inc S.s).map (Nat.cast : ℕ → ℤ)) *ᵥ kw T.1 T.2 = ((S.children T).map fun U => kw U.1 U.2).sum := by
+    wedge2 ((inc S.s).map (Nat.cast : ℕ → ℤ)) *ᵥ kw T.1 T.2 =
+      ((S.children T).map fun U => kw U.1 U.2).sum := by
   rw [← kw_subst S.s hbal, kw_children S hT hch]
 
 end Fin3

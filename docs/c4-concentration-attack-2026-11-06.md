@@ -209,9 +209,10 @@ The following are not claimed:
 
 ## 8. Lean formalization (`proof/PscVerif`)
 
-Eighteen modules, all checked by the proof-bank axiom audit (`propext`,
-`Classical.choice` and `Quot.sound` only; no `sorry`, no local axioms, no
-`native_decide`; the whole library: 741 declarations, 524 theorems).
+The `PscVerif` library (30 modules, those below among them) passes the proof-bank
+axiom audit: 836 declarations, 599 theorems, using only `propext`,
+`Classical.choice` and `Quot.sound`; no `sorry`, no local axioms, no
+`native_decide`.
 - *Full* means the formal statement is the stated result.
 - *Given X* means the formal statement assumes X, and X is named.
 
@@ -219,14 +220,15 @@ Eighteen modules, all checked by the proof-bank axiom audit (`propext`,
 |---|---|---|
 | Block additivity of `K₂`: `n2 (x++y) = n2 x + n2 y + \|x\|_a\|y\|_b`, so concatenations of `∼₂` blocks are `∼₂` at every cut | `Psc.Binomial.n2_append`, `Equiv2.append`, `equiv2_join`, `equiv2_at_cuts` | full |
 | Reduction lemma, finite form | `Psc.Binomial.ChildSystem.reduction_lemma` | full |
-| Reduction lemma, limit form: two `σᵖ`-invariant limit words with different first letters, `∼₂` on a syndetic set of prefix lengths, gaps at most the maximal state length | `Psc.FixedPointLimit.reduction_limit` (with `limit_spec`, `limit_fixed`, `limit_zero`, `grow_of_nonerasing`, `fixed_points_equiv2_syndetic`) | full for a primitive `σ` on at least two letters: `Psc.PrimitiveExpansion.reduction_limit_of_primitive` passes to the power child system `ChildSystem.pow` and discharges the expansion hypothesis |
+| Reduction lemma, limit form: two `σᵖ`-invariant limit words with different first letters, `∼₂` on a syndetic set of prefix lengths, gaps at most the maximal state length | `Psc.FixedPointLimit.reduction_limit` (with `limit_spec`, `limit_fixed`, `limit_zero`, `grow_of_nonerasing`, `fixed_points_equiv2_syndetic`) | full as an implication; for primitive `σ` via the power child system `ChildSystem.pow` (`Psc.PrimitiveExpansion.reduction_limit_of_primitive`). It is a reductio premise: the hypothesis set is empty on two letters (`binary_reduction_premise_empty`, from `binary_no_equiv2`, an elementary standard fact, cf. Rigo–Salimov 2015) and conjecturally on three (combinatorial Concentration). `thueMorse_control` meets every hypothesis except `K₂ ≡ 0` |
 | Irreducible noncoincident balanced pairs have distinct first letters | `Psc.Binomial.heads_ne` | full |
 | Galois lemma: an eigen-row of `Λ²M` vanishing on a nonzero rational vector is zero | `Psc.Cyclicity.eigenrow_wedge2` (via `cyclic_of_irreducible`, `irreducible_wedge2`, `ConcentrationAlgebra.eigenrow_eq_zero`) | given `χ_M` irreducible; the coordinates are those of `kw` below, so it applies to actual `K₂` vectors |
-| Incidence and count layer: `inc s`, `count_subst`, `count_iterate_subst = (inc s)^k`, `n2_subst`, `n3`, `n3_append`; bridges to `Psc.N₂`/`N₃`/`K₂`/`K₃` and `ConcentrationControls.n3` | `Psc.Incidence.*`, `Psc.CountBridge.*` | full |
+| Incidence and count layer: `inc s`, `count_subst`, `count_iterate_subst = (inc s)^k`, `n2_subst`, `n3`, `n3_append`; bridges to `Psc.N₂`/`N₃`/`K₂`/`K₃` and `ConcentrationControls.k3` | `Psc.Incidence.*`, `Psc.CountBridge.*` | full |
 | Degree-2 intertwiner on words: `K₂(σu,σv) = (M⊗M)K₂(u,v)`, antisymmetry, wedge coordinates `kw(σu,σv) = Λ²M·kw(u,v)`, block additivity over children, swap | `Psc.Intertwiner2.k2_subst`, `k2_antisymm`, `kw_subst`, `kw_children`, `k2_swap`, `kw_swap` | full over raw ordered (unsigned) children; the signed normalised form and `prop:midarea`'s area/`H` identity are not formalized |
-| Degree-3 intertwiner on words (Lemma 0 at `r = 3`): for `∼₂` pairs, `K₃` is additive over concatenation and `K₃(σu,σv) = M^{⊗3}K₃(u,v)` | `Psc.Intertwiner3.n3_append`, `k3_additive`, `k3_join`, `n3_subst`, `k3_subst` | full over raw ordered children; `K₃ ∈ Lie₃` and degrees `r ≥ 4` are not formalized here |
-| `thm:parikh` in matrix form for a child system: `P_C N_C = M P_C`, `λ N_C = βλ` with `λ = ℓᵀP_C > 0` | `Psc.ParikhIntertwiner.pc_nc`, `lc_nc`, `lc_pos` (with `parikh_subst`, `parikh_children_top/bot`, `Lfun_subst`) | full, given a positive left eigenvector `ℓ` of the incidence matrix |
-| `prop:cocycle`'s `ρ(S) ≤ β`: every eigenvalue of a matrix dominated by `N_C` has modulus `≤ β`; also under subinvariance `λN ≤ βλ` (the escape/leak remark after `thm:parikh`) | `Psc.ParikhIntertwiner.spectral_bound_childSystem`, `spectral_bound_of_subinvariant`, `spectral_bound` | full for any dominated matrix; the cocycle matrix `S` itself (signed children) is not constructed |
+| Degree-3 intertwiner on words (`thm:defect-intertwiner` at `r = 3`, Lemma 0 of the [general-structure note](c4-general-structure-2026-11-06.md)): for `∼₂` pairs, `K₃` is additive over concatenation and `K₃(σu,σv) = M^{⊗3}K₃(u,v)` | `Psc.Incidence.n3_append`, `Psc.Incidence.n3_subst`, `Psc.Intertwiner3.k3_additive`, `k3_join`, `k3_subst`, `k3_children` | full over raw ordered pairs, block lists and child systems; `K₃ ∈ Lie₃` and degrees `r ≥ 4` are not formalized here |
+| `thm:parikh` in matrix form for a child system: `P_C N_C = M P_C`, `λ N_C = βλ` with `λ = ℓᵀP_C > 0` | `Psc.ParikhIntertwiner.pc_nc`, `lc_nc`, `lc_pos` (with `parikh_subst`, `parikh_children_top/bot`, `Lfun_subst`) | full for the raw ordered child system: `Nc` counts raw children, so for a swap-closed system it is the oriented double cover, not the manuscript's representative `N_C = A + B` (see the next rows). `pc_nc` is unconditional; `lc_nc` assumes `ℓ ᵥ* M = βℓ`; `lc_pos` assumes `ℓ > 0` and nonempty top tracks (automatic for balanced noncoincident states). `perron_root_childSystem` gives `ρ(Nc) = β`. The rank and divisibility clauses (`rank P_C = d`, `χ_M ∣ χ_{N_C}`, the `m = d` case) are not formalized |
+| Abstract Perron comparison: every eigenvalue of a matrix dominated by `N` has modulus `≤ β`, given `λN = βλ` or only `λN ≤ βλ` with `λ > 0` (row action; the remark after `thm:parikh` writes it transposed) | `Psc.ParikhIntertwiner.spectral_bound`, `spectral_bound_of_subinvariant`, `spectral_bound_childSystem` | full as matrix lemmas; subinvariance for an escaping or leaking SCC is not derived |
+| `prop:cocycle` on normalised representatives: `A`, `B`, `N_C = A + B`, `S = A − B`; every `S`-eigenvector lifts antisymmetrically to an `Nc`-eigenvector, hence `ρ(S) ≤ β` (also directly from `λN_C = βλ` and `\|S\| ≤ N_C`); Thue–Morse non-vacuity with `S ≠ N_C` | `Psc.SignedCocycle.Normalisation.Ssign`, `Nrep`, `lift_eigen`, `lift_ne_zero`, `cocycle_spectral_bound`, `cocycle_spectral_bound_rep`, `rep_eigen`, `ssign_abs_le`; `thueMorseNorm`, `thueMorse_cocycle_bound`, `thueMorse_ssign_ne_nrep` | given swap closure and `children_swap` (the manuscript derives them from zero-return reduction), `ℓ > 0` and nonempty tracks; the gauge/voltage statements, the strict and equality clauses, and independence of the choice of representatives are not formalized; the only control has `S = 0` |
 | Invariant subspaces of an irreducible `3×3` matrix are `0` or everything | `Psc.Cyclicity.invariant_eq_bot_or_top` | full |
 | Positivity core: `N|v| ≥ β|v| ⇒ =`; nonnegative eigenvectors have full support; `\|x\|` is an eigenvector when `x` is one for `S` with `\|S\| ≤ N` | `Psc.PerronCore.*` | given a positive left `β`-eigenvector `L` of `N` (from `thm:parikh`: `L = ℓP`) |
 | Wielandt's equality case: `S = c·D N D⁻¹`, `\|c\| = 1`, `\|D\| = 1` | `Psc.Wielandt.wielandt` | given `L` as above; the Perron–Frobenius existence theorem is not needed |
@@ -246,9 +248,10 @@ Eighteen modules, all checked by the proof-bank axiom audit (`propext`,
   `K_r ∈ Lie_r` for `r ≥ 3`;
 - the first-defect intertwiner at degrees `r ≥ 4`, and at every degree its
   signed form `Q_r S = Φ_r Q_r` over normalised representatives with cocycle
-  signs. Degrees 2 and 3 are formalized over raw ordered children.
-- the construction of the cocycle matrix `S` of `prop:cocycle`. The bound
-  `ρ(S) ≤ β` is formalized for every matrix dominated by `N_C`, and `S` is one.
+  signs. Degrees 2 and 3 are formalized over raw ordered children, and
+  `kw_swap` gives the sign rule.
+- the rank and divisibility clauses of `thm:parikh` for `N_C`, and the
+  derivation of swap closure and `children_swap` from zero-return reduction;
 - the existence of the positive left Perron eigenvector `ℓ` of the incidence
   matrix, which is assumed.
 

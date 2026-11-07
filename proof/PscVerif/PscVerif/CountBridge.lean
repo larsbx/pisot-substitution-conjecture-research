@@ -1,26 +1,27 @@
 /-
 # Bridges between the scattered-count definitions
 
-The repository has three independent definitions of the scattered subword
+The repository has two independent definitions of the scattered subword
 counts, kept for their own proof styles:
 
 * `PscVerif.Basic`: `Psc.N`, `Psc.N₂`, `Psc.N₃` over `Psc.Letter = Fin 3`,
   valued in `ℤ` (the shuffle identities of `PscVerif.Shuffle`), with the
   defects `Psc.BalancedPair.K₂`, `Psc.BalancedPair.K₃`;
-* `PscVerif.ConcentrationControls`: `n3` over `Fin 3`, valued in `ℕ` (checked
-  by `decide +kernel`), with the defect `k3` of the pair `(u13, v13)`;
 * the generic counts `List.count`, `Psc.Binomial.n2`, `Psc.Incidence.n3` over
   any alphabet with decidable equality, valued in `ℕ` (the intertwiner
   modules), with the defects `Psc.Intertwiner2.K2`, `Psc.Intertwiner3.K3`.
+  The kernel-checked controls of `PscVerif.ConcentrationControls` use these
+  generic counts directly (its defect `k3` of the pair `(u13, v13)` is built
+  from `Psc.Incidence.n3`).
 
-Proved here, in full, by list induction: they agree.
+Proved here, in full, by list induction: the two agree.
 
 * `N_eq_count`, `N₂_eq_n2`, `N₃_eq_n3`: `N a w = |w|_a`, `N₂ a b w = n2 w a b`,
   `N₃ a b c w = n3 w a b c` (cast to `ℤ`);
 * `K₂_eq_K2`, `K₃_eq_K3`: the defects of a `Psc.BalancedPair` are the generic
   `K2`, `K3` of its two words;
-* `controls_n3_eq`: `ConcentrationControls.n3 = Incidence.n3` on `Fin 3`, and
-  `controls_k3_eq`: `ConcentrationControls.k3 = Intertwiner3.K3 u13 v13`.
+* `controls_k3_eq`: `ConcentrationControls.k3 = Intertwiner3.K3 u13 v13`
+  (definitional).
 
 No definition of `PscVerif.Basic` or `PscVerif.ConcentrationControls` is
 changed; these are statements about them.
@@ -64,15 +65,9 @@ theorem K₃_eq_K3 (s : BalancedPair) (a b c : Letter) :
     s.K₃ a b c = Psc.Intertwiner3.K3 s.u s.v a b c := by
   simp [BalancedPair.K₃, Psc.Intertwiner3.K3, N₃_eq_n3]
 
-theorem controls_n3_eq (w : List (Fin 3)) (a b c : Fin 3) :
-    ConcentrationControls.n3 w a b c = Psc.Incidence.n3 w a b c := by
-  induction w with
-  | nil => rfl
-  | cons x t ih => simp only [ConcentrationControls.n3, Psc.Incidence.n3_cons, ih]
-
 theorem controls_k3_eq (a b c : Fin 3) :
     ConcentrationControls.k3 a b c =
-      Psc.Intertwiner3.K3 ConcentrationControls.u13 ConcentrationControls.v13 a b c := by
-  simp only [ConcentrationControls.k3, Psc.Intertwiner3.K3, controls_n3_eq]
+      Psc.Intertwiner3.K3 ConcentrationControls.u13 ConcentrationControls.v13 a b c :=
+  rfl
 
 end Psc.CountBridge

@@ -50,12 +50,14 @@ Deviations from the original task text (both make the theorem stronger):
 
 Also proved: `limit_zero` (the limit word starts with the first letter of
 `u`); `grow_of_nonerasing` (growth follows from a nonerasing substitution and
-one strict extension `|u| < |σᵖ u|`); and the assembled **`reduction_limit`**:
-for a child system of a nonerasing substitution whose states are irreducible,
-noncoincident, 2-binomially equivalent and strictly lengthened by `σ`, some
-state and `p ≥ 1` give two `σᵖ`-invariant limit words with *different first
-letters* that are 2-binomially equivalent on a syndetic set of prefix lengths,
-with gap bound `S.C.sup (·.1.length)` derived from finiteness of `S.C`.
+one strict extension `|u| < |σᵖ u|`); and the assembled **`reduction_limit`**
+(a reductio premise, empty on two letters; see its docstring):
+for a child system of a nonerasing substitution whose states are irreducible
+(`Psc.Binomial.IrreduciblePair`), noncoincident, 2-binomially equivalent and
+strictly lengthened by `σ`, some state and `p ≥ 1` give two `σᵖ`-invariant
+limit words with *different first letters* that are 2-binomially equivalent on
+a syndetic set of prefix lengths, with gap bound `S.C.sup (·.1.length)`
+derived from finiteness of `S.C`.
 
 NOT formalized here: that a primitive substitution with Perron root `> 1` has a
 power under which every state is strictly lengthened (the `hexp` hypothesis of
@@ -282,11 +284,12 @@ theorem length_le_subst (s : α → List α) (hs : ∀ a, s a ≠ []) (w : List 
   | nil => simp
   | cons a t ih =>
     have h1 : 1 ≤ (s a).length := List.length_pos_of_ne_nil (hs a)
-    simp only [subst, List.map_cons, List.flatten_cons, List.length_append, List.length_cons] at ih ⊢
+    simp only [subst, List.map_cons, List.flatten_cons, List.length_append,
+      List.length_cons] at ih ⊢
     omega
 
-theorem length_le_iterate_subst (s : α → List α) (hs : ∀ a, s a ≠ []) (k : ℕ) (w : List α) :
-    w.length ≤ ((subst s)^[k] w).length := by
+theorem length_le_iterate_subst (s : α → List α) (hs : ∀ a, s a ≠ []) (k : ℕ)
+    (w : List α) : w.length ≤ ((subst s)^[k] w).length := by
   induction k with
   | zero => exact le_rfl
   | succ k ih =>
@@ -334,10 +337,15 @@ nonerasing substitution all of whose states are irreducible, noncoincident
 application of `σ` on both tracks.  Then some state `T₀` and `p ≥ 1` give two
 `σᵖ`-invariant limit words with **different first letters** that are
 2-binomially equivalent on a syndetic set of prefix lengths, with gaps at most
-the maximal state length `S.C.sup (·.1.length)`. -/
+the maximal state length `S.C.sup (·.1.length)`.
+
+This is a reductio premise: its hypotheses describe a hypothetical strict
+system with `K₂ ≡ 0`, and on a two-letter alphabet they cannot hold
+(`Psc.PrimitiveExpansion.binary_reduction_premise_empty`); on three letters
+their emptiness is the open "combinatorial Concentration". -/
 theorem reduction_limit (S : ChildSystem α) (hs : ∀ a, S.s a ≠ [])
     (T : List α × List α) (hT : T ∈ S.C) (hK2 : ∀ U ∈ S.C, Equiv2 U.1 U.2)
-    (hstrict : ∀ U ∈ S.C, Irreducible U.1 U.2 ∧ U.1 ≠ U.2)
+    (hstrict : ∀ U ∈ S.C, IrreduciblePair U.1 U.2 ∧ U.1 ≠ U.2)
     (hexp : ∀ U ∈ S.C,
       U.1.length < (subst S.s U.1).length ∧ U.2.length < (subst S.s U.2).length) :
     ∃ T₀ ∈ S.C, ∃ p ≥ 1, ∃ (_ : T₀.1 <+: (subst S.s)^[p] T₀.1)

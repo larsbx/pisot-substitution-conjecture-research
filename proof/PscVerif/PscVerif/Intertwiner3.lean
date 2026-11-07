@@ -2,17 +2,19 @@
 # The degree-three defect intertwiner `K₃(σT) = M^{⊗3} K₃(T)` on words
 
 `docs/c4-concentration-attack-2026-11-06.md`;
-`manuscripts/PSC_balanced_pair_state_2026-09-13.tex`, `lem:conc-subst` (i), (ii)
-at `r = 3`, and `thm:defect-intertwiner` at `r = 3` (the word-level identity
-only).
+`manuscripts/PSC_balanced_pair_state_2026-09-13.tex`: the proof of
+`thm:defect-intertwiner` at `r = 3` from `lem:conc-subst` (i), (ii) (the
+word-level identity only).
 
-Scope.  This file formalizes the *`K`-push-forward* clause
-(`K₃(σu, σv) = M^{⊗3} K₃(u, v)` for `K₁ = K₂ = 0`) and the *block-additivity*
-clause (`K₃` of a concatenation of 2-binomially equivalent blocks is the sum of
-the blocks' `K₃`) of `prop:midarea` (iii) / `lem:conc-subst` at degree three,
+Scope.  This file formalizes the two word-level steps of the proof of
+`thm:defect-intertwiner` at `r = 3`: the *`K`-push-forward* step
+(`K₃(σu, σv) = M^{⊗3} K₃(u, v)` when `K₁ = K₂ = 0`, from `lem:conc-subst` (ii))
+and the *block-additivity* step (`K₃` of a concatenation of 2-binomially
+equivalent blocks is the sum of the blocks' `K₃`, from `lem:conc-subst` (i)),
 stated over raw ordered (unsigned) pairs and blocks.  The signed form
-`Q_r S = Φ_r Q_r` over normalised representatives with cocycle signs, and the
-area / `H` identity of `prop:midarea`, are **not** formalized here.
+`Q_r S = Φ_r Q_r` over normalised representatives with cocycle signs is **not**
+formalized here.  (`prop:midarea` is a degree-two statement; its word-level
+part is `PscVerif.Intertwiner2`.)
 
 Words are lists over a finite alphabet `α` with decidable equality; a
 substitution is any map `s : α → List α` (no primitivity, unimodularity, Pisot
@@ -26,42 +28,37 @@ For two words, `K3 u v a b c = n3 u a b c - n3 v a b c` in `ℤ`.
 
 ## What is proved, in full
 
-* (`Psc.Incidence.n3_append`, `lem:conc-subst` (i) at `r = 3`, and
-  `Psc.Incidence.count_subst`, `Psc.Incidence.n2_subst`, used here.)
+* (Used from `PscVerif.Incidence`: `Psc.Incidence.n3_append`,
+  `lem:conc-subst` (i) at `r = 3`; `Psc.Incidence.n3_subst`, `lem:conc-subst`
+  (ii) at `r = 3` with the correction `Λ₃` explicit; `Psc.Incidence.count_subst`,
+  `Psc.Incidence.n2_subst`, `Psc.Incidence.equiv2_subst`.)
 * `k3_swap`: `K3 v u = - K3 u v` (for any two words).
 * `k3_additive`: if `Equiv2 x x'` and `Equiv2 y y'` then
   `K3 (x ++ y) (x' ++ y') = K3 x x' + K3 y y'`; and `k3_join`, its iterate over a
-  list of `Equiv2` blocks.
-* `n3_subst` (`lem:conc-subst` (ii), `r = 3`, with the correction `Λ₃` explicit):
-  for every word `w` and letters `a b e`,
-  ```
-  n3 (σ w) a b e = Σ_{x,y,z} M a x · M b y · M e z · n3 w x y z
-                 + Σ_{x,z} M a x · n2 (s z) b e · n2 w x z
-                 + Σ_{x,z} n2 (s x) a b · M e z · n2 w x z
-                 + Σ_x |w|_x · n3 (s x) a b e.
-  ```
-  The three correction sums are linear in `N₂(w)` and `N₁(w)` with coefficients
-  depending only on `s`.
+  list of `Equiv2` blocks; `k3_children`, its `ChildSystem` form: for a state
+  `T ∈ C` whose children are all `Equiv2`,
+  `K3 (σ T.1) (σ T.2) = Σ_{U ∈ children T} K3 U.1 U.2` (raw ordered children,
+  as `Psc.Intertwiner2.kw_children` at degree two).
 * `k3_subst` (`lem:conc-subst` (ii) on a pair, `thm:defect-intertwiner` at
   `r = 3` on words): if `Equiv2 u v` then
   `K3 (σ u) (σ v) a b e = Σ_{x,y,z} M a x · M b y · M e z · K3 u v x y z`.
-* `equiv2_subst`, `equiv2_iterate_subst`: `Equiv2` is preserved by `σ` and by
-  every `σⁿ`, so `k3_subst` applies at every level of the iteration.
+* `equiv2_iterate_subst`: `Equiv2` is preserved by every `σⁿ` (iterating
+  `Psc.Incidence.equiv2_subst`), so `k3_subst` applies at every level of the
+  iteration.
 
 * `equiv2_example`, `k3_example`: non-vacuity — over `Fin 2`, the words `0110`
   and `1001` satisfy `Equiv2` while `K3 … 0 1 0 = 2`.
 
 ## What is not proved here
 
-* The signed form `Q_r S = Φ_r Q_r` (normalised representatives, cocycle signs)
-  and the area / `H` identity of `prop:midarea`.
+* The signed form `Q_r S = Φ_r Q_r` (normalised representatives, cocycle signs).
 * Nothing about `Lie₃`, the shuffle annihilator (`lem:conc-subst` (iii)), the
   restriction of `M^{⊗3}` to `Lie₃`, the cocycle `S`, the operator `Q₃`, or any
   spectral consequence (`thm:deg23`, `prop:cocycle`); this file is the exact
   word-level identity only.
 * Nothing about general degree `r`; only `r = 3`.
-* No statement about infinite words, fixed points, the balanced-pair algorithm
-  or child systems.
+* No statement about infinite words, fixed points or the balanced-pair
+  algorithm; `k3_children` is about a single finite `ChildSystem` state.
 -/
 import PscVerif.Incidence
 
@@ -102,64 +99,18 @@ theorem k3_join (bs : List (List α × List α)) (h : ∀ T ∈ bs, Equiv2 T.1 T
     simp only [List.map_cons, List.flatten_cons, List.sum_cons]
     rw [k3_additive (h T (by simp)) (equiv2_join bs hbs), ih hbs]
 
+/-- **Block additivity of `K₃` over the children of a state** (the `ChildSystem`
+form, as `Psc.Intertwiner2.kw_children` at degree two), over the raw ordered
+(unsigned) children: if every child of `T ∈ C` is 2-binomially equivalent, then
+`K₃(σ T.1, σ T.2) = Σ_{U ∈ children T} K₃(U)`. -/
+theorem k3_children (S : ChildSystem α) {T : List α × List α} (hT : T ∈ S.C)
+    (hch : ∀ U ∈ S.children T, Equiv2 U.1 U.2) (a b c : α) :
+    K3 (subst S.s T.1) (subst S.s T.2) a b c =
+      ((S.children T).map fun U => K3 U.1 U.2 a b c).sum := by
+  rw [← S.top T hT, ← S.bot T hT]
+  exact k3_join _ hch a b c
+
 variable [Fintype α]
-
-/-- `Equiv2` is preserved by a substitution. -/
-theorem equiv2_subst (s : α → List α) {u v : List α} (h : Equiv2 u v) :
-    Equiv2 (subst s u) (subst s v) := by
-  refine ⟨fun a => ?_, fun a b => ?_⟩
-  · rw [count_subst, count_subst]
-    exact Finset.sum_congr rfl fun c _ => by rw [h.1 c]
-  · rw [n2_subst, n2_subst]
-    congr 1
-    · exact Finset.sum_congr rfl fun c _ => Finset.sum_congr rfl fun d _ => by rw [h.2 c d]
-    · exact Finset.sum_congr rfl fun c _ => by rw [h.1 c]
-
-/-- **`lem:conc-subst` (ii) at `r = 3`**, with the correction term explicit. -/
-theorem n3_subst (s : α → List α) (w : List α) (a b e : α) :
-    n3 (subst s w) a b e =
-      (∑ x, ∑ y, ∑ z, inc s a x * inc s b y * inc s e z * n3 w x y z)
-      + (∑ x, ∑ z, inc s a x * n2 (s z) b e * n2 w x z)
-      + (∑ x, ∑ z, n2 (s x) a b * inc s e z * n2 w x z)
-      + ∑ x, w.count x * n3 (s x) a b e := by
-  induction w with
-  | nil => simp [subst, n2]
-  | cons c w ih =>
-    rw [subst_cons, n3_append, ih, n2_subst, count_subst]
-    simp only [n3, n2, List.count_cons, mul_add, add_mul, Finset.sum_add_distrib]
-    have e1 : (∑ x, ∑ y, ∑ z,
-        inc s a x * inc s b y * inc s e z * (if c = x then n2 w y z else 0)) =
-        inc s a c * ∑ y, ∑ z, inc s b y * inc s e z * n2 w y z := by
-      rw [Finset.sum_eq_single c]
-      · simp only [ite_true, Finset.mul_sum]
-        refine Finset.sum_congr rfl fun y _ => Finset.sum_congr rfl fun z _ => ?_
-        ring
-      · intro x _ hx; simp [Ne.symm hx]
-      · simp
-    have e2 : (∑ x, ∑ z, inc s a x * n2 (s z) b e * (if c = x then w.count z else 0)) =
-        inc s a c * ∑ z, n2 (s z) b e * w.count z := by
-      rw [Finset.sum_eq_single c]
-      · simp only [ite_true, Finset.mul_sum]
-        refine Finset.sum_congr rfl fun z _ => ?_
-        ring
-      · intro x _ hx; simp [Ne.symm hx]
-      · simp
-    have e3 : (∑ x, ∑ z, n2 (s x) a b * inc s e z * (if c = x then w.count z else 0)) =
-        n2 (s c) a b * ∑ z, inc s e z * w.count z := by
-      rw [Finset.sum_eq_single c]
-      · simp only [ite_true, Finset.mul_sum]
-        refine Finset.sum_congr rfl fun z _ => ?_
-        ring
-      · intro x _ hx; simp [Ne.symm hx]
-      · simp
-    have e4 : (∑ x : α, (if (c == x) = true then 1 else 0) * n3 (s x) a b e) =
-        n3 (s c) a b e := by
-      simp [beq_iff_eq]
-    have e5 : (∑ y, w.count y * n2 (s y) b e) = ∑ z, n2 (s z) b e * w.count z :=
-      Finset.sum_congr rfl fun _ _ => mul_comm _ _
-    rw [e1, e2, e3, e4, e5]
-    simp only [inc_apply]
-    ring
 
 /-- **Degree-three defect intertwiner on words** (`lem:conc-subst` (ii) on a
 pair; `thm:defect-intertwiner` at `r = 3`): if `K₁(u,v) = K₂(u,v) = 0` then

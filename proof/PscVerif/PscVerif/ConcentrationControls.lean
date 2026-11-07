@@ -5,8 +5,10 @@
 (`decide +kernel`; no `native_decide`).
 
 * `t13_irreducible`, `t13_equiv2`: the pair `(1222200110120, 2201121220001)` is
-  irreducible and 2-binomially equivalent (`K₁ = K₂ = 0`);
-* `t13_k3_ne_zero`, `t13_det_sector`: its `K₃` is nonzero and satisfies
+  irreducible (`Psc.Binomial.IrreduciblePair`) and 2-binomially equivalent
+  (`K₁ = K₂ = 0`);
+* `t13_k3_ne_zero`, `t13_det_sector`: its `K₃` (`k3`, built from the scattered
+  count `Psc.Incidence.n3`) is nonzero and satisfies
   `M0^{⊗3} K₃ = det(M0)·K₃` for `M0 = [[5,21,1],[6,26,1],[6,24,1]]`,
   `det M0 = -2`, so it lies in the determinant sector of `M0`;
 * `m0_positive`, `m0_det`, `m0_charpoly_values`: `M0` is entrywise positive,
@@ -17,34 +19,24 @@
 * `factors_equiv2`, `factors_occur`: `0112201` and `1200112` are distinct,
   2-binomially equivalent, and both occur in `σ⁶(0)` for `σ = 011/2/120`.
 -/
-import PscVerif.Binomial
+import PscVerif.Incidence
 import Mathlib.Data.Fin.VecNotation
 import Mathlib.Tactic.Ring
 
 namespace Psc.ConcentrationControls
 
-open Psc.Binomial
+open Psc.Binomial Psc.Incidence
 
 abbrev L := Fin 3
 
 def u13 : List L := ([1,2,2,2,2,0,0,1,1,0,1,2,0] : List L)
 def v13 : List L := ([2,2,0,1,1,2,1,2,2,0,0,0,1] : List L)
 
-instance (x y : List L) : Decidable (Equiv1 x y) := by unfold Equiv1; infer_instance
-instance (x y : List L) : Decidable (Equiv2 x y) := by unfold Equiv2; infer_instance
-instance (u v : List L) : Decidable (Irreducible u v) := by
-  unfold Irreducible
-  exact decidable_of_iff (∀ k ∈ List.range u.length, 0 < k → ¬ Equiv1 (u.take k) (v.take k))
-    ⟨fun h k hk hl => h k (List.mem_range.2 hl) hk, fun h k hm hk => h k hk (List.mem_range.1 hm)⟩
-
-theorem t13_irreducible : Irreducible u13 v13 := by decide +kernel
+theorem t13_irreducible : IrreduciblePair u13 v13 := by decide +kernel
 theorem t13_equiv2 : Equiv2 u13 v13 := by decide +kernel
 
-/-- Scattered occurrences of `a b c`. -/
-def n3 : List L → L → L → L → ℕ
-  | [], _, _, _ => 0
-  | x :: t, a, b, c => (if x = a then n2 t b c else 0) + n3 t a b c
-
+/-- The degree-three defect of `(u13, v13)`, from the scattered count
+`Psc.Incidence.n3`. -/
 def k3 (a b c : L) : ℤ := (n3 u13 a b c : ℤ) - n3 v13 a b c
 
 def m0 : L → L → ℤ := ![![5, 21, 1], ![6, 26, 1], ![6, 24, 1]]
@@ -69,7 +61,10 @@ def chi (x : ℤ) : ℤ := x ^ 3 - 32 * x ^ 2 + 5 * x + 2
 
 theorem chi_is_charpoly (x : ℤ) :
     chi x = det3 (fun i j => (if i = j then x else 0) - m0 i j) := by
-  simp [chi, det3, m0]; ring
+  simp only [chi, det3, m0, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_two,
+    Matrix.head_cons, Matrix.tail_cons, Fin.isValue]
+  norm_num
+  ring
 
 theorem m0_charpoly_values :
     chi 1 ≠ 0 ∧ chi (-1) ≠ 0 ∧ chi 2 ≠ 0 ∧ chi (-2) ≠ 0 ∧
@@ -85,6 +80,7 @@ def y7 : List L := ([1,2,0,0,1,1,2] : List L)
 theorem factors_equiv2 : Equiv2 x7 y7 ∧ x7 ≠ y7 := by decide +kernel
 
 theorem factors_occur :
-    x7 <:+: (subst sigma)^[6] ([0] : List L) ∧ y7 <:+: (subst sigma)^[6] ([0] : List L) := by decide +kernel
+    x7 <:+: (subst sigma)^[6] ([0] : List L) ∧ y7 <:+: (subst sigma)^[6] ([0] : List L) := by
+  decide +kernel
 
 end Psc.ConcentrationControls

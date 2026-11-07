@@ -24,6 +24,7 @@ import PscVerif.M0Pisot
 import PscVerif.GaloisOrbit
 import PscVerif.Incidence
 import PscVerif.ParikhIntertwiner
+import PscVerif.SignedCocycle
 import PscVerif.Intertwiner2
 import PscVerif.Intertwiner3
 import PscVerif.PrimitiveExpansion
