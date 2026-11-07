@@ -83,3 +83,25 @@ generate a *nonrealizable abstract* cycle. Human review remains deferred.
 test-count gate correctly failed. Both are now renamed with `Test`,
 and the exact-head Lean audit requires four scoped declarations, including
 the no-false-rejection theorem.
+
+## 2026-11-07 — concrete Tribonacci parity obstruction and sharp countercontrol
+
+**Formal one-period result.** For the *literal* Tribonacci substitution `0→01, 1→02, 2→0`, the integer incidence matrix is `M=[[1,1,1],[1,0,0],[0,1,0]]`. The exact proper-image-prefix correction alphabet is
+
+`D = {−e₀, 0, +e₀}`.
+
+The Lean route has explicit source-image definitions and incidence-column checking, and now attempts exhaustive Lean proof of every proper local prefix form. If `x = Mx + δe₀`, the 1st and 3rd integer rows imply `−2x₁=δ`. Therefore `δ` must be even. Since `δ∈{−1,0,+1}`, it follows `δ=0`, and invertibility of `I−M` implies `x=0`.
+
+Thus **no nonzero period-one integral ancestry cycle is compatible even with the full local correction alphabet** of this concrete substitution. The exact mod-2 left-null witness corresponds to the sum of rows 0 and 2 of `I−M`; their coefficients cancel modulo 2, while the correction `e₀` does not. Both residue values of the original toy F₂ example and all four pairs of the concrete `x₁,x₂∈F₂` are now covered by deterministic Quint tests. These statements do not assert that any hypothetical strict component has a period-one recurrence or actual complete child words.
+
+**Adversarial sharpness at period three.** The same true integer incidence has a *nonzero* 3-cycle using **locally admissible** proper-prefix corrections:
+
+```
+e₀ --(−e₀)--> e₁ --(−e₀)--> e₂ --(0)--> e₀
+```
+
+Each equality is an exact integer matrix action. Consequently, neither the entire local digit alphabet nor the Pisot/irreducible spectrum rules out *all* periodic nonzero ancestry. This refutes an overly strong proposal to close C4 using correction alphabets or modular inconsistency alone. The new Lean theorem checks the three vector equalities, while an independent Quint module is constructed to replay the exact 3-stage cycle.
+
+**Consequence for closure research.** The genuinely new target must constrain **admissible concatenations of correction digits by literal ordered parent/child occurrence addresses and strict nonproductivity**, not just the finite set of possible local digits. In particular, whether the period-three arithmetic cycle can be realized by legal or illegal balanced-pair ancestry is **unresolved** by this abstract calculation. It must not be classified as a strict-PIP counterexample.
+
+**Receipts:** New exact-head Lean/Quint checks remain required for the enlarged certificate inventory. The previous passing R1 parent (#507) does not accept these added declarations. No claim-ledger change or merge to main.
