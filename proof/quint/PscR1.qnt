@@ -12,16 +12,15 @@ module PscR1Ancestry {
   action correctionFree = all {
     defect' = 2 * defect,
     correction' = 0,
-    defect' >= -2,
-    defect' <= 2,
+    defect >= -1,
+    defect <= 1,
   }
 
   // Exact negative control: x = 1 --c=-1--> x = 1
   action forcedCycle = all {
     defect' = 2 * defect - 1,
     correction' = -1,
-    defect' >= -2,
-    defect' <= 2,
+    defect == 1,
   }
 
   action step = any { correctionFree, forcedCycle }
