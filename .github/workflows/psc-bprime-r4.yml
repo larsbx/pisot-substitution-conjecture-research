@@ -66,3 +66,5 @@ jobs:
           set -euo pipefail
           npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR4.qnt --invariant=finiteOffsetBox
           npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR4.qnt --invariant=noUnjustifiedCoincidence
+      - name: Run deterministic Quint negative witness (not stochastic sampling)
+        run: npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR4.qnt
