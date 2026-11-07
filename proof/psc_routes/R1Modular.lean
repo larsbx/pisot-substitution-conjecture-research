@@ -398,8 +398,8 @@ run_cmd do
     `PscRoutes.R1Modular.prime_field_certificates_are_not_integrally_complete,
     `PscRoutes.R1Modular.four_x_eq_two_is_solvable_mod_two,
     `PscRoutes.R1Modular.four_x_eq_two_is_solvable_mod_three,
-    \`PscRoutes.R1Modular.four_x_eq_two_has_no_solution_mod_four,
-    \`PscRoutes.R1Modular.tribonacci_nonzero_three_cycle_survives_proper_cut_germs] do
+    `PscRoutes.R1Modular.four_x_eq_two_has_no_solution_mod_four,
+    `PscRoutes.R1Modular.tribonacci_nonzero_three_cycle_survives_proper_cut_germs] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
