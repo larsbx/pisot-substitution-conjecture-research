@@ -38,4 +38,19 @@ The first acceptance surface is `proof/psc_routes/R1.lean`, plus `proof/quint/Ps
 A nonzero forced cycle x=1, β=2, c=−1 persists forever; Tribonacci has actual recurring nonzero decorated ancestry. Correction-free expansion cannot be applied to forced orbits.
 
 ### Non-claims / remaining gaps
-Lean sublemma acceptance, if CI passes, is **not** a PSC/C4/A1′/BH/PDS closure. No universal theorem is being promoted; no ledger mutations or `geometry_formalized` promotion. Run exact source/claim governance when integrating into the main proof bank. Human literature and mathematical review are deferred until after PSC closure.
+Lean sublemma acceptance, if CI passes, is **not** a PSC/C4/A1′/BH/PDS closure. No universal theorem is being promoted; no ledger mutations or `geometry_formalized` promotion. Run exact source/claim governance when integrating into the main proof bank. Independent human mathematical review and comprehensive originality assessment are deferred; targeted automated literature stop/go is required now and recorded below.
+
+## Targeted literature stop/go — automated research-design gate (not human validation)
+
+**Exact proposal:** test whether a finite strict PIP ancestry system forces arbitrarily long correction-free segments in its ordered, occurrence-addressed orbit, and derive a contradiction using cyclic Perron-height rigidity.
+
+**Closest sources and distinctions (publisher descriptions and repository's audited primary-source gates):**
+1. Sirvent–Solomyak, *Pure Discrete Spectrum for One-dimensional Substitution Systems of Pisot Type* (2002), DOI 10.4153/CMB-2002-062-3, especially §§3–5: termination, prefix-seeded balanced pairs and half-coincidence return gaps. It does **not** state that a recurrent **arbitrary strict** ancestry necessarily has correction-free segments; prefix legality is an important difference. https://doi.org/10.4153/CMB-2002-062-3
+2. Adamczewski, *Balances for Fixed Points of Primitive Substitutions* (2003), DOI 10.1016/S0304-3975(03)00092-6: spectral control of balance/discrepancy for legal fixed-point factors, not a correction-free strict SCC theorem. https://doi.org/10.1016/S0304-3975(03)00092-6
+3. Barge–Diamond, *Coincidence for Substitutions of Pisot Type* (2002), DOI 10.24033/bsmf.2433: an eventually coincident pair and hub restriction, not productivity of every ordered bad strict component. https://doi.org/10.24033/bsmf.2433
+
+**Preexisting in-repo proof/negative:** `docs/c4-pisot-ancestry-finiteness.md` proves finiteness of full *forced* ancestry; `docs/c4-recognizable-cut-germs.md` contains a genuine Tribonacci nonzero recurrent ancestry example. `docs/c4-ordered-hub-literature-gate-2026-10-06.md` already scopes literal ordered address requirements. The elementary no-forcing growth lemma is standard linear algebra, with no novelty asserted.
+
+**Hypothesis transfer:** PIP's β>1, rational cyclicity and finite integral ancestry transfer; bounded gaps/forced digits are **not** assumed zero. The repo's illegal swap states cannot be treated as fixed-point prefixes.
+
+**Decision: PROCEED NARROWED.** Formalize the conditional growth lemma and exhibit a forced-cycle countermodel; next prove or refute a **strictness + occurrence-compatible lineage ⇒ long correction-free stretch** statement. Do not promote a result unless the actual ordered-state premise is established. This automated targeted check satisfies research-design provenance while **independent human review remains deferred until after PSC closure**.
