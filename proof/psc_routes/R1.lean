@@ -132,6 +132,19 @@ theorem no_positive_periodic_orbit_with_nonnegative_digits
     mul_pos (by linarith) hstart
   linarith
 
+/-- The forced-digit accumulation is additive in its correction
+alphabet. Proving this independently avoids accidentally inducting
+on a period together with unrelated period hypotheses. -/
+theorem forcedDigitSum_neg
+    (beta : ℝ) (correction : ℕ → ℝ) (n : ℕ) :
+    forcedDigitSum beta (fun k => -(correction k)) n =
+      -(forcedDigitSum beta correction n) := by
+  induction n with
+  | zero => simp [forcedDigitSum]
+  | succ n ih =>
+      simp only [forcedDigitSum, ih]
+      ring
+
 /-- Dual negative orientation case; the digit sum remains nonpositive.
 This is distinct from a globally symmetric orientation claim. -/
 theorem no_negative_periodic_orbit_with_nonpositive_digits
@@ -144,13 +157,7 @@ theorem no_negative_periodic_orbit_with_nonpositive_digits
   have hsum : 0 ≤ forcedDigitSum beta (fun k => -(correction k)) n :=
     forcedDigitSum_nonneg beta (fun k => -(correction k)) hbeta
       (by intro k; exact neg_nonneg.mpr (hdigits k)) n
-  have hsign : forcedDigitSum beta (fun k => -(correction k)) n =
-      -(forcedDigitSum beta correction n) := by
-    induction n with
-    | zero => simp [forcedDigitSum]
-    | succ n ih =>
-        simp only [forcedDigitSum, ih]
-        ring
+  have hsign := forcedDigitSum_neg beta correction n
   have heq := period_forcing_certificate beta height correction hstep n hperiod
   have hnegative : (beta ^ n - 1) * height 0 < 0 :=
     mul_neg_of_pos_of_neg (by linarith) hstart
@@ -240,6 +247,7 @@ end PscRoutes.R1
 #print axioms PscRoutes.R1.period_forcing_certificate
 #print axioms PscRoutes.R1.forcedDigitSum_nonneg
 #print axioms PscRoutes.R1.no_positive_periodic_orbit_with_nonnegative_digits
+#print axioms PscRoutes.R1.forcedDigitSum_neg
 #print axioms PscRoutes.R1.no_negative_periodic_orbit_with_nonpositive_digits
 #print axioms PscRoutes.R1.tribonacci_three_step_signed_forcing
 #print axioms PscRoutes.R1.wordMass_append
@@ -252,7 +260,7 @@ end PscRoutes.R1
 open Lean Elab Command in
 run_cmd do
   let allowed := #[`propext, `Classical.choice, `Quot.sound]
-  for name in #[`PscRoutes.R1.height_on_orbit, `PscRoutes.R1.correction_free_run_exclusion, `PscRoutes.R1.nonzero_fixed_height_requires_forcing, `PscRoutes.R1.forced_orbit_expansion, `PscRoutes.R1.period_forcing_certificate, `PscRoutes.R1.forcedDigitSum_nonneg, `PscRoutes.R1.no_positive_periodic_orbit_with_nonnegative_digits, `PscRoutes.R1.no_negative_periodic_orbit_with_nonpositive_digits, `PscRoutes.R1.tribonacci_three_step_signed_forcing, `PscRoutes.R1.wordMass_append, `PscRoutes.R1.wordMass_substitution, `PscRoutes.R1.asynchronous_word_mass_transport] do
+  for name in #[`PscRoutes.R1.height_on_orbit, `PscRoutes.R1.correction_free_run_exclusion, `PscRoutes.R1.nonzero_fixed_height_requires_forcing, `PscRoutes.R1.forced_orbit_expansion, `PscRoutes.R1.period_forcing_certificate, `PscRoutes.R1.forcedDigitSum_nonneg, `PscRoutes.R1.no_positive_periodic_orbit_with_nonnegative_digits, `PscRoutes.R1.forcedDigitSum_neg, `PscRoutes.R1.no_negative_periodic_orbit_with_nonpositive_digits, `PscRoutes.R1.tribonacci_three_step_signed_forcing, `PscRoutes.R1.wordMass_append, `PscRoutes.R1.wordMass_substitution, `PscRoutes.R1.asynchronous_word_mass_transport] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
