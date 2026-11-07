@@ -144,6 +144,52 @@ theorem deck_score_average_counterexample
   · simp [orientedScore, map_neg, hone]
   · norm_num
 
+
+/-- An orientation-dependent score can inherit a zero-average limit
+from a linear displacement score only when its discrepancy is a
+bounded-state *coboundary* (or something comparably controlled).
+This exact telescoping identity is a required reusable interface. -/
+theorem coboundary_telescoping
+    {State : Type*} (potential : State → ℚ) (states : ℕ → State) (K : ℕ) :
+    (∑ k ∈ Finset.range K,
+      (potential (states (k + 1)) - potential (states k))) =
+      potential (states K) - potential (states 0) := by
+  induction K with
+  | zero => simp
+  | succ K ih =>
+      rw [Finset.sum_range_succ, ih]
+      ring
+
+/-- If a source-valid oriented score equals a source-linear
+displacement score plus a potential difference at each step,
+the total discrepancy is a single endpoint term. A separate
+boundedness/frequency theorem must still make that endpoint
+term negligible in a Cesàro average. -/
+theorem oriented_score_coboundary_sum
+    {State : Type*} (linearScore orientedScore : ℕ → ℚ)
+    (potential : State → ℚ) (states : ℕ → State) (K : ℕ)
+    (hdecomp : ∀ k, orientedScore k =
+      linearScore k + potential (states (k + 1)) - potential (states k)) :
+    (∑ k ∈ Finset.range K, orientedScore k) =
+      (∑ k ∈ Finset.range K, linearScore k) +
+      (potential (states K) - potential (states 0)) := by
+  calc
+    (∑ k ∈ Finset.range K, orientedScore k) =
+        ∑ k ∈ Finset.range K,
+          (linearScore k +
+            (potential (states (k + 1)) - potential (states k))) := by
+              apply Finset.sum_congr rfl
+              intro k _
+              rw [hdecomp k]
+              ring
+    _ = (∑ k ∈ Finset.range K, linearScore k) +
+        ∑ k ∈ Finset.range K,
+          (potential (states (k + 1)) - potential (states k)) := by
+          rw [Finset.sum_add_distrib]
+    _ = (∑ k ∈ Finset.range K, linearScore k) +
+        (potential (states K) - potential (states 0)) := by
+          rw [coboundary_telescoping]
+
 end PscRoutes.R2
 
 #print axioms PscRoutes.R2.good_mass_lower_bound
@@ -155,6 +201,8 @@ end PscRoutes.R2
 #print axioms PscRoutes.R2.orientedScore_deck_invariant
 #print axioms PscRoutes.R2.orientedScore_deck_positivity
 #print axioms PscRoutes.R2.deck_score_average_counterexample
+#print axioms PscRoutes.R2.coboundary_telescoping
+#print axioms PscRoutes.R2.oriented_score_coboundary_sum
 
 /- Fail-closed exact-declaration axiom audit for this standalone branch.
    All declared helper theorems must use only the standard Lean axioms.
@@ -162,7 +210,7 @@ end PscRoutes.R2
 open Lean Elab Command in
 run_cmd do
   let allowed := #[`propext, `Classical.choice, `Quot.sound]
-  for name in #[`PscRoutes.R2.good_mass_lower_bound, `PscRoutes.R2.positive_density_contradiction, `PscRoutes.R2.symmetric_orientation_forces_zero, `PscRoutes.R2.no_two_sided_strict_positive_separator, `PscRoutes.R2.density_excludes_small_mean, `PscRoutes.R2.deck_symmetric_separator_vanishes, `PscRoutes.R2.orientedScore_deck_invariant, `PscRoutes.R2.orientedScore_deck_positivity, `PscRoutes.R2.deck_score_average_counterexample] do
+  for name in #[`PscRoutes.R2.good_mass_lower_bound, `PscRoutes.R2.positive_density_contradiction, `PscRoutes.R2.symmetric_orientation_forces_zero, `PscRoutes.R2.no_two_sided_strict_positive_separator, `PscRoutes.R2.density_excludes_small_mean, `PscRoutes.R2.deck_symmetric_separator_vanishes, `PscRoutes.R2.orientedScore_deck_invariant, `PscRoutes.R2.orientedScore_deck_positivity, `PscRoutes.R2.deck_score_average_counterexample, `PscRoutes.R2.coboundary_telescoping, `PscRoutes.R2.oriented_score_coboundary_sum] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
