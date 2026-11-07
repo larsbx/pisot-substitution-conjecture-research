@@ -67,3 +67,5 @@ jobs:
           npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR2.qnt --invariant=boundedDisplacement
           npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR2.qnt --invariant=boundedCumulative
           npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR2.qnt --invariant=noZeroWitness
+      - name: Run deterministic Quint negative witness (not stochastic sampling)
+        run: npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR2.qnt
