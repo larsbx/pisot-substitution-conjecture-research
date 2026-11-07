@@ -1,0 +1,83 @@
+name: PSC R1F ordered occurrence replay
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/psc-bprime-r1-occurrences.yml'
+      - 'kernel/psc/ordered_ancestry_cycles.mojo'
+      - 'kernel/tests/test_ordered_ancestry_cycles.mojo'
+      - 'kernel/psc/bpa.mojo'
+      - 'kernel/substitution_dynamics/**'
+      - 'kernel/finite_exact/**'
+      - 'kernel/pixi.*'
+      - 'proof/psc_routes/R1Smith.lean'
+      - 'proof/psc_routes/R1OrderedAncestry.lean'
+      - 'proof/quint/PscR1OrderedAncestry.qnt'
+      - 'proof/PscVerif/lean-toolchain'
+      - 'proof/PscVerif/lake-manifest.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compare-occurrence-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Bind all evidence to the checked-out head
+        env:
+          EXPECTED: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED"
+          mkdir -p "$RUNNER_TEMP/occurrence"
+          git rev-parse HEAD > "$RUNNER_TEMP/occurrence/head.txt"
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          pixi-version: v0.81.0
+          manifest-path: kernel/pixi.toml
+          locked: true
+      - name: Extract the canonical Mojo occurrence packet
+        working-directory: kernel
+        run: |
+          set -euo pipefail
+          pixi run --locked mojo run -I . tests/test_ordered_ancestry_cycles.mojo | tee "$RUNNER_TEMP/occurrence/mojo.log"
+      - name: Provision pinned Lean and mathlib
+        run: ./tools/setup_lean.sh
+      - name: Reconstruct literal source independently in Lean and compare every row
+        working-directory: proof/PscVerif
+        run: |
+          set -euo pipefail
+          receipts="$RUNNER_TEMP/occurrence"
+          routes="$GITHUB_WORKSPACE/proof/psc_routes"
+          lake="$HOME/.elan/bin/lake"
+          "$lake" env lean --root="$routes" -o "$receipts/R1Smith.olean" "$routes/R1Smith.lean" | tee "$receipts/base.log"
+          "$lake" env bash -c 'export LEAN_PATH="$1:${LEAN_PATH:-}"; exec lean --root="$2" "$2/R1OrderedAncestry.lean"' _ "$receipts" "$routes" | tee "$receipts/lean.log"
+          ! grep -Eq 'sorryAx|error:' "$receipts/base.log" "$receipts/lean.log"
+          test "$(grep -c 'PSC_OCCURRENCE_AXIOMS_OK' "$receipts/lean.log")" -eq 4
+          grep '^R1_' "$receipts/mojo.log" > "$receipts/mojo.packet"
+          grep '^R1_' "$receipts/lean.log" > "$receipts/lean.packet"
+          diff -u "$receipts/mojo.packet" "$receipts/lean.packet"
+          cd "$receipts"
+          sha256sum mojo.packet lean.packet > packet.sha256
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Execute three independent Quint controls
+        run: |
+          set -euo pipefail
+          log="$RUNNER_TEMP/occurrence/quint.log"
+          npx --yes @informalsystems/quint@0.33.1 test --backend=typescript proof/quint/PscR1OrderedAncestry.qnt | tee "$log"
+          grep -Eq '3 passing|3 passed' "$log"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: R1F-occurrence-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            ${{ runner.temp }}/occurrence/*.log
+            ${{ runner.temp }}/occurrence/*.packet
+            ${{ runner.temp }}/occurrence/*.sha256
+            ${{ runner.temp }}/occurrence/head.txt
+          if-no-files-found: error
