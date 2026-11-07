@@ -116,7 +116,7 @@ theorem tribonacci_e0_mod_two_left_null
   have hsum : (-x1 - x2) + (x2 - x1) = (0 : ZMod 2) := by
     calc
       (-x1 - x2) + (x2 - x1) = -(2 : ZMod 2) * x1 := by ring
-      _ = 0 := by norm_num
+      _ = 0 := by rw [show (2 : ZMod 2) = 0 by decide, neg_zero, zero_mul]
   rw [h0, h2] at hsum
   norm_num at hsum
 
@@ -289,15 +289,13 @@ modulo the only prime dividing 4, namely 2. Hence a left-null
 F₂ witness cannot reject this nonintegral equation. -/
 theorem four_x_eq_two_is_solvable_mod_two :
     ∃ x : ZMod 2, (4 : ZMod 2) * x = 2 := by
-  refine ⟨0, ?_⟩
-  norm_num
+  exact ⟨0, by decide⟩
 
 /-- Nor does a prime not dividing the coefficient detect the
 integrality failure in this concrete check. -/
 theorem four_x_eq_two_is_solvable_mod_three :
     ∃ x : ZMod 3, (4 : ZMod 3) * x = 2 := by
-  refine ⟨2, ?_⟩
-  norm_num
+  exact ⟨2, by decide⟩
 
 /-- The missing 2-adic precision *is* detected modulo 4.
 Thus universal completeness of an integral cycle obstruction
@@ -306,13 +304,15 @@ divisibility or prime-power congruences, not prime fields alone. -/
 theorem four_x_eq_two_has_no_solution_mod_four :
     ¬ ∃ x : ZMod 4, (4 : ZMod 4) * x = 2 := by
   rintro ⟨x, hx⟩
-  norm_num at hx
+  rw [show (4 : ZMod 4) = 0 by decide, zero_mul] at hx
+  exact (by decide : (0 : ZMod 4) ≠ 2) hx
 
 
 /-- A source-bound *local* germ: integer prefix difference and the two
 actual source letters immediately following the asynchronous prefixes.
 It is not an ordered balanced-pair SCC state and does not include a
 recognizability-radius context, orientation bit, or global source words. -/
+@[ext]
 structure TriCutGerm where
   defect : Fin 3 → ℤ
   topLetter : Fin 3
