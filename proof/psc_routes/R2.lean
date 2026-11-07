@@ -142,6 +142,7 @@ theorem deck_score_average_counterexample
     ((1 : ℚ) + (-1 : ℚ)) = 0 := by
   constructor
   · simp [orientedScore, map_neg, hone]
+    norm_num
   · norm_num
 
 
