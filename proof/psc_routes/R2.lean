@@ -37,10 +37,29 @@ theorem positive_density_contradiction
     (hupper : mean < rho * delta) : False := by
   linarith
 
+
+/-- A universal nonnegative separator over a side-swap symmetric domain
+must vanish on every represented defect. We require the actual side-swap
+identity as a hypothesis, not as a property of normalized state labels. -/
+theorem symmetric_orientation_forces_zero
+    {V : Type*} [AddCommGroup V] (h : V →+ ℚ) (x : V)
+    (hforward : 0 ≤ h x) (hreversed : 0 ≤ h (-x)) : h x = 0 := by
+  rw [map_neg] at hreversed
+  linarith
+
+/-- A strict positive separator on both orientations is impossible. -/
+theorem no_two_sided_strict_positive_separator
+    {V : Type*} [AddCommGroup V] (h : V →+ ℚ) (x : V)
+    (hforward : 0 < h x) (hreversed : 0 ≤ h (-x)) : False := by
+  have hzero := symmetric_orientation_forces_zero h x (le_of_lt hforward) hreversed
+  linarith
+
 end PscRoutes.R2
 
 #print axioms PscRoutes.R2.good_mass_lower_bound
 #print axioms PscRoutes.R2.positive_density_contradiction
+#print axioms PscRoutes.R2.symmetric_orientation_forces_zero
+#print axioms PscRoutes.R2.no_two_sided_strict_positive_separator
 
 /- Fail-closed exact-declaration axiom audit for this standalone branch.
    All declared helper theorems must use only the standard Lean axioms.
@@ -48,7 +67,7 @@ end PscRoutes.R2
 open Lean Elab Command in
 run_cmd do
   let allowed := #[`propext, `Classical.choice, `Quot.sound]
-  for name in #[`PscRoutes.R2.good_mass_lower_bound, `PscRoutes.R2.positive_density_contradiction] do
+  for name in #[`PscRoutes.R2.good_mass_lower_bound, `PscRoutes.R2.positive_density_contradiction, `PscRoutes.R2.symmetric_orientation_forces_zero, `PscRoutes.R2.no_two_sided_strict_positive_separator] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
