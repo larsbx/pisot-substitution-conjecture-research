@@ -1,0 +1,77 @@
+name: PSC R1F complete integer certificate (Lean and Quint)
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/psc-bprime-r1-smith.yml'
+      - 'proof/psc_routes/R1Smith.lean'
+      - 'proof/quint/PscR1Smith.qnt'
+      - 'docs/psc-bprime-r1-modular-cycle-2026-11-07.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lean-integer-membership:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Enforce exact head
+        env:
+          EXPECTED: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED"
+      - name: Set up pinned Lean and Mathlib
+        run: ./tools/setup_lean.sh
+      - name: Compile Smith-diagonal membership lemmas and audit exact axioms
+        working-directory: proof/PscVerif
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$HOME/.elan/bin/lake" env lean ../../proof/psc_routes/R1Smith.lean | tee "$RUNNER_TEMP/r1-smith-lean.log"
+          if grep -Eq 'sorryAx|error:' "$RUNNER_TEMP/r1-smith-lean.log"; then
+            echo "Refusing unverified Lean declarations" >&2
+            exit 1
+          fi
+          test "$(grep -c 'PSC_R1SMITH_AXIOMS_OK' "$RUNNER_TEMP/r1-smith-lean.log")" -eq 5
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: psc-r1-smith-lean-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/r1-smith-lean.log
+          if-no-files-found: warn
+          retention-days: 30
+
+  quint-exact-prime-power-controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Enforce exact head
+        env:
+          EXPECTED: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Typecheck scalar congruence model
+        run: npx --yes @informalsystems/quint@0.33.1 typecheck proof/quint/PscR1Smith.qnt
+      - name: Replay all four residues modulo 4
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Smith.qnt --main=PscR1SmithModFour --invariant=canonicalF4
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Smith.qnt --main=PscR1SmithModFour --invariant=modFourRefuses
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1Smith.qnt --main=PscR1SmithModFour | tee "$RUNNER_TEMP/r1-smith-four.log"
+          grep -E '4 passing|4 passed' "$RUNNER_TEMP/r1-smith-four.log" >/dev/null
+      - name: Replay mod-three false-acceptance control
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Smith.qnt --main=PscR1SmithModThree --invariant=canonicalF3
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1Smith.qnt --main=PscR1SmithModThree | tee "$RUNNER_TEMP/r1-smith-three.log"
+          grep -E '1 passing|1 passed' "$RUNNER_TEMP/r1-smith-three.log" >/dev/null
