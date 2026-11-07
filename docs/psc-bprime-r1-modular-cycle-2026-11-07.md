@@ -117,3 +117,17 @@ Exact counterexample: `4x=2` has no solution in `ℤ`. Modulo `2`, it becomes `0
 The local Tribonacci k=1 contradiction and k=3 nonzero arithmetic cycle remain consistent with this correction. The k=3 witness is locally admissible, **not** established as an actual strict ordered occurrence. For PSC, a proof must additionally cover all source-compatible recurring cycles, not merely ones with a convenient mod-p obstruction.
 
 **Status:** new adversarial Lean controls awaiting exact-head hosted acceptance; no R1F branch merge, no C4/BH/PSC ledger promotion. Independent human review remains post-closure.
+
+## 2026-11-07 — Lean/Quint-first complete *conditional* integer membership gate
+
+**Exact scope:** `proof/psc_routes/R1Smith.lean` now expresses a mathematically complete iff, not merely a sound modular refutation. For an arbitrary finite-rank integer cycle operator `A`, consider integer coordinate transforms `U,V` with explicit integer left/right inverses and a checked diagonalization `U(A(Vy))_i = d_i y_i`. Then
+
+```
+(∃ x ∈ ℤ^d, A x = b)  ↔  (∀ i, d_i divides (U b)_i).
+```
+
+The Lean theorem `diagonal_certificate_complete` derives both directions. Zero diagonal entries are allowed and force the transformed right-hand coordinate to vanish. The scope is **conditional on the supplied exact diagonalization and inverse laws**: this module does not compute a Smith normal form or prove a supplied matrix certificate correct. A future independent matrix certificate checker must verify those finite integer matrix equations and match `A=I−M^k` and `b=ΣM^j c_j` to an actual literal ordered occurrence cycle. The exact transform/inverse laws cannot be substituted with a floating approximation or an arbitrary claimed JSON receipt.
+
+**Adversarial model:** `proof/quint/PscR1Smith.qnt` enumerates all four residues modulo 4 for the equation `4x=2`, checking that every residue fails modulo 4 even though each satisfies the reduction modulo 2. A separate module exhibits the valid modulo-3 residue `x=2`. This is the smallest useful negative control against treating “prime-field checks passed” as “integral cycle possible”. It is not a strict Pisot ancestry. CI `.github/workflows/psc-bprime-r1-smith.yml` demands a *separate* exact-head Lean axiom receipt for **five** new declarations and five nonempty deterministic Quint tests. The earlier R1F modular workflow remains independent.
+
+**Decision:** proceed to *certificate generation and checking* only after these two machine-facing modules compile, while keeping R1F draft. Next mathematically significant obligations are (a) a verified finite integer matrix diagonal certificate independent of solver self-report, (b) genuine source-child occurrence indexing and raw orientation binding, and (c) exhaustive or uniformly justified cycle coverage. No PSC/C4/BH/A1′ status change. A targeted research-design prior-art stop/go is already recorded above; independent human mathematical review remains after PSC closure.
