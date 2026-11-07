@@ -190,6 +190,26 @@ theorem oriented_score_coboundary_sum
         (potential (states K) - potential (states 0)) := by
           rw [coboundary_telescoping]
 
+
+/-- A closed occurrence-state cycle with zero *linear* total and
+positive *oriented* total cannot realize the proposed orientation
+correction as a finite-state potential coboundary. The actual cyclic
+occurrence relation remains a separate source-bound obligation. -/
+theorem positive_closed_cycle_refutes_coboundary
+    {State : Type*} (linearScore orientedScore : ℕ → ℚ)
+    (potential : State → ℚ) (states : ℕ → State) (period : ℕ)
+    (hclosed : states period = states 0)
+    (hlinear : (∑ k ∈ Finset.range period, linearScore k) = 0)
+    (hpositive : 0 < (∑ k ∈ Finset.range period, orientedScore k))
+    (hdecomp : ∀ k, orientedScore k =
+      linearScore k + potential (states (k + 1)) - potential (states k)) :
+    False := by
+  have hsum := oriented_score_coboundary_sum
+    linearScore orientedScore potential states period hdecomp
+  rw [hlinear, hclosed] at hsum
+  simp at hsum
+  linarith
+
 end PscRoutes.R2
 
 #print axioms PscRoutes.R2.good_mass_lower_bound
@@ -203,6 +223,7 @@ end PscRoutes.R2
 #print axioms PscRoutes.R2.deck_score_average_counterexample
 #print axioms PscRoutes.R2.coboundary_telescoping
 #print axioms PscRoutes.R2.oriented_score_coboundary_sum
+#print axioms PscRoutes.R2.positive_closed_cycle_refutes_coboundary
 
 /- Fail-closed exact-declaration axiom audit for this standalone branch.
    All declared helper theorems must use only the standard Lean axioms.
@@ -210,7 +231,7 @@ end PscRoutes.R2
 open Lean Elab Command in
 run_cmd do
   let allowed := #[`propext, `Classical.choice, `Quot.sound]
-  for name in #[`PscRoutes.R2.good_mass_lower_bound, `PscRoutes.R2.positive_density_contradiction, `PscRoutes.R2.symmetric_orientation_forces_zero, `PscRoutes.R2.no_two_sided_strict_positive_separator, `PscRoutes.R2.density_excludes_small_mean, `PscRoutes.R2.deck_symmetric_separator_vanishes, `PscRoutes.R2.orientedScore_deck_invariant, `PscRoutes.R2.orientedScore_deck_positivity, `PscRoutes.R2.deck_score_average_counterexample, `PscRoutes.R2.coboundary_telescoping, `PscRoutes.R2.oriented_score_coboundary_sum] do
+  for name in #[`PscRoutes.R2.good_mass_lower_bound, `PscRoutes.R2.positive_density_contradiction, `PscRoutes.R2.symmetric_orientation_forces_zero, `PscRoutes.R2.no_two_sided_strict_positive_separator, `PscRoutes.R2.density_excludes_small_mean, `PscRoutes.R2.deck_symmetric_separator_vanishes, `PscRoutes.R2.orientedScore_deck_invariant, `PscRoutes.R2.orientedScore_deck_positivity, `PscRoutes.R2.deck_score_average_counterexample, `PscRoutes.R2.coboundary_telescoping, `PscRoutes.R2.oriented_score_coboundary_sum, `PscRoutes.R2.positive_closed_cycle_refutes_coboundary] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
