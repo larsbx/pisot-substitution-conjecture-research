@@ -43,10 +43,32 @@ theorem correction_free_run_exclusion
     mul_le_mul_of_nonneg_left hseparated hnonneg
   linarith
 
+
+/-- One-step return to an identical nonzero Perron height requires
+a nonzero affine correction when the Perron multiplier is expanding.
+This blocks using a forced cycle as a correction-free contradiction. -/
+theorem nonzero_fixed_height_requires_forcing
+    (beta h correction : ℝ)
+    (hbeta : 1 < beta)
+    (hfixed : h = beta * h + correction)
+    (hnonzero : h ≠ 0) : correction ≠ 0 := by
+  intro hzero
+  have hprod : (beta - 1) * h = 0 := by
+    rw [hzero] at hfixed
+    nlinarith [hfixed]
+  rcases mul_eq_zero.mp hprod with hβ | hh
+  · linarith
+  · exact hnonzero hh
+
+/-- The explicit integer affine toy control is a real forcing cycle,
+not a correction-free transition. -/
+example : ((1 : ℤ) = 2 * 1 - 1) := by omega
+
 end PscRoutes.R1
 
 #print axioms PscRoutes.R1.height_on_orbit
 #print axioms PscRoutes.R1.correction_free_run_exclusion
+#print axioms PscRoutes.R1.nonzero_fixed_height_requires_forcing
 
 /- Fail-closed exact-declaration axiom audit for this standalone branch.
    All declared helper theorems must use only the standard Lean axioms.
@@ -54,7 +76,7 @@ end PscRoutes.R1
 open Lean Elab Command in
 run_cmd do
   let allowed := #[`propext, `Classical.choice, `Quot.sound]
-  for name in #[`PscRoutes.R1.height_on_orbit, `PscRoutes.R1.correction_free_run_exclusion] do
+  for name in #[`PscRoutes.R1.height_on_orbit, `PscRoutes.R1.correction_free_run_exclusion, `PscRoutes.R1.nonzero_fixed_height_requires_forcing] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
