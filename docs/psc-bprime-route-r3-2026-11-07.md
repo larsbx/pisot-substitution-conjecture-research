@@ -39,4 +39,16 @@ The first acceptance surface is `proof/psc_routes/R3.lean`, plus `proof/quint/Ps
 Noncoincident balanced blocks can recur with bounded cut gaps without a single coincident letter. Prefix and illegal swap seeds are not interchangeable; bounded discrepancy is not return existence.
 
 ### Non-claims / remaining gaps
-Lean sublemma acceptance, if CI passes, is **not** a PSC/C4/A1′/BH/PDS closure. No universal theorem is being promoted; no ledger mutations or `geometry_formalized` promotion. Run exact source/claim governance when integrating into the main proof bank. Human literature and mathematical review are deferred until after PSC closure.
+Lean sublemma acceptance, if CI passes, is **not** a PSC/C4/A1′/BH/PDS closure. No universal theorem is being promoted; no ledger mutations or `geometry_formalized` promotion. Run exact source/claim governance when integrating into the main proof bank. Independent human mathematical review and comprehensive originality assessment are deferred; targeted automated literature stop/go is performed now and recorded below.
+
+## Targeted literature stop/go — automated research-design gate
+
+**Exact proposed experiment:** derive uniform balanced-return gaps for at least one *fixed-point prefix seed* of every PIP substitution **without** assuming overlap productivity, then prove eventual coincidence and use the standard PDS criterion.
+
+**Prior sources:** (1) Sirvent–Solomyak 2002, DOI 10.4153/CMB-2002-062-3, Theorem 5.6: prefix-BPA finiteness is already equivalent to uniformly bounded gaps between geometric half-coincidences under their stated Pisot/length hypotheses. Thus *finite return gaps ⇒ prefix-BPA termination* is **PRIOR**, not a new theorem. (2) Martensen 2004, *Generalized Balanced Pair Algorithm*, Topology Proceedings 28, arXiv math/0309194: distinguishes population balance, generalized/reducible algorithms, and nontermination controls. (3) Akiyama–Barge–Berthé–Lee–Siegel, *On the Pisot Substitution Conjecture* (2015), Theorem 5.3, as cited by `docs/bpa-overlap-depth-literature-gate-2026-10-02.md`: termination **with coincidence** is the extra route to PDS, not bare finiteness. Publisher/abstract provenance: https://doi.org/10.4153/CMB-2002-062-3 and https://arxiv.org/abs/math/0309194.
+
+**Hypothesis transfer:** fixed point, nonempty legal prefix and Perron lengths transfer. A swap seed need not be legal; the all-swap graph is a different object. The repository's `docs/bpa-termination-by-overlap-depth-2026-10-02.md` already proves a bounded-gap implication under *overlap productivity*; using it for this route's independent return theorem would be circular.
+
+**Negative:** a recurrent noncoincident balanced-block system can have uniformly bounded return gaps while remaining nonproductive. `PscR3.qnt` is an intentionally abstract bounded reset-cycle control, not a strict PIP construction.
+
+**Decision: REDIRECT TO THE MISSING CONVERSE.** Do **not** repro­ve Theorem 5.6 as novelty. Seek a novel uniform-gap theorem from Pisot/recognizability **without presupposing overlap productivity**, then a separate coincidence theorem. Human review deferred until post-PSC, but targeted stop/go is satisfied here.
