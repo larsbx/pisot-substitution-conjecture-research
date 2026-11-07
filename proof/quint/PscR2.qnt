@@ -25,5 +25,5 @@ module PscR2OrientedAverage {
 
   val boundedDisplacement = displacement >= -1 and displacement <= 1
   val boundedCumulative = cumulative >= -1 and cumulative <= 1
-  val noZeroWitness = not zeroSeen
+  val noZeroWitness = not(zeroSeen)
 }
