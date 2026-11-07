@@ -26,4 +26,10 @@ module PscR1Ancestry {
   action step = any { correctionFree, forcedCycle }
 
   val finiteAncestryBox = defect >= -2 and defect <= 2
+
+
+  // Deterministic negative witness: forced nonzero ancestry repeats.
+  run forcedNonzeroCycleTest =
+    init.then(forcedCycle).then(forcedCycle).then(forcedCycle)
+      .expect(defect == 1 and correction == -1 and finiteAncestryBox)
 }
