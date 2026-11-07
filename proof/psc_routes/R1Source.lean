@@ -334,6 +334,48 @@ theorem irreducible_child_rules_out_internal_aligned_return
     completedTop completedBottom childTop childBottom
     k hcompleted hreturn
 
+
+/-- Balanced children must also have **equal physical word lengths**:
+Parikh mass equality for an arbitrary label map alone does not
+supply an aligned cut index. The full length theorem is a separate
+Lean obligation, rather than an unstated assumption in the
+multi-child localization argument. -/
+theorem equal_length_child_list
+    (children : List (List A × List A))
+    (hchildren : ∀ pair ∈ children,
+      pair.1.length = pair.2.length) :
+    (children.flatMap Prod.fst).length =
+      (children.flatMap Prod.snd).length := by
+  induction children with
+  | nil => simp
+  | cons child rest ih =>
+      have hhead : child.1.length = child.2.length :=
+        hchildren child (by simp)
+      have hrest : ∀ pair ∈ rest,
+          pair.1.length = pair.2.length := by
+        intro pair hp
+        exact hchildren pair (by simp [hp])
+      have htail := ih hrest
+      simp only [List.flatMap_cons, List.length_append]
+      omega
+
+/-- Both canonical cut invariants survive an arbitrary completed
+list of literal balanced equal-length child pairs. No replacement
+of physical lengths by Perron lengths or numerical coordinates. -/
+theorem balanced_children_canonical_boundary
+    (label : A → V)
+    (children : List (List A × List A))
+    (hbalanced : ∀ pair ∈ children,
+      wordMass label pair.1 = wordMass label pair.2)
+    (hlength : ∀ pair ∈ children,
+      pair.1.length = pair.2.length) :
+    (children.flatMap Prod.fst).length =
+      (children.flatMap Prod.snd).length ∧
+    wordMass label (children.flatMap Prod.fst) =
+      wordMass label (children.flatMap Prod.snd) := by
+  exact ⟨equal_length_child_list children hlength,
+    balanced_child_list_mass label children hbalanced⟩
+
 end PscRoutes.R1Source
 
 #print axioms PscRoutes.R1Source.cutPrefix_append_cutSuffix
@@ -352,6 +394,8 @@ end PscRoutes.R1Source
 #print axioms PscRoutes.R1Source.balanced_child_list_mass
 #print axioms PscRoutes.R1Source.balanced_child_prefix_cancel
 #print axioms PscRoutes.R1Source.irreducible_child_rules_out_internal_aligned_return
+#print axioms PscRoutes.R1Source.equal_length_child_list
+#print axioms PscRoutes.R1Source.balanced_children_canonical_boundary
 
 open Lean Elab Command in
 run_cmd do
@@ -371,7 +415,9 @@ run_cmd do
       `PscRoutes.R1Source.tribonacci_nonmatching_control_is_irreducible,
       `PscRoutes.R1Source.balanced_child_list_mass,
       `PscRoutes.R1Source.balanced_child_prefix_cancel,
-      `PscRoutes.R1Source.irreducible_child_rules_out_internal_aligned_return] do
+      `PscRoutes.R1Source.irreducible_child_rules_out_internal_aligned_return,
+      `PscRoutes.R1Source.equal_length_child_list,
+      `PscRoutes.R1Source.balanced_children_canonical_boundary] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
