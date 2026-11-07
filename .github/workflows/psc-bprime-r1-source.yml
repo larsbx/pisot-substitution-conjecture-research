@@ -5,6 +5,7 @@ on:
       - '.github/workflows/psc-bprime-r1-source.yml'
       - 'proof/psc_routes/R1Source.lean'
       - 'proof/quint/PscR1Source.qnt'
+      - 'proof/quint/PscR1ChildBoundary.qnt'
       - 'docs/psc-bprime-r1-modular-cycle-2026-11-07.md'
   workflow_dispatch:
 
@@ -83,3 +84,11 @@ jobs:
           npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Source.qnt --main=PscR1SourceReturn --invariant=balancedFullWords
           npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1Source.qnt --main=PscR1SourceReturn | tee "$RUNNER_TEMP/r1-source-quint.log"
           grep -E '2 passing|2 passed' "$RUNNER_TEMP/r1-source-quint.log" >/dev/null
+      - name: Replay exact two-child factorization boundaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 typecheck proof/quint/PscR1ChildBoundary.qnt
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1ChildBoundary.qnt --main=PscR1ChildBoundary --invariant=childBoundaryOrNoReturn
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1ChildBoundary.qnt --main=PscR1ChildBoundary | tee "$RUNNER_TEMP/r1-child-boundary.log"
+          grep -E '3 passing|3 passed' "$RUNNER_TEMP/r1-child-boundary.log" >/dev/null
