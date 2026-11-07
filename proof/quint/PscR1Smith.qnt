@@ -43,3 +43,52 @@ module PscR1SmithModThree {
   run oddPrimeHasSolutionTest =
     init.then(stayAtTwo).expect(residue == 2 and modThreeSolution)
 }
+
+
+// Independent arithmetic for a concrete integer Smith certificate of
+// A=I-M, M=[[1,1,1],[1,0,0],[0,1,0]], U*A*V=diag(1,1,2).
+// The Lean theorem must establish universal exact matrix equalities;
+// these bounded Quint tests cover selected basis and sign controls.
+module PscR1SmithTribonacciMatrix {
+  var x0: int
+  var x1: int
+  var x2: int
+
+  action init = all { x0' = 0, x1' = 0, x2' = 0 }
+  action e0 = all { x0' = 1, x1' = 0, x2' = 0 }
+  action e1 = all { x0' = 0, x1' = 1, x2' = 0 }
+  action e2 = all { x0' = 0, x1' = 0, x2' = 1 }
+  action negative = all { x0' = -1, x1' = 1, x2' = -1 }
+  action step = any { e0, e1, e2, negative }
+
+  // V*y
+  val v0 = x0 + x1 - x2
+  val v1 = x1 - x2
+  val v2 = x2
+
+  // A*(V*y)
+  val a0 = -v1 - v2
+  val a1 = -v0 + v1
+  val a2 = -v1 + v2
+
+  // U*A*V*y
+  val uav0 = -a1
+  val uav1 = -a0
+  val uav2 = -a0 + a2
+
+  val exactSmithDiagonal =
+    uav0 == x0 and uav1 == x1 and uav2 == 2 * x2
+  val finiteTestBox =
+    x0 >= -1 and x0 <= 1 and
+    x1 >= -1 and x1 <= 1 and
+    x2 >= -1 and x2 <= 1
+
+  run smithE0Test = init.then(e0)
+    .expect(exactSmithDiagonal and x0 == 1)
+  run smithE1Test = init.then(e1)
+    .expect(exactSmithDiagonal and x1 == 1)
+  run smithE2Test = init.then(e2)
+    .expect(exactSmithDiagonal and x2 == 1)
+  run smithSignedTest = init.then(negative)
+    .expect(exactSmithDiagonal and x0 == -1 and x2 == -1)
+}
