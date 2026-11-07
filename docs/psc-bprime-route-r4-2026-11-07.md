@@ -31,4 +31,14 @@ The first acceptance surface is `proof/psc_routes/R4.lean`, plus `proof/quint/Ps
 The bounded affine orbit x=1 under x↦2x−1 has no zero offset; zero offset is not a tile coincidence. Integer offset smallness is not a theorem about arbitrary ℚ(β) offsets.
 
 ### Non-claims / remaining gaps
-Lean sublemma acceptance, if CI passes, is **not** a PSC/C4/A1′/BH/PDS closure. No universal theorem is being promoted; no ledger mutations or `geometry_formalized` promotion. Run exact source/claim governance when integrating into the main proof bank. Human literature and mathematical review are deferred until after PSC closure.
+Lean sublemma acceptance, if CI passes, is **not** a PSC/C4/A1′/BH/PDS closure. No universal theorem is being promoted; no ledger mutations or `geometry_formalized` promotion. Run exact source/claim governance when integrating into the main proof bank. Independent human mathematical review and comprehensive originality assessment are deferred; targeted automated literature stop/go is performed now and recorded below.
+
+## Targeted literature stop/go — automated research-design gate
+
+**Exact proposed experiment:** prove a *localized*, hub-related, occurrence-addressed Rauzy subtile separation/window property forcing a common balanced vertex or literal labeled coincidence, without assuming pure discrete spectrum.
+
+**Closest literature:** (1) Arnoux–Ito, *Pisot Substitutions and Rauzy Fractals* (2001), DOI 10.36045/bbms/1102714169, covers Rauzy subtiles and strong coincidence / measure-disjointness, conditional on appropriate coincidence hypotheses, not unconditional hub separation. (2) Akiyama–Lee, *Algorithm for Determining Pure Pointedness of Self-Affine Tilings* (2011), DOI 10.1016/j.aim.2010.07.019, establishes overlap-coincidence algorithms under its tiling assumptions; a finite overlap graph does not itself imply a universal localized separation theorem. (3) Barge–Diamond 2002, DOI 10.24033/bsmf.2433, gives an eventually coincident letter pair rather than all-pairs strong coincidence. (4) The existing `docs/c4-cut-attractor-window-2026-11-05.md` and `docs/c4-cut-pair-productivity-2026-11-04.md` already establish relevant cut-attractor reductions and explicitly preserve geometric gaps.
+
+**Hypothesis mismatch:** a physical translation in ℚ(β) can be tiny even with a nonzero integral trace-dual *address*. Small geometric displacement or a bounded return window cannot force the address to vanish without an exact separation certificate. A shared vertex/zero offset does not imply coincident tile without occurrence-bound label equality. Neither strong coincidence nor disjoint subtiles may be assumed.
+
+**Decision: PROCEED NARROWED / EXACT CERTIFICATE FIRST.** Formalize typed lattice address + trace-dual proof objects and verify a finite localized separation window before any hub-subtile exclusion. The toy scalar integer-offset theorem is not a Rauzy geometry theorem. Independent human review and comprehensive novelty determination remain **post-PSC**, distinct from this automated stop/go.
