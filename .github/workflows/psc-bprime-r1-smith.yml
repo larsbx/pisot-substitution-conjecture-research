@@ -83,3 +83,11 @@ jobs:
           npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Smith.qnt --main=PscR1SmithTribonacciMatrix --invariant=exactSmithDiagonal
           npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1Smith.qnt --main=PscR1SmithTribonacciMatrix | tee "$RUNNER_TEMP/r1-smith-matrix.log"
           grep -E '4 passing|4 passed' "$RUNNER_TEMP/r1-smith-matrix.log" >/dev/null
+      - name: Replay all three locally admissible Tribonacci period-one digits
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Smith.qnt --main=PscR1SmithTribonacciParity --invariant=allowedProperPrefixDigit
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Smith.qnt --main=PscR1SmithTribonacciParity --invariant=onlyZeroPasses
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1Smith.qnt --main=PscR1SmithTribonacciParity | tee "$RUNNER_TEMP/r1-smith-parity.log"
+          grep -E '3 passing|3 passed' "$RUNNER_TEMP/r1-smith-parity.log" >/dev/null
