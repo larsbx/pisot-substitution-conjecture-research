@@ -64,11 +64,49 @@ theorem nonzero_fixed_height_requires_forcing
 not a correction-free transition. -/
 example : ((1 : ℤ) = 2 * 1 - 1) := by omega
 
+
+/-- Exact accumulated correction in a forced scalar ancestry orbit,
+using only the base field operations; intended for a later algebraic-number
+certificate for the actual Perron embedding. -/
+def forcedDigitSum (beta : ℝ) (digit : ℕ → ℝ) : ℕ → ℝ
+  | 0 => 0
+  | n + 1 => beta * forcedDigitSum beta digit n + digit n
+
+/-- Every forced ancestry walk has this exact digit identity. The digit
+sequence has **not** yet been bound to literal substituted-word offsets. -/
+theorem forced_orbit_expansion
+    (beta : ℝ) (height correction : ℕ → ℝ)
+    (hstep : ∀ n, height (n + 1) = beta * height n + correction n)
+    (n : ℕ) :
+    height n = beta ^ n * height 0 + forcedDigitSum beta correction n := by
+  induction n with
+  | zero => simp [forcedDigitSum]
+  | succ n ih =>
+      rw [hstep n, ih, forcedDigitSum, pow_succ]
+      ring
+
+/-- A repeated Perron height imposes a signed digit-polynomial equation.
+This is a directly checkable necessary condition for an *actual* closed
+ancestry cycle, once its correction digits are independently extracted. -/
+theorem period_forcing_certificate
+    (beta : ℝ) (height correction : ℕ → ℝ)
+    (hstep : ∀ k, height (k + 1) = beta * height k + correction k)
+    (n : ℕ) (hperiod : height n = height 0) :
+    (beta ^ n - 1) * height 0 + forcedDigitSum beta correction n = 0 := by
+  have heq := forced_orbit_expansion beta height correction hstep n
+  calc
+    (beta ^ n - 1) * height 0 + forcedDigitSum beta correction n =
+      (beta ^ n * height 0 + forcedDigitSum beta correction n) - height 0 := by ring
+    _ = height n - height 0 := by rw [← heq]
+    _ = 0 := by rw [hperiod]; ring
+
 end PscRoutes.R1
 
 #print axioms PscRoutes.R1.height_on_orbit
 #print axioms PscRoutes.R1.correction_free_run_exclusion
 #print axioms PscRoutes.R1.nonzero_fixed_height_requires_forcing
+#print axioms PscRoutes.R1.forced_orbit_expansion
+#print axioms PscRoutes.R1.period_forcing_certificate
 
 /- Fail-closed exact-declaration axiom audit for this standalone branch.
    All declared helper theorems must use only the standard Lean axioms.
@@ -76,7 +114,7 @@ end PscRoutes.R1
 open Lean Elab Command in
 run_cmd do
   let allowed := #[`propext, `Classical.choice, `Quot.sound]
-  for name in #[`PscRoutes.R1.height_on_orbit, `PscRoutes.R1.correction_free_run_exclusion, `PscRoutes.R1.nonzero_fixed_height_requires_forcing] do
+  for name in #[`PscRoutes.R1.height_on_orbit, `PscRoutes.R1.correction_free_run_exclusion, `PscRoutes.R1.nonzero_fixed_height_requires_forcing, `PscRoutes.R1.forced_orbit_expansion, `PscRoutes.R1.period_forcing_certificate] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
