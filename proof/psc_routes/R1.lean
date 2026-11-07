@@ -176,6 +176,61 @@ theorem tribonacci_three_step_signed_forcing :
     tribonacciAncestryStep (-1, 0, 1) 1 = (1, -1, 0) := by
   norm_num [tribonacciAncestryStep]
 
+
+/-- An algebraic arbitrary-alphabet word-mass valuation. Picking
+the standard integral basis gives the word's Parikh vector. -/
+def wordMass {Letter V : Type*} [AddCommGroup V]
+    (label : Letter → V) : List Letter → V
+  | [] => 0
+  | a :: tail => label a + wordMass label tail
+
+theorem wordMass_append {Letter V : Type*} [AddCommGroup V]
+    (label : Letter → V) (u v : List Letter) :
+    wordMass label (u ++ v) =
+      wordMass label u + wordMass label v := by
+  induction u with
+  | nil => simp [wordMass]
+  | cons a u ih =>
+      simp only [List.cons_append, wordMass, ih]
+      abel
+
+/-- Exact incidence/word bridge, assuming the given endomorphism
+matches the actual substitution images on every letter. -/
+theorem wordMass_substitution
+    {Letter V : Type*} [AddCommGroup V]
+    (label : Letter → V) (subst : Letter → List Letter)
+    (M : V →+ V)
+    (hcols : ∀ a, M (label a) = wordMass label (subst a))
+    (word : List Letter) :
+    M (wordMass label word) =
+      wordMass label (word.flatMap subst) := by
+  induction word with
+  | nil => simp [wordMass]
+  | cons a tail ih =>
+      change M (label a + wordMass label tail) =
+        wordMass label (subst a ++ tail.flatMap subst)
+      rw [map_add, hcols a, ih, wordMass_append]
+
+/-- Exact source-level asynchronous inflation identity.
+The two local segments are literal supplied word fragments.
+Binding them to proper image prefixes and legal indices is still
+a distinct occurrence-address obligation. -/
+theorem asynchronous_word_mass_transport
+    {Letter V : Type*} [AddCommGroup V]
+    (label : Letter → V) (subst : Letter → List Letter)
+    (M : V →+ V)
+    (hcols : ∀ a, M (label a) = wordMass label (subst a))
+    (topSource bottomSource topLocal bottomLocal : List Letter) :
+    wordMass label (topSource.flatMap subst ++ topLocal) -
+    wordMass label (bottomSource.flatMap subst ++ bottomLocal) =
+    M (wordMass label topSource - wordMass label bottomSource) +
+    (wordMass label topLocal - wordMass label bottomLocal) := by
+  rw [wordMass_append, wordMass_append]
+  rw [← wordMass_substitution label subst M hcols topSource,
+      ← wordMass_substitution label subst M hcols bottomSource]
+  rw [map_sub]
+  abel
+
 end PscRoutes.R1
 
 #print axioms PscRoutes.R1.height_on_orbit
@@ -187,6 +242,9 @@ end PscRoutes.R1
 #print axioms PscRoutes.R1.no_positive_periodic_orbit_with_nonnegative_digits
 #print axioms PscRoutes.R1.no_negative_periodic_orbit_with_nonpositive_digits
 #print axioms PscRoutes.R1.tribonacci_three_step_signed_forcing
+#print axioms PscRoutes.R1.wordMass_append
+#print axioms PscRoutes.R1.wordMass_substitution
+#print axioms PscRoutes.R1.asynchronous_word_mass_transport
 
 /- Fail-closed exact-declaration axiom audit for this standalone branch.
    All declared helper theorems must use only the standard Lean axioms.
@@ -194,7 +252,7 @@ end PscRoutes.R1
 open Lean Elab Command in
 run_cmd do
   let allowed := #[`propext, `Classical.choice, `Quot.sound]
-  for name in #[`PscRoutes.R1.height_on_orbit, `PscRoutes.R1.correction_free_run_exclusion, `PscRoutes.R1.nonzero_fixed_height_requires_forcing, `PscRoutes.R1.forced_orbit_expansion, `PscRoutes.R1.period_forcing_certificate, `PscRoutes.R1.forcedDigitSum_nonneg, `PscRoutes.R1.no_positive_periodic_orbit_with_nonnegative_digits, `PscRoutes.R1.no_negative_periodic_orbit_with_nonpositive_digits, `PscRoutes.R1.tribonacci_three_step_signed_forcing] do
+  for name in #[`PscRoutes.R1.height_on_orbit, `PscRoutes.R1.correction_free_run_exclusion, `PscRoutes.R1.nonzero_fixed_height_requires_forcing, `PscRoutes.R1.forced_orbit_expansion, `PscRoutes.R1.period_forcing_certificate, `PscRoutes.R1.forcedDigitSum_nonneg, `PscRoutes.R1.no_positive_periodic_orbit_with_nonnegative_digits, `PscRoutes.R1.no_negative_periodic_orbit_with_nonpositive_digits, `PscRoutes.R1.tribonacci_three_step_signed_forcing, `PscRoutes.R1.wordMass_append, `PscRoutes.R1.wordMass_substitution, `PscRoutes.R1.asynchronous_word_mass_transport] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
