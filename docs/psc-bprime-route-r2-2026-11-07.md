@@ -58,3 +58,15 @@ The existing `docs/c4-orientation-monodromy.md` proves that a normalized strict 
 **Preserved alternative:** Restrict to a certified trivial-cocycle gauge component (where the two sheets are disconnected), or use an orientation-indexed potential `H(s,x)` whose value is invariant under simultaneous deck changes `(s,x)↦(J(s),−x)`. A fixed linear functional `h(x)` alone cannot do this while remaining strictly positive across both sheets. A new proof must bind the orientation gauge, actual occurrence-indexed children, and frequency counts before deriving a positive lower density.
 
 The source-to-mean bridge remains **open**: a generic strict component is not a legal prefix-shift of a fixed point. This refinement does not establish or refute A1′, BH, C4, PDS, or PSC. This is a new machine-checkable **no-go condition on one proposed route**, not an unconditional obstruction theorem for all strict PIP components.
+
+## 2026-11-07 — new adversarial closure boundary: orientation scores and coboundaries
+
+The strongest simple R2 variant has a **certified two-step countermodel**. Let ordinary signed defects be `(+1,-1)`, with orientations `(+,−)`. The ordinary displacement total is exactly zero, yet the deck-invariant orientation-indexed score `orientation·defect` has total `+2`, strictly positive. A state-dependent sign choice does NOT inherit B′'s fixed-prefix Cesàro cancellation.
+
+The new Lean `deck_score_average_counterexample` isolates this failure. The new Lean `coboundary_telescoping` and `oriented_score_coboundary_sum` prove a conditional repair: if actual ordered occurrence edges admit a **source-linear** score plus a finite-state potential difference, the difference of path sums is an endpoint term. For a periodic occurrence state cycle, the new `positive_closed_cycle_refutes_coboundary` excludes such a potential whenever the ordinary linear score sums to zero while the oriented total is positive. This is a *cycle-sum* obstruction, not a claim that one can find a potential in a strict component.
+
+The Quint `PscR2OrientedAverage` deterministic 12-step witness now asserts ordinary total zero and oriented total 12, with no zero defect. It is a typed abstract adversary, not a PIP-derived word-factor trace.
+
+**Revised machine-first obligation:** extract the actual signed and indexed occurrence graph; compute rational edge scores and their cycle sums with an independent exact kernel; test whether a source-valid score decomposes into an ordinary fixed functional of B′ displacement plus a bounded state coboundary. A nonzero cycle sum rejects the simple coboundary route. If a certificate exists, *then* seek positivity/density and a genuine source-bound average theorem.
+
+**Result classification:** formal conditional lemmas pending latest-head Lean/Quint acceptance; adversarial toy refutes unrestricted deck-average transfer, but is not a PSC counterexample. No A1′/BH/C4/PSC promotion, and no independent human-review gate until PSC closure.
