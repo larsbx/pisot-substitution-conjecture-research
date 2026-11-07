@@ -31,5 +31,5 @@ module PscR4OverlapWindows {
   action step = any { forcedOverlap, zeroOffsetCandidate }
 
   val finiteOffsetBox = offset >= -2 and offset <= 2
-  val noUnjustifiedCoincidence = not commonTileSeen
+  val noUnjustifiedCoincidence = not(commonTileSeen)
 }
