@@ -82,7 +82,7 @@ module PscR1TribonacciArithmetic {
   val coordinateBox = x0 >= -1 and x0 <= 1 and
     x1 >= -1 and x1 <= 1 and x2 >= -1 and x2 <= 1
 
-  run threeStepActualMatrixCycle =
+  run threeStepActualMatrixCycleTest =
     init.then(step0).then(step1).then(step2)
       .expect(phase == 0 and x0 == 1 and x1 == -1 and x2 == 0)
 }
