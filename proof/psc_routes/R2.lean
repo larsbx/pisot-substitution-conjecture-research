@@ -84,6 +84,23 @@ theorem density_excludes_small_mean
     mul_lt_mul_of_pos_right hgap hnonempty
   nlinarith
 
+
+/-- An occurrence-wise deck involution reverses signed Parikh defects.
+If every oriented lift belongs to the same tested support and an
+additive rational functional is nonnegative throughout it, the
+functional vanishes on every defect. Therefore no sign-blind *strict*
+separator exists on a support closed under this deck action. -/
+theorem deck_symmetric_separator_vanishes
+    {State V : Type*} [AddCommGroup V]
+    (deck : State → State) (defect : State → V) (h : V →+ ℚ)
+    (hdeck : ∀ s, defect (deck s) = -defect s)
+    (hnonneg : ∀ s, 0 ≤ h (defect s)) (s : State) :
+    h (defect s) = 0 := by
+  have hswap := hnonneg (deck s)
+  rw [hdeck s, map_neg] at hswap
+  have hhere := hnonneg s
+  linarith
+
 end PscRoutes.R2
 
 #print axioms PscRoutes.R2.good_mass_lower_bound
@@ -91,6 +108,7 @@ end PscRoutes.R2
 #print axioms PscRoutes.R2.symmetric_orientation_forces_zero
 #print axioms PscRoutes.R2.no_two_sided_strict_positive_separator
 #print axioms PscRoutes.R2.density_excludes_small_mean
+#print axioms PscRoutes.R2.deck_symmetric_separator_vanishes
 
 /- Fail-closed exact-declaration axiom audit for this standalone branch.
    All declared helper theorems must use only the standard Lean axioms.
@@ -98,7 +116,7 @@ end PscRoutes.R2
 open Lean Elab Command in
 run_cmd do
   let allowed := #[`propext, `Classical.choice, `Quot.sound]
-  for name in #[`PscRoutes.R2.good_mass_lower_bound, `PscRoutes.R2.positive_density_contradiction, `PscRoutes.R2.symmetric_orientation_forces_zero, `PscRoutes.R2.no_two_sided_strict_positive_separator, `PscRoutes.R2.density_excludes_small_mean] do
+  for name in #[`PscRoutes.R2.good_mass_lower_bound, `PscRoutes.R2.positive_density_contradiction, `PscRoutes.R2.symmetric_orientation_forces_zero, `PscRoutes.R2.no_two_sided_strict_positive_separator, `PscRoutes.R2.density_excludes_small_mean, `PscRoutes.R2.deck_symmetric_separator_vanishes] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
