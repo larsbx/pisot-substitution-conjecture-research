@@ -33,10 +33,22 @@ theorem integer_offset_small_implies_zero (z : ℤ)
   have hhigh : z < (1 : ℤ) := by exact_mod_cast hbounds.2
   omega
 
+
+/-- A genuine, dimension-independent integer-coordinate separation bound.
+It applies to a canonically decoded **integral address vector**, not to
+unbounded physical translations or floating-point embeddings. -/
+theorem integral_address_small_implies_zero
+    {d : ℕ} (address : Fin d → ℤ)
+    (hsmall : ∀ i, |((address i : ℤ) : ℝ)| < 1) :
+    address = 0 := by
+  funext i
+  exact integer_offset_small_implies_zero (address i) (hsmall i)
+
 end PscRoutes.R4
 
 #print axioms PscRoutes.R4.separated_window_forces_zero
 #print axioms PscRoutes.R4.integer_offset_small_implies_zero
+#print axioms PscRoutes.R4.integral_address_small_implies_zero
 
 /- Fail-closed exact-declaration axiom audit for this standalone branch.
    All declared helper theorems must use only the standard Lean axioms.
@@ -44,7 +56,7 @@ end PscRoutes.R4
 open Lean Elab Command in
 run_cmd do
   let allowed := #[`propext, `Classical.choice, `Quot.sound]
-  for name in #[`PscRoutes.R4.separated_window_forces_zero, `PscRoutes.R4.integer_offset_small_implies_zero] do
+  for name in #[`PscRoutes.R4.separated_window_forces_zero, `PscRoutes.R4.integer_offset_small_implies_zero, `PscRoutes.R4.integral_address_small_implies_zero] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
