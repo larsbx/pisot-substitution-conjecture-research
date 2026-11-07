@@ -222,7 +222,7 @@ end Wedge
 subspace (`Psc.Lie3.phi3_mem_span`). -/
 theorem q3_col_mem_lie3 {S : ChildSystem (Fin 3)} (P : Normalisation S)
     (hbal : ∀ T ∈ S.C, Equiv2 T.1 T.2) (j : P.Rep) :
-    Psc.Lie3.k3Vec j.1.1 j.1.2 ∈ Submodule.span ℚ (Set.range Psc.Lie3.lyndon) :=
+    Psc.Lie3.k3Vec j.1.1 j.1.2 ∈ Submodule.span ℚ (Set.range (Psc.Lie3.lyndon (R := ℚ))) :=
   Psc.Lie3.k3Vec_mem_span_lyndon (hbal j.1 (P.sub j.2))
 
 /-! ### Non-vacuity controls over `Fin 3` -/

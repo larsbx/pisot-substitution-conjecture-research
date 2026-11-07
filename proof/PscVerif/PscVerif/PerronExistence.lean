@@ -102,7 +102,8 @@ Not proved here:
 * the irreducible non-primitive case of Perron–Frobenius.  The manuscript's `N_C` is
   only irreducible; `perron_root_rep_of_primitive` needs no irreducibility of `N_C`
   (its positive eigenvector `L` is pulled back from `ℓ`), but it assumes balance
-  (`hbal`), nonempty top tracks and `C ≠ ∅`, and gives no uniqueness of `L`;
+  (`hbal`; the nonempty top tracks follow, `Psc.SignedCocycle.Normalisation.top_ne_nil`)
+  and `C ≠ ∅`, and gives no uniqueness of `L`;
 * that a child system is the manuscript's zero-return system
   (`Psc.Reduction.redNormalisation`, not used here), and anything about `r > 1` or the
   Pisot property.
@@ -500,13 +501,14 @@ balanced states of a primitive substitution: with `β` the Perron root of `M`
 (the hypotheses `hL`, `hLN` of `PscVerif.CocycleSpectrum`), `β` is an eigenvalue
 of `N_C`, and every complex eigenvalue of `N_C` has modulus at most `β`. -/
 theorem perron_root_rep_of_primitive {S : ChildSystem α} (P : Normalisation S)
-    (hprim : ∃ k ≥ 1, ∀ a c, 0 < (inc S.s ^ k) a c) (hne : ∀ T ∈ S.C, T.1 ≠ [])
+    (hprim : ∃ k ≥ 1, ∀ a c, 0 < (inc S.s ^ k) a c)
     (hbal : ∀ T ∈ S.C, Equiv1 T.1 T.2) (hC : S.C.Nonempty) :
     ∃ (β : ℝ) (ℓ u : α → ℝ), PerronData ((inc S.s).map (Nat.cast : ℕ → ℝ)) β ℓ u ∧
       (∃ L : P.Rep → ℝ, (∀ i, 0 < L i) ∧ L ᵥ* P.Nrep.map (Nat.cast : ℕ → ℝ) = β • L) ∧
       (∃ x : P.Rep → ℝ, x ≠ 0 ∧ P.Nrep.map (Nat.cast : ℕ → ℝ) *ᵥ x = β • x) ∧
       ∀ x : P.Rep → ℂ, x ≠ 0 → ∀ μ : ℂ,
         P.Nrep.map (Nat.cast : ℕ → ℂ) *ᵥ x = μ • x → ‖μ‖ ≤ β := by
+  have hne := P.top_ne_nil hbal
   have := nonempty_of_tracks hne hC
   obtain ⟨T, hT⟩ := hC
   have : Nonempty P.Rep := (P.cover T hT).elim (fun h => ⟨⟨T, h⟩⟩) fun h => ⟨⟨T.swap, h⟩⟩
@@ -619,8 +621,8 @@ theorem thueMorse_perron_rep : ∃ (β : ℝ) (ℓ u : Fin 2 → ℝ),
       ∀ x : Psc.SignedCocycle.thueMorseNorm.Rep → ℂ, x ≠ 0 → ∀ μ : ℂ,
         Psc.SignedCocycle.thueMorseNorm.Nrep.map (Nat.cast : ℕ → ℂ) *ᵥ x = μ • x →
           ‖μ‖ ≤ β :=
-  perron_root_rep_of_primitive _ thueMorse_perron_root.1 thueMorse_perron_root.2.1
-    thueMorse_perron_root.2.2.1 thueMorse_perron_root.2.2.2
+  perron_root_rep_of_primitive _ thueMorse_perron_root.1 thueMorse_perron_root.2.2.1
+    thueMorse_perron_root.2.2.2
 
 /-- **Negative control: `A ≥ 0` cannot be dropped.**  `A = (-1)` has
 `A ^ 2 = (1) > 0` but no positive left eigenvector with positive eigenvalue. -/

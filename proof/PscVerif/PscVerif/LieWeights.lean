@@ -14,9 +14,14 @@ multiplicities `m(a, b, c)`; the shapes at `r = 4`).  Part A is the
 degree-four analogue of `PscVerif.Lie3`: `dim Lie₄(F³) = (3⁴ - 3²)/4 = 18`.
 Part B splits `Lie₃`, `Lie₄` by content and computes the weights.
 
-`Vec4 R = Fin 3 → Fin 3 → Fin 3 → Fin 3 → R` and `Vec3R R` (whose rational
-instance is `Psc.Lie3.Vec3`) are the coordinates of `(R³)^{⊗4}` and
-`(R³)^{⊗3}` in the word basis.  `ShuffleAnnih4 f` is the conjunction, at every
+`Vec4 R = Fin 3 → Fin 3 → Fin 3 → Fin 3 → R` and `Psc.Lie3.Vec3 R` are the
+coordinates of `(R³)^{⊗4}` and `(R³)^{⊗3}` in the word basis.  The degree-three
+objects (`Psc.Lie3.ShuffleAnnih`, `Psc.Lie3.shuffleAnnihSpace`, `Psc.Lie3.phi3`,
+`Psc.Lie3.lyndon`, `Psc.Lie3.lyndonCoeff`, `Psc.Lie3.map3`) and Ree's theorem at
+degree three (`Psc.Lie3.eq_sum_lyndon`, `Psc.Lie3.linearIndependent_lyndon`,
+`Psc.Lie3.shuffleAnnihSpace_eq_span`, `Psc.Lie3.phi3_mem_span`) are used from
+`Psc.Lie3`, which states them over any commutative ring, resp. any field of
+characteristic zero.  `ShuffleAnnih4 f` is the conjunction, at every
 `a b c d`, of the two families
 
 * `R1`: `f abcd + f bacd + f bcad + f bcda = 0` (`a ⧢ bcd`),
@@ -28,7 +33,7 @@ of a word is its exponent vector
 `wordContent w = (|w|₀, |w|₁, |w|₂) : Fin 3 → ℕ`, and
 `mono x κ = x₀^{κ₀} x₁^{κ₁} x₂^{κ₂}`.  `Lie_r` *means* the span of the explicit
 Lyndon bracket vectors, which is the shuffle annihilator
-(`shuffleAnnih4Space_eq_span`, `shuffleAnnih3Space_eq_span`).
+(`shuffleAnnih4Space_eq_span`, `Psc.Lie3.shuffleAnnihSpace_eq_span`).
 
 ## Proved here, in full
 
@@ -108,15 +113,15 @@ Part B, contents and weights:
   content-homogeneous (`wordContent_shuffle4`), so the components
   `comp4 κ = shuffleAnnih4Space ⊓ homog4 κ` satisfy `iSupIndep_comp4` and
   `iSup_comp4`: the shuffle annihilator is the internal direct sum of its
-  content components.  At degree three, likewise over any commutative ring:
-  `homog3`, `proj3`, `shuffleAnnih3_proj3`, `comp3`, `iSupIndep_comp3`,
-  `iSup_comp3`; over `ℚ` these are statements about `Psc.Lie3`
-  (`shuffleAnnih3Space_rat`, `comp3_rat`, by `rfl`).
+  content components.  At degree three, likewise over any commutative ring, for
+  `Psc.Lie3.shuffleAnnihSpace`: `homog3`, `proj3`, `sum_proj3`,
+  `iSupIndep_homog3`, `shuffleAnnih3_proj3`, `comp3`, `iSupIndep_comp3`,
+  `iSup_comp3`.
 * **(b) Witt multiplicities as dimensions** (a field `F` of characteristic
-  zero).  Every bracketing is content-homogeneous (`br_mem_homog4`,
-  `br_mem_homog3`: its words are permutations of one word), hence
-  `lyndon4_mem_homog4`, `lyndon_mem_homog3`, `lyndon3_mem_homog3`.
-  `comp4_eq_span`, `comp3_eq_span` (`comp3_eq_span_rat` on `Psc.Lie3`): each
+  zero).  Every bracketing is content-homogeneous, over any commutative ring
+  (`br_mem_homog4`, `br_mem_homog3`: its words are permutations of one word),
+  hence `lyndon4_mem_homog4`, `lyndon_mem_homog3` (for `Psc.Lie3.lyndon`).
+  `comp4_eq_span`, `comp3_eq_span`: each
   component is the span of the Lyndon brackets of its content;
   `finrank_comp4`, `finrank_comp3`: `dim_F comp κ = m(κ)`.  By shape
   (`shapes4`, `shapes3`: every content of degree `r` is a permutation of one of
@@ -126,11 +131,11 @@ Part B, contents and weights:
   `(2,1,0) ↦ 1`, `(1,1,1) ↦ 2` (`comp3_eq_bot`), and `sum_finrank_comp3`:
   `6·1 + 2 = 8`.
 * **(c) Diagonal action** (any commutative ring): `phi4_diagonal_of_mem`,
-  `phi3R_diagonal_of_mem` (`lie3_phi3_diagonal_of_mem` for `Psc.Lie3.phi3`):
+  `phi3_diagonal_of_mem` (for `Psc.Lie3.phi3`):
   `(diag x)^{⊗r}` acts on the content-`κ` subspace as multiplication by `x^κ`;
   so the Lyndon brackets are eigenvectors (`lyndon4_eigen`, `lyndon3_eigen`).
-  `flat4_phi4`, `flat3_phi3R`: `M^{⊗r}` is the Kronecker power on flattened
-  coordinates, so `phi4_mul`, `phi3R_mul`, and `Phi4`, `Phi3` are monoid
+  `flat4_phi4`, `flat3_phi3`: `M^{⊗r}` is the Kronecker power on flattened
+  coordinates, so `phi4_mul`, `phi3_mul`, and `Phi4`, `Phi3` are monoid
   homomorphisms into the endomorphisms of `(R³)^{⊗r}`.
 * **(d) Weights of `Φ_r`** (`F` as in (b); `M = Q (diag x) Q⁻¹` with `det Q` a
   unit).  `phi4Lie M`, `phi3Lie M`: `M^{⊗r}` restricted to `Lie_r` over `F`.
@@ -152,19 +157,8 @@ Part B, contents and weights:
   homomorphism; `charpoly_phi4Lie_rat`, `charpoly_phi3Lie_rat`: for a rational
   `M` with `M = Q (diag x) Q⁻¹` over `F`, the characteristic polynomial of the
   rational `Φ_r`, mapped to `F`, is `∏_{|κ| = r} (X - x^κ)^{dim_ℚ comp κ}`.
-* **Degree three over `F`, reusing `Psc.Lie3`.**  `ShuffleAnnih3`,
-  `shuffleAnnih3Space`, `phi3R`, `lyndon3Coeff` are the definitions of
-  `Psc.Lie3` over any commutative ring (`shuffleAnnih3_rat`,
-  `shuffleAnnih3Space_rat`, `phi3R_rat`, `lyndon3Coeff_rat`: `rfl`); `lyndon3`
-  is the image of `Psc.Lie3.lyndon` (`lyndon3_rat`, `map3_lyndon3`).
-  `eq_sum_lyndon3` (Ree's spanning half) and `linearIndependent_lyndon3` are
-  transported from `Psc.Lie3.eq_sum_lyndon` and
-  `Psc.Lie3.linearIndependent_lyndon`: a `ℚ`-linear functional `F → ℚ`,
-  applied coordinatewise (`dual3`), maps the shuffle relations to the shuffle
-  relations (`ShuffleAnnih3.dual3`) and the Ree coefficients to the Ree
-  coefficients (`dual3_lyndon3Coeff`), and these functionals separate the
-  points of `F`.  Then `shuffleAnnih3_iff_mem_span`,
-  `shuffleAnnih3Space_eq_span`, `shuffleAnnih3_phi3R`, `phi3R_mem_span`.
+  At degree three the base change uses `Psc.Lie3.map3_lyndon`,
+  `Psc.Lie3.phi3_map` and `Psc.Lie3.lyndonCoeff_map3`.
 * Controls: `phi4_diagonal_control` (the nonzero `lyndon4 0` has weight
   `x₀³ x₁`); `conj_control` (the non-diagonal `!![1,1,0; 0,2,0; 0,0,3]` is
   `Q₀ (diag (1,2,3)) Q₀⁻¹`, `det Q₀ = 1`); `charpoly_control`
@@ -192,8 +186,8 @@ Part B, contents and weights:
 * Semisimplicity of `M`: the weights are proved under the hypothesis
   `M = Q (diag x) Q⁻¹` over a field `F` containing the eigenvalues (for a
   rational `M`, through `charpoly_phi4Lie_rat`, `charpoly_phi3Lie_rat`).  The
-  passage from a rational `M` with irreducible `χ_M` to such a `Q` is not
-  formalized.
+  passage from a rational `M` with irreducible `χ_M` to such a `Q` is
+  `Psc.SectorBridge.exists_diagonalization` (downstream of this module).
 * `thm:deg23` (iii) itself.  `im Q₃ ⊆ ker (Φ₃ - det M)` needs the Galois-stable
   rational constituents of the non-scalar part, `Lie₃ ≅ S_{(2,1)}`, the moduli
   of the weights and `thm:defect-intertwiner`; only the spectrum and
@@ -204,16 +198,11 @@ Part B, contents and weights:
   Galois-orbit step are `Psc.WeightModulus` (`weight_310`, `weight_220`,
   `weight_211`, `weight_111`) and `Psc.GaloisOrbit` (`orbit_310_excluded`,
   `orbit_211_forces_unit`, `orbit_220_forces_complex_unit`), which take the
-  weight list as a hypothesis on the roots of a rational polynomial `q`.  No
-  theorem connects `charpoly_phi4Lie_rat` to those hypotheses (for instance,
-  that every root of a rational factor of `χ(Φ₄)` is a weight of one of the
-  listed shapes).
-* `Psc.Lie3` is not generalized (it lies outside this module).  Its
-  definitions `ShuffleAnnih`, `shuffleAnnihSpace`, `phi3`, `lyndonCoeff` are
-  restated over a commutative ring with `rfl` bridges, and its naturality proof
-  `Psc.Lie3.shuffleAnnih_phi3` is restated as `shuffleAnnih3_phi3R` (the
-  entries of `M` lie in `F`, so it does not transport from `ℚ`).  Generalizing
-  `Psc.Lie3` over a commutative ring would remove these restatements.
+  weight list as a hypothesis on the roots of a rational polynomial `q`.  That
+  every root of `χ(Φ_r)`, and of `q_r = χ(Φ_r|_{im Q_r})` (a divisor of `χ_S`),
+  is a weight of one of the listed shapes is `Psc.SectorBridge`
+  (`root_phi4Lie_rat`, `root_q4`, `exists_weight_root_q4`, and at degree three);
+  the case analysis itself is not formalized.
 -/
 import PscVerif.Lie3
 
@@ -1235,114 +1224,51 @@ theorem conj_control :
 
 end Weights4Field
 
-/-! ### Degree three over any commutative ring -/
+/-! ### Degree three: the content components
 
-/-- Coordinates of a tensor in `(R³)^{⊗3}` in the word basis; `Psc.Lie3.Vec3`
-is `Vec3R ℚ`. -/
-abbrev Vec3R (R : Type*) := Fin 3 → Fin 3 → Fin 3 → R
+The degree-three objects `Psc.Lie3.Vec3`, `Psc.Lie3.ShuffleAnnih`,
+`Psc.Lie3.shuffleAnnihSpace`, `Psc.Lie3.phi3`, `Psc.Lie3.lyndon`,
+`Psc.Lie3.lyndonCoeff` and Ree's theorem at degree three
+(`Psc.Lie3.eq_sum_lyndon`, `Psc.Lie3.shuffleAnnihSpace_eq_span`) are stated in
+`Psc.Lie3`, over any commutative ring and over any field of characteristic zero;
+this section splits them by content. -/
 
-section Ring3
+section Content3
 
-variable {R S : Type*} [CommRing R] [CommRing S]
-
-/-- The shuffle relations `a ⧢ bc` and `ab ⧢ c` of `Psc.Lie3.ShuffleAnnih`,
-over `R` (`shuffleAnnih3_rat`). -/
-def ShuffleAnnih3 (f : Vec3R R) : Prop :=
-  ∀ a b c, f a b c + f b a c + f b c a = 0 ∧ f a b c + f a c b + f c a b = 0
-
-theorem shuffleAnnih3_rat : ShuffleAnnih3 (R := ℚ) = Lie3.ShuffleAnnih := rfl
-
-/-- The shuffle annihilator in `(R³)^{⊗3}` (`shuffleAnnih3Space_rat`). -/
-def shuffleAnnih3Space : Submodule R (Vec3R R) where
-  carrier := {f | ShuffleAnnih3 f}
-  add_mem' {f g} hf hg a b c := by
-    obtain ⟨hf1, hf2⟩ := hf a b c
-    obtain ⟨hg1, hg2⟩ := hg a b c
-    simp only [Pi.add_apply]
-    exact ⟨by linear_combination hf1 + hg1, by linear_combination hf2 + hg2⟩
-  zero_mem' _ _ _ := by simp
-  smul_mem' r f hf a b c := by
-    obtain ⟨h1, h2⟩ := hf a b c
-    simp only [Pi.smul_apply, smul_eq_mul]
-    exact ⟨by linear_combination r * h1, by linear_combination r * h2⟩
-
-theorem shuffleAnnih3Space_rat : shuffleAnnih3Space (R := ℚ) = Lie3.shuffleAnnihSpace := rfl
-
-/-- Coordinatewise image under a ring homomorphism. -/
-def map3 (φ : R →+* S) (f : Vec3R R) : Vec3R S := fun a b c => φ (f a b c)
-
-theorem ShuffleAnnih3.map (φ : R →+* S) {f : Vec3R R} (h : ShuffleAnnih3 f) :
-    ShuffleAnnih3 (map3 φ f) := fun a b c => by
-  obtain ⟨h1, h2⟩ := h a b c
-  exact ⟨by simpa [map3] using congrArg φ h1, by simpa [map3] using congrArg φ h2⟩
-
-/-- `M^{⊗3}` in word-basis coordinates (`phi3R_rat`). -/
-def phi3R (M : Matrix (Fin 3) (Fin 3) R) (f : Vec3R R) : Vec3R R :=
-  fun a b c => ∑ x, ∑ y, ∑ z, M a x * M b y * M c z * f x y z
-
-theorem phi3R_rat : phi3R (R := ℚ) = Lie3.phi3 := rfl
-
-/-- The shuffle relations are natural: `M^{⊗3}` maps the shuffle annihilator
-into itself (the relations at `(x, y, z)` weighted by `M a x · M b y · M c z`).
-`Psc.Lie3.shuffleAnnih_phi3` is the instance `R = ℚ`. -/
-theorem shuffleAnnih3_phi3R (M : Matrix (Fin 3) (Fin 3) R) {f : Vec3R R} (hf : ShuffleAnnih3 f) :
-    ShuffleAnnih3 (phi3R M f) := by
-  intro a b c
-  have k₁ : ∑ x, ∑ y, ∑ z, M a x * M b y * M c z * (f x y z + f y x z + f y z x) = 0 := by
-    simp [(hf _ _ _).1]
-  have k₂ : ∑ x, ∑ y, ∑ z, M a x * M b y * M c z * (f x y z + f x z y + f z x y) = 0 := by
-    simp [(hf _ _ _).2]
-  simp only [phi3R, Fin.sum_univ_three] at k₁ k₂ ⊢
-  exact ⟨by linear_combination k₁, by linear_combination k₂⟩
-
-/-- `M^{⊗3}` commutes with every ring homomorphism. -/
-theorem phi3R_map (φ : R →+* S) (M : Matrix (Fin 3) (Fin 3) R) (f : Vec3R R) :
-    phi3R (M.map φ) (map3 φ f) = map3 φ (phi3R M f) := by
-  funext a b c
-  simp [phi3R, map3, map_sum, map_mul, Matrix.map_apply]
-
-/-- The coefficients of `Psc.Lie3.lyndonCoeff`, over `R` (`lyndon3Coeff_rat`). -/
-def lyndon3Coeff (f : Vec3R R) : Fin 8 → R :=
-  ![f 0 0 1, f 0 0 2, f 0 1 1, f 0 1 2, f 0 1 2 + f 0 2 1, f 0 2 2, f 1 1 2, f 1 2 2]
-
-theorem lyndon3Coeff_rat : lyndon3Coeff (R := ℚ) = Lie3.lyndonCoeff := rfl
-
-theorem lyndon3Coeff_map3 (φ : R →+* S) (f : Vec3R R) (i : Fin 8) :
-    lyndon3Coeff (map3 φ f) i = φ (lyndon3Coeff f i) := by
-  fin_cases i <;> simp [lyndon3Coeff, map3]
+variable {R : Type*} [CommRing R]
 
 theorem wordContent_mem3 (a b c : Fin 3) :
     wordContent [a, b, c] ∈ Finset.Nat.antidiagonalTuple 3 3 :=
   wordContent_mem _
 
 /-- Vectors of `(R³)^{⊗3}` supported on the words of content `κ`. -/
-def homog3 (κ : Fin 3 → ℕ) : Submodule R (Vec3R R) where
+def homog3 (κ : Fin 3 → ℕ) : Submodule R (Lie3.Vec3 R) where
   carrier := {f | ∀ a b c, wordContent [a, b, c] ≠ κ → f a b c = 0}
   add_mem' hf hg a b c h := by simp [hf a b c h, hg a b c h]
   zero_mem' _ _ _ _ := rfl
   smul_mem' r f hf a b c h := by simp [hf a b c h]
 
 /-- The projection of `(R³)^{⊗3}` onto the words of content `κ`. -/
-def proj3 (κ : Fin 3 → ℕ) : Vec3R R →ₗ[R] Vec3R R where
+def proj3 (κ : Fin 3 → ℕ) : Lie3.Vec3 R →ₗ[R] Lie3.Vec3 R where
   toFun f a b c := if wordContent [a, b, c] = κ then f a b c else 0
   map_add' f g := by funext a b c; simp only [Pi.add_apply]; split_ifs <;> simp
   map_smul' r f := by
     funext a b c; simp only [Pi.smul_apply, RingHom.id_apply]; split_ifs <;> simp
 
-theorem proj3_apply (κ : Fin 3 → ℕ) (f : Vec3R R) (a b c : Fin 3) :
+theorem proj3_apply (κ : Fin 3 → ℕ) (f : Lie3.Vec3 R) (a b c : Fin 3) :
     proj3 κ f a b c = if wordContent [a, b, c] = κ then f a b c else 0 := rfl
 
-theorem proj3_mem_homog3 (κ : Fin 3 → ℕ) (f : Vec3R R) : proj3 κ f ∈ homog3 κ :=
+theorem proj3_mem_homog3 (κ : Fin 3 → ℕ) (f : Lie3.Vec3 R) : proj3 κ f ∈ homog3 κ :=
   fun _ _ _ h => ite_eq_right h
 
-theorem proj3_of_mem (κ : Fin 3 → ℕ) (f : Vec3R R) (hf : f ∈ homog3 κ) : proj3 κ f = f := by
+theorem proj3_of_mem (κ : Fin 3 → ℕ) (f : Lie3.Vec3 R) (hf : f ∈ homog3 κ) : proj3 κ f = f := by
   funext a b c
   rw [proj3_apply]
   split_ifs with h
   · rfl
   · exact (hf a b c h).symm
 
-theorem proj3_of_mem_ne (κ κ' : Fin 3 → ℕ) (h : κ' ≠ κ) (f : Vec3R R) (hf : f ∈ homog3 κ') :
+theorem proj3_of_mem_ne (κ κ' : Fin 3 → ℕ) (h : κ' ≠ κ) (f : Lie3.Vec3 R) (hf : f ∈ homog3 κ') :
     proj3 κ f = 0 := by
   funext a b c
   rw [proj3_apply]
@@ -1351,12 +1277,9 @@ theorem proj3_of_mem_ne (κ κ' : Fin 3 → ℕ) (h : κ' ≠ κ) (f : Vec3R R) 
   · rfl
 
 /-- The content projections sum to the identity. -/
-theorem sum_proj3 (f : Vec3R R) : ∑ κ ∈ Finset.Nat.antidiagonalTuple 3 3, proj3 κ f = f := by
+theorem sum_proj3 (f : Lie3.Vec3 R) : ∑ κ ∈ Finset.Nat.antidiagonalTuple 3 3, proj3 κ f = f := by
   funext a b c
   simp only [Finset.sum_apply, proj3_apply, Finset.sum_ite_eq, wordContent_mem3, ite_true]
-
-theorem map3_mem_homog3 (φ : R →+* S) {κ : Fin 3 → ℕ} {f : Vec3R R} (hf : f ∈ homog3 κ) :
-    map3 φ f ∈ homog3 κ := fun a b c h => by simp [map3, hf a b c h]
 
 /-- The words of each shuffle relation at `(a, b, c)` have the content of
 `abc`. -/
@@ -1367,8 +1290,8 @@ theorem wordContent_shuffle3 : ∀ a b c : Fin 3,
   decide
 
 /-- **The shuffle relations at degree three are content-homogeneous.** -/
-theorem shuffleAnnih3_proj3 (κ : Fin 3 → ℕ) {f : Vec3R R} (hf : ShuffleAnnih3 f) :
-    ShuffleAnnih3 (proj3 κ f) := by
+theorem shuffleAnnih3_proj3 (κ : Fin 3 → ℕ) {f : Lie3.Vec3 R} (hf : Lie3.ShuffleAnnih f) :
+    Lie3.ShuffleAnnih (proj3 κ f) := by
   intro a b c
   obtain ⟨e₁, e₂, e₃, e₄⟩ := wordContent_shuffle3 a b c
   simp only [proj3_apply, e₁, e₂, e₃, e₄]
@@ -1376,11 +1299,9 @@ theorem shuffleAnnih3_proj3 (κ : Fin 3 → ℕ) {f : Vec3R R} (hf : ShuffleAnni
   · exact hf a b c
   · simp
 
-/-- The content-`κ` component of `Lie₃`; over `ℚ` it is the component of
-`Psc.Lie3.shuffleAnnihSpace` (`comp3_rat`). -/
-def comp3 (κ : Fin 3 → ℕ) : Submodule R (Vec3R R) := shuffleAnnih3Space ⊓ homog3 κ
-
-theorem comp3_rat (κ : Fin 3 → ℕ) : comp3 (R := ℚ) κ = Lie3.shuffleAnnihSpace ⊓ homog3 κ := rfl
+/-- The content-`κ` component of the shuffle annihilator `Psc.Lie3.shuffleAnnihSpace`
+(`= Lie₃` over a field of characteristic zero). -/
+def comp3 (κ : Fin 3 → ℕ) : Submodule R (Lie3.Vec3 R) := Lie3.shuffleAnnihSpace ⊓ homog3 κ
 
 /-- The content subspaces of `(R³)^{⊗3}` are independent. -/
 theorem iSupIndep_homog3 : iSupIndep (homog3 (R := R)) :=
@@ -1391,68 +1312,9 @@ independence. -/
 theorem iSupIndep_comp3 : iSupIndep (comp3 (R := R)) :=
   iSupIndep_homog3.mono fun _ => inf_le_right
 
-/-- Second half: the components span `Lie₃`; over `ℚ`, `⨆ κ, comp3 κ` is
-`Psc.Lie3.shuffleAnnihSpace` (`shuffleAnnih3Space_rat`). -/
-theorem iSup_comp3 : ⨆ κ, comp3 (R := R) κ = shuffleAnnih3Space :=
+/-- Second half: the components span the shuffle annihilator. -/
+theorem iSup_comp3 : ⨆ κ, comp3 (R := R) κ = Lie3.shuffleAnnihSpace :=
   iSup_inf_eq_of_proj _ _ sum_proj3 (fun κ _ hf => shuffleAnnih3_proj3 κ hf) proj3_mem_homog3
-
-/-- `(diag x)^{⊗3}` multiplies the coordinate at `abc` by `x_a x_b x_c`. -/
-theorem phi3R_diagonal (x : Fin 3 → R) (f : Vec3R R) :
-    phi3R (Matrix.diagonal x) f = fun a b c => x a * x b * x c * f a b c := by
-  funext a b c
-  simp [phi3R, Matrix.diagonal_apply, ite_mul, mul_ite, Finset.sum_ite_eq]
-
-/-- **Diagonal action**: `(diag x)^{⊗3}` acts on the content-`κ` subspace as
-multiplication by `x^κ`. -/
-theorem phi3R_diagonal_of_mem {κ : Fin 3 → ℕ} {f : Vec3R R} (x : Fin 3 → R) (hf : f ∈ homog3 κ) :
-    phi3R (Matrix.diagonal x) f = mono x κ • f := by
-  rw [phi3R_diagonal]
-  funext a b c
-  simp only [Pi.smul_apply, smul_eq_mul]
-  by_cases h : wordContent [a, b, c] = κ
-  · rw [← h, mono_wordContent]
-    simp only [List.map_cons, List.map_nil, List.prod_cons, List.prod_nil]
-    ring
-  · rw [hf a b c h]; ring
-
-/-- The coordinates of `(R³)^{⊗3}` flattened to `(Fin 3 × Fin 3) × Fin 3`. -/
-def flat3 (f : Vec3R R) : (Fin 3 × Fin 3) × Fin 3 → R := fun i => f i.1.1 i.1.2 i.2
-
-omit [CommRing R] in
-theorem flat3_injective : Function.Injective (flat3 (R := R)) := fun f g h => by
-  funext a b c; exact congrFun h ((a, b), c)
-
-open scoped Kronecker in
-/-- `phi3R M` is the threefold Kronecker power of `M` on flattened coordinates. -/
-theorem flat3_phi3R (M : Matrix (Fin 3) (Fin 3) R) (f : Vec3R R) :
-    flat3 (phi3R M f) = Matrix.mulVec (M ⊗ₖ M ⊗ₖ M) (flat3 f) := by
-  funext ⟨⟨a, b⟩, c⟩
-  simp [flat3, phi3R, Matrix.mulVec, dotProduct, Fintype.sum_prod_type, Matrix.kroneckerMap_apply]
-
-/-- `(AB)^{⊗3} = A^{⊗3} B^{⊗3}`. -/
-theorem phi3R_mul (A B : Matrix (Fin 3) (Fin 3) R) (f : Vec3R R) :
-    phi3R (A * B) f = phi3R A (phi3R B f) := flat3_injective <| by
-  simp only [flat3_phi3R, Matrix.mulVec_mulVec, Matrix.mul_kronecker_mul]
-
-theorem phi3R_one (f : Vec3R R) : phi3R 1 f = f := by
-  rw [← Matrix.diagonal_one, phi3R_diagonal]; simp
-
-/-- `M ↦ M^{⊗3}` as a monoid homomorphism into the endomorphisms of `(R³)^{⊗3}`. -/
-def Phi3 : Matrix (Fin 3) (Fin 3) R →* Module.End R (Vec3R R) where
-  toFun M :=
-    { toFun := phi3R M
-      map_add' f g := by funext a b c; simp [phi3R, mul_add, Finset.sum_add_distrib]
-      map_smul' r f := by funext a b c; simp [phi3R, Finset.mul_sum, mul_comm, mul_left_comm] }
-  map_one' := LinearMap.ext phi3R_one
-  map_mul' A B := LinearMap.ext (phi3R_mul A B)
-
-theorem Phi3_apply (M : Matrix (Fin 3) (Fin 3) R) (f : Vec3R R) : Phi3 M f = phi3R M f := rfl
-
-end Ring3
-
-/-! ### Degree three: the Lyndon brackets of `Psc.Lie3` by content -/
-
-section Lie3Rat
 
 /-- The eight Lyndon words of length three, in the order of `Psc.Lie3.lyndon`. -/
 def lyndon3Word : Fin 8 → List (Fin 3) :=
@@ -1464,35 +1326,29 @@ def lyndon3Content (i : Fin 8) : Fin 3 → ℕ := wordContent (lyndon3Word i)
 theorem lyndon3Content_mem : ∀ i, lyndon3Content i ∈ Finset.Nat.antidiagonalTuple 3 3 := by
   decide
 
-theorem word_mem_homog3 (x y z : Fin 3) : Lie3.word x y z ∈ homog3 (wordContent [x, y, z]) :=
-  fun a b c h => by
-    unfold Lie3.word
-    split_ifs with h' <;> first | rfl | (obtain ⟨rfl, rfl, rfl⟩ := h'; exact (h rfl).elim)
+theorem word_mem_homog3 (x y z : Fin 3) :
+    Lie3.word (R := R) x y z ∈ homog3 (wordContent [x, y, z]) := fun a b c h => by
+  unfold Lie3.word
+  split_ifs with h' <;> first | rfl | (obtain ⟨rfl, rfl, rfl⟩ := h'; exact (h rfl).elim)
 
 /-- Each bracket `[[x,y],z]` lies in the content-`[x, y, z]` subspace. -/
-theorem br_mem_homog3 (x y z : Fin 3) : Lie3.br x y z ∈ homog3 (wordContent [x, y, z]) := by
+theorem br_mem_homog3 (x y z : Fin 3) : Lie3.br (R := R) x y z ∈ homog3 (wordContent [x, y, z]) := by
   have W (p q r : Fin 3) (h : wordContent [p, q, r] = wordContent [x, y, z]) :
-      Lie3.word p q r ∈ homog3 (wordContent [x, y, z]) := h ▸ word_mem_homog3 p q r
+      Lie3.word (R := R) p q r ∈ homog3 (wordContent [x, y, z]) := h ▸ word_mem_homog3 p q r
   unfold Lie3.br
   repeat' first
     | apply add_mem | apply sub_mem | exact word_mem_homog3 _ _ _
     | (apply W; funext i; simp only [wordContent_cons, wordContent_nil]; ring1)
 
-/-- Each Lyndon bracket of `Psc.Lie3` is homogeneous of the content of its
+/-- Each Lyndon bracket `Psc.Lie3.lyndon i` is homogeneous of the content of its
 Lyndon word. -/
-theorem lyndon_mem_homog3 (i : Fin 8) : Lie3.lyndon i ∈ homog3 (lyndon3Content i) := by
+theorem lyndon_mem_homog3 (i : Fin 8) : Lie3.lyndon (R := R) i ∈ homog3 (lyndon3Content i) := by
   have H (x y z : Fin 3) (j : Fin 8) (h : wordContent [x, y, z] = lyndon3Content j) :
-      Lie3.br x y z ∈ homog3 (lyndon3Content j) := h ▸ br_mem_homog3 x y z
+      Lie3.br (R := R) x y z ∈ homog3 (lyndon3Content j) := h ▸ br_mem_homog3 x y z
   fin_cases i
   exacts [neg_mem (H 0 1 0 _ (by decide)), neg_mem (H 0 2 0 _ (by decide)), H 0 1 1 _ (by decide),
     neg_mem (H 1 2 0 _ (by decide)), H 0 2 1 _ (by decide), H 0 2 2 _ (by decide),
     neg_mem (H 1 2 1 _ (by decide)), H 1 2 2 _ (by decide)]
-
-/-- **Diagonal action on `Psc.Lie3`**: `Psc.Lie3.phi3 (diag x)` acts on the
-content-`κ` subspace as multiplication by `x^κ`. -/
-theorem lie3_phi3_diagonal_of_mem {κ : Fin 3 → ℕ} {f : Lie3.Vec3} (x : Fin 3 → ℚ)
-    (hf : f ∈ homog3 κ) : Lie3.phi3 (Matrix.diagonal x) f = mono x κ • f :=
-  phi3R_diagonal_of_mem x hf
 
 /-- `m(κ)`: the number of Lyndon words of length three and content `κ`. -/
 def mult3 (κ : Fin 3 → ℕ) : ℕ := (Finset.univ.filter fun i => lyndon3Content i = κ).card
@@ -1526,119 +1382,27 @@ theorem mult3_shapes : ∀ σ : Equiv.Perm (Fin 3),
 theorem sum_mult3 : ∑ κ ∈ Finset.Nat.antidiagonalTuple 3 3, mult3 κ = 8 := by
   decide
 
-end Lie3Rat
+end Content3
 
-/-! ### Degree three over a field of characteristic zero
-
-`Psc.Lie3` is stated over `ℚ`.  Over `F`, the Lyndon brackets are their images
-(`lyndon3`), and Ree's theorem and linear independence are transported from
-`Psc.Lie3.eq_sum_lyndon` and `Psc.Lie3.linearIndependent_lyndon` through the
-`ℚ`-linear functionals `F → ℚ`, which separate the points of `F` (`dual3`). -/
-
-section Lie3Field
+section Content3Field
 
 variable {F : Type*} [Field F] [CharZero F]
-
-/-- The eight Lyndon brackets `Psc.Lie3.lyndon`, read over `F`. -/
-def lyndon3 (i : Fin 8) : Vec3R F := map3 (Rat.castHom F) (Lie3.lyndon i)
-
-theorem lyndon3_rat : lyndon3 (F := ℚ) = Lie3.lyndon := by
-  funext i a b c; simp [lyndon3, map3]
-
-theorem map3_lyndon3 {K : Type*} [Field K] [CharZero K] (φ : F →+* K) (i : Fin 8) :
-    map3 φ (lyndon3 i) = lyndon3 i := by
-  funext a b c; simp [lyndon3, map3]
-
-theorem lyndon3_mem (i : Fin 8) : lyndon3 (F := F) i ∈ shuffleAnnih3Space :=
-  ShuffleAnnih3.map _ (Lie3.lyndon_mem i)
-
-theorem lyndon3_mem_homog3 (i : Fin 8) : lyndon3 (F := F) i ∈ homog3 (lyndon3Content i) :=
-  map3_mem_homog3 _ (lyndon_mem_homog3 i)
-
-/-- The Lyndon brackets are eigenvectors of every `(diag x)^{⊗3}`. -/
-theorem lyndon3_eigen (x : Fin 3 → F) (i : Fin 8) :
-    Phi3 (Matrix.diagonal x) (lyndon3 i) = mono x (lyndon3Content i) • lyndon3 i :=
-  phi3R_diagonal_of_mem x (lyndon3_mem_homog3 i)
-
-/-- A `ℚ`-linear functional on `F`, applied coordinatewise. -/
-def dual3 (φ : Module.Dual ℚ F) (f : Vec3R F) : Lie3.Vec3 := fun a b c => φ (f a b c)
-
-theorem dual_mul_ratCast (φ : Module.Dual ℚ F) (y : F) (q : ℚ) : φ (y * q) = φ y * q := by
-  rw [mul_comm, ← Rat.smul_def, map_smul, smul_eq_mul, mul_comm]
-
-theorem ShuffleAnnih3.dual3 (φ : Module.Dual ℚ F) {f : Vec3R F} (h : ShuffleAnnih3 f) :
-    Lie3.ShuffleAnnih (dual3 φ f) := fun a b c => by
-  obtain ⟨h1, h2⟩ := h a b c
-  exact ⟨by simpa [LieWeights.dual3] using congrArg φ h1,
-    by simpa [LieWeights.dual3] using congrArg φ h2⟩
-
-theorem dual3_lyndon3Coeff (φ : Module.Dual ℚ F) (f : Vec3R F) (i : Fin 8) :
-    φ (lyndon3Coeff f i) = Lie3.lyndonCoeff (dual3 φ f) i := by
-  fin_cases i <;> simp [lyndon3Coeff, Lie3.lyndonCoeff, dual3]
-
-/-- **Ree at degree three over `F`**, from `Psc.Lie3.eq_sum_lyndon`: both sides
-agree under every `ℚ`-linear functional `F → ℚ`. -/
-theorem eq_sum_lyndon3 {f : Vec3R F} (h : ShuffleAnnih3 f) :
-    f = ∑ i, lyndon3Coeff f i • lyndon3 i := by
-  funext a b c
-  rw [← sub_eq_zero, ← Module.forall_dual_apply_eq_zero_iff ℚ]
-  intro φ
-  have := congrFun (congrFun (congrFun (Lie3.eq_sum_lyndon (h.dual3 φ)) a) b) c
-  simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul] at this
-  simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul, map_sub, map_sum, lyndon3, map3,
-    Rat.coe_castHom, dual_mul_ratCast, dual3_lyndon3Coeff]
-  exact sub_eq_zero.mpr this
-
-/-- **The eight Lyndon brackets are linearly independent over `F`**, from
-`Psc.Lie3.linearIndependent_lyndon`. -/
-theorem linearIndependent_lyndon3 : LinearIndependent F (lyndon3 (F := F)) := by
-  rw [Fintype.linearIndependent_iff]
-  intro g hg i
-  rw [← Module.forall_dual_apply_eq_zero_iff ℚ]
-  intro φ
-  refine Fintype.linearIndependent_iff.mp Lie3.linearIndependent_lyndon (fun j => φ (g j)) ?_ i
-  funext a b c
-  have := congrArg φ (congrFun (congrFun (congrFun hg a) b) c)
-  simpa [Finset.sum_apply, lyndon3, map3, dual_mul_ratCast, map_sum] using this
-
-/-- **Ree at degree three over `F`**: the shuffle annihilator is the span of the
-eight Lyndon brackets. -/
-theorem shuffleAnnih3_iff_mem_span (f : Vec3R F) :
-    ShuffleAnnih3 f ↔ f ∈ Submodule.span F (Set.range lyndon3) := by
-  constructor
-  · intro h
-    rw [eq_sum_lyndon3 h]
-    exact Submodule.sum_mem _ fun i _ =>
-      Submodule.smul_mem _ _ (Submodule.subset_span ⟨i, rfl⟩)
-  · intro h
-    have hle : Submodule.span F (Set.range lyndon3) ≤ shuffleAnnih3Space :=
-      Submodule.span_le.mpr (Set.range_subset_iff.mpr lyndon3_mem)
-    exact hle h
-
-theorem shuffleAnnih3Space_eq_span :
-    shuffleAnnih3Space = Submodule.span F (Set.range (lyndon3 (F := F))) :=
-  Submodule.ext shuffleAnnih3_iff_mem_span
 
 /-- **Each content component of `Lie₃` is spanned by the Lyndon brackets of that
 content.** -/
 theorem comp3_eq_span (κ : Fin 3 → ℕ) :
     comp3 (R := F) κ =
-      Submodule.span F (Set.range fun i : {i // lyndon3Content i = κ} => lyndon3 (F := F) i.1) := by
-  rw [comp3, shuffleAnnih3Space_eq_span]
-  exact span_inf_eq_of_proj lyndon3_mem_homog3 proj3_of_mem proj3_of_mem_ne κ
-
-/-- `comp3_eq_span` on `Psc.Lie3` itself. -/
-theorem comp3_eq_span_rat (κ : Fin 3 → ℕ) :
-    comp3 (R := ℚ) κ =
-      Submodule.span ℚ (Set.range fun i : {i // lyndon3Content i = κ} => Lie3.lyndon i.1) := by
-  rw [comp3_eq_span, lyndon3_rat]
+      Submodule.span F
+        (Set.range fun i : {i // lyndon3Content i = κ} => Lie3.lyndon (R := F) i.1) := by
+  rw [comp3, Lie3.shuffleAnnihSpace_eq_span]
+  exact span_inf_eq_of_proj lyndon_mem_homog3 proj3_of_mem proj3_of_mem_ne κ
 
 /-- **Generalized Witt multiplicities as dimensions**: the content-`κ` component
 of `Lie₃` has dimension `m(κ)`. -/
 theorem finrank_comp3 (κ : Fin 3 → ℕ) : Module.finrank F (comp3 (R := F) κ) = mult3 κ := by
-  have h := finrank_span_inf_eq (linearIndependent_lyndon3 (F := F)) lyndon3_mem_homog3
+  have h := finrank_span_inf_eq (Lie3.linearIndependent_lyndon (R := F)) lyndon_mem_homog3
     proj3_of_mem proj3_of_mem_ne κ
-  rw [comp3, shuffleAnnih3Space_eq_span]
+  rw [comp3, Lie3.shuffleAnnihSpace_eq_span]
   exact h
 
 /-- The dimensions by shape: `0` for `(3,0,0)`, `1` for `(2,1,0)`, `2` for
@@ -1657,31 +1421,101 @@ theorem sum_finrank_comp3 :
     ∑ κ ∈ Finset.Nat.antidiagonalTuple 3 3, Module.finrank F (comp3 (R := F) κ) = 8 := by
   simpa only [finrank_comp3] using sum_mult3
 
-/-- **`Lie₃` over `F` is `M^{⊗3}`-invariant.** -/
-theorem phi3R_mem_span (M : Matrix (Fin 3) (Fin 3) F) {f : Vec3R F}
-    (hf : f ∈ Submodule.span F (Set.range lyndon3)) :
-    phi3R M f ∈ Submodule.span F (Set.range lyndon3) :=
-  (shuffleAnnih3_iff_mem_span _).mp (shuffleAnnih3_phi3R M ((shuffleAnnih3_iff_mem_span f).mpr hf))
+end Content3Field
+
+/-! ### Degree three: weights -/
+
+section Weights3
+
+variable {R : Type*} [CommRing R]
+
+/-- `(diag x)^{⊗3}` multiplies the coordinate at `abc` by `x_a x_b x_c`. -/
+theorem phi3_diagonal (x : Fin 3 → R) (f : Lie3.Vec3 R) :
+    Lie3.phi3 (Matrix.diagonal x) f = fun a b c => x a * x b * x c * f a b c := by
+  funext a b c
+  simp [Lie3.phi3, Matrix.diagonal_apply, ite_mul, mul_ite, Finset.sum_ite_eq]
+
+/-- **Diagonal action**: `(diag x)^{⊗3}` acts on the content-`κ` subspace as
+multiplication by `x^κ`. -/
+theorem phi3_diagonal_of_mem {κ : Fin 3 → ℕ} {f : Lie3.Vec3 R} (x : Fin 3 → R)
+    (hf : f ∈ homog3 κ) : Lie3.phi3 (Matrix.diagonal x) f = mono x κ • f := by
+  rw [phi3_diagonal]
+  funext a b c
+  simp only [Pi.smul_apply, smul_eq_mul]
+  by_cases h : wordContent [a, b, c] = κ
+  · rw [← h, mono_wordContent]
+    simp only [List.map_cons, List.map_nil, List.prod_cons, List.prod_nil]
+    ring
+  · rw [hf a b c h]; ring
+
+/-- The coordinates of `(R³)^{⊗3}` flattened to `(Fin 3 × Fin 3) × Fin 3`. -/
+def flat3 (f : Lie3.Vec3 R) : (Fin 3 × Fin 3) × Fin 3 → R := fun i => f i.1.1 i.1.2 i.2
+
+omit [CommRing R] in
+theorem flat3_injective : Function.Injective (flat3 (R := R)) := fun f g h => by
+  funext a b c; exact congrFun h ((a, b), c)
+
+open scoped Kronecker in
+/-- `Psc.Lie3.phi3 M` is the threefold Kronecker power of `M` on flattened
+coordinates. -/
+theorem flat3_phi3 (M : Matrix (Fin 3) (Fin 3) R) (f : Lie3.Vec3 R) :
+    flat3 (Lie3.phi3 M f) = Matrix.mulVec (M ⊗ₖ M ⊗ₖ M) (flat3 f) := by
+  funext ⟨⟨a, b⟩, c⟩
+  simp [flat3, Lie3.phi3, Matrix.mulVec, dotProduct, Fintype.sum_prod_type,
+    Matrix.kroneckerMap_apply]
+
+/-- `(AB)^{⊗3} = A^{⊗3} B^{⊗3}`. -/
+theorem phi3_mul (A B : Matrix (Fin 3) (Fin 3) R) (f : Lie3.Vec3 R) :
+    Lie3.phi3 (A * B) f = Lie3.phi3 A (Lie3.phi3 B f) := flat3_injective <| by
+  simp only [flat3_phi3, Matrix.mulVec_mulVec, Matrix.mul_kronecker_mul]
+
+theorem phi3_one (f : Lie3.Vec3 R) : Lie3.phi3 1 f = f := by
+  rw [← Matrix.diagonal_one, phi3_diagonal]; simp
+
+/-- `M ↦ M^{⊗3}` as a monoid homomorphism into the endomorphisms of `(R³)^{⊗3}`. -/
+def Phi3 : Matrix (Fin 3) (Fin 3) R →* Module.End R (Lie3.Vec3 R) where
+  toFun M :=
+    { toFun := Lie3.phi3 M
+      map_add' f g := by funext a b c; simp [Lie3.phi3, mul_add, Finset.sum_add_distrib]
+      map_smul' r f := by
+        funext a b c; simp [Lie3.phi3, Finset.mul_sum, mul_comm, mul_left_comm] }
+  map_one' := LinearMap.ext phi3_one
+  map_mul' A B := LinearMap.ext (phi3_mul A B)
+
+theorem Phi3_apply (M : Matrix (Fin 3) (Fin 3) R) (f : Lie3.Vec3 R) :
+    Phi3 M f = Lie3.phi3 M f := rfl
+
+/-- The Lyndon brackets are eigenvectors of every `(diag x)^{⊗3}`, with weight
+`x^κ` for `κ` the content of the Lyndon word. -/
+theorem lyndon3_eigen (x : Fin 3 → R) (i : Fin 8) :
+    Phi3 (Matrix.diagonal x) (Lie3.lyndon i) = mono x (lyndon3Content i) • Lie3.lyndon (R := R) i :=
+  phi3_diagonal_of_mem x (lyndon_mem_homog3 i)
+
+end Weights3
+
+section Weights3Field
+
+variable {F : Type*} [Field F] [CharZero F]
 
 /-- `Φ₃ = M^{⊗3}` restricted to `Lie₃`, the span of the eight Lyndon brackets
-over `F` (`= shuffleAnnih3Space`, `shuffleAnnih3Space_eq_span`). -/
+over `F` (`= Psc.Lie3.shuffleAnnihSpace`, `Psc.Lie3.shuffleAnnihSpace_eq_span`). -/
 def phi3Lie (M : Matrix (Fin 3) (Fin 3) F) :
-    Module.End F (Submodule.span F (Set.range (lyndon3 (F := F)))) :=
-  (Phi3 M).restrict fun _ hf => phi3R_mem_span M hf
+    Module.End F (Submodule.span F (Set.range (Lie3.lyndon (R := F)))) :=
+  (Phi3 M).restrict fun _ hf => Lie3.phi3_mem_span M hf
 
 /-- If `M = Q (diag x) Q⁻¹` with `Q` invertible, `Φ₃` has an eigenbasis with
 the weights `x^{content(wᵢ)}` of the eight Lyndon words `wᵢ`. -/
 theorem exists_eigenbasis_phi3Lie (M Q : Matrix (Fin 3) (Fin 3) F) (x : Fin 3 → F)
     (hQ : IsUnit Q.det) (hM : M = Q * Matrix.diagonal x * Q⁻¹) :
-    ∃ b : Module.Basis (Fin 8) F (Submodule.span F (Set.range (lyndon3 (F := F)))),
+    ∃ b : Module.Basis (Fin 8) F (Submodule.span F (Set.range (Lie3.lyndon (R := F)))),
       ∀ i, phi3Lie M (b i) = mono x (lyndon3Content i) • b i := by
   subst hM
-  have hW : ∀ A, ∀ f ∈ Submodule.span F (Set.range (lyndon3 (F := F))),
-      Phi3 A f ∈ Submodule.span F (Set.range lyndon3) :=
-    fun A _ hf => phi3R_mem_span A hf
-  have hli := linearIndependent_lyndon3 (F := F)
-  have hD := lyndon3_eigen (F := F) x
-  have h := exists_eigenbasis_conj (V := Vec3R F) Phi3 hli hW hQ hD
+  have hW : ∀ A, ∀ f ∈ Submodule.span F (Set.range (Lie3.lyndon (R := F))),
+      Phi3 A f ∈ Submodule.span F (Set.range Lie3.lyndon) :=
+    fun A _ hf => Lie3.phi3_mem_span A hf
+  have hli := Lie3.linearIndependent_lyndon (R := F)
+  have hD := lyndon3_eigen (R := F) x
+  have h := exists_eigenbasis_conj (V := Lie3.Vec3 F) Phi3 hli hW hQ hD
   unfold phi3Lie
   exact h
 
@@ -1769,18 +1603,18 @@ theorem finrank_ker_phi3Lie_sub_det (M Q : Matrix (Fin 3) (Fin 3) F) (x : Fin 3 
   rfl
 
 /-- `χ(Φ₃)` is the characteristic polynomial of the explicit `8 × 8` matrix of
-Ree coefficients `lyndon3Coeff (M^{⊗3} (lyndon3 j)) i`. -/
+Ree coefficients `Psc.Lie3.lyndonCoeff (M^{⊗3} (Psc.Lie3.lyndon j)) i`. -/
 theorem charpoly_phi3Lie_eq (M : Matrix (Fin 3) (Fin 3) F) :
     (phi3Lie M).charpoly =
-      (Matrix.of fun i j => lyndon3Coeff (phi3R M (lyndon3 j)) i).charpoly := by
-  have hW : ∀ f ∈ Submodule.span F (Set.range (lyndon3 (F := F))),
-      Phi3 M f ∈ Submodule.span F (Set.range lyndon3) :=
-    fun _ hf => phi3R_mem_span M hf
-  have hcoeff : ∀ f ∈ Submodule.span F (Set.range (lyndon3 (F := F))),
-      f = ∑ i, lyndon3Coeff f i • lyndon3 i :=
-    fun f hf => eq_sum_lyndon3 ((shuffleAnnih3_iff_mem_span f).mpr hf)
-  have hli := linearIndependent_lyndon3 (F := F)
-  have h := toMatrix_restrict_span (V := Vec3R F) hli lyndon3Coeff hcoeff (Phi3 M) hW
+      (Matrix.of fun i j => Lie3.lyndonCoeff (Lie3.phi3 M (Lie3.lyndon j)) i).charpoly := by
+  have hW : ∀ f ∈ Submodule.span F (Set.range (Lie3.lyndon (R := F))),
+      Phi3 M f ∈ Submodule.span F (Set.range Lie3.lyndon) :=
+    fun _ hf => Lie3.phi3_mem_span M hf
+  have hcoeff : ∀ f ∈ Submodule.span F (Set.range (Lie3.lyndon (R := F))),
+      f = ∑ i, Lie3.lyndonCoeff f i • Lie3.lyndon i :=
+    fun f hf => Lie3.eq_sum_lyndon ((Lie3.shuffleAnnih_iff_mem_span f).mpr hf)
+  have hli := Lie3.linearIndependent_lyndon (R := F)
+  have h := toMatrix_restrict_span (V := Lie3.Vec3 F) hli Lie3.lyndonCoeff hcoeff (Phi3 M) hW
   unfold phi3Lie
   rw [← LinearMap.charpoly_toMatrix _ (Module.Basis.span hli), h]
   rfl
@@ -1792,11 +1626,11 @@ theorem charpoly_phi3Lie_map {K : Type*} [Field K] [CharZero K] (φ : F →+* K)
   rw [charpoly_phi3Lie_eq, charpoly_phi3Lie_eq, ← Matrix.charpoly_map]
   congr 1
   ext i j
-  rw [Matrix.map_apply, Matrix.of_apply, Matrix.of_apply, ← map3_lyndon3 φ j, phi3R_map,
-    lyndon3Coeff_map3]
+  rw [Matrix.map_apply, Matrix.of_apply, Matrix.of_apply, ← Lie3.map3_lyndon φ j,
+    Lie3.phi3_map, Lie3.lyndonCoeff_map3]
 
-/-- **Weights of the rational `Φ₃`** (on `Psc.Lie3`: over `ℚ`, `phi3R = Psc.Lie3.phi3`
-and `lyndon3 = Psc.Lie3.lyndon`): if a rational `M` is `Q (diag x) Q⁻¹` over a
+/-- **Weights of the rational `Φ₃`** (the restriction of `Psc.Lie3.phi3 M` to the
+`ℚ`-span of `Psc.Lie3.lyndon`): if a rational `M` is `Q (diag x) Q⁻¹` over a
 field `F` of characteristic zero, `χ(Φ₃)`, read in `F`, is
 `∏_κ (X - x^κ)^{m(κ)}`, `m(κ) = dim_ℚ` of the rational content-`κ` component. -/
 theorem charpoly_phi3Lie_rat (M : Matrix (Fin 3) (Fin 3) ℚ) (Q : Matrix (Fin 3) (Fin 3) F)
@@ -1808,7 +1642,7 @@ theorem charpoly_phi3Lie_rat (M : Matrix (Fin 3) (Fin 3) ℚ) (Q : Matrix (Fin 3
   rw [← charpoly_phi3Lie_map, charpoly_phi3Lie _ Q x hQ hM]
   simp only [finrank_comp3]
 
-end Lie3Field
+end Weights3Field
 
 /-! ### Controls -/
 

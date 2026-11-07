@@ -16,8 +16,10 @@ irreducible.  Then
 * `charpoly_dvd_of_intertwine` (`χ_M ∣ χ_N`): Cayley–Hamilton for `N` and the
   intertwining give `χ_N(M) P = 0`; surjectivity gives `χ_N(M) = 0`; so
   `minpoly M ∣ χ_N`, and `minpoly M = χ_M` since `χ_M` is irreducible and monic;
-  `charpoly_dvd_int_of_rat` descends this to integer matrices (Gauss: `χ_M` is
-  monic over `ℤ`);
+  `charpoly_dvd_of_map_rat` (Gauss: the divisor is monic over `ℤ`) descends
+  divisibility of rational characteristic polynomials to integer matrices, and
+  `charpoly_dvd_int_of_rat` is its form for natural matrices (`map_natCast_intCast`
+  casts a natural matrix through `ℤ`);
 * `similar_of_intertwine` (`m = d`): for every `e : ι ≃ Fin 3`, the reindexed
   `Pe` is invertible and the reindexed `N` is `Pe⁻¹ M Pe`.
 
@@ -31,7 +33,9 @@ Two instantiations, over a `Psc.Binomial.ChildSystem S` on `Fin 3` with
   matrix `Psc.SignedCocycle.Normalisation.Nrep`.  `prep_surjective`,
   `card_rep_ge`, `charpoly_dvd_rep`, `charpoly_dvd_rep_int`,
   `similar_rep_of_equiv`, `exists_similar_rep_of_card_eq` are the clauses of
-  `thm:parikh` as stated in the manuscript;
+  `thm:parikh` as stated in the manuscript, given `χ_M` irreducible, balance and
+  (except for the `m = d` clause) `C` nonempty; the nonempty top tracks are
+  derived (`Psc.SignedCocycle.Normalisation.top_ne_nil`);
 * **the raw ordered double cover.**  `PcQ S`, `NcQ S` (casts of
   `Psc.ParikhIntertwiner.Pc S`, `Psc.ParikhIntertwiner.Nc S`, indexed by all of
   `C`, no balance needed).  `pc_surjective`, `card_ge`, `charpoly_dvd`,
@@ -42,8 +46,10 @@ Two instantiations, over a `Psc.Binomial.ChildSystem S` on `Fin 3` with
 
 Not proved here: the identification of the cofactor `χ_{N_C} / χ_M` with the
 characteristic polynomial of `N_C` on `ker P_C`, and Perron simplicity of `β`
-for `N_C` (both in `Psc.KernelCofactor`).  The hypotheses `C` nonempty and nonempty top tracks exclude the
-degenerate `P = 0`.
+for `N_C` (both in `Psc.KernelCofactor`).  The hypotheses `C` nonempty and nonempty
+top tracks exclude the degenerate `P = 0` (`prep_ne_zero`, `pcQ_ne_zero`); on
+representatives the second follows from balance, on the double cover it is
+assumed (`hne`).
 -/
 import PscVerif.ParikhIntertwiner
 import PscVerif.SignedCocycle
@@ -52,6 +58,11 @@ import PscVerif.Cyclicity
 namespace Psc.ParikhRank
 
 open Matrix Polynomial Psc.Binomial Psc.Incidence Psc.ParikhIntertwiner Psc.SignedCocycle
+
+/-- Casting a natural matrix through `ℤ`. -/
+theorem map_natCast_intCast {m n R : Type*} [Ring R] (A : Matrix m n ℕ) :
+    (A.map (Nat.cast : ℕ → ℤ)).map (Int.castRingHom R) = A.map (Nat.cast : ℕ → R) := by
+  ext; simp
 
 /-! ### The clauses for an abstract intertwiner -/
 
@@ -108,17 +119,22 @@ theorem charpoly_dvd_of_intertwine (h : P * N = M * P) (hM : Irreducible M.charp
   rw [minpoly.eq_of_irreducible_of_monic hM (aeval_self_charpoly M) (charpoly_monic M)]
   exact minpoly.dvd ℚ M hzero
 
-/-- **Gauss.**  Divisibility of the rational characteristic polynomials of
-natural matrices descends to the integer ones. -/
+/-- **Gauss.**  Divisibility of the rational characteristic polynomials of integer
+matrices descends to `ℤ` (the divisor is monic). -/
+theorem charpoly_dvd_of_map_rat {κ : Type*} [Fintype κ] [DecidableEq κ] {A : Matrix κ κ ℤ}
+    {B : Matrix ι ι ℤ}
+    (h : (A.map (Int.castRingHom ℚ)).charpoly ∣ (B.map (Int.castRingHom ℚ)).charpoly) :
+    A.charpoly ∣ B.charpoly := by
+  rwa [← Polynomial.map_dvd_map (Int.castRingHom ℚ) Int.cast_injective (charpoly_monic _),
+    ← charpoly_map, ← charpoly_map]
+
+/-- **Gauss**, natural matrices: `charpoly_dvd_of_map_rat` on their integer casts
+(`map_natCast_intCast`). -/
 theorem charpoly_dvd_int_of_rat {κ : Type*} [Fintype κ] [DecidableEq κ]
     {M₀ : Matrix κ κ ℕ} {N₀ : Matrix ι ι ℕ}
     (h : (M₀.map (Nat.cast : ℕ → ℚ)).charpoly ∣ (N₀.map (Nat.cast : ℕ → ℚ)).charpoly) :
-    (M₀.map (Nat.cast : ℕ → ℤ)).charpoly ∣ (N₀.map (Nat.cast : ℕ → ℤ)).charpoly := by
-  rw [← Polynomial.map_dvd_map (Int.castRingHom ℚ) Int.cast_injective (charpoly_monic _),
-    ← charpoly_map, ← charpoly_map, Matrix.map_map, Matrix.map_map]
-  have hc : (Int.castRingHom ℚ ∘ (Nat.cast : ℕ → ℤ)) = (Nat.cast : ℕ → ℚ) := by
-    funext n; simp
-  rwa [hc]
+    (M₀.map (Nat.cast : ℕ → ℤ)).charpoly ∣ (N₀.map (Nat.cast : ℕ → ℤ)).charpoly :=
+  charpoly_dvd_of_map_rat (by rwa [map_natCast_intCast, map_natCast_intCast])
 
 /-- **`m = d`.**  For `e : ι ≃ Fin 3`, the reindexed `Pe` is invertible and the
 reindexed `N` is `Pe⁻¹ M Pe`. -/
@@ -203,25 +219,25 @@ theorem prepQ_nrepQ (hbal : ∀ T ∈ S.C, Equiv1 T.1 T.2) :
   rw [← Matrix.map_mul, ← Matrix.map_mul, prep_nrep P hbal]
 
 variable (hM : Irreducible (incQ S).charpoly) (hbal : ∀ T ∈ S.C, Equiv1 T.1 T.2)
-  (hne : ∀ T ∈ S.C, T.1 ≠ [])
-include hM hbal hne
+include hM hbal
 
-/-- **`thm:parikh`, `rank P_C = d`**, on representatives. -/
+/-- **`thm:parikh`, `rank P_C = d`**, on representatives.  The nonempty top tracks
+needed for `P_R ≠ 0` follow from balance (`Psc.SignedCocycle.Normalisation.top_ne_nil`). -/
 theorem prep_surjective (hC : S.C.Nonempty) : Function.Surjective (Matrix.mulVecLin (PrepQ P)) :=
-  surjective_of_intertwine (prepQ_nrepQ P hbal) hM (prep_ne_zero P hC hne)
+  surjective_of_intertwine (prepQ_nrepQ P hbal) hM (prep_ne_zero P hC (P.top_ne_nil hbal))
 
 /-- **`thm:parikh`, `m ≥ d`**, on representatives: `3 ≤ |R|`. -/
 theorem card_rep_ge (hC : S.C.Nonempty) : 3 ≤ Fintype.card P.Rep :=
-  card_ge_of_intertwine (prepQ_nrepQ P hbal) hM (prep_ne_zero P hC hne)
+  card_ge_of_intertwine (prepQ_nrepQ P hbal) hM (prep_ne_zero P hC (P.top_ne_nil hbal))
 
 /-- **`thm:parikh`, `χ_M ∣ χ_{N_C}`**, on representatives. -/
 theorem charpoly_dvd_rep (hC : S.C.Nonempty) : (incQ S).charpoly ∣ (NrepQ P).charpoly :=
-  charpoly_dvd_of_intertwine (prepQ_nrepQ P hbal) hM (prep_ne_zero P hC hne)
+  charpoly_dvd_of_intertwine (prepQ_nrepQ P hbal) hM (prep_ne_zero P hC (P.top_ne_nil hbal))
 
 /-- **`thm:parikh`, `χ_M ∣ χ_{N_C}` over `ℤ`**, on representatives. -/
 theorem charpoly_dvd_rep_int (hC : S.C.Nonempty) :
     ((inc S.s).map (Nat.cast : ℕ → ℤ)).charpoly ∣ (P.Nrep.map (Nat.cast : ℕ → ℤ)).charpoly :=
-  charpoly_dvd_int_of_rat (charpoly_dvd_rep P hM hbal hne hC)
+  charpoly_dvd_int_of_rat (charpoly_dvd_rep P hM hbal hC)
 
 /-- **`thm:parikh`, `m = d`**, on representatives. -/
 theorem similar_rep_of_equiv (e : P.Rep ≃ Fin 3) :
@@ -229,14 +245,14 @@ theorem similar_rep_of_equiv (e : P.Rep ≃ Fin 3) :
       (NrepQ P).submatrix e.symm e.symm =
         ((PrepQ P).submatrix id e.symm)⁻¹ * incQ S * (PrepQ P).submatrix id e.symm :=
   similar_of_intertwine (prepQ_nrepQ P hbal) hM
-    (prep_ne_zero P ⟨(e.symm 0).1, P.sub (e.symm 0).2⟩ hne) e
+    (prep_ne_zero P ⟨(e.symm 0).1, P.sub (e.symm 0).2⟩ (P.top_ne_nil hbal)) e
 
 /-- **`thm:parikh`, `m = d`, packaged**, on representatives: if `|R| = 3`. -/
 theorem exists_similar_rep_of_card_eq (hcard : Fintype.card P.Rep = 3) :
     ∃ e : P.Rep ≃ Fin 3, IsUnit ((PrepQ P).submatrix id e.symm) ∧
       (NrepQ P).submatrix e.symm e.symm =
         ((PrepQ P).submatrix id e.symm)⁻¹ * incQ S * (PrepQ P).submatrix id e.symm :=
-  ⟨Fintype.equivFinOfCardEq hcard, similar_rep_of_equiv P hM hbal hne _⟩
+  ⟨Fintype.equivFinOfCardEq hcard, similar_rep_of_equiv P hM hbal _⟩
 
 end RepFin3
 

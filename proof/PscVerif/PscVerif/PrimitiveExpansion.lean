@@ -68,7 +68,8 @@ Proved here, in full (depending only on `propext`, `Classical.choice`,
 Notes on the hypotheses of `reduction_limit` that are discharged: `hexp`
 requires `|U.i| < |σ U.i|` on both tracks of every state, which needs every
 state track nonempty; this follows from `Equiv2` together with noncoincidence
-(a balanced pair with an empty track has both tracks empty, hence coincident).
+(a balanced pair with an empty track has both tracks empty, hence coincident:
+`Psc.Binomial.Equiv1.tracks_ne_nil`).
 
 NOT formalized here: any Perron--Frobenius statement (Perron root `> 1`);
 primitivity of `power s k` itself; that the child system of balanced pairs of
@@ -184,16 +185,6 @@ theorem card_two_needed :
 
 /-! ### Discharging `hexp` and `hs` of `reduction_limit` -/
 
-/-- A balanced noncoincident pair has both tracks nonempty. -/
-theorem tracks_ne_nil {u v : List α} (hb : Equiv1 u v) (hnc : u ≠ v) :
-    u ≠ [] ∧ v ≠ [] := by
-  have hl := hb.length_eq
-  constructor
-  · rintro rfl
-    exact hnc (List.length_eq_zero_iff.mp hl.symm).symm
-  · rintro rfl
-    exact hnc (List.length_eq_zero_iff.mp hl)
-
 /-- **(3) Reduction lemma, limit form, at a positive power.**  If `M ^ k > 0`
 entrywise and `|α| ≥ 2`, then for every child system of the power substitution
 `power s k` (whose word map is `σᵏ`, `subst_power`) all of whose states are
@@ -223,7 +214,7 @@ theorem reduction_limit_of_pos_pow [Fintype α] (s : α → List α)
   have hexp : ∀ U ∈ S.C,
       U.1.length < (subst S.s U.1).length ∧ U.2.length < (subst S.s U.2).length := by
     intro U hU
-    obtain ⟨h1, h2⟩ := tracks_ne_nil (hK2 U hU).1 (hstrict U hU).2
+    obtain ⟨h1, h2⟩ := (hK2 U hU).1.tracks_ne_nil (hstrict U hU).2
     rw [hS, subst_power]
     exact ⟨hlt _ h1, hlt _ h2⟩
   exact reduction_limit S hs T hT hK2 hstrict hexp

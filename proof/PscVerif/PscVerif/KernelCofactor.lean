@@ -49,12 +49,15 @@ Proved here, in full:
 * **representatives** (a `Psc.SignedCocycle.Normalisation P0` of a balanced child
   system on `Fin 3`, `N_C = NrepQ P0`, `P_R = PrepQ P0`, `M = incQ S`):
   `vecMul_prepQ` (`ℓ P_R = Lrep ℓ`) and `vecMul_prepQ_pos` (`ℓ P_R > 0`, from
-  `lrep_pos`); `charpoly_nrep_eq_mul`; `cofactor_int` (the cofactor is the image of
-  an integer polynomial: cancel `χ_M` in `Psc.ParikhRank.charpoly_dvd_rep_int`);
-  `isCoprime_rep`, `rootMultiplicity_rep`; `perron_root_rep` (`ρ(N_C) = β`, without
-  irreducibility or strong connectivity); `simple_perron_root_rep`: **`β` is the
-  simple Perron root of `N_C`**; and `factor_through_rep`, Theorem A(iv) in full
-  on representatives, surjectivity discharged by `Psc.ParikhRank.prep_surjective`;
+  `lrep_pos`, given nonempty top tracks, which the theorems below derive from
+  balance by `Psc.SignedCocycle.Normalisation.top_ne_nil`);
+  `charpoly_nrep_eq_mul`; `cofactor_int` (the cofactor is the image of an
+  integer polynomial: cancel `χ_M` in `Psc.ParikhRank.charpoly_dvd_rep_int`);
+  `isCoprime_rep`, `rootMultiplicity_rep`; `perron_root_rep` (`ρ(N_C) = β`,
+  without irreducibility or strong connectivity); `simple_perron_root_rep`:
+  **`β` is the simple Perron root of `N_C`**; and `factor_through_rep`,
+  Theorem A(iv) in full on representatives, surjectivity discharged by
+  `Psc.ParikhRank.prep_surjective`;
 * controls (abstract matrices): `ctrlN`, `ctrlP`, a four-state splitting of the
   letter `2` of `Psc.M0Pisot.M0` with `P N = M0 P` (`decide +kernel`), `P` onto and
   `ker P ∋ e_{2a} − e_{2b}`, so `ker P ≠ 0` (`ctrl_ker_ne_bot`); `ctrl_charpoly`
@@ -82,7 +85,8 @@ Proved here, in full:
 Not proved here:
 
 * the hypotheses of the representative theorems, which are assumed: balance of
-  every state (`hbal`, `Equiv1`), nonempty top tracks (`hne`), `C` nonempty
+  every state (`hbal`, `Equiv1`; nonempty top tracks follow from it under a
+  normalisation), `C` nonempty
   (`hC`), strong connectivity of `N_C` (`hSC`), irreducibility of `χ_M` (`hM`), and
   `ℓ > 0` with `ℓ M = β ℓ` (for a primitive `σ` this is
   `Psc.PerronExistence.exists_pos_left_eigen_inc`, not imported here);
@@ -400,54 +404,56 @@ theorem vecMul_prepQ (ℓ : Fin 3 → ℝ) : ℓ ᵥ* (PrepQ P0).map ((↑) : �
   funext j
   simp [vecMul, dotProduct, Normalisation.Lrep, Lc, Lfun, parikh, Prep]
 
-/-- `ℓ P_R > 0`, from `lrep_pos`. -/
+/-- `ℓ P_R > 0`, from `lrep_pos`, given nonempty top tracks (no balance is assumed here;
+under balance the representative theorems below supply them by
+`Psc.SignedCocycle.Normalisation.top_ne_nil`). -/
 theorem vecMul_prepQ_pos (ℓ : Fin 3 → ℝ) (hℓ : ∀ a, 0 < ℓ a) (hne : ∀ T ∈ S.C, T.1 ≠ [])
     (j : P0.Rep) : 0 < (ℓ ᵥ* (PrepQ P0).map ((↑) : ℚ → ℝ)) j := by
   rw [vecMul_prepQ]; exact P0.lrep_pos ℓ hℓ hne j
 
 variable (hM : Irreducible (incQ S).charpoly) (hbal : ∀ T ∈ S.C, Equiv1 T.1 T.2)
-  (hne : ∀ T ∈ S.C, T.1 ≠ [])
 
-include hM hne in
+include hM in
 /-- **(a) on representatives**: `χ_{N_C} = χ_M · χ_{N_C | ker P_R}`. -/
 theorem charpoly_nrep_eq_mul (hC : S.C.Nonempty) :
     (NrepQ P0).charpoly = (incQ S).charpoly * (kerRestrict (prepQ_nrepQ P0 hbal)).charpoly :=
-  charpoly_eq_mul_kerRestrict _ (prep_surjective P0 hM hbal hne hC)
+  charpoly_eq_mul_kerRestrict _ (prep_surjective P0 hM hbal hC)
 
-include hM hne in
+include hM in
 /-- **The cofactor is integral**: `χ_{N_C | ker P_R}` is the image of an integer
 polynomial (cancel `χ_M` in `Psc.ParikhRank.charpoly_dvd_rep_int`). -/
 theorem cofactor_int (hC : S.C.Nonempty) :
     ∃ g : ℤ[X], (kerRestrict (prepQ_nrepQ P0 hbal)).charpoly = g.map (Int.castRingHom ℚ) := by
-  obtain ⟨g, hg⟩ := charpoly_dvd_rep_int P0 hM hbal hne hC
+  obtain ⟨g, hg⟩ := charpoly_dvd_rep_int P0 hM hbal hC
   have hgQ := congrArg (Polynomial.map (Int.castRingHom ℚ)) hg
   rw [Polynomial.map_mul, ← Matrix.charpoly_map, ← Matrix.charpoly_map, Matrix.map_map,
     Matrix.map_map] at hgQ
   refine ⟨g, mul_left_cancel₀ (charpoly_monic (incQ S)).ne_zero ?_⟩
-  rw [← charpoly_nrep_eq_mul P0 hM hbal hne hC]
+  rw [← charpoly_nrep_eq_mul P0 hM hbal hC]
   convert hgQ using 3 <;> ext <;> simp
 
 variable (hSC : PerronCore.StronglyConnected (P0.Nrep.map (Nat.cast : ℕ → ℝ)))
   (ℓ : Fin 3 → ℝ) (hℓ : ∀ a, 0 < ℓ a) (β : ℝ)
   (hℓN : ℓ ᵥ* (inc S.s).map (Nat.cast : ℕ → ℝ) = β • ℓ)
 
-include hM hne hSC hℓ hℓN in
+include hM hSC hℓ hℓN in
 /-- **(b) on representatives, coprime form**: `gcd(χ_M, χ_{N_C | ker P_R}) = 1`. -/
 theorem isCoprime_rep :
     IsCoprime (incQ S).charpoly (kerRestrict (prepQ_nrepQ P0 hbal)).charpoly :=
   isCoprime_charpoly_kerRestrict (NrepQ P0) (fun _ _ => Nat.cast_nonneg _)
     (by rwa [nrepQ_map_real]) _ hM (PrepQ P0) _ ℓ β (by rwa [incQ_map_real])
-    (vecMul_prepQ_pos P0 ℓ hℓ hne)
+    (vecMul_prepQ_pos P0 ℓ hℓ (P0.top_ne_nil hbal))
 
-include hM hbal hne hSC hℓ hℓN in
+include hM hbal hSC hℓ hℓN in
 /-- **(b) on representatives, multiplicity form**: `β` is a simple root of `χ_{N_C}`. -/
 theorem rootMultiplicity_rep (hC : S.C.Nonempty) :
     rootMultiplicity β ((NrepQ P0).charpoly.map (algebraMap ℚ ℝ)) = 1 :=
   rootMultiplicity_charpoly_eq_one (NrepQ P0) (fun _ _ => Nat.cast_nonneg _)
     (by rwa [nrepQ_map_real]) _ hM (PrepQ P0) (prepQ_nrepQ P0 hbal) ℓ β
-    (by rwa [incQ_map_real]) (vecMul_prepQ_pos P0 ℓ hℓ hne) (prep_surjective P0 hM hbal hne hC)
+    (by rwa [incQ_map_real]) (vecMul_prepQ_pos P0 ℓ hℓ (P0.top_ne_nil hbal))
+    (prep_surjective P0 hM hbal hC)
 
-include hbal hne hℓ hℓN in
+include hbal hℓ hℓN in
 /-- **(b) `ρ(N_C) = β`** on representatives: `perron_root_of_intertwine` with
 `λ = ℓ P_R = Lrep ℓ`.  Neither irreducibility of `χ_M` nor strong connectivity is
 used. -/
@@ -458,11 +464,12 @@ theorem perron_root_rep (hC : S.C.Nonempty) :
   obtain ⟨T, hT⟩ := hC
   have : Nonempty P0.Rep := (P0.cover T hT).elim (fun h => ⟨⟨T, h⟩⟩) fun h => ⟨⟨T.swap, h⟩⟩
   have h := perron_root_of_intertwine (NrepQ P0) (fun _ _ => Nat.cast_nonneg _) _ (PrepQ P0)
-    (prepQ_nrepQ P0 hbal) ℓ β (by rwa [incQ_map_real]) (vecMul_prepQ_pos P0 ℓ hℓ hne)
+    (prepQ_nrepQ P0 hbal) ℓ β (by rwa [incQ_map_real])
+    (vecMul_prepQ_pos P0 ℓ hℓ (P0.top_ne_nil hbal))
   rwa [nrepQ_map_real, show (NrepQ P0).map ((↑) : ℚ → ℂ) = P0.Nrep.map Nat.cast by
     ext; simp] at h
 
-include hM hbal hne hSC hℓ hℓN in
+include hM hbal hSC hℓ hℓN in
 /-- **(b) `β` is the simple Perron root of `N_C`**: `rootMultiplicity_rep` and
 `perron_root_rep`. -/
 theorem simple_perron_root_rep (hC : S.C.Nonempty) :
@@ -470,9 +477,9 @@ theorem simple_perron_root_rep (hC : S.C.Nonempty) :
       (∃ v : P0.Rep → ℝ, v ≠ 0 ∧ P0.Nrep.map (Nat.cast : ℕ → ℝ) *ᵥ v = β • v) ∧
       ∀ x : P0.Rep → ℂ, x ≠ 0 → ∀ μ : ℂ,
         P0.Nrep.map (Nat.cast : ℕ → ℂ) *ᵥ x = μ • x → ‖μ‖ ≤ β :=
-  ⟨rootMultiplicity_rep P0 hM hbal hne hSC ℓ hℓ β hℓN hC, perron_root_rep P0 hbal hne ℓ hℓ β hℓN hC⟩
+  ⟨rootMultiplicity_rep P0 hM hbal hSC ℓ hℓ β hℓN hC, perron_root_rep P0 hbal ℓ hℓ β hℓN hC⟩
 
-include hM hbal hne hSC hℓ hℓN in
+include hM hbal hSC hℓ hℓN in
 /-- **(d) Theorem A(iv) on representatives**: every `Q` intertwining `N_C` with an
 `R` annihilated by `χ_M` factors as `Q = L' P_R` with `L' M = R L'`, and `L'` is
 injective unless `Q = 0` (`factor_through_parikh_full`). -/
@@ -483,8 +490,8 @@ theorem factor_through_rep (hC : S.C.Nonempty) {Y : Type*} [AddCommGroup Y] [Mod
       L' ∘ₗ Matrix.toLin' (incQ S) = R ∘ₗ L' ∧ (Q ≠ 0 → Function.Injective L') :=
   factor_through_parikh_full (NrepQ P0) (fun _ _ => Nat.cast_nonneg _)
     (by rwa [nrepQ_map_real]) _ hM (PrepQ P0) (prepQ_nrepQ P0 hbal) ℓ β
-    (by rwa [incQ_map_real]) (vecMul_prepQ_pos P0 ℓ hℓ hne) Q R hQ hR
-    (prep_surjective P0 hM hbal hne hC)
+    (by rwa [incQ_map_real]) (vecMul_prepQ_pos P0 ℓ hℓ (P0.top_ne_nil hbal)) Q R hQ hR
+    (prep_surjective P0 hM hbal hC)
 
 end Rep
 
@@ -674,14 +681,14 @@ theorem wT_nrep (i j : wTNorm.Rep) : wTNorm.Nrep i j = 1 := by
 `Psc.SignedIntertwiner.wT` of the identity substitution) meets every hypothesis of
 `charpoly_nrep_eq_mul`, `cofactor_int`, `isCoprime_rep`, `rootMultiplicity_rep`,
 `perron_root_rep`, `simple_perron_root_rep` and `factor_through_rep` except
-irreducibility of `χ_M` (`M = I`): balance, nonempty tracks, `C ≠ ∅`, strong
-connectivity of `N_C = (1)`, and `ℓ = 1 > 0` with `ℓ M = 1 · ℓ`. -/
+irreducibility of `χ_M` (`M = I`): balance, `C ≠ ∅`, strong connectivity of
+`N_C = (1)`, and `ℓ = 1 > 0` with `ℓ M = 1 · ℓ`. -/
 theorem wT_rep_hyps :
-    (∀ T ∈ wT.C, Equiv1 T.1 T.2) ∧ (∀ T ∈ wT.C, T.1 ≠ []) ∧ wT.C.Nonempty ∧
+    (∀ T ∈ wT.C, Equiv1 T.1 T.2) ∧ wT.C.Nonempty ∧
       PerronCore.StronglyConnected (wTNorm.Nrep.map (Nat.cast : ℕ → ℝ)) ∧
       ∃ ℓ : Fin 3 → ℝ, (∀ a, 0 < ℓ a) ∧
         ℓ ᵥ* (inc wT.s).map (Nat.cast : ℕ → ℝ) = (1 : ℝ) • ℓ := by
-  refine ⟨fun T hT => (wT_equiv2 T hT).1, by decide, by decide, fun i j => ?_,
+  refine ⟨fun T hT => (wT_equiv2 T hT).1, by decide, fun i j => ?_,
     fun _ => 1, fun _ => one_pos, ?_⟩
   · obtain rfl := wTNorm_rep i
     obtain rfl := wTNorm_rep j
@@ -696,8 +703,8 @@ theorem wT_perron_root :
     (∃ v : wTNorm.Rep → ℝ, v ≠ 0 ∧ wTNorm.Nrep.map (Nat.cast : ℕ → ℝ) *ᵥ v = (1 : ℝ) • v) ∧
       ∀ x : wTNorm.Rep → ℂ, x ≠ 0 → ∀ μ : ℂ,
         wTNorm.Nrep.map (Nat.cast : ℕ → ℂ) *ᵥ x = μ • x → ‖μ‖ ≤ 1 := by
-  obtain ⟨hbal, hne, hC, -, ℓ, hℓ, hℓN⟩ := wT_rep_hyps
-  exact perron_root_rep wTNorm hbal hne ℓ hℓ 1 hℓN hC
+  obtain ⟨hbal, hC, -, ℓ, hℓ, hℓN⟩ := wT_rep_hyps
+  exact perron_root_rep wTNorm hbal ℓ hℓ 1 hℓN hC
 
 /-- **Negative control: irreducibility of `χ_M` cannot be dropped** from
 `charpoly_nrep_eq_mul`.  On `wTNorm`, `deg χ_{N_C} = |R| = 1 < 3 = deg χ_M`, so `χ_M`
@@ -716,8 +723,8 @@ theorem wT_no_cofactor (g : ℚ[X]) : (NrepQ wTNorm).charpoly ≠ (incQ wT).char
 /-- Hence `χ_M` of `wT` (`M = I`) is not irreducible: every other hypothesis of
 `charpoly_nrep_eq_mul` holds (`wT_rep_hyps`) and its conclusion fails. -/
 theorem wT_not_irreducible : ¬ Irreducible (incQ wT).charpoly := fun hM => by
-  obtain ⟨hbal, hne, hC, -⟩ := wT_rep_hyps
-  exact wT_no_cofactor _ (charpoly_nrep_eq_mul wTNorm hM hbal hne hC)
+  obtain ⟨hbal, hC, -⟩ := wT_rep_hyps
+  exact wT_no_cofactor _ (charpoly_nrep_eq_mul wTNorm hM hbal hC)
 
 end WT
 

@@ -16,7 +16,8 @@ choice is one):
 * `R ⊆ C` is a set of representatives: every `T ∈ C` has `T ∈ R` or
   `T.swap ∈ R` (`cover`), never both (`not_both`; for a noncoincident `T`,
   `T ≠ T.swap`).  So `C = R ⊔ swap R` (`C_eq`), and `C` is coincidence-free
-  (`noncoincident`: no `T ∈ C` has `T.1 = T.2`).
+  (`noncoincident`: no `T ∈ C` has `T.1 = T.2`); hence, for balanced states, every
+  top track is nonempty (`top_ne_nil`).
 
 Indexing by the representatives `Rep = {T // T ∈ R}`, with `A i j` the number of
 times `i` occurs among the children of `j` (sign `+1`) and `B i j` the number
@@ -35,10 +36,12 @@ Proved here, in full:
   `ℓ ᵥ* N = β • ℓ`, nonempty top tracks), every complex eigenvalue of `Ssign`
   has modulus at most `β`;
 * `rep_eigen`, `lrep_pos` (`thm:parikh` on representatives): if the states are
-  balanced, `λ N_C = β λ` for `λ j = L ℓ (top track of j)`, and `λ > 0`;
-  `ssign_abs_le`: `|S i j| ≤ N_C i j` entrywise; `cocycle_spectral_bound_rep`
-  combines them with `Psc.ParikhIntertwiner.spectral_bound` into a second
-  proof of the bound on the representatives, under balance;
+  balanced, `λ N_C = β λ` for `λ j = L ℓ (top track of j)`, and `λ > 0`
+  (given nonempty top tracks); `ssign_abs_le`: `|S i j| ≤ N_C i j` entrywise;
+  `cocycle_spectral_bound_rep` combines them with
+  `Psc.ParikhIntertwiner.spectral_bound` into a second proof of the bound on the
+  representatives, under balance alone (the nonempty top tracks follow,
+  `top_ne_nil`);
 * Non-vacuity, `thueMorseNorm`, `thueMorse_nrep`, `thueMorse_ssign`,
   `thueMorse_left_eigen`: the Thue–Morse child system `Psc.Binomial.thueMorse`
   (`0 ↦ 01`, `1 ↦ 10`, `C = {(01,10), (10,01)}`) with `R = {(01,10)}` meets
@@ -116,6 +119,17 @@ theorem noncoincident : ∀ T ∈ S.C, T.1 ≠ T.2 := by
   rcases P.cover T hT with hR | hR
   · exact P.not_both T hR (hs ▸ hR)
   · exact P.not_both _ hR (by rw [Prod.swap_swap, ← hs]; exact hR)
+
+include P in
+/-- Under balance, every state of a normalisation has a nonempty top track: it is
+noncoincident (`noncoincident`), and a balanced noncoincident pair has nonempty
+tracks (`Psc.Binomial.Equiv1.tracks_ne_nil`).  So the nonempty-track hypothesis
+`hne` of `lrep_pos` and `cocycle_spectral_bound` holds for balanced states.
+Non-vacuity: `Psc.PerronExistence.thueMorse_perron_rep` and
+`Psc.KernelCofactor.wT_perron_root` reach it on the balanced normalisations
+`thueMorseNorm` and `Psc.SignedIntertwiner.wTNorm`. -/
+theorem top_ne_nil (hbal : ∀ T ∈ S.C, Equiv1 T.1 T.2) : ∀ T ∈ S.C, T.1 ≠ [] :=
+  fun T hT => ((hbal T hT).tracks_ne_nil (P.noncoincident T hT)).1
 
 theorem disjoint_image : Disjoint P.R (P.R.image Prod.swap) := by
   rw [Finset.disjoint_left]
@@ -259,14 +273,15 @@ theorem ssign_abs_le (i j : P.Rep) : |P.Ssign i j| ≤ P.Nrep i j := by
 /-- **`ρ(S) ≤ β` on the representatives directly**, for balanced states: the
 abstract bound `Psc.ParikhIntertwiner.spectral_bound` applied to `N_C = A + B`
 with `λ = Lrep ℓ` (`rep_eigen`, `lrep_pos`) and `|S| ≤ N_C` (`ssign_abs_le`).
-A second route to `cocycle_spectral_bound`, avoiding the double cover. -/
-theorem cocycle_spectral_bound_rep (ℓ : α → ℝ) (hℓ : ∀ a, 0 < ℓ a)
-    (hne : ∀ T ∈ S.C, T.1 ≠ []) (β : ℝ)
+A second route to `cocycle_spectral_bound`, avoiding the double cover; the
+nonempty top tracks are not assumed here (`top_ne_nil`). -/
+theorem cocycle_spectral_bound_rep (ℓ : α → ℝ) (hℓ : ∀ a, 0 < ℓ a) (β : ℝ)
     (hℓN : ℓ ᵥ* (inc S.s).map (Nat.cast : ℕ → ℝ) = β • ℓ)
     (hbal : ∀ T ∈ S.C, Equiv1 T.1 T.2) (x : P.Rep → ℂ) (hx0 : x ≠ 0) (μ : ℂ)
     (hx : P.Ssign.map (Int.cast : ℤ → ℂ) *ᵥ x = μ • x) :
     ‖μ‖ ≤ β :=
-  spectral_bound (P.Nrep.map (Nat.cast : ℕ → ℝ)) (P.Lrep ℓ) (P.lrep_pos ℓ hℓ hne) β
+  spectral_bound (P.Nrep.map (Nat.cast : ℕ → ℝ)) (P.Lrep ℓ)
+    (P.lrep_pos ℓ hℓ (P.top_ne_nil hbal)) β
     (P.rep_eigen ℓ β hℓN hbal) _ (fun i j => by
       have h := P.ssign_abs_le i j
       simp only [Matrix.map_apply, Complex.norm_intCast]

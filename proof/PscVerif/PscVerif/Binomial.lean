@@ -15,6 +15,8 @@ Proved here, in full:
 * `Equiv1.append`, `equiv1_join`, `Equiv2.append`, `equiv2_join`:
   concatenations of pairwise balanced (resp. 2-binomially equivalent) blocks
   are balanced (resp. 2-binomially equivalent; block additivity of `K₂`);
+  `Equiv1.length_eq`; `Equiv1.tracks_ne_nil`: a balanced pair `u ≠ v` has
+  `u ≠ []` and `v ≠ []`;
 * the **reduction lemma** in finite form, `reduction_lemma`: in a finite
   child-closed system of 2-binomially equivalent pairs whose children
   concatenate to the images, some state `T₀` returns to itself as the first
@@ -117,6 +119,17 @@ theorem n2_self (w : List α) (a : α) : n2 w a a = (w.count a).choose 2 := by
 /-- Words with the same letter counts have the same length. -/
 theorem Equiv1.length_eq {x y : List α} (h : Equiv1 x y) : x.length = y.length :=
   (List.perm_iff_count.mpr h).length_eq
+
+/-- A balanced noncoincident pair has both tracks nonempty: a balanced pair with an
+empty track has both tracks empty. -/
+theorem Equiv1.tracks_ne_nil {u v : List α} (hb : Equiv1 u v) (hnc : u ≠ v) :
+    u ≠ [] ∧ v ≠ [] := by
+  have hl := hb.length_eq
+  constructor
+  · rintro rfl
+    exact hnc (List.length_eq_zero_iff.mp hl.symm).symm
+  · rintro rfl
+    exact hnc (List.length_eq_zero_iff.mp hl)
 
 /-- A list of balanced pairs concatenates to a balanced pair. -/
 theorem equiv1_join (bs : List (List α × List α)) (h : ∀ T ∈ bs, Equiv1 T.1 T.2) :

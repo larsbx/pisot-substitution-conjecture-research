@@ -23,6 +23,15 @@ This module discharges the hypothesis `hcyc` of
 * `wedge2_transpose_mul_mul`: the identity `(Λ²M)ᵀ · P · M = det M • P` for the
   fixed signed permutation matrix `wedgePairing` (`P`) encoding the pairing
   `Λ² × Λ¹ → Λ³`, valid over any commutative ring.
+* The characteristic polynomial of `Λ²M` (manuscript
+  `PSC_balanced_pair_state_2026-09-13.tex`, `thm:deg23` (i), the formula), over
+  any commutative ring: `charpoly_fin_three`,
+  `χ_M = X³ - tr(M) X² + U X - det M` with `U = tr(Λ²M)` (the sum of the
+  principal `2 × 2` minors); **`charpoly_wedge2`**:
+  `χ_{Λ²M} = X³ - U X² + det(M) tr(M) X - det(M)²`, from `trace_wedge2_wedge2`
+  (`tr Λ²Λ²M = det M · tr M`) and `det_wedge2` (`det Λ²M = (det M)²`);
+  `wedge2_map`: `Λ²` commutes with ring homomorphisms.  These are used by
+  `Psc.Degree2Sector` (the parity clause of `thm:deg23` (ii)).
 * `irreducible_wedge2`: for `M` rational with `χ_M` irreducible, `χ_{Λ²M}` is
   irreducible.  (A rational root `r` of the cubic `χ_{Λ²M}` gives a rational
   eigenvector `v`; `det M ≠ 0` because `0` is not a root of `χ_M`; the pairing
@@ -152,6 +161,41 @@ theorem wedge2_transpose_mul_mul (M : Matrix (Fin 3) (Fin 3) R) :
   fin_cases i <;> fin_cases j <;>
     simp [wedge2, wedgePairing, pairFst, pairSnd, Matrix.mul_apply, Fin.sum_univ_three,
       Matrix.det_fin_three] <;> ring
+
+/-- `Λ²` commutes with ring homomorphisms. -/
+theorem wedge2_map {R' : Type*} [CommRing R'] (f : R →+* R') (M : Matrix (Fin 3) (Fin 3) R) :
+    wedge2 (M.map f) = (wedge2 M).map f := by
+  ext I J; simp [wedge2]
+
+/-- `χ_M = X³ - tr(M) X² + U X - det M`, with `U = tr(Λ²M)` the sum of the principal
+`2 × 2` minors. -/
+theorem charpoly_fin_three (M : Matrix (Fin 3) (Fin 3) R) :
+    M.charpoly = X ^ 3 - C M.trace * X ^ 2 + C (wedge2 M).trace * X - C M.det := by
+  simp only [Matrix.charpoly, Matrix.det_fin_three, Matrix.trace_fin_three, charmatrix_apply,
+    wedge2, pairFst, pairSnd, Matrix.of_apply, diagonal, Fin.isValue, ↓reduceIte, Fin.reduceEq,
+    zero_sub, mul_neg, neg_mul, neg_neg, zero_ne_one, one_ne_zero, map_add, map_sub, map_mul,
+    cons_val_zero, cons_val_one, cons_val]
+  ring
+
+/-- `tr(Λ²Λ²M) = det M · tr M`. -/
+theorem trace_wedge2_wedge2 (M : Matrix (Fin 3) (Fin 3) R) :
+    (wedge2 (wedge2 M)).trace = M.det * M.trace := by
+  simp only [wedge2, pairFst, pairSnd, Fin.isValue, of_apply, trace_fin_three, det_fin_three,
+    cons_val_zero, cons_val_one, cons_val]
+  ring
+
+/-- `det Λ²M = (det M)²`. -/
+theorem det_wedge2 (M : Matrix (Fin 3) (Fin 3) R) : (wedge2 M).det = M.det ^ 2 := by
+  simp only [wedge2, pairFst, pairSnd, Fin.isValue, det_fin_three, of_apply, cons_val_zero,
+    cons_val_one, cons_val]
+  ring
+
+/-- **`thm:deg23` (i), the formula**: with `U = tr(Λ²M)` as in `charpoly_fin_three`,
+`χ_{Λ²M} = X³ - U X² + det(M) tr(M) X - det(M)²`. -/
+theorem charpoly_wedge2 (M : Matrix (Fin 3) (Fin 3) R) :
+    (wedge2 M).charpoly =
+      X ^ 3 - C (wedge2 M).trace * X ^ 2 + C (M.det * M.trace) * X - C (M.det ^ 2) := by
+  rw [charpoly_fin_three, trace_wedge2_wedge2, det_wedge2]
 
 end Wedge
 

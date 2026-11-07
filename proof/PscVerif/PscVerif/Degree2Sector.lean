@@ -15,23 +15,23 @@ letter `S` names the child system), and `N_C = P.Nrep = A + B`.  The manuscript'
 `|C|` counts each state once, i.e. it is `|R| = Fintype.card P.Rep` here (the Lean
 `S.C` holds both orientations).
 
+## Used from other modules
+
+* `thm:deg23` (i), the formula, is `Psc.Cyclicity.charpoly_wedge2`
+  (`χ_{Λ²M} = X³ - U X² + det(M) tr(M) X - det(M)²` over any commutative ring, with
+  `Psc.Cyclicity.charpoly_fin_three`, `trace_wedge2_wedge2`, `det_wedge2` and
+  `wedge2_map`).
+* Gauss for integer matrices is `Psc.ParikhRank.charpoly_dvd_of_map_rat`, with
+  `Psc.ParikhRank.map_natCast_intCast`.
+* Nonempty top tracks of balanced states of a normalisation:
+  `Psc.SignedCocycle.Normalisation.top_ne_nil` (so the representative theorems of
+  `Psc.ParikhRank` take no nonempty-track hypothesis).
+
 ## Proved here, in full
 
-* `charpoly_fin_three`: `χ_M = X³ - tr(M) X² + U X - det M` with `U = tr(Λ²M)` (the
-  sum of the principal `2 × 2` minors), over any commutative ring;
-  **`charpoly_wedge2`** (`thm:deg23` (i), the formula):
-  `χ_{Λ²M} = X³ - U X² + det(M) tr(M) X - det(M)²`, from
-  `trace_wedge2_wedge2` (`tr Λ²Λ²M = det M · tr M`) and `det_wedge2`
-  (`det Λ²M = (det M)²`); `wedge2_map`: `Λ²` commutes with ring homomorphisms.
-* `charpoly_dvd_of_map_rat` (Gauss, integer matrices): divisibility of the rational
-  characteristic polynomials of two integer matrices descends to `ℤ`;
-  `map_natCast_intCast` casts a natural matrix through `ℤ`.
 * Any alphabet: `ssign_mod_two` (`Ssign ≡ N_C (mod 2)` entrywise, as matrices over
   `ZMod 2`: `A - B = A + B` in characteristic two); `charpoly_ssign_mod_two`
-  (`χ_Ssign ≡ χ_{N_C} (mod 2)`); `ne_nil_of_balanced` (a balanced state of a
-  normalisation has a nonempty top track, via `Psc.SignedCocycle.Normalisation.noncoincident`
-  and `Psc.PrimitiveExpansion.tracks_ne_nil`; so the nonempty-track hypothesis `hne` of
-  `Psc.ParikhRank.charpoly_dvd_rep_int` and its siblings is redundant there).
+  (`χ_Ssign ≡ χ_{N_C} (mod 2)`).
 * Over a field: `natDegree_lcm_charpoly` (`3 ≤ deg lcm(χ_A, χ_B) ≤ 6` for `3 × 3`
   `A`, `B`), `natDegree_lcm_of_isCoprime` (`= 6` when coprime).  For an integer `M`
   with `det M` odd and `tr M ≢ U (mod 2)`: `isCoprime_mod_two` (`χ_M mod 2` and
@@ -43,7 +43,7 @@ letter `S` names the child system), and `N_C = P.Nrep = A + B`.  The manuscript'
   - **`q2_surjective`**, **`rank_q2`**: `rank_ℚ Q₂ = 3`
     (`Psc.ParikhRank.surjective_of_intertwine` with `Psc.Cyclicity.irreducible_wedge2`);
   - `card_rep_ge_three`: `3 ≤ |R|`, read off `Q₂`; an alternative proof of
-    `Psc.ParikhRank.card_rep_ge`, needing neither `S.C.Nonempty` nor `hne`;
+    `Psc.ParikhRank.card_rep_ge`, not needing `S.C.Nonempty`;
   - **`charpoly_wedge2_dvd_ssign`**, **`charpoly_wedge2_dvd_ssign_int`**:
     `χ_{Λ²M} ∣ χ_Ssign` over `ℚ` and over `ℤ`;
   - **`charpoly_dvd_nrep_mod_two`**, **`charpoly_wedge2_dvd_nrep_mod_two`**,
@@ -91,9 +91,9 @@ letter `S` names the child system), and `N_C = P.Nrep = A + B`.  The manuscript'
      So `plastic` cannot be extended to a full control.
   The matrix-level hypotheses alone are met (`plastic`), and the state-level ones
   alone are met (`exA_sector`).
-* `thm:deg23` (i) beyond the formula: irreducibility of `χ_{Λ²M}` is
-  `Psc.Cyclicity.irreducible_wedge2`; the modulus statement `ρ(Λ²M) = β|β₂| < β` is
-  not formalized.  `thm:deg23` (iii) (`r(C) = 3`) is not treated.
+* `thm:deg23` (i) beyond the formula (`Psc.Cyclicity.charpoly_wedge2`): irreducibility
+  of `χ_{Λ²M}` is `Psc.Cyclicity.irreducible_wedge2`; the modulus statement
+  `ρ(Λ²M) = β|β₂| < β` is not formalized.  `thm:deg23` (iii) (`r(C) = 3`) is not treated.
 * The table of the eight parity classes of `(tr M, U, det M) mod 2`; only the
   bound `deg lcm ∈ [3, 6]` and the value `6` in the stated case are proved.
 * The first-defect selection (`r(C) = 2` means here: all states balanced, some
@@ -103,72 +103,11 @@ letter `S` names the child system), and `N_C = P.Nrep = A + B`.  The manuscript'
 import PscVerif.SignedIntertwiner
 import PscVerif.ParikhRank
 import PscVerif.Cyclicity
-import PscVerif.PrimitiveExpansion
 
 namespace Psc.Degree2Sector
 
 open Matrix Polynomial Psc.Binomial Psc.Incidence Psc.SignedCocycle Psc.Intertwiner2
   Psc.Cyclicity Psc.ParikhRank Psc.SignedIntertwiner
-
-/-! ### `thm:deg23` (i): the characteristic polynomial of `Λ²M` -/
-
-section Wedge
-
-variable {R : Type*} [CommRing R]
-
-/-- `Λ²` commutes with ring homomorphisms. -/
-theorem wedge2_map {R' : Type*} [CommRing R'] (f : R →+* R') (M : Matrix (Fin 3) (Fin 3) R) :
-    wedge2 (M.map f) = (wedge2 M).map f := by
-  ext I J; simp [wedge2]
-
-/-- `χ_M = X³ - tr(M) X² + U X - det M`, with `U = tr(Λ²M)` the sum of the principal
-`2 × 2` minors. -/
-theorem charpoly_fin_three (M : Matrix (Fin 3) (Fin 3) R) :
-    M.charpoly = X ^ 3 - C M.trace * X ^ 2 + C (wedge2 M).trace * X - C M.det := by
-  simp only [Matrix.charpoly, Matrix.det_fin_three, Matrix.trace_fin_three, charmatrix_apply,
-    wedge2, pairFst, pairSnd, Matrix.of_apply, diagonal, Fin.isValue, ↓reduceIte, Fin.reduceEq,
-    zero_sub, mul_neg, neg_mul, neg_neg, zero_ne_one, one_ne_zero, map_add, map_sub, map_mul,
-    cons_val_zero, cons_val_one, cons_val]
-  ring
-
-/-- `tr(Λ²Λ²M) = det M · tr M`. -/
-theorem trace_wedge2_wedge2 (M : Matrix (Fin 3) (Fin 3) R) :
-    (wedge2 (wedge2 M)).trace = M.det * M.trace := by
-  simp only [wedge2, pairFst, pairSnd, Fin.isValue, of_apply, trace_fin_three, det_fin_three,
-    cons_val_zero, cons_val_one, cons_val]
-  ring
-
-/-- `det Λ²M = (det M)²`. -/
-theorem det_wedge2 (M : Matrix (Fin 3) (Fin 3) R) : (wedge2 M).det = M.det ^ 2 := by
-  simp only [wedge2, pairFst, pairSnd, Fin.isValue, det_fin_three, of_apply, cons_val_zero,
-    cons_val_one, cons_val]
-  ring
-
-/-- **`thm:deg23` (i), the formula**: with `U = tr(Λ²M)` as in `charpoly_fin_three`,
-`χ_{Λ²M} = X³ - U X² + det(M) tr(M) X - det(M)²`. -/
-theorem charpoly_wedge2 (M : Matrix (Fin 3) (Fin 3) R) :
-    (wedge2 M).charpoly =
-      X ^ 3 - C (wedge2 M).trace * X ^ 2 + C (M.det * M.trace) * X - C (M.det ^ 2) := by
-  rw [charpoly_fin_three, trace_wedge2_wedge2, det_wedge2]
-
-end Wedge
-
-/-! ### Gauss for integer matrices -/
-
-/-- **Gauss.**  Divisibility of the rational characteristic polynomials of integer
-matrices descends to `ℤ` (the divisor is monic).  The natural-matrix form is
-`Psc.ParikhRank.charpoly_dvd_int_of_rat`. -/
-theorem charpoly_dvd_of_map_rat {κ ι : Type*} [Fintype κ] [DecidableEq κ] [Fintype ι]
-    [DecidableEq ι] {A : Matrix κ κ ℤ} {B : Matrix ι ι ℤ}
-    (h : (A.map (Int.castRingHom ℚ)).charpoly ∣ (B.map (Int.castRingHom ℚ)).charpoly) :
-    A.charpoly ∣ B.charpoly := by
-  rwa [← Polynomial.map_dvd_map (Int.castRingHom ℚ) Int.cast_injective (charpoly_monic _),
-    ← charpoly_map, ← charpoly_map]
-
-/-- Casting a natural matrix through `ℤ`. -/
-theorem map_natCast_intCast {m n R : Type*} [Ring R] (A : Matrix m n ℕ) :
-    (A.map (Nat.cast : ℕ → ℤ)).map (Int.castRingHom R) = A.map (Nat.cast : ℕ → R) := by
-  ext; simp
 
 /-! ### Parity -/
 
@@ -184,13 +123,6 @@ theorem charpoly_ssign_mod_two {α : Type*} [DecidableEq α] {S : ChildSystem α
     P.Ssign.charpoly.map (Int.castRingHom (ZMod 2)) =
       (P.Nrep.map (Nat.cast : ℕ → ZMod 2)).charpoly := by
   rw [← charpoly_map]; exact congrArg charpoly (ssign_mod_two P)
-
-/-- A balanced state of a normalisation has a nonempty top track: it is noncoincident.  So
-the hypothesis `hne` of `Psc.ParikhRank.charpoly_dvd_rep_int` and its siblings follows from
-their other hypotheses. -/
-theorem ne_nil_of_balanced {α : Type*} [DecidableEq α] {S : ChildSystem α}
-    (P : Normalisation S) (hbal : ∀ T ∈ S.C, Equiv1 T.1 T.2) : ∀ T ∈ S.C, T.1 ≠ [] :=
-  fun T hT => (Psc.PrimitiveExpansion.tracks_ne_nil (hbal T hT) (P.noncoincident T hT)).1
 
 section Lcm
 
@@ -324,8 +256,7 @@ theorem rank_q2 : (Q2Q P).rank = 3 := by
     Module.finrank_fin_fun]
 
 /-- `3 ≤ |R|`, read off `Q₂` (`rank Q₂ = 3`): an alternative proof of
-`Psc.ParikhRank.card_rep_ge`, which reads it off `P_R` and also assumes `S.C.Nonempty` and
-nonempty tracks. -/
+`Psc.ParikhRank.card_rep_ge`, which reads it off `P_R` and also assumes `S.C.Nonempty`. -/
 theorem card_rep_ge_three : 3 ≤ Fintype.card P.Rep :=
   card_ge_of_intertwine (q2Q_ssignQ P hbal) (irreducible_wedge2 _ hM) (q2Q_ne_zero P hK)
 
@@ -343,7 +274,7 @@ theorem charpoly_wedge2_dvd_ssign_int : (wedge2 (incZ S)).charpoly ∣ P.Ssign.c
 theorem charpoly_dvd_nrep_mod_two : (incF2 S).charpoly ∣ (nrepF2 P).charpoly := by
   obtain ⟨j, -⟩ := hK
   have h := Polynomial.map_dvd (Int.castRingHom (ZMod 2))
-    (charpoly_dvd_rep_int P hM hbal (ne_nil_of_balanced P hbal) ⟨j.1, P.sub j.2⟩)
+    (charpoly_dvd_rep_int P hM hbal ⟨j.1, P.sub j.2⟩)
   rwa [← charpoly_map, ← charpoly_map, map_natCast_intCast, map_natCast_intCast] at h
 
 /-- **`thm:deg23` (ii), parity, `χ_{Λ²M} ∣ χ_{N_C}` mod `2`**: `χ_{Λ²M} ∣ χ_Ssign` and
