@@ -1,0 +1,70 @@
+name: PSC R1F modular cycle certificates (conditional)
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/psc-bprime-r1-modular.yml'
+      - 'proof/psc_routes/R1Modular.lean'
+      - 'proof/quint/PscR1Modular.qnt'
+      - 'docs/psc-bprime-r1-modular-cycle-2026-11-07.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lean-r1f:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Verify exact revision
+        env:
+          EXPECTED: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED"
+      - name: Provision pinned Lean and mathlib
+        run: ./tools/setup_lean.sh
+      - name: Prove modular unsatisfiability and audit all scoped declarations
+        working-directory: proof/PscVerif
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$HOME/.elan/bin/lake" env lean ../../proof/psc_routes/R1Modular.lean | tee "$RUNNER_TEMP/r1f-lean.log"
+          if grep -Eq 'sorryAx|error:' "$RUNNER_TEMP/r1f-lean.log"; then
+            echo "Unaccepted axiom or Lean error" >&2
+            exit 1
+          fi
+          test "$(grep -c 'PSC_R1F_AXIOMS_OK' "$RUNNER_TEMP/r1f-lean.log")" -eq 3
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: psc-r1f-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/r1f-lean.log
+          if-no-files-found: warn
+          retention-days: 30
+
+  quint-r1f:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Verify exact revision
+        env:
+          EXPECTED: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Typecheck finite-residue model
+        run: npx --yes @informalsystems/quint@0.33.1 typecheck proof/quint/PscR1Modular.qnt
+      - name: Replay invariant and both explicit residue witnesses
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Modular.qnt --invariant=residueBound
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Modular.qnt --invariant=noSolution
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1Modular.qnt | tee "$RUNNER_TEMP/r1f-quint.log"
+          grep -E '2 passing|2 passed' "$RUNNER_TEMP/r1f-quint.log" >/dev/null
