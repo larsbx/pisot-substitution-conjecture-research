@@ -276,6 +276,38 @@ theorem tribonacci_all_proper_prefix_differences
       funext i
       fin_cases i <;> norm_num [trParikh]
 
+
+/-- A sharp limitation of prime-field obstruction: the integer
+equation 4x=2 has NO solution. -/
+theorem prime_field_certificates_are_not_integrally_complete :
+    ¬ ∃ x : ℤ, 4 * x = 2 := by
+  rintro ⟨x, hx⟩
+  omega
+
+/-- Yet the same equation DOES have a solution after reduction
+modulo the only prime dividing 4, namely 2. Hence a left-null
+F₂ witness cannot reject this nonintegral equation. -/
+theorem four_x_eq_two_is_solvable_mod_two :
+    ∃ x : ZMod 2, (4 : ZMod 2) * x = 2 := by
+  refine ⟨0, ?_⟩
+  norm_num
+
+/-- Nor does a prime not dividing the coefficient detect the
+integrality failure in this concrete check. -/
+theorem four_x_eq_two_is_solvable_mod_three :
+    ∃ x : ZMod 3, (4 : ZMod 3) * x = 2 := by
+  refine ⟨2, ?_⟩
+  norm_num
+
+/-- The missing 2-adic precision *is* detected modulo 4.
+Thus universal completeness of an integral cycle obstruction
+requires a stronger arithmetic certificate, e.g. Smith
+divisibility or prime-power congruences, not prime fields alone. -/
+theorem four_x_eq_two_has_no_solution_mod_four :
+    ¬ ∃ x : ZMod 4, (4 : ZMod 4) * x = 2 := by
+  rintro ⟨x, hx⟩
+  norm_num at hx
+
 end PscRoutes.R1Modular
 
 #print axioms PscRoutes.R1Modular.no_mod_solution_from_left_null
@@ -291,6 +323,10 @@ end PscRoutes.R1Modular
 #print axioms PscRoutes.R1Modular.tribonacci_negative_e0_is_local_prefix_difference
 #print axioms PscRoutes.R1Modular.tribonacci_proper_prefix_cases
 #print axioms PscRoutes.R1Modular.tribonacci_all_proper_prefix_differences
+#print axioms PscRoutes.R1Modular.prime_field_certificates_are_not_integrally_complete
+#print axioms PscRoutes.R1Modular.four_x_eq_two_is_solvable_mod_two
+#print axioms PscRoutes.R1Modular.four_x_eq_two_is_solvable_mod_three
+#print axioms PscRoutes.R1Modular.four_x_eq_two_has_no_solution_mod_four
 #print axioms PscRoutes.R1Modular.realized_integer_cycle_cannot_be_modularly_obstructed
 
 open Lean Elab Command in
