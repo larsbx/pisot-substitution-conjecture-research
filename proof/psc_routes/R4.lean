@@ -1,4 +1,5 @@
 import Mathlib
+import Lean.Util.CollectAxioms
 
 /-!
 # Route R4: conditional separation certificates
@@ -36,3 +37,16 @@ end PscRoutes.R4
 
 #print axioms PscRoutes.R4.separated_window_forces_zero
 #print axioms PscRoutes.R4.integer_offset_small_implies_zero
+
+/- Fail-closed exact-declaration axiom audit for this standalone branch.
+   All declared helper theorems must use only the standard Lean axioms.
+   This does not establish a full substitution-to-Lemma refinement. -/
+open Lean Elab Command in
+run_cmd do
+  let allowed := #[`propext, `Classical.choice, `Quot.sound]
+  for name in #[`PscRoutes.R4.separated_window_forces_zero, `PscRoutes.R4.integer_offset_small_implies_zero] do
+    let axioms ← collectAxioms name
+    for ax in axioms do
+      if !allowed.contains ax then
+        throwError "Nonstandard axiom in {name}: {ax}"
+    liftIO <| IO.println s!"PSC_ROUTE_AXIOMS_OK\t{name}"
