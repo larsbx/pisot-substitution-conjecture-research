@@ -52,3 +52,11 @@ Lean sublemma acceptance, if CI passes, is **not** a PSC/C4/A1′/BH/PDS closure
 **Negative:** a recurrent noncoincident balanced-block system can have uniformly bounded return gaps while remaining nonproductive. `PscR3.qnt` is an intentionally abstract bounded reset-cycle control, not a strict PIP construction.
 
 **Decision: REDIRECT TO THE MISSING CONVERSE.** Do **not** repro­ve Theorem 5.6 as novelty. Seek a novel uniform-gap theorem from Pisot/recognizability **without presupposing overlap productivity**, then a separate coincidence theorem. Human review deferred until post-PSC, but targeted stop/go is satisfied here.
+
+## 2026-11-07 — bounded-length state finiteness formal interface
+
+New Mathlib-backed Lean theorems `finite_bounded_pair_states` and `finite_bounded_balanced_states` state that, for a finite alphabet and fixed length bound `L`, the set of all literal ordered word pairs of lengths ≤ `L` is finite; imposing Parikh balance or irreducibility can only shrink that finite set. The proof relies on standard Mathlib `List.finite_length_le` and `Set.Finite.prod` and is **not a new mathematical finiteness theorem**. It is the conditional state-space bridge needed after a uniform bound on full prefix-shift irreducible block lengths is supplied.
+
+The target remains to prove a *uniform in depth* balanced-cut gap bound for a suitable legal nonempty fixed-point prefix `W`, without using any PDS/overlap-productivity result that would make the argument circular. A finite length bound on an arbitrary unrelated set, bounded Parikh discrepancy, or a single productive occurrence is insufficient.
+
+Earlier exact-head hosted run `42397742333` accepted the integer shift/telescoping lemmas and deterministic bounded-return/no-coincidence Quint test; the new finite-bounded-state lemmas and coordinatewise Parikh identity change the head and must pass a **new** kernel axiom receipt before credit. No PDS, G1, C4 or PSC promotion.
