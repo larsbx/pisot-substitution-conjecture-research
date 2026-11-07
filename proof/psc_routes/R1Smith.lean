@@ -91,6 +91,52 @@ theorem zero_diagonal_requires_zero (b : ℤ) :
     (∃ x : ℤ, (0 : ℤ) * x = b) ↔ b = 0 := by
   simp
 
+
+/-- **Concrete matrix certificate form:** integer matrices U, V,
+Uinv, Vinv and the exact integer identities
+
+  Uinv * U = I,    V * Vinv = I,    U * A * V = diag(d)
+
+suffice to decide whether Ax=b has an integral solution, by checking
+only dᵢ ∣ (U*b)ᵢ. All conditions are statements about finite **exact
+integer matrices**, so a future certificate producer may emit them for
+independent kernel replay. This theorem does not compute such matrices,
+or identify A with the actual ancestry-cycle operator. -/
+theorem matrix_smith_certificate_complete
+    {d : ℕ}
+    (A U Uinv V Vinv : Matrix (Fin d) (Fin d) ℤ)
+    (diagonal rhs : Fin d → ℤ)
+    (hU : Uinv * U = 1)
+    (hV : V * Vinv = 1)
+    (hdiag : U * A * V = Matrix.diagonal diagonal) :
+    (∃ x : Fin d → ℤ, A.mulVec x = rhs) ↔
+      (∀ i : Fin d, diagonal i ∣ (U.mulVec rhs) i) := by
+  have hUinv : ∀ z : Fin d → ℤ,
+      Uinv.mulVec (U.mulVec z) = z := by
+    intro z
+    rw [Matrix.mulVec_mulVec, hU, Matrix.one_mulVec]
+  have hVinv : ∀ z : Fin d → ℤ,
+      V.mulVec (Vinv.mulVec z) = z := by
+    intro z
+    rw [Matrix.mulVec_mulVec, hV, Matrix.one_mulVec]
+  have hd : ∀ (y : Fin d → ℤ) (i : Fin d),
+      U.mulVec (A.mulVec (V.mulVec y)) i =
+        diagonal i * y i := by
+    intro y i
+    calc
+      U.mulVec (A.mulVec (V.mulVec y)) i =
+        (U * A * V).mulVec y i := by
+          rw [Matrix.mulVec_mulVec, Matrix.mulVec_mulVec]
+      _ = (Matrix.diagonal diagonal).mulVec y i := by rw [hdiag]
+      _ = diagonal i * y i := Matrix.mulVec_diagonal diagonal y i
+  exact diagonal_certificate_complete
+    (fun z => A.mulVec z)
+    (fun z => U.mulVec z)
+    (fun z => V.mulVec z)
+    (fun z => Uinv.mulVec z)
+    (fun z => Vinv.mulVec z)
+    diagonal rhs hUinv hVinv hd
+
 end PscRoutes.R1Smith
 
 #print axioms PscRoutes.R1Smith.scalar_solvability_iff_dvd
@@ -98,6 +144,7 @@ end PscRoutes.R1Smith
 #print axioms PscRoutes.R1Smith.diagonal_certificate_complete
 #print axioms PscRoutes.R1Smith.four_x_eq_two_smith_refuses
 #print axioms PscRoutes.R1Smith.zero_diagonal_requires_zero
+#print axioms PscRoutes.R1Smith.matrix_smith_certificate_complete
 
 open Lean Elab Command in
 run_cmd do
@@ -106,7 +153,8 @@ run_cmd do
     `PscRoutes.R1Smith.diagonal_solvability_iff_dvd,
     `PscRoutes.R1Smith.diagonal_certificate_complete,
     `PscRoutes.R1Smith.four_x_eq_two_smith_refuses,
-    `PscRoutes.R1Smith.zero_diagonal_requires_zero] do
+    `PscRoutes.R1Smith.zero_diagonal_requires_zero,
+    `PscRoutes.R1Smith.matrix_smith_certificate_complete] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
