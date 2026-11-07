@@ -313,6 +313,21 @@ theorem tribonacci_smith_membership (rhs : Fin 3 → ℤ) :
     tribonacci_smith_V_right_inverse
     tribonacci_smith_matrix_certificate
 
+
+/-- Literal incidence matrix of 0↦01, 1↦02, 2↦0,
+the same columns independently checked against words by R1Modular. -/
+def tribonacciIncidenceMatrix : Matrix (Fin 3) (Fin 3) ℤ :=
+  !![1, 1, 1; 1, 0, 0; 0, 1, 0]
+
+/-- The concrete Smith operator is exactly I−M, not an unrelated
+3×3 matrix chosen to give a convenient diagonal parity conclusion. -/
+theorem tribonacci_cycle_A_is_identity_minus_incidence :
+    tribonacciCycleA = 1 - tribonacciIncidenceMatrix := by
+  first
+  | decide
+  | (ext i j; fin_cases i <;> fin_cases j <;>
+      norm_num [tribonacciCycleA, tribonacciIncidenceMatrix])
+
 end PscRoutes.R1Smith
 
 #print axioms PscRoutes.R1Smith.scalar_solvability_iff_dvd
@@ -328,6 +343,7 @@ end PscRoutes.R1Smith
 #print axioms PscRoutes.R1Smith.tribonacci_smith_V_right_inverse
 #print axioms PscRoutes.R1Smith.tribonacci_smith_matrix_certificate
 #print axioms PscRoutes.R1Smith.tribonacci_smith_membership
+#print axioms PscRoutes.R1Smith.tribonacci_cycle_A_is_identity_minus_incidence
 
 open Lean Elab Command in
 run_cmd do
@@ -344,7 +360,8 @@ run_cmd do
     `PscRoutes.R1Smith.tribonacci_smith_U_left_inverse,
     `PscRoutes.R1Smith.tribonacci_smith_V_right_inverse,
     `PscRoutes.R1Smith.tribonacci_smith_matrix_certificate,
-    `PscRoutes.R1Smith.tribonacci_smith_membership] do
+    `PscRoutes.R1Smith.tribonacci_smith_membership,
+    `PscRoutes.R1Smith.tribonacci_cycle_A_is_identity_minus_incidence] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
