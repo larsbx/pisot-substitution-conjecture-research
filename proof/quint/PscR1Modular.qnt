@@ -48,3 +48,55 @@ module PscR1TribonacciResidues {
   run tribonacci11Test = init.then(choose11)
     .expect(x1 == 1 and x2 == 1 and noE0PeriodOne)
 }
+
+
+// Exact arithmetic of a locally admissible 3-step correction cycle:
+// M e0 - e0 = e1, M e1 - e0 = e2, M e2 = e0.
+// This is a **negative control** against claiming that the correction
+// alphabet alone prohibits all cycles; it has not been bound to an
+// actual strict ordered child occurrence cycle.
+module PscR1TribonacciPeriodThree {
+  var phase: int
+  var x0: int
+  var x1: int
+  var x2: int
+
+  action init = all {
+    phase' = 0, x0' = 1, x1' = 0, x2' = 0,
+  }
+
+  action minusOneFirst = all {
+    phase == 0,
+    phase' = 1,
+    x0' = x0 + x1 + x2 - 1,
+    x1' = x0,
+    x2' = x1,
+  }
+
+  action minusOneSecond = all {
+    phase == 1,
+    phase' = 2,
+    x0' = x0 + x1 + x2 - 1,
+    x1' = x0,
+    x2' = x1,
+  }
+
+  action zeroThird = all {
+    phase == 2,
+    phase' = 0,
+    x0' = x0 + x1 + x2,
+    x1' = x0,
+    x2' = x1,
+  }
+
+  action step = any { minusOneFirst, minusOneSecond, zeroThird }
+
+  val unitBasisState = (x0 == 1 and x1 == 0 and x2 == 0)
+    or (x0 == 0 and x1 == 1 and x2 == 0)
+    or (x0 == 0 and x1 == 0 and x2 == 1)
+
+  run locallyAdmissiblePeriodThreeTest =
+    init.then(minusOneFirst).then(minusOneSecond).then(zeroThird)
+      .expect(phase == 0 and x0 == 1 and x1 == 0 and x2 == 0
+        and unitBasisState)
+}
