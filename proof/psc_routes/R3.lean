@@ -1,4 +1,5 @@
 import Mathlib
+import Lean.Util.CollectAxioms
 
 /-!
 # Route R3: literal prefix shifts and block-discrepancy bounds
@@ -31,3 +32,16 @@ end PscRoutes.R3
 
 #print axioms PscRoutes.R3.bounded_block_coordinate
 #print axioms PscRoutes.R3.shift_factor_identity
+
+/- Fail-closed exact-declaration axiom audit for this standalone branch.
+   All declared helper theorems must use only the standard Lean axioms.
+   This does not establish a full substitution-to-Lemma refinement. -/
+open Lean Elab Command in
+run_cmd do
+  let allowed := #[`propext, `Classical.choice, `Quot.sound]
+  for name in #[`PscRoutes.R3.bounded_block_coordinate, `PscRoutes.R3.shift_factor_identity] do
+    let axioms ← collectAxioms name
+    for ax in axioms do
+      if !allowed.contains ax then
+        throwError "Nonstandard axiom in {name}: {ax}"
+    liftIO <| IO.println s!"PSC_ROUTE_AXIOMS_OK\t{name}"
