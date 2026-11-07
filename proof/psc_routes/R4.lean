@@ -100,6 +100,37 @@ theorem zero_address_not_enough_for_labeled_coincidence :
   · simp [IsCommonVertex]
   · simp [IsLabeledCoincidence]
 
+
+/-- Exact trace-dual interface: independently supplied rational encoding
+and decoding matrices with a checked left-inverse identity make the
+encoded address injective. This is not an assertion that a geometric
+projection alone has such a left inverse. -/
+theorem trace_dual_matrix_injective
+    {d : ℕ} (encode decode : Matrix (Fin d) (Fin d) ℚ)
+    (hleft : decode * encode = 1)
+    (address : Fin d → ℚ)
+    (hzero : encode.mulVec address = 0) : address = 0 := by
+  have h := congrArg (fun v => decode.mulVec v) hzero
+  rw [Matrix.mulVec_mulVec, hleft, Matrix.one_mulVec,
+      Matrix.mulVec_zero] at h
+  exact h
+
+/-- Bind an actual integral address to a checked *rational*
+trace-dual encoding. The certificate is the exact matrix equation
+`decode * encode = I`, not a floating-point singular-value bound. -/
+theorem integral_address_of_trace_dual_zero
+    {d : ℕ} (encode decode : Matrix (Fin d) (Fin d) ℚ)
+    (hleft : decode * encode = 1)
+    (address : Fin d → ℤ)
+    (hzero : encode.mulVec (fun i => (address i : ℚ)) = 0) :
+    address = 0 := by
+  have hc : (fun i => (address i : ℚ)) = 0 :=
+    trace_dual_matrix_injective encode decode hleft
+      (fun i => (address i : ℚ)) hzero
+  funext i
+  have hi : (address i : ℚ) = 0 := congrFun hc i
+  exact_mod_cast hi
+
 end PscRoutes.R4
 
 #print axioms PscRoutes.R4.separated_window_forces_zero
@@ -107,6 +138,8 @@ end PscRoutes.R4
 #print axioms PscRoutes.R4.integral_address_small_implies_zero
 #print axioms PscRoutes.R4.finite_positive_separation_radius
 #print axioms PscRoutes.R4.zero_address_not_enough_for_labeled_coincidence
+#print axioms PscRoutes.R4.trace_dual_matrix_injective
+#print axioms PscRoutes.R4.integral_address_of_trace_dual_zero
 
 /- Fail-closed exact-declaration axiom audit for this standalone branch.
    All declared helper theorems must use only the standard Lean axioms.
@@ -114,7 +147,7 @@ end PscRoutes.R4
 open Lean Elab Command in
 run_cmd do
   let allowed := #[`propext, `Classical.choice, `Quot.sound]
-  for name in #[`PscRoutes.R4.separated_window_forces_zero, `PscRoutes.R4.integer_offset_small_implies_zero, `PscRoutes.R4.integral_address_small_implies_zero, `PscRoutes.R4.finite_positive_separation_radius, `PscRoutes.R4.zero_address_not_enough_for_labeled_coincidence] do
+  for name in #[`PscRoutes.R4.separated_window_forces_zero, `PscRoutes.R4.integer_offset_small_implies_zero, `PscRoutes.R4.integral_address_small_implies_zero, `PscRoutes.R4.finite_positive_separation_radius, `PscRoutes.R4.zero_address_not_enough_for_labeled_coincidence, `PscRoutes.R4.trace_dual_matrix_injective, `PscRoutes.R4.integral_address_of_trace_dual_zero] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
