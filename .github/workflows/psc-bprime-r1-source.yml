@@ -35,13 +35,13 @@ jobs:
               raise SystemExit("missing Lean axiom loop")
           audited = re.findall(r"`PscRoutes\.R1Source\.([A-Za-z_][A-Za-z_0-9]*)",
               src.split("for name in #[", 1)[1].split("] do", 1)[0])
-          if len(declared) != 13 or len(declared) != len(set(declared)) or declared != audited:
+          if len(declared) != 16 or len(declared) != len(set(declared)) or declared != audited:
               raise SystemExit(f"bad R1Source inventory: {declared!r} vs {audited!r}")
           print("EXACT_R1SOURCE_INVENTORY_OK", len(audited))
           PY
       - name: Set up repository-pinned Lean and Mathlib
         run: ./tools/setup_lean.sh
-      - name: Compile thirteen source-cut and irreducibility theorems and audit axiom receipts
+      - name: Compile sixteen source-cut and child-boundary theorems and audit axiom receipts
         working-directory: proof/PscVerif
         shell: bash
         run: |
@@ -51,7 +51,7 @@ jobs:
             echo "Unaccepted Lean declaration" >&2
             exit 1
           fi
-          test "$(grep -c 'PSC_R1SOURCE_AXIOMS_OK' "$RUNNER_TEMP/r1-source-lean.log")" -eq 13
+          test "$(grep -c 'PSC_R1SOURCE_AXIOMS_OK' "$RUNNER_TEMP/r1-source-lean.log")" -eq 16
       - uses: actions/upload-artifact@v4
         if: always()
         with:
