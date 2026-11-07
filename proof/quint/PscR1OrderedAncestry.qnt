@@ -67,4 +67,16 @@ module PscR1OrderedAncestry {
     diagReplay(List(0, 1, 0)) == List(0, 1, 0),
     diagReplay(List(0, 0, 1)) == List(0, 0, 2),
   })
+
+  // The exact source seed has diagonal letter coincidences after one
+  // inflation; its depth-six ancestry loops are NOT strict nonproductive
+  // BPA components. This is a genuinely literal word-level exclusion
+  // of a false positive in the R1F finite candidate survey.
+  run productiveSwapSeedTest = init.expect(all {
+    active,
+    inflate(List(0, 1)) == List(0, 1, 0, 2),
+    inflate(List(1, 0)) == List(0, 2, 0, 1),
+    inflate(List(0, 1))[0] == inflate(List(1, 0))[0],
+    inflate(List(0, 1))[2] == inflate(List(1, 0))[2],
+  })
 }
