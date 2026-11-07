@@ -66,10 +66,15 @@ jobs:
           set -euo pipefail
           npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1.qnt --main=PscR1Ancestry --invariant=finiteAncestryBox
       - name: Run deterministic Quint negative witness (not stochastic sampling)
-        run: npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1.qnt --main=PscR1Ancestry
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1.qnt --main=PscR1Ancestry | tee "$RUNNER_TEMP/r1-forced-cycle.log"
+          grep -E '1 passing|1 passed' "$RUNNER_TEMP/r1-forced-cycle.log" >/dev/null
       - name: Verify concrete Tribonacci arithmetic loop separately
         shell: bash
         run: |
           set -euo pipefail
           npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1.qnt --main=PscR1TribonacciArithmetic --invariant=coordinateBox
-          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1.qnt --main=PscR1TribonacciArithmetic
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1.qnt --main=PscR1TribonacciArithmetic | tee "$RUNNER_TEMP/r1-tribonacci.log"
+          grep -E '1 passing|1 passed' "$RUNNER_TEMP/r1-tribonacci.log" >/dev/null
