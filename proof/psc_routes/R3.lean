@@ -93,7 +93,14 @@ theorem finite_bounded_pair_states (d L : ℕ) :
       p.1.length ≤ L ∧ p.2.length ≤ L}.Finite := by
   have hwords : {w : List (Fin d) | w.length ≤ L}.Finite :=
     List.finite_length_le (Fin d) L
-  simpa only [Set.mem_prod, Set.mem_setOf_eq] using hwords.prod hwords
+  have hpair : ({w : List (Fin d) | w.length ≤ L} ×ˢ
+      {w : List (Fin d) | w.length ≤ L}) =
+      {p : List (Fin d) × List (Fin d) |
+        p.1.length ≤ L ∧ p.2.length ≤ L} := by
+    ext p
+    simp only [Set.mem_prod, Set.mem_setOf_eq]
+  rw [← hpair]
+  exact hwords.prod hwords
 
 /-- Passing to a prescribed balance predicate and irreducible subset
 cannot destroy the bounded-length finiteness. No reachability or
