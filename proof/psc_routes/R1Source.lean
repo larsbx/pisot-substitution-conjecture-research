@@ -227,6 +227,44 @@ theorem tribonacci_matching_source_control_has_interior_return :
   · simp [wordMass]
   · decide
 
+
+/-- Standard aligned-prefix irreducibility, expressed directly with
+literal `take` operations. Balancedness of the full words is a
+separate (already proved) requirement. -/
+def NoAlignedInteriorReturn (label : A → V)
+    (topWord bottomWord : List A) : Prop :=
+  ∀ k, 0 < k → k < topWord.length →
+    wordMass label (topWord.take k) ≠
+      wordMass label (bottomWord.take k)
+
+/-- The matching-word negative control is *not* irreducible: its
+index-one prefixes agree and both word lengths are three. -/
+theorem tribonacci_matching_control_is_reducible :
+    ¬ NoAlignedInteriorReturn trLabel [0,0,1] [0,1,0] := by
+  intro h
+  have h1 := h 1 (by decide) (by decide)
+  apply h1
+  norm_num [wordMass, trLabel]
+
+/-- The nonmatching, but still fully Parikh-balanced, literal source
+control 001/100 has no aligned zero return at any interior index.
+Both possible indices (1 and 2) are rejected by exact coordinate-0
+word counts. Unlike the generic germ recurrence, this is a fully
+word-level irreducibility check, at precisely its declared scope. -/
+theorem tribonacci_nonmatching_control_is_irreducible :
+    NoAlignedInteriorReturn trLabel [0,0,1] [1,0,0] := by
+  intro k hk hlt heq
+  have hk_cases : k = 1 ∨ k = 2 := by
+    simp only [List.length_cons, List.length_nil] at hlt
+    omega
+  rcases hk_cases with hk1 | hk2
+  · subst k
+    have h0 := congrFun heq (0 : Fin 3)
+    norm_num [wordMass, trLabel] at h0
+  · subst k
+    have h0 := congrFun heq (0 : Fin 3)
+    norm_num [wordMass, trLabel] at h0
+
 end PscRoutes.R1Source
 
 #print axioms PscRoutes.R1Source.cutPrefix_append_cutSuffix
@@ -240,6 +278,8 @@ end PscRoutes.R1Source
 #print axioms PscRoutes.R1Source.tribonacci_source_controls_are_legal_factors
 #print axioms PscRoutes.R1Source.tribonacci_source_controls_balanced
 #print axioms PscRoutes.R1Source.tribonacci_matching_source_control_has_interior_return
+#print axioms PscRoutes.R1Source.tribonacci_matching_control_is_reducible
+#print axioms PscRoutes.R1Source.tribonacci_nonmatching_control_is_irreducible
 
 open Lean Elab Command in
 run_cmd do
@@ -254,7 +294,9 @@ run_cmd do
       `PscRoutes.R1Source.tribonacci_fourth_literal,
       `PscRoutes.R1Source.tribonacci_source_controls_are_legal_factors,
       `PscRoutes.R1Source.tribonacci_source_controls_balanced,
-      `PscRoutes.R1Source.tribonacci_matching_source_control_has_interior_return] do
+      `PscRoutes.R1Source.tribonacci_matching_source_control_has_interior_return,
+      `PscRoutes.R1Source.tribonacci_matching_control_is_reducible,
+      `PscRoutes.R1Source.tribonacci_nonmatching_control_is_irreducible] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
