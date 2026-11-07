@@ -137,6 +137,69 @@ theorem matrix_smith_certificate_complete
     (fun z => Vinv.mulVec z)
     diagonal rhs hUinv hVinv hd
 
+
+/-- Finite-word integral ancestry applies an additive matrix action
+and then the correction *at that step*. This is the canonical
+recurrence for the integer Parikh defect; individual digits still
+need to be bound to actual proper substituted-source prefixes. -/
+def ancestryOrbit {V : Type*} [AddCommGroup V]
+    (M : V →+ V) (correction : ℕ → V) (start : V) : ℕ → V
+  | 0 => start
+  | n + 1 => M (ancestryOrbit M correction start n) + correction n
+
+/-- The homogeneous part and the accumulated forced digits use the
+same recurrence, with and without the correction. -/
+def ancestryHomogeneous {V : Type*} [AddCommGroup V]
+    (M : V →+ V) (start : V) : ℕ → V
+  | 0 => start
+  | n + 1 => M (ancestryHomogeneous M start n)
+
+def ancestryForcedDigits {V : Type*} [AddCommGroup V]
+    (M : V →+ V) (correction : ℕ → V) : ℕ → V
+  | 0 => 0
+  | n + 1 => M (ancestryForcedDigits M correction n) + correction n
+
+/-- Exact affine unrolling over **any** additive group with a
+homomorphism M; no real/Pisot assumption or finite-word cap is used. -/
+theorem ancestryOrbit_unroll {V : Type*} [AddCommGroup V]
+    (M : V →+ V) (correction : ℕ → V) (start : V) (n : ℕ) :
+    ancestryOrbit M correction start n =
+      ancestryHomogeneous M start n +
+      ancestryForcedDigits M correction n := by
+  induction n with
+  | zero => simp [ancestryOrbit, ancestryHomogeneous, ancestryForcedDigits]
+  | succ n ih =>
+      simp only [ancestryOrbit, ancestryHomogeneous, ancestryForcedDigits,
+        ih, map_add]
+      abel
+
+/-- An ancestry cycle closes **if and only if** the integer
+matrix-cycle equation holds. This is exact, including signed forcing.
+It is the missing algebraic interface between literal digit provenance
+and a complete integral diagonal/Smith certificate. -/
+theorem ancestryOrbit_closed_iff_cycle_equation
+    {V : Type*} [AddCommGroup V]
+    (M : V →+ V) (correction : ℕ → V) (start : V) (n : ℕ) :
+    ancestryOrbit M correction start n = start ↔
+      start - ancestryHomogeneous M start n =
+        ancestryForcedDigits M correction n := by
+  rw [ancestryOrbit_unroll]
+  constructor
+  · intro h
+    calc
+      start - ancestryHomogeneous M start n =
+        (ancestryHomogeneous M start n +
+         ancestryForcedDigits M correction n) -
+        ancestryHomogeneous M start n := by rw [h]
+      _ = ancestryForcedDigits M correction n := by abel
+  · intro h
+    calc
+      ancestryHomogeneous M start n +
+          ancestryForcedDigits M correction n =
+        ancestryHomogeneous M start n +
+          (start - ancestryHomogeneous M start n) := by rw [h]
+      _ = start := by abel
+
 end PscRoutes.R1Smith
 
 #print axioms PscRoutes.R1Smith.scalar_solvability_iff_dvd
@@ -145,6 +208,8 @@ end PscRoutes.R1Smith
 #print axioms PscRoutes.R1Smith.four_x_eq_two_smith_refuses
 #print axioms PscRoutes.R1Smith.zero_diagonal_requires_zero
 #print axioms PscRoutes.R1Smith.matrix_smith_certificate_complete
+#print axioms PscRoutes.R1Smith.ancestryOrbit_unroll
+#print axioms PscRoutes.R1Smith.ancestryOrbit_closed_iff_cycle_equation
 
 open Lean Elab Command in
 run_cmd do
@@ -154,7 +219,9 @@ run_cmd do
     `PscRoutes.R1Smith.diagonal_certificate_complete,
     `PscRoutes.R1Smith.four_x_eq_two_smith_refuses,
     `PscRoutes.R1Smith.zero_diagonal_requires_zero,
-    `PscRoutes.R1Smith.matrix_smith_certificate_complete] do
+    `PscRoutes.R1Smith.matrix_smith_certificate_complete,
+    `PscRoutes.R1Smith.ancestryOrbit_unroll,
+    `PscRoutes.R1Smith.ancestryOrbit_closed_iff_cycle_equation] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
