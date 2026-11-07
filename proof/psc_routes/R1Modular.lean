@@ -191,6 +191,39 @@ theorem tribonacci_period_one_small_digit_only_trivial
   · omega
   · omega
 
+
+/-- Basis defects of the canonical integral Parikh lattice. -/
+def trBasis (j : Fin 3) : Fin 3 → ℤ :=
+  fun i => if i = j then 1 else 0
+
+/-- Crucial adversarial counter-calibration: the **actual**
+Tribonacci incidence has a nonzero period-three integral affine
+cycle with *locally admissible* corrections (−e₀,−e₀,0).
+It defeats any proposal that bounded proper-prefix correction
+alphabets alone exclude every nonzero periodic ancestry.
+It does NOT prove the three digit occurrences can be chained as
+a closed strict ordered word-level cycle. -/
+theorem tribonacci_locally_admissible_nonzero_period_three :
+    (fun i => tribonacciIncidence (trBasis 0) i - trBasis 0 i) = trBasis 1 ∧
+    (fun i => tribonacciIncidence (trBasis 1) i - trBasis 0 i) = trBasis 2 ∧
+    tribonacciIncidence (trBasis 2) = trBasis 0 := by
+  refine ⟨?_, ?_, ?_⟩
+  all_goals
+    funext i
+    fin_cases i <;> norm_num [tribonacciIncidence, trBasis]
+
+/-- Both signs of the correction e₀ can arise from two proper
+prefix fragments of actual substitution images. It remains an
+OPEN word-level question whether these choices concatenate into
+a single occurrence-compatible strict component. -/
+theorem tribonacci_negative_e0_is_local_prefix_difference :
+    (fun i : Fin 3 =>
+      trParikh ([] : List (Fin 3)) i -
+        trParikh ((trImage 0).take 1) i) =
+      (fun i : Fin 3 => if i = 0 then -1 else 0) := by
+  funext i
+  fin_cases i <;> norm_num [trParikh, trImage]
+
 end PscRoutes.R1Modular
 
 #print axioms PscRoutes.R1Modular.no_mod_solution_from_left_null
@@ -202,6 +235,8 @@ end PscRoutes.R1Modular
 #print axioms PscRoutes.R1Modular.tribonacci_e0_is_actual_proper_prefix
 #print axioms PscRoutes.R1Modular.tribonacci_period_one_e0_digit_even
 #print axioms PscRoutes.R1Modular.tribonacci_period_one_small_digit_only_trivial
+#print axioms PscRoutes.R1Modular.tribonacci_locally_admissible_nonzero_period_three
+#print axioms PscRoutes.R1Modular.tribonacci_negative_e0_is_local_prefix_difference
 #print axioms PscRoutes.R1Modular.realized_integer_cycle_cannot_be_modularly_obstructed
 
 open Lean Elab Command in
