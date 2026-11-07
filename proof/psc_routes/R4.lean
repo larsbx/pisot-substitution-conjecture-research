@@ -74,12 +74,39 @@ theorem finite_positive_separation_radius
         exact min_le_right _ _
       · exact (min_le_left _ _).trans (hmin x hxs)
 
+
+/-- Minimal typed overlap evidence: a canonical integral address and
+two explicitly ordered tile labels. No point, geometric angle, physical
+embedding, or Rauzy cover is smuggled into this model. -/
+structure LabeledOverlapPacket (d : ℕ) (Letter : Type*) where
+  address : Fin d → ℤ
+  topLabel : Letter
+  bottomLabel : Letter
+
+def IsCommonVertex {d : ℕ} {Letter : Type*}
+    (packet : LabeledOverlapPacket d Letter) : Prop :=
+  packet.address = 0
+
+def IsLabeledCoincidence {d : ℕ} {Letter : Type*}
+    (packet : LabeledOverlapPacket d Letter) : Prop :=
+  IsCommonVertex packet ∧ packet.topLabel = packet.bottomLabel
+
+/-- Exact small counterexample: a common canonical address with
+different labels does not amount to a tile coincidence. -/
+theorem zero_address_not_enough_for_labeled_coincidence :
+    ∃ packet : LabeledOverlapPacket 1 Bool,
+      IsCommonVertex packet ∧ ¬ IsLabeledCoincidence packet := by
+  refine ⟨⟨fun _ => 0, true, false⟩, ?_, ?_⟩
+  · simp [IsCommonVertex]
+  · simp [IsLabeledCoincidence]
+
 end PscRoutes.R4
 
 #print axioms PscRoutes.R4.separated_window_forces_zero
 #print axioms PscRoutes.R4.integer_offset_small_implies_zero
 #print axioms PscRoutes.R4.integral_address_small_implies_zero
 #print axioms PscRoutes.R4.finite_positive_separation_radius
+#print axioms PscRoutes.R4.zero_address_not_enough_for_labeled_coincidence
 
 /- Fail-closed exact-declaration axiom audit for this standalone branch.
    All declared helper theorems must use only the standard Lean axioms.
@@ -87,7 +114,7 @@ end PscRoutes.R4
 open Lean Elab Command in
 run_cmd do
   let allowed := #[`propext, `Classical.choice, `Quot.sound]
-  for name in #[`PscRoutes.R4.separated_window_forces_zero, `PscRoutes.R4.integer_offset_small_implies_zero, `PscRoutes.R4.integral_address_small_implies_zero, `PscRoutes.R4.finite_positive_separation_radius] do
+  for name in #[`PscRoutes.R4.separated_window_forces_zero, `PscRoutes.R4.integer_offset_small_implies_zero, `PscRoutes.R4.integral_address_small_implies_zero, `PscRoutes.R4.finite_positive_separation_radius, `PscRoutes.R4.zero_address_not_enough_for_labeled_coincidence] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
