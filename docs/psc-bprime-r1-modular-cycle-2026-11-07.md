@@ -105,3 +105,15 @@ Each equality is an exact integer matrix action. Consequently, neither the entir
 **Consequence for closure research.** The genuinely new target must constrain **admissible concatenations of correction digits by literal ordered parent/child occurrence addresses and strict nonproductivity**, not just the finite set of possible local digits. In particular, whether the period-three arithmetic cycle can be realized by legal or illegal balanced-pair ancestry is **unresolved** by this abstract calculation. It must not be classified as a strict-PIP counterexample.
 
 **Receipts:** New exact-head Lean/Quint checks remain required for the enlarged certificate inventory. The previous passing R1 parent (#507) does not accept these added declarations. No claim-ledger change or merge to main.
+
+## 2026-11-07 — adversarial correction: prime-field certificate incompleteness
+
+**Soundness is not completeness.** The left-null test `qA=0, qb≠0` over `F_p` is a valid *refutation* of a proposed integral cycle. But the absence of such a certificate for **every prime** does **not** mean the integral equation is solvable.
+
+Exact counterexample: `4x=2` has no solution in `ℤ`. Modulo `2`, it becomes `0x=0` and has solutions; modulo any odd prime, `4` is invertible, so it also has solutions. Nevertheless, modulo the **prime power 4**, the equation `0x=2` has no solution. The Lean route separately verifies the integral contradiction, existence of mod-2 and mod-3 solutions, and absence of mod-4 solutions. A universal assertion over all primes is the standard field-invertibility argument, not claimed here as a kernel-checked statement.
+
+**Implication for the automated research programme:** Use finite-field left-null certificates first as fast, independently checkable exclusions, but do **not** mark a correction cycle as integrally feasible merely because all prime-field checks pass. Exact integer Smith-normal-form divisibility or checked prime-power congruences are needed as a completeness fallback. Rational inversion when `I−M^k` is nonsingular can independently determine the unique candidate integral ancestry state, but itself requires exact-integrality validation.
+
+The local Tribonacci k=1 contradiction and k=3 nonzero arithmetic cycle remain consistent with this correction. The k=3 witness is locally admissible, **not** established as an actual strict ordered occurrence. For PSC, a proof must additionally cover all source-compatible recurring cycles, not merely ones with a convenient mod-p obstruction.
+
+**Status:** new adversarial Lean controls awaiting exact-head hosted acceptance; no R1F branch merge, no C4/BH/PSC ledger promotion. Independent human review remains post-closure.
