@@ -120,6 +120,36 @@ theorem tribonacci_e0_mod_two_left_null
   rw [h0, h2] at hsum
   norm_num at hsum
 
+
+/-- The literal Tribonacci substitution on labels 0,1,2.
+This source-word contract pins what the incidence columns mean. -/
+def trImage (a : Fin 3) : List (Fin 3) :=
+  if a = 0 then [0, 1]
+  else if a = 1 then [0, 2]
+  else [0]
+
+/-- Exact integer Parikh vector of a finite word. -/
+def trParikh (w : List (Fin 3)) : Fin 3 → ℤ :=
+  fun i => (w.count i : ℤ)
+
+/-- The incidence operator matches all three **literal** source words.
+This is independent of arbitrary normalized pair/swap identification. -/
+theorem tribonacci_incidence_matches_literal_images (a : Fin 3) :
+    tribonacciIncidence (fun i => if i = a then 1 else 0) =
+      trParikh (trImage a) := by
+  fin_cases a <;> funext i <;> fin_cases i <;>
+    norm_num [tribonacciIncidence, trParikh, trImage]
+
+/-- The one-letter proper prefix of the image of 0 has Parikh
+vector e₀, so the blocked period-one correction is **locally**
+admissible, not an arbitrary invented forcing digit. An actual
+closed ordered occurrence carrying that digit is still unproved. -/
+theorem tribonacci_e0_is_actual_proper_prefix :
+    trParikh ((trImage 0).take 1) =
+      (fun i : Fin 3 => if i = 0 then 1 else 0) := by
+  funext i
+  fin_cases i <;> norm_num [trParikh, trImage]
+
 end PscRoutes.R1Modular
 
 #print axioms PscRoutes.R1Modular.no_mod_solution_from_left_null
@@ -127,6 +157,8 @@ end PscRoutes.R1Modular
 #print axioms PscRoutes.R1Modular.no_mod_two_solution_to_zero_times_x_eq_one
 #print axioms PscRoutes.R1Modular.tribonacci_e0_forced_period_one_impossible
 #print axioms PscRoutes.R1Modular.tribonacci_e0_mod_two_left_null
+#print axioms PscRoutes.R1Modular.tribonacci_incidence_matches_literal_images
+#print axioms PscRoutes.R1Modular.tribonacci_e0_is_actual_proper_prefix
 #print axioms PscRoutes.R1Modular.realized_integer_cycle_cannot_be_modularly_obstructed
 
 open Lean Elab Command in
