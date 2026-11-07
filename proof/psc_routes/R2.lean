@@ -1,4 +1,5 @@
 import Mathlib
+import Lean.Util.CollectAxioms
 
 /-!
 # Route R2: positive-mass obstruction from oriented discrepancies
@@ -40,3 +41,16 @@ end PscRoutes.R2
 
 #print axioms PscRoutes.R2.good_mass_lower_bound
 #print axioms PscRoutes.R2.positive_density_contradiction
+
+/- Fail-closed exact-declaration axiom audit for this standalone branch.
+   All declared helper theorems must use only the standard Lean axioms.
+   This does not establish a full substitution-to-Lemma refinement. -/
+open Lean Elab Command in
+run_cmd do
+  let allowed := #[`propext, `Classical.choice, `Quot.sound]
+  for name in #[`PscRoutes.R2.good_mass_lower_bound, `PscRoutes.R2.positive_density_contradiction] do
+    let axioms ← collectAxioms name
+    for ax in axioms do
+      if !allowed.contains ax then
+        throwError "Nonstandard axiom in {name}: {ax}"
+    liftIO <| IO.println s!"PSC_ROUTE_AXIOMS_OK\t{name}"
