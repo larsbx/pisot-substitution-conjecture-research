@@ -162,3 +162,27 @@ There are **23 named deterministic Quint tests** in two independently verified m
 The **canonical source-prefix control** uses the literal image lengths `|σ(0)|=2, |σ(1)|=2, |σ(2)|=1`, requiring each local offset to be **strictly less** than its source image length. The separate `rejectNonproperPrefixTest` deliberately chooses `σ(2)` with offset one and verifies rejection; this prevents the false generalization that every locally chosen `[0]` prefix is *proper* for every source letter.
 
 The new complete conditional integer certificate includes an explicit integral inverse pair `Uinv U=I`, `V Vinv=I`, the exact matrix equality `U(I−M)V=diag(1,1,2)`, and a universal signed ancestry closed-cycle iff theorem. These are scoped to the linear-algebra and supplied-digit interface. **No occurrence-compatible strict SCC or general Pisot contradiction has been supplied.** Current exact-head hosted CI is pending; no new assertions are promoted before receipt inspection.
+
+## 2026-11-07 — additional Lean/Quint adversarial split: proper-cut germs versus irreducible parents
+
+**New exact local observation.** For actual source prefix words `P_t,P_b` and a following bottom source letter `b`, assume
+```
+|P_t| = |P_b|+1,   Parikh(P_t)−Parikh(P_b)=e_b.
+```
+Then `Parikh(P_t)=Parikh(P_b b)` and both prefixes have the **same index**. If the top track still has a next source letter, and the two parent words have equal total length, this produces an **interior aligned balanced cut**. Consequently it is impossible *inside a single irreducible equal-length balanced parent*.
+
+`proof/psc_routes/R1Source.lean` now attempts this universally over arbitrary label maps into additive groups, via `HasAlignedInteriorReturn`, `unit_source_defect_forces_aligned_interior_return`, and `irreducible_parent_excludes_unit_source_germ`. It also proves that actual source-cut prefixes split the literal inflated word and satisfy the full `M·Parikh+proper-prefix-digit` law, rather than assuming free local correction segments. These are new Lean declarations **pending exact-head acceptance**.
+
+**Adversarial correction.** The locally admissible *three-step* Tribonacci cut germ survives even after recording both next source letters and both within-letter offsets:
+```
+(e0; top0,bottom0) --(0,1)--> (e1; top0,bottom1)
+(e1; top0,bottom1) --(0,1)--> (e2; top0,bottom2)
+(e2; top0,bottom2) --(0,0)--> (e0; top0,bottom0).
+```
+These are genuine literal `0→01,1→02,2→0` **local source-image transformations**, checked by the new `TriCutGerm` Lean interface and independently exercised by `PscR1ProperCutGerm` Quint with source-index difference one. But the phase-`e0` germ has the following bottom letter `0`, exactly matching its positive unit source defect. By the previous lemma, this phase **cannot occur inside a single irreducible parent source pair** as a proper cut. A full deeply inflated strict component is a concatenation of irreducible children, however, so this only excludes one proposed *within-parent* realization, not recurrent cross-child ancestry.
+
+**Independent literal-word calibration.** `PscR1Source.qnt` contrasts balanced words `001/010` (unit defect at top-source index 1 and bottom-source index 0, next bottom letter `0`, hence an interior balanced cut and reducibility) with `001/100` (same unit defect but next bottom letter `1`, which does not force a zero cut and permits irreducibility). Both are genuine factors of a Tribonacci iterate; the current Quint tests themselves assert only the literal three-letter word/count facts, not a universal legal-language theorem.
+
+**Research consequence:** a candidate universal C4 elimination must keep the distinction between a *decorated germ*, a *cut inside one irreducible parent*, and a *cut across multiple derived children*. The algebraic cycle and local next-letter closure are not sufficient. Exact order, child boundaries, and recurrence over a strictly closed SCC remain the load-bearing unproved bridge. Work remains concurrent with the separate `R1OrderedAncestry.lean` / canonical Mojo packet replay in this branch, which independently inspects literal depth-six Tribonacci occurrence ancestry.
+
+**Acceptance:** `.github/workflows/psc-bprime-r1-source.yml` requires seven complete Lean axiom receipts and two positive-count Quint literal-word tests at the exact GitHub head. The modular workflow additionally audits the new three-step germ theorem and its Quint witness. No acceptance or PSC promotion until the hosted results complete.
