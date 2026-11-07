@@ -168,6 +168,65 @@ theorem irreducible_parent_excludes_unit_source_germ
     label topPre bottomPre topRest bottomRest topNext bottomNext
     hlen hdef hparentLen)
 
+
+/-! ### Exact source-language calibration for the three-letter control.
+
+These are finite, literal word statements. They do not assert
+recognizability or legality for *all* words in a hypothetical strict SCC.
+-/
+def trImage (a : ℕ) : List ℕ :=
+  if a = 0 then [0, 1]
+  else if a = 1 then [0, 2]
+  else [0]
+
+def trInflate (word : List ℕ) : List ℕ :=
+  word.flatMap trImage
+
+def trFourth : List ℕ :=
+  trInflate (trInflate (trInflate (trInflate [0])))
+
+/-- Actual fourth Tribonacci image, with no external oracle. -/
+theorem tribonacci_fourth_literal :
+    trFourth = [0,1,0,2,0,1,0,0,1,0,2,0,1] := by decide
+
+/-- The two contrasting balanced-pair controls have *legal source
+word factors* in the same fixed Tribonacci iterate. -/
+theorem tribonacci_source_controls_are_legal_factors :
+    (∃ pre post : List ℕ,
+       trFourth = pre ++ [0,0,1] ++ post) ∧
+    (∃ pre post : List ℕ,
+       trFourth = pre ++ [0,1,0] ++ post) ∧
+    (∃ pre post : List ℕ,
+       trFourth = pre ++ [1,0,0] ++ post) := by
+  refine ⟨⟨[0,1,0,2,0,1], [0,2,0,1], ?_⟩,
+    ⟨[], [2,0,1,0,0,1,0,2,0,1], ?_⟩,
+    ⟨[0,1,0,2,0], [1,0,2,0,1], ?_⟩⟩
+  all_goals decide
+
+/-- The Parikh basis is the integer indicator for each literal label. -/
+def trLabel (a : ℕ) : Fin 3 → ℤ :=
+  fun i => if i.val = a then 1 else 0
+
+/-- All three control words have identical Parikh masses.
+This is checked symbolically coordinate by coordinate. -/
+theorem tribonacci_source_controls_balanced :
+    wordMass trLabel [0,0,1] = wordMass trLabel [0,1,0] ∧
+    wordMass trLabel [0,0,1] = wordMass trLabel [1,0,0] := by
+  constructor <;> funext i <;> fin_cases i <;>
+    norm_num [wordMass, trLabel]
+
+/-- The source germ of 001/010 at top index one and bottom index
+zero forces an interior balanced return, as the general theorem
+predicts; neither a numerical simulation nor a geometric argument
+supplies this fact. -/
+theorem tribonacci_matching_source_control_has_interior_return :
+    HasAlignedInteriorReturn trLabel [0,0,1] [0,1,0] := by
+  apply unit_source_defect_forces_aligned_interior_return
+    trLabel [0] [] [1] [1,0] 0 0
+  · decide
+  · simp [wordMass]
+  · decide
+
 end PscRoutes.R1Source
 
 #print axioms PscRoutes.R1Source.cutPrefix_append_cutSuffix
@@ -177,6 +236,10 @@ end PscRoutes.R1Source
 #print axioms PscRoutes.R1Source.actualCut_prefix_mass_transport
 #print axioms PscRoutes.R1Source.unit_source_defect_forces_aligned_interior_return
 #print axioms PscRoutes.R1Source.irreducible_parent_excludes_unit_source_germ
+#print axioms PscRoutes.R1Source.tribonacci_fourth_literal
+#print axioms PscRoutes.R1Source.tribonacci_source_controls_are_legal_factors
+#print axioms PscRoutes.R1Source.tribonacci_source_controls_balanced
+#print axioms PscRoutes.R1Source.tribonacci_matching_source_control_has_interior_return
 
 open Lean Elab Command in
 run_cmd do
@@ -187,7 +250,11 @@ run_cmd do
       `PscRoutes.R1Source.wordMass_substitution,
       `PscRoutes.R1Source.actualCut_prefix_mass_transport,
       `PscRoutes.R1Source.unit_source_defect_forces_aligned_interior_return,
-      `PscRoutes.R1Source.irreducible_parent_excludes_unit_source_germ] do
+      `PscRoutes.R1Source.irreducible_parent_excludes_unit_source_germ,
+      `PscRoutes.R1Source.tribonacci_fourth_literal,
+      `PscRoutes.R1Source.tribonacci_source_controls_are_legal_factors,
+      `PscRoutes.R1Source.tribonacci_source_controls_balanced,
+      `PscRoutes.R1Source.tribonacci_matching_source_control_has_interior_return] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
