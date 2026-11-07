@@ -186,3 +186,17 @@ These are genuine literal `0→01,1→02,2→0` **local source-image transformat
 **Research consequence:** a candidate universal C4 elimination must keep the distinction between a *decorated germ*, a *cut inside one irreducible parent*, and a *cut across multiple derived children*. The algebraic cycle and local next-letter closure are not sufficient. Exact order, child boundaries, and recurrence over a strictly closed SCC remain the load-bearing unproved bridge. Work remains concurrent with the separate `R1OrderedAncestry.lean` / canonical Mojo packet replay in this branch, which independently inspects literal depth-six Tribonacci occurrence ancestry.
 
 **Acceptance:** `.github/workflows/psc-bprime-r1-source.yml` requires seven complete Lean axiom receipts and two positive-count Quint literal-word tests at the exact GitHub head. The modular workflow additionally audits the new three-step germ theorem and its Quint witness. No acceptance or PSC promotion until the hosted results complete.
+
+## 2026-11-07 — exact legal-factor controls for the single-parent no-go
+
+The new literal-word source bridge goes beyond an untyped affine digit. Its eleven standalone Lean theorem declarations now include an independent finite **legal-factor** calibration for the actual Tribonacci substitution `0→01,1→02,2→0`. The fourth iterate is exactly
+
+```
+σ⁴(0) = 0102010010201.
+```
+
+The three control words `001`, `010`, and `100` all occur as contiguous factors of this same literal word, and `001` is Parikh-balanced with both `010` and `100`. The Lean source supplies explicit prefix/suffix witness factorizations, so this is not an empirical observation about an infinite language. The `001/010` pair has an interior aligned zero return at index one: at asynchronous source cuts (top index 1, bottom index 0), the defect is `e₀` and the next bottom letter is `0`, so adding that bottom letter balances the two prefixes at index one. By contrast, for `001/100` the next bottom letter is `1`, and that particular forced-return argument does not apply. Its irreducibility is tested by the bounded Quint literal-word control, not yet claimed as a separately Lean-certified theorem.
+
+**Scope firewall.** This is an adversarial *one-parent* result, not a contradiction to the exact, nonzero source-ancestry cycles already produced by `R1OrderedAncestry` for inflated, reducible word pairs. A strict child-closed derived system may have newborn or inherited cuts between distinct child blocks. The truly missing BH/C4 theorem must show that recurrence and occurrence-address coherence force a forbidden cut *inside an irreducible parent*, or else force synchronization by a separate mechanism.
+
+**Acceptance:** `proof/psc_routes/R1Source.lean` now declares eleven theorems, all named in its axiom audit; `.github/workflows/psc-bprime-r1-source.yml` enforces the exact declaration inventory and eleven kernel receipts. Quint still requires two explicit nonempty literal-word tests. No new exact-head hosted receipt has been observed for the enlarged source module. Keep existing proof and claim statuses unchanged.
