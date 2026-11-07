@@ -2409,3 +2409,13 @@ claim-ledger promotion. Evidence: `docs/occurrence-path-replay-2026-10-16.md`,
   - **Tooling pitfall:** a plain `simp [chi, det3, m0]; ring` in `chi_is_charpoly` printed `PANIC at Lean.Expr.appArg!` on every build without failing it; it is replaced by `simp only … ; norm_num; ring`.
 
   Library: 836 declarations, 599 theorems, standard axioms only. Locator: [Concentration attack §8](c4-concentration-attack-2026-11-06.md).
+
+- **2026-11-07 — Lean: zero-return reduction, `thm:parikh` rank clauses on representatives, signed intertwiners, `K₃ ∈ Lie₃`.**
+  - **New modules** (`proof/PscVerif/PscVerif/`). `Reduction` proves `red` (cut at zero returns): its blocks, their uniqueness, the swap rule, and `redNormalisation`, which discharges `children_swap` for zero-return children. `ParikhRank` proves rank `d`, `m ≥ d`, `χ_M ∣ χ_{N_C}` over `ℚ` and `ℤ`, and similarity when `m = d`, all for an abstract intertwiner. `SignedIntertwiner` proves `Q₂S = Φ₂Q₂` and `Q₃S = Φ₃Q₃` on representatives. `Lie3` proves the shuffle relation and Ree at degree three on three letters (eight Lyndon brackets, dimension 8), and that `M^{⊗3}` preserves `Lie₃`.
+  - **Vacuous variant retained, relabelled.** The first draft of `ParikhRank` stated every clause for the raw double cover `Nc`. Under any normalisation `|C| = 2|R|` (`card_state_eq_two_mul`), so its `m = d` clause can never fire (`no_equiv_fin3`). The clauses are now also proved on representatives (`prep_nrep`: `P_R N_C = M P_R`, under balance), and the double-cover ones are labelled as such.
+  - **Finite observation.** A `Normalisation` forces `C` to be coincidence-free (`Normalisation.noncoincident`). So a `C` that still contains a coincidence block such as `(2,2)` admits none.
+  - **Controls.** The control `exB` (`0↔1`, `C = {(0110,1001), swap}`) is algebra-only: its state is reducible (`exB_reducible`), and its declared children are not those of `red` (`exB_not_red`). `wT` (the identity on `(0112201, 1200112)`, built by `redSystem`) is the zero-return control with `K₃ ≠ 0`.
+  - **Redundancy removed.** `k3_shuffle_right` is `k3_shuffle_left` at `(c,a,b)` (`ab ⧢ c = c ⧢ ab`). It is now derived, and so is `n2_mul_count`.
+  - **Tooling pitfall.** Inside `first | ring | …`, a failing `ring` does not fail: it falls back to `ring_nf`, leaves the goal, and `first` commits to it. Use `ring1`.
+
+  Library: 34 modules, 1049 declarations, 767 theorems, standard axioms only. Locator: [Concentration attack §8](c4-concentration-attack-2026-11-06.md).

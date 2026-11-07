@@ -29,3 +29,7 @@ import PscVerif.Intertwiner2
 import PscVerif.Intertwiner3
 import PscVerif.PrimitiveExpansion
 import PscVerif.CountBridge
+import PscVerif.Reduction
+import PscVerif.ParikhRank
+import PscVerif.SignedIntertwiner
+import PscVerif.Lie3

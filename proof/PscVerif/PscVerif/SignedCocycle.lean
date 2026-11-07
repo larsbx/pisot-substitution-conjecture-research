@@ -15,7 +15,8 @@ choice is one):
   `T`, in order (swapping a parent's sides swaps all its children's sides);
 * `R ⊆ C` is a set of representatives: every `T ∈ C` has `T ∈ R` or
   `T.swap ∈ R` (`cover`), never both (`not_both`; for a noncoincident `T`,
-  `T ≠ T.swap`).  So `C = R ⊔ swap R` (`C_eq`).
+  `T ≠ T.swap`).  So `C = R ⊔ swap R` (`C_eq`), and `C` is coincidence-free
+  (`noncoincident`: no `T ∈ C` has `T.1 = T.2`).
 
 Indexing by the representatives `Rep = {T // T ∈ R}`, with `A i j` the number of
 times `i` occurs among the children of `j` (sign `+1`) and `B i j` the number
@@ -103,6 +104,16 @@ theorem C_eq : S.C = P.R ∪ P.R.image Prod.swap := by
   · rintro (h | ⟨U, hU, rfl⟩)
     · exact P.sub h
     · exact P.swap_mem U (P.sub hU)
+
+include P in
+/-- A normalisation forces `C` to be coincidence-free: a coincident state
+`T = T.swap` would lie in `R` together with its swap. -/
+theorem noncoincident : ∀ T ∈ S.C, T.1 ≠ T.2 := by
+  intro T hT h
+  have hs : T.swap = T := Prod.ext h.symm h
+  rcases P.cover T hT with hR | hR
+  · exact P.not_both T hR (hs ▸ hR)
+  · exact P.not_both _ hR (by rw [Prod.swap_swap, ← hs]; exact hR)
 
 theorem disjoint_image : Disjoint P.R (P.R.image Prod.swap) := by
   rw [Finset.disjoint_left]

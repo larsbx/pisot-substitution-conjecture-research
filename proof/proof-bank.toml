@@ -73,3 +73,13 @@ claim = "OrientationSpectrum"
 coverage = "partial"
 declarations = ["Psc.SignedCocycle.Normalisation.lift_eigen", "Psc.SignedCocycle.Normalisation.cocycle_spectral_bound", "Psc.SignedCocycle.Normalisation.cocycle_spectral_bound_rep", "Psc.SignedCocycle.Normalisation.rep_eigen", "Psc.SignedCocycle.Normalisation.ssign_abs_le", "Psc.ParikhIntertwiner.perron_root_childSystem"]
 note = "Lean proves the odd-sector lift of the signed cocycle S = A - B into the raw ordered (double-cover) state matrix, the Perron comparison rho(S) <= beta on normalised representatives (two routes), lambda N_C = beta lambda on representatives and |S| <= N_C. The gauge/voltage-graph statements, the strict inequality, the equality case and the existence of the positive left eigenvector are not formalized; swap closure and children_swap are hypotheses."
+[[lean_support]]
+claim = "ParikhIntertwiner"
+coverage = "partial"
+declarations = ["Psc.ParikhIntertwiner.pc_nc", "Psc.ParikhRank.prep_nrep", "Psc.ParikhRank.prep_surjective", "Psc.ParikhRank.card_rep_ge", "Psc.ParikhRank.charpoly_dvd_rep", "Psc.ParikhRank.charpoly_dvd_rep_int", "Psc.ParikhRank.similar_rep_of_equiv"]
+note = "Lean proves P_C N_C = M P_C on the raw ordered states and, for balanced states, on normalised representatives with N_C = A + B; and, assuming chi_M irreducible, C nonempty and nonempty top tracks: rank P_C = d, m >= d, chi_M | chi_{N_C} over Q and Z, and similarity to M when m = d. The double-cover m = d clause is vacuous under a normalisation (no_equiv_fin3). Not formalized: the cofactor on ker P_C and Perron simplicity of beta; swap closure is a hypothesis, children_swap is derived for zero-return children (Psc.Reduction.redNormalisation)."
+[[lean_support]]
+claim = "DefectIntertwiner"
+coverage = "partial"
+declarations = ["Psc.SignedIntertwiner.k2_rep", "Psc.SignedIntertwiner.q2full_mul_ssign", "Psc.SignedIntertwiner.q2_mul_ssign", "Psc.SignedIntertwiner.k3_rep", "Psc.SignedIntertwiner.q3_mul_ssign", "Psc.SignedIntertwiner.q3_col_mem_lie3", "Psc.Lie3.k3Vec_mem_span_lyndon", "Psc.Lie3.phi3_mem_span"]
+note = "Lean proves Q_r S = Phi_r Q_r on normalised representatives for r = 2 (M (x) M on any finite alphabet; Lambda^2 M in wedge coordinates over Fin 3) and r = 3 (M^{(x)3}), assuming the lower defects vanish on every state, and that over Fin 3 the K_3 columns lie in Lie_3 (Ree at degree three on three letters, explicit Lyndon basis), which M^{(x)3} preserves. Not formalized: the first-defect selection, degrees r >= 4 (Lie_4 Witt weights), semisimplicity of Phi_r, and reachability of C by the balanced-pair algorithm."
