@@ -40,3 +40,22 @@ No novelty claim for the elementary potential/cycle-sum criterion. No human math
 - Parent R2's literature stop/go and adverse deck-average counterexample are inherited by exact revision, not reasserted as novelty.
 
 **Decision: PROCEED NARROWED** with a machine-checked rational edge-certificate interface. Do not infer that the certificate exists in any strict PIP component; deliberately search for positive cycle-sum obstructions before proposing a universal R2 closure.
+
+## 2026-11-07 explicit missing-edge adversary
+
+The additional Lean theorem `omitted_edge_false_acceptance` uses one
+literal rational potential `H(0)=0, H(1)=1` and two candidate edge lists:
+the *incomplete* list `[(0→1, weight 1)]` passes the exact Boolean
+checker, while the *complete* two-edge list with the extra
+`(1→0, weight 0)` fails. This is a machine-checkable example of a
+**misleading successful certificate caused by omitted observations**.
+
+It is not enough for the canonical Mojo producer to emit a signed
+observed graph and a green checker receipt. The independent source
+refinement gate must bind all occurrences of all child rows—including
+duplicates, exits, coincidences, inherited/newborn cuts, side swaps,
+and ordered parent/child ordinals—to the emitted edge multiset.
+A missing-edge regression (and wrong-sign, swapped-orientation,
+duplicate-collapsing regressions) is mandatory before making
+any graph-wide claim. The present Lean verifier proves only the exact
+`∀ e ∈ supplied_edges` property.
