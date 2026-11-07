@@ -91,6 +91,83 @@ theorem actualCut_prefix_mass_transport
   rw [map_sub]
   abel
 
+
+/-- A *literal interior balanced return* is specified by two equal-length
+nonempty prefix words of equal Parikh mass, leaving nonempty suffixes
+on both tracks. This avoids mistaking an asynchronous common letter
+for an aligned coincidence. -/
+def HasAlignedInteriorReturn (label : A → V)
+    (topWord bottomWord : List A) : Prop :=
+  ∃ topPre bottomPre topPost bottomPost : List A,
+    topWord = topPre ++ topPost ∧
+    bottomWord = bottomPre ++ bottomPost ∧
+    topPre.length = bottomPre.length ∧
+    0 < topPre.length ∧
+    topPost ≠ [] ∧ bottomPost ≠ [] ∧
+    wordMass label topPre = wordMass label bottomPre
+
+/-- If the source prefix defect is exactly the mass of the NEXT
+bottom letter and the top index is one larger, advancing the bottom
+prefix by that letter makes an exact equal-length balanced cut.
+A nonempty top suffix and equal parent lengths make it interior
+on both tracks. This is a *source-ordered* obstruction that the
+coarse affine correction alphabet does not capture. -/
+theorem unit_source_defect_forces_aligned_interior_return
+    (label : A → V)
+    (topPre bottomPre topRest bottomRest : List A)
+    (topNext bottomNext : A)
+    (hlen : topPre.length = bottomPre.length + 1)
+    (hdef : wordMass label topPre - wordMass label bottomPre =
+      label bottomNext)
+    (hparentLen :
+      (topPre ++ topNext :: topRest).length =
+      (bottomPre ++ bottomNext :: bottomRest).length) :
+    HasAlignedInteriorReturn label
+      (topPre ++ topNext :: topRest)
+      (bottomPre ++ bottomNext :: bottomRest) := by
+  have hbottomRest : bottomRest ≠ [] := by
+    intro hempty
+    subst bottomRest
+    simp only [List.length_append, List.length_cons, List.length_nil] at hparentLen
+    omega
+  refine ⟨topPre, bottomPre ++ [bottomNext],
+    topNext :: topRest, bottomRest, rfl, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · simp [List.append_assoc]
+  · simp [List.length_append, hlen]
+  · omega
+  · simp
+  · exact hbottomRest
+  · calc
+      wordMass label topPre =
+          wordMass label topPre - wordMass label bottomPre +
+            wordMass label bottomPre := by abel
+      _ = label bottomNext + wordMass label bottomPre := by rw [hdef]
+      _ = wordMass label (bottomPre ++ [bottomNext]) := by
+        rw [wordMass_append]
+        simp [wordMass]
+        abel
+
+/-- Consequently no irreducible equal-length parent can contain
+this source-germ configuration at a *proper* source cut.
+This does NOT eliminate its recurrence across multiple irreducible
+children at deeper inflated levels, which is the missing PSC bridge. -/
+theorem irreducible_parent_excludes_unit_source_germ
+    (label : A → V)
+    (topPre bottomPre topRest bottomRest : List A)
+    (topNext bottomNext : A)
+    (hlen : topPre.length = bottomPre.length + 1)
+    (hdef : wordMass label topPre - wordMass label bottomPre =
+      label bottomNext)
+    (hparentLen :
+      (topPre ++ topNext :: topRest).length =
+      (bottomPre ++ bottomNext :: bottomRest).length)
+    (hirred : ¬ HasAlignedInteriorReturn label
+      (topPre ++ topNext :: topRest)
+      (bottomPre ++ bottomNext :: bottomRest)) : False := by
+  exact hirred (unit_source_defect_forces_aligned_interior_return
+    label topPre bottomPre topRest bottomRest topNext bottomNext
+    hlen hdef hparentLen)
+
 end PscRoutes.R1Source
 
 #print axioms PscRoutes.R1Source.cutPrefix_append_cutSuffix
@@ -98,6 +175,8 @@ end PscRoutes.R1Source
 #print axioms PscRoutes.R1Source.wordMass_append
 #print axioms PscRoutes.R1Source.wordMass_substitution
 #print axioms PscRoutes.R1Source.actualCut_prefix_mass_transport
+#print axioms PscRoutes.R1Source.unit_source_defect_forces_aligned_interior_return
+#print axioms PscRoutes.R1Source.irreducible_parent_excludes_unit_source_germ
 
 open Lean Elab Command in
 run_cmd do
@@ -106,7 +185,9 @@ run_cmd do
       `PscRoutes.R1Source.cutPrefix_isPrefix,
       `PscRoutes.R1Source.wordMass_append,
       `PscRoutes.R1Source.wordMass_substitution,
-      `PscRoutes.R1Source.actualCut_prefix_mass_transport] do
+      `PscRoutes.R1Source.actualCut_prefix_mass_transport,
+      `PscRoutes.R1Source.unit_source_defect_forces_aligned_interior_return,
+      `PscRoutes.R1Source.irreducible_parent_excludes_unit_source_germ] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
