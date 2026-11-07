@@ -1,7 +1,8 @@
-/-- A small, standalone Lean 4/Mathlib interface for the shift/count identity
+import Mathlib
+
+/-! A small, standalone Lean 4/Mathlib interface for the shift/count identity
 used in Proposition B′. This does not yet formalize block bounds, frequencies,
 cyclic vectors or the spectral theorem. Do not count as a proof of B′. -/
-import Mathlib
 
 namespace PscVerif.BpaPrefixBridge
 
