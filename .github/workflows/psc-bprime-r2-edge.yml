@@ -1,0 +1,68 @@
+name: PSC R2C exact rational edge certificate
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/psc-bprime-r2-edge.yml'
+      - 'proof/psc_routes/R2EdgeCertificate.lean'
+      - 'proof/quint/PscR2EdgeCertificate.qnt'
+      - 'docs/psc-bprime-r2-edge-certificate-2026-11-07.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lean-r2c:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Verify exact revision
+        env:
+          EXPECTED: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED"
+      - name: Provision repository-pinned Lean and mathlib
+        run: ./tools/setup_lean.sh
+      - name: Compile all scoped Lean lemmas, refuse nonstandard axioms
+        shell: bash
+        working-directory: proof/PscVerif
+        run: |
+          set -euo pipefail
+          "$HOME/.elan/bin/lake" env lean ../../proof/psc_routes/R2EdgeCertificate.lean | tee "$RUNNER_TEMP/r2c-lean.log"
+          ! grep -Eq 'sorryAx|error:' "$RUNNER_TEMP/r2c-lean.log"
+          test "$(grep -c 'PSC_R2C_AXIOMS_OK' "$RUNNER_TEMP/r2c-lean.log")" -eq 3
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: psc-r2c-lean-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/r2c-lean.log
+          if-no-files-found: warn
+          retention-days: 30
+
+  quint-r2c:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Verify exact revision
+        env:
+          EXPECTED: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Typecheck explicit signed-edge model
+        run: npx --yes @informalsystems/quint@0.33.1 typecheck proof/quint/PscR2EdgeCertificate.qnt
+      - name: Replay finite invariants and deterministic closed-cycle witness
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR2EdgeCertificate.qnt --invariant=graphVertices
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR2EdgeCertificate.qnt --invariant=nonnegativeTotal
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR2EdgeCertificate.qnt | tee "$RUNNER_TEMP/r2c-quint.log"
+          grep -E '1 passing|1 passed' "$RUNNER_TEMP/r2c-quint.log" >/dev/null
