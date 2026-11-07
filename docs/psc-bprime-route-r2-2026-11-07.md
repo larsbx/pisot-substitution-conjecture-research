@@ -50,3 +50,11 @@ Lean sublemma acceptance, if CI passes, is **not** a PSC/C4/A1′/BH/PDS closure
 **Hypothesis mismatch / known negative:** track raw top/bottom signs; a side swap negates defects. The alternating sequence `+1,−1,+1,−1,...` has mean 0 but never equals 0, so average convergence alone is insufficient. The current Lean inequality is elementary ordered-field arithmetic, not a new universal theorem.
 
 **Decision: PROCEED NARROWED / ADVERSARIAL.** Automatically search for an *actual ordered* linear separation and prove its occurrence-weighted density (or produce an infeasibility witness), then attempt source-bound averaging; stop if only sign-quotient or illegal seeds support the claim. Human mathematical validation and comprehensive novelty review remain **post-PSC**, not substitutes for this brief research-design check.
+
+## 2026-11-07 — route correction from orientation monodromy
+
+The existing `docs/c4-orientation-monodromy.md` proves that a normalized strict SCC with nontrivial cocycle has a connected ordered double cover, and deck swap reverses raw pair orientation. The new Lean theorem `deck_symmetric_separator_vanishes` shows rigorously that if a rational additive functional is nonnegative on **both** deck orientations then it vanishes on every signed defect. Thus the original *sign-blind global half-space* strategy cannot produce a strictly positive density on that connected double-cover support.
+
+**Preserved alternative:** Restrict to a certified trivial-cocycle gauge component (where the two sheets are disconnected), or use an orientation-indexed potential `H(s,x)` whose value is invariant under simultaneous deck changes `(s,x)↦(J(s),−x)`. A fixed linear functional `h(x)` alone cannot do this while remaining strictly positive across both sheets. A new proof must bind the orientation gauge, actual occurrence-indexed children, and frequency counts before deriving a positive lower density.
+
+The source-to-mean bridge remains **open**: a generic strict component is not a legal prefix-shift of a fixed point. This refinement does not establish or refute A1′, BH, C4, PDS, or PSC. This is a new machine-checkable **no-go condition on one proposed route**, not an unconditional obstruction theorem for all strict PIP components.
