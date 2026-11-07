@@ -23,6 +23,23 @@ jobs:
         env:
           EXPECTED: ${{ github.event.pull_request.head.sha || github.sha }}
         run: test "$(git rev-parse HEAD)" = "$EXPECTED"
+      - name: Fail closed on all Lean theorem-to-axiom-inventory bindings
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          source = Path("proof/psc_routes/R1Smith.lean").read_text(encoding="utf-8")
+          theorem_names = re.findall(r"(?m)^theorem\s+([A-Za-z_][A-Za-z_0-9]*)", source)
+          assert "for name in #[" in source, "missing axiom-audit loop"
+          audit = source.split("for name in #[", 1)[1].split("] do", 1)[0]
+          audited = re.findall(r"\`PscRoutes\.R1Smith\.([A-Za-z_][A-Za-z_0-9]*)", audit)
+          if len(theorem_names) != len(set(theorem_names)):
+              raise SystemExit("duplicate theorem declarations")
+          if set(theorem_names) != set(audited) or len(audited) != len(theorem_names):
+              raise SystemExit(f"axiom inventory mismatch: declarations={theorem_names!r}; audited={audited!r}")
+          print(f"EXACT_AXIOM_INVENTORY_OK R1Smith: {len(audited)} declarations")
+          PY
       - name: Set up pinned Lean and Mathlib
         run: ./tools/setup_lean.sh
       - name: Compile Smith-diagonal membership lemmas and audit exact axioms
