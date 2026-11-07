@@ -161,3 +161,94 @@ module PscR1LiteralProperPrefixes {
   run rejectNonproperPrefixTest =
     init.then(invalidDigit).expect(not(validProperOffsets))
 }
+
+
+// Stronger adversarial model: the period-three defect cycle also
+// survives *literal next-letter* and *proper within-image offset*
+// transitions at cut-germ level:
+//
+// g0=(e0, top 0, bottom 0) --offset (0,1)--> g1=(e1,0,1)
+// g1=(e1,0,1) --offset (0,1)--> g2=(e2,0,2)
+// g2=(e2,0,2) --offset (0,0)--> g0=(e0,0,0).
+//
+// The source images are 0->01, 1->02, 2->0.
+// This still does NOT certify an entire balanced, strictly
+// child-closed word pair or compatible multi-level word contexts.
+module PscR1ProperCutGerm {
+  var phase: int
+  var x0: int
+  var x1: int
+  var x2: int
+  var topLetter: int
+  var bottomLetter: int
+  var topOffset: int
+  var bottomOffset: int
+
+  action init = all {
+    phase' = 0,
+    x0' = 1, x1' = 0, x2' = 0,
+    topLetter' = 0, bottomLetter' = 0,
+    topOffset' = 0, bottomOffset' = 1,
+  }
+
+  action firstProper = all {
+    phase == 0,
+    topLetter == 0, bottomLetter == 0,
+    x0 == 1, x1 == 0, x2 == 0,
+    topOffset == 0, bottomOffset == 1,
+    x0' = x0 + x1 + x2 - 1,
+    x1' = x0,
+    x2' = x1,
+    topLetter' = 0, bottomLetter' = 1,
+    topOffset' = 0, bottomOffset' = 1,
+    phase' = 1,
+  }
+
+  action secondProper = all {
+    phase == 1,
+    topLetter == 0, bottomLetter == 1,
+    x0 == 0, x1 == 1, x2 == 0,
+    topOffset == 0, bottomOffset == 1,
+    x0' = x0 + x1 + x2 - 1,
+    x1' = x0,
+    x2' = x1,
+    topLetter' = 0, bottomLetter' = 2,
+    topOffset' = 0, bottomOffset' = 0,
+    phase' = 2,
+  }
+
+  action thirdProper = all {
+    phase == 2,
+    topLetter == 0, bottomLetter == 2,
+    x0 == 0, x1 == 0, x2 == 1,
+    topOffset == 0, bottomOffset == 0,
+    x0' = x0 + x1 + x2,
+    x1' = x0,
+    x2' = x1,
+    topLetter' = 0, bottomLetter' = 0,
+    topOffset' = 0, bottomOffset' = 1,
+    phase' = 0,
+  }
+
+  action step = any { firstProper, secondProper, thirdProper }
+
+  val allOffsetsProper =
+    topOffset >= 0 and bottomOffset >= 0 and
+    topOffset < (if (topLetter == 2) 1 else 2) and
+    bottomOffset < (if (bottomLetter == 2) 1 else 2)
+  val sourceIndexDifferenceOne = x0 + x1 + x2 == 1
+  val cutGermOrbit =
+    (phase == 0 and x0 == 1 and x1 == 0 and x2 == 0
+      and topLetter == 0 and bottomLetter == 0) or
+    (phase == 1 and x0 == 0 and x1 == 1 and x2 == 0
+      and topLetter == 0 and bottomLetter == 1) or
+    (phase == 2 and x0 == 0 and x1 == 0 and x2 == 1
+      and topLetter == 0 and bottomLetter == 2)
+
+  run literalProperGermThreeCycleTest =
+    init.then(firstProper).then(secondProper).then(thirdProper)
+      .expect(phase == 0 and x0 == 1 and x1 == 0 and x2 == 0
+        and topLetter == 0 and bottomLetter == 0
+        and allOffsetsProper and sourceIndexDifferenceOne
+        and cutGermOrbit)
+}
