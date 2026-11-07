@@ -56,6 +56,24 @@ theorem no_integral_solution_from_modular_witness
   exact (no_mod_solution_from_left_null p Amod left
     (modVec p b) hnull hpair) ⟨modVec p x, hmod⟩
 
+/-- Every *genuinely realized integral* cycle automatically survives all
+correctly refined modular equations. Thus a left-null obstruction can
+eliminate an abstract **candidate** cycle but can NEVER eliminate a
+cycle whose integer state vector has already been witnessed exactly. -/
+theorem realized_integer_cycle_cannot_be_modularly_obstructed
+    {d : ℕ}
+    (Aint : (Fin d → ℤ) → (Fin d → ℤ))
+    (Amod : (Fin d → ZMod p) →ₗ[ZMod p] (Fin d → ZMod p))
+    (b : Fin d → ℤ)
+    (left : (Fin d → ZMod p) →ₗ[ZMod p] ZMod p)
+    (hreduction : ∀ x, Amod (modVec p x) = modVec p (Aint x))
+    (hnull : left.comp Amod = 0)
+    (x : Fin d → ℤ) (hactual : Aint x = b) :
+    left (modVec p b) = 0 := by
+  by_contra hpair
+  exact (no_integral_solution_from_modular_witness p Aint Amod b left
+    hreduction hnull hpair) ⟨x, hactual⟩
+
 /-- A tiny deterministic finite-field negative control, not a
 substitution-cycle instance. -/
 theorem no_mod_two_solution_to_zero_times_x_eq_one :
@@ -68,13 +86,15 @@ end PscRoutes.R1Modular
 #print axioms PscRoutes.R1Modular.no_mod_solution_from_left_null
 #print axioms PscRoutes.R1Modular.no_integral_solution_from_modular_witness
 #print axioms PscRoutes.R1Modular.no_mod_two_solution_to_zero_times_x_eq_one
+#print axioms PscRoutes.R1Modular.realized_integer_cycle_cannot_be_modularly_obstructed
 
 open Lean Elab Command in
 run_cmd do
   let allowed := #[`propext, `Classical.choice, `Quot.sound]
   for name in #[`PscRoutes.R1Modular.no_mod_solution_from_left_null,
       `PscRoutes.R1Modular.no_integral_solution_from_modular_witness,
-      `PscRoutes.R1Modular.no_mod_two_solution_to_zero_times_x_eq_one] do
+      `PscRoutes.R1Modular.no_mod_two_solution_to_zero_times_x_eq_one,
+      `PscRoutes.R1Modular.realized_integer_cycle_cannot_be_modularly_obstructed] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
