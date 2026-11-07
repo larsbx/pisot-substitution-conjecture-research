@@ -52,7 +52,7 @@ jobs:
             echo "Unaccepted axiom or Lean error" >&2
             exit 1
           fi
-          test "$(grep -c 'PSC_R1F_AXIOMS_OK' "$RUNNER_TEMP/r1f-lean.log")" -eq 18
+          test "$(grep -c 'PSC_R1F_AXIOMS_OK' "$RUNNER_TEMP/r1f-lean.log")" -eq 19
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -108,3 +108,12 @@ jobs:
           npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Modular.qnt --main=PscR1LiteralProperPrefixes --invariant=correctionBound
           npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1Modular.qnt --main=PscR1LiteralProperPrefixes | tee "$RUNNER_TEMP/r1f-local-prefix.log"
           grep -E '4 passing|4 passed' "$RUNNER_TEMP/r1f-local-prefix.log" >/dev/null
+      - name: Replay actual proper-cut germ cycle and index invariants
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Modular.qnt --main=PscR1ProperCutGerm --invariant=allOffsetsProper
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Modular.qnt --main=PscR1ProperCutGerm --invariant=sourceIndexDifferenceOne
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Modular.qnt --main=PscR1ProperCutGerm --invariant=cutGermOrbit
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1Modular.qnt --main=PscR1ProperCutGerm | tee "$RUNNER_TEMP/r1f-proper-germ.log"
+          grep -E '1 passing|1 passed' "$RUNNER_TEMP/r1f-proper-germ.log" >/dev/null
