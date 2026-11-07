@@ -89,7 +89,7 @@ theorem four_x_eq_two_smith_refuses :
 /-- A zero Smith invariant forces a zero corresponding rhs entry. -/
 theorem zero_diagonal_requires_zero (b : ℤ) :
     (∃ x : ℤ, (0 : ℤ) * x = b) ↔ b = 0 := by
-  simp
+  simp [eq_comm]
 
 
 /-- **Concrete matrix certificate form:** integer matrices U, V,
