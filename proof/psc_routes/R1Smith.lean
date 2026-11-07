@@ -200,6 +200,51 @@ theorem ancestryOrbit_closed_iff_cycle_equation
           (start - ancestryHomogeneous M start n) := by rw [h]
       _ = start := by abel
 
+
+/-- A **conditional but complete** integral-cycle criterion.
+
+The two independent, machine-checkable boundaries are explicit:
+  1. A.mulVec agrees for *every integral address* with
+     x ↦ x − (homogeneous n-step ancestry of x).
+  2. U,V and their integer inverses satisfy the exact diagonal
+     matrix certificate.
+
+The iff then decides the existence of a *periodic integral defect*
+for one exact correction word. It does not assert that the word came
+from a real pair of substitution tracks, or that eliminating such
+defects eliminates every strictly nonsynchronizing occurrence cycle. -/
+theorem ancestry_smith_cycle_criterion
+    {d : ℕ} (M : (Fin d → ℤ) →+ (Fin d → ℤ))
+    (correction : ℕ → Fin d → ℤ) (n : ℕ)
+    (A U Uinv V Vinv : Matrix (Fin d) (Fin d) ℤ)
+    (diagonal : Fin d → ℤ)
+    (hA : ∀ x : Fin d → ℤ,
+      A.mulVec x = x - ancestryHomogeneous M x n)
+    (hU : Uinv * U = 1)
+    (hV : V * Vinv = 1)
+    (hdiag : U * A * V = Matrix.diagonal diagonal) :
+    (∃ x : Fin d → ℤ, ancestryOrbit M correction x n = x) ↔
+      (∀ i : Fin d, diagonal i ∣
+        (U.mulVec (ancestryForcedDigits M correction n)) i) := by
+  calc
+    (∃ x : Fin d → ℤ, ancestryOrbit M correction x n = x) ↔
+        (∃ x : Fin d → ℤ,
+          A.mulVec x = ancestryForcedDigits M correction n) := by
+          constructor
+          · rintro ⟨x, hx⟩
+            refine ⟨x, ?_⟩
+            rw [hA x]
+            exact (ancestryOrbit_closed_iff_cycle_equation M correction x n).mp hx
+          · rintro ⟨x, hx⟩
+            refine ⟨x, ?_⟩
+            apply (ancestryOrbit_closed_iff_cycle_equation M correction x n).mpr
+            rw [hA x] at hx
+            exact hx
+    _ ↔ (∀ i : Fin d, diagonal i ∣
+        (U.mulVec (ancestryForcedDigits M correction n)) i) :=
+      matrix_smith_certificate_complete A U Uinv V Vinv diagonal
+        (ancestryForcedDigits M correction n) hU hV hdiag
+
 end PscRoutes.R1Smith
 
 #print axioms PscRoutes.R1Smith.scalar_solvability_iff_dvd
@@ -210,6 +255,7 @@ end PscRoutes.R1Smith
 #print axioms PscRoutes.R1Smith.matrix_smith_certificate_complete
 #print axioms PscRoutes.R1Smith.ancestryOrbit_unroll
 #print axioms PscRoutes.R1Smith.ancestryOrbit_closed_iff_cycle_equation
+#print axioms PscRoutes.R1Smith.ancestry_smith_cycle_criterion
 
 open Lean Elab Command in
 run_cmd do
@@ -221,7 +267,8 @@ run_cmd do
     `PscRoutes.R1Smith.zero_diagonal_requires_zero,
     `PscRoutes.R1Smith.matrix_smith_certificate_complete,
     `PscRoutes.R1Smith.ancestryOrbit_unroll,
-    `PscRoutes.R1Smith.ancestryOrbit_closed_iff_cycle_equation] do
+    `PscRoutes.R1Smith.ancestryOrbit_closed_iff_cycle_equation,
+    `PscRoutes.R1Smith.ancestry_smith_cycle_criterion] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
