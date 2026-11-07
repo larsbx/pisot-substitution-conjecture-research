@@ -92,3 +92,36 @@ module PscR1SmithTribonacciMatrix {
   run smithSignedTest = init.then(negative)
     .expect(exactSmithDiagonal and x0 == -1 and x2 == -1)
 }
+
+
+// First actual substitution-specific integer-membership decision:
+// proper source-image prefixes of 0->01,1->02,2->0 yield
+// delta in {-1,0,1} on the first letter coordinate.
+// The exact Smith transforms of I-M give U*(delta*e0)=(0,-delta,-delta),
+// with diagonal (1,1,2), so integer membership holds iff 2 | delta.
+//
+// This tests only the local **period-one** candidate equation, not
+// whether a full source-compatible strict occurrence cycle exists.
+module PscR1SmithTribonacciParity {
+  var delta: int
+
+  action init = delta' = 0
+  action negativeDigit = delta' = -1
+  action zeroDigit = delta' = 0
+  action positiveDigit = delta' = 1
+  action step = any { negativeDigit, zeroDigit, positiveDigit }
+
+  val allowedProperPrefixDigit = delta >= -1 and delta <= 1
+  val transformed0 = 0
+  val transformed1 = -delta
+  val transformed2 = -delta
+  val smithIntegral = transformed2 % 2 == 0
+  val onlyZeroPasses = smithIntegral == (delta == 0)
+
+  run negativeDigitRejectedTest = init.then(negativeDigit)
+    .expect(delta == -1 and not(smithIntegral) and onlyZeroPasses)
+  run zeroDigitAcceptedTest = init.then(zeroDigit)
+    .expect(delta == 0 and smithIntegral and onlyZeroPasses)
+  run positiveDigitRejectedTest = init.then(positiveDigit)
+    .expect(delta == 1 and not(smithIntegral) and onlyZeroPasses)
+}
