@@ -35,7 +35,7 @@ jobs:
             echo "Refusing unverified Lean declarations" >&2
             exit 1
           fi
-          test "$(grep -c 'PSC_R1SMITH_AXIOMS_OK' "$RUNNER_TEMP/r1-smith-lean.log")" -eq 9
+          test "$(grep -c 'PSC_R1SMITH_AXIOMS_OK' "$RUNNER_TEMP/r1-smith-lean.log")" -eq 13
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -75,3 +75,11 @@ jobs:
           npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Smith.qnt --main=PscR1SmithModThree --invariant=canonicalF3
           npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1Smith.qnt --main=PscR1SmithModThree | tee "$RUNNER_TEMP/r1-smith-three.log"
           grep -E '1 passing|1 passed' "$RUNNER_TEMP/r1-smith-three.log" >/dev/null
+      - name: Replay concrete Tribonacci integer Smith matrix witnesses
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Smith.qnt --main=PscR1SmithTribonacciMatrix --invariant=finiteTestBox
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Smith.qnt --main=PscR1SmithTribonacciMatrix --invariant=exactSmithDiagonal
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1Smith.qnt --main=PscR1SmithTribonacciMatrix | tee "$RUNNER_TEMP/r1-smith-matrix.log"
+          grep -E '4 passing|4 passed' "$RUNNER_TEMP/r1-smith-matrix.log" >/dev/null
