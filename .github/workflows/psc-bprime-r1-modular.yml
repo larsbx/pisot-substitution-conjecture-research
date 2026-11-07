@@ -35,7 +35,7 @@ jobs:
             echo "Unaccepted axiom or Lean error" >&2
             exit 1
           fi
-          test "$(grep -c 'PSC_R1F_AXIOMS_OK' "$RUNNER_TEMP/r1f-lean.log")" -eq 4
+          test "$(grep -c 'PSC_R1F_AXIOMS_OK' "$RUNNER_TEMP/r1f-lean.log")" -eq 5
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -60,11 +60,19 @@ jobs:
           node-version: '22'
       - name: Typecheck finite-residue model
         run: npx --yes @informalsystems/quint@0.33.1 typecheck proof/quint/PscR1Modular.qnt
-      - name: Replay invariant and both explicit residue witnesses
+      - name: Replay two abstract F2 toy residues
         shell: bash
         run: |
           set -euo pipefail
-          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Modular.qnt --invariant=residueBound
-          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Modular.qnt --invariant=noSolution
-          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1Modular.qnt | tee "$RUNNER_TEMP/r1f-quint.log"
-          grep -E '2 passing|2 passed' "$RUNNER_TEMP/r1f-quint.log" >/dev/null
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Modular.qnt --main=PscR1Modular --invariant=residueBound
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Modular.qnt --main=PscR1Modular --invariant=noSolution
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1Modular.qnt --main=PscR1Modular | tee "$RUNNER_TEMP/r1f-toy.log"
+          grep -E '2 passing|2 passed' "$RUNNER_TEMP/r1f-toy.log" >/dev/null
+      - name: Replay exhaustive concrete Tribonacci F2 correction residues
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Modular.qnt --main=PscR1TribonacciResidues --invariant=residueBounds
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Modular.qnt --main=PscR1TribonacciResidues --invariant=noE0PeriodOne
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1Modular.qnt --main=PscR1TribonacciResidues | tee "$RUNNER_TEMP/r1f-tribonacci.log"
+          grep -E '4 passing|4 passed' "$RUNNER_TEMP/r1f-tribonacci.log" >/dev/null
