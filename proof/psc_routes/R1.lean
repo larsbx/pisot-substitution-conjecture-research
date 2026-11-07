@@ -100,6 +100,63 @@ theorem period_forcing_certificate
     _ = height n - height 0 := by rw [← heq]
     _ = 0 := by rw [hperiod]; ring
 
+
+/-- The accumulated scalar corrections are nonnegative when each correction
+is nonnegative and the Perron multiplier is nonnegative. This is an
+algebraic condition; no claim about actual ordered source digit signs. -/
+theorem forcedDigitSum_nonneg (beta : ℝ) (correction : ℕ → ℝ)
+    (hbeta : 0 ≤ beta) (hdigits : ∀ k, 0 ≤ correction k) (n : ℕ) :
+    0 ≤ forcedDigitSum beta correction n := by
+  induction n with
+  | zero => simp [forcedDigitSum]
+  | succ n ih =>
+      simp only [forcedDigitSum]
+      exact add_nonneg (mul_nonneg hbeta ih) (hdigits n)
+
+/-- Strictly positive Perron height, expanding growth over a full period,
+and nonnegative *all* forced corrections exclude a periodic ancestry.
+The signed-correction premise is precisely the open occurrence-order
+obligation. The theorem does not assert that Pisot strict components
+satisfy that premise. -/
+theorem no_positive_periodic_orbit_with_nonnegative_digits
+    (beta : ℝ) (height correction : ℕ → ℝ) (n : ℕ)
+    (hbeta : 0 ≤ beta)
+    (hstep : ∀ k, height (k + 1) = beta * height k + correction k)
+    (hpow : 1 < beta ^ n) (hstart : 0 < height 0)
+    (hdigits : ∀ k, 0 ≤ correction k)
+    (hperiod : height n = height 0) : False := by
+  have hsum : 0 ≤ forcedDigitSum beta correction n :=
+    forcedDigitSum_nonneg beta correction hbeta hdigits n
+  have heq := period_forcing_certificate beta height correction hstep n hperiod
+  have hpositive : 0 < (beta ^ n - 1) * height 0 :=
+    mul_pos (by linarith) hstart
+  linarith
+
+/-- Dual negative orientation case; the digit sum remains nonpositive.
+This is distinct from a globally symmetric orientation claim. -/
+theorem no_negative_periodic_orbit_with_nonpositive_digits
+    (beta : ℝ) (height correction : ℕ → ℝ) (n : ℕ)
+    (hbeta : 0 ≤ beta)
+    (hstep : ∀ k, height (k + 1) = beta * height k + correction k)
+    (hpow : 1 < beta ^ n) (hstart : height 0 < 0)
+    (hdigits : ∀ k, correction k ≤ 0)
+    (hperiod : height n = height 0) : False := by
+  have hsum : 0 ≤ forcedDigitSum beta (fun k => -(correction k)) n :=
+    forcedDigitSum_nonneg beta (fun k => -(correction k)) hbeta
+      (by intro k; exact neg_nonneg.mpr (hdigits k)) n
+  have hsign : forcedDigitSum beta (fun k => -(correction k)) n =
+      -(forcedDigitSum beta correction n) := by
+    induction n with
+    | zero => simp [forcedDigitSum]
+    | succ n ih =>
+        simp only [forcedDigitSum, ih]
+        ring
+  have heq := period_forcing_certificate beta height correction hstep n hperiod
+  have hnegative : (beta ^ n - 1) * height 0 < 0 :=
+    mul_neg_of_pos_of_neg (by linarith) hstart
+  rw [hsign] at hsum
+  linarith
+
 end PscRoutes.R1
 
 #print axioms PscRoutes.R1.height_on_orbit
@@ -107,6 +164,9 @@ end PscRoutes.R1
 #print axioms PscRoutes.R1.nonzero_fixed_height_requires_forcing
 #print axioms PscRoutes.R1.forced_orbit_expansion
 #print axioms PscRoutes.R1.period_forcing_certificate
+#print axioms PscRoutes.R1.forcedDigitSum_nonneg
+#print axioms PscRoutes.R1.no_positive_periodic_orbit_with_nonnegative_digits
+#print axioms PscRoutes.R1.no_negative_periodic_orbit_with_nonpositive_digits
 
 /- Fail-closed exact-declaration axiom audit for this standalone branch.
    All declared helper theorems must use only the standard Lean axioms.
@@ -114,7 +174,7 @@ end PscRoutes.R1
 open Lean Elab Command in
 run_cmd do
   let allowed := #[`propext, `Classical.choice, `Quot.sound]
-  for name in #[`PscRoutes.R1.height_on_orbit, `PscRoutes.R1.correction_free_run_exclusion, `PscRoutes.R1.nonzero_fixed_height_requires_forcing, `PscRoutes.R1.forced_orbit_expansion, `PscRoutes.R1.period_forcing_certificate] do
+  for name in #[`PscRoutes.R1.height_on_orbit, `PscRoutes.R1.correction_free_run_exclusion, `PscRoutes.R1.nonzero_fixed_height_requires_forcing, `PscRoutes.R1.forced_orbit_expansion, `PscRoutes.R1.period_forcing_certificate, `PscRoutes.R1.forcedDigitSum_nonneg, `PscRoutes.R1.no_positive_periodic_orbit_with_nonnegative_digits, `PscRoutes.R1.no_negative_periodic_orbit_with_nonpositive_digits] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
