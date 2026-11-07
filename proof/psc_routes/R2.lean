@@ -129,6 +129,21 @@ theorem orientedScore_deck_positivity
   rw [orientedScore_deck_invariant]
   exact hpos
 
+
+/-- A decisive negative control for the orientation-indexed rescue:
+two opposite defects cancel in the *ordinary* (B′-style) average, yet
+their deck-invariant, orientation-indexed scores add rather than cancel.
+Thus an orientation-indexed potential cannot inherit B′ frequency
+averaging without a separate orientation-frequency bridge. -/
+theorem deck_score_average_counterexample
+    (h : ℚ →+ ℚ) (hone : h (1 : ℚ) = 1) :
+    orientedScore h true (1 : ℚ) +
+      orientedScore h false (-1 : ℚ) = 2 ∧
+    ((1 : ℚ) + (-1 : ℚ)) = 0 := by
+  constructor
+  · simp [orientedScore, map_neg, hone]
+  · norm_num
+
 end PscRoutes.R2
 
 #print axioms PscRoutes.R2.good_mass_lower_bound
@@ -139,6 +154,7 @@ end PscRoutes.R2
 #print axioms PscRoutes.R2.deck_symmetric_separator_vanishes
 #print axioms PscRoutes.R2.orientedScore_deck_invariant
 #print axioms PscRoutes.R2.orientedScore_deck_positivity
+#print axioms PscRoutes.R2.deck_score_average_counterexample
 
 /- Fail-closed exact-declaration axiom audit for this standalone branch.
    All declared helper theorems must use only the standard Lean axioms.
@@ -146,7 +162,7 @@ end PscRoutes.R2
 open Lean Elab Command in
 run_cmd do
   let allowed := #[`propext, `Classical.choice, `Quot.sound]
-  for name in #[`PscRoutes.R2.good_mass_lower_bound, `PscRoutes.R2.positive_density_contradiction, `PscRoutes.R2.symmetric_orientation_forces_zero, `PscRoutes.R2.no_two_sided_strict_positive_separator, `PscRoutes.R2.density_excludes_small_mean, `PscRoutes.R2.deck_symmetric_separator_vanishes, `PscRoutes.R2.orientedScore_deck_invariant, `PscRoutes.R2.orientedScore_deck_positivity] do
+  for name in #[`PscRoutes.R2.good_mass_lower_bound, `PscRoutes.R2.positive_density_contradiction, `PscRoutes.R2.symmetric_orientation_forces_zero, `PscRoutes.R2.no_two_sided_strict_positive_separator, `PscRoutes.R2.density_excludes_small_mean, `PscRoutes.R2.deck_symmetric_separator_vanishes, `PscRoutes.R2.orientedScore_deck_invariant, `PscRoutes.R2.orientedScore_deck_positivity, `PscRoutes.R2.deck_score_average_counterexample] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
