@@ -100,3 +100,64 @@ module PscR1TribonacciPeriodThree {
       .expect(phase == 0 and x0 == 1 and x1 == 0 and x2 == 0
         and unitBasisState)
 }
+
+
+// Source-address refinement control: 0->01, 1->02, 2->0.
+// A proper prefix of the image of 0 or 1 may have length 0 or 1;
+// a proper prefix of image 2 (one letter) has length zero only.
+// All nonempty proper prefixes contribute exactly one symbol 0.
+// This model checks source-image *local* constraints, not full
+// occurrence-compatible ancestry under repeated desubstitution.
+module PscR1LiteralProperPrefixes {
+  var topLetter: int
+  var bottomLetter: int
+  var topOffset: int
+  var bottomOffset: int
+
+  action init = all {
+    topLetter' = 0, bottomLetter' = 0,
+    topOffset' = 0, bottomOffset' = 0,
+  }
+
+  // Each of these is a literal valid proper-prefix pair.
+  action negativeDigit = all {
+    topLetter' = 2, bottomLetter' = 1,
+    topOffset' = 0, bottomOffset' = 1,
+  }
+  action positiveDigit = all {
+    topLetter' = 1, bottomLetter' = 2,
+    topOffset' = 1, bottomOffset' = 0,
+  }
+  action zeroDigit = all {
+    topLetter' = 2, bottomLetter' = 2,
+    topOffset' = 0, bottomOffset' = 0,
+  }
+
+  // Deliberately wrong: image(2)=[0] has NO proper prefix of length 1.
+  action invalidDigit = all {
+    topLetter' = 2, bottomLetter' = 2,
+    topOffset' = 1, bottomOffset' = 0,
+  }
+
+  action step = any { negativeDigit, positiveDigit, zeroDigit }
+
+  val validLetterPair = topLetter >= 0 and topLetter <= 2
+    and bottomLetter >= 0 and bottomLetter <= 2
+  val validProperOffsets = topOffset >= 0 and bottomOffset >= 0
+    and topOffset < (if (topLetter == 2) 1 else 2)
+    and bottomOffset < (if (bottomLetter == 2) 1 else 2)
+  val correctionOnE0 = topOffset - bottomOffset
+  val correctionBound = correctionOnE0 >= -1 and correctionOnE0 <= 1
+
+  run actualNegativePrefixTest =
+    init.then(negativeDigit).expect(
+      validLetterPair and validProperOffsets and correctionOnE0 == -1)
+  run actualPositivePrefixTest =
+    init.then(positiveDigit).expect(
+      validLetterPair and validProperOffsets and correctionOnE0 == 1)
+  run actualZeroPrefixTest =
+    init.then(zeroDigit).expect(
+      validLetterPair and validProperOffsets and correctionOnE0 == 0)
+  run rejectNonproperPrefixTest =
+    init.then(invalidDigit).expect(not(validProperOffsets))
+}
