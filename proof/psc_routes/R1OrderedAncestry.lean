@@ -77,6 +77,26 @@ def row (c : Nat × Nat × Nat × List Step) : List Int :=
     (List.ofFn fun i => entries (operator (last - first) i)).flatten ++ entries (rhs steps) ++
     steps.flatMap fun s => [s.top, s.bottom, s.topOffset, s.bottomOffset, s.topLetter, s.bottomLetter].map Int.ofNat ++ entries s.digit
 
+
+/-- Exact literal words after one inflation of the swap seed.
+The parental swap seed is **productive**: it already has matching
+letters on both tracks at positions zero and two. All nine
+depth-six ancestry cycles sampled by `loops 6` descend from
+this productive seed; they cannot serve as a strict child-closed
+nonproductive BPA counterexample. -/
+theorem tribonacci_swap_seed_image :
+    inflate [0, 1] = [0, 1, 0, 2] ∧
+    inflate [1, 0] = [0, 2, 0, 1] := by decide
+
+/-- Independent source-word diagonal coincidence witness at the
+first inflation, without invoking Parikh-only comparison. -/
+theorem swap_seed_has_diagonal_coincidence :
+    ∃ i : Nat,
+      i < (inflate [0, 1]).length ∧
+      i < (inflate [1, 0]).length ∧
+      (inflate [0, 1])[i]? = (inflate [1, 0])[i]? := by
+  refine ⟨0, by decide, by decide, by decide⟩
+
 theorem bounded_candidate_absent :
     ((List.range 6).map fun i => (loops (i + 1)).length) = [0, 0, 0, 0, 0, 9] ∧
     (loops 6).all (fun (_, _, _, steps) => !(decide (steps.map Step.defect =
@@ -114,6 +134,8 @@ def emit (tag : String) (values : List Int) : IO Unit :=
     for c in found do
       emit "R1_CYCLE" (row c)
 
+#print axioms tribonacci_swap_seed_image
+#print axioms swap_seed_has_diagonal_coincidence
 #print axioms bounded_candidate_absent
 #print axioms witness_source_equation
 #print axioms period_three_smith
@@ -124,7 +146,9 @@ end PscRoutes.R1OrderedAncestry
 open Lean Elab Command in
 run_cmd do
   let allowed := #[`propext, `Classical.choice, `Quot.sound]
-  for name in #[`PscRoutes.R1OrderedAncestry.bounded_candidate_absent,
+  for name in #[`PscRoutes.R1OrderedAncestry.tribonacci_swap_seed_image,
+      `PscRoutes.R1OrderedAncestry.swap_seed_has_diagonal_coincidence,
+      `PscRoutes.R1OrderedAncestry.bounded_candidate_absent,
       `PscRoutes.R1OrderedAncestry.witness_source_equation,
       `PscRoutes.R1OrderedAncestry.period_three_smith,
       `PscRoutes.R1OrderedAncestry.witness_passes_smith] do
