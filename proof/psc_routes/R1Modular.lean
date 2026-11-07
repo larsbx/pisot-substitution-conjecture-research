@@ -308,6 +308,52 @@ theorem four_x_eq_two_has_no_solution_mod_four :
   rintro ⟨x, hx⟩
   norm_num at hx
 
+
+/-- A source-bound *local* germ: integer prefix difference and the two
+actual source letters immediately following the asynchronous prefixes.
+It is not an ordered balanced-pair SCC state and does not include a
+recognizability-radius context, orientation bit, or global source words. -/
+structure TriCutGerm where
+  defect : Fin 3 → ℤ
+  topLetter : Fin 3
+  bottomLetter : Fin 3
+
+/-- A one-step cut germ uses actual proper image offsets. The output
+letters are read from the literal substitution images, and the
+correction is the difference of the two actual proper prefixes. -/
+def triCutGermStep (g : TriCutGerm) (r s : ℕ)
+    (hr : r < (trImage g.topLetter).length)
+    (hs : s < (trImage g.bottomLetter).length) : TriCutGerm where
+  defect := fun i =>
+    tribonacciIncidence g.defect i +
+      trParikh ((trImage g.topLetter).take r) i -
+      trParikh ((trImage g.bottomLetter).take s) i
+  topLetter := (trImage g.topLetter).get ⟨r, hr⟩
+  bottomLetter := (trImage g.bottomLetter).get ⟨s, hs⟩
+
+def triGerm0 : TriCutGerm := ⟨trBasis 0, 0, 0⟩
+def triGerm1 : TriCutGerm := ⟨trBasis 1, 0, 1⟩
+def triGerm2 : TriCutGerm := ⟨trBasis 2, 0, 2⟩
+
+/-- The nonzero three-cycle survives not only the matrix/correction
+alphabet, but even exact **next source-letter and proper-offset**
+compatibility. This is a stronger adversarial negative control.
+It does NOT show that a whole strict source word, recognized context,
+or normalized BPA component realizes this cycle. -/
+theorem tribonacci_nonzero_three_cycle_survives_proper_cut_germs :
+    triCutGermStep triGerm0 0 1 (by decide) (by decide) = triGerm1 ∧
+    triCutGermStep triGerm1 0 1 (by decide) (by decide) = triGerm2 ∧
+    triCutGermStep triGerm2 0 0 (by decide) (by decide) = triGerm0 := by
+  refine ⟨?_, ?_, ?_⟩
+  all_goals
+    apply TriCutGerm.ext
+    · funext i
+      fin_cases i <;>
+        norm_num [triCutGermStep, triGerm0, triGerm1, triGerm2,
+          tribonacciIncidence, trParikh, trImage, trBasis]
+    · norm_num [triCutGermStep, triGerm0, triGerm1, triGerm2, trImage]
+    · norm_num [triCutGermStep, triGerm0, triGerm1, triGerm2, trImage]
+
 end PscRoutes.R1Modular
 
 #print axioms PscRoutes.R1Modular.no_mod_solution_from_left_null
@@ -328,6 +374,7 @@ end PscRoutes.R1Modular
 #print axioms PscRoutes.R1Modular.four_x_eq_two_is_solvable_mod_two
 #print axioms PscRoutes.R1Modular.four_x_eq_two_is_solvable_mod_three
 #print axioms PscRoutes.R1Modular.four_x_eq_two_has_no_solution_mod_four
+#print axioms PscRoutes.R1Modular.tribonacci_nonzero_three_cycle_survives_proper_cut_germs
 
 /- An exact-declaration audit. Every theorem above is included by name;
    no source-level theorem can be accepted by a silent count reduction. -/
@@ -351,7 +398,8 @@ run_cmd do
     `PscRoutes.R1Modular.prime_field_certificates_are_not_integrally_complete,
     `PscRoutes.R1Modular.four_x_eq_two_is_solvable_mod_two,
     `PscRoutes.R1Modular.four_x_eq_two_is_solvable_mod_three,
-    `PscRoutes.R1Modular.four_x_eq_two_has_no_solution_mod_four] do
+    \`PscRoutes.R1Modular.four_x_eq_two_has_no_solution_mod_four,
+    \`PscRoutes.R1Modular.tribonacci_nonzero_three_cycle_survives_proper_cut_germs] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
