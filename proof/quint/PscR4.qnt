@@ -32,4 +32,10 @@ module PscR4OverlapWindows {
 
   val finiteOffsetBox = offset >= -2 and offset <= 2
   val noUnjustifiedCoincidence = not(commonTileSeen)
+
+
+  // Persistent nonzero offset in a finite window; no matching tile.
+  run recurrentNonzeroWindowTest =
+    init.then(8.reps(_ => forcedOverlap))
+      .expect(offset == 1 and overlapAge == 8 and noUnjustifiedCoincidence)
 }
