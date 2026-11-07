@@ -26,4 +26,11 @@ module PscR2OrientedAverage {
   val boundedDisplacement = displacement >= -1 and displacement <= 1
   val boundedCumulative = cumulative >= -1 and cumulative <= 1
   val noZeroWitness = not(zeroSeen)
+
+
+  // Exact witness: 12 alternating nonzero defects give cumulative sum 0,
+  // yet no individual defect is zero.
+  run meanZeroWithoutReturnTest =
+    init.then(12.reps(_ => alternate))
+      .expect(cumulative == 0 and samples == 12 and noZeroWitness)
 }
