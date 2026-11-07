@@ -59,3 +59,34 @@ A missing-edge regression (and wrong-sign, swapped-orientation,
 duplicate-collapsing regressions) is mandatory before making
 any graph-wide claim. The present Lean verifier proves only the exact
 `∀ e ∈ supplied_edges` property.
+
+## Source-level control: real ordered pair-factorization (non-Pisot)
+
+To narrow the gap between a synthetic weighted graph and a genuine
+substitution-derived occurrence graph, the Lean layer now includes the
+following **literal finite control**, over letters 0,1,2:
+
+- `0 ↦ 1`, `1 ↦ 012`, `2 ↦ 1`;
+- state `A=(01,10)`, state `B=(12,21)`;
+- raw ordered reduction rows `A → A⁻ B⁺`, `B → A⁺ B⁻`.
+
+Here superscript ± means the raw orientation of the two word tracks,
+not a signed weight on a rational cohomology graph.
+`nonPisotLiteralOrderedFactorization` proves all four substituted-word
+identities in Lean, and
+`nonPisotControlChildBalanceAndNoncoincidence` proves the two child
+types are balanced and noncoincident. The two children are length two,
+and their first letters differ, so the single proper cut is not
+balanced. This is an exact replay of the repository's longstanding
+**reducible, non-Pisot** strict-component negative control, not a
+primitive irreducible Pisot counterexample.
+
+**Unbound fields:** a generic potential-certificate edge still lacks
+canonical source-state ID, child ordinal, source/target occurrence
+positions, sign, and independent complete-row import proof. The
+literal-control theorems certify this one finite specimen only.
+They do not assign a canonical rational R2 separation weight to its
+edges and do not prove all strict PIP systems possess any such finite
+component.
+
+The standalone Lean axiom audit now inventories six named theorems.
