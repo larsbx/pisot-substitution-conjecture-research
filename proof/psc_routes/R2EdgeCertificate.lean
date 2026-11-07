@@ -78,12 +78,47 @@ theorem omitted_edge_false_acceptance :
   · decide
   · exact positive_cycle_checker_refuses omittedEdgePotential
 
+
+/-- Real literal non-Pisot strict-control substitution (0-based letters):
+0↦1, 1↦012, 2↦1. These are source images, not synthetic graph edges. -/
+def strictControlImage (a : Fin 3) : List (Fin 3) :=
+  if a = 0 then [1] else if a = 1 then [0, 1, 2] else [1]
+
+def strictControlWord (w : List (Fin 3)) : List (Fin 3) :=
+  w.flatMap strictControlImage
+
+/-- Complete *ordered* child factorization for the two-state
+non-Pisot control A=(01,10), B=(12,21).
+A maps to swapped A then direct B; B maps to direct A then swapped B.
+This is literal equality, without normalizing away the orientation bit. -/
+theorem nonPisotLiteralOrderedFactorization :
+    strictControlWord [0, 1] = ([1, 0] ++ [1, 2]) ∧
+    strictControlWord [1, 0] = ([0, 1] ++ [2, 1]) ∧
+    strictControlWord [1, 2] = ([0, 1] ++ [2, 1]) ∧
+    strictControlWord [2, 1] = ([1, 0] ++ [1, 2]) := by
+  decide
+
+/-- The two named children really are Parikh-balanced but
+noncoincident. Their only proper cut (after the first letter) is not
+balanced because the first letters differ. -/
+theorem nonPisotControlChildBalanceAndNoncoincidence :
+    (∀ a : Fin 3,
+       (List.count a ([0, 1] : List (Fin 3))) =
+         (List.count a ([1, 0] : List (Fin 3))) ∧
+       (List.count a ([1, 2] : List (Fin 3))) =
+         (List.count a ([2, 1] : List (Fin 3)))) ∧
+    ([0, 1] : List (Fin 3)) ≠ [1, 0] ∧
+    ([1, 2] : List (Fin 3)) ≠ [2, 1] := by
+  decide
+
 end PscRoutes.R2C
 
 #print axioms PscRoutes.R2C.checkPotential_sound
 #print axioms PscRoutes.R2C.positive_two_edge_cycle_forbids_potential
 #print axioms PscRoutes.R2C.positive_cycle_checker_refuses
 #print axioms PscRoutes.R2C.omitted_edge_false_acceptance
+#print axioms PscRoutes.R2C.nonPisotLiteralOrderedFactorization
+#print axioms PscRoutes.R2C.nonPisotControlChildBalanceAndNoncoincidence
 
 open Lean Elab Command in
 run_cmd do
@@ -91,7 +126,9 @@ run_cmd do
   for name in #[`PscRoutes.R2C.checkPotential_sound,
       `PscRoutes.R2C.positive_two_edge_cycle_forbids_potential,
       `PscRoutes.R2C.positive_cycle_checker_refuses,
-      `PscRoutes.R2C.omitted_edge_false_acceptance] do
+      `PscRoutes.R2C.omitted_edge_false_acceptance,
+      `PscRoutes.R2C.nonPisotLiteralOrderedFactorization,
+      `PscRoutes.R2C.nonPisotControlChildBalanceAndNoncoincidence] do
     let axs ← collectAxioms name
     for ax in axs do
       if !allowed.contains ax then
