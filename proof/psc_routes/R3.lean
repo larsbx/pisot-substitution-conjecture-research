@@ -82,6 +82,30 @@ theorem vector_sliding_factor_sum_identity
       (P (K + j) letter - P j letter) := by
   exact sliding_factor_sum_identity (fun k => P k letter) t K
 
+
+/-- The bounded-length alphabetic pair space is finite in every finite
+alphabet. This is the already-standard finite-state step between
+uniform return gaps and finiteness of *prefix-seeded* BPA states.
+The genuinely open step is proving a bound uniformly in depth,
+without borrowing overlap productivity. -/
+theorem finite_bounded_pair_states (d L : ℕ) :
+    {p : List (Fin d) × List (Fin d) |
+      p.1.length ≤ L ∧ p.2.length ≤ L}.Finite := by
+  have hwords : {w : List (Fin d) | w.length ≤ L}.Finite :=
+    List.finite_length_le (Fin d) L
+  simpa only [Set.mem_prod, Set.mem_setOf_eq] using hwords.prod hwords
+
+/-- Passing to a prescribed balance predicate and irreducible subset
+cannot destroy the bounded-length finiteness. No reachability or
+substitution-specific child identity is assumed in this lemma. -/
+theorem finite_bounded_balanced_states (d L : ℕ)
+    (balanced : List (Fin d) × List (Fin d) → Prop) :
+    {p : List (Fin d) × List (Fin d) |
+      p.1.length ≤ L ∧ p.2.length ≤ L ∧ balanced p}.Finite := by
+  apply (finite_bounded_pair_states d L).subset
+  intro p hp
+  exact ⟨hp.1, hp.2.1⟩
+
 end PscRoutes.R3
 
 #print axioms PscRoutes.R3.bounded_block_coordinate
@@ -89,6 +113,8 @@ end PscRoutes.R3
 #print axioms PscRoutes.R3.telescoping_prefix_increments
 #print axioms PscRoutes.R3.sliding_factor_sum_identity
 #print axioms PscRoutes.R3.vector_sliding_factor_sum_identity
+#print axioms PscRoutes.R3.finite_bounded_pair_states
+#print axioms PscRoutes.R3.finite_bounded_balanced_states
 
 /- Fail-closed exact-declaration axiom audit for this standalone branch.
    All declared helper theorems must use only the standard Lean axioms.
@@ -96,7 +122,7 @@ end PscRoutes.R3
 open Lean Elab Command in
 run_cmd do
   let allowed := #[`propext, `Classical.choice, `Quot.sound]
-  for name in #[`PscRoutes.R3.bounded_block_coordinate, `PscRoutes.R3.shift_factor_identity, `PscRoutes.R3.telescoping_prefix_increments, `PscRoutes.R3.sliding_factor_sum_identity, `PscRoutes.R3.vector_sliding_factor_sum_identity] do
+  for name in #[`PscRoutes.R3.bounded_block_coordinate, `PscRoutes.R3.shift_factor_identity, `PscRoutes.R3.telescoping_prefix_increments, `PscRoutes.R3.sliding_factor_sum_identity, `PscRoutes.R3.vector_sliding_factor_sum_identity, `PscRoutes.R3.finite_bounded_pair_states, `PscRoutes.R3.finite_bounded_balanced_states] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
