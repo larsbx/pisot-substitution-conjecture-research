@@ -376,6 +376,23 @@ theorem balanced_children_canonical_boundary
   exact ⟨equal_length_child_list children hlength,
     balanced_child_list_mass label children hbalanced⟩
 
+
+/-- In the actual ordered derived factorization a normalized
+irreducible balanced child may occur with raw sides swapped.
+An equal-length irreducible pair remains irreducible after that
+side swap. This is the explicit sign-cocycle compatibility needed
+to apply boundary localization to *raw oriented* occurrences. -/
+theorem noAlignedInteriorReturn_swap
+    (label : A → V) (top bottom : List A)
+    (hlength : top.length = bottom.length)
+    (hirred : NoAlignedInteriorReturn label top bottom) :
+    NoAlignedInteriorReturn label bottom top := by
+  intro k hpos hproper hreturn
+  have htop : k < top.length := by
+    rw [hlength]
+    exact hproper
+  exact (hirred k hpos htop) hreturn.symm
+
 end PscRoutes.R1Source
 
 #print axioms PscRoutes.R1Source.cutPrefix_append_cutSuffix
@@ -396,6 +413,7 @@ end PscRoutes.R1Source
 #print axioms PscRoutes.R1Source.irreducible_child_rules_out_internal_aligned_return
 #print axioms PscRoutes.R1Source.equal_length_child_list
 #print axioms PscRoutes.R1Source.balanced_children_canonical_boundary
+#print axioms PscRoutes.R1Source.noAlignedInteriorReturn_swap
 
 open Lean Elab Command in
 run_cmd do
@@ -417,7 +435,8 @@ run_cmd do
       `PscRoutes.R1Source.balanced_child_prefix_cancel,
       `PscRoutes.R1Source.irreducible_child_rules_out_internal_aligned_return,
       `PscRoutes.R1Source.equal_length_child_list,
-      `PscRoutes.R1Source.balanced_children_canonical_boundary] do
+      `PscRoutes.R1Source.balanced_children_canonical_boundary,
+      `PscRoutes.R1Source.noAlignedInteriorReturn_swap] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
