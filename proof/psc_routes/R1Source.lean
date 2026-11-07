@@ -265,6 +265,75 @@ theorem tribonacci_nonmatching_control_is_irreducible :
     have h0 := congrFun heq (0 : Fin 3)
     norm_num [wordMass, trLabel] at h0
 
+
+/-! ### Multi-child boundary localization interface
+
+A strict child factorization is a concatenation of *balanced*
+irreducible children. Any aligned balanced return strictly inside
+one child remains an interior balanced return after preceding balanced
+children. The new theorem explains why source-germ return witnesses
+must be checked against actual child boundaries, not merely against
+one guessed parent pair. -/
+
+/-- Balance of all completed children propagates to their concatenation. -/
+theorem balanced_child_list_mass
+    (label : A → V) (children : List (List A × List A))
+    (hchildren : ∀ pair ∈ children,
+      wordMass label pair.1 = wordMass label pair.2) :
+    wordMass label (children.flatMap Prod.fst) =
+      wordMass label (children.flatMap Prod.snd) := by
+  induction children with
+  | nil => simp [wordMass]
+  | cons child rest ih =>
+      have hhead : wordMass label child.1 = wordMass label child.2 :=
+        hchildren child (by simp)
+      have hrest : ∀ pair ∈ rest,
+          wordMass label pair.1 = wordMass label pair.2 := by
+        intro pair hp
+        exact hchildren pair (by simp [hp])
+      have htail := ih hrest
+      simp only [List.flatMap_cons, wordMass_append]
+      rw [hhead, htail]
+
+/-- If the completed previous children are balanced, an aligned return
+at equal relative offset `k` in the next child is possible only if
+that child itself has a balanced return at `k`. -/
+theorem balanced_child_prefix_cancel
+    (label : A → V)
+    (completedTop completedBottom childTop childBottom : List A)
+    (k : ℕ)
+    (hcompleted :
+      wordMass label completedTop = wordMass label completedBottom)
+    (hreturn :
+      wordMass label (completedTop ++ childTop.take k) =
+        wordMass label (completedBottom ++ childBottom.take k)) :
+    wordMass label (childTop.take k) =
+      wordMass label (childBottom.take k) := by
+  simp only [wordMass_append] at hreturn
+  rw [hcompleted] at hreturn
+  exact add_left_cancel hreturn
+
+/-- A complete balanced previous prefix does not hide an interior
+return inside an irreducible next child. The *only remaining*
+candidate cuts in a complete strict factorization are its
+balanced child boundaries (or events crossing unmatched child
+addresses, which require a separate source-refinement theorem). -/
+theorem irreducible_child_rules_out_internal_aligned_return
+    (label : A → V)
+    (completedTop completedBottom childTop childBottom : List A)
+    (k : ℕ)
+    (hcompleted :
+      wordMass label completedTop = wordMass label completedBottom)
+    (hirred : NoAlignedInteriorReturn label childTop childBottom)
+    (hkpositive : 0 < k) (hkproper : k < childTop.length) :
+    wordMass label (completedTop ++ childTop.take k) ≠
+      wordMass label (completedBottom ++ childBottom.take k) := by
+  intro hreturn
+  apply hirred k hkpositive hkproper
+  exact balanced_child_prefix_cancel label
+    completedTop completedBottom childTop childBottom
+    k hcompleted hreturn
+
 end PscRoutes.R1Source
 
 #print axioms PscRoutes.R1Source.cutPrefix_append_cutSuffix
@@ -280,6 +349,9 @@ end PscRoutes.R1Source
 #print axioms PscRoutes.R1Source.tribonacci_matching_source_control_has_interior_return
 #print axioms PscRoutes.R1Source.tribonacci_matching_control_is_reducible
 #print axioms PscRoutes.R1Source.tribonacci_nonmatching_control_is_irreducible
+#print axioms PscRoutes.R1Source.balanced_child_list_mass
+#print axioms PscRoutes.R1Source.balanced_child_prefix_cancel
+#print axioms PscRoutes.R1Source.irreducible_child_rules_out_internal_aligned_return
 
 open Lean Elab Command in
 run_cmd do
@@ -296,7 +368,10 @@ run_cmd do
       `PscRoutes.R1Source.tribonacci_source_controls_balanced,
       `PscRoutes.R1Source.tribonacci_matching_source_control_has_interior_return,
       `PscRoutes.R1Source.tribonacci_matching_control_is_reducible,
-      `PscRoutes.R1Source.tribonacci_nonmatching_control_is_irreducible] do
+      `PscRoutes.R1Source.tribonacci_nonmatching_control_is_irreducible,
+      `PscRoutes.R1Source.balanced_child_list_mass,
+      `PscRoutes.R1Source.balanced_child_prefix_cancel,
+      `PscRoutes.R1Source.irreducible_child_rules_out_internal_aligned_return] do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
