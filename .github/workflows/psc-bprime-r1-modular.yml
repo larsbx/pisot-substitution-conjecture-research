@@ -83,3 +83,11 @@ jobs:
           npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Modular.qnt --main=PscR1TribonacciPeriodThree --invariant=unitBasisState
           npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1Modular.qnt --main=PscR1TribonacciPeriodThree | tee "$RUNNER_TEMP/r1f-period-three.log"
           grep -E '1 passing|1 passed' "$RUNNER_TEMP/r1f-period-three.log" >/dev/null
+      - name: Replay literal proper-prefix and forbidden offset controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Modular.qnt --main=PscR1LiteralProperPrefixes --invariant=validProperOffsets
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Modular.qnt --main=PscR1LiteralProperPrefixes --invariant=correctionBound
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1Modular.qnt --main=PscR1LiteralProperPrefixes | tee "$RUNNER_TEMP/r1f-local-prefix.log"
+          grep -E '4 passing|4 passed' "$RUNNER_TEMP/r1f-local-prefix.log" >/dev/null
