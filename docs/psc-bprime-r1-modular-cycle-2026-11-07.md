@@ -131,3 +131,24 @@ The Lean theorem `diagonal_certificate_complete` derives both directions. Zero d
 **Adversarial model:** `proof/quint/PscR1Smith.qnt` enumerates all four residues modulo 4 for the equation `4x=2`, checking that every residue fails modulo 4 even though each satisfies the reduction modulo 2. A separate module exhibits the valid modulo-3 residue `x=2`. This is the smallest useful negative control against treating “prime-field checks passed” as “integral cycle possible”. It is not a strict Pisot ancestry. CI `.github/workflows/psc-bprime-r1-smith.yml` demands a *separate* exact-head Lean axiom receipt for **five** new declarations and five nonempty deterministic Quint tests. The earlier R1F modular workflow remains independent.
 
 **Decision:** proceed to *certificate generation and checking* only after these two machine-facing modules compile, while keeping R1F draft. Next mathematically significant obligations are (a) a verified finite integer matrix diagonal certificate independent of solver self-report, (b) genuine source-child occurrence indexing and raw orientation binding, and (c) exhaustive or uniformly justified cycle coverage. No PSC/C4/BH/A1′ status change. A targeted research-design prior-art stop/go is already recorded above; independent human mathematical review remains after PSC closure.
+
+## 2026-11-07 — exact matrix diagonalization, full ancestry equivalence and independent Quint controls
+
+The Lean-first development now includes `ancestryOrbit_unroll` and `ancestryOrbit_closed_iff_cycle_equation` over **arbitrary additive groups and homomorphisms**, without excluding mixed-sign correction words. Combining these with exact finite integer matrix transforms yields the conditional iff `ancestry_smith_cycle_criterion`: an integral defect-cycle for a *supplied correction word* exists exactly when every verified Smith diagonal coordinate divides its transformed forced-digit sum, assuming the matrix is proven to equal the cycle operator `I−M^k`.
+
+**Importantly, a concrete unimodular Tribonacci Smith matrix is now supplied.** For the actual incidence `M=[[1,1,1],[1,0,0],[0,1,0]]`, the period-one operator `A=I−M` is represented by
+
+```
+A = [[ 0,-1,-1],[-1, 1, 0],[ 0,-1, 1]]
+U = [[ 0,-1, 0],[-1, 0, 0],[-1, 0, 1]]
+V = [[ 1, 1,-1],[ 0, 1,-1],[ 0, 0, 1]]
+Uinv = [[0,-1,0],[-1,0,0],[0,-1,1]]
+Vinv = [[1,-1,0],[0,1,1],[0,0,1]]
+D = diag(1,1,2).
+```
+
+The Lean exact-declaration proofs of `Uinv U = I`, `V Vinv = I`, and `U A V = D` and the resulting **complete iff for arbitrary integer rhs** are staged in `proof/psc_routes/R1Smith.lean`. They explicitly avoid depending on the output of an opaque Smith implementation. For an `e0`-only correction, `U (δ e0)=(0,-δ,-δ)`, so the nontrivial divisibility gate is precisely `2|δ`, reconciling the earlier direct period-one parity exclusion. This statement is about periodic integral ancestry, not yet an occurrence-compatible strict BPA cycle.
+
+`proof/quint/PscR1Smith.qnt` has independent, *named* deterministic tests for all four residues modulo 4, the mod-3 false-acceptance case, and the three signed basis/one negative-vector witnesses for the exact matrix identity, now four matrix tests in total. These checks supplement, but do not replace, the universal Lean matrix equality. The dedicated `.github/workflows/psc-bprime-r1-smith.yml` requires **13** fail-closed Lean axiom receipts and **nine** executed Quint tests across three independently selected modules, with HEAD pinned.
+
+**Gate:** Latest-head hosted acceptance is not yet established. The formal result remains a *complete conditional integer membership criterion*, not a complete enumeration of source-valid strict ancestry cycles or PSC closure. The next task is to verify canonical exact integer matrices for general `I−M^k`, and bind every candidate digit to raw ordered source-prefix addresses.
