@@ -124,7 +124,7 @@ theorem strict_class_has_no_target (s : State)
 theorem strict_class_recurrent :
     minus ∈ childStates plus ∧ plus ∈ childStates minus ∧
     plus ∈ childStates plus ∧ minus ∈ childStates minus := by
-  decide
+  simp [childStates]
 
 inductive Reach : State → State → Prop where
   | refl (s : State) : Reach s s
@@ -159,7 +159,7 @@ theorem strict_class_unproductive (s : State) (hs : inStrict s = true) :
   cases ht
 
 theorem root_productive : Productive root := by
-  exact ⟨zero, Reach.step (by decide) (Reach.refl zero), rfl⟩
+  exact ⟨zero, Reach.step (by simp [childStates]) (Reach.refl zero), rfl⟩
 
 /-- The valid transport direction is BACKWARD along reachability. -/
 theorem productivity_propagates_to_predecessors {s t : State}
@@ -173,7 +173,7 @@ forward-propagation shortcut, NOT any irreducible-Pisot theorem. -/
 theorem productive_parent_has_unproductive_child :
     Productive root ∧ plus ∈ childStates root ∧
       inStrict plus = true ∧ ¬ Productive plus := by
-  exact ⟨root_productive, by decide, rfl,
+  exact ⟨root_productive, by simp [childStates], rfl,
     strict_class_unproductive plus rfl⟩
 
 end PscRoutes.R1ProductivityScope
