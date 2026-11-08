@@ -110,6 +110,12 @@ theorem reach_map {edge : S → S → Prop} {other : T → T → Prop}
 section Checks
 variable {n : ℕ} {Raw : Type*} [DecidableEq Raw]
 
+-- Use the core finite-index searches for these validators. Mathlib's generic
+-- Fintype decisions also execute, but their proof transports carry classical
+-- dependencies. This local choice keeps the checker axiom budget constructive;
+-- it does not restrict the general classical rank proofs above.
+attribute [local instance 2000] Nat.decidableForallFin Nat.decidableExistsFin
+
 /-- Inputs `actual`, `stateOK`, and `target` are the SOURCE specification,
 not unauthenticated claims made by a proposed packet. Literal ordered
 list equality preserves missing exits, orientation and multiplicity. -/

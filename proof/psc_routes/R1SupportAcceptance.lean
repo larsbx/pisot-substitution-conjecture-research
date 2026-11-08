@@ -245,7 +245,15 @@ run_cmd do
     liftIO <| IO.println s!"PSC_SUPPORT_ACCEPTANCE_AXIOMS\t{name}\t{reprStr axioms}"
   liftIO <| IO.println s!"PSC_SUPPORT_ACCEPTANCE_THEOREMS\t{names.size}"
 
-/- Computation may use propositional extensionality in erased proofs, never choice. -/
+/- Record the chosen finite decision instances, including implicit arguments. -/
+set_option pp.explicit true in
+#print PscRoutes.R1SupportCertificate.strictConditionsDecidable
+
+set_option pp.explicit true in
+#print PscRoutes.R1SupportCertificate.rankConditionsDecidable
+
+/- This axiom budget is stronger than executability: it also constrains erased
+proof dependencies. The #eval checks above separately establish execution. -/
 open Lean Elab Command in
 run_cmd do
   let allowed := #[`propext, `Quot.sound]
@@ -263,7 +271,7 @@ run_cmd do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
-        throwError "Noncomputable or nonstandard axiom in {name}: {ax}"
+        throwError "Checker axiom budget exceeded in {name}: {ax}"
     liftIO <| IO.println s!"PSC_SUPPORT_ACCEPTANCE_COMPUTABLE\t{name}\t{reprStr axioms}"
 
 end PscRoutes.R1SupportAcceptance

@@ -65,6 +65,23 @@ checker or instance. The pre-existing general rank-induction proofs may
 reason classically about an arbitrary target predicate on an arbitrary type;
 that proof reasoning is separate from the executable finite validators.
 
+The validator section also gives local priority to Lean core's
+`Nat.decidableForallFin` and `Nat.decidableExistsFin`. This makes the finite
+index enumeration explicit in instance selection instead of using Mathlib's
+generic `Fintype` decisions and their additional proof transports. It does
+not change the conditions, their quantifiers, or any theorem proof body.
+
+**Executability and axiom closure are different checks.** A transitive axiom
+inventory includes erased proof dependencies. The presence of
+`Classical.choice` there does not by itself mean a Boolean program cannot
+execute. The stricter checker budget here deliberately excludes it in both
+computation and associated proof terms, while the fourteen `#eval` assertions
+separately verify actual execution. The pinned core's bounded Nat decision
+roots are marked `noncomputable` to force their proved `@[csimp]`
+tail-recursive runtime replacements; this implementation detail is also not
+evidence of a classical runtime decision procedure. The source comments and
+definitions are in [`Init/Data/Nat/Lemmas.lean`](https://github.com/leanprover/lean4/blob/6a10ac8c22beadecabdbb0919c2b50214762f91d/src/Init/Data/Nat/Lemmas.lean).
+
 ### Evidence and replay
 
 The failed baseline is preserved as historical evidence:
@@ -78,6 +95,19 @@ The failed baseline is preserved as historical evidence:
   Lean job `128702055580`: six elan-download HTTP 504 responses; compilation
   was skipped. Its Quint job passed. This provisioning failure is a separate
   observation from the support source-compilation failure.
+
+The first repair candidate, `4636ecb78bd1e650c9b895b0ed094ccc97303f72`,
+then passed all four module compilations, all 47 compiled theorem inspections,
+all fourteen executable assertions, and the 21 hosted Quint tests with four
+mutants. [Support run 42517853797](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42517853797)
+succeeded. [Rank run 42517853730](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42517853730)
+was correctly withheld by the additional strict checker axiom budget:
+`strictConditionsDecidable` had a transitive `Classical.choice` dependency.
+That was not an admitted proof, a failure of the original mathematical
+contracts, or a failure to execute. The scoped core-instance priority above
+addresses the stricter proof-dependency requirement without relaxing it.
+The diagnostic now calls this an exceeded axiom budget rather than inferring
+noncomputability from transitive proof dependencies.
 
 The corrected rank workflow compiles, in a fresh output directory:
 
