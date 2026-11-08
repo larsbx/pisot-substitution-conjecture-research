@@ -33,8 +33,9 @@ theorem cutPrefix_append_cutSuffix (subst : A → List A)
     (pre post : List A) (a : A) (r : ℕ) :
     cutPrefix subst pre a r ++ cutSuffix subst post a r =
       (pre ++ a :: post).flatMap subst := by
-  simp only [cutPrefix, cutSuffix, List.flatMap_append]
-  simp [List.append_assoc, List.take_append_drop]
+  simp only [cutPrefix, cutSuffix, List.flatMap_append, List.flatMap_cons,
+    List.append_assoc]
+  rw [← List.append_assoc ((subst a).take r), List.take_append_drop]
 
 /-- Our actual cutPrefix is a prefix of the whole inflated word.
 This is a structural source-occurrence fact, not just Parikh algebra. -/
@@ -43,7 +44,7 @@ theorem cutPrefix_isPrefix (subst : A → List A)
     (cutPrefix subst pre a r).IsPrefix
       ((pre ++ a :: post).flatMap subst) := by
   refine ⟨cutSuffix subst post a r, ?_⟩
-  exact (cutPrefix_append_cutSuffix subst pre post a r).symm
+  exact cutPrefix_append_cutSuffix subst pre post a r
 
 /-- Source-word mass, including the Parikh basis specialization. -/
 def wordMass (label : A → V) : List A → V
