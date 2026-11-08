@@ -1,0 +1,132 @@
+{
+  "additional_interface_controls": [
+    {
+      "control": "relabelled-source-manifest",
+      "reason": "manifest changed the ordered source substitution labels",
+      "result": "refused"
+    },
+    {
+      "control": "CLI-refuses-disagreement-and-replaces-stale-success-receipt",
+      "exit_code": 1,
+      "reason": "physical mass refinement REFUSED: native and independent oracle exports differ byte for byte",
+      "result": "refused"
+    },
+    {
+      "control": "extra-import-source-file",
+      "reason": "extra importable source file",
+      "result": "refused"
+    }
+  ],
+  "checker_sha256": "2722dd51b18f63a3d7bcae159661bfae28ff8d17ccf8640ae0f573f63b394858",
+  "manifest_sha256": "e70897adcaf8c6689a21138d0d16aa1e91cda7a3671c04c7237e11a923531683",
+  "native_replay": "BLOCKED: automatic approval rejected local Mojo startup because of possible local-user telemetry; no workaround or retry was used. Fresh native acceptance requires the clean hosted workflow.",
+  "negative_controls": [
+    {
+      "control": "omitted-row",
+      "reason": "control: missing or extra packet records",
+      "result": "refused"
+    },
+    {
+      "control": "duplicated-row",
+      "reason": "control: omitted, duplicated, or reordered row",
+      "result": "refused"
+    },
+    {
+      "control": "omitted-source-witness",
+      "reason": "control: missing or extra packet records",
+      "result": "refused"
+    },
+    {
+      "control": "changed-source-witness",
+      "reason": "control: source component or losing witness declaration changed",
+      "result": "refused"
+    },
+    {
+      "control": "same-size-mass-byte-mutation",
+      "reason": "control: packet digest changed",
+      "result": "refused"
+    },
+    {
+      "control": "zero-mass-row",
+      "reason": "control: zero mass coefficient row",
+      "result": "refused"
+    },
+    {
+      "control": "native-oracle-mismatch",
+      "reason": "native and independent oracle exports differ byte for byte",
+      "result": "refused"
+    },
+    {
+      "control": "tracked-source-byte-mutation",
+      "reason": "working-tree bytes differ from pinned Git blob: control",
+      "result": "refused"
+    }
+  ],
+  "non_claim": "This local receipt is not native/oracle replay acceptance, Lean acceptance, or a geometric proof.",
+  "oracle_packet": {
+    "all_declared_source_witness_rows_present_and_nonzero": true,
+    "bytes": 1085652,
+    "declared_positive_deficit_rows": 3508,
+    "declared_retained_occurrences": 253395,
+    "declared_roots": 36,
+    "declared_source_scc_vertices": 2648,
+    "declared_source_sccs": 12,
+    "declared_states": 43915,
+    "records": 43940,
+    "root_vertex_ids_per_graph": [
+      0,
+      1,
+      2
+    ],
+    "schema": "c4-overlap-physical-mass-v1",
+    "sha256": "9eee6485f202becb8761e52f77e795b34916edf49ce75d6df821bf7fa1646683",
+    "summary_sha256": "364b07d6cf58162a43aabc3700b35ea1b8ca30082bac66d797395d9d25241a7c"
+  },
+  "schema": "physical-mass-local-oracle-provenance-v1",
+  "source": {
+    "authentication_scope": "Git object identity and source-byte integrity; unsigned commit, not a geometric proof",
+    "expected_commit": "51dd090a6aefeb92210410a3f7e20d51926d7e86",
+    "expected_tree": "25b480b58b5766efdb59c17592c5ae679326a284",
+    "extra_importable_source_files": 0,
+    "observed_commit": "51dd090a6aefeb92210410a3f7e20d51926d7e86",
+    "observed_parents": [
+      "49bc7e1af11b6ab04f84b79f8737500b6de3748b"
+    ],
+    "observed_tree": "25b480b58b5766efdb59c17592c5ae679326a284",
+    "reference_files_checked": [
+      ".github/workflows/c4-overlap-physical-mass.yml",
+      "docs/c4-finite-overlap-carrier-2026-11-05.md",
+      "docs/c4-nonunit-madic-counting-bridge-2026-11-04.md",
+      "docs/c4-physical-mass-literature-gate-2026-11-07.md",
+      "docs/c4-physical-overlap-mass-2026-11-07.md",
+      "evidence/c4-physical-overlap-mass-2026-11-07/packet.sha256",
+      "evidence/c4-physical-overlap-mass-2026-11-07/summary.txt",
+      "kernel/c4_overlap_physical_mass.mojo",
+      "kernel/pixi.lock",
+      "kernel/pixi.toml",
+      "kernel/psc/c4_finite_cylinder_overlap.mojo",
+      "kernel/psc/c4_nonunit_residue_occupancy.mojo",
+      "kernel/psc/c4_overlap_physical_mass.mojo",
+      "kernel/psc/c4_overlap_scc_obstruction.mojo",
+      "kernel/psc/c4_pair_overlap_carrier.mojo",
+      "kernel/psc/c4_pair_overlap_new_incidence.mojo",
+      "kernel/psc/exact.mojo",
+      "kernel/psc/pisot.mojo",
+      "kernel/psc/real_root_sign.mojo",
+      "kernel/tests/test_c4_overlap_physical_mass.mojo",
+      "oracles/python/c4_overlap_physical_mass.py",
+      "oracles/python/c4_overlap_scc_obstruction.py",
+      "oracles/python/c4_pair_overlap_new_incidence.py",
+      "vendored.toml"
+    ],
+    "source_scan_exclusions": [
+      "kernel/.pixi",
+      "__pycache__ directories"
+    ],
+    "tracked_bytes_checked": 83651515,
+    "tracked_contents_sha256": "c9709a1f4dec111840afcc2842944aaecaac12d408b56a0f2ba005a69c0f700b",
+    "tracked_files_checked": 5543,
+    "working_tree_matches_pinned_tree": true
+  },
+  "status": "passed-source-and-oracle-checks-only"
+}

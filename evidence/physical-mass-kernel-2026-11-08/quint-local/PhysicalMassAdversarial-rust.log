@@ -1,0 +1,12 @@
+
+  PhysicalMassAdversarial
+    ok conservativeSourceRefusedTest passed 1 test(s)
+    ok losingSinkIsNotLosingSourceTest passed 1 test(s)
+    ok omittedRepeatedOccurrenceRefusedTest passed 1 test(s)
+    ok incorrectTransposeRefusedTest passed 1 test(s)
+    ok zeroMassBreaksSaturationTest passed 1 test(s)
+    ok incompleteRootReachabilityRefusedTest passed 1 test(s)
+    ok negativeMatrixEntryRefusedTest passed 1 test(s)
+    ok signedOverlapRefusedTest passed 1 test(s)
+
+  8 passing (202ms)

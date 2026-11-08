@@ -1,0 +1,66 @@
+PSC_AXIOMS	declaration	PscVerif.PhysicalMass	PscVerif.PhysicalMass.support	PscVerif.PhysicalMass.support	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.PhysicalMass	PscVerif.PhysicalMass.transposeAction	PscVerif.PhysicalMass.transposeAction	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.action.eq_1	PscVerif.PhysicalMass.action.eq_1	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.transpose_of_constant_orbit	PscVerif.PhysicalMass.transpose_of_constant_orbit	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.slack_nonneg	PscVerif.PhysicalMass.slack_nonneg	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement	PscVerif.PhysicalMass.Refinement	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement.mk	PscVerif.PhysicalMass.Refinement.mk	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.PhysicalMass	PscVerif.PhysicalMass.IsSource	PscVerif.PhysicalMass.IsSource	
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement.mk.inj	PscVerif.PhysicalMass.Refinement.mk.inj	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.products_zero	PscVerif.PhysicalMass.products_zero	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.weighted_loss_iff	PscVerif.PhysicalMass.weighted_loss_iff	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.saturation	PscVerif.PhysicalMass.saturation	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.zero_of_positive_edge	PscVerif.PhysicalMass.zero_of_positive_edge	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.sourceLoss_iff_loss_reaches_all	PscVerif.PhysicalMass.sourceLoss_iff_loss_reaches_all	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.deficit_nonneg	PscVerif.PhysicalMass.deficit_nonneg	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement.mk._flat_ctor	PscVerif.PhysicalMass.Refinement.mk._flat_ctor	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.source_contains_root	PscVerif.PhysicalMass.source_contains_root	
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.zero_on_targets	PscVerif.PhysicalMass.zero_on_targets	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement.noConfusionType	PscVerif.PhysicalMass.Refinement.noConfusionType	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement.of_forward_mass._proof_1	PscVerif.PhysicalMass.Refinement.of_forward_mass._proof_1	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement.ctorIdx	PscVerif.PhysicalMass.Refinement.ctorIdx	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement._sizeOf_inst	PscVerif.PhysicalMass.Refinement._sizeOf_inst	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement.mk.sizeOf_spec	PscVerif.PhysicalMass.Refinement.mk.sizeOf_spec	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.isSource_of_sameSCC	PscVerif.PhysicalMass.isSource_of_sameSCC	
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement.transpose_budget	PscVerif.PhysicalMass.Refinement.transpose_budget	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement.zero_of_supersolution	PscVerif.PhysicalMass.Refinement.zero_of_supersolution	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.weighted_deficit	PscVerif.PhysicalMass.weighted_deficit	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.slack.eq_1	PscVerif.PhysicalMass.slack.eq_1	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.budget_of_weighted_transport	PscVerif.PhysicalMass.budget_of_weighted_transport	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.deficit.eq_1	PscVerif.PhysicalMass.deficit.eq_1	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement.casesOn	PscVerif.PhysicalMass.Refinement.casesOn	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.PhysicalMass	PscVerif.PhysicalMass.action	PscVerif.PhysicalMass.action	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.deficit_conservation	PscVerif.PhysicalMass.deficit_conservation	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.exists_source_ancestor	PscVerif.PhysicalMass.exists_source_ancestor	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.PhysicalMass	PscVerif.PhysicalMass.deficit	PscVerif.PhysicalMass.deficit	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement.rec	PscVerif.PhysicalMass.Refinement.rec	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement.of_forward_mass._proof_2	PscVerif.PhysicalMass.Refinement.of_forward_mass._proof_2	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement.of_forward_mass._proof_3	PscVerif.PhysicalMass.Refinement.of_forward_mass._proof_3	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.transposeAction.eq_1	PscVerif.PhysicalMass.transposeAction.eq_1	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Reach	PscVerif.PhysicalMass.Reach	
+PSC_AXIOMS	declaration	PscVerif.PhysicalMass	PscVerif.PhysicalMass.SameSCC	PscVerif.PhysicalMass.SameSCC	
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.zero_of_reachable	PscVerif.PhysicalMass.zero_of_reachable	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement.mass	PscVerif.PhysicalMass.Refinement.mass	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.PhysicalMass	PscVerif.PhysicalMass.slack	PscVerif.PhysicalMass.slack	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement.matrix	PscVerif.PhysicalMass.Refinement.matrix	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.zero_at_loss	PscVerif.PhysicalMass.zero_at_loss	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.PhysicalMass	PscVerif.PhysicalMass.SourceLoss	PscVerif.PhysicalMass.SourceLoss	
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.zero_of_source_loss	PscVerif.PhysicalMass.zero_of_source_loss	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement.recOn	PscVerif.PhysicalMass.Refinement.recOn	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement.source_loss	PscVerif.PhysicalMass.Refinement.source_loss	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.zero_of_root_cover	PscVerif.PhysicalMass.zero_of_root_cover	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement.noConfusion	PscVerif.PhysicalMass.Refinement.noConfusion	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement.mk.noConfusion	PscVerif.PhysicalMass.Refinement.mk.noConfusion	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement.matrix_nonneg	PscVerif.PhysicalMass.Refinement.matrix_nonneg	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement.of_forward_mass	PscVerif.PhysicalMass.Refinement.of_forward_mass	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.conservative_source_ancestor_of_nonzero	PscVerif.PhysicalMass.conservative_source_ancestor_of_nonzero	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement._sizeOf_1	PscVerif.PhysicalMass.Refinement._sizeOf_1	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.isSource_iff_no_incoming	PscVerif.PhysicalMass.isSource_iff_no_incoming	
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.pairing	PscVerif.PhysicalMass.pairing	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement.mk.injEq	PscVerif.PhysicalMass.Refinement.mk.injEq	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.conservative_source_of_nonzero	PscVerif.PhysicalMass.conservative_source_of_nonzero	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.zero_of_loss_reaches	PscVerif.PhysicalMass.zero_of_loss_reaches	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.weighted_transpose	PscVerif.PhysicalMass.weighted_transpose	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement.theta	PscVerif.PhysicalMass.Refinement.theta	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.PhysicalMass	PscVerif.PhysicalMass.Refinement.mass_pos	PscVerif.PhysicalMass.Refinement.mass_pos	propext,Classical.choice,Quot.sound
+PSC_AUDIT_COMPLETE	65	40

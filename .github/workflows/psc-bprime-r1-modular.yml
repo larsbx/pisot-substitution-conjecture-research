@@ -1,0 +1,119 @@
+name: PSC R1F modular cycle certificates (conditional)
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/psc-bprime-r1-modular.yml'
+      - 'proof/psc_routes/R1Modular.lean'
+      - 'proof/quint/PscR1Modular.qnt'
+      - 'docs/psc-bprime-r1-modular-cycle-2026-11-07.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lean-r1f:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Verify exact revision
+        env:
+          EXPECTED: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED"
+      - name: Fail closed on all Lean theorem-to-axiom-inventory bindings
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          source = Path("proof/psc_routes/R1Modular.lean").read_text(encoding="utf-8")
+          theorem_names = re.findall(r"(?m)^theorem\s+([A-Za-z_][A-Za-z_0-9]*)", source)
+          assert "for name in #[" in source, "missing axiom-audit loop"
+          audit = source.split("for name in #[", 1)[1].split("] do", 1)[0]
+          audited = re.findall(r"\`PscRoutes\.R1Modular\.([A-Za-z_][A-Za-z_0-9]*)", audit)
+          if len(theorem_names) != len(set(theorem_names)):
+              raise SystemExit("duplicate theorem declarations")
+          if set(theorem_names) != set(audited) or len(audited) != len(theorem_names):
+              raise SystemExit(f"axiom inventory mismatch: declarations={theorem_names!r}; audited={audited!r}")
+          print(f"EXACT_AXIOM_INVENTORY_OK R1Modular: {len(audited)} declarations")
+          PY
+      - name: Provision pinned Lean and mathlib
+        run: ./tools/setup_lean.sh
+      - name: Prove modular unsatisfiability and audit all scoped declarations
+        working-directory: proof/PscVerif
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$HOME/.elan/bin/lake" env lean ../../proof/psc_routes/R1Modular.lean | tee "$RUNNER_TEMP/r1f-lean.log"
+          if grep -Eq 'sorryAx|error:' "$RUNNER_TEMP/r1f-lean.log"; then
+            echo "Unaccepted axiom or Lean error" >&2
+            exit 1
+          fi
+          test "$(grep -c 'PSC_R1F_AXIOMS_OK' "$RUNNER_TEMP/r1f-lean.log")" -eq 19
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: psc-r1f-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/r1f-lean.log
+          if-no-files-found: warn
+          retention-days: 30
+
+  quint-r1f:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Verify exact revision
+        env:
+          EXPECTED: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Typecheck finite-residue model
+        run: npx --yes @informalsystems/quint@0.33.1 typecheck proof/quint/PscR1Modular.qnt
+      - name: Replay two abstract F2 toy residues
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Modular.qnt --main=PscR1Modular --invariant=residueBound
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Modular.qnt --main=PscR1Modular --invariant=noSolution
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1Modular.qnt --main=PscR1Modular | tee "$RUNNER_TEMP/r1f-toy.log"
+          grep -E '2 passing|2 passed' "$RUNNER_TEMP/r1f-toy.log" >/dev/null
+      - name: Replay exhaustive concrete Tribonacci F2 correction residues
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Modular.qnt --main=PscR1TribonacciResidues --invariant=residueBounds
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Modular.qnt --main=PscR1TribonacciResidues --invariant=noE0PeriodOne
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1Modular.qnt --main=PscR1TribonacciResidues | tee "$RUNNER_TEMP/r1f-tribonacci.log"
+          grep -E '4 passing|4 passed' "$RUNNER_TEMP/r1f-tribonacci.log" >/dev/null
+      - name: Verify locally admissible nonzero period-three negative control
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Modular.qnt --main=PscR1TribonacciPeriodThree --invariant=unitBasisState
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1Modular.qnt --main=PscR1TribonacciPeriodThree | tee "$RUNNER_TEMP/r1f-period-three.log"
+          grep -E '1 passing|1 passed' "$RUNNER_TEMP/r1f-period-three.log" >/dev/null
+      - name: Replay literal proper-prefix and forbidden offset controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Modular.qnt --main=PscR1LiteralProperPrefixes --invariant=validProperOffsets
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Modular.qnt --main=PscR1LiteralProperPrefixes --invariant=correctionBound
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1Modular.qnt --main=PscR1LiteralProperPrefixes | tee "$RUNNER_TEMP/r1f-local-prefix.log"
+          grep -E '4 passing|4 passed' "$RUNNER_TEMP/r1f-local-prefix.log" >/dev/null
+      - name: Replay actual proper-cut germ cycle and index invariants
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Modular.qnt --main=PscR1ProperCutGerm --invariant=allOffsetsProper
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Modular.qnt --main=PscR1ProperCutGerm --invariant=sourceIndexDifferenceOne
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Modular.qnt --main=PscR1ProperCutGerm --invariant=cutGermOrbit
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1Modular.qnt --main=PscR1ProperCutGerm | tee "$RUNNER_TEMP/r1f-proper-germ.log"
+          grep -E '1 passing|1 passed' "$RUNNER_TEMP/r1f-proper-germ.log" >/dev/null

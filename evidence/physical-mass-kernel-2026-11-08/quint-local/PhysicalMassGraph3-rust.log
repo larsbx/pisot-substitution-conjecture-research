@@ -1,0 +1,9 @@
+
+  PhysicalMassGraph3
+    ok graphDomainCountTest passed 1 test(s)
+    ok exactReachabilityTest passed 1 test(s)
+    ok everyVertexHasSourceAncestorTest passed 1 test(s)
+    ok exhaustiveSourceLossCoverageTest passed 1 test(s)
+    ok exhaustiveNoPrematureTerminalTest passed 1 test(s)
+
+  5 passing (4663ms)
