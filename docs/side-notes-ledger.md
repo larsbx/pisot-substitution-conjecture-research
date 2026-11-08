@@ -2490,3 +2490,25 @@ claim-ledger promotion. Evidence: `docs/occurrence-path-replay-2026-10-16.md`,
     `Degree3Sector.roots_ssign_le` is now a one-line instance of `ssign_root_bound_of_perron`.
 
   Library: 45 modules, 2368 declarations, 1875 theorems, standard axioms only. Locator: [Concentration attack §8](c4-concentration-attack-2026-11-06.md).
+
+- **2026-11-07 — Stop/go gate for solidifying the scratch census (A) and the outside-PIP strict-system search (B).**
+  - **Prior art not previously in the repository: the minimal-length question is the `k`-deck problem.** Equal-length words have the same `k`-deck iff they are `k`-binomially equivalent. The least length `S(k)` with two distinct such words is `2, 4, 7, 12, 16, 30` for `k = 1..6`: Chrisnata–Kiah–Rao–Vardy–Yaakobi–Yao, ISCIT 2019, Table I and Theorem 7. Manvel et al. 1991 give `S(k) ≤ 2^k` (Thue–Morse) and a reduction to binary words, so `S(k)` does not depend on the alphabet; this is as reported by Golm–Nahvi–Gabrys–Milenkovic 2022, and the 1991 paper was not read. Do not claim novelty for unrestricted minimal lengths; only the irreducibility specialisation is unstudied in the sources read.
+  - **The binary half of A is decided.** For `k ≥ 2` it is empty (`binary_no_equiv2`). For `k = 1` there are exactly `2·C_{n−1}` ordered irreducible pairs, by bicoloured Motzkin paths, all with `K₂ ≠ 0`. Keep the binary run only as an enumerator calibration, against that closed form and against Table I `D_3(n)`, `D_4(n)` for `n ≤ 20`.
+  - **The literature fixes the degree window.** In the ternary window `n ≤ 15`, `DEGREE_FIVE_PLUS` can only be degree exactly 5. This is an import, reported only, never used to relabel.
+  - **The commutation theorem always yields reducible pairs.** Whiteland 2021 (RSW Theorem 2.3): `xy ∼_k yx` iff `x ∼_{k−1} y`. Its outputs, including Ochsenschläger's Thue–Morse blocks, are negative controls of the irreducibility filter.
+  - **Decisions.**
+    - A, ternary, `k = 2, 3`, `n ≤ 12`: proceed narrowed, in Mojo, by signature bucketing.
+    - B, both-outside irreducible non-Pisot: stop (R3).
+    - B, one-outside: stop seeded closures (Corollary B(iii), Proposition B′).
+    - B, reducible: stop a new `K₂ ≠ 0` search; the 28 pinned carriers suffice.
+    - `K₂ ≡ 0` greatest-fixed-point window over the one-outside and reducible non-synchronizing specimens: proceed, fused with A, labelled exploratory. A complete pair list replaces the scratch `MINL = 7` shortcut.
+  - **Finite observations, scratch.**
+    - The 59,319 substitutions with images ≤ 3 split as: 33,318 primitive; 4,554 PIP; 3,960 both-outside; 3,216 one-outside, 1,356 of them with `|det| = 1`; 21,588 reducible.
+    - The non-synchronizing counts 1,542 / 1,812 / 1,704 / 10,134 sum to the 15,192 of the 2026-11-06 window search.
+    - The endpoint filter of that search is justified by `heads_ne` and its mirror. It is the eventually-constant case of cut-pair Theorem A(1),(3), which is prior; Theorem A(4), strong-coincidence witnesses, is a further seed-independent filter.
+    - For Parikh-collinear `σ`, `M^{⊗r}` kills `Lie_r` (`r ≥ 2`), so every defect-intertwiner constraint is void there.
+    - The six length-7 seeds form one class under relabelling, reversal and swap.
+  - **Candidate control, not checked in Lean.** The pinned carrier `012/120/201` (`χ = x²(x − 3)`, 3-state strict system) appears to meet every hypothesis of `Degree4Floor.ssign_root_bound_of_primitive`, which has only the degenerate control `plastic_empty_control`.
+  - **Tooling pitfall.** pdftotext garbles superscripts in the `k`-deck papers ("`2k ≤ S(k) ≤ 2k`" for `2^k`). Read bounds from the tables or from the original.
+
+  Locator: [solidify stop/go](c4-solidify-stop-go-2026-11-07.md); scratch probes under the session scratchpad `wf9/probe/`.
