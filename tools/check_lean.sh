@@ -2,6 +2,20 @@
 # Never credit locally cached dependency artifacts, even with matching metadata.
 set -euo pipefail
 PSC_ROOT=$(cd "$(dirname "$0")/.." && pwd -P)
+PSC_PACKET_EXPORTER=""
+PSC_PACKET_OUTPUT=""
+if [[ $# -gt 0 ]]; then
+    if [[ $# -ne 3 || "$1" != "--overlap-packets" ]]; then
+        echo "usage: check_lean.sh [--overlap-packets EXPORTER OUTPUT_DIRECTORY]" >&2
+        exit 2
+    fi
+    PSC_PACKET_EXPORTER=$(python3 -c 'from pathlib import Path; import sys; print(Path(sys.argv[1]).resolve())' "$2")
+    PSC_PACKET_OUTPUT=$(python3 -c 'from pathlib import Path; import sys; print(Path(sys.argv[1]).resolve())' "$3")
+    if [[ ! -x "$PSC_PACKET_EXPORTER" ]]; then
+        echo "overlap exporter is not executable" >&2
+        exit 2
+    fi
+fi
 PSC_VERIFY_TMP=$(mktemp -d)
 PSC_AUDIT_LOG="$PSC_VERIFY_TMP/audit.log"
 trap 'rm -rf "$PSC_VERIFY_TMP"' EXIT
@@ -45,3 +59,9 @@ run_pinned_lake --no-cache build PscVerif
 check_fresh_pins
 run_pinned_lake --no-cache env lean ProofBankAudit.lean | tee "$PSC_AUDIT_LOG"
 python3 "$PSC_ROOT/tools/make_proof_bank.py" --check --audit-log "$PSC_AUDIT_LOG"
+if [[ -n "$PSC_PACKET_EXPORTER" ]]; then
+    python3 "$PSC_ROOT/tools/replay_overlap_lean_packets.py" \
+        --exporter "$PSC_PACKET_EXPORTER" --project "$PWD" \
+        --root "$PSC_ROOT" --output "$PSC_PACKET_OUTPUT"
+    check_fresh_pins
+fi

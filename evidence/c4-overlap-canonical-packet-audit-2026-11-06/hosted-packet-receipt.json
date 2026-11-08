@@ -1,0 +1,158 @@
+{
+  "schema": "c4-overlap-lean-packet-replay-v1",
+  "sources_verified": 18,
+  "all_18_sources_verified": true,
+  "states": 285786,
+  "occurrence_edges": 1409729,
+  "kernel_evaluation": "decide +kernel; no native_decide",
+  "geometry_formalized": false,
+  "exporter_sha256": "318f86766a51c445f442259d0e52a59853f73717def967729cdbfc72f2e1a03d",
+  "generic_packet_source_sha256": "572fd9fc85082e05377321fa812670558fff66ebed16e319a81816b22950a853",
+  "complete_packet_sha256": "87403bd9b3e9d88093f6b90969e3b04d1a8855893a55ec3fb28725892c43591e",
+  "sources": [
+    {
+      "source": 0,
+      "lean_sha256": "c2eaf7ee112afccdfdfd5b965b962705801c57186d881deb7226e11497eef38d",
+      "seconds": 242.202,
+      "audit_and_packet_log_sha256": "f98152cad87864a32f6eb165a16eea2c0df4e9c3de54103e49121dd06c1560ff",
+      "declarations": 2564,
+      "theorem_declarations": 1539
+    },
+    {
+      "source": 1,
+      "lean_sha256": "37772bf67b8a8fcdfa7f10c7c7f524973aaa8171bcc0fa569a83458ffc0ab67c",
+      "seconds": 251.352,
+      "audit_and_packet_log_sha256": "6f1e185344c11b031eeaf1a397da8ff36947e6e097940bc3a454ea7f5ae1f9ab",
+      "declarations": 2564,
+      "theorem_declarations": 1539
+    },
+    {
+      "source": 2,
+      "lean_sha256": "0870bbcc628ac73dd0273df206d7c6bc3e6a45b6c2e5753dec54ed1297e96e37",
+      "seconds": 234.821,
+      "audit_and_packet_log_sha256": "5a6dd539eac9ed4b0fa1c3a914047c11af6832a978b87c0fab1a7d6efb0d1ecf",
+      "declarations": 2564,
+      "theorem_declarations": 1539
+    },
+    {
+      "source": 3,
+      "lean_sha256": "8e8525e15cd14daa62d48c4c96ad174fddf9ed6f4f790834fd702e97a257f79e",
+      "seconds": 271.738,
+      "audit_and_packet_log_sha256": "ea8db5f736eed683b5e38c11fccb2cfc3c58d1d065368b4f4f2f25ec3d8da96c",
+      "declarations": 2564,
+      "theorem_declarations": 1539
+    },
+    {
+      "source": 4,
+      "lean_sha256": "e76ea093d9b77c2f6075b3102248bc6c32aaff27107c30baece1d4bcb6148ed7",
+      "seconds": 245.962,
+      "audit_and_packet_log_sha256": "8a25729a17e49e855e2b930e003f82d0f4e9e6c30812d9ba3ba2a664394ae09e",
+      "declarations": 2564,
+      "theorem_declarations": 1539
+    },
+    {
+      "source": 5,
+      "lean_sha256": "2176f07ddd71cbe128211dcf098ac97bce500c15a5756bc2a38a0892ee85cf3d",
+      "seconds": 284.966,
+      "audit_and_packet_log_sha256": "f17b5fde31945e0def5c8afe9ce33bed14b58bed259e9f647bd99bc3455e6f6d",
+      "declarations": 2564,
+      "theorem_declarations": 1539
+    },
+    {
+      "source": 6,
+      "lean_sha256": "5d0ad52a08a295b5698a551e5e916bb75ea60b6d336ccc4dd793578bfb195ed1",
+      "seconds": 276.839,
+      "audit_and_packet_log_sha256": "95520e0fd62c59075b7f138645d06d584f8f86ee89e569e47710d62f096b422b",
+      "declarations": 2564,
+      "theorem_declarations": 1539
+    },
+    {
+      "source": 7,
+      "lean_sha256": "bcd0e2f10ee5e9a75221baf9426c93dfde51beea62f13591045b725de6e9ca1f",
+      "seconds": 251.634,
+      "audit_and_packet_log_sha256": "f0b1355900307f5a0cd8482f69fd6ba33bc845e500500aa239474d03a6fe8ff0",
+      "declarations": 2564,
+      "theorem_declarations": 1539
+    },
+    {
+      "source": 8,
+      "lean_sha256": "a18fdc16957b9b95ab41579a60b1f73062a7c9584f15c3da5b4e606f078ac3a7",
+      "seconds": 276.069,
+      "audit_and_packet_log_sha256": "408cc79e1022bfdd7106fb625c704b81475cf8f8fa1b911b67267c295d6723dd",
+      "declarations": 2564,
+      "theorem_declarations": 1539
+    },
+    {
+      "source": 9,
+      "lean_sha256": "cb50e32557a6b3820087408b10a7b92319960c170daa6cffe4ad775bd7a07b3d",
+      "seconds": 280.402,
+      "audit_and_packet_log_sha256": "cb311813d37ff8dcdc3dba17422b3ff0e8df1b4882995b7549a8bfc087793cd1",
+      "declarations": 2564,
+      "theorem_declarations": 1539
+    },
+    {
+      "source": 10,
+      "lean_sha256": "e3d9cfc69731c592c90e6cfb0b52122830bef4585b4ba754d9ac17f7aed95cae",
+      "seconds": 243.388,
+      "audit_and_packet_log_sha256": "11491b5cc8ba89941d6e6aa74ff29ee57db8b2a09b28b6b0ebc72fa5e4b5ea73",
+      "declarations": 2564,
+      "theorem_declarations": 1539
+    },
+    {
+      "source": 11,
+      "lean_sha256": "bc8fd0affecf2ed4e72ddb201d8c0a2e72d18003292d02460909406b9d9f0dab",
+      "seconds": 266.705,
+      "audit_and_packet_log_sha256": "24695f7a974212408dd960b089071ca2c49c7c180e0aad4a08c855d47f8b8012",
+      "declarations": 2564,
+      "theorem_declarations": 1539
+    },
+    {
+      "source": 12,
+      "lean_sha256": "25f3b62b9ca2f2b92fe581fdda245a232741d49a58d01d49c085ed154f69b351",
+      "seconds": 274.579,
+      "audit_and_packet_log_sha256": "330108cfe5d1c7b49a6cc92100dbe9aea73e6636a6616d7c4e7ebc93671eb89a",
+      "declarations": 2564,
+      "theorem_declarations": 1539
+    },
+    {
+      "source": 13,
+      "lean_sha256": "93b9b63b930ca964c98126bc34963c2d64586dc3a694bfe7166fe9d7a32ca90b",
+      "seconds": 243.994,
+      "audit_and_packet_log_sha256": "f266cc528f174f8d576616230163e4d69967eafd5cfe94e5bb0b8a4a09f6afc1",
+      "declarations": 2564,
+      "theorem_declarations": 1539
+    },
+    {
+      "source": 14,
+      "lean_sha256": "f726c56c1a3c23095f2ba8856e9c0e6a8197a024a122913e58c5a5087dd5d2af",
+      "seconds": 273.858,
+      "audit_and_packet_log_sha256": "ded30add7f04a84bdf737df58894edae6f00cb7203e0015c63a5595c2983431b",
+      "declarations": 2564,
+      "theorem_declarations": 1539
+    },
+    {
+      "source": 15,
+      "lean_sha256": "80c98f2870e1b066f0693131a7ed2eb07a54f889c47d2c9d3e62db8ca995e7ac",
+      "seconds": 243.194,
+      "audit_and_packet_log_sha256": "752209ec91b054e3ded590f654c8065094d805d19fd4a937f3b1631cfc1f668b",
+      "declarations": 2564,
+      "theorem_declarations": 1539
+    },
+    {
+      "source": 16,
+      "lean_sha256": "dae3e3947762a68c7a6c4ac7c84c3b8dbcb302e1b609c420947348329374fcaa",
+      "seconds": 238.386,
+      "audit_and_packet_log_sha256": "11a4e5dcabd50c76da834ca3408519238e42aee4051cdd1e72a9aa7357c5fff0",
+      "declarations": 2564,
+      "theorem_declarations": 1539
+    },
+    {
+      "source": 17,
+      "lean_sha256": "500cca7af2dce025baea73d258aefeb01e61ded85edbdc8caaeb3aa3372dd641",
+      "seconds": 233.006,
+      "audit_and_packet_log_sha256": "974afccadd08b625f245d19b37a50d374ec74d49da884ec501a22b2f27d31645",
+      "declarations": 2564,
+      "theorem_declarations": 1539
+    }
+  ]
+}

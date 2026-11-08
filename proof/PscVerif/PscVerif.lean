@@ -10,3 +10,6 @@ import PscVerif.SelectedRank
 import PscVerif.QuotientDistance
 
 import PscVerif.ClassBRegime
+import PscVerif.OverlapContraction
+import PscVerif.OverlapPacket
+import PscVerif.PhysicalMass

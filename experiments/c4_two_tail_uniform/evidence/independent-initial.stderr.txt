@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/mnt/data/psc_two_tail_uniform_2026-11-06/tools/independent_replay.py", line 68, in <module>
+    assert S.expand(M.charpoly(x).as_expr()-f)==0
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

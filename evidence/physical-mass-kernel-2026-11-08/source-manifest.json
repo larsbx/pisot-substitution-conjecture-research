@@ -1,0 +1,461 @@
+{
+  "claim_status": "No promotion of general C4 or PSC; source pinning is independent of formal or geometric refinement.",
+  "graphs": [
+    {
+      "images": [
+        "11",
+        "012",
+        "01"
+      ],
+      "positive_deficit_rows": 294,
+      "retained_occurrences": 21151,
+      "source": 0,
+      "source_blocks": [
+        {
+          "component": 1,
+          "losing_vertex": 2,
+          "size": 1
+        }
+      ],
+      "states": 3664
+    },
+    {
+      "images": [
+        "11",
+        "012",
+        "10"
+      ],
+      "positive_deficit_rows": 245,
+      "retained_occurrences": 21164,
+      "source": 1,
+      "source_blocks": [
+        {
+          "component": 0,
+          "losing_vertex": 1,
+          "size": 391
+        }
+      ],
+      "states": 3649
+    },
+    {
+      "images": [
+        "11",
+        "021",
+        "01"
+      ],
+      "positive_deficit_rows": 315,
+      "retained_occurrences": 21103,
+      "source": 2,
+      "source_blocks": [
+        {
+          "component": 2,
+          "losing_vertex": 2,
+          "size": 123
+        }
+      ],
+      "states": 3667
+    },
+    {
+      "images": [
+        "11",
+        "021",
+        "10"
+      ],
+      "positive_deficit_rows": 338,
+      "retained_occurrences": 21033,
+      "source": 3,
+      "source_blocks": [
+        {
+          "component": 0,
+          "losing_vertex": 1,
+          "size": 622
+        }
+      ],
+      "states": 3667
+    },
+    {
+      "images": [
+        "11",
+        "102",
+        "01"
+      ],
+      "positive_deficit_rows": 251,
+      "retained_occurrences": 21186,
+      "source": 4,
+      "source_blocks": [
+        {
+          "component": 0,
+          "losing_vertex": 0,
+          "size": 56
+        }
+      ],
+      "states": 3653
+    },
+    {
+      "images": [
+        "11",
+        "102",
+        "10"
+      ],
+      "positive_deficit_rows": 313,
+      "retained_occurrences": 21168,
+      "source": 5,
+      "source_blocks": [
+        {
+          "component": 2,
+          "losing_vertex": 2,
+          "size": 1
+        }
+      ],
+      "states": 3667
+    },
+    {
+      "images": [
+        "11",
+        "120",
+        "01"
+      ],
+      "positive_deficit_rows": 327,
+      "retained_occurrences": 21144,
+      "source": 6,
+      "source_blocks": [
+        {
+          "component": 0,
+          "losing_vertex": 0,
+          "size": 622
+        }
+      ],
+      "states": 3693
+    },
+    {
+      "images": [
+        "11",
+        "120",
+        "10"
+      ],
+      "positive_deficit_rows": 257,
+      "retained_occurrences": 21203,
+      "source": 7,
+      "source_blocks": [
+        {
+          "component": 0,
+          "losing_vertex": 0,
+          "size": 123
+        }
+      ],
+      "states": 3674
+    },
+    {
+      "images": [
+        "11",
+        "201",
+        "01"
+      ],
+      "positive_deficit_rows": 334,
+      "retained_occurrences": 20976,
+      "source": 8,
+      "source_blocks": [
+        {
+          "component": 0,
+          "losing_vertex": 0,
+          "size": 119
+        }
+      ],
+      "states": 3643
+    },
+    {
+      "images": [
+        "11",
+        "201",
+        "10"
+      ],
+      "positive_deficit_rows": 286,
+      "retained_occurrences": 21054,
+      "source": 9,
+      "source_blocks": [
+        {
+          "component": 0,
+          "losing_vertex": 1,
+          "size": 56
+        }
+      ],
+      "states": 3643
+    },
+    {
+      "images": [
+        "11",
+        "210",
+        "01"
+      ],
+      "positive_deficit_rows": 270,
+      "retained_occurrences": 21095,
+      "source": 10,
+      "source_blocks": [
+        {
+          "component": 0,
+          "losing_vertex": 4,
+          "size": 391
+        }
+      ],
+      "states": 3646
+    },
+    {
+      "images": [
+        "11",
+        "210",
+        "10"
+      ],
+      "positive_deficit_rows": 278,
+      "retained_occurrences": 21118,
+      "source": 11,
+      "source_blocks": [
+        {
+          "component": 0,
+          "losing_vertex": 2,
+          "size": 143
+        }
+      ],
+      "states": 3649
+    }
+  ],
+  "matrix_conventions": {
+    "deficit": "e_j = theta*h_j - sum_i T[i,j]*h_i",
+    "edge": "i -> j iff T[i,j] > 0; row i is an inverse parent and column j an inverse child",
+    "ell": "(1,beta/2,(beta^2-beta-2)/2), beta the positive Perron root of x^3-x^2-3*x-2",
+    "entry": "T[i,j] is the number of retained literal occurrence pairs from state i to state j, including repetitions",
+    "mass": "h_i = length([0,ell_a] intersect [-ell*z,ell_b-ell*z]) for state (a,b,z)",
+    "mixed_orbit_rule": "m_i*T[i,j] = m_j*F[j,i]; use H_i=m_i*h_i so T^T H <= theta H",
+    "theta": "beta^2",
+    "track_swap": "(a,b,z) -> (b,a,-z); every retained orbit has size two in this source class"
+  },
+  "operational_limits": {
+    "failure_semantics": "Any cap, unseparated exact sign, incomplete graph, conservative source, or unbound receipt refuses a conclusion.",
+    "maximum_retained_occurrences_per_row": 81,
+    "native_default_state_cap_per_graph": 20000,
+    "native_maximum_admitted_state_cap": 200000
+  },
+  "packet": {
+    "block_records": 12,
+    "bytes": 1085652,
+    "field_scope": "Rows contain physical mass and deficit coefficient triples; blocks and graph lines declare source SCC witnesses and counts. The packet does not serialize the state tuples or occurrence adjacency lists.",
+    "graph_records": 12,
+    "maximum_source_scc_size": 622,
+    "positive_deficit_rows": 3508,
+    "records": 43940,
+    "retained_occurrences": 253395,
+    "row_records": 43915,
+    "schema": "c4-overlap-physical-mass-v1",
+    "sha256": "9eee6485f202becb8761e52f77e795b34916edf49ce75d6df821bf7fa1646683",
+    "source_scc_vertices": 2648,
+    "summary_sha256": "364b07d6cf58162a43aabc3700b35ea1b8ca30082bac66d797395d9d25241a7c"
+  },
+  "reference_files": [
+    {
+      "bytes": 2439,
+      "git_blob": "09c27851be4a59961f30de541e8226ae5d5c83d0",
+      "path": ".github/workflows/c4-overlap-physical-mass.yml",
+      "sha256": "bd294c27fb65d6635d3fca84d7fcef6826d83e37ac21cc0c7687d5f7fc40ad78"
+    },
+    {
+      "bytes": 4848,
+      "git_blob": "60652f26aff06771d9d04a71d85c587b1c753fcf",
+      "path": "kernel/pixi.toml",
+      "sha256": "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
+    },
+    {
+      "bytes": 336111,
+      "git_blob": "f3536071aeba8e165a847bb894ce28ea5b8fcdc1",
+      "path": "kernel/pixi.lock",
+      "sha256": "1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8"
+    },
+    {
+      "bytes": 11792,
+      "git_blob": "6359b837c8d6f03d4875f129d449707b27e9acbc",
+      "path": "vendored.toml",
+      "sha256": "7c52f1b1755fb33a7a1cf967fc69c0eb4a8877c90f9b5a708b58b4e404472a77"
+    },
+    {
+      "bytes": 1066,
+      "git_blob": "c4d2f752659eeae9bd9e73b67268dcce8a597563",
+      "path": "kernel/c4_overlap_physical_mass.mojo",
+      "sha256": "450a6217863bdd0babac7973df91bebf44d57c11c28502231d9c45870e28f2f4"
+    },
+    {
+      "bytes": 2140,
+      "git_blob": "b52e8a14a7e1bcc69d30c4fb220aafa20f57f6ed",
+      "path": "kernel/tests/test_c4_overlap_physical_mass.mojo",
+      "sha256": "2997f115763269f11ebd94a7f718d3b1e631d6f7717014b8873f243e08972747"
+    },
+    {
+      "bytes": 4621,
+      "git_blob": "919351adb423947bf983c4587de6b863be9f9a0b",
+      "path": "kernel/psc/c4_overlap_physical_mass.mojo",
+      "sha256": "33d863a53b9b97e89696372029b02cb03a0857dbcb739ed7e004e2676352af38"
+    },
+    {
+      "bytes": 26600,
+      "git_blob": "943b06a943a93cf44464fa05b81ed6d20412c40a",
+      "path": "kernel/psc/c4_pair_overlap_new_incidence.mojo",
+      "sha256": "e6ff7afa54643e993dc25791575e426ba8f41e582223d0354b59f521d241208a"
+    },
+    {
+      "bytes": 24231,
+      "git_blob": "f3d6a4e860f12f53c8857c926e77ead3f660323e",
+      "path": "kernel/psc/c4_overlap_scc_obstruction.mojo",
+      "sha256": "916f969629bab10750a281d510e886bf7c7b16cee4122d85085b2e6c9a3c4763"
+    },
+    {
+      "bytes": 5859,
+      "git_blob": "8d2ebd1495a1070e376e01451af91352080691a1",
+      "path": "kernel/psc/c4_pair_overlap_carrier.mojo",
+      "sha256": "29b433f446bfd10f13295cbdc2a9269626154c3fe4de058aa9bc012f52a5e7b0"
+    },
+    {
+      "bytes": 19055,
+      "git_blob": "12d79f423011dce7dac14866b4ce3a2f1924c7af",
+      "path": "kernel/psc/c4_finite_cylinder_overlap.mojo",
+      "sha256": "0e79ddb1d9733ad2172b87820a1801621a73a3cec4db7d0aab111fe645547111"
+    },
+    {
+      "bytes": 14027,
+      "git_blob": "5be4bb733aa0a4f9f41943ef1b6686fa1625cb11",
+      "path": "kernel/psc/c4_nonunit_residue_occupancy.mojo",
+      "sha256": "377d38872de1655569fda73d7817cc1586ad9a421c3198e85de1918d492ed05c"
+    },
+    {
+      "bytes": 5020,
+      "git_blob": "77f1908b935aa940566d8dd4e815b9d16abf6ffa",
+      "path": "kernel/psc/exact.mojo",
+      "sha256": "ebe211c9c29d6d943ae58fe8594eacac629af2ccf232197d59b22ad0d7896cc3"
+    },
+    {
+      "bytes": 9222,
+      "git_blob": "8f1dd82d4f480b27d3015c96885db968e3378b8a",
+      "path": "kernel/psc/pisot.mojo",
+      "sha256": "01258d6ede4145e1d311cebaa3f2558d07ce06ff9240bb7dddf176b0b94c42bc"
+    },
+    {
+      "bytes": 4846,
+      "git_blob": "f20b32d564a138ec124b2c004a69c87f21a14ff7",
+      "path": "kernel/psc/real_root_sign.mojo",
+      "sha256": "0882ff1ab7afd799531c0bf664ab00381ec9c4f5e5dcefc8ae2af2f10e4ae06f"
+    },
+    {
+      "bytes": 4676,
+      "git_blob": "6bcbb6a26ddd117f416390705a3297f9a5376761",
+      "path": "oracles/python/c4_overlap_physical_mass.py",
+      "sha256": "bbf070d2108f0976e228487f37348dc3b4488c8353946e45694773e5ad63fee1"
+    },
+    {
+      "bytes": 21090,
+      "git_blob": "354176d637af726df99e280e9b894e07eabe610c",
+      "path": "oracles/python/c4_overlap_scc_obstruction.py",
+      "sha256": "b65cf4af819faaf80230c7439b712b304bdf980edda241e6a169fb010261a82a"
+    },
+    {
+      "bytes": 21686,
+      "git_blob": "0ea11d0ee8b52ac2c3f2ebe6d41ec5c1876fe98e",
+      "path": "oracles/python/c4_pair_overlap_new_incidence.py",
+      "sha256": "3d0fe0e101e46abf2d36c46c945ab5b4f2f77055e7fe12b41739ea112cb567eb"
+    },
+    {
+      "bytes": 6338,
+      "git_blob": "04cc6f26fbe0108d458b0e278b979c9a9ec418cb",
+      "path": "docs/c4-physical-overlap-mass-2026-11-07.md",
+      "sha256": "54418c24e3cedc1904336a3768d75fe657795e1c997f822a320a35e35dd5c965"
+    },
+    {
+      "bytes": 1747,
+      "git_blob": "58f9bdc8da990c163246d68ac6f9a161d4907f5c",
+      "path": "docs/c4-physical-mass-literature-gate-2026-11-07.md",
+      "sha256": "88ea8eb85bc5b454da42476f40166271b2fab60823b21d9c887c4ba4d6b5c87c"
+    },
+    {
+      "bytes": 24131,
+      "git_blob": "9f80b7dfacd600dbadf2689eae7f3b2d14976767",
+      "path": "docs/c4-finite-overlap-carrier-2026-11-05.md",
+      "sha256": "ec074e560cb9be8fade3af956767f48f7c397314ba99ff6430d46c5fefd3b586"
+    },
+    {
+      "bytes": 15546,
+      "git_blob": "3e36e2907784d5ad2c30ebbf8e2d28e30c6ad277",
+      "path": "docs/c4-nonunit-madic-counting-bridge-2026-11-04.md",
+      "sha256": "c06f2dd82233b7ebf0948e91ce17eae9a7dfcf1e28d58682eaae50f3ce72530d"
+    },
+    {
+      "bytes": 86,
+      "git_blob": "ef9c7c8f9809e56408bf976857178baa2dc3e53e",
+      "path": "evidence/c4-physical-overlap-mass-2026-11-07/packet.sha256",
+      "sha256": "9cc3f88dd60662dc06a85015e2d0e13684b124d14a48eb7f9e5632c4dd666130"
+    },
+    {
+      "bytes": 490,
+      "git_blob": "5f6d59442736a0c5de22a224eea30ac07b028a59",
+      "path": "evidence/c4-physical-overlap-mass-2026-11-07/summary.txt",
+      "sha256": "364b07d6cf58162a43aabc3700b35ea1b8ca30082bac66d797395d9d25241a7c"
+    }
+  ],
+  "replay": {
+    "independent_oracle": "python3 oracles/python/c4_overlap_physical_mass.py",
+    "native_controls": "cd kernel && pixi run --locked mojo run -I . tests/test_c4_overlap_physical_mass.mojo",
+    "native_export": "cd kernel && pixi run --locked mojo run -I . c4_overlap_physical_mass.mojo",
+    "source_check": "python3 tools/check_physical_mass_refinement.py --source SOURCE --native NATIVE --oracle ORACLE --output RECEIPT --self-test",
+    "source_check_scope": "All tracked source bytes, exact packet equality, digest and declared facts. This checker does not attest that input files were freshly generated; the workflow separately executes both producers."
+  },
+  "repository": "https://github.com/larsbx/pisot-substitution-conjecture-research",
+  "roots": {
+    "coverage_scope": "Complete authenticated inverse closure of the three declared roots for each of the twelve sources; no assertion about additional roots or general strict-PIP systems",
+    "states_per_graph": [
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        2,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        2,
+        0,
+        0,
+        0
+      ]
+    ],
+    "total_root_instances": 36,
+    "vertex_ids_per_graph": [
+      0,
+      1,
+      2
+    ]
+  },
+  "schema": "physical-mass-source-manifest-v1",
+  "source": {
+    "authentication_scope": "Git object identity and source-byte integrity, not a signed commit attestation or proof of geometric meaning",
+    "commit": "51dd090a6aefeb92210410a3f7e20d51926d7e86",
+    "parent_pull_request": 497,
+    "parents": [
+      "49bc7e1af11b6ab04f84b79f8737500b6de3748b"
+    ],
+    "pull_request": 515,
+    "tracked_bytes": 83651515,
+    "tracked_contents_sha256": "c9709a1f4dec111840afcc2842944aaecaac12d408b56a0f2ba005a69c0f700b",
+    "tracked_contents_sha256_framing": "For each git ls-tree -rz --full-tree HEAD entry in tree order: mode ASCII, space, blob oid ASCII, TAB, UTF-8 path, NUL, raw SHA-256(file bytes), NUL. SHA-256 the concatenation.",
+    "tracked_files": 5543,
+    "tree": "25b480b58b5766efdb59c17592c5ae679326a284"
+  },
+  "unverified_refinement_obligations": [
+    "Kernel-checked interpretation of the algebraic length basis and its positive real embedding.",
+    "Kernel-checked decoding of the actual graph, repeated occurrence counts, masses and source witnesses into the generic Lean theorem.",
+    "Actual compact overlap sets, disjoint occurrence decomposition, and compact Haar scaling giving v >= 0 and T v >= theta v.",
+    "Coverage of every root and actual ordered occurrence required for the proposed broader strict-PIP application.",
+    "Uniform exclusion of conservative inverse source SCCs beyond this finite class.",
+    "A bridge from null overlap to the actual one-step interior zero-return newborn adjacent to Sync_+ or Sync_- required by issue #461."
+  ]
+}

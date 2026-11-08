@@ -195,13 +195,23 @@
     {
       "id": "C4",
       "kind": "claim",
-      "label": "Open conjectural gate",
-      "provenance": "open",
-      "statement": "the C4 hypothesis of the boundary route",
+      "label": "Conditional theorem",
+      "provenance": "conditional",
+      "statement": "C3-local holds for every strict component of every ternary PIP substitution: under all-pairs prefix coincidence no strict component exists, so the C4 hypothesis of the boundary route follows from the aligned lemma A",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
-      "record_kind": "pending_dependency",
-      "source": "reason: open sufficiency premise of the C4 route",
-      "leaks": "open sufficiency premise of the C4 route"
+      "record_kind": "repository_theorem",
+      "source": "source: docs/c4-finite-domain-closure-2026-11-05.md; the implication is the cut-pair reduction, the premise is UniversalAlignedCoincidence (issue #138); general C4 is equivalent to bounded-gap A1-prime (docs/c4-cut-attractor-window-2026-11-05.md, Proposition 3)",
+      "leaks": "premises not established: UniversalAlignedCoincidence"
+    },
+    {
+      "id": "C4FromStrongCoincidence",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "every finite closed nonproductive noncoincident balanced-pair component has a first-letter pair with no left strong-coincidence witness; hence all-pairs prefix coincidence leaves no strict component and C3-local holds vacuously",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/c4-cut-pair-productivity-2026-11-04.md, Theorem A(4); docs/c4-cut-attractor-window-2026-11-05.md, Propositions 2 and 3; docs/c4-finite-domain-closure-2026-11-05.md; human review pending"
     },
     {
       "id": "ClassABoundaryHittingHighGaps",
@@ -1277,6 +1287,24 @@
       ]
     },
     {
+      "id": "Theorem A(4)",
+      "kind": "alias",
+      "label": "Theorem A(4)",
+      "provenance": "declared",
+      "members": [
+        "C4FromStrongCoincidence"
+      ]
+    },
+    {
+      "id": "cut-pair reduction",
+      "kind": "alias",
+      "label": "cut-pair reduction",
+      "provenance": "declared",
+      "members": [
+        "C4FromStrongCoincidence"
+      ]
+    },
+    {
       "id": "class-A gaps d >= 5, n >= 5d",
       "kind": "alias",
       "label": "class-A gaps d >= 5, n >= 5d",
@@ -2039,10 +2067,18 @@
       "type": "implicative",
       "source": "C4",
       "target": "C3Local",
-      "provenance": "open",
+      "provenance": "conditional",
       "certainty": 1,
       "use_site": "C3Local/C4",
-      "leaks": "premise is open"
+      "leaks": "premise is conditional"
+    },
+    {
+      "type": "implicative",
+      "source": "C4FromStrongCoincidence",
+      "target": "C4",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "C4/C4FromStrongCoincidence"
     },
     {
       "type": "implicative",
@@ -2825,6 +2861,15 @@
     {
       "type": "implicative",
       "source": "UniversalAlignedCoincidence",
+      "target": "C4",
+      "provenance": "open",
+      "certainty": 1,
+      "use_site": "C4/UniversalAlignedCoincidence",
+      "leaks": "premise is open"
+    },
+    {
+      "type": "implicative",
+      "source": "UniversalAlignedCoincidence",
       "target": "TwoObstructionCompletion",
       "provenance": "open",
       "certainty": 1,
@@ -3002,6 +3047,14 @@
     },
     {
       "type": "synonymous",
+      "source": "Theorem A(4)",
+      "target": "C4FromStrongCoincidence",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
       "source": "Theorem B",
       "target": "StrictZipperPeriodicPairForm",
       "provenance": "theorem-backed",
@@ -3173,6 +3226,14 @@
       "source": "consequence (c)",
       "target": "G1FormalProductivityRoute",
       "provenance": "conditional",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "cut-pair reduction",
+      "target": "C4FromStrongCoincidence",
+      "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "aliases"
     },
@@ -3412,7 +3473,7 @@
       "type": "part-whole",
       "source": "C4",
       "target": "G1AndC4",
-      "provenance": "open",
+      "provenance": "conditional",
       "certainty": 1,
       "use_site": "assumption_sets"
     },
