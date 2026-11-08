@@ -1,0 +1,168 @@
+name: PSC R1 source-bound support certificates
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/psc-r1-support-certificates.yml'
+      - 'proof/psc_routes/R1SupportCertificate.lean'
+      - 'proof/psc_routes/R1SupportFixtures.lean'
+      - 'proof/psc_routes/R1ProductivityScope.lean'
+      - 'proof/quint/PscR1SupportCertificate.qnt'
+      - 'docs/psc-r1-support-certificates-2026-11-08.md'
+      - 'tools/setup_lean.sh'
+      - 'proof/PscVerif/lean-toolchain'
+      - 'proof/PscVerif/lakefile.toml'
+      - 'proof/PscVerif/lake-manifest.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: r1-support-certificates-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  lean-support-soundness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Bind certificates to exact head
+        env:
+          EXPECTED: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED"
+          mkdir -p "$RUNNER_TEMP/support"
+          git rev-parse HEAD > "$RUNNER_TEMP/support/head.txt"
+          sha256sum proof/psc_routes/R1SupportCertificate.lean proof/psc_routes/R1SupportFixtures.lean proof/psc_routes/R1ProductivityScope.lean > "$RUNNER_TEMP/support/source.sha256"
+      - name: Verify complete qualified theorem inventories
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          for module, count in [('R1SupportCertificate',12), ('R1SupportFixtures',13)]:
+              source = Path(f'proof/psc_routes/{module}.lean').read_text()
+              stack, names = [], []
+              for line in source.splitlines():
+                  ns = re.match(r'^namespace\s+(\S+)\s*$',line)
+                  end = re.match(r'^end\s+(\S+)\s*$',line)
+                  decl = re.match(r'^(?:theorem|lemma)\s+([A-Za-z_][A-Za-z_0-9]*)',line)
+                  if ns:
+                      stack.append(ns.group(1))
+                  elif end and stack and end.group(1) == stack[-1]:
+                      stack.pop()
+                  elif decl:
+                      names.append('.'.join(stack+[decl.group(1)]))
+              tail = source.split('let names := #[',1)[1].split(']',1)[0]
+              audited = re.findall(r'`(PscRoutes\.[A-Za-z_0-9.]+)',tail)
+              if names != audited or len(names) != count or len(set(names)) != count:
+                  raise SystemExit(f'{module}: inventory mismatch: {names!r} vs {audited!r}')
+              if re.search(r'(?m)^\s*(?:private\s+)?axiom\b',source):
+                  raise SystemExit(f'{module}: local axiom declaration')
+              print('EXACT_SUPPORT_INVENTORY_OK',module,count)
+          PY
+      - name: Provision repository-pinned Lean and Mathlib
+        run: ./tools/setup_lean.sh
+      - name: Compile theory, raw source binding and concrete fixtures
+        working-directory: proof/PscVerif
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/support"
+          routes="$GITHUB_WORKSPACE/proof/psc_routes"
+          lake="$HOME/.elan/bin/lake"
+          "$lake" env lean --root="$routes" -o "$out/R1ProductivityScope.olean" "$routes/R1ProductivityScope.lean" | tee "$out/base.log"
+          "$lake" env lean --root="$routes" -o "$out/R1SupportCertificate.olean" "$routes/R1SupportCertificate.lean" | tee "$out/theory.log"
+          "$lake" env bash -c 'export LEAN_PATH="$1:${LEAN_PATH:-}"; exec lean --root="$2" "$2/R1SupportFixtures.lean"' _ "$out" "$routes" | tee "$out/fixtures.log"
+          ! grep -Eq 'sorryAx|error:' "$out/base.log" "$out/theory.log" "$out/fixtures.log"
+          test "$(grep -c '^PSC_PRODUCTIVITY_SCOPE_AXIOMS_OK' "$out/base.log")" -eq 15
+          test "$(grep -c '^PSC_SUPPORT_AXIOMS_OK' "$out/theory.log")" -eq 12
+          test "$(grep -c '^PSC_SUPPORT_FIXTURE_AXIOMS_OK' "$out/fixtures.log")" -eq 13
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: r1-support-lean-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            ${{ runner.temp }}/support/*.log
+            ${{ runner.temp }}/support/*.sha256
+            ${{ runner.temp }}/support/head.txt
+          if-no-files-found: error
+  quint-source-and-mutations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Bind evidence to exact head
+        env:
+          EXPECTED: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED"
+          mkdir -p "$RUNNER_TEMP/support"
+          git rev-parse HEAD > "$RUNNER_TEMP/support/head.txt"
+          sha256sum proof/quint/PscR1SupportCertificate.qnt > "$RUNNER_TEMP/support/quint.sha256"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Typecheck and execute every named literal-source test
+        shell: bash
+        run: |
+          set -euo pipefail
+          q=proof/quint/PscR1SupportCertificate.qnt
+          npx --yes @informalsystems/quint@0.33.1 typecheck "$q"
+          npx --yes @informalsystems/quint@0.33.1 test --backend=typescript "$q" --main=PscR1SupportCertificate --match='Test$' | tee "$RUNNER_TEMP/support/quint.log"
+          python3 - <<'PY'
+          import os,re
+          from pathlib import Path
+          source=Path('proof/quint/PscR1SupportCertificate.qnt').read_text()
+          names=re.findall(r'(?m)^\s*run\s+(\w+Test)\b',source)
+          log=(Path(os.environ['RUNNER_TEMP'])/'support/quint.log').read_text()
+          if len(names)!=12 or len(set(names))!=12 or not re.search(r'\b12 (?:passing|passed)\b',log):
+              raise SystemExit('expected 12 distinct executed tests')
+          for name in names:
+              if not any(name in line and 'passed' in line for line in log.splitlines()):
+                  raise SystemExit(f'missing passed receipt: {name}')
+          print('ALL_TWELVE_NAMED_SUPPORT_TESTS_EXECUTED')
+          PY
+      - name: Create discriminating coverage and quantifier mutations
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          source=Path('proof/quint/PscR1SupportCertificate.qnt').read_text()
+          out=Path(os.environ['RUNNER_TEMP'])/'support'
+          a='keep.forall(s => stateOK(pairs[s]) and rowMatches(images, pairs, rows, s))'
+          b='rows[s].indices().exists(j => rank[rows[s][j]] < rank[s])'
+          assert source.count(a)==1 and source.count(b)==1
+          (out/'missing_coverage.qnt').write_text(source.replace(a,'keep.forall(s => stateOK(pairs[s]))'))
+          (out/'all_edges_decrease.qnt').write_text(source.replace(b,'rows[s].indices().forall(j => rank[rows[s][j]] < rank[s])'))
+          PY
+      - name: Require the named tests to reject both validly typed mutants
+        shell: bash
+        run: |
+          set -euo pipefail
+          for pair in 'missing_coverage omittedDiagonalExitsRejectedTest' 'all_edges_decrease positiveCompleteRankTest'; do
+            read -r mutant testname <<< "$pair"
+            q="$RUNNER_TEMP/support/$mutant.qnt"
+            log="$RUNNER_TEMP/support/$mutant.log"
+            npx --yes @informalsystems/quint@0.33.1 typecheck "$q"
+            if npx --yes @informalsystems/quint@0.33.1 test --backend=typescript "$q" --main=PscR1SupportCertificate --match="^${testname}$" > "$log" 2>&1; then
+              cat "$log"
+              echo "INVALID_MUTANT_WAS_ACCEPTED: $mutant" >&2
+              exit 1
+            fi
+            cat "$log"
+            grep -F "$testname" "$log" | grep -Ei 'fail' >/dev/null
+            echo "EXPECTED_SUPPORT_MUTATION_REJECTION $mutant"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: r1-support-quint-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            ${{ runner.temp }}/support/*.log
+            ${{ runner.temp }}/support/*.sha256
+            ${{ runner.temp }}/support/head.txt
+          if-no-files-found: error
