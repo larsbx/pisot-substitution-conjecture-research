@@ -25,7 +25,21 @@ module PscR1ProductivityScope {
   }
   pure val rows = List(List(1, 3, 4, 2), List(1, 2), List(2, 1), List(3, 4), List(4, 3))
   pure def isStrict(s) = s == 1 or s == 2
-  pure def isTarget(s) = s == 3 or s == 4
+  pure def isTarget(s) = {
+    val (top, bottom) = pairs[s]
+    top.length() == 1 and top == bottom
+  }
+
+  pure def literalSuccessors(s) = {
+    val childPairs = children(pairs[s])
+    pairs.indices().filter(t => childPairs.indices().exists(j => childPairs[j] == pairs[t]))
+  }
+  pure def expand(reached) =
+    reached.union(pairs.indices().filter(t => reached.exists(s => literalSuccessors(s).contains(t))))
+  // A shortest path in this complete five-state graph has at most four edges.
+  pure def reachable(s) =
+    range(0, pairs.length() - 1).foldl(Set(s), (reached, _) => expand(reached))
+  pure val productiveStates = pairs.indices().filter(s => reachable(s).exists(isTarget))
 
   // Finite successor traversal. The choice of child ordinal is explicit;
   // the root alternatives must never be collapsed to one verdict.
@@ -72,4 +86,20 @@ module PscR1ProductivityScope {
   // This test asserts rejection of that truncated literal factorization.
   run droppedStrictChildrenRejectedTest = init.expect(
     children(pairs[0]) != List(pairs[3], pairs[4]))
+
+  run rootProductivityDoesNotPropagateForwardTest = init.expect(all {
+    productiveStates == Set(0, 3, 4),
+    reachable(0) == pairs.indices(),
+    reachable(1) == Set(1, 2),
+    reachable(2) == Set(1, 2),
+    not(reachable(0).subseteq(productiveStates)),
+  })
+  run productivityPropagatesBackwardTest = init.expect(
+    pairs.indices().forall(s => {
+      val descendants = reachable(s)
+      all {
+        expand(descendants) == descendants,
+        implies(descendants.exists(t => productiveStates.contains(t)), productiveStates.contains(s)),
+      }
+    }))
 }

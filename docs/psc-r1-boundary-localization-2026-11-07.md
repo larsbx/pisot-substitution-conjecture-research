@@ -2,6 +2,8 @@
 
 **Scope:** R1 and integrated R1F branch `research/bprime-r1-ancestry-rigidity-20261107`. Baseline source/head: `f1f230de71882d1f9b9330d003950b45c3570e6a`. Proof-first research only; no universal PSC, C4, BH, A1′, or geometric claim promotion.
 
+**2026-11-08 update.** The [dated correction below](#correction-to-productive-source-classification--2026-11-07) supersedes the inference from the swap root to its descendants in the historical account. The [dependency audit](psc-r1-productivity-impact-2026-11-08.md) records the subsequent scoped hosted receipt and the independent Tribonacci argument.
+
 ## Work shown
 
 ### Assumptions and hypotheses
