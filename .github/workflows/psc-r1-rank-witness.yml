@@ -56,7 +56,7 @@ jobs:
           PY
       - name: Provision pinned Lean and Mathlib without changing pins
         run: ./tools/setup_lean.sh
-      - name: Compile all source dependencies and the quantitative theorem
+      - name: Compile all source dependencies and emit generic checker code
         working-directory: proof/PscVerif
         shell: bash
         run: |
@@ -65,13 +65,17 @@ jobs:
           routes="$GITHUB_WORKSPACE/proof/psc_routes"
           lake="$HOME/.elan/bin/lake"
           for module in R1ProductivityScope R1SupportCertificate R1SupportFixtures R1RankWitness; do
-            "$lake" env bash -c 'export LEAN_PATH="$1:${LEAN_PATH:-}"; exec lean --root="$2" -o "$1/$3.olean" "$2/$3.lean"' _ "$out" "$routes" "$module" | tee "$out/$module.log"
+            "$lake" env bash -c 'export LEAN_PATH="$1:${LEAN_PATH:-}"; exec lean --root="$2" -o "$1/$3.olean" -c "$1/$3.c" "$2/$3.lean"' _ "$out" "$routes" "$module" | tee "$out/$module.log"
           done
           ! grep -Eq 'sorryAx|error:' "$out"/*.log
           test "$(grep -c '^PSC_PRODUCTIVITY_SCOPE_AXIOMS_OK' "$out/R1ProductivityScope.log")" -eq 15
           test "$(grep -c '^PSC_SUPPORT_AXIOMS_OK' "$out/R1SupportCertificate.log")" -eq 12
           test "$(grep -c '^PSC_SUPPORT_FIXTURE_AXIOMS_OK' "$out/R1SupportFixtures.log")" -eq 13
           test "$(grep -c '^PSC_RANK_WITNESS_AXIOMS_OK' "$out/R1RankWitness.log")" -eq 7
+          test -s "$out/R1SupportCertificate.c"
+          grep -F 'l_PscRoutes_R1SupportCertificate_strictCheck' "$out/R1SupportCertificate.c" >/dev/null
+          grep -F 'l_PscRoutes_R1SupportCertificate_rankCheck' "$out/R1SupportCertificate.c" >/dev/null
+          printf '%s\n' 'PSC_SUPPORT_GENERIC_C_EMISSION_OK strictCheck rankCheck' | tee "$out/code-generation.log"
       - name: Inspect compiled statements, axioms and executable checkers
         working-directory: proof/PscVerif
         shell: bash
@@ -87,9 +91,9 @@ jobs:
           test "$(grep -c '^PSC_SUPPORT_ACCEPTANCE_BOOL_OK' "$out/acceptance.log")" -eq 14
           test "$(grep -c 'PSC_SUPPORT_ACCEPTANCE_TYPE' "$out/acceptance.log")" -eq 47
           test "$(grep -c '^PSC_SUPPORT_ACCEPTANCE_AXIOMS' "$out/acceptance.log")" -eq 47
-          test "$(grep -c '^PSC_SUPPORT_ACCEPTANCE_COMPUTABLE' "$out/acceptance.log")" -eq 4
+          test "$(grep -c '^PSC_SUPPORT_ACCEPTANCE_CHECKER_AXIOMS' "$out/acceptance.log")" -eq 4
           grep -Fx $'PSC_SUPPORT_ACCEPTANCE_THEOREMS\t47' "$out/acceptance.log"
-          sha256sum "$out"/*.olean > "$out/compiled.sha256"
+          sha256sum "$out"/*.olean "$out"/*.c > "$out/compiled.sha256"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -98,6 +102,7 @@ jobs:
             ${{ runner.temp }}/rank-witness/*.log
             ${{ runner.temp }}/rank-witness/*.sha256
             ${{ runner.temp }}/rank-witness/*.olean
+            ${{ runner.temp }}/rank-witness/*.c
             ${{ runner.temp }}/rank-witness/head.txt
           if-no-files-found: error
   quint-bounded-witness:

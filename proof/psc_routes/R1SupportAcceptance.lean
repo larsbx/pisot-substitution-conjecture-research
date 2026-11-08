@@ -252,11 +252,12 @@ set_option pp.explicit true in
 set_option pp.explicit true in
 #print PscRoutes.R1SupportCertificate.rankConditionsDecidable
 
-/- This axiom budget is stronger than executability: it also constrains erased
-proof dependencies. The #eval checks above separately establish execution. -/
+/- Axiom closure includes erased proof fields as well as computational terms.
+Use the same standard logical budget as the theorems, print every dependency,
+and establish executability separately by generic C emission and #eval. -/
 open Lean Elab Command in
 run_cmd do
-  let allowed := #[`propext, `Quot.sound]
+  let allowed := #[`propext, `Classical.choice, `Quot.sound]
   let names := #[
     `PscRoutes.R1SupportCertificate.strictConditionsDecidable,
     `PscRoutes.R1SupportCertificate.rankConditionsDecidable,
@@ -271,7 +272,7 @@ run_cmd do
     let axioms ← collectAxioms name
     for ax in axioms do
       if !allowed.contains ax then
-        throwError "Checker axiom budget exceeded in {name}: {ax}"
-    liftIO <| IO.println s!"PSC_SUPPORT_ACCEPTANCE_COMPUTABLE\t{name}\t{reprStr axioms}"
+        throwError "Unexpected checker axiom in {name}: {ax}"
+    liftIO <| IO.println s!"PSC_SUPPORT_ACCEPTANCE_CHECKER_AXIOMS\t{name}\t{reprStr axioms}"
 
 end PscRoutes.R1SupportAcceptance
