@@ -1,0 +1,169 @@
+name: Physical mass Lean Quint refinement
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/physical-mass-kernel.yml'
+      - 'proof/PscVerif/**'
+      - 'proof/quint/PhysicalMass.qnt'
+      - 'proof/proof-bank.*'
+      - 'tools/check_physical_mass_*'
+      - 'tools/check_lean.sh'
+      - 'tools/setup_lean.sh'
+      - 'tools/make_proof_bank.py'
+      - 'docs/physical-mass-*.md'
+      - 'evidence/physical-mass-kernel-2026-11-08/**'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/physical-mass-kernel.yml'
+      - 'proof/PscVerif/**'
+      - 'proof/quint/PhysicalMass.qnt'
+      - 'proof/proof-bank.*'
+      - 'tools/check_physical_mass_*'
+      - 'tools/check_lean.sh'
+      - 'tools/setup_lean.sh'
+      - 'tools/make_proof_bank.py'
+      - 'docs/physical-mass-*.md'
+      - 'evidence/physical-mass-kernel-2026-11-08/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: physical-mass-${{ github.event_name }}-${{ github.ref == 'refs/heads/main' && github.run_id || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lean:
+    name: Universal Lean implication and compiled axiom audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Bind the exact revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          git rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/physical-mass-lean-revision.txt"
+      - name: Provision repository-pinned Lean and Mathlib
+        run: |
+          ./tools/setup_lean.sh
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Compile isolated sources and audit all compiled declarations
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./tools/check_lean.sh | tee "$RUNNER_TEMP/physical-mass-lean.log"
+          grep -F 'PscVerif.PhysicalMass' "$RUNNER_TEMP/physical-mass-lean.log" >/dev/null
+          grep -F 'PSC_AUDIT_COMPLETE' "$RUNNER_TEMP/physical-mass-lean.log" >/dev/null
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: physical-mass-lean-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            ${{ runner.temp }}/physical-mass-lean-revision.txt
+            ${{ runner.temp }}/physical-mass-lean.log
+          if-no-files-found: error
+          retention-days: 30
+
+  source-refinement:
+    name: Pinned PR515 native oracle and source binding
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Bind the kernel revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          mkdir -p "$RUNNER_TEMP/physical-mass-source"
+          git rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/physical-mass-source/kernel-revision.txt"
+          # The hosted replay uses a fresh runner, without local account data.
+          test ! -e "$HOME/.modular/webUserId"
+      - uses: actions/checkout@v4
+        with:
+          ref: 51dd090a6aefeb92210410a3f7e20d51926d7e86
+          path: .physical-mass-source
+          persist-credentials: false
+      - name: Bind the separately pinned source revision
+        run: |
+          test "$(git -C .physical-mass-source rev-parse HEAD)" = 51dd090a6aefeb92210410a3f7e20d51926d7e86
+          test "$(git -C .physical-mass-source rev-parse HEAD^{tree})" = 25b480b58b5766efdb59c17592c5ae679326a284
+          git -C .physical-mass-source rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/physical-mass-source/source-revision.txt"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          pixi-version: v0.81.0
+          manifest-path: .physical-mass-source/kernel/pixi.toml
+          locked: true
+      - name: Replay canonical native controls and all physical budgets
+        working-directory: .physical-mass-source/kernel
+        shell: bash
+        run: |
+          set -euo pipefail
+          pixi run --locked mojo --version | tee "$RUNNER_TEMP/physical-mass-source/mojo-version.txt"
+          pixi run --locked mojo run -I . tests/test_c4_overlap_physical_mass.mojo | tee "$RUNNER_TEMP/physical-mass-source/native-tests.log"
+          pixi run --locked mojo run -I . c4_overlap_physical_mass.mojo > "$RUNNER_TEMP/physical-mass-source/physical-native.txt"
+      - name: Replay the independent literal interval oracle
+        working-directory: .physical-mass-source
+        run: python3 oracles/python/c4_overlap_physical_mass.py > "$RUNNER_TEMP/physical-mass-source/physical-oracle.txt"
+      - name: Check source identity, packet equality and negative bindings
+        run: |
+          python3 tools/check_physical_mass_refinement.py \
+            --source .physical-mass-source \
+            --native "$RUNNER_TEMP/physical-mass-source/physical-native.txt" \
+            --oracle "$RUNNER_TEMP/physical-mass-source/physical-oracle.txt" \
+            --output "$RUNNER_TEMP/physical-mass-source/source-receipt.json" \
+            --self-test
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: physical-mass-source-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/physical-mass-source
+          if-no-files-found: error
+          retention-days: 30
+
+  quint:
+    name: Independent finite Quint checks and negative controls
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Bind the exact revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          git rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/physical-mass-quint-revision.txt"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run the pinned Quint model with an exact test inventory
+        run: python3 tools/check_physical_mass_quint.py --output "$RUNNER_TEMP/physical-mass-quint"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: physical-mass-quint-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            ${{ runner.temp }}/physical-mass-quint-revision.txt
+            ${{ runner.temp }}/physical-mass-quint
+          if-no-files-found: error
+          retention-days: 30
