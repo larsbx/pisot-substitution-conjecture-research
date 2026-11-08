@@ -10,6 +10,7 @@ on:
       - 'docs/psc-r1-productivity-scope-2026-11-07.md'
       - 'docs/psc-r1-common-initial-repair-2026-11-07.md'
       - 'docs/psc-r1-boundary-localization-2026-11-07.md'
+      - 'docs/psc-r1-productivity-impact-2026-11-08.md'
       - 'tools/setup_lean.sh'
       - 'proof/PscVerif/lean-toolchain'
       - 'proof/PscVerif/lakefile.toml'
@@ -85,13 +86,13 @@ jobs:
         run: |
           npx --yes @informalsystems/quint@0.33.1 typecheck proof/quint/PscR1ProductivityScope.qnt
           npx --yes @informalsystems/quint@0.33.1 typecheck proof/quint/PscR1CommonInitial.qnt
-      - name: Execute all six negative-control tests without an empty pass
+      - name: Execute all eight productivity-scope tests without an empty pass
         shell: bash
         run: |
           set -euo pipefail
           npx --yes @informalsystems/quint@0.33.1 test --backend=typescript proof/quint/PscR1ProductivityScope.qnt --main=PscR1ProductivityScope | tee "$RUNNER_TEMP/productivity-quint.log"
-          grep -Eq '6 passing|6 passed' "$RUNNER_TEMP/productivity-quint.log"
-          for name in completeLiteralRowsTest legalIrreducibleRootTest completeStrictClosureTest productiveRootDiagonalBranchTest productiveRootStrictBranchTest droppedStrictChildrenRejectedTest; do
+          grep -Eq '8 passing|8 passed' "$RUNNER_TEMP/productivity-quint.log"
+          for name in completeLiteralRowsTest legalIrreducibleRootTest completeStrictClosureTest productiveRootDiagonalBranchTest productiveRootStrictBranchTest droppedStrictChildrenRejectedTest rootProductivityDoesNotPropagateForwardTest productivityPropagatesBackwardTest; do
             grep -F "$name" "$RUNNER_TEMP/productivity-quint.log" | grep -F 'passed' >/dev/null
           done
       - name: Execute the all-state Tribonacci premise and its adversary
