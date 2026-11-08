@@ -4,12 +4,14 @@ on:
     paths:
       - '.github/workflows/psc-r1-rank-witness.yml'
       - 'proof/psc_routes/R1RankWitness.lean'
+      - 'proof/psc_routes/R1SupportAcceptance.lean'
       - 'proof/psc_routes/R1SupportCertificate.lean'
       - 'proof/psc_routes/R1SupportFixtures.lean'
       - 'proof/psc_routes/R1ProductivityScope.lean'
       - 'proof/quint/PscR1RankWitness.qnt'
       - 'proof/quint/PscR1SupportCertificate.qnt'
       - 'docs/psc-r1-rank-witness-2026-11-08.md'
+      - 'docs/psc-r1-decidability-repair-2026-11-08.md'
       - 'tools/setup_lean.sh'
       - 'proof/PscVerif/lean-toolchain'
       - 'proof/PscVerif/lakefile.toml'
@@ -35,7 +37,7 @@ jobs:
           test "$(git rev-parse HEAD)" = "$EXPECTED"
           mkdir -p "$RUNNER_TEMP/rank-witness"
           git rev-parse HEAD > "$RUNNER_TEMP/rank-witness/head.txt"
-          sha256sum proof/psc_routes/R1RankWitness.lean proof/psc_routes/R1SupportCertificate.lean proof/psc_routes/R1SupportFixtures.lean proof/psc_routes/R1ProductivityScope.lean > "$RUNNER_TEMP/rank-witness/source.sha256"
+          sha256sum proof/psc_routes/R1RankWitness.lean proof/psc_routes/R1SupportCertificate.lean proof/psc_routes/R1SupportFixtures.lean proof/psc_routes/R1ProductivityScope.lean proof/psc_routes/R1SupportAcceptance.lean proof/PscVerif/lean-toolchain proof/PscVerif/lakefile.toml proof/PscVerif/lake-manifest.json .github/workflows/psc-r1-rank-witness.yml > "$RUNNER_TEMP/rank-witness/source.sha256"
       - name: Verify the complete new theorem inventory
         shell: bash
         run: |
@@ -70,6 +72,24 @@ jobs:
           test "$(grep -c '^PSC_SUPPORT_AXIOMS_OK' "$out/R1SupportCertificate.log")" -eq 12
           test "$(grep -c '^PSC_SUPPORT_FIXTURE_AXIOMS_OK' "$out/R1SupportFixtures.log")" -eq 13
           test "$(grep -c '^PSC_RANK_WITNESS_AXIOMS_OK' "$out/R1RankWitness.log")" -eq 7
+      - name: Inspect compiled statements, axioms and executable checkers
+        working-directory: proof/PscVerif
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/rank-witness"
+          routes="$GITHUB_WORKSPACE/proof/psc_routes"
+          lake="$HOME/.elan/bin/lake"
+          "$lake" env lean --version | tee "$out/versions.log"
+          "$lake" --version | tee -a "$out/versions.log"
+          "$lake" env bash -c 'export LEAN_PATH="$1:${LEAN_PATH:-}"; exec lean --root="$2" "$2/R1SupportAcceptance.lean"' _ "$out" "$routes" | tee "$out/acceptance.log"
+          ! grep -Eq 'sorryAx|error:' "$out/acceptance.log"
+          test "$(grep -c '^PSC_SUPPORT_ACCEPTANCE_BOOL_OK' "$out/acceptance.log")" -eq 14
+          test "$(grep -c 'PSC_SUPPORT_ACCEPTANCE_TYPE' "$out/acceptance.log")" -eq 47
+          test "$(grep -c '^PSC_SUPPORT_ACCEPTANCE_AXIOMS' "$out/acceptance.log")" -eq 47
+          test "$(grep -c '^PSC_SUPPORT_ACCEPTANCE_COMPUTABLE' "$out/acceptance.log")" -eq 4
+          grep -Fx $'PSC_SUPPORT_ACCEPTANCE_THEOREMS\t47' "$out/acceptance.log"
+          sha256sum "$out"/*.olean > "$out/compiled.sha256"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -77,6 +97,7 @@ jobs:
           path: |
             ${{ runner.temp }}/rank-witness/*.log
             ${{ runner.temp }}/rank-witness/*.sha256
+            ${{ runner.temp }}/rank-witness/*.olean
             ${{ runner.temp }}/rank-witness/head.txt
           if-no-files-found: error
   quint-bounded-witness:

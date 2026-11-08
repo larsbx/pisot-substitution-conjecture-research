@@ -115,3 +115,12 @@ retired universal monotonicity argument or assert new prior-art novelty.
 - Latest-head hosted compilation, Quint execution and mutation receipts
   remain required. Source declaration counts and this finite local oracle
   are not substitutes for them. No merge is authorized by this note.
+
+
+## Decidability repair follow-up
+
+The bounded raw-witness proof uses the same proof-recovery boundary as the
+base checker. The [repair acceptance note](psc-r1-decidability-repair-2026-11-08.md)
+documents the shared computable instance correction and the full four-module
+compiled inspection gate. Current exact-head receipts are recorded in PR #520;
+earlier pending evidence remains historical rather than inherited acceptance.

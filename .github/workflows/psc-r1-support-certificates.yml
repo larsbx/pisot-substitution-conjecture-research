@@ -8,6 +8,7 @@ on:
       - 'proof/psc_routes/R1ProductivityScope.lean'
       - 'proof/quint/PscR1SupportCertificate.qnt'
       - 'docs/psc-r1-support-certificates-2026-11-08.md'
+      - 'docs/psc-r1-decidability-repair-2026-11-08.md'
       - 'tools/setup_lean.sh'
       - 'proof/PscVerif/lean-toolchain'
       - 'proof/PscVerif/lakefile.toml'

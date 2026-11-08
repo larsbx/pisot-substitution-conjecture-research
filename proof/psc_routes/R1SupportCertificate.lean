@@ -122,11 +122,22 @@ def StrictConditions (actual : Raw → List Raw) (stateOK target : Raw → Bool)
     target (decode i) = false ∧
     (∀ j, j ∈ rows i → keep j = true)
 
+/-- Keep finite decidability available at the proof-recovery boundary as
+well as inside the executable checker. Instance search does not unfold the
+ordinary `StrictConditions` definition to rediscover a locally supplied
+`@decide` instance. No classical decision procedure is used here. -/
+instance strictConditionsDecidable
+    (actual : Raw → List Raw) (stateOK target : Raw → Bool)
+    (decode : Fin n → Raw) (rows : Fin n → List (Fin n))
+    (keep : Fin n → Bool) :
+    Decidable (StrictConditions actual stateOK target decode rows keep) := by
+  unfold StrictConditions
+  infer_instance
+
 def strictCheck (actual : Raw → List Raw) (stateOK target : Raw → Bool)
     (decode : Fin n → Raw) (rows : Fin n → List (Fin n))
     (keep : Fin n → Bool) : Bool :=
-  @decide (StrictConditions actual stateOK target decode rows keep)
-    (by unfold StrictConditions; infer_instance)
+  decide (StrictConditions actual stateOK target decode rows keep)
 
 /-- A successful check proves nonproductivity for EVERY selected
 raw source state, by induction on arbitrary-length raw descendant paths.
@@ -167,11 +178,20 @@ def RankConditions (actual : Raw → List Raw) (stateOK target : Raw → Bool)
     (rows i).map decode = actual (decode i) ∧
     (target (decode i) = true ∨ ∃ j, j ∈ rows i ∧ rank j < rank i)
 
+/-- Computable finite search, shared by `rankCheck` and every theorem
+recovering `RankConditions` from an accepted Boolean certificate. -/
+instance rankConditionsDecidable
+    (actual : Raw → List Raw) (stateOK target : Raw → Bool)
+    (decode : Fin n → Raw) (rows : Fin n → List (Fin n))
+    (rank : Fin n → ℕ) :
+    Decidable (RankConditions actual stateOK target decode rows rank) := by
+  unfold RankConditions
+  infer_instance
+
 def rankCheck (actual : Raw → List Raw) (stateOK target : Raw → Bool)
     (decode : Fin n → Raw) (rows : Fin n → List (Fin n))
     (rank : Fin n → ℕ) : Bool :=
-  @decide (RankConditions actual stateOK target decode rows rank)
-    (by unfold RankConditions; infer_instance)
+  decide (RankConditions actual stateOK target decode rows rank)
 
 theorem rankCheck_sound
     (actual : Raw → List Raw) (stateOK target : Raw → Bool)

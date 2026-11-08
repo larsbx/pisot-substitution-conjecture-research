@@ -148,3 +148,12 @@ This work isolates the soundness obligations so a future canonical Mojo
 packet producer can refine them without adding a Python-only research
 implementation. Quantitative density-one arguments in the manuscript and
 the independent R2/R3/R4 routes remain separate, unchanged dependencies.
+
+
+## Decidability repair follow-up
+
+The baseline Lean source-compilation failure and its computable instance repair
+are documented in [the repair acceptance note](psc-r1-decidability-repair-2026-11-08.md).
+The original mathematical conditions and all theorem statements are preserved.
+Use the PR exact-revision receipt table for current hosted acceptance; the
+historical finite oracle above is not a Lean kernel receipt.
