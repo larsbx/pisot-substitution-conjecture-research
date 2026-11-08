@@ -51,6 +51,32 @@ jobs:
         run: |
           test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
           git rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/physical-mass-lean-revision.txt"
+      - name: Acquire the pinned Lean releases through the official asset API
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(uname -m)" = x86_64
+          PSC_LEAN_TOOLS="$RUNNER_TEMP/physical-mass-lean-tools"
+          mkdir -p "$PSC_LEAN_TOOLS"
+          fetch_release() {
+            curl --retry 5 --retry-all-errors --retry-delay 3 -fLSs \
+              -H 'Accept: application/octet-stream' "$1" -o "$3"
+            printf '%s  %s\n' "$2" "$3" | sha256sum --check --strict
+          }
+          fetch_release \
+            https://api.github.com/repos/leanprover/elan/releases/assets/529114798 \
+            42b94d4244e8353142c456ec0e4ca6528fd898a6c604d4059f494e706e431f63 \
+            "$PSC_LEAN_TOOLS/elan.tar.gz" | tee "$RUNNER_TEMP/physical-mass-lean-tool-digests.txt"
+          fetch_release \
+            https://api.github.com/repos/leanprover/lean4/releases/assets/523667199 \
+            3d011041203acacf300d343a39673f7d233743397993797c941346ae9e5df1a8 \
+            "$PSC_LEAN_TOOLS/lean.tar.zst" | tee -a "$RUNNER_TEMP/physical-mass-lean-tool-digests.txt"
+          tar -xzf "$PSC_LEAN_TOOLS/elan.tar.gz" -C "$PSC_LEAN_TOOLS"
+          "$PSC_LEAN_TOOLS/elan-init" -y --no-modify-path --default-toolchain none
+          tar --zstd -xf "$PSC_LEAN_TOOLS/lean.tar.zst" -C "$PSC_LEAN_TOOLS"
+          PSC_LEAN_PIN=$(cat proof/PscVerif/lean-toolchain)
+          test "$PSC_LEAN_PIN" = leanprover/lean4:v4.34.0-rc2
+          "$HOME/.elan/bin/elan" toolchain link "$PSC_LEAN_PIN" "$PSC_LEAN_TOOLS/lean-4.34.0-rc2-linux"
       - name: Provision repository-pinned Lean and Mathlib
         run: |
           ./tools/setup_lean.sh
@@ -68,6 +94,7 @@ jobs:
           name: physical-mass-lean-${{ github.event.pull_request.head.sha || github.sha }}
           path: |
             ${{ runner.temp }}/physical-mass-lean-revision.txt
+            ${{ runner.temp }}/physical-mass-lean-tool-digests.txt
             ${{ runner.temp }}/physical-mass-lean.log
           if-no-files-found: error
           retention-days: 30
@@ -103,11 +130,31 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - uses: prefix-dev/setup-pixi@v0.9.1
-        with:
-          pixi-version: v0.81.0
-          manifest-path: .physical-mass-source/kernel/pixi.toml
-          locked: true
+      - name: Acquire the pinned Pixi release through the official asset API
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(uname -m)" = x86_64
+          PSC_PIXI_TOOLS="$RUNNER_TEMP/physical-mass-pixi-tools"
+          mkdir -p "$PSC_PIXI_TOOLS"
+          curl --retry 5 --retry-all-errors --retry-delay 3 -fLSs \
+            -H 'Accept: application/octet-stream' \
+            https://api.github.com/repos/prefix-dev/pixi/releases/assets/565929974 \
+            -o "$PSC_PIXI_TOOLS/pixi"
+          printf '%s  %s\n' \
+            248510f5f75460a2ae4ec62d761e15c0191dc35db3b1da6f82d9f17c6017051d \
+            "$PSC_PIXI_TOOLS/pixi" | sha256sum --check --strict \
+            | tee "$RUNNER_TEMP/physical-mass-source/pixi-release-digest.txt"
+          chmod +x "$PSC_PIXI_TOOLS/pixi"
+          echo "$PSC_PIXI_TOOLS" >> "$GITHUB_PATH"
+      - name: Install the separately pinned native dependencies
+        working-directory: .physical-mass-source/kernel
+        shell: bash
+        run: |
+          set -euo pipefail
+          pixi --version | tee "$RUNNER_TEMP/physical-mass-source/pixi-version.txt"
+          grep -Fx 'pixi 0.81.0' "$RUNNER_TEMP/physical-mass-source/pixi-version.txt"
+          pixi install --locked
       - name: Replay canonical native controls and all physical budgets
         working-directory: .physical-mass-source/kernel
         shell: bash

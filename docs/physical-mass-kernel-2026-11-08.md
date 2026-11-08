@@ -149,6 +149,34 @@ nonstandard transitive axioms; the allowed Lean axioms remain `propext`,
 `Classical.choice`, and `Quot.sound`. The Quint runner uses an immutable
 private source snapshot and refuses a source or revision change during replay.
 
+## Hosted tool acquisition
+
+The first hosted attempts at kernel head
+`6970010514ae713bc33aad7053459fe0dcd2bff9` encountered HTTP 504 responses
+before proof execution: the [concrete overlap packet workflow](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42466818718)
+could not download the Lean release, and the [target-aware workflow](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42466818671)
+could not download Pixi. These failed attempts remain historical provisioning
+receipts and do not establish either a passing or failing mathematical check.
+
+The dedicated workflow therefore acquires the same pinned Linux releases
+through GitHub's official release-asset API, verifies the published SHA-256
+before extraction or execution, and then uses the unchanged repository
+`setup_lean.sh` and isolated `check_lean.sh`. The verified Lean distribution is
+linked under the exact checked-in elan toolchain name. No local shim or local
+compiled dependency cache is transferred to the hosted runner.
+
+| Tool | Official asset API ID | SHA-256 |
+|---|---:|---|
+| [elan 4.2.4](https://api.github.com/repos/leanprover/elan/releases/assets/529114798) | 529114798 | `42b94d4244e8353142c456ec0e4ca6528fd898a6c604d4059f494e706e431f63` |
+| [Lean 4.34.0-rc2 Linux](https://api.github.com/repos/leanprover/lean4/releases/assets/523667199) | 523667199 | `3d011041203acacf300d343a39673f7d233743397993797c941346ae9e5df1a8` |
+| [Pixi 0.81.0 Linux musl](https://api.github.com/repos/prefix-dev/pixi/releases/assets/565929974) | 565929974 | `248510f5f75460a2ae4ec62d761e15c0191dc35db3b1da6f82d9f17c6017051d` |
+
+The source lockfile, Lean/Mathlib pins, native/oracle producers and verification
+contracts are unchanged by this acquisition route. The workflow does not use a
+GitHub credential for these public asset requests, and a digest mismatch is a
+hard failure. New acceptance belongs to the exact revision actually replayed,
+not automatically to the earlier submitted head.
+
 ## Adversarial boundaries
 
 All six required failures are retained in the independent Quint model:
