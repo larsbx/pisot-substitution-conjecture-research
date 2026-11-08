@@ -1,5 +1,6 @@
 """Raw ordered BPA closure, with one record per child interval."""
 
+from finite_exact.checked_int import checked_mul
 from psc.bpa import coincidence_boundaries, normalise
 from psc.words import Pair, is_balanced
 from substitution_dynamics.substitution import Substitution, validate_word
@@ -109,3 +110,22 @@ def replay_ordered_graph(images: List[List[Int]], seed: Pair, packet: OrderedGra
         if expected.edges[i] != packet.edges[i]:
             return False
     return True
+
+
+def ordered_parent_residuals(images: List[List[Int]], seed: Pair, graph: OrderedGraph,
+                             max_states: Int, max_edges: Int, max_word: Int) raises -> List[List[Int]]:
+    """Rows [source, target, r0, r1, r2] in canonical occurrence order."""
+    if not replay_ordered_graph(images, seed, graph, max_states, max_edges, max_word):
+        raise Error("parent residuals require a complete canonical occurrence packet")
+    var rows = List[List[Int]]()
+    for edge in graph.edges:
+        ref parent = graph.states[edge[0]]
+        var delta: List[Int] = [0, 0, 0]
+        for i in range(edge[5]):
+            delta[parent.u[i]] += 1
+        for i in range(edge[7]):
+            delta[parent.v[i]] -= 1
+        var scale = edge[9] - 1
+        rows.append([edge[0], edge[1], checked_mul(scale, delta[0]),
+                     checked_mul(scale, delta[1]), checked_mul(scale, delta[2])])
+    return rows^

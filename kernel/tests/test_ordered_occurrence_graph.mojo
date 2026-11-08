@@ -1,7 +1,7 @@
 from mojo_smoke.claims import require_contract
-from psc.ordered_occurrence_graph import ordered_graph, replay_ordered_graph
+from psc.ordered_occurrence_graph import ordered_graph, ordered_parent_residuals, replay_ordered_graph
 from psc.words import Pair
-from std.testing import assert_equal, assert_true, assert_false
+from std.testing import assert_equal, assert_true, assert_false, assert_raises
 
 
 def emit(tag: String, rows: List[List[Int]]):
@@ -30,6 +30,16 @@ def main() raises:
     for pair in non_pisot.states:
         emit("R2_CONTROL_STATE", [pair.u.copy(), pair.v.copy()])
     emit("R2_CONTROL_EDGE", non_pisot.edges)
+    var trib_vectors = ordered_parent_residuals(trib, seed, graph, 32, 128, 32)
+    var control_vectors = ordered_parent_residuals(control, seed, non_pisot, 32, 128, 32)
+    var trib_cycle: List[Int] = [2, 4, 0, 0, 2]
+    var control_cycle0: List[Int] = [1, 3, 2, 0, 0]
+    var control_cycle2: List[Int] = [2, 3, 0, 0, 2]
+    assert_true(trib_vectors[5] == trib_cycle)
+    assert_true(control_vectors[3] == control_cycle0)
+    assert_true(control_vectors[5] == control_cycle2)
+    emit("R2_TRIB_VECTOR", trib_vectors)
+    emit("R2_CONTROL_VECTOR", control_vectors)
 
     # The two 4→0 edges have different occurrence ordinals and intervals.
     assert_equal(graph.edges[9][1], graph.edges[11][1])
@@ -53,6 +63,10 @@ def main() raises:
     assert_false(capped.complete)
     capped.complete = True
     assert_false(replay_ordered_graph(trib, seed, capped, 32, 24, 32))
+    with assert_raises():
+        _ = ordered_parent_residuals(trib, seed, capped, 32, 24, 32)
+    with assert_raises():
+        _ = ordered_parent_residuals(trib, seed, graph, 32, 128, 32)
     assert_false(ordered_graph(trib, seed, 10, 128, 32).complete)
     assert_false(ordered_graph(trib, seed, 32, 128, 6).complete)
     require_contract("Complete raw ordered BPA rows preserve addresses, signs, and parallel occurrences")

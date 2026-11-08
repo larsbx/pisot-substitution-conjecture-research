@@ -36,11 +36,19 @@ module PscR2OrderedOccurrences {
         e.end, e.ti, e.to, e.bi, e.bo, e.sign)) }
     }))
 
-  pure def residual(states, row) = {
+  pure def residualVector(states, row) = {
     val state = states[row[0]]
-    val x = count(state._1.slice(0, row[5]), 2) - count(state._2.slice(0, row[7]), 2)
-    (row[9] - 1) * x
+    val top = state._1.slice(0, row[5])
+    val bottom = state._2.slice(0, row[7])
+    val scale = row[9] - 1
+    List(scale * (count(top, 0) - count(bottom, 0)),
+      scale * (count(top, 1) - count(bottom, 1)),
+      scale * (count(top, 2) - count(bottom, 2)))
   }
+  pure def vectorAt(p, i) = residualVector(p.states, p.edges[i])
+  pure def closed(p, rows) = rows.indices().forall(i =>
+    p.edges[rows[i]][1] == p.edges[rows[(i + 1) % rows.length()]][0])
+  pure def sumCoordinate(p, rows, a) = rows.foldl(0, (acc, i) => acc + vectorAt(p, i)[a])
 
   pure val t = packet(trib, 11)
   pure val c = packet(control, 4)
@@ -66,7 +74,25 @@ module PscR2OrderedOccurrences {
     (t.edges[5][0], t.edges[5][1]) == (2, 4),
     (t.edges[9][0], t.edges[9][1]) == (4, 0),
     (t.edges[1][0], t.edges[1][1]) == (0, 2),
-    residual(t.states, t.edges[5]) + residual(t.states, t.edges[9]) +
-      residual(t.states, t.edges[1]) == 2,
+    sumCoordinate(t, List(5, 9, 1), 2) == 2,
+  })
+
+  run tribonacciLinearFamilyTest = init.expect(all {
+    active,
+    t.edges.indices().forall(i => Set(List(0, 0, 0), List(0, 0, 2)).contains(vectorAt(t, i))),
+    closed(t, List(5, 9, 1)),
+    sumCoordinate(t, List(5, 9, 1), 2) == 2,
+    sumCoordinate(t, List(5, 9, 1), 0) == 0,
+  })
+
+  run reducibleLinearFamilyTest = init.expect(all {
+    active,
+    c.edges.indices().forall(i => Set(List(0, 0, 0), List(2, 0, 0), List(0, 0, 2)).contains(vectorAt(c, i))),
+    closed(c, List(3, 6)),
+    closed(c, List(5, 7)),
+    sumCoordinate(c, List(3, 6), 0) == 2,
+    sumCoordinate(c, List(3, 6), 2) == 0,
+    sumCoordinate(c, List(5, 7), 0) == 0,
+    sumCoordinate(c, List(5, 7), 2) == 2,
   })
 }
