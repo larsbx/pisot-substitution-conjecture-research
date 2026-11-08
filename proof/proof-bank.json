@@ -2242,6 +2242,214 @@
       "declaration": "theorem hidden_payload_refused :"
     },
     {
+      "name": "PscVerif.PhysicalMass.pairing",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 46,
+      "declaration": "theorem pairing (T : ι → ι → ℝ) (h v : ι → ℝ) :"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.deficit_conservation",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 57,
+      "declaration": "theorem deficit_conservation (T : ι → ι → ℝ) (h v : ι → ℝ) (theta : ℝ) :"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.deficit_nonneg",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 69,
+      "declaration": "theorem deficit_nonneg (T : ι → ι → ℝ) (h : ι → ℝ) (theta : ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.slack_nonneg",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 75,
+      "declaration": "theorem slack_nonneg (T : ι → ι → ℝ) (v : ι → ℝ) (theta : ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.products_zero",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 83,
+      "declaration": "theorem products_zero (T : ι → ι → ℝ) (h v : ι → ℝ) (theta : ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.saturation",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 109,
+      "declaration": "theorem saturation (T : ι → ι → ℝ) (h v : ι → ℝ) (theta : ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.zero_at_loss",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 122,
+      "declaration": "theorem zero_at_loss (T : ι → ι → ℝ) (h v : ι → ℝ) (theta : ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.isSource_of_sameSCC",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 147,
+      "declaration": "theorem isSource_of_sameSCC (E : ι → ι → Prop) {s t : ι}"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.isSource_iff_no_incoming",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 154,
+      "declaration": "theorem isSource_iff_no_incoming (E : ι → ι → Prop) (s : ι) :"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.exists_source_ancestor",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 169,
+      "declaration": "theorem exists_source_ancestor [Fintype ι] (E : ι → ι → Prop) (x : ι) :"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.sourceLoss_iff_loss_reaches_all",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 199,
+      "declaration": "theorem sourceLoss_iff_loss_reaches_all [Fintype ι]"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.source_contains_root",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 213,
+      "declaration": "theorem source_contains_root (E : ι → ι → Prop) (root : ι → Prop)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.zero_of_positive_edge",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 229,
+      "declaration": "theorem zero_of_positive_edge (T : ι → ι → ℝ) (v : ι → ℝ) (theta : ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.zero_of_reachable",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 243,
+      "declaration": "theorem zero_of_reachable (T : ι → ι → ℝ) (v : ι → ℝ) (theta : ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.zero_of_loss_reaches",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 252,
+      "declaration": "theorem zero_of_loss_reaches (T : ι → ι → ℝ) (h v : ι → ℝ) (theta : ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.zero_of_source_loss",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 265,
+      "declaration": "theorem zero_of_source_loss (T : ι → ι → ℝ) (h v : ι → ℝ) (theta : ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.zero_on_targets",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 279,
+      "declaration": "theorem zero_on_targets (T : ι → ι → ℝ) (h v : ι → ℝ) (theta : ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.zero_of_root_cover",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 293,
+      "declaration": "theorem zero_of_root_cover (T : ι → ι → ℝ) (h v : ι → ℝ) (theta : ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.conservative_source_ancestor_of_nonzero",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 311,
+      "declaration": "theorem conservative_source_ancestor_of_nonzero"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.conservative_source_of_nonzero",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 328,
+      "declaration": "theorem conservative_source_of_nonzero"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.weighted_transpose",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 351,
+      "declaration": "theorem weighted_transpose (T F : ι → ι → ℝ) (m h : ι → ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.weighted_deficit",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 362,
+      "declaration": "theorem weighted_deficit (T F : ι → ι → ℝ) (m h : ι → ℝ) (theta : ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.budget_of_weighted_transport",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 370,
+      "declaration": "theorem budget_of_weighted_transport"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.weighted_loss_iff",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 383,
+      "declaration": "theorem weighted_loss_iff (T F : ι → ι → ℝ) (m h : ι → ℝ) (theta : ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.transpose_of_constant_orbit",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 397,
+      "declaration": "theorem transpose_of_constant_orbit (T F : ι → ι → ℝ) (c : ℝ) (hc : c ≠ 0)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.Refinement.zero_of_supersolution",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 421,
+      "declaration": "theorem Refinement.zero_of_supersolution {ι : Type*} [Fintype ι]"
+    },
+    {
       "name": "PscVerif.QuotientDistance.path_lift",
       "module": "PscVerif.QuotientDistance",
       "private": false,
@@ -4537,13 +4745,14 @@
     "proof/PscVerif/PscVerif/ClassBRegime.lean": "1c873d0aea0201c3a60486dc90bce00e9f9612019ad72c5344cfa927d93a23e6",
     "proof/PscVerif/PscVerif/OverlapContraction.lean": "09dd1ccc90a7245211336996f7da8b1276e86cab60dd1cc0b5471e3d7f6a2a30",
     "proof/PscVerif/PscVerif/OverlapPacket.lean": "572fd9fc85082e05377321fa812670558fff66ebed16e319a81816b22950a853",
+    "proof/PscVerif/PscVerif/PhysicalMass.lean": "6578043c87ca7da4be96673630ae5d2d2e2356a681b1b2401c39bd9e9b036a36",
     "proof/PscVerif/PscVerif/QuotientDistance.lean": "1431961ca4d26d60e5bf5165c7773440e7a708b51377697e339f94f7cf5896ef",
     "proof/PscVerif/PscVerif/Seeds.lean": "224a67ea3d89c8cd54747164d4e1fbbc9b733aa5eb404465119999b738dce747",
     "proof/PscVerif/PscVerif/SelectedRank.lean": "0ab6fc76698ebcfd14ce1b319b121f0eaee9d2d64fceb26d3cf9e6a59b26c396",
     "proof/PscVerif/PscVerif/Shuffle.lean": "fe99c7b71174cd665633b425c0f9d1e6f6893f541387e261fb5d945bba48614c",
     "proof/PscVerif/PscVerif/Spectral.lean": "f7a43295221c293c670593d4be8e916d87ce51f3241ec911456ef4a4ce0b39d3",
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
-    "proof/PscVerif/PscVerif.lean": "422ca6e640ba9694a094a78a648eda5ce82032428aedb48cd41c3c90b0529533",
+    "proof/PscVerif/PscVerif.lean": "8501e246a4a1c72c923f9eb8061962c722825b4b3d12f15ed81a7c38cc1fc03c",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

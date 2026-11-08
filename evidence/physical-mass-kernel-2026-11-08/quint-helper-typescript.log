@@ -1,0 +1,26 @@
+
+  PhysicalMassHelperReproducer
+    1) mathematicallyExpectedResultTest failed after 1 test(s)
+
+  1 failed
+
+  1) mathematicallyExpectedResultTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /workspace/scratch/3ac1674060b1/psc/evidence/physical-mass-kernel-2026-11-08/quint-helper-reproducer.qnt:16:42
+        16:   run mathematicallyExpectedResultTest = init.expect(result == List(0, 2))
+                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[Frame 0]
+init => true
+└─ deficit([[2, 0], [0, 0]], [1, 1], 2) => [0, 0]
+   └─ mapList([0, 1], {(_a0) => ...}) => [0, 0]
+      ├─ f(0) => 0
+      │  └─ transposeMultiply([[2, 0], [0, 0]], [1, 1]) => [2, 0]
+      │     └─ mapList([0, 1], {(_a0) => ...}) => [2, 0]
+      │        ├─ f(0) => 2
+      │        └─ f(1) => 0
+      └─ f(1) => 0
+
+    Use --seed=0x13528f4 --match=mathematicallyExpectedResultTest to repeat.
+
+error: Tests failed
