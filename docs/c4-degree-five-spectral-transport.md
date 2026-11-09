@@ -80,3 +80,47 @@ machinery if a finite search is needed. An exhausted search reports its
 bound and coverage. The objective is either a genuine strict, child-closed
 Pisot witness with a nonzero surviving image or a universal word identity
 excluding one. Concentration, G1, C4 and PSC remain open.
+
+## Splitting-field eigenvector criterion
+
+The degree-five tensor action is the right-associated fifth Kronecker
+power. Given an invertible left eigenbasis matrix `Q`, transport an
+eigenvector by `Q⊗5`. In a pure coordinate `iiiii`, the coefficient from a
+word depends only on the word's content because all five factors come from
+row `i` of `Q`. The coefficients of each Lyndon bracket sum to zero within
+each content. The integer check in `Degree5Weights.bracket_content_sums`
+and the independent replay verify this cancellation. Thus every pure
+coordinate of a transformed Lie vector vanishes over the splitting field.
+
+A nonzero coordinate of the transported eigenvector then has one of the
+four mixed shapes `(4,1,0)`, `(3,2,0)`, `(3,1,1)`, or `(2,2,1)`. Its weight
+equals the eigenvalue. The argument applies to each nonzero coordinate,
+including when distinct contents yield the same value. For example,
+`(2,4,8)` gives weight 512 at both contents `(1,4,0)` and `(2,2,1)`. This
+diagonal control tests the distinct-root premise alone.
+
+### Conditional restriction on the rational image
+
+The remaining Lean interface is to lift a root of `q5` to a nonzero
+splitting-field eigenvector of the actual defect image and exhibit its
+Lyndon combination there. The eigenvector theorem can then be used with
+the existing Galois transport. The following deductions are conditional on
+that interface and the signed Perron bound.
+
+* If a nonzero transformed coordinate has one of the three excluded
+  shapes, move its maximal exponent onto the Perron root. The resulting
+  signed spectral value contradicts the bound. This reasoning applies to
+  every such coordinate even if its original value also admits a
+  `(2,2,1)` representation.
+* Let the incidence roots be `r₀,r₁,r₂`, let `d = r₀r₁r₂ ≠ 0`, and write
+  `e₁,e₂` for their first two elementary symmetric functions. The three
+  remaining weights are `d²/rᵢ`, so they are distinct for distinct roots.
+  Their monic cubic is `t³ − d e₂ t² + d³ e₁ t − d⁵`. For an irreducible
+  incidence cubic it is irreducible, since
+  `ℚ(d²/rᵢ) = ℚ(rᵢ)`. If all roots of `q5` lie in this set, rational
+  factorization forces `q5` to be a power of this cubic. In particular,
+  a nonzero image must have rank divisible by three, and its signed
+  spectrum must contain all three reciprocal weights.
+* Consequently `maxᵢ |d²/rᵢ| ≤ |β|` is a necessary condition for a nonzero
+  image. The unit plastic control satisfies it, so the surviving case
+  still needs information from actual ordered words.
