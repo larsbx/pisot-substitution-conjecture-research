@@ -6,7 +6,7 @@ import Mathlib.LinearAlgebra.Finsupp.VectorSpace
 
 namespace Psc.Degree5Transport
 
-open Psc.Defect5 Psc.Defect5Lie Psc.Lie5 Psc.SignedCocycle Psc.Incidence
+open Psc.Defect5 Psc.Defect5Lie Psc.Lie5 Psc.SignedCocycle Psc.Incidence Psc.Binomial
 open scoped BigOperators
 
 variable {S : ChildSystem (Fin 3)} (P : Normalisation S)
