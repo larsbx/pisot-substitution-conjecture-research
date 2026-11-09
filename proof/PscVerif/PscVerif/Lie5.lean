@@ -77,19 +77,19 @@ private def extract (i : Fin 48) : Sparse := extractRows[i.val]?.getD []
 def eval {R : Type*} [CommRing R] (row : Sparse) (f : Word5 → R) : R :=
   (row.map fun (w, c) => (c : R) * f w).sum
 
-private theorem eval_cons {R : Type*} [CommRing R] (w : Word5) (c : ℤ) (x : Sparse)
+theorem eval_cons {R : Type*} [CommRing R] (w : Word5) (c : ℤ) (x : Sparse)
     (f : Word5 → R) : eval ((w,c) :: x) f = (c : R) * f w + eval x f := rfl
 
-private theorem eval_singleton {R : Type*} [CommRing R] (w : Word5) (c : ℤ)
+theorem eval_singleton {R : Type*} [CommRing R] (w : Word5) (c : ℤ)
     (f : Word5 → R) : eval [(w,c)] f = (c : R) * f w := by simp [eval]
 
 private def scale (k : ℤ) (row : Sparse) : Sparse :=
   row.map fun (w, c) => (w, k * c)
 
-private theorem eval_append {R : Type*} [CommRing R] (x y : Sparse) (f : Word5 → R) :
+theorem eval_append {R : Type*} [CommRing R] (x y : Sparse) (f : Word5 → R) :
     eval (x ++ y) f = eval x f + eval y f := by simp [eval]
 
-private theorem eval_scale {R : Type*} [CommRing R] (k : ℤ) (x : Sparse) (f : Word5 → R) :
+theorem eval_scale {R : Type*} [CommRing R] (k : ℤ) (x : Sparse) (f : Word5 → R) :
     eval (scale k x) f = (k : R) * eval x f := by
   induction x with
   | nil => simp [scale, eval]
@@ -109,7 +109,7 @@ private def insertTerm (t : Word5 × ℤ) : Sparse → Sparse
 
 private def normal (x : Sparse) : Sparse := x.foldr insertTerm []
 
-private theorem eval_insert {R : Type*} [CommRing R] (t : Word5 × ℤ) (x : Sparse)
+theorem eval_insert {R : Type*} [CommRing R] (t : Word5 × ℤ) (x : Sparse)
     (f : Word5 → R) : eval (insertTerm t x) f = eval [t] f + eval x f := by
   rcases t with ⟨w,c⟩
   induction x with
@@ -135,7 +135,7 @@ private theorem eval_insert {R : Type*} [CommRing R] (t : Word5 × ℤ) (x : Spa
         rw [ih, show eval [] f = 0 by rfl, add_zero]
         ring
 
-private theorem eval_normal {R : Type*} [CommRing R] (x : Sparse) (f : Word5 → R) :
+theorem eval_normal {R : Type*} [CommRing R] (x : Sparse) (f : Word5 → R) :
     eval (normal x) f = eval x f := by
   induction x with
   | nil => rfl
@@ -144,11 +144,11 @@ private theorem eval_normal {R : Type*} [CommRing R] (x : Sparse) (f : Word5 →
     rw [eval_insert, ih]
     simp [eval]
 
-private theorem eval_eq_of_normal {R : Type*} [CommRing R] {x y : Sparse}
+theorem eval_eq_of_normal {R : Type*} [CommRing R] {x y : Sparse}
     (h : normal x = normal y) (f : Word5 → R) : eval x f = eval y f := by
   rw [← eval_normal x f, ← eval_normal y f, h]
 
-private theorem eval_flatMap {ι R : Type*} [CommRing R] (is : List ι) (rows : ι → Sparse)
+theorem eval_flatMap {ι R : Type*} [CommRing R] (is : List ι) (rows : ι → Sparse)
     (f : Word5 → R) :
     eval (is.flatMap rows) f = (is.map fun i => eval (rows i) f).sum := by
   induction is with
@@ -173,7 +173,7 @@ private instance (w : Word5) : Decidable (Checks w) := by unfold Checks; infer_i
 
 set_option maxRecDepth 20000 in
 set_option maxHeartbeats 0 in
-private theorem checks (w : Word5) : Checks w := by
+theorem checks (w : Word5) : Checks w := by
   rcases w with ⟨a,b,c,d,e⟩
   revert c d e
   fin_cases a <;> fin_cases b <;> decide +kernel
@@ -212,7 +212,7 @@ theorem eq_sum_lyndon5 {f : Vec5} (h : ShuffleAnnih5 f) :
   rw [← List.sum_toFinset _ (List.nodup_finRange _), List.toFinset_finRange]
   exact Finset.sum_congr rfl fun _ _ => mul_comm _ _
 
-private theorem eval_coeff_cast (row column : Sparse) :
+theorem eval_coeff_cast (row column : Sparse) :
     eval row (fun w => (coeff column w : ℚ)) =
       (eval row (fun w => coeff column w) : ℤ) := by
   induction row with
@@ -230,7 +230,7 @@ private def annihRows (column : Sparse) (a : Fin 3) : Bool :=
 
 set_option maxRecDepth 20000 in
 set_option maxHeartbeats 0 in
-private theorem annihRows_checked (i : Fin 48) (a : Fin 3) :
+theorem annihRows_checked (i : Fin 48) (a : Fin 3) :
     annihRows (bracket5 i) a = true := by
   fin_cases i <;> fin_cases a <;> decide +kernel
 
@@ -251,10 +251,10 @@ private instance (i : Fin 48) : Decidable (ExtractCheck i) := by
 
 set_option maxRecDepth 20000 in
 set_option maxHeartbeats 0 in
-private theorem extractCheck (i : Fin 48) : ExtractCheck i := by
+theorem extractCheck (i : Fin 48) : ExtractCheck i := by
   fin_cases i <;> decide +kernel
 
-private theorem eval_add (row : Sparse) (f g : Vec5) :
+theorem eval_add (row : Sparse) (f g : Vec5) :
     eval row (f + g) = eval row f + eval row g := by
   induction row with
   | nil => simp [eval]
@@ -264,7 +264,7 @@ private theorem eval_add (row : Sparse) (f g : Vec5) :
     rw [ih]
     ring
 
-private theorem eval_smul (row : Sparse) (c : ℚ) (f : Vec5) :
+theorem eval_smul (row : Sparse) (c : ℚ) (f : Vec5) :
     eval row (c • f) = c * eval row f := by
   induction row with
   | nil => simp [eval]
@@ -274,7 +274,7 @@ private theorem eval_smul (row : Sparse) (c : ℚ) (f : Vec5) :
     rw [ih]
     ring
 
-private theorem eval_zero (row : Sparse) : eval row (0 : Vec5) = 0 := by simp [eval]
+theorem eval_zero (row : Sparse) : eval row (0 : Vec5) = 0 := by simp [eval]
 
 private def evalLinear (row : Sparse) : Vec5 →ₗ[ℚ] ℚ where
   toFun := eval row
@@ -330,12 +330,12 @@ private def pureWord : Word5 := ⟨0,0,0,0,0⟩
 private def fifthPower (w : Word5) : ZMod 5 := if w = pureWord then 1 else 0
 
 set_option maxRecDepth 20000 in
-private theorem fifthPower_annih (r : ShuffleRow) : eval (shuffle5 r) fifthPower = 0 := by
+theorem fifthPower_annih (r : ShuffleRow) : eval (shuffle5 r) fifthPower = 0 := by
   rcases r with ⟨tag,a,b,c,d,e⟩
   revert a b c d e
   cases tag <;> decide +kernel
 
-private theorem bracket5_pure (i : Fin 48) : coeff (bracket5 i) pureWord = 0 := by
+theorem bracket5_pure (i : Fin 48) : coeff (bracket5 i) pureWord = 0 := by
   revert i
   decide +kernel
 

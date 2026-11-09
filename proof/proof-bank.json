@@ -5863,6 +5863,78 @@
       "declaration": "theorem weight_221_unit (b x y : ℝ) (hb : 1 < b)"
     },
     {
+      "name": "Psc.Degree5Transport.tensor_apply",
+      "module": "PscVerif.Degree5Transport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5Transport.lean",
+      "line": 27,
+      "declaration": "theorem tensor_apply (M : Matrix (Fin 3) (Fin 3) ℚ) (v : Vec5) :"
+    },
+    {
+      "name": "Psc.Degree5Transport.intertwine",
+      "module": "PscVerif.Degree5Transport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5Transport.lean",
+      "line": 37,
+      "declaration": "theorem intertwine (hbal : ∀ T ∈ S.C, Equiv4 T.1 T.2) :"
+    },
+    {
+      "name": "Psc.Degree5Transport.kernel_invariant",
+      "module": "PscVerif.Degree5Transport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5Transport.lean",
+      "line": 43,
+      "declaration": "theorem kernel_invariant (hbal : ∀ T ∈ S.C, Equiv4 T.1 T.2) :"
+    },
+    {
+      "name": "Psc.Degree5Transport.range_invariant",
+      "module": "PscVerif.Degree5Transport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5Transport.lean",
+      "line": 51,
+      "declaration": "theorem range_invariant (hbal : ∀ T ∈ S.C, Equiv4 T.1 T.2) :"
+    },
+    {
+      "name": "Psc.Degree5Transport.quotient_intertwines_range",
+      "module": "PscVerif.Degree5Transport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5Transport.lean",
+      "line": 57,
+      "declaration": "theorem quotient_intertwines_range (hbal : ∀ T ∈ S.C, Equiv4 T.1 T.2)"
+    },
+    {
+      "name": "Psc.Degree5Transport.q5_dvd_signed",
+      "module": "PscVerif.Degree5Transport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5Transport.lean",
+      "line": 73,
+      "declaration": "theorem q5_dvd_signed (hbal : ∀ T ∈ S.C, Equiv4 T.1 T.2) :"
+    },
+    {
+      "name": "Psc.Degree5Transport.q5_dvd_tensor",
+      "module": "PscVerif.Degree5Transport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5Transport.lean",
+      "line": 77,
+      "declaration": "theorem q5_dvd_tensor (hbal : ∀ T ∈ S.C, Equiv4 T.1 T.2) :"
+    },
+    {
+      "name": "Psc.Degree5Transport.exists_root_q5",
+      "module": "PscVerif.Degree5Transport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5Transport.lean",
+      "line": 81,
+      "declaration": "theorem exists_root_q5 (hbal : ∀ T ∈ S.C, Equiv4 T.1 T.2)"
+    },
+    {
+      "name": "Psc.Degree5Transport.weight_orbit_signed",
+      "module": "PscVerif.Degree5Transport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5Transport.lean",
+      "line": 90,
+      "declaration": "theorem weight_orbit_signed (hbal : ∀ T ∈ S.C, Equiv4 T.1 T.2)"
+    },
+    {
       "name": "Psc.Descendants.flatMap_red_top",
       "module": "PscVerif.Descendants",
       "private": false,
@@ -7617,74 +7689,74 @@
     {
       "name": "Psc.Lie5.eval_cons",
       "module": "PscVerif.Lie5",
-      "private": true,
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Lie5.lean",
       "line": 80,
-      "declaration": "private theorem eval_cons {R : Type*} [CommRing R] (w : Word5) (c : ℤ) (x : Sparse)"
+      "declaration": "theorem eval_cons {R : Type*} [CommRing R] (w : Word5) (c : ℤ) (x : Sparse)"
     },
     {
       "name": "Psc.Lie5.eval_singleton",
       "module": "PscVerif.Lie5",
-      "private": true,
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Lie5.lean",
       "line": 83,
-      "declaration": "private theorem eval_singleton {R : Type*} [CommRing R] (w : Word5) (c : ℤ)"
+      "declaration": "theorem eval_singleton {R : Type*} [CommRing R] (w : Word5) (c : ℤ)"
     },
     {
       "name": "Psc.Lie5.eval_append",
       "module": "PscVerif.Lie5",
-      "private": true,
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Lie5.lean",
       "line": 89,
-      "declaration": "private theorem eval_append {R : Type*} [CommRing R] (x y : Sparse) (f : Word5 → R) :"
+      "declaration": "theorem eval_append {R : Type*} [CommRing R] (x y : Sparse) (f : Word5 → R) :"
     },
     {
       "name": "Psc.Lie5.eval_scale",
       "module": "PscVerif.Lie5",
-      "private": true,
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Lie5.lean",
       "line": 92,
-      "declaration": "private theorem eval_scale {R : Type*} [CommRing R] (k : ℤ) (x : Sparse) (f : Word5 → R) :"
+      "declaration": "theorem eval_scale {R : Type*} [CommRing R] (k : ℤ) (x : Sparse) (f : Word5 → R) :"
     },
     {
       "name": "Psc.Lie5.eval_insert",
       "module": "PscVerif.Lie5",
-      "private": true,
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Lie5.lean",
       "line": 112,
-      "declaration": "private theorem eval_insert {R : Type*} [CommRing R] (t : Word5 × ℤ) (x : Sparse)"
+      "declaration": "theorem eval_insert {R : Type*} [CommRing R] (t : Word5 × ℤ) (x : Sparse)"
     },
     {
       "name": "Psc.Lie5.eval_normal",
       "module": "PscVerif.Lie5",
-      "private": true,
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Lie5.lean",
       "line": 138,
-      "declaration": "private theorem eval_normal {R : Type*} [CommRing R] (x : Sparse) (f : Word5 → R) :"
+      "declaration": "theorem eval_normal {R : Type*} [CommRing R] (x : Sparse) (f : Word5 → R) :"
     },
     {
       "name": "Psc.Lie5.eval_eq_of_normal",
       "module": "PscVerif.Lie5",
-      "private": true,
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Lie5.lean",
       "line": 147,
-      "declaration": "private theorem eval_eq_of_normal {R : Type*} [CommRing R] {x y : Sparse}"
+      "declaration": "theorem eval_eq_of_normal {R : Type*} [CommRing R] {x y : Sparse}"
     },
     {
       "name": "Psc.Lie5.eval_flatMap",
       "module": "PscVerif.Lie5",
-      "private": true,
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Lie5.lean",
       "line": 151,
-      "declaration": "private theorem eval_flatMap {ι R : Type*} [CommRing R] (is : List ι) (rows : ι → Sparse)"
+      "declaration": "theorem eval_flatMap {ι R : Type*} [CommRing R] (is : List ι) (rows : ι → Sparse)"
     },
     {
       "name": "Psc.Lie5.checks",
       "module": "PscVerif.Lie5",
-      "private": true,
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Lie5.lean",
       "line": 176,
-      "declaration": "private theorem checks (w : Word5) : Checks w := by"
+      "declaration": "theorem checks (w : Word5) : Checks w := by"
     },
     {
       "name": "Psc.Lie5.eq_sum_lyndon5",
@@ -7697,18 +7769,18 @@
     {
       "name": "Psc.Lie5.eval_coeff_cast",
       "module": "PscVerif.Lie5",
-      "private": true,
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Lie5.lean",
       "line": 215,
-      "declaration": "private theorem eval_coeff_cast (row column : Sparse) :"
+      "declaration": "theorem eval_coeff_cast (row column : Sparse) :"
     },
     {
       "name": "Psc.Lie5.annihRows_checked",
       "module": "PscVerif.Lie5",
-      "private": true,
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Lie5.lean",
       "line": 233,
-      "declaration": "private theorem annihRows_checked (i : Fin 48) (a : Fin 3) :"
+      "declaration": "theorem annihRows_checked (i : Fin 48) (a : Fin 3) :"
     },
     {
       "name": "Psc.Lie5.lyndon5_annih",
@@ -7721,34 +7793,34 @@
     {
       "name": "Psc.Lie5.extractCheck",
       "module": "PscVerif.Lie5",
-      "private": true,
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Lie5.lean",
       "line": 254,
-      "declaration": "private theorem extractCheck (i : Fin 48) : ExtractCheck i := by"
+      "declaration": "theorem extractCheck (i : Fin 48) : ExtractCheck i := by"
     },
     {
       "name": "Psc.Lie5.eval_add",
       "module": "PscVerif.Lie5",
-      "private": true,
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Lie5.lean",
       "line": 257,
-      "declaration": "private theorem eval_add (row : Sparse) (f g : Vec5) :"
+      "declaration": "theorem eval_add (row : Sparse) (f g : Vec5) :"
     },
     {
       "name": "Psc.Lie5.eval_smul",
       "module": "PscVerif.Lie5",
-      "private": true,
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Lie5.lean",
       "line": 267,
-      "declaration": "private theorem eval_smul (row : Sparse) (c : ℚ) (f : Vec5) :"
+      "declaration": "theorem eval_smul (row : Sparse) (c : ℚ) (f : Vec5) :"
     },
     {
       "name": "Psc.Lie5.eval_zero",
       "module": "PscVerif.Lie5",
-      "private": true,
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Lie5.lean",
       "line": 277,
-      "declaration": "private theorem eval_zero (row : Sparse) : eval row (0 : Vec5) = 0 := by simp [eval]"
+      "declaration": "theorem eval_zero (row : Sparse) : eval row (0 : Vec5) = 0 := by simp [eval]"
     },
     {
       "name": "Psc.Lie5.linearIndependent_lyndon5",
@@ -7793,18 +7865,18 @@
     {
       "name": "Psc.Lie5.fifthPower_annih",
       "module": "PscVerif.Lie5",
-      "private": true,
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Lie5.lean",
       "line": 333,
-      "declaration": "private theorem fifthPower_annih (r : ShuffleRow) : eval (shuffle5 r) fifthPower = 0 := by"
+      "declaration": "theorem fifthPower_annih (r : ShuffleRow) : eval (shuffle5 r) fifthPower = 0 := by"
     },
     {
       "name": "Psc.Lie5.bracket5_pure",
       "module": "PscVerif.Lie5",
-      "private": true,
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Lie5.lean",
       "line": 338,
-      "declaration": "private theorem bracket5_pure (i : Fin 48) : coeff (bracket5 i) pureWord = 0 := by"
+      "declaration": "theorem bracket5_pure (i : Fin 48) : coeff (bracket5 i) pureWord = 0 := by"
     },
     {
       "name": "Psc.Lie5.characteristic_five_control",
@@ -17129,6 +17201,7 @@
     "proof/PscVerif/PscVerif/Degree4Floor.lean": "bc34017a101d388e497a394710ed7661250aaa1fb049a9454dba17f308515006",
     "proof/PscVerif/PscVerif/Degree4Sector.lean": "7afc131498833c8346b21872981c6f7aa4b7a736fdc952ff84b9b8c071b86f63",
     "proof/PscVerif/PscVerif/Degree5Sector.lean": "1c4fd12cac7317ba0e724f4c3b757a1e06fdacd5b52f575d5549a83244d6ab46",
+    "proof/PscVerif/PscVerif/Degree5Transport.lean": "2ca83daf6c3cd555684ad915035435115f77551fdc13f2140a6c1fb492404b02",
     "proof/PscVerif/PscVerif/Descendants.lean": "6641b65d81d90be34c13937b6ab8ebc029fcce91babd7c2ce398738dac783a40",
     "proof/PscVerif/PscVerif/FixedPointLimit.lean": "cd4a824f288d4c1072fd375e0e7b9014f56028e23e00cb4336fd678a210b7bbe",
     "proof/PscVerif/PscVerif/GaloisOrbit.lean": "4d3b5474dbd14205f4bf2d33e98149ebbdd6d7e0fb8fd3a33787b878bcad5f07",
@@ -17137,7 +17210,7 @@
     "proof/PscVerif/PscVerif/Intertwiner3.lean": "23a3732cd2c16cd77175c71068e7d5fca3dc1df1a0c8ac11e94b5adfb988fde7",
     "proof/PscVerif/PscVerif/KernelCofactor.lean": "63ea80d49fcc0a30df25878460f00662f6c3ff78c10090f7778933cb9c9d86c4",
     "proof/PscVerif/PscVerif/Lie3.lean": "f214cb13bcaa399ecfe626fcc3c912753cdd29ade14ba4a4337b816ce4b22b8d",
-    "proof/PscVerif/PscVerif/Lie5.lean": "bef25bc824a424af3f57884ac5a363d034fe817de0562de33f823949a48fac83",
+    "proof/PscVerif/PscVerif/Lie5.lean": "6d38b1553f0e3e0ea64ee5acc97aba965efd19a40f4caa4a943049c1725982ee",
     "proof/PscVerif/PscVerif/Lie5Data.lean": "df36055fa646536437bff13bf336304b211ba70a4d0ac11cd910c8c2751271fb",
     "proof/PscVerif/PscVerif/LieWeights.lean": "f32639f83e519c69b8f428e153dd368c274e1f665a837183f88c5f1de0dd8adb",
     "proof/PscVerif/PscVerif/M0Pisot.lean": "65d17cf0aa71cdac825d16da73ad601dd49c214cd0b47ac58f124cb51a64a304",
@@ -17164,7 +17237,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "0ae28f72e694dcd05c919e15a1a3bf578d7fa8c0e0f458206d3d81da245c009a",
+    "proof/PscVerif/PscVerif.lean": "4248fb35892544f7242bca7c06d4035be924a02dde827434d0e40c29b8037ad6",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
