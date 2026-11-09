@@ -1,3 +1,67 @@
+PSC AGENT PRIORITY ADDENDUM — 2026-11-09 (planning, not proof)
+=======================================================================
+Read this overlay with AGENTS.md and the current claim governance; the
+historical agent orientation below is not automatically the current branch
+state. First inspect main, issue #9 (closed for routing, NOT a proof), successor
+#461, #138/#139, and current exact-head PRs and receipts. Do not close C4, G1,
+#84 or PSC from documentation, a merge, a census or a CI badge.
+
+PRIMARY NEGLECTED WORK — preserve order of mathematical dependency:
+P0 QUANTIFIERS: Audit ∃ selected target path vs ∀ admissible paths and
+closed-SCC exclusion; measure-zero vs empty overlap; finite vs uniform;
+conditional theorem vs proved antecedent. Produce explicit theorem interfaces,
+minimal countermodels and a source-bound proof/PR crosswalk.
+P0 OCCURRENCE REFINEMENT: Formalize commutation of actual substitution-child
+occurrence edges with certified packet transitions. Every packet carries both
+source occurrence addresses, chosen indices, ordered parent/ordinal/child,
+orientation, residual Parikh, strict interior/boundary and target. Soundness,
+completeness and infinite-path lifting are DIFFERENT proof obligations.
+P0 C4/G1 SEPARATION: C4 starts with a supplied finite, strict, child-closed
+SCC and full word factorization. G1b-2 or other extraction/termination is
+separate; prove that input rather than assuming the existence of a finite SCC.
+P1 WORD DYNAMICS: Attack the actual hub-residual word with recognizability,
+return words or noncommutative invariants; do not infer word alignment from
+Parikh, quotient or free-Lie compatibility. Force a one-step interior Sync_±
+newborn or preserve a genuine PIP counterexample to the proposed lemma.
+P1 UNIFORMITY: Find a parameter-uniform exclusion, parameter-dependent rank,
+or closed-realizable compactness argument; do not infer it from 4,554 specimens,
+twelve-source mass computations or bounded depth.
+P1 SHARED BRIDGES: Type-check mass-loss->physical overlap->literal Sync,
+R1 complete support/rank->canonical Mojo PIP carrier, and C4->BH/#138
+interfaces separately. No free transfer from null measure to emptiness.
+P1 ADVERSARIAL: Search only with exact PIP screening, actual word addresses,
+full child stars and deterministic caps. Classify first violated premise;
+preserve counterexamples as negative controls.
+
+REUSE FIRST:
+docs/target-aware-bpa-diagnostic-2026-10-02.md
+docs/c4-good-edge-system-bridge.md
+docs/c4-strict-birth-atlas-2026-11-02.md
+docs/c4-ordered-word-completion-interface-2026-11-02.md
+docs/completion-ledger-2026-11-02.md
+docs/side-notes-ledger.md
+PRs #457/#459/#462/#497/#499/#504/#515/#519/#520/#521, issue #461.
+Before any new theorem-facing diagnostic, follow the targeted literature
+stop/go gate in AGENTS.md; prefer existing Mojo and independent oracle
+infrastructure. The known controls include second-letter, depth-one, naive
+six-state, strong G/F, productive packet cycles, phase-flat non-PIP strict
+systems, rank-three delayed PIP synchronization, zero source defect with
+different parents, and the binary productive-root/nonproductive-descendant
+example. Test rejection at the appropriate literal/algebraic layer.
+
+DELIVERABLE STANDARD:
+State exact hypotheses, quantified theorem or countermodel, missing witness,
+source revision, deterministic inputs and caps, literal rows/addresses,
+independent oracle, formal scope and exact-head CI separately. Make explicit
+whether evidence was merely reported, replayed locally, hosted, merged or
+independently reviewed. A mechanical result can support progression at its
+proved scope while independent human review remains pending. No global
+unimodularity, independent tile-length assumption, free UD assumption,
+Euclidean-only non-unit transfer, invalid predecessor contraction or
+realization of a quotient cycle without proof.
+
+=======================================================================
+
 PSC RESEARCH PROGRAM — AGENT ENTRYPOINT
 File: README.llm.txt
 Audience: LLM research agents, coding agents, proof auditors, CI/review agents.
