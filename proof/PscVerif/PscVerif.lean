@@ -41,6 +41,8 @@ import PscVerif.PerronExistence
 import PscVerif.Defect4
 import PscVerif.LieWeights
 import PscVerif.Defect4Lie
+import PscVerif.Defect5Lie
+import PscVerif.Degree5Sector
 import PscVerif.SectorBridge
 import PscVerif.Degree3Sector
 import PscVerif.Degree4Floor
