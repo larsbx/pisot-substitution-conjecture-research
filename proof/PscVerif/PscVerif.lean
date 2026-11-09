@@ -53,3 +53,5 @@ import PscVerif.PhysicalMass
 import PscVerif.BPrimeCore
 import PscVerif.BPrimeBinding
 import PscVerif.BPrime
+import PscVerif.QuantifierInterface
+import PscVerif.QuantifierBinding

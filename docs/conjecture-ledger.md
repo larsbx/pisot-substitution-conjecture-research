@@ -308,6 +308,11 @@ C4 => C3-local => C2 => SCC Producer
 
 remains a valid sufficiency chain. It is not the current shortest completion route.
 
+*Correction, 2026-11-09.* The last arrow is under G1 (`prop:chain`: "with
+finite `B_σ`"; `thm:sink`). The generated ledger already records this: the
+`SCCProducer` node depends on `G1`, `SinkSCCReduction` and `C2`. See the
+[quantifier audit](quantifier-transfer-audit-2026-11-09.md), §3.
+
 ## F. Realization / MEF bridge
 
 **Status: OPEN bridge.** The source audit decomposes the former realization/coincidence-rank equivalence into obligations G0–G6.

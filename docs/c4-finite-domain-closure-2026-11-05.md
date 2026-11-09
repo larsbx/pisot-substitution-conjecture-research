@@ -26,6 +26,11 @@ chain). **C4** is the program of proving C3-local for every strict component
 of `C3Local → C2 → SCCProducer → PDS`. Since C4 quantifies over strict
 components, it holds vacuously wherever none exists.
 
+*Correction, 2026-11-09.* The arrow `C2 → SCCProducer` is under G1: the ledger
+node `SCCProducer` depends on `G1`, `SinkSCCReduction` and `C2`, and
+`prop:chain` is stated for a finite `B_σ`
+([quantifier audit](quantifier-transfer-audit-2026-11-09.md), §3).
+
 A strict component is exactly a strongly connected *strict system* in the
 sense of the [cut-pair note](c4-cut-pair-productivity-2026-11-04.md): finite,
 strictly child-closed, noncoincident.

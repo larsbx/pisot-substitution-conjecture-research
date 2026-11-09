@@ -474,6 +474,15 @@ C4 => C3-local => C2 => C1
 
 remains a valid one-way sufficiency route. It is not the headline completion ladder.
 
+*Correction, 2026-11-09.* The last arrow is under G1. `prop:chain` is stated
+for PIP substitutions "with finite `B_σ`", and the step from "no strict
+component" to C1 (SCC Producer, `conj:producer`) is the sink reduction
+`thm:sink`, which needs a finite automaton. Without finiteness, exclusion of
+finite closed strict components does not give C1: the graph `loopRay` of
+`proof/PscVerif/PscVerif/QuantifierInterface.lean` has a recurrent strict
+component and no finite closed one
+([quantifier audit](quantifier-transfer-audit-2026-11-09.md), §3).
+
 # Realization / MEF route
 
 The realization programme remains an open bridge / certificate route. Its audited interface has obligations G0–G6. Do not identify:
