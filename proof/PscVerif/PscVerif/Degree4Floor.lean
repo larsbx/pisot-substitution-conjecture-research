@@ -44,7 +44,8 @@ theorems, which take `L`, do not assume it), and for primitive `σ` by
 * **The sieve for an arbitrary rational `q`** (composition of `Psc.GaloisOrbit`; `f`
   irreducible cubic with roots `β, α, γ`, Pisot moduli, `1 ≤ ‖βαγ‖`, every root of `q` of
   modulus `≤ ‖β‖`, and `q` vanishing at a weight `β^a α^b γ^c` of a listed shape):
-  `orbit_211_root` (shape `(2,1,1)` gives the root `dβ`, `d = βαγ`); `weight_211`
+  `Psc.GaloisOrbit.orbit_211_root` (shape `(2,1,1)` gives the root `dβ`, `d = βαγ`;
+  `orbit_211_root` here is a deprecated alias); `weight_211`
   (`‖d‖ = 1`, `‖dβ‖ = ‖β‖`, the weight is `dβ`, `dα` or `dγ`); `weight_220` (`‖d‖ = 1`,
   `‖α‖ = ‖γ‖`, `α, γ` non-real, `β²α²` a root of modulus `‖β‖`, the weight is `β²α²`,
   `β²γ²` or `α²γ²`); **`weight_root_cases`** (`(3,1,0)` impossible, else one of the two);
@@ -66,7 +67,8 @@ theorems, which take `L`, do not assume it), and for primitive `σ` by
   `σ`: `β = r` with `PerronData` for `M` at `r > 1`, `|det M| = 1`, `ρ(S) = β`).
 * **Theorem A(ii), (iii) with the Wielandt step** (`N_C` strongly connected, a positive left
   `β`-eigenvector `L` of `N_C`, `β` real; `hρ` is derived from `L`, not assumed):
-  `aeval_conj_eq_zero`, `det_sq_eq_one`, `exists_real_eigen_of_root_ssign`;
+  `Psc.GaloisOrbit.aeval_conj_eq_zero` (`aeval_conj_eq_zero` here is a deprecated alias),
+  `det_sq_eq_one`, `exists_real_eigen_of_root_ssign`;
   **`no_220_root`** (`β²α²` is not a root of `χ_S`: `Psc.Wielandt.no_220_eigenvalue`, with
   `γ = ᾱ` and `βαᾱ = det M = ±1` derived); **`sieve4_211`** (only `(2,1,1)` survives: `dβ`
   is a root of `q₄` and `χ_S`, and every root of `q₄` is `dβ`, `dα` or `dγ`);
@@ -91,7 +93,11 @@ The representative theorems (`sieve4`, `sieve4_roots`, `sieve4_pisot`, `sieve4_o
 strict component with first defect degree four over a Pisot substitution with irreducible
 `χ_M`, and none is known (by Theorem A and the attack note's configuration (R), one would be
 a unimodular gauge-trivial component whose existence is open).  No control meets their full
-hypothesis set, and none is expected.  The strongest honest controls:
+hypothesis set, and none is expected.  On a strict system or component every structural hypothesis is
+discharged and they are restated as `Psc.StrictSystem.StrictSystem.sieve4`,
+`Psc.StrictSystem.StrictComponent.theoremA` and `StrictComponent.gauge_or_antiGauge`; the
+leave-one-out table of their hypotheses is `Psc.ReductioControls`
+(`degree4Floor_leave_one_out`, and the literal three-root form of `sieve4`).  The strongest honest controls:
 * state level: `w4_controls` (`Psc.Defect4.w4Norm`: `∼₃` states, a nonzero `K₄` column and
   `hρ` at `β = 1` (from `ssign_root_bound_of_perron` with `L = Lrep 1`), jointly, over the
   identity substitution; it fails only `hM` (`χ_M = (X − 1)³` is reducible) and the Pisot
@@ -137,9 +143,9 @@ hypothesis set, and none is expected.  The strongest honest controls:
   the irreducible `χ_{dM}` is not stated.
 * Theorem A(iv) (`Q₄ D = L ∘ P`, `K₄ ≠ 0` on every state) is not composed with this module
   (its parts are the `KernelCofactor`, `PerronSimple`, `ConcentrationAlgebra` rows).
-* `orbit_211_root` re-derives the root `dβ` that `Psc.GaloisOrbit.orbit_211_forces_unit`
-  computes internally but does not export, and `aeval_conj_eq_zero` is the internal step
-  `hconj` of `Psc.GaloisOrbit`; both could move to `Psc.GaloisOrbit`.  The root and
+* `orbit_211_root` and `aeval_conj_eq_zero` moved to `Psc.GaloisOrbit` (2026-11-09; the
+  old names remain as deprecated aliases), where `orbit_211_forces_unit` and
+  `im_ne_zero_of_norm_eq` now use them instead of re-deriving them.  The root and
   spectral-bound helpers shared with `Psc.Degree3Sector` (`det_eq_mul_roots`,
   `vec3_injective`, `M0_det`, `exists_eigen_of_root_ssign`, `ssign_root_bound_of_perron`)
   live in `Psc.SectorBridge`.
@@ -198,25 +204,10 @@ variable {f : ℚ[X]} (hf : Irreducible f) (hdeg : f.natDegree = 3) {β α γ : 
     (hβα : β ≠ α) (hβγ : β ≠ γ) (hαγ : α ≠ γ)
 include hf hdeg hβ hα hγ hβα hβγ hαγ
 
-/-- **The `(2,1,1)` orbit contains `d β`** (`d = β α γ`): from a root of `q` of shape
-`(2,1,1)`, the Galois step `Psc.GaloisOrbit.orbit_exponent_on_beta` gives the root
-`β² α γ = β · d`.  (This is the root that `Psc.GaloisOrbit.orbit_211_forces_unit`
-produces internally; that theorem states only its consequence `‖d‖ = 1`.) -/
-theorem orbit_211_root (q : ℚ[X]) (a b c : ℕ)
-    (habc : (a, b, c) = (2, 1, 1) ∨ (a, b, c) = (1, 2, 1) ∨ (a, b, c) = (1, 1, 2))
-    (hq : aeval (β ^ a * α ^ b * γ ^ c) q = 0) : aeval (β * (β * α * γ)) q = 0 := by
-  have h1 := Psc.GaloisOrbit.orbit_exponent_on_beta hf hdeg hβ hα hγ hβα hβγ hαγ q a b c hq
-  rcases habc with h | h | h <;> simp only [Prod.mk.injEq] at h <;>
-    obtain ⟨rfl, rfl, rfl⟩ := h
-  · rw [show β * (β * α * γ) = β ^ 2 * α ^ 1 * γ ^ 1 by ring]; exact hq
-  · obtain ⟨x, y, hxy, hm⟩ := h1.1
-    rcases hxy with ⟨hx, hy⟩ | ⟨hx, hy⟩ <;> rw [hx, hy] at hm
-    · rw [show β * (β * α * γ) = β ^ 2 * α ^ 1 * γ ^ 1 by ring]; exact hm
-    · rw [show β * (β * α * γ) = β ^ 2 * γ ^ 1 * α ^ 1 by ring]; exact hm
-  · obtain ⟨x, y, hxy, hm⟩ := h1.2
-    rcases hxy with ⟨hx, hy⟩ | ⟨hx, hy⟩ <;> rw [hx, hy] at hm
-    · rw [show β * (β * α * γ) = β ^ 2 * α ^ 1 * γ ^ 1 by ring]; exact hm
-    · rw [show β * (β * α * γ) = β ^ 2 * γ ^ 1 * α ^ 1 by ring]; exact hm
+/-- **The `(2,1,1)` orbit contains `d β`**: moved to `Psc.GaloisOrbit.orbit_211_root`
+(2026-11-09); this alias keeps the old name. -/
+@[deprecated Psc.GaloisOrbit.orbit_211_root (since := "2026-11-09")]
+alias orbit_211_root := Psc.GaloisOrbit.orbit_211_root
 
 /-- **A root of shape `(2,1,1)`**: with `1 ≤ ‖d‖` and every root of `q` of modulus at most
 `‖β‖`, `‖d‖ = 1`, `d β` is a root of `q` of modulus `‖β‖`, and the given root is one of
@@ -230,7 +221,7 @@ theorem weight_211 (hdet : 1 ≤ ‖β * α * γ‖) (q : ℚ[X])
         β ^ a * α ^ b * γ ^ c = γ * (β * α * γ)) := by
   have hunit := Psc.GaloisOrbit.orbit_211_forces_unit hf hdeg hβ hα hγ hβα hβγ hαγ hdet q a b c
     habc hq hbound
-  refine ⟨hunit, orbit_211_root hf hdeg hβ hα hγ hβα hβγ hαγ q a b c habc hq,
+  refine ⟨hunit, Psc.GaloisOrbit.orbit_211_root hf hdeg hβ hα hγ hβα hβγ hαγ q a b c habc hq,
     by rw [norm_mul, hunit, mul_one], ?_⟩
   rcases habc with h | h | h <;> simp only [Prod.mk.injEq] at h <;>
     obtain ⟨rfl, rfl, rfl⟩ := h
@@ -534,13 +525,10 @@ section Wielandt
 open Psc.Binomial Psc.Incidence Psc.SignedCocycle Psc.ParikhRank Psc.Degree2Sector
   Psc.SectorBridge Psc.PerronExistence Psc.PerronCore
 
-/-- Complex conjugation permutes the complex roots of a rational polynomial. -/
-theorem aeval_conj_eq_zero {f : ℚ[X]} {w : ℂ} (hw : aeval w f = 0) :
-    aeval (starRingEnd ℂ w) f = 0 := by
-  have := Polynomial.aeval_algHom_apply (Complex.conjAe.toAlgHom.restrictScalars ℚ) w f
-  simp only [AlgHom.restrictScalars_apply, AlgEquiv.coe_toAlgHom, Complex.conjAe_coe, hw,
-    map_zero] at this
-  exact this
+/-- Complex conjugation permutes the roots of a rational polynomial: moved to
+`Psc.GaloisOrbit.aeval_conj_eq_zero` (2026-11-09); this alias keeps the old name. -/
+@[deprecated Psc.GaloisOrbit.aeval_conj_eq_zero (since := "2026-11-09")]
+alias aeval_conj_eq_zero := Psc.GaloisOrbit.aeval_conj_eq_zero
 
 /-- `det M = ±1` as a complex number when `|det M| = 1`, so `(det M)² = 1`. -/
 theorem det_sq_eq_one {S : ChildSystem (Fin 3)} (hunit : |(incZ S).det| = 1) :
@@ -577,7 +565,7 @@ theorem no_220_root (hM : Irreducible (incQ S).charpoly) {β : ℝ} {α γ : ℂ
     rw [← h, Complex.norm_real, Real.norm_eq_abs, abs_of_pos (by linarith)] at hγ1; linarith
   have hcγ : starRingEnd ℂ α = γ := by
     rcases Psc.GaloisOrbit.root_eq_of_three hM.ne_zero (natDegree_charpoly _) hβ hα hγ hβα hβγ
-      hαγ (aeval_conj_eq_zero hα) with h | h | h
+      hαγ (Psc.GaloisOrbit.aeval_conj_eq_zero hα) with h | h | h
     · exfalso; apply hαr
       have : α = starRingEnd ℂ (β : ℂ) := by rw [← h, Complex.conj_conj]
       rw [this, Complex.conj_ofReal, Complex.ofReal_im]

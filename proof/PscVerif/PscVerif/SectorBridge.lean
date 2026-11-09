@@ -132,6 +132,23 @@ restrictions of `M^{⊗3}`, `M^{⊗4}`).
     the three bridge theorems are jointly satisfiable; they do not meet the
     hypotheses of `Psc.GaloisOrbit` itself.  `cycX_mono_pure`:
     `mono_eq_pow_of_cube_eq` on `cycX`.
+* **Pure powers** (a weight of a listed shape need not be numerically a new value).
+  `mono_eq_pow_of_cube_eq`: for three distinct `x` with equal cubes, `x₀x₁x₂ = x₀³` and
+  `x₀²x₁x₂ = x₀⁴`.  `X_pow_three_sub_two_irreducible_int`,
+  `X_pow_three_sub_two_irreducible`: `X³ − 2` is irreducible over `ℤ` (Eisenstein at `2`,
+  `Polynomial.irreducible_of_eisenstein_criterion`) and over `ℚ` (Gauss).
+  `cubeSubst` (`0 ↦ 1`, `1 ↦ 2`, `2 ↦ 00`), `cubeM`, `cubeM_charpoly` (`χ_M = X³ − 2`) and
+  the negative control **`cube_root_two_control`**: irreducible `χ_M`, `det M = 2`, three distinct
+  roots, all of modulus `2^{1/3}`, with the `(1,1,1)` weight `x₀³` and the `(2,1,1)` weight
+  `x₀⁴`; so the Pisot moduli cannot be dropped from **`pure_power_excluded`** (and its
+  `mono` form `pure_power_excluded_mono`): for a rational `M` with irreducible `χ_M`, pairwise
+  distinct roots `β, α, γ` with `1 < ‖β‖`, `‖α‖, ‖γ‖ < 1` and `1 ≤ |det M|`, the `(1,1,1)`
+  weight is none of `β³, α³, γ³` and no `(2,1,1)` weight is any of `β⁴, α⁴, γ⁴`.  The
+  `(1,1,1)` part and seven of the nine `(2,1,1)` equalities use only the moduli
+  (`Psc.GaloisOrbit.mono111_ne_cube`, `mono211_ne_pow4_of_moduli`); `βα²γ = γ⁴` and
+  `βαγ² = α⁴` are consistent with the moduli (`Psc.GaloisOrbit.moduli_211_control`) and are
+  excluded by the Galois step with `det M = βαγ` rational
+  (`Psc.GaloisOrbit.mono211_ne_pow4_galois`).
 
 ## Not proved here
 
@@ -142,7 +159,10 @@ restrictions of `M^{⊗3}`, `M^{⊗4}`).
   controls, `χ_M = X³ − 1`) have reducible `χ_M`; the matrix-level controls `M0`,
   `plastic` carry no child system.  These two theorems are reductio lemmas:
   necessary conditions on a hypothetical component (as the `Psc.Degree2Sector` and
-  `Psc.KernelCofactor` representative theorems are), not facts about a known one.
+  `Psc.KernelCofactor` representative theorems are), not facts about a known one.  Their
+  consumers are restated on a strict system, with every structural hypothesis discharged, as
+  `Psc.StrictSystem.StrictSystem.deg23_iii` and `StrictSystem.sieve4`; the leave-one-out
+  tables of those consumers are `Psc.ReductioControls`.
   (`root_q3`, `root_q4`, `galoisOrbit_input_q4` need only three distinct roots of
   `χ_M` and have the full cycle controls above.)
 * The composition with `Psc.GaloisOrbit`.  Besides `habc`, `hq` (supplied for
@@ -164,19 +184,15 @@ restrictions of `M^{⊗3}`, `M^{⊗4}`).
 * The first-defect selection (the hypotheses are `Equiv2` / `Equiv3` on every
   state, not that `3` / `4` is the least degree with a nonzero defect); other
   alphabets and degrees `r ≥ 5`.
-* That a weight of a listed shape is not *numerically* a pure power.  Without the
-  Pisot moduli this is **false**: for the irreducible `χ_M = X³ − 2` (Eisenstein at
-  `2`; its irreducibility is not formalized here) any three distinct roots satisfy
-  `x₀ x₁ x₂ = x₀³` (shape `(1,1,1)`) and `x₀² x₁ x₂ = x₀⁴` (shape `(2,1,1)`)
-  (`mono_eq_pow_of_cube_eq`).  Under the Pisot moduli and `1 ≤ |det M|` the
-  `(1,1,1)` case does hold (`xᵢ³ = det M = x₀ x₁ x₂` forces `|xᵢ|² = |xⱼ xₖ| < 1`
-  when `xᵢ` is the Perron root, and `|xᵢ|³ < 1 ≤ |det M|` otherwise); that is not
-  proved here either.
+* Pure powers beyond the shapes `(1,1,1)`, `(2,1,1)` (see "Pure powers" above): whether a
+  weight of shape `(3,1,0)`, `(2,2,0)` or `(2,1,0)` can equal a power of a root is not
+  examined; the case analysis of `Psc.Degree3Sector`, `Psc.Degree4Floor` does not need it.
 -/
 import PscVerif.KernelCofactor
 import PscVerif.Degree2Sector
 import PscVerif.Defect4Lie
 import PscVerif.M0Pisot
+import PscVerif.GaloisOrbit
 
 namespace Psc.SectorBridge
 
@@ -310,9 +326,9 @@ theorem Shape3.triple {κ : Fin 3 → ℕ} (h : Shape3 κ) :
 
 /-- **A listed shape can be numerically a pure power.**  If `x 0, x 1, x 2` are
 pairwise distinct with equal cubes (e.g. the three roots of `X³ − c`, `c ≠ 0`; for
-`c = 2` that cubic is irreducible over `ℚ`, by Eisenstein at `2`, which is not
-formalized here), then the shape-`(1,1,1)` weight is
-`x₀³` and the shape-`(2,1,1)` weight is `x₀⁴`.  From `x₀³ = x₁³ = x₂³` and
+`c = 2` that cubic is irreducible over `ℚ`, by Eisenstein at `2`:
+`X_pow_three_sub_two_irreducible`, and `cube_root_two_control`), then the shape-`(1,1,1)`
+weight is `x₀³` and the shape-`(2,1,1)` weight is `x₀⁴`.  From `x₀³ = x₁³ = x₂³` and
 distinctness: `x₀² + x₀x₁ + x₁² = 0`, `x₀² + x₀x₂ + x₂² = 0`, hence
 `x₀ + x₁ + x₂ = 0` and `x₀x₁x₂ − x₀³ = x₀x₁ (x₀ + x₁ + x₂) − x₀ (x₀² + x₀x₁ + x₁²)`. -/
 theorem mono_eq_pow_of_cube_eq {F : Type*} [Field F] {x : Fin 3 → F}
@@ -1058,5 +1074,126 @@ theorem ssign_root_bound_of_perron {S : ChildSystem (Fin 3)} (P : Normalisation 
       exact_mod_cast h) x hx0 μ hx
 
 end Shared
+
+/-! ### Pure powers: excluded under the Pisot moduli, attained for `X³ − 2` -/
+
+section PurePower
+
+open Psc.LieWeights
+
+/-- **`X³ − 2` is irreducible over `ℤ`**, by Eisenstein at the prime ideal `(2)`
+(`Polynomial.irreducible_of_eisenstein_criterion`): monic, the non-leading coefficients
+`0, 0, −2` lie in `(2)`, and `−2 ∉ (4)`. -/
+theorem X_pow_three_sub_two_irreducible_int : Irreducible (X ^ 3 - C 2 : ℤ[X]) := by
+  have hP : (Ideal.span {(2 : ℤ)}).IsPrime :=
+    (Ideal.span_singleton_prime (by norm_num)).2 Int.prime_two
+  have hdeg : (X ^ 3 - C 2 : ℤ[X]).natDegree = 3 := by
+    rw [natDegree_sub_C, natDegree_X_pow]
+  have hmon : (X ^ 3 - C 2 : ℤ[X]).Monic := monic_X_pow_sub_C 2 (by norm_num)
+  refine irreducible_of_eisenstein_criterion hP ?_ ?_ ?_ ?_ hmon.isPrimitive
+  · rw [hmon.leadingCoeff, Ideal.mem_span_singleton]; norm_num
+  · intro n hn
+    rw [degree_eq_natDegree hmon.ne_zero, hdeg] at hn
+    have hn' : n < 3 := by exact_mod_cast hn
+    rw [Ideal.mem_span_singleton]
+    interval_cases n <;> simp [coeff_X_pow]
+  · rw [degree_eq_natDegree hmon.ne_zero, hdeg]; norm_num
+  · rw [Ideal.span_singleton_pow, Ideal.mem_span_singleton]
+    simp
+
+/-- **`X³ − 2` is irreducible over `ℚ`** (Gauss:
+`Polynomial.IsPrimitive.Int.irreducible_iff_irreducible_map_cast`). -/
+theorem X_pow_three_sub_two_irreducible : Irreducible (X ^ 3 - C 2 : ℚ[X]) := by
+  have hmon : (X ^ 3 - C 2 : ℤ[X]).Monic := monic_X_pow_sub_C 2 (by norm_num)
+  have h := (IsPrimitive.Int.irreducible_iff_irreducible_map_cast hmon.isPrimitive).1
+    X_pow_three_sub_two_irreducible_int
+  have e : (X ^ 3 - C 2 : ℤ[X]).map (Int.castRingHom ℚ) = X ^ 3 - C 2 := by
+    simp [Polynomial.map_sub, map_ofNat]
+  rwa [e] at h
+
+/-- The substitution `0 ↦ 1`, `1 ↦ 2`, `2 ↦ 00` (irreducible, imprimitive of period `3`). -/
+def cubeSubst : Fin 3 → List (Fin 3) := ![[1], [2], [0, 0]]
+
+/-- Its rational incidence matrix, the companion matrix of `X³ − 2`. -/
+abbrev cubeM : Matrix (Fin 3) (Fin 3) ℚ := (Psc.Incidence.inc cubeSubst).map (Nat.cast : ℕ → ℚ)
+
+/-- `χ_M = X³ − 2` (trace `0`, trace of `Λ²M` `0`, `det M = 2`). -/
+theorem cubeM_charpoly : cubeM.charpoly = X ^ 3 - C 2 := by
+  rw [Psc.Cyclicity.charpoly_fin_three]
+  have htr : cubeM.trace = 0 := by simp [Matrix.trace_fin_three, cubeSubst]
+  have hw : (Psc.Cyclicity.wedge2 cubeM).trace = 0 := by
+    simp [Matrix.trace_fin_three, Psc.Cyclicity.wedge2, Psc.Cyclicity.pairFst,
+      Psc.Cyclicity.pairSnd, cubeSubst]
+  have hd : cubeM.det = 2 := by simp [Matrix.det_fin_three, cubeSubst]
+  rw [htr, hw, hd]
+  simp
+
+/-- **Negative control: without the Pisot moduli a weight of a listed shape is a pure power.**
+`cubeSubst` has irreducible `χ_M = X³ − 2` and `det M = 2` (so `1 ≤ |det M|`), and for its
+three pairwise distinct complex roots `x` (`exists_distinct_roots`), all of modulus
+`2^{1/3}` (`‖x i‖³ = 2`, so the Pisot moduli fail), the `(1,1,1)` weight is `x₀³` and the
+`(2,1,1)` weight is `x₀⁴` (`mono_eq_pow_of_cube_eq`). -/
+theorem cube_root_two_control :
+    Irreducible cubeM.charpoly ∧ cubeM.det = 2 ∧
+      ∃ x : Fin 3 → ℂ, Function.Injective x ∧ (∀ i, aeval (x i) cubeM.charpoly = 0) ∧
+        (∀ i, ‖x i‖ ^ 3 = 2) ∧ mono x ![1, 1, 1] = x 0 ^ 3 ∧ mono x ![2, 1, 1] = x 0 ^ 4 := by
+  have hirr : Irreducible cubeM.charpoly := by
+    rw [cubeM_charpoly]; exact X_pow_three_sub_two_irreducible
+  have hd : cubeM.det = 2 := by simp [Matrix.det_fin_three, cubeSubst]
+  obtain ⟨x, hx, hroot, -⟩ := exists_distinct_roots (L := ℂ) cubeM hirr
+  have hcube : ∀ i, x i ^ 3 = 2 := fun i => by
+    have h := hroot i
+    rw [cubeM_charpoly] at h
+    simp only [map_sub, map_pow, aeval_X, map_ofNat] at h
+    linear_combination h
+  refine ⟨hirr, hd, x, hx, hroot, fun i => ?_,
+    mono_eq_pow_of_cube_eq hx fun i => by rw [hcube i, hcube 0]⟩
+  rw [← norm_pow, hcube i]; norm_num
+
+variable (M : Matrix (Fin 3) (Fin 3) ℚ) (hM : Irreducible M.charpoly) {β α γ : ℂ}
+  (hβ : aeval β M.charpoly = 0) (hα : aeval α M.charpoly = 0) (hγ : aeval γ M.charpoly = 0)
+  (hβα : β ≠ α) (hβγ : β ≠ γ) (hαγ : α ≠ γ) (hβ1 : 1 < ‖β‖) (hα1 : ‖α‖ < 1) (hγ1 : ‖γ‖ < 1)
+  (hdet : 1 ≤ |M.det|)
+include hM hβ hα hγ hβα hβγ hαγ hβ1 hα1 hγ1 hdet
+
+/-- **Under the Pisot moduli no weight of shape `(1,1,1)` or `(2,1,1)` is a pure power of a
+root.**  For a rational `M` with irreducible `χ_M`, pairwise distinct roots `β, α, γ` with
+`1 < ‖β‖`, `‖α‖, ‖γ‖ < 1`, and `1 ≤ |det M|`: `βαγ` is none of `β³, α³, γ³`
+(`Psc.GaloisOrbit.mono111_ne_cube`), and no `(2,1,1)` weight is any of `β⁴, α⁴, γ⁴`
+(`Psc.GaloisOrbit.mono211_ne_pow4`, with `βαγ = det M` rational, `det_eq_mul_roots`).
+Contrast `cube_root_two_control`, where only the moduli fail. -/
+theorem pure_power_excluded :
+    (∀ x ∈ ({β, α, γ} : Set ℂ), β * α * γ ≠ x ^ 3) ∧
+      ∀ w ∈ ({β ^ 2 * α * γ, β * α ^ 2 * γ, β * α * γ ^ 2} : Set ℂ),
+        ∀ x ∈ ({β, α, γ} : Set ℂ), w ≠ x ^ 4 := by
+  have hD := one_le_norm_mul_roots hβ hα hγ hβα hβγ hαγ hdet
+  refine ⟨fun x hx => ?_, Psc.GaloisOrbit.mono211_ne_pow4 hM
+    (Matrix.charpoly_natDegree_eq_dim M ▸ Fintype.card_fin 3) hβ hα hγ hβα hβγ hαγ hβ1 hα1 hγ1
+    hD ⟨M.det, det_eq_mul_roots M hβ hα hγ hβα hβγ hαγ⟩⟩
+  obtain ⟨h1, h2, h3⟩ := Psc.GaloisOrbit.mono111_ne_cube hβ1 hα1 hγ1 hD
+  simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hx
+  rcases hx with rfl | rfl | rfl <;> assumption
+
+/-- `pure_power_excluded` in the notation `mono x κ` of `mono_eq_pow_of_cube_eq`, for
+`x = (β, α, γ)` and `κ` a permutation of `(1,1,1)` or `(2,1,1)`. -/
+theorem pure_power_excluded_mono :
+    (∀ i, mono ![β, α, γ] ![1, 1, 1] ≠ ![β, α, γ] i ^ 3) ∧
+      ∀ κ : Fin 3 → ℕ, ((κ 0, κ 1, κ 2) = (2, 1, 1) ∨ (κ 0, κ 1, κ 2) = (1, 2, 1) ∨
+        (κ 0, κ 1, κ 2) = (1, 1, 2)) → ∀ i, mono ![β, α, γ] κ ≠ ![β, α, γ] i ^ 4 := by
+  obtain ⟨h3, h4⟩ := pure_power_excluded M hM hβ hα hγ hβα hβγ hαγ hβ1 hα1 hγ1 hdet
+  have hi : ∀ i, ![β, α, γ] i ∈ ({β, α, γ} : Set ℂ) := fun i => by
+    fin_cases i <;> simp
+  refine ⟨fun i => ?_, fun κ hκ i => ?_⟩
+  · rw [mono_fin_three]
+    simpa using h3 _ (hi i)
+  · rw [mono_fin_three]
+    rcases hκ with h | h | h <;> simp only [Prod.mk.injEq] at h <;> obtain ⟨h0, h1, h2⟩ := h <;>
+      rw [h0, h1, h2] <;> simp only [Matrix.cons_val_zero, Matrix.cons_val_one,
+        Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons, pow_one]
+    · exact h4 _ (by simp) _ (hi i)
+    · exact h4 _ (by simp) _ (hi i)
+    · exact h4 _ (by simp) _ (hi i)
+
+end PurePower
 
 end Psc.SectorBridge

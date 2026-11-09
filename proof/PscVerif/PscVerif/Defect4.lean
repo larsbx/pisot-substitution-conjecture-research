@@ -97,7 +97,14 @@ irreducibility hypothesis is used).  `n2` is `Psc.Binomial.n2`, `n3` is
     (`w4_ssign`), and `w4_k4`: `M^{⊗4} K₄ = K₄` with `K₄_{0101} = 8`
     (`w4_k4_ne`).  A zero-return system meeting the hypotheses of
     `k4_children`, `k4_image_children`, `k4_rep` and `q4_mul_ssign` with
-    `K₄ ≠ 0`, but with `M = 1` and `S = (1)`.
+    `K₄ ≠ 0`, but with `M = 1` and `S = (1)`.  `w4Pair` has the least possible length: over at
+    most three letters no distinct irreducible 3-binomially equivalent pair has length
+    `≤ 11`, and at length `12` there are exactly `12` unordered ones, one orbit under
+    relabelling, reversal and swap with least element `w4Pair` (the exhaustive binomial-pair
+    census `kernel/binomial_pair_census.mojo`, pinned by
+    `kernel/tests/test_binomial_pair_census.mojo` and replayed by
+    `oracles/python/binomial_pair_census.py`; `docs/c4-binomial-minimal-pairs-2026-11-07.md`
+    §1; a finite computation, not a Lean statement).
   - `exT` (`Psc.SignedIntertwiner.exBSubst`: `0 ↦ 1`, `1 ↦ 0`, `2 ↦ 2`;
     `C = {(t₃, t̄₃), (t̄₃, t₃)}` over `Fin 3`, the only child of `(t₃, t̄₃)`
     declared to be its swap): an **algebra-only** control, like

@@ -71,26 +71,45 @@ letter `S` names the child system), and `N_C = P.Nrep = A + B`.  The manuscript'
   (a normalisation of a child system over `Fin 3` with balanced states, `kw ≠ 0`
   and `χ_M` irreducible), and none is to be expected: the `Sector` theorems are
   necessary conditions on a hypothetical strict component, not facts about a known
-  one.  Informally (not formalized here):
-  1. `χ_M` irreducible makes `M` an irreducible nonnegative matrix, so `prop:cocycle`
-     gives `ρ(Ssign) ≤ β`; with `χ_{Λ²M} ∣ χ_Ssign` every `β βᵢ` has modulus `≤ β`,
-     and irreducibility excludes `|βᵢ| = 1`; so `σ` is irreducible Pisot.
-  2. Every depth-`n` descendant block (`ChildSystem.desc`) of a state `T` is a state,
-     hence balanced and noncoincident, hence has a mismatched position.  With `L` the
-     largest state length, `σⁿ(T.1)` and `σⁿ(T.2)` disagree at a fraction `≥ 1/L` of
-     positions for every `n`, so some potential overlap descending from `T` is
-     nonproductive.
-  3. The states need not be legal words, but pure discrete spectrum gives formal
-     productivity (every potential overlap productive) on three letters
-     (`docs/formal-productivity-reduction-2026-10-04.md`, the route of
-     `thm:seedwise`; human review pending).  So a full control is a three-letter
-     counterexample to PSC.
-     Formal productivity is also checked directly on the 4,554-member corpus, which
-     contains `plasticSubst` as specimen `1 2 4`: no formal nonproductive state and no
-     closed carrier (`docs/formal-overlap-carriers-2026-10-04.md`; finite evidence).
-     So `plastic` cannot be extended to a full control.
-  The matrix-level hypotheses alone are met (`plastic`), and the state-level ones
-  alone are met (`exA_sector`).
+  one.  What is formal, in `Psc.StrictSystem` (downstream of this module):
+  1. On a strict system the theorems are restated with every structural hypothesis
+     discharged (nonerasure, balance, `C ≠ ∅`, the nonzero `kw` column, for every
+     normalisation of its zero-return child system): `Psc.StrictSystem.StrictSystem.deg2_sector`
+     (`χ_M` irreducible, first defect degree `2`), so a full control *with zero-return
+     children* is exactly a strict system of first defect degree `2` over a three-letter
+     substitution with irreducible `χ_M`; `StrictSystem.three_le_card` and the exclusion
+     forms `no_strictSystem_deg2_of_card_lt`, `no_strictSystem_deg2_odd`.
+  2. The mismatch density: `Psc.StrictSystem.StrictSystem.mismatch_density` (if every state
+     has length `≤ L`, then `|σⁿ T.1| ≤ L · mismatch (σⁿ T.1) (σⁿ T.2)` for every state and
+     every `n`).
+  3. Theorem A(4) of the cut-pair note: a letter pair with a left strong-coincidence witness
+     is the first-letter pair of no state of a strict system
+     (`Psc.StrictSystem.StrictSystem.not_witness`), so there is no strict system when all
+     three pairs are witnessed (`no_strictSystem_of_strongCoincidence`).  Concretely:
+     `Psc.StrictSystem.plastic_vacuous` (over `plasticSubst` every substitution-level
+     hypothesis holds and there is no strict system; least witness levels `13, 14, 12`),
+     `census_vacuous`, `specimens_no_strictSystem`, `m0_no_strictSystem`; on these
+     specimens `no_strictSystem_deg2_odd_control` shows the extra hypotheses of the
+     exclusion forms jointly met, which there are redundant with Theorem A(4).
+  4. Over the 4,554-member standing corpus (images `≤ 3`, `plasticSubst` among them as
+     specimen `1 2 4`) there is no strict system at all: the ledger claim
+     `C4StandingCorpus` (finite-domain: the Mojo least-witness census composed with the Lean
+     Theorem A(4); `docs/c4-finite-domain-closure-2026-11-05.md` §3).  Formal productivity is also
+     checked directly on that corpus: no formal nonproductive state and no closed carrier
+     (`docs/formal-overlap-carriers-2026-10-04.md`; finite evidence).
+  What stays informal: that the hypotheses force `σ` to be Pisot (`prop:cocycle` gives
+  `ρ(Ssign) ≤ β` as a root bound for primitive `σ`,
+  `Psc.Degree4Floor.ssign_root_bound_of_primitive`, and `χ_{Λ²M} ∣ χ_Ssign` is proved here,
+  but `|βᵢ| < 1` is not derived); the mismatch density for a general child system (every
+  depth-`n` descendant block, `ChildSystem.desc`, is a mismatched state; formal only for
+  strict systems, item 2) and the passage from it to a nonproductive potential overlap; and formal productivity from pure discrete spectrum on three letters
+  (`docs/formal-productivity-reduction-2026-10-04.md`, the route of `thm:seedwise`; human
+  review pending).  So "a full control is a three-letter counterexample to PSC" remains an
+  informal reading.  For child systems whose children are not zero-return blocks (e.g.
+  `Psc.ReductioControls.rotSys` at `k = 1, 2`) no strict-system restatement applies and
+  nothing is excluded.  The matrix-level hypotheses alone are met (`plastic`), and the
+  state-level ones alone are met (`exA_sector`); the leave-one-out table is
+  `Psc.ReductioControls` (`degree2Sector_leave_one_out`).
 * `thm:deg23` (i) beyond the formula (`Psc.Cyclicity.charpoly_wedge2`): irreducibility
   of `χ_{Λ²M}` is `Psc.Cyclicity.irreducible_wedge2`; the modulus statement
   `ρ(Λ²M) = β|β₂| < β` is not formalized.  `thm:deg23` (iii) (`r(C) = 3`) is not treated.

@@ -44,3 +44,6 @@ import PscVerif.Defect4Lie
 import PscVerif.SectorBridge
 import PscVerif.Degree3Sector
 import PscVerif.Degree4Floor
+import PscVerif.Degree3Catalogue
+import PscVerif.StrictSystem
+import PscVerif.ReductioControls

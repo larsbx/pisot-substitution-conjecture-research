@@ -50,7 +50,11 @@ Setting and notation are those of `Psc.SectorBridge`: `S` a child system over `F
   `det M ≠ 0`; no irreducibility, no moduli): `le_two_of_pow_dvd`
   (`(X - det M)^n ∣ χ(Φ₃)` over `ℚ` forces `n ≤ 2`, from the explicit `χ(Φ₃)` over `ℂ`,
   `Psc.LieWeights.charpoly_phi3Lie_explicit`, and `weights_ne_det`: no non-scalar weight
-  equals `βαγ`); `finrank_ker_sub_det_le_two`: `dim_ℚ ker (Φ₃ - det M) ≤ 2`.
+  equals `βαγ`); `finrank_ker_sub_det_le_two`: `dim_ℚ ker (Φ₃ - det M) ≤ 2`;
+  **`finrank_ker_sub_det_eq_two`**: `= 2`, since `(X − det M)² ∣ χ(Φ₃)` over `ℚ` (from `ℂ`,
+  `Polynomial.map_dvd_map`), the maximal generalized eigenspace has the root multiplicity
+  as dimension (`LinearMap.finrank_maxGenEigenspace_eq`), and it is `ker (Φ₃ − det M)` by
+  `phi3Lie_sub_smul_of_pow`.
 * **The core, matrix form** (`M` rational, `χ_M` irreducible, `‖α‖, ‖γ‖ < 1`,
   `1 ≤ |det M|`, `W ⊆ Lie₃(ℚ³)` a `Φ₃`-invariant rational subspace whose `χ(Φ₃|_W)` has all
   complex roots of modulus `≤ ‖β‖`):
@@ -101,6 +105,7 @@ Setting and notation are those of `Psc.SectorBridge`: `S` a child system over `F
     has a normalisation and only `∼₂` states.  It uses `deg23_iii_of_primitive` with every
     matrix hypothesis discharged (`census_irreducible`, `censusSubst_primitive`,
     `census_pisot`, via `census_other`: the complex pair has `‖z‖² = b² − 2b = 1/b`).
+    `Psc.Degree3Catalogue.catalogue_spec` extends it to all 24 catalogue occurrences.
   - State level: `wT_conclusions` (`Psc.SignedIntertwiner.wT`, the identity substitution,
     `Equiv2` states, `K₃ ≠ 0`): the conclusions hold with `rank Q₃ = 1`; weak, since `M = 1`
     (`χ_M` reducible, `Psc.KernelCofactor.wT_not_irreducible`; `Φ₃ = 1`).
@@ -123,13 +128,17 @@ Setting and notation are those of `Psc.SectorBridge`: `S` a child system over `F
   Their hypotheses are jointly satisfiable only degenerately (`census_empty_control`,
   `im Q₃ = 0`); the matrix-form core has the full control `m0_control`; the state
   hypotheses with `K₃ ≠ 0` are met by `wT` and `cyc3Norm`, whose `χ_M` are reducible.
+  On a strict system they are restated with every structural hypothesis discharged as
+  `Psc.StrictSystem.StrictSystem.deg23_iii` (`StrictComponent.deg23_iii`); the leave-one-out
+  table of their hypotheses is `Psc.ReductioControls` (`degree3Sector_leave_one_out`).
 * **The census beyond one state.**  `census_not_mem` covers the single state
-  `(011212001, 120011120)` over the single substitution `censusSubst`; the other 23 census
-  states (the second length-9 class, the two length-19 classes, and their relabellings and
-  reversals over the other 11 substitutions) are not formalized, nor is the census itself
-  (that these states are reachable in `B_σ`, or that there are exactly 24).  The pairing of
-  this state class with this substitution class rests on a scratch inflation check, not a
-  Lean statement; the theorem holds for the pair as stated, reachable or not.
+  `(011212001, 120011120)` over the single substitution `censusSubst`.  The other 23 census
+  states, their reachability and recurrence in `B_σ`, their leak pattern and the exact
+  vertex sets of the twelve automata are `Psc.Degree3Catalogue` (`catalogue_spec`,
+  `catalogue_exact`, `catalogue_card`, `no_closed_equiv2`; the length-21 inflation of the
+  first length-9 class over `censusSubst` is `class9a_sigmaA_control`), which supersedes the
+  scratch inflation checks this docstring used to cite.  That the 24 are all the degree-three
+  states of the 4,554-member corpus remains the Mojo census `kernel/degree3_catalog.mojo`.
 * `r(C) = 3` as the first-defect selection: the hypothesis is `Equiv2` on every state (as in
   `Psc.SectorBridge`), and a nonzero column is used only in `deg23_iii_of_ne`; strictness of
   the component (closure, reachability, recurrence) is not used.
@@ -140,9 +149,6 @@ Setting and notation are those of `Psc.SectorBridge`: `S` a child system over `F
   part ("one sextic factor or two cubic factors") is not formalized; it is replaced by the
   Galois-orbit step on the roots of `q₃` (`shape3_root_eq`).  Semisimplicity is proved in
   the kernel form `ker (Φ₃ - μ)^k = ker (Φ₃ - μ)`, not as `Module.End.IsSemisimple`.
-* `dim_ℚ ker (Φ₃ - det M) = 2`: only `≤ 2` (`finrank_ker_sub_det_le_two`); the lower bound
-  (the dimension `2` of `Psc.LieWeights.finrank_ker_phi3Lie_sub_det` over `ℂ`, transported to
-  `ℚ`) is not proved.
 * Degrees `r ≥ 4` (`thm:sieve`) and other alphabets.
 -/
 
@@ -521,6 +527,43 @@ theorem finrank_ker_sub_det_le_two {M : Matrix (Fin 3) (Fin 3) ℚ} {β α γ : 
   refine le_two_of_pow_dvd hβ hα hγ hβα hβγ hαγ hdet0 ?_
   rw [← resCharpoly_of_le_ker _ hE _ le_rfl]
   exact resCharpoly_dvd _ hE
+
+/-- **The rational `det M`-eigenspace of `Φ₃` has dimension exactly two**, for a rational `M`
+with three pairwise distinct complex eigenvalues and `det M ≠ 0` (no irreducibility, no
+moduli): the multiplicity of `det M` as a root of the rational `χ(Φ₃)` is two (at most two by
+`le_two_of_pow_dvd`; at least two since `(X − det M)² ∣ χ(Φ₃)` over `ℂ`,
+`Psc.LieWeights.charpoly_phi3Lie_explicit`, hence over `ℚ` by `Polynomial.map_dvd_map`), the
+maximal generalized `det M`-eigenspace has that dimension
+(`LinearMap.finrank_maxGenEigenspace_eq`), and it equals `ker (Φ₃ − det M)` by the kernel form
+of semisimplicity `phi3Lie_sub_smul_of_pow`.  The rational form of
+`Psc.LieWeights.finrank_ker_phi3Lie_sub_det`. -/
+theorem finrank_ker_sub_det_eq_two {M : Matrix (Fin 3) (Fin 3) ℚ} {β α γ : ℂ}
+    (hβ : aeval β M.charpoly = 0) (hα : aeval α M.charpoly = 0) (hγ : aeval γ M.charpoly = 0)
+    (hβα : β ≠ α) (hβγ : β ≠ γ) (hαγ : α ≠ γ) (hdet0 : M.det ≠ 0) :
+    Module.finrank ℚ (LinearMap.ker (phi3Lie M - M.det • 1)) = 2 := by
+  obtain ⟨Q, hQ, hMQ⟩ :=
+    exists_conj_diagonal M ![β, α, γ] (vec3_injective hβα hβγ hαγ) (vec3_roots hβ hα hγ)
+  have hd : algebraMap ℚ ℂ M.det = β * α * γ := by
+    rw [eq_ratCast]; exact det_eq_mul_roots M hβ hα hγ hβα hβγ hαγ
+  have hdM : (M.map (algebraMap ℚ ℂ)).det = β * α * γ := by
+    rw [← hd, RingHom.map_det, RingHom.mapMatrix_apply]
+  have hdvd2 : (X - C M.det) ^ 2 ∣ (phi3Lie M).charpoly := by
+    have hmon : ((X - C M.det) ^ 2 : ℚ[X]).Monic := (monic_X_sub_C _).pow 2
+    rw [← Polynomial.map_dvd_map (algebraMap ℚ ℂ) (algebraMap ℚ ℂ).injective hmon,
+      Polynomial.map_pow, Polynomial.map_sub, map_X, map_C, hd, ← charpoly_phi3Lie_map,
+      charpoly_phi3Lie_explicit _ Q _ hQ hMQ, hdM]
+    exact dvd_mul_left _ _
+  have hmult : (phi3Lie M).charpoly.rootMultiplicity M.det = 2 :=
+    le_antisymm (le_two_of_pow_dvd hβ hα hγ hβα hβγ hαγ hdet0 (pow_rootMultiplicity_dvd _ _))
+      ((le_rootMultiplicity_iff (LinearMap.charpoly_monic _).ne_zero).2 hdvd2)
+  have hmax : (phi3Lie M).maxGenEigenspace M.det = LinearMap.ker (phi3Lie M - M.det • 1) := by
+    apply le_antisymm
+    · intro v hv
+      obtain ⟨k, hk⟩ := (Module.End.mem_maxGenEigenspace _ _ _).1 hv
+      exact LinearMap.mem_ker.2 (phi3Lie_sub_smul_of_pow M Q _ hQ hMQ M.det k hk)
+    · intro v hv
+      exact (Module.End.mem_maxGenEigenspace _ _ _).2 ⟨1, by simpa using hv⟩
+  rw [← hmax, LinearMap.finrank_maxGenEigenspace_eq, hmult]
 
 variable {M : Matrix (Fin 3) (Fin 3) ℚ} (hM : Irreducible M.charpoly) {β α γ : ℂ}
   (hβ : aeval β M.charpoly = 0) (hα : aeval α M.charpoly = 0) (hγ : aeval γ M.charpoly = 0)
@@ -1009,13 +1052,12 @@ abbrev censusQ : Matrix (Fin 3) (Fin 3) ℚ := (inc censusSubst).map (Nat.cast :
 
 /-- The length-9 state `(011212001, 120011120)` (the second length-9 state class of
 `docs/c4-defect-degree-census.md` §3).  Over `censusSubst` its inflation is a single
-irreducible `∼₂` pair of length 19 with five children, one a coincidence, as the census
-reports for its length-9 states (a scratch check, not formalized); the first class
-`(011202001, 120001120)` inflates over `censusSubst` to a `∼₂` pair of length 21, which the
-census's reported lengths (`9` and `19`) rule out for a reachable state, so it occurs only
-over a relabelled or reversed substitution.  That this pair is reachable in `B_σ` is the
-finite computation `kernel/degree3_catalog.mojo`, not formalized here; nothing below uses
-it. -/
+irreducible `∼₂` pair of length 19 with five children, one a coincidence, and the pair is a
+reachable, recurrent vertex of `B_σ`: `Psc.Degree3Catalogue.catalogue_spec` (fields
+`reachable`, `recurrent`, `leak`).  The first class `(011202001, 120001120)` inflates over
+`censusSubst` to a `∼₂` pair of length 21 and is not a vertex of `B_σ`
+(`Psc.Degree3Catalogue.class9a_sigmaA_control`, `class9a_not_mem_sigmaA`); it occurs only
+over a relabelled or reversed substitution.  Nothing in this module uses reachability. -/
 def censusPair : List (Fin 3) × List (Fin 3) :=
   ([0, 1, 1, 2, 1, 2, 0, 0, 1], [1, 2, 0, 0, 1, 1, 1, 2, 0])
 
@@ -1185,7 +1227,10 @@ and `M^{⊗3} K₃ ≠ det M · K₃` in either orientation (`census_phi3_001`,
 representative `T` or `T.swap` (`Normalisation.cover`): **no child system over
 `censusSubst` whose states are all `∼₂` and which has a normalisation contains this state.**
 This formalizes, for this one state, the manuscript's reading of `comp:defect` ("none of
-which satisfies the necessary condition `im Q₃ ⊆ ker (Φ₃ - det M)`"), line 1204. -/
+which satisfies the necessary condition `im Q₃ ⊆ ker (Φ₃ - det M)`"), line 1204; all 24
+catalogue occurrences over the 12 catalogue substitutions are
+`Psc.Degree3Catalogue.catalogue_spec` (field `not_mem`), and the exact vertex sets of their
+automata are `Psc.Degree3Catalogue.catalogue_exact`. -/
 theorem census_not_mem (S : ChildSystem (Fin 3)) (hs : S.s = censusSubst) (P : Normalisation S)
     (hbal : ∀ T ∈ S.C, Equiv2 T.1 T.2) : censusPair ∉ S.C := by
   intro hT

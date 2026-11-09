@@ -79,9 +79,19 @@ Part A, Ree at degree four:
   `eq_sum_lyndon4` and `shuffleAnnih4_phi4` are met by nonzero vectors);
   `r1_not_shuffleAnnih4`: the concatenation square `[0,1]·[0,1] = 0101 - 0110
   - 1001 + 1010` (`sq01`) satisfies every `R1` but violates `R2` at `(0,1,0,1)`,
-  so the `a ⧢ bcd` relations alone do not cut out `Lie₄` (their annihilator has
-  dimension `81 - 57 = 24`; that number is a computation of the generator, not
-  proved here).
+  so the `a ⧢ bcd` relations alone do not cut out `Lie₄`.
+* **`R1` alone, exactly** (section `R1Only`): `R1Annih4`, `r1Annih4Space`,
+  `shuffleAnnih4Space_le_r1Annih4Space`; `cat2 x y z w = [x,y]·[z,w]` (concatenation of
+  degree-two brackets) satisfies `R1` over every commutative ring (`r1Annih4_cat2`, a kernel
+  `decide` over `ℤ` transported by `R1Annih4.map`; `sq01 = cat2 0 1 0 1`, `sq01_eq_cat2`);
+  `r1Basis` (the 18 Lyndon brackets and `[0,1]·[0,1]`, `[0,2]·[0,2]`, `[1,2]·[1,2]`,
+  `[0,2]·[0,1]`, `[1,2]·[0,1]`, `[1,2]·[0,2]`), `r1Basis_mem`, the integer coefficient map
+  `r1Coeff` with `r1Coeff_sum` and `linearIndependent_r1Basis` (any commutative ring);
+  `eq_sum_r1Basis` (a field of characteristic zero: the 57 coordinates outside the 24 read by
+  `r1Coeff` are explicit `linear_combination`s of the `R1` relations, generated in exact
+  rational arithmetic and checked here), `r1Annih4Space_eq_span`,
+  **`finrank_r1Annih4Space`**: the annihilator of `R1` alone has dimension `24 = 81 − 57`
+  (`Lie₄ ⊕ Lie₂·Lie₂`, `18 + 6`), and `shuffleAnnih4Space_lt_r1Annih4Space`.
 
 Part B, contents and weights:
 
@@ -188,12 +198,14 @@ Part B, contents and weights:
   rational `M`, through `charpoly_phi4Lie_rat`, `charpoly_phi3Lie_rat`).  The
   passage from a rational `M` with irreducible `χ_M` to such a `Q` is
   `Psc.SectorBridge.exists_diagonalization` (downstream of this module).
-* `thm:deg23` (iii) itself.  `im Q₃ ⊆ ker (Φ₃ - det M)` needs the Galois-stable
-  rational constituents of the non-scalar part, `Lie₃ ≅ S_{(2,1)}`, the moduli
-  of the weights and `thm:defect-intertwiner`; only the spectrum and
-  `dim ker (Φ₃ - det M) = 2` (over `F`, for distinct nonzero eigenvalues) are
-  proved here, and the kernel dimension is not transported to the rational
-  `Φ₃`.
+* `thm:deg23` (iii) itself: only the spectrum and `dim ker (Φ₃ - det M) = 2` (over `F`,
+  for distinct nonzero eigenvalues) are proved here.  The case analysis
+  (`im Q₃ ⊆ ker (Φ₃ - det M)`, by the Galois-orbit step instead of the manuscript's
+  Galois-stable constituents) and the rational kernel dimension
+  (`Psc.Degree3Sector.finrank_ker_sub_det_eq_two`) are `Psc.Degree3Sector`, downstream.
+* `R1` alone: `finrank_r1Annih4Space` is proved over a field of characteristic zero with the
+  explicit basis `r1Basis`; its description as `Lie₄ ⊕ Lie₂ · Lie₂` is that basis, not a
+  separately stated decomposition, and other degrees are not treated.
 * The case analysis of `thm:sieve`.  The modulus eliminations and the
   Galois-orbit step are `Psc.WeightModulus` (`weight_310`, `weight_220`,
   `weight_211`, `weight_111`) and `Psc.GaloisOrbit` (`orbit_310_excluded`,
@@ -202,7 +214,7 @@ Part B, contents and weights:
   every root of `χ(Φ_r)`, and of `q_r = χ(Φ_r|_{im Q_r})` (a divisor of `χ_S`),
   is a weight of one of the listed shapes is `Psc.SectorBridge`
   (`root_phi4Lie_rat`, `root_q4`, `exists_weight_root_q4`, and at degree three);
-  the case analysis itself is not formalized.
+  the case analysis at `r = 4` is `Psc.Degree4Floor`, downstream of this module.
 -/
 import PscVerif.Lie3
 
@@ -567,6 +579,247 @@ theorem r1_not_shuffleAnnih4 :
       ¬ ShuffleAnnih4 sq01 := by
   unfold ShuffleAnnih4 sq01 word4
   decide +kernel
+
+/-! ### The relations `a ⧢ bcd` alone: an annihilator of dimension `24`
+
+`R1` alone cuts out `Lie₄ ⊕ (Lie₂ · Lie₂)`: the 18 Lyndon brackets together with the six
+concatenation products `[x,y]·[z,w]` of degree-two brackets, `[0,1]·[0,1]`, `[0,2]·[0,2]`,
+`[1,2]·[1,2]`, `[0,2]·[0,1]`, `[1,2]·[0,1]`, `[1,2]·[0,2]` (`r1Basis`).  The coefficient map
+`r1Coeff` reads the 18 Lyndon coordinates and `0101, 0202, 1212, 0201, 1201, 1202`; each of
+the other 57 coordinates of an `R1`-annihilated vector is an explicit combination of the
+relations (generated in exact rational arithmetic, checked here by `linear_combination`). -/
+
+section R1Only
+
+section Ring
+
+variable {R S : Type*} [CommRing R] [CommRing S]
+
+/-- The relations `R1` (`a ⧢ bcd`) alone, at every index. -/
+def R1Annih4 (f : Vec4 R) : Prop :=
+  ∀ a b c d, f a b c d + f b a c d + f b c a d + f b c d a = 0
+
+/-- The solutions of `R1` as a submodule. -/
+def r1Annih4Space : Submodule R (Vec4 R) where
+  carrier := {f | R1Annih4 f}
+  add_mem' {f g} hf hg a b c d := by
+    simp only [Pi.add_apply]
+    linear_combination hf a b c d + hg a b c d
+  zero_mem' _ _ _ _ := by simp
+  smul_mem' r f hf a b c d := by
+    simp only [Pi.smul_apply, smul_eq_mul]
+    linear_combination r * hf a b c d
+
+theorem mem_r1Annih4Space {f : Vec4 R} : f ∈ r1Annih4Space ↔ R1Annih4 f := Iff.rfl
+
+/-- A shuffle-annihilated vector satisfies `R1`. -/
+theorem shuffleAnnih4Space_le_r1Annih4Space :
+    shuffleAnnih4Space (R := R) ≤ r1Annih4Space := fun _ h a b c d => (h a b c d).1
+
+/-- The concatenation product `[x,y]·[z,w]` of two degree-two brackets in the word basis. -/
+def cat2 (x y z w : Fin 3) : Vec4 R :=
+  word4 x y z w - word4 x y w z - word4 y x z w + word4 y x w z
+
+theorem map4_cat2 (φ : R →+* S) (x y z w : Fin 3) : map4 φ (cat2 x y z w) = cat2 x y z w := by
+  simp [cat2]
+
+/-- `R1` is preserved by every ring homomorphism. -/
+theorem R1Annih4.map (φ : R →+* S) {f : Vec4 R} (h : R1Annih4 f) : R1Annih4 (map4 φ f) :=
+  fun a b c d => by simpa [map4] using congrArg φ (h a b c d)
+
+/-- Over `ℤ`, every `[x,y]·[z,w]` satisfies `R1`: a kernel `decide` over all `3⁴ · 3⁴`
+index choices. -/
+theorem r1Annih4_cat2_int (x y z w : Fin 3) : R1Annih4 (cat2 (R := ℤ) x y z w) := by
+  revert x y z w
+  unfold R1Annih4 cat2 word4
+  decide +kernel
+
+/-- **Every `[x,y]·[z,w]` satisfies `R1`**, over every commutative ring (it is not
+shuffle-annihilated in general: `r1_not_shuffleAnnih4`, `sq01 = cat2 0 1 0 1`). -/
+theorem r1Annih4_cat2 (x y z w : Fin 3) : R1Annih4 (cat2 (R := R) x y z w) := by
+  rw [← map4_cat2 (Int.castRingHom R)]
+  exact (r1Annih4_cat2_int x y z w).map _
+
+theorem sq01_eq_cat2 : sq01 = cat2 0 1 0 1 := rfl
+
+/-- The 24 basis vectors: the Lyndon brackets `lyndon4`, then six products `[x,y]·[z,w]`. -/
+def r1Basis : Fin 24 → Vec4 R :=
+  ![brR 0 0 0 1, brR 0 0 0 2, brXL 0 0 1 1, brR 0 0 1 2, brXL 0 0 2 1, brXL 0 0 2 2, brP 0 1 0 2,
+    brL 0 1 1 1, brR 0 1 1 2, brRX 0 1 2 1, brXL 0 1 2 2, brL 0 2 1 1, brP 0 2 1 2, brL 0 2 2 1,
+    brL 0 2 2 2, brR 1 1 1 2, brXL 1 1 2 2, brL 1 2 2 2,
+    cat2 0 1 0 1, cat2 0 2 0 2, cat2 1 2 1 2, cat2 0 2 0 1, cat2 1 2 0 1, cat2 1 2 0 2]
+
+/-- The first 18 basis vectors are the Lyndon brackets. -/
+theorem r1Basis_castAdd (i : Fin 18) : r1Basis (R := R) (Fin.castAdd 6 i) = lyndon4 i := by
+  fin_cases i <;> rfl
+
+theorem r1Basis_mem (i : Fin 24) : r1Basis (R := R) i ∈ r1Annih4Space := by
+  have hL : ∀ {f : Vec4 R}, ShuffleAnnih4 f → f ∈ r1Annih4Space := fun h =>
+    shuffleAnnih4Space_le_r1Annih4Space h
+  fin_cases i
+  exacts [hL (shuffleAnnih4_brR 0 0 0 1), hL (shuffleAnnih4_brR 0 0 0 2),
+    hL (shuffleAnnih4_brXL 0 0 1 1), hL (shuffleAnnih4_brR 0 0 1 2),
+    hL (shuffleAnnih4_brXL 0 0 2 1), hL (shuffleAnnih4_brXL 0 0 2 2),
+    hL (shuffleAnnih4_brP 0 1 0 2), hL (shuffleAnnih4_brL 0 1 1 1),
+    hL (shuffleAnnih4_brR 0 1 1 2), hL (shuffleAnnih4_brRX 0 1 2 1),
+    hL (shuffleAnnih4_brXL 0 1 2 2), hL (shuffleAnnih4_brL 0 2 1 1),
+    hL (shuffleAnnih4_brP 0 2 1 2), hL (shuffleAnnih4_brL 0 2 2 1),
+    hL (shuffleAnnih4_brL 0 2 2 2), hL (shuffleAnnih4_brR 1 1 1 2),
+    hL (shuffleAnnih4_brXL 1 1 2 2), hL (shuffleAnnih4_brL 1 2 2 2),
+    r1Annih4_cat2 0 1 0 1, r1Annih4_cat2 0 2 0 2, r1Annih4_cat2 1 2 1 2,
+    r1Annih4_cat2 0 2 0 1, r1Annih4_cat2 1 2 0 1, r1Annih4_cat2 1 2 0 2]
+
+/-- The coefficients of an `R1`-annihilated vector on `r1Basis` (the first 18 are
+`lyndon4Coeff`). -/
+def r1Coeff (f : Vec4 R) : Fin 24 → R :=
+  ![f 0 0 0 1,
+    f 0 0 0 2,
+    f 0 0 1 1,
+    f 0 0 1 2,
+    f 0 0 1 2 + f 0 0 2 1,
+    f 0 0 2 2,
+    f 0 0 1 2 + f 0 0 2 1 + f 0 1 0 2,
+    f 0 1 1 1,
+    f 0 1 1 2,
+    2 * f 0 1 1 2 + f 0 1 2 1,
+    f 0 1 2 2,
+    f 0 1 1 2 + f 0 1 2 1 + f 0 2 1 1,
+    2 * f 0 1 2 2 + f 0 2 1 2,
+    f 0 1 2 2 + f 0 2 1 2 + f 0 2 2 1,
+    f 0 2 2 2,
+    f 1 1 1 2,
+    f 1 1 2 2,
+    f 1 2 2 2,
+    2 * f 0 0 1 1 + f 0 1 0 1,
+    2 * f 0 0 2 2 + f 0 2 0 2,
+    2 * f 1 1 2 2 + f 1 2 1 2,
+    2 * f 0 0 1 2 + 2 * f 0 0 2 1 + f 0 1 0 2 + f 0 2 0 1,
+    -f 0 1 2 1 - 2 * f 0 2 1 1 + f 1 2 0 1,
+    -f 0 2 1 2 - 2 * f 0 2 2 1 + f 1 2 0 2]
+
+theorem r1Coeff_zero : r1Coeff (0 : Vec4 R) = 0 := by
+  funext i; fin_cases i <;> simp [r1Coeff]
+
+/-- `r1Coeff` recovers every combination of `r1Basis` exactly. -/
+theorem r1Coeff_sum (g : Fin 24 → R) : r1Coeff (∑ i, g i • r1Basis i) = g := by
+  funext i
+  simp only [r1Coeff, Finset.sum_apply, Pi.smul_apply, smul_eq_mul, Fin.sum_univ_succ,
+    Fin.sum_univ_zero, r1Basis, Matrix.cons_val_zero, Matrix.cons_val_succ, brR, brP, brXL, brRX,
+    brL, cat2, Pi.add_apply, Pi.sub_apply, word4, Fin.isValue, Fin.reduceEq, ↓reduceIte,
+    Fin.succ_zero_eq_one, Fin.reduceSucc]
+  fin_cases i <;> simp only [Fin.zero_eta, Fin.mk_one, Fin.reduceFinMk, Matrix.cons_val] <;> ring1
+
+/-- **The 24 basis vectors are linearly independent** (over every commutative ring). -/
+theorem linearIndependent_r1Basis : LinearIndependent R (r1Basis (R := R)) := by
+  rw [Fintype.linearIndependent_iff]
+  intro g hg i
+  rw [← congrFun (r1Coeff_sum g) i, hg, r1Coeff_zero, Pi.zero_apply]
+
+end Ring
+
+section Field
+
+variable {F : Type*} [Field F] [CharZero F]
+
+/-- **`R1` alone, spanning half**: an `R1`-annihilated vector is the explicit combination
+`Σ r1Coeff f i • r1Basis i`.  The 24 coordinates read by `r1Coeff` are ring identities; each
+of the other 57 is an explicit combination of the relations `h`, in lexicographic order of the
+coordinate. -/
+theorem eq_sum_r1Basis {f : Vec4 F} (h : R1Annih4 f) : f = ∑ i, r1Coeff f i • r1Basis i := by
+  funext a b c d
+  simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul, Fin.sum_univ_succ, Fin.sum_univ_zero,
+    r1Basis, r1Coeff, Matrix.cons_val_zero, Matrix.cons_val_succ, brR, brP, brXL, brRX, brL, cat2,
+    Pi.add_apply, Pi.sub_apply, word4]
+  fin_cases a <;> fin_cases b <;>
+    simp only [Fin.zero_eta, Fin.mk_one, Fin.reduceFinMk, Fin.reduceEq, ↓reduceIte] <;>
+    fin_cases c <;> fin_cases d <;>
+    simp only [Fin.zero_eta, Fin.mk_one, Fin.reduceFinMk, Fin.reduceEq, ↓reduceIte, sub_zero,
+      zero_sub, sub_self, add_zero, zero_add, mul_zero, mul_one, mul_neg] <;>
+    try ring1
+  · linear_combination (1/4 : F) * h 0 0 0 0
+  · linear_combination h 0 0 0 1
+  · linear_combination h 0 0 0 2
+  · linear_combination -h 0 0 0 1 + (1/2 : F) * h 0 0 1 0
+  · linear_combination h 0 0 1 1
+  · linear_combination h 0 0 1 2
+  · linear_combination -h 0 0 0 2 + (1/2 : F) * h 0 0 2 0
+  · linear_combination h 0 0 2 1
+  · linear_combination h 0 0 2 2
+  · linear_combination (1/3 : F) * h 0 0 0 1 - (1/6 : F) * h 0 0 1 0 + (1/3 : F) * h 0 1 0 0
+  · linear_combination h 1 0 0 1
+  · linear_combination h 1 0 0 2
+  · linear_combination h 0 1 0 1 - 2 * h 1 0 0 1
+  · linear_combination h 1 0 1 1
+  · linear_combination h 1 0 1 2
+  · linear_combination h 0 1 0 2 - 2 * h 1 0 0 2
+  · linear_combination h 1 0 2 1
+  · linear_combination h 1 0 2 2
+  · linear_combination -(1/2 : F) * h 0 0 1 1 - (1/2 : F) * h 0 1 0 1 + (1/2 : F) * h 0 1 1 0 + h 1 0 0 1
+  · linear_combination -h 1 0 1 1 + (1/2 : F) * h 1 1 0 1
+  · linear_combination -(1/2 : F) * h 1 0 1 2 - (1/2 : F) * h 1 0 2 1 + (1/2 : F) * h 1 1 0 2
+  · linear_combination h 0 1 1 1 - (1/2 : F) * h 1 1 0 1
+  · linear_combination (1/4 : F) * h 1 1 1 1
+  · linear_combination h 0 1 1 2 - (1/2 : F) * h 1 0 1 2 + (1/2 : F) * h 1 0 2 1 - (1/2 : F) * h 1 1 0 2
+  · linear_combination h 1 1 1 2
+  · linear_combination -(1/2 : F) * h 0 0 1 2 - (1/2 : F) * h 0 1 0 2 + (1/2 : F) * h 0 1 2 0 + h 1 0 0 2
+  · linear_combination h 0 1 2 1 - h 1 0 2 1
+  · linear_combination -h 1 1 1 2 + (1/2 : F) * h 1 1 2 1
+  · linear_combination h 0 1 2 2 - h 1 0 2 2
+  · linear_combination h 1 1 2 2
+  · linear_combination (1/3 : F) * h 0 0 0 2 - (1/6 : F) * h 0 0 2 0 + (1/3 : F) * h 0 2 0 0
+  · linear_combination h 2 0 0 1
+  · linear_combination h 2 0 0 2
+  · linear_combination h 0 2 0 1 - 2 * h 2 0 0 1
+  · linear_combination h 2 0 1 1
+  · linear_combination h 2 0 1 2
+  · linear_combination h 0 2 0 2 - 2 * h 2 0 0 2
+  · linear_combination h 2 0 2 1
+  · linear_combination h 2 0 2 2
+  · linear_combination -(1/2 : F) * h 0 0 2 1 - (1/2 : F) * h 0 2 0 1 + (1/2 : F) * h 0 2 1 0 + h 2 0 0 1
+  · linear_combination h 1 2 0 1 - 2 * h 2 0 1 1
+  · linear_combination h 1 2 0 2 - h 2 0 1 2 - h 2 0 2 1
+  · linear_combination h 0 2 1 1 - h 1 2 0 1 + h 2 0 1 1
+  · linear_combination (1/3 : F) * h 1 1 1 2 - (1/6 : F) * h 1 1 2 1 + (1/3 : F) * h 1 2 1 1
+  · linear_combination h 2 1 1 2
+  · linear_combination h 0 2 1 2 - h 1 2 0 2 + h 2 0 2 1
+  · linear_combination h 1 2 1 2 - 2 * h 2 1 1 2
+  · linear_combination h 2 1 2 2
+  · linear_combination -(1/2 : F) * h 0 0 2 2 - (1/2 : F) * h 0 2 0 2 + (1/2 : F) * h 0 2 2 0 + h 2 0 0 2
+  · linear_combination -(1/2 : F) * h 2 0 1 2 - (1/2 : F) * h 2 0 2 1 + (1/2 : F) * h 2 2 0 1
+  · linear_combination -h 2 0 2 2 + (1/2 : F) * h 2 2 0 2
+  · linear_combination h 0 2 2 1 + (1/2 : F) * h 2 0 1 2 - (1/2 : F) * h 2 0 2 1 - (1/2 : F) * h 2 2 0 1
+  · linear_combination -(1/2 : F) * h 1 1 2 2 - (1/2 : F) * h 1 2 1 2 + (1/2 : F) * h 1 2 2 1 + h 2 1 1 2
+  · linear_combination -h 2 1 2 2 + (1/2 : F) * h 2 2 1 2
+  · linear_combination h 0 2 2 2 - (1/2 : F) * h 2 2 0 2
+  · linear_combination h 1 2 2 2 - (1/2 : F) * h 2 2 1 2
+  · linear_combination (1/4 : F) * h 2 2 2 2
+
+theorem r1Annih4Space_eq_span :
+    r1Annih4Space = Submodule.span F (Set.range (r1Basis (R := F))) := by
+  apply le_antisymm
+  · intro f hf
+    rw [eq_sum_r1Basis hf]
+    exact Submodule.sum_mem _ fun i _ =>
+      Submodule.smul_mem _ _ (Submodule.subset_span ⟨i, rfl⟩)
+  · exact Submodule.span_le.mpr (Set.range_subset_iff.mpr r1Basis_mem)
+
+/-- **The relations `a ⧢ bcd` alone cut out a space of dimension `24`**, strictly larger
+than `Lie₄` (dimension `18`, `finrank_shuffleAnnih4Space`). -/
+theorem finrank_r1Annih4Space : Module.finrank F (r1Annih4Space (R := F)) = 24 := by
+  rw [r1Annih4Space_eq_span, finrank_span_eq_card linearIndependent_r1Basis]
+  simp
+
+/-- `Lie₄ ⊊ ann(R1)`, by dimension (`18 < 24`); `r1_not_shuffleAnnih4` exhibits `sq01`. -/
+theorem shuffleAnnih4Space_lt_r1Annih4Space :
+    shuffleAnnih4Space (R := F) < r1Annih4Space := by
+  refine lt_of_le_of_ne shuffleAnnih4Space_le_r1Annih4Space fun h => ?_
+  have h24 := finrank_r1Annih4Space (F := F)
+  rw [← h, finrank_shuffleAnnih4Space] at h24
+  norm_num at h24
+
+end Field
+
+end R1Only
 
 /-! ## Part B: contents, components and weights -/
 

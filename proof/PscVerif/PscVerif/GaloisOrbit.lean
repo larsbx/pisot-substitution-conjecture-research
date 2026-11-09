@@ -37,7 +37,8 @@ stronger than `weight_211`: it needs no bound `1 < ‖β‖`.  The local tactic 
 * `orbit_310_excluded` (item 2): with `1 < ‖β‖`, `‖α‖ < 1`, `‖γ‖ < 1`, `1 ≤ ‖βαγ‖`, a root
   of `q` of shape `(3,1,0)` (any permutation) forces a root `z` of `q` with
   `‖β‖ < ‖z‖` and `‖β‖² < ‖z‖`.
-* `orbit_211_forces_unit` (item 3): with `1 ≤ ‖βαγ‖`, a root of shape `(2,1,1)` and every
+* `orbit_211_root`: a root of shape `(2,1,1)` gives the root `β · βαγ`;
+  `orbit_211_forces_unit` (item 3): with `1 ≤ ‖βαγ‖`, a root of shape `(2,1,1)` and every
   root of `q` of modulus at most `‖β‖`, one gets `‖βαγ‖ = 1`.
 * `orbit_220_both`: a root of shape `(2,2,0)` gives that both `β²α²` and `β²γ²` are roots.
 * `orbit_220_forces_complex_unit` (item 4): with `1 < ‖β‖`, `1 ≤ ‖βαγ‖`, a root of shape
@@ -45,7 +46,16 @@ stronger than `weight_211`: it needs no bound `1 < ‖β‖`.  The local tactic 
   Non-reality (`im_ne_zero_of_norm_eq`): if `α` were real, complex conjugation (a root
   permutation) and `‖γ‖ = ‖α‖ < ‖β‖` force `γ` real, hence `γ = -α`; then `f(α) = f(-α) = 0`
   gives `α² = -c₁/c₃ ∈ ℚ`, so `α` has degree at most two, contradicting the cubic minimal
+  polynomial.  `aeval_conj_eq_zero`: complex conjugation permutes the roots of a rational
   polynomial.
+* **Pure powers.**  `mono111_ne_cube` (moduli `1 < ‖β‖`, `‖α‖, ‖γ‖ < 1`, `1 ≤ ‖βαγ‖` only):
+  the `(1,1,1)` weight `βαγ` is none of `β³, α³, γ³`.  `mono211_ne_pow4_of_moduli`: seven of
+  the nine equalities between a `(2,1,1)` weight and a fourth power of a root fail under the
+  moduli alone; `moduli_211_control`: the eighth, `βα²γ = γ⁴`, is consistent with the moduli
+  (`(β, α, γ) = (729/250, 1/2, 9/10)`), so they do not suffice; `mono211_ne_pow4_galois`: the
+  remaining two fail for the roots of an irreducible rational cubic with a rational `βαγ`
+  (the conjugation `β ↦ α`, resp. `β ↦ γ`, of `exists_conj` applied to the rational relation
+  `β⁴α⁵ = (βαγ)³`); `mono211_ne_pow4`: all nine.
 
 ## What is not proved here
 
@@ -57,7 +67,9 @@ stronger than `weight_211`: it needs no bound `1 < ‖β‖`.  The local tactic 
 * The Wielandt step that excludes the `(2,2,0)` sector in the remaining complex unit case,
   and the semisimplicity of `Φ`, are not formalized.
 * `1 ≤ ‖βαγ‖` is assumed (in the application `βαγ = d = det M` is a nonzero integer); no
-  integrality is used.
+  integrality is used.  `mono211_ne_pow4_galois` assumes `βαγ` rational (`hr`); for
+  `f = χ_M` that is `Psc.SectorBridge.det_eq_mul_roots`, used by the matrix form
+  `Psc.SectorBridge.pure_power_excluded`.
 * Non-vacuity is exhibited numerically, not formally.  For Tribonacci `f = X³ − X² − X − 1`
   (`|β| ≈ 1.8393`, `|α| = |γ| ≈ 0.7374`, `|βαγ| = 1`): `q = X³ + X² + 3X − 1` (roots
   `β²α², β²γ², α²γ²`, largest modulus `|β|`) satisfies every hypothesis of item 4; `q = f`
@@ -181,6 +193,15 @@ theorem exists_conj {f : ℚ[X]} (hf : Irreducible f) (hdeg : f.natDegree = 3) {
     rw [h2, aeval_algebraMap_apply ℂ _ q, aeval_algEquiv]
     simp [h1]
 
+/-- Complex conjugation permutes the complex roots of a rational polynomial (moved here from
+`Psc.Degree4Floor`, which keeps a deprecated alias). -/
+theorem aeval_conj_eq_zero {f : ℚ[X]} {w : ℂ} (hw : aeval w f = 0) :
+    aeval (starRingEnd ℂ w) f = 0 := by
+  have := Polynomial.aeval_algHom_apply (Complex.conjAe.toAlgHom.restrictScalars ℚ) w f
+  simp only [AlgHom.restrictScalars_apply, AlgEquiv.coe_toAlgHom, Complex.conjAe_coe, hw,
+    map_zero] at this
+  exact this
+
 
 set_option hygiene false in
 /-- Close a branch whose hypothesis `hc` equates two of the distinct roots. -/
@@ -295,21 +316,28 @@ theorem orbit_310_excluded (hβ1 : 1 < ‖β‖) (hα1 : ‖α‖ < 1) (hγ1 : �
   · rw [h, ← e]; exact ⟨h3, h1⟩
   · rw [h, ← e]; exact ⟨h4, h2⟩
 
+/-- **The `(2,1,1)` orbit contains `d β`** (`d = β α γ`): from a root of `q` of shape
+`(2,1,1)`, `orbit_exponent_on_beta` gives the root `β² α γ = β · d`.  (Moved here from
+`Psc.Degree4Floor`, which keeps a deprecated alias; `orbit_211_forces_unit` uses it.) -/
+theorem orbit_211_root (q : ℚ[X]) (a b c : ℕ)
+    (habc : (a, b, c) = (2, 1, 1) ∨ (a, b, c) = (1, 2, 1) ∨ (a, b, c) = (1, 1, 2))
+    (hq : aeval (β ^ a * α ^ b * γ ^ c) q = 0) : aeval (β * (β * α * γ)) q = 0 := by
+  have h1 := orbit_exponent_on_beta hf hdeg hβ hα hγ hβα hβγ hαγ q a b c hq
+  rcases habc with h | h | h <;> simp only [Prod.mk.injEq] at h <;>
+    obtain ⟨rfl, rfl, rfl⟩ := h
+  · exact of_eq (by ring1) hq
+  · obtain ⟨x, y, hxy, hm⟩ := h1.1
+    rcases hxy with ⟨hx, hy⟩ | ⟨hx, hy⟩ <;> rw [hx, hy] at hm <;> exact of_eq (by ring1) hm
+  · obtain ⟨x, y, hxy, hm⟩ := h1.2
+    rcases hxy with ⟨hx, hy⟩ | ⟨hx, hy⟩ <;> rw [hx, hy] at hm <;> exact of_eq (by ring1) hm
+
 /-- **The `(2,1,1)` orbit forces `|d| = 1`** (task item 3). -/
 theorem orbit_211_forces_unit (hdet : 1 ≤ ‖β * α * γ‖) (q : ℚ[X]) (a b c : ℕ)
     (habc : (a, b, c) = (2, 1, 1) ∨ (a, b, c) = (1, 2, 1) ∨ (a, b, c) = (1, 1, 2))
     (hq : aeval (β ^ a * α ^ b * γ ^ c) q = 0)
     (hbound : ∀ z : ℂ, aeval z q = 0 → ‖z‖ ≤ ‖β‖) :
     ‖β * α * γ‖ = 1 := by
-  have hz : aeval (β * (β * α * γ)) q = 0 := by
-    have h1 := orbit_exponent_on_beta hf hdeg hβ hα hγ hβα hβγ hαγ q a b c hq
-    rcases habc with h | h | h <;> simp only [Prod.mk.injEq] at h <;>
-      obtain ⟨rfl, rfl, rfl⟩ := h
-    · exact of_eq (by ring1) hq
-    · obtain ⟨x, y, hxy, hm⟩ := h1.1
-      rcases hxy with ⟨hx, hy⟩ | ⟨hx, hy⟩ <;> rw [hx, hy] at hm <;> exact of_eq (by ring1) hm
-    · obtain ⟨x, y, hxy, hm⟩ := h1.2
-      rcases hxy with ⟨hx, hy⟩ | ⟨hx, hy⟩ <;> rw [hx, hy] at hm <;> exact of_eq (by ring1) hm
+  have hz := orbit_211_root hf hdeg hβ hα hγ hβα hβγ hαγ q a b c habc hq
   have h := hbound _ hz
   rw [norm_mul (β : ℂ) (β * α * γ)] at h
   have hB : 0 < ‖β‖ := by
@@ -333,12 +361,8 @@ theorem im_ne_zero_of_norm_eq (hβ1 : 1 < ‖β‖) (hunit : ‖β * α * γ‖ 
     rintro rfl
     simp at hunit
   -- complex conjugation permutes the roots of the rational polynomial `f`
-  have hconj : ∀ w : ℂ, aeval w f = 0 → aeval (starRingEnd ℂ w) f = 0 := by
-    intro w hw
-    have := Polynomial.aeval_algHom_apply (Complex.conjAe.toAlgHom.restrictScalars ℚ) w f
-    simp only [AlgHom.restrictScalars_apply, AlgEquiv.coe_toAlgHom, Complex.conjAe_coe, hw,
-      map_zero] at this
-    exact this
+  have hconj : ∀ w : ℂ, aeval w f = 0 → aeval (starRingEnd ℂ w) f = 0 :=
+    fun _ hw => aeval_conj_eq_zero hw
   -- step 1: `γ` is real
   have hγr : γ.im = 0 := by
     rcases root_eq_of_three hf0 hdeg hβ hα hγ hβα hβγ hαγ (hconj γ hγ) with h | h | h
@@ -418,5 +442,212 @@ theorem orbit_220_forces_complex_unit (hβ1 : 1 < ‖β‖) (hdet : 1 ≤ ‖β 
     exact hunit
 
 end Orbit
+
+/-! ### Weights that are pure powers of a root
+
+Under the Pisot moduli a weight of shape `(1,1,1)` or `(2,1,1)` is never numerically a pure
+power `x³`, `x⁴` of a root `x ∈ {β, α, γ}`.  Without the moduli it can be: for the irreducible
+`X³ − 2` every three distinct roots give `βαγ = β³`, `β²αγ = β⁴`
+(`Psc.SectorBridge.mono_eq_pow_of_cube_eq`, `Psc.SectorBridge.cube_root_two_control`). -/
+
+section PurePower
+
+variable {β α γ : ℂ} (hβ1 : 1 < ‖β‖) (hα1 : ‖α‖ < 1) (hγ1 : ‖γ‖ < 1)
+  (hdet : 1 ≤ ‖β * α * γ‖)
+
+include hβ1 hα1 hγ1 hdet
+
+/-- **The `(1,1,1)` weight is not a cube of a root** under the Pisot moduli and
+`1 ≤ ‖βαγ‖`: `βαγ = β³` gives `‖α‖ ‖γ‖ = ‖β‖² > 1`, and `βαγ = α³` (resp. `γ³`) gives
+`1 ≤ ‖βαγ‖ = ‖α‖³ < 1`. -/
+theorem mono111_ne_cube :
+    β * α * γ ≠ β ^ 3 ∧ β * α * γ ≠ α ^ 3 ∧ β * α * γ ≠ γ ^ 3 := by
+  have ha := norm_nonneg α
+  have hc := norm_nonneg γ
+  have hb : 0 < ‖β‖ := by linarith
+  rw [norm_mul, norm_mul] at hdet
+  refine ⟨fun h => ?_, fun h => ?_, fun h => ?_⟩
+  · have e := congrArg norm h
+    rw [norm_mul, norm_mul, norm_pow] at e
+    have hac : ‖α‖ * ‖γ‖ = ‖β‖ ^ 2 := by
+      have : ‖β‖ * (‖α‖ * ‖γ‖ - ‖β‖ ^ 2) = 0 := by linear_combination e
+      linear_combination (mul_eq_zero.1 this).resolve_left hb.ne'
+    nlinarith [mul_le_mul_of_nonneg_left hγ1.le ha]
+  · have e := congrArg norm h
+    rw [norm_mul, norm_mul, norm_pow] at e
+    nlinarith [pow_lt_one₀ ha hα1 (by norm_num : (3 : ℕ) ≠ 0)]
+  · have e := congrArg norm h
+    rw [norm_mul, norm_mul, norm_pow] at e
+    nlinarith [pow_lt_one₀ hc hγ1 (by norm_num : (3 : ℕ) ≠ 0)]
+
+/-- **Seven of the nine `(2,1,1)`-versus-fourth-power equalities fail under the moduli
+alone** (`1 < ‖β‖`, `‖α‖, ‖γ‖ < 1`, `1 ≤ ‖βαγ‖`, no Galois input).  With `b, a, c` the
+moduli of `β, α, γ` and `D = bac ≥ 1`: `β²αγ = β⁴` gives `ac = b²`; `β²αγ = α⁴` (or `γ⁴`)
+gives `bD = a⁴ < 1`; `βα²γ = β⁴` gives `a²c = b³`; `βα²γ = α⁴` gives `D = a³`; symmetrically
+for `βαγ²`.  The two remaining equalities `βα²γ = γ⁴`, `βαγ² = α⁴` are consistent with the
+moduli (`moduli_211_control`) and are excluded by the Galois step
+(`mono211_ne_pow4_galois`). -/
+theorem mono211_ne_pow4_of_moduli :
+    β ^ 2 * α * γ ≠ β ^ 4 ∧ β ^ 2 * α * γ ≠ α ^ 4 ∧ β ^ 2 * α * γ ≠ γ ^ 4 ∧
+      β * α ^ 2 * γ ≠ β ^ 4 ∧ β * α ^ 2 * γ ≠ α ^ 4 ∧
+      β * α * γ ^ 2 ≠ β ^ 4 ∧ β * α * γ ^ 2 ≠ γ ^ 4 := by
+  have ha := norm_nonneg α
+  have hc := norm_nonneg γ
+  have hb : 0 < ‖β‖ := by linarith
+  rw [norm_mul, norm_mul] at hdet
+  have ha4 := pow_lt_one₀ ha hα1 (by norm_num : (4 : ℕ) ≠ 0)
+  have hc4 := pow_lt_one₀ hc hγ1 (by norm_num : (4 : ℕ) ≠ 0)
+  have hac : ‖α‖ * ‖γ‖ < 1 := by nlinarith [mul_le_mul_of_nonneg_left hγ1.le ha]
+  have ha0 : 0 < ‖α‖ := by
+    rcases ha.lt_or_eq with h | h
+    · exact h
+    · rw [← h] at hdet; simp at hdet; linarith
+  have hc0 : 0 < ‖γ‖ := by
+    rcases hc.lt_or_eq with h | h
+    · exact h
+    · rw [← h] at hdet; simp at hdet; linarith
+  refine ⟨fun h => ?_, fun h => ?_, fun h => ?_, fun h => ?_, fun h => ?_, fun h => ?_,
+    fun h => ?_⟩ <;> have e := congrArg norm h <;>
+    simp only [norm_mul, norm_pow] at e
+  · -- `‖α‖ ‖γ‖ = ‖β‖²`
+    have : ‖β‖ ^ 2 * (‖α‖ * ‖γ‖ - ‖β‖ ^ 2) = 0 := by linear_combination e
+    have h2 := (mul_eq_zero.1 this).resolve_left (by positivity)
+    nlinarith
+  · nlinarith
+  · nlinarith
+  · -- `‖α‖² ‖γ‖ = ‖β‖³`
+    have : ‖β‖ * (‖α‖ ^ 2 * ‖γ‖ - ‖β‖ ^ 3) = 0 := by linear_combination e
+    have h2 := (mul_eq_zero.1 this).resolve_left hb.ne'
+    have h3 : 1 < ‖β‖ ^ 3 := one_lt_pow₀ hβ1 (by norm_num)
+    have h4 : ‖α‖ * (‖α‖ * ‖γ‖) < ‖α‖ * 1 := mul_lt_mul_of_pos_left hac ha0
+    nlinarith
+  · -- `‖βαγ‖ = ‖α‖³`
+    have : ‖α‖ * (‖β‖ * ‖α‖ * ‖γ‖ - ‖α‖ ^ 3) = 0 := by linear_combination e
+    have h2 := (mul_eq_zero.1 this).resolve_left ha0.ne'
+    nlinarith [pow_lt_one₀ ha hα1 (by norm_num : (3 : ℕ) ≠ 0)]
+  · have : ‖β‖ * (‖α‖ * ‖γ‖ ^ 2 - ‖β‖ ^ 3) = 0 := by linear_combination e
+    have h2 := (mul_eq_zero.1 this).resolve_left hb.ne'
+    have h3 : 1 < ‖β‖ ^ 3 := one_lt_pow₀ hβ1 (by norm_num)
+    have h4 : ‖γ‖ * (‖α‖ * ‖γ‖) < ‖γ‖ * 1 := mul_lt_mul_of_pos_left hac hc0
+    nlinarith
+  · have : ‖γ‖ * (‖β‖ * ‖α‖ * ‖γ‖ - ‖γ‖ ^ 3) = 0 := by linear_combination e
+    have h2 := (mul_eq_zero.1 this).resolve_left hc0.ne'
+    nlinarith [pow_lt_one₀ hc hγ1 (by norm_num : (3 : ℕ) ≠ 0)]
+
+end PurePower
+
+/-- **The moduli alone do not exclude `βα²γ = γ⁴`** (counter-calibration of
+`mono211_ne_pow4_of_moduli`): `(β, α, γ) = (729/250, 1/2, 9/10)` has `1 < β`, `α, γ < 1`,
+`βαγ = 6561/5000 ≥ 1` and `βα²γ = γ⁴ = 6561/10000`.  So the Galois hypotheses of
+`mono211_ne_pow4_galois` are not redundant. -/
+theorem moduli_211_control :
+    ∃ β α γ : ℂ, 1 < ‖β‖ ∧ ‖α‖ < 1 ∧ ‖γ‖ < 1 ∧ 1 ≤ ‖β * α * γ‖ ∧ β * α ^ 2 * γ = γ ^ 4 := by
+  refine ⟨((729 / 250 : ℚ) : ℂ), ((1 / 2 : ℚ) : ℂ), ((9 / 10 : ℚ) : ℂ), ?_, ?_, ?_, ?_, ?_⟩
+  · rw [Complex.norm_ratCast]; norm_num
+  · rw [Complex.norm_ratCast]; norm_num
+  · rw [Complex.norm_ratCast]; norm_num
+  · rw [← Rat.cast_mul, ← Rat.cast_mul, Complex.norm_ratCast]; norm_num
+  · push_cast; norm_num
+
+section PureGalois
+variable {f : ℚ[X]} (hf : Irreducible f) (hdeg : f.natDegree = 3) {β α γ : ℂ}
+    (hβ : aeval β f = 0) (hα : aeval α f = 0) (hγ : aeval γ f = 0)
+    (hβα : β ≠ α) (hβγ : β ≠ γ) (hαγ : α ≠ γ)
+    (hβ1 : 1 < ‖β‖) (hα1 : ‖α‖ < 1) (hγ1 : ‖γ‖ < 1) (hdet : 1 ≤ ‖β * α * γ‖)
+    (hr : ∃ r : ℚ, (r : ℂ) = β * α * γ)
+include hf hdeg hβ hα hγ hβα hβγ hαγ hβ1 hα1 hγ1 hdet hr
+
+/-- **The two `(2,1,1)` equalities the moduli leave open fail by the Galois step**, for the
+roots `β, α, γ` of an irreducible rational cubic with the Pisot moduli and a rational
+`d = βαγ` (in the application `d = det M`, `Psc.SectorBridge.det_eq_mul_roots`).  If
+`βα²γ = γ⁴` then `βα² = γ³`, so `β⁴α⁵ = d³`: the monomial `β⁴α⁵` is a root of the rational
+`X − d³`.  The conjugation `β ↦ α` of `exists_conj` transports this to `α⁴β⁵ = d³` or
+`α⁴γ⁵ = d³`, i.e. `αβ² = γ³` (then `b · D = c⁴ < 1 < b · D`) or `αγ² = β³` (then
+`ac² < 1 < b³`).  `βαγ² = α⁴` is the same with `β ↦ γ`. -/
+theorem mono211_ne_pow4_galois :
+    β * α ^ 2 * γ ≠ γ ^ 4 ∧ β * α * γ ^ 2 ≠ α ^ 4 := by
+  obtain ⟨r, hr⟩ := hr
+  have ha := norm_nonneg α
+  have hc := norm_nonneg γ
+  have hb : 0 < ‖β‖ := by linarith
+  have hn : ‖β * α * γ‖ = ‖β‖ * ‖α‖ * ‖γ‖ := by rw [norm_mul, norm_mul]
+  have hβ0 : β ≠ 0 := norm_pos_iff.1 hb
+  have hα0 : α ≠ 0 := by rintro rfl; simp at hdet; linarith
+  have hγ0 : γ ≠ 0 := by rintro rfl; simp at hdet; linarith
+  have hb3 : 1 < ‖β‖ ^ 3 := one_lt_pow₀ hβ1 (by norm_num)
+  have hac : ‖α‖ * ‖γ‖ < 1 := by nlinarith [mul_le_mul_of_nonneg_left hγ1.le ha]
+  -- the relation `q(m) = 0` for the monomial `m` and `q = X - r³`
+  have hq : ∀ m : ℂ, m = (β * α * γ) ^ 3 → aeval m (X - C (r ^ 3) : ℚ[X]) = 0 := by
+    rintro m rfl
+    simp [hr]
+  constructor
+  · intro h
+    have h1 : β * α ^ 2 = γ ^ 3 := mul_right_cancel₀ hγ0 (by linear_combination h)
+    have hm := hq (β ^ 4 * α ^ 5 * γ ^ 0) (by linear_combination (β ^ 3 * α ^ 3) * h1)
+    obtain ⟨x, y, z, hp, hx, -, -, ht⟩ := exists_conj hf hdeg hβ hα hγ hβα hβγ hαγ hβ hα
+    have hx := hx rfl
+    have hm' := ht _ 4 5 0 hm
+    simp only [aeval_sub, aeval_X, aeval_C, map_pow, eq_ratCast, hr, sub_eq_zero] at hm'
+    rcases hp with ⟨h1', h2, h3⟩ | ⟨h1', h2, h3⟩ | ⟨h1', h2, h3⟩ | ⟨h1', h2, h3⟩ | ⟨h1', h2, h3⟩ |
+      ⟨h1', h2, h3⟩ <;> rw [h1'] at hx <;> rw [h1', h2, h3] at hm'
+    · exact hβα hx
+    · exact hβα hx
+    · -- `α β² = γ³`
+      have e1 : α * β ^ 2 = γ ^ 3 :=
+        mul_left_cancel₀ (pow_ne_zero 3 (mul_ne_zero hα0 hβ0)) (by linear_combination hm')
+      have e := congrArg norm e1
+      simp only [norm_mul, norm_pow] at e
+      have : ‖β‖ * (‖β‖ * ‖α‖ * ‖γ‖) = ‖γ‖ ^ 4 := by linear_combination ‖γ‖ * e
+      nlinarith [pow_lt_one₀ hc hγ1 (by norm_num : (4 : ℕ) ≠ 0)]
+    · -- `α γ² = β³`
+      have e1 : α * γ ^ 2 = β ^ 3 :=
+        mul_left_cancel₀ (pow_ne_zero 3 (mul_ne_zero hα0 hγ0)) (by linear_combination hm')
+      have e := congrArg norm e1
+      simp only [norm_mul, norm_pow] at e
+      have h4 : ‖γ‖ * (‖α‖ * ‖γ‖) < ‖γ‖ * 1 := mul_lt_mul_of_pos_left hac (norm_pos_iff.2 hγ0)
+      nlinarith
+    · exact hαγ hx.symm
+    · exact hαγ hx.symm
+  · intro h
+    have h1 : β * γ ^ 2 = α ^ 3 := mul_right_cancel₀ hα0 (by linear_combination h)
+    have hm := hq (β ^ 4 * α ^ 0 * γ ^ 5) (by linear_combination (β ^ 3 * γ ^ 3) * h1)
+    obtain ⟨x, y, z, hp, hx, -, -, ht⟩ := exists_conj hf hdeg hβ hα hγ hβα hβγ hαγ hβ hγ
+    have hx := hx rfl
+    have hm' := ht _ 4 0 5 hm
+    simp only [aeval_sub, aeval_X, aeval_C, map_pow, eq_ratCast, hr, sub_eq_zero] at hm'
+    rcases hp with ⟨h1', h2, h3⟩ | ⟨h1', h2, h3⟩ | ⟨h1', h2, h3⟩ | ⟨h1', h2, h3⟩ | ⟨h1', h2, h3⟩ |
+      ⟨h1', h2, h3⟩ <;> rw [h1'] at hx <;> rw [h1', h2, h3] at hm'
+    · exact hβγ hx
+    · exact hβγ hx
+    · exact hαγ hx
+    · exact hαγ hx
+    · -- `γ α² = β³`
+      have e1 : γ * α ^ 2 = β ^ 3 :=
+        mul_left_cancel₀ (pow_ne_zero 3 (mul_ne_zero hγ0 hα0)) (by linear_combination hm')
+      have e := congrArg norm e1
+      simp only [norm_mul, norm_pow] at e
+      have h4 : ‖α‖ * (‖α‖ * ‖γ‖) < ‖α‖ * 1 := mul_lt_mul_of_pos_left hac (norm_pos_iff.2 hα0)
+      nlinarith
+    · -- `γ β² = α³`
+      have e1 : γ * β ^ 2 = α ^ 3 :=
+        mul_left_cancel₀ (pow_ne_zero 3 (mul_ne_zero hγ0 hβ0)) (by linear_combination hm')
+      have e := congrArg norm e1
+      simp only [norm_mul, norm_pow] at e
+      have : ‖β‖ * (‖β‖ * ‖α‖ * ‖γ‖) = ‖α‖ ^ 4 := by linear_combination ‖α‖ * e
+      nlinarith [pow_lt_one₀ ha hα1 (by norm_num : (4 : ℕ) ≠ 0)]
+
+/-- **No `(2,1,1)` weight is a fourth power of a root** (all nine equalities), for the roots of
+an irreducible rational cubic with the Pisot moduli and a rational `βαγ`:
+`mono211_ne_pow4_of_moduli` and `mono211_ne_pow4_galois`. -/
+theorem mono211_ne_pow4 :
+    ∀ w ∈ ({β ^ 2 * α * γ, β * α ^ 2 * γ, β * α * γ ^ 2} : Set ℂ),
+      ∀ x ∈ ({β, α, γ} : Set ℂ), w ≠ x ^ 4 := by
+  obtain ⟨h1, h2, h3, h4, h5, h6, h7⟩ := mono211_ne_pow4_of_moduli hβ1 hα1 hγ1 hdet
+  obtain ⟨h8, h9⟩ := mono211_ne_pow4_galois hf hdeg hβ hα hγ hβα hβγ hαγ hβ1 hα1 hγ1 hdet hr
+  intro w hw x hx
+  simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hw hx
+  rcases hw with rfl | rfl | rfl <;> rcases hx with rfl | rfl | rfl <;> assumption
+
+end PureGalois
 
 end Psc.GaloisOrbit

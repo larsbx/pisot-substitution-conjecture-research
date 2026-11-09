@@ -98,10 +98,22 @@ Not proved here:
   (`Psc.SignedCocycle.Normalisation.noncoincident`).  For a zero-return system
   (`Psc.Reduction.redSystem`) of a PIP `σ`, such an instance would be a closed
   coincidence-free component of the balanced pair algorithm, which the coincidence
-  conjecture excludes; for other factorizations no exclusion is claimed.  A scratch
-  search over images of length `≤ 3` found no such component (capped runs, not a
-  verdict).  So the representative theorems are shown non-vacuous only up to `hM`
-  (`wT_rep_hyps`), and `perron_root_rep` fully (`wT_perron_root`).
+  conjecture excludes; for other factorizations no exclusion is claimed.  On the
+  4,554-member standing corpus there is no zero-return instance (no strict component at
+  all): the ledger claim `C4StandingCorpus`
+  (finite-domain; the Mojo least-witness census of
+  `docs/c4-finite-domain-closure-2026-11-05.md` §3 composed with Theorem A(4) of the cut-pair
+  note, whose Lean form is `Psc.StrictSystem.no_strictSystem_of_strongCoincidence`).  Off the
+  corpus, `docs/c4-closed-component-search-2026-11-07.md` records an exact window search
+  (strict systems with `K₂ = 0` on every state and every state of length `≤ 13`: none in the
+  11,838 non-synchronizing one-outside and reducible specimens with images `≤ 3`; a window
+  observation, not a verdict) and strong-coincidence verdicts (no strict system at all) for
+  5,754 of those specimens (870 of them resting also on Lemma 4 of that note, a written
+  argument with human review pending).  So the representative theorems are shown non-vacuous only up to
+  `hM` (`wT_rep_hyps`), and `perron_root_rep` fully (`wT_perron_root`).  On a strict
+  component the structural hypotheses are discharged and the theorems restated as
+  `Psc.StrictSystem.StrictComponent.kernel_cofactor`; the leave-one-out table of their
+  hypotheses is `Psc.ReductioControls` (`kernelCofactor_leave_one_out`).
 -/
 import PscVerif.ParikhRank
 import PscVerif.PerronSimple
