@@ -1,0 +1,10 @@
+test_admissions_and_native_reduction_axioms_refused (test_overlap_lean_packet_replay.PacketAuditProtocol.test_admissions_and_native_reduction_axioms_refused) ... ok
+test_audit_counts_must_match (test_overlap_lean_packet_replay.PacketAuditProtocol.test_audit_counts_must_match) ... ok
+test_duplicates_stale_sources_and_unexpected_output_refused (test_overlap_lean_packet_replay.PacketAuditProtocol.test_duplicates_stale_sources_and_unexpected_output_refused) ... ok
+test_missing_proof_or_completion_refused (test_overlap_lean_packet_replay.PacketAuditProtocol.test_missing_proof_or_completion_refused) ... ok
+test_synthetic_protocol_calibration (test_overlap_lean_packet_replay.PacketAuditProtocol.test_synthetic_protocol_calibration) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.005s
+
+OK

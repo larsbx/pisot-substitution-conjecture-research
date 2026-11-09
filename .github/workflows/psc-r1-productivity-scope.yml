@@ -1,0 +1,114 @@
+name: PSC R1 productivity quantifiers (Lean and Quint)
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/psc-r1-productivity-scope.yml'
+      - 'proof/psc_routes/R1ProductivityScope.lean'
+      - 'proof/psc_routes/R1CommonInitial.lean'
+      - 'proof/quint/PscR1ProductivityScope.qnt'
+      - 'proof/quint/PscR1CommonInitial.qnt'
+      - 'docs/psc-r1-productivity-scope-2026-11-07.md'
+      - 'docs/psc-r1-common-initial-repair-2026-11-07.md'
+      - 'docs/psc-r1-boundary-localization-2026-11-07.md'
+      - 'docs/psc-r1-productivity-impact-2026-11-08.md'
+      - 'tools/setup_lean.sh'
+      - 'proof/PscVerif/lean-toolchain'
+      - 'proof/PscVerif/lakefile.toml'
+      - 'proof/PscVerif/lake-manifest.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: r1-productivity-scope-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  lean:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Bind evidence to exact head
+        env:
+          EXPECTED: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED"
+      - name: Check both scoped theorem inventories before compiling
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          for module, count in [('R1ProductivityScope', 15), ('R1CommonInitial', 4)]:
+              source = Path(f'proof/psc_routes/{module}.lean').read_text()
+              names = re.findall(r'(?m)^theorem\s+([A-Za-z_][A-Za-z_0-9]*)', source)
+              tail = source.split('let names := #[', 1)[1].split(']', 1)[0]
+              audited = re.findall(r'`PscRoutes\.' + module + r'\.([A-Za-z_][A-Za-z_0-9]*)', tail)
+              if names != audited or len(names) != count or len(set(names)) != count:
+                  raise SystemExit(f'declaration coverage mismatch: {module}: {names!r} / {audited!r}')
+              print('EXACT_PRODUCTIVITY_INVENTORY_OK', module, len(names))
+          PY
+      - name: Provision repository-pinned Lean and Mathlib
+        run: ./tools/setup_lean.sh
+      - name: Compile literal nonpropagation and all-state common-prefix proofs
+        working-directory: proof/PscVerif
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$HOME/.elan/bin/lake" env lean ../../proof/psc_routes/R1ProductivityScope.lean | tee "$RUNNER_TEMP/productivity-lean.log"
+          ! grep -Eq 'sorryAx|error:' "$RUNNER_TEMP/productivity-lean.log"
+          test "$(grep -c '^PSC_PRODUCTIVITY_SCOPE_AXIOMS_OK' "$RUNNER_TEMP/productivity-lean.log")" -eq 15
+          "$HOME/.elan/bin/lake" env lean ../../proof/psc_routes/R1CommonInitial.lean | tee "$RUNNER_TEMP/common-initial-lean.log"
+          ! grep -Eq 'sorryAx|error:' "$RUNNER_TEMP/common-initial-lean.log"
+          test "$(grep -c '^PSC_COMMON_INITIAL_AXIOMS_OK' "$RUNNER_TEMP/common-initial-lean.log")" -eq 4
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: productivity-scope-lean-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            ${{ runner.temp }}/productivity-lean.log
+            ${{ runner.temp }}/common-initial-lean.log
+          if-no-files-found: error
+  quint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Bind evidence to exact head
+        env:
+          EXPECTED: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Typecheck both independent literal-word models
+        run: |
+          npx --yes @informalsystems/quint@0.33.1 typecheck proof/quint/PscR1ProductivityScope.qnt
+          npx --yes @informalsystems/quint@0.33.1 typecheck proof/quint/PscR1CommonInitial.qnt
+      - name: Execute all eight productivity-scope tests without an empty pass
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 test --backend=typescript proof/quint/PscR1ProductivityScope.qnt --main=PscR1ProductivityScope | tee "$RUNNER_TEMP/productivity-quint.log"
+          grep -Eq '8 passing|8 passed' "$RUNNER_TEMP/productivity-quint.log"
+          for name in completeLiteralRowsTest legalIrreducibleRootTest completeStrictClosureTest productiveRootDiagonalBranchTest productiveRootStrictBranchTest droppedStrictChildrenRejectedTest rootProductivityDoesNotPropagateForwardTest productivityPropagatesBackwardTest; do
+            grep -F "$name" "$RUNNER_TEMP/productivity-quint.log" | grep -F 'passed' >/dev/null
+          done
+      - name: Execute the all-state Tribonacci premise and its adversary
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 test --backend=typescript proof/quint/PscR1CommonInitial.qnt --main=PscR1TribonacciAllStatePrefix | tee "$RUNNER_TEMP/tribonacci-prefix-quint.log"
+          grep -Eq '3 passing|3 passed' "$RUNNER_TEMP/tribonacci-prefix-quint.log"
+          for name in allLetterImagesStartZeroTest allNineOrderedLetterPairsTest binaryMixedBranchPremiseRejectedTest; do
+            grep -F "$name" "$RUNNER_TEMP/tribonacci-prefix-quint.log" | grep -F 'passed' >/dev/null
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: productivity-scope-quint-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            ${{ runner.temp }}/productivity-quint.log
+            ${{ runner.temp }}/tribonacci-prefix-quint.log
+          if-no-files-found: error

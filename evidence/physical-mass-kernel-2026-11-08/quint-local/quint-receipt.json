@@ -1,0 +1,138 @@
+{
+  "backend": "typescript",
+  "domain_note": "These are fully quantified finite domain sizes, not sampled execution counts. Conditional consequences are required only when their explicit antecedents hold. No universal real-matrix theorem or unbounded temporal model check is claimed.",
+  "executed_test_count": 20,
+  "executed_tests": [
+    {
+      "count": 4,
+      "log_sha256": "c0591a80609c9fdae7b09ad231fcd7ea10396d7507e3083f6ab6fd737f939ef2",
+      "module": "PhysicalMassFinite2",
+      "names": [
+        "directMatrixEntryCalibrationTest",
+        "domainCountTest",
+        "exhaustiveNumericalImplicationTest",
+        "acceptedAndConservativeInputsTest"
+      ]
+    },
+    {
+      "count": 5,
+      "log_sha256": "096bafcd634f8c3c1bc93438efd1c9ccde0249c8091a58a90c496ba7d7de2781",
+      "module": "PhysicalMassGraph3",
+      "names": [
+        "graphDomainCountTest",
+        "exactReachabilityTest",
+        "everyVertexHasSourceAncestorTest",
+        "exhaustiveSourceLossCoverageTest",
+        "exhaustiveNoPrematureTerminalTest"
+      ]
+    },
+    {
+      "count": 3,
+      "log_sha256": "69402d2586590cbf1878b51603cc12a598ee43dda5d9ce63072137d701ae5f33",
+      "module": "PhysicalMassPropagation",
+      "names": [
+        "losingSourceInitializationTest",
+        "forwardZeroPropagationTest",
+        "reverseAndAbsentEdgesRefusedTest"
+      ]
+    },
+    {
+      "count": 8,
+      "log_sha256": "37dbb23a1fbaa9ed559376747c3f613cc2c1ef670bc5d1047af9a731a704d385",
+      "module": "PhysicalMassAdversarial",
+      "names": [
+        "conservativeSourceRefusedTest",
+        "losingSinkIsNotLosingSourceTest",
+        "omittedRepeatedOccurrenceRefusedTest",
+        "incorrectTransposeRefusedTest",
+        "zeroMassBreaksSaturationTest",
+        "incompleteRootReachabilityRefusedTest",
+        "negativeMatrixEntryRefusedTest",
+        "signedOverlapRefusedTest"
+      ]
+    }
+  ],
+  "finite_domain_cardinalities": {
+    "graph_and_loss_set_pairs": 4096,
+    "graph_loss_and_known_set_triples": 32768,
+    "three_vertex_directed_graphs_including_loops": 512,
+    "two_by_two_integer_tuples": 11664
+  },
+  "git_head": "3a0c94cdae7fb18ad63a18119fdd5070232a5e4a",
+  "model": "proof/quint/PhysicalMass.qnt",
+  "model_sha256": "2b3247848139199e6f7848a0766eb21ca13902ff61fe9a52720a27aae0c4bf7d",
+  "quint_version": "0.33.1",
+  "rejected_mutation_count": 6,
+  "rejected_mutations": [
+    {
+      "log_sha256": "0170b90d7598e6a052fd61adbba3322368175b1aefd2c81c1be870dc68ce412f",
+      "mutant_sha256": "8cf964b0b194d0b184b30c22473852bddc0ab6e529cff57cf4b3a9fc00914767",
+      "name": "conservative-source-ignored",
+      "replace_once": {
+        "after": "  pure def sourceLoss(t, e) = losing(t, e).size() > 0",
+        "before": "  pure def sourceLoss(t, e) = vertices(t).forall(i =>\n    not(source(t, i)) or vertices(t).exists(j => sameScc(t, i, j) and e[j] > 0))"
+      },
+      "test": "conservativeSourceRefusedTest"
+    },
+    {
+      "log_sha256": "2875742592def2eb900120f0bfe2c27bc7529d24c97c805f520a358818e6b4d0",
+      "mutant_sha256": "6f6157d25b7fd623258f28ddce606c59c99f4c3db6254f8eaac5e35b6df45382",
+      "name": "sources-replaced-by-sinks",
+      "replace_once": {
+        "after": "    not(reaches(t, i, j)) or reaches(t, j, i))",
+        "before": "    not(reaches(t, j, i)) or reaches(t, i, j))"
+      },
+      "test": "losingSinkIsNotLosingSourceTest"
+    },
+    {
+      "log_sha256": "f936b1d6e8277dcfe9b577ae7f1d74f73de131f5d740eebbfc9ad2ce0626586f",
+      "mutant_sha256": "41057e0331e696378a5197861707c99e11bbc3183c0ec023f19525c50c71a675",
+      "name": "occurrences-collapsed-to-support",
+      "replace_once": {
+        "after": "  pure def sameOccurrences(expected, supplied) = occurrenceSupport(expected) == occurrenceSupport(supplied)",
+        "before": "  pure def sameOccurrences(expected, supplied) = expected == supplied"
+      },
+      "test": "omittedRepeatedOccurrenceRefusedTest"
+    },
+    {
+      "log_sha256": "d8426fbafbf3abe54b2069192d4aef0d744b4f8ca8df3024cc59fce4319b1c61",
+      "mutant_sha256": "033f1b676d9a964a777028106f9247379dbb2e240384f6df3b0f93155408f0d9",
+      "name": "transpose-replaced-by-rows",
+      "replace_once": {
+        "after": "    out.append(vertices(t).fold(0, (sum, i) => sum + t[j][i] * h[i])))",
+        "before": "    out.append(vertices(t).fold(0, (sum, i) => sum + t[i][j] * h[i])))"
+      },
+      "test": "incorrectTransposeRefusedTest"
+    },
+    {
+      "log_sha256": "7fc05419495604481fd02245b30f3a152c7b13b1ce3d99d4eb82d1cac431f9d8",
+      "mutant_sha256": "910de6b8b861705c3fac440be8e3530929c5506d33503e19be3b5da3fe1033e2",
+      "name": "zero-mass-allowed",
+      "replace_once": {
+        "after": "  pure def positive(v) = 0.to(v.length() - 1).forall(i => v[i] >= 0)",
+        "before": "  pure def positive(v) = 0.to(v.length() - 1).forall(i => v[i] > 0)"
+      },
+      "test": "zeroMassBreaksSaturationTest"
+    },
+    {
+      "log_sha256": "5259c42f80d666ff9cc696dbafc76e43f50f3cbc99920934e7998e3d615c6f47",
+      "mutant_sha256": "e44d4c837478404d14f0c61e3b29f8728acd7268d1b4e2428136638f628d6558",
+      "name": "partial-root-coverage-allowed",
+      "replace_once": {
+        "after": "  pure def fullRootCoverage(t, roots) = vertices(t).exists(i =>",
+        "before": "  pure def fullRootCoverage(t, roots) = vertices(t).forall(i =>"
+      },
+      "test": "incompleteRootReachabilityRefusedTest"
+    }
+  ],
+  "runner_sha256": "66b5dd56b8b29c620083d178303ca0a3d26562936ca5f92d2669ef5c207d7437",
+  "schema": "psc-physical-mass-quint-receipt-v1",
+  "scope": "bounded exhaustive predicates and deterministic transition/adversarial tests",
+  "seed": "20261108",
+  "source_and_revision_recheck": "unchanged",
+  "source_snapshot_used": true,
+  "status": "passed",
+  "worktree_dirty": true,
+  "worktree_status_for_model_and_runner": "?? proof/quint/PhysicalMass.qnt\n?? tools/check_physical_mass_quint.py",
+  "worktree_status_for_model_and_runner_at_completion": "?? proof/quint/PhysicalMass.qnt\n?? tools/check_physical_mass_quint.py"
+}

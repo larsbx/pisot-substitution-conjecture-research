@@ -47,3 +47,6 @@ import PscVerif.Degree4Floor
 import PscVerif.Degree3Catalogue
 import PscVerif.StrictSystem
 import PscVerif.ReductioControls
+import PscVerif.OverlapContraction
+import PscVerif.OverlapPacket
+import PscVerif.PhysicalMass

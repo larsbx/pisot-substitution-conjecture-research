@@ -1,0 +1,39 @@
+
+  PhysicalMassAdversarial
+    1) zeroMassBreaksSaturationTest failed after 1 test(s)
+
+  1 failed
+
+  1) zeroMassBreaksSaturationTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-physical-mass-snapshot-qarbchjq/zero-mass-allowed.qnt:289:38
+        289:   run zeroMassBreaksSaturationTest = init.expect({
+                                                  ^^^^^^^^^^^^^
+        290:     val t = List(List(2, 0), List(0, 0))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        291:     val h = List(0, 1)
+             ^^^^^^^^^^^^^^^^^^^^^^
+        292:     val v = List(1, 0)
+             ^^^^^^^^^^^^^^^^^^^^^^
+        293:     val e = deficit(t, h, 1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        294:     val s = slack(t, v, 1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        295:     all {
+             ^^^^^^^^^
+        296:       nonnegative(h), not(positive(h)), nonnegative(e), nonnegative(s),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        297:       e == List(0, 1), s == List(1, 0), dot(h, s) + dot(e, v) == 0,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        298:       not(allZero(s)), not(premises(t, h, v, 1)), not(sourceLoss(t, e)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        299:     }
+             ^^^^^
+        300:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f4 --match=zeroMassBreaksSaturationTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-physical-mass-snapshot-qarbchjq/zero-mass-allowed.qnt
+error: Tests failed

@@ -1,0 +1,7 @@
+
+  PhysicalMassPropagation
+    ok losingSourceInitializationTest passed 1 test(s)
+    ok forwardZeroPropagationTest passed 1 test(s)
+    ok reverseAndAbsentEdgesRefusedTest passed 1 test(s)
+
+  3 passing (19ms)

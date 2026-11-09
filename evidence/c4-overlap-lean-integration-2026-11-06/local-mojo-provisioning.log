@@ -1,0 +1,7 @@
+Error:   × failed to fetch python-dotenv-1.2.3-pyhcf101f3_0.conda
+  ├─▶ failed to interact with the package cache layer.
+  ├─▶ Request failed after 3 retries
+  ├─▶ error sending request for url (https://conda.anaconda.org/conda-forge/
+  │   noarch/python-dotenv-1.2.3-pyhcf101f3_0.conda)
+  ├─▶ client error (Connect)
+  ╰─▶ tunnel error: unsuccessful

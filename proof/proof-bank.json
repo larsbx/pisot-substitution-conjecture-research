@@ -8767,6 +8767,310 @@
       "declaration": "theorem m0_pisot : ∃ b : ℝ, 1 < b ∧ aeval (b : ℂ) f = 0 ∧"
     },
     {
+      "name": "PscVerif.OverlapContraction.fixed_of_unique_iterate",
+      "module": "PscVerif.OverlapContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapContraction.lean",
+      "line": 25,
+      "declaration": "theorem fixed_of_unique_iterate {α : Type*} (F : α → α) (m : ℕ) (K : α)"
+    },
+    {
+      "name": "PscVerif.OverlapContraction.invariant_of_contracting_iterate",
+      "module": "PscVerif.OverlapContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapContraction.lean",
+      "line": 33,
+      "declaration": "theorem invariant_of_contracting_iterate {α : Type*} [MetricSpace α]"
+    },
+    {
+      "name": "PscVerif.OverlapContraction.two_step_of_twelve",
+      "module": "PscVerif.OverlapContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapContraction.lean",
+      "line": 44,
+      "declaration": "theorem two_step_of_twelve {α : Type*} [MetricSpace α]"
+    },
+    {
+      "name": "PscVerif.OverlapContraction.block_fixed_of_period",
+      "module": "PscVerif.OverlapContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapContraction.lean",
+      "line": 50,
+      "declaration": "theorem block_fixed_of_period {α : Type*} (F : α → α) (K : α) (q m : ℕ)"
+    },
+    {
+      "name": "PscVerif.OverlapContraction.period_three_two_step",
+      "module": "PscVerif.OverlapContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapContraction.lean",
+      "line": 56,
+      "declaration": "theorem period_three_two_step {α : Type*} [MetricSpace α]"
+    },
+    {
+      "name": "PscVerif.OverlapContraction.zero_of_subinvariant",
+      "module": "PscVerif.OverlapContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapContraction.lean",
+      "line": 71,
+      "declaration": "theorem zero_of_subinvariant (v w : ι → ℝ) (scale rate : ℝ)"
+    },
+    {
+      "name": "PscVerif.OverlapContraction.Certificate.check_iff",
+      "module": "PscVerif.OverlapContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapContraction.lean",
+      "line": 125,
+      "declaration": "theorem Certificate.check_iff {n : ℕ} (cert : Certificate n) :"
+    },
+    {
+      "name": "PscVerif.OverlapContraction.Certificate.sound",
+      "module": "PscVerif.OverlapContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapContraction.lean",
+      "line": 129,
+      "declaration": "theorem Certificate.sound {n : ℕ} [Nonempty (Fin n)] (cert : Certificate n)"
+    },
+    {
+      "name": "PscVerif.OverlapContraction.recurrence_of_cover",
+      "module": "PscVerif.OverlapContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapContraction.lean",
+      "line": 160,
+      "declaration": "theorem recurrence_of_cover (μ : Measure α) (E : ι → Set α)"
+    },
+    {
+      "name": "PscVerif.OverlapContraction.null_of_cover",
+      "module": "PscVerif.OverlapContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapContraction.lean",
+      "line": 182,
+      "declaration": "theorem null_of_cover [Fintype ι] [Nonempty ι] (μ : Measure α) (E : ι → Set α)"
+    },
+    {
+      "name": "PscVerif.OverlapContraction.Certificate.null_of_cover",
+      "module": "PscVerif.OverlapContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapContraction.lean",
+      "line": 200,
+      "declaration": "theorem Certificate.null_of_cover {n : ℕ} [Nonempty (Fin n)]"
+    },
+    {
+      "name": "PscVerif.OverlapContraction.Certificate.class_rate_null",
+      "module": "PscVerif.OverlapContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapContraction.lean",
+      "line": 218,
+      "declaration": "theorem Certificate.class_rate_null {n : ℕ} [Nonempty (Fin n)]"
+    },
+    {
+      "name": "PscVerif.OverlapContraction.no_positive_subset_of_null",
+      "module": "PscVerif.OverlapContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapContraction.lean",
+      "line": 234,
+      "declaration": "theorem no_positive_subset_of_null {α ι : Type*} [MeasurableSpace α] [Fintype ι]"
+    },
+    {
+      "name": "PscVerif.OverlapContraction.product_scaling",
+      "module": "PscVerif.OverlapContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapContraction.lean",
+      "line": 247,
+      "declaration": "theorem product_scaling (β D : ℝ) (hβ : β ≠ 0) (hD : D ≠ 0) :"
+    },
+    {
+      "name": "PscVerif.OverlapContraction.common_box_arithmetic",
+      "module": "PscVerif.OverlapContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapContraction.lean",
+      "line": 250,
+      "declaration": "theorem common_box_arithmetic :"
+    },
+    {
+      "name": "PscVerif.OverlapContraction.six_parallel_edges_refused",
+      "module": "PscVerif.OverlapContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapContraction.lean",
+      "line": 264,
+      "declaration": "theorem six_parallel_edges_refused : parallelControl.check = false := by decide"
+    },
+    {
+      "name": "PscVerif.OverlapContraction.zero_weight_refused",
+      "module": "PscVerif.OverlapContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapContraction.lean",
+      "line": 273,
+      "declaration": "theorem zero_weight_refused : zeroWeightControl.check = false := by decide"
+    },
+    {
+      "name": "PscVerif.OverlapContraction.terminal_control_accepted",
+      "module": "PscVerif.OverlapContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapContraction.lean",
+      "line": 282,
+      "declaration": "theorem terminal_control_accepted : terminalControl.check = true := by decide"
+    },
+    {
+      "name": "PscVerif.OverlapContraction.equal_rate_does_not_force_zero",
+      "module": "PscVerif.OverlapContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapContraction.lean",
+      "line": 292,
+      "declaration": "theorem equal_rate_does_not_force_zero :"
+    },
+    {
+      "name": "PscVerif.OverlapContraction.period_alone_does_not_supply_two_step",
+      "module": "PscVerif.OverlapContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapContraction.lean",
+      "line": 305,
+      "declaration": "theorem period_alone_does_not_supply_two_step :"
+    },
+    {
+      "name": "PscVerif.OverlapPacket.Table.length_toList",
+      "module": "PscVerif.OverlapPacket",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapPacket.lean",
+      "line": 37,
+      "declaration": "theorem Table.length_toList {α : Type} (t : Table α) : t.toList.length = t.size := by"
+    },
+    {
+      "name": "PscVerif.OverlapPacket.Table.get?_eq_toList",
+      "module": "PscVerif.OverlapPacket",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapPacket.lean",
+      "line": 43,
+      "declaration": "theorem Table.get?_eq_toList {α : Type} (t : Table α) (valid : t.layout = true)"
+    },
+    {
+      "name": "PscVerif.OverlapPacket.Packet.check_iff",
+      "module": "PscVerif.OverlapPacket",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapPacket.lean",
+      "line": 122,
+      "declaration": "theorem Packet.check_iff (p : Packet) : p.check = true ↔ p.Valid := by"
+    },
+    {
+      "name": "PscVerif.OverlapPacket.Packet.checkAt_iff",
+      "module": "PscVerif.OverlapPacket",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapPacket.lean",
+      "line": 128,
+      "declaration": "theorem Packet.checkAt_iff (p : Packet) (i : Nat) :"
+    },
+    {
+      "name": "PscVerif.OverlapPacket.Packet.checkRange_append",
+      "module": "PscVerif.OverlapPacket",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapPacket.lean",
+      "line": 136,
+      "declaration": "theorem Packet.checkRange_append (p : Packet) (start a b : Nat)"
+    },
+    {
+      "name": "PscVerif.OverlapPacket.Packet.valid_of_range",
+      "module": "PscVerif.OverlapPacket",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapPacket.lean",
+      "line": 147,
+      "declaration": "theorem Packet.valid_of_range (p : Packet) (header : p.HeaderValid)"
+    },
+    {
+      "name": "PscVerif.OverlapPacket.Packet.row_valid",
+      "module": "PscVerif.OverlapPacket",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapPacket.lean",
+      "line": 154,
+      "declaration": "theorem Packet.row_valid (p : Packet) (h : p.Valid) (i : Fin p.count) :"
+    },
+    {
+      "name": "PscVerif.OverlapPacket.Packet.toCertificate_valid",
+      "module": "PscVerif.OverlapPacket",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapPacket.lean",
+      "line": 168,
+      "declaration": "theorem Packet.toCertificate_valid (p : Packet) (h : p.Valid) :"
+    },
+    {
+      "name": "PscVerif.OverlapPacket.Packet.toCertificate_check",
+      "module": "PscVerif.OverlapPacket",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapPacket.lean",
+      "line": 173,
+      "declaration": "theorem Packet.toCertificate_check (p : Packet) (h : p.Valid) :"
+    },
+    {
+      "name": "PscVerif.OverlapPacket.Packet.sound",
+      "module": "PscVerif.OverlapPacket",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapPacket.lean",
+      "line": 179,
+      "declaration": "theorem Packet.sound (p : Packet) (accepted : p.check = true)"
+    },
+    {
+      "name": "PscVerif.OverlapPacket.terminal_packet_accepted",
+      "module": "PscVerif.OverlapPacket",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapPacket.lean",
+      "line": 215,
+      "declaration": "theorem terminal_packet_accepted : terminalControl.check = true := by decide +kernel"
+    },
+    {
+      "name": "PscVerif.OverlapPacket.invalid_target_refused",
+      "module": "PscVerif.OverlapPacket",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapPacket.lean",
+      "line": 217,
+      "declaration": "theorem invalid_target_refused :"
+    },
+    {
+      "name": "PscVerif.OverlapPacket.repeated_occurrences_counted",
+      "module": "PscVerif.OverlapPacket",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapPacket.lean",
+      "line": 220,
+      "declaration": "theorem repeated_occurrences_counted :"
+    },
+    {
+      "name": "PscVerif.OverlapPacket.zero_weight_refused",
+      "module": "PscVerif.OverlapPacket",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapPacket.lean",
+      "line": 223,
+      "declaration": "theorem zero_weight_refused :"
+    },
+    {
+      "name": "PscVerif.OverlapPacket.missing_row_refused",
+      "module": "PscVerif.OverlapPacket",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapPacket.lean",
+      "line": 226,
+      "declaration": "theorem missing_row_refused :"
+    },
+    {
+      "name": "PscVerif.OverlapPacket.invalid_source_refused",
+      "module": "PscVerif.OverlapPacket",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapPacket.lean",
+      "line": 229,
+      "declaration": "theorem invalid_source_refused :"
+    },
+    {
+      "name": "PscVerif.OverlapPacket.false_layout_refused",
+      "module": "PscVerif.OverlapPacket",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapPacket.lean",
+      "line": 232,
+      "declaration": "theorem false_layout_refused :"
+    },
+    {
+      "name": "PscVerif.OverlapPacket.hidden_payload_refused",
+      "module": "PscVerif.OverlapPacket",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OverlapPacket.lean",
+      "line": 237,
+      "declaration": "theorem hidden_payload_refused :"
+    },
+    {
       "name": "Psc.ParikhIntertwiner.parikh_append",
       "module": "PscVerif.ParikhIntertwiner",
       "private": false,
@@ -9717,6 +10021,214 @@
       "source": "proof/PscVerif/PscVerif/PerronSimple.lean",
       "line": 325,
       "declaration": "theorem factor_through_parikh (N : Matrix ι ι ℚ) (hN : ∀ i j, 0 ≤ N i j)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.pairing",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 46,
+      "declaration": "theorem pairing (T : ι → ι → ℝ) (h v : ι → ℝ) :"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.deficit_conservation",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 57,
+      "declaration": "theorem deficit_conservation (T : ι → ι → ℝ) (h v : ι → ℝ) (theta : ℝ) :"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.deficit_nonneg",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 69,
+      "declaration": "theorem deficit_nonneg (T : ι → ι → ℝ) (h : ι → ℝ) (theta : ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.slack_nonneg",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 75,
+      "declaration": "theorem slack_nonneg (T : ι → ι → ℝ) (v : ι → ℝ) (theta : ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.products_zero",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 83,
+      "declaration": "theorem products_zero (T : ι → ι → ℝ) (h v : ι → ℝ) (theta : ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.saturation",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 109,
+      "declaration": "theorem saturation (T : ι → ι → ℝ) (h v : ι → ℝ) (theta : ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.zero_at_loss",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 122,
+      "declaration": "theorem zero_at_loss (T : ι → ι → ℝ) (h v : ι → ℝ) (theta : ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.isSource_of_sameSCC",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 147,
+      "declaration": "theorem isSource_of_sameSCC (E : ι → ι → Prop) {s t : ι}"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.isSource_iff_no_incoming",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 154,
+      "declaration": "theorem isSource_iff_no_incoming (E : ι → ι → Prop) (s : ι) :"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.exists_source_ancestor",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 169,
+      "declaration": "theorem exists_source_ancestor [Fintype ι] (E : ι → ι → Prop) (x : ι) :"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.sourceLoss_iff_loss_reaches_all",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 199,
+      "declaration": "theorem sourceLoss_iff_loss_reaches_all [Fintype ι]"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.source_contains_root",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 213,
+      "declaration": "theorem source_contains_root (E : ι → ι → Prop) (root : ι → Prop)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.zero_of_positive_edge",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 229,
+      "declaration": "theorem zero_of_positive_edge (T : ι → ι → ℝ) (v : ι → ℝ) (theta : ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.zero_of_reachable",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 243,
+      "declaration": "theorem zero_of_reachable (T : ι → ι → ℝ) (v : ι → ℝ) (theta : ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.zero_of_loss_reaches",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 252,
+      "declaration": "theorem zero_of_loss_reaches (T : ι → ι → ℝ) (h v : ι → ℝ) (theta : ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.zero_of_source_loss",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 265,
+      "declaration": "theorem zero_of_source_loss (T : ι → ι → ℝ) (h v : ι → ℝ) (theta : ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.zero_on_targets",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 279,
+      "declaration": "theorem zero_on_targets (T : ι → ι → ℝ) (h v : ι → ℝ) (theta : ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.zero_of_root_cover",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 293,
+      "declaration": "theorem zero_of_root_cover (T : ι → ι → ℝ) (h v : ι → ℝ) (theta : ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.conservative_source_ancestor_of_nonzero",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 311,
+      "declaration": "theorem conservative_source_ancestor_of_nonzero"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.conservative_source_of_nonzero",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 328,
+      "declaration": "theorem conservative_source_of_nonzero"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.weighted_transpose",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 351,
+      "declaration": "theorem weighted_transpose (T F : ι → ι → ℝ) (m h : ι → ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.weighted_deficit",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 362,
+      "declaration": "theorem weighted_deficit (T F : ι → ι → ℝ) (m h : ι → ℝ) (theta : ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.budget_of_weighted_transport",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 370,
+      "declaration": "theorem budget_of_weighted_transport"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.weighted_loss_iff",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 383,
+      "declaration": "theorem weighted_loss_iff (T F : ι → ι → ℝ) (m h : ι → ℝ) (theta : ℝ)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.transpose_of_constant_orbit",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 397,
+      "declaration": "theorem transpose_of_constant_orbit (T F : ι → ι → ℝ) (c : ℝ) (hc : c ≠ 0)"
+    },
+    {
+      "name": "PscVerif.PhysicalMass.Refinement.zero_of_supersolution",
+      "module": "PscVerif.PhysicalMass",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+      "line": 421,
+      "declaration": "theorem Refinement.zero_of_supersolution {ι : Type*} [Fintype ι]"
     },
     {
       "name": "Psc.PrimitiveExpansion.one_le_of_pos_pow",
@@ -16171,7 +16683,7 @@
   ],
   "input_digests": {
     "claim_governance.toml": "5642e664f9a79064ffbaf770719cf0acba52accc75fca568711d4b554a08803e",
-    "proof/PscVerif/ProofBankAudit.lean": "df46d0e65bf4aa0b6c2ca184a784974970c58f8c2c3de38eb4ed713efacce904",
+    "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
     "proof/PscVerif/PscVerif/Binomial.lean": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
@@ -16200,11 +16712,14 @@
     "proof/PscVerif/PscVerif/Lie3.lean": "f214cb13bcaa399ecfe626fcc3c912753cdd29ade14ba4a4337b816ce4b22b8d",
     "proof/PscVerif/PscVerif/LieWeights.lean": "f32639f83e519c69b8f428e153dd368c274e1f665a837183f88c5f1de0dd8adb",
     "proof/PscVerif/PscVerif/M0Pisot.lean": "65d17cf0aa71cdac825d16da73ad601dd49c214cd0b47ac58f124cb51a64a304",
+    "proof/PscVerif/PscVerif/OverlapContraction.lean": "09dd1ccc90a7245211336996f7da8b1276e86cab60dd1cc0b5471e3d7f6a2a30",
+    "proof/PscVerif/PscVerif/OverlapPacket.lean": "572fd9fc85082e05377321fa812670558fff66ebed16e319a81816b22950a853",
     "proof/PscVerif/PscVerif/ParikhIntertwiner.lean": "bc7120433f0c103c966fc6faf41407b969537fd0881971a5d36b98169b220d96",
     "proof/PscVerif/PscVerif/ParikhRank.lean": "be40494c796287c599d6a62f20662e1c7f80786c88d0e4881c8a58795b3e0d7a",
     "proof/PscVerif/PscVerif/PerronCore.lean": "1f06da1e0b57e74b31fc03d753bd314f25561a37e512b3a8f7f05fda0d75458c",
     "proof/PscVerif/PscVerif/PerronExistence.lean": "a2ac1801abf2a99a6c312935d101ed4f760ffec0f96586d5f1f43bb176814c73",
     "proof/PscVerif/PscVerif/PerronSimple.lean": "1e4d9aca60b215f17067e39ba38bd8eaec7d9781fb716d8727fa7f9cbbf737a8",
+    "proof/PscVerif/PscVerif/PhysicalMass.lean": "6578043c87ca7da4be96673630ae5d2d2e2356a681b1b2401c39bd9e9b036a36",
     "proof/PscVerif/PscVerif/PrimitiveExpansion.lean": "70307f2cb4fb0eb854086f20bb04ca82ceb04c5433d41f0984c29a5f70bd4eff",
     "proof/PscVerif/PscVerif/QuotientDistance.lean": "1431961ca4d26d60e5bf5165c7773440e7a708b51377697e339f94f7cf5896ef",
     "proof/PscVerif/PscVerif/ReductioControls.lean": "73c94ccd2ec83747f47d77035ff3cdca3843d611470f0cd3eae64c10104a0e76",
@@ -16220,12 +16735,12 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "8d50416f126e7806f82e5db0405cbc0e552a6685e6c8240cba31c7a4441a494e",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "7d6c6b2d4a734cadda3efb051cc87cc308ffd26a043554eeee4f945dc0d3a44f",
+    "proof/PscVerif/PscVerif.lean": "d65dbbce4acabb4d59462af0d5050bb82316fb72417b9dc9ccae4355aba0781d",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
     "proof/proof-bank.toml": "816ffbf106a4bea7faffd6bf4d1121062fb9b0b1df14936c75197bdf00932361",
-    "tools/check_lean.sh": "04078a19300533b800e2cca6f0a3573fe8b116fec0ae8ace8a2d4ffc1ae9613b",
+    "tools/check_lean.sh": "34d3f59b3ee45adcfa8c6b505cf69041566403c1c0a9c7d2246fc7cd6dbd82af",
     "tools/make_ledger.py": "2d64f2c5e3ee8df0bc709bcb8a09ab435ac0a1e9b9e84e67cbbcfea1ed647f9d",
     "tools/make_proof_bank.py": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8",
     "tools/setup_lean.sh": "b2c35ccc8d0b180a75275f8234f519a00d32efcbc8a9517f8b3d74a96b3ef8da"

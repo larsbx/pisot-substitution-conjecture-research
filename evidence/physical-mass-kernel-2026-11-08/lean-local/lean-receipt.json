@@ -1,0 +1,131 @@
+{
+  "schema": "psc-physical-mass-local-lean-receipt-v1",
+  "recorded_at_utc": "2026-11-08T09:16:26.886302+00:00",
+  "scope": "Local development compilation and compiled declaration audit of a source SHA; not hosted exact-revision or branch acceptance.",
+  "source": {
+    "path": "proof/PscVerif/PscVerif/PhysicalMass.lean",
+    "sha256": "6578043c87ca7da4be96673630ae5d2d2e2356a681b1b2401c39bd9e9b036a36",
+    "named_theorem_statement_count": 26,
+    "named_theorems": [
+      "pairing",
+      "deficit_conservation",
+      "deficit_nonneg",
+      "slack_nonneg",
+      "products_zero",
+      "saturation",
+      "zero_at_loss",
+      "isSource_of_sameSCC",
+      "isSource_iff_no_incoming",
+      "exists_source_ancestor",
+      "sourceLoss_iff_loss_reaches_all",
+      "source_contains_root",
+      "zero_of_positive_edge",
+      "zero_of_reachable",
+      "zero_of_loss_reaches",
+      "zero_of_source_loss",
+      "zero_on_targets",
+      "zero_of_root_cover",
+      "conservative_source_ancestor_of_nonzero",
+      "conservative_source_of_nonzero",
+      "weighted_transpose",
+      "weighted_deficit",
+      "budget_of_weighted_transport",
+      "weighted_loss_iff",
+      "transpose_of_constant_orbit",
+      "Refinement.zero_of_supersolution"
+    ],
+    "revision_scope": "Uncommitted source identified by SHA-256 at original run; no commit-level acceptance inferred."
+  },
+  "compiler": {
+    "toolchain_pin": "leanprover/lean4:v4.34.0-rc2",
+    "reported_version": "Lean (version 4.34.0-rc2, x86_64-unknown-linux-gnu, commit 6a10ac8c22beadecabdbb0919c2b50214762f91d, Release)",
+    "binary_path": "/tmp/psc-nov8-tools/lean-4.34.0-rc2-linux/bin/lean",
+    "binary_sha256": "e8baaa71855a616dc351028f3ad2200051b0671f423a1696a100e809302d5550",
+    "version_command_exit_status": 0
+  },
+  "mathlib": {
+    "checkout_path": "/tmp/psc-nov8-tools/lake/packages/mathlib",
+    "actual_revision": "4edb0dbaa3b3cf729d86d1e2f035474d5ae2ac09",
+    "required_revision": "4edb0dbaa3b3cf729d86d1e2f035474d5ae2ac09",
+    "revision_command_exit_status": 0,
+    "tracked_status_command": [
+      "git",
+      "-C",
+      "/tmp/psc-nov8-tools/lake/packages/mathlib",
+      "status",
+      "--porcelain",
+      "--untracked-files=no"
+    ],
+    "tracked_status_exit_status": 0,
+    "tracked_status_output": "",
+    "compiled_dependencies": "Pre-existing local .olean caches; not rebuilt or individually authenticated by this receipt."
+  },
+  "invocations": {
+    "cwd": "/workspace/scratch/3ac1674060b1/psc",
+    "environment_overrides": {
+      "LD_PRELOAD": "/tmp/psc-nov8-tools/proc.so",
+      "LEAN_PATH": "/tmp/psc-physical-mass-audit:/tmp/psc-nov8-tools/lake/packages/Qq/.lake/build/lib/lean:/tmp/psc-nov8-tools/lake/packages/plausible/.lake/build/lib/lean:/tmp/psc-nov8-tools/lake/packages/importGraph/.lake/build/lib/lean:/tmp/psc-nov8-tools/lake/packages/aesop/.lake/build/lib/lean:/tmp/psc-nov8-tools/lake/packages/batteries/.lake/build/lib/lean:/tmp/psc-nov8-tools/lake/packages/LeanSearchClient/.lake/build/lib/lean:/tmp/psc-nov8-tools/lake/packages/Cli/.lake/build/lib/lean:/tmp/psc-nov8-tools/lake/packages/proofwidgets/.lake/build/lib/lean:/tmp/psc-nov8-tools/lake/packages/mathlib/.lake/build/lib/lean"
+    },
+    "environment_construction": "env = os.environ.copy(); env['LD_PRELOAD'] = str(base / 'proc.so'); env['LEAN_PATH'] = ':'.join([str(artifacts)] + [str(p / '.lake/build/lib/lean') for p in (base / 'lake/packages').iterdir() if p.is_dir()])",
+    "ambient_environment": "Inherited otherwise; not dumped into receipt.",
+    "compile": {
+      "argv": [
+        "/tmp/psc-nov8-tools/lean-4.34.0-rc2-linux/bin/lean",
+        "-DautoImplicit=false",
+        "-o",
+        "/tmp/psc-physical-mass-audit/PscVerif/PhysicalMass.olean",
+        "proof/PscVerif/PscVerif/PhysicalMass.lean"
+      ],
+      "exit_status": 0,
+      "log": "compile.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log_is_empty": true
+    },
+    "audit": {
+      "argv": [
+        "/tmp/psc-nov8-tools/lean-4.34.0-rc2-linux/bin/lean",
+        "/tmp/psc-physical-mass-audit/PhysicalMassAudit.lean"
+      ],
+      "exit_status": 0,
+      "log": "audit.log",
+      "log_sha256": "7048f81a3851287459d17d69f7c050547750e6897c0a85aca8ba9805ea84d5ea",
+      "harness": "PhysicalMassAudit.lean",
+      "harness_sha256": "1719c598d5609f99b2f69749508d0b9723299a55610754dffda4daddbd468713",
+      "harness_origin": "proof/PscVerif/ProofBankAudit.lean with only 'import PscVerif' replaced by 'import PscVerif.PhysicalMass'."
+    }
+  },
+  "compiled_audit": {
+    "total_declarations": 65,
+    "theorem_declarations_including_generated": 40,
+    "named_source_theorems": 26,
+    "additional_generated_theorem_declarations": 14,
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "observed_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "local_axioms_rejected": true,
+    "nonstandard_dependencies_rejected": true,
+    "completion_line": "PSC_AUDIT_COMPLETE\t65\t40"
+  },
+  "local_compatibility_shim": {
+    "purpose": "Remap readlink('/proc/<own-pid>/exe') to readlink('/proc/self/exe') so the local Lean launcher can locate its installation.",
+    "source": "local-proc.c",
+    "source_sha256": "8c0779a2e4400ffc3a5e4f24f9d3ba2bb8879da870059354fddf4d6ec266402c",
+    "preloaded_library_path": "/tmp/psc-nov8-tools/proc.so",
+    "preloaded_library_sha256": "b28255fadd91661a68cb1591f177c1a46e80023358db65d5478b0d363e032b14",
+    "scope": "Local environment workaround only. Standard hosted setup_lean/check_lean must replay without this shim."
+  },
+  "evidence_boundary": [
+    "This run freshly compiled the PhysicalMass module and audited its compiled declarations.",
+    "It reused pinned-source local Mathlib/dependency compiled caches; this is not a fresh isolated dependency rebuild.",
+    "The audit checks this module only, not the complete PscVerif bank or all branch workflows.",
+    "It does not instantiate the PR #515 graph/mass certificate or prove its geometric overlap recurrence.",
+    "Hosted exact-revision acceptance and full proof-bank replay are separate evidence."
+  ]
+}

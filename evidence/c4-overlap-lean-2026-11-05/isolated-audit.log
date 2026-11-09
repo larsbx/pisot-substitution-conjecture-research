@@ -1,0 +1,434 @@
+Prepared isolated Lean workspace from source/configuration only
+Proof bank: 124 claims, 88 named Lean proofs, 364 source openings
+Lean (version 4.34.0-rc2, x86_64-unknown-linux-gnu, commit 6a10ac8c22beadecabdbb0919c2b50214762f91d, Release)
+Lake version 5.0.0-src+6a10ac8 (Lean version 4.34.0-rc2)
+info: mathlib: cloning https://github.com/leanprover-community/mathlib4
+info: mathlib: checking out revision '4edb0dbaa3b3cf729d86d1e2f035474d5ae2ac09'
+info: plausible: cloning https://github.com/leanprover-community/plausible
+info: plausible: checking out revision 'd9598f07b1bc701f1e3aae163d2681c1fd978793'
+info: LeanSearchClient: cloning https://github.com/leanprover-community/LeanSearchClient
+info: LeanSearchClient: checking out revision 'ba67e212be1197b84c1f1f6299488a10a3002713'
+info: importGraph: cloning https://github.com/leanprover-community/import-graph
+info: importGraph: checking out revision '1681d78dd6e65e38b143f9740d829c826673807c'
+info: proofwidgets: cloning https://github.com/leanprover-community/ProofWidgets4
+info: proofwidgets: checking out revision 'a8acbfd87375ff4abe14ce09db5b7664d383bc7f'
+info: aesop: cloning https://github.com/leanprover-community/aesop
+info: aesop: checking out revision '18889deb9e83ea7420ef51c160d6f88552e744e3'
+info: Qq: cloning https://github.com/leanprover-community/quote4
+info: Qq: checking out revision '507746ab8f4b643ccdacb2ec4cdb5853fa9f8ab3'
+info: batteries: cloning https://github.com/leanprover-community/batteries
+info: batteries: checking out revision '4cac2177c37f5530c4da76aa8e4307f3fc9e4dcb'
+info: Cli: cloning https://github.com/leanprover/lean4-cli
+info: Cli: checking out revision 'ab3a82db9fea14cf0fd7f5a2de650f4b534640af'
+✔ [3/27] Built Cache.Cli (684ms)
+✔ [4/27] Built Cache.Env (641ms)
+✔ [5/27] Built Cache.Lean (709ms)
+✔ [6/27] Built Cache.Cli:c.o (299ms)
+✔ [7/27] Built Cache.Lean:c.o (246ms)
+✔ [8/27] Built Cache.Env:c.o (313ms)
+✔ [9/27] Built Cache.Infra (530ms)
+✔ [10/27] Built Batteries.Tactic.OpenPrivate (1.4s)
+✔ [11/27] Built Cache.Infra:c.o (268ms)
+✔ [12/27] Built Batteries.Tactic.OpenPrivate:c.o (1.6s)
+✔ [13/27] Built Cache.IO (2.1s)
+✔ [14/27] Built Cache.Hashing (2.0s)
+✔ [15/27] Built Cache.Hashing:c.o (462ms)
+✔ [16/27] Built Cache.IO:c.o (3.2s)
+✔ [17/27] Built Cache.Requests (2.4s)
+✔ [18/27] Built Cache.Marker (586ms)
+✔ [19/27] Built Cache.Marker:c.o (170ms)
+✔ [20/27] Built Cache.Query (1.0s)
+✔ [21/27] Built Cache.Query:c.o (487ms)
+✔ [22/27] Built Cache.Warning (637ms)
+✔ [23/27] Built Cache.Warning:c.o (252ms)
+✔ [24/27] Built Cache.Main (1.3s)
+✔ [25/27] Built Cache.Requests:c.o (3.6s)
+✔ [26/27] Built Cache.Main:c.o (961ms)
+✔ [27/27] Built cache:exe (2.5s)
+Current branch: HEAD
+Using cache from origin: (some leanprover-community/mathlib4)
+Attempting to download 8890 file(s) from leanprover-community/mathlib4 cache at https://cache.mathlib.org/mathlib4-master
+Downloaded: 1 file(s) [attempted 1/8890 = 0%, 5 KB/s], Decompressed: 0[KDownloaded: 50 file(s) [attempted 50/8890 = 0%, 15 KB/s], Decompressed: 13[KDownloaded: 64 file(s) [attempted 64/8890 = 0%, 895 KB/s], Decompressed: 13[KDownloaded: 115 file(s) [attempted 115/8890 = 1%, 213 KB/s], Decompressed: 50[KDownloaded: 153 file(s) [attempted 153/8890 = 1%, 468 KB/s], Decompressed: 50[KDownloaded: 182 file(s) [attempted 182/8890 = 2%, 66 KB/s], Decompressed: 50[KDownloaded: 228 file(s) [attempted 228/8890 = 2%, 303 KB/s], Decompressed: 50[KDownloaded: 252 file(s) [attempted 252/8890 = 2%, 368 KB/s], Decompressed: 115[KDownloaded: 288 file(s) [attempted 288/8890 = 3%, 120 KB/s], Decompressed: 115[KDownloaded: 331 file(s) [attempted 331/8890 = 3%, 293 KB/s], Decompressed: 115[KDownloaded: 360 file(s) [attempted 360/8890 = 4%, 103 KB/s], Decompressed: 115[KDownloaded: 394 file(s) [attempted 394/8890 = 4%, 354 KB/s], Decompressed: 115[KDownloaded: 437 file(s) [attempted 437/8890 = 4%, 234 KB/s], Decompressed: 235[KDownloaded: 463 file(s) [attempted 463/8890 = 5%, 76 KB/s], Decompressed: 235[KDownloaded: 499 file(s) [attempted 499/8890 = 5%, 74 KB/s], Decompressed: 235[KDownloaded: 523 file(s) [attempted 523/8890 = 5%, 126 KB/s], Decompressed: 235[KDownloaded: 552 file(s) [attempted 552/8890 = 6%, 595 KB/s], Decompressed: 235[KDownloaded: 583 file(s) [attempted 583/8890 = 6%, 89 KB/s], Decompressed: 235[KDownloaded: 615 file(s) [attempted 615/8890 = 6%, 29 KB/s], Decompressed: 235[KDownloaded: 651 file(s) [attempted 651/8890 = 7%, 692 KB/s], Decompressed: 235[KDownloaded: 687 file(s) [attempted 687/8890 = 7%, 219 KB/s], Decompressed: 235[KDownloaded: 720 file(s) [attempted 720/8890 = 8%, 313 KB/s], Decompressed: 420[KDownloaded: 749 file(s) [attempted 749/8890 = 8%, 220 KB/s], Decompressed: 420[KDownloaded: 788 file(s) [attempted 788/8890 = 8%, 242 KB/s], Decompressed: 420[KDownloaded: 828 file(s) [attempted 828/8890 = 9%, 282 KB/s], Decompressed: 420[KDownloaded: 862 file(s) [attempted 862/8890 = 9%, 1284 KB/s], Decompressed: 420[KDownloaded: 888 file(s) [attempted 888/8890 = 9%, 168 KB/s], Decompressed: 420[KDownloaded: 929 file(s) [attempted 929/8890 = 10%, 249 KB/s], Decompressed: 420[KDownloaded: 975 file(s) [attempted 975/8890 = 10%, 135 KB/s], Decompressed: 420[KDownloaded: 1006 file(s) [attempted 1006/8890 = 11%, 224 KB/s], Decompressed: 420[KDownloaded: 1033 file(s) [attempted 1033/8890 = 11%, 326 KB/s], Decompressed: 420[KDownloaded: 1078 file(s) [attempted 1078/8890 = 12%, 165 KB/s], Decompressed: 420[KDownloaded: 1088 file(s) [attempted 1088/8890 = 12%, 1094 KB/s], Decompressed: 420[KDownloaded: 1148 file(s) [attempted 1148/8890 = 12%, 1033 KB/s], Decompressed: 420[KDownloaded: 1172 file(s) [attempted 1172/8890 = 13%, 365 KB/s], Decompressed: 420[KDownloaded: 1210 file(s) [attempted 1210/8890 = 13%, 157 KB/s], Decompressed: 420[KDownloaded: 1237 file(s) [attempted 1237/8890 = 13%, 261 KB/s], Decompressed: 420[KDownloaded: 1265 file(s) [attempted 1265/8890 = 14%, 182 KB/s], Decompressed: 420[KDownloaded: 1304 file(s) [attempted 1304/8890 = 14%, 138 KB/s], Decompressed: 420[KDownloaded: 1325 file(s) [attempted 1325/8890 = 14%, 52 KB/s], Decompressed: 420[KDownloaded: 1352 file(s) [attempted 1352/8890 = 15%, 183 KB/s], Decompressed: 420[KDownloaded: 1359 file(s) [attempted 1359/8890 = 15%, 421 KB/s], Decompressed: 420[KDownloaded: 1407 file(s) [attempted 1407/8890 = 15%, 23 KB/s], Decompressed: 420[KDownloaded: 1438 file(s) [attempted 1438/8890 = 16%, 143 KB/s], Decompressed: 420[KDownloaded: 1465 file(s) [attempted 1465/8890 = 16%, 110 KB/s], Decompressed: 420[KDownloaded: 1520 file(s) [attempted 1520/8890 = 17%, 998 KB/s], Decompressed: 420[KDownloaded: 1551 file(s) [attempted 1551/8890 = 17%, 1441 KB/s], Decompressed: 420[KDownloaded: 1580 file(s) [attempted 1580/8890 = 17%, 96 KB/s], Decompressed: 420[KDownloaded: 1611 file(s) [attempted 1611/8890 = 18%, 72 KB/s], Decompressed: 420[KDownloaded: 1652 file(s) [attempted 1652/8890 = 18%, 531 KB/s], Decompressed: 699[KDownloaded: 1678 file(s) [attempted 1678/8890 = 18%, 130 KB/s], Decompressed: 699[KDownloaded: 1705 file(s) [attempted 1705/8890 = 19%, 45 KB/s], Decompressed: 699[KDownloaded: 1750 file(s) [attempted 1750/8890 = 19%, 151 KB/s], Decompressed: 699[KDownloaded: 1786 file(s) [attempted 1786/8890 = 20%, 706 KB/s], Decompressed: 699[KDownloaded: 1803 file(s) [attempted 1803/8890 = 20%, 211 KB/s], Decompressed: 699[KDownloaded: 1827 file(s) [attempted 1827/8890 = 20%, 91 KB/s], Decompressed: 699[KDownloaded: 1832 file(s) [attempted 1832/8890 = 20%, 82 KB/s], Decompressed: 699[KDownloaded: 1841 file(s) [attempted 1841/8890 = 20%, 236 KB/s], Decompressed: 699[KDownloaded: 1899 file(s) [attempted 1899/8890 = 21%, 203 KB/s], Decompressed: 699[KDownloaded: 1930 file(s) [attempted 1930/8890 = 21%, 282 KB/s], Decompressed: 699[KDownloaded: 1957 file(s) [attempted 1957/8890 = 22%, 1333 KB/s], Decompressed: 699[KDownloaded: 1983 file(s) [attempted 1983/8890 = 22%, 177 KB/s], Decompressed: 699[KDownloaded: 2021 file(s) [attempted 2021/8890 = 22%, 179 KB/s], Decompressed: 699[KDownloaded: 2057 file(s) [attempted 2057/8890 = 23%, 121 KB/s], Decompressed: 699[KDownloaded: 2091 file(s) [attempted 2091/8890 = 23%, 133 KB/s], Decompressed: 699[KDownloaded: 2137 file(s) [attempted 2137/8890 = 24%, 231 KB/s], Decompressed: 699[KDownloaded: 2156 file(s) [attempted 2156/8890 = 24%, 124 KB/s], Decompressed: 699[KDownloaded: 2201 file(s) [attempted 2201/8890 = 24%, 98 KB/s], Decompressed: 699[KDownloaded: 2240 file(s) [attempted 2240/8890 = 25%, 1019 KB/s], Decompressed: 699[KDownloaded: 2269 file(s) [attempted 2269/8890 = 25%, 213 KB/s], Decompressed: 699[KDownloaded: 2309 file(s) [attempted 2309/8890 = 25%, 111 KB/s], Decompressed: 699[KDownloaded: 2353 file(s) [attempted 2353/8890 = 26%, 320 KB/s], Decompressed: 699[KDownloaded: 2388 file(s) [attempted 2388/8890 = 26%, 235 KB/s], Decompressed: 699[KDownloaded: 2400 file(s) [attempted 2400/8890 = 26%, 347 KB/s], Decompressed: 699[KDownloaded: 2408 file(s) [attempted 2408/8890 = 27%, 420 KB/s], Decompressed: 699[KDownloaded: 2451 file(s) [attempted 2451/8890 = 27%, 117 KB/s], Decompressed: 699[KDownloaded: 2477 file(s) [attempted 2477/8890 = 27%, 382 KB/s], Decompressed: 699[KDownloaded: 2513 file(s) [attempted 2513/8890 = 28%, 183 KB/s], Decompressed: 699[KDownloaded: 2564 file(s) [attempted 2564/8890 = 28%, 392 KB/s], Decompressed: 699[KDownloaded: 2614 file(s) [attempted 2614/8890 = 29%, 139 KB/s], Decompressed: 699[KDownloaded: 2652 file(s) [attempted 2652/8890 = 29%, 504 KB/s], Decompressed: 699[KDownloaded: 2681 file(s) [attempted 2681/8890 = 30%, 91 KB/s], Decompressed: 699[KDownloaded: 2712 file(s) [attempted 2712/8890 = 30%, 30 KB/s], Decompressed: 699[KDownloaded: 2739 file(s) [attempted 2739/8890 = 30%, 430 KB/s], Decompressed: 699[KDownloaded: 2782 file(s) [attempted 2782/8890 = 31%, 294 KB/s], Decompressed: 699[KDownloaded: 2830 file(s) [attempted 2830/8890 = 31%, 313 KB/s], Decompressed: 699[KDownloaded: 2859 file(s) [attempted 2859/8890 = 32%, 78 KB/s], Decompressed: 699[KDownloaded: 2897 file(s) [attempted 2897/8890 = 32%, 112 KB/s], Decompressed: 699[KDownloaded: 2931 file(s) [attempted 2931/8890 = 32%, 1418 KB/s], Decompressed: 699[KDownloaded: 2967 file(s) [attempted 2967/8890 = 33%, 93 KB/s], Decompressed: 699[KDownloaded: 2988 file(s) [attempted 2988/8890 = 33%, 324 KB/s], Decompressed: 699[KDownloaded: 3010 file(s) [attempted 3010/8890 = 33%, 15 KB/s], Decompressed: 699[KDownloaded: 3046 file(s) [attempted 3046/8890 = 34%, 121 KB/s], Decompressed: 699[KDownloaded: 3087 file(s) [attempted 3087/8890 = 34%, 260 KB/s], Decompressed: 699[KDownloaded: 3111 file(s) [attempted 3111/8890 = 34%, 128 KB/s], Decompressed: 699[KDownloaded: 3144 file(s) [attempted 3144/8890 = 35%, 752 KB/s], Decompressed: 699[KDownloaded: 3168 file(s) [attempted 3168/8890 = 35%, 264 KB/s], Decompressed: 699[KDownloaded: 3216 file(s) [attempted 3216/8890 = 36%, 344 KB/s], Decompressed: 699[KDownloaded: 3257 file(s) [attempted 3257/8890 = 36%, 178 KB/s], Decompressed: 699[KDownloaded: 3291 file(s) [attempted 3291/8890 = 37%, 130 KB/s], Decompressed: 699[KDownloaded: 3312 file(s) [attempted 3312/8890 = 37%, 406 KB/s], Decompressed: 1621[KDownloaded: 3352 file(s) [attempted 3352/8890 = 37%, 351 KB/s], Decompressed: 1621[KDownloaded: 3396 file(s) [attempted 3396/8890 = 38%, 254 KB/s], Decompressed: 1621[KDownloaded: 3425 file(s) [attempted 3425/8890 = 38%, 665 KB/s], Decompressed: 1621[KDownloaded: 3461 file(s) [attempted 3461/8890 = 38%, 149 KB/s], Decompressed: 1621[KDownloaded: 3509 file(s) [attempted 3509/8890 = 39%, 37 KB/s], Decompressed: 1621[KDownloaded: 3552 file(s) [attempted 3552/8890 = 39%, 88 KB/s], Decompressed: 1621[KDownloaded: 3576 file(s) [attempted 3576/8890 = 40%, 183 KB/s], Decompressed: 1621[KDownloaded: 3624 file(s) [attempted 3624/8890 = 40%, 148 KB/s], Decompressed: 1621[KDownloaded: 3663 file(s) [attempted 3663/8890 = 41%, 84 KB/s], Decompressed: 1621[KDownloaded: 3696 file(s) [attempted 3696/8890 = 41%, 122 KB/s], Decompressed: 1621[KDownloaded: 3732 file(s) [attempted 3732/8890 = 41%, 1025 KB/s], Decompressed: 1621[KDownloaded: 3761 file(s) [attempted 3761/8890 = 42%, 179 KB/s], Decompressed: 1621[KDownloaded: 3812 file(s) [attempted 3812/8890 = 42%, 234 KB/s], Decompressed: 1621[KDownloaded: 3852 file(s) [attempted 3852/8890 = 43%, 87 KB/s], Decompressed: 1621[KDownloaded: 3881 file(s) [attempted 3881/8890 = 43%, 476 KB/s], Decompressed: 1621[KDownloaded: 3934 file(s) [attempted 3934/8890 = 44%, 557 KB/s], Decompressed: 1621[KDownloaded: 3980 file(s) [attempted 3980/8890 = 44%, 113 KB/s], Decompressed: 1621[KDownloaded: 4006 file(s) [attempted 4006/8890 = 45%, 296 KB/s], Decompressed: 1621[KDownloaded: 4037 file(s) [attempted 4037/8890 = 45%, 50 KB/s], Decompressed: 1621[KDownloaded: 4080 file(s) [attempted 4080/8890 = 45%, 51 KB/s], Decompressed: 1621[KDownloaded: 4121 file(s) [attempted 4121/8890 = 46%, 239 KB/s], Decompressed: 1621[KDownloaded: 4167 file(s) [attempted 4167/8890 = 46%, 578 KB/s], Decompressed: 1621[KDownloaded: 4215 file(s) [attempted 4215/8890 = 47%, 33 KB/s], Decompressed: 1621[KDownloaded: 4248 file(s) [attempted 4248/8890 = 47%, 603 KB/s], Decompressed: 1621[KDownloaded: 4282 file(s) [attempted 4282/8890 = 48%, 316 KB/s], Decompressed: 1621[KDownloaded: 4311 file(s) [attempted 4311/8890 = 48%, 199 KB/s], Decompressed: 1621[KDownloaded: 4344 file(s) [attempted 4344/8890 = 48%, 40 KB/s], Decompressed: 1621[KDownloaded: 4392 file(s) [attempted 4392/8890 = 49%, 1139 KB/s], Decompressed: 1621[KDownloaded: 4416 file(s) [attempted 4416/8890 = 49%, 396 KB/s], Decompressed: 1621[KDownloaded: 4460 file(s) [attempted 4460/8890 = 50%, 84 KB/s], Decompressed: 1621[KDownloaded: 4500 file(s) [attempted 4500/8890 = 50%, 323 KB/s], Decompressed: 1621[KDownloaded: 4541 file(s) [attempted 4541/8890 = 51%, 308 KB/s], Decompressed: 1621[KDownloaded: 4577 file(s) [attempted 4577/8890 = 51%, 50 KB/s], Decompressed: 1621[KDownloaded: 4625 file(s) [attempted 4625/8890 = 52%, 62 KB/s], Decompressed: 1621[KDownloaded: 4659 file(s) [attempted 4659/8890 = 52%, 237 KB/s], Decompressed: 1621[KDownloaded: 4685 file(s) [attempted 4685/8890 = 52%, 480 KB/s], Decompressed: 1621[KDownloaded: 4733 file(s) [attempted 4733/8890 = 53%, 227 KB/s], Decompressed: 1621[KDownloaded: 4781 file(s) [attempted 4781/8890 = 53%, 1199 KB/s], Decompressed: 1621[KDownloaded: 4817 file(s) [attempted 4817/8890 = 54%, 122 KB/s], Decompressed: 1621[KDownloaded: 4841 file(s) [attempted 4841/8890 = 54%, 155 KB/s], Decompressed: 1621[KDownloaded: 4892 file(s) [attempted 4892/8890 = 55%, 152 KB/s], Decompressed: 1621[KDownloaded: 4942 file(s) [attempted 4942/8890 = 55%, 1263 KB/s], Decompressed: 1621[KDownloaded: 4978 file(s) [attempted 4978/8890 = 55%, 97 KB/s], Decompressed: 1621[KDownloaded: 5009 file(s) [attempted 5009/8890 = 56%, 488 KB/s], Decompressed: 1621[KDownloaded: 5052 file(s) [attempted 5052/8890 = 56%, 341 KB/s], Decompressed: 1621[KDownloaded: 5098 file(s) [attempted 5098/8890 = 57%, 27 KB/s], Decompressed: 1621[KDownloaded: 5129 file(s) [attempted 5129/8890 = 57%, 116 KB/s], Decompressed: 1621[KDownloaded: 5156 file(s) [attempted 5156/8890 = 57%, 339 KB/s], Decompressed: 1621[KDownloaded: 5201 file(s) [attempted 5201/8890 = 58%, 23 KB/s], Decompressed: 1621[KDownloaded: 5237 file(s) [attempted 5237/8890 = 58%, 140 KB/s], Decompressed: 1621[KDownloaded: 5268 file(s) [attempted 5268/8890 = 59%, 999 KB/s], Decompressed: 1621[KDownloaded: 5278 file(s) [attempted 5278/8890 = 59%, 296 KB/s], Decompressed: 1621[KDownloaded: 5328 file(s) [attempted 5328/8890 = 59%, 77 KB/s], Decompressed: 1621[KDownloaded: 5337 file(s) [attempted 5337/8890 = 60%, 356 KB/s], Decompressed: 1621[KDownloaded: 5379 file(s) [attempted 5379/8890 = 60%, 2532 KB/s], Decompressed: 1621[KDownloaded: 5427 file(s) [attempted 5427/8890 = 61%, 113 KB/s], Decompressed: 1621[KDownloaded: 5460 file(s) [attempted 5460/8890 = 61%, 72 KB/s], Decompressed: 1621[KDownloaded: 5501 file(s) [attempted 5501/8890 = 61%, 159 KB/s], Decompressed: 1621[KDownloaded: 5532 file(s) [attempted 5532/8890 = 62%, 747 KB/s], Decompressed: 1621[KDownloaded: 5568 file(s) [attempted 5568/8890 = 62%, 348 KB/s], Decompressed: 1621[KDownloaded: 5602 file(s) [attempted 5602/8890 = 63%, 405 KB/s], Decompressed: 1621[KDownloaded: 5640 file(s) [attempted 5640/8890 = 63%, 74 KB/s], Decompressed: 1621[KDownloaded: 5688 file(s) [attempted 5688/8890 = 63%, 217 KB/s], Decompressed: 1621[KDownloaded: 5712 file(s) [attempted 5712/8890 = 64%, 269 KB/s], Decompressed: 1621[KDownloaded: 5753 file(s) [attempted 5753/8890 = 64%, 86 KB/s], Decompressed: 1621[KDownloaded: 5801 file(s) [attempted 5801/8890 = 65%, 1044 KB/s], Decompressed: 1621[KDownloaded: 5835 file(s) [attempted 5835/8890 = 65%, 74 KB/s], Decompressed: 1621[KDownloaded: 5876 file(s) [attempted 5876/8890 = 66%, 412 KB/s], Decompressed: 1621[KDownloaded: 5907 file(s) [attempted 5907/8890 = 66%, 209 KB/s], Decompressed: 1621[KDownloaded: 5933 file(s) [attempted 5933/8890 = 66%, 957 KB/s], Decompressed: 1621[KDownloaded: 5964 file(s) [attempted 5964/8890 = 67%, 570 KB/s], Decompressed: 1621[KDownloaded: 5988 file(s) [attempted 5988/8890 = 67%, 107 KB/s], Decompressed: 3300[KDownloaded: 6022 file(s) [attempted 6022/8890 = 67%, 119 KB/s], Decompressed: 3300[KDownloaded: 6055 file(s) [attempted 6055/8890 = 68%, 484 KB/s], Decompressed: 3300[KDownloaded: 6103 file(s) [attempted 6103/8890 = 68%, 174 KB/s], Decompressed: 3300[KDownloaded: 6147 file(s) [attempted 6147/8890 = 69%, 303 KB/s], Decompressed: 3300[KDownloaded: 6175 file(s) [attempted 6175/8890 = 69%, 178 KB/s], Decompressed: 3300[KDownloaded: 6223 file(s) [attempted 6223/8890 = 70%, 128 KB/s], Decompressed: 3300[KDownloaded: 6262 file(s) [attempted 6262/8890 = 70%, 82 KB/s], Decompressed: 3300[KDownloaded: 6307 file(s) [attempted 6307/8890 = 70%, 264 KB/s], Decompressed: 3300[KDownloaded: 6324 file(s) [attempted 6324/8890 = 71%, 189 KB/s], Decompressed: 3300[KDownloaded: 6365 file(s) [attempted 6365/8890 = 71%, 2283 KB/s], Decompressed: 3300[KDownloaded: 6413 file(s) [attempted 6413/8890 = 72%, 1042 KB/s], Decompressed: 3300[KDownloaded: 6451 file(s) [attempted 6451/8890 = 72%, 71 KB/s], Decompressed: 3300[KDownloaded: 6473 file(s) [attempted 6473/8890 = 72%, 726 KB/s], Decompressed: 3300[KDownloaded: 6516 file(s) [attempted 6516/8890 = 73%, 422 KB/s], Decompressed: 3300[KDownloaded: 6531 file(s) [attempted 6531/8890 = 73%, 47 KB/s], Decompressed: 3300[KDownloaded: 6576 file(s) [attempted 6576/8890 = 73%, 714 KB/s], Decompressed: 3300[KDownloaded: 6619 file(s) [attempted 6619/8890 = 74%, 25 KB/s], Decompressed: 3300[KDownloaded: 6648 file(s) [attempted 6648/8890 = 74%, 380 KB/s], Decompressed: 3300[KDownloaded: 6682 file(s) [attempted 6682/8890 = 75%, 30 KB/s], Decompressed: 3300[KDownloaded: 6718 file(s) [attempted 6718/8890 = 75%, 355 KB/s], Decompressed: 3300[KDownloaded: 6744 file(s) [attempted 6744/8890 = 75%, 334 KB/s], Decompressed: 3300[KDownloaded: 6754 file(s) [attempted 6754/8890 = 75%, 145 KB/s], Decompressed: 3300[KDownloaded: 6804 file(s) [attempted 6804/8890 = 76%, 20 KB/s], Decompressed: 3300[KDownloaded: 6852 file(s) [attempted 6852/8890 = 77%, 54 KB/s], Decompressed: 3300[KDownloaded: 6875 file(s) [attempted 6875/8890 = 77%, 43 KB/s], Decompressed: 3300[KDownloaded: 6901 file(s) [attempted 6901/8890 = 77%, 363 KB/s], Decompressed: 3300[KDownloaded: 6929 file(s) [attempted 6929/8890 = 77%, 729 KB/s], Decompressed: 3300[KDownloaded: 6958 file(s) [attempted 6958/8890 = 78%, 44 KB/s], Decompressed: 3300[KDownloaded: 7006 file(s) [attempted 7006/8890 = 78%, 129 KB/s], Decompressed: 3300[KDownloaded: 7054 file(s) [attempted 7054/8890 = 79%, 179 KB/s], Decompressed: 3300[KDownloaded: 7078 file(s) [attempted 7078/8890 = 79%, 376 KB/s], Decompressed: 3300[KDownloaded: 7131 file(s) [attempted 7131/8890 = 80%, 206 KB/s], Decompressed: 3300[KDownloaded: 7164 file(s) [attempted 7164/8890 = 80%, 915 KB/s], Decompressed: 3300[KDownloaded: 7210 file(s) [attempted 7210/8890 = 81%, 272 KB/s], Decompressed: 3300[KDownloaded: 7236 file(s) [attempted 7236/8890 = 81%, 527 KB/s], Decompressed: 3300[KDownloaded: 7272 file(s) [attempted 7272/8890 = 81%, 668 KB/s], Decompressed: 3300[KDownloaded: 7303 file(s) [attempted 7303/8890 = 82%, 30 KB/s], Decompressed: 3300[KDownloaded: 7342 file(s) [attempted 7342/8890 = 82%, 614 KB/s], Decompressed: 3300[KDownloaded: 7383 file(s) [attempted 7383/8890 = 83%, 214 KB/s], Decompressed: 3300[KDownloaded: 7423 file(s) [attempted 7423/8890 = 83%, 54 KB/s], Decompressed: 3300[KDownloaded: 7455 file(s) [attempted 7455/8890 = 83%, 1779 KB/s], Decompressed: 3300[KDownloaded: 7488 file(s) [attempted 7488/8890 = 84%, 110 KB/s], Decompressed: 3300[KDownloaded: 7491 file(s) [attempted 7491/8890 = 84%, 114 KB/s], Decompressed: 3300[KDownloaded: 7553 file(s) [attempted 7553/8890 = 84%, 2392 KB/s], Decompressed: 3300[KDownloaded: 7589 file(s) [attempted 7589/8890 = 85%, 482 KB/s], Decompressed: 3300[KDownloaded: 7613 file(s) [attempted 7613/8890 = 85%, 574 KB/s], Decompressed: 3300[KDownloaded: 7661 file(s) [attempted 7661/8890 = 86%, 154 KB/s], Decompressed: 3300[KDownloaded: 7692 file(s) [attempted 7692/8890 = 86%, 177 KB/s], Decompressed: 3300[KDownloaded: 7728 file(s) [attempted 7728/8890 = 86%, 78 KB/s], Decompressed: 3300[KDownloaded: 7745 file(s) [attempted 7745/8890 = 87%, 568 KB/s], Decompressed: 3300[KDownloaded: 7769 file(s) [attempted 7769/8890 = 87%, 214 KB/s], Decompressed: 3300[KDownloaded: 7800 file(s) [attempted 7800/8890 = 87%, 467 KB/s], Decompressed: 3300[KDownloaded: 7836 file(s) [attempted 7836/8890 = 88%, 45 KB/s], Decompressed: 3300[KDownloaded: 7879 file(s) [attempted 7879/8890 = 88%, 1155 KB/s], Decompressed: 3300[KDownloaded: 7906 file(s) [attempted 7906/8890 = 88%, 103 KB/s], Decompressed: 3300[KDownloaded: 7923 file(s) [attempted 7923/8890 = 89%, 373 KB/s], Decompressed: 3300[KDownloaded: 7973 file(s) [attempted 7973/8890 = 89%, 293 KB/s], Decompressed: 3300[KDownloaded: 7992 file(s) [attempted 7992/8890 = 89%, 41 KB/s], Decompressed: 3300[KDownloaded: 8021 file(s) [attempted 8021/8890 = 90%, 165 KB/s], Decompressed: 3300[KDownloaded: 8052 file(s) [attempted 8052/8890 = 90%, 166 KB/s], Decompressed: 3300[KDownloaded: 8091 file(s) [attempted 8091/8890 = 91%, 668 KB/s], Decompressed: 3300[KDownloaded: 8141 file(s) [attempted 8141/8890 = 91%, 98 KB/s], Decompressed: 3300[KDownloaded: 8177 file(s) [attempted 8177/8890 = 91%, 120 KB/s], Decompressed: 3300[KDownloaded: 8203 file(s) [attempted 8203/8890 = 92%, 498 KB/s], Decompressed: 3300[KDownloaded: 8237 file(s) [attempted 8237/8890 = 92%, 222 KB/s], Decompressed: 3300[KDownloaded: 8261 file(s) [attempted 8261/8890 = 92%, 503 KB/s], Decompressed: 3300[KDownloaded: 8297 file(s) [attempted 8297/8890 = 93%, 1410 KB/s], Decompressed: 3300[KDownloaded: 8314 file(s) [attempted 8314/8890 = 93%, 365 KB/s], Decompressed: 3300[KDownloaded: 8352 file(s) [attempted 8352/8890 = 93%, 415 KB/s], Decompressed: 3300[KDownloaded: 8383 file(s) [attempted 8383/8890 = 94%, 332 KB/s], Decompressed: 3300[KDownloaded: 8424 file(s) [attempted 8424/8890 = 94%, 207 KB/s], Decompressed: 3300[KDownloaded: 8452 file(s) [attempted 8452/8890 = 95%, 170 KB/s], Decompressed: 3300[KDownloaded: 8486 file(s) [attempted 8486/8890 = 95%, 490 KB/s], Decompressed: 3300[KDownloaded: 8515 file(s) [attempted 8515/8890 = 95%, 764 KB/s], Decompressed: 3300[KDownloaded: 8547 file(s) [attempted 8547/8890 = 96%, 87 KB/s], Decompressed: 3300[KDownloaded: 8573 file(s) [attempted 8573/8890 = 96%, 237 KB/s], Decompressed: 3300[KDownloaded: 8626 file(s) [attempted 8626/8890 = 97%, 110 KB/s], Decompressed: 3300[KDownloaded: 8654 file(s) [attempted 8654/8890 = 97%, 267 KB/s], Decompressed: 3300[KDownloaded: 8683 file(s) [attempted 8683/8890 = 97%, 120 KB/s], Decompressed: 3300[KDownloaded: 8717 file(s) [attempted 8717/8890 = 98%, 113 KB/s], Decompressed: 3300[KDownloaded: 8753 file(s) [attempted 8753/8890 = 98%, 106 KB/s], Decompressed: 3300[KDownloaded: 8772 file(s) [attempted 8772/8890 = 98%, 485 KB/s], Decompressed: 3300[KDownloaded: 8834 file(s) [attempted 8834/8890 = 99%, 541 KB/s], Decompressed: 3300[KDownloaded: 8887 file(s) [attempted 8887/8890 = 99%, 722 KB/s], Decompressed: 3300[KDownloaded: 8890 file(s) [attempted 8890/8890 = 100%, 722 KB/s], Decompressed: 3300[K
+Decompressed 8890 file(s)
+Already decompressed 8890 file(s)
+✔ [8905/8919] Built PscVerif.SelectedRank (1.0s)
+✔ [8907/8919] Built PscVerif.QuotientDistance (665ms)
+✔ [8908/8919] Built PscVerif.ClassBRegime (1.8s)
+✔ [8909/8919] Built PscVerif.OverlapContraction (13s)
+✔ [8910/8919] Built PscVerif.Basic (92s)
+✔ [8911/8919] Built PscVerif.BoundaryRounding (92s)
+✔ [8912/8919] Built PscVerif.BoundarySeedPath (92s)
+✔ [8913/8919] Built PscVerif.Shuffle (33s)
+✔ [8914/8919] Built PscVerif.Seeds (48s)
+✔ [8915/8919] Built PscVerif.Centralizer (48s)
+✔ [8916/8919] Built PscVerif.TraceLemma (41s)
+ℹ [8917/8919] Built PscVerif.Spectral (29s)
+info: PscVerif/Spectral.lean:54:0: 'Psc.BalancedPair.K₃_shuffle_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PscVerif/Spectral.lean:55:0: 'Psc.seed_K₃_mem_W₃' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PscVerif/Spectral.lean:56:0: 'Psc.theta_seed' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PscVerif/Spectral.lean:57:0: 'Psc.trace_sq_A' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PscVerif/Spectral.lean:58:0: 'Psc.Aq_eigenspace' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PscVerif/Spectral.lean:59:0: 'Psc.target1' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PscVerif/Spectral.lean:60:0: 'Psc.no_equal_row_sums' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PscVerif/Spectral.lean:61:0: 'Psc.Aq_not_conj_cyclicPlus' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PscVerif/Spectral.lean:62:0: 'Psc.Aq_not_conj_cyclicMinus' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [8918/8919] Built PscVerif (34s)
+Build completed successfully (8919 jobs).
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.N₃.match_1	Psc.N₃.match_1	
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.triangle	PscVerif.QuotientDistance.triangle	propext
+PSC_AXIOMS	theorem	PscVerif.BoundarySeedPath	PscVerif.BoundarySeedPath.six_parikh_updates._proof_1_2	PscVerif.BoundarySeedPath.six_parikh_updates._proof_1_2	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.SelectedRank	PscVerif.SelectedRank.control_trap_stays	PscVerif.SelectedRank.control_trap_stays	propext
+PSC_AXIOMS	theorem	PscVerif.Basic	Psc.ind_mul	Psc.ind_mul	propext
+PSC_AXIOMS	theorem	PscVerif.Shuffle	_private.PscVerif.Shuffle.0.Psc.N₃.match_1.eq_1	Psc.N₃.match_1.eq_1	
+PSC_AXIOMS	declaration	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate.rec	PscVerif.OverlapContraction.Certificate.rec	
+PSC_AXIOMS	declaration	PscVerif.ClassBRegime	PscVerif.ClassBRegime.Steps.rec	PscVerif.ClassBRegime.Steps.rec	
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.Atab.eq_3	Psc.Atab.eq_3	propext,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.Refinement.mk._flat_ctor	PscVerif.QuotientDistance.Refinement.mk._flat_ctor	
+PSC_AXIOMS	theorem	PscVerif.Shuffle	Psc.N₃.eq_def	Psc.N₃.eq_def	
+PSC_AXIOMS	theorem	PscVerif.TraceLemma	Psc.cyclicMinus.eq_1	Psc.cyclicMinus.eq_1	propext,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.BalancedPair.u	Psc.BalancedPair.u	
+PSC_AXIOMS	declaration	PscVerif.ClassBRegime	PscVerif.ClassBRegime.Reach.below.step	PscVerif.ClassBRegime.Reach.below.step	
+PSC_AXIOMS	theorem	PscVerif.ClassBRegime	PscVerif.ClassBRegime.plus_partition._proof_1_1	PscVerif.ClassBRegime.plus_partition._proof_1_1	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.null_of_cover	PscVerif.OverlapContraction.null_of_cover	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.Shortest	PscVerif.QuotientDistance.Shortest	
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.ExactWitness.casesOn	PscVerif.QuotientDistance.ExactWitness.casesOn	
+PSC_AXIOMS	declaration	PscVerif.SelectedRank	PscVerif.SelectedRank.Path.recOn	PscVerif.SelectedRank.Path.recOn	
+PSC_AXIOMS	declaration	PscVerif.SelectedRank	PscVerif.SelectedRank.Path.below.rec	PscVerif.SelectedRank.Path.below.rec	
+PSC_AXIOMS	declaration	PscVerif.ClassBRegime	PscVerif.ClassBRegime.Steps.below.refl	PscVerif.ClassBRegime.Steps.below.refl	
+PSC_AXIOMS	theorem	PscVerif.SelectedRank	PscVerif.SelectedRank.path_stays_in	PscVerif.SelectedRank.path_stays_in	
+PSC_AXIOMS	declaration	PscVerif.ClassBRegime	PscVerif.ClassBRegime.Reach.casesOn	PscVerif.ClassBRegime.Reach.casesOn	
+PSC_AXIOMS	declaration	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate.casesOn	PscVerif.OverlapContraction.Certificate.casesOn	
+PSC_AXIOMS	declaration	PscVerif.Centralizer	Psc.Aq	Psc.Aq	propext,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.ClassBRegime	PscVerif.ClassBRegime.Reach.below.refl	PscVerif.ClassBRegime.Reach.below.refl	
+PSC_AXIOMS	theorem	PscVerif.Centralizer	Psc.ones.eq_1	Psc.ones.eq_1	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.TraceLemma	Psc.trace_sq_cyclicMinus	Psc.trace_sq_cyclicMinus	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.QuotientDistance	PscVerif.QuotientDistance.triangle._proof_1	PscVerif.QuotientDistance.triangle._proof_1	propext
+PSC_AXIOMS	theorem	PscVerif.Basic	Psc.BalancedPair.K₁.eq_1	Psc.BalancedPair.K₁.eq_1	
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.N₂._f	Psc.N₂._f	
+PSC_AXIOMS	theorem	PscVerif.ClassBRegime	PscVerif.ClassBRegime.rank_reaches_with_bound	PscVerif.ClassBRegime.rank_reaches_with_bound	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.seed._proof_2	Psc.seed._proof_2	propext
+PSC_AXIOMS	theorem	PscVerif.Shuffle	Psc.N₃.eq_2	Psc.N₃.eq_2	
+PSC_AXIOMS	declaration	PscVerif.OverlapContraction	PscVerif.OverlapContraction.periodThreeControl	PscVerif.OverlapContraction.periodThreeControl	
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.Word	Psc.Word	
+PSC_AXIOMS	theorem	PscVerif.BoundarySeedPath	PscVerif.BoundarySeedPath.seven_state_guards	PscVerif.BoundarySeedPath.seven_state_guards	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.Seeds	_private.PscVerif.Seeds.0.Psc.seed.match_1.splitter	Psc.seed.match_1.splitter	propext
+PSC_AXIOMS	theorem	PscVerif.Basic	Psc.BalancedPair.mk.sizeOf_spec	Psc.BalancedPair.mk.sizeOf_spec	
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.trace_A	Psc.trace_A	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.BalancedPair._sizeOf_1	Psc.BalancedPair._sizeOf_1	
+PSC_AXIOMS	declaration	PscVerif.SelectedRank	PscVerif.SelectedRank.control_trap_has_no_terminal_path.match_1_1	PscVerif.SelectedRank.control_trap_has_no_terminal_path.match_1_1	propext
+PSC_AXIOMS	theorem	PscVerif.Shuffle	Psc.N.eq_1	Psc.N.eq_1	
+PSC_AXIOMS	declaration	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate._sizeOf_inst	PscVerif.OverlapContraction.Certificate._sizeOf_inst	
+PSC_AXIOMS	declaration	PscVerif.ClassBRegime	PscVerif.ClassBRegime.Steps.below.casesOn	PscVerif.ClassBRegime.Steps.below.casesOn	
+PSC_AXIOMS	declaration	PscVerif.ClassBRegime	PscVerif.ClassBRegime.Reach.below	PscVerif.ClassBRegime.Reach.below	
+PSC_AXIOMS	theorem	PscVerif.Shuffle	_private.PscVerif.Shuffle.0.Psc.N₂.match_1.eq_1	Psc.N₂.match_1.eq_1	
+PSC_AXIOMS	theorem	PscVerif.SelectedRank	PscVerif.SelectedRank.controlEdge._proof_1	PscVerif.SelectedRank.controlEdge._proof_1	propext
+PSC_AXIOMS	declaration	PscVerif.ClassBRegime	PscVerif.ClassBRegime.Steps.below	PscVerif.ClassBRegime.Steps.below	
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.BalancedPair.K₃	Psc.BalancedPair.K₃	
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.period_three_two_step	PscVerif.OverlapContraction.period_three_two_step	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Centralizer	Psc.Aq_eigenspace	Psc.Aq_eigenspace	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.Atab.eq_6	Psc.Atab.eq_6	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.ClassBRegime	PscVerif.ClassBRegime.segment_difference._proof_1_1	PscVerif.ClassBRegime.segment_difference._proof_1_1	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Shuffle	_private.PscVerif.Shuffle.0.Psc.N.match_1.eq_2	Psc.N.match_1.eq_2	
+PSC_AXIOMS	declaration	PscVerif.Centralizer	Psc.ones	Psc.ones	propext,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.BalancedPair.ctorIdx	Psc.BalancedPair.ctorIdx	
+PSC_AXIOMS	theorem	PscVerif.QuotientDistance	PscVerif.QuotientDistance.Refinement.terminal_iff	PscVerif.QuotientDistance.Refinement.terminal_iff	
+PSC_AXIOMS	declaration	PscVerif.SelectedRank	PscVerif.SelectedRank.Path.rec	PscVerif.SelectedRank.Path.rec	
+PSC_AXIOMS	theorem	PscVerif.Centralizer	Psc.lam.eq_4	Psc.lam.eq_4	propext
+PSC_AXIOMS	theorem	PscVerif.Seeds	_private.PscVerif.Seeds.0.Psc.seed.match_1.eq_2	Psc.seed.match_1.eq_2	propext
+PSC_AXIOMS	theorem	PscVerif.QuotientDistance	PscVerif.QuotientDistance.certified_quotient_distance	PscVerif.QuotientDistance.certified_quotient_distance	propext
+PSC_AXIOMS	declaration	PscVerif.OverlapContraction	PscVerif.OverlapContraction.instDecidableValid	PscVerif.OverlapContraction.instDecidableValid	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.QuotientDistance	PscVerif.QuotientDistance.longer_is_not_exact	PscVerif.QuotientDistance.longer_is_not_exact	propext
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.BalancedPair.K₁	Psc.BalancedPair.K₁	
+PSC_AXIOMS	theorem	PscVerif.QuotientDistance	PscVerif.QuotientDistance.one_sided_terminal_iff	PscVerif.QuotientDistance.one_sided_terminal_iff	propext
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.N₂._sunfold	Psc.N₂._sunfold	
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.N._sunfold	Psc.N._sunfold	
+PSC_AXIOMS	declaration	PscVerif.SelectedRank	PscVerif.SelectedRank.Witness.mk	PscVerif.SelectedRank.Witness.mk	
+PSC_AXIOMS	theorem	PscVerif.Centralizer	Psc.Aq_mulVec_ones	Psc.Aq_mulVec_ones	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.period_alone_does_not_supply_two_step	PscVerif.OverlapContraction.period_alone_does_not_supply_two_step	propext
+PSC_AXIOMS	theorem	PscVerif.Shuffle	Psc.N₂.eq_2	Psc.N₂.eq_2	
+PSC_AXIOMS	theorem	PscVerif.Basic	Psc.BalancedPair.K₁_eq_zero	Psc.BalancedPair.K₁_eq_zero	propext
+PSC_AXIOMS	theorem	PscVerif.QuotientDistance	PscVerif.QuotientDistance.shortest_unique	PscVerif.QuotientDistance.shortest_unique	
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.Refinement.casesOn	PscVerif.QuotientDistance.Refinement.casesOn	
+PSC_AXIOMS	declaration	PscVerif.Shuffle	_private.PscVerif.Shuffle.0.Psc.N₂.match_1.splitter	Psc.N₂.match_1.splitter	
+PSC_AXIOMS	declaration	PscVerif.SelectedRank	PscVerif.SelectedRank.controlTerminal	PscVerif.SelectedRank.controlTerminal	propext
+PSC_AXIOMS	theorem	PscVerif.Shuffle	Psc.BalancedPair.K₃_shuffle_zero	Psc.BalancedPair.K₃_shuffle_zero	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.ClassBRegime	PscVerif.ClassBRegime.Reach.below.rec	PscVerif.ClassBRegime.Reach.below.rec	
+PSC_AXIOMS	declaration	PscVerif.ClassBRegime	PscVerif.ClassBRegime.Reach.rec	PscVerif.ClassBRegime.Reach.rec	
+PSC_AXIOMS	declaration	PscVerif.Seeds	Psc.Θ	Psc.Θ	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.Seeds	Psc.mk!._auto_1	Psc.mk!._auto_1	
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.no_terminal_path_iff.match_1_3	PscVerif.QuotientDistance.no_terminal_path_iff.match_1_3	
+PSC_AXIOMS	declaration	PscVerif.SelectedRank	PscVerif.SelectedRank.controlEmbed	PscVerif.SelectedRank.controlEmbed	
+PSC_AXIOMS	declaration	PscVerif.SelectedRank	PscVerif.SelectedRank.Path.below.nil	PscVerif.SelectedRank.Path.below.nil	
+PSC_AXIOMS	declaration	PscVerif.SelectedRank	PscVerif.SelectedRank.Witness.mk._flat_ctor	PscVerif.SelectedRank.Witness.mk._flat_ctor	
+PSC_AXIOMS	theorem	PscVerif.BoundarySeedPath	PscVerif.BoundarySeedPath.actual_word_bounds._proof_1_2	PscVerif.BoundarySeedPath.actual_word_bounds._proof_1_2	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.two_step_of_twelve	PscVerif.OverlapContraction.two_step_of_twelve	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.SelectedRank	PscVerif.SelectedRank.control_local_selected_path	PscVerif.SelectedRank.control_local_selected_path	propext,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.N₃._unsafe_rec	Psc.N₃._unsafe_rec	
+PSC_AXIOMS	declaration	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate.Valid	PscVerif.OverlapContraction.Certificate.Valid	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.QuotientDistance	PscVerif.QuotientDistance.terminal_mismatch_refused	PscVerif.QuotientDistance.terminal_mismatch_refused	propext
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate.mk.inj	PscVerif.OverlapContraction.Certificate.mk.inj	
+PSC_AXIOMS	theorem	PscVerif.BoundarySeedPath	PscVerif.BoundarySeedPath.actual_word_bounds._proof_1_3	PscVerif.BoundarySeedPath.actual_word_bounds._proof_1_3	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.six_parallel_edges_refused	PscVerif.OverlapContraction.six_parallel_edges_refused	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.TerminalPath	PscVerif.QuotientDistance.TerminalPath	
+PSC_AXIOMS	theorem	PscVerif.Shuffle	Psc.N.eq_def	Psc.N.eq_def	
+PSC_AXIOMS	declaration	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate._sizeOf_1	PscVerif.OverlapContraction.Certificate._sizeOf_1	
+PSC_AXIOMS	theorem	PscVerif.QuotientDistance	PscVerif.QuotientDistance.shortest_iff	PscVerif.QuotientDistance.shortest_iff	
+PSC_AXIOMS	declaration	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate.mk._flat_ctor	PscVerif.OverlapContraction.Certificate.mk._flat_ctor	
+PSC_AXIOMS	theorem	PscVerif.BoundarySeedPath	PscVerif.BoundarySeedPath.actual_word_bounds._proof_1_7	PscVerif.BoundarySeedPath.actual_word_bounds._proof_1_7	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.SelectedRank	PscVerif.SelectedRank.Path.brecOn	PscVerif.SelectedRank.Path.brecOn	
+PSC_AXIOMS	declaration	PscVerif.ClassBRegime	PscVerif.ClassBRegime.Steps.refl	PscVerif.ClassBRegime.Steps.refl	
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.common_box_arithmetic	PscVerif.OverlapContraction.common_box_arithmetic	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.SelectedRank	PscVerif.SelectedRank.control_trap_has_no_terminal_path	PscVerif.SelectedRank.control_trap_has_no_terminal_path	propext
+PSC_AXIOMS	theorem	PscVerif.Shuffle	Psc.BalancedPair.K₂.eq_1	Psc.BalancedPair.K₂.eq_1	
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.ExactWitness.mk	PscVerif.QuotientDistance.ExactWitness.mk	
+PSC_AXIOMS	declaration	PscVerif.SelectedRank	PscVerif.SelectedRank.Path.nil	PscVerif.SelectedRank.Path.nil	
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.N._f	Psc.N._f	
+PSC_AXIOMS	theorem	PscVerif.BoundarySeedPath	PscVerif.BoundarySeedPath.actual_word_bounds._proof_1_5	PscVerif.BoundarySeedPath.actual_word_bounds._proof_1_5	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.seed._proof_9	Psc.seed._proof_9	propext
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.A_ne_zero	Psc.A_ne_zero	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.BoundarySeedPath	PscVerif.BoundarySeedPath.six_parikh_updates._proof_1_4	PscVerif.BoundarySeedPath.six_parikh_updates._proof_1_4	propext,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.N.match_1	Psc.N.match_1	
+PSC_AXIOMS	theorem	PscVerif.SelectedRank	PscVerif.SelectedRank.covered_descendants_productive	PscVerif.SelectedRank.covered_descendants_productive	propext
+PSC_AXIOMS	theorem	PscVerif.Centralizer	_private.PscVerif.Centralizer.0.Psc.seed.match_1.eq_4	Psc.seed.match_1.eq_4	propext
+PSC_AXIOMS	declaration	PscVerif.SelectedRank	PscVerif.SelectedRank.Witness	PscVerif.SelectedRank.Witness	
+PSC_AXIOMS	theorem	PscVerif.BoundaryRounding	PscVerif.BoundaryRounding.first_run._proof_1_1	PscVerif.BoundaryRounding.first_run._proof_1_1	propext,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.BoundarySeedPath	PscVerif.BoundarySeedPath.move	PscVerif.BoundarySeedPath.move	
+PSC_AXIOMS	declaration	PscVerif.OverlapContraction	PscVerif.OverlapContraction.equalRateControl	PscVerif.OverlapContraction.equalRateControl	propext
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.equal_rate_does_not_force_zero	PscVerif.OverlapContraction.equal_rate_does_not_force_zero	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.periodThreeControl._proof_1	PscVerif.OverlapContraction.periodThreeControl._proof_1	
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.N₃._f	Psc.N₃._f	
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.seed_K₃_mem_W₃	Psc.seed_K₃_mem_W₃	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Shuffle	Psc.BalancedPair.K₃.eq_1	Psc.BalancedPair.K₃.eq_1	
+PSC_AXIOMS	theorem	PscVerif.TraceLemma	Psc.trace_sq_Aq	Psc.trace_sq_Aq	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.recurrence_of_cover	PscVerif.OverlapContraction.recurrence_of_cover	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Centralizer	Psc.ones_ne_zero	Psc.ones_ne_zero	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.BalancedPair.mk	Psc.BalancedPair.mk	
+PSC_AXIOMS	theorem	PscVerif.SelectedRank	PscVerif.SelectedRank.control_local_witness	PscVerif.SelectedRank.control_local_witness	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.BoundarySeedPath	PscVerif.BoundarySeedPath.actual_word_bounds	PscVerif.BoundarySeedPath.actual_word_bounds	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.seed_length	Psc.seed_length	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.oneSidedQuotient	PscVerif.QuotientDistance.oneSidedQuotient	propext
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.oneSidedActual	PscVerif.QuotientDistance.oneSidedActual	propext
+PSC_AXIOMS	theorem	PscVerif.Basic	Psc.BalancedPair.mk.inj	Psc.BalancedPair.mk.inj	
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.N₂	Psc.N₂	
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.no_positive_subset_of_null	PscVerif.OverlapContraction.no_positive_subset_of_null	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.OverlapContraction	PscVerif.OverlapContraction.terminalControl	PscVerif.OverlapContraction.terminalControl	
+PSC_AXIOMS	theorem	PscVerif.TraceLemma	Psc.Aq_not_conj_cyclicMinus	Psc.Aq_not_conj_cyclicMinus	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.Refinement.rec	PscVerif.QuotientDistance.Refinement.rec	
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.one_sided_original_trapped.match_1_1	PscVerif.QuotientDistance.one_sided_original_trapped.match_1_1	propext
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.Refinement.recOn	PscVerif.QuotientDistance.Refinement.recOn	
+PSC_AXIOMS	theorem	PscVerif.QuotientDistance	PscVerif.QuotientDistance.Refinement.lifts	PscVerif.QuotientDistance.Refinement.lifts	
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.shortest_iff.match_1_1	PscVerif.QuotientDistance.shortest_iff.match_1_1	
+PSC_AXIOMS	theorem	PscVerif.QuotientDistance	PscVerif.QuotientDistance.one_sided_original_trapped	PscVerif.QuotientDistance.one_sided_original_trapped	propext
+PSC_AXIOMS	theorem	PscVerif.Seeds	_private.PscVerif.Seeds.0.Psc.seed.match_1.eq_6	Psc.seed.match_1.eq_6	propext
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate.class_rate_null	PscVerif.OverlapContraction.Certificate.class_rate_null	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.ClassBRegime	PscVerif.ClassBRegime.Steps.recOn	PscVerif.ClassBRegime.Steps.recOn	
+PSC_AXIOMS	declaration	PscVerif.SelectedRank	PscVerif.SelectedRank.Path.below.cons	PscVerif.SelectedRank.Path.below.cons	
+PSC_AXIOMS	declaration	PscVerif.ClassBRegime	PscVerif.ClassBRegime.Reach.refl	PscVerif.ClassBRegime.Reach.refl	
+PSC_AXIOMS	theorem	PscVerif.Centralizer	_private.PscVerif.Centralizer.0.Psc.seed.match_1.eq_1	Psc.seed.match_1.eq_1	propext
+PSC_AXIOMS	theorem	PscVerif.Centralizer	Psc.no_commuting_of_no_eigenvalue	Psc.no_commuting_of_no_eigenvalue	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.BalancedPair	Psc.BalancedPair	
+PSC_AXIOMS	theorem	PscVerif.QuotientDistance	PscVerif.QuotientDistance.ExactWitness.toWitness	PscVerif.QuotientDistance.ExactWitness.toWitness	
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.BalancedPair._sizeOf_inst	Psc.BalancedPair._sizeOf_inst	
+PSC_AXIOMS	declaration	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate.mk	PscVerif.OverlapContraction.Certificate.mk	
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.N	Psc.N	
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.BalancedPair.noConfusion	Psc.BalancedPair.noConfusion	
+PSC_AXIOMS	theorem	PscVerif.QuotientDistance	PscVerif.QuotientDistance.longer_selected_witness	PscVerif.QuotientDistance.longer_selected_witness	propext,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.Seeds	Psc.mk!._auto_3	Psc.mk!._auto_3	
+PSC_AXIOMS	theorem	PscVerif.BoundarySeedPath	PscVerif.BoundarySeedPath.actual_word_bounds._proof_1_6	PscVerif.BoundarySeedPath.actual_word_bounds._proof_1_6	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.det_A_ne_zero	Psc.det_A_ne_zero	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate.noConfusion	PscVerif.OverlapContraction.Certificate.noConfusion	
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.certified_shortest.match_1_1	PscVerif.QuotientDistance.certified_shortest.match_1_1	
+PSC_AXIOMS	theorem	PscVerif.Centralizer	Psc.lam.eq_3	Psc.lam.eq_3	propext
+PSC_AXIOMS	declaration	PscVerif.TraceLemma	Psc.cyclicMinus	Psc.cyclicMinus	propext,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.ClassBRegime	PscVerif.ClassBRegime.Steps.casesOn	PscVerif.ClassBRegime.Steps.casesOn	
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.zero_of_subinvariant	PscVerif.OverlapContraction.zero_of_subinvariant	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.SelectedRank	PscVerif.SelectedRank.Path.cons	PscVerif.SelectedRank.Path.cons	
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.N._unsafe_rec	Psc.N._unsafe_rec	
+PSC_AXIOMS	theorem	PscVerif.Basic	Psc.BalancedPair.len	Psc.BalancedPair.len	
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.shortest_iff.match_1_3	PscVerif.QuotientDistance.shortest_iff.match_1_3	
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.Refinement	PscVerif.QuotientDistance.Refinement	
+PSC_AXIOMS	theorem	PscVerif.Basic	Psc.ind_eq_zero	Psc.ind_eq_zero	propext
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate.mk.injEq	PscVerif.OverlapContraction.Certificate.mk.injEq	propext
+PSC_AXIOMS	theorem	PscVerif.ClassBRegime	PscVerif.ClassBRegime.minus_partition._proof_1_1	PscVerif.ClassBRegime.minus_partition._proof_1_1	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.SelectedRank	PscVerif.SelectedRank.Witness.step	PscVerif.SelectedRank.Witness.step	
+PSC_AXIOMS	theorem	PscVerif.TraceLemma	Psc.cyclicPlus.eq_1	Psc.cyclicPlus.eq_1	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Shuffle	Psc.N.eq_2	Psc.N.eq_2	
+PSC_AXIOMS	theorem	PscVerif.BoundarySeedPath	PscVerif.BoundarySeedPath.six_parikh_updates._proof_1_5	PscVerif.BoundarySeedPath.six_parikh_updates._proof_1_5	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Centralizer	_private.PscVerif.Centralizer.0.Psc.seed.match_1.eq_3	Psc.seed.match_1.eq_3	propext
+PSC_AXIOMS	theorem	PscVerif.Seeds	_private.PscVerif.Seeds.0.Psc.seed.match_1.eq_1	Psc.seed.match_1.eq_1	propext
+PSC_AXIOMS	declaration	PscVerif.SelectedRank	PscVerif.SelectedRank.Path.below.casesOn	PscVerif.SelectedRank.Path.below.casesOn	
+PSC_AXIOMS	theorem	PscVerif.SelectedRank	PscVerif.SelectedRank.control_unlisted_descendant	PscVerif.SelectedRank.control_unlisted_descendant	propext
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.equalRateControl.eq_1	PscVerif.OverlapContraction.equalRateControl.eq_1	propext
+PSC_AXIOMS	theorem	PscVerif.QuotientDistance	PscVerif.QuotientDistance.one_sided_cannot_lift	PscVerif.QuotientDistance.one_sided_cannot_lift	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.BoundarySeedPath	PscVerif.BoundarySeedPath.actual_word_bounds._proof_1_8	PscVerif.BoundarySeedPath.actual_word_bounds._proof_1_8	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.QuotientDistance	PscVerif.QuotientDistance.terminal_path_iff	PscVerif.QuotientDistance.terminal_path_iff	
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.seed._proof_3	Psc.seed._proof_3	propext
+PSC_AXIOMS	theorem	PscVerif.Centralizer	Psc.lam.eq_5	Psc.lam.eq_5	propext
+PSC_AXIOMS	declaration	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate.target	PscVerif.OverlapContraction.Certificate.target	
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.BalancedPair.K₂	Psc.BalancedPair.K₂	
+PSC_AXIOMS	theorem	PscVerif.SelectedRank	PscVerif.SelectedRank.selected_path_of_rank	PscVerif.SelectedRank.selected_path_of_rank	propext
+PSC_AXIOMS	declaration	PscVerif.Seeds	Psc.mk!	Psc.mk!	
+PSC_AXIOMS	theorem	PscVerif.Shuffle	Psc.N_mul_N	Psc.N_mul_N	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate.sound	PscVerif.OverlapContraction.Certificate.sound	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.zero_weight_refused	PscVerif.OverlapContraction.zero_weight_refused	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.QuotientDistance	PscVerif.QuotientDistance.oneSidedQuotient._proof_1	PscVerif.QuotientDistance.oneSidedQuotient._proof_1	propext
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.theta_seed	Psc.theta_seed	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.TraceLemma	Psc.Aq_not_conj_cyclicPlus	Psc.Aq_not_conj_cyclicPlus	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Shuffle	Psc.N₂.eq_def	Psc.N₂.eq_def	
+PSC_AXIOMS	declaration	PscVerif.Seeds	Psc.ε	Psc.ε	propext
+PSC_AXIOMS	theorem	PscVerif.ClassBRegime	PscVerif.ClassBRegime.rank_reaches_with_bound._proof_1_2	PscVerif.ClassBRegime.rank_reaches_with_bound._proof_1_2	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.QuotientDistance	PscVerif.QuotientDistance.no_terminal_path_iff	PscVerif.QuotientDistance.no_terminal_path_iff	
+PSC_AXIOMS	theorem	PscVerif.Seeds	_private.PscVerif.Seeds.0.Psc.seed.match_1.eq_4	Psc.seed.match_1.eq_4	propext
+PSC_AXIOMS	theorem	PscVerif.Basic	Psc.ind_self	Psc.ind_self	propext
+PSC_AXIOMS	declaration	PscVerif.Shuffle	_private.PscVerif.Shuffle.0.Psc.N.match_1.splitter	Psc.N.match_1.splitter	
+PSC_AXIOMS	theorem	PscVerif.BoundarySeedPath	PscVerif.BoundarySeedPath.selected_stage_rank_decreases	PscVerif.BoundarySeedPath.selected_stage_rank_decreases	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.Atab.eq_4	Psc.Atab.eq_4	propext,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.ClassBRegime	PscVerif.ClassBRegime.Steps.step	PscVerif.ClassBRegime.Steps.step	
+PSC_AXIOMS	theorem	PscVerif.QuotientDistance	PscVerif.QuotientDistance.path_lift	PscVerif.QuotientDistance.path_lift	
+PSC_AXIOMS	theorem	PscVerif.BoundarySeedPath	PscVerif.BoundarySeedPath.selected_stage_rank_decreases._proof_1_1	PscVerif.BoundarySeedPath.selected_stage_rank_decreases._proof_1_1	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.SelectedRank	PscVerif.SelectedRank.controlLocalEdge._proof_1	PscVerif.SelectedRank.controlLocalEdge._proof_1	propext
+PSC_AXIOMS	theorem	PscVerif.BoundaryRounding	PscVerif.BoundaryRounding.run_run._proof_1_1	PscVerif.BoundaryRounding.run_run._proof_1_1	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.QuotientDistance	PscVerif.QuotientDistance.one_sided_projects	PscVerif.QuotientDistance.one_sided_projects	propext
+PSC_AXIOMS	theorem	PscVerif.ClassBRegime	PscVerif.ClassBRegime.minus_partition	PscVerif.ClassBRegime.minus_partition	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.seed._proof_10	Psc.seed._proof_10	propext
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.trace_sq_A	Psc.trace_sq_A	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.BalancedPair.v	Psc.BalancedPair.v	
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.longerRank	PscVerif.QuotientDistance.longerRank	propext
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.seed._proof_5	Psc.seed._proof_5	propext
+PSC_AXIOMS	theorem	PscVerif.ClassBRegime	PscVerif.ClassBRegime.segment_difference	PscVerif.ClassBRegime.segment_difference	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.ExactWitness.rec	PscVerif.QuotientDistance.ExactWitness.rec	
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.product_scaling	PscVerif.OverlapContraction.product_scaling	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.seed._proof_8	Psc.seed._proof_8	propext
+PSC_AXIOMS	theorem	PscVerif.QuotientDistance	PscVerif.QuotientDistance.certified_shortest	PscVerif.QuotientDistance.certified_shortest	propext
+PSC_AXIOMS	declaration	PscVerif.Centralizer	Psc.NoEigenvalue	Psc.NoEigenvalue	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.seed._proof_6	Psc.seed._proof_6	propext
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.N₂._unsafe_rec	Psc.N₂._unsafe_rec	
+PSC_AXIOMS	declaration	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate.recOn	PscVerif.OverlapContraction.Certificate.recOn	
+PSC_AXIOMS	theorem	PscVerif.Shuffle	Psc.N_mul_N₂	Psc.N_mul_N₂	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.BalancedPair.mk.noConfusion	Psc.BalancedPair.mk.noConfusion	
+PSC_AXIOMS	theorem	PscVerif.BoundarySeedPath	PscVerif.BoundarySeedPath.move.eq_1	PscVerif.BoundarySeedPath.move.eq_1	
+PSC_AXIOMS	declaration	PscVerif.Centralizer	_private.PscVerif.Centralizer.0.Psc.seed.match_1.splitter	Psc.seed.match_1.splitter	propext
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.Letter	Psc.Letter	
+PSC_AXIOMS	theorem	PscVerif.BoundaryRounding	PscVerif.BoundaryRounding.run_run	PscVerif.BoundaryRounding.run_run	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.terminal_path_iff.match_1_1	PscVerif.QuotientDistance.terminal_path_iff.match_1_1	
+PSC_AXIOMS	theorem	PscVerif.Centralizer	Psc.lam.eq_1	Psc.lam.eq_1	propext
+PSC_AXIOMS	theorem	PscVerif.Centralizer	Psc.no_equal_row_sums	Psc.no_equal_row_sums	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Shuffle	_private.PscVerif.Shuffle.0.Psc.N.match_1.eq_1	Psc.N.match_1.eq_1	
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.N₂.match_1	Psc.N₂.match_1	
+PSC_AXIOMS	declaration	PscVerif.SelectedRank	PscVerif.SelectedRank.Witness.rec	PscVerif.SelectedRank.Witness.rec	
+PSC_AXIOMS	theorem	PscVerif.Shuffle	_private.PscVerif.Shuffle.0.Psc.N₃.match_1.eq_2	Psc.N₃.match_1.eq_2	
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.ExactWitness.mk._flat_ctor	PscVerif.QuotientDistance.ExactWitness.mk._flat_ctor	
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.BalancedPair.mk._flat_ctor	Psc.BalancedPair.mk._flat_ctor	
+PSC_AXIOMS	declaration	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate.denominator	PscVerif.OverlapContraction.Certificate.denominator	
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.seed._proof_1	Psc.seed._proof_1	propext
+PSC_AXIOMS	theorem	PscVerif.Basic	Psc.BalancedPair.mk.injEq	Psc.BalancedPair.mk.injEq	propext
+PSC_AXIOMS	declaration	PscVerif.ClassBRegime	PscVerif.ClassBRegime.Steps.below.rec	PscVerif.ClassBRegime.Steps.below.rec	
+PSC_AXIOMS	theorem	PscVerif.SelectedRank	PscVerif.SelectedRank.selected_path_sound	PscVerif.SelectedRank.selected_path_sound	propext
+PSC_AXIOMS	declaration	PscVerif.TraceLemma	Psc.cyclicPlus	Psc.cyclicPlus	propext,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.OverlapContraction	PscVerif.OverlapContraction.zeroWeightControl	PscVerif.OverlapContraction.zeroWeightControl	
+PSC_AXIOMS	theorem	PscVerif.ClassBRegime	PscVerif.ClassBRegime.Steps.brecOn	PscVerif.ClassBRegime.Steps.brecOn	
+PSC_AXIOMS	declaration	PscVerif.Shuffle	_private.PscVerif.Shuffle.0.Psc.N₃.match_1.splitter	Psc.N₃.match_1.splitter	
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.BalancedPair.noConfusionType	Psc.BalancedPair.noConfusionType	
+PSC_AXIOMS	declaration	PscVerif.ClassBRegime	PscVerif.ClassBRegime.Reach	PscVerif.ClassBRegime.Reach	
+PSC_AXIOMS	declaration	PscVerif.SelectedRank	PscVerif.SelectedRank.Path.casesOn	PscVerif.SelectedRank.Path.casesOn	
+PSC_AXIOMS	theorem	PscVerif.Centralizer	Psc.Aq.eq_1	Psc.Aq.eq_1	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.block_fixed_of_period	PscVerif.OverlapContraction.block_fixed_of_period	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Shuffle	_private.PscVerif.Shuffle.0.Psc.N₂.match_1.eq_2	Psc.N₂.match_1.eq_2	
+PSC_AXIOMS	theorem	PscVerif.Centralizer	Psc.lam.eq_6	Psc.lam.eq_6	propext
+PSC_AXIOMS	theorem	PscVerif.Centralizer	Psc.target1	Psc.target1	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.ClassBRegime	PscVerif.ClassBRegime.rank_reaches._proof_1_1	PscVerif.ClassBRegime.rank_reaches._proof_1_1	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.SelectedRank	PscVerif.SelectedRank.control_carrier_not_closed	PscVerif.SelectedRank.control_carrier_not_closed	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate.null_of_cover	PscVerif.OverlapContraction.Certificate.null_of_cover	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.ClassBRegime	PscVerif.ClassBRegime.segment_difference._proof_1_2	PscVerif.ClassBRegime.segment_difference._proof_1_2	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.fixed_of_unique_iterate	PscVerif.OverlapContraction.fixed_of_unique_iterate	propext,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.ClassBRegime	PscVerif.ClassBRegime.Reach.recOn	PscVerif.ClassBRegime.Reach.recOn	
+PSC_AXIOMS	declaration	PscVerif.SelectedRank	PscVerif.SelectedRank.controlEdge	PscVerif.SelectedRank.controlEdge	propext
+PSC_AXIOMS	declaration	PscVerif.Seeds	Psc.Atab	Psc.Atab	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.ClassBRegime	PscVerif.ClassBRegime.rank_reaches_with_bound._proof_1_1	PscVerif.ClassBRegime.rank_reaches_with_bound._proof_1_1	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.SelectedRank	PscVerif.SelectedRank.control_edges_sound	PscVerif.SelectedRank.control_edges_sound	propext
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.N₃._sunfold	Psc.N₃._sunfold	
+PSC_AXIOMS	theorem	PscVerif.ClassBRegime	PscVerif.ClassBRegime.rank_reaches	PscVerif.ClassBRegime.rank_reaches	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.ε._proof_1	Psc.ε._proof_1	propext
+PSC_AXIOMS	theorem	PscVerif.QuotientDistance	PscVerif.QuotientDistance.one_sided_quotient_terminal_path	PscVerif.QuotientDistance.one_sided_quotient_terminal_path	propext
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.invariant_of_contracting_iterate	PscVerif.OverlapContraction.invariant_of_contracting_iterate	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Basic	Psc.BalancedPair.parikh	Psc.BalancedPair.parikh	
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.BalancedPair.casesOn	Psc.BalancedPair.casesOn	
+PSC_AXIOMS	declaration	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate.degree	PscVerif.OverlapContraction.Certificate.degree	
+PSC_AXIOMS	theorem	PscVerif.Centralizer	_private.PscVerif.Centralizer.0.Psc.seed.match_1.eq_2	Psc.seed.match_1.eq_2	propext
+PSC_AXIOMS	theorem	PscVerif.TraceLemma	Psc.trace_sq_cyclicPlus	Psc.trace_sq_cyclicPlus	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.no_terminal_path_iff.match_1_1	PscVerif.QuotientDistance.no_terminal_path_iff.match_1_1	
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.Atab.eq_5	Psc.Atab.eq_5	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.seed_K₂_zero	Psc.seed_K₂_zero	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.seed._proof_4	Psc.seed._proof_4	propext
+PSC_AXIOMS	theorem	PscVerif.BoundaryRounding	PscVerif.BoundaryRounding.run_last._proof_1_1	PscVerif.BoundaryRounding.run_last._proof_1_1	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.BoundaryRounding	PscVerif.BoundaryRounding.run_last._proof_1_2	PscVerif.BoundaryRounding.run_last._proof_1_2	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.Atab.eq_1	Psc.Atab.eq_1	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.BoundaryRounding	PscVerif.BoundaryRounding.run_last	PscVerif.BoundaryRounding.run_last	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Centralizer	Psc.lam.eq_2	Psc.lam.eq_2	propext
+PSC_AXIOMS	declaration	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate.ctorIdx	PscVerif.OverlapContraction.Certificate.ctorIdx	
+PSC_AXIOMS	theorem	PscVerif.QuotientDistance	PscVerif.QuotientDistance.Refinement.projects	PscVerif.QuotientDistance.Refinement.projects	
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.seed._proof_11	Psc.seed._proof_11	propext
+PSC_AXIOMS	declaration	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate.weight	PscVerif.OverlapContraction.Certificate.weight	
+PSC_AXIOMS	theorem	PscVerif.BoundarySeedPath	PscVerif.BoundarySeedPath.six_parikh_updates	PscVerif.BoundarySeedPath.six_parikh_updates	propext,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.Seeds	Psc.lam	Psc.lam	propext
+PSC_AXIOMS	theorem	PscVerif.BoundarySeedPath	PscVerif.BoundarySeedPath.actual_word_bounds._proof_1_4	PscVerif.BoundarySeedPath.actual_word_bounds._proof_1_4	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.BoundarySeedPath	PscVerif.BoundarySeedPath.six_parikh_updates._proof_1_3	PscVerif.BoundarySeedPath.six_parikh_updates._proof_1_3	propext,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.ClassBRegime	PscVerif.ClassBRegime.Reach.step	PscVerif.ClassBRegime.Reach.step	
+PSC_AXIOMS	theorem	PscVerif.Centralizer	_private.PscVerif.Centralizer.0.Psc.seed.match_1.eq_5	Psc.seed.match_1.eq_5	propext
+PSC_AXIOMS	theorem	PscVerif.Shuffle	Psc.N₂.eq_1	Psc.N₂.eq_1	
+PSC_AXIOMS	declaration	PscVerif.SelectedRank	PscVerif.SelectedRank.Witness.casesOn	PscVerif.SelectedRank.Witness.casesOn	
+PSC_AXIOMS	theorem	PscVerif.SelectedRank	PscVerif.SelectedRank.Witness.zero_iff	PscVerif.SelectedRank.Witness.zero_iff	
+PSC_AXIOMS	theorem	PscVerif.BoundarySeedPath	PscVerif.BoundarySeedPath.actual_word_bounds._proof_1_1	PscVerif.BoundarySeedPath.actual_word_bounds._proof_1_1	propext,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.TraceLemma	Psc.trace_sq_conj	Psc.trace_sq_conj	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate.check	PscVerif.OverlapContraction.Certificate.check	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Seeds	_private.PscVerif.Seeds.0.Psc.seed.match_1.eq_5	Psc.seed.match_1.eq_5	propext
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.triangleTerminal	PscVerif.QuotientDistance.triangleTerminal	propext
+PSC_AXIOMS	theorem	PscVerif.SelectedRank	PscVerif.SelectedRank.controlEmbed._proof_1	PscVerif.SelectedRank.controlEmbed._proof_1	
+PSC_AXIOMS	declaration	PscVerif.SelectedRank	PscVerif.SelectedRank.Path	PscVerif.SelectedRank.Path	
+PSC_AXIOMS	declaration	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate.mk.noConfusion	PscVerif.OverlapContraction.Certificate.mk.noConfusion	
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.ind	Psc.ind	
+PSC_AXIOMS	declaration	PscVerif.Seeds	Psc.seed	Psc.seed	propext
+PSC_AXIOMS	declaration	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate	PscVerif.OverlapContraction.Certificate	
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate.mk.sizeOf_spec	PscVerif.OverlapContraction.Certificate.mk.sizeOf_spec	
+PSC_AXIOMS	declaration	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate.noConfusionType	PscVerif.OverlapContraction.Certificate.noConfusionType	
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.Refinement.mk	PscVerif.QuotientDistance.Refinement.mk	
+PSC_AXIOMS	declaration	PscVerif.SelectedRank	PscVerif.SelectedRank.controlLocalEdge	PscVerif.SelectedRank.controlLocalEdge	propext
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.ExactWitness.recOn	PscVerif.QuotientDistance.ExactWitness.recOn	
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.Atab.eq_2	Psc.Atab.eq_2	propext,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.Seeds	Psc.seed.match_1	Psc.seed.match_1	propext
+PSC_AXIOMS	theorem	PscVerif.Shuffle	Psc.N₃.eq_1	Psc.N₃.eq_1	
+PSC_AXIOMS	theorem	PscVerif.ClassBRegime	PscVerif.ClassBRegime.plus_partition	PscVerif.ClassBRegime.plus_partition	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	declaration	PscVerif.ClassBRegime	PscVerif.ClassBRegime.Reach.below.casesOn	PscVerif.ClassBRegime.Reach.below.casesOn	
+PSC_AXIOMS	declaration	PscVerif.SelectedRank	PscVerif.SelectedRank.controlRank	PscVerif.SelectedRank.controlRank	propext
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.BalancedPair.rec	Psc.BalancedPair.rec	
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.oneSidedProject	PscVerif.QuotientDistance.oneSidedProject	propext
+PSC_AXIOMS	declaration	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate.numerator	PscVerif.OverlapContraction.Certificate.numerator	
+PSC_AXIOMS	declaration	PscVerif.BoundarySeedPath	PscVerif.BoundarySeedPath.Inside	PscVerif.BoundarySeedPath.Inside	
+PSC_AXIOMS	declaration	PscVerif.ClassBRegime	PscVerif.ClassBRegime.Steps	PscVerif.ClassBRegime.Steps	
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.N₃	Psc.N₃	
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate.check_iff	PscVerif.OverlapContraction.Certificate.check_iff	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.SelectedRank	PscVerif.SelectedRank.control_terminal_sound	PscVerif.SelectedRank.control_terminal_sound	propext
+PSC_AXIOMS	theorem	PscVerif.BoundaryRounding	PscVerif.BoundaryRounding.first_run	PscVerif.BoundaryRounding.first_run	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.terminal_control_accepted	PscVerif.OverlapContraction.terminal_control_accepted	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.seed._proof_7	Psc.seed._proof_7	propext
+PSC_AXIOMS	declaration	PscVerif.Basic	Psc.BalancedPair.recOn	Psc.BalancedPair.recOn	
+PSC_AXIOMS	theorem	PscVerif.Basic	Psc.ind.eq_1	Psc.ind.eq_1	
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.parallelControl._proof_1	PscVerif.OverlapContraction.parallelControl._proof_1	propext
+PSC_AXIOMS	declaration	PscVerif.SelectedRank	PscVerif.SelectedRank.Witness.recOn	PscVerif.SelectedRank.Witness.recOn	
+PSC_AXIOMS	declaration	PscVerif.OverlapContraction	PscVerif.OverlapContraction.parallelControl	PscVerif.OverlapContraction.parallelControl	propext
+PSC_AXIOMS	declaration	PscVerif.ClassBRegime	PscVerif.ClassBRegime.Steps.below.step	PscVerif.ClassBRegime.Steps.below.step	
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.ExactWitness	PscVerif.QuotientDistance.ExactWitness	
+PSC_AXIOMS	declaration	PscVerif.QuotientDistance	PscVerif.QuotientDistance.terminal_path_iff.match_1_3	PscVerif.QuotientDistance.terminal_path_iff.match_1_3	
+PSC_AXIOMS	theorem	PscVerif.SelectedRank	PscVerif.SelectedRank.path_map	PscVerif.SelectedRank.path_map	
+PSC_AXIOMS	theorem	PscVerif.ClassBRegime	PscVerif.ClassBRegime.Reach.brecOn	PscVerif.ClassBRegime.Reach.brecOn	
+PSC_AXIOMS	theorem	PscVerif.ClassBRegime	PscVerif.ClassBRegime.segment_difference._proof_1_3	PscVerif.ClassBRegime.segment_difference._proof_1_3	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.QuotientDistance	PscVerif.QuotientDistance.path_bound	PscVerif.QuotientDistance.path_bound	
+PSC_AXIOMS	theorem	PscVerif.Seeds	_private.PscVerif.Seeds.0.Psc.seed.match_1.eq_3	Psc.seed.match_1.eq_3	propext
+PSC_AXIOMS	declaration	PscVerif.SelectedRank	PscVerif.SelectedRank.Path.below	PscVerif.SelectedRank.Path.below	
+PSC_AXIOMS	theorem	PscVerif.QuotientDistance	PscVerif.QuotientDistance.ExactWitness.bound	PscVerif.QuotientDistance.ExactWitness.bound	
+PSC_AXIOMS	theorem	PscVerif.Centralizer	_private.PscVerif.Centralizer.0.Psc.seed.match_1.eq_6	Psc.seed.match_1.eq_6	propext
+PSC_AXIOMS	theorem	PscVerif.OverlapContraction	PscVerif.OverlapContraction.Certificate.check.eq_1	PscVerif.OverlapContraction.Certificate.check.eq_1	propext,Classical.choice,Quot.sound
+PSC_AXIOMS	theorem	PscVerif.Seeds	Psc.seed._proof_12	Psc.seed._proof_12	propext
+PSC_AUDIT_COMPLETE	355	201
+Lean axiom audit: 355 declarations, 201 theorems; all named proofs reached
+Proof bank: 124 claims, 88 named Lean proofs, 364 source openings

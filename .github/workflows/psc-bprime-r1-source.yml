@@ -1,0 +1,101 @@
+name: PSC R1F literal source-return bridge (Lean and Quint)
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/psc-bprime-r1-source.yml'
+      - 'proof/psc_routes/R1Source.lean'
+      - 'proof/quint/PscR1Source.qnt'
+      - 'proof/quint/PscR1ChildBoundary.qnt'
+      - 'docs/psc-bprime-r1-modular-cycle-2026-11-07.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lean-literal-source-return:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Verify exact source revision
+        env:
+          EXPECTED: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED"
+      - name: Check complete Lean declaration-to-axiom inventory
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          src = Path("proof/psc_routes/R1Source.lean").read_text(encoding="utf-8")
+          declared = re.findall(r"(?m)^theorem\s+([A-Za-z_][A-Za-z_0-9]*)", src)
+          if "for name in #[" not in src:
+              raise SystemExit("missing Lean axiom loop")
+          audited = re.findall(r"`PscRoutes\.R1Source\.([A-Za-z_][A-Za-z_0-9]*)",
+              src.split("for name in #[", 1)[1].split("] do", 1)[0])
+          if len(declared) != 19 or len(declared) != len(set(declared)) or declared != audited:
+              raise SystemExit(f"bad R1Source inventory: {declared!r} vs {audited!r}")
+          print("EXACT_R1SOURCE_INVENTORY_OK", len(audited))
+          PY
+      - name: Set up repository-pinned Lean and Mathlib
+        run: ./tools/setup_lean.sh
+      - name: Compile nineteen source-cut, child-boundary, and side-swap theorems and audit axiom receipts
+        working-directory: proof/PscVerif
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$HOME/.elan/bin/lake" env lean ../../proof/psc_routes/R1Source.lean | tee "$RUNNER_TEMP/r1-source-lean.log"
+          if grep -Eq 'sorryAx|error:' "$RUNNER_TEMP/r1-source-lean.log"; then
+            echo "Unaccepted Lean declaration" >&2
+            exit 1
+          fi
+          test "$(grep -c 'PSC_R1SOURCE_AXIOMS_OK' "$RUNNER_TEMP/r1-source-lean.log")" -eq 19
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: psc-r1source-lean-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/r1-source-lean.log
+          if-no-files-found: warn
+          retention-days: 30
+
+  quint-literal-source-controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Verify exact source revision
+        env:
+          EXPECTED: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Typecheck literal three-letter balanced-pair model
+        run: npx --yes @informalsystems/quint@0.33.1 typecheck proof/quint/PscR1Source.qnt
+      - name: Replay matching source-letter and nonmatching negative control
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Source.qnt --main=PscR1SourceReturn --invariant=balancedFullWords
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1Source.qnt --main=PscR1SourceReturn | tee "$RUNNER_TEMP/r1-source-quint.log"
+          grep -E '2 passing|2 passed' "$RUNNER_TEMP/r1-source-quint.log" >/dev/null
+      - name: Replay exact two-child factorization boundaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 typecheck proof/quint/PscR1ChildBoundary.qnt
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1ChildBoundary.qnt --main=PscR1ChildBoundary --invariant=childBoundaryOrNoReturn
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1ChildBoundary.qnt --main=PscR1ChildBoundary | tee "$RUNNER_TEMP/r1-child-boundary.log"
+          grep -E '3 passing|3 passed' "$RUNNER_TEMP/r1-child-boundary.log" >/dev/null
+      - name: Replay raw side-swapped child-boundary controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1ChildBoundary.qnt --main=PscR1ChildBoundarySwapped --invariant=noInternalReturn
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1ChildBoundary.qnt --main=PscR1ChildBoundarySwapped | tee "$RUNNER_TEMP/r1-swapped-boundary.log"
+          grep -E '3 passing|3 passed' "$RUNNER_TEMP/r1-swapped-boundary.log" >/dev/null

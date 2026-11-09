@@ -1,0 +1,58 @@
+{
+  "command_template": "npx --yes @informalsystems/quint@0.33.1 test proof/quint/PhysicalMass.qnt --main=MODULE --max-samples=1 --seed=20261108 --backend=rust",
+  "git_head": "3a0c94cdae7fb18ad63a18119fdd5070232a5e4a",
+  "model_sha256": "2b3247848139199e6f7848a0766eb21ca13902ff61fe9a52720a27aae0c4bf7d",
+  "modules": {
+    "PhysicalMassAdversarial": {
+      "count": 8,
+      "log_sha256": "7fe51e8bc279a3614b38d4477d307f5dcabacb4bf75cd8906634dc017f4f08c3",
+      "tests": [
+        "conservativeSourceRefusedTest",
+        "losingSinkIsNotLosingSourceTest",
+        "omittedRepeatedOccurrenceRefusedTest",
+        "incorrectTransposeRefusedTest",
+        "zeroMassBreaksSaturationTest",
+        "incompleteRootReachabilityRefusedTest",
+        "negativeMatrixEntryRefusedTest",
+        "signedOverlapRefusedTest"
+      ]
+    },
+    "PhysicalMassFinite2": {
+      "count": 4,
+      "log_sha256": "dc77db6ef9eb55a68729fdf6648d8a1d5cb48fab3bc7163e1b85622530827f71",
+      "tests": [
+        "directMatrixEntryCalibrationTest",
+        "domainCountTest",
+        "exhaustiveNumericalImplicationTest",
+        "acceptedAndConservativeInputsTest"
+      ]
+    },
+    "PhysicalMassGraph3": {
+      "count": 5,
+      "log_sha256": "3a6f2aacacd72c1bc5df75886f0be9fc4900b5431ba8baac7bc5633e7e524a4b",
+      "tests": [
+        "graphDomainCountTest",
+        "exactReachabilityTest",
+        "everyVertexHasSourceAncestorTest",
+        "exhaustiveSourceLossCoverageTest",
+        "exhaustiveNoPrematureTerminalTest"
+      ]
+    },
+    "PhysicalMassPropagation": {
+      "count": 3,
+      "log_sha256": "7c876434ee271ec1944f678fafcafb255e402875fbae6b33b11d6e1d6316b7b1",
+      "tests": [
+        "losingSourceInitializationTest",
+        "forwardZeroPropagationTest",
+        "reverseAndAbsentEdgesRefusedTest"
+      ]
+    }
+  },
+  "native_runtime_sha256": "1764f11e8c1a9f644af5c934e9a71645b313f82f8db1284965866a2f417da9aa",
+  "native_runtime_version": "0.7.1",
+  "quint_version": "0.33.1",
+  "schema": "psc-physical-mass-quint-backend-comparison-v1",
+  "scope": "same 20 deterministic and finite-quantified tests pass under both TypeScript and Rust; six mutations are replayed by the TypeScript runner",
+  "status": "passed",
+  "worktree_dirty": true
+}

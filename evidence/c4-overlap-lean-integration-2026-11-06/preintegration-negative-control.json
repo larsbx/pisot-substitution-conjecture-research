@@ -1,0 +1,6 @@
+{
+  "fixture_compiles": true,
+  "independent_binding_audit_refuses": true,
+  "reason": "accepted declarations prove True rather than the packet check",
+  "fixture_sha256": "f9e84eff641c23cde0a1f7aef1dbec049d1b858badeaebf9a241f4e039caf2f4"
+}
