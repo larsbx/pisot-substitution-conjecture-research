@@ -1903,6 +1903,1782 @@
   ],
   "lean_declarations": [
     {
+      "name": "Psc.BPrime.IsPisot.isPisotOrSalem",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 184,
+      "declaration": "theorem IsPisot.isPisotOrSalem {b : ℝ} (h : IsPisot b) : IsPisotOrSalem b :="
+    },
+    {
+      "name": "Psc.BPrime.aeval_charpoly",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 193,
+      "declaration": "theorem aeval_charpoly {K : Type*} [Field K] [Algebra ℚ K] (s : α → List α) (x : K) :"
+    },
+    {
+      "name": "Psc.BPrime.minpoly_eq_charpoly",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 202,
+      "declaration": "theorem minpoly_eq_charpoly (s : α → List α)"
+    },
+    {
+      "name": "Psc.BPrime.isIntegral_of_root",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 211,
+      "declaration": "theorem isIntegral_of_root (s : α → List α) {b : ℝ}"
+    },
+    {
+      "name": "Psc.BPrime.isRoot_of_pos_left_eigen",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 221,
+      "declaration": "theorem isRoot_of_pos_left_eigen [Nonempty α] (s : α → List α) {β : ℝ} {ℓ : α → ℝ}"
+    },
+    {
+      "name": "Psc.BPrime.isPisotOrSalem_of",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 230,
+      "declaration": "theorem isPisotOrSalem_of (s : α → List α)"
+    },
+    {
+      "name": "Psc.BPrime.isPisot_of",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 240,
+      "declaration": "theorem isPisot_of (s : α → List α)"
+    },
+    {
+      "name": "Psc.BPrime.isPrefixOf_iterate",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 261,
+      "declaration": "theorem isPrefixOf_iterate (hfix : IsFixed s u) (hW : PrefixOf u W) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BPrime.cutGaps_of_finite",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 269,
+      "declaration": "theorem cutGaps_of_finite [Fintype α] [DecidableEq α] (hfix : IsFixed s u) (hW : PrefixOf u W)"
+    },
+    {
+      "name": "Psc.BPrime.exists_isFixed_of_seed",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 279,
+      "declaration": "theorem exists_isFixed_of_seed [DecidableEq α] (hs : ∀ a, s a ≠ []) {u₀ : List α}"
+    },
+    {
+      "name": "Psc.BPrime.bprime",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 301,
+      "declaration": "theorem bprime (hfix : IsFixed s u) (hW : PrefixOf u W) (hWne : W ≠ [])"
+    },
+    {
+      "name": "Psc.BPrime.bprime_perron",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 314,
+      "declaration": "theorem bprime_perron (hfix : IsFixed s u) (hW : PrefixOf u W) (hWne : W ≠ [])"
+    },
+    {
+      "name": "Psc.BPrime.bprime_isPisotOrSalem",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 328,
+      "declaration": "theorem bprime_isPisotOrSalem [Nontrivial α] (hfix : IsFixed s u) (hW : PrefixOf u W)"
+    },
+    {
+      "name": "Psc.BPrime.bprime_cubic",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 339,
+      "declaration": "theorem bprime_cubic (hfix : IsFixed s u) (hW : PrefixOf u W) (hWne : W ≠ [])"
+    },
+    {
+      "name": "Psc.BPrime.bprime_cubic_isPisot",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 353,
+      "declaration": "theorem bprime_cubic_isPisot (hfix : IsFixed s u) (hW : PrefixOf u W) (hWne : W ≠ [])"
+    },
+    {
+      "name": "Psc.BPrime.bprime_cubic_perron",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 365,
+      "declaration": "theorem bprime_cubic_perron (hfix : IsFixed s u) (hW : PrefixOf u W) (hWne : W ≠ [])"
+    },
+    {
+      "name": "Psc.BPrime.corB_infinite",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 383,
+      "declaration": "theorem corB_infinite (hprim : ∃ k ≥ 1, ∀ a c, 0 < (inc s ^ k) a c)"
+    },
+    {
+      "name": "Psc.BPrime.corB_infinite_of_not_isPisotOrSalem",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 392,
+      "declaration": "theorem corB_infinite_of_not_isPisotOrSalem [Nontrivial α]"
+    },
+    {
+      "name": "Psc.BPrime.corB_infinite_cubic",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 403,
+      "declaration": "theorem corB_infinite_cubic (hprim : ∃ k ≥ 1, ∀ a c, 0 < (inc s ^ k) a c)"
+    },
+    {
+      "name": "Psc.BPrime.bprime_ss",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 418,
+      "declaration": "theorem bprime_ss (hfix : IsFixed s u) (hW : PrefixOf u W) (hWne : W ≠ [])"
+    },
+    {
+      "name": "Psc.BPrime.corB_infinite_ss",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 429,
+      "declaration": "theorem corB_infinite_ss (hprim : ∃ k ≥ 1, ∀ a c, 0 < (inc s ^ k) a c)"
+    },
+    {
+      "name": "Psc.BPrime.corB_infinite_cubic_ss",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 440,
+      "declaration": "theorem corB_infinite_cubic_ss (hprim : ∃ k ≥ 1, ∀ a c, 0 < (inc s ^ k) a c)"
+    },
+    {
+      "name": "Psc.BPrime.zetaU_isFixed",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 463,
+      "declaration": "theorem zetaU_isFixed : IsFixed zetaSubst zetaU := Psc.BPrimeBinding.isFixed_seedLimit _ _ _ _ _"
+    },
+    {
+      "name": "Psc.BPrime.zetaU_prefix",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 466,
+      "declaration": "theorem zetaU_prefix : PrefixOf zetaU [0] := Psc.BPrimeBinding.prefixOf_seedLimit _ _ _ _ _"
+    },
+    {
+      "name": "Psc.BPrime.zeta_prim",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 470,
+      "declaration": "theorem zeta_prim : ∃ k ≥ 1, ∀ a c, 0 < (inc zetaSubst ^ k) a c :="
+    },
+    {
+      "name": "Psc.BPrime.zeta_not_isPisotOrSalem",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 475,
+      "declaration": "theorem zeta_not_isPisotOrSalem {β : ℝ} {ℓ : Fin 3 → ℝ} (hℓ : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.BPrime.zeta_not_isPisot",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 485,
+      "declaration": "theorem zeta_not_isPisot {β : ℝ} {ℓ : Fin 3 → ℝ} (hℓ : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.BPrime.zeta_control",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 493,
+      "declaration": "theorem zeta_control :"
+    },
+    {
+      "name": "Psc.BPrime.zeta_IW_infinite",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 510,
+      "declaration": "theorem zeta_IW_infinite {u : ℕ → Fin 3} {W : List (Fin 3)} (hfix : IsFixed zetaSubst u)"
+    },
+    {
+      "name": "Psc.BPrime.zetaU_IW_infinite",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 518,
+      "declaration": "theorem zetaU_IW_infinite : (IW zetaSubst zetaU [0]).Infinite :="
+    },
+    {
+      "name": "Psc.BPrime.zetaU_IW_infinite_of_root",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 523,
+      "declaration": "theorem zetaU_IW_infinite_of_root : (IW zetaSubst zetaU [0]).Infinite := by"
+    },
+    {
+      "name": "Psc.BPrime.zetaU_IW_infinite_of_not_isPisotOrSalem",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 531,
+      "declaration": "theorem zetaU_IW_infinite_of_not_isPisotOrSalem : (IW zetaSubst zetaU [0]).Infinite := by"
+    },
+    {
+      "name": "Psc.BPrime.zetaU_ssLevel_infinite",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 539,
+      "declaration": "theorem zetaU_ssLevel_infinite : (⋃ n, ssLevel zetaSubst zetaU [0] n).Infinite := by"
+    },
+    {
+      "name": "Psc.BPrime.ctrlSubst_inc",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 557,
+      "declaration": "theorem ctrlSubst_inc : (inc ctrlSubst).map (Nat.cast : ℕ → ℚ) = Psc.BPrimeCore.ctrlM := by"
+    },
+    {
+      "name": "Psc.BPrime.reducible_control",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 570,
+      "declaration": "theorem reducible_control :"
+    },
+    {
+      "name": "Psc.BPrime.trib_inc",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 594,
+      "declaration": "theorem trib_inc : inc tribSubst = Matrix.of ![![1, 1, 1], ![1, 0, 0], ![0, 1, 0]] := by"
+    },
+    {
+      "name": "Psc.BPrime.trib_primitive",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 598,
+      "declaration": "theorem trib_primitive : ∀ a c, 0 < (inc tribSubst ^ 3) a c := fun a c => by"
+    },
+    {
+      "name": "Psc.BPrime.trib_prim",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 602,
+      "declaration": "theorem trib_prim : ∃ k ≥ 1, ∀ a c, 0 < (inc tribSubst ^ k) a c := ⟨3, by norm_num, trib_primitive⟩"
+    },
+    {
+      "name": "Psc.BPrime.trib_charpoly",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 605,
+      "declaration": "theorem trib_charpoly (K : Type*) [CommRing K] :"
+    },
+    {
+      "name": "Psc.BPrime.trib_irreducible",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 614,
+      "declaration": "theorem trib_irreducible : Irreducible ((inc tribSubst).map (Nat.cast : ℕ → ℚ)).charpoly := by"
+    },
+    {
+      "name": "Psc.BPrime.tribU_isFixed",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 626,
+      "declaration": "theorem tribU_isFixed : IsFixed tribSubst tribU := Psc.BPrimeBinding.isFixed_seedLimit _ _ _ _ _"
+    },
+    {
+      "name": "Psc.BPrime.tribU_prefix",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 629,
+      "declaration": "theorem tribU_prefix : PrefixOf tribU [0] := Psc.BPrimeBinding.prefixOf_seedLimit _ _ _ _ _"
+    },
+    {
+      "name": "Psc.BPrime.trib_norm_lt",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 637,
+      "declaration": "theorem trib_norm_lt {β : ℝ} (hβ1 : 1 < β)"
+    },
+    {
+      "name": "Psc.BPrime.trib_isPisot",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 697,
+      "declaration": "theorem trib_isPisot {β : ℝ} {ℓ : Fin 3 → ℝ} (hℓ : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.BPrime.trib_control",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 709,
+      "declaration": "theorem trib_control :"
+    },
+    {
+      "name": "Psc.BPrime.plastic_not_isFixed",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 726,
+      "declaration": "theorem plastic_not_isFixed (u : ℕ → Fin 3) : ¬ IsFixed Psc.Degree2Sector.plasticSubst u := by"
+    },
+    {
+      "name": "Psc.BPrime.prefixOf_fin_one",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 745,
+      "declaration": "theorem prefixOf_fin_one (x : List (Fin 1)) : PrefixOf (fun _ => (0 : Fin 1)) x :="
+    },
+    {
+      "name": "Psc.BPrime.isBlock_fin_one",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 750,
+      "declaration": "theorem isBlock_fin_one {T : List (Fin 1) × List (Fin 1)} (hT : Psc.Reduction.IsBlock T) :"
+    },
+    {
+      "name": "Psc.BPrime.one_letter_control",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 777,
+      "declaration": "theorem one_letter_control :"
+    },
+    {
+      "name": "Psc.BPrime.fib_inc",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 798,
+      "declaration": "theorem fib_inc : inc fibSubst = Matrix.of ![![1, 1], ![1, 0]] := by decide"
+    },
+    {
+      "name": "Psc.BPrime.fib_charpoly",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 801,
+      "declaration": "theorem fib_charpoly (K : Type*) [CommRing K] [Nontrivial K] :"
+    },
+    {
+      "name": "Psc.BPrime.fib_irreducible",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 809,
+      "declaration": "theorem fib_irreducible : Irreducible ((inc fibSubst).map (Nat.cast : ℕ → ℚ)).charpoly := by"
+    },
+    {
+      "name": "Psc.BPrime.fib_conj",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 821,
+      "declaration": "theorem fib_conj {β : ℝ} (hβ : ((inc fibSubst).map (Nat.cast : ℕ → ℝ)).charpoly.eval β = 0) :"
+    },
+    {
+      "name": "Psc.BPrime.fib_control",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 838,
+      "declaration": "theorem fib_control :"
+    },
+    {
+      "name": "Psc.BPrime.fib_bprime",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 854,
+      "declaration": "theorem fib_bprime {β : ℝ} {ℓ : Fin 2 → ℝ} (hℓ : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.BPrime.fib_isPisotOrSalem",
+      "module": "PscVerif.BPrime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "line": 861,
+      "declaration": "theorem fib_isPisotOrSalem {β : ℝ} {ℓ : Fin 2 → ℝ} (hℓ : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.BPrimeBinding.length_win",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 193,
+      "declaration": "@[simp] theorem length_win (u : ℕ → α) (t N : ℕ) : (win u t N).length = N := by"
+    },
+    {
+      "name": "Psc.BPrimeBinding.getElem_win",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 196,
+      "declaration": "theorem getElem_win (u : ℕ → α) (t N i : ℕ) (h : i < (win u t N).length) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.win_len_zero",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 200,
+      "declaration": "@[simp] theorem win_len_zero (u : ℕ → α) (t : ℕ) : win u t 0 = [] := by"
+    },
+    {
+      "name": "Psc.BPrimeBinding.win_zero_eq",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 203,
+      "declaration": "theorem win_zero_eq (u : ℕ → α) (N : ℕ) : win u 0 N = List.ofFn fun i : Fin N => u i := by"
+    },
+    {
+      "name": "Psc.BPrimeBinding.win_add",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 207,
+      "declaration": "theorem win_add (u : ℕ → α) (t N M : ℕ) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.take_win",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 220,
+      "declaration": "theorem take_win (u : ℕ → α) (t : ℕ) {k N : ℕ} (hk : k ≤ N) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.win_congr",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 226,
+      "declaration": "theorem win_congr {u v : ℕ → α} {t N : ℕ} (h : ∀ i < N, u (t + i) = v (t + i)) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.prefixOf_iff_getElem",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 237,
+      "declaration": "theorem prefixOf_iff_getElem {u : ℕ → α} {x : List α} :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.tn_zero",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 257,
+      "declaration": "theorem tn_zero (s : α → List α) (W : List α) : tn s W 0 = W.length := rfl"
+    },
+    {
+      "name": "Psc.BPrimeBinding.subst_win_zero",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 264,
+      "declaration": "theorem subst_win_zero (hfix : IsFixed s u) (N : ℕ) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.subst_win",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 271,
+      "declaration": "theorem subst_win (hfix : IsFixed s u) (t N : ℕ) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.prefixOf_subst",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 279,
+      "declaration": "theorem prefixOf_subst (hfix : IsFixed s u) {x : List α} (hx : PrefixOf u x) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.prefixOf_iterate",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 285,
+      "declaration": "theorem prefixOf_iterate (hfix : IsFixed s u) {W : List α} (hW : PrefixOf u W) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.win_tn",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 294,
+      "declaration": "theorem win_tn (hfix : IsFixed s u) {W : List α} (hW : PrefixOf u W) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.tn_succ",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 299,
+      "declaration": "theorem tn_succ (hfix : IsFixed s u) {W : List α} (hW : PrefixOf u W) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.prefixParikh_succ",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 329,
+      "declaration": "theorem prefixParikh_succ (u : ℕ → α) (k : ℕ) (a : α) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.prefixParikh_eq_count",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 334,
+      "declaration": "theorem prefixParikh_eq_count (u : ℕ → α) (k : ℕ) (a : α) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.gapD_zero",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 343,
+      "declaration": "@[simp] theorem gapD_zero (u : ℕ → α) (t : ℕ) (a : α) : gapD u t 0 a = 0 := by"
+    },
+    {
+      "name": "Psc.BPrimeBinding.gapD_eq_count",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 346,
+      "declaration": "theorem gapD_eq_count (u : ℕ → α) (t k : ℕ) (a : α) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.zeroReturn_zero",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 363,
+      "declaration": "theorem zeroReturn_zero (u : ℕ → α) (t : ℕ) : zeroReturn u t 0 := by"
+    },
+    {
+      "name": "Psc.BPrimeBinding.zeroReturn_iff_gapD",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 367,
+      "declaration": "theorem zeroReturn_iff_gapD (u : ℕ → α) (t k : ℕ) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.boundedGaps_iff_zeroReturn",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 371,
+      "declaration": "theorem boundedGaps_iff_zeroReturn (u : ℕ → α) (t L : ℕ) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.zeroReturn_iff_factor",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 378,
+      "declaration": "theorem zeroReturn_iff_factor (u : ℕ → α) (t k : ℕ) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.blocks_prefix",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 395,
+      "declaration": "theorem blocks_prefix {u : ℕ → α} {t N N' : ℕ} (hN : zeroReturn u t N)"
+    },
+    {
+      "name": "Psc.BPrimeBinding.blocks_subset",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 405,
+      "declaration": "theorem blocks_subset {u : ℕ → α} {t N N' : ℕ} (hN : zeroReturn u t N)"
+    },
+    {
+      "name": "Psc.BPrimeBinding.unbounded_iff_recurrent",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 419,
+      "declaration": "theorem unbounded_iff_recurrent (u : ℕ → α) (t : ℕ) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.mem_levelSet_iff_ge",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 425,
+      "declaration": "theorem mem_levelSet_iff_ge {u : ℕ → α} {t : ℕ} (hunb : Unbounded u t) (K : ℕ)"
+    },
+    {
+      "name": "Psc.BPrimeBinding.levelSet_isBlock",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 437,
+      "declaration": "theorem levelSet_isBlock {u : ℕ → α} {t : ℕ} : ∀ T ∈ levelSet u t, IsBlock T := by"
+    },
+    {
+      "name": "Psc.BPrimeBinding.exists_win_of_mem_blocks",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 445,
+      "declaration": "theorem exists_win_of_mem_blocks {u : ℕ → α} {t N : ℕ} (hN : zeroReturn u t N)"
+    },
+    {
+      "name": "Psc.BPrimeBinding.equiv1_win_succ_iff",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 492,
+      "declaration": "theorem equiv1_win_succ_iff (u : ℕ → α) (k m : ℕ) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.le_phi",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 519,
+      "declaration": "theorem le_phi (hs : ∀ a, s a ≠ []) (N : ℕ) : N ≤ phi s u N := by"
+    },
+    {
+      "name": "Psc.BPrimeBinding.subst_win_of_zeroReturn",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 523,
+      "declaration": "theorem subst_win_of_zeroReturn (hfix : IsFixed s u) {t N : ℕ} (h : zeroReturn u t N) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.zeroReturn_phi",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 531,
+      "declaration": "theorem zeroReturn_phi (hfix : IsFixed s u) {t N : ℕ} (h : zeroReturn u t N) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.blocks_phi",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 539,
+      "declaration": "theorem blocks_phi (hfix : IsFixed s u) {t N : ℕ} (h : zeroReturn u t N) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.child_mem_levelSet_phi",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 547,
+      "declaration": "theorem child_mem_levelSet_phi (hfix : IsFixed s u) {t : ℕ} {U T : List α × List α}"
+    },
+    {
+      "name": "Psc.BPrimeBinding.exists_parent",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 556,
+      "declaration": "theorem exists_parent (hfix : IsFixed s u) (hs : ∀ a, s a ≠ []) {t : ℕ}"
+    },
+    {
+      "name": "Psc.BPrimeBinding.unbounded_phi",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 567,
+      "declaration": "theorem unbounded_phi (hfix : IsFixed s u) (hs : ∀ a, s a ≠ []) {t : ℕ}"
+    },
+    {
+      "name": "Psc.BPrimeBinding.occ_subst",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 577,
+      "declaration": "theorem occ_subst (hfix : IsFixed s u) {x : List α} {m : ℕ} (h : win u m x.length = x) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.lt_phi",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 585,
+      "declaration": "theorem lt_phi (hs : ∀ a, s a ≠ []) (h2 : 2 ≤ (s (u 0)).length) {N : ℕ} (hN : 0 < N) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.unbounded_of_head_recurs",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 600,
+      "declaration": "theorem unbounded_of_head_recurs (hfix : IsFixed s u) (hs : ∀ a, s a ≠ [])"
+    },
+    {
+      "name": "Psc.BPrimeBinding.mem_iterate_of_pos",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 639,
+      "declaration": "theorem mem_iterate_of_pos {k : ℕ} (hpos : ∀ a c, 0 < (inc s ^ k) a c) (a c : α) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.head_recurs_of_primitive",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 647,
+      "declaration": "theorem head_recurs_of_primitive (hfix : IsFixed s u) {k : ℕ}"
+    },
+    {
+      "name": "Psc.BPrimeBinding.two_le_head_of_primitive",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 671,
+      "declaration": "theorem two_le_head_of_primitive (hfix : IsFixed s u) (hcard : 2 ≤ Fintype.card α) {k : ℕ}"
+    },
+    {
+      "name": "Psc.BPrimeBinding.count_of_card_le_one",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 700,
+      "declaration": "theorem count_of_card_le_one (hcard : Fintype.card α ≤ 1) (x : List α) (a : α) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.unbounded_of_card_le_one",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 705,
+      "declaration": "theorem unbounded_of_card_le_one (hcard : Fintype.card α ≤ 1) (u : ℕ → α) (t : ℕ) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.unbounded_of_primitive",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 712,
+      "declaration": "theorem unbounded_of_primitive (hfix : IsFixed s u)"
+    },
+    {
+      "name": "Psc.BPrimeBinding.Ilevel_isBlock",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 748,
+      "declaration": "theorem Ilevel_isBlock (n : ℕ) : ∀ T ∈ Ilevel s u W n, IsBlock T := levelSet_isBlock"
+    },
+    {
+      "name": "Psc.BPrimeBinding.subst_win_tn",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 753,
+      "declaration": "theorem subst_win_tn (hfix : IsFixed s u) (hW : PrefixOf u W) {n N : ℕ}"
+    },
+    {
+      "name": "Psc.BPrimeBinding.unbounded_tn",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 761,
+      "declaration": "theorem unbounded_tn (hfix : IsFixed s u) (hW : PrefixOf u W) (hs : ∀ a, s a ≠ [])"
+    },
+    {
+      "name": "Psc.BPrimeBinding.child_mem_I_succ",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 769,
+      "declaration": "theorem child_mem_I_succ (hfix : IsFixed s u) (hW : PrefixOf u W) {n : ℕ}"
+    },
+    {
+      "name": "Psc.BPrimeBinding.exists_parent_I",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 778,
+      "declaration": "theorem exists_parent_I (hfix : IsFixed s u) (hW : PrefixOf u W) (hs : ∀ a, s a ≠ [])"
+    },
+    {
+      "name": "Psc.BPrimeBinding.I_succ",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 787,
+      "declaration": "theorem I_succ (hfix : IsFixed s u) (hW : PrefixOf u W) (hs : ∀ a, s a ≠ [])"
+    },
+    {
+      "name": "Psc.BPrimeBinding.ssLevel_eq",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 794,
+      "declaration": "theorem ssLevel_eq (hfix : IsFixed s u) (hW : PrefixOf u W) (hs : ∀ a, s a ≠ [])"
+    },
+    {
+      "name": "Psc.BPrimeBinding.IW_childClosed",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 801,
+      "declaration": "theorem IW_childClosed (hfix : IsFixed s u) (hW : PrefixOf u W) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.IW_isBlock",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 807,
+      "declaration": "theorem IW_isBlock : ∀ T ∈ IW s u W, IsBlock T := by"
+    },
+    {
+      "name": "Psc.BPrimeBinding.IW_eq_reachable",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 813,
+      "declaration": "theorem IW_eq_reachable (hfix : IsFixed s u) (hW : PrefixOf u W) (hs : ∀ a, s a ≠ [])"
+    },
+    {
+      "name": "Psc.BPrimeBinding.I_succ_of_primitive",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 831,
+      "declaration": "theorem I_succ_of_primitive (hfix : IsFixed s u) (hW : PrefixOf u W)"
+    },
+    {
+      "name": "Psc.BPrimeBinding.ssLevel_eq_of_primitive",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 837,
+      "declaration": "theorem ssLevel_eq_of_primitive (hfix : IsFixed s u) (hW : PrefixOf u W)"
+    },
+    {
+      "name": "Psc.BPrimeBinding.IW_eq_reachable_of_primitive",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 843,
+      "declaration": "theorem IW_eq_reachable_of_primitive (hfix : IsFixed s u) (hW : PrefixOf u W)"
+    },
+    {
+      "name": "Psc.BPrimeBinding.IW_eq_iUnion_ssLevel",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 852,
+      "declaration": "theorem IW_eq_iUnion_ssLevel (hfix : IsFixed s u) (hW : PrefixOf u W)"
+    },
+    {
+      "name": "Psc.BPrimeBinding.exists_bound_of_finite",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 863,
+      "declaration": "theorem exists_bound_of_finite {s : α → List α} {u : ℕ → α} {W : List α}"
+    },
+    {
+      "name": "Psc.BPrimeBinding.boundedGaps_of_bound",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 871,
+      "declaration": "theorem boundedGaps_of_bound {u : ℕ → α} {t L : ℕ} (hunb : Unbounded u t)"
+    },
+    {
+      "name": "Psc.BPrimeBinding.boundedGaps_of_finite",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 898,
+      "declaration": "theorem boundedGaps_of_finite {s : α → List α} {u : ℕ → α} {W : List α}"
+    },
+    {
+      "name": "Psc.BPrimeBinding.boundedGaps_of_finite_primitive",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 910,
+      "declaration": "theorem boundedGaps_of_finite_primitive [Fintype α] {s : α → List α} {u : ℕ → α}"
+    },
+    {
+      "name": "Psc.BPrimeBinding.isFixed_limit",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 925,
+      "declaration": "theorem isFixed_limit (hu : u₀ <+: (subst s)^[1] u₀)"
+    },
+    {
+      "name": "Psc.BPrimeBinding.prefixOf_limit",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 936,
+      "declaration": "theorem prefixOf_limit (hu : u₀ <+: (subst s)^[1] u₀)"
+    },
+    {
+      "name": "Psc.BPrimeBinding.isFixed_seedLimit",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 952,
+      "declaration": "theorem isFixed_seedLimit (x : List α) (hs : ∀ a, s a ≠ []) (hx : x <+: subst s x)"
+    },
+    {
+      "name": "Psc.BPrimeBinding.prefixOf_seedLimit",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 957,
+      "declaration": "theorem prefixOf_seedLimit (x : List α) (hs : ∀ a, s a ≠ []) (hx : x <+: subst s x)"
+    },
+    {
+      "name": "Psc.BPrimeBinding.fib_chain",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 968,
+      "declaration": "theorem fib_chain : ([0] : List (Fin 2)) <+: (subst fibSubst)^[1] [0] := by decide"
+    },
+    {
+      "name": "Psc.BPrimeBinding.fibU_isFixed",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 974,
+      "declaration": "theorem fibU_isFixed : IsFixed fibSubst fibU := isFixed_seedLimit _ _ _ _ _"
+    },
+    {
+      "name": "Psc.BPrimeBinding.fibU_prefix",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 977,
+      "declaration": "theorem fibU_prefix : PrefixOf fibU [0] := prefixOf_seedLimit _ _ _ _ _"
+    },
+    {
+      "name": "Psc.BPrimeBinding.fibU_eq",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 985,
+      "declaration": "theorem fibU_eq (i : ℕ) (h : i < 21) : fibU i = fibC i := by"
+    },
+    {
+      "name": "Psc.BPrimeBinding.fib_win",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 992,
+      "declaration": "theorem fib_win (t N : ℕ) (h : t + N ≤ 21) : win fibU t N = win fibC t N :="
+    },
+    {
+      "name": "Psc.BPrimeBinding.fib_level0",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 999,
+      "declaration": "theorem fib_level0 :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.fib_phi",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1008,
+      "declaration": "theorem fib_phi : phi fibSubst fibU 10 = 16 ∧ phi fibSubst fibU 1 = 2 := by"
+    },
+    {
+      "name": "Psc.BPrimeBinding.fib_blocks_phi",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1015,
+      "declaration": "theorem fib_blocks_phi :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.fib_one_one_parents",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1035,
+      "declaration": "theorem fib_one_one_parents :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.fib_primitive",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1054,
+      "declaration": "theorem fib_primitive : ∃ k ≥ 1, ∀ a c, 0 < (inc fibSubst ^ k) a c :="
+    },
+    {
+      "name": "Psc.BPrimeBinding.fib_unbounded",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1059,
+      "declaration": "theorem fib_unbounded (t : ℕ) : Unbounded fibU t :="
+    },
+    {
+      "name": "Psc.BPrimeBinding.fib_I_succ",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1066,
+      "declaration": "theorem fib_I_succ (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.fib_ssLevel",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1073,
+      "declaration": "theorem fib_ssLevel :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.fib_subst_isChain",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1083,
+      "declaration": "theorem fib_subst_isChain (w : List (Fin 2)) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.fibU_not_one_one",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1101,
+      "declaration": "theorem fibU_not_one_one (k : ℕ) : ¬ (fibU k = 1 ∧ fibU (k + 1) = 1) := by"
+    },
+    {
+      "name": "Psc.BPrimeBinding.fib_level0_subset",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1112,
+      "declaration": "theorem fib_level0_subset :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.fib_one_one_parents_I0",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1152,
+      "declaration": "theorem fib_one_one_parents_I0 :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.fib_IW_subset",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1163,
+      "declaration": "theorem fib_IW_subset : IW fibSubst fibU [0] ⊆ bpaStates fibSubst := by"
+    },
+    {
+      "name": "Psc.BPrimeBinding.fib_terminates",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1173,
+      "declaration": "theorem fib_terminates :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.per_primitive",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1187,
+      "declaration": "theorem per_primitive : ∃ k ≥ 1, ∀ a c, 0 < (inc perSubst ^ k) a c :="
+    },
+    {
+      "name": "Psc.BPrimeBinding.per_win_two",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1190,
+      "declaration": "theorem per_win_two (m : ℕ) : win perU (2 * m) 2 = [0, 1] ∧ win perU (2 * m + 1) 2 = [1, 0] := by"
+    },
+    {
+      "name": "Psc.BPrimeBinding.per_win_even",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1195,
+      "declaration": "theorem per_win_even (m : ℕ) : win perU 0 (2 * m) = (List.replicate m [0, 1]).flatten := by"
+    },
+    {
+      "name": "Psc.BPrimeBinding.per_subst",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1203,
+      "declaration": "theorem per_subst (w : List (Fin 2)) :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.per_isFixed",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1211,
+      "declaration": "theorem per_isFixed : IsFixed perSubst perU := by"
+    },
+    {
+      "name": "Psc.BPrimeBinding.per_zeroReturn_one",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1219,
+      "declaration": "theorem per_zeroReturn_one {N : ℕ} (h : zeroReturn perU 1 N) : N % 2 = 0 := by"
+    },
+    {
+      "name": "Psc.BPrimeBinding.per_blocks",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1225,
+      "declaration": "theorem per_blocks (m : ℕ) : blocks perU 1 (2 * m) = List.replicate m ([0, 1], [1, 0]) := by"
+    },
+    {
+      "name": "Psc.BPrimeBinding.per_level0",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1245,
+      "declaration": "theorem per_level0 : Ilevel perSubst perU [0] 0 ⊆ {([0, 1], [1, 0])} := by"
+    },
+    {
+      "name": "Psc.BPrimeBinding.per_childClosed",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1255,
+      "declaration": "theorem per_childClosed : ChildClosed perSubst {T | T ∈ perStates} := by"
+    },
+    {
+      "name": "Psc.BPrimeBinding.per_control",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1264,
+      "declaration": "theorem per_control :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.stair_win_pos",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1288,
+      "declaration": "theorem stair_win_pos (t N : ℕ) (ht : 0 < t) : win stairU t N = List.replicate N 1 := by"
+    },
+    {
+      "name": "Psc.BPrimeBinding.stair_win_zero",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1296,
+      "declaration": "theorem stair_win_zero (N : ℕ) : win stairU 0 (N + 1) = 0 :: List.replicate N 1 := by"
+    },
+    {
+      "name": "Psc.BPrimeBinding.stairU_isFixed",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1300,
+      "declaration": "theorem stairU_isFixed : IsFixed stairSubst stairU := by"
+    },
+    {
+      "name": "Psc.BPrimeBinding.stair_not_zeroReturn",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1311,
+      "declaration": "theorem stair_not_zeroReturn (t N : ℕ) (ht : 0 < t) (hN : 0 < N) : ¬ zeroReturn stairU t N := by"
+    },
+    {
+      "name": "Psc.BPrimeBinding.stairBoundedGaps",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1321,
+      "declaration": "theorem stairBoundedGaps :"
+    },
+    {
+      "name": "Psc.BPrimeBinding.stair_not_primitive",
+      "module": "PscVerif.BPrimeBinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeBinding.lean",
+      "line": 1338,
+      "declaration": "theorem stair_not_primitive : ¬ ∃ k ≥ 1, ∀ a c, 0 < (inc stairSubst ^ k) a c := by"
+    },
+    {
+      "name": "Psc.BPrimeCore.P_zero",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 168,
+      "declaration": "@[simp] theorem P_zero (u : ℕ → α) (a : α) : P u 0 a = 0 := by simp [P]"
+    },
+    {
+      "name": "Psc.BPrimeCore.P_succ",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 170,
+      "declaration": "theorem P_succ (u : ℕ → α) (k : ℕ) (a : α) :"
+    },
+    {
+      "name": "Psc.BPrimeCore.P_add",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 174,
+      "declaration": "theorem P_add (u : ℕ → α) (k j : ℕ) (a : α) :"
+    },
+    {
+      "name": "Psc.BPrimeCore.indicator_nonneg",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 178,
+      "declaration": "theorem indicator_nonneg (p : Prop) [Decidable p] : (0 : ℤ) ≤ if p then 1 else 0 := by"
+    },
+    {
+      "name": "Psc.BPrimeCore.indicator_le_one",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 181,
+      "declaration": "theorem indicator_le_one (p : Prop) [Decidable p] : (if p then 1 else 0 : ℤ) ≤ 1 := by"
+    },
+    {
+      "name": "Psc.BPrimeCore.sum_indicator_bounds",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 184,
+      "declaration": "theorem sum_indicator_bounds (f : ℕ → Prop) [DecidablePred f] (j : ℕ) :"
+    },
+    {
+      "name": "Psc.BPrimeCore.P_add_sub_bounds",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 194,
+      "declaration": "theorem P_add_sub_bounds (u : ℕ → α) (k j : ℕ) (a : α) :"
+    },
+    {
+      "name": "Psc.BPrimeCore.P_bounds",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 199,
+      "declaration": "theorem P_bounds (u : ℕ → α) (k : ℕ) (a : α) : 0 ≤ P u k a ∧ P u k a ≤ k := by"
+    },
+    {
+      "name": "Psc.BPrimeCore.sum_P",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 203,
+      "declaration": "theorem sum_P [Fintype α] (u : ℕ → α) (k : ℕ) : ∑ a, P u k a = k := by"
+    },
+    {
+      "name": "Psc.BPrimeCore.shift_factor_identity",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 213,
+      "declaration": "theorem shift_factor_identity {V : Type*} [AddCommGroup V] (Q : ℕ → V) (t k : ℕ) :"
+    },
+    {
+      "name": "Psc.BPrimeCore.D_eq_factor",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 219,
+      "declaration": "theorem D_eq_factor (u : ℕ → α) (t k : ℕ) (a : α) :"
+    },
+    {
+      "name": "Psc.BPrimeCore.D_zero",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 223,
+      "declaration": "@[simp] theorem D_zero (u : ℕ → α) (t : ℕ) (a : α) : D u t 0 a = 0 := by simp [D]"
+    },
+    {
+      "name": "Psc.BPrimeCore.D_succ",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 226,
+      "declaration": "theorem D_succ (u : ℕ → α) (t k : ℕ) (a : α) :"
+    },
+    {
+      "name": "Psc.BPrimeCore.D_add",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 235,
+      "declaration": "theorem D_add (u : ℕ → α) (t j l : ℕ) (a : α) :"
+    },
+    {
+      "name": "Psc.BPrimeCore.abs_D_sub_le",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 242,
+      "declaration": "theorem abs_D_sub_le (u : ℕ → α) (t : ℕ) (a : α) {k k' : ℕ} (h : k ≤ k') :"
+    },
+    {
+      "name": "Psc.BPrimeCore.cut_bound",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 267,
+      "declaration": "theorem cut_bound (u : ℕ → α) (t L : ℕ) (hgap : CutGaps u t L) (k : ℕ) (a : α) :"
+    },
+    {
+      "name": "Psc.BPrimeCore.block_bound",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 276,
+      "declaration": "theorem block_bound (u : ℕ → α) (t : ℕ) (a : α) {j j' k : ℕ} (hj : D u t j a = 0)"
+    },
+    {
+      "name": "Psc.BPrimeCore.exists_cut_of_blocks",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 289,
+      "declaration": "theorem exists_cut_of_blocks (u : ℕ → α) (t L : ℕ) (c : ℕ → ℕ) (hc : StrictMono c)"
+    },
+    {
+      "name": "Psc.BPrimeCore.cut_bound_of_blocks",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 309,
+      "declaration": "theorem cut_bound_of_blocks (u : ℕ → α) (t L : ℕ) (c : ℕ → ℕ) (hc : StrictMono c)"
+    },
+    {
+      "name": "Psc.BPrimeCore.cutGaps_of_blocks",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 319,
+      "declaration": "theorem cutGaps_of_blocks (u : ℕ → α) (t L : ℕ) (c : ℕ → ℕ) (hc : StrictMono c)"
+    },
+    {
+      "name": "Psc.BPrimeCore.count_map_range",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 330,
+      "declaration": "theorem count_map_range (u : ℕ → α) (k : ℕ) (a : α) :"
+    },
+    {
+      "name": "Psc.BPrimeCore.P_length_of_prefix",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 340,
+      "declaration": "theorem P_length_of_prefix {x : List α} {u : ℕ → α} (h : IsPrefixOf x u) (a : α) :"
+    },
+    {
+      "name": "Psc.BPrimeCore.parikh_iterate",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 352,
+      "declaration": "theorem parikh_iterate [Fintype α] (s : α → List α) (n : ℕ) (W : List α) :"
+    },
+    {
+      "name": "Psc.BPrimeCore.count_iterate_cast",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 368,
+      "declaration": "theorem count_iterate_cast [Fintype α] {K : Type*} [CommSemiring K] (s : α → List α)"
+    },
+    {
+      "name": "Psc.BPrimeCore.P_iterate",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 379,
+      "declaration": "theorem P_iterate [Fintype α] (s : α → List α) {u : ℕ → α} {W : List α} {n : ℕ}"
+    },
+    {
+      "name": "Psc.BPrimeCore.sum_count_eq_length",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 386,
+      "declaration": "theorem sum_count_eq_length [Fintype α] (x : List α) : ∑ a, x.count a = x.length := by"
+    },
+    {
+      "name": "Psc.BPrimeCore.length_iterate_cast",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 391,
+      "declaration": "theorem length_iterate_cast [Fintype α] {K : Type*} [CommSemiring K] (s : α → List α)"
+    },
+    {
+      "name": "Psc.BPrimeCore.isPrefixOf_limit",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 400,
+      "declaration": "theorem isPrefixOf_limit (s : α → List α) {W : List α} (hW : W <+: subst s W)"
+    },
+    {
+      "name": "Psc.BPrimeCore.window_sum_swap",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 414,
+      "declaration": "theorem window_sum_swap {V : Type*} [AddCommGroup V] (Q : ℕ → V) (K t : ℕ) :"
+    },
+    {
+      "name": "Psc.BPrimeCore.avg_bound",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 433,
+      "declaration": "theorem avg_bound (u : ℕ → α) (t K L : ℕ) (a : α) (hD : ∀ k, |D u t k a| ≤ L) :"
+    },
+    {
+      "name": "Psc.BPrimeCore.vecMul_pow_eigen",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 467,
+      "declaration": "theorem vecMul_pow_eigen [Fintype α] {R : Type*} [CommRing R] (A : Matrix α α R) (q : α → R)"
+    },
+    {
+      "name": "Psc.BPrimeCore.P_iterate_cast",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 474,
+      "declaration": "theorem P_iterate_cast [Fintype α] {R : Type*} [CommRing R] (s : α → List α) {u : ℕ → α}"
+    },
+    {
+      "name": "Psc.BPrimeCore.eigen_window_bound",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 484,
+      "declaration": "theorem eigen_window_bound [Fintype α] (s : α → List α) {u : ℕ → α} {W : List α}"
+    },
+    {
+      "name": "Psc.BPrimeCore.len_growth",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 527,
+      "declaration": "theorem len_growth [Fintype α] (s : α → List α) {W : List α} (hW : W ≠ []) {β : ℝ} {ℓ : α → ℝ}"
+    },
+    {
+      "name": "Psc.BPrimeCore.one_lt_perron",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 555,
+      "declaration": "theorem one_lt_perron [Fintype α] [Nontrivial α] (s : α → List α)"
+    },
+    {
+      "name": "Psc.BPrimeCore.norm_lt_perron",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 590,
+      "declaration": "theorem norm_lt_perron [Fintype α] (s : α → List α)"
+    },
+    {
+      "name": "Psc.BPrimeCore.krylov_span_eq_top",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 659,
+      "declaration": "theorem krylov_span_eq_top [Fintype α] (M : Matrix α α ℚ) (hM : Irreducible M.charpoly)"
+    },
+    {
+      "name": "Psc.BPrimeCore.dotProduct_ne_zero_of_left_eigen",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 690,
+      "declaration": "theorem dotProduct_ne_zero_of_left_eigen [Fintype α] {K : Type*} [Field K] [Algebra ℚ K]"
+    },
+    {
+      "name": "Psc.BPrimeCore.irreducibility_needed",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 731,
+      "declaration": "theorem irreducibility_needed :"
+    },
+    {
+      "name": "Psc.BPrimeCore.norm_le_one_of_bounded",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 753,
+      "declaration": "theorem norm_le_one_of_bounded {z c : ℂ} (hc : c ≠ 0) {C : ℝ}"
+    },
+    {
+      "name": "Psc.BPrimeCore.orbit_limit_bound",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 768,
+      "declaration": "theorem orbit_limit_bound (t : ℕ → ℕ) {z c : ℂ} {β C₀ L S : ℝ} (hβ : 1 < β) (hC₀ : 0 < C₀)"
+    },
+    {
+      "name": "Psc.BPrimeCore.eigen_orbit_bound",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 814,
+      "declaration": "theorem eigen_orbit_bound [Fintype α] (s : α → List α) {u : ℕ → α} {W : List α} (hW : W ≠ [])"
+    },
+    {
+      "name": "Psc.BPrimeCore.aeval_ratCast_ne_zero",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 827,
+      "declaration": "theorem aeval_ratCast_ne_zero {f : ℚ[X]} (hf : Irreducible f) (hdeg : f.natDegree = 3) (r : ℚ) :"
+    },
+    {
+      "name": "Psc.BPrimeCore.norm_ne_one_of_cubic",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 842,
+      "declaration": "theorem norm_ne_one_of_cubic {f : ℚ[X]} (hf : Irreducible f) (hm : f.Monic)"
+    },
+    {
+      "name": "Psc.BPrimeCore.degree_three_needed",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 880,
+      "declaration": "theorem degree_three_needed :"
+    },
+    {
+      "name": "Psc.BPrimeCore.bprime_core_of_discrepancy",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 905,
+      "declaration": "theorem bprime_core_of_discrepancy [Fintype α] (s : α → List α) {u : ℕ → α} {W : List α}"
+    },
+    {
+      "name": "Psc.BPrimeCore.bprime_core",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 948,
+      "declaration": "theorem bprime_core [Fintype α] (s : α → List α) {u : ℕ → α} {W : List α} (hW : W ≠ [])"
+    },
+    {
+      "name": "Psc.BPrimeCore.bprime_core_of_blocks",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 962,
+      "declaration": "theorem bprime_core_of_blocks [Fintype α] (s : α → List α) {u : ℕ → α} {W : List α}"
+    },
+    {
+      "name": "Psc.BPrimeCore.bprime_core_perron_of_discrepancy",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 979,
+      "declaration": "theorem bprime_core_perron_of_discrepancy [Fintype α] (s : α → List α) {u : ℕ → α}"
+    },
+    {
+      "name": "Psc.BPrimeCore.bprime_core_perron",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 993,
+      "declaration": "theorem bprime_core_perron [Fintype α] (s : α → List α) {u : ℕ → α} {W : List α}"
+    },
+    {
+      "name": "Psc.BPrimeCore.bprime_core_cubic_of_discrepancy",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 1010,
+      "declaration": "theorem bprime_core_cubic_of_discrepancy [Fintype α] (s : α → List α) {u : ℕ → α}"
+    },
+    {
+      "name": "Psc.BPrimeCore.bprime_core_cubic",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 1033,
+      "declaration": "theorem bprime_core_cubic [Fintype α] (s : α → List α) {u : ℕ → α} {W : List α}"
+    },
+    {
+      "name": "Psc.BPrimeCore.bprime_core_cubic_perron",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 1049,
+      "declaration": "theorem bprime_core_cubic_perron [Fintype α] (s : α → List α) {u : ℕ → α} {W : List α}"
+    },
+    {
+      "name": "Psc.BPrimeCore.zeta_inc",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 1070,
+      "declaration": "theorem zeta_inc : inc zetaSubst = Matrix.of ![![1, 0, 2], ![1, 0, 0], ![0, 1, 0]] := by"
+    },
+    {
+      "name": "Psc.BPrimeCore.zeta_primitive",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 1075,
+      "declaration": "theorem zeta_primitive :"
+    },
+    {
+      "name": "Psc.BPrimeCore.zeta_charpoly",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 1081,
+      "declaration": "theorem zeta_charpoly (K : Type*) [CommRing K] :"
+    },
+    {
+      "name": "Psc.BPrimeCore.irreducible_cubic",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 1093,
+      "declaration": "theorem irreducible_cubic (a b c : ℤ)"
+    },
+    {
+      "name": "Psc.BPrimeCore.zeta_irreducible",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 1117,
+      "declaration": "theorem zeta_irreducible : Irreducible ((inc zetaSubst).map (Nat.cast : ℕ → ℚ)).charpoly := by"
+    },
+    {
+      "name": "Psc.BPrimeCore.zeta_root_outside",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 1125,
+      "declaration": "theorem zeta_root_outside {β : ℝ} (hβ0 : 0 < β)"
+    },
+    {
+      "name": "Psc.BPrimeCore.zeta_fixed_point",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 1159,
+      "declaration": "theorem zeta_fixed_point : ∃ u : ℕ → Fin 3, ∀ n, IsPrefixOf ((subst zetaSubst)^[n] [0]) u := by"
+    },
+    {
+      "name": "Psc.BPrimeCore.zeta_unbounded_discrepancy",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 1170,
+      "declaration": "theorem zeta_unbounded_discrepancy {u : ℕ → Fin 3} {W : List (Fin 3)} (hW : W ≠ [])"
+    },
+    {
+      "name": "Psc.BPrimeCore.zeta_no_uniform_cuts",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 1184,
+      "declaration": "theorem zeta_no_uniform_cuts {u : ℕ → Fin 3} {W : List (Fin 3)} (hW : W ≠ [])"
+    },
+    {
+      "name": "Psc.BPrimeCore.one_letter_consistent",
+      "module": "PscVerif.BPrimeCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BPrimeCore.lean",
+      "line": 1204,
+      "declaration": "theorem one_letter_consistent :"
+    },
+    {
       "name": "Psc.ind_self",
       "module": "PscVerif.Basic",
       "private": false,
@@ -16676,6 +18452,9 @@
   "input_digests": {
     "claim_governance.toml": "5642e664f9a79064ffbaf770719cf0acba52accc75fca568711d4b554a08803e",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
+    "proof/PscVerif/PscVerif/BPrime.lean": "77ec2e5e0cab8e7ff1221b698f315ef0bcd2ea61ec88e2f88efd2053cc0c9138",
+    "proof/PscVerif/PscVerif/BPrimeBinding.lean": "f9c9723bc6bd59b95ec83c632aa81b5d47dcef1e3c805a692279c4dec2448048",
+    "proof/PscVerif/PscVerif/BPrimeCore.lean": "c3cfe60af11561d1a5b54fde4b2d3281d251dbc930316f6c30ea894600b651f3",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
     "proof/PscVerif/PscVerif/Binomial.lean": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
@@ -16727,7 +18506,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "d65dbbce4acabb4d59462af0d5050bb82316fb72417b9dc9ccae4355aba0781d",
+    "proof/PscVerif/PscVerif.lean": "62fd18d267be54c87f0584d646ff97882ad84d331c391da61967d69af52ce6df",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

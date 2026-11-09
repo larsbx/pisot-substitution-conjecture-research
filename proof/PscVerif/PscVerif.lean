@@ -50,3 +50,6 @@ import PscVerif.ReductioControls
 import PscVerif.OverlapContraction
 import PscVerif.OverlapPacket
 import PscVerif.PhysicalMass
+import PscVerif.BPrimeCore
+import PscVerif.BPrimeBinding
+import PscVerif.BPrime

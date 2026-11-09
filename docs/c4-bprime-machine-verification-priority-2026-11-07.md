@@ -58,3 +58,12 @@ A reducible positive matrix with an expanding non-Perron eigendirection and a se
 ## Automation-first acceptance policy
 
 Do not confuse "no immediate human review" with an instruction to merge failing proof CI. Automatically compile each claimed formal lemma at an exact commit; treat missing jobs, skipped checks, failures and unverifiable receipts as no acceptance. A successful CI build of the present file proves **only** the shift/factor algebra identity. Autonomously pursue the next unformalized lemma and prioritize PSC's existing open universal gates over non-Pisot auxiliary results.
+
+*Status line, 2026-11-09 (appended; the text above is unchanged).* The six automatable
+obligations are discharged in Lean at local receipts: `PscVerif.BPrimeBinding` (item 1),
+`PscVerif.BPrimeCore` (items 2–6, with item 4 replaced by frequency-free averaging along
+`t_m` and strict dominance) and their composition `Psc.BPrime.bprime` / `corB_infinite_cubic`.
+The item-by-item map, receipts and replay are in
+[the B′ Lean note](c4-bprime-lean-2026-11-09.md). Hosted exact-head CI is still required
+before acceptance under the policy above. The refinement of `kernel/psc/bpa.mojo` and the
+Quint adversarial model remain open, and the human-review and novelty deferral is unchanged.
