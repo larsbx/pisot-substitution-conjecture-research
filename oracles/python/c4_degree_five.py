@@ -45,6 +45,11 @@ def add(dst,src,c):
 basis = list(filter(lyndon,words))
 assert len(basis)==48
 columns = [bracket(w)[1] for w in basis]
+for column in columns:
+    content_sums = Counter()
+    for word_, coefficient in column.items():
+        content_sums[tuple(word_.count(a) for a in alphabet)] += coefficient
+    assert all(total == 0 for total in content_sums.values())
 extract = []
 for i,w in enumerate(basis):
     row={w:1}

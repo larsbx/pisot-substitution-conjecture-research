@@ -43,6 +43,7 @@ import PscVerif.LieWeights
 import PscVerif.Defect4Lie
 import PscVerif.Defect5Lie
 import PscVerif.Degree5Transport
+import PscVerif.Degree5Weights
 import PscVerif.Degree5Sector
 import PscVerif.SectorBridge
 import PscVerif.Degree3Sector
