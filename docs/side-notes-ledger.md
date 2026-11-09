@@ -2697,3 +2697,7 @@ claim-ledger promotion. Evidence: `docs/occurrence-path-replay-2026-10-16.md`,
   - **Tooling pitfall.** `proof/tla/check.sh` leaves `MCNonProductive_TTrace_*.{bin,tla}` in `proof/tla/` (the expected violation writes a trace). Delete them before `git add -A`.
 
   Locator: [audit, part I §6](quantifier-transfer-audit-2026-11-09.md); `tools/make_ledger.py`.
+
+- **2026-11-09 — The finite-graph lemma of the C4 completion interface §3 now has a formal form.** `Psc.QuantifierInterface.inevMax_iff_of_finite`: with a finite reachable set, every maximal trajectory (an infinite path, or a finite one ending at a childless state) meets a target iff no state reached through non-targets lies on a cycle of non-targets or is a dead end of the full graph. This is item 2 of the prose lemma in [c4-ordered-word-completion-interface-2026-11-02.md](c4-ordered-word-completion-interface-2026-11-02.md) §3; item 1 is the definition of (E). `stub_inevitable_not_productive` records that the infinite-path reading (A) is vacuous at a dead end, which matters for a retained packet graph that drops split descendants. Graph logic only. Receipt (local): `ProofBankAudit.lean`, 4,249 declarations, 3,201 theorems, standard axioms.
+
+  Locator: `proof/PscVerif/PscVerif/QuantifierInterface.lean` (`InevMax`, `DeadEnd`, `inevMax_iff`, `inevMax_iff_of_finite`); [audit, part I §1](quantifier-transfer-audit-2026-11-09.md).

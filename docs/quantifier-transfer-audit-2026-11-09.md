@@ -29,11 +29,14 @@ state `s`:
 | (AE) | `∀ t, s →* t → ∃ u, t →* u ∧ u ∈ T` | every state reachable from `s` reaches a target |
 | (AE°) | (AE) restricted to the `t` that lie on a cycle | every reachable cyclic state reaches a target |
 | (A) | every infinite child path from `s` meets `T` | no admissible path avoids the targets |
+| (A⁺) | (A), and no dead end is reached from `s` through non-targets | every maximal trajectory meets a target |
 
 `proof/PscVerif/PscVerif/QuantifierInterface.lean` (namespace
 `Psc.QuantifierInterface`) states them once, as `ChildGraph.Productive`,
-`HereditarilyProductive`, `CyclicProductive` and `Inevitable`, and proves the
-following. Only `propext`, `Classical.choice` and `Quot.sound` are used.
+`HereditarilyProductive`, `CyclicProductive`, `Inevitable` and `InevMax`, and
+proves the following. A *dead end* is a non-target with no child; a *maximal
+trajectory* is an infinite child path or a finite one ending at a state with no
+child. Only `propext`, `Classical.choice` and `Quot.sound` are used.
 
 | Statement | Lean name | Hypotheses |
 | --- | --- | --- |
@@ -46,6 +49,9 @@ following. Only `propext`, `Classical.choice` and `Quot.sound` are used.
 | (AE°) ⇒ (AE) | `hereditarilyProductive_of_cyclic_of_finite` | reachable set finite; every non-target has a child |
 | (A) ⇔ no cycle of non-targets is reachable through non-targets | `inevitable_iff_no_strict_cycle_of_finite` | reachable set finite |
 | path form of (A) ⇔ inductive form | `inevitable_iff_inev` | none (dependent choice) |
+| (A⁺) ⇔ (A) ∧ no dead end reachable through non-targets | `inevMax_iff` | none |
+| (A⁺) ⇔ no cycle of non-targets and no dead end is reachable through non-targets | `inevMax_iff_of_finite` | reachable set finite |
+| (A⁺) ⇒ (AE) | `InevMax.hereditarilyProductive` | targets child-closed |
 | two-obstruction skeleton: (`hB`) every reachable cyclic state has a `zero` descendant, (`hA`) every reachable `zero` state is productive ⇒ (AE) | `two_obstruction_skeleton` | reachable set finite; every non-target has a child |
 | null strict mass ⇒ (AE) | `MassGraph.hereditarilyProductive_of_nullStrict` | mass positive and conserved at rate `θ > 0` |
 
@@ -58,6 +64,7 @@ Minimal countermodels, each a Lean theorem in the same module:
 | --- | --- | --- | --- |
 | (E) ⇒ (AE); (E) transports forward | `fork` | 3 | `fork_not_hereditarilyProductive`, `productive_not_forward` |
 | (AE) ⇒ (A) | `lasso` | 2 | `lasso_not_inevitable` |
+| (A) ⇒ (E), at a dead end | `stub` | 1 | `stub_inevitable_not_productive` |
 | "no closed strict component" ⇒ "no strict cycle" | `lasso` | 2 | `lasso_cycle_not_closed` |
 | exclusion of finite closed strict components ⇒ (E), without finiteness | `ray` | ℕ | `ray_exclusion_vacuous` |
 | (AE°) ⇒ (E), without finiteness | `ray` | ℕ | `ray_cyclicProductive_vacuous` |
@@ -68,6 +75,15 @@ Minimal countermodels, each a Lean theorem in the same module:
 | two-obstruction skeleton without `hA`; without `hB` | `fork` | 3 | `fork_without_A`, `fork_without_B` |
 | null strict mass ⇒ (A); null ⇒ empty | `lassoMass` | 2 | `lassoMass_null_not_inevitable` |
 | null strict mass ⇒ (AE), without conservation | `slow` | 3 | `slow_null_not_hereditarilyProductive` |
+
+`inevMax_iff_of_finite` is item 2 of the "elementary finite-graph lemma" of
+[c4-ordered-word-completion-interface-2026-11-02.md](c4-ordered-word-completion-interface-2026-11-02.md)
+§3, which had no formal encoding: every maximal root-started trajectory hits
+the target set iff no target-avoiding reachable part contains a cycle or a
+non-target with no outgoing edge in the full graph. Item 1 of that lemma is
+the definition of (E). The note's warning stands and is now two theorems apart:
+a certificate of (E) for every root is not (A⁺) (`lasso`), and C4 does not ask
+for (A⁺).
 
 Minimality (an argument, not a Lean theorem). (AE) without (A) needs a
 non-target on an infinite path and a target, so two states: `lasso` is minimal.
@@ -229,8 +245,8 @@ lake env lean ProofBankAudit.lean        # axioms: propext, Classical.choice, Qu
 cd ../../kernel && pixi run --locked mojo run -I . -I tests tests/test_quantifier_controls.mojo
 ```
 
-Replayed locally at this revision: the Lean build and axiom audit (4,226
-declarations, 3,194 theorems), and the Mojo test, which passes; two mutated
+Replayed locally at this revision: the Lean build and axiom audit (4,249
+declarations, 3,201 theorems), and the Mojo test, which passes; two mutated
 copies of the Mojo test (a wrong nonproductive set, a wrong child order) fail.
 For the ledger dependency of §6: `tools/make_ledger.py --check`,
 `tests/test_ledger_generation.py`, and `proof/tla/check.sh` with

@@ -12284,7 +12284,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 140,
+      "line": 147,
       "declaration": "theorem productive_of_target (h : G.target s) : G.Productive s :="
     },
     {
@@ -12292,7 +12292,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 144,
+      "line": 151,
       "declaration": "theorem productive_of_reach (hst : G.Reach s t) (ht : G.Productive t) : G.Productive s :="
     },
     {
@@ -12300,7 +12300,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 149,
+      "line": 156,
       "declaration": "theorem HereditarilyProductive.productive (h : G.HereditarilyProductive s) : G.Productive s :="
     },
     {
@@ -12308,7 +12308,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 153,
+      "line": 160,
       "declaration": "theorem HereditarilyProductive.of_reach (h : G.HereditarilyProductive s) (hst : G.Reach s t) :"
     },
     {
@@ -12316,7 +12316,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 158,
+      "line": 165,
       "declaration": "theorem HereditarilyProductive.cyclicProductive (h : G.HereditarilyProductive s) :"
     },
     {
@@ -12324,7 +12324,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 164,
+      "line": 171,
       "declaration": "theorem Closed.reach (hC : G.Closed C) (hs : s ∈ C) (hst : G.Reach s t) : t ∈ C := by"
     },
     {
@@ -12332,7 +12332,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 169,
+      "line": 176,
       "declaration": "theorem closed_reachSet (s : S) : G.Closed {t | G.Reach s t} :="
     },
     {
@@ -12340,7 +12340,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 173,
+      "line": 180,
       "declaration": "theorem StrictClosed.not_productive (hC : G.StrictClosed C) (hs : s ∈ C) : ¬ G.Productive s :="
     },
     {
@@ -12348,7 +12348,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 177,
+      "line": 184,
       "declaration": "theorem strictClosed_reachSet (h : ¬ G.Productive s) : G.StrictClosed {t | G.Reach s t} where"
     },
     {
@@ -12356,7 +12356,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 185,
+      "line": 192,
       "declaration": "theorem hereditarilyProductive_iff_no_strictClosed (s : S) :"
     },
     {
@@ -12364,7 +12364,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 196,
+      "line": 203,
       "declaration": "theorem Inev.inevitable (h : G.Inev s) : G.Inevitable s := by"
     },
     {
@@ -12372,7 +12372,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 209,
+      "line": 216,
       "declaration": "theorem exists_child_not_inev (h : ¬ G.Inev s) :"
     },
     {
@@ -12380,7 +12380,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 217,
+      "line": 224,
       "declaration": "theorem exists_strict_path_of_not_inev (h : ¬ G.Inev s) :"
     },
     {
@@ -12388,7 +12388,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 228,
+      "line": 235,
       "declaration": "theorem Inevitable.inev (h : G.Inevitable s) : G.Inev s := by"
     },
     {
@@ -12396,7 +12396,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 235,
+      "line": 242,
       "declaration": "theorem inevitable_iff_inev : G.Inevitable s ↔ G.Inev s :="
     },
     {
@@ -12404,7 +12404,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 240,
+      "line": 247,
       "declaration": "theorem TargetClosed.reach (hT : G.TargetClosed) (hs : G.target s) (hst : G.Reach s t) :"
     },
     {
@@ -12412,7 +12412,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 246,
+      "line": 253,
       "declaration": "theorem Inev.hereditarilyProductive (hT : G.TargetClosed) (hN : G.NonTerminal) (h : G.Inev s) :"
     },
     {
@@ -12420,7 +12420,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 261,
+      "line": 268,
       "declaration": "theorem Inevitable.hereditarilyProductive (hT : G.TargetClosed) (hN : G.NonTerminal)"
     },
     {
@@ -12428,7 +12428,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 270,
+      "line": 277,
       "declaration": "theorem exists_strictComponent_of_finite (hfin : {t | G.Reach s t}.Finite)"
     },
     {
@@ -12436,7 +12436,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 295,
+      "line": 302,
       "declaration": "theorem hereditarilyProductive_of_finite_of_exclusion (hfin : {t | G.Reach s t}.Finite)"
     },
     {
@@ -12444,7 +12444,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 304,
+      "line": 311,
       "declaration": "theorem hereditarilyProductive_iff_exclusion_of_finite (hfin : {t | G.Reach s t}.Finite) :"
     },
     {
@@ -12452,7 +12452,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 317,
+      "line": 324,
       "declaration": "theorem hereditarilyProductive_of_cyclic_of_finite (hfin : {t | G.Reach s t}.Finite)"
     },
     {
@@ -12460,7 +12460,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 333,
+      "line": 340,
       "declaration": "theorem two_obstruction_skeleton (zero : S → Prop) (hfin : {t | G.Reach s t}.Finite)"
     },
     {
@@ -12468,7 +12468,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 345,
+      "line": 352,
       "declaration": "theorem Inev.of_strictStep (h : G.Inev s) (hst : G.StrictStep s t) : G.Inev t := by"
     },
     {
@@ -12476,7 +12476,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 350,
+      "line": 357,
       "declaration": "theorem Inev.of_strictReach (h : G.Inev s) (hst : Relation.ReflTransGen G.StrictStep s t) :"
     },
     {
@@ -12484,7 +12484,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 357,
+      "line": 364,
       "declaration": "theorem Inev.not_strict_cycle (h : G.Inev s) : ¬ Relation.TransGen G.StrictStep s s := by"
     },
     {
@@ -12492,7 +12492,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 370,
+      "line": 377,
       "declaration": "theorem strictReach_of_strict_path {p : ℕ → S} (hpath : G.IsPath p)"
     },
     {
@@ -12500,15 +12500,55 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 381,
+      "line": 388,
       "declaration": "theorem inevitable_iff_no_strict_cycle_of_finite (hfin : {t | G.Reach s t}.Finite) :"
+    },
+    {
+      "name": "Psc.QuantifierInterface.ChildGraph.InevMax.inev",
+      "module": "PscVerif.QuantifierInterface",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
+      "line": 433,
+      "declaration": "theorem InevMax.inev (h : G.InevMax s) : G.Inev s := by"
+    },
+    {
+      "name": "Psc.QuantifierInterface.ChildGraph.eq_of_strictReach_of_target",
+      "module": "PscVerif.QuantifierInterface",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
+      "line": 439,
+      "declaration": "theorem eq_of_strictReach_of_target (ht : G.target s)"
+    },
+    {
+      "name": "Psc.QuantifierInterface.ChildGraph.inevMax_iff",
+      "module": "PscVerif.QuantifierInterface",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
+      "line": 446,
+      "declaration": "theorem inevMax_iff :"
+    },
+    {
+      "name": "Psc.QuantifierInterface.ChildGraph.inevMax_iff_of_finite",
+      "module": "PscVerif.QuantifierInterface",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
+      "line": 477,
+      "declaration": "theorem inevMax_iff_of_finite (hfin : {t | G.Reach s t}.Finite) :"
+    },
+    {
+      "name": "Psc.QuantifierInterface.ChildGraph.InevMax.hereditarilyProductive",
+      "module": "PscVerif.QuantifierInterface",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
+      "line": 491,
+      "declaration": "theorem InevMax.hereditarilyProductive (hT : G.TargetClosed) (h : G.InevMax s) :"
     },
     {
       "name": "Psc.QuantifierInterface.fork_targetClosed",
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 439,
+      "line": 530,
       "declaration": "theorem fork_targetClosed : fork.TargetClosed := by"
     },
     {
@@ -12516,7 +12556,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 443,
+      "line": 534,
       "declaration": "theorem fork_nonTerminal : fork.NonTerminal := by"
     },
     {
@@ -12524,7 +12564,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 450,
+      "line": 541,
       "declaration": "theorem fork_strictClosed : fork.StrictClosed {Fork.bad} where"
     },
     {
@@ -12532,7 +12572,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 459,
+      "line": 550,
       "declaration": "theorem fork_stronglyConnected : fork.StronglyConnected {Fork.bad} := by"
     },
     {
@@ -12540,7 +12580,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 463,
+      "line": 554,
       "declaration": "theorem fork_root_productive : fork.Productive .root :="
     },
     {
@@ -12548,7 +12588,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 466,
+      "line": 557,
       "declaration": "theorem fork_bad_not_productive : ¬ fork.Productive .bad :="
     },
     {
@@ -12556,7 +12596,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 472,
+      "line": 563,
       "declaration": "theorem fork_not_hereditarilyProductive :"
     },
     {
@@ -12564,7 +12604,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 479,
+      "line": 570,
       "declaration": "theorem productive_not_forward :"
     },
     {
@@ -12572,7 +12612,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 483,
+      "line": 574,
       "declaration": "theorem fork_reach_finite : {t | fork.Reach .root t}.Finite :="
     },
     {
@@ -12580,7 +12620,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 486,
+      "line": 577,
       "declaration": "theorem fork_reach_bad {t : Fork} (h : fork.Reach .bad t) : t = .bad :="
     },
     {
@@ -12588,7 +12628,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 489,
+      "line": 580,
       "declaration": "theorem fork_reach_good {t : Fork} (h : fork.Reach .good t) : t = .good := by"
     },
     {
@@ -12596,7 +12636,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 499,
+      "line": 590,
       "declaration": "theorem fork_without_A :"
     },
     {
@@ -12604,7 +12644,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 519,
+      "line": 610,
       "declaration": "theorem fork_without_B :"
     },
     {
@@ -12612,7 +12652,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 537,
+      "line": 628,
       "declaration": "theorem lasso_targetClosed : lasso.TargetClosed := by"
     },
     {
@@ -12620,7 +12660,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 543,
+      "line": 634,
       "declaration": "theorem lasso_nonTerminal : lasso.NonTerminal :="
     },
     {
@@ -12628,7 +12668,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 546,
+      "line": 637,
       "declaration": "theorem lasso_productive (a : Bool) : lasso.Productive a :="
     },
     {
@@ -12636,7 +12676,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 550,
+      "line": 641,
       "declaration": "theorem lasso_hereditarilyProductive (a : Bool) : lasso.HereditarilyProductive a :="
     },
     {
@@ -12644,7 +12684,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 554,
+      "line": 645,
       "declaration": "theorem lasso_no_strictClosed (C : Set Bool) : ¬ lasso.StrictClosed C := fun hC =>"
     },
     {
@@ -12652,7 +12692,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 559,
+      "line": 650,
       "declaration": "theorem lasso_strict_path :"
     },
     {
@@ -12660,7 +12700,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 566,
+      "line": 657,
       "declaration": "theorem lasso_not_inevitable :"
     },
     {
@@ -12668,7 +12708,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 575,
+      "line": 666,
       "declaration": "theorem lasso_cycle_not_closed :"
     },
     {
@@ -12676,7 +12716,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 594,
+      "line": 685,
       "declaration": "theorem ray_reach_le {a b : ℕ} (h : ray.Reach a b) : a ≤ b := by"
     },
     {
@@ -12684,7 +12724,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 601,
+      "line": 692,
       "declaration": "theorem ray_reach_of_le {a b : ℕ} (h : a ≤ b) : ray.Reach a b := by"
     },
     {
@@ -12692,7 +12732,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 606,
+      "line": 697,
       "declaration": "theorem ray_not_productive (a : ℕ) : ¬ ray.Productive a :="
     },
     {
@@ -12700,7 +12740,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 610,
+      "line": 701,
       "declaration": "theorem ray_no_finite_closed (C : Set ℕ) (hfin : C.Finite) (hne : C.Nonempty) :"
     },
     {
@@ -12708,7 +12748,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 617,
+      "line": 708,
       "declaration": "theorem ray_no_cycle (a : ℕ) : ¬ Relation.TransGen ray.child a a := fun h => by"
     },
     {
@@ -12716,7 +12756,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 626,
+      "line": 717,
       "declaration": "theorem ray_cyclicProductive_vacuous : ray.CyclicProductive 0 ∧ ¬ ray.Productive 0 :="
     },
     {
@@ -12724,7 +12764,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 630,
+      "line": 721,
       "declaration": "theorem ray_reachable_infinite : ¬ {t | ray.Reach 0 t}.Finite := by"
     },
     {
@@ -12732,7 +12772,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 641,
+      "line": 732,
       "declaration": "theorem ray_exclusion_vacuous :"
     },
     {
@@ -12740,7 +12780,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 660,
+      "line": 751,
       "declaration": "theorem loopRay_closed_some {C : Set (Option ℕ)} (hC : loopRay.Closed C) {n : ℕ}"
     },
     {
@@ -12748,7 +12788,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 667,
+      "line": 758,
       "declaration": "theorem loopRay_no_finite_closed (C : Set (Option ℕ)) (hfin : C.Finite) (hne : C.Nonempty) :"
     },
     {
@@ -12756,7 +12796,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 691,
+      "line": 782,
       "declaration": "theorem loopRay_recurrent_not_closed :"
     },
     {
@@ -12764,7 +12804,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 712,
+      "line": 803,
       "declaration": "theorem comb_productive (a : Option ℕ) : comb.Productive a := by"
     },
     {
@@ -12772,7 +12812,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 717,
+      "line": 808,
       "declaration": "theorem comb_reach_some (n k : ℕ) : comb.Reach (some n) (some (n + k)) := by"
     },
     {
@@ -12780,15 +12820,23 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 726,
+      "line": 817,
       "declaration": "theorem comb_productive_infinite :"
+    },
+    {
+      "name": "Psc.QuantifierInterface.stub_inevitable_not_productive",
+      "module": "PscVerif.QuantifierInterface",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
+      "line": 841,
+      "declaration": "theorem stub_inevitable_not_productive :"
     },
     {
       "name": "Psc.QuantifierInterface.chain_path_eq",
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 751,
+      "line": 860,
       "declaration": "theorem chain_path_eq {N : ℕ} {p : ℕ → ℕ} (hp0 : p 0 = 0) (hpath : (chain N).IsPath p) :"
     },
     {
@@ -12796,7 +12844,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 762,
+      "line": 871,
       "declaration": "theorem chain_isPath (N : ℕ) : (chain N).IsPath (fun n => min n N) := by"
     },
     {
@@ -12804,7 +12852,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 768,
+      "line": 877,
       "declaration": "theorem chain_hitsWithin (N : ℕ) : HitsWithin (chain N) N := fun p hp0 hpath =>"
     },
     {
@@ -12812,7 +12860,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 774,
+      "line": 883,
       "declaration": "theorem chain_inevitable (N : ℕ) : (chain N).Inevitable 0 := fun p hp0 hpath =>"
     },
     {
@@ -12820,7 +12868,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 779,
+      "line": 888,
       "declaration": "theorem chain_not_hitsWithin {N d : ℕ} (h : d < N) : ¬ HitsWithin (chain N) d := fun hd => by"
     },
     {
@@ -12828,7 +12876,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 787,
+      "line": 896,
       "declaration": "theorem chain_not_uniform :"
     },
     {
@@ -12836,7 +12884,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 795,
+      "line": 904,
       "declaration": "theorem chain_agrees_with_ray {N a : ℕ} (h : a < N) :"
     },
     {
@@ -12844,7 +12892,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 844,
+      "line": 953,
       "declaration": "theorem totalMass_eq (hc : M.Conserved) (n : ℕ) (s : S) :"
     },
     {
@@ -12852,7 +12900,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 854,
+      "line": 963,
       "declaration": "theorem strictMass_nonneg (hh : ∀ s, 0 ≤ M.h s) (n : ℕ) (s : S) : 0 ≤ M.strictMass n s := by"
     },
     {
@@ -12860,7 +12908,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 870,
+      "line": 979,
       "declaration": "theorem strictMass_of_strictClosed (hc : M.Conserved) {C : Set S}"
     },
     {
@@ -12868,7 +12916,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 885,
+      "line": 994,
       "declaration": "theorem strictMass_child_le (hh : ∀ s, 0 ≤ M.h s) {s c : S} (hsc : c ∈ M.children s) (n : ℕ) :"
     },
     {
@@ -12876,7 +12924,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 894,
+      "line": 1003,
       "declaration": "theorem exists_strictMass_le (hh : ∀ s, 0 ≤ M.h s) {s t : S} (hst : M.toChildGraph.Reach s t) :"
     },
     {
@@ -12884,7 +12932,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 910,
+      "line": 1019,
       "declaration": "theorem hereditarilyProductive_of_nullStrict (hpos : ∀ s, 0 < M.h s) (hθ : 0 < M.θ)"
     },
     {
@@ -12892,7 +12940,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 931,
+      "line": 1040,
       "declaration": "theorem eventually_one_lt_mul_two_pow {ε : ℚ} (hε : 0 < ε) :"
     },
     {
@@ -12900,7 +12948,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 950,
+      "line": 1059,
       "declaration": "theorem lassoMass_conserved : lassoMass.Conserved := by"
     },
     {
@@ -12908,7 +12956,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 954,
+      "line": 1063,
       "declaration": "theorem lassoMass_strictMass_true (n : ℕ) : lassoMass.strictMass n true = 0 := by"
     },
     {
@@ -12916,7 +12964,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 962,
+      "line": 1071,
       "declaration": "theorem lassoMass_strictMass_false (n : ℕ) : lassoMass.strictMass n false = 1 := by"
     },
     {
@@ -12924,7 +12972,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 969,
+      "line": 1078,
       "declaration": "theorem lassoMass_totalMass (n : ℕ) (a : Bool) : lassoMass.totalMass n a = 2 ^ n := by"
     },
     {
@@ -12932,7 +12980,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 973,
+      "line": 1082,
       "declaration": "theorem lassoMass_nullStrict : lassoMass.NullStrict false := fun ε hε => by"
     },
     {
@@ -12940,7 +12988,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 981,
+      "line": 1090,
       "declaration": "theorem lassoMass_null_not_inevitable :"
     },
     {
@@ -12948,7 +12996,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 1009,
+      "line": 1118,
       "declaration": "theorem slow_strictMass_good (n : ℕ) : slow.strictMass n .good = 0 := by"
     },
     {
@@ -12956,7 +13004,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 1016,
+      "line": 1125,
       "declaration": "theorem slow_strictMass_bad (n : ℕ) : slow.strictMass n .bad = 1 := by"
     },
     {
@@ -12964,7 +13012,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 1023,
+      "line": 1132,
       "declaration": "theorem slow_strictMass_root (n : ℕ) : slow.strictMass n .root = 1 := by"
     },
     {
@@ -12972,7 +13020,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 1030,
+      "line": 1139,
       "declaration": "theorem slow_strictClosed : slow.toChildGraph.StrictClosed {Fork.bad} where"
     },
     {
@@ -12980,7 +13028,7 @@
       "module": "PscVerif.QuantifierInterface",
       "private": false,
       "source": "proof/PscVerif/PscVerif/QuantifierInterface.lean",
-      "line": 1043,
+      "line": 1152,
       "declaration": "theorem slow_null_not_hereditarilyProductive :"
     },
     {
@@ -19318,7 +19366,7 @@
     "proof/PscVerif/PscVerif/PhysicalMass.lean": "6578043c87ca7da4be96673630ae5d2d2e2356a681b1b2401c39bd9e9b036a36",
     "proof/PscVerif/PscVerif/PrimitiveExpansion.lean": "70307f2cb4fb0eb854086f20bb04ca82ceb04c5433d41f0984c29a5f70bd4eff",
     "proof/PscVerif/PscVerif/QuantifierBinding.lean": "3c78e3ffa63891372c23893ce72785d5c829b83cbd23d9ae965e20ef546b014a",
-    "proof/PscVerif/PscVerif/QuantifierInterface.lean": "a2d08d6a0cc2abb4b774ef71c029cc3c45c70a39d302147d7668f48222030f14",
+    "proof/PscVerif/PscVerif/QuantifierInterface.lean": "1c29bfc0e108a045c6cbef23c4c0ea76661165b0bf5d1dce59f056294140c8f9",
     "proof/PscVerif/PscVerif/QuotientDistance.lean": "1431961ca4d26d60e5bf5165c7773440e7a708b51377697e339f94f7cf5896ef",
     "proof/PscVerif/PscVerif/ReductioControls.lean": "73c94ccd2ec83747f47d77035ff3cdca3843d611470f0cd3eae64c10104a0e76",
     "proof/PscVerif/PscVerif/Reduction.lean": "357fa49ab6991513e07f249b8a4d74caabad75f68db76ce501395b3a0af87d2d",

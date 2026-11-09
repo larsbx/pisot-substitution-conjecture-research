@@ -32,6 +32,13 @@ equivalent to (AE) (`hereditarilyProductive_of_cyclic_of_finite`), and
 `two_obstruction_skeleton` composes it with a second target set; without
 finiteness it says nothing (`ray_cyclicProductive_vacuous`).
 
+`InevMax s`, written (A⁺), is (A) for *maximal* trajectories: infinite
+admissible paths and finite paths ending at a state with no child.  It is (A)
+together with the absence of reachable dead ends (`inevMax_iff`), and with a
+finite reachable set it is the absence of reachable strict cycles and dead ends
+(`inevMax_iff_of_finite`); `stub` shows that (A) alone is vacuous at a dead
+end.
+
 Exclusion statements match the quantifiers exactly:
 
 * (AE) ⇔ no nonempty child-closed target-free set is reachable
@@ -409,6 +416,90 @@ theorem inevitable_iff_no_strict_cycle_of_finite (hfin : {t | G.Reach s t}.Finit
         Relation.TransGen.head' h1 hk
       rwa [show i + 1 + k = i + (k + 1) by omega, ← hij] at this
 
+/-! ### Maximal trajectories: dead ends count -/
+
+/-- A **dead end**: a non-target with no child. -/
+def DeadEnd (G : ChildGraph S) (s : S) : Prop := ¬ G.target s ∧ ∀ t, ¬ G.child s t
+
+/-- **(A⁺)**: every *maximal* trajectory from `s` meets a target, where a
+maximal trajectory is an infinite admissible path or a finite path that ends at
+a state with no child.  Inductive form: `s` is a target, or `s` has a child and
+every child satisfies (A⁺).  It differs from (A) exactly by the dead ends
+(`inevMax_iff`). -/
+inductive InevMax (G : ChildGraph S) : S → Prop
+  | here {s : S} : G.target s → InevMax G s
+  | step {s : S} : (∃ t, G.child s t) → (∀ t, G.child s t → InevMax G t) → InevMax G s
+
+theorem InevMax.inev (h : G.InevMax s) : G.Inev s := by
+  induction h with
+  | here ht => exact .here ht
+  | step _ _ ih => exact .step ih
+
+/-- No non-target is reached from a target by strict steps other than itself. -/
+theorem eq_of_strictReach_of_target (ht : G.target s)
+    (hst : Relation.ReflTransGen G.StrictStep s t) : s = t := by
+  rcases Relation.ReflTransGen.cases_head hst with h | ⟨c, hsc, -⟩
+  · exact h
+  · exact absurd ht hsc.1
+
+/-- **(A⁺) is (A) together with the absence of reachable dead ends.** -/
+theorem inevMax_iff :
+    G.InevMax s ↔ G.Inev s ∧ ¬ ∃ t, Relation.ReflTransGen G.StrictStep s t ∧ G.DeadEnd t := by
+  constructor
+  · intro h
+    refine ⟨h.inev, ?_⟩
+    induction h with
+    | here ht =>
+      rintro ⟨t, hst, hd⟩
+      exact hd.1 (eq_of_strictReach_of_target ht hst ▸ ht)
+    | @step a hch _ ih =>
+      rintro ⟨t, hat, hd⟩
+      rcases Relation.ReflTransGen.cases_head hat with heq | ⟨c, hac, hct⟩
+      · obtain ⟨c, hc⟩ := hch
+        exact hd.2 c (heq ▸ hc)
+      · exact ih c hac.2 ⟨t, hct, hd⟩
+  · rintro ⟨h, hnd⟩
+    induction h with
+    | here ht => exact .here ht
+    | @step a _ ih =>
+      by_cases hta : G.target a
+      · exact .here hta
+      · refine .step ?_ fun t hat => ih t hat ?_
+        · by_contra hno
+          exact hnd ⟨a, .refl, hta, fun t hat => hno ⟨t, hat⟩⟩
+        · rintro ⟨u, htu, hd⟩
+          exact hnd ⟨u, Relation.ReflTransGen.head ⟨hta, hat⟩ htu, hd⟩
+
+/-- **(A⁺) with a finite reachable set.**  Every maximal trajectory from `s`
+meets a target iff no state reached from `s` through non-targets lies on a cycle
+of non-targets or is a dead end.  The dead end is one of the full graph: a
+non-target all of whose children are targets is not one. -/
+theorem inevMax_iff_of_finite (hfin : {t | G.Reach s t}.Finite) :
+    G.InevMax s ↔
+      ¬ ∃ t, Relation.ReflTransGen G.StrictStep s t ∧
+        (Relation.TransGen G.StrictStep t t ∨ G.DeadEnd t) := by
+  rw [inevMax_iff, ← inevitable_iff_inev, inevitable_iff_no_strict_cycle_of_finite hfin]
+  constructor
+  · rintro ⟨h1, h2⟩ ⟨t, hst, hc | hd⟩
+    · exact h1 ⟨t, hst, hc⟩
+    · exact h2 ⟨t, hst, hd⟩
+  · intro h
+    exact ⟨fun ⟨t, hst, hc⟩ => h ⟨t, hst, Or.inl hc⟩, fun ⟨t, hst, hd⟩ => h ⟨t, hst, Or.inr hd⟩⟩
+
+/-- (A⁺) gives (AE) when targets are child-closed, with no hypothesis on
+non-targets: a dead end is excluded by (A⁺) itself. -/
+theorem InevMax.hereditarilyProductive (hT : G.TargetClosed) (h : G.InevMax s) :
+    G.HereditarilyProductive s := by
+  induction h with
+  | here ht => exact fun t hst => productive_of_target (hT.reach ht hst)
+  | @step a hch _ ih =>
+    intro t hat
+    rcases Relation.ReflTransGen.cases_head hat with heq | ⟨c, hac, hct⟩
+    · rw [← heq]
+      obtain ⟨c, hc⟩ := hch
+      exact productive_of_reach (.single hc) (ih c hc).productive
+    · exact ih c hac t hct
+
 end ChildGraph
 
 open ChildGraph
@@ -735,6 +826,24 @@ theorem comb_productive_infinite :
         simpa using comb_reach_some 0 k))
   · obtain ⟨n, hn⟩ := h (fun n => some n) rfl fun n => Or.inl rfl
     exact absurd hn (by simp [comb])
+
+/-! ### `stub`: (A) holds vacuously at a dead end -/
+
+/-- One non-target state with no child. -/
+def stub : ChildGraph Unit where
+  child _ _ := False
+  target _ := False
+
+/-- **(A) is vacuous at a dead end.**  In `stub` there is no admissible infinite
+path, so (A) holds; the state is a dead end, so (A⁺), (AE) and (E) all fail.
+An "every path" statement about infinite paths says nothing about a retained
+graph in which a non-target has lost its children. -/
+theorem stub_inevitable_not_productive :
+    stub.Inevitable () ∧ stub.DeadEnd () ∧ ¬ stub.InevMax () ∧ ¬ stub.Productive () := by
+  refine ⟨fun p _ hp => (hp 0).elim, ⟨fun h => h, fun _ h => h⟩, fun h => ?_, fun ⟨_, _, h⟩ => h⟩
+  cases h with
+  | here ht => exact ht
+  | step hch _ => exact hch.elim fun _ h => h
 
 /-! ### `chain N`: finite at each parameter, not uniform -/
 
