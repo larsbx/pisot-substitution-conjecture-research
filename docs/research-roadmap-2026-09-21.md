@@ -1,5 +1,76 @@
 # PSC research roadmap — 2026-09-21
 
+## 2026-11-09 neglected-interface roadmap (priority overlay; no claim promotion)
+
+**Snapshot:** research-planning update based on the 2026-11-09 PSC completion
+brief and the existing canonical sources. This is an agenda, **not** a new
+theorem, computational receipt, or assertion that a PR has passed. Recheck
+current `main`, exact PR head and claim governance before any implementation.
+The standing general PSC, #84, one-sided A1′ #138, BH #139, general G1 and
+the direct C4 ordered-word lemma remain **open**. Issue #9's completed closure
+on 2026-10-07 was *routing completion*, not a C4 proof; continue its literal
+word obligations in [#461](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/461)
+and [the C4 ordered-word interface](c4-ordered-word-completion-interface-2026-11-02.md).
+The conditional C4 implication from universal aligned coincidence, the finite
+4,554-specimen C4 result, finite strict-birth enumeration, and conditional
+mass/support/rank theorems do **not** supply their open universal premises.
+
+### Ranked neglected bridges and discharge conditions
+
+| Rank | Research gap | Required deliverable and acceptance check | Reuse / falsification |
+| --- | --- | --- | --- |
+| P0 | **Quantifier-safe composition** | For every proposed bridge, declare domain, quantifier order, existential vs all-edge reachability, finite vs arbitrary substitution, geometry and source-refinement premises; give a Lean/Quint lemma or a replayable countermodel for each nontrivial implication. In particular, `some target path` is not `all paths terminate`, and measure zero is not emptiness or a one-step `Sync_±` birth. | #497, #519, #520, #521; finite cyclic packet controls and productive-root/nonproductive-descendant regression. |
+| P0 | **Literal packet realization/refinement** | A commuting occurrence-to-packet transition square preserving *both* selected actual occurrence addresses, parent/child ordinal, orientation, residual Parikh and strict interior/boundary classification. Separately establish soundness, completeness relative to the declared occurrence universe, and (only if needed) consistent lifting of infinite abstract paths; do not infer any one from the others. | [target-aware diagnostic](target-aware-bpa-diagnostic-2026-10-02.md), [strict-birth atlas](c4-strict-birth-atlas-2026-11-02.md), [good-edge bridge](c4-good-edge-system-bridge.md). Reject strong G/F at literal factorization, not at a weaker algebraic layer. |
+| P0 | **C4 versus G1 extraction** | State C4 for a *supplied finite strict child-closed SCC with complete actual factorization* and state G1b-2/other global extraction separately. Prove any transfer only with its independent finiteness premise. | #9/#461; G1b-1 bounded discrepancy and UD derived from full incidence rank are already established; do not assume UD or finite BPA anew. |
+| P1 | **Ordered hub-residual dynamics** | Propose a literal word-level invariant or return-word/recognizability argument which forces an interior `Sync_+` or `Sync_-` newborn from the exact Barge–Diamond good-edge hypotheses; if false, archive a genuine occurrence-level PIP witness. Algebraic Parikh, free-Lie or quotient data alone do not prove alignment. | #457, #459/#461, existing degree-three/four concentration work; test phase-flat non-PIP and delayed PIP controls first. |
+| P1 | **Finite-to-uniform mechanism** | Prove a parameter-dependent well-founded ranking, a uniform recurrence exclusion, or a valid compactness argument with closed *realizable* transitions; document why productive cycles rule out all-edge descent. Finite censuses cannot discharge this. | 4,554 corpus, twelve-source physical-mass computations, class-A run-index family and known packet cycles. |
+| P1 | **Shared proof interface across C4/R1/mass/BH** | For each pair of routes, write the exact output/input type and one minimal transfer lemma or a counterexample to the attempted transfer. Physical-mass source loss must be refined to genuine geometric overlaps and then to a word cut before it can imply C4. | #497/#515/#519, #520, #138/#139; keep `zero measure → empty` explicitly invalid. |
+| P1 | **PIP-valid adversarial search** | A deterministic, bounded, cap-aware canonical Mojo generator of exact primitive irreducible Pisot specimens and literal child graphs, independently checked by an existing Python oracle when valuable. Record the *first failed premise* (PIP, realization, closure, strictness, invariant, conclusion). A real PIP counterexample to a stated intermediate lemma is the valuable output; a budget cap is not a verdict. | Existing corpus infrastructure; second-letter, depth-one, naive six-state, strong G/F, zero-defect/different-parent, and R1 productivity-direction controls. |
+
+### Composition and acceptance protocol
+
+1. **Before new code:** inspect [side notes](side-notes-ledger.md), proof-bank
+   inventory, exact main/PR revisions and the targeted primary literature
+   stop/go note required by `AGENTS.md`. Reuse the packet schema, Mojo
+   engines, independent oracles, Lean/Quint definitions and prior negative
+   controls rather than re-enumerating standing corpora.
+2. **Define a typed proof obligation:** identify source substitution and
+   hypothesis class; actual occurrence address/parent/ordinal/child;
+   residual Parikh and orientation; physical strictness; target predicate;
+   SCC closure; finite/uniform and `∃`/`∀` quantifiers. Record the exact
+   missing witness or theorem. An affine or quotient transition is not a
+   literal factorization edge.
+3. **Try refutation first:** preserve the non-PIP flat hub, rank-three
+   delayed-synchronization, phase-flat cycle, source-prefix-zero/different-parent,
+   binary nonproductive descendant, and B′/bounded-return controls at their
+   expected rejection layer. A failed stronger statement is research evidence,
+   not a test to weaken until it passes.
+4. **Verification evidence:** record exact source SHA, canonical generator
+   revision, deterministic input bound/cap, source rows, hashes, independent
+   oracle result, Lean kernel theorem scope, Quint model scope, and exact-head
+   hosted workflows. Distinguish reported, locally replayed, CI-passed,
+   merged, and independently human-reviewed evidence.
+5. **Promotion:** no status promotion from PR merge, issue closure, finite
+   census, candidate good-edge mask, selected path, null measure, or passing
+   tests. Change governed claims only after proving *all* transfer premises,
+   and regenerate ledgers from their authoritative source.
+
+**Generality firewall:** never introduce global unimodularity, rational
+tile-length independence, independently assumed unique decodability, seed
+legality, finite injectivity, a Euclidean-only non-unit model, or the retired
+predecessor-contraction argument. Preserve the exact Barge–Diamond,
+strong/overlap coincidence, and non-unit realization hypotheses. Independent
+human review is final validation debt, not a gate on continued development.
+
+**Immediate sequence:** (1) quantifier/transfer audit with minimal formal
+countermodels; (2) realization-preserving packet square; (3) ordered hub-word
+invariant tested on the known controls; (4) uniformization/compactness only
+after the realization premise is explicit; (5) source-bound synthesis across
+mass, R1, C4 and BH. No additional standing-corpus expansion absent a new
+discriminating theorem or failure mode.
+
+---
+
 **2026-11-02 prioritized continuation (read before the historical October
 paragraphs below):** Follow the
 [C4 ordered-word/strict-component contract](c4-ordered-word-completion-interface-2026-11-02.md)
