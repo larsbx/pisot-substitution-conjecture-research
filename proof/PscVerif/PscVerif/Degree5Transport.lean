@@ -15,6 +15,14 @@ variable {S : ChildSystem (Fin 3)} (P : Normalisation S)
 noncomputable def columns : (P.Rep → ℚ) →ₗ[ℚ] Vec5 :=
   Fintype.linearCombination ℚ fun j => k5Vec j.1.1 j.1.2
 
+theorem range_le_lie (hbal : ∀ T ∈ S.C, Equiv4 T.1 T.2) :
+    LinearMap.range (columns P) ≤ shuffleAnnih5Space := by
+  rintro _ ⟨u, rfl⟩
+  rw [columns, Fintype.linearCombination_apply]
+  apply Submodule.sum_mem
+  intro j _
+  exact shuffleAnnih5Space.smul_mem _ (shuffleAnnih5_k5Vec (hbal j.1 (P.sub j.2)))
+
 noncomputable def signed : (P.Rep → ℚ) →ₗ[ℚ] (P.Rep → ℚ) :=
   Matrix.toLin' (P.Ssign.map (Int.cast : ℤ → ℚ))
 

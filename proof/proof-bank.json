@@ -5863,11 +5863,19 @@
       "declaration": "theorem weight_221_unit (b x y : ℝ) (hb : 1 < b)"
     },
     {
+      "name": "Psc.Degree5Transport.range_le_lie",
+      "module": "PscVerif.Degree5Transport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5Transport.lean",
+      "line": 18,
+      "declaration": "theorem range_le_lie (hbal : ∀ T ∈ S.C, Equiv4 T.1 T.2) :"
+    },
+    {
       "name": "Psc.Degree5Transport.tensor_apply",
       "module": "PscVerif.Degree5Transport",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Transport.lean",
-      "line": 27,
+      "line": 35,
       "declaration": "theorem tensor_apply (M : Matrix (Fin 3) (Fin 3) ℚ) (v : Vec5) :"
     },
     {
@@ -5875,7 +5883,7 @@
       "module": "PscVerif.Degree5Transport",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Transport.lean",
-      "line": 37,
+      "line": 45,
       "declaration": "theorem intertwine (hbal : ∀ T ∈ S.C, Equiv4 T.1 T.2) :"
     },
     {
@@ -5883,7 +5891,7 @@
       "module": "PscVerif.Degree5Transport",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Transport.lean",
-      "line": 43,
+      "line": 51,
       "declaration": "theorem kernel_invariant (hbal : ∀ T ∈ S.C, Equiv4 T.1 T.2) :"
     },
     {
@@ -5891,7 +5899,7 @@
       "module": "PscVerif.Degree5Transport",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Transport.lean",
-      "line": 51,
+      "line": 59,
       "declaration": "theorem range_invariant (hbal : ∀ T ∈ S.C, Equiv4 T.1 T.2) :"
     },
     {
@@ -5899,7 +5907,7 @@
       "module": "PscVerif.Degree5Transport",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Transport.lean",
-      "line": 57,
+      "line": 65,
       "declaration": "theorem quotient_intertwines_range (hbal : ∀ T ∈ S.C, Equiv4 T.1 T.2)"
     },
     {
@@ -5907,7 +5915,7 @@
       "module": "PscVerif.Degree5Transport",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Transport.lean",
-      "line": 73,
+      "line": 81,
       "declaration": "theorem q5_dvd_signed (hbal : ∀ T ∈ S.C, Equiv4 T.1 T.2) :"
     },
     {
@@ -5915,7 +5923,7 @@
       "module": "PscVerif.Degree5Transport",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Transport.lean",
-      "line": 77,
+      "line": 85,
       "declaration": "theorem q5_dvd_tensor (hbal : ∀ T ∈ S.C, Equiv4 T.1 T.2) :"
     },
     {
@@ -5923,7 +5931,7 @@
       "module": "PscVerif.Degree5Transport",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Transport.lean",
-      "line": 81,
+      "line": 89,
       "declaration": "theorem exists_root_q5 (hbal : ∀ T ∈ S.C, Equiv4 T.1 T.2)"
     },
     {
@@ -5931,7 +5939,7 @@
       "module": "PscVerif.Degree5Transport",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Transport.lean",
-      "line": 90,
+      "line": 98,
       "declaration": "theorem weight_orbit_signed (hbal : ∀ T ∈ S.C, Equiv4 T.1 T.2)"
     },
     {
@@ -17201,7 +17209,7 @@
     "proof/PscVerif/PscVerif/Degree4Floor.lean": "bc34017a101d388e497a394710ed7661250aaa1fb049a9454dba17f308515006",
     "proof/PscVerif/PscVerif/Degree4Sector.lean": "7afc131498833c8346b21872981c6f7aa4b7a736fdc952ff84b9b8c071b86f63",
     "proof/PscVerif/PscVerif/Degree5Sector.lean": "1c4fd12cac7317ba0e724f4c3b757a1e06fdacd5b52f575d5549a83244d6ab46",
-    "proof/PscVerif/PscVerif/Degree5Transport.lean": "2ca83daf6c3cd555684ad915035435115f77551fdc13f2140a6c1fb492404b02",
+    "proof/PscVerif/PscVerif/Degree5Transport.lean": "ff9e4d539840b0dbf4117113a9b78770abb0621d3a84114d2bdfb2756cb2cc62",
     "proof/PscVerif/PscVerif/Descendants.lean": "6641b65d81d90be34c13937b6ab8ebc029fcce91babd7c2ce398738dac783a40",
     "proof/PscVerif/PscVerif/FixedPointLimit.lean": "cd4a824f288d4c1072fd375e0e7b9014f56028e23e00cb4336fd678a210b7bbe",
     "proof/PscVerif/PscVerif/GaloisOrbit.lean": "4d3b5474dbd14205f4bf2d33e98149ebbdd6d7e0fb8fd3a33787b878bcad5f07",

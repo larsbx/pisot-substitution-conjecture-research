@@ -29,7 +29,7 @@ Use the existing degree-four proof-bank components as the interface.
 first isomorphism. The rational image polynomial `q5` divides the signed
 and ambient tensor characteristic polynomials. The orbit lemma transports
 known weight roots to the signed spectrum. The next step must show
-root is a weight on the **Lie** space, with the pure fifth powers excluded.
+that each image root is a weight on the **Lie** space, with the pure fifth powers excluded.
 Then use the existing `GaloisOrbit.orbit_exponent_on_beta` to move an exponent
 onto the Perron root in the rational characteristic polynomial. Conjugation
 transports a spectral value. When different contents have the same value,
