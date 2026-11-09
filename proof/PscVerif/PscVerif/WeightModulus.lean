@@ -97,7 +97,7 @@ theorem inv_lt_norm_right (hβ : 1 < β) (hα : ‖α‖ < 1)
   have hdet' : (β : ℂ) * γ * α = d := by rw [← hdet]; ring
   exact inv_lt_norm_left hβ hα hdet' hd
 
-private theorem cube_bound (hβ : 1 < β) {x : ℂ} (hx : β⁻¹ < ‖x‖) :
+theorem cube_bound (hβ : 1 < β) {x : ℂ} (hx : β⁻¹ < ‖x‖) :
     β ^ 2 < ‖(β : ℂ) ^ 3 * x‖ := by
   have hβ0 : 0 < β := by linarith
   rw [norm_mul, norm_pow, Complex.norm_real, Real.norm_eq_abs, abs_of_pos hβ0]

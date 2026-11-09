@@ -210,7 +210,7 @@ The following are not claimed:
 ## 8. Lean formalization (`proof/PscVerif`)
 
 The `PscVerif` library (51 modules, those below among them) passes the proof-bank
-axiom audit: 3527 declarations, 2661 theorems, using only `propext`,
+axiom audit: 3526 declarations, 2660 theorems, using only `propext`,
 `Classical.choice` and `Quot.sound`; no `sorry`, no local axioms, no
 `native_decide` (audit of 2026-11-09; it was 45 modules, 2368 declarations,
 1875 theorems before `StrictSystem`, `Degree3Catalogue` and `ReductioControls`

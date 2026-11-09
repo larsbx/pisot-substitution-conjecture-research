@@ -4615,19 +4615,11 @@
       "declaration": "theorem norm_lt_norm_sq_mul {β α γ δ : ℂ} (hα1 : ‖α‖ < 1) (hγ1 : ‖γ‖ < 1)"
     },
     {
-      "name": "Psc.Degree3Sector.aeval_of_eq",
-      "module": "PscVerif.Degree3Sector",
-      "private": true,
-      "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 190,
-      "declaration": "private theorem aeval_of_eq {q : ℚ[X]} {u v : ℂ} (h : u = v) (hu : aeval u q = 0) :"
-    },
-    {
       "name": "Psc.Degree3Sector.orbit_210_root",
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 202,
+      "line": 198,
       "declaration": "theorem orbit_210_root (q : ℚ[X]) (a b c : ℕ)"
     },
     {
@@ -4635,7 +4627,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 225,
+      "line": 221,
       "declaration": "theorem shape3_root_eq (hα1 : ‖α‖ < 1) (hγ1 : ‖γ‖ < 1) (hdet : 1 ≤ ‖β * α * γ‖) (q : ℚ[X])"
     },
     {
@@ -4643,7 +4635,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 247,
+      "line": 243,
       "declaration": "theorem norm_mul_lt_one {β α γ : ℂ} (hβ1 : ‖β‖ < 1) (hα1 : ‖α‖ < 1) (hγ1 : ‖γ‖ < 1) :"
     },
     {
@@ -4651,7 +4643,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 255,
+      "line": 251,
       "declaration": "theorem one_le_abs_det (A : Matrix (Fin 3) (Fin 3) ℤ)"
     },
     {
@@ -4659,7 +4651,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 269,
+      "line": 265,
       "declaration": "theorem eq_X_sub_C_pow_of_roots {p : ℚ[X]} (hp : p.Monic) (d : ℚ)"
     },
     {
@@ -4667,7 +4659,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 285,
+      "line": 281,
       "declaration": "theorem charpoly_smul_one {K V : Type*} [Field K] [AddCommGroup V] [Module K V]"
     },
     {
@@ -4675,7 +4667,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 302,
+      "line": 298,
       "declaration": "theorem sub_smul_eq_zero_of_pow {F V ι : Type*} [Field F] [AddCommGroup V] [Module F V]"
     },
     {
@@ -4683,7 +4675,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 334,
+      "line": 330,
       "declaration": "theorem coe_pow_restrict_sub_smul {K V : Type*} [Field K] [AddCommGroup V] [Module K V]"
     },
     {
@@ -4691,7 +4683,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 343,
+      "line": 339,
       "declaration": "theorem coe_pow_phi3Lie_sub {F : Type*} [Field F] [CharZero F] (M : Matrix (Fin 3) (Fin 3) F)"
     },
     {
@@ -4699,7 +4691,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 348,
+      "line": 344,
       "declaration": "theorem map3_smul {R S : Type*} [CommRing R] [CommRing S] (φ : R →+* S) (c : R)"
     },
     {
@@ -4707,7 +4699,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 352,
+      "line": 348,
       "declaration": "theorem map3_eq_zero {R S : Type*} [CommRing R] [CommRing S] {φ : R →+* S}"
     },
     {
@@ -4715,7 +4707,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 358,
+      "line": 354,
       "declaration": "theorem map3_pow_sub_smul {R S : Type*} [CommRing R] [CommRing S] (φ : R →+* S)"
     },
     {
@@ -4723,7 +4715,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 374,
+      "line": 370,
       "declaration": "theorem phi3Lie_sub_smul_of_pow (M : Matrix (Fin 3) (Fin 3) ℚ) {L : Type*} [Field L] [CharZero L]"
     },
     {
@@ -4731,7 +4723,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 420,
+      "line": 416,
       "declaration": "theorem resCharpoly_monic : (resCharpoly φ hW).Monic := LinearMap.charpoly_monic _"
     },
     {
@@ -4739,7 +4731,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 422,
+      "line": 418,
       "declaration": "theorem resCharpoly_natDegree : (resCharpoly φ hW).natDegree = Module.finrank K W :="
     },
     {
@@ -4747,7 +4739,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 425,
+      "line": 421,
       "declaration": "theorem resCharpoly_dvd : resCharpoly φ hW ∣ φ.charpoly := charpoly_restrict_dvd φ W hW"
     },
     {
@@ -4755,7 +4747,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 429,
+      "line": 425,
       "declaration": "theorem pow_sub_smul_apply_eq_zero (c : K) (n : ℕ) (h : resCharpoly φ hW = (X - C c) ^ n)"
     },
     {
@@ -4763,7 +4755,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 440,
+      "line": 436,
       "declaration": "theorem resCharpoly_of_le_ker (c : K) (hle : W ≤ LinearMap.ker (φ - c • 1)) :"
     },
     {
@@ -4771,7 +4763,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 452,
+      "line": 448,
       "declaration": "theorem invariant_of_le_ker {W : Submodule K V} (c : K) (hle : W ≤ LinearMap.ker (φ - c • 1)) :"
     },
     {
@@ -4779,7 +4771,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 463,
+      "line": 459,
       "declaration": "theorem weights_ne_det {β α γ : ℂ} (h0 : β * α * γ ≠ 0) (hβα : β ≠ α) (hβγ : β ≠ γ)"
     },
     {
@@ -4787,7 +4779,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 490,
+      "line": 486,
       "declaration": "theorem le_two_of_pow_dvd {M : Matrix (Fin 3) (Fin 3) ℚ} {β α γ : ℂ}"
     },
     {
@@ -4795,7 +4787,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 522,
+      "line": 518,
       "declaration": "theorem finrank_ker_sub_det_le_two {M : Matrix (Fin 3) (Fin 3) ℚ} {β α γ : ℂ}"
     },
     {
@@ -4803,7 +4795,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 540,
+      "line": 536,
       "declaration": "theorem finrank_ker_sub_det_eq_two {M : Matrix (Fin 3) (Fin 3) ℚ} {β α γ : ℂ}"
     },
     {
@@ -4811,7 +4803,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 579,
+      "line": 575,
       "declaration": "theorem root_restrict_eq_det"
     },
     {
@@ -4819,7 +4811,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 592,
+      "line": 588,
       "declaration": "theorem charpoly_restrict_eq_pow"
     },
     {
@@ -4827,7 +4819,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 602,
+      "line": 598,
       "declaration": "theorem le_ker_sub_det"
     },
     {
@@ -4835,7 +4827,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 614,
+      "line": 610,
       "declaration": "theorem finrank_le_two"
     },
     {
@@ -4843,7 +4835,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 627,
+      "line": 623,
       "declaration": "theorem bound_of_le_ker (hle : W ≤ LinearMap.ker (phi3Lie M - M.det • 1)) :"
     },
     {
@@ -4851,7 +4843,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 638,
+      "line": 634,
       "declaration": "theorem bound_iff_le_ker :"
     },
     {
@@ -4859,7 +4851,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 655,
+      "line": 651,
       "declaration": "theorem q3_eq_resCharpoly :"
     },
     {
@@ -4867,7 +4859,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 662,
+      "line": 658,
       "declaration": "theorem one_le_abs_det_incQ (hM : Irreducible (incQ S).charpoly) : 1 ≤ |(incQ S).det| := by"
     },
     {
@@ -4875,7 +4867,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 673,
+      "line": 669,
       "declaration": "theorem roots_ssign_le (ℓ : Fin 3 → ℝ) (hℓ : ∀ a, 0 < ℓ a) (b : ℝ)"
     },
     {
@@ -4883,7 +4875,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 681,
+      "line": 677,
       "declaration": "theorem phi3_k3Vec_of_le_ker (c : ℚ)"
     },
     {
@@ -4891,7 +4883,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 701,
+      "line": 697,
       "declaration": "theorem bound_q3 :"
     },
     {
@@ -4899,7 +4891,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 709,
+      "line": 705,
       "declaration": "theorem root_q3_eq_det {z : ℂ} (hz : aeval z (q3 P hbal) = 0) : z = ((incQ S).det : ℂ) :="
     },
     {
@@ -4907,7 +4899,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 714,
+      "line": 710,
       "declaration": "theorem q3_eq_pow :"
     },
     {
@@ -4915,7 +4907,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 720,
+      "line": 716,
       "declaration": "theorem range_q3m_le_ker :"
     },
     {
@@ -4923,7 +4915,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 728,
+      "line": 724,
       "declaration": "theorem phi3_k3Vec_eq_det (j : P.Rep) :"
     },
     {
@@ -4931,7 +4923,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 734,
+      "line": 730,
       "declaration": "theorem rank_q3_le_two : Module.finrank ℚ (LinearMap.range (Q3m P hbal)) ≤ 2 :="
     },
     {
@@ -4939,7 +4931,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 739,
+      "line": 735,
       "declaration": "theorem deg23_iii :"
     },
     {
@@ -4947,7 +4939,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 751,
+      "line": 747,
       "declaration": "theorem deg23_iii_of_ne (hK : ∃ j : P.Rep, Lie3.k3Vec j.1.1 j.1.2 ≠ 0) :"
     },
     {
@@ -4955,7 +4947,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 772,
+      "line": 768,
       "declaration": "theorem perron_eq_root (hM : Irreducible (incQ S).charpoly) {β α γ : ℂ}"
     },
     {
@@ -4963,7 +4955,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 806,
+      "line": 802,
       "declaration": "theorem deg23_iii_of_perron (hM : Irreducible (incQ S).charpoly) {β α γ : ℂ}"
     },
     {
@@ -4971,7 +4963,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 825,
+      "line": 821,
       "declaration": "theorem deg23_iii_of_primitive (hprim : ∃ k ≥ 1, ∀ a c, 0 < (inc S.s ^ k) a c)"
     },
     {
@@ -4979,7 +4971,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 856,
+      "line": 852,
       "declaration": "theorem m0_hyps : Irreducible M0.charpoly ∧ ∃ β α γ : ℂ,"
     },
     {
@@ -4987,7 +4979,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 875,
+      "line": 871,
       "declaration": "theorem m0_phi3_t13 :"
     },
     {
@@ -4995,7 +4987,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 890,
+      "line": 886,
       "declaration": "theorem t13Lie_ne : t13Lie ≠ 0 := by"
     },
     {
@@ -5003,7 +4995,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 900,
+      "line": 896,
       "declaration": "theorem W0_le_ker : W0 ≤ LinearMap.ker (phi3Lie M0 - M0.det • 1) := by"
     },
     {
@@ -5011,7 +5003,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 906,
+      "line": 902,
       "declaration": "theorem W0_invariant : ∀ v ∈ W0, phi3Lie M0 v ∈ W0 :="
     },
     {
@@ -5019,7 +5011,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 909,
+      "line": 905,
       "declaration": "theorem W0_ne_bot : W0 ≠ ⊥ := by"
     },
     {
@@ -5027,7 +5019,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 916,
+      "line": 912,
       "declaration": "theorem m0_control : Irreducible M0.charpoly ∧ ∃ β α γ : ℂ,"
     },
     {
@@ -5035,7 +5027,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 925,
+      "line": 921,
       "declaration": "theorem m0_W0_charpoly : resCharpoly (phi3Lie M0) W0_invariant = X - C M0.det := by"
     },
     {
@@ -5043,7 +5035,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 929,
+      "line": 925,
       "declaration": "theorem top_invariant (M : Matrix (Fin 3) (Fin 3) ℚ) :"
     },
     {
@@ -5051,7 +5043,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 938,
+      "line": 934,
       "declaration": "theorem m0_bound_needed :"
     },
     {
@@ -5059,7 +5051,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 960,
+      "line": 956,
       "declaration": "theorem incQ_wT : incQ wT = 1 := by"
     },
     {
@@ -5067,7 +5059,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 968,
+      "line": 964,
       "declaration": "theorem wT_conclusions :"
     },
     {
@@ -5075,7 +5067,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 992,
+      "line": 988,
       "declaration": "theorem incQ_cyc3 : incQ cyc3Sys = cycM := rfl"
     },
     {
@@ -5083,7 +5075,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 994,
+      "line": 990,
       "declaration": "theorem cycM_det : cycM.det = 1 := by"
     },
     {
@@ -5091,7 +5083,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 998,
+      "line": 994,
       "declaration": "theorem cycM_not_irreducible : ¬ Irreducible cycM.charpoly := by"
     },
     {
@@ -5099,7 +5091,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 1009,
+      "line": 1005,
       "declaration": "theorem cycX_norm (i : Fin 3) : ‖cycX i‖ = 1 :="
     },
     {
@@ -5107,7 +5099,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 1013,
+      "line": 1009,
       "declaration": "theorem cyc3_bound : ∀ μ : ℂ, aeval μ (SsignQ cyc3Norm).charpoly = 0 → ‖μ‖ ≤ ‖cycX 0‖ := by"
     },
     {
@@ -5115,7 +5107,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 1028,
+      "line": 1024,
       "declaration": "theorem cyc3_negative :"
     },
     {
@@ -5123,7 +5115,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 1064,
+      "line": 1060,
       "declaration": "theorem inc_censusSubst :"
     },
     {
@@ -5131,7 +5123,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 1069,
+      "line": 1065,
       "declaration": "theorem censusSubst_primitive : ∃ k ≥ 1, ∀ a c, 0 < (inc censusSubst ^ k) a c :="
     },
     {
@@ -5139,7 +5131,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 1073,
+      "line": 1069,
       "declaration": "theorem census_charpoly : censusQ.charpoly = X ^ 3 - C 2 * X ^ 2 - 1 := by"
     },
     {
@@ -5147,7 +5139,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 1079,
+      "line": 1075,
       "declaration": "theorem census_det : censusQ.det = 1 := by"
     },
     {
@@ -5155,7 +5147,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 1088,
+      "line": 1084,
       "declaration": "theorem census_irreducible : Irreducible censusQ.charpoly := by"
     },
     {
@@ -5163,7 +5155,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 1110,
+      "line": 1106,
       "declaration": "theorem census_aeval (z : ℂ) : aeval z censusQ.charpoly = z ^ 3 - 2 * z ^ 2 - 1 := by"
     },
     {
@@ -5171,7 +5163,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 1114,
+      "line": 1110,
       "declaration": "theorem census_real_root : ∃ b : ℝ, 2 < b ∧ b < 12 / 5 ∧ b ^ 3 - 2 * b ^ 2 - 1 = 0 := by"
     },
     {
@@ -5179,7 +5171,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 1125,
+      "line": 1121,
       "declaration": "theorem census_other {b : ℝ} (hb2 : 2 < b) (hb3 : b < 12 / 5) (hb : b ^ 3 - 2 * b ^ 2 - 1 = 0)"
     },
     {
@@ -5187,7 +5179,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 1157,
+      "line": 1153,
       "declaration": "theorem census_pisot : ∃ b : ℝ, 2 < b ∧ ∃ α γ : ℂ, aeval (b : ℂ) censusQ.charpoly = 0 ∧"
     },
     {
@@ -5195,7 +5187,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 1177,
+      "line": 1173,
       "declaration": "theorem census_equiv2 : Equiv2 censusPair.1 censusPair.2 := by unfold Equiv2 Equiv1; decide"
     },
     {
@@ -5203,7 +5195,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 1179,
+      "line": 1175,
       "declaration": "theorem census_k3_001 : Psc.Intertwiner3.K3 censusPair.1 censusPair.2 0 0 1 = 0 := by decide"
     },
     {
@@ -5211,7 +5203,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 1181,
+      "line": 1177,
       "declaration": "theorem census_k3_001_swap : Psc.Intertwiner3.K3 censusPair.2 censusPair.1 0 0 1 = 0 := by"
     },
     {
@@ -5219,7 +5211,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 1185,
+      "line": 1181,
       "declaration": "theorem census_phi3_001 : (∑ x : Fin 3, ∑ y : Fin 3, ∑ z : Fin 3,"
     },
     {
@@ -5227,7 +5219,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 1190,
+      "line": 1186,
       "declaration": "theorem census_phi3_001_swap : (∑ x : Fin 3, ∑ y : Fin 3, ∑ z : Fin 3,"
     },
     {
@@ -5235,7 +5227,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 1196,
+      "line": 1192,
       "declaration": "theorem census_k3_ne : Lie3.k3Vec censusPair.1 censusPair.2 ≠ 0 := by"
     },
     {
@@ -5243,7 +5235,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 1205,
+      "line": 1201,
       "declaration": "theorem phi3_ne_smul_of_coord {S : ChildSystem (Fin 3)} (hs : S.s = censusSubst)"
     },
     {
@@ -5251,7 +5243,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 1234,
+      "line": 1230,
       "declaration": "theorem census_not_mem (S : ChildSystem (Fin 3)) (hs : S.s = censusSubst) (P : Normalisation S)"
     },
     {
@@ -5259,7 +5251,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 1254,
+      "line": 1250,
       "declaration": "theorem census_state : Equiv2 censusPair.1 censusPair.2 ∧"
     },
     {
@@ -5267,7 +5259,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 1281,
+      "line": 1277,
       "declaration": "theorem censusEmpty_equiv2 : ∀ T ∈ censusEmpty.C, Equiv2 T.1 T.2 := by simp [censusEmpty]"
     },
     {
@@ -5275,7 +5267,7 @@
       "module": "PscVerif.Degree3Sector",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree3Sector.lean",
-      "line": 1291,
+      "line": 1287,
       "declaration": "theorem census_empty_control :"
     },
     {
@@ -6417,10 +6409,10 @@
     {
       "name": "Psc.GaloisOrbit.of_eq",
       "module": "PscVerif.GaloisOrbit",
-      "private": true,
+      "private": false,
       "source": "proof/PscVerif/PscVerif/GaloisOrbit.lean",
       "line": 223,
-      "declaration": "private theorem of_eq {q : ℚ[X]} {u v : ℂ} (h : u = v) (hu : aeval u q = 0) : aeval v q = 0 := h ▸ hu"
+      "declaration": "theorem of_eq {q : ℚ[X]} {u v : ℂ} (h : u = v) (hu : aeval u q = 0) : aeval v q = 0 := h ▸ hu"
     },
     {
       "name": "Psc.GaloisOrbit.orbit_exponent_on_beta",
@@ -14593,10 +14585,10 @@
     {
       "name": "Psc.WeightModulus.cube_bound",
       "module": "PscVerif.WeightModulus",
-      "private": true,
+      "private": false,
       "source": "proof/PscVerif/PscVerif/WeightModulus.lean",
       "line": 100,
-      "declaration": "private theorem cube_bound (hβ : 1 < β) {x : ℂ} (hx : β⁻¹ < ‖x‖) :"
+      "declaration": "theorem cube_bound (hβ : 1 < β) {x : ℂ} (hx : β⁻¹ < ‖x‖) :"
     },
     {
       "name": "Psc.WeightModulus.weight_310",
@@ -16699,12 +16691,12 @@
     "proof/PscVerif/PscVerif/Defect4Lie.lean": "edfd4b1eb95fb2ecc729712712643d8e5e544346c0c65a109d0991c5f2b76f37",
     "proof/PscVerif/PscVerif/Degree2Sector.lean": "3adc084b817674fa4dfdb54cc2ac68dfdf6ff66bc198a316e834af435c7c19df",
     "proof/PscVerif/PscVerif/Degree3Catalogue.lean": "f582dbaaa9230b0110045b771db1087b240bdddcd576640c3373bc356b8be030",
-    "proof/PscVerif/PscVerif/Degree3Sector.lean": "0397c9df3eae27d7fb943c48dd5c869688ab3241c7659d4a68b591cc06a269c8",
+    "proof/PscVerif/PscVerif/Degree3Sector.lean": "02875b90e69cf0089f1cbfa1f2a0de2fabc121cb022cc2a23fb5406d69c9e414",
     "proof/PscVerif/PscVerif/Degree4Floor.lean": "bc34017a101d388e497a394710ed7661250aaa1fb049a9454dba17f308515006",
     "proof/PscVerif/PscVerif/Degree4Sector.lean": "7afc131498833c8346b21872981c6f7aa4b7a736fdc952ff84b9b8c071b86f63",
     "proof/PscVerif/PscVerif/Descendants.lean": "6641b65d81d90be34c13937b6ab8ebc029fcce91babd7c2ce398738dac783a40",
     "proof/PscVerif/PscVerif/FixedPointLimit.lean": "cd4a824f288d4c1072fd375e0e7b9014f56028e23e00cb4336fd678a210b7bbe",
-    "proof/PscVerif/PscVerif/GaloisOrbit.lean": "d5970d52b2c8d662336218b09b21eae633e71387c3bae334f54d3d418261211b",
+    "proof/PscVerif/PscVerif/GaloisOrbit.lean": "4d3b5474dbd14205f4bf2d33e98149ebbdd6d7e0fb8fd3a33787b878bcad5f07",
     "proof/PscVerif/PscVerif/Incidence.lean": "b0c865d4177dac9485a2ddbd35201143ee3d263ad735af05785b077e1f6bd6ff",
     "proof/PscVerif/PscVerif/Intertwiner2.lean": "4fdc6a9497a5c3fd4b39101b033e6814b70aec8391f0cbc8691028319b1143d6",
     "proof/PscVerif/PscVerif/Intertwiner3.lean": "23a3732cd2c16cd77175c71068e7d5fca3dc1df1a0c8ac11e94b5adfb988fde7",
@@ -16733,7 +16725,7 @@
     "proof/PscVerif/PscVerif/Spectral.lean": "f7a43295221c293c670593d4be8e916d87ce51f3241ec911456ef4a4ce0b39d3",
     "proof/PscVerif/PscVerif/StrictSystem.lean": "657d6c9f4041b04a2e478f19dea2ecb813952caf2fe1455789778306ad6c3a48",
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
-    "proof/PscVerif/PscVerif/WeightModulus.lean": "8d50416f126e7806f82e5db0405cbc0e552a6685e6c8240cba31c7a4441a494e",
+    "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif.lean": "d65dbbce4acabb4d59462af0d5050bb82316fb72417b9dc9ccae4355aba0781d",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",

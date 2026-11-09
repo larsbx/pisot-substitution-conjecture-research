@@ -220,7 +220,7 @@ local macro "perm_close" : tactic =>
       | exact of_eq (by ring1) hm))
 
 /-- Transport a vanishing statement along an equality of evaluation points. -/
-private theorem of_eq {q : ℚ[X]} {u v : ℂ} (h : u = v) (hu : aeval u q = 0) : aeval v q = 0 := h ▸ hu
+theorem of_eq {q : ℚ[X]} {u v : ℂ} (h : u = v) (hu : aeval u q = 0) : aeval v q = 0 := h ▸ hu
 
 section Orbit
 variable {f : ℚ[X]} (hf : Irreducible f) (hdeg : f.natDegree = 3) {β α γ : ℂ}

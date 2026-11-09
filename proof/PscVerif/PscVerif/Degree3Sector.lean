@@ -186,10 +186,6 @@ theorem norm_lt_norm_sq_mul {β α γ δ : ℂ} (hα1 : ‖α‖ < 1) (hγ1 : �
   rw [e]
   exact lt_mul_of_one_lt_right hβ0 hδ1
 
-/-- Transport a vanishing statement along an equality of evaluation points. -/
-private theorem aeval_of_eq {q : ℚ[X]} {u v : ℂ} (h : u = v) (hu : aeval u q = 0) :
-    aeval v q = 0 := h ▸ hu
-
 section Orbit
 variable {f : ℚ[X]} (hf : Irreducible f) (hdeg : f.natDegree = 3) {β α γ : ℂ}
     (hβ : aeval β f = 0) (hα : aeval α f = 0) (hγ : aeval γ f = 0)
@@ -207,16 +203,16 @@ theorem orbit_210_root (q : ℚ[X]) (a b c : ℕ)
   have h1 := Psc.GaloisOrbit.orbit_exponent_on_beta hf hdeg hβ hα hγ hβα hβγ hαγ q a b c hq
   rcases habc with h | h | h | h | h | h <;> simp only [Prod.mk.injEq] at h <;>
     obtain ⟨rfl, rfl, rfl⟩ := h
-  · exact ⟨α, Or.inl rfl, aeval_of_eq (by ring1) hq⟩
-  · exact ⟨γ, Or.inr rfl, aeval_of_eq (by ring1) hq⟩
+  · exact ⟨α, Or.inl rfl, Psc.GaloisOrbit.of_eq (by ring1) hq⟩
+  · exact ⟨γ, Or.inr rfl, Psc.GaloisOrbit.of_eq (by ring1) hq⟩
   · obtain ⟨x, y, hxy, hm⟩ := h1.1
-    exact ⟨x, hxy.elim (fun h => Or.inl h.1) (fun h => Or.inr h.1), aeval_of_eq (by ring1) hm⟩
+    exact ⟨x, hxy.elim (fun h => Or.inl h.1) (fun h => Or.inr h.1), Psc.GaloisOrbit.of_eq (by ring1) hm⟩
   · obtain ⟨x, y, hxy, hm⟩ := h1.1
-    exact ⟨y, hxy.elim (fun h => Or.inr h.2) (fun h => Or.inl h.2), aeval_of_eq (by ring1) hm⟩
+    exact ⟨y, hxy.elim (fun h => Or.inr h.2) (fun h => Or.inl h.2), Psc.GaloisOrbit.of_eq (by ring1) hm⟩
   · obtain ⟨x, y, hxy, hm⟩ := h1.2
-    exact ⟨x, hxy.elim (fun h => Or.inl h.1) (fun h => Or.inr h.1), aeval_of_eq (by ring1) hm⟩
+    exact ⟨x, hxy.elim (fun h => Or.inl h.1) (fun h => Or.inr h.1), Psc.GaloisOrbit.of_eq (by ring1) hm⟩
   · obtain ⟨x, y, hxy, hm⟩ := h1.2
-    exact ⟨y, hxy.elim (fun h => Or.inr h.2) (fun h => Or.inl h.2), aeval_of_eq (by ring1) hm⟩
+    exact ⟨y, hxy.elim (fun h => Or.inr h.2) (fun h => Or.inl h.2), Psc.GaloisOrbit.of_eq (by ring1) hm⟩
 
 /-- **A degree-three weight root under the spectral bound is `βαγ`.**  If the rational
 `q` vanishes at `x^κ` (`x = (β, α, γ)`, `κ` of shape `(2,1,0)` or `(1,1,1)`) and every
