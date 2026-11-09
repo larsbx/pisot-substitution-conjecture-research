@@ -95,7 +95,7 @@ A partial Lean binding proves only the listed algebraic component. A source-only
 | OverlapCoincidenceCriterion | imported | none | Lee-Moody-Solomyak, arXiv:0910.4450, Theorem 4.7 and Lemmas 6.8-6.9; Akiyama-Lee, arXiv:1003.2898, Theorem 2.5; docs/review-box-leftmost-ledger-2026-10-08.md, section 1 |
 | OverlapFullRank | proved | none | manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Corollary 5.34; PR #76 |
 | OverlapProductivity | open | none | open conjectural gate, the current shortest-path gate; manuscript Open Problem 5.35; issue #84 |
-| PDS | conditional | none | manuscripts/PSC_balanced_pair_state_2026-09-13.tex, boundary route |
+| PDS | conditional | none | manuscripts/PSC_balanced_pair_state_2026-09-13.tex, boundary route (Theorem thm:main-conditional with Imported Theorem thm:bridge) |
 | PDSFormalProductivityRoute | conditional | none | docs/pds-certificate-from-the-box-automaton-2026-10-07.md, consequence (a); independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending |
 | PDSFormalProductivitySeedRoute | conditional | none | docs/pds-certificate-from-the-box-automaton-2026-10-07.md, consequence (b), with manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Lemma 5.36 and Theorem 5.38; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending |
 | PDSImpliesRepoG1 | proved | none | docs/p1b-vertex-coincidence-box-2026-10-02.md, Theorem 5.1 (Theorem S) with manuscript Proposition 5.47; independently audited 2026-10-04 (docs/side-notes-ledger.md, section 7), human review pending |

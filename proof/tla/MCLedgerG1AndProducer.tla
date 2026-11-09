@@ -67,6 +67,7 @@ Reachable == {
     "SignatureReduction",
     "SinkSCCReduction",
     "SpectralBlackBox",
+    "StandardBPAEquivalence",
     "StrictZipperPeriodicPairForm",
     "SwapOverlapFiniteness",
     "Target1",

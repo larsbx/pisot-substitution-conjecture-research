@@ -194,7 +194,7 @@ RequiresDef == [r \in ResultSet |->
       [] r = "OverlapCoincidenceCriterion" -> {{}}
       [] r = "OverlapFullRank" -> {{}}
       [] r = "OverlapProductivity" -> {{}}
-      [] r = "PDS" -> {{"G1", "SCCProducer"}}
+      [] r = "PDS" -> {{"G1", "SCCProducer", "StandardBPAEquivalence"}}
       [] r = "PDSFormalProductivityRoute" -> {{"FormalProductivity", "BoxAutomatonPDSCertificate"}}
       [] r = "PDSFormalProductivitySeedRoute" -> {{"FormalProductivity", "SwapOverlapFiniteness", "DensityToPDSBridge"}}
       [] r = "PDSImpliesRepoG1" -> {{"CoincidenceRankFibreTheorems", "PeriodicPairOneFibre", "StrictZipperPeriodicPairForm"}}
@@ -365,11 +365,13 @@ FormalProductivityGateAssumed == {
 }
 G1AndC4 == {
     "G1",
-    "C4"
+    "C4",
+    "StandardBPAEquivalence"
 }
 G1AndProducer == {
     "G1",
-    "SCCProducer"
+    "SCCProducer",
+    "StandardBPAEquivalence"
 }
 G1Only == {
     "G1"

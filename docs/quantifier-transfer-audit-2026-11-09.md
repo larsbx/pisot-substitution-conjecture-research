@@ -200,11 +200,26 @@ fails when either is dropped. The theorem is the implication; it establishes
 neither antecedent, and the governed nodes `UniversalAlignedCoincidence` and
 `UniversalBoundaryHitting` are open.
 
+**An imported antecedent the ledger did not name.** The ledger node `PDS`
+(the finite-BPA route, `thm:main-conditional`) listed `G1` and `SCCProducer`
+as its dependencies. The manuscript proof obtains termination with coincidence
+from one swap seed and then applies the imported spectral bridge `thm:bridge`,
+whose ledger node is `StandardBPAEquivalence`; no node depended on it. The
+dependency models `MCLedgerG1AndProducer` and `MCLedgerG1AndC4` therefore
+listed `PDS` as reachable while asserting `StandardBPAEquivalenceNotEstablished`.
+The generator's own convention is that an imported theorem is established only
+by assumption and a route names the import it needs (comment at
+`OverlapGateAssumed` in `tools/make_ledger.py`). The record table now gives
+`PDS` the dependency `StandardBPAEquivalence`, and the two models assume it.
+No status changes: `PDS` stays conditional with the same open premises.
+
 ## 7. Corrections made in this revision
 
 - The three dated corrections of §3.
-- No governed status, no generated ledger surface and no manuscript was
-  changed.
+- The ledger dependency of §6: `tools/make_ledger.py` (record `PDS`,
+  assumption sets `G1AndProducer`, `G1AndC4`), the seven generated surfaces it
+  rewrites, and one comment in `proof/tla/check.sh`.
+- No governed status and no manuscript was changed.
 
 ## 8. Evidence and replay
 
@@ -217,6 +232,9 @@ cd ../../kernel && pixi run --locked mojo run -I . -I tests tests/test_quantifie
 Replayed locally at this revision: the Lean build and axiom audit (4,226
 declarations, 3,194 theorems), and the Mojo test, which passes; two mutated
 copies of the Mojo test (a wrong nonproductive set, a wrong child order) fail.
+For the ledger dependency of §6: `tools/make_ledger.py --check`,
+`tests/test_ledger_generation.py`, and `proof/tla/check.sh` with
+`tla2tools.jar` v1.8.0 (18 models pass; hosted CI fetches the latest release).
 No hosted CI has run on this revision. Independent human review is pending.
 
 The Mojo test is an independent replay of the two literal controls only. Its

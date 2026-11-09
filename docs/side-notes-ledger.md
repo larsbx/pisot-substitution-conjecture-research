@@ -2692,3 +2692,8 @@ claim-ledger promotion. Evidence: `docs/occurrence-path-replay-2026-10-16.md`,
   - **Tooling pitfalls.** `deriving Fintype` on a three-constructor inductive failed in this toolchain (`enumList_nodup` type mismatch); write the instance by hand. `push_neg` is deprecated in favour of `push Not`. A `Prop`-valued structure field such as `target a := a = true` is not unfolded by `decide`; state the unfolded proposition with `show` or a typed binder.
 
   Locator: [audit, part I](quantifier-transfer-audit-2026-11-09.md); [stop/go](quantifier-transfer-audit-stop-go-2026-11-09.md); `proof/PscVerif/PscVerif/{QuantifierInterface,QuantifierBinding}.lean`; `kernel/tests/test_quantifier_controls.mojo`.
+
+- **2026-11-09 — Ledger: the `PDS` node now names the imported balanced-pair criterion it uses.** Found by the quantifier audit ("conditional theorem versus proved antecedent"). `PDS` (finite-BPA route, `thm:main-conditional`) depended on `G1` and `SCCProducer` only, and the import `StandardBPAEquivalence` (`thm:bridge`) had no dependent. So `MCLedgerG1AndProducer` and `MCLedgerG1AndC4` listed `PDS` as reachable while asserting `StandardBPAEquivalenceNotEstablished`. `tools/make_ledger.py` now gives `PDS` that dependency and the two models assume it. No status changes. Local receipts: `make_ledger.py --check`; `tests/test_ledger_generation.py`; `proof/tla/check.sh` with `tla2tools.jar` v1.8.0, 18 models pass.
+  - **Tooling pitfall.** `proof/tla/check.sh` leaves `MCNonProductive_TTrace_*.{bin,tla}` in `proof/tla/` (the expected violation writes a trace). Delete them before `git add -A`.
+
+  Locator: [audit, part I §6](quantifier-transfer-audit-2026-11-09.md); `tools/make_ledger.py`.

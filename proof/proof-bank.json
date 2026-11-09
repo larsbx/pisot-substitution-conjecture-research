@@ -1268,10 +1268,11 @@
     {
       "name": "PDS",
       "status": "conditional",
-      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, boundary route",
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, boundary route (Theorem thm:main-conditional with Imported Theorem thm:bridge)",
       "dependencies": [
         "G1",
-        "SCCProducer"
+        "SCCProducer",
+        "StandardBPAEquivalence"
       ],
       "ledger_node": true,
       "lean_support": {
@@ -19338,7 +19339,7 @@
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
     "proof/proof-bank.toml": "816ffbf106a4bea7faffd6bf4d1121062fb9b0b1df14936c75197bdf00932361",
     "tools/check_lean.sh": "34d3f59b3ee45adcfa8c6b505cf69041566403c1c0a9c7d2246fc7cd6dbd82af",
-    "tools/make_ledger.py": "2d64f2c5e3ee8df0bc709bcb8a09ab435ac0a1e9b9e84e67cbbcfea1ed647f9d",
+    "tools/make_ledger.py": "a3f2bc6883bdcc293b57f9aa88ff81d79f3b0f545b3b8193f04f083544e7e87a",
     "tools/make_proof_bank.py": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8",
     "tools/setup_lean.sh": "b2c35ccc8d0b180a75275f8234f519a00d32efcbc8a9517f8b3d74a96b3ef8da"
   }

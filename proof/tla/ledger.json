@@ -19,14 +19,16 @@
     ],
     "G1AndProducer": [
       "G1",
-      "SCCProducer"
+      "SCCProducer",
+      "StandardBPAEquivalence"
     ],
     "G1Only": [
       "G1"
     ],
     "G1AndC4": [
       "G1",
-      "C4"
+      "C4",
+      "StandardBPAEquivalence"
     ],
     "RenewalGateAssumed": [
       "G1b1BoundedDiscrepancy",
@@ -3228,9 +3230,9 @@
       ]
     },
     "PDS": {
-      "id": "sha256:d2e9c7c7eb3fb748230d2fee0a8b3eca4aa00d88221d749e822e55564e9888ac",
+      "id": "sha256:7bf64a741752b1548e09aa5e1e28271d9d3a46379881f0018c82f7d81b23a036",
       "kind": "repository_theorem",
-      "statement": "pure discrete spectrum follows from G1 and SCC Producer",
+      "statement": "pure discrete spectrum follows from G1 and SCC Producer through the imported balanced-pair criterion",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
@@ -3246,6 +3248,13 @@
           "PDS/SCCProducer",
           "same",
           "accepted"
+        ],
+        [
+          "sha256:12fc08186847f0218dcfeac9e63ef1287ea78c11a15b072d780e834ea202b24e",
+          "the standard balanced-pair algorithm criterion for pure discrete spectrum",
+          "PDS/StandardBPAEquivalence",
+          "same",
+          "accepted"
         ]
       ],
       "evidence": [
@@ -3255,7 +3264,7 @@
         ],
         [
           "source",
-          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, boundary route"
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, boundary route (Theorem thm:main-conditional with Imported Theorem thm:bridge)"
         ]
       ],
       "tags": []

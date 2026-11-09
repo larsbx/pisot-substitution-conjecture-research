@@ -769,11 +769,11 @@
       "kind": "claim",
       "label": "Conditional theorem",
       "provenance": "conditional",
-      "statement": "pure discrete spectrum follows from G1 and SCC Producer",
+      "statement": "pure discrete spectrum follows from G1 and SCC Producer through the imported balanced-pair criterion",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, boundary route",
-      "leaks": "premises not established: G1, SCCProducer"
+      "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, boundary route (Theorem thm:main-conditional with Imported Theorem thm:bridge)",
+      "leaks": "premises not established: G1, SCCProducer, StandardBPAEquivalence"
     },
     {
       "id": "PDSFormalProductivityRoute",
@@ -1854,7 +1854,8 @@
       "provenance": "declared",
       "members": [
         "C4",
-        "G1"
+        "G1",
+        "StandardBPAEquivalence"
       ]
     },
     {
@@ -1864,7 +1865,8 @@
       "provenance": "declared",
       "members": [
         "G1",
-        "SCCProducer"
+        "SCCProducer",
+        "StandardBPAEquivalence"
       ]
     },
     {
@@ -2728,6 +2730,15 @@
       "certainty": 1,
       "use_site": "PDSSpectralRoute/SpectralSCCProducer",
       "leaks": "premise is open"
+    },
+    {
+      "type": "implicative",
+      "source": "StandardBPAEquivalence",
+      "target": "PDS",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "PDS/StandardBPAEquivalence",
+      "leaks": "premise is imported-theorem"
     },
     {
       "type": "implicative",
@@ -3626,6 +3637,22 @@
       "source": "SpectralSCCProducer",
       "target": "SpectralGateAssumed",
       "provenance": "open",
+      "certainty": 1,
+      "use_site": "assumption_sets"
+    },
+    {
+      "type": "part-whole",
+      "source": "StandardBPAEquivalence",
+      "target": "G1AndC4",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "assumption_sets"
+    },
+    {
+      "type": "part-whole",
+      "source": "StandardBPAEquivalence",
+      "target": "G1AndProducer",
+      "provenance": "imported-theorem",
       "certainty": 1,
       "use_site": "assumption_sets"
     },

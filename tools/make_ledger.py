@@ -221,7 +221,11 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
     "C2": (T, "C3-local gives C2", f"{MANUSCRIPT}, boundary route", ("C3Local",), ()),
     "SCCProducer": (T, "SCC Producer / C1 follows from G1, the sink-SCC reduction, and C2", f"{LEDGER_DOC}; manuscript unresolved statements",
                     ("G1", "SinkSCCReduction", "C2"), ("status:open",)),
-    "PDS": (T, "pure discrete spectrum follows from G1 and SCC Producer", f"{MANUSCRIPT}, boundary route", ("G1", "SCCProducer"), ()),
+    # The manuscript proof (thm:main-conditional) shows termination with
+    # coincidence from one swap seed and then applies the imported spectral
+    # bridge (thm:bridge), so the node names that import as a dependency.
+    "PDS": (T, "pure discrete spectrum follows from G1 and SCC Producer through the imported balanced-pair criterion",
+            f"{MANUSCRIPT}, boundary route (Theorem thm:main-conditional with Imported Theorem thm:bridge)", ("G1", "SCCProducer", "StandardBPAEquivalence"), ()),
     # --- literature / repository BPA bridge ---------------------------------------
     "StandardBPAEquivalence": (I, "the standard balanced-pair algorithm criterion for pure discrete spectrum", "docs/bpa-literature-bridge.md and the literature cited there", (), ()),
     "RepoSeedUnionBridge": (T, "the repository seed-union graph is the union of the literature seed graphs", "docs/bpa-literature-bridge.md", (), ()),
@@ -315,9 +319,9 @@ ASSUMPTION_SETS = {
     "ClassDIntegrationAssumed": ["ClassDIntegrationAcceptance"],
     "TwoObstructionsAssumed": ["UniversalAlignedCoincidence", "UniversalBoundaryHitting", "DensityToPDSBridge"],
     "MinusCycleSumAssumed": ["MinusClassDPositiveBCycleSum"],
-    "G1AndProducer": ["G1", "SCCProducer"],
+    "G1AndProducer": ["G1", "SCCProducer", "StandardBPAEquivalence"],
     "G1Only": ["G1"],
-    "G1AndC4": ["G1", "C4"],
+    "G1AndC4": ["G1", "C4", "StandardBPAEquivalence"],
     "RenewalGateAssumed": ["G1b1BoundedDiscrepancy", "G1b2RenewalFiniteness"],
     "SpectralGateAssumed": ["G1", "ConcentrationAuxB", "SpanRichProductivity", "SpectralSCCProducer"],
     # Imported theorems are established only by assumption (ImportedDef, never
