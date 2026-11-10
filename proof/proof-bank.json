@@ -5839,6 +5839,38 @@
       "declaration": "theorem no_220_sector (f : ℚ[X]) (hf : Irreducible f) (hdeg : f.natDegree = 3)"
     },
     {
+      "name": "Psc.Degree5RootLift.power5_map",
+      "module": "PscVerif.Degree5RootLift",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5RootLift.lean",
+      "line": 11,
+      "declaration": "theorem power5_map {K : Type*} [Field K] [CharZero K]"
+    },
+    {
+      "name": "Psc.Degree5RootLift.exists_image_eigenvector",
+      "module": "PscVerif.Degree5RootLift",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5RootLift.lean",
+      "line": 21,
+      "declaration": "theorem exists_image_eigenvector {K : Type*} [Field K] [CharZero K]"
+    },
+    {
+      "name": "Psc.Degree5RootLift.root_q5_is_mixed",
+      "module": "PscVerif.Degree5RootLift",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5RootLift.lean",
+      "line": 87,
+      "declaration": "theorem root_q5_is_mixed {K : Type*} [Field K] [CharZero K]"
+    },
+    {
+      "name": "Psc.Degree5RootLift.exists_signed_mixed_weight",
+      "module": "PscVerif.Degree5RootLift",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5RootLift.lean",
+      "line": 101,
+      "declaration": "theorem exists_signed_mixed_weight {S : ChildSystem (Fin 3)} (P : Normalisation S)"
+    },
+    {
       "name": "Psc.Degree5Sector.reciprocal_lt",
       "module": "PscVerif.Degree5Sector",
       "private": false,
@@ -17320,6 +17352,7 @@
     "proof/PscVerif/PscVerif/Degree3Sector.lean": "02875b90e69cf0089f1cbfa1f2a0de2fabc121cb022cc2a23fb5406d69c9e414",
     "proof/PscVerif/PscVerif/Degree4Floor.lean": "bc34017a101d388e497a394710ed7661250aaa1fb049a9454dba17f308515006",
     "proof/PscVerif/PscVerif/Degree4Sector.lean": "7afc131498833c8346b21872981c6f7aa4b7a736fdc952ff84b9b8c071b86f63",
+    "proof/PscVerif/PscVerif/Degree5RootLift.lean": "c5ba63fbb4a6c046777e94c3d61c5e0892ea3baf3f1f5be4881560ee87662bdd",
     "proof/PscVerif/PscVerif/Degree5Sector.lean": "1c4fd12cac7317ba0e724f4c3b757a1e06fdacd5b52f575d5549a83244d6ab46",
     "proof/PscVerif/PscVerif/Degree5Transport.lean": "1e5e153ac4ba75582d7b4133c8fc4f035b6313b86be83649a49c0555cdfe444b",
     "proof/PscVerif/PscVerif/Degree5Weights.lean": "b53740ff569e9e0c6fdaf9ab99815d9c04396c729f850f138b14b5549d827b84",
@@ -17358,7 +17391,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "b6899a246ec35eabc5aa33b8aac38732838c7126d0583460c0838917ef5bdb78",
+    "proof/PscVerif/PscVerif.lean": "91f67e46efda797f75ad3697938eb41c94d24dd613b333581d71c5c9659da03e",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

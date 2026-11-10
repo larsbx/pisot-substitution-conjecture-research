@@ -28,8 +28,10 @@ Use the existing degree-four proof-bank components as the interface.
 `Degree5Transport.quotient_intertwines_range` supplies the equivariant
 first isomorphism. The rational image polynomial `q5` divides the signed
 and ambient tensor characteristic polynomials. The orbit lemma transports
-known weight roots to the signed spectrum. The next step must show
-that each image root is a weight on the **Lie** space, with the pure fifth powers excluded.
+known weight roots to the signed spectrum. The root lift and Lie classification
+below show that each image root has a mixed weight. Pure word coordinates
+vanish in the transported eigenvector even if a pure monomial has the same
+numerical value as a mixed weight.
 Then use the existing `GaloisOrbit.orbit_exponent_on_beta` to move an exponent
 onto the Perron root in the rational characteristic polynomial. Conjugation
 transports a spectral value. When different contents have the same value,
@@ -101,11 +103,26 @@ diagonal control tests the distinct-root premise alone.
 
 ### Conditional restriction on the rational image
 
-The remaining Lean interface is to lift a root of `q5` to a nonzero
-splitting-field eigenvector of the actual defect image and exhibit its
-Lyndon combination there. The eigenvector theorem can then be used with
-the existing Galois transport. The following deductions are conditional on
-that interface and the signed Perron bound.
+`Degree5RootLift.exists_image_eigenvector` lifts a root of `q5` to a
+nonzero eigenvector in the scalar-extended defect image and exhibits its
+Lyndon combination. In a rational basis of the image, let `A` be the
+restricted action, `B` the inclusion into word coordinates and `T` the
+ambient tensor action. Then `TB = BA`. The inclusion admits a rational
+left inverse `C` with `CB = I`. Both matrix identities survive scalar
+extension. A nonzero eigenvector of the extended `A` therefore maps to a
+nonzero eigenvector of the extended `T` inside the image. Its Lyndon
+coefficients come from the verified rational brackets on the basis vectors.
+
+This step must use the image polynomial itself. For a projection from
+`diag(2,3)` onto its first coordinate, the source has a root at 3 and the
+image has no such root. A source eigenvector at 3 lies in the kernel.
+`root_q5_is_mixed` applies the classification to each image root given
+three distinct incidence roots. `exists_signed_mixed_weight` supplies a
+common image and signed spectral value when there is a nonzero actual
+column and the incidence cubic is irreducible.
+
+The following Galois and modulus deductions are stated as a research
+argument. The signed Perron bound is a separate hypothesis.
 
 * If a nonzero transformed coordinate has one of the three excluded
   shapes, move its maximal exponent onto the Perron root. The resulting
