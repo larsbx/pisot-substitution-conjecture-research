@@ -15530,27 +15530,27 @@
     },
     {
       "source": "docs/c4-concentration-attack-2026-11-06.md",
-      "line": 48,
+      "line": 51,
       "statement_heading": "## 2. Theorem A: first defect degree four"
     },
     {
       "source": "docs/c4-concentration-attack-2026-11-06.md",
-      "line": 50,
+      "line": 53,
       "statement_heading": "**Theorem A.** Let `σ` be PIP on `{0,1,2}`, with roots `β, α, γ` and"
     },
     {
       "source": "docs/c4-concentration-attack-2026-11-06.md",
-      "line": 110,
+      "line": 113,
       "statement_heading": "**Lemma.** Let `σ` be primitive with Perron root `> 1`, and let `C` be a"
     },
     {
       "source": "docs/c4-concentration-attack-2026-11-06.md",
-      "line": 126,
+      "line": 129,
       "statement_heading": "**Corollary.** If distinct factors of `L(σ)` of equal length are never"
     },
     {
       "source": "docs/c4-concentration-attack-2026-11-06.md",
-      "line": 132,
+      "line": 135,
       "statement_heading": "**Corollary T (conditional).** Concentration holds for the Tribonacci"
     },
     {
