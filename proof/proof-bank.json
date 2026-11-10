@@ -9623,6 +9623,302 @@
       "declaration": "theorem m0_pisot : ∃ b : ℝ, 1 < b ∧ aeval (b : ℂ) f = 0 ∧"
     },
     {
+      "name": "Psc.OccurrenceAddress.locate_sound",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 37,
+      "declaration": "theorem locate_sound {ws : List (List α)} {n j k : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.locate_complete",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 60,
+      "declaration": "theorem locate_complete {ws : List (List α)} {n j k : ℕ} {w : List α}"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.locate_eq_some_iff",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 81,
+      "declaration": "theorem locate_eq_some_iff {ws : List (List α)} {n j k : ℕ} :"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.locate_eq_none_iff",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 89,
+      "declaration": "theorem locate_eq_none_iff {ws : List (List α)} {n : ℕ} :"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.locate_isSome",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 106,
+      "declaration": "theorem locate_isSome {ws : List (List α)} {n : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.lookup_eq",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 117,
+      "declaration": "theorem lookup_eq (ws : List (List α)) (n : ℕ) (hn : n < ws.flatten.length) :"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.lookup_spec",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 121,
+      "declaration": "theorem lookup_spec (ws : List (List α)) (n : ℕ) (hn : n < ws.flatten.length) :"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.locate_unique",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 127,
+      "declaration": "theorem locate_unique {ws : List (List α)} {n j k j' k' : ℕ} {w w' : List α}"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.chunk_split",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 135,
+      "declaration": "theorem chunk_split {ws : List (List α)} {j : ℕ} {w : List α}"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.locate_prefix",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 140,
+      "declaration": "theorem locate_prefix {ws : List (List α)} {n j k : ℕ} {w : List α}"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.locate_letter",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 153,
+      "declaration": "theorem locate_letter {ws : List (List α)} {n j k : ℕ} {w : List α}"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.TrackAddress.split",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 208,
+      "declaration": "theorem split (o : TrackAddress bs track n) :"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.TrackAddress.atWord",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 213,
+      "declaration": "theorem atWord (o : TrackAddress bs track n) :"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.TrackAddress.prefix_eq",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 217,
+      "declaration": "theorem prefix_eq (o : TrackAddress bs track n) :"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.TrackAddress.selected",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 223,
+      "declaration": "theorem selected (o : TrackAddress bs track n) :"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.TrackAddress.local_length",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 229,
+      "declaration": "theorem local_length (o : TrackAddress bs track n) : o.before.length = o.localIndex := by"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.TrackAddress.unique",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 232,
+      "declaration": "theorem unique (o o' : TrackAddress bs track n) :"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.locateTrack_index",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 261,
+      "declaration": "theorem locateTrack_index (bs : List (List (Fin 3) × List (Fin 3)))"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.locateTrack_prefix",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 271,
+      "declaration": "theorem locateTrack_prefix (bs : List (List (Fin 3) × List (Fin 3)))"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.locateTrack_selected",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 279,
+      "declaration": "theorem locateTrack_selected (bs : List (List (Fin 3) × List (Fin 3)))"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.locateTrack_letter",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 285,
+      "declaration": "theorem locateTrack_letter (bs : List (List (Fin 3) × List (Fin 3)))"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.locateTrack_start",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 294,
+      "declaration": "theorem locateTrack_start (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.locateTrack_finish",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 303,
+      "declaration": "theorem locateTrack_finish (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.redTop_prefix",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 321,
+      "declaration": "theorem redTop_prefix {u v : List (Fin 3)} (hbal : Equiv1 u v)"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.redBot_prefix",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 330,
+      "declaration": "theorem redBot_prefix {u v : List (Fin 3)} (hbal : Equiv1 u v)"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.redTop_letter",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 339,
+      "declaration": "theorem redTop_letter {u v : List (Fin 3)} (hbal : Equiv1 u v)"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.redBot_letter",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 349,
+      "declaration": "theorem redBot_letter {u v : List (Fin 3)} (hbal : Equiv1 u v)"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.redTop_start",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 359,
+      "declaration": "theorem redTop_start (ℓ : Fin 3 → ℝ) {u v : List (Fin 3)} (hbal : Equiv1 u v)"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.redBot_start",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 368,
+      "declaration": "theorem redBot_start (ℓ : Fin 3 → ℝ) {u v : List (Fin 3)} (hbal : Equiv1 u v)"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.red_common_factor_lookup",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 379,
+      "declaration": "theorem red_common_factor_lookup (ℓ : Fin 3 → ℝ) (hℓ : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.locateSubst_index",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 399,
+      "declaration": "theorem locateSubst_index (s : α → List α) (w : List α) (n : ℕ)"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.locateSubst_prefix",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 406,
+      "declaration": "theorem locateSubst_prefix (s : α → List α) (w : List α) (n : ℕ)"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.locateSubst_selected",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 412,
+      "declaration": "theorem locateSubst_selected (s : α → List α) (w : List α) (n : ℕ)"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.locate_subst_position",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 418,
+      "declaration": "theorem locate_subst_position (s : α → List α) (w : List α)"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.control_repeated_chunk",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 427,
+      "declaration": "theorem control_repeated_chunk :"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.control_empty_chunk",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 431,
+      "declaration": "theorem control_empty_chunk :"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.control_last_and_exterior",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 435,
+      "declaration": "theorem control_last_and_exterior :"
+    },
+    {
       "name": "Psc.OccurrenceNewborn.SyncPlus.eventual",
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
@@ -9853,6 +10149,382 @@
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
       "line": 466,
       "declaration": "theorem dependent_lengths_control :"
+    },
+    {
+      "name": "Psc.OccurrenceStrict.realized_closed",
+      "module": "PscVerif.OccurrenceStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceStrict.lean",
+      "line": 29,
+      "declaration": "theorem realized_closed (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.OccurrenceStrict.realized_avoids_diagonal",
+      "module": "PscVerif.OccurrenceStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceStrict.lean",
+      "line": 42,
+      "declaration": "theorem realized_avoids_diagonal {s : Fin 3 → Word} {C : Finset WordPair}"
+    },
+    {
+      "name": "Psc.OccurrenceStrict.packet_path_mem",
+      "module": "PscVerif.OccurrenceStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceStrict.lean",
+      "line": 54,
+      "declaration": "theorem packet_path_mem (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.OccurrenceStrict.no_diagonal_route",
+      "module": "PscVerif.OccurrenceStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceStrict.lean",
+      "line": 66,
+      "declaration": "theorem no_diagonal_route (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.OccurrenceStrict.addressed_path_mem",
+      "module": "PscVerif.OccurrenceStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceStrict.lean",
+      "line": 78,
+      "declaration": "theorem addressed_path_mem {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ}"
+    },
+    {
+      "name": "Psc.OccurrenceStrict.strictComponent_no_diagonal_route",
+      "module": "PscVerif.OccurrenceStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceStrict.lean",
+      "line": 85,
+      "declaration": "theorem strictComponent_no_diagonal_route (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.Mark.index_lt",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 37,
+      "declaration": "theorem Mark.index_lt {w : Word} (m : Mark w) : m.index < w.length := by"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.Mark.take_index",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 42,
+      "declaration": "theorem Mark.take_index {w : Word} (m : Mark w) : w.take m.index = m.before := by"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.Mark.selected",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 45,
+      "declaration": "theorem Mark.selected {w : Word} (m : Mark w) : w[m.index]'m.index_lt = m.letter := by"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.Mark.inflate_index",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 66,
+      "declaration": "theorem Mark.inflate_index (s : Fin 3 → Word) {w : Word} (m : Mark w)"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.parikhZ_append",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 75,
+      "declaration": "theorem parikhZ_append (u v : Word) : parikhZ (u ++ v) = parikhZ u + parikhZ v := by"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.parikhZ_eq_of_equiv1",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 79,
+      "declaration": "theorem parikhZ_eq_of_equiv1 {u v : Word} (h : Equiv1 u v) : parikhZ u = parikhZ v := by"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.equiv1_of_parikhZ_eq",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 83,
+      "declaration": "theorem equiv1_of_parikhZ_eq {u v : Word} (h : parikhZ u = parikhZ v) : Equiv1 u v := by"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.parikhZ_subst",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 92,
+      "declaration": "theorem parikhZ_subst (s : Fin 3 → Word) (w : Word) :"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.residual_swap",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 101,
+      "declaration": "theorem residual_swap (u v : Word) : residual v u = -residual u v := by"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.residual_subst",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 104,
+      "declaration": "theorem residual_subst (s : Fin 3 → Word) (u v : Word) :"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.residual_inflate",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 109,
+      "declaration": "theorem residual_inflate (s : Fin 3 → Word) (u v p q : Word) :"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.residual_trim",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 117,
+      "declaration": "theorem residual_trim {pu pv : Word} (h : Equiv1 pu pv) (u v : Word) :"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.MarkedPair.packet_swap",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 140,
+      "declaration": "theorem MarkedPair.packet_swap (m : MarkedPair) : m.swap.packet = m.packet.swap := by"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.MarkedPair.inflate_packet",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 156,
+      "declaration": "theorem MarkedPair.inflate_packet (s : Fin 3 → Word) (m : MarkedPair)"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.MarkedPair.inflate_digitStep",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 164,
+      "declaration": "theorem MarkedPair.inflate_digitStep (s : Fin 3 → Word) (m : MarkedPair)"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.DigitStep.swap",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 170,
+      "declaration": "theorem DigitStep.swap {s : Fin 3 → Word} {p q : Packet} (h : DigitStep s p q) :"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.offset_residual",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 184,
+      "declaration": "theorem offset_residual (ℓ : Fin 3 → ℝ) (u v : Word) :"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.offset_neg",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 189,
+      "declaration": "theorem offset_neg (ℓ : Fin 3 → ℝ) (r : Fin 3 → ℤ) :"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.Packet.interior_iff_bounds",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 200,
+      "declaration": "theorem Packet.interior_iff_bounds (ℓ : Fin 3 → ℝ) (hpos : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.Packet.Interior.swap",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 220,
+      "declaration": "theorem Packet.Interior.swap {ℓ : Fin 3 → ℝ} {p : Packet} (h : p.Interior ℓ) :"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.MarkedPair.overlaps_iff",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 237,
+      "declaration": "theorem MarkedPair.overlaps_iff (ℓ : Fin 3 → ℝ) (m : MarkedPair) :"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.orient_comp",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 253,
+      "declaration": "theorem orient_comp (e f : Bool) (T : WordPair) :"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.orientationSign_comp",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 257,
+      "declaration": "theorem orientationSign_comp (e f : Bool) :"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.child_ordinal_orient",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 263,
+      "declaration": "theorem child_ordinal_orient (s : Fin 3 → Word) (e : Bool)"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.normalized_child_orientation",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 277,
+      "declaration": "theorem normalized_child_orientation (s : Fin 3 → Word) (e f : Bool)"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.Localization.packet_eq",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 330,
+      "declaration": "theorem Localization.packet_eq {m : MarkedPair} (L : Localization m)"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.LiftedStep.child",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 356,
+      "declaration": "theorem LiftedStep.child {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ} {m : MarkedPair} {q : Packet}"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.LiftedStep.target_block",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 360,
+      "declaration": "theorem LiftedStep.target_block {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ}"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.LiftedStep.top_address",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 365,
+      "declaration": "theorem LiftedStep.top_address {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ}"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.LiftedStep.bottom_address",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 375,
+      "declaration": "theorem LiftedStep.bottom_address {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ}"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.LiftedStep.digitStep",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 385,
+      "declaration": "theorem LiftedStep.digitStep {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ}"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.LiftedStep.normalized_target",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 397,
+      "declaration": "theorem LiftedStep.normalized_target {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ}"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.lift_digits_top",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 423,
+      "declaration": "theorem lift_digits_top (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (hpos : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.lift_digits_bottom",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 429,
+      "declaration": "theorem lift_digits_bottom (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (hpos : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.lift_digitStep",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 438,
+      "declaration": "theorem lift_digitStep (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (hpos : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.AddressedPath.child_path",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 467,
+      "declaration": "theorem AddressedPath.child_path {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ}"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.AddressedPath.packet_path",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 474,
+      "declaration": "theorem AddressedPath.packet_path {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ}"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.packet_path_lift",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 490,
+      "declaration": "theorem packet_path_lift (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (hpos : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.MarkedPair.diagonal_coincident",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 511,
+      "declaration": "theorem MarkedPair.diagonal_coincident (m : MarkedPair) (hblock : IsBlock m.words)"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.packet_path_literal_target",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 537,
+      "declaration": "theorem packet_path_literal_target (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.OccurrenceTransport.packet_path_newborn",
+      "module": "PscVerif.OccurrenceTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceTransport.lean",
+      "line": 551,
+      "declaration": "theorem packet_path_newborn (s : Fin 3 → Word) (hs : ∀ a, s a ≠ [])"
     },
     {
       "name": "PscVerif.OverlapContraction.fixed_of_unique_iterate",
@@ -17810,7 +18482,10 @@
     "proof/PscVerif/PscVerif/Lie5Data.lean": "df36055fa646536437bff13bf336304b211ba70a4d0ac11cd910c8c2751271fb",
     "proof/PscVerif/PscVerif/LieWeights.lean": "f32639f83e519c69b8f428e153dd368c274e1f665a837183f88c5f1de0dd8adb",
     "proof/PscVerif/PscVerif/M0Pisot.lean": "65d17cf0aa71cdac825d16da73ad601dd49c214cd0b47ac58f124cb51a64a304",
+    "proof/PscVerif/PscVerif/OccurrenceAddress.lean": "fd8d4020fc3f720c8a81d23c9811056802c901eec35a48efcbb40954c5a375ad",
     "proof/PscVerif/PscVerif/OccurrenceNewborn.lean": "7afaf823023d45cc6d1d4d9b6d08e2b3d6e74dce165d77174de86d7cd23dd1d0",
+    "proof/PscVerif/PscVerif/OccurrenceStrict.lean": "f5ee2c3e7bc7b580e760f65351d0cf129480835e7ef03877c0062c8220911b25",
+    "proof/PscVerif/PscVerif/OccurrenceTransport.lean": "3ef9fcb7df8c395c36879b63933eb626f57437f1b813e03ad429148b47d09fe0",
     "proof/PscVerif/PscVerif/OverlapContraction.lean": "09dd1ccc90a7245211336996f7da8b1276e86cab60dd1cc0b5471e3d7f6a2a30",
     "proof/PscVerif/PscVerif/OverlapPacket.lean": "572fd9fc85082e05377321fa812670558fff66ebed16e319a81816b22950a853",
     "proof/PscVerif/PscVerif/ParikhIntertwiner.lean": "bc7120433f0c103c966fc6faf41407b969537fd0881971a5d36b98169b220d96",
@@ -17834,7 +18509,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "12235cd1cbb1d4131f6f06a1438ec22ad969cf495c0d6bfdcb33f55a5a67c05a",
+    "proof/PscVerif/PscVerif.lean": "78290f20e14b7f63fd5862cb58ef8e4a577a38b34a94cd50659662383e2faebc",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

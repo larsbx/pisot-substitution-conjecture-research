@@ -1,6 +1,44 @@
 # PSC research roadmap — 2026-09-21
 
+## 2026-11-10 addressed refinement after #533
+
+The [global-address module](c4-occurrence-addresses-2026-11-10.md) constructs
+the actual factor ordinal and local occurrence from each valid global word
+position, with uniqueness, prefix/letter reconstruction and exact physical
+start preservation. The [affine transport module](c4-occurrence-transport-2026-11-10.md)
+proves the digit/residual square, balanced-prefix cancellation and track-swap
+sign law. Every interior affine digit edge from an actual marked block has
+a common actual child. Finite affine reachability lifts to a coherent chosen
+literal child history and composes with the newborn theorem.
+
+The [strict-system adapter](../proof/PscVerif/PscVerif/OccurrenceStrict.lean)
+uses the existing actual `StrictSystem`: its realized packets are closed
+under these interior affine edges and avoid diagonals. A supplied strict
+component therefore excludes the resulting finite productive route. These
+sources require the implementation PR's full Lean/axiom and native/Quint
+receipts; the earlier #533 receipts do not certify a later revision.
+
+**Next mathematical priority:** rule out this avoiding region for at least
+one genuine forced crossing under the complete PIP and hub hypotheses.
+Investigate realizable hierarchy recurrence and the common descendant-Parikh
+annihilator as separate candidates. The new finite lift supplies the
+local-to-word implication once an interior affine diagonal route exists;
+it does not prove existence of that route. Global G1 extraction remains
+separate.
+
+The formal relation is the explicitly defined interior affine digit
+relation. Exact production packet IDs, interning, stopping and success
+policies, preservation of an external full transcript, and consistent
+lifting of arbitrary infinite quotient paths retain their own interfaces.
+Fixed one-step digit choices are preserved; the finite reachability theorem
+chooses a coherent history and does not assert an external trace length.
+The [bounded controls](c4-address-transport-controls-2026-11-10.md) distinguish
+these facts using 20 tests and seven deliberately rejected mutations.
+General C4, Concentration and PSC remain open.
+
 ## 2026-11-10 implementation follow-up to #532
+
+**Historical frontier at #533; the addressed refinement above continues it.**
 
 The [concrete occurrence bridge](c4-concrete-occurrence-2026-11-10.md)
 connects literal balanced factors, their occurrence ordinals, physical
@@ -17,7 +55,7 @@ degree-five sieve hypotheses. Literal strict-child realizability remains
 open. The [original next-obligations note](c4-next-proof-obligations-2026-11-10.md)
 now distinguishes these implemented pieces from the rest of its program.
 
-**Next formal priority:** construct a `FactorOccurrence` from each actual
+**Formal priority recorded at #533:** construct a `FactorOccurrence` from each actual
 global address, then prove the occurrence-to-packet transition square with
 the local residual, track order, normalization and child ordinal preserved.
 Compose finite realizable paths with the supplied-parent newborn theorem and

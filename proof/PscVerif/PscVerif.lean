@@ -54,6 +54,9 @@ import PscVerif.Degree4Floor
 import PscVerif.Degree3Catalogue
 import PscVerif.StrictSystem
 import PscVerif.OccurrenceNewborn
+import PscVerif.OccurrenceAddress
+import PscVerif.OccurrenceTransport
+import PscVerif.OccurrenceStrict
 import PscVerif.ReductioControls
 import PscVerif.OverlapContraction
 import PscVerif.OverlapPacket

@@ -32,6 +32,16 @@ EXPECTED = [
     "parentIrreducibilityIsNecessaryTest",
     "bothNewbornSidesTest",
     "existentialRouteAllowsAvoidingCycleTest",
+    "lookupDomainCountTest",
+    "globalToLocalReconstructionTest",
+    "exteriorAddressRejectedTest",
+    "balancedFactorLookupTest",
+    "transportDomainCountTest",
+    "literalAffineSquareTest",
+    "balancedPrefixTrimmingTest",
+    "trackSwapCovarianceTest",
+    "affineTermsAreNecessaryTest",
+    "sameLetterSplitStaysSplitTest",
 ]
 MUTATIONS = [
     (
@@ -55,6 +65,30 @@ MUTATIONS = [
         "pure def inherited(s, u, v, k) = false",
         "parentIrreducibilityIsNecessaryTest",
     ),
+    (
+        "factor-prefix-offset-ignored",
+        "pure def localPosition(chunks, k, i) = i - offset(chunks, k)",
+        "pure def localPosition(chunks, k, i) = i",
+        "globalToLocalReconstructionTest",
+    ),
+    (
+        "incidence-action-omitted",
+        "pure def affineNext(s, r, forcing) = add2(incidence(s, r), forcing)",
+        "pure def affineNext(s, r, forcing) = add2(r, forcing)",
+        "affineTermsAreNecessaryTest",
+    ),
+    (
+        "digit-forcing-omitted",
+        "pure def affineNext(s, r, forcing) = add2(incidence(s, r), forcing)",
+        "pure def affineNext(s, r, forcing) = incidence(s, r)",
+        "affineTermsAreNecessaryTest",
+    ),
+    (
+        "track-swap-sign-ignored",
+        "pure def orientedResidual(sign, r) = if (sign == 1) r else (-r._1, -r._2)",
+        "pure def orientedResidual(sign, r) = r",
+        "trackSwapCovarianceTest",
+    ),
 ]
 
 
@@ -73,12 +107,19 @@ def main() -> int:
     if not command:
         parser.error("--quint-command must not be empty")
     receipt = {
-        "schema": "psc-c4-occurrence-quint-v1", "status": "started",
+        "schema": "psc-c4-occurrence-quint-v2", "status": "started",
         "quint_version": VERSION, "backend": "typescript", "seed": "20261110",
         "scope": "exhaustive bounded literal-word predicates and explicit negative controls",
         "strict_binary_parents_length_2_through_4": 16,
         "nonerasing_binary_substitutions_image_length_1_through_2": 36,
         "parent_substitution_inputs": 576,
+        "lookup_chunks_binary_length_0_through_2": 7,
+        "ordered_chunk_lists_length_0_through_3": 400,
+        "in_range_global_indices_across_chunk_lists": 1620,
+        "balanced_binary_word_pairs_length_0_through_4": 99,
+        "transport_binary_words_length_1_through_2": 6,
+        "transport_word_pair_substitution_inputs": 1296,
+        "transport_valid_source_index_and_digit_inputs": 10400,
         "note": "Finite forall domains, not random sample counts or a Pisot census.",
         "executed_tests": [], "rejected_mutations": [],
     }

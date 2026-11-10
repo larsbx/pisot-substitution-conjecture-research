@@ -9,13 +9,18 @@ on:
       - 'docs/c4-orientation-safe-transfer-2026-11-09.md'
       - 'evidence/c4-orientation-safe/**'
       - 'kernel/psc/c4_*.mojo'
+      - 'kernel/psc/target_packets.mojo'
       - 'kernel/tests/test_c4_*.mojo'
+      - 'kernel/tests/test_target_packets.mojo'
       - 'kernel/pixi.lock'
       - 'tests/test_c4_*_oracle.py'
-      - 'proof/PscVerif/PscVerif/OccurrenceNewborn.lean'
+      - 'proof/PscVerif/PscVerif/Occurrence*.lean'
       - 'proof/quint/C4OccurrenceBridge.qnt'
       - 'tools/check_c4_occurrence_quint.py'
       - 'docs/c4-concrete-occurrence-*.md'
+      - 'docs/c4-address-transport-*.md'
+      - 'docs/c4-occurrence-transport-*.md'
+      - 'docs/c4-occurrence-addresses-*.md'
   workflow_dispatch:
 
 permissions:
@@ -52,6 +57,7 @@ jobs:
         run: |
           pixi run --locked mojo run -I . tests/test_c4_overlap_enclosure.mojo
           pixi run --locked mojo run -I . tests/test_c4_addressed_newborn.mojo
+          pixi run --locked mojo run -I . tests/test_target_packets.mojo
           pixi run --locked mojo run -I . tests/test_c4_recurrent_flat_exits.mojo
           pixi run --locked mojo run -I . tests/test_c4_complete_cone_hub_audit.mojo
           pixi run --locked mojo run -I . tests/test_c4_two_generation_rank.mojo
