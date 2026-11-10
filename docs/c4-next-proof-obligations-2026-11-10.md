@@ -15,18 +15,62 @@ now supplies common-factor ordinal uniqueness for already located literal
 occurrences, derived Perron-length injectivity, exact singleton factorization,
 and an interior synchronized newborn in the immediate irreducible parent.
 It also extracts a reachable noncoincident parent and such a newborn from a
-literal `Child` path to coincidence. It does not yet construct factor
+literal `Child` path to coincidence. At #533 it did not yet construct factor
 occurrences from arbitrary global addresses or prove complete packet-to-word
-path refinement. These remain the primary formal task before claiming the
-complete packet-to-newborn bridge.
+path refinement. The following continuation discharges the finite address
+and interior affine reachability interfaces, with the narrower scope stated
+explicitly.
 
 The [degree-five completion](c4-degree-five-completion-2026-11-10.md)
 implements the reciprocal polynomial, its irreducibility, `q5=g^k`, actual
 image rank `3k`, zero-image handling and determinant exclusion under the
 unchanged sieve hypotheses. The earlier accepted inputs and their receipts
-below remain historical records; the new sources require their own
-exact-revision acceptance. General C4 and the uniform theorem forcing at
+below remain historical records. Both developments were accepted in
+[PR #533](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/533)
+at `5d9d76be41e3926562951d929186bab21acbdcf9` and merged as
+`666e701d7cffde398e1265dd4ee95becf54fef53`. The
+[fresh isolated Lean audit](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42890109081/job/130088675557)
+checked 4,161 declarations and 3,153 theorems and reached all 1,738 named
+proofs, using only the permitted standard axioms. The
+[dedicated C4 workflow](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42890108869)
+passed canonical Mojo, independent Python, orientation-safe Lean and the
+then-current 10-test/three-mutation Quint model. These receipts cover that
+revision; subsequent address/transport extensions need fresh acceptance.
+General C4 and the uniform theorem forcing at
 least one productive physical crossing remain open.
+
+### Address and finite affine refinement after #533
+
+[OccurrenceAddress](c4-occurrence-addresses-2026-11-10.md) now constructs the
+actual factor from global word positions and proves the exact source/digit
+and factor/local address equations. It handles repeated equal factors by
+ordinal and rejects exterior positions. Its common-factor theorem needs
+only the valid global positions, balance and strictly intersecting physical
+tile interiors; it no longer assumes prelocated factor occurrences.
+
+[OccurrenceTransport](c4-occurrence-transport-2026-11-10.md) proves literal
+projection to the independent affine digit relation and converse localization
+of every interior edge from an actual source realization. Its fixed-digit
+constructor preserves supplied one-step choices. Its finite reachability
+theorem constructs a coherent chosen address history, projects it to an
+actual `Child` path, derives coincidence from a diagonal packet, and
+composes with one-step newborn extraction.
+
+The [OccurrenceStrict adapter](../proof/PscVerif/PscVerif/OccurrenceStrict.lean)
+then proves closure and diagonal avoidance of the packets realized by an
+actual supplied `StrictSystem`, and excludes an interior affine diagonal
+route from its members. Strong connectivity and Pisot assumptions are not
+needed for this local composition. Their remaining role is the open theorem
+forcing a productive crossing under the full supplied-component hypotheses.
+
+This is refinement of the declared finite interior affine relation. The
+production packet graph's IDs, interning, terminal and success policies,
+complete external transcript replay and arbitrary infinite quotient paths
+are not identified with it. In particular, equal-letter/zero-residual
+`Diagonal` and the configurable production `success` predicate are distinct.
+Acceptance of these sources requires the
+[new bounded/native controls](c4-address-transport-controls-2026-11-10.md)
+and fresh implementation-PR receipts; prior receipts remain historical.
 
 ## 1. Accepted inputs and exact verification scope
 
@@ -87,33 +131,37 @@ seeds or all state words is not an additional standing assumption.
 
 ### Required lemmas
 
-1. **Common-factor transport.** Complete balanced factorization partitions
+1. **Common-factor transport (finite source implemented).** Complete balanced factorization partitions
    the two tracks into the same physical intervals. An actual child-tile
    overlap with a common positive-length interior therefore lies in one
-   common factor interval. Prove that its occurrence addresses, residual,
-   orientation and child ordinal transport to that factor.
-2. **Packet refinement.** Prove soundness of accepted packet transitions
-   against actual occurrences and completeness relative to the explicitly
-   declared occurrence universe as separate statements. Account for split
-   descendants and terminal misses. A later use of infinite abstract paths
-   needs a separate consistent-lifting argument.
-3. **Perron injectivity at cuts.** Formalize the existing cubic-irreducibility
-   argument converting equality of Perron lengths of integer Parikh columns
-   into equality of those columns. Do not add independence as an axiom.
-4. **First diagonal gives a newborn.** The first diagonal on an actual marked
+   common factor interval. `OccurrenceAddress` and `OccurrenceTransport`
+   now derive the addresses, residual and ordinal; separate frame theorems
+   give the normalization sign law.
+2. **Packet refinement (declared finite relation implemented).** Forward
+   soundness and converse common-child realization hold for the independent
+   interior affine digit relation. Finite reachability lifts from any actual
+   marked source. Full production-graph refinement, its split/terminal
+   policies and completeness remain separate. A later use of arbitrary
+   infinite quotient paths needs its own consistent-lifting argument.
+3. **Perron injectivity at cuts (accepted in #533).** The cubic-irreducibility
+   argument converts equality of Perron lengths of integer Parikh columns
+   into equality of those columns; independence is derived.
+4. **First diagonal gives a newborn (finite composition implemented).** The first diagonal on an actual marked
    path is a singleton coincident child in its immediate noncoincident
    irreducible parent. At least one singleton boundary is interior; it gives
    `Sync_+` or `Sync_-` at a one-step newborn cut of that parent.
-5. **Strict-closure contradiction.** Compose these concrete statements with
-   `C4Orientation.strict_excludes_productivity`, preserving membership of
-   every transported parent in the supplied component.
+5. **Strict-closure contradiction (actual adapter implemented).**
+   `OccurrenceStrict` composes with the existing `StrictSystem` closure
+   and noncoincidence theorems, preserving membership of every addressed
+   child and deriving a concrete closed, diagonal-free realized packet set.
 
 The endpoint side, track order and newborn side are distinct fields. A
 right-end route can produce a `Sync_+` newborn. A direct diagonal route is
 also a valid input to extraction. The current
 [orientation-safe note](c4-orientation-safe-transfer-2026-11-09.md) contains
-the prose proof; its generic Lean file is the starting point, not the full
-formalization of these five statements.
+the prose proof and generic Lean file as earlier inputs. The three new
+modules formalize the scoped finite-word implications above; they do not
+establish the universal productive-route premise.
 
 **Acceptance:** Lean statements over the actual definitions, kernel/axiom
 replay, canonical Mojo occurrence receipts, and independent oracle checks of
@@ -264,7 +312,7 @@ inconclusive. Another passing finite corpus is not a uniform theorem.
 | Order | Deliverable | Acceptance condition |
 | --- | --- | --- |
 | 1 | Evidence-manifest repair and frontier reconciliation (this change). | Existing packet bytes pinned; document/provenance checks pass; stale pending statements corrected against recorded jobs. |
-| 2 | Actual occurrence transport and first-diagonal-to-newborn formalization: concrete local factor/newborn lemmas implemented; global-address lookup and full packet/path transport remain open. | Lean theorem with the concrete address/factor definitions, exact replay and all negative controls at their proper rejection layer. Local occurrence lemmas alone do not satisfy the whole row. |
+| 2 | Global address lookup, interior affine digit refinement, coherent finite reachability lifting, newborn extraction and actual strict-system composition are implemented. Production-graph and infinite-quotient interfaces remain separate. | Full Lean/axiom audit and exact-revision native/Quint replay for the three new modules; preserve prescribed-digit versus existential-history scope and the production-policy distinctions. |
 | 3, independently of 2 | Reciprocal polynomial/multiplicity and degree-five rank theorem: implemented in `Degree5Completion`. | `q5=g^k`, `rank Q5=3k`, zero-image handling and determinant exclusion under unchanged hypotheses, with exact-revision Lean/axiom replay. |
 | 4 | Uniform forced-crossing exclusion. | A theorem for arbitrary supplied component size, or a literal reproducible counterexample to the precise intermediate claim. |
 | 5 | Compose the successful bridge into C4. | Every input/output type, quantifier, realization premise and dependency is discharged; global extraction stays separate. |
