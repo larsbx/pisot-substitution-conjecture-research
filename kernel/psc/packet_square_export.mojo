@@ -32,17 +32,20 @@ reproducible):
   regression test checks the order again with a Lean key code of its own).
   Any mismatch raises with the layer it belongs to;
 * JSONL emission (schema `packet-square-v1`) and Lean emission of the record
-  `Psc.PacketCertificate.Table (Fin 3)` that the Lean checker re-derives from
-  `Psc.Reduction.red`.
+  `Psc.PacketCertificate.Table (Fin 3)`, which the Lean checker `Table.check`
+  decides: it re-derives every factor row, every packet row except its birth,
+  every digit star and every listed hub row from `Psc.Reduction.red`, and checks
+  that each birth names an incoming edge from an earlier row.
 
-Where this differs from the signatures of the design brief (section 6.2):
 `emit_packet_square_lean` and `packet_square_lean` take a `command` argument
 (the regeneration command, printed in the module's leading comment), and
-`PacketSquare` carries the ordered hub rows `hubs`. The brief's section 6.5
-says nothing is printed after the `budget` row on refusal, while its section
-5.5 prints `budget` and `inconclusive` for an exhausted automaton budget; the
-driver follows 5.5 (as `target_aware_bpa.mojo` does). A packet or edge cap
-prints only the `budget` row.
+`PacketSquare` carries the ordered hub rows `hubs`. On refusal the driver prints
+the `budget` row and nothing after it, except that an exhausted automaton
+budget (states or length) is followed by one `inconclusive` row naming that
+budget, as `target_aware_bpa.mojo` does; a packet or edge cap prints only the
+`budget` row. The record and its checker are documented in
+`proof/PscVerif/PscVerif/PacketCertificate.lean`; the stop/go note is
+`docs/packet-square-stop-go-2026-11-10.md`.
 
 What is established here is executable and finite: for the given substitution
 and caps, the exported table is the graph `build_packets` produced, and its
@@ -1034,9 +1037,12 @@ def packet_square_lean(sq: PacketSquare, module: String, hub_rows: Bool, command
     out.append("")
     out.append("The rows of the target-aware packet graph exported by `kernel/psc/packet_square_export.mojo`,")
     out.append("as a `Psc.PacketCertificate.Table (Fin 3)`. `accepted` states only that `Table.check` accepts")
-    out.append("this finite table, by one kernel evaluation: the checker re-derives every factor row, packet")
-    out.append("row and digit star from `Psc.Reduction.red`. Nothing here concerns states outside the table,")
-    out.append("absolute occurrences in the iterates, the PIP status, or C4, G1 and PSC.")
+    out.append("this finite table, by one kernel evaluation. The checker re-derives every factor row, every")
+    out.append("packet row except its `birth` field, every digit star and every listed hub row from")
+    out.append("`Psc.Reduction.red`; it checks that each `birth` names an incoming edge from an earlier row")
+    out.append("(not necessarily the first), and it checks the letters, the states, the seeds, the roots and")
+    out.append("the key order. Nothing here concerns states outside the table, absolute occurrences in the")
+    out.append("iterates, the PIP status, or C4, G1 and PSC.")
     out.append("-/")
     out.append("")
     out.append(String("namespace ") + module)

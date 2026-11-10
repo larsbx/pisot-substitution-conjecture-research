@@ -8,8 +8,11 @@
 # Usage: pixi run bash check_packet_square.sh [--no-lean-compare]
 #
 # Default mode: every committed Lean data module must exist and equal the
-# regenerated module byte for byte. A missing module is an ERROR (exit 1).
-# PASS is printed only in this mode, and only after every check.
+# regenerated module byte for byte. A missing module is an ERROR (exit 1), and
+# so is any other file or directory whose module name falls under lean_prefix
+# (a hand-written module there would compile and enter the proof bank with no
+# regeneration behind it). PASS is printed only in this mode, and only after
+# every check.
 #
 # --no-lean-compare: for use before the data modules are committed. Every
 # other check runs, and the Lean modules are regenerated, but they are not
@@ -24,10 +27,7 @@
 # The committed modules are named by one variable, lean_prefix: module =
 # lean_prefix + fixture suffix, file = ../proof/PscVerif/<module, dots as
 # slashes>.lean. "PscVerif.PacketSquareData." names
-# PscVerif/PacketSquareData/Tribonacci.lean; the flat layout of the design
-# brief (section 8.1, row K) is "PscVerif.PacketSquareData", which names
-# PscVerif/PacketSquareDataTribonacci.lean. Set it at integration to the layout
-# that is committed.
+# PscVerif/PacketSquareData/Tribonacci.lean.
 #
 # This check reads more than its own files. The driver takes parse_sigma and
 # parse_positive from the archived driver kernel/target_aware_bpa.mojo, and
@@ -61,6 +61,7 @@ fi
 
 lean_prefix="PscVerif.PacketSquareData."
 lean_root=../proof/PscVerif
+expected_modules=()
 
 mkdir -p build
 mojo build -I . packet_square_export.mojo -o build/packet-square-export
@@ -79,6 +80,7 @@ for fixture in tribonacci real-secondary non-pisot-strict gf-actual; do
     "$driver" --sigma "$key" --target any --format lean --module "$module" --hub-rows \
         > "build/packet-square-$suffix.lean"
     committed="$lean_root/${module//.//}.lean"
+    expected_modules+=("$committed")
     if [ "$compare_lean" -eq 1 ]; then
         if [ ! -f "$committed" ]; then
             echo "ERROR: committed Lean data module $committed is missing (module $module)" >&2
@@ -89,6 +91,23 @@ for fixture in tribonacci real-secondary non-pisot-strict gf-actual; do
         echo "NOT COMPARED: $committed (module $module), --no-lean-compare"
     fi
 done
+if [ "$compare_lean" -eq 1 ]; then
+    # The generated modules are the only entries named by lean_prefix: refuse any
+    # other file or directory (at any depth) whose path starts with the prefix.
+    stem="${lean_prefix//.//}"
+    while IFS= read -r -d '' entry; do
+        known=0
+        for m in "${expected_modules[@]}"; do
+            if [ "$entry" = "$m" ]; then
+                known=1
+            fi
+        done
+        if [ "$known" -eq 0 ]; then
+            echo "ERROR: $entry is under the generated Lean data modules ($lean_prefix*) but is not one of them" >&2
+            exit 1
+        fi
+    done < <(find "$lean_root/$(dirname "$stem")" -mindepth 1 -path "$lean_root/$stem*" -print0)
+fi
 (cd "$fixtures" && sha256sum -c SHA256SUMS)
 
 # The Lean emitter, row by row against the committed JSONL, and the mutation
@@ -194,7 +213,7 @@ for entry in "${invalid[@]}"; do
 done
 
 if [ "$compare_lean" -eq 1 ]; then
-    echo "PASS packet-square-v1: JSONL reproduction, committed Lean data modules byte for byte ($lean_prefix*), Lean emission row by row against the JSONL, checksums, fail-closed caps, sync-right and malformed input"
+    echo "PASS packet-square-v1: JSONL reproduction, committed Lean data modules byte for byte ($lean_prefix*, no other entry), Lean emission row by row against the JSONL, checksums, fail-closed caps, sync-right and malformed input"
     exit 0
 fi
 echo "INCOMPLETE packet-square-v1: committed Lean data modules not compared (--no-lean-compare); every other check passed"

@@ -61,3 +61,8 @@ import PscVerif.GraphEmbedding
 import PscVerif.OccurrenceGraph
 import PscVerif.OccurrenceRealisation
 import PscVerif.PacketCertificate
+import PscVerif.PacketSquare
+import PscVerif.PacketSquareData.Tribonacci
+import PscVerif.PacketSquareData.RealSecondary
+import PscVerif.PacketSquareData.NonPisot
+import PscVerif.PacketSquareData.GfActual

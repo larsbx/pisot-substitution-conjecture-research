@@ -13624,6 +13624,366 @@
       "declaration": "theorem weirdFin_refused :"
     },
     {
+      "name": "Psc.PacketCertificate.Table.embeds",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 198,
+      "declaration": "theorem Table.embeds (t : Table α) (h : t.check = true) :"
+    },
+    {
+      "name": "Psc.PacketSquare.refines_of_embeds",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 230,
+      "declaration": "theorem refines_of_embeds {G : ChildGraph X} {Q : ChildGraph Z} {P : ChildGraph Y}"
+    },
+    {
+      "name": "Psc.PacketSquare.refines_precomp",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 252,
+      "declaration": "theorem refines_precomp {G' : ChildGraph W} {G : ChildGraph X} {P : ChildGraph Y}"
+    },
+    {
+      "name": "Psc.PacketSquare.packetOf_spec",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 294,
+      "declaration": "theorem packetOf_spec (t : Table α) (T₀ : List α × List α) (a : Covered t T₀) :"
+    },
+    {
+      "name": "Psc.PacketSquare.packetOf_congr",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 299,
+      "declaration": "theorem packetOf_congr (t : Table α) (T₀ : List α × List α) {a b : Covered t T₀}"
+    },
+    {
+      "name": "Psc.PacketSquare.covered_acyclic",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 309,
+      "declaration": "theorem covered_acyclic (t : Table α) (T₀ : List α × List α) (a : Covered t T₀) :"
+    },
+    {
+      "name": "Psc.PacketSquare.covered_closed",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 327,
+      "declaration": "theorem covered_closed (t : Table α) (h : t.check = true) (T₀ : List α × List α) :"
+    },
+    {
+      "name": "Psc.PacketSquare.covered_refines",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 336,
+      "declaration": "theorem covered_refines (t : Table α) (h : t.check = true) (T₀ : List α × List α) :"
+    },
+    {
+      "name": "Psc.PacketSquare.packet_fields",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 351,
+      "declaration": "theorem packet_fields (t : Table α) (h : t.check = true) (T₀ : List α × List α)"
+    },
+    {
+      "name": "Psc.PacketSquare.covered_level_zero",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 379,
+      "declaration": "theorem covered_level_zero (t : Table α) (h : t.check = true) {T₀ : List α × List α}"
+    },
+    {
+      "name": "Psc.PacketSquare.universe_covered",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 392,
+      "declaration": "theorem universe_covered (t : Table α) (h : t.check = true) {T₀ : List α × List α}"
+    },
+    {
+      "name": "Psc.PacketSquare.universePacket_spec",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 414,
+      "declaration": "theorem universePacket_spec (t : Table α) (h : t.check = true) {T₀ : List α × List α}"
+    },
+    {
+      "name": "Psc.PacketSquare.toCovered_graph",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 421,
+      "declaration": "theorem toCovered_graph (t : Table α) (h : t.check = true) {T₀ : List α × List α}"
+    },
+    {
+      "name": "Psc.PacketSquare.universe_step",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 434,
+      "declaration": "theorem universe_step (t : Table α) (h : t.check = true) (T₀ : List α × List α)"
+    },
+    {
+      "name": "Psc.PacketSquare.packet_of_red",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 450,
+      "declaration": "theorem packet_of_red (t : Table α) (h : t.check = true) {T₀ : List α × List α}"
+    },
+    {
+      "name": "Psc.PacketSquare.row_realised",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 480,
+      "declaration": "theorem row_realised (t : Table α) (h : t.check = true) (i : Fin t.packets.length) :"
+    },
+    {
+      "name": "Psc.PacketSquare.universe_acyclic",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 496,
+      "declaration": "theorem universe_acyclic (s : α → List α) (T₀ : List α × List α) (a : Universe s T₀) :"
+    },
+    {
+      "name": "Psc.PacketSquare.successFor_swap",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 512,
+      "declaration": "theorem successFor_swap (target : Option α) (x : Occ α) :"
+    },
+    {
+      "name": "Psc.PacketSquare.universeSwap_surjective",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 530,
+      "declaration": "theorem universeSwap_surjective {s : α → List α} {T : List α × List α} :"
+    },
+    {
+      "name": "Psc.PacketSquare.universeSwap_graph",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 538,
+      "declaration": "theorem universeSwap_graph {s : α → List α} {T : List α × List α} (target : Option α)"
+    },
+    {
+      "name": "Psc.PacketSquare.packetOf_eq_iff",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 561,
+      "declaration": "theorem packetOf_eq_iff (t : Table α) (h : t.check = true) (T₀ : List α × List α)"
+    },
+    {
+      "name": "Psc.PacketSquare.packet_square_covered",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 572,
+      "declaration": "theorem packet_square_covered (t : Table α) (h : t.check = true) (T₀ : List α × List α) :"
+    },
+    {
+      "name": "Psc.PacketSquare.packet_square_covered_readings",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 582,
+      "declaration": "theorem packet_square_covered_readings (t : Table α) (h : t.check = true)"
+    },
+    {
+      "name": "Psc.PacketSquare.packet_square_covered_readings_for",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 595,
+      "declaration": "theorem packet_square_covered_readings_for (t : Table α) (h : t.check = true)"
+    },
+    {
+      "name": "Psc.PacketSquare.universePacket_eq_iff",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 609,
+      "declaration": "theorem universePacket_eq_iff (t : Table α) (h : t.check = true) {T₀ : List α × List α}"
+    },
+    {
+      "name": "Psc.PacketSquare.packet_square",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 624,
+      "declaration": "theorem packet_square (t : Table α) (h : t.check = true) {T₀ : List α × List α}"
+    },
+    {
+      "name": "Psc.PacketSquare.packet_square_readings",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 636,
+      "declaration": "theorem packet_square_readings (t : Table α) (h : t.check = true) {T₀ : List α × List α}"
+    },
+    {
+      "name": "Psc.PacketSquare.packet_square_readings_for",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 653,
+      "declaration": "theorem packet_square_readings_for (t : Table α) (h : t.check = true) {T₀ : List α × List α}"
+    },
+    {
+      "name": "Psc.PacketSquare.packet_square_range",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 676,
+      "declaration": "theorem packet_square_range (t : Table α) (h : t.check = true) {T₀ : List α × List α}"
+    },
+    {
+      "name": "Psc.PacketSquare.packet_path_lift",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 710,
+      "declaration": "theorem packet_path_lift (t : Table α) (h : t.check = true) {T₀ : List α × List α}"
+    },
+    {
+      "name": "Psc.PacketSquare.seed_universe_covered",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 727,
+      "declaration": "theorem seed_universe_covered (t : Table α) (h : t.check = true) {T : List α × List α}"
+    },
+    {
+      "name": "Psc.PacketSquare.packet_square_swap",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 745,
+      "declaration": "theorem packet_square_swap (t : Table α) (h : t.check = true) {T : List α × List α}"
+    },
+    {
+      "name": "Psc.PacketSquare.universeSwap_packet_eq_iff",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 759,
+      "declaration": "theorem universeSwap_packet_eq_iff (t : Table α) (h : t.check = true) {T : List α × List α}"
+    },
+    {
+      "name": "Psc.PacketSquare.seed_square",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 771,
+      "declaration": "theorem seed_square (t : Table α) (h : t.check = true) {T : List α × List α} (hT : T ∈ seeds) :"
+    },
+    {
+      "name": "Psc.PacketSquare.universe_star",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 804,
+      "declaration": "theorem universe_star (t : Table α) (h : t.check = true) {T₀ : List α × List α}"
+    },
+    {
+      "name": "Psc.PacketSquare.fib_seed_listed",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 899,
+      "declaration": "theorem fib_seed_listed : tmPair ∈ fibTable.states ∧ tmPair.1 ≠ tmPair.2 := by decide"
+    },
+    {
+      "name": "Psc.PacketSquare.fib_universe_covered",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 902,
+      "declaration": "theorem fib_universe_covered :"
+    },
+    {
+      "name": "Psc.PacketSquare.fib_dead_packet",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 915,
+      "declaration": "theorem fib_dead_packet :"
+    },
+    {
+      "name": "Psc.PacketSquare.weirdSeed_listed",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 941,
+      "declaration": "theorem weirdSeed_listed : weirdSeed ∈ weird.states ∧ weirdSeed.1 ≠ weirdSeed.2 := by decide"
+    },
+    {
+      "name": "Psc.PacketSquare.weird_square_rows",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 947,
+      "declaration": "theorem weird_square_rows :"
+    },
+    {
+      "name": "Psc.PacketSquare.weird_square_fails",
+      "module": "PscVerif.PacketSquare",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquare.lean",
+      "line": 985,
+      "declaration": "theorem weird_square_fails :"
+    },
+    {
+      "name": "PscVerif.PacketSquareData.GfActual.accepted",
+      "module": "PscVerif.PacketSquareData.GfActual",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareData/GfActual.lean",
+      "line": 395,
+      "declaration": "theorem accepted : table.check = true := by decide +kernel"
+    },
+    {
+      "name": "PscVerif.PacketSquareData.NonPisot.accepted",
+      "module": "PscVerif.PacketSquareData.NonPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareData/NonPisot.lean",
+      "line": 157,
+      "declaration": "theorem accepted : table.check = true := by decide +kernel"
+    },
+    {
+      "name": "PscVerif.PacketSquareData.RealSecondary.accepted",
+      "module": "PscVerif.PacketSquareData.RealSecondary",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareData/RealSecondary.lean",
+      "line": 1143,
+      "declaration": "theorem accepted : table.check = true := by decide +kernel"
+    },
+    {
+      "name": "PscVerif.PacketSquareData.Tribonacci.accepted",
+      "module": "PscVerif.PacketSquareData.Tribonacci",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareData/Tribonacci.lean",
+      "line": 347,
+      "declaration": "theorem accepted : table.check = true := by decide +kernel"
+    },
+    {
       "name": "Psc.ParikhIntertwiner.parikh_append",
       "module": "PscVerif.ParikhIntertwiner",
       "private": false,
@@ -22148,6 +22508,11 @@
     "proof/PscVerif/PscVerif/OverlapContraction.lean": "09dd1ccc90a7245211336996f7da8b1276e86cab60dd1cc0b5471e3d7f6a2a30",
     "proof/PscVerif/PscVerif/OverlapPacket.lean": "572fd9fc85082e05377321fa812670558fff66ebed16e319a81816b22950a853",
     "proof/PscVerif/PscVerif/PacketCertificate.lean": "751cc43bdf4a8c933ca2b300fafb242c26a12773e36c0702d2855e6533ebd25a",
+    "proof/PscVerif/PscVerif/PacketSquare.lean": "3ad2008a6290f6b00f5bcdcd1fdf22b0ceff786af9bef0c25c69c4772b747adf",
+    "proof/PscVerif/PscVerif/PacketSquareData/GfActual.lean": "2e7dfb472eb59a243c0bfe5aa55062733684c1106b62bf3db2a7f0eca240ed34",
+    "proof/PscVerif/PscVerif/PacketSquareData/NonPisot.lean": "928579ee2bac4b5c7df35364bf965d3309566444356d7c20636fdcc95f0706ca",
+    "proof/PscVerif/PscVerif/PacketSquareData/RealSecondary.lean": "5c0c6924ae1e0e51715c40a0e662062e95346dc0a99fa06d60024a49bb24ed63",
+    "proof/PscVerif/PscVerif/PacketSquareData/Tribonacci.lean": "48d66e751e1af210a087d87a7b03395d380b0c6d33077085d0a96d1ca6b5b72a",
     "proof/PscVerif/PscVerif/ParikhIntertwiner.lean": "bc7120433f0c103c966fc6faf41407b969537fd0881971a5d36b98169b220d96",
     "proof/PscVerif/PscVerif/ParikhRank.lean": "be40494c796287c599d6a62f20662e1c7f80786c88d0e4881c8a58795b3e0d7a",
     "proof/PscVerif/PscVerif/PerronCore.lean": "1f06da1e0b57e74b31fc03d753bd314f25561a37e512b3a8f7f05fda0d75458c",
@@ -22171,7 +22536,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "36cc3dd6432768f4fe5da95e74fa95f03031c57b4da110ff6159bb4921f8dfdb",
+    "proof/PscVerif/PscVerif.lean": "f7129d6cf3c250bc1a5cafd823bbd14a1426a968903f0edb76581b5498aa362d",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

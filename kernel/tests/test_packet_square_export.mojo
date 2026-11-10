@@ -354,9 +354,12 @@ def lean_from_jsonl(rows: List[String], module: String, command: String) raises 
     out.append("")
     out.append("The rows of the target-aware packet graph exported by `kernel/psc/packet_square_export.mojo`,")
     out.append("as a `Psc.PacketCertificate.Table (Fin 3)`. `accepted` states only that `Table.check` accepts")
-    out.append("this finite table, by one kernel evaluation: the checker re-derives every factor row, packet")
-    out.append("row and digit star from `Psc.Reduction.red`. Nothing here concerns states outside the table,")
-    out.append("absolute occurrences in the iterates, the PIP status, or C4, G1 and PSC.")
+    out.append("this finite table, by one kernel evaluation. The checker re-derives every factor row, every")
+    out.append("packet row except its `birth` field, every digit star and every listed hub row from")
+    out.append("`Psc.Reduction.red`; it checks that each `birth` names an incoming edge from an earlier row")
+    out.append("(not necessarily the first), and it checks the letters, the states, the seeds, the roots and")
+    out.append("the key order. Nothing here concerns states outside the table, absolute occurrences in the")
+    out.append("iterates, the PIP status, or C4, G1 and PSC.")
     out.append("-/")
     out.append("")
     out.append(String("namespace ") + module)
@@ -515,7 +518,12 @@ def test_real_secondary_rows_and_seed_depth_two() raises:
     assert_true(has_child(sq.stars[2], 1, 1, 124))
     assert_true(has_child(sq.stars[124], 0, 2, 346))
     assert_true(g.packets[346].success)
-    # Matching letters at depth one do not make a success: packet 154.
+    # Matching letters at a nonzero residual do not make a success: packet 154
+    # (state 7, orientation -1, letters (2, 2), residual (-1, 1, 0)). It is not a
+    # descendant of the swap seed (01, 10): its only parent is the root 15 of
+    # state 3, and it is the mirror image of packet 341, which is the seed's
+    # depth-two pair at position 1 of (021202, 120202). The assertions below are
+    # facts about 154; the seed's own matching-letter pair is 341.
     assert_equal(g.packets[154].top_letter, 2)
     assert_equal(g.packets[154].bottom_letter, 2)
     assert_equal(g.packets[154].residual.x, -1)
