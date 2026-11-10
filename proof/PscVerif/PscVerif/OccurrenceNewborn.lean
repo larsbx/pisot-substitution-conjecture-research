@@ -38,13 +38,32 @@ def NewbornCut (s : α → List α) (u v : List α) (k : ℕ) : Prop :=
     Equiv1 ((subst s u).take k) ((subst s v).take k) ∧
     ¬ InheritedCut s u v k
 
-/-- Equal adjacent letters immediately to the right of a cut. -/
+/-- Equal adjacent letters immediately to the right of a cut.  This is the
+zero-step special case of the manuscript's eventual `Sync_+` predicate. -/
 def SyncPlus (u v : List α) (k : ℕ) : Prop :=
   ∃ a u' v', u.drop k = a :: u' ∧ v.drop k = a :: v'
 
-/-- Equal adjacent letters immediately to the left of a cut. -/
+/-- Equal adjacent letters immediately to the left of a cut.  This is the
+zero-step special case of the manuscript's eventual `Sync_-` predicate. -/
 def SyncMinus (u v : List α) (k : ℕ) : Prop :=
   ∃ a u' v', u.take k = u' ++ [a] ∧ v.take k = v' ++ [a]
+
+/-- An immediate right synchronization supplies the eventual synchronization
+criterion for any endpoint map, with witness depth zero. -/
+theorem SyncPlus.eventual (h : α → α) {u v : List α} {k : ℕ}
+    (hsync : SyncPlus u v k) :
+    ∃ a b u' v', u.drop k = a :: u' ∧ v.drop k = b :: v' ∧
+      ∃ n : ℕ, (h^[n]) a = (h^[n]) b := by
+  obtain ⟨a, u', v', hu, hv⟩ := hsync
+  exact ⟨a, a, u', v', hu, hv, 0, rfl⟩
+
+/-- The analogous zero-step witness for the left endpoint map. -/
+theorem SyncMinus.eventual (h : α → α) {u v : List α} {k : ℕ}
+    (hsync : SyncMinus u v k) :
+    ∃ a b u' v', u.take k = u' ++ [a] ∧ v.take k = v' ++ [b] ∧
+      ∃ n : ℕ, (h^[n]) a = (h^[n]) b := by
+  obtain ⟨a, u', v', hu, hv⟩ := hsync
+  exact ⟨a, a, u', v', hu, hv, 0, rfl⟩
 
 /-- Irreducibility, rather than a newborn premise, excludes inherited
 interior cuts.  Nonerasure is not needed for this implication. -/
@@ -208,8 +227,14 @@ def physicalLength (ℓ : Fin 3 → ℝ) (w : List (Fin 3)) : ℝ :=
     physicalLength ℓ [a] = ℓ a := by
   simp [physicalLength, dotProduct, List.count_singleton', mul_ite]
 
+@[simp] theorem physicalLength_cons (ℓ : Fin 3 → ℝ) (a : Fin 3)
+    (w : List (Fin 3)) : physicalLength ℓ (a :: w) = ℓ a + physicalLength ℓ w := by
+  change physicalLength ℓ ([a] ++ w) = _
+  rw [physicalLength_append, physicalLength_singleton]
+
 theorem physicalLength_nonneg (ℓ : Fin 3 → ℝ) (hℓ : ∀ a, 0 ≤ ℓ a)
     (w : List (Fin 3)) : 0 ≤ physicalLength ℓ w := by
+  unfold physicalLength dotProduct
   exact Finset.sum_nonneg fun a _ => mul_nonneg (hℓ a) (Nat.cast_nonneg _)
 
 theorem physicalLength_of_equiv1 (ℓ : Fin 3 → ℝ) {u v : List (Fin 3)}
@@ -243,7 +268,7 @@ theorem factorBoundary_succ (ℓ : Fin 3 → ℝ)
     {bs : List (List (Fin 3) × List (Fin 3))} {j : ℕ}
     {T : List (Fin 3) × List (Fin 3)} (h : bs[j]? = some T) :
     factorBoundary ℓ bs (j + 1) = factorBoundary ℓ bs j + physicalLength ℓ T.1 := by
-  simp [factorBoundary, List.take_succ, h]
+  simp [factorBoundary, List.take_add_one, h]
 
 /-- A selected tile in a particular factor occurrence.  `ordinal` is part
 of the data; equal word labels at different positions are not identified. -/
@@ -287,7 +312,7 @@ theorem FactorOccurrence.bounds (ℓ : Fin 3 → ℝ) (hℓ : ∀ a, 0 ≤ ℓ a
     rw [← physicalLength_of_equiv1 ℓ (htrack o.factor
       (List.mem_of_getElem? o.atOrdinal)), o.split]
     rw [show o.before ++ o.letter :: o.after = (o.before ++ [o.letter]) ++ o.after by simp]
-    simp
+    simp [add_assoc]
   constructor
   · unfold FactorOccurrence.start
     rw [hprefix]
@@ -419,12 +444,12 @@ newborn even though the immediate parent is balanced and noncoincident. -/
 def erasingControl : Fin 2 → List (Fin 2) := fun a => if a = 0 then [0] else []
 
 theorem erasing_control_no_newborn :
-    IsBlock ([0, 1], [1, 0] : List (Fin 2) × List (Fin 2)) ∧
+    IsBlock (([0, 1], [1, 0]) : List (Fin 2) × List (Fin 2)) ∧
     subst erasingControl [0, 1] = [0] ∧ subst erasingControl [1, 0] = [0] ∧
     ¬ ∃ k, NewbornCut erasingControl [0, 1] [1, 0] k := by
   refine ⟨by unfold IsBlock; decide, by decide, by decide, ?_⟩
   rintro ⟨k, h0, hlt, _⟩
-  norm_num [subst, erasingControl] at hlt
+  change k < 1 at hlt
   omega
 
 /-- An interior synchronized cut can be inherited when the parent is

@@ -120,15 +120,12 @@ theorem reciprocal_roots_of_sieve {S : ChildSystem (Fin 3)} (P : Normalisation S
   have eb : (((incQ S).det : ℚ) : ℂ) ^ 2 / β = β * α^2 * γ^2 := by
     rw [hprod]
     field_simp
-    ring
   have ea : (((incQ S).det : ℚ) : ℂ) ^ 2 / α = β^2 * α * γ^2 := by
     rw [hprod]
     field_simp
-    ring
   have ec : (((incQ S).det : ℚ) : ℂ) ^ 2 / γ = β^2 * α^2 * γ := by
     rw [hprod]
     field_simp
-    ring
   rw [eb] at hb
   rw [ea] at ha
   rw [ec] at hc
@@ -152,6 +149,7 @@ theorem q5_eq_pow_rank {S : ChildSystem (Fin 3)} (P : Normalisation S)
     (reciprocal_irreducible (incQ S) hM)
     (imCharpoly_monic (intertwine P hbal))
     (reciprocal_roots_of_sieve P hbal hM hprim hβ hβ1 hpisot)
+  change q5 P hbal = reciprocal (incQ S) ^ k at hk
   refine ⟨k, hk, ?_⟩
   have hn := natDegree_imCharpoly (intertwine P hbal)
   change (q5 P hbal).natDegree = _ at hn
@@ -185,7 +183,8 @@ theorem q5_eq_one_iff {S : ChildSystem (Fin 3)} (P : Normalisation S)
     apply Submodule.finrank_eq_zero.1
     rw [← hn, h, natDegree_one]
   · intro h
-    apply (imCharpoly_monic (intertwine P hbal)).natDegree_eq_zero.mp
+    have hm : (q5 P hbal).Monic := imCharpoly_monic (intertwine P hbal)
+    apply hm.natDegree_eq_zero.mp
     rw [hn, LinearMap.range_eq_bot.2 h]
     simp
 

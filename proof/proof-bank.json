@@ -5891,7 +5891,7 @@
       "module": "PscVerif.Degree5Completion",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Completion.lean",
-      "line": 143,
+      "line": 140,
       "declaration": "theorem q5_eq_pow_rank {S : ChildSystem (Fin 3)} (P : Normalisation S)"
     },
     {
@@ -5899,7 +5899,7 @@
       "module": "PscVerif.Degree5Completion",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Completion.lean",
-      "line": 163,
+      "line": 161,
       "declaration": "theorem columns_eq_zero_iff {S : ChildSystem (Fin 3)} (P : Normalisation S) :"
     },
     {
@@ -5907,7 +5907,7 @@
       "module": "PscVerif.Degree5Completion",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Completion.lean",
-      "line": 178,
+      "line": 176,
       "declaration": "theorem q5_eq_one_iff {S : ChildSystem (Fin 3)} (P : Normalisation S)"
     },
     {
@@ -5915,7 +5915,7 @@
       "module": "PscVerif.Degree5Completion",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Completion.lean",
-      "line": 194,
+      "line": 193,
       "declaration": "theorem q5_eq_pow_rank_of_nonzero {S : ChildSystem (Fin 3)} (P : Normalisation S)"
     },
     {
@@ -5923,7 +5923,7 @@
       "module": "PscVerif.Degree5Completion",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Completion.lean",
-      "line": 213,
+      "line": 212,
       "declaration": "theorem columns_eq_zero_of_det_bound {S : ChildSystem (Fin 3)} (P : Normalisation S)"
     },
     {
@@ -5931,7 +5931,7 @@
       "module": "PscVerif.Degree5Completion",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Completion.lean",
-      "line": 228,
+      "line": 227,
       "declaration": "theorem columns_eq_zero_of_nonunit_small_perron {S : ChildSystem (Fin 3)}"
     },
     {
@@ -5939,7 +5939,7 @@
       "module": "PscVerif.Degree5Completion",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Completion.lean",
-      "line": 243,
+      "line": 242,
       "declaration": "theorem reciprocal_plastic_control :"
     },
     {
@@ -5947,7 +5947,7 @@
       "module": "PscVerif.Degree5Completion",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Completion.lean",
-      "line": 252,
+      "line": 251,
       "declaration": "theorem plasticEmpty_equiv4 : ∀ T ∈ plasticEmpty.C, Equiv4 T.1 T.2 := by"
     },
     {
@@ -5955,7 +5955,7 @@
       "module": "PscVerif.Degree5Completion",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Completion.lean",
-      "line": 257,
+      "line": 256,
       "declaration": "theorem plastic_zero_image_control :"
     },
     {
@@ -5963,7 +5963,7 @@
       "module": "PscVerif.Degree5Completion",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Completion.lean",
-      "line": 271,
+      "line": 270,
       "declaration": "theorem reducible_root_containment_control :"
     },
     {
@@ -9623,11 +9623,27 @@
       "declaration": "theorem m0_pisot : ∃ b : ℝ, 1 < b ∧ aeval (b : ℂ) f = 0 ∧"
     },
     {
+      "name": "Psc.OccurrenceNewborn.SyncPlus.eventual",
+      "module": "PscVerif.OccurrenceNewborn",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
+      "line": 53,
+      "declaration": "theorem SyncPlus.eventual (h : α → α) {u v : List α} {k : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceNewborn.SyncMinus.eventual",
+      "module": "PscVerif.OccurrenceNewborn",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
+      "line": 61,
+      "declaration": "theorem SyncMinus.eventual (h : α → α) {u v : List α} {k : ℕ}"
+    },
+    {
       "name": "Psc.OccurrenceNewborn.interior_not_inherited",
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
-      "line": 51,
+      "line": 70,
       "declaration": "theorem interior_not_inherited (s : α → List α) {u v : List α}"
     },
     {
@@ -9635,7 +9651,7 @@
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
-      "line": 67,
+      "line": 86,
       "declaration": "theorem two_le_length_of_noncoincident {u v : List α}"
     },
     {
@@ -9643,7 +9659,7 @@
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
-      "line": 83,
+      "line": 102,
       "declaration": "theorem red_split_at_diagonal {pu pv su sv : List α} {a : α}"
     },
     {
@@ -9651,7 +9667,7 @@
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
-      "line": 94,
+      "line": 113,
       "declaration": "theorem diagonal_factor_ordinal {pu pv su sv : List α} {a : α}"
     },
     {
@@ -9659,7 +9675,7 @@
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
-      "line": 105,
+      "line": 124,
       "declaration": "theorem aligned_letter_newborn (s : α → List α) (hs : ∀ a, s a ≠ [])"
     },
     {
@@ -9667,7 +9683,7 @@
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
-      "line": 134,
+      "line": 153,
       "declaration": "theorem singleton_child_newborn (s : α → List α) (hs : ∀ a, s a ≠ [])"
     },
     {
@@ -9675,7 +9691,7 @@
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
-      "line": 159,
+      "line": 178,
       "declaration": "theorem coincidence_child_newborn (s : α → List α) (hs : ∀ a, s a ≠ [])"
     },
     {
@@ -9683,7 +9699,7 @@
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
-      "line": 172,
+      "line": 191,
       "declaration": "theorem child_path_newborn (s : α → List α) (hs : ∀ a, s a ≠ [])"
     },
     {
@@ -9691,7 +9707,7 @@
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
-      "line": 199,
+      "line": 218,
       "declaration": "@[simp] theorem physicalLength_nil (ℓ : Fin 3 → ℝ) : physicalLength ℓ [] = 0 := by"
     },
     {
@@ -9699,7 +9715,7 @@
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
-      "line": 202,
+      "line": 221,
       "declaration": "@[simp] theorem physicalLength_append (ℓ : Fin 3 → ℝ) (u v : List (Fin 3)) :"
     },
     {
@@ -9707,15 +9723,23 @@
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
-      "line": 207,
+      "line": 226,
       "declaration": "@[simp] theorem physicalLength_singleton (ℓ : Fin 3 → ℝ) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.OccurrenceNewborn.physicalLength_cons",
+      "module": "PscVerif.OccurrenceNewborn",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
+      "line": 230,
+      "declaration": "@[simp] theorem physicalLength_cons (ℓ : Fin 3 → ℝ) (a : Fin 3)"
     },
     {
       "name": "Psc.OccurrenceNewborn.physicalLength_nonneg",
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
-      "line": 211,
+      "line": 235,
       "declaration": "theorem physicalLength_nonneg (ℓ : Fin 3 → ℝ) (hℓ : ∀ a, 0 ≤ ℓ a)"
     },
     {
@@ -9723,7 +9747,7 @@
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
-      "line": 215,
+      "line": 240,
       "declaration": "theorem physicalLength_of_equiv1 (ℓ : Fin 3 → ℝ) {u v : List (Fin 3)}"
     },
     {
@@ -9731,7 +9755,7 @@
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
-      "line": 222,
+      "line": 247,
       "declaration": "theorem physicalLength_flatten (ℓ : Fin 3 → ℝ) (ws : List (List (Fin 3))) :"
     },
     {
@@ -9739,7 +9763,7 @@
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
-      "line": 234,
+      "line": 259,
       "declaration": "theorem factorBoundary_mono (ℓ : Fin 3 → ℝ) (hℓ : ∀ a, 0 ≤ ℓ a)"
     },
     {
@@ -9747,7 +9771,7 @@
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
-      "line": 242,
+      "line": 267,
       "declaration": "theorem factorBoundary_succ (ℓ : Fin 3 → ℝ)"
     },
     {
@@ -9755,7 +9779,7 @@
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
-      "line": 273,
+      "line": 298,
       "declaration": "theorem FactorOccurrence.bounds (ℓ : Fin 3 → ℝ) (hℓ : ∀ a, 0 ≤ ℓ a)"
     },
     {
@@ -9763,7 +9787,7 @@
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
-      "line": 302,
+      "line": 327,
       "declaration": "theorem common_factor_ordinal (ℓ : Fin 3 → ℝ) (hℓ : ∀ a, 0 ≤ ℓ a)"
     },
     {
@@ -9771,7 +9795,7 @@
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
-      "line": 320,
+      "line": 345,
       "declaration": "theorem red_common_factor (ℓ : Fin 3 → ℝ) (hℓ : ∀ a, 0 < ℓ a)"
     },
     {
@@ -9779,7 +9803,7 @@
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
-      "line": 336,
+      "line": 361,
       "declaration": "theorem rational_length_injective (M : Matrix (Fin 3) (Fin 3) ℚ)"
     },
     {
@@ -9787,7 +9811,7 @@
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
-      "line": 346,
+      "line": 371,
       "declaration": "theorem physicalLength_eq_iff (M : Matrix (Fin 3) (Fin 3) ℚ)"
     },
     {
@@ -9795,7 +9819,7 @@
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
-      "line": 373,
+      "line": 398,
       "declaration": "theorem physical_diagonal_newborn (s : Fin 3 → List (Fin 3))"
     },
     {
@@ -9803,7 +9827,7 @@
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
-      "line": 407,
+      "line": 432,
       "declaration": "theorem left_boundary_syncMinus_control :"
     },
     {
@@ -9811,7 +9835,7 @@
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
-      "line": 421,
+      "line": 446,
       "declaration": "theorem erasing_control_no_newborn :"
     },
     {
@@ -9819,7 +9843,7 @@
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
-      "line": 432,
+      "line": 457,
       "declaration": "theorem reducible_parent_inherited_control :"
     },
     {
@@ -9827,7 +9851,7 @@
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceNewborn.lean",
-      "line": 441,
+      "line": 466,
       "declaration": "theorem dependent_lengths_control :"
     },
     {
@@ -17768,7 +17792,7 @@
     "proof/PscVerif/PscVerif/Degree3Sector.lean": "02875b90e69cf0089f1cbfa1f2a0de2fabc121cb022cc2a23fb5406d69c9e414",
     "proof/PscVerif/PscVerif/Degree4Floor.lean": "bc34017a101d388e497a394710ed7661250aaa1fb049a9454dba17f308515006",
     "proof/PscVerif/PscVerif/Degree4Sector.lean": "7afc131498833c8346b21872981c6f7aa4b7a736fdc952ff84b9b8c071b86f63",
-    "proof/PscVerif/PscVerif/Degree5Completion.lean": "5e9fa3b2d6ebf94bc71b8330992de61560a410ba783b9cde131d39f4af62c1cc",
+    "proof/PscVerif/PscVerif/Degree5Completion.lean": "9dc69a390e7c1ae41700d6647473f647f4446efa4839c20f8c598c37bbf1b445",
     "proof/PscVerif/PscVerif/Degree5RootLift.lean": "03793616a416af2378b1d2072eef77305d9f61b3fb7a72a09c6a3d1cb6f67740",
     "proof/PscVerif/PscVerif/Degree5Sector.lean": "1c4fd12cac7317ba0e724f4c3b757a1e06fdacd5b52f575d5549a83244d6ab46",
     "proof/PscVerif/PscVerif/Degree5Sieve.lean": "b787a6689480edad73655df8666b2ee97a02a64af6ec26fb88acd058add82b1c",
@@ -17786,7 +17810,7 @@
     "proof/PscVerif/PscVerif/Lie5Data.lean": "df36055fa646536437bff13bf336304b211ba70a4d0ac11cd910c8c2751271fb",
     "proof/PscVerif/PscVerif/LieWeights.lean": "f32639f83e519c69b8f428e153dd368c274e1f665a837183f88c5f1de0dd8adb",
     "proof/PscVerif/PscVerif/M0Pisot.lean": "65d17cf0aa71cdac825d16da73ad601dd49c214cd0b47ac58f124cb51a64a304",
-    "proof/PscVerif/PscVerif/OccurrenceNewborn.lean": "622a510070f0965aa664dca5530d31e36745f596b9e4cf774ec6f12b280fe57c",
+    "proof/PscVerif/PscVerif/OccurrenceNewborn.lean": "7afaf823023d45cc6d1d4d9b6d08e2b3d6e74dce165d77174de86d7cd23dd1d0",
     "proof/PscVerif/PscVerif/OverlapContraction.lean": "09dd1ccc90a7245211336996f7da8b1276e86cab60dd1cc0b5471e3d7f6a2a30",
     "proof/PscVerif/PscVerif/OverlapPacket.lean": "572fd9fc85082e05377321fa812670558fff66ebed16e319a81816b22950a853",
     "proof/PscVerif/PscVerif/ParikhIntertwiner.lean": "bc7120433f0c103c966fc6faf41407b969537fd0881971a5d36b98169b220d96",

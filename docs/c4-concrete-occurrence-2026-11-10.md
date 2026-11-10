@@ -98,6 +98,13 @@ to the still-open global productivity argument.
 balanced prefix of the immediate parent. `NewbornCut` requires an interior
 zero return of the one-step image that is not inherited.
 
+The module's `SyncPlus` and `SyncMinus` predicates require immediate equality
+of the adjacent letters. They are the depth-zero special cases of the
+manuscript's eventual endpoint synchronization predicates, whose witness
+depth is allowed to be zero. `SyncPlus.eventual` and `SyncMinus.eventual`
+explicitly supply that witness for any endpoint map; instantiate it with
+the first-letter or last-letter map of the nonerasing substitution.
+
 For an irreducible parent, `interior_not_inherited` derives that every
 interior image cut is noninherited. The parent has only its two endpoint
 returns, whose inflated positions are again endpoints. A noncoincident
@@ -146,6 +153,50 @@ The remaining new connection is from the full marked-occurrence transition
 system into those literal child paths, followed by the uniform argument
 forcing one productive crossing.
 
+## 6. Independent controls and replay
+
+The Lean controls retain the concrete reasons for the hypotheses:
+
+| Control | What it prevents |
+| --- | --- |
+| `left_boundary_syncMinus_control` | For `0 -> 0, 1 -> 01`, the parent `(01,10)` inflates to `(001,010)`. The initial singleton gives cut one with the common letter on its left; cut zero is exterior. |
+| `erasing_control_no_newborn` | A noncoincident balanced parent can inflate to `(0,0)` under erasure, leaving no interior cut. |
+| `reducible_parent_inherited_control` | Identity inflation of `(010,001)` has an inherited interior cut at one. |
+| `dependent_lengths_control` | Unit lengths identify `[0]` and `[1]` geometrically while their Parikh vectors differ. |
+
+The independent
+[`C4OccurrenceBridge.qnt`](../proof/quint/C4OccurrenceBridge.qnt) model
+evaluates 16 irreducible noncoincident binary parents of lengths two through
+four against 36 nonerasing substitutions with image lengths one or two:
+576 parent/substitution inputs. Its containment calibration uses nine
+positive integer length assignments. Ten tests cover singleton extraction,
+interior overlap, factor ordinals, both newborn sides and weakened
+hypotheses. The provenance runner also mutates three predicates and requires
+the corresponding negative checks to fail.
+
+These finite binary/integer-length checks are not a Pisot corpus or a
+universal Perron-vector encoding. The separate four-vertex graph control
+only rejects replacing existential productivity with universal-path
+termination or a nominated target visit. The strengthened canonical Mojo
+and independent Python controls reject malformed address suffixes even
+when a valid first-diagonal receipt occurs earlier in the supplied path.
+
+```sh
+cd proof/PscVerif
+lake build PscVerif.OccurrenceNewborn
+```
+
+From the repository root, the bounded and existing addressed replays are:
+
+```sh
+python tools/check_c4_occurrence_quint.py --output /tmp/c4-occurrence-quint
+python -m pytest tests/test_c4_addressed_newborn_oracle.py
+cd kernel
+pixi run --locked mojo run -I . tests/test_c4_addressed_newborn.mojo
+```
+
 No general C4, Concentration, G1 or PSC status is promoted by this work.
 Exact Lean compilation, kernel/axiom audit and finite replay receipts must
-be attached to the reviewed revision before integration.
+be attached to the reviewed revision before integration. The historical
+orientation-safe standalone receipt covers its generic relational module
+only.
