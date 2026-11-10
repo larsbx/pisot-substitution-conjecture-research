@@ -6295,6 +6295,222 @@
       "declaration": "theorem mixed_weight_collision :"
     },
     {
+      "name": "Psc.DescendantSpan.parikhQ_nil",
+      "module": "PscVerif.DescendantSpan",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
+      "line": 44,
+      "declaration": "theorem parikhQ_nil : parikhQ ([] : List α) = 0 := by"
+    },
+    {
+      "name": "Psc.DescendantSpan.parikhQ_append",
+      "module": "PscVerif.DescendantSpan",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
+      "line": 49,
+      "declaration": "theorem parikhQ_append (u v : List α) :"
+    },
+    {
+      "name": "Psc.DescendantSpan.parikhQ_flatten",
+      "module": "PscVerif.DescendantSpan",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
+      "line": 55,
+      "declaration": "theorem parikhQ_flatten (ws : List (List α)) :"
+    },
+    {
+      "name": "Psc.DescendantSpan.parikhQ_subst",
+      "module": "PscVerif.DescendantSpan",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
+      "line": 61,
+      "declaration": "theorem parikhQ_subst (s : α → List α) (w : List α) :"
+    },
+    {
+      "name": "Psc.DescendantSpan.parikhQ_iterate_subst",
+      "module": "PscVerif.DescendantSpan",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
+      "line": 68,
+      "declaration": "theorem parikhQ_iterate_subst (s : α → List α) (n : ℕ) (w : List α) :"
+    },
+    {
+      "name": "Psc.DescendantSpan.parikhQ_ne_zero",
+      "module": "PscVerif.DescendantSpan",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
+      "line": 77,
+      "declaration": "theorem parikhQ_ne_zero {w : List α} (hw : w ≠ []) : parikhQ w ≠ 0 := by"
+    },
+    {
+      "name": "Psc.DescendantSpan.mass_sum_descR",
+      "module": "PscVerif.DescendantSpan",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
+      "line": 88,
+      "declaration": "theorem mass_sum_descR (s : α → List α) (n : ℕ)"
+    },
+    {
+      "name": "Psc.DescendantSpan.descR_empty_succ",
+      "module": "PscVerif.DescendantSpan",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
+      "line": 108,
+      "declaration": "theorem descR_empty_succ (s : α → List α) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.DescendantSpan.mass_mem_windowSpan",
+      "module": "PscVerif.DescendantSpan",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
+      "line": 126,
+      "declaration": "theorem mass_mem_windowSpan (s : Fin 3 → List (Fin 3)) (n : ℕ)"
+    },
+    {
+      "name": "Psc.DescendantSpan.iterate_mass_mem_windowSpan",
+      "module": "PscVerif.DescendantSpan",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
+      "line": 132,
+      "declaration": "theorem iterate_mass_mem_windowSpan (s : Fin 3 → List (Fin 3)) (n : ℕ)"
+    },
+    {
+      "name": "Psc.DescendantSpan.windowSpan_eq_top",
+      "module": "PscVerif.DescendantSpan",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
+      "line": 144,
+      "declaration": "theorem windowSpan_eq_top (s : Fin 3 → List (Fin 3))"
+    },
+    {
+      "name": "Psc.DescendantSpan.row_eq_zero_of_window",
+      "module": "PscVerif.DescendantSpan",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
+      "line": 176,
+      "declaration": "theorem row_eq_zero_of_window (s : Fin 3 → List (Fin 3))"
+    },
+    {
+      "name": "Psc.DescendantSpan.exists_detecting_occurrence",
+      "module": "PscVerif.DescendantSpan",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
+      "line": 193,
+      "declaration": "theorem exists_detecting_occurrence (s : Fin 3 → List (Fin 3))"
+    },
+    {
+      "name": "Psc.DescendantSpan.exists_detecting_occurrence_le_two",
+      "module": "PscVerif.DescendantSpan",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
+      "line": 210,
+      "declaration": "theorem exists_detecting_occurrence_le_two (s : Fin 3 → List (Fin 3))"
+    },
+    {
+      "name": "Psc.DescendantSpan.Controls.sharp_depth_one",
+      "module": "PscVerif.DescendantSpan",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
+      "line": 229,
+      "declaration": "theorem sharp_depth_one :"
+    },
+    {
+      "name": "Psc.DescendantSpan.Controls.sharp_depth_two",
+      "module": "PscVerif.DescendantSpan",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
+      "line": 233,
+      "declaration": "theorem sharp_depth_two :"
+    },
+    {
+      "name": "Psc.DescendantSpan.Controls.sharp_first_two_levels_vanish",
+      "module": "PscVerif.DescendantSpan",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
+      "line": 238,
+      "declaration": "theorem sharp_first_two_levels_vanish :"
+    },
+    {
+      "name": "Psc.DescendantSpan.Controls.sharp_depth_two_ordinal_two",
+      "module": "PscVerif.DescendantSpan",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
+      "line": 244,
+      "declaration": "theorem sharp_depth_two_ordinal_two :"
+    },
+    {
+      "name": "Psc.DescendantSpan.Controls.sharp_pruned_level_vanishes",
+      "module": "PscVerif.DescendantSpan",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
+      "line": 251,
+      "declaration": "theorem sharp_pruned_level_vanishes :"
+    },
+    {
+      "name": "Psc.DescendantSpan.Controls.sharp_multiplicity_matters",
+      "module": "PscVerif.DescendantSpan",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
+      "line": 258,
+      "declaration": "theorem sharp_multiplicity_matters :"
+    },
+    {
+      "name": "Psc.DescendantSpan.Controls.reducible_depth_one",
+      "module": "PscVerif.DescendantSpan",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
+      "line": 271,
+      "declaration": "theorem reducible_depth_one :"
+    },
+    {
+      "name": "Psc.DescendantSpan.Controls.reducible_depth_two",
+      "module": "PscVerif.DescendantSpan",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
+      "line": 276,
+      "declaration": "theorem reducible_depth_two :"
+    },
+    {
+      "name": "Psc.DescendantSpan.Controls.reducible_three_levels_vanish",
+      "module": "PscVerif.DescendantSpan",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
+      "line": 284,
+      "declaration": "theorem reducible_three_levels_vanish :"
+    },
+    {
+      "name": "Psc.DescendantSpan.Controls.empty_window_vanishes",
+      "module": "PscVerif.DescendantSpan",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
+      "line": 295,
+      "declaration": "theorem empty_window_vanishes (s : Fin 3 → List (Fin 3)) (f : Fin 3 → ℚ) :"
+    },
+    {
+      "name": "Psc.DescendantSpanStrict.mem_of_descR",
+      "module": "PscVerif.DescendantSpanStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpanStrict.lean",
+      "line": 21,
+      "declaration": "theorem mem_of_descR {α : Type*} [DecidableEq α]"
+    },
+    {
+      "name": "Psc.DescendantSpanStrict.exists_detecting_occurrence",
+      "module": "PscVerif.DescendantSpanStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpanStrict.lean",
+      "line": 29,
+      "declaration": "theorem exists_detecting_occurrence"
+    },
+    {
+      "name": "Psc.DescendantSpanStrict.row_eq_zero_of_carrier",
+      "module": "PscVerif.DescendantSpanStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/DescendantSpanStrict.lean",
+      "line": 45,
+      "declaration": "theorem row_eq_zero_of_carrier"
+    },
+    {
       "name": "Psc.Descendants.flatMap_red_top",
       "module": "PscVerif.Descendants",
       "private": false,
@@ -9919,6 +10135,166 @@
       "declaration": "theorem control_last_and_exterior :"
     },
     {
+      "name": "Psc.OccurrenceFinite.markAt_index",
+      "module": "PscVerif.OccurrenceFinite",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceFinite.lean",
+      "line": 29,
+      "declaration": "theorem markAt_index (w : Word) (i : Fin w.length) :"
+    },
+    {
+      "name": "Psc.OccurrenceFinite.markAt_before",
+      "module": "PscVerif.OccurrenceFinite",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceFinite.lean",
+      "line": 33,
+      "declaration": "theorem markAt_before (w : Word) (i : Fin w.length) :"
+    },
+    {
+      "name": "Psc.OccurrenceFinite.markAt_letter",
+      "module": "PscVerif.OccurrenceFinite",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceFinite.lean",
+      "line": 36,
+      "declaration": "theorem markAt_letter (w : Word) (i : Fin w.length) :"
+    },
+    {
+      "name": "Psc.OccurrenceFinite.mark_drop",
+      "module": "PscVerif.OccurrenceFinite",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceFinite.lean",
+      "line": 39,
+      "declaration": "theorem mark_drop {w : Word} (m : Mark w) :"
+    },
+    {
+      "name": "Psc.OccurrenceFinite.mark_index_injective",
+      "module": "PscVerif.OccurrenceFinite",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceFinite.lean",
+      "line": 45,
+      "declaration": "theorem mark_index_injective (w : Word) :"
+    },
+    {
+      "name": "Psc.OccurrenceFinite.markAt_markIndex",
+      "module": "PscVerif.OccurrenceFinite",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceFinite.lean",
+      "line": 68,
+      "declaration": "theorem markAt_markIndex {w : Word} (m : Mark w) :"
+    },
+    {
+      "name": "Psc.OccurrenceFinite.indexedPair_mem",
+      "module": "PscVerif.OccurrenceFinite",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceFinite.lean",
+      "line": 89,
+      "declaration": "theorem indexedPair_mem (C : Finset WordPair) (x : Indexed C) :"
+    },
+    {
+      "name": "Psc.OccurrenceFinite.indexedPair_covers",
+      "module": "PscVerif.OccurrenceFinite",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceFinite.lean",
+      "line": 92,
+      "declaration": "theorem indexedPair_covers {C : Finset WordPair} (m : MarkedPair)"
+    },
+    {
+      "name": "Psc.OccurrenceFinite.mem_markedSupport",
+      "module": "PscVerif.OccurrenceFinite",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceFinite.lean",
+      "line": 103,
+      "declaration": "theorem mem_markedSupport {C : Finset WordPair} {m : MarkedPair} :"
+    },
+    {
+      "name": "Psc.OccurrenceFinite.mem_packetSupport",
+      "module": "PscVerif.OccurrenceFinite",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceFinite.lean",
+      "line": 119,
+      "declaration": "theorem mem_packetSupport {C : Finset WordPair} {p : Packet} :"
+    },
+    {
+      "name": "Psc.OccurrenceFinite.indexed_card",
+      "module": "PscVerif.OccurrenceFinite",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceFinite.lean",
+      "line": 124,
+      "declaration": "theorem indexed_card (C : Finset WordPair) :"
+    },
+    {
+      "name": "Psc.OccurrenceFinite.markedSupport_card_le",
+      "module": "PscVerif.OccurrenceFinite",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceFinite.lean",
+      "line": 130,
+      "declaration": "theorem markedSupport_card_le (C : Finset WordPair) :"
+    },
+    {
+      "name": "Psc.OccurrenceFinite.packetSupport_card_le",
+      "module": "PscVerif.OccurrenceFinite",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceFinite.lean",
+      "line": 138,
+      "declaration": "theorem packetSupport_card_le (C : Finset WordPair) :"
+    },
+    {
+      "name": "Psc.OccurrenceFinite.mem_interiorSupport",
+      "module": "PscVerif.OccurrenceFinite",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceFinite.lean",
+      "line": 150,
+      "declaration": "theorem mem_interiorSupport {C : Finset WordPair} {ℓ : Fin 3 → ℝ} {p : Packet} :"
+    },
+    {
+      "name": "Psc.OccurrenceFinite.interiorSupport_card_le",
+      "module": "PscVerif.OccurrenceFinite",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceFinite.lean",
+      "line": 156,
+      "declaration": "theorem interiorSupport_card_le (C : Finset WordPair) (ℓ : Fin 3 → ℝ) :"
+    },
+    {
+      "name": "Psc.OccurrenceFinite.mem_interiorMarkedSupport",
+      "module": "PscVerif.OccurrenceFinite",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceFinite.lean",
+      "line": 168,
+      "declaration": "theorem mem_interiorMarkedSupport {C : Finset WordPair} {ℓ : Fin 3 → ℝ}"
+    },
+    {
+      "name": "Psc.OccurrenceFinite.interiorMarkedSupport_card_le",
+      "module": "PscVerif.OccurrenceFinite",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceFinite.lean",
+      "line": 174,
+      "declaration": "theorem interiorMarkedSupport_card_le (C : Finset WordPair) (ℓ : Fin 3 → ℝ) :"
+    },
+    {
+      "name": "Psc.OccurrenceFinite.first_marks_interior",
+      "module": "PscVerif.OccurrenceFinite",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceFinite.lean",
+      "line": 181,
+      "declaration": "theorem first_marks_interior (T : WordPair) (ht : T.1 ≠ []) (hb : T.2 ≠ [])"
+    },
+    {
+      "name": "Psc.OccurrenceFinite.interiorMarkedSupport_nonempty",
+      "module": "PscVerif.OccurrenceFinite",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceFinite.lean",
+      "line": 196,
+      "declaration": "theorem interiorMarkedSupport_nonempty {C : Finset WordPair}"
+    },
+    {
+      "name": "Psc.OccurrenceFinite.interiorSupport_nonempty",
+      "module": "PscVerif.OccurrenceFinite",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceFinite.lean",
+      "line": 203,
+      "declaration": "theorem interiorSupport_nonempty {C : Finset WordPair}"
+    },
+    {
       "name": "Psc.OccurrenceNewborn.SyncPlus.eventual",
       "module": "PscVerif.OccurrenceNewborn",
       "private": false,
@@ -10151,6 +10527,94 @@
       "declaration": "theorem dependent_lengths_control :"
     },
     {
+      "name": "Psc.OccurrenceRecurrence.ActualStep.child",
+      "module": "PscVerif.OccurrenceRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRecurrence.lean",
+      "line": 30,
+      "declaration": "theorem ActualStep.child {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ}"
+    },
+    {
+      "name": "Psc.OccurrenceRecurrence.ActualStep.packet",
+      "module": "PscVerif.OccurrenceRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRecurrence.lean",
+      "line": 35,
+      "declaration": "theorem ActualStep.packet {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ}"
+    },
+    {
+      "name": "Psc.OccurrenceRecurrence.packetSupport_iff_realized",
+      "module": "PscVerif.OccurrenceRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRecurrence.lean",
+      "line": 44,
+      "declaration": "theorem packetSupport_iff_realized {C : Finset WordPair} {p : Packet} :"
+    },
+    {
+      "name": "Psc.OccurrenceRecurrence.interior_closed",
+      "module": "PscVerif.OccurrenceRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRecurrence.lean",
+      "line": 48,
+      "declaration": "theorem interior_closed (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.OccurrenceRecurrence.interior_avoids_diagonal",
+      "module": "PscVerif.OccurrenceRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRecurrence.lean",
+      "line": 57,
+      "declaration": "theorem interior_avoids_diagonal {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ}"
+    },
+    {
+      "name": "Psc.OccurrenceRecurrence.interior_serial",
+      "module": "PscVerif.OccurrenceRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRecurrence.lean",
+      "line": 62,
+      "declaration": "theorem interior_serial (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.OccurrenceRecurrence.actual_step_exists",
+      "module": "PscVerif.OccurrenceRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRecurrence.lean",
+      "line": 74,
+      "declaration": "theorem actual_step_exists (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.OccurrenceRecurrence.finite_serial_recurrent",
+      "module": "PscVerif.OccurrenceRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRecurrence.lean",
+      "line": 91,
+      "declaration": "theorem finite_serial_recurrent {α : Type*} [Finite α] (R : α → α → Prop)"
+    },
+    {
+      "name": "Psc.OccurrenceRecurrence.marked_reaches_cycle",
+      "module": "PscVerif.OccurrenceRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRecurrence.lean",
+      "line": 128,
+      "declaration": "theorem marked_reaches_cycle (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.OccurrenceRecurrence.strict_interior_nonempty",
+      "module": "PscVerif.OccurrenceRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRecurrence.lean",
+      "line": 150,
+      "declaration": "theorem strict_interior_nonempty (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.OccurrenceRecurrence.strict_actual_cycle",
+      "module": "PscVerif.OccurrenceRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRecurrence.lean",
+      "line": 166,
+      "declaration": "theorem strict_actual_cycle (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
       "name": "Psc.OccurrenceStrict.realized_closed",
       "module": "PscVerif.OccurrenceStrict",
       "private": false,
@@ -10197,6 +10661,62 @@
       "source": "proof/PscVerif/PscVerif/OccurrenceStrict.lean",
       "line": 85,
       "declaration": "theorem strictComponent_no_diagonal_route (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.OccurrenceSuccessor.offset_incidence",
+      "module": "PscVerif.OccurrenceSuccessor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSuccessor.lean",
+      "line": 25,
+      "declaration": "theorem offset_incidence (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.OccurrenceSuccessor.offset_add",
+      "module": "PscVerif.OccurrenceSuccessor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSuccessor.lean",
+      "line": 44,
+      "declaration": "theorem offset_add (ℓ : Fin 3 → ℝ) (r t : Fin 3 → ℤ) :"
+    },
+    {
+      "name": "Psc.OccurrenceSuccessor.offset_affine",
+      "module": "PscVerif.OccurrenceSuccessor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSuccessor.lean",
+      "line": 50,
+      "declaration": "theorem offset_affine (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.OccurrenceSuccessor.exists_mark_containing",
+      "module": "PscVerif.OccurrenceSuccessor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSuccessor.lean",
+      "line": 61,
+      "declaration": "theorem exists_mark_containing (ℓ : Fin 3 → ℝ) (w : Word) (x : ℝ)"
+    },
+    {
+      "name": "Psc.OccurrenceSuccessor.exists_between_avoiding",
+      "module": "PscVerif.OccurrenceSuccessor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSuccessor.lean",
+      "line": 95,
+      "declaration": "theorem exists_between_avoiding (F : Finset ℝ) (a b : ℝ) (hab : a < b) :"
+    },
+    {
+      "name": "Psc.OccurrenceSuccessor.mem_prefixCuts",
+      "module": "PscVerif.OccurrenceSuccessor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSuccessor.lean",
+      "line": 116,
+      "declaration": "theorem mem_prefixCuts (ℓ : Fin 3 → ℝ) (w : Word) (i : ℕ) (hi : i ≤ w.length) :"
+    },
+    {
+      "name": "Psc.OccurrenceSuccessor.interiorStep_exists",
+      "module": "PscVerif.OccurrenceSuccessor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSuccessor.lean",
+      "line": 124,
+      "declaration": "theorem interiorStep_exists (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
     },
     {
       "name": "Psc.OccurrenceTransport.Mark.index_lt",
@@ -18470,6 +18990,8 @@
     "proof/PscVerif/PscVerif/Degree5Sieve.lean": "b787a6689480edad73655df8666b2ee97a02a64af6ec26fb88acd058add82b1c",
     "proof/PscVerif/PscVerif/Degree5Transport.lean": "1e5e153ac4ba75582d7b4133c8fc4f035b6313b86be83649a49c0555cdfe444b",
     "proof/PscVerif/PscVerif/Degree5Weights.lean": "b53740ff569e9e0c6fdaf9ab99815d9c04396c729f850f138b14b5549d827b84",
+    "proof/PscVerif/PscVerif/DescendantSpan.lean": "8562512a9646b9891d4c60cee5a12ad6246da9a323466a0797395329f580f2c5",
+    "proof/PscVerif/PscVerif/DescendantSpanStrict.lean": "24a2d9d6f0eedf5a49dd17318ad90b0b9d82cc3c930a3f34336b0519f63f9c66",
     "proof/PscVerif/PscVerif/Descendants.lean": "6641b65d81d90be34c13937b6ab8ebc029fcce91babd7c2ce398738dac783a40",
     "proof/PscVerif/PscVerif/FixedPointLimit.lean": "cd4a824f288d4c1072fd375e0e7b9014f56028e23e00cb4336fd678a210b7bbe",
     "proof/PscVerif/PscVerif/GaloisOrbit.lean": "4d3b5474dbd14205f4bf2d33e98149ebbdd6d7e0fb8fd3a33787b878bcad5f07",
@@ -18483,8 +19005,11 @@
     "proof/PscVerif/PscVerif/LieWeights.lean": "f32639f83e519c69b8f428e153dd368c274e1f665a837183f88c5f1de0dd8adb",
     "proof/PscVerif/PscVerif/M0Pisot.lean": "65d17cf0aa71cdac825d16da73ad601dd49c214cd0b47ac58f124cb51a64a304",
     "proof/PscVerif/PscVerif/OccurrenceAddress.lean": "fd8d4020fc3f720c8a81d23c9811056802c901eec35a48efcbb40954c5a375ad",
+    "proof/PscVerif/PscVerif/OccurrenceFinite.lean": "65ef11444d2f03c9a49febf9a859eb8d48bd8dd0e1a37fd972c47935526b48a0",
     "proof/PscVerif/PscVerif/OccurrenceNewborn.lean": "7afaf823023d45cc6d1d4d9b6d08e2b3d6e74dce165d77174de86d7cd23dd1d0",
+    "proof/PscVerif/PscVerif/OccurrenceRecurrence.lean": "9ce4b9cfab68581d39ef893d481eb5e12fe45ff2288ef0cf4f049d97898d3fbb",
     "proof/PscVerif/PscVerif/OccurrenceStrict.lean": "f5ee2c3e7bc7b580e760f65351d0cf129480835e7ef03877c0062c8220911b25",
+    "proof/PscVerif/PscVerif/OccurrenceSuccessor.lean": "103e3cb42b93b234c593f46bf2d53426b198248e33408461e9c05fd3ce8c6f33",
     "proof/PscVerif/PscVerif/OccurrenceTransport.lean": "3ef9fcb7df8c395c36879b63933eb626f57437f1b813e03ad429148b47d09fe0",
     "proof/PscVerif/PscVerif/OverlapContraction.lean": "09dd1ccc90a7245211336996f7da8b1276e86cab60dd1cc0b5471e3d7f6a2a30",
     "proof/PscVerif/PscVerif/OverlapPacket.lean": "572fd9fc85082e05377321fa812670558fff66ebed16e319a81816b22950a853",
@@ -18509,7 +19034,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "78290f20e14b7f63fd5862cb58ef8e4a577a38b34a94cd50659662383e2faebc",
+    "proof/PscVerif/PscVerif.lean": "4a2b9d5972fa403f5ab7a83aa527f7b827795b2a41415439854ab58cca1183a4",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

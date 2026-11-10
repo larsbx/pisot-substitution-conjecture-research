@@ -1,10 +1,11 @@
 # C4 next proof obligations — 2026-11-10
 
-**Status:** research roadmap and verification reconciliation. The inspection
-baseline is `main@c38e381cc8105d87597b0a9bfbe418b7bca86fc0`, through
-[PR #530](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/530).
-This note records the next deliverables; it supplies no new universal proof,
-finite certificate, or governed claim promotion. General C4, Concentration,
+**Status:** research roadmap and verification reconciliation. The current
+baseline is `main@35b4d4101d36288f41f7cb04851f4bf98e0092c5`, through
+[PR #534](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/534).
+The original #530 inspection below remains a historical receipt. This note
+records accepted inputs and scoped follow-up deliverables; it makes no
+governed claim promotion. General C4, Concentration,
 A1′, BH, G1 and PSC remain open. The direct C4 tracker is
 [#461](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/461).
 
@@ -68,9 +69,43 @@ production packet graph's IDs, interning, terminal and success policies,
 complete external transcript replay and arbitrary infinite quotient paths
 are not identified with it. In particular, equal-letter/zero-residual
 `Diagonal` and the configurable production `success` predicate are distinct.
-Acceptance of these sources requires the
-[new bounded/native controls](c4-address-transport-controls-2026-11-10.md)
-and fresh implementation-PR receipts; prior receipts remain historical.
+These three modules were accepted in
+[PR #534](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/534)
+at `5d8fecc2edb267a070a7b4337bd29f08a64c967d`, merged as
+`35b4d4101d36288f41f7cb04851f4bf98e0092c5`. The
+[fresh isolated Lean audit](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42904081939/job/130137379126)
+checked 4,475 declarations and 3,327 theorems and reached all 1,822 named
+proofs with only the permitted standard axioms. The
+[dedicated C4 workflow](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42904082197)
+passed canonical Mojo, independent Python, standalone orientation-safe Lean
+and the then-current 20-test/seven-mutation Quint suite. The tested tree
+`8f2caed840ebda38bd26e1a37a1a7887767da865` is the merge tree. These receipts
+cover that revision and its [bounded/native controls](c4-address-transport-controls-2026-11-10.md).
+
+### Finite actual recurrence and descendant duals after #534
+
+The [finite occurrence-carrier development](c4-finite-occurrence-carrier-2026-11-10.md)
+enumerates actual marks and bounds the packet support by
+`Σ(T∈C) |T.top| |T.bottom|`. Exact positive length scaling gives an interior
+digit successor for every interior packet. With actual strict child closure,
+every interior marked member reaches a nonempty closed walk of actual marked
+states. This strengthens the concrete obstruction interface: the recurrence
+does not splice packet labels from different word contexts. It still supplies
+no shared legal limit, recognizable synchronization or productive route.
+
+Independently, the [descendant-span development](c4-descendant-span-dual-2026-11-10.md)
+proves the complete ordered all-depth mass identity and full rational span in
+every consecutive three-generation window for a nonempty balanced source
+with irreducible ternary rational incidence. Every nonzero fixed rational row
+detects an actual descendant, with both its depth and global list ordinal.
+`DescendantSpanStrict` transports that witness into any supplied strict
+carrier. Deriving such a common row from phase-flatness remains open.
+
+The [pre-code stop/go](c4-finite-carrier-dual-literature-2026-11-10.md) keeps
+the routes independent. The [new controls](c4-finite-carrier-dual-controls-2026-11-10.md)
+retain the earlier 20 tests/seven mutations and extend the bounded runner to
+28 tests/12 mutations. The new sources require their own published-revision
+full-bank, native and Quint receipts; #534's acceptance cannot cover them.
 
 ## 1. Accepted inputs and exact verification scope
 
@@ -81,8 +116,10 @@ and fresh implementation-PR receipts; prior receipts remain historical.
 | [#528](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/528) | Signed Perron sieve, full reciprocal root orbit, and determinant-cube necessary bound. | Reciprocal multiplicities/rank and literal strict-child realizability remain separate obligations. |
 | [#531](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/531) | Orientation-safe finite controls and generic relational Lean path/closed-set lemmas. | The actual occurrence, common-factor and newborn arguments remain prose. |
 | [#529](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/529), [#530](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/530) | Productive PIP crossings without the nominated left alignment, then without either endpoint alignment. | These productive controls fail fully strict child closure. They refute proposed intermediate routing rules, not C4. |
+| [#533](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/533) | Concrete one-step newborn, Perron-length injectivity and degree-five reciprocal multiplicity/rank completion. | Literal degree-five strict-child realization remains open. |
+| [#534](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/534) | Global address lookup, actual interior affine digit lift, coherent finite reachability and strict-carrier closure. | Uniform productive-route existence, common legal-limit realization and exact production policy refinement remain separate. |
 
-At the inspection baseline, the
+At the original `main@c38e381cc8105d87597b0a9bfbe418b7bca86fc0` inspection, the
 [exact-main Lean job](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42768131163/job/129669358430)
 compiled the whole proof bank, including `Degree5Sieve`, and audited **4,048
 declarations and 3,070 theorems**, with all named proofs reached. Its new sieve
@@ -181,7 +218,7 @@ candidate theorem has the quantifiers
 \exists\text{ an actual occurrence path from }x\text{ to a diagonal}.
 \]
 
-The next formal bridge converts that path into the literal interior newborn.
+The accepted finite formal bridge converts that path into the literal interior newborn.
 The theorem is uniform in the size of `C`. It needs neither productivity of
 every forced crossing nor termination of every possible path.
 
@@ -189,7 +226,9 @@ For a fixed root, no diagonal route is equivalent to a successor-closed,
 diagonal-free set containing it. `no_route_iff_closed_avoiding` already proves
 this relational equivalence without a graph-finiteness assumption. Full
 strict child closure transports the forced crossing into such an avoiding
-lift. **The open step is to rule out that lift for at least one forced
+lift. The new finite-carrier result additionally supplies a finite actual
+marked carrier and reachable nonempty closed walks under exact positive
+length scaling. **The open step is to rule out that lift for at least one forced
 crossing under the actual PIP and ancestry hypotheses.** A finite sink-SCC
 certificate is one sufficient mechanism when its complete occurrence graph
 and coverage are proved; the graph equivalence alone supplies no exclusion.
@@ -218,6 +257,13 @@ compactness step. Repeated finite states and separate legal contexts do not
 identify a common configuration, and recognizability of each hierarchy alone
 does not synchronize their boundaries.
 
+`OccurrenceRecurrence.marked_reaches_cycle` now supplies recurrence of
+compatible actual local marked word-pair values. Its closed walk does not
+identify absolute ancestor locations or a common legal limit, so the
+remaining realization step cannot be omitted. A weighted physical-mass
+transfer also needs a proved multiplicity identity and agreement on the
+source/sink orientation of the matrix convention.
+
 This is the useful place for the Penrose-style hierarchy analogy: preserve
 interface ancestry through supertiles and investigate persistent mismatch.
 The [Penrose bridge program](bridges/penrose-2d-to-psc-interface-program.md)
@@ -229,7 +275,11 @@ import must respect non-unit coordinates and the exact named target.
 Independently test #461's proposal that complete phase-flat strict closure
 forces one nonzero rational functional annihilating all relevant descendant
 Parikh columns. Such a functional would contradict the established
-[rank-three descendant span](c4-two-generation-parikh-span-2026-11-02.md).
+[rank-three descendant span](c4-two-generation-parikh-span-2026-11-02.md), now
+formalized for every consecutive three-level window in
+[DescendantSpan](c4-descendant-span-dual-2026-11-10.md). The new strict-carrier
+adapter returns the detecting descendant in the supplied carrier, with its
+actual depth and ordinal.
 The missing work is deriving a single functional and transporting it across
 every actual child occurrence. The existing rank-three, two-generation flat
 PIP control forbids replacing that work with a short-depth rank inference.
@@ -314,8 +364,9 @@ inconclusive. Another passing finite corpus is not a uniform theorem.
 | 1 | Evidence-manifest repair and frontier reconciliation (this change). | Existing packet bytes pinned; document/provenance checks pass; stale pending statements corrected against recorded jobs. |
 | 2 | Global address lookup, interior affine digit refinement, coherent finite reachability lifting, newborn extraction and actual strict-system composition are implemented. Production-graph and infinite-quotient interfaces remain separate. | Full Lean/axiom audit and exact-revision native/Quint replay for the three new modules; preserve prescribed-digit versus existential-history scope and the production-policy distinctions. |
 | 3, independently of 2 | Reciprocal polynomial/multiplicity and degree-five rank theorem: implemented in `Degree5Completion`. | `q5=g^k`, `rank Q5=3k`, zero-image handling and determinant exclusion under unchanged hypotheses, with exact-revision Lean/axiom replay. |
-| 4 | Uniform forced-crossing exclusion. | A theorem for arbitrary supplied component size, or a literal reproducible counterexample to the precise intermediate claim. |
-| 5 | Compose the successful bridge into C4. | Every input/output type, quantifier, realization premise and dependency is discharged; global extraction stays separate. |
+| 4 | Finite actual interior recurrence and, independently, every-window descendant span/strict-carrier row detection: implemented. | Fresh full Lean/axiom, native and source-bound Quint acceptance; preserve exact scaling, actual mark compatibility, complete mass multiplicity and the fixed-row premise. |
+| 5 | Uniform forced-crossing exclusion. | A theorem for arbitrary supplied component size, or a literal reproducible counterexample to the precise intermediate claim. |
+| 6 | Compose the successful bridge into C4. | Every input/output type, quantifier, realization premise and dependency is discharged; global extraction stays separate. |
 
 Reconcile open [#497](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/497),
 [#509](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/509),

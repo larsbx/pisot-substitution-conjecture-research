@@ -57,6 +57,11 @@ import PscVerif.OccurrenceNewborn
 import PscVerif.OccurrenceAddress
 import PscVerif.OccurrenceTransport
 import PscVerif.OccurrenceStrict
+import PscVerif.OccurrenceFinite
+import PscVerif.OccurrenceSuccessor
+import PscVerif.OccurrenceRecurrence
+import PscVerif.DescendantSpan
+import PscVerif.DescendantSpanStrict
 import PscVerif.ReductioControls
 import PscVerif.OverlapContraction
 import PscVerif.OverlapPacket

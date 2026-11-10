@@ -15,12 +15,17 @@ on:
       - 'kernel/pixi.lock'
       - 'tests/test_c4_*_oracle.py'
       - 'proof/PscVerif/PscVerif/Occurrence*.lean'
+      - 'proof/PscVerif/PscVerif/DescendantSpan*.lean'
       - 'proof/quint/C4OccurrenceBridge.qnt'
       - 'tools/check_c4_occurrence_quint.py'
       - 'docs/c4-concrete-occurrence-*.md'
       - 'docs/c4-address-transport-*.md'
       - 'docs/c4-occurrence-transport-*.md'
       - 'docs/c4-occurrence-addresses-*.md'
+      - 'docs/c4-finite-carrier-*.md'
+      - 'docs/c4-finite-occurrence-*.md'
+      - 'docs/c4-descendant-span-*.md'
+      - 'docs/c4-interior-successors-*.md'
   workflow_dispatch:
 
 permissions:
@@ -61,6 +66,7 @@ jobs:
           pixi run --locked mojo run -I . tests/test_c4_recurrent_flat_exits.mojo
           pixi run --locked mojo run -I . tests/test_c4_complete_cone_hub_audit.mojo
           pixi run --locked mojo run -I . tests/test_c4_two_generation_rank.mojo
+          pixi run --locked mojo run -I . tests/test_c4_finite_carrier.mojo
           pixi run --locked mojo run -I . tests/test_c4_forced_overlap_routes.mojo
 
   orientation-safe-lean:

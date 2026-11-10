@@ -42,6 +42,14 @@ EXPECTED = [
     "trackSwapCovarianceTest",
     "affineTermsAreNecessaryTest",
     "sameLetterSplitStaysSplitTest",
+    "finiteActualPacketSupportTest",
+    "perronStrictCarrierSuccessorTest",
+    "equalLengthBinarySuccessorTest",
+    "positiveWrongRowDeadEndTest",
+    "actualNonproductiveInteriorCycleTest",
+    "descendantMassMultiplicityTest",
+    "fixedRowEscapeDepthTwoTest",
+    "reducibleAndEmptyDualControlsTest",
 ]
 MUTATIONS = [
     (
@@ -89,6 +97,41 @@ MUTATIONS = [
         "pure def orientedResidual(sign, r) = r",
         "trackSwapCovarianceTest",
     ),
+    (
+        "packet-residual-erased",
+        "pure def packet3(u, v, i, j) = (u[i], v[j], residual3(u, v, i, j))",
+        "pure def packet3(u, v, i, j) = (u[i], v[j], (0, 0, 0))",
+        "finiteActualPacketSupportTest",
+    ),
+    (
+        "perron-equations-ignored",
+        "pure def scaledImages(s, ls, beta) = beta > 0 and ls.indices().forall(a =>\n"
+        "    ls[a] > 0 and weightPrefix(s[a], s[a].length(), ls) == beta * ls[a])",
+        "pure def scaledImages(s, ls, beta) = beta > 0 and ls.indices().forall(a => ls[a] > 0)",
+        "positiveWrongRowDeadEndTest",
+    ),
+    (
+        "first-digit-only",
+        "pure def digitPairs(s, u, v, i, j) = range(0, s[u[i]].length()).foldl(List(),\n"
+        "    (out, p) => range(0, s[v[j]].length()).foldl(out, (digits, q) => digits.append((p, q))))",
+        "pure def digitPairs(s, u, v, i, j) = List((0, 0))",
+        "perronStrictCarrierSuccessorTest",
+    ),
+    (
+        "diagonal-descendants-omitted",
+        "pure def childPairs3(s, p) = factorPairs3(inflate(s, p._1), inflate(s, p._2))",
+        "pure def childPairs3(s, p) = factorPairs3(inflate(s, p._1), inflate(s, p._2))\n"
+        "    .select(q => q._1 != q._2)",
+        "fixedRowEscapeDepthTwoTest",
+    ),
+    (
+        "repeated-factors-deduplicated-in-mass",
+        "pure def occurrenceMass3(pairs) = pairs.foldl((0, 0, 0),\n"
+        "    (mass, p) => add3(mass, parikh3(p._1)))",
+        "pure def occurrenceMass3(pairs) = pairs.foldl(Set(), (out, p) => out.union(Set(p)))\n"
+        "    .fold((0, 0, 0), (mass, p) => add3(mass, parikh3(p._1)))",
+        "descendantMassMultiplicityTest",
+    ),
 ]
 
 
@@ -107,7 +150,7 @@ def main() -> int:
     if not command:
         parser.error("--quint-command must not be empty")
     receipt = {
-        "schema": "psc-c4-occurrence-quint-v2", "status": "started",
+        "schema": "psc-c4-occurrence-quint-v3", "status": "started",
         "quint_version": VERSION, "backend": "typescript", "seed": "20261110",
         "scope": "exhaustive bounded literal-word predicates and explicit negative controls",
         "strict_binary_parents_length_2_through_4": 16,
@@ -120,6 +163,15 @@ def main() -> int:
         "transport_binary_words_length_1_through_2": 6,
         "transport_word_pair_substitution_inputs": 1296,
         "transport_valid_source_index_and_digit_inputs": 10400,
+        "finite_strict_carrier_ordered_states": 4,
+        "finite_strict_carrier_indexed_marks": 16,
+        "finite_strict_carrier_distinct_packets": 16,
+        "finite_strict_carrier_interior_packets": 12,
+        "constant_length_two_binary_substitutions": 16,
+        "constant_length_two_strict_parent_substitution_inputs": 256,
+        "sharp_dual_fixture_mass_depths": [0, 1, 2, 3, 4],
+        "repeated_diagonal_fixture_mass_depths": [0, 1, 2, 3],
+        "reducible_dual_control_depths": [0, 1, 2],
         "note": "Finite forall domains, not random sample counts or a Pisot census.",
         "executed_tests": [], "rejected_mutations": [],
     }
@@ -180,11 +232,15 @@ def main() -> int:
                 if text.count(before) != 1:
                     raise RuntimeError(f"mutation {name} does not have exactly one site")
                 mutant = Path(temporary) / f"{name}.qnt"
-                mutant.write_text(text.replace(before, after, 1))
+                mutant_source = text.replace(before, after, 1).encode()
+                mutant.write_bytes(mutant_source)
+                mutant.chmod(0o444)
                 result = run(["test", str(mutant)] + common + [f"--match=^{test}$"], name)
                 failed = re.findall(r"\d+\) (\w+) failed after (\d+) test\(s\)", result.stdout)
                 if result.returncode == 0 or failed != [(test, "1")] or "Error [QNT508]" not in result.stdout:
                     raise RuntimeError(f"mutation {name} did not reach its expected assertion")
+                if mutant.read_bytes() != mutant_source:
+                    raise RuntimeError(f"private mutation snapshot changed: {name}")
                 receipt["rejected_mutations"].append({"name": name, "test": test, "sha256": digest(mutant.read_bytes())})
                 save()
             if snapshot.read_bytes() != source:
