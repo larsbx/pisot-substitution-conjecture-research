@@ -5,16 +5,25 @@ from mojo_smoke.claims import require_contract
 from psc.bpa import apply_substitution, decompose, newborn_sync_positions
 from psc.c4_addressed_newborn import addressed_newborn
 from psc.overlap_seed_patch import (
-    OverlapState, build_seed_overlap_tables, build_overlap_graph_from_seeds,
+    OverlapState, SeedOverlapTables, build_seed_overlap_tables, build_overlap_graph_from_seeds,
     first_coincidence_depths, first_depths, interior_overlap, selected_overlap_child,
 )
 from psc.perron_field3 import CubicElt, cubic_sub_checked, sign_at_perron
 from psc.words import Pair, parikh
 
 
+def is_good_pair(state: OverlapState, hub: Int) -> Bool:
+    return state.top != state.bottom and state.top != hub and state.bottom != hub
+
+
 def aligned_good(state: OverlapState, hub: Int = 1) -> Bool:
-    return (state.shift.is_zero() and state.top != state.bottom
-            and state.top != hub and state.bottom != hub)
+    return is_good_pair(state, hub) and state.shift.is_zero()
+
+
+def right_aligned_good(tables: SeedOverlapTables, state: OverlapState, hub: Int) raises -> Bool:
+    return is_good_pair(state, hub) and state.shift == cubic_sub_checked(
+        tables.lengths.at(state.top), tables.lengths.at(state.bottom),
+    )
 
 
 def check_route(
@@ -128,10 +137,7 @@ def test_forced_crossing_without_good_edge_route() raises:
         edges += len(graph.adj[i])
         var state = graph.states[i]
         left_good.append(aligned_good(state, 0))
-        var end_alignment = cubic_sub_checked(tables.lengths.at(state.top),
-                                              tables.lengths.at(state.bottom))
-        right_good.append(state.top != state.bottom and state.top != 0 and
-                          state.bottom != 0 and state.shift == end_alignment)
+        right_good.append(right_aligned_good(tables, state, 0))
     assert_equal(edges, 94)
     assert_equal(first_depths(graph, left_good)[0], -1)
     assert_equal(first_depths(graph, right_good)[0], 7)
@@ -174,6 +180,64 @@ def test_forced_crossing_without_good_edge_route() raises:
     assert_true(via_right.cut in newborn_sync_positions(sigma, via_right.parent))
 
 
+def test_two_flat_generations_without_either_good_edge_alignment() raises:
+    var sigma: List[List[Int]] = [[0, 1], [2, 0], [2, 0, 0]]
+    assert_equal([sigma[1][0], sigma[2][0]], [2, 2])
+    assert_equal([sigma[1][1], sigma[2][2]], [0, 0])
+    var swapped = Pair([0, 2], [2, 0])
+    var row = decompose(apply_substitution(sigma, swapped.u),
+                        apply_substitution(sigma, swapped.v))
+    assert_equal(len(row), 1)
+    var pair = row[0].copy()
+    assert_equal(pair, Pair([0, 1, 2, 0, 0], [2, 0, 0, 0, 1]))
+    var children = decompose(apply_substitution(sigma, pair.u),
+                             apply_substitution(sigma, pair.v))
+    assert_equal(len(children), 1)
+    assert_equal(children[0], Pair([0, 1, 2, 0, 2, 0, 0, 0, 1, 0, 1],
+                                   [2, 0, 0, 0, 1, 0, 1, 0, 1, 2, 0]))
+    var grandchildren = decompose(apply_substitution(sigma, children[0].u),
+                                  apply_substitution(sigma, children[0].v))
+    assert_equal(len(grandchildren), 3)
+    for i in range(len(grandchildren)):
+        assert_equal(grandchildren[i].u[0], 0)
+        assert_true(grandchildren[i].v[0] != 0)
+    var third = decompose(apply_substitution(sigma, grandchildren[0].u),
+                          apply_substitution(sigma, grandchildren[0].v))
+    assert_equal(third[3], Pair([0], [0]))
+
+    var tables = build_seed_overlap_tables(sigma)
+    var shift = cubic_sub_checked(tables.lengths.at(2), tables.lengths.at(1))
+    assert_equal(sign_at_perron(tables.field, shift), 1)
+    var root = OverlapState(pair.u[2], pair.v[2], shift)
+    assert_true(interior_overlap(tables, root))
+    var cache = Dict[CubicElt, Int]()
+    var graph = build_overlap_graph_from_seeds(tables, [root], cache, 128)
+    assert_false(graph.capped)
+    assert_equal(graph.size(), 73)
+    var edges = 0
+    for i in range(graph.size()):
+        edges += len(graph.adj[i])
+        assert_false(aligned_good(graph.states[i], 0))
+        assert_false(right_aligned_good(tables, graph.states[i], 0))
+    assert_equal(edges, 152)
+    assert_equal(first_coincidence_depths(graph)[0], 5)
+
+    var top: List[Int] = [0, 2, 1, 0, 2]
+    var bottom: List[Int] = [0, 1, 0, 0, 1]
+    var current = root
+    for i in range(len(top)):
+        current = selected_overlap_child(tables, current, top[i], bottom[i])
+        assert_true(interior_overlap(tables, current))
+    assert_true(current.is_coincidence())
+    var witness = addressed_newborn(sigma, pair, 2, 2, top, bottom)
+    assert_equal(witness.ordinals, [0, 0, 6, 0, 1])
+    assert_equal(witness.parent, Pair([0, 1, 2, 0, 0, 1, 2, 0, 2, 0, 0, 0],
+                                      [2, 0, 2, 0, 0, 0, 1, 2, 0, 0, 0, 1]))
+    assert_equal(witness.cut, 6)
+    assert_true(witness.sync_right)
+    assert_true(witness.cut in newborn_sync_positions(sigma, witness.parent))
+
+
 def main() raises:
     check_route(
         [[1], [0, 2], [2, 2, 0]], [39, 80, 5], [[0, 0], [0, 1], [1, 1]],
@@ -184,7 +248,8 @@ def main() raises:
         [4, 3, 2], [[2, 1], [1, 0], [2, 1]], 1, 4, 5,
     )
     test_forced_crossing_without_good_edge_route()
+    test_two_flat_generations_without_either_good_edge_alignment()
+    require_contract("productive literal crossing after two complete flat generations with neither endpoint alignment of the witnessed good pair")
     require_contract("literal first physical hub crossing with complete flat one-step row, shortest diagonal at depth eight, no left-aligned good edge, and a right-aligned good edge at depth seven")
     require_contract("the right-aligned route to a shortest diagonal transports to Sync+ at cut 15")
     require_contract("complete forced-overlap graphs, all actual first choices, necessary first-step hub-plane escape, and shortest direct and aligned-good-edge routes")
-
