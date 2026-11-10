@@ -14,6 +14,14 @@ The repository does not assume that the incidence matrix is unimodular. Its dete
 
 The main method studies overlaps between substituted tiles. An overlap is called *productive* when a sequence of genuine substitution-child occurrences leads to a coincidence: equal tile types at zero displacement. An overlap is described not only by its displacement but also by the particular letters and occurrences that produce its descendants.
 
+## The programme in the literature
+
+The **two-letter** Pisot conjecture is proved. For three or more letters, the general problem—including the unimodular case—remains open, even though special families such as Arnoux–Rauzy systems and Pisot β-substitutions are settled. A Rauzy fractal, a domain exchange, or the existence of many eigenvalues does **not automatically** establish pure discrete spectrum.
+
+The [literature-to-proof crosswalk](docs/motivations/psc-literature-crosswalk-2026-11-04.md) explains the published results, distinguishes **strong coincidence** from **overlap coincidence**, and shows why non-unimodular substitutions need additional care. In particular, Barge–Kwapisz gave geometric criteria, **not** a proof of the whole unimodular conjecture. A claimed 2024 general proof is **not imported** here; see the [Nakaishi source-level audit](docs/nakaishi-2024-first-entry-audit-2026-10-13.md).
+
+The open problems in this project are [one-seed productivity #84](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/84), its [aligned #138](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/138) and [strict-zipper #139](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/139) obstructions, and the separate [ordered-child C4 target #461](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/461). Finite-domain certificates and infinite-family theorems are real progress, not a proof for every substitution.
+
 ## The route to a proof
 
 Several of the main implications are already available. The unresolved step is to show productivity of the overlaps reachable from a suitable initial swap seed:
@@ -85,6 +93,12 @@ These computations are useful checks on conjectures and implementations. Their s
 
 Negative examples have shaped the work just as much. Productive overlap graphs can contain directed cycles, so a rank cannot decrease strictly along every edge. Two affine states may coincide without supporting the same sequence of literal letter occurrences. The [direct-attack notes](docs/direct-attack-frontier-2026-10-23.md) and [side-notes ledger](docs/side-notes-ledger.md) record these and other unsuccessful approaches.
 
+The [non-unit occupancy certificate](docs/c4-nonunit-residue-occupancy-2026-11-04.md) replaces a scratch observation with exact upper bounds for `0→1, 1→021, 2→001`. Counts in the four classes of `Z³/M²Z³` prove that all three Euclidean occupancies are below one half, while literal strong-coincidence witnesses exclude a fully strict balanced-pair system for this specimen. Low Euclidean occupancy therefore does not by itself diagnose a productivity obstruction. The certificate gives bounds, not exact fractal areas.
+
+The companion [M-adic counting bridge](docs/c4-nonunit-madic-counting-bridge-2026-11-04.md) retains every compatible matrix-residue level. Its written proof extends the regular-window and strict-cut counting arguments to this explicitly constructed internal space, including the missing non-unit measure factor. Independent human review remains pending. A useful remaining target is an upper bound on a represented lifted overlap that contradicts the lower bound forced by strict cut frequency; the bridge alone does not establish general C4 or PSC.
+
+The [bounded cylinder-overlap verifier](docs/c4-finite-cylinder-overlap-verifier-2026-11-04.md) makes the finite upper-bound side executable. It preserves complete occurrence addresses, certifies Euclidean outer rectangles and checks matrix-residue refinements and covolume normalization. For `1/021/001`, the complete depth-two cylinders prove that the lifted subtile for letter `2` is disjoint from those for `0` and `1`. The remaining `0`–`1` pair shares the origin at every even depth; its implemented rectangle bounds stay positive despite its separately witnessed null overlap. Both implemented substitutions are productive controls. No strict Pisot component or positive strict-cut density is supplied, so the verifier reports finite upper bounds and an explicit obstruction to invoking the contradiction criterion.
+
 ## Class A: an example of the overlap calculations
 
 One family studied in detail is the *minus class-A* normal form. For integers `k,t ≥ 0`, let
@@ -130,7 +144,11 @@ The scope of each result matters. The standing assumptions are primitivity, nonz
 
 The mathematical entrypoints are the [proof ladder](docs/proof-ladder.md), [direct-attack analysis](docs/direct-attack-frontier-2026-10-23.md), and [state-of-program manuscript](manuscripts/PSC_balanced_pair_state_2026-09-13.tex). For the precise status and evidence behind a particular assertion, consult [claim governance](claim_governance.toml), the [claim/source map](docs/claim-status-and-source-map-2026-09-13.md), and the [proof bank](docs/proof-bank.md).
 
-Executable research is primarily written in [Mojo](kernel/); [Python oracles](oracles/) provide independent checks. The repository also contains [Lean proofs](proof/PscVerif/) and [TLA+ models](proof/tla/) at their documented scopes. The main verification commands are:
+Executable research is primarily written in [Mojo](kernel/); [Python oracles](oracles/) provide independent checks. The repository also contains [Lean proofs](proof/PscVerif/) and [TLA+ models](proof/tla/) at their documented scopes.
+
+The [overlap Lean layer](docs/c4-overlap-lean-interface-2026-11-05.md) verifies the deductive certificate interface: period-three compatibility with two-step refinement, exact integer subinvariant soundness, and null-overlap inference from complete occurrence covers and measure scaling. A [concrete packet binding](docs/c4-overlap-lean-packet-binding-2026-11-05.md) adds exhaustive kernel checks and full native/oracle parity as a separate replay gate. Its completed acceptance scope is recorded separately; M-adic geometry and counting remain outside the formal proof. This is not a complete Lean verification of PR #496 or PSC.
+
+The main verification commands are:
 
 ```bash
 ./tools/verify_all.sh

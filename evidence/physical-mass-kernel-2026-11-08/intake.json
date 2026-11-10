@@ -1,0 +1,87 @@
+{
+  "format": "psc-physical-mass-intake-v1",
+  "observed_utc": "2026-11-08 09:02:58 UTC",
+  "repository": "larsbx/pisot-substitution-conjecture-research",
+  "main": {
+    "sha": "3a0c94cdae7fb18ad63a18119fdd5070232a5e4a",
+    "tree": "a687ffdbbae5ceaa52f5ec0dfc20551700cb1703"
+  },
+  "source": {
+    "pr": 515,
+    "state": "open",
+    "draft": true,
+    "head": "51dd090a6aefeb92210410a3f7e20d51926d7e86",
+    "base": "49bc7e1af11b6ab04f84b79f8737500b6de3748b",
+    "head_ref": "research/c4-physical-mass-2026-11-07",
+    "base_ref": "research/c4-finite-overlap-carrier-2026-11-05",
+    "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/515",
+    "tree": "25b480b58b5766efdb59c17592c5ae679326a284",
+    "git_signature": {
+      "verified": false,
+      "reason": "unsigned"
+    }
+  },
+  "dedicated_run": {
+    "id": 42415973913,
+    "head": "51dd090a6aefeb92210410a3f7e20d51926d7e86",
+    "name": "C4 physical overlap mass",
+    "event": "pull_request",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42415973913"
+  },
+  "observation_method": "Authenticated connected GitHub API GET; the committed JSON is a replay locator, not a signed GitHub attestation.",
+  "claims": {
+    "general_C4": "open",
+    "PSC": "open",
+    "geometric_refinement": "not kernel-checked by this intake"
+  },
+  "source_workflow_scope": {
+    "complete_branch_acceptance": false,
+    "observed_failures": [
+      {
+        "id": 42415973582,
+        "name": "Canonical Pisot polynomial kernels",
+        "event": "pull_request",
+        "head": "51dd090a6aefeb92210410a3f7e20d51926d7e86",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42415973582"
+      },
+      {
+        "id": 42415973507,
+        "name": "Class-A uniform gap theorem",
+        "event": "pull_request",
+        "head": "51dd090a6aefeb92210410a3f7e20d51926d7e86",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42415973507"
+      },
+      {
+        "id": 42415973508,
+        "name": "Research branch integration conformance",
+        "event": "pull_request",
+        "head": "51dd090a6aefeb92210410a3f7e20d51926d7e86",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42415973508"
+      },
+      {
+        "id": 42415973494,
+        "name": "PSC research checks",
+        "event": "pull_request",
+        "head": "51dd090a6aefeb92210410a3f7e20d51926d7e86",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42415973494"
+      },
+      {
+        "id": 42415942680,
+        "name": "Canonical Pisot polynomial kernels",
+        "event": "push",
+        "head": "51dd090a6aefeb92210410a3f7e20d51926d7e86",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42415942680"
+      },
+      {
+        "id": 42415942722,
+        "name": "PSC research checks",
+        "event": "push",
+        "head": "51dd090a6aefeb92210410a3f7e20d51926d7e86",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42415942722"
+      }
+    ],
+    "assessment": "The historical dedicated physical-mass workflow passed. Broader failures at the same source head are retained; the source branch is not classified as fully accepted."
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "c4-finite-cylinder-automated-review-v1",
+  "source_commit": "af5f3de12ec3be391a2ed9666b520fdd074dc494",
+  "independent_human_review": "pending",
+  "automated_source_review": {
+    "reviewer_role": "separate literature and mathematical consistency reviewer",
+    "source_scope": [
+      "docs/c4-finite-cylinder-overlap-verifier-2026-11-04.md",
+      "evidence/c4-finite-cylinder-overlap-2026-11-04/README.md",
+      "kernel/psc/c4_finite_cylinder_overlap.mojo: pair_upper, certify_equation_11, strict_arithmetic_gap",
+      "oracles/python/c4_finite_cylinder_overlap.py: compare_equation_11 and density admission"
+    ],
+    "result": "no blocking issues found",
+    "accepted_scope": [
+      "complete validated upper packet",
+      "actual literal strict child closure",
+      "exact common-depth target coverage",
+      "same physical and Haar normalization",
+      "strict comparison using lower covolume endpoint",
+      "U<2 is necessary only; failure concerns the chosen upper enclosures"
+    ],
+    "correction": "Changed wording from two strict inequalities to contraction and digit bounds before the source commit.",
+    "excluded_scope": [
+      "no independent execution of final receipt files by this reviewer",
+      "no independent human mathematical review",
+      "no machine proof of compact-space or measure arguments"
+    ]
+  },
+  "execution_roles": {
+    "canonical_native_implementation": "native verifier contributor; replayed by integrating agent at recorded source commit",
+    "density_implementation": "mathematical audit contributor; replayed by integrating agent at recorded source commit",
+    "independent_python_oracle": "separate implementation using literal words, Gaussian inverse residues and cubic-field corner checks",
+    "final_replay": "integrating agent; commands and process results archived separately"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "baseline_sha": "ea870c846f6575e51aaa78ef4659e533da636b0a",
+  "scope": "generic overlap inference layer; concrete 18-source packets and geometric/counting bindings not imported",
+  "lean": "4.34.0-rc2",
+  "lean_commit": "6a10ac8c22beadecabdbb0919c2b50214762f91d",
+  "mathlib": "4edb0dbaa3b3cf729d86d1e2f035474d5ae2ac09",
+  "module_sha256": "09dd1ccc90a7245211336996f7da8b1276e86cab60dd1cc0b5471e3d7f6a2a30",
+  "new_named_proofs": 20,
+  "all_named_proofs_reached": 88,
+  "audited_declarations": 355,
+  "audited_theorem_declarations": 201,
+  "allowed_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "isolated_checker_exit_code": 0,
+  "local_runtime_adapter": {
+    "source": "host-proc-path.c",
+    "sha256": "97246ffaa7eaa0ba843adfd189227c324092ad4de9651052fed8959fe440250b",
+    "mechanism": "readlink current-process numeric executable path redirected to /proc/self/exe; no other paths changed"
+  },
+  "concrete_18_source_lean_replay": false,
+  "geometric_refinement_formalized": false,
+  "hosted_exact_head_acceptance": "pending; separate from local evidence"
+}

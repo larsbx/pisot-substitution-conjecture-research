@@ -1,0 +1,27 @@
+{
+  "schema": "c4-finite-cylinder-local-receipt-v1",
+  "name": "native-driver",
+  "source_commit": "af5f3de12ec3be391a2ed9666b520fdd074dc494",
+  "command": [
+    "/workspace/scratch/ff95d1f2448c/mojo-prefix/bin/mojo",
+    "run",
+    "-I",
+    ".",
+    "c4_finite_cylinder_overlap.mojo"
+  ],
+  "cwd_from_repository_root": "kernel",
+  "explicit_environment_overrides": {
+    "MODULAR_HOME": "/workspace/scratch/ff95d1f2448c/mojo-prefix/share/max"
+  },
+  "started_at_utc": "2026-11-04T21:56:53.563697+00:00",
+  "elapsed_seconds": 10.188,
+  "process_exit_code": 0,
+  "expected_exit_code": 0,
+  "expected_status_observed": true,
+  "stdout": "native-driver.stdout.txt",
+  "stdout_sha256": "26a18864d56b5dc0fa4e6ca2b50ea7fc3ab7dc63a4bdb309746cafa6fd04000d",
+  "stderr": "native-driver.stderr.txt",
+  "stderr_sha256": "8b33180b5dd484cbaa302cc68b3794e69204fc8de4d0b692cbb1332a95aa44d0",
+  "finite_replay_only": true,
+  "machine_verification_of_measure_proofs": false
+}

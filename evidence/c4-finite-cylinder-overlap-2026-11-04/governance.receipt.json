@@ -1,0 +1,27 @@
+{
+  "schema": "c4-finite-cylinder-local-receipt-v1",
+  "name": "governance",
+  "source_commit": "af5f3de12ec3be391a2ed9666b520fdd074dc494",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-m",
+    "claim_governance.cli",
+    "--root",
+    "."
+  ],
+  "cwd_from_repository_root": ".",
+  "explicit_environment_overrides": {
+    "PYTHONPATH": "tools"
+  },
+  "started_at_utc": "2026-11-04T21:56:57.074169+00:00",
+  "elapsed_seconds": 7.16,
+  "process_exit_code": 0,
+  "expected_exit_code": 0,
+  "expected_status_observed": true,
+  "stdout": "governance.stdout.txt",
+  "stdout_sha256": "6940a57ab580c143a470ce9dfa57b03fcd085f8b569960cca2350b9ec0dbae49",
+  "stderr": "governance.stderr.txt",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "finite_replay_only": true,
+  "machine_verification_of_measure_proofs": false
+}

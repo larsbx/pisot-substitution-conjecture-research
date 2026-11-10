@@ -1,0 +1,32 @@
+{
+  "schema": "c4-overlap-lean-packet-replay-v1",
+  "sources_verified": 1,
+  "all_18_sources_verified": false,
+  "states": 15891,
+  "occurrence_edges": 78288,
+  "kernel_evaluation": "decide +kernel; no native_decide",
+  "geometry_formalized": false,
+  "exporter_sha256": "16204ee526a92e4c42b2929275c11f8ba8b14f833b688bd7706549f912639579",
+  "generic_packet_source_sha256": "572fd9fc85082e05377321fa812670558fff66ebed16e319a81816b22950a853",
+  "complete_packet_sha256": "536f3f647fbfa6f3204942eb499ec6bb99428faf8f524217e3bd2c0e3327af86",
+  "sources": [
+    {
+      "source": 12,
+      "lean_sha256": "25f3b62b9ca2f2b92fe581fdda245a232741d49a58d01d49c085ed154f69b351",
+      "seconds": 462.323,
+      "audit_and_packet_log_sha256": "330108cfe5d1c7b49a6cc92100dbe9aea73e6636a6616d7c4e7ebc93671eb89a",
+      "declarations": 2564,
+      "theorem_declarations": 1539
+    }
+  ],
+  "expected_proof_types_checked": true,
+  "emission": "Independent auditor invokes Packet.emit packet directly",
+  "wrong_proof_type_control_refused": true,
+  "independent_audit_source_sha256": "46e694ea5fd56a90b4921893d538e38460cde870fa32eb166e11e2b1afbff1ad",
+  "full_packet_python_reference_equal": true,
+  "source_packet_sha256_without_schema": "165c1233ba6fc11be3c2882fd2e2636ad6ac9cc4dbcee6d5682cb8ffdf66c52c",
+  "prefix_cycle_lengths": [
+    3
+  ],
+  "project_provenance": "Hard-linked snapshot of the same freshly cloned/pinned/compiled isolated project used by the passing full generic audit; source proof compiled there. Final independent auditor rechecked theorem types and directly emitted the packet."
+}

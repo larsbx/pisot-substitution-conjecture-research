@@ -1,0 +1,837 @@
+{
+  "base_head": "d5833e3ad2908cec847002b797d12c73d48045a4",
+  "schema": "c4-pair-overlap-class-v1",
+  "scope": "all source orders of one fixed non-unit M; no SC witness input; not general PSC",
+  "source_count": 18,
+  "sources": [
+    {
+      "all_roots_below_one_tenth_at_2304_blocks": true,
+      "box_rejections": 23681,
+      "canonical_graph_sha256": "721f0bcbca2f91d1a7e1613751f446defa7ad85b0316bfe391faeb401d85ccef",
+      "chart": {
+        "beta_squared_lower": "103/20",
+        "block": 12,
+        "digit_bounds": [
+          "13/2",
+          "4"
+        ],
+        "literal_digits": 55583,
+        "maximum_projected_digit_bounds": [
+          "3105117043693261181430278794195657945299/680564733841876926926749214863536422912",
+          "455771663083391061492195323012543194787/170141183460469231731687303715884105728"
+        ],
+        "prefix_cycle_lengths": [
+          2
+        ],
+        "radii": [
+          24,
+          12
+        ]
+      },
+      "maximum_offset_coordinate": 36,
+      "maximum_weight": 61428,
+      "minimum_integer_gap": 102,
+      "occurrence_edges": 78333,
+      "rate": "51/10",
+      "ratio_upper": "102/103",
+      "residue_rejections": 306052,
+      "root_weights": [
+        51342,
+        8165,
+        27199
+      ],
+      "sigma": [
+        "1",
+        "012",
+        "001"
+      ],
+      "source_index": 0,
+      "states": 15824,
+      "weight_sweeps": 334,
+      "zero_offset_diagonal_states": 0
+    },
+    {
+      "all_roots_below_one_tenth_at_2304_blocks": true,
+      "box_rejections": 23884,
+      "canonical_graph_sha256": "204b6fd45efe4b778f8622adfacc0711f48c26b9c0629925ed554943ecda47e5",
+      "chart": {
+        "beta_squared_lower": "103/20",
+        "block": 12,
+        "digit_bounds": [
+          "13/2",
+          "4"
+        ],
+        "literal_digits": 55583,
+        "maximum_projected_digit_bounds": [
+          "2061195101738959352367977992176421535771/680564733841876926926749214863536422912",
+          "355911096724236000553281133190422531767/170141183460469231731687303715884105728"
+        ],
+        "prefix_cycle_lengths": [
+          2
+        ],
+        "radii": [
+          24,
+          12
+        ]
+      },
+      "maximum_offset_coordinate": 35,
+      "maximum_weight": 18688,
+      "minimum_integer_gap": 102,
+      "occurrence_edges": 78356,
+      "rate": "51/10",
+      "ratio_upper": "102/103",
+      "residue_rejections": 306701,
+      "root_weights": [
+        7864,
+        3988,
+        8984
+      ],
+      "sigma": [
+        "1",
+        "012",
+        "010"
+      ],
+      "source_index": 1,
+      "states": 15877,
+      "weight_sweeps": 97,
+      "zero_offset_diagonal_states": 0
+    },
+    {
+      "all_roots_below_one_tenth_at_2304_blocks": true,
+      "box_rejections": 23730,
+      "canonical_graph_sha256": "c93895c3ce50e1cff000b31871a47c29483ab2125d7e357c92c94608a70c04e1",
+      "chart": {
+        "beta_squared_lower": "103/20",
+        "block": 12,
+        "digit_bounds": [
+          "13/2",
+          "4"
+        ],
+        "literal_digits": 55583,
+        "maximum_projected_digit_bounds": [
+          "1525271281592667572950855865092897042159/340282366920938463463374607431768211456",
+          "115699539765672711131292337434028206449/42535295865117307932921825928971026432"
+        ],
+        "prefix_cycle_lengths": [
+          2
+        ],
+        "radii": [
+          24,
+          12
+        ]
+      },
+      "maximum_offset_coordinate": 35,
+      "maximum_weight": 63257,
+      "minimum_integer_gap": 102,
+      "occurrence_edges": 78359,
+      "rate": "51/10",
+      "ratio_upper": "102/103",
+      "residue_rejections": 306287,
+      "root_weights": [
+        63257,
+        12357,
+        27900
+      ],
+      "sigma": [
+        "1",
+        "012",
+        "100"
+      ],
+      "source_index": 2,
+      "states": 15850,
+      "weight_sweeps": 458,
+      "zero_offset_diagonal_states": 0
+    },
+    {
+      "all_roots_below_one_tenth_at_2304_blocks": true,
+      "box_rejections": 24038,
+      "canonical_graph_sha256": "678cb285f5771492454b2d7dc9ed5e1a1cf2b8535816a73d7d234a3a210df1b8",
+      "chart": {
+        "beta_squared_lower": "103/20",
+        "block": 12,
+        "digit_bounds": [
+          "13/2",
+          "4"
+        ],
+        "literal_digits": 55583,
+        "maximum_projected_digit_bounds": [
+          "3011429048192257037293315762150406422299/680564733841876926926749214863536422912",
+          "7504704795908393991569842884942272829963/2722258935367507707706996859454145691648"
+        ],
+        "prefix_cycle_lengths": [
+          2
+        ],
+        "radii": [
+          24,
+          12
+        ]
+      },
+      "maximum_offset_coordinate": 36,
+      "maximum_weight": 29772,
+      "minimum_integer_gap": 102,
+      "occurrence_edges": 78296,
+      "rate": "51/10",
+      "ratio_upper": "102/103",
+      "residue_rejections": 307387,
+      "root_weights": [
+        12581,
+        1,
+        1
+      ],
+      "sigma": [
+        "1",
+        "021",
+        "001"
+      ],
+      "source_index": 3,
+      "states": 15909,
+      "weight_sweeps": 148,
+      "zero_offset_diagonal_states": 0
+    },
+    {
+      "all_roots_below_one_tenth_at_2304_blocks": true,
+      "box_rejections": 24080,
+      "canonical_graph_sha256": "40ad6ec84647eeb647b06da9567422864b268725450197044f138de5f953779d",
+      "chart": {
+        "beta_squared_lower": "103/20",
+        "block": 12,
+        "digit_bounds": [
+          "13/2",
+          "4"
+        ],
+        "literal_digits": 55583,
+        "maximum_projected_digit_bounds": [
+          "762375272533510294887282282747379162799/170141183460469231731687303715884105728",
+          "1007198938702339817523822000843108386849/340282366920938463463374607431768211456"
+        ],
+        "prefix_cycle_lengths": [
+          2
+        ],
+        "radii": [
+          24,
+          12
+        ]
+      },
+      "maximum_offset_coordinate": 36,
+      "maximum_weight": 39749,
+      "minimum_integer_gap": 102,
+      "occurrence_edges": 78305,
+      "rate": "51/10",
+      "ratio_upper": "102/103",
+      "residue_rejections": 307255,
+      "root_weights": [
+        34566,
+        7387,
+        2
+      ],
+      "sigma": [
+        "1",
+        "021",
+        "010"
+      ],
+      "source_index": 4,
+      "states": 15896,
+      "weight_sweeps": 283,
+      "zero_offset_diagonal_states": 0
+    },
+    {
+      "all_roots_below_one_tenth_at_2304_blocks": true,
+      "box_rejections": 24086,
+      "canonical_graph_sha256": "90635797bd7db5f8c2ebcc9f8a2743c26ad54e838efa01a3fc4e20d855e5c502",
+      "chart": {
+        "beta_squared_lower": "103/20",
+        "block": 12,
+        "digit_bounds": [
+          "13/2",
+          "4"
+        ],
+        "literal_digits": 55583,
+        "maximum_projected_digit_bounds": [
+          "4117380010429515114233409124043560598405/680564733841876926926749214863536422912",
+          "5422616374110508686729250686895379440507/1361129467683753853853498429727072845824"
+        ],
+        "prefix_cycle_lengths": [
+          2
+        ],
+        "radii": [
+          24,
+          12
+        ]
+      },
+      "maximum_offset_coordinate": 36,
+      "maximum_weight": 17074,
+      "minimum_integer_gap": 102,
+      "occurrence_edges": 78246,
+      "rate": "51/10",
+      "ratio_upper": "102/103",
+      "residue_rejections": 307277,
+      "root_weights": [
+        5573,
+        1004,
+        1
+      ],
+      "sigma": [
+        "1",
+        "021",
+        "100"
+      ],
+      "source_index": 5,
+      "states": 15897,
+      "weight_sweeps": 168,
+      "zero_offset_diagonal_states": 0
+    },
+    {
+      "all_roots_below_one_tenth_at_2304_blocks": true,
+      "box_rejections": 23473,
+      "canonical_graph_sha256": "58f9c5dffefc9b75cf03c97631f5c12e13f0b5829b985e680c651070fd99e161",
+      "chart": {
+        "beta_squared_lower": "103/20",
+        "block": 12,
+        "digit_bounds": [
+          "13/2",
+          "4"
+        ],
+        "literal_digits": 55583,
+        "maximum_projected_digit_bounds": [
+          "753686545410664994154268928141739801565/170141183460469231731687303715884105728",
+          "57008502735293880892668450185645705913/21267647932558653966460912964485513216"
+        ],
+        "prefix_cycle_lengths": [
+          1
+        ],
+        "radii": [
+          24,
+          12
+        ]
+      },
+      "maximum_offset_coordinate": 36,
+      "maximum_weight": 29198,
+      "minimum_integer_gap": 102,
+      "occurrence_edges": 78306,
+      "rate": "51/10",
+      "ratio_upper": "102/103",
+      "residue_rejections": 305631,
+      "root_weights": [
+        9004,
+        3337,
+        1
+      ],
+      "sigma": [
+        "1",
+        "102",
+        "001"
+      ],
+      "source_index": 6,
+      "states": 15802,
+      "weight_sweeps": 129,
+      "zero_offset_diagonal_states": 0
+    },
+    {
+      "all_roots_below_one_tenth_at_2304_blocks": true,
+      "box_rejections": 23775,
+      "canonical_graph_sha256": "df3e32a4d812465ad807bb485207e7405bc97ae1667f1b36abb5a5025480d21e",
+      "chart": {
+        "beta_squared_lower": "103/20",
+        "block": 12,
+        "digit_bounds": [
+          "13/2",
+          "4"
+        ],
+        "literal_digits": 55583,
+        "maximum_projected_digit_bounds": [
+          "2076713039014904123743120746995451968661/680564733841876926926749214863536422912",
+          "314024993684922777310039981334526499303/170141183460469231731687303715884105728"
+        ],
+        "prefix_cycle_lengths": [
+          1
+        ],
+        "radii": [
+          24,
+          12
+        ]
+      },
+      "maximum_offset_coordinate": 36,
+      "maximum_weight": 21868,
+      "minimum_integer_gap": 102,
+      "occurrence_edges": 78353,
+      "rate": "51/10",
+      "ratio_upper": "102/103",
+      "residue_rejections": 306487,
+      "root_weights": [
+        9459,
+        1448,
+        3253
+      ],
+      "sigma": [
+        "1",
+        "102",
+        "010"
+      ],
+      "source_index": 7,
+      "states": 15867,
+      "weight_sweeps": 89,
+      "zero_offset_diagonal_states": 0
+    },
+    {
+      "all_roots_below_one_tenth_at_2304_blocks": true,
+      "box_rejections": 23604,
+      "canonical_graph_sha256": "bd1bf1aabc8230243af5bb0514e2413825a318a58da429ef46e61f53ca33a039",
+      "chart": {
+        "beta_squared_lower": "103/20",
+        "block": 12,
+        "digit_bounds": [
+          "13/2",
+          "4"
+        ],
+        "literal_digits": 55583,
+        "maximum_projected_digit_bounds": [
+          "1467351181753790266449168109176529102717/340282366920938463463374607431768211456",
+          "424749063101541094257874971366241543435/170141183460469231731687303715884105728"
+        ],
+        "prefix_cycle_lengths": [
+          1
+        ],
+        "radii": [
+          24,
+          12
+        ]
+      },
+      "maximum_offset_coordinate": 35,
+      "maximum_weight": 29488,
+      "minimum_integer_gap": 102,
+      "occurrence_edges": 78359,
+      "rate": "51/10",
+      "ratio_upper": "102/103",
+      "residue_rejections": 306308,
+      "root_weights": [
+        12462,
+        1,
+        1
+      ],
+      "sigma": [
+        "1",
+        "102",
+        "100"
+      ],
+      "source_index": 8,
+      "states": 15847,
+      "weight_sweeps": 118,
+      "zero_offset_diagonal_states": 0
+    },
+    {
+      "all_roots_below_one_tenth_at_2304_blocks": true,
+      "box_rejections": 24076,
+      "canonical_graph_sha256": "16b0f1e48c353ac0a37dd8fcb5f282dcb9f202e0e345be4bbf3c0ea2d837804b",
+      "chart": {
+        "beta_squared_lower": "103/20",
+        "block": 12,
+        "digit_bounds": [
+          "13/2",
+          "4"
+        ],
+        "literal_digits": 55583,
+        "maximum_projected_digit_bounds": [
+          "2191345308269619524160424118129383191429/340282366920938463463374607431768211456",
+          "664851018901890000438633840516165940427/170141183460469231731687303715884105728"
+        ],
+        "prefix_cycle_lengths": [
+          1
+        ],
+        "radii": [
+          24,
+          12
+        ]
+      },
+      "maximum_offset_coordinate": 36,
+      "maximum_weight": 17224,
+      "minimum_integer_gap": 102,
+      "occurrence_edges": 78276,
+      "rate": "51/10",
+      "ratio_upper": "102/103",
+      "residue_rejections": 307207,
+      "root_weights": [
+        2038,
+        1,
+        4598
+      ],
+      "sigma": [
+        "1",
+        "120",
+        "001"
+      ],
+      "source_index": 9,
+      "states": 15913,
+      "weight_sweeps": 161,
+      "zero_offset_diagonal_states": 0
+    },
+    {
+      "all_roots_below_one_tenth_at_2304_blocks": true,
+      "box_rejections": 23920,
+      "canonical_graph_sha256": "33c77c53a5264e46da6c50cd5ddde837c85c6de9ab8f1abbb3bca76e6e830ab3",
+      "chart": {
+        "beta_squared_lower": "103/20",
+        "block": 12,
+        "digit_bounds": [
+          "13/2",
+          "4"
+        ],
+        "literal_digits": 55583,
+        "maximum_projected_digit_bounds": [
+          "2918073967434743409474971900416659584775/680564733841876926926749214863536422912",
+          "236951610170003447281313732557547347631/85070591730234615865843651857942052864"
+        ],
+        "prefix_cycle_lengths": [
+          1
+        ],
+        "radii": [
+          24,
+          12
+        ]
+      },
+      "maximum_offset_coordinate": 36,
+      "maximum_weight": 39611,
+      "minimum_integer_gap": 102,
+      "occurrence_edges": 78336,
+      "rate": "51/10",
+      "ratio_upper": "102/103",
+      "residue_rejections": 306973,
+      "root_weights": [
+        17935,
+        333,
+        23541
+      ],
+      "sigma": [
+        "1",
+        "120",
+        "010"
+      ],
+      "source_index": 10,
+      "states": 15895,
+      "weight_sweeps": 294,
+      "zero_offset_diagonal_states": 0
+    },
+    {
+      "all_roots_below_one_tenth_at_2304_blocks": true,
+      "box_rejections": 23793,
+      "canonical_graph_sha256": "e5d4c2d26dc73540337d8bce0b51c7c16818e533e0e1a2f24b9bf3f07d41a730",
+      "chart": {
+        "beta_squared_lower": "103/20",
+        "block": 12,
+        "digit_bounds": [
+          "13/2",
+          "4"
+        ],
+        "literal_digits": 55583,
+        "maximum_projected_digit_bounds": [
+          "1373059221041266582413612614080978905547/340282366920938463463374607431768211456",
+          "425660495401845158528659080590269486805/170141183460469231731687303715884105728"
+        ],
+        "prefix_cycle_lengths": [
+          1
+        ],
+        "radii": [
+          24,
+          12
+        ]
+      },
+      "maximum_offset_coordinate": 35,
+      "maximum_weight": 29631,
+      "minimum_integer_gap": 102,
+      "occurrence_edges": 78348,
+      "rate": "51/10",
+      "ratio_upper": "102/103",
+      "residue_rejections": 306755,
+      "root_weights": [
+        1500,
+        3386,
+        7639
+      ],
+      "sigma": [
+        "1",
+        "120",
+        "100"
+      ],
+      "source_index": 11,
+      "states": 15876,
+      "weight_sweeps": 127,
+      "zero_offset_diagonal_states": 0
+    },
+    {
+      "all_roots_below_one_tenth_at_2304_blocks": true,
+      "box_rejections": 23958,
+      "canonical_graph_sha256": "165c1233ba6fc11be3c2882fd2e2636ad6ac9cc4dbcee6d5682cb8ffdf66c52c",
+      "chart": {
+        "beta_squared_lower": "103/20",
+        "block": 12,
+        "digit_bounds": [
+          "13/2",
+          "4"
+        ],
+        "literal_digits": 55583,
+        "maximum_projected_digit_bounds": [
+          "3200012969617304375812742746258805127807/680564733841876926926749214863536422912",
+          "1884662133047774008197733960543574594905/680564733841876926926749214863536422912"
+        ],
+        "prefix_cycle_lengths": [
+          3
+        ],
+        "radii": [
+          24,
+          12
+        ]
+      },
+      "maximum_offset_coordinate": 36,
+      "maximum_weight": 29815,
+      "minimum_integer_gap": 102,
+      "occurrence_edges": 78288,
+      "rate": "51/10",
+      "ratio_upper": "102/103",
+      "residue_rejections": 307029,
+      "root_weights": [
+        1509,
+        3407,
+        7687
+      ],
+      "sigma": [
+        "1",
+        "201",
+        "001"
+      ],
+      "source_index": 12,
+      "states": 15891,
+      "weight_sweeps": 152,
+      "zero_offset_diagonal_states": 0
+    },
+    {
+      "all_roots_below_one_tenth_at_2304_blocks": true,
+      "box_rejections": 24038,
+      "canonical_graph_sha256": "8c180310a86664c90f11e25e444e5f1041110e1814bd00ef1bd57e8b7206d9d5",
+      "chart": {
+        "beta_squared_lower": "103/20",
+        "block": 12,
+        "digit_bounds": [
+          "13/2",
+          "4"
+        ],
+        "literal_digits": 55583,
+        "maximum_projected_digit_bounds": [
+          "278293737852327326791430239285696143809/85070591730234615865843651857942052864",
+          "180220731922662601576335081875512228571/85070591730234615865843651857942052864"
+        ],
+        "prefix_cycle_lengths": [
+          3
+        ],
+        "radii": [
+          24,
+          12
+        ]
+      },
+      "maximum_offset_coordinate": 36,
+      "maximum_weight": 22097,
+      "minimum_integer_gap": 102,
+      "occurrence_edges": 78299,
+      "rate": "51/10",
+      "ratio_upper": "102/103",
+      "residue_rejections": 306836,
+      "root_weights": [
+        3568,
+        3287,
+        7452
+      ],
+      "sigma": [
+        "1",
+        "201",
+        "010"
+      ],
+      "source_index": 13,
+      "states": 15881,
+      "weight_sweeps": 85,
+      "zero_offset_diagonal_states": 0
+    },
+    {
+      "all_roots_below_one_tenth_at_2304_blocks": true,
+      "box_rejections": 23965,
+      "canonical_graph_sha256": "558dac0160eb03f79ca6dccab6a8fa259cdfcc2a7e77c697d24643df81e03025",
+      "chart": {
+        "beta_squared_lower": "103/20",
+        "block": 12,
+        "digit_bounds": [
+          "13/2",
+          "4"
+        ],
+        "literal_digits": 55583,
+        "maximum_projected_digit_bounds": [
+          "2895755305886247673041410357881551561993/680564733841876926926749214863536422912",
+          "7504704795908393991569842884942272829963/2722258935367507707706996859454145691648"
+        ],
+        "prefix_cycle_lengths": [
+          2
+        ],
+        "radii": [
+          24,
+          12
+        ]
+      },
+      "maximum_offset_coordinate": 36,
+      "maximum_weight": 29045,
+      "minimum_integer_gap": 102,
+      "occurrence_edges": 78278,
+      "rate": "51/10",
+      "ratio_upper": "102/103",
+      "residue_rejections": 306915,
+      "root_weights": [
+        6837,
+        1,
+        5439
+      ],
+      "sigma": [
+        "1",
+        "201",
+        "100"
+      ],
+      "source_index": 14,
+      "states": 15890,
+      "weight_sweeps": 152,
+      "zero_offset_diagonal_states": 0
+    },
+    {
+      "all_roots_below_one_tenth_at_2304_blocks": true,
+      "box_rejections": 23938,
+      "canonical_graph_sha256": "eddf999a1a648291bb95f602382d40f792f759c4f6fb11d761c6c2c88e4a26fa",
+      "chart": {
+        "beta_squared_lower": "103/20",
+        "block": 12,
+        "digit_bounds": [
+          "13/2",
+          "4"
+        ],
+        "literal_digits": 55583,
+        "maximum_projected_digit_bounds": [
+          "3315853169295058998223957735683412330851/680564733841876926926749214863536422912",
+          "8147434067569492234356392975805686153813/2722258935367507707706996859454145691648"
+        ],
+        "prefix_cycle_lengths": [
+          3
+        ],
+        "radii": [
+          24,
+          12
+        ]
+      },
+      "maximum_offset_coordinate": 36,
+      "maximum_weight": 64244,
+      "minimum_integer_gap": 102,
+      "occurrence_edges": 78326,
+      "rate": "51/10",
+      "ratio_upper": "102/103",
+      "residue_rejections": 306825,
+      "root_weights": [
+        55180,
+        15331,
+        34619
+      ],
+      "sigma": [
+        "1",
+        "210",
+        "001"
+      ],
+      "source_index": 15,
+      "states": 15895,
+      "weight_sweeps": 471,
+      "zero_offset_diagonal_states": 0
+    },
+    {
+      "all_roots_below_one_tenth_at_2304_blocks": true,
+      "box_rejections": 23855,
+      "canonical_graph_sha256": "d08d8169d0c16253a488dcb72953a984e8f70cab8a875b1dca856f38fa9d19cf",
+      "chart": {
+        "beta_squared_lower": "103/20",
+        "block": 12,
+        "digit_bounds": [
+          "13/2",
+          "4"
+        ],
+        "literal_digits": 55583,
+        "maximum_projected_digit_bounds": [
+          "2089315743329534794056814166890314672817/680564733841876926926749214863536422912",
+          "2885213659588362930233066647059049927135/1361129467683753853853498429727072845824"
+        ],
+        "prefix_cycle_lengths": [
+          3
+        ],
+        "radii": [
+          24,
+          12
+        ]
+      },
+      "maximum_offset_coordinate": 35,
+      "maximum_weight": 19060,
+      "minimum_integer_gap": 102,
+      "occurrence_edges": 78334,
+      "rate": "51/10",
+      "ratio_upper": "102/103",
+      "residue_rejections": 306577,
+      "root_weights": [
+        12961,
+        2543,
+        5749
+      ],
+      "sigma": [
+        "1",
+        "210",
+        "010"
+      ],
+      "source_index": 16,
+      "states": 15872,
+      "weight_sweeps": 106,
+      "zero_offset_diagonal_states": 0
+    },
+    {
+      "all_roots_below_one_tenth_at_2304_blocks": true,
+      "box_rejections": 24007,
+      "canonical_graph_sha256": "6873e821aeb9685ca5916b864bc1a51eee9036ac9a10330986cc68e527cd47a4",
+      "chart": {
+        "beta_squared_lower": "103/20",
+        "block": 12,
+        "digit_bounds": [
+          "13/2",
+          "4"
+        ],
+        "literal_digits": 55583,
+        "maximum_projected_digit_bounds": [
+          "1419903218791768601908873520031382561447/340282366920938463463374607431768211456",
+          "7767486593512864972254185618745409710629/2722258935367507707706996859454145691648"
+        ],
+        "prefix_cycle_lengths": [
+          2
+        ],
+        "radii": [
+          24,
+          12
+        ]
+      },
+      "maximum_offset_coordinate": 35,
+      "maximum_weight": 61182,
+      "minimum_integer_gap": 102,
+      "occurrence_edges": 78331,
+      "rate": "51/10",
+      "ratio_upper": "102/103",
+      "residue_rejections": 307028,
+      "root_weights": [
+        44233,
+        6960,
+        35165
+      ],
+      "sigma": [
+        "1",
+        "210",
+        "100"
+      ],
+      "source_index": 17,
+      "states": 15904,
+      "weight_sweeps": 332,
+      "zero_offset_diagonal_states": 0
+    }
+  ],
+  "unshifted_pair_count": 54
+}

@@ -1,0 +1,10 @@
+{
+  "schema": "c4-identical-source-publication-v1",
+  "locally_executed_commit": "af5f3de12ec3be391a2ed9666b520fdd074dc494",
+  "published_source_commit": "150b92c6c2699232a400360cd4dfc73f064bbc4d",
+  "local_source_tree": "9756cbfcd02b44b17891a466d72c3bbb929d5c1c",
+  "github_created_source_tree": "9756cbfcd02b44b17891a466d72c3bbb929d5c1c",
+  "identical_entire_source_tree": true,
+  "reason_for_distinct_commit_ids": "Connected-interface publication changes author/committer metadata; file contents and modes are identical.",
+  "receipt_semantics": "Execution receipts retain the actual local commit ID at execution. Reproduce using the published source revision; no receipt is relabelled as a run that did not occur."
+}

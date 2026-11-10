@@ -1,0 +1,15 @@
+COMMAND /workspace/scratch/6091070274cc/mojo-runtime/bin/mojo run -I . tests/test_c4_overlap_lean_export.mojo
+contract-receipt: Lean overlap exporter preserves packed fields, occurrence order and parallel multiplicity; refuses out-of-budget fields rather than truncating
+Failed to initialize Crashpad.  Crash reporting will not be available.  Cause: while locating crashpad handler: unable to locate crashpad handler executable
+
+Invalid exporter arguments []: nonzero exit; no generated source emitted.
+stack trace was not collected. Enable stack trace collection with environment variable `MODULAR_DEBUG=stack-trace-on-error`
+Unhandled exception caught during execution: usage: c4_overlap_lean_export.mojo SOURCE_INDEX (0..17)
+
+Invalid exporter arguments ['-1']: nonzero exit; no generated source emitted.
+stack trace was not collected. Enable stack trace collection with environment variable `MODULAR_DEBUG=stack-trace-on-error`
+Unhandled exception caught during execution: source outside complete 18-element incidence class
+
+Invalid exporter arguments ['18']: nonzero exit; no generated source emitted.
+stack trace was not collected. Enable stack trace collection with environment variable `MODULAR_DEBUG=stack-trace-on-error`
+Unhandled exception caught during execution: source outside complete 18-element incidence class

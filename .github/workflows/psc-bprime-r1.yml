@@ -1,0 +1,80 @@
+name: PSC B-prime R1 Lean + Quint gate
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/psc-bprime-r1.yml'
+      - 'proof/psc_routes/R1.lean'
+      - 'proof/quint/PscR1.qnt'
+      - 'docs/psc-bprime-route-r1-2026-11-07.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lean-r1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Check exact commit
+        env:
+          EXPECTED: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED"
+      - name: Provision repository-pinned Lean and Mathlib
+        run: ./tools/setup_lean.sh
+      - name: Compile scoped Lean lemmas and print their axiom dependencies
+        working-directory: proof/PscVerif
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$HOME/.elan/bin/lake" env lean ../../proof/psc_routes/R1.lean | tee "$RUNNER_TEMP/r1-lean.log"
+          if grep -Eq 'sorryAx|^error:|error:' "$RUNNER_TEMP/r1-lean.log"; then
+            echo "Unaccepted Lean error or sorry axiom" >&2
+            exit 1
+          fi
+          grep -F "PscRoutes.R1." "$RUNNER_TEMP/r1-lean.log" >/dev/null
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: psc-r1-lean-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/r1-lean.log
+          if-no-files-found: warn
+          retention-days: 30
+
+  quint-r1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Check exact commit
+        env:
+          EXPECTED: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Typecheck bounded adversarial model
+        run: npx --yes @informalsystems/quint@0.33.1 typecheck proof/quint/PscR1.qnt
+      - name: Replay bounded invariants (not universal model proof)
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1.qnt --main=PscR1Ancestry --invariant=finiteAncestryBox
+      - name: Run deterministic Quint negative witness (not stochastic sampling)
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1.qnt --main=PscR1Ancestry | tee "$RUNNER_TEMP/r1-forced-cycle.log"
+          grep -E '1 passing|1 passed' "$RUNNER_TEMP/r1-forced-cycle.log" >/dev/null
+      - name: Verify concrete Tribonacci arithmetic loop separately
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1.qnt --main=PscR1TribonacciArithmetic --invariant=coordinateBox
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1.qnt --main=PscR1TribonacciArithmetic | tee "$RUNNER_TEMP/r1-tribonacci.log"
+          grep -E '1 passing|1 passed' "$RUNNER_TEMP/r1-tribonacci.log" >/dev/null

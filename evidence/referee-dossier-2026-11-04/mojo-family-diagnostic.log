@@ -1,0 +1,22 @@
+fd3b64e2e25a7d8a7a8623a52677a8822e52f6c5
+diff --git a/kernel/psc/c4_third_level_coincidence_family.mojo b/kernel/psc/c4_third_level_coincidence_family.mojo
+index 2e21650..0c509fd 100644
+--- a/kernel/psc/c4_third_level_coincidence_family.mojo
++++ b/kernel/psc/c4_third_level_coincidence_family.mojo
+@@ -213,7 +213,7 @@ def reversed_closed_run_family(left_run: Int, right_run: Int) raises -> List[Lis
+         var new_word = List[Int]()
+         for j in range(len(old_word)):
+             new_word.append(old_word[len(old_word) - 1 - j])
+-        reversed.append(new_word)
++        reversed.append(new_word^)
+     return reversed^
+
+
+Mojo 1.1.0.dev2026090805 (34562fa1)
+Included from kernel/tests/test_c4_third_level_coincidence_family.mojo:7:
+./psc/c4_third_level_coincidence_family.mojo:111:13: warning: assignment to 'p' was never used; assign to '_' instead?
+    var p = 0
+            ^
+C4 uniform third-level family: complete literal strong coincidence controls passed.
+contract-receipt: ternary symmetric middle family 01/(1^k 2 1^k)/012 has all three simultaneous depth-three balanced-prefix strong coincidences at k(2k+1)+1; actual swap BPA diagonals, bounded replay, invalid cap refusal; no global PSC promotion
+exit status 0

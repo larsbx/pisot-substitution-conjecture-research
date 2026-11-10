@@ -1,0 +1,105 @@
+{
+  "base_main": "60536272b3d68b4f53ce772e7674efabce840fde",
+  "fixtures": [
+    {
+      "box_rejections": 11239,
+      "canonical_graph_sha256": "23f85af92c327a64f70983db990753a84cd1489e3c72c3047e51f14e97afce6e",
+      "chart": {
+        "beta_squared_lower": "103/20",
+        "block": 12,
+        "digit_bounds": [
+          "23/5",
+          "14/5"
+        ],
+        "literal_digits": 55583,
+        "radii": [
+          16,
+          8
+        ],
+        "stable_entry_bounds": [
+          [
+            "473/1000",
+            "39/100"
+          ],
+          [
+            "147/1000",
+            "43/125"
+          ]
+        ]
+      },
+      "contractive_ratio_upper": "99/103",
+      "fixture": 0,
+      "maximum_weight": 89510,
+      "minimum_integer_gap": 99,
+      "minimum_weight": 1,
+      "occurrence_edges": 34826,
+      "rate": "99/20",
+      "residue_rejections": 138071,
+      "root_weights": [
+        38500,
+        1,
+        1
+      ],
+      "roots_all_below_one_tenth_at_1024_blocks": true,
+      "sigma": [
+        "1",
+        "021",
+        "001"
+      ],
+      "states": 7150,
+      "weight_iterations": 856,
+      "zero_offset_diagonal_states": 0
+    },
+    {
+      "box_rejections": 10838,
+      "canonical_graph_sha256": "a63d544b25b5f7146abbd25f1960fed77f85584a1f20957b5869bea30b389256",
+      "chart": {
+        "beta_squared_lower": "103/20",
+        "block": 12,
+        "digit_bounds": [
+          "23/5",
+          "14/5"
+        ],
+        "literal_digits": 55583,
+        "radii": [
+          16,
+          8
+        ],
+        "stable_entry_bounds": [
+          [
+            "473/1000",
+            "39/100"
+          ],
+          [
+            "147/1000",
+            "43/125"
+          ]
+        ]
+      },
+      "contractive_ratio_upper": "101/103",
+      "fixture": 1,
+      "maximum_weight": 98981,
+      "minimum_integer_gap": 101,
+      "minimum_weight": 1,
+      "occurrence_edges": 34853,
+      "rate": "101/20",
+      "residue_rejections": 137076,
+      "root_weights": [
+        82573,
+        12935,
+        44045
+      ],
+      "roots_all_below_one_tenth_at_1024_blocks": true,
+      "sigma": [
+        "1",
+        "012",
+        "001"
+      ],
+      "states": 7083,
+      "weight_iterations": 1695,
+      "zero_offset_diagonal_states": 0
+    }
+  ],
+  "schema": "c4-pair-overlap-graph-v1",
+  "scope": "two named compact M-adic controls; no SC witness input or general PSC claim"
+}

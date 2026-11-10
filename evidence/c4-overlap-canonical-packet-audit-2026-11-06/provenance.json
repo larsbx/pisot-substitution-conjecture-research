@@ -1,0 +1,12 @@
+{
+  "inspected_revision": "40e5ecf3291ecba68c687fb94f1007d0f176ca89",
+  "packet_workflow_run": 42171568610,
+  "generic_workflow_run": 42171568712,
+  "artifact_id": 13484799116,
+  "artifact_bytes": 180953671,
+  "artifact_sha256": "abc9b4f5b45dcb0bc24b362afacf6f38295a504e90939f8abd467f00f8e710e9",
+  "fresh_local_kernel_run": false,
+  "followup_changes": "runtime parity factoring, genuine packet mutation regressions, artifact inspection and evidence; no Lean mathematical changes",
+  "zip_digest_matches_github": true,
+  "wrong_revision_inspection_refused": true
+}
