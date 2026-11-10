@@ -6,7 +6,9 @@ from itertools import product
 
 import pytest
 
-from test_c4_two_generation_rank_oracle import matrix, matvec, p
+from test_c4_addressed_newborn_oracle import resolve
+
+from test_c4_two_generation_rank_oracle import factor, inflate, matrix, matvec, p
 
 ROOT = (2, 1, (-1, 0, 0))
 
@@ -27,7 +29,7 @@ def good_alignment(state):
     return set(state[:2]) == {0, 2} and state[2] == (0, 0, 0)
 
 
-def closure(sigma, cap=128):
+def closure(sigma, cap=128, *, root=ROOT):
     """Enumerate every actual digit choice, with integer endpoint signs."""
     m = matrix(sigma)
     letters = [p(str(i)) for i in range(3)]
@@ -47,8 +49,8 @@ def closure(sigma, cap=128):
     def interior(x, y, defect):
         return sign(add(defect, letters[x])) > 0 and sign(subtract(letters[y], defect)) > 0
 
-    assert interior(*ROOT)
-    pending = deque([ROOT])
+    assert interior(*root)
+    pending = deque([root])
     graph = {}
     while pending:
         state = pending.popleft()
@@ -114,3 +116,49 @@ def test_full_forced_overlap_route(sigma, counts, first, remaining, direct, good
 def test_forced_overlap_budget_refuses_partial_result():
     with pytest.raises(ValueError, match="vertex budget"):
         closure(("01", "12", "021"), cap=64)
+
+
+def test_literal_first_crossing_can_never_visit_its_aligned_good_edge():
+    sigma = ("1", "02", "002")
+    assert sigma[1][0] == sigma[2][0] == "0"
+
+    pair = ("01", "10")
+    for expected in (("102", "021"), ("0210", "1002")):
+        pair = factor(*(inflate(sigma, w) for w in pair))[0]
+        assert pair == expected
+    top, bottom = pair
+    legal = "2"
+    for _ in range(4):
+        legal = inflate(sigma, legal)
+    assert (legal.index(top), legal.index(bottom)) == (2, 0)
+    row = factor(*(inflate(sigma, w) for w in pair))
+    assert row == [("1002021", "0211002")]
+    assert factor(*(inflate(sigma, w) for w in row[0]))[1:] == [("0", "0"), ("2", "2")]
+
+    # The second bottom hub starts after the first top hub but before
+    # the second top hub, strictly inside top letter 2.
+    top_source, bottom_source = 1, 2
+    defect = subtract(p(top[:top_source]), p(bottom[:bottom_source]))
+    assert defect == (0, -1, 0)
+    assert p(top[:top_source])[0] == p(bottom[:bottom_source])[0] == 1
+    assert matvec(matrix(sigma), add(defect, p("2"))) == (1, 0, 0)
+    top_hubs = [p(top[:i]) for i, a in enumerate(top) if a == "0"]
+    bottom_hubs = [p(bottom[:i]) for i, a in enumerate(bottom) if a == "0"]
+    differences = [subtract(b, a) for a, b in zip(top_hubs, bottom_hubs, strict=True)]
+    assert differences == [(0, 1, 0), (0, 0, -1)]
+    assert matvec(matrix(sigma), add(*differences)) == (-1, 0, 0)
+
+    root = (int(top[top_source]), int(bottom[bottom_source]), defect)
+    assert root == (2, 0, (0, -1, 0))
+    graph = closure(sigma, root=root)
+    assert (len(graph), sum(map(len, graph.values()))) == (54, 94)
+    aligned = {state[:2] for state in graph if not any(state[2])}
+    assert aligned == {(0, 0), (2, 2), (0, 1), (1, 0), (0, 2), (2, 0)}
+    assert graph[root] == [((2, 0), (2, 1, (1, 0, -1)))]
+    path = shortest(graph, root, coincidence)
+    assert path == ((2, 0), (2, 1), (2, 0), (1, 0), (0, 0), (1, 0), (2, 1), (1, 0))
+    addresses = tuple((source, *(digits[i] for digits in path))
+                      for i, source in enumerate((top_source, bottom_source)))
+    assert resolve(sigma, pair, addresses) == (
+        (0, 0, 1, 0, 0, 0, 1, 1), ("100202021", "020211002"), 5, True,
+    )
