@@ -66,3 +66,4 @@ import PscVerif.PacketSquareData.Tribonacci
 import PscVerif.PacketSquareData.RealSecondary
 import PscVerif.PacketSquareData.NonPisot
 import PscVerif.PacketSquareData.GfActual
+import PscVerif.PacketSquareControls

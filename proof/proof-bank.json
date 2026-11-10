@@ -13952,6 +13952,478 @@
       "declaration": "theorem weird_square_fails :"
     },
     {
+      "name": "Psc.PacketSquareControls.deadEnd_inevitable_not_inevMax",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 204,
+      "declaration": "theorem deadEnd_inevitable_not_inevMax (h : G.DeadEnd x) : G.Inevitable x ∧ ¬ G.InevMax x := by"
+    },
+    {
+      "name": "Psc.PacketSquareControls.occAt_of_decodeAt",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 242,
+      "declaration": "theorem occAt_of_decodeAt {t : Table α} {i : Fin t.packets.length} {x : Occ α}"
+    },
+    {
+      "name": "Psc.PacketSquareControls.graph_deadEnd",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 250,
+      "declaration": "theorem graph_deadEnd (t : Table α) (i : Fin t.packets.length) (hnc : ncRow t i.val = true)"
+    },
+    {
+      "name": "Psc.PacketSquareControls.graphSuccess_deadEnd",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 269,
+      "declaration": "theorem graphSuccess_deadEnd (t : Table α) (i : Fin t.packets.length)"
+    },
+    {
+      "name": "Psc.PacketSquareControls.increasing_spec",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 293,
+      "declaration": "theorem increasing_spec : ∀ l : List (Option ℕ), increasing l = true →"
+    },
+    {
+      "name": "Psc.PacketSquareControls.keysOK_eq_false_of_keyCode_eq",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 315,
+      "declaration": "theorem keysOK_eq_false_of_keyCode_eq (t : Table α) {i j : ℕ} (hij : i ≠ j)"
+    },
+    {
+      "name": "Psc.PacketSquareControls.exists_universe_over",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 354,
+      "declaration": "theorem exists_universe_over (t : Table α) (h : t.check = true) (i : Fin t.packets.length) :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.universe_deadEnd",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 363,
+      "declaration": "theorem universe_deadEnd (t : Table α) (h : t.check = true) {T₀ : List α × List α}"
+    },
+    {
+      "name": "Psc.PacketSquareControls.universe_deadEnd_for",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 374,
+      "declaration": "theorem universe_deadEnd_for (t : Table α) (h : t.check = true) {T₀ : List α × List α}"
+    },
+    {
+      "name": "Psc.PacketSquareControls.factorsOK_eq_false_of_ne",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 398,
+      "declaration": "theorem factorsOK_eq_false_of_ne [LT α] [DecidableLT α] (t : Table α) {i : ℕ}"
+    },
+    {
+      "name": "Psc.PacketSquareControls.factorsOK_eq_false_of_length",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 416,
+      "declaration": "theorem factorsOK_eq_false_of_length [LT α] [DecidableLT α] (t : Table α) {i : ℕ}"
+    },
+    {
+      "name": "Psc.PacketSquareControls.trib_shape",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 429,
+      "declaration": "theorem trib_shape :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.trib_no_success",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 442,
+      "declaration": "theorem trib_no_success (i : Fin Tribonacci.table.packets.length) :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.trib_universe_no_success",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 455,
+      "declaration": "theorem trib_universe_no_success {T₀ : List (Fin 3) × List (Fin 3)}"
+    },
+    {
+      "name": "Psc.PacketSquareControls.trib_rows_6_37",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 472,
+      "declaration": "theorem trib_rows_6_37 :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.trib_inevitable_ne_inevMax",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 483,
+      "declaration": "theorem trib_inevitable_ne_inevMax :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.trib_universe_inevitable_ne_inevMax",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 512,
+      "declaration": "theorem trib_universe_inevitable_ne_inevMax :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.trib_lineage_steps",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 551,
+      "declaration": "theorem trib_lineage_steps :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.trib_anchor1",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 564,
+      "declaration": "theorem trib_anchor1 : Anchor Tribonacci.table.s tribSeed ⟨1, 1, 1⟩ tribY1 1 :="
+    },
+    {
+      "name": "Psc.PacketSquareControls.trib_anchor2",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 568,
+      "declaration": "theorem trib_anchor2 : Anchor Tribonacci.table.s tribSeed ⟨2, 2, 2⟩ tribY2 2 :="
+    },
+    {
+      "name": "Psc.PacketSquareControls.trib_seed_listed",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 572,
+      "declaration": "theorem trib_seed_listed : tribSeed ∈ Tribonacci.table.states ∧ tribSeed.1 ≠ tribSeed.2 :="
+    },
+    {
+      "name": "Psc.PacketSquareControls.trib_seed_bal",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 576,
+      "declaration": "theorem trib_seed_bal : Equiv1 tribSeed.1 tribSeed.2 :="
+    },
+    {
+      "name": "Psc.PacketSquareControls.trib_lineage",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 597,
+      "declaration": "theorem trib_lineage :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.rs_shape",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 650,
+      "declaration": "theorem rs_shape :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.rs_cycle_rows",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 667,
+      "declaration": "theorem rs_cycle_rows :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.rs_cycle_literal",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 681,
+      "declaration": "theorem rs_cycle_literal :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.rs_seed_listed",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 724,
+      "declaration": "theorem rs_seed_listed : rsSeed ∈ RealSecondary.table.states ∧ rsSeed.1 ≠ rsSeed.2 :="
+    },
+    {
+      "name": "Psc.PacketSquareControls.rs_cycle_packets",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 734,
+      "declaration": "theorem rs_cycle_packets :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.rs_cycle_path",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 747,
+      "declaration": "theorem rs_cycle_path : RealSecondary.table.graph.IsPath rsCycleRow := by"
+    },
+    {
+      "name": "Psc.PacketSquareControls.rs_cycle_realised",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 763,
+      "declaration": "theorem rs_cycle_realised {T₀ : List (Fin 3) × List (Fin 3)}"
+    },
+    {
+      "name": "Psc.PacketSquareControls.rs_support_not_strict",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 782,
+      "declaration": "theorem rs_support_not_strict :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.np_incidence_eigen",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 807,
+      "declaration": "theorem np_incidence_eigen :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.np_rows",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 819,
+      "declaration": "theorem np_rows :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.np_seed_listed",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 832,
+      "declaration": "theorem np_seed_listed : npSeed ∈ NonPisot.table.states ∧ npSeed.1 ≠ npSeed.2 :="
+    },
+    {
+      "name": "Psc.PacketSquareControls.np_seed_bal",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 836,
+      "declaration": "theorem np_seed_bal : Equiv1 npSeed.1 npSeed.2 := (seed_isBlock (by decide : (0 : Fin 3) ≠ 2)).2.1"
+    },
+    {
+      "name": "Psc.PacketSquareControls.np_square_blind",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 850,
+      "declaration": "theorem np_square_blind :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.gf_actual_shape",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 881,
+      "declaration": "theorem gf_actual_shape :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.gf_template_literal",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 903,
+      "declaration": "theorem gf_template_literal :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.gf_template_refused",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 920,
+      "declaration": "theorem gf_template_refused (t : Table (Fin 3)) (hs : t.s = GfActual.table.s) {i : ℕ} :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.gf_template_states_refused",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 946,
+      "declaration": "theorem gf_template_states_refused :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.gf_template_table_refused",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 1000,
+      "declaration": "theorem gf_template_table_refused :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.rs_seed_rows",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 1023,
+      "declaration": "theorem rs_seed_rows :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.rs_depth_one_no_success",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 1037,
+      "declaration": "theorem rs_depth_one_no_success (a b : Universe RealSecondary.table.s rsSeed)"
+    },
+    {
+      "name": "Psc.PacketSquareControls.rs_depth_two_success",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 1082,
+      "declaration": "theorem rs_depth_two_success :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.rs_matching_letters_refused",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 1115,
+      "declaration": "theorem rs_matching_letters_refused :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.np_dropped_split",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 1142,
+      "declaration": "theorem np_dropped_split :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.np_side_swapped",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 1164,
+      "declaration": "theorem np_side_swapped :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.fib_side_swapped_collision",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 1208,
+      "declaration": "theorem fib_side_swapped_collision :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.np_hub_coerced",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 1227,
+      "declaration": "theorem np_hub_coerced :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.np_duplicate_isolated",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 1252,
+      "declaration": "theorem np_duplicate_isolated :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.np_duplicate_not_injective",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 1282,
+      "declaration": "theorem np_duplicate_not_injective : ¬ Function.Injective npDuplicate.occAt := by"
+    },
+    {
+      "name": "Psc.PacketSquareControls.np_wrong_global",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 1299,
+      "declaration": "theorem np_wrong_global :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.rs_forged_outside",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 1340,
+      "declaration": "theorem rs_forged_outside :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.rs_forged_not_reached",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 1355,
+      "declaration": "theorem rs_forged_not_reached :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.rs_stars_bounded",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 1366,
+      "declaration": "theorem rs_stars_bounded :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.rs_forged_refused",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 1379,
+      "declaration": "theorem rs_forged_refused :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.lpWalk_mem",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 1450,
+      "declaration": "theorem lpWalk_mem (t : Table (Fin 3)) (q : ℕ → ℕ) (n : ℕ)"
+    },
+    {
+      "name": "Psc.PacketSquareControls.trib_letterpair_cycle",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 1472,
+      "declaration": "theorem trib_letterpair_cycle :"
+    },
+    {
+      "name": "Psc.PacketSquareControls.trib_letterpair_cycle_unrealised",
+      "module": "PscVerif.PacketSquareControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketSquareControls.lean",
+      "line": 1480,
+      "declaration": "theorem trib_letterpair_cycle_unrealised :"
+    },
+    {
       "name": "PscVerif.PacketSquareData.GfActual.accepted",
       "module": "PscVerif.PacketSquareData.GfActual",
       "private": false,
@@ -22509,6 +22981,7 @@
     "proof/PscVerif/PscVerif/OverlapPacket.lean": "572fd9fc85082e05377321fa812670558fff66ebed16e319a81816b22950a853",
     "proof/PscVerif/PscVerif/PacketCertificate.lean": "751cc43bdf4a8c933ca2b300fafb242c26a12773e36c0702d2855e6533ebd25a",
     "proof/PscVerif/PscVerif/PacketSquare.lean": "3ad2008a6290f6b00f5bcdcd1fdf22b0ceff786af9bef0c25c69c4772b747adf",
+    "proof/PscVerif/PscVerif/PacketSquareControls.lean": "ecb945db537451c758e3a1af81998f73dd9368ef5dfd25566ed865744f634df4",
     "proof/PscVerif/PscVerif/PacketSquareData/GfActual.lean": "2e7dfb472eb59a243c0bfe5aa55062733684c1106b62bf3db2a7f0eca240ed34",
     "proof/PscVerif/PscVerif/PacketSquareData/NonPisot.lean": "928579ee2bac4b5c7df35364bf965d3309566444356d7c20636fdcc95f0706ca",
     "proof/PscVerif/PscVerif/PacketSquareData/RealSecondary.lean": "5c0c6924ae1e0e51715c40a0e662062e95346dc0a99fa06d60024a49bb24ed63",
@@ -22536,7 +23009,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "f7129d6cf3c250bc1a5cafd823bbd14a1426a968903f0edb76581b5498aa362d",
+    "proof/PscVerif/PscVerif.lean": "1d70387f2376b1a476efc2c3e8438f5ceba55014492ba1c82fb3e78e8ac7355c",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

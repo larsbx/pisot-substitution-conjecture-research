@@ -2823,3 +2823,28 @@ claim-ledger promotion. Evidence: `docs/occurrence-path-replay-2026-10-16.md`,
   - Each package had an adversarial review with no blocker. K's major finding was that no CI job runs the regenerate-and-compare gate; a dedicated workflow follows with the result note.
 
   Locator: `proof/PscVerif/PscVerif/{PacketSquare,PacketSquareData/*}.lean`; `oracles/python/packet_square_oracle.py`.
+
+- **2026-11-10 — Packet square complete at its stated scope: controls, result note and CI workflow.** `PscVerif.PacketSquareControls` (59 theorems) holds the controls on the four checked tables and the square, each refused or accepted at the clause it names. The single-clause refusals are:
+  - a dropped split entry (stars);
+  - a coerced undefined hub bit (hubs);
+  - a wrong global position (rows);
+  - a matching-letters row at a nonzero residual (rows).
+
+  The G/F template with synthetic child counts `1, 1, 3` is refused at the factors and roots clauses. The `1/02/202` packet cycle is accepted at every literal layer and realised only as an infinite absolute lineage. `1/012/1` (non-Pisot) is accepted: the square is PIP-blind. For Tribonacci, (A) and (A⁺) differ for both targets (`trib_inevitable_ne_inevMax`).
+
+  The result note is [packet-square-2026-11-10.md](packet-square-2026-11-10.md), with Work shown. `.github/workflows/packet-square.yml` runs the Lean build and axiom audit of the packet-square modules, the Mojo test and `check_packet_square.sh`, and the Python oracle. Its path filter covers the exporter's hidden dependencies and the Python closure of `tools/make_proof_bank.py`, and a guard step traces those closures. No hosted run yet.
+  - **Side findings.**
+    - The side-swapped Fibonacci row is refused by the key order through a collision with row 12 (`fib_side_swapped_collision`).
+    - On `1/012/1` a side-swapped row fails on its letters only.
+    - The mirror of a success row is a forged unreachable success that needs no extra state.
+    - The archived `ordered_hub_row` records of `1/02/202` (27) are 15 distinct `(state, hub)` pairs listed once per SCC. That listing would fail `hubsOK`, so do not repeat it as a hub-row count.
+    - 21 of the 37 Tribonacci root packets reach a coincidence row.
+  - **Tooling pitfalls.**
+    - `tools/setup_lean.sh` runs `tools/make_proof_bank.py`, which imports `tools/make_ledger.py`, `tools/proof_records/**` and `tools/claim_governance/**` (21 files). A path filter on a Lean job must list them. No other workflow that runs `setup_lean.sh` lists `tools/proof_records/**`.
+    - Lean resolves every `PscVerif.*` module in the first `LEAN_PATH` entry that holds a `PscVerif` directory, so an olean overlay must hold the whole lib tree.
+    - `PacketSquareControls` takes about 85 s to elaborate.
+  - **Corrections to the earlier wave-C entry and to commit `00d81cd`.**
+    - The peak RSS of `RealSecondary` is 9,760 MiB (9.5 GiB, about 10.2 GB), not 9.8 GB.
+    - The message of `00d81cd` says the oracle and evidence tests were 117; 242 passed.
+
+  Locator: [packet-square-2026-11-10.md](packet-square-2026-11-10.md); `proof/PscVerif/PscVerif/PacketSquareControls.lean`; `.github/workflows/packet-square.yml`.

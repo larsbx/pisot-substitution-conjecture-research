@@ -1,0 +1,581 @@
+name: Packet square (Lean tables, regeneration gate, independent oracle)
+
+# The occurrence-to-packet square of docs/packet-square-2026-11-10.md
+# (README.llm.txt 2026-11-09 addendum "P0 OCCURRENCE REFINEMENT"; roadmap
+# immediate-sequence item 2). Four jobs, each bound to the exact head revision:
+#
+#   path-filter  the filter below covers the Lean, Mojo and Python import
+#                closures of the packet-square files and the Python import
+#                closure of tools/make_proof_bank.py, which the Lean job's
+#                provisioning (tools/setup_lean.sh) runs; each closure is
+#                recomputed from the sources, so a new import that escapes the
+#                filter refuses. Inputs that are read rather than imported are
+#                covered only where the guard lists them by hand (the Lean
+#                pins, tools/setup_lean.sh, the pixi manifest and lock, the
+#                evidence checksums, pyproject.toml, the archived JSONL); the
+#                guard traces nothing else;
+#   lean         builds the packet-square Lean modules, one data module per
+#                invocation, and audits every declaration they own: only
+#                propext, Classical.choice and Quot.sound, no local axiom,
+#                every module owns a theorem, the four `accepted` receipts and
+#                the headline theorems are present;
+#   mojo         the exporter's regression test (contract receipt) and
+#                kernel/check_packet_square.sh, which regenerates the four
+#                packet-square-v1 JSONL files and the four Lean data modules and
+#                compares them byte for byte (the PASS line is required);
+#   python       the independent oracle (it imports nothing from kernel/), its
+#                tests and the target-packet oracle.
+#
+# Every gate here is in the refuse-to-proceed column of the AGENTS.md
+# fail-closed table: a cap is not a verdict, a generated surface that disagrees
+# with its table refuses the run. None deletes or overwrites a committed file:
+# regenerated files go to kernel/build and the runner's temporary directory.
+# ci.yml (lean-proofs) builds the whole PscVerif package and replays
+# ProofBankAudit.lean on every push and pull request; this workflow is the
+# targeted receipt of the packet square, not a replacement for it.
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/packet-square.yml'
+      - 'docs/packet-square-*.md'
+      - 'proof/PscVerif/**'
+      - 'tools/setup_lean.sh'
+      - 'tools/make_proof_bank.py'
+      - 'tools/make_ledger.py'
+      - 'tools/proof_records/**'
+      - 'tools/claim_governance/**'
+      - 'kernel/packet_square_export.mojo'
+      - 'kernel/tests/test_packet_square_export.mojo'
+      - 'kernel/check_packet_square.sh'
+      - 'kernel/target_aware_bpa.mojo'
+      - 'kernel/psc/**'
+      - 'kernel/finite_exact/**'
+      - 'kernel/finite_graph/**'
+      - 'kernel/finite_linear_algebra/**'
+      - 'kernel/mojo_smoke/**'
+      - 'kernel/substitution_dynamics/**'
+      - 'kernel/pixi.*'
+      - 'vendored.toml'
+      - 'evidence/packet-square-2026-11-10/**'
+      - 'evidence/target-aware-bpa-2026-10-02/**'
+      - 'oracles/python/packet_square_oracle.py'
+      - 'tests/test_packet_square_oracle.py'
+      - 'tests/test_target_packet_evidence.py'
+      - 'reference/psc_research/**'
+      - 'pyproject.toml'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/packet-square.yml'
+      - 'docs/packet-square-*.md'
+      - 'proof/PscVerif/**'
+      - 'tools/setup_lean.sh'
+      - 'tools/make_proof_bank.py'
+      - 'tools/make_ledger.py'
+      - 'tools/proof_records/**'
+      - 'tools/claim_governance/**'
+      - 'kernel/packet_square_export.mojo'
+      - 'kernel/tests/test_packet_square_export.mojo'
+      - 'kernel/check_packet_square.sh'
+      - 'kernel/target_aware_bpa.mojo'
+      - 'kernel/psc/**'
+      - 'kernel/finite_exact/**'
+      - 'kernel/finite_graph/**'
+      - 'kernel/finite_linear_algebra/**'
+      - 'kernel/mojo_smoke/**'
+      - 'kernel/substitution_dynamics/**'
+      - 'kernel/pixi.*'
+      - 'vendored.toml'
+      - 'evidence/packet-square-2026-11-10/**'
+      - 'evidence/target-aware-bpa-2026-10-02/**'
+      - 'oracles/python/packet_square_oracle.py'
+      - 'tests/test_packet_square_oracle.py'
+      - 'tests/test_target_packet_evidence.py'
+      - 'reference/psc_research/**'
+      - 'pyproject.toml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: packet-square-${{ github.event_name }}-${{ github.ref == 'refs/heads/main' && github.run_id || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  path-filter:
+    name: Path filter covers the import closures
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Bind the exact revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          mkdir -p "$RUNNER_TEMP/packet-square-filter"
+          git rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/packet-square-filter/revision.txt"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Recompute the closures and refuse a file the filter misses
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY' | tee "$RUNNER_TEMP/packet-square-filter/closure.log"
+          import re
+          import sys
+          from pathlib import Path
+
+          WORKFLOW = Path(".github/workflows/packet-square.yml")
+
+          def filters():
+              """The quoted path entries of each event under `on:`."""
+              found, event, inside = {}, None, False
+              for line in WORKFLOW.read_text().split("\n"):
+                  if line.startswith("on:"):
+                      inside = True
+                      continue
+                  if inside and line and not line.startswith(" "):
+                      break
+                  m = re.match(r"^  (\w+):", line)
+                  if m:
+                      event = m.group(1)
+                      continue
+                  m = re.match(r"^\s+- '([^']+)'\s*$", line)
+                  if inside and m and event:
+                      found.setdefault(event, []).append(m.group(1))
+              return found
+
+          def glob_regex(pattern):
+              """GitHub path-filter semantics: ** crosses '/', * and ? do not."""
+              out, i = "", 0
+              while i < len(pattern):
+                  if pattern.startswith("**", i):
+                      out, i = out + ".*", i + 2
+                  elif pattern[i] == "*":
+                      out, i = out + "[^/]*", i + 1
+                  elif pattern[i] == "?":
+                      out, i = out + "[^/]", i + 1
+                  else:
+                      out, i = out + re.escape(pattern[i]), i + 1
+              return re.compile(out + r"\Z")
+
+          errors = []
+
+          def need(path, closure):
+              if not Path(path).is_file():
+                  errors.append(f"{closure}: {path} does not exist")
+              return path
+
+          def lean_closure():
+              roots = ["GraphRefinement", "GraphEmbedding", "OccurrenceAddress", "OccurrenceGraph",
+                       "OccurrenceRealisation", "PacketCertificate", "PacketSquare",
+                       "PacketSquareData.Tribonacci", "PacketSquareData.RealSecondary",
+                       "PacketSquareData.NonPisot", "PacketSquareData.GfActual",
+                       "PacketSquareControls"]
+              todo, seen = ["PscVerif." + r for r in roots], set()
+              while todo:
+                  mod = todo.pop()
+                  if mod in seen:
+                      continue
+                  seen.add(mod)
+                  path = need("proof/PscVerif/" + mod.replace(".", "/") + ".lean", "lean")
+                  if not Path(path).is_file():
+                      continue
+                  for line in Path(path).read_text().split("\n"):
+                      m = re.match(r"^import\s+(PscVerif\.\S+)\s*$", line)
+                      if m:
+                          todo.append(m.group(1))
+              extra = ["proof/PscVerif/lean-toolchain", "proof/PscVerif/lakefile.toml",
+                       "proof/PscVerif/lake-manifest.json", "tools/setup_lean.sh"]
+              return sorted("proof/PscVerif/" + m.replace(".", "/") + ".lean" for m in seen) + \
+                  [need(p, "lean") for p in extra] + setup_closure()
+
+          def setup_closure():
+              """tools/setup_lean.sh runs tools/make_proof_bank.py, which puts tools/ first
+              on sys.path: its Python import closure there, function-level imports
+              included. A name that is neither standard library nor under tools/ refuses."""
+              tools = Path("tools")
+              todo, seen = [Path(need("tools/make_proof_bank.py", "lean"))], set()
+              while todo:
+                  path = todo.pop()
+                  if path in seen or not path.is_file():
+                      continue
+                  seen.add(path)
+                  lines, in_doc, i = path.read_text().split("\n"), False, 0
+                  while i < len(lines):
+                      line, i = lines[i], i + 1
+                      if line.count('"""') % 2 == 1:
+                          in_doc = not in_doc
+                          continue
+                      if in_doc:
+                          continue
+                      m = re.match(r"^\s*from\s+(\.*[\w.]*)\s+import\s+(.*)$", line)
+                      n = re.match(r"^\s*import\s+(.*)$", line)
+                      if m:
+                          rest = m.group(2)
+                          while rest.lstrip().startswith("(") and ")" not in rest:
+                              rest, i = rest + lines[i], i + 1
+                          imports = [(m.group(1), re.findall(r"\w+", rest.split("#")[0]))]
+                      elif n:
+                          imports = [(p.split()[0], []) for p in n.group(1).split("#")[0].split(",")
+                                     if p.strip()]
+                      else:
+                          continue
+                      for mod, names in imports:
+                          dots = len(mod) - len(mod.lstrip("."))
+                          parts = [p for p in mod.lstrip(".").split(".") if p]
+                          if not dots and (parts[0] == "__future__" or parts[0] in sys.stdlib_module_names):
+                              continue
+                          target, hits = tools, []
+                          if dots:
+                              target = path.parent
+                              for _ in range(dots - 1):
+                                  target = target.parent
+                              if (target / "__init__.py").is_file():
+                                  hits.append(target / "__init__.py")
+                          for part in parts:
+                              target = target / part
+                              if (target / "__init__.py").is_file():
+                                  hits.append(target / "__init__.py")
+                              elif Path(str(target) + ".py").is_file():
+                                  hits.append(Path(str(target) + ".py"))
+                              else:
+                                  hits = []
+                                  break
+                          if not hits:
+                              errors.append(f"lean: unresolved import {mod} in {path}")
+                              continue
+                          if target.is_dir():
+                              hits += [target / (x + ".py") for x in names if (target / (x + ".py")).is_file()]
+                          todo += hits
+              return sorted(str(p) for p in seen)
+
+          def mojo_closure():
+              kernel = Path("kernel")
+              todo = [kernel / "packet_square_export.mojo",
+                      kernel / "tests/test_packet_square_export.mojo"]
+              seen = set()
+              while todo:
+                  path = todo.pop()
+                  if path in seen:
+                      continue
+                  seen.add(path)
+                  lines, in_doc, i = path.read_text().split("\n"), False, 0
+                  while i < len(lines):
+                      line = lines[i]
+                      if line.count('"""') % 2 == 1:
+                          in_doc = not in_doc
+                      elif not in_doc:
+                          m = re.match(r"^from\s+(\.*[A-Za-z_][\w.]*|\.+)\s+import\s+(.*)$", line)
+                          if m:
+                              rest = m.group(2)
+                              while rest.lstrip().startswith("(") and ")" not in rest:
+                                  i += 1
+                                  rest += lines[i]
+                              mod, names = m.group(1), re.findall(r"\w+", rest.split("#")[0])
+                              if mod.split(".")[0] != "std":
+                                  if mod.startswith("."):
+                                      base = path.parent
+                                      for _ in range(len(mod) - len(mod.lstrip(".")) - 1):
+                                          base = base.parent
+                                      target = base.joinpath(*[p for p in mod.lstrip(".").split(".") if p])
+                                  else:
+                                      target = kernel.joinpath(*mod.split("."))
+                                  hits = [c for c in (Path(str(target) + ".mojo"), target / "__init__.mojo")
+                                          if c.is_file()]
+                                  if target.is_dir():
+                                      hits += [target / (n + ".mojo") for n in names
+                                               if (target / (n + ".mojo")).is_file()]
+                                  if not hits:
+                                      errors.append(f"mojo: unresolved import {mod} in {path}")
+                                  todo += hits
+                      i += 1
+              extra = ["kernel/check_packet_square.sh", "kernel/pixi.toml", "kernel/pixi.lock",
+                       "evidence/packet-square-2026-11-10/SHA256SUMS"]
+              return sorted(str(p) for p in seen) + [need(p, "mojo") for p in extra]
+
+          def python_closure():
+              todo = [Path("oracles/python/packet_square_oracle.py"),
+                      Path("tests/test_packet_square_oracle.py"),
+                      Path("tests/test_target_packet_evidence.py")]
+              package, seen = Path("reference/psc_research"), set()
+              while todo:
+                  path = todo.pop()
+                  if path in seen:
+                      continue
+                  seen.add(path)
+                  for line in path.read_text().split("\n"):
+                      m = re.match(r"^from\s+(psc_research(?:\.\w+)*|\.\w*)\s+import\s+(.*)$", line)
+                      if not m:
+                          continue
+                      mod = m.group(1)
+                      parts = mod.split(".")[1:] if mod.startswith("psc_research") else \
+                          [p for p in mod.split(".") if p]
+                      names = re.findall(r"\w+", m.group(2).split("#")[0]) if not parts else []
+                      for target in ([package.joinpath(*parts)] if parts else
+                                     [package / n for n in names]):
+                          hit = Path(str(target) + ".py")
+                          if hit.is_file():
+                              todo.append(hit)
+                          elif parts:
+                              errors.append(f"python: unresolved import {mod} in {path}")
+              extra = ["pyproject.toml", "evidence/target-aware-bpa-2026-10-02/real-secondary.jsonl",
+                       "evidence/packet-square-2026-11-10/SHA256SUMS"]
+              return sorted(str(p) for p in seen) + [need(p, "python") for p in extra]
+
+          found = filters()
+          pr, push = found.get("pull_request", []), found.get("push", [])
+          if not pr or pr != push:
+              errors.append("the pull_request and push path filters must be equal and nonempty")
+          patterns = [glob_regex(p) for p in pr]
+          for name, files in (("lean", lean_closure()), ("mojo", mojo_closure()),
+                              ("python", python_closure())):
+              missed = [f for f in files if not any(p.match(f) for p in patterns)]
+              errors += [f"{name}: {f} is outside the path filter" for f in missed]
+              print(f"{name} closure: {len(files)} files, {len(missed)} outside the filter")
+          for error in errors:
+              print("ERROR:", error)
+          if errors:
+              sys.exit(1)
+          print("PATH_FILTER_COVERS_CLOSURES")
+          PY
+          grep -qx 'PATH_FILTER_COVERS_CLOSURES' "$RUNNER_TEMP/packet-square-filter/closure.log"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: packet-square-filter-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/packet-square-filter
+          if-no-files-found: error
+          retention-days: 30
+
+  lean:
+    name: Lean modules of the square, the four checked tables and their axiom audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Bind the exact revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          mkdir -p "$RUNNER_TEMP/packet-square-lean"
+          git rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/packet-square-lean/revision.txt"
+      - name: Provision repository-pinned Lean, Lake and Mathlib
+        run: |
+          ./tools/setup_lean.sh
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Build the packet-square modules, one data module per invocation
+        working-directory: proof/PscVerif
+        shell: bash
+        run: |
+          set -euo pipefail
+          log="$RUNNER_TEMP/packet-square-lean/build.log"
+          # As tools/setup_lean.sh and tools/check_lean.sh do before every lake call
+          # (a step's environment does not carry over to the next step).
+          for var in "${!LEAN_@}" "${!LAKE_@}" "${!MATHLIB_CACHE_@}"; do
+            if [[ -n "$var" ]]; then unset "$var"; fi
+          done
+          export LAKE_CONFIG="" LAKE_CACHE_DIR="" LAKE_ARTIFACT_CACHE=false LAKE_RESTORE_ARTIFACTS=false
+          # Single-file, the data modules peaked at 6.7 to 9.5 GiB resident (local
+          # measurement); one invocation each keeps two of them from running at once.
+          for module in PscVerif.PacketSquare \
+              PscVerif.PacketSquareData.NonPisot PscVerif.PacketSquareData.Tribonacci \
+              PscVerif.PacketSquareData.GfActual PscVerif.PacketSquareData.RealSecondary \
+              PscVerif.PacketSquareControls; do
+            echo "== lake build +$module" | tee -a "$log"
+            start=$SECONDS
+            lake --no-cache build "+$module" 2>&1 | tee -a "$log"
+            echo "== built +$module in $((SECONDS - start)) s" | tee -a "$log"
+          done
+      - name: Audit every declaration the packet-square modules own
+        working-directory: proof/PscVerif
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/packet-square-lean"
+          for var in "${!LEAN_@}" "${!LAKE_@}" "${!MATHLIB_CACHE_@}"; do
+            if [[ -n "$var" ]]; then unset "$var"; fi
+          done
+          export LAKE_CONFIG="" LAKE_CACHE_DIR="" LAKE_ARTIFACT_CACHE=false LAKE_RESTORE_ARTIFACTS=false
+          cat > "$out/PacketSquareAudit.lean" <<'LEAN'
+          import PscVerif.GraphRefinement
+          import PscVerif.GraphEmbedding
+          import PscVerif.OccurrenceAddress
+          import PscVerif.OccurrenceGraph
+          import PscVerif.OccurrenceRealisation
+          import PscVerif.PacketCertificate
+          import PscVerif.PacketSquare
+          import PscVerif.PacketSquareData.Tribonacci
+          import PscVerif.PacketSquareData.RealSecondary
+          import PscVerif.PacketSquareData.NonPisot
+          import PscVerif.PacketSquareData.GfActual
+          import PscVerif.PacketSquareControls
+          import Lean.Util.CollectAxioms
+
+          open Lean Elab Command in
+          run_cmd do
+            let env ← getEnv
+            let audited : Array Name := #[`PscVerif.GraphRefinement, `PscVerif.GraphEmbedding,
+              `PscVerif.OccurrenceAddress, `PscVerif.OccurrenceGraph, `PscVerif.OccurrenceRealisation,
+              `PscVerif.PacketCertificate, `PscVerif.PacketSquare,
+              `PscVerif.PacketSquareData.Tribonacci, `PscVerif.PacketSquareData.RealSecondary,
+              `PscVerif.PacketSquareData.NonPisot, `PscVerif.PacketSquareData.GfActual,
+              `PscVerif.PacketSquareControls]
+            let receipts : Array Name := #[`PscVerif.PacketSquareData.Tribonacci.accepted,
+              `PscVerif.PacketSquareData.RealSecondary.accepted,
+              `PscVerif.PacketSquareData.NonPisot.accepted, `PscVerif.PacketSquareData.GfActual.accepted,
+              `Psc.PacketSquare.packet_square, `Psc.PacketCertificate.Table.check_sound]
+            let allowed := #[`propext, `Classical.choice, `Quot.sound]
+            let mut total := 0
+            let mut theorems := 0
+            for mod in audited do
+              let some index := env.header.moduleNames.findIdx? (· == mod)
+                | throwError "module {mod} is not imported"
+              let data := env.header.moduleData[index]!
+              let mut owned := 0
+              let mut ownedTheorems := 0
+              for info in data.constants do
+                let name := info.name
+                let some owner := env.getModuleIdxFor? name | continue
+                if owner.toNat != index then continue
+                if info.isAxiom then
+                  throwError "local axiom in {mod}: {name}"
+                for ax in (← collectAxioms name) do
+                  if !allowed.contains ax then
+                    throwError "nonstandard axiom in {name}: {ax}"
+                owned := owned + 1
+                if info.isTheorem then ownedTheorems := ownedTheorems + 1
+              if ownedTheorems == 0 then
+                throwError "{mod} owns no theorem"
+              liftIO <| IO.println s!"PACKET_SQUARE_MODULE\t{mod}\t{owned}\t{ownedTheorems}"
+              total := total + owned
+              theorems := theorems + ownedTheorems
+            for name in receipts do
+              let some info := env.find? name | throwError "missing receipt {name}"
+              if !info.isTheorem then
+                throwError "{name} is not a theorem"
+              let axioms ← collectAxioms name
+              let names := String.intercalate "," (axioms.toList.map toString)
+              liftIO <| IO.println s!"PACKET_SQUARE_RECEIPT\t{name}\t{names}"
+            liftIO <| IO.println s!"PACKET_SQUARE_AUDIT_COMPLETE\t{audited.size}\t{total}\t{theorems}"
+          LEAN
+          lake --no-cache env lean "$out/PacketSquareAudit.lean" | tee "$out/audit.log"
+          test "$(grep -c '^PACKET_SQUARE_MODULE' "$out/audit.log")" -eq 12
+          test "$(grep -c '^PACKET_SQUARE_RECEIPT' "$out/audit.log")" -eq 6
+          grep -q $'^PACKET_SQUARE_AUDIT_COMPLETE\t12\t' "$out/audit.log"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: packet-square-lean-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/packet-square-lean
+          if-no-files-found: error
+          retention-days: 30
+
+  mojo:
+    name: Exporter regression and the regenerate-and-compare gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Bind the exact revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          mkdir -p "$RUNNER_TEMP/packet-square-mojo"
+          git rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/packet-square-mojo/revision.txt"
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          pixi-version: v0.81.0
+          manifest-path: kernel/pixi.toml
+          locked: true
+      - name: Exporter regression test and its contract receipt
+        working-directory: kernel
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/packet-square-mojo"
+          pixi run --locked mojo --version | tee "$out/mojo-version.txt"
+          pixi run --locked mojo run -I . -I tests tests/test_packet_square_export.mojo | tee "$out/test.log"
+          grep -q '^contract-receipt: packet-square-v1 export: ' "$out/test.log"
+      - name: Regenerate the evidence and the Lean data modules and compare bytes
+        working-directory: kernel
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/packet-square-mojo"
+          pixi run --locked bash check_packet_square.sh | tee "$out/gate.log"
+          grep -q '^PASS packet-square-v1: ' "$out/gate.log"
+          # The gate writes only under kernel/build; no tracked file may change.
+          git diff --exit-code
+      - name: Keep the regenerated files with the receipts
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/packet-square-mojo/regenerated"
+          for f in kernel/build/packet-square-*.jsonl kernel/build/packet-square-*.lean \
+              kernel/build/packet-square-test.log; do
+            if [ -f "$f" ]; then cp "$f" "$RUNNER_TEMP/packet-square-mojo/regenerated/"; fi
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: packet-square-mojo-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/packet-square-mojo
+          if-no-files-found: error
+          retention-days: 30
+
+  python:
+    name: Independent Python oracle (no kernel import)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Bind the exact revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          mkdir -p "$RUNNER_TEMP/packet-square-python"
+          git rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/packet-square-python/revision.txt"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e '.[dev]'
+      - name: Oracle tests and the target-packet oracle
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pytest -q -p no:cacheprovider tests/test_packet_square_oracle.py \
+            tests/test_target_packet_evidence.py | tee "$RUNNER_TEMP/packet-square-python/pytest.log"
+      - name: Oracle command line (exit 0 and the pass line required)
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/packet-square-python"
+          python oracles/python/packet_square_oracle.py | tee "$out/oracle.log"
+          grep -q '^packet-square oracle: every check passed' "$out/oracle.log"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: packet-square-python-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/packet-square-python
+          if-no-files-found: error
+          retention-days: 30
