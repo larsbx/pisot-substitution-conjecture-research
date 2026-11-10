@@ -1,0 +1,8 @@
+# schema=psc-growing-corpus-shard/v1
+# max_image_length=5
+# start_offset=81319
+# screened=50000
+# next_offset=131319
+# band_total=46104147
+# previous_sha256=71ab091e7e834c2073755588ec4b9fafd7f03aaa5624244524b717e16779b40a
+offset	substitution	chi0	chi1	chi2
