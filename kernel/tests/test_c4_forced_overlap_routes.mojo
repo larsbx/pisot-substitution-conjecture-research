@@ -153,6 +153,26 @@ def test_forced_crossing_without_good_edge_route() raises:
     assert_true(witness.sync_right)
     assert_true(witness.cut in newborn_sync_positions(sigma, witness.parent))
 
+    # The alternative shortest path enters the right-aligned good pair.
+    # Its shared suffix supplies a different physical diagonal and newborn.
+    top = [2, 2, 2, 2, 2, 0, 0, 0]
+    bottom = [0, 1, 0, 0, 1, 2, 2, 1]
+    current = root
+    for i in range(7):
+        current = selected_overlap_child(tables, current, top[i], bottom[i])
+        assert_true(interior_overlap(tables, current))
+    assert_equal([current.top, current.bottom], [1, 2])
+    assert_equal(current.shift, cubic_sub_checked(tables.lengths.at(1),
+                                                 tables.lengths.at(2)))
+    current = selected_overlap_child(tables, current, top[7], bottom[7])
+    assert_true(current.is_coincidence())
+    var via_right = addressed_newborn(sigma, pair, 1, 2, top, bottom)
+    assert_equal(via_right.ordinals, [0, 0, 1, 0, 0, 0, 1, 3])
+    assert_equal(via_right.parent, witness.parent)
+    assert_equal(via_right.cut, 15)
+    assert_true(via_right.sync_right)
+    assert_true(via_right.cut in newborn_sync_positions(sigma, via_right.parent))
+
 
 def main() raises:
     check_route(
@@ -165,4 +185,6 @@ def main() raises:
     )
     test_forced_crossing_without_good_edge_route()
     require_contract("literal first physical hub crossing with complete flat one-step row, shortest diagonal at depth eight, no left-aligned good edge, and a right-aligned good edge at depth seven")
+    require_contract("the right-aligned route to a shortest diagonal transports to Sync+ at cut 15")
     require_contract("complete forced-overlap graphs, all actual first choices, necessary first-step hub-plane escape, and shortest direct and aligned-good-edge routes")
+
