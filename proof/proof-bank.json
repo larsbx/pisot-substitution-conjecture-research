@@ -12896,6 +12896,734 @@
       "declaration": "theorem hidden_payload_refused :"
     },
     {
+      "name": "Psc.PacketCertificate.Table.check_iff",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 421,
+      "declaration": "theorem Table.check_iff (t : Table α) : t.check = true ↔ t.Accepted := by"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.decode_some",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 439,
+      "declaration": "theorem Table.decode_some {t : Table α} {p : PacketRow α} {x : Occ α}"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.decode_block",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 468,
+      "declaration": "theorem Table.decode_block {t : Table α} {p : PacketRow α} {x : Occ α}"
+    },
+    {
+      "name": "Psc.PacketCertificate.orient_coincident",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 477,
+      "declaration": "theorem orient_coincident (T : List α × List α) (b : Bool) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.lt_of_decodeAt",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 483,
+      "declaration": "theorem Table.lt_of_decodeAt {t : Table α} {j : ℕ} {y : Occ α} (h : t.decodeAt j = some y) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.decodeAt_eq_decode",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 491,
+      "declaration": "theorem Table.decodeAt_eq_decode (t : Table α) (i : Fin t.packets.length) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.packetOK_spec",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 502,
+      "declaration": "theorem Table.packetOK_spec {t : Table α} {p : PacketRow α} (h : t.packetOK p = true) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.packetOK",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 519,
+      "declaration": "theorem Table.Accepted.packetOK {t : Table α} (h : t.Accepted) (i : Fin t.packets.length) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.decodeAt_eq",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 524,
+      "declaration": "theorem Table.Accepted.decodeAt_eq {t : Table α} (h : t.Accepted) (i : Fin t.packets.length) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.decode_eq",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 532,
+      "declaration": "theorem Table.Accepted.decode_eq {t : Table α} (h : t.Accepted) (i : Fin t.packets.length) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.decodeAt_some",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 538,
+      "declaration": "theorem Table.Accepted.decodeAt_some {t : Table α} (h : t.Accepted) {j : ℕ} {y : Occ α}"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.fields",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 546,
+      "declaration": "theorem Table.Accepted.fields {t : Table α} (h : t.Accepted) (i : Fin t.packets.length) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.starOK",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 569,
+      "declaration": "theorem Table.Accepted.starOK {t : Table α} (h : t.Accepted) (i : Fin t.packets.length) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.star_eq",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 580,
+      "declaration": "theorem Table.Accepted.star_eq {t : Table α} (h : t.Accepted) (i : Fin t.packets.length) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.mem_map_some",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 590,
+      "declaration": "theorem mem_map_some {L : List (ℕ × ℕ × Outcome α)} {d e : ℕ} {o : Outcome α} :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.child_entry_iff",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 601,
+      "declaration": "theorem Table.Accepted.child_entry_iff {t : Table α} (h : t.Accepted) (i : Fin t.packets.length)"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.graph_sound",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 624,
+      "declaration": "theorem Table.Accepted.graph_sound {t : Table α} (h : t.Accepted) {i j : Fin t.packets.length}"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.graph_complete",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 632,
+      "declaration": "theorem Table.Accepted.graph_complete {t : Table α} (h : t.Accepted) (i : Fin t.packets.length)"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.closed_range",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 641,
+      "declaration": "theorem Table.Accepted.closed_range {t : Table α} (h : t.Accepted) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.target_iff",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 648,
+      "declaration": "theorem Table.Accepted.target_iff {t : Table α} (h : t.Accepted) (i : Fin t.packets.length) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.success_iff",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 663,
+      "declaration": "theorem Table.Accepted.success_iff {t : Table α} (h : t.Accepted) (i : Fin t.packets.length) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.roots",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 676,
+      "declaration": "theorem Table.Accepted.roots {t : Table α} (h : t.Accepted) {k : ℕ} {T : List α × List α}"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.root_spec",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 705,
+      "declaration": "theorem Table.Accepted.root_spec {t : Table α} (h : t.Accepted) (i : Fin t.packets.length)"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.reach_root",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 739,
+      "declaration": "theorem Table.Accepted.reach_root {t : Table α} (h : t.Accepted) (i : Fin t.packets.length) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.hubs_spec",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 764,
+      "declaration": "theorem Table.Accepted.hubs_spec {t : Table α} (h : t.Accepted) {r : HubRow} (hr : r ∈ t.hubs) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.hubs_nodup",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 778,
+      "declaration": "theorem Table.Accepted.hubs_nodup {t : Table α} (h : t.Accepted) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.seed_mem",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 785,
+      "declaration": "theorem Table.Accepted.seed_mem {t : Table α} (h : t.Accepted) {a b : α} (hab : a < b) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.factor_rows",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 793,
+      "declaration": "theorem Table.Accepted.factor_rows {t : Table α} (h : t.Accepted) {i : ℕ} {T : List α × List α}"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.parent_nc",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 807,
+      "declaration": "theorem Table.Accepted.parent_nc {t : Table α} (h : t.Accepted) {f : ℕ} {fr : FactorRow}"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.ordinals",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 823,
+      "declaration": "theorem Table.Accepted.ordinals {t : Table α} (h : t.Accepted) {i : ℕ} {T : List α × List α}"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.state_index_inj",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 832,
+      "declaration": "theorem Table.Accepted.state_index_inj {t : Table α} (h : t.Accepted) {k k' : ℕ}"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.state_spec",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 842,
+      "declaration": "theorem Table.Accepted.state_spec {t : Table α} (h : t.Accepted) {T : List α × List α}"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.child_listed",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 851,
+      "declaration": "theorem Table.Accepted.child_listed {t : Table α} (h : t.Accepted) {T U : List α × List α}"
+    },
+    {
+      "name": "Psc.PacketCertificate.increasing_cons_lt",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 883,
+      "declaration": "theorem increasing_cons_lt : ∀ {a : ℕ} {rest : List (Option ℕ)},"
+    },
+    {
+      "name": "Psc.PacketCertificate.increasing_spec",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 896,
+      "declaration": "theorem increasing_spec : ∀ {l : List (Option ℕ)}, increasing l = true →"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.keyCode_inj",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 925,
+      "declaration": "theorem Table.Accepted.keyCode_inj {t : Table α} (h : t.Accepted) {i j : Fin t.packets.length}"
+    },
+    {
+      "name": "Psc.PacketCertificate.filter_map_inj",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 957,
+      "declaration": "theorem filter_map_inj {β γ : Type*} : ∀ {l : List β} {q : β → Bool} {g : β → γ},"
+    },
+    {
+      "name": "Psc.PacketCertificate.isNormal_cons_ne",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 990,
+      "declaration": "theorem isNormal_cons_ne {a b : α} (hab : a ≠ b) (u v : List α) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.not_isNormal_both",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 998,
+      "declaration": "theorem not_isNormal_both {P : List α × List α} (hB : IsBlock P) (hnc : P.1 ≠ P.2)"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.orient_inj",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1011,
+      "declaration": "theorem Table.Accepted.orient_inj {t : Table α} (h : t.Accepted) {P P' : List α × List α}"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.decode_inj",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1027,
+      "declaration": "theorem Table.Accepted.decode_inj {t : Table α} (h : t.Accepted) {p p' : PacketRow α}"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.Accepted.occAt_injective",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1060,
+      "declaration": "theorem Table.Accepted.occAt_injective {t : Table α} (h : t.Accepted) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.graph_sound",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1084,
+      "declaration": "theorem Table.graph_sound (t : Table α) (h : t.check = true) {i j : Fin t.packets.length}"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.graph_complete",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1090,
+      "declaration": "theorem Table.graph_complete (t : Table α) (h : t.check = true) (i : Fin t.packets.length)"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.targets",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1096,
+      "declaration": "theorem Table.targets (t : Table α) (h : t.check = true) (i : Fin t.packets.length) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.roots",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1102,
+      "declaration": "theorem Table.roots (t : Table α) (h : t.check = true) {k : ℕ} {T : List α × List α}"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.hubs_sound",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1109,
+      "declaration": "theorem Table.hubs_sound (t : Table α) (h : t.check = true) {r : HubRow} (hr : r ∈ t.hubs) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.hubs_rows",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1116,
+      "declaration": "theorem Table.hubs_rows (t : Table α) (h : t.check = true) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.closed_range",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1125,
+      "declaration": "theorem Table.closed_range (t : Table α) (h : t.check = true) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.range_eq_reach",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1133,
+      "declaration": "theorem Table.range_eq_reach (t : Table α) (h : t.check = true) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.seed_mem",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1154,
+      "declaration": "theorem Table.seed_mem (t : Table α) (h : t.check = true) {a b : α} (hab : a < b) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.check_sound",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1166,
+      "declaration": "theorem Table.check_sound (t : Table α) (h : t.check = true) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.iso",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1189,
+      "declaration": "theorem Table.iso (t : Table α) (h : t.check = true) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.seeds_listed",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1203,
+      "declaration": "theorem Table.seeds_listed (t : Table α) (h : t.check = true) {T : List α × List α}"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.bpaStatesNC_listed",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1214,
+      "declaration": "theorem Table.bpaStatesNC_listed (t : Table α) (h : t.check = true) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fin3_occAt_injective",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1235,
+      "declaration": "theorem fin3_occAt_injective (t : Table (Fin 3)) (h : t.check = true) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.Table.check_eq_clauses",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1249,
+      "declaration": "theorem Table.check_eq_clauses [Fintype α] [LT α] [DecidableLT α] (t : Table α) :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fib_accepted",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1308,
+      "declaration": "theorem fib_accepted : fibTable.check = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PacketCertificate.fib_rows",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1314,
+      "declaration": "theorem fib_rows :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fib_seed_closure",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1321,
+      "declaration": "theorem fib_seed_closure :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fib_dropped_split",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1332,
+      "declaration": "theorem fib_dropped_split :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fib_dropped_child",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1340,
+      "declaration": "theorem fib_dropped_child :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fib_wrong_split",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1348,
+      "declaration": "theorem fib_wrong_split :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fib_bad_destination",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1357,
+      "declaration": "theorem fib_bad_destination :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fib_truncated",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1366,
+      "declaration": "theorem fib_truncated :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fib_side_swapped",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1376,
+      "declaration": "theorem fib_side_swapped :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fib_wrong_residual",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1384,
+      "declaration": "theorem fib_wrong_residual :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fib_wrong_interior",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1392,
+      "declaration": "theorem fib_wrong_interior :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fib_wrong_global",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1400,
+      "declaration": "theorem fib_wrong_global :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fib_wrong_stop",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1409,
+      "declaration": "theorem fib_wrong_stop :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fib_wrong_ordinal",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1418,
+      "declaration": "theorem fib_wrong_ordinal :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fib_duplicate_key",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1428,
+      "declaration": "theorem fib_duplicate_key :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fib_hub_coerced",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1438,
+      "declaration": "theorem fib_hub_coerced :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fib_hub_undefined",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1447,
+      "declaration": "theorem fib_hub_undefined :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fib_hub_state_oob",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1456,
+      "declaration": "theorem fib_hub_state_oob :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fib_hub_coincident",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1464,
+      "declaration": "theorem fib_hub_coincident :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fib_hub_duplicate",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1471,
+      "declaration": "theorem fib_hub_duplicate :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fib_duplicate_isolated",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1490,
+      "declaration": "theorem fib_duplicate_isolated :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fib_duplicate_collide",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1496,
+      "declaration": "theorem fib_duplicate_collide :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fib_duplicate_not_injective",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1502,
+      "declaration": "theorem fib_duplicate_not_injective : ¬ Function.Injective fibDuplicate.occAt := by"
+    },
+    {
+      "name": "Psc.PacketCertificate.fib_no_seed",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1511,
+      "declaration": "theorem fib_no_seed :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fibExtra_accepted",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1626,
+      "declaration": "theorem fibExtra_accepted : fibExtra.check = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PacketCertificate.fibExtra_state_unreached",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1630,
+      "declaration": "theorem fibExtra_state_unreached :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fibExtra_birth_not_first",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1640,
+      "declaration": "theorem fibExtra_birth_not_first :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fibExtra_forged_outside",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1670,
+      "declaration": "theorem fibExtra_forged_outside :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fibExtra_forged_not_reached",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1678,
+      "declaration": "theorem fibExtra_forged_not_reached :"
+    },
+    {
+      "name": "Psc.PacketCertificate.fibExtra_forged_unreachable",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1691,
+      "declaration": "theorem fibExtra_forged_unreachable :"
+    },
+    {
+      "name": "Psc.PacketCertificate.weird_accepted",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1787,
+      "declaration": "theorem weird_accepted : weird.check = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PacketCertificate.weird_rows_collide",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1790,
+      "declaration": "theorem weird_rows_collide :"
+    },
+    {
+      "name": "Psc.PacketCertificate.weird_not_injective",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1797,
+      "declaration": "theorem weird_not_injective : ¬ Function.Injective weird.occAt := by"
+    },
+    {
+      "name": "Psc.PacketCertificate.weirdFin_refused",
+      "module": "PscVerif.PacketCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PacketCertificate.lean",
+      "line": 1825,
+      "declaration": "theorem weirdFin_refused :"
+    },
+    {
       "name": "Psc.ParikhIntertwiner.parikh_append",
       "module": "PscVerif.ParikhIntertwiner",
       "private": false,
@@ -21419,6 +22147,7 @@
     "proof/PscVerif/PscVerif/OccurrenceRealisation.lean": "471f729cdf767fa1a3d5cb29ac9aa1f55a10657acbe4f29331ce3d87937bee20",
     "proof/PscVerif/PscVerif/OverlapContraction.lean": "09dd1ccc90a7245211336996f7da8b1276e86cab60dd1cc0b5471e3d7f6a2a30",
     "proof/PscVerif/PscVerif/OverlapPacket.lean": "572fd9fc85082e05377321fa812670558fff66ebed16e319a81816b22950a853",
+    "proof/PscVerif/PscVerif/PacketCertificate.lean": "751cc43bdf4a8c933ca2b300fafb242c26a12773e36c0702d2855e6533ebd25a",
     "proof/PscVerif/PscVerif/ParikhIntertwiner.lean": "bc7120433f0c103c966fc6faf41407b969537fd0881971a5d36b98169b220d96",
     "proof/PscVerif/PscVerif/ParikhRank.lean": "be40494c796287c599d6a62f20662e1c7f80786c88d0e4881c8a58795b3e0d7a",
     "proof/PscVerif/PscVerif/PerronCore.lean": "1f06da1e0b57e74b31fc03d753bd314f25561a37e512b3a8f7f05fda0d75458c",
@@ -21442,7 +22171,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "2782891eb919e6f13f801f84861f686174d6b713fd0b4a01bcdc7621aaf9b1b9",
+    "proof/PscVerif/PscVerif.lean": "36cc3dd6432768f4fe5da95e74fa95f03031c57b4da110ff6159bb4921f8dfdb",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

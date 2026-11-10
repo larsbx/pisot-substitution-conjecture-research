@@ -2798,3 +2798,19 @@ claim-ledger promotion. Evidence: `docs/occurrence-path-replay-2026-10-16.md`,
   - Adversarial review: no blocker or major finding; all nine minor findings were applied.
 
   Locator: `proof/PscVerif/PscVerif/OccurrenceRealisation.lean`.
+
+- **2026-11-10 — Packet square, wave B (Lean): the packet certificate.** `Psc.PacketCertificate` (91 top-level theorems) defines:
+  - the v1 record of an exported packet table (`FactorRow`, `PacketRow`, `StarRow`, `HubRow`, `Table`), and `Table.decode` / `Table.occAt` into literal occurrence pairs;
+  - an eleven-clause `Bool` checker, `Table.check`, evaluated by one `decide +kernel` per table.
+
+  On an accepted table:
+  - `check_sound` (over a linearly ordered alphabet): every row decodes to a valid literal occurrence pair, and `occAt` is injective; every star is the literal `occStar`, splits included; addresses, letters, residual and bits are literal; every row is reachable from a root row.
+  - `iso`: an isomorphism onto the induced subgraph of `occGraph` on a child-closed set, for both targets.
+  - `range_eq_reach`: with no order hypothesis, the table is exactly the set reachable in `occGraph` from the root pairs of its noncoincident states.
+  - `seeds_listed`, `bpaStatesNC_listed`; `roots`, `hubs_sound` and `hubs_rows`. Hub rows are checked for state range, noncoincidence and uniqueness, stricter than the plan.
+  - Controls, each refused by `decide +kernel`, several at a single clause: `weird` shows that injectivity fails without a linear order; a duplicate key; a forged root-unreachable row, refused by the birth clause; out-of-range hub rows; and `fibExtra_birth_not_first`, which shows the checker accepts any earlier parent as birth, not only the first edge the exporter emits.
+  - **Not checked:** that the listed states are exactly the normalised `bpaStatesNC`; `fibExtra` is accepted and is a counterexample to that converse.
+
+  The four exporter data modules (Tribonacci, `1/02/202`, `1/012/1`, `1/2/021`) are accepted against this module in local runs. They are committed in the next wave. Adversarial review: no blocker or major finding; all minor findings were applied.
+
+  Locator: `proof/PscVerif/PscVerif/PacketCertificate.lean`.
