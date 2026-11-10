@@ -55,3 +55,4 @@ import PscVerif.BPrimeBinding
 import PscVerif.BPrime
 import PscVerif.QuantifierInterface
 import PscVerif.QuantifierBinding
+import PscVerif.GraphRefinement

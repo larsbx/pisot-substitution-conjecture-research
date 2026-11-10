@@ -8288,6 +8288,350 @@
       "declaration": "theorem mono211_ne_pow4 :"
     },
     {
+      "name": "Psc.GraphRefinement.Complete.reach",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 114,
+      "declaration": "theorem Complete.reach (hC : Complete G P π) {x x' : X} (h : G.Reach x x') :"
+    },
+    {
+      "name": "Psc.GraphRefinement.Complete.transGen",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 120,
+      "declaration": "theorem Complete.transGen (hC : Complete G P π) {x x' : X}"
+    },
+    {
+      "name": "Psc.GraphRefinement.Complete.productive",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 127,
+      "declaration": "theorem Complete.productive (hC : Complete G P π) (hT : TargetDown G P π)"
+    },
+    {
+      "name": "Psc.GraphRefinement.Complete.isPath",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 132,
+      "declaration": "theorem Complete.isPath (hC : Complete G P π) {p : ℕ → X} (hp : G.IsPath p) :"
+    },
+    {
+      "name": "Psc.GraphRefinement.Complete.inevitable",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 137,
+      "declaration": "theorem Complete.inevitable (hC : Complete G P π) (hT : TargetUp G P π)"
+    },
+    {
+      "name": "Psc.GraphRefinement.SoundEvery.reach_lift",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 144,
+      "declaration": "theorem SoundEvery.reach_lift (hS : SoundEvery G P π) {y : Y} (h : P.Reach (π x) y) :"
+    },
+    {
+      "name": "Psc.GraphRefinement.SoundEvery.productive",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 154,
+      "declaration": "theorem SoundEvery.productive (hS : SoundEvery G P π) (hT : TargetUp G P π)"
+    },
+    {
+      "name": "Psc.GraphRefinement.SoundEvery.liftsPaths",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 162,
+      "declaration": "theorem SoundEvery.liftsPaths (hS : SoundEvery G P π) (x : X) : LiftsPaths G P π x := by"
+    },
+    {
+      "name": "Psc.GraphRefinement.LiftsPaths.inevitable",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 190,
+      "declaration": "theorem LiftsPaths.inevitable (hL : LiftsPaths G P π x) (hT : TargetDown G P π)"
+    },
+    {
+      "name": "Psc.GraphRefinement.hereditarilyProductive_project",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 201,
+      "declaration": "theorem hereditarilyProductive_project (hC : Complete G P π) (hS : SoundEvery G P π)"
+    },
+    {
+      "name": "Psc.GraphRefinement.hereditarilyProductive_lift",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 211,
+      "declaration": "theorem hereditarilyProductive_lift (hC : Complete G P π) (hS : SoundEvery G P π)"
+    },
+    {
+      "name": "Psc.GraphRefinement.hereditarilyProductive_iff",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 218,
+      "declaration": "theorem hereditarilyProductive_iff (hC : Complete G P π) (hS : SoundEvery G P π)"
+    },
+    {
+      "name": "Psc.GraphRefinement.inevitable_iff",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 224,
+      "declaration": "theorem inevitable_iff (hC : Complete G P π) (hS : SoundEvery G P π)"
+    },
+    {
+      "name": "Psc.GraphRefinement.cyclicProductive_of_quotient",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 231,
+      "declaration": "theorem cyclicProductive_of_quotient (hC : Complete G P π) (hS : SoundEvery G P π)"
+    },
+    {
+      "name": "Psc.GraphRefinement.PrefixLift.mono",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 237,
+      "declaration": "theorem PrefixLift.mono {q : ℕ → Y} {n : ℕ} {a : X} {k : ℕ}"
+    },
+    {
+      "name": "Psc.GraphRefinement.PrefixLift.mono_le",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 242,
+      "declaration": "theorem PrefixLift.mono_le {q : ℕ → Y} {m n : ℕ} {a : X} {k : ℕ} (hmn : m ≤ n)"
+    },
+    {
+      "name": "Psc.GraphRefinement.PrefixLift.child",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 250,
+      "declaration": "theorem PrefixLift.child {q : ℕ → Y} {n : ℕ} {a : X} {k : ℕ}"
+    },
+    {
+      "name": "Psc.GraphRefinement.exists_child_prefixLift",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 261,
+      "declaration": "theorem exists_child_prefixLift {q : ℕ → Y} {a : X} {k : ℕ}"
+    },
+    {
+      "name": "Psc.GraphRefinement.liftsPaths_of_liftsPrefixes",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 281,
+      "declaration": "theorem liftsPaths_of_liftsPrefixes (hfin : ∀ a, {c | G.child a c}.Finite)"
+    },
+    {
+      "name": "Psc.GraphRefinement.quotientDistance_iff",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 315,
+      "declaration": "theorem quotientDistance_iff {n m : ℕ} {actual : Fin n → Fin n → Prop}"
+    },
+    {
+      "name": "Psc.GraphRefinement.quotientDistance_invariant",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 330,
+      "declaration": "theorem quotientDistance_invariant {n m : ℕ} {actual : Fin n → Fin n → Prop}"
+    },
+    {
+      "name": "Psc.GraphRefinement.dropped_soundEvery",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 355,
+      "declaration": "theorem dropped_soundEvery : SoundEvery fork forkDropped id := by"
+    },
+    {
+      "name": "Psc.GraphRefinement.dropped_not_complete",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 363,
+      "declaration": "theorem dropped_not_complete : ¬ Complete fork forkDropped id := fun hC => by"
+    },
+    {
+      "name": "Psc.GraphRefinement.forkDropped_reach_root",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 367,
+      "declaration": "theorem forkDropped_reach_root {t : Fork} (h : forkDropped.Reach .root t) :"
+    },
+    {
+      "name": "Psc.GraphRefinement.dropped_hereditarilyProductive",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 380,
+      "declaration": "theorem dropped_hereditarilyProductive :"
+    },
+    {
+      "name": "Psc.GraphRefinement.undrawn_hereditarilyProductive",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 406,
+      "declaration": "theorem undrawn_hereditarilyProductive :"
+    },
+    {
+      "name": "Psc.GraphRefinement.overdrawn_productive",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 428,
+      "declaration": "theorem overdrawn_productive :"
+    },
+    {
+      "name": "Psc.GraphRefinement.overdrawnFork_hereditarilyProductive",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 449,
+      "declaration": "theorem overdrawnFork_hereditarilyProductive :"
+    },
+    {
+      "name": "Psc.GraphRefinement.broken_complete",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 494,
+      "declaration": "theorem broken_complete : Complete brokenActual brokenQuotient brokenProj := by"
+    },
+    {
+      "name": "Psc.GraphRefinement.broken_soundSome",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 506,
+      "declaration": "theorem broken_soundSome : SoundSome brokenActual brokenQuotient brokenProj := by"
+    },
+    {
+      "name": "Psc.GraphRefinement.brokenActual_reach_x1",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 511,
+      "declaration": "theorem brokenActual_reach_x1 {t : Broken} (h : brokenActual.Reach .x1 t) :"
+    },
+    {
+      "name": "Psc.GraphRefinement.broken_productive",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 525,
+      "declaration": "theorem broken_productive :"
+    },
+    {
+      "name": "Psc.GraphRefinement.unroll_complete",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 554,
+      "declaration": "theorem unroll_complete : Complete ray loop (fun _ => ()) := fun _ _ _ => trivial"
+    },
+    {
+      "name": "Psc.GraphRefinement.unroll_soundEvery",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 556,
+      "declaration": "theorem unroll_soundEvery : SoundEvery ray loop (fun _ => ()) :="
+    },
+    {
+      "name": "Psc.GraphRefinement.unroll_cycle",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 563,
+      "declaration": "theorem unroll_cycle :"
+    },
+    {
+      "name": "Psc.GraphRefinement.unroll_cyclicProductive",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 573,
+      "declaration": "theorem unroll_cyclicProductive :"
+    },
+    {
+      "name": "Psc.GraphRefinement.tail_not_cyclic",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 589,
+      "declaration": "theorem tail_not_cyclic :"
+    },
+    {
+      "name": "Psc.GraphRefinement.fan_complete",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 618,
+      "declaration": "theorem fan_complete : Complete fan ray fanProj := by"
+    },
+    {
+      "name": "Psc.GraphRefinement.ray_path_eq",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 630,
+      "declaration": "theorem ray_path_eq {q : ℕ → ℕ} (hq0 : q 0 = 0) (hq : ray.IsPath q) : ∀ n, q n = n := by"
+    },
+    {
+      "name": "Psc.GraphRefinement.fan_liftsPrefixes",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 640,
+      "declaration": "theorem fan_liftsPrefixes : LiftsPrefixes fan ray fanProj none := by"
+    },
+    {
+      "name": "Psc.GraphRefinement.fan_path_chain",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 652,
+      "declaration": "theorem fan_path_chain {p : ℕ → Option (ℕ × ℕ)} (hp : fan.IsPath p) {n : ℕ}"
+    },
+    {
+      "name": "Psc.GraphRefinement.fan_no_lift",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 666,
+      "declaration": "theorem fan_no_lift :"
+    },
+    {
+      "name": "Psc.GraphRefinement.fan_root_infinite",
+      "module": "PscVerif.GraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphRefinement.lean",
+      "line": 684,
+      "declaration": "theorem fan_root_infinite : ¬ {c | fan.child none c}.Finite := fun hfin => by"
+    },
+    {
       "name": "Psc.Incidence.subst_cons",
       "module": "PscVerif.Incidence",
       "private": false,
@@ -19349,6 +19693,7 @@
     "proof/PscVerif/PscVerif/Descendants.lean": "6641b65d81d90be34c13937b6ab8ebc029fcce91babd7c2ce398738dac783a40",
     "proof/PscVerif/PscVerif/FixedPointLimit.lean": "cd4a824f288d4c1072fd375e0e7b9014f56028e23e00cb4336fd678a210b7bbe",
     "proof/PscVerif/PscVerif/GaloisOrbit.lean": "4d3b5474dbd14205f4bf2d33e98149ebbdd6d7e0fb8fd3a33787b878bcad5f07",
+    "proof/PscVerif/PscVerif/GraphRefinement.lean": "23b9d53d396d65a1b38dffffccf0dd49b39e28afba29f18a3c0fe5ec612d1394",
     "proof/PscVerif/PscVerif/Incidence.lean": "b0c865d4177dac9485a2ddbd35201143ee3d263ad735af05785b077e1f6bd6ff",
     "proof/PscVerif/PscVerif/Intertwiner2.lean": "4fdc6a9497a5c3fd4b39101b033e6814b70aec8391f0cbc8691028319b1143d6",
     "proof/PscVerif/PscVerif/Intertwiner3.lean": "23a3732cd2c16cd77175c71068e7d5fca3dc1df1a0c8ac11e94b5adfb988fde7",
@@ -19381,7 +19726,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "31c59ed2bda5388394e792fa355a9381d39f9f6c5a440b1d1736a152e45424db",
+    "proof/PscVerif/PscVerif.lean": "6dcd6519bf4d19beb538278486ea3769be2781d33f9c2829cee0d37abc95f74f",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
