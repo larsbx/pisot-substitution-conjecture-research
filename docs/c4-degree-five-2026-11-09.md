@@ -4,6 +4,19 @@ Base revision: the merge of [PR #521](https://github.com/larsbx/pisot-substituti
 The definitions reuse `Defect4.Equiv3`, `Defect4.K4`, and the existing signed
 `Normalisation`. The degree-five results concern finite words and tensors.
 
+**Status reconciled 2026-11-10.** The basis and word identities of
+[PR #522](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/522)
+are now followed by the merged quotient transport, mixed-weight classification,
+image-root lift and signed Perron sieve of PRs
+[#524](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/524),
+[#525](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/525),
+[#527](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/527)
+and [#528](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/528).
+The [spectral transport note](c4-degree-five-spectral-transport.md) records
+their exact scope and hosted acceptance. The remaining algebraic target is
+reciprocal-polynomial multiplicity and image-rank classification; literal
+strict-child realizability remains open. No C4 or Concentration status changes.
+
 ## Lean statements
 
 - `Defect5.Equiv4` is `Equiv3` plus equality of every degree-four scattered
@@ -68,7 +81,7 @@ size 5.
 These are finite adversarial controls on hypotheses and orientation. None is
 evidence of a strict degree-five carrier for an irreducible Pisot substitution.
 
-## Conditional sector calculation
+## Sector calculation and accepted transport
 
 The content multiplicities from the finite basis are per distinct permutation.
 
@@ -87,7 +100,16 @@ comparison in `Degree5Sector` uses `b = |β| > 1`, two contracting moduli
 `(4,1,0)`, `(3,2,0)`, and `(3,1,1)` **if** their orbit with the maximal
 exponent at the Perron root occurs in the signed spectrum and that spectrum
 has the Perron upper bound. Transitivity on the three roots supplies the
-required placement once orbit transport to the rational image is proved.
+required placement. The merged `Degree5Transport`, `Degree5Weights`,
+`Degree5RootLift` and `Degree5Sieve` now establish this bridge for the actual
+rational image of a supplied normalized ternary child system with `Equiv4`
+on every state and primitive irreducible Pisot incidence. In particular,
+`sieve5_of_primitive` restricts every image root to a `(2,2,1)` value;
+`sieve5_full_orbit_of_primitive` gives all three values when a defect column
+is nonzero. `det_cube_le_of_nonzero` proves the necessary bound
+`|det M|³ ≤ β` in the nonzero-image case. These are implications with the
+stated child-system hypotheses, not a construction or exclusion of a strict
+carrier.
 
 For a unit determinant, all three placements of `(2,2,1)` lie strictly
 below the bound. Their moduli are `bx`, `by`, and `xy`. Thus the
@@ -95,6 +117,14 @@ degree-four argument that forces a signed eigenvalue at the Perron modulus
 has no counterpart from this bound alone. The immediate mathematical
 obstruction is to exclude a nonzero realizable defect image supported on
 the surviving `(2,2,1)` weights, or to derive a stronger constraint on that
-image. Before applying the conditional comparison to a child system in Lean,
-a degree-five diagonalization and rational quotient spectrum bridge is
-required. The finite algebra leaves Concentration, G1, C4, and PSC open.
+image. Formalizing `q5 = g^k` for the reciprocal cubic `g`, including the
+zero-image case, and `rank Q5 = 3k` is a separate next target described in the
+spectral transport note. The finite multiplicity table alone does not prove
+that image-rank statement.
+
+The `StrictSystem` first-defect selection wrappers still cover degrees two,
+three and four, not degree five; the degree-five modules take `Equiv4`
+explicitly. Generic first-defect/Lie/sieve formalization at degrees `r ≥ 6`
+also remains open. Even a future exclusion at degree five would leave the
+degree-three determinant sector, degree-four configuration (R), and higher
+degrees to address. Concentration, G1, C4, and PSC remain open.

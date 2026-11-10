@@ -1861,11 +1861,11 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/c4-closed-component-search-2026-11-07.md:166](../docs/c4-closed-component-search-2026-11-07.md#L166) | **Lemma 2 (the window; gate §4.3 item 4).** Let F(X) = {T ∈ X : every |
 | [docs/c4-closed-component-search-2026-11-07.md:179](../docs/c4-closed-component-search-2026-11-07.md#L179) | **Lemma 3 (carriers of a nonempty limit).** A nonempty X* has a sink SCC |
 | [docs/c4-closed-component-search-2026-11-07.md:188](../docs/c4-closed-component-search-2026-11-07.md#L188) | **Lemma 4 (reversal).** Let σ̃(a) be σ(a) reversed. For a balanced |
-| [docs/c4-concentration-attack-2026-11-06.md:48](../docs/c4-concentration-attack-2026-11-06.md#L48) | ## 2. Theorem A: first defect degree four |
-| [docs/c4-concentration-attack-2026-11-06.md:50](../docs/c4-concentration-attack-2026-11-06.md#L50) | **Theorem A.** Let σ be PIP on {0,1,2}, with roots β, α, γ and |
-| [docs/c4-concentration-attack-2026-11-06.md:110](../docs/c4-concentration-attack-2026-11-06.md#L110) | **Lemma.** Let σ be primitive with Perron root > 1, and let C be a |
-| [docs/c4-concentration-attack-2026-11-06.md:126](../docs/c4-concentration-attack-2026-11-06.md#L126) | **Corollary.** If distinct factors of L(σ) of equal length are never |
-| [docs/c4-concentration-attack-2026-11-06.md:132](../docs/c4-concentration-attack-2026-11-06.md#L132) | **Corollary T (conditional).** Concentration holds for the Tribonacci |
+| [docs/c4-concentration-attack-2026-11-06.md:51](../docs/c4-concentration-attack-2026-11-06.md#L51) | ## 2. Theorem A: first defect degree four |
+| [docs/c4-concentration-attack-2026-11-06.md:53](../docs/c4-concentration-attack-2026-11-06.md#L53) | **Theorem A.** Let σ be PIP on {0,1,2}, with roots β, α, γ and |
+| [docs/c4-concentration-attack-2026-11-06.md:113](../docs/c4-concentration-attack-2026-11-06.md#L113) | **Lemma.** Let σ be primitive with Perron root > 1, and let C be a |
+| [docs/c4-concentration-attack-2026-11-06.md:129](../docs/c4-concentration-attack-2026-11-06.md#L129) | **Corollary.** If distinct factors of L(σ) of equal length are never |
+| [docs/c4-concentration-attack-2026-11-06.md:135](../docs/c4-concentration-attack-2026-11-06.md#L135) | **Corollary T (conditional).** Concentration holds for the Tribonacci |
 | [docs/c4-cut-attractor-window-2026-11-05.md:25](../docs/c4-cut-attractor-window-2026-11-05.md#L25) | ## 1. Lemma F (common vertices are balanced cuts) |
 | [docs/c4-cut-attractor-window-2026-11-05.md:33](../docs/c4-cut-attractor-window-2026-11-05.md#L33) | **Lemma F.** |
 | [docs/c4-cut-attractor-window-2026-11-05.md:78](../docs/c4-cut-attractor-window-2026-11-05.md#L78) | ## 2. Lemma N (all-position nesting) and Lemma G (the cut attractor) |

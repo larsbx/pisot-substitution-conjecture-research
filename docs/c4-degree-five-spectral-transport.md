@@ -1,5 +1,24 @@
 # Degree-five spectral transport and word realizability
 
+## Current acceptance and scope — 2026-11-10
+
+At main revision `c38e381cc8105d87597b0a9bfbe418b7bca86fc0`, the transport,
+mixed-weight, root-lift and signed-sieve results below are merged through
+[PR #528](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/528).
+Its exact head `0f0043c98c69313ac927f7640e85ca12e882e00e` passed the
+[isolated Lean build and whole-bank axiom audit](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42743831329)
+with 4,048 declarations and 3,070 theorems reached. The log explicitly audits
+`sieve5_roots`, `sieve5_full_orbit_of_primitive` and `det_cube_le_of_nonzero`
+using only `propext`, `Classical.choice` and `Quot.sound`. This hosted result
+supersedes the PR body's earlier local exit-137/pending-audit report; that
+failed local attempt remains part of the evidence history. This update
+records the existing run and does not claim a new local Lean replay.
+
+The accepted results classify the image's root set and give a necessary
+determinant bound. Reciprocal-cubic multiplicities, image-rank divisibility,
+and strict ordered-word exclusion remain separate obligations. Independent
+human review remains pending and is not a gate on continued development.
+
 ## Literature and decision
 
 The exact target is a transport theorem for the image of the degree-five
@@ -11,9 +30,10 @@ supplies no PSC hypothesis. [Barge and Diamond's coincidence theorem](https://ww
 requires actual aligned occurrences with equal prefix abelianizations.
 [Sirvent and Solomyak's balanced-pair criterion](https://citeseerx.ist.psu.edu/document?doi=ac6481cf41605ed271988fa1354fbf057680ba4e&repid=rep1&type=pdf)
 has separate termination and coincidence premises. Neither premise follows
-from a rational tensor image. Proceed with the quotient specialization and
-a narrowly scoped spectral control. Keep literal realization and global
-extraction as separate obligations.
+from a rational tensor image. The quotient specialization and narrowly scoped
+spectral control are now implemented as recorded above. Continue with the
+factorization target below and word realizability; keep global extraction as
+a separate obligation.
 
 ## Interfaces and evidence
 
@@ -135,7 +155,8 @@ degree-one balance implied by the degree-four hypotheses.
 column, the roots of the image polynomial are exactly the three
 `(2,2,1)` values. It moves the single exponent onto each incidence root in
 turn. The result classifies the root set. The following factorization
-argument would also determine the form of the multiplicities.
+argument would also determine the form of the multiplicities and is not yet
+a Lean theorem.
 
 * Let the incidence roots be `r₀,r₁,r₂`, let `d = r₀r₁r₂ ≠ 0`, and write
   `e₁,e₂` for their first two elementary symmetric functions. The three
@@ -153,3 +174,39 @@ argument would also determine the form of the multiplicities.
   `det_cube_le_of_nonzero`. The unit plastic control satisfies this
   necessary condition, so the surviving case still needs information
   from actual ordered words.
+
+## Next bounded algebraic targets
+
+These are planned formalizations of the preceding argument, not additional
+accepted theorems. Preserve the current normalization, `Equiv4` on every
+state, irreducible incidence cubic and Pisot/primitive hypotheses.
+
+1. **Reciprocal cubic and multiplicities.** Define
+   `g(t) = t³ − d e₂ t² + d³ e₁ t − d⁵`, prove its irreducibility from that
+   of the incidence cubic, and prove `q5 = g^k` for some `k : ℕ`.
+   Include the zero image explicitly: `q5 = 1` and `k = 0` there; a nonzero
+   image requires `k ≥ 1`. The root-set theorem supplies the roots, not their
+   multiplicities. Use the characteristic polynomial of the actual image,
+   not the whole signed source space.
+2. **Rank divisibility.** Connect the degree of that characteristic
+   polynomial to the rational image dimension to obtain `rank Q5 = 3k`.
+   The optional stronger bound `k ≤ 6` needs a transported homogeneous
+   decomposition: each of the three `(2,2,1)` contents has six basis
+   elements, but the finite count alone is not a proof of `rank Q5 ≤ 18`.
+   Preserve the numerical-weight collision controls when identifying the
+   relevant spectral subspaces.
+3. **Determinant exclusion corollary.** Under the same hypotheses,
+   `|det M| ≥ 2` and `β < 8` force `Q5 = 0`: a nonzero column would give
+   `8 ≤ |det M|³ ≤ β`. For substitutions with every image of length at most
+   three, `β ≤ 3` follows from the incidence matrix's maximum column sum.
+   Thus a nonzero degree-five image in that parameter class would require
+   unimodularity. These are consequences to formalize, not new Lean
+   declarations or a new corpus computation.
+
+The main mathematical task remains a constraint on actual first-cut words
+which excludes the surviving image. The degree-three determinant-sector
+control and degree-four configuration (R) must remain in the adversarial
+suite alongside the reciprocal plastic control. Excluding degree five alone
+does not settle those cases, degrees `r ≥ 6`, or Concentration. The
+`StrictSystem` first-defect selection interface at degree five also remains
+to be connected; the present theorems assume degree-four balance directly.
