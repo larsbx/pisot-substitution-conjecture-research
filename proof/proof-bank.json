@@ -5859,7 +5859,7 @@
       "module": "PscVerif.Degree5RootLift",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5RootLift.lean",
-      "line": 87,
+      "line": 88,
       "declaration": "theorem root_q5_is_mixed {K : Type*} [Field K] [CharZero K]"
     },
     {
@@ -5867,7 +5867,7 @@
       "module": "PscVerif.Degree5RootLift",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5RootLift.lean",
-      "line": 101,
+      "line": 102,
       "declaration": "theorem exists_signed_mixed_weight {S : ChildSystem (Fin 3)} (P : Normalisation S)"
     },
     {
@@ -17352,7 +17352,7 @@
     "proof/PscVerif/PscVerif/Degree3Sector.lean": "02875b90e69cf0089f1cbfa1f2a0de2fabc121cb022cc2a23fb5406d69c9e414",
     "proof/PscVerif/PscVerif/Degree4Floor.lean": "bc34017a101d388e497a394710ed7661250aaa1fb049a9454dba17f308515006",
     "proof/PscVerif/PscVerif/Degree4Sector.lean": "7afc131498833c8346b21872981c6f7aa4b7a736fdc952ff84b9b8c071b86f63",
-    "proof/PscVerif/PscVerif/Degree5RootLift.lean": "c5ba63fbb4a6c046777e94c3d61c5e0892ea3baf3f1f5be4881560ee87662bdd",
+    "proof/PscVerif/PscVerif/Degree5RootLift.lean": "03793616a416af2378b1d2072eef77305d9f61b3fb7a72a09c6a3d1cb6f67740",
     "proof/PscVerif/PscVerif/Degree5Sector.lean": "1c4fd12cac7317ba0e724f4c3b757a1e06fdacd5b52f575d5549a83244d6ab46",
     "proof/PscVerif/PscVerif/Degree5Transport.lean": "1e5e153ac4ba75582d7b4133c8fc4f035b6313b86be83649a49c0555cdfe444b",
     "proof/PscVerif/PscVerif/Degree5Weights.lean": "b53740ff569e9e0c6fdaf9ab99815d9c04396c729f850f138b14b5549d827b84",

@@ -40,7 +40,7 @@ theorem exists_image_eigenvector {K : Type*} [Field K] [CharZero K]
       Pi.basisFun_apply, Matrix.mulVec_single_one, Matrix.col, Matrix.transpose_apply]
   have hTB : T * B = B * A := by
     dsimp only [T, B, A]
-    rw [← LinearMap.toMatrix_comp, ← LinearMap.toMatrix_comp] <;> rfl
+    rw [← LinearMap.toMatrix_comp, ← LinearMap.toMatrix_comp]; rfl
   obtain ⟨R, hR⟩ := LinearMap.exists_leftInverse_of_injective W.subtype
     (LinearMap.ker_eq_bot.2 Subtype.val_injective)
   let C := LinearMap.toMatrix e b R
@@ -62,7 +62,8 @@ theorem exists_image_eigenvector {K : Type*} [Field K] [CharZero K]
     simpa only [f, mulVec_mulVec, ← Matrix.map_mul, hCB, Matrix.map_one, map_zero, map_one, one_mulVec,
       mulVec_zero] using h
   have hfE : power5 ((incidence S).map ρ) *ᵥ f = z • f := by
-    rw [← power5_map, ← hT, f, mulVec_mulVec, ← Matrix.map_mul, hTB, Matrix.map_mul,
+    dsimp only [f]
+    rw [← power5_map, ← hT, mulVec_mulVec, ← Matrix.map_mul, hTB, Matrix.map_mul,
       ← mulVec_mulVec, he, mulVec_smul]
   have hf : f = ∑ i, v i • (fun w => ρ ((b i).val w)) := by
     funext w

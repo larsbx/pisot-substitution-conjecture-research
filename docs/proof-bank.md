@@ -639,8 +639,8 @@ Each declaration below must be present in a fresh compiled-environment audit. Ge
 | `Psc.Degree4Sector.no_220_sector` | `PscVerif.Degree4Sector` | no | [proof/PscVerif/PscVerif/Degree4Sector.lean:86](../proof/PscVerif/PscVerif/Degree4Sector.lean#L86) |
 | `Psc.Degree5RootLift.power5_map` | `PscVerif.Degree5RootLift` | no | [proof/PscVerif/PscVerif/Degree5RootLift.lean:11](../proof/PscVerif/PscVerif/Degree5RootLift.lean#L11) |
 | `Psc.Degree5RootLift.exists_image_eigenvector` | `PscVerif.Degree5RootLift` | no | [proof/PscVerif/PscVerif/Degree5RootLift.lean:21](../proof/PscVerif/PscVerif/Degree5RootLift.lean#L21) |
-| `Psc.Degree5RootLift.root_q5_is_mixed` | `PscVerif.Degree5RootLift` | no | [proof/PscVerif/PscVerif/Degree5RootLift.lean:87](../proof/PscVerif/PscVerif/Degree5RootLift.lean#L87) |
-| `Psc.Degree5RootLift.exists_signed_mixed_weight` | `PscVerif.Degree5RootLift` | no | [proof/PscVerif/PscVerif/Degree5RootLift.lean:101](../proof/PscVerif/PscVerif/Degree5RootLift.lean#L101) |
+| `Psc.Degree5RootLift.root_q5_is_mixed` | `PscVerif.Degree5RootLift` | no | [proof/PscVerif/PscVerif/Degree5RootLift.lean:88](../proof/PscVerif/PscVerif/Degree5RootLift.lean#L88) |
+| `Psc.Degree5RootLift.exists_signed_mixed_weight` | `PscVerif.Degree5RootLift` | no | [proof/PscVerif/PscVerif/Degree5RootLift.lean:102](../proof/PscVerif/PscVerif/Degree5RootLift.lean#L102) |
 | `Psc.Degree5Sector.reciprocal_lt` | `PscVerif.Degree5Sector` | no | [proof/PscVerif/PscVerif/Degree5Sector.lean:15](../proof/PscVerif/PscVerif/Degree5Sector.lean#L15) |
 | `Psc.Degree5Sector.excluded_weights` | `PscVerif.Degree5Sector` | no | [proof/PscVerif/PscVerif/Degree5Sector.lean:21](../proof/PscVerif/PscVerif/Degree5Sector.lean#L21) |
 | `Psc.Degree5Sector.weight_221_unit` | `PscVerif.Degree5Sector` | no | [proof/PscVerif/PscVerif/Degree5Sector.lean:47](../proof/PscVerif/PscVerif/Degree5Sector.lean#L47) |
