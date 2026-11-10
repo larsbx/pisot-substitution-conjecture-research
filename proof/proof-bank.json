@@ -8288,6 +8288,342 @@
       "declaration": "theorem mono211_ne_pow4 :"
     },
     {
+      "name": "Psc.GraphRefinement.refines_iff",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 126,
+      "declaration": "theorem refines_iff {G : ChildGraph X} {P : ChildGraph Y} {π : X → Y} :"
+    },
+    {
+      "name": "Psc.GraphRefinement.embeds_iff_refines",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 134,
+      "declaration": "theorem embeds_iff_refines {P : ChildGraph Y} {G : ChildGraph X} {e : Y → X} :"
+    },
+    {
+      "name": "Psc.GraphRefinement.Embeds.refines",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 139,
+      "declaration": "theorem Embeds.refines {P : ChildGraph Y} {G : ChildGraph X} {e : Y → X} (h : Embeds P G e) :"
+    },
+    {
+      "name": "Psc.GraphRefinement.Refines.embeds",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 143,
+      "declaration": "theorem Refines.embeds {P : ChildGraph Y} {G : ChildGraph X} {e : Y → X} (h : Refines P G e) :"
+    },
+    {
+      "name": "Psc.GraphRefinement.Embeds.closed_range",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 148,
+      "declaration": "theorem Embeds.closed_range {P : ChildGraph Y} {G : ChildGraph X} {e : Y → X}"
+    },
+    {
+      "name": "Psc.GraphRefinement.refinement_iff_refines",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 156,
+      "declaration": "theorem refinement_iff_refines {n m : ℕ} {actual : Fin n → Fin n → Prop}"
+    },
+    {
+      "name": "Psc.GraphRefinement.Complete.strictReach",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 169,
+      "declaration": "theorem Complete.strictReach (hC : Complete G P π) (hT : TargetUp G P π) {x x' : X}"
+    },
+    {
+      "name": "Psc.GraphRefinement.SoundEvery.strictReach_lift",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 178,
+      "declaration": "theorem SoundEvery.strictReach_lift (hS : SoundEvery G P π) (hT : TargetDown G P π) {y : Y}"
+    },
+    {
+      "name": "Psc.GraphRefinement.deadEnd_down",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 190,
+      "declaration": "theorem deadEnd_down (hS : SoundEvery G P π) (hT : TargetUp G P π) (h : G.DeadEnd x) :"
+    },
+    {
+      "name": "Psc.GraphRefinement.deadEnd_up",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 198,
+      "declaration": "theorem deadEnd_up (hC : Complete G P π) (hT : TargetDown G P π) (h : P.DeadEnd (π x)) :"
+    },
+    {
+      "name": "Psc.GraphRefinement.Complete.inev",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 206,
+      "declaration": "theorem Complete.inev (hC : Complete G P π) (hT : TargetUp G P π) :"
+    },
+    {
+      "name": "Psc.GraphRefinement.SoundEvery.inev",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 215,
+      "declaration": "theorem SoundEvery.inev (hS : SoundEvery G P π) (hT : TargetDown G P π) :"
+    },
+    {
+      "name": "Psc.GraphRefinement.inevMax_of_quotient",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 232,
+      "declaration": "theorem inevMax_of_quotient (hC : Complete G P π) (hS : SoundEvery G P π)"
+    },
+    {
+      "name": "Psc.GraphRefinement.inevMax_to_quotient",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 246,
+      "declaration": "theorem inevMax_to_quotient (hC : Complete G P π) (hS : SoundEvery G P π)"
+    },
+    {
+      "name": "Psc.GraphRefinement.Refines.productive_iff",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 257,
+      "declaration": "theorem Refines.productive_iff (h : Refines G P π) : G.Productive x ↔ P.Productive (π x) :="
+    },
+    {
+      "name": "Psc.GraphRefinement.Refines.hereditarilyProductive_iff",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 261,
+      "declaration": "theorem Refines.hereditarilyProductive_iff (h : Refines G P π) :"
+    },
+    {
+      "name": "Psc.GraphRefinement.Refines.inevitable_iff",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 266,
+      "declaration": "theorem Refines.inevitable_iff (h : Refines G P π) : G.Inevitable x ↔ P.Inevitable (π x) :="
+    },
+    {
+      "name": "Psc.GraphRefinement.Refines.inevMax_iff",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 270,
+      "declaration": "theorem Refines.inevMax_iff (h : Refines G P π) : G.InevMax x ↔ P.InevMax (π x) :="
+    },
+    {
+      "name": "Psc.GraphRefinement.Refines.cyclicProductive_of_quotient",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 276,
+      "declaration": "theorem Refines.cyclicProductive_of_quotient (h : Refines G P π)"
+    },
+    {
+      "name": "Psc.GraphRefinement.Refines.liftsPaths",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 281,
+      "declaration": "theorem Refines.liftsPaths (h : Refines G P π) (x : X) : LiftsPaths G P π x :="
+    },
+    {
+      "name": "Psc.GraphRefinement.SoundEvery.transGen_lift",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 288,
+      "declaration": "theorem SoundEvery.transGen_lift (hS : SoundEvery G P π) {y : Y}"
+    },
+    {
+      "name": "Psc.GraphRefinement.Embeds.cyclicProductive_iff",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 309,
+      "declaration": "theorem Embeds.cyclicProductive_iff {e : Y → X} (h : Embeds P G e) (hinj : Function.Injective e)"
+    },
+    {
+      "name": "Psc.GraphRefinement.SoundEvery.prefixLift_finite",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 330,
+      "declaration": "theorem SoundEvery.prefixLift_finite (hS : SoundEvery G P π) (q : ℕ → Y) :"
+    },
+    {
+      "name": "Psc.GraphRefinement.SoundEvery.prefixLift",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 361,
+      "declaration": "theorem SoundEvery.prefixLift (hS : SoundEvery G P π) (q : ℕ → Y) (hq : P.IsPath q) :"
+    },
+    {
+      "name": "Psc.GraphRefinement.SoundEvery.liftsPrefixes",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 366,
+      "declaration": "theorem SoundEvery.liftsPrefixes (hS : SoundEvery G P π) (x : X) : LiftsPrefixes G P π x :="
+    },
+    {
+      "name": "Psc.GraphRefinement.exists_path_of_prefixLifts",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 374,
+      "declaration": "theorem exists_path_of_prefixLifts (hfin : ∀ a, {c | G.child a c}.Finite) {q : ℕ → Y}"
+    },
+    {
+      "name": "Psc.GraphRefinement.exists_lift_of_finite_sources",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 412,
+      "declaration": "theorem exists_lift_of_finite_sources (hfin : ∀ a, {c | G.child a c}.Finite) {S : Set X}"
+    },
+    {
+      "name": "Psc.GraphRefinement.dropped_targets",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 437,
+      "declaration": "theorem dropped_targets : TargetDown fork forkDropped id ∧ TargetUp fork forkDropped id :="
+    },
+    {
+      "name": "Psc.GraphRefinement.dropped_inevitable",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 445,
+      "declaration": "theorem dropped_inevitable :"
+    },
+    {
+      "name": "Psc.GraphRefinement.fan_targets",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 461,
+      "declaration": "theorem fan_targets : TargetDown fan ray fanProj ∧ TargetUp fan ray fanProj :="
+    },
+    {
+      "name": "Psc.GraphRefinement.fan_inevitable",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 470,
+      "declaration": "theorem fan_inevitable :"
+    },
+    {
+      "name": "Psc.GraphRefinement.broken_liftsPaths_vacuous",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 480,
+      "declaration": "theorem broken_liftsPaths_vacuous (x : Broken) :"
+    },
+    {
+      "name": "Psc.GraphRefinement.brokenLoop_no_lift",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 497,
+      "declaration": "theorem brokenLoop_no_lift :"
+    },
+    {
+      "name": "Psc.GraphRefinement.brokenLoop_targets",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 516,
+      "declaration": "theorem brokenLoop_targets :"
+    },
+    {
+      "name": "Psc.GraphRefinement.dropped_inevMax",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 524,
+      "declaration": "theorem dropped_inevMax :"
+    },
+    {
+      "name": "Psc.GraphRefinement.overdrawn_inevMax",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 537,
+      "declaration": "theorem overdrawn_inevMax :"
+    },
+    {
+      "name": "Psc.GraphRefinement.undrawn_inevMax",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 553,
+      "declaration": "theorem undrawn_inevMax :"
+    },
+    {
+      "name": "Psc.GraphRefinement.overdrawnFork_inevMax",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 566,
+      "declaration": "theorem overdrawnFork_inevMax :"
+    },
+    {
+      "name": "Psc.GraphRefinement.unroll_embeds",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 579,
+      "declaration": "theorem unroll_embeds :"
+    },
+    {
+      "name": "Psc.GraphRefinement.step2_no_infinite_path",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 589,
+      "declaration": "theorem step2_no_infinite_path :"
+    },
+    {
+      "name": "Psc.GraphRefinement.fan_finite_sources_no_lift",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 603,
+      "declaration": "theorem fan_finite_sources_no_lift :"
+    },
+    {
+      "name": "Psc.GraphRefinement.chains_finite_sources_no_lift",
+      "module": "PscVerif.GraphEmbedding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GraphEmbedding.lean",
+      "line": 626,
+      "declaration": "theorem chains_finite_sources_no_lift :"
+    },
+    {
       "name": "Psc.GraphRefinement.Complete.reach",
       "module": "PscVerif.GraphRefinement",
       "private": false,
@@ -10974,6 +11310,526 @@
       "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
       "line": 247,
       "declaration": "theorem trib_child_residual :"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.imgStart_le",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 250,
+      "declaration": "theorem imgStart_le (s : α → List α) (w : List α) (i : ℕ) :"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.subst_split",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 258,
+      "declaration": "theorem subst_split (s : α → List α) (w : List α) {i : ℕ} (hi : i < w.length) :"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.take_subst_add",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 266,
+      "declaration": "theorem take_subst_add (s : α → List α) (w : List α) {i : ℕ} (hi : i < w.length) {d : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.imgStart_add_lt",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 272,
+      "declaration": "theorem imgStart_add_lt (s : α → List α) (w : List α) {i : ℕ} (hi : i < w.length) {d : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.getElem_subst_add",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 281,
+      "declaration": "theorem getElem_subst_add (s : α → List α) (w : List α) {i : ℕ} (hi : i < w.length) {d : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.cutAddr_imgStart_add",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 292,
+      "declaration": "theorem cutAddr_imgStart_add (s : α → List α) {w : List α} {i d : ℕ} (hi : i < w.length)"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.blockStart_succ",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 314,
+      "declaration": "theorem blockStart_succ (bs : List (List α × List α)) {k : ℕ} (hk : k < bs.length) :"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.blockAt_spec",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 322,
+      "declaration": "theorem blockAt_spec : ∀ (bs : List (List α × List α)) (p k : ℕ),"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.blockStart_le",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 372,
+      "declaration": "theorem blockStart_le {u v : List α} (h : u.length = v.length) (k : ℕ) :"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.blockStart_add_le",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 383,
+      "declaration": "theorem blockStart_add_le {u v : List α} (h : u.length = v.length) {k : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.equiv1_take_blockStart",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 390,
+      "declaration": "theorem equiv1_take_blockStart {u v : List α} (h : Equiv1 u v) (k : ℕ) :"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.take_add_of_factor",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 399,
+      "declaration": "theorem take_add_of_factor {w B : List α} {lo : ℕ} (hB : (w.drop lo).take B.length = B)"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.take_getElem_red_fst",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 405,
+      "declaration": "theorem take_getElem_red_fst {u v : List α} (h : Equiv1 u v) {k : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.take_getElem_red_snd",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 412,
+      "declaration": "theorem take_getElem_red_snd {u v : List α} (h : Equiv1 u v) {k : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.count_take_block",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 420,
+      "declaration": "theorem count_take_block {u v : List α} (h : Equiv1 u v) {k : ℕ} (hk : k < (red u v).length)"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.occStep_some",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 440,
+      "declaration": "theorem occStep_some {s : α → List α} {x : Occ α} {d e : ℕ} {o : Outcome α}"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.occStep_child_iff",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 454,
+      "declaration": "theorem occStep_child_iff {s : α → List α} {x y : Occ α} {d e : ℕ} :"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.occStep_split_iff",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 505,
+      "declaration": "theorem occStep_split_iff {s : α → List α} {x : Occ α} {d e k k' : ℕ} :"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.occStep_split_ne",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 539,
+      "declaration": "theorem occStep_split_ne {s : α → List α} {x : Occ α} {d e k k' : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.blockAt_isSome",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 546,
+      "declaration": "theorem blockAt_isSome : ∀ (bs : List (List α × List α)) (p : ℕ),"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.occStep_isSome",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 561,
+      "declaration": "theorem occStep_isSome {s : α → List α} {x : Occ α} (hx : Equiv1 x.block.1 x.block.2)"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.occChild.childNC",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 589,
+      "declaration": "theorem occChild.childNC {s : α → List α} {x y : Occ α} (h : occChild s x y) :"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.occChild.valid",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 597,
+      "declaration": "theorem occChild.valid {s : α → List α} {x y : Occ α} (hx : x.Valid s) (h : occChild s x y) :"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.occStep_digits_unique",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 613,
+      "declaration": "theorem occStep_digits_unique {s : α → List α} {x y : Occ α} {d e d' e' : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.mem_occStar",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 631,
+      "declaration": "theorem mem_occStar {s : α → List α} {x : Occ α} {d e : ℕ} {o : Outcome α} :"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.length_occStar",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 657,
+      "declaration": "theorem length_occStar {s : α → List α} {x : Occ α} (hx : Equiv1 x.block.1 x.block.2)"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.mem_occChildren",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 683,
+      "declaration": "theorem mem_occChildren {s : α → List α} {x y : Occ α} :"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.occChild_finite",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 700,
+      "declaration": "theorem occChild_finite (s : α → List α) (x : Occ α) : {y | occChild s x y}.Finite := by"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.occStep_addr",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 713,
+      "declaration": "theorem occStep_addr {s : α → List α} {x y : Occ α} {d e : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.Occ.swap_swap",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 726,
+      "declaration": "theorem Occ.swap_swap (x : Occ α) : x.swap.swap = x := by"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.Outcome.swap_swap",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 730,
+      "declaration": "theorem Outcome.swap_swap (o : Outcome α) : o.swap.swap = o := by"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.Occ.residual_swap",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 734,
+      "declaration": "theorem Occ.residual_swap (x : Occ α) : x.swap.residual = -x.residual := by"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.blockAt_map_swap",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 739,
+      "declaration": "theorem blockAt_map_swap : ∀ (bs : List (List α × List α)),"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.blockStart_map_swap",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 748,
+      "declaration": "theorem blockStart_map_swap (bs : List (List α × List α))"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.getD_map_swap",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 759,
+      "declaration": "theorem getD_map_swap (bs : List (List α × List α)) (k : ℕ) :"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.occStep_swap",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 765,
+      "declaration": "theorem occStep_swap {s : α → List α} {x : Occ α} (hx : Equiv1 x.block.1 x.block.2)"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.occChild.swap",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 801,
+      "declaration": "theorem occChild.swap {s : α → List α} {x y : Occ α} (hx : Equiv1 x.block.1 x.block.2)"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.occChild_swap_iff",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 808,
+      "declaration": "theorem occChild_swap_iff {s : α → List α} {x y : Occ α} (hx : Equiv1 x.block.1 x.block.2) :"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.Occ.Valid.swap",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 815,
+      "declaration": "theorem Occ.Valid.swap {s : α → List α} {x : Occ α} (hx : x.Valid s) : x.swap.Valid s := by"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.Occ.interior_swap",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 827,
+      "declaration": "theorem Occ.interior_swap (x : Occ α) : x.swap.Interior ↔ x.Interior := by"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.Occ.boundary_swap",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 834,
+      "declaration": "theorem Occ.boundary_swap (x : Occ α) : x.swap.Boundary ↔ x.Boundary := by"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.Occ.coincident_swap",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 842,
+      "declaration": "theorem Occ.coincident_swap (x : Occ α) : x.swap.Coincident ↔ x.Coincident := by"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.residual_step",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 857,
+      "declaration": "theorem residual_step {s : α → List α} {x y : Occ α} {d e : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.residual_step_vec",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 871,
+      "declaration": "theorem residual_step_vec {s : α → List α} {x y : Occ α} {d e : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.residual_atStart",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 880,
+      "declaration": "theorem residual_atStart {s : α → List α} {x y : Occ α} {d e : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.residual_iterate_lt",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 891,
+      "declaration": "theorem residual_iterate_lt {s : α → List α} (p : ℕ → Occ α) (ds : ℕ → ℕ × ℕ) (n : ℕ)"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.residual_iterate",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 913,
+      "declaration": "theorem residual_iterate {s : α → List α} (p : ℕ → Occ α) (ds : ℕ → ℕ × ℕ)"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.Occ.atStart_iff",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 927,
+      "declaration": "theorem Occ.atStart_iff (x : Occ α) : x.AtStart ↔ x.Interior ∨ x.Boundary := by"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.Occ.not_interior_and_boundary",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 940,
+      "declaration": "theorem Occ.not_interior_and_boundary (x : Occ α) : ¬ (x.Interior ∧ x.Boundary) := by"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.occGraph_child",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 956,
+      "declaration": "theorem occGraph_child (s : α → List α) : (occGraph s).child = occChild s := rfl"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.occGraphFor_child",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 958,
+      "declaration": "theorem occGraphFor_child (s : α → List α) (target : Option α) :"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.occGraphFor_none_target",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 962,
+      "declaration": "theorem occGraphFor_none_target (s : α → List α) (x : Occ α) :"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.occGraphFor_target_le",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 969,
+      "declaration": "theorem occGraphFor_target_le (s : α → List α) (target : Option α) (x : Occ α)"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.fibDead_valid",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 983,
+      "declaration": "theorem fibDead_valid : fibDead.Valid fibSubst := by decide"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.fibDead_star",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 989,
+      "declaration": "theorem fibDead_star : occStar fibSubst fibDead = [(0, 0, .split 1 0)] := by decide"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.fibDead_children",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 992,
+      "declaration": "theorem fibDead_children : occChildren fibSubst fibDead = [] := by decide"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.fibDead_block_child",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 997,
+      "declaration": "theorem fibDead_block_child : (bpaGraph fibSubst).child fibDead.block ([0], [0]) :="
+    },
+    {
+      "name": "Psc.OccurrenceGraph.rs_rows_valid",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 1028,
+      "declaration": "theorem rs_rows_valid : x209.Valid rsSubst ∧ x429.Valid rsSubst := by decide"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.rs_rows_edges",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 1033,
+      "declaration": "theorem rs_rows_edges :"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.rs_rows_occGraph",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 1040,
+      "declaration": "theorem rs_rows_occGraph :"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.rs_rows_stars",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 1047,
+      "declaration": "theorem rs_rows_stars :"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.rs_rows_fields",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 1063,
+      "declaration": "theorem rs_rows_fields :"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.rs_rows_transport",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 1074,
+      "declaration": "theorem rs_rows_transport (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.rs_rows_transport_values",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 1083,
+      "declaration": "theorem rs_rows_transport_values :"
+    },
+    {
+      "name": "Psc.OccurrenceGraph.rs_unbalanced_step_none",
+      "module": "PscVerif.OccurrenceGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceGraph.lean",
+      "line": 1095,
+      "declaration": "theorem rs_unbalanced_step_none :"
     },
     {
       "name": "PscVerif.OverlapContraction.fixed_of_unique_iterate",
@@ -19789,6 +20645,7 @@
     "proof/PscVerif/PscVerif/Descendants.lean": "6641b65d81d90be34c13937b6ab8ebc029fcce91babd7c2ce398738dac783a40",
     "proof/PscVerif/PscVerif/FixedPointLimit.lean": "cd4a824f288d4c1072fd375e0e7b9014f56028e23e00cb4336fd678a210b7bbe",
     "proof/PscVerif/PscVerif/GaloisOrbit.lean": "4d3b5474dbd14205f4bf2d33e98149ebbdd6d7e0fb8fd3a33787b878bcad5f07",
+    "proof/PscVerif/PscVerif/GraphEmbedding.lean": "ab4f4774921dbf755b0c93c1f7c1180d076194c4906f7d4ea96210635d37caee",
     "proof/PscVerif/PscVerif/GraphRefinement.lean": "23b9d53d396d65a1b38dffffccf0dd49b39e28afba29f18a3c0fe5ec612d1394",
     "proof/PscVerif/PscVerif/Incidence.lean": "b0c865d4177dac9485a2ddbd35201143ee3d263ad735af05785b077e1f6bd6ff",
     "proof/PscVerif/PscVerif/Intertwiner2.lean": "4fdc6a9497a5c3fd4b39101b033e6814b70aec8391f0cbc8691028319b1143d6",
@@ -19798,6 +20655,7 @@
     "proof/PscVerif/PscVerif/LieWeights.lean": "f32639f83e519c69b8f428e153dd368c274e1f665a837183f88c5f1de0dd8adb",
     "proof/PscVerif/PscVerif/M0Pisot.lean": "65d17cf0aa71cdac825d16da73ad601dd49c214cd0b47ac58f124cb51a64a304",
     "proof/PscVerif/PscVerif/OccurrenceAddress.lean": "ad1b6b45db4eea409848b713ab6aec12eb3335df8c11f45c028c2bdd2d6b6b0f",
+    "proof/PscVerif/PscVerif/OccurrenceGraph.lean": "9d4cd7412e3afbfdf4fc7167ce5564bf9cb3ce92679a902419175437da605968",
     "proof/PscVerif/PscVerif/OverlapContraction.lean": "09dd1ccc90a7245211336996f7da8b1276e86cab60dd1cc0b5471e3d7f6a2a30",
     "proof/PscVerif/PscVerif/OverlapPacket.lean": "572fd9fc85082e05377321fa812670558fff66ebed16e319a81816b22950a853",
     "proof/PscVerif/PscVerif/ParikhIntertwiner.lean": "bc7120433f0c103c966fc6faf41407b969537fd0881971a5d36b98169b220d96",
@@ -19823,7 +20681,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "aabd1094b12b47dbbe670a525880987b68a1f24d817383040eec4482ac14f29a",
+    "proof/PscVerif/PscVerif.lean": "c083f1f5b024f1afd1f6345ae3d54455acd1591ae18769d73da2b120a35cec3d",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
