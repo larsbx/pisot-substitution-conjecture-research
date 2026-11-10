@@ -2784,3 +2784,17 @@ claim-ledger promotion. Evidence: `docs/occurrence-path-replay-2026-10-16.md`,
   The three receipt notes D13 are now applied with this classification: `c4-strict-birth-atlas-2026-11-02.md`, `c4-complete-cone-rank-hub-audit-2026-11-03.md` and `c4-two-generation-parikh-span-2026-11-02.md`.
 
   Locator: [quantifier audit, §16](quantifier-transfer-audit-2026-11-09.md).
+
+- **2026-11-10 — Packet square, wave B (Lean): the absolute layer and the reading ρ.** `Psc.OccurrenceRealisation` (95 theorems) defines absolute occurrence pairs in the iterates `σⁿ(T₀)` (`AbsOcc`, `absStep`), their block-local readings (`Anchor`, `Anchored`, `anchoredGraph`, `reading`), and the declared occurrence universe `Universe s T₀`: the set reached by retained edges from the level-0 root readings.
+  - **What is proved about ρ.**
+    - ρ is complete and sound from **every** anchored source, at every level and offset (`reading_soundEvery`).
+    - Infinite path lifting along ρ is choice-free (`absLineage_anchor`).
+    - The reading is a function on the universe (`universe_reading_unique`), and its birth record is the actual retained parent (`universe_birth`).
+    - The refinement is restated on the universe itself for both targets (`universe_refines`, `universe_refines_for`, `universe_readings`).
+    - Completeness relative to the declared universe: every absolute pair inside a **noncoincident** irreducible block of `red(σⁿT₀)` is in the universe (`anchored_cover_universe`).
+    - The block projection β is complete and not sound from every source (`fib_block_readings`).
+  - **Correction to the design brief (scratch).** Its prose "the absolute pairs are those whose two positions lie in one irreducible block of `red(σⁿT₀.1, σⁿT₀.2)`" is false at coincidence blocks: `fib_lvl2_not_universe` and `anchored_cover_needs_hnc` (Fibonacci). The noncoincidence hypothesis is necessary.
+  - **Do not re-derive.** A quotient packet cycle is realised only as an infinite absolute lineage graded by level, never as an absolute cycle. The Tribonacci positive control for ρ needs packet data and belongs to the data and controls work packages.
+  - Adversarial review: no blocker or major finding; all nine minor findings were applied.
+
+  Locator: `proof/PscVerif/PscVerif/OccurrenceRealisation.lean`.

@@ -909,7 +909,7 @@ theorem residual_iterate_lt {s : α → List α} (p : ℕ → Occ α) (ds : ℕ 
     · simp
 
 /-- The iterated law along an infinite literal lineage (every step balanced and literal);
-the corollary of `residual_iterate_lt` in the form of the design brief. -/
+the corollary of `residual_iterate_lt` for an infinite literal lineage. -/
 theorem residual_iterate {s : α → List α} (p : ℕ → Occ α) (ds : ℕ → ℕ × ℕ)
     (hbal : ∀ n, Equiv1 (p n).block.1 (p n).block.2)
     (hp : ∀ n, occStep s (p n) (ds n).1 (ds n).2 = some (.child (p (n + 1)))) (n : ℕ) :

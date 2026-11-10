@@ -59,3 +59,4 @@ import PscVerif.GraphRefinement
 import PscVerif.OccurrenceAddress
 import PscVerif.GraphEmbedding
 import PscVerif.OccurrenceGraph
+import PscVerif.OccurrenceRealisation

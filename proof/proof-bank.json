@@ -11832,6 +11832,766 @@
       "declaration": "theorem rs_unbalanced_step_none :"
     },
     {
+      "name": "Psc.OccurrenceRealisation.factor_eq",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 191,
+      "declaration": "theorem factor_eq {w B : List α} {off : ℕ} (hB : (w.drop off).take B.length = B) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.getElem?_of_factor",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 199,
+      "declaration": "theorem getElem?_of_factor {w B : List α} {off : ℕ} (hB : (w.drop off).take B.length = B)"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.imgStart_add_of_factor",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 215,
+      "declaration": "theorem imgStart_add_of_factor (s : α → List α) {w B : List α} {off : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.anchor_root",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 222,
+      "declaration": "theorem anchor_root (s : α → List α) {T₀ : List α × List α} (hT : Equiv1 T₀.1 T₀.2) (P Q : ℕ) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.anchor_step",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 234,
+      "declaration": "theorem anchor_step {s : α → List α} {T₀ : List α × List α} {x : AbsOcc} {y y' : Occ α}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.Anchor.letters",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 336,
+      "declaration": "theorem Anchor.letters {s : α → List α} {T₀ : List α × List α} {x : AbsOcc} {y : Occ α}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.Anchor.residual",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 346,
+      "declaration": "theorem Anchor.residual {s : α → List α} {T₀ : List α × List α} {x : AbsOcc} {y : Occ α}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.absStep_some",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 362,
+      "declaration": "theorem absStep_some {s : α → List α} {T₀ : List α × List α} {x x' : AbsOcc} {d e : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.absStep_of",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 381,
+      "declaration": "theorem absStep_of {s : α → List α} {T₀ : List α × List α} {x : AbsOcc} {d e : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.absStep_level",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 394,
+      "declaration": "theorem absStep_level {s : α → List α} {T₀ : List α × List α} {x x' : AbsOcc} {d e : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.absStep_inj",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 402,
+      "declaration": "theorem absStep_inj {s : α → List α} {T₀ : List α × List α} {x₁ x₂ x' : AbsOcc}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.imgStart_succ",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 430,
+      "declaration": "theorem imgStart_succ (s : α → List α) (w : List α) {i : ℕ} (hi : i < w.length) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.imgStart_mono",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 438,
+      "declaration": "theorem imgStart_mono (s : α → List α) (w : List α) {i j : ℕ} (h : i ≤ j) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.imgStart_eq_of_equiv1",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 446,
+      "declaration": "theorem imgStart_eq_of_equiv1 (s : α → List α) {u v : List α} {Z : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.blockStart_mono",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 452,
+      "declaration": "theorem blockStart_mono (bs : List (List α × List α)) {i j : ℕ} (h : i ≤ j) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.occStep_child_isBlock",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 461,
+      "declaration": "theorem occStep_child_isBlock {s : α → List α} {y y' : Occ α} {d e : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.occStep_congr",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 477,
+      "declaration": "theorem occStep_congr {s : α → List α} {y y' : Occ α}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.Anchor.congr",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 484,
+      "declaration": "theorem Anchor.congr {s : α → List α} {T₀ : List α × List α} {x : AbsOcc} {y y' : Occ α}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.reading_complete",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 514,
+      "declaration": "theorem reading_complete (s : α → List α) (T₀ : List α × List α) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.reading_soundEvery",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 520,
+      "declaration": "theorem reading_soundEvery (s : α → List α) (T₀ : List α × List α) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.reading_targetDown",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 528,
+      "declaration": "theorem reading_targetDown (s : α → List α) (T₀ : List α × List α) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.reading_targetUp",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 533,
+      "declaration": "theorem reading_targetUp (s : α → List α) (T₀ : List α × List α) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.reading_refines",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 539,
+      "declaration": "theorem reading_refines (s : α → List α) (T₀ : List α × List α) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.reading_refines_for",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 555,
+      "declaration": "theorem reading_refines_for (s : α → List α) (T₀ : List α × List α) (target : Option α) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.reading_liftsPaths",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 562,
+      "declaration": "theorem reading_liftsPaths (s : α → List α) (T₀ : List α × List α) (a : Anchored s T₀) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.reading_readings",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 569,
+      "declaration": "theorem reading_readings (s : α → List α) (T₀ : List α × List α) (a : Anchored s T₀) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.anchoredGraph_level",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 582,
+      "declaration": "theorem anchoredGraph_level {s : α → List α} {T₀ : List α × List α} {a b : Anchored s T₀}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.anchoredGraph_transGen_level",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 588,
+      "declaration": "theorem anchoredGraph_transGen_level {s : α → List α} {T₀ : List α × List α}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.anchoredGraph_reach_level",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 596,
+      "declaration": "theorem anchoredGraph_reach_level {s : α → List α} {T₀ : List α × List α}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.anchored_no_cycle",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 606,
+      "declaration": "theorem anchored_no_cycle (s : α → List α) (T₀ : List α × List α) (a : Anchored s T₀) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.anchored_cyclicProductive",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 612,
+      "declaration": "theorem anchored_cyclicProductive (s : α → List α) (T₀ : List α × List α) (a : Anchored s T₀) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.absLineage_anchor",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 627,
+      "declaration": "theorem absLineage_anchor {s : α → List α} {T₀ : List α × List α} {x : AbsOcc} {off : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.absLineage_level",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 644,
+      "declaration": "theorem absLineage_level {s : α → List α} {T₀ : List α × List α} {x : AbsOcc}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.Anchor.not_zero_inside",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 661,
+      "declaration": "theorem Anchor.not_zero_inside {s : α → List α} {T₀ : List α × List α} {x : AbsOcc}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.Separated.step",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 680,
+      "declaration": "theorem Separated.step {s : α → List α} {T₀ : List α × List α} {x x' : AbsOcc} {d e : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.Separated.lineage",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 703,
+      "declaration": "theorem Separated.lineage {s : α → List α} {T₀ : List α × List α} {x : AbsOcc}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.Separated.not_anchor",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 716,
+      "declaration": "theorem Separated.not_anchor {s : α → List α} {T₀ : List α × List α} {x : AbsOcc}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.Anchor.take_inflate",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 727,
+      "declaration": "theorem Anchor.take_inflate {s : α → List α} {T₀ : List α × List α} {x : AbsOcc} {y : Occ α}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.Anchor.split_separated",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 759,
+      "declaration": "theorem Anchor.split_separated {s : α → List α} {T₀ : List α × List α} {x : AbsOcc}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.anchor_split",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 818,
+      "declaration": "theorem anchor_split {s : α → List α} {T₀ : List α × List α} {x : AbsOcc} {y : Occ α}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.split_never_rejoins",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 832,
+      "declaration": "theorem split_never_rejoins {s : α → List α} {T₀ : List α × List α}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.Anchor.zero_end",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 846,
+      "declaration": "theorem Anchor.zero_end {s : α → List α} {T₀ : List α × List α} {x : AbsOcc} {y : Occ α}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.anchor_unique",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 858,
+      "declaration": "theorem anchor_unique {s : α → List α} {T₀ : List α × List α} {x : AbsOcc} {y y' : Occ α}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.Anchor.mem_red",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 891,
+      "declaration": "theorem Anchor.mem_red {s : α → List α} {T₀ : List α × List α} (hT : Equiv1 T₀.1 T₀.2)"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.exists_imgStart_add",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 912,
+      "declaration": "theorem exists_imgStart_add (s : α → List α) (w : List α) {p : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.exists_absStep_parent",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 925,
+      "declaration": "theorem exists_absStep_parent {s : α → List α} {T₀ : List α × List α} {x' : AbsOcc} {n : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.anchor_of_red",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 941,
+      "declaration": "theorem anchor_of_red {s : α → List α} {T₀ : List α × List α} (hT : Equiv1 T₀.1 T₀.2)"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.anchor_parent_inside",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 983,
+      "declaration": "theorem anchor_parent_inside {s : α → List α} {T₀ : List α × List α} (hT : Equiv1 T₀.1 T₀.2)"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.anchor_parent",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1058,
+      "declaration": "theorem anchor_parent {s : α → List α} {T₀ : List α × List α} (hT : Equiv1 T₀.1 T₀.2)"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.universe_closed",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1076,
+      "declaration": "theorem universe_closed (s : α → List α) (T₀ : List α × List α) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.rootAnchored_mem",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1086,
+      "declaration": "theorem rootAnchored_mem (s : α → List α) {T₀ : List α × List α} (hT : Equiv1 T₀.1 T₀.2)"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.universe_level_zero",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1092,
+      "declaration": "theorem universe_level_zero {s : α → List α} {T₀ : List α × List α} {a : Anchored s T₀}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.universe_succ",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1104,
+      "declaration": "theorem universe_succ {s : α → List α} {T₀ : List α × List α} {a : Anchored s T₀} {n : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.universe_reading_unique",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1119,
+      "declaration": "theorem universe_reading_unique {s : α → List α} {T₀ : List α × List α} {a b : Anchored s T₀}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.universe_birth",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1153,
+      "declaration": "theorem universe_birth {s : α → List α} {T₀ : List α × List α} {a : Anchored s T₀} {n : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.universe_refines",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1178,
+      "declaration": "theorem universe_refines (s : α → List α) (T₀ : List α × List α) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.universe_readings",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1188,
+      "declaration": "theorem universe_readings (s : α → List α) (T₀ : List α × List α) (a : Universe s T₀) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.universe_refines_for",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1210,
+      "declaration": "theorem universe_refines_for (s : α → List α) (T₀ : List α × List α) (target : Option α) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.universe_valid",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1220,
+      "declaration": "theorem universe_valid {s : α → List α} {T₀ : List α × List α} (hT : IsBlock T₀)"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.anchored_cover_universe",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1243,
+      "declaration": "theorem anchored_cover_universe {s : α → List α} {T₀ : List α × List α} (hT : IsBlock T₀)"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.anchored_cover",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1316,
+      "declaration": "theorem anchored_cover {s : α → List α} {T₀ : List α × List α} (hT : IsBlock T₀)"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.anchored_cover_red",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1335,
+      "declaration": "theorem anchored_cover_red {s : α → List α} {T₀ : List α × List α} (hT : IsBlock T₀)"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.universe_block_mem_red",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1358,
+      "declaration": "theorem universe_block_mem_red {s : α → List α} {T₀ : List α × List α} (hT : IsBlock T₀)"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.universe_absStep",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1370,
+      "declaration": "theorem universe_absStep {s : α → List α} {T₀ : List α × List α} (hT : IsBlock T₀)"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.reading_image_universe",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1409,
+      "declaration": "theorem reading_image_universe {s : α → List α} {T₀ : List α × List α} (hT : Equiv1 T₀.1 T₀.2) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.universe_reading_mem_of_closed",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1427,
+      "declaration": "theorem universe_reading_mem_of_closed {s : α → List α} {T₀ : List α × List α}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.AbsOcc.swap_swap",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1445,
+      "declaration": "theorem AbsOcc.swap_swap (x : AbsOcc) : x.swap.swap = x := rfl"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.Anchor.swap",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1448,
+      "declaration": "theorem Anchor.swap {s : α → List α} {T₀ : List α × List α} {x : AbsOcc} {y : Occ α} {off : ℕ}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.absStep_swap",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1460,
+      "declaration": "theorem absStep_swap (s : α → List α) (T₀ : List α × List α) (x : AbsOcc) (d e : ℕ) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.reading_swap",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1483,
+      "declaration": "theorem reading_swap {s : α → List α} {T₀ : List α × List α} (a : Anchored s T₀) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.anchoredGraph_child_swap",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1487,
+      "declaration": "theorem anchoredGraph_child_swap {s : α → List α} {T₀ : List α × List α} {a b : Anchored s T₀}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.universe_swap",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1502,
+      "declaration": "theorem universe_swap {s : α → List α} {T₀ : List α × List α} {a : Anchored s T₀}"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.universe_swap_iff",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1516,
+      "declaration": "theorem universe_swap_iff {s : α → List α} {T₀ : List α × List α} (a : Anchored s T₀.swap) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.block_complete",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1528,
+      "declaration": "theorem block_complete (s : α → List α) : Complete (occGraph s) (bpaGraph s) Occ.block :="
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.block_targets",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1532,
+      "declaration": "theorem block_targets (s : α → List α) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.block_productive",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1539,
+      "declaration": "theorem block_productive (s : α → List α) {x : Occ α} (h : (occGraph s).Productive x) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.block_inevitable",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1545,
+      "declaration": "theorem block_inevitable (s : α → List α) {x : Occ α} (h : (bpaGraph s).Inevitable x.block) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.block_soundSome_at",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1553,
+      "declaration": "theorem block_soundSome_at {s : α → List α} {T U : List α × List α} (hT : IsBlock T)"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.fibDead_no_child",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1578,
+      "declaration": "theorem fibDead_no_child (y : Occ (Fin 2)) : ¬ occChild fibSubst fibDead y := fun h => by"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.fib_block_readings",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1589,
+      "declaration": "theorem fib_block_readings :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.rs_lineage_steps",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1628,
+      "declaration": "theorem rs_lineage_steps :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.rs_seed_isBlock",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1640,
+      "declaration": "theorem rs_seed_isBlock : IsBlock rsSeed := by decide"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.rs_anchor1",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1643,
+      "declaration": "theorem rs_anchor1 : Anchor rsSubst rsSeed ⟨1, 1, 1⟩ rsY1 0 :="
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.rs_anchor2",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1647,
+      "declaration": "theorem rs_anchor2 : Anchor rsSubst rsSeed ⟨2, 2, 1⟩ rsY2 0 :="
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.rs_anchor209",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1652,
+      "declaration": "theorem rs_anchor209 : Anchor rsSubst rsSeed ⟨3, 4, 4⟩ x209 0 :="
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.rs_anchor429",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1657,
+      "declaration": "theorem rs_anchor429 : Anchor rsSubst rsSeed ⟨4, 9, 8⟩ x429 7 :="
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.rs_anchor209'",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1661,
+      "declaration": "theorem rs_anchor209' : Anchor rsSubst rsSeed ⟨5, 20, 20⟩ x209 16 :="
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.rs_cycle_lineage",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1681,
+      "declaration": "theorem rs_cycle_lineage :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.rs_infinite_lineage",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1724,
+      "declaration": "theorem rs_infinite_lineage (n : ℕ) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.fib_lvl2_anchor",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1747,
+      "declaration": "theorem fib_lvl2_anchor : Anchor fibSubst tmPair ⟨2, 0, 0⟩ ⟨([0], [0]), 0, 0, none⟩ 0 :="
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.fib_lvl2_block",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1751,
+      "declaration": "theorem fib_lvl2_block : IsBlock (([0], [0]) : List (Fin 2) × List (Fin 2)) := by decide"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.fib_lvl2_red",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1754,
+      "declaration": "theorem fib_lvl2_red : (([0], [0]) : List (Fin 2) × List (Fin 2)) ∈"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.fib_root_isBlock",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1758,
+      "declaration": "theorem fib_root_isBlock : IsBlock tmPair := by decide"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.fib_lvl2_not_universe",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1767,
+      "declaration": "theorem fib_lvl2_not_universe (a : Anchored fibSubst tmPair) (hx : a.1.1 = ⟨2, 0, 0⟩) :"
+    },
+    {
+      "name": "Psc.OccurrenceRealisation.anchored_cover_needs_hnc",
+      "module": "PscVerif.OccurrenceRealisation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceRealisation.lean",
+      "line": 1787,
+      "declaration": "theorem anchored_cover_needs_hnc : ¬ ∀ (x : AbsOcc) (y : Occ (Fin 2)) (off : ℕ),"
+    },
+    {
       "name": "PscVerif.OverlapContraction.fixed_of_unique_iterate",
       "module": "PscVerif.OverlapContraction",
       "private": false,
@@ -20655,7 +21415,8 @@
     "proof/PscVerif/PscVerif/LieWeights.lean": "f32639f83e519c69b8f428e153dd368c274e1f665a837183f88c5f1de0dd8adb",
     "proof/PscVerif/PscVerif/M0Pisot.lean": "65d17cf0aa71cdac825d16da73ad601dd49c214cd0b47ac58f124cb51a64a304",
     "proof/PscVerif/PscVerif/OccurrenceAddress.lean": "ad1b6b45db4eea409848b713ab6aec12eb3335df8c11f45c028c2bdd2d6b6b0f",
-    "proof/PscVerif/PscVerif/OccurrenceGraph.lean": "9d4cd7412e3afbfdf4fc7167ce5564bf9cb3ce92679a902419175437da605968",
+    "proof/PscVerif/PscVerif/OccurrenceGraph.lean": "f807e18da418d21d645aed923fe81b1be5b6b952d7b5fd2628f2a40ef545d30a",
+    "proof/PscVerif/PscVerif/OccurrenceRealisation.lean": "471f729cdf767fa1a3d5cb29ac9aa1f55a10657acbe4f29331ce3d87937bee20",
     "proof/PscVerif/PscVerif/OverlapContraction.lean": "09dd1ccc90a7245211336996f7da8b1276e86cab60dd1cc0b5471e3d7f6a2a30",
     "proof/PscVerif/PscVerif/OverlapPacket.lean": "572fd9fc85082e05377321fa812670558fff66ebed16e319a81816b22950a853",
     "proof/PscVerif/PscVerif/ParikhIntertwiner.lean": "bc7120433f0c103c966fc6faf41407b969537fd0881971a5d36b98169b220d96",
@@ -20681,7 +21442,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "c083f1f5b024f1afd1f6345ae3d54455acd1591ae18769d73da2b120a35cec3d",
+    "proof/PscVerif/PscVerif.lean": "2782891eb919e6f13f801f84861f686174d6b713fd0b4a01bcdc7621aaf9b1b9",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
