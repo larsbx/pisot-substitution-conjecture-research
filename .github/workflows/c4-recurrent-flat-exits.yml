@@ -17,7 +17,9 @@ on:
       - 'proof/PscVerif/PscVerif/Occurrence*.lean'
       - 'proof/PscVerif/PscVerif/DescendantSpan*.lean'
       - 'proof/quint/C4OccurrenceBridge.qnt'
+      - 'proof/quint/C4OverlapMass.qnt'
       - 'tools/check_c4_occurrence_quint.py'
+      - 'tools/check_c4_overlap_mass_quint.py'
       - 'docs/c4-concrete-occurrence-*.md'
       - 'docs/c4-address-transport-*.md'
       - 'docs/c4-occurrence-transport-*.md'
@@ -26,6 +28,7 @@ on:
       - 'docs/c4-finite-occurrence-*.md'
       - 'docs/c4-descendant-span-*.md'
       - 'docs/c4-interior-successors-*.md'
+      - 'docs/c4-overlap-mass-*.md'
   workflow_dispatch:
 
 permissions:
@@ -67,6 +70,7 @@ jobs:
           pixi run --locked mojo run -I . tests/test_c4_complete_cone_hub_audit.mojo
           pixi run --locked mojo run -I . tests/test_c4_two_generation_rank.mojo
           pixi run --locked mojo run -I . tests/test_c4_finite_carrier.mojo
+          pixi run --locked mojo run -I . tests/test_c4_overlap_mass.mojo
           pixi run --locked mojo run -I . tests/test_c4_forced_overlap_routes.mojo
 
   orientation-safe-lean:
@@ -119,5 +123,39 @@ jobs:
           path: |
             ${{ runner.temp }}/c4-occurrence-revision.txt
             ${{ runner.temp }}/c4-occurrence-quint
+          if-no-files-found: error
+          retention-days: 30
+
+  overlap-mass-quint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Verify exact revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          git rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/c4-overlap-mass-revision.txt"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check ordered overlap mass and adversarial count controls
+        run: |
+          python3 tools/check_c4_overlap_mass_quint.py \
+            --output "$RUNNER_TEMP/c4-overlap-mass-quint"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: c4-overlap-mass-quint-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            ${{ runner.temp }}/c4-overlap-mass-revision.txt
+            ${{ runner.temp }}/c4-overlap-mass-quint
           if-no-files-found: error
           retention-days: 30

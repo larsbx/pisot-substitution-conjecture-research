@@ -1,8 +1,8 @@
 # C4 next proof obligations — 2026-11-10
 
 **Status:** research roadmap and verification reconciliation. The current
-baseline is `main@35b4d4101d36288f41f7cb04851f4bf98e0092c5`, through
-[PR #534](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/534).
+baseline is `main@b0a64e50bd9790c0033d7ff674c8b3a9e72b0a92`, through
+[PR #535](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/535).
 The original #530 inspection below remains a historical receipt. This note
 records accepted inputs and scoped follow-up deliverables; it makes no
 governed claim promotion. General C4, Concentration,
@@ -104,8 +104,49 @@ carrier. Deriving such a common row from phase-flatness remains open.
 The [pre-code stop/go](c4-finite-carrier-dual-literature-2026-11-10.md) keeps
 the routes independent. The [new controls](c4-finite-carrier-dual-controls-2026-11-10.md)
 retain the earlier 20 tests/seven mutations and extend the bounded runner to
-28 tests/12 mutations. The new sources require their own published-revision
-full-bank, native and Quint receipts; #534's acceptance cannot cover them.
+28 tests/12 mutations. Their own published-revision acceptance is now complete:
+head `1be99f636a7eb522e98620c66af8813ade246c43` and main merge
+`b0a64e50bd9790c0033d7ff674c8b3a9e72b0a92` share tree
+`248bcea1a539537d4972b91daef957a182be4acc`. The
+[isolated whole-bank audit](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42914505256/job/130173310446)
+checked 4,603 declarations, 3,431 theorems and all 1,887 named proofs with
+only the permitted standard axioms. The
+[native/oracle job](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42914505868/job/130173313192)
+reached both new native contracts, and the
+[hosted Quint job](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42914505868/job/130173313222)
+passed all 28 tests and 12 assertion-failing mutations on a clean unchanged
+source snapshot. Its downloaded receipt has SHA-256
+`2ab601de650db31ceb7affc8290548fe5e3f534f14f8512d25d224abc2d21759`,
+identical to the independent clean local replay. The
+[scoped integration jobs](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42914505702)
+also passed. Native and hosted Quint completed at 23:02:44 and 23:06:13 UTC
+on 2026-11-10, after the externally performed merge at 22:28:09 UTC; the
+earlier pending observations are superseded, not rewritten as pre-merge
+successes. These receipts cover #535, not the next extension.
+
+### Ordered overlap mass after #535
+
+The [weighted subdivision continuation](c4-overlap-mass-2026-11-10.md)
+proves the exact sum over every actual digit-position pair, including repeated
+labels and zero-mass boundary terms. Finite occurrence counting identifies a
+selected row's deficit with its explicitly omitted mass. Literal finite
+multigraph double counting supplies the weighted forward/inverse correspondence
+under stated uniform-fiber degree hypotheses; the existing `PhysicalMass`
+matrix algebra is reused.
+
+The actual strict-carrier specialization is conservative: every positive child
+is represented in its finite interior support, so the complete forward matrix
+satisfies `F h = beta h`. Any correctly weighted transpose of those same full
+counts has zero deficit. This proves that the local subdivision interface
+does not itself supply a losing vertex. The remaining mass route needs a
+geometrically justified inverse domain, complete occurrence correspondence,
+compact overlap/Haar realization, and a genuine source-loss or different
+contradiction. Deleting an edge cannot provide that justification.
+
+Coherent protected ancestry towers and an explicit cut-derived nonzero row
+on one complete three-generation window remain independent alternatives.
+The new every-window span theorem is available once such a row is actually
+constructed; flatness or one avoiding cycle does not construct it.
 
 ## 1. Accepted inputs and exact verification scope
 
@@ -118,6 +159,7 @@ full-bank, native and Quint receipts; #534's acceptance cannot cover them.
 | [#529](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/529), [#530](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/530) | Productive PIP crossings without the nominated left alignment, then without either endpoint alignment. | These productive controls fail fully strict child closure. They refute proposed intermediate routing rules, not C4. |
 | [#533](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/533) | Concrete one-step newborn, Perron-length injectivity and degree-five reciprocal multiplicity/rank completion. | Literal degree-five strict-child realization remains open. |
 | [#534](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/534) | Global address lookup, actual interior affine digit lift, coherent finite reachability and strict-carrier closure. | Uniform productive-route existence, common legal-limit realization and exact production policy refinement remain separate. |
+| [#535](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/535) | Finite actual marked recurrence and fixed-row detection in every complete three-generation descendant window. | Actual marked recurrence does not identify a shared legal limit; the required common nonzero row is not constructed. |
 
 At the original `main@c38e381cc8105d87597b0a9bfbe418b7bca86fc0` inspection, the
 [exact-main Lean job](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42768131163/job/129669358430)
