@@ -251,4 +251,5 @@ def main() raises:
     test_two_flat_generations_without_either_good_edge_alignment()
     require_contract("productive literal crossing after two complete flat generations with neither endpoint alignment of the witnessed good pair")
     require_contract("literal first physical hub crossing with complete flat one-step row, shortest diagonal at depth eight, no left-aligned good edge, and a right-aligned good edge at depth seven")
+    require_contract("the right-aligned route to a shortest diagonal transports to Sync+ at cut 15")
     require_contract("complete forced-overlap graphs, all actual first choices, necessary first-step hub-plane escape, and shortest direct and aligned-good-edge routes")
