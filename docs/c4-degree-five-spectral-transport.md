@@ -101,7 +101,7 @@ including when distinct contents yield the same value. For example,
 `(2,4,8)` gives weight 512 at both contents `(1,4,0)` and `(2,2,1)`. This
 diagonal control tests the distinct-root premise alone.
 
-### Conditional restriction on the rational image
+### Signed Perron sieve on the rational image
 
 `Degree5RootLift.exists_image_eigenvector` lifts a root of `q5` to a
 nonzero eigenvector in the scalar-extended defect image and exhibits its
@@ -121,14 +121,22 @@ three distinct incidence roots. `exists_signed_mixed_weight` supplies a
 common image and signed spectral value when there is a nonzero actual
 column and the incidence cubic is irreducible.
 
-The following Galois and modulus deductions are stated as a research
-argument. The signed Perron bound is a separate hypothesis.
+`Degree5Sieve.sieve5_roots` combines the mixed-weight classification with
+Galois transitivity and the signed Perron bound. The image polynomial
+divides the signed characteristic polynomial. For each excluded shape
+`(4,1,0)`, `(3,2,0)` or `(3,1,1)`, moving the largest exponent onto the
+Perron root gives an image root of modulus strictly larger than the
+bound. Both orders of the contracting roots satisfy the modulus estimate.
+The argument works if the original value also has a `(2,2,1)` representation.
 
-* If a nonzero transformed coordinate has one of the three excluded
-  shapes, move its maximal exponent onto the Perron root. The resulting
-  signed spectral value contradicts the bound. This reasoning applies to
-  every such coordinate even if its original value also admits a
-  `(2,2,1)` representation.
+`sieve5_of_primitive` obtains the signed bound from primitivity and the
+degree-one balance implied by the degree-four hypotheses.
+`sieve5_full_orbit_of_primitive` shows that when there is a nonzero defect
+column, the roots of the image polynomial are exactly the three
+`(2,2,1)` values. It moves the single exponent onto each incidence root in
+turn. The result classifies the root set. The following factorization
+argument would also determine the form of the multiplicities.
+
 * Let the incidence roots be `r₀,r₁,r₂`, let `d = r₀r₁r₂ ≠ 0`, and write
   `e₁,e₂` for their first two elementary symmetric functions. The three
   remaining weights are `d²/rᵢ`, so they are distinct for distinct roots.
@@ -138,6 +146,10 @@ argument. The signed Perron bound is a separate hypothesis.
   factorization forces `q5` to be a power of this cubic. In particular,
   a nonzero image must have rank divisible by three, and its signed
   spectrum must contain all three reciprocal weights.
-* Consequently `maxᵢ |d²/rᵢ| ≤ |β|` is a necessary condition for a nonzero
-  image. The unit plastic control satisfies it, so the surviving case
-  still needs information from actual ordered words.
+* All three reciprocal weights must satisfy the signed bound. In
+  particular, the two contracting-root weights give
+  `|d| |α| ≤ 1` and `|d| |γ| ≤ 1`. Multiplying and using
+  `|d| = |β| |α| |γ|` gives `|det M|³ ≤ |β|`, formalized as
+  `det_cube_le_of_nonzero`. The unit plastic control satisfies this
+  necessary condition, so the surviving case still needs information
+  from actual ordered words.
