@@ -114,6 +114,8 @@ The absence of a historical file and the absence of a proof are different condit
 | BPA termination / literature interface | **Imported theorem plus repository-interface audit** | `docs/bpa-literature-bridge.md` and cited literature | Do not silently identify the normalized all-seed graph with a literature algorithm. |
 | Pisot substitution conjecture in the standing regime | **Open** | Manuscript abstract / unresolved statements | Current shortest route has the single open seedwise-overlap-productivity premise. |
 
+*Correction, 2026-11-09.* In the row "Seedwise overlap productivity / Open Problem 5.35", the sentence on two-sided strong coincidence (Proposition 5.39) refers to the all-vertex form; the one-seed form yields it only through PDS (Theorem SC of `docs/p1-seed-strength-2026-10-08.md`). See the [quantifier audit](quantifier-transfer-audit-2026-11-09.md), §11 (rows C3, C16).
+
 ## Current completion frontier
 
 The shortest no-G1 route is now:

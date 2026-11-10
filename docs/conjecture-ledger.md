@@ -37,6 +37,8 @@ general ternary completion problem to exactly two premises:
 2. **BH (#139):** every cyclic seed-reachable strict zipper has an
    occurrence-compatible offset-zero descendant.
 
+*Correction, 2026-11-09.* Item 2 abbreviates: a strict zipper has no offset-zero vertex by definition. The exact forms are "every vertex of the finite seed-patch overlap graph on a directed cycle has an offset-zero descendant" (governed `UniversalBoundaryHitting`) and "no closed offset-zero-free set of non-coincidence vertices is reachable from any swap seed" (`AllSeedStrictZipperExclusion`); see the [quantifier audit](quantifier-transfer-audit-2026-11-09.md), §10.
+
 Theorem C reduces every aligned obstruction to A1′ after passing to a square;
 the two-obstruction theorem then turns A1′ + BH into productivity of the
 finite seed-overlap graph and hence PDS. No G1, G1b-2, SCC-Producer, K2,

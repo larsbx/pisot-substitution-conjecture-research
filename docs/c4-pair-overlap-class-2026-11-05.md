@@ -55,6 +55,8 @@ component from an arbitrary failure, prove every balanced root productive,
 or prove pure discrete spectrum. Those would require additional premises.
 It does not assert that any of these sources lacks a coincidence witness.
 
+*Note, 2026-11-09.* "Unrestricted" means: for every finite set, of any size. The bound of Theorem M1 depends on the largest state length and gives nothing for an infinite child-closed set, which is the G1 case. All 18 sources are members of the 4,554-specimen standing corpus (images of length at most three and PIP incidence, §1, so members by the definition of the corpus; also checked with the Python reference `pip_corpus()` for the quantifier audit), where the same exclusion is the governed finite-domain claim `C4StandingCorpus`; for them this note is a second derivation and adds no source to that domain ([quantifier audit](quantifier-transfer-audit-2026-11-09.md), §§12-13).
+
 ## 2. A common enclosure, with the six initial refusals retained as refusals
 
 The original two-control certificate uses Q=[-16,16] x [-8,8] and block-digit

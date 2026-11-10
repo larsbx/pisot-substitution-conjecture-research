@@ -53,6 +53,8 @@ lemmas are fixed:
 - **BH / #139:** every cyclic strict-zipper overlap reaches offset zero by a
   composable ordered occurrence path in the full non-unit setting.
 
+*Correction, 2026-11-09.* A strict-zipper overlap has no offset-zero descendant by definition; the governed BH (`UniversalBoundaryHitting`) reads "every vertex of the finite seed-patch overlap graph on a directed cycle has an offset-zero descendant" ([quantifier audit](quantifier-transfer-audit-2026-11-09.md), §10).
+
 Any side programme is primary only if it proves one of these statements or a
 strictly stronger theorem that eliminates both.
 

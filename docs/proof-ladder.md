@@ -89,6 +89,8 @@ PIP
 => pure discrete spectrum                                       [IMPORTED theorem]
 ```
 
+*Correction, 2026-11-09.* Two lines of this ladder abbreviate. The BH line: its exact forms are "every vertex of the finite seed-patch overlap graph on a directed cycle has an offset-zero descendant" (governed `UniversalBoundaryHitting`) and the exclusion form `AllSeedStrictZipperExclusion`; a strict-zipper vertex has no offset-zero descendant by definition. The tag `[PROVED assembly]` is the status of the implication into its line (`thm:two-obstruction-completion`; governed `TwoObstructionCompletion`: conditional), not of the line itself: both antecedents above remain open, and #84 remains open. See the [quantifier audit](quantifier-transfer-audit-2026-11-09.md), §§10, 14.
+
 The two open lines are the primary proof obligations. The aligned endpoint
 normal form reduces #138 to one-sided A1′ (reversal is not an additional
 premise of this completion theorem), while #139 is the

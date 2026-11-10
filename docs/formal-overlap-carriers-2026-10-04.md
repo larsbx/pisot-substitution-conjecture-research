@@ -105,6 +105,8 @@ and `7 9 14`. The Padovan/plastic substitution `0 -> 1, 1 -> 2, 2 -> 01`
 (specimen `1 2 4`) is the smallest control: one realized aligned carrier (58
 states, depth 4) and one unrealized strict carrier (16 states, depth 6).
 
+*Note, 2026-11-09.* In this census "strict zipper" and "strict carrier" mean a carrier with no offset-zero vertex; none is child-closed or nonproductive (closed carriers: 0). The strict zipper of `prop:zipper-dichotomy` (iii)(b) and the strict carrier of `kernel/psc/carrier.mojo` are closed nonproductive sets; the census found none. "Realized" here means seed-reachable (a vertex of the swap-seed overlap graph), not realized by two tilings in one fibre ([quantifier audit](quantifier-transfer-audit-2026-11-09.md), §15).
+
 ### 3.1 Aligned-route decomposition (step 2)
 
 Per carrier the census also records `L`, the least depth to an offset-zero

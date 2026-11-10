@@ -2173,15 +2173,15 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/c4-cut-pair-productivity-2026-11-04.md:58](../docs/c4-cut-pair-productivity-2026-11-04.md#L58) | **Theorem A.** |
 | [docs/c4-cut-pair-productivity-2026-11-04.md:124](../docs/c4-cut-pair-productivity-2026-11-04.md#L124) | **Theorem B.** λ(Z_A) ≥ κ / L_max > 0. In particular λ(R_c ∩ R_c') > 0 for |
 | [docs/c4-cut-pair-productivity-2026-11-04.md:178](../docs/c4-cut-pair-productivity-2026-11-04.md#L178) | **Corollary B′ (productivity from disjointness).** If the subtiles of the |
-| [docs/c4-cut-pair-productivity-2026-11-04.md:199](../docs/c4-cut-pair-productivity-2026-11-04.md#L199) | **Theorem C.** If a strict system C exists, then θ_c ≤ 1/2 for every |
-| [docs/c4-cut-pair-productivity-2026-11-04.md:266](../docs/c4-cut-pair-productivity-2026-11-04.md#L266) | **Lemma P (unimodular, one pair).** Let σ be primitive with irreducible Pisot |
+| [docs/c4-cut-pair-productivity-2026-11-04.md:201](../docs/c4-cut-pair-productivity-2026-11-04.md#L201) | **Theorem C.** If a strict system C exists, then θ_c ≤ 1/2 for every |
+| [docs/c4-cut-pair-productivity-2026-11-04.md:268](../docs/c4-cut-pair-productivity-2026-11-04.md#L268) | **Lemma P (unimodular, one pair).** Let σ be primitive with irreducible Pisot |
 | [docs/c4-defect-degree-census.md:120](../docs/c4-defect-degree-census.md#L120) | **Proposition (bounded PIP corpus).** Among the 4,554 primitive ternary |
 | [docs/c4-endpoint-core-program.md:124](../docs/c4-endpoint-core-program.md#L124) | ### Proposition 3 |
 | [docs/c4-every-cut-pair-positive-density-2026-11-04.md:7](../docs/c4-every-cut-pair-positive-density-2026-11-04.md#L7) | ## Theorem A: each cut-pair grows with positive PF frequency |
 | [docs/c4-every-cut-pair-positive-density-2026-11-04.md:20](../docs/c4-every-cut-pair-positive-density-2026-11-04.md#L20) | **Theorem A.** For each e there exists a source j in I_e and a residue-zero generation subsequence n=mqh, for any fixed positive q, such that the number b_e(n,j) of *literal factor occurrences* with first pair e in the complete factorisation of sigma^n(T_j) obeys |
 | [docs/c4-every-cut-pair-positive-density-2026-11-04.md:40](../docs/c4-every-cut-pair-positive-density-2026-11-04.md#L40) | ## Corollary B: per-pair subtile overlap (rests on #480 §3 and §8; human review pending) |
 | [docs/c4-every-cut-pair-positive-density-2026-11-04.md:49](../docs/c4-every-cut-pair-positive-density-2026-11-04.md#L49) | **Corollary B (given these geometric inputs, proved in #480 §3 and §8):** every represented pair e={c,c'} individually satisfies |
-| [docs/c4-finite-domain-closure-2026-11-05.md:40](../docs/c4-finite-domain-closure-2026-11-05.md#L40) | **Theorem A(4)** of the cut-pair note: every first-letter pair of a strict |
+| [docs/c4-finite-domain-closure-2026-11-05.md:42](../docs/c4-finite-domain-closure-2026-11-05.md#L42) | **Theorem A(4)** of the cut-pair note: every first-letter pair of a strict |
 | [docs/c4-forward-run-family-sharp-depth-2026-11-04.md:46](../docs/c4-forward-run-family-sharp-depth-2026-11-04.md#L46) | **Theorem (five mutually exclusive chambers).** For every a,b>=0, |
 | [docs/c4-forward-run-family-sharp-depth-2026-11-04.md:163](../docs/c4-forward-run-family-sharp-depth-2026-11-04.md#L163) | **Lemma (prefix-satellite lifting).** Let \(\tau\) be any nonerasing |
 | [docs/c4-forward-run-family-sharp-depth-2026-11-04.md:200](../docs/c4-forward-run-family-sharp-depth-2026-11-04.md#L200) | **Corollary (sharp all-pairs coincidence depth).** For every member of |
@@ -2362,11 +2362,11 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/p1a-template-collapse-2026-10-05.md:40](../docs/p1a-template-collapse-2026-10-05.md#L40) | *Theorem C (template collapse).* Let sigma be PIP on three letters, {a,b} |
 | [docs/p1a-template-collapse-2026-10-05.md:90](../docs/p1a-template-collapse-2026-10-05.md#L90) | *Corollary C1 (one obligation, not two).* A2 follows from A1 restricted to |
 | [docs/p1a-template-collapse-2026-10-05.md:106](../docs/p1a-template-collapse-2026-10-05.md#L106) | *Corollary C2 (A1′ in classical form).* h(x) = x and h(c) = c mean |
-| [docs/p1b-boundary-hitting-progress-2026-10-08.md:204](../docs/p1b-boundary-hitting-progress-2026-10-08.md#L204) | ## 4. Theorem L″: lines of classes A, C and D |
-| [docs/p1b-boundary-hitting-progress-2026-10-08.md:223](../docs/p1b-boundary-hitting-progress-2026-10-08.md#L223) | *Theorem L″.* For each line below, every PIP member is catch-up-free with |
-| [docs/p1b-boundary-hitting-progress-2026-10-08.md:338](../docs/p1b-boundary-hitting-progress-2026-10-08.md#L338) | ## 4b. Theorem W: two-parameter wedges of class D |
-| [docs/p1b-boundary-hitting-progress-2026-10-08.md:415](../docs/p1b-boundary-hitting-progress-2026-10-08.md#L415) | *Theorem W.* For each sub-wedge below, every PIP member is catch-up-free with |
-| [docs/p1b-boundary-hitting-progress-2026-10-08.md:432](../docs/p1b-boundary-hitting-progress-2026-10-08.md#L432) | *Corollary W1.* **Every PIP member of class D with r ≥ q − 1 has pure |
+| [docs/p1b-boundary-hitting-progress-2026-10-08.md:206](../docs/p1b-boundary-hitting-progress-2026-10-08.md#L206) | ## 4. Theorem L″: lines of classes A, C and D |
+| [docs/p1b-boundary-hitting-progress-2026-10-08.md:225](../docs/p1b-boundary-hitting-progress-2026-10-08.md#L225) | *Theorem L″.* For each line below, every PIP member is catch-up-free with |
+| [docs/p1b-boundary-hitting-progress-2026-10-08.md:340](../docs/p1b-boundary-hitting-progress-2026-10-08.md#L340) | ## 4b. Theorem W: two-parameter wedges of class D |
+| [docs/p1b-boundary-hitting-progress-2026-10-08.md:417](../docs/p1b-boundary-hitting-progress-2026-10-08.md#L417) | *Theorem W.* For each sub-wedge below, every PIP member is catch-up-free with |
+| [docs/p1b-boundary-hitting-progress-2026-10-08.md:434](../docs/p1b-boundary-hitting-progress-2026-10-08.md#L434) | *Corollary W1.* **Every PIP member of class D with r ≥ q − 1 has pure |
 | [docs/p1b-catch-up-free-ppvc-2026-10-07.md:37](../docs/p1b-catch-up-free-ppvc-2026-10-07.md#L37) | *Proposition Z (assembled; every input already recorded).* Let sigma be PIP, |
 | [docs/p1b-catch-up-free-ppvc-2026-10-07.md:174](../docs/p1b-catch-up-free-ppvc-2026-10-07.md#L174) | **Theorem L**: pure discrete spectrum and G1 for every member of that line. |
 | [docs/p1b-class-a-run-index-2026-10-21.md:100](../docs/p1b-class-a-run-index-2026-10-21.md#L100) | **Proposition (repository-proved, scoped written proof with coefficient-checked Mojo identities; |
@@ -2418,7 +2418,7 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/pds-certificate-from-the-box-automaton-2026-10-07.md:74](../docs/pds-certificate-from-the-box-automaton-2026-10-07.md#L74) | ## 3. Lemma Ω1 (finite descent, and cycles in the box) |
 | [docs/pds-certificate-from-the-box-automaton-2026-10-07.md:112](../docs/pds-certificate-from-the-box-automaton-2026-10-07.md#L112) | ## 4. Theorem Ω (formal productivity is one automaton property) |
 | [docs/prefix-translation-normal-form-2026-09-18.md:47](../docs/prefix-translation-normal-form-2026-09-18.md#L47) | **Proposition 2.1 (characteristic-recurrence normal form).** For every |
-| [docs/proof-ladder.md:314](../docs/proof-ladder.md#L314) | **Imported theorem:** Barge–Štimac–Williams supplies the dense-eventual-coincidence-to-PDS implication in the precise one-dimensional Pisot-family setting checked in manuscript Imported Theorem 5.37. Hence Theorem 5.38 has no G1 hypothesis. |
+| [docs/proof-ladder.md:316](../docs/proof-ladder.md#L316) | **Imported theorem:** Barge–Štimac–Williams supplies the dense-eventual-coincidence-to-PDS implication in the precise one-dimensional Pisot-family setting checked in manuscript Imported Theorem 5.37. Hence Theorem 5.38 has no G1 hypothesis. |
 | [docs/sink-scc-reduction.md:19](../docs/sink-scc-reduction.md#L19) | ### Lemma 1 |
 | [docs/sink-scc-reduction.md:29](../docs/sink-scc-reduction.md#L29) | ### Lemma 2 |
 | [docs/sink-scc-reduction.md:37](../docs/sink-scc-reduction.md#L37) | ### Lemma 3 |

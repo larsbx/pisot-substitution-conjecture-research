@@ -112,6 +112,8 @@ Its realization-free form is
 
     BH(sigma):  every potential overlap on a cycle has L < ∞.
 
+*Clarification, 2026-11-09.* "BH" here is the potential-overlap form. The governed `UniversalBoundaryHitting` is the seed-graph form (cyclic vertices of the seed-patch overlap graph). The first implies the second; the converse is known only through PDS, and some cycle vertices of the box graph are not vertices of the seed graph (`kernel/tests/test_vertex_coincidence.mojo`, `test_the_seed_graph_is_not_a_formal_certificate`). See the [quantifier audit](quantifier-transfer-audit-2026-11-09.md), §11 (row C12).
+
 What it buys (all recorded, with their review status):
 
 | from | to | by |

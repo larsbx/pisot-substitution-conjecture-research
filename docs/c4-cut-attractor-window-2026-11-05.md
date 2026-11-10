@@ -262,6 +262,8 @@ tile and have common vertices with bounded gaps. Consequently
 `C4(σ) ⇔ bounded-gap A1′ for every power of σ`: **a strict system is exactly
 an A1′ configuration plus the bounded-gap (G1-type) condition.**
 
+*Correction, 2026-11-09.* The (ii) ⇒ (i) direction uses Lemma F(b), which is stated for σ primitive on three letters with χ_M irreducible over ℚ (§1). Read Proposition 3, and the line `[Proposition 3; any primitive σ]` of the display in §7, under that hypothesis unless a separate argument for (ii) ⇒ (i) is supplied. For PIP σ nothing changes, and the governed record C4 (ternary PIP) is unaffected ([quantifier audit](quantifier-transfer-audit-2026-11-09.md), §17).
+
 *Control.* The reducible strict control `10/102/211` satisfies every
 combinatorial constraint of Propositions 1–3 with decoupled hubs (left hub 2,
 right hub 0).

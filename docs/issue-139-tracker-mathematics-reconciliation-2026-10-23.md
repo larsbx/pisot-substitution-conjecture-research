@@ -30,6 +30,8 @@ For **every primitive irreducible Pisot substitution on three letters** in the p
 
 > Every cyclic vertex of the finite **seed-reachable strict-zipper overlap graph** has a descendant with offset zero via a **composable path of actual ordered substitution occurrences**.
 
+*Correction, 2026-11-09.* No "seed-reachable strict-zipper overlap graph" is defined in the manuscript or the ledger. The governed statement (`UniversalBoundaryHitting`) quantifies over the cyclic vertices of the seed-patch overlap graph; its exclusion form is `AllSeedStrictZipperExclusion` ([quantifier audit](quantifier-transfer-audit-2026-11-09.md), §10).
+
 Quantifiers and interfaces are load-bearing:
 
 1. Every substitution in the standing ternary PIP regime; not merely all specimens in an enumerated finite corpus or a listed parameter family.

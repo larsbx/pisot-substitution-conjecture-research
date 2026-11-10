@@ -23,6 +23,8 @@ primitive irreducible Pisot (ternary)
   => coincidence density one and PDS                              [proved/imported bridge]
 ```
 
+*Correction, 2026-11-09.* The BH line above and the #139 row of the table in §5 abbreviate the two exact forms of BH: "every vertex of the finite seed-patch overlap graph on a directed cycle has an offset-zero descendant" (governed `UniversalBoundaryHitting`) and its exclusion form (`AllSeedStrictZipperExclusion`); a strict-zipper vertex has no offset-zero descendant by definition. See the [quantifier audit](quantifier-transfer-audit-2026-11-09.md), §10.
+
 The route does not assume G1, global unimodularity, independent tile lengths,
 seed legality or an extra UD axiom. Full incidence rank derives UD for images
 and powers. Bounded discrepancy G1b-1 and seed-patch overlap finiteness are

@@ -27,6 +27,8 @@ mass/support/rank theorems do **not** supply their open universal premises.
 | P1 | **Shared proof interface across C4/R1/mass/BH** | For each pair of routes, write the exact output/input type and one minimal transfer lemma or a counterexample to the attempted transfer. Physical-mass source loss must be refined to genuine geometric overlaps and then to a word cut before it can imply C4. | #497/#515/#519, #520, #138/#139; keep `zero measure → empty` explicitly invalid. |
 | P1 | **PIP-valid adversarial search** | A deterministic, bounded, cap-aware canonical Mojo generator of exact primitive irreducible Pisot specimens and literal child graphs, independently checked by an existing Python oracle when valuable. Record the *first failed premise* (PIP, realization, closure, strictness, invariant, conclusion). A real PIP counterexample to a stated intermediate lemma is the valuable output; a budget cap is not a verdict. | Existing corpus infrastructure; second-letter, depth-one, naive six-state, strong G/F, zero-defect/different-parent, and R1 productivity-direction controls. |
 
+*Dated note, 2026-11-09 (quantifier audit; states read through the GitHub API on 2026-11-10).* Integration states of the REUSE list: #459 and #497 are open pull requests; #515 is merged into the branch of #497 only; #457, #462, #499, #504, #519, #520 and #521 are on `main`. Cite #459, #497 and #515 at their head revisions, as reported ([quantifier audit](quantifier-transfer-audit-2026-11-09.md), §16).
+
 ### Composition and acceptance protocol
 
 1. **Before new code:** inspect [side notes](side-notes-ledger.md), proof-bank

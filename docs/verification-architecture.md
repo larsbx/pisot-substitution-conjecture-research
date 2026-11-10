@@ -116,6 +116,8 @@ G1 + SCCProducer => PDS
 
 is retained as a conditional side route. G1 is used there to extract a finite sink SCC from global nonproductivity. Structural statements conditional on an already-given finite closed SCC should not all be made to depend on G1 in the ledger.
 
+*Correction, 2026-11-09.* The arrow `C2 => SCCProducer` is under G1 and the sink-SCC reduction (`prop:chain`: "with finite `B_σ`"; ledger node `SCCProducer` depends on `G1`, `SinkSCCReduction`, `C2`), and the arrow to PDS also uses the imported balanced-pair criterion (ledger node `PDS` depends on `StandardBPAEquivalence` since `e7853fb`). See the [quantifier audit](quantifier-transfer-audit-2026-11-09.md), §§3, 14.
+
 The literature relation between PDS and standard BPA termination is tracked separately. Until the repository's normalized all-seed graph is explicitly bridged to the literature algorithm, the ledger must not silently add `PDS => G1`.
 
 ## 5. Lean layer

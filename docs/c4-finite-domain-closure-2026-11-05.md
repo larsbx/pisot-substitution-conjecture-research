@@ -35,6 +35,8 @@ A strict component is exactly a strongly connected *strict system* in the
 sense of the [cut-pair note](c4-cut-pair-productivity-2026-11-04.md): finite,
 strictly child-closed, noncoincident.
 
+*Correction, 2026-11-09.* Every strict component of `B_σ` is a strongly connected strict system (`BpaStrictComponent.toStrictComponent`). Conversely a swap-closed strongly connected strict system is a strict component of `B_σ` when one of its states is reachable from a swap seed (`StrictComponent.toBpa`); whether that always holds in the standing class has no proof yet ([quantifier audit](quantifier-transfer-audit-2026-11-09.md), §11 row B8).
+
 ## 2. The reduction (repository-proved)
 
 **Theorem A(4)** of the cut-pair note: every first-letter pair of a strict
@@ -88,6 +90,8 @@ pair is productive outright (manuscript, Theorem "Global endpoint
 synchronization"; the endpoint-collapse stratum of the
 [cut-attractor note](c4-cut-attractor-window-2026-11-05.md)).
 
+*Addition, 2026-11-09.* The same witnesses give, by the proof of `cor:scc-reduction`(i) of the manuscript (or `thm:BD-eliminator`), that every noncoincident irreducible balanced pair of each specimen is productive, so no child-closed coincidence-free set of any cardinality exists there; termination additionally uses the finiteness certified by `comp:bpa`. The governed statement remains the finite form ([quantifier audit](quantifier-transfer-audit-2026-11-09.md), §13).
+
 ## 4. Why this is where C4 finishes for now
 
 By Proposition 3 of the cut-attractor note, for any primitive `σ`,
@@ -110,6 +114,8 @@ theorem above already applies.
 The next open quantifier is therefore #138 itself, in its weakest useful form:
 for unit PIP `σ` with `cr(σ) = 2` and every letter pair without a left
 strong-coincidence witness, `int(R_c ∩ R_c′) = ∅`.
+
+*Correction, 2026-11-09.* The displayed statement is not #138: under #138 (`UniversalAlignedCoincidence`, open) the class of pairs without a witness is empty and the statement is vacuous, so #138 implies it. It is the `cr = 2` form of C4(σ), conditionally equivalent to it by Proposition R of the cut-attractor note, as that note says. In §4, "for any primitive σ" should read "for primitive σ on three letters with χ_M irreducible over ℚ": the (ii) ⇒ (i) direction of Proposition 3 uses Lemma F(b), stated under that hypothesis; for PIP σ nothing changes ([quantifier audit](quantifier-transfer-audit-2026-11-09.md), §17).
 
 ## 5. Replay
 

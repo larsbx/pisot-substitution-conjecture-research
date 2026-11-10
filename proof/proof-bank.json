@@ -17973,12 +17973,12 @@
     },
     {
       "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
-      "line": 199,
+      "line": 201,
       "statement_heading": "**Theorem C.** If a strict system `C` exists, then `θ_c ≤ 1/2` for every"
     },
     {
       "source": "docs/c4-cut-pair-productivity-2026-11-04.md",
-      "line": 266,
+      "line": 268,
       "statement_heading": "**Lemma P (unimodular, one pair).** Let `σ` be primitive with irreducible Pisot"
     },
     {
@@ -18013,7 +18013,7 @@
     },
     {
       "source": "docs/c4-finite-domain-closure-2026-11-05.md",
-      "line": 40,
+      "line": 42,
       "statement_heading": "**Theorem A(4)** of the cut-pair note: every first-letter pair of a strict"
     },
     {
@@ -18918,27 +18918,27 @@
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 204,
+      "line": 206,
       "statement_heading": "## 4. Theorem L″: lines of classes A, C and D"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 223,
+      "line": 225,
       "statement_heading": "*Theorem L″.* For each line below, every PIP member is catch-up-free with"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 338,
+      "line": 340,
       "statement_heading": "## 4b. Theorem W: two-parameter wedges of class D"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 415,
+      "line": 417,
       "statement_heading": "*Theorem W.* For each sub-wedge below, every PIP member is catch-up-free with"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 432,
+      "line": 434,
       "statement_heading": "*Corollary W1.* **Every PIP member of class D with `r ≥ q − 1` has pure"
     },
     {
@@ -19198,7 +19198,7 @@
     },
     {
       "source": "docs/proof-ladder.md",
-      "line": 314,
+      "line": 316,
       "statement_heading": "**Imported theorem:** Barge–Štimac–Williams supplies the dense-eventual-coincidence-to-PDS implication in the precise one-dimensional Pisot-family setting checked in manuscript Imported Theorem 5.37. Hence Theorem 5.38 has no G1 hypothesis."
     },
     {

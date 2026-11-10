@@ -312,6 +312,8 @@ nonnegative-matrix algebra alone cannot do this: the one-vertex matrix
 `T=[θ]` with positive mass is conservative and admits a nonzero vector
 satisfying equality.
 
+*Clarification, 2026-11-09.* "a complete, realized strict-PIP overlap carrier" admits the two domains named in the dated clarification of the kernel note; the twelve-source computation bears on the three-root carrier of a source only ([quantifier audit](quantifier-transfer-audit-2026-11-09.md), §12).
+
 The reduction is independent of state count, but it supplies **no uniform
 bound on carrier size, witness depth or a search budget**. A source SCC
 count bounded by the number of declared roots also does not bound its

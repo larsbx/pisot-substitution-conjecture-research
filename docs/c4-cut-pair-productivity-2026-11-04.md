@@ -180,6 +180,8 @@ pairs in `A(C)` are pairwise measure-disjoint, `C` cannot exist. In particular:
 if `R_c, R_c'` are measure-disjoint for every pair `{c,c'}`, then `σ` has no
 strict C4 system.
 
+*Correction, 2026-11-09.* The conclusion of Corollary B′ is that no finite strict system exists: an exclusion of finite strict systems, not productivity of a seed. With finiteness of the set reachable from a seed (G1 for that seed, open) it gives termination with coincidence from that seed; without it, it gives no productivity statement. The label is kept because later notes cite it; cite it as "Corollary B′ (cut-pair note)". See the [quantifier audit](quantifier-transfer-audit-2026-11-09.md), §12.
+
 ## 3a. Theorem C — a strict system can occupy at most half of each subtile's lattice
 
 Keep the hypotheses of Theorem B. Let `f` be the letter-frequency probability
@@ -312,6 +314,8 @@ Valid implications (unit case):
     left SC on all pairs               => both families disjoint  [Arnoux–Ito Thm 2]
     R_c, R_c' disjoint on all of A(C)  => no strict C             [Theorem B]
     strict C                           => no left SC on A(C)      [Theorem A(4)]
+
+*Correction, 2026-11-09.* "disjoint" in the block above and in the next sentence means measure-disjoint, λ(R_c ∩ R_c′) = 0, as Arnoux–Ito Thm 2 gives it; no line of this note asserts an empty intersection ([quantifier audit](quantifier-transfer-audit-2026-11-09.md), §12).
 
 So `SC(A(C)) ⇒ disjoint(A(C)) ⇒ no strict C` holds in the unit case, but it is
 no stronger than Theorem A(4), which needs no geometry. "Strictly between"

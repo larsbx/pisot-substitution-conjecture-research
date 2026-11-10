@@ -154,6 +154,8 @@ different kinds of statement and neither implies the other:
 - With (F), the three exclusion forms agree: (AE) ⇔ (X) ⇔ (AE°), the last
   using that every noncoincident state has a child.
 
+*Note, 2026-11-09.* For the balanced-pair automaton this last equivalence needs nonerasure and is not yet a Lean statement on `bpaGraph` (§11 row B3; §18 W1).
+
 **What C4 takes as input.** A *supplied* finite, strict, child-closed,
 strongly connected set of balanced pairs with its full word factorization: in
 Lean `Psc.StrictSystem.StrictComponent`, or `BpaStrictComponent` when it is a
@@ -163,6 +165,8 @@ productivity, is the sink step `thm:sink` and needs (F):
 abstract form is `exists_strictComponent_of_finite`. The statements C3-local,
 C2 and `Sync_±` themselves have no Lean form (no file under `proof/` mentions
 them); `prop:chain` is a manuscript proof.
+
+*Note, 2026-11-09.* (X) is stated with ordered, reflexive strong connectivity on all pairs of lists; a `BpaStrictComponent` is swap-closed and connected only up to side swap, and without nonerasure the interface admits a dead-end singleton (`erase_control`). For a seed of a nonerasing substitution the two exclusions should agree, but that lemma is not in Lean (§11 row B6; §18 W2).
 
 **Where the premise was dropped.** The manuscript (`prop:chain`: "with finite
 `B_σ`"; `thm:sink`: conditional on G1), Lean and the generated ledger
@@ -198,6 +202,8 @@ So a null-measure conclusion transfers to a combinatorial one only in the form
 gate: in Akiyama–Lee the residual graph is nonempty in general, and what it
 cannot contain is a real (positive-measure) overlap.
 
+*Note, 2026-11-09.* The sentence above is exact for coincidence density one (N1), the null statement the `MassGraph` models; for null internal-space pair overlaps (N2) the only transfer is Theorem M1, which excludes finite strict systems only (§12).
+
 ## 5. Finite at each parameter is not uniform
 
 `chain N` (`0 → 1 → ⋯ → N`, targets `≥ N`) satisfies (A) with hitting time
@@ -206,6 +212,8 @@ on the states below `N` the member `chain N` has the same children and targets
 as `ray`, where no state is productive (`chain_agrees_with_ray`). A verdict
 read from a finite set of specimens, or from an inspection to a fixed depth,
 is a statement about those specimens and that depth.
+
+*Note, 2026-11-09.* `chain_not_uniform` bounds every path; the senses of uniformity, the valid swap inside one finite graph and the literal instances inside the standing class are in §13.
 
 ## 6. Conditional theorem and antecedent
 
