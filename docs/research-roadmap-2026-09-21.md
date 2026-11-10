@@ -1,5 +1,32 @@
 # PSC research roadmap — 2026-09-21
 
+## 2026-11-10 implementation follow-up to #532
+
+The [concrete occurrence bridge](c4-concrete-occurrence-2026-11-10.md)
+connects literal balanced factors, their occurrence ordinals, physical
+prefix lengths and one-step interior newborn cuts. It derives rational
+length injectivity from irreducibility of the incidence cubic. Its input
+still includes actual located word occurrences; constructing those objects
+from arbitrary addresses and transporting an entire packet path remain
+separate obligations.
+
+The [degree-five completion](c4-degree-five-completion-2026-11-10.md)
+provides the reciprocal-polynomial factorization `q5=g^k`, the actual image
+rank `3k`, the zero-image case and determinant exclusion under the unchanged
+degree-five sieve hypotheses. Literal strict-child realizability remains
+open. The [original next-obligations note](c4-next-proof-obligations-2026-11-10.md)
+now distinguishes these implemented pieces from the rest of its program.
+
+**Next formal priority:** construct a `FactorOccurrence` from each actual
+global address, then prove the occurrence-to-packet transition square with
+the local residual, track order, normalization and child ordinal preserved.
+Compose finite realizable paths with the supplied-parent newborn theorem and
+the existing concrete strict-system closure theorem. Soundness, completeness
+for the declared occurrence universe and consistent infinite lifting retain
+separate statements. The next mathematical target is still productivity of
+at least one forced crossing in every supplied hypothetical strict PIP
+component. General C4, Concentration and global G1 remain open.
+
 ## 2026-11-10 C4 continuation after the reciprocal sieve and both-end control
 
 **Inspection baseline:** `main@c38e381cc8105d87597b0a9bfbe418b7bca86fc0`.

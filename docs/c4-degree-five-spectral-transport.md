@@ -14,10 +14,14 @@ supersedes the PR body's earlier local exit-137/pending-audit report; that
 failed local attempt remains part of the evidence history. This update
 records the existing run and does not claim a new local Lean replay.
 
-The accepted results classify the image's root set and give a necessary
-determinant bound. Reciprocal-cubic multiplicities, image-rank divisibility,
-and strict ordered-word exclusion remain separate obligations. Independent
-human review remains pending and is not a gate on continued development.
+Those accepted results classify the image's root set and give a necessary
+determinant bound. The [reciprocal completion](c4-degree-five-completion-2026-11-10.md)
+now implements `q5 = g^k`, image rank `3k`, zero-image equivalence and the
+determinant-exclusion corollaries in `Degree5Completion`. Verification of
+that source belongs to the continuation PR's exact revision; the historical
+#528 receipt above does not cover it. Strict ordered-word exclusion remains
+open. Independent human review remains pending and is not a gate on
+continued development.
 
 ## Literature and decision
 
@@ -32,7 +36,7 @@ requires actual aligned occurrences with equal prefix abelianizations.
 has separate termination and coincidence premises. Neither premise follows
 from a rational tensor image. The quotient specialization and narrowly scoped
 spectral control are now implemented as recorded above. Continue with the
-factorization target below and word realizability; keep global extraction as
+reciprocal completion and word realizability; keep global extraction as
 a separate obligation.
 
 ## Interfaces and evidence
@@ -154,9 +158,10 @@ degree-one balance implied by the degree-four hypotheses.
 `sieve5_full_orbit_of_primitive` shows that when there is a nonzero defect
 column, the roots of the image polynomial are exactly the three
 `(2,2,1)` values. It moves the single exponent onto each incidence root in
-turn. The result classifies the root set. The following factorization
-argument would also determine the form of the multiplicities and is not yet
-a Lean theorem.
+turn. That result classifies the root set. The continuation module
+`Degree5Completion` implements the following multiplicity argument, together
+with the rank and zero-image consequences; its exact scope and verification
+boundary are recorded in the [completion note](c4-degree-five-completion-2026-11-10.md).
 
 * Let the incidence roots be `r₀,r₁,r₂`, let `d = r₀r₁r₂ ≠ 0`, and write
   `e₁,e₂` for their first two elementary symmetric functions. The three
@@ -175,33 +180,29 @@ a Lean theorem.
   necessary condition, so the surviving case still needs information
   from actual ordered words.
 
-## Next bounded algebraic targets
+## Reciprocal completion and remaining algebraic targets
 
-These are planned formalizations of the preceding argument, not additional
-accepted theorems. Preserve the current normalization, `Equiv4` on every
-state, irreducible incidence cubic and Pisot/primitive hypotheses.
+`Degree5Completion.q5_eq_pow_rank` implements `q5 = g^k` and
+`rank Q5 = 3k` under the unchanged normalization, `Equiv4` on every state,
+irreducible incidence and Pisot/primitive hypotheses. The zero image is
+included; `q5_eq_one_iff` identifies it, and the nonzero-column version
+derives `k > 0`. `columns_eq_zero_of_det_bound` and
+`columns_eq_zero_of_nonunit_small_perron` implement the exclusions
+`beta < |det M|³` and, in particular, `|det M| >= 2` with `beta < 8`.
+See the [formal statement map and controls](c4-degree-five-completion-2026-11-10.md).
 
-1. **Reciprocal cubic and multiplicities.** Define
-   `g(t) = t³ − d e₂ t² + d³ e₁ t − d⁵`, prove its irreducibility from that
-   of the incidence cubic, and prove `q5 = g^k` for some `k : ℕ`.
-   Include the zero image explicitly: `q5 = 1` and `k = 0` there; a nonzero
-   image requires `k ≥ 1`. The root-set theorem supplies the roots, not their
-   multiplicities. Use the characteristic polynomial of the actual image,
-   not the whole signed source space.
-2. **Rank divisibility.** Connect the degree of that characteristic
-   polynomial to the rational image dimension to obtain `rank Q5 = 3k`.
-   The optional stronger bound `k ≤ 6` needs a transported homogeneous
-   decomposition: each of the three `(2,2,1)` contents has six basis
-   elements, but the finite count alone is not a proof of `rank Q5 ≤ 18`.
-   Preserve the numerical-weight collision controls when identifying the
+Two further algebraic specializations remain separate:
+
+1. The optional upper bound `k <= 6` needs a transported homogeneous
+   decomposition. Each of the three `(2,2,1)` contents has six basis
+   elements, but the finite count alone does not prove `rank Q5 <= 18`.
+   Preserve numerical-weight collision controls when identifying the
    relevant spectral subspaces.
-3. **Determinant exclusion corollary.** Under the same hypotheses,
-   `|det M| ≥ 2` and `β < 8` force `Q5 = 0`: a nonzero column would give
-   `8 ≤ |det M|³ ≤ β`. For substitutions with every image of length at most
-   three, `β ≤ 3` follows from the incidence matrix's maximum column sum.
-   Thus a nonzero degree-five image in that parameter class would require
-   unimodularity. These are consequences to formalize, not new Lean
-   declarations or a new corpus computation.
+2. For substitutions with all images of length at most three, the
+   maximum-column-sum estimate gives `beta <= 3` mathematically. Composing
+   a formal version with the new exclusion would force unimodularity of a
+   nonzero degree-five image in that parameter class. The completion module
+   does not add that matrix-norm estimate or a new corpus computation.
 
 The main mathematical task remains a constraint on actual first-cut words
 which excludes the surviving image. The degree-three determinant-sector

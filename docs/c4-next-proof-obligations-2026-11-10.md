@@ -8,11 +8,25 @@ finite certificate, or governed claim promotion. General C4, Concentration,
 A1′, BH, G1 and PSC remain open. The direct C4 tracker is
 [#461](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/461).
 
-The primary next formal task is **actual occurrence transport followed by
-first-diagonal-to-newborn extraction**. The parallel algebraic task is the
-**degree-five reciprocal polynomial and image-rank theorem**. The main new
-mathematical target is then a uniform argument forcing at least one productive
-physical crossing in a hypothetical fully strict component.
+### Implementation follow-up after #532
+
+The [concrete occurrence development](c4-concrete-occurrence-2026-11-10.md)
+now supplies common-factor ordinal uniqueness for already located literal
+occurrences, derived Perron-length injectivity, exact singleton factorization,
+and an interior synchronized newborn in the immediate irreducible parent.
+It also extracts a reachable noncoincident parent and such a newborn from a
+literal `Child` path to coincidence. It does not yet construct factor
+occurrences from arbitrary global addresses or prove complete packet-to-word
+path refinement. These remain the primary formal task before claiming the
+complete packet-to-newborn bridge.
+
+The [degree-five completion](c4-degree-five-completion-2026-11-10.md)
+implements the reciprocal polynomial, its irreducibility, `q5=g^k`, actual
+image rank `3k`, zero-image handling and determinant exclusion under the
+unchanged sieve hypotheses. The earlier accepted inputs and their receipts
+below remain historical records; the new sources require their own
+exact-revision acceptance. General C4 and the uniform theorem forcing at
+least one productive physical crossing remain open.
 
 ## 1. Accepted inputs and exact verification scope
 
@@ -186,22 +200,22 @@ balance on **every** child-system state.
 
 The accepted sieve classifies each image root as `d^2/ri`; a nonzero image has
 all three roots. When the image is nonzero, it also proves
-`|det M|^3 <= beta`. The next narrow Lean
-deliverable is the factorization
+`|det M|^3 <= beta`. The narrow Lean completion now implements the
+factorization
 
 \[
 g(t)=t^3-d e_2t^2+d^3 e_1t-d^5,\qquad
 q_5=g^k,\qquad \operatorname{rank}Q_5=3k.
 \]
 
-This is a proposed formal completion. The existing note gives the argument:
+The [formal completion](c4-degree-five-completion-2026-11-10.md) gives the argument:
 the symmetric functions of `d^2/ri` give `g`, and
 `Q(d^2/ri) = Q(ri)` gives irreducibility. Rational factorization then fixes
 the multiplicities. Include `k=0` for the zero image and derive positive `k`
 only from an actual nonzero column. The source characteristic polynomial
 cannot substitute for the image polynomial.
 
-A second proposed formal corollary is
+A second formal corollary is
 `beta < |det M|^3 -> Q5 = 0`, obtained by contradiction from the accepted
 nonzero-image bound. In particular, `|det M| >= 2` and `beta < 8` exclude a
 nonzero degree-five image under the same child-system assumptions. These
@@ -250,8 +264,8 @@ inconclusive. Another passing finite corpus is not a uniform theorem.
 | Order | Deliverable | Acceptance condition |
 | --- | --- | --- |
 | 1 | Evidence-manifest repair and frontier reconciliation (this change). | Existing packet bytes pinned; document/provenance checks pass; stale pending statements corrected against recorded jobs. |
-| 2 | Actual occurrence transport and first-diagonal-to-newborn formalization. | Lean theorem with the concrete address/factor definitions, exact replay and all negative controls at their proper rejection layer. |
-| 3, independently of 2 | Reciprocal polynomial/multiplicity and degree-five rank theorem. | `q5=g^k`, `rank Q5=3k`, zero-image handling and determinant exclusion under unchanged hypotheses. |
+| 2 | Actual occurrence transport and first-diagonal-to-newborn formalization: concrete local factor/newborn lemmas implemented; global-address lookup and full packet/path transport remain open. | Lean theorem with the concrete address/factor definitions, exact replay and all negative controls at their proper rejection layer. Local occurrence lemmas alone do not satisfy the whole row. |
+| 3, independently of 2 | Reciprocal polynomial/multiplicity and degree-five rank theorem: implemented in `Degree5Completion`. | `q5=g^k`, `rank Q5=3k`, zero-image handling and determinant exclusion under unchanged hypotheses, with exact-revision Lean/axiom replay. |
 | 4 | Uniform forced-crossing exclusion. | A theorem for arbitrary supplied component size, or a literal reproducible counterexample to the precise intermediate claim. |
 | 5 | Compose the successful bridge into C4. | Every input/output type, quantifier, realization premise and dependency is discharged; global extraction stays separate. |
 
@@ -273,8 +287,10 @@ Preserve the non-unit, legality, independence and realization boundaries of
 the canonical ledger. Human review remains final validation debt rather than
 a research-progress gate.
 
-This planning/inventory change introduces no mathematical implementation.
-New theorem-facing code must perform the targeted literature stop/go check
+The original #532 planning/inventory change introduced no mathematical
+implementation. The two linked follow-up developments record their targeted
+literature stop/go checks before proof code. New theorem-facing code must
+continue to perform the targeted literature stop/go check
 required by `AGENTS.md`, use Lean for universal deductions and Quint for
 bounded adversarial models, and follow the canonical Mojo implementation
 policy. Existing pinned evidence is retained; no archive or theorem status
