@@ -10880,6 +10880,102 @@
       "declaration": "theorem m0_pisot : ∃ b : ℝ, 1 < b ∧ aeval (b : ℂ) f = 0 ∧"
     },
     {
+      "name": "Psc.OccurrenceAddress.cutAddr_spec",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 56,
+      "declaration": "theorem cutAddr_spec (s : α → List α) : ∀ (w : List α) (p : ℕ), p < (subst s w).length →"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.take_subst_digit",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 83,
+      "declaration": "theorem take_subst_digit (s : α → List α) (w : List α) (i d : ℕ) (hi : i < w.length)"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.take_drop_flatten_map",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 100,
+      "declaration": "theorem take_drop_flatten_map (bs : List (List α × List α)) (f : List α × List α → List α)"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.getElem_red",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 121,
+      "declaration": "theorem getElem_red {u v : List α} (h : Equiv1 u v) (j : ℕ) (hj : j < (red u v).length) :"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.count_cut",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 140,
+      "declaration": "theorem count_cut (s : α → List α) (pre : List α) (a : α) (r : ℕ) (x : α) :"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.cut_defect_transport",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 147,
+      "declaration": "theorem cut_defect_transport (s : α → List α) (p p' : List α) (a a' : α)"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.cut_residual_zero",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 159,
+      "declaration": "theorem cut_residual_zero (s : α → List α) (u v : List α) (p : ℕ)"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.residual_transport",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 180,
+      "declaration": "theorem residual_transport (s : α → List α) (u v : List α) (i j d e lo : ℕ)"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.residual_transport_zero",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 205,
+      "declaration": "theorem residual_transport_zero (s : α → List α) (u v : List α) (i j d e : ℕ)"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.trib_seed_row",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 226,
+      "declaration": "theorem trib_seed_row :"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.trib_child_transport",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 236,
+      "declaration": "theorem trib_child_transport (x : Fin 3) :"
+    },
+    {
+      "name": "Psc.OccurrenceAddress.trib_child_residual",
+      "module": "PscVerif.OccurrenceAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAddress.lean",
+      "line": 247,
+      "declaration": "theorem trib_child_residual :"
+    },
+    {
       "name": "PscVerif.OverlapContraction.fixed_of_unique_iterate",
       "module": "PscVerif.OverlapContraction",
       "private": false,
@@ -19701,6 +19797,7 @@
     "proof/PscVerif/PscVerif/Lie3.lean": "f214cb13bcaa399ecfe626fcc3c912753cdd29ade14ba4a4337b816ce4b22b8d",
     "proof/PscVerif/PscVerif/LieWeights.lean": "f32639f83e519c69b8f428e153dd368c274e1f665a837183f88c5f1de0dd8adb",
     "proof/PscVerif/PscVerif/M0Pisot.lean": "65d17cf0aa71cdac825d16da73ad601dd49c214cd0b47ac58f124cb51a64a304",
+    "proof/PscVerif/PscVerif/OccurrenceAddress.lean": "ad1b6b45db4eea409848b713ab6aec12eb3335df8c11f45c028c2bdd2d6b6b0f",
     "proof/PscVerif/PscVerif/OverlapContraction.lean": "09dd1ccc90a7245211336996f7da8b1276e86cab60dd1cc0b5471e3d7f6a2a30",
     "proof/PscVerif/PscVerif/OverlapPacket.lean": "572fd9fc85082e05377321fa812670558fff66ebed16e319a81816b22950a853",
     "proof/PscVerif/PscVerif/ParikhIntertwiner.lean": "bc7120433f0c103c966fc6faf41407b969537fd0881971a5d36b98169b220d96",
@@ -19726,7 +19823,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "6dcd6519bf4d19beb538278486ea3769be2781d33f9c2829cee0d37abc95f74f",
+    "proof/PscVerif/PscVerif.lean": "aabd1094b12b47dbbe670a525880987b68a1f24d817383040eec4482ac14f29a",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

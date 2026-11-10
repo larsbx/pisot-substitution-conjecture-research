@@ -56,3 +56,4 @@ import PscVerif.BPrime
 import PscVerif.QuantifierInterface
 import PscVerif.QuantifierBinding
 import PscVerif.GraphRefinement
+import PscVerif.OccurrenceAddress
