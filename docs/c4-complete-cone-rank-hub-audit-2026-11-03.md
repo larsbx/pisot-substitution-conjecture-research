@@ -203,6 +203,13 @@ reconstructed in a separate Python calculation
 with ranks [2,2,2,2]. This is not a hosted Mojo
 receipt; at authoring the new CI runs are pending.
 
+*Receipt note, 2026-11-10 (quantifier audit W19; check runs and job logs read through the GitHub API).* Hosted check runs at the head of #462 (`43014c5`): 70 runs, 6 failures. Classified from the job logs:
+- **Mojo compile errors:** `mojo-kernel` (twice), `exact-kernels` (twice) and `diagnostic` fail because three class-A test files do not compile under the hosted Mojo toolchain. The files are `test_class_a_madic_digits.mojo`, `test_class_a_madic_smith.mojo` (an `Int` to `Int64` conversion at `bigz_from_i64`) and `test_class_a_prefix_carry.mojo` (implicit copies of `List[Int]`). None of them is a file of #462. No assertion of this note's tests failed, and `python-tests` and `lean-proofs` succeeded.
+- **Python governance check:** one `exact-kernels` log also shows `test_claim_governance.py::test_status_surfaces_agree_with_the_ledger` failing; its cause was not classified.
+- **Infrastructure:** `automatic-route-census` failed fetching a conda package ("failed to fetch httpcore2-2.12.0").
+
+The three class-A tests pass at `4461ae0` (local replay, 2026-11-10), after `4a00dcd`, `d18117c` and `02fcc11` (2026-11-04) ([quantifier audit](quantifier-transfer-audit-2026-11-09.md), §16).
+
 From the repository root:
 
 ```sh

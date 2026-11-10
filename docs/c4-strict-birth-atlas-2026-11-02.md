@@ -152,6 +152,19 @@ issue on an independent branch; it is not silently assumed merged
 here. If the full suite is red from that baseline, distinguish
 this pre-existing failure from the new atlas's own compilation/logic.
 
+*Receipt note, 2026-11-10 (quantifier audit W19; check runs and job logs read through the GitHub API).* Hosted check runs at the head of #457 (`6a14362`): 70 runs, 13 failures and 1 cancelled, completed after the merge at 2026-11-02T22:00:56Z. Classified from the job logs:
+- **Stale proof bank:** `lean-proofs` (twice), `python-tests` (twice), `source-provenance` (twice) and `historical-sources` all stop at "Proof bank rejected: Stale proof bank: proof/proof-bank.json". This is a generated-surface drift, not a failed proof.
+- **Mojo compile errors:** in `mojo-kernel` (twice), `exact-kernels` (twice) and `diagnostic`, four test files do not compile under the hosted Mojo toolchain ("value of type 'Pair' / 'List[Int]' cannot be implicitly copied", "expression must be mutable in assignment"):
+  - `test_c4_cut_alignment.mojo`;
+  - this note's `test_c4_strict_birth_atlas.mojo`, through its import of `psc/c4_cut_alignment.mojo`;
+  - `test_class_a_madic_digits.mojo`;
+  - `test_class_a_prefix_carry.mojo`.
+
+  No assertion of these tests failed. All four compile and pass at `4461ae0` (local replay, 2026-11-10), after the ownership fixes of `4a00dcd`, `d18117c` and `02fcc11` (2026-11-04).
+- **Not classified:** `scoped-assembly`.
+
+The sentence above stays as the authoring-time record ([quantifier audit](quantifier-transfer-audit-2026-11-09.md), §16).
+
 Independent human review remains final validation debt; never
 describe this note as reviewed or machine-certified before
 the relevant exact-revision workflow passes.

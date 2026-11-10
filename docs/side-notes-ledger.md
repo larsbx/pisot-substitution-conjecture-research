@@ -2771,3 +2771,16 @@ claim-ledger promotion. Evidence: `docs/occurrence-path-replay-2026-10-16.md`,
   - **API deviations from the design brief §6.2:** an extra `command` argument to the Lean emitter, and `PacketSquare.hubs`.
 
   Locator: `kernel/psc/packet_square_export.mojo`; `evidence/packet-square-2026-11-10/`.
+
+- **2026-11-10 — W19: the failing hosted checks at the heads of #457, #460 and #462 are classified; none is a failed assertion of their own mathematics.** Read from the job logs through the GitHub API.
+  - **Stale proof bank.** At #457, the Lean, Python, provenance and historical-sources jobs stopped at a stale `proof/proof-bank.json`.
+  - **Mojo compile errors under the hosted toolchain.** At all three heads the Mojo jobs failed on files that did not compile: implicit copies of `Pair` and `List[Int]`, an immutable assignment, and an `Int` to `Int64` call.
+    - At #457, four files: `test_c4_cut_alignment`; the atlas test, through its import of `psc/c4_cut_alignment.mojo`; and two class-A tests.
+    - At #460 and #462, three class-A files that those PRs did not touch.
+  - **Fixed since.** These tests pass at `4461ae0` (local replay) after `4a00dcd`, `d18117c` and `02fcc11` (2026-11-04).
+  - **Unclassified.** `scoped-assembly` at #457, one `test_claim_governance` failure inside an `exact-kernels` job at #462, and four logs at #460. One conda fetch failure (`automatic-route-census` at #462) is infrastructure.
+  - **Tooling pitfall.** `get_job_logs` without `return_content` returns a signed URL that `curl` can fetch through the proxy. That is the practical way to grep a 6,000-line job log for `error:` and `FAILED:`.
+
+  The three receipt notes D13 are now applied with this classification: `c4-strict-birth-atlas-2026-11-02.md`, `c4-complete-cone-rank-hub-audit-2026-11-03.md` and `c4-two-generation-parikh-span-2026-11-02.md`.
+
+  Locator: [quantifier audit, §16](quantifier-transfer-audit-2026-11-09.md).
