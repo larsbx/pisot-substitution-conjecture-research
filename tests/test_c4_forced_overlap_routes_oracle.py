@@ -169,10 +169,63 @@ def test_literal_first_crossing_can_reach_only_the_right_alignment_of_its_good_e
     assert dict(graph[right_state])[(0, 1)] == (0, 0, (0, 0, 0))
     assert dict(graph[right_state])[(1, 2)] == (2, 2, (0, 0, 0))
 
+    right_addresses = tuple((source, *(digits[i] for digits in (*right_path, (0, 1))))
+                            for i, source in enumerate((top_source, bottom_source)))
+    assert resolve(sigma, pair, right_addresses) == (
+        (0, 0, 1, 0, 0, 0, 1, 3), ("100202021", "020211002"), 15, True,
+    )
+
     path = shortest(graph, root, coincidence)
     assert path == ((2, 0), (2, 1), (2, 0), (1, 0), (0, 0), (1, 0), (2, 1), (1, 0))
     addresses = tuple((source, *(digits[i] for digits in path))
                       for i, source in enumerate((top_source, bottom_source)))
     assert resolve(sigma, pair, addresses) == (
         (0, 0, 1, 0, 0, 0, 1, 1), ("100202021", "020211002"), 5, True,
+    )
+
+
+def test_two_flat_generations_do_not_force_either_good_edge_alignment():
+    sigma = ("01", "20", "200")
+    assert sigma[1][0] == sigma[2][0] == "2"
+    assert sigma[1][-1] == sigma[2][-1] == "0"
+    assert factor(*(inflate(sigma, w) for w in ("02", "20"))) == [("01200", "20001")]
+    pair = ("01200", "20001")
+    legal = "2"
+    for _ in range(3):
+        legal = inflate(sigma, legal)
+    assert tuple(legal.index(w) for w in pair) == (7, 0)
+
+    generation = [pair]
+    for size in (1, 3):
+        generation = [child for word_pair in generation
+                      for child in factor(*(inflate(sigma, w) for w in word_pair))]
+        assert len(generation) == size
+        assert all(u[0] == "0" and v[0] != "0" for u, v in generation)
+    assert any(u == v for u, v in factor(*(inflate(sigma, w) for w in generation[0])))
+
+    top, bottom = pair
+    defect = subtract(p(top[:2]), p(bottom[:2]))
+    assert defect == (0, 1, -1)
+    m = matrix(sigma)
+    assert matvec(m, defect) == (-1, 0, 0)
+    assert matvec(m, add(defect, p("2"))) == (1, 0, 1)
+    top_hubs, bottom_hubs = ([p(w[:i]) for i, a in enumerate(w) if a == "0"] for w in pair)
+    hub_differences = [subtract(b, a) for a, b in zip(top_hubs, bottom_hubs, strict=True)]
+    assert hub_differences == [(0, 0, 1), (0, -1, 0), (0, -1, 0)]
+    assert matvec(m, (0, -2, 1)) == (0, 0, -1)
+
+    root = (int(top[2]), int(bottom[2]), defect)
+    assert root == (2, 0, (0, 1, -1))
+    graph = closure(sigma, root=root)
+    assert (len(graph), sum(map(len, graph.values()))) == (73, 152)
+    expected_alignments = {(0, 0), (0, 1), (0, 2), (1, 0), (2, 0)}
+    assert {state[:2] for state in graph if not any(state[2])} == expected_alignments
+    assert {(x, y) for x, y, d in graph if not any(add(d, subtract(p(str(x)), p(str(y)))))} == (
+        expected_alignments
+    )
+    path = shortest(graph, root, coincidence)
+    assert path == ((0, 0), (2, 1), (1, 0), (0, 0), (2, 1))
+    addresses = tuple((2, *(digits[i] for digits in path)) for i in range(2))
+    assert resolve(sigma, pair, addresses) == (
+        (0, 0, 6, 0, 1), ("012001202000", "202000120001"), 6, True,
     )
