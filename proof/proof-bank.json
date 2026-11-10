@@ -5947,7 +5947,7 @@
       "module": "PscVerif.Degree5Sieve",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Sieve.lean",
-      "line": 105,
+      "line": 106,
       "declaration": "theorem sieve5_roots {S : ChildSystem (Fin 3)} (P : Normalisation S)"
     },
     {
@@ -5955,7 +5955,7 @@
       "module": "PscVerif.Degree5Sieve",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Sieve.lean",
-      "line": 135,
+      "line": 139,
       "declaration": "theorem sieve5_of_primitive {S : ChildSystem (Fin 3)} (P : Normalisation S)"
     },
     {
@@ -5963,7 +5963,7 @@
       "module": "PscVerif.Degree5Sieve",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Sieve.lean",
-      "line": 154,
+      "line": 158,
       "declaration": "theorem sieve5_full_orbit_of_primitive {S : ChildSystem (Fin 3)} (P : Normalisation S)"
     },
     {
@@ -5971,7 +5971,7 @@
       "module": "PscVerif.Degree5Sieve",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Sieve.lean",
-      "line": 188,
+      "line": 192,
       "declaration": "theorem det_cube_le_of_nonzero {S : ChildSystem (Fin 3)} (P : Normalisation S)"
     },
     {
@@ -17434,7 +17434,7 @@
     "proof/PscVerif/PscVerif/Degree4Sector.lean": "7afc131498833c8346b21872981c6f7aa4b7a736fdc952ff84b9b8c071b86f63",
     "proof/PscVerif/PscVerif/Degree5RootLift.lean": "03793616a416af2378b1d2072eef77305d9f61b3fb7a72a09c6a3d1cb6f67740",
     "proof/PscVerif/PscVerif/Degree5Sector.lean": "1c4fd12cac7317ba0e724f4c3b757a1e06fdacd5b52f575d5549a83244d6ab46",
-    "proof/PscVerif/PscVerif/Degree5Sieve.lean": "0e7daa29fd6c6886f45a19692382306f66305c5b726f32cd3764ee63f81df851",
+    "proof/PscVerif/PscVerif/Degree5Sieve.lean": "b787a6689480edad73655df8666b2ee97a02a64af6ec26fb88acd058add82b1c",
     "proof/PscVerif/PscVerif/Degree5Transport.lean": "1e5e153ac4ba75582d7b4133c8fc4f035b6313b86be83649a49c0555cdfe444b",
     "proof/PscVerif/PscVerif/Degree5Weights.lean": "b53740ff569e9e0c6fdaf9ab99815d9c04396c729f850f138b14b5549d827b84",
     "proof/PscVerif/PscVerif/Descendants.lean": "6641b65d81d90be34c13937b6ab8ebc029fcce91babd7c2ce398738dac783a40",

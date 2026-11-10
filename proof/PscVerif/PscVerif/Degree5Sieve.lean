@@ -36,11 +36,11 @@ theorem large_bound {β α γ : ℂ} (hβ : 1 < ‖β‖) (hα : ‖α‖ < 1) (
   have hα0 : 0 < ‖α‖ := by
     by_contra! hn
     have hz := le_antisymm hn (norm_nonneg α)
-    simp [hz] at hd'
+    norm_num [hz] at hd'
   have hγ0 : 0 < ‖γ‖ := by
     by_contra! hn
     have hz := le_antisymm hn (norm_nonneg γ)
-    simp [hz] at hd'
+    norm_num [hz] at hd'
   obtain ⟨h41, h32, h311⟩ := excluded_weights _ _ _ hβ hα0 hγ hd'
   obtain ⟨h41', h32', -⟩ := excluded_weights _ _ _ hβ hγ0 hα
     (by simpa only [mul_assoc, mul_comm ‖α‖ ‖γ‖] using hd')
@@ -69,7 +69,7 @@ theorem forbidden_of_root {f q : ℚ[X]} (hf : Irreducible f) (hdeg : f.natDegre
       (hr : ∃ x y : ℂ, ((x = α ∧ y = γ) ∨ (x = γ ∧ y = α)) ∧
         aeval (β ^ u * x ^ v * y ^ w) q = 0) : False := by
     obtain ⟨x, y, hxy, hr⟩ := hr
-    rcases hxy with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩
+    rcases hxy with ⟨hx, hy⟩ | ⟨hx, hy⟩ <;> rw [hx, hy] at hr
     · exact exclude h hr
     · apply exclude (large_swap h)
       simpa only [mul_assoc, mul_comm (γ ^ v) (α ^ w)] using hr
@@ -91,8 +91,9 @@ theorem orbit_221_first {f q : ℚ[X]} (hf : Irreducible f) (hdeg : f.natDegree 
   have normalize (hr : ∃ x y : ℂ, ((x = α ∧ y = γ) ∨ (x = γ ∧ y = α)) ∧
       aeval (β ^ 1 * x ^ 2 * y ^ 2) q = 0) : aeval (β * α^2 * γ^2) q = 0 := by
     obtain ⟨x, y, hxy, hr⟩ := hr
-    rcases hxy with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ <;>
-      simpa only [pow_one, mul_assoc, mul_comm (γ ^ 2) (α ^ 2)] using hr
+    rcases hxy with ⟨hx, hy⟩ | ⟨hx, hy⟩ <;> rw [hx, hy] at hr
+    · simpa only [pow_one] using hr
+    · simpa only [pow_one, mul_assoc, mul_comm (γ ^ 2) (α ^ 2)] using hr
   rcases h with h | h | h
   · exact h
   · exact normalize (Psc.GaloisOrbit.orbit_exponent_on_beta hf hdeg hβ hα hγ hβα hβγ hαγ
@@ -120,12 +121,15 @@ theorem sieve5_roots {S : ChildSystem (Fin 3)} (P : Normalisation S)
   all_goals rw [show Psc.LieWeights.mono ![β, α, γ] κ =
     β ^ κ 0 * α ^ κ 1 * γ ^ κ 2 by rw [mono_fin_three]; rfl] at hz ⊢
   · exact (forbidden_of_root hM (natDegree_charpoly _) hβ hα hγ hβα hβγ hαγ
-      hβ1 hα1 hγ1 hd hbq hz (h410.symm ▸ forbidden_placements σ 0)).elim
+      hβ1 hα1 hγ1 hd hbq hz (by rw [h410]; exact forbidden_placements σ 0)).elim
   · exact (forbidden_of_root hM (natDegree_charpoly _) hβ hα hγ hβα hβγ hαγ
-      hβ1 hα1 hγ1 hd hbq hz (h320.symm ▸ forbidden_placements σ 1)).elim
+      hβ1 hα1 hγ1 hd hbq hz (by rw [h320]; exact forbidden_placements σ 1)).elim
   · exact (forbidden_of_root hM (natDegree_charpoly _) hβ hα hγ hβα hβγ hαγ
-      hβ1 hα1 hγ1 hd hbq hz (h311.symm ▸ forbidden_placements σ 2)).elim
-  · have h := h221.symm ▸ surviving_placements σ
+      hβ1 hα1 hγ1 hd hbq hz (by rw [h311]; exact forbidden_placements σ 2)).elim
+  · have h : (κ 0, κ 1, κ 2) = (1,2,2) ∨ (κ 0, κ 1, κ 2) = (2,1,2) ∨
+        (κ 0, κ 1, κ 2) = (2,2,1) := by
+      rw [h221]
+      exact surviving_placements σ
     rcases h with h | h | h <;> simp only [Prod.mk.injEq] at h
     · exact Or.inl (by rw [h.1, h.2.1, h.2.2, pow_one])
     · exact Or.inr (Or.inl (by rw [h.1, h.2.1, h.2.2, pow_one]))

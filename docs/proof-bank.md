@@ -650,10 +650,10 @@ Each declaration below must be present in a fresh compiled-environment audit. Ge
 | `Psc.Degree5Sieve.large_bound` | `PscVerif.Degree5Sieve` | no | [proof/PscVerif/PscVerif/Degree5Sieve.lean:32](../proof/PscVerif/PscVerif/Degree5Sieve.lean#L32) |
 | `Psc.Degree5Sieve.forbidden_of_root` | `PscVerif.Degree5Sieve` | no | [proof/PscVerif/PscVerif/Degree5Sieve.lean:58](../proof/PscVerif/PscVerif/Degree5Sieve.lean#L58) |
 | `Psc.Degree5Sieve.orbit_221_first` | `PscVerif.Degree5Sieve` | no | [proof/PscVerif/PscVerif/Degree5Sieve.lean:85](../proof/PscVerif/PscVerif/Degree5Sieve.lean#L85) |
-| `Psc.Degree5Sieve.sieve5_roots` | `PscVerif.Degree5Sieve` | no | [proof/PscVerif/PscVerif/Degree5Sieve.lean:105](../proof/PscVerif/PscVerif/Degree5Sieve.lean#L105) |
-| `Psc.Degree5Sieve.sieve5_of_primitive` | `PscVerif.Degree5Sieve` | no | [proof/PscVerif/PscVerif/Degree5Sieve.lean:135](../proof/PscVerif/PscVerif/Degree5Sieve.lean#L135) |
-| `Psc.Degree5Sieve.sieve5_full_orbit_of_primitive` | `PscVerif.Degree5Sieve` | no | [proof/PscVerif/PscVerif/Degree5Sieve.lean:154](../proof/PscVerif/PscVerif/Degree5Sieve.lean#L154) |
-| `Psc.Degree5Sieve.det_cube_le_of_nonzero` | `PscVerif.Degree5Sieve` | no | [proof/PscVerif/PscVerif/Degree5Sieve.lean:188](../proof/PscVerif/PscVerif/Degree5Sieve.lean#L188) |
+| `Psc.Degree5Sieve.sieve5_roots` | `PscVerif.Degree5Sieve` | no | [proof/PscVerif/PscVerif/Degree5Sieve.lean:106](../proof/PscVerif/PscVerif/Degree5Sieve.lean#L106) |
+| `Psc.Degree5Sieve.sieve5_of_primitive` | `PscVerif.Degree5Sieve` | no | [proof/PscVerif/PscVerif/Degree5Sieve.lean:139](../proof/PscVerif/PscVerif/Degree5Sieve.lean#L139) |
+| `Psc.Degree5Sieve.sieve5_full_orbit_of_primitive` | `PscVerif.Degree5Sieve` | no | [proof/PscVerif/PscVerif/Degree5Sieve.lean:158](../proof/PscVerif/PscVerif/Degree5Sieve.lean#L158) |
+| `Psc.Degree5Sieve.det_cube_le_of_nonzero` | `PscVerif.Degree5Sieve` | no | [proof/PscVerif/PscVerif/Degree5Sieve.lean:192](../proof/PscVerif/PscVerif/Degree5Sieve.lean#L192) |
 | `Psc.Degree5Transport.range_le_lie` | `PscVerif.Degree5Transport` | no | [proof/PscVerif/PscVerif/Degree5Transport.lean:18](../proof/PscVerif/PscVerif/Degree5Transport.lean#L18) |
 | `Psc.Degree5Transport.tensor_apply` | `PscVerif.Degree5Transport` | no | [proof/PscVerif/PscVerif/Degree5Transport.lean:35](../proof/PscVerif/PscVerif/Degree5Transport.lean#L35) |
 | `Psc.Degree5Transport.intertwine` | `PscVerif.Degree5Transport` | no | [proof/PscVerif/PscVerif/Degree5Transport.lean:45](../proof/PscVerif/PscVerif/Degree5Transport.lean#L45) |
