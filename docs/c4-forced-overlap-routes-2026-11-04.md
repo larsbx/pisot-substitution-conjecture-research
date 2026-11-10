@@ -23,7 +23,7 @@ For hub `h`, let `q_h(x)` be the largest number of hubs in
 a proper prefix of `sigma(x)`, including the empty prefix.
 As the digit increases, the hub count starts at zero and
 changes by zero or one. It attains every integer from zero to
-`q_h(x)). Thus over the complete Cartesian product of digits,
+`q_h(x)`. Thus over the complete Cartesian product of digits,
 `E'_h` attains every integer in
 ```text
 [(M E)_h - q_h(y), (M E)_h + q_h(x)].
@@ -35,7 +35,7 @@ checked for strict interior overlap. This criterion places no
 restriction on whether a later child returns to the plane.
 
 In both physical crossing controls from [PR #466](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/466),
-the root is `(2,1,-e_0)) and the hub is 1. Each `sigma(0)`
+the root is `(2,1,-e_0)` and the hub is 1. Each `sigma(0)`
 contains exactly one hub, and no proper prefix of `sigma(2)`
 contains a hub. Therefore the upper endpoint of the interval
 is -1. This proves that every route to a diagonal from either

@@ -1,20 +1,20 @@
-"""Complete occurrence graphs of the two C4 weighted physical crossing controls."""
+"""Complete occurrence graphs of C4 weighted physical crossing controls."""
 
 from std.testing import assert_equal, assert_true, assert_false
 from mojo_smoke.claims import require_contract
+from psc.bpa import apply_substitution, decompose, newborn_sync_positions
+from psc.c4_addressed_newborn import addressed_newborn
 from psc.overlap_seed_patch import (
     OverlapState, build_seed_overlap_tables, build_overlap_graph_from_seeds,
     first_coincidence_depths, first_depths, interior_overlap, selected_overlap_child,
 )
-from psc.perron_field3 import CubicElt
-from psc.words import parikh
+from psc.perron_field3 import CubicElt, cubic_sub_checked, sign_at_perron
+from psc.words import Pair, parikh
 
 
-def aligned_good(state: OverlapState) -> Bool:
-    return state.shift.is_zero() and (
-        (state.top == 0 and state.bottom == 2) or
-        (state.top == 2 and state.bottom == 0)
-    )
+def aligned_good(state: OverlapState, hub: Int = 1) -> Bool:
+    return (state.shift.is_zero() and state.top != state.bottom
+            and state.top != hub and state.bottom != hub)
 
 
 def check_route(
@@ -91,6 +91,69 @@ def check_route(
     assert_equal(state.top, last_letter)
 
 
+def test_forced_crossing_without_good_edge_route() raises:
+    var sigma: List[List[Int]] = [[1], [0, 2], [0, 0, 2]]
+    assert_equal([sigma[0][0], sigma[1][0], sigma[2][0]], [1, 0, 0])
+    var pair = Pair([0, 1], [1, 0])
+    for _ in range(2):
+        var row = decompose(apply_substitution(sigma, pair.u),
+                            apply_substitution(sigma, pair.v))
+        pair = row[0].copy()
+    assert_equal(pair, Pair([0, 2, 1, 0], [1, 0, 0, 2]))
+    var children = decompose(apply_substitution(sigma, pair.u),
+                             apply_substitution(sigma, pair.v))
+    assert_equal(len(children), 1)
+    assert_equal(children[0], Pair([1, 0, 0, 2, 0, 2, 1], [0, 2, 1, 1, 0, 0, 2]))
+    var grandchildren = decompose(apply_substitution(sigma, children[0].u),
+                                  apply_substitution(sigma, children[0].v))
+    assert_equal(len(grandchildren), 3)
+    assert_equal(grandchildren[1], Pair([0], [0]))
+    assert_equal(grandchildren[2], Pair([2], [2]))
+
+    var tables = build_seed_overlap_tables(sigma)
+    # The second bottom hub starts at ell_1 + ell_0. Top source 1
+    # is letter 2 and spans [ell_0, ell_0 + ell_2].
+    assert_equal(sign_at_perron(tables.field, cubic_sub_checked(
+        tables.lengths.at(2), tables.lengths.at(1))), 1)
+    var root = OverlapState(pair.u[1], pair.v[2], tables.lengths.at(1))
+    assert_true(interior_overlap(tables, root))
+    var cache = Dict[CubicElt, Int]()
+    var graph = build_overlap_graph_from_seeds(tables, [root], cache, 128)
+    assert_false(graph.capped)
+    assert_equal(graph.size(), 54)
+    var edges = 0
+    var left_good = List[Bool]()
+    var right_good = List[Bool]()
+    for i in range(graph.size()):
+        edges += len(graph.adj[i])
+        var state = graph.states[i]
+        left_good.append(aligned_good(state, 0))
+        var end_alignment = cubic_sub_checked(tables.lengths.at(state.top),
+                                              tables.lengths.at(state.bottom))
+        right_good.append(state.top != state.bottom and state.top != 0 and
+                          state.bottom != 0 and state.shift == end_alignment)
+    assert_equal(edges, 94)
+    assert_equal(first_depths(graph, left_good)[0], -1)
+    assert_equal(first_depths(graph, right_good)[0], 7)
+    assert_equal(first_coincidence_depths(graph)[0], 8)
+
+    var top: List[Int] = [2, 2, 2, 1, 0, 1, 2, 1]
+    var bottom: List[Int] = [0, 1, 0, 0, 0, 0, 1, 0]
+    var current = root
+    for i in range(len(top)):
+        current = selected_overlap_child(tables, current, top[i], bottom[i])
+        assert_true(interior_overlap(tables, current))
+    assert_true(current.is_coincidence())
+    assert_equal(current.top, 0)
+    var witness = addressed_newborn(sigma, pair, 1, 2, top, bottom)
+    assert_equal(witness.ordinals, [0, 0, 1, 0, 0, 0, 1, 1])
+    assert_equal(witness.parent, Pair([1, 0, 0, 2, 0, 2, 0, 2, 1],
+                                      [0, 2, 0, 2, 1, 1, 0, 0, 2]))
+    assert_equal(witness.cut, 5)
+    assert_true(witness.sync_right)
+    assert_true(witness.cut in newborn_sync_positions(sigma, witness.parent))
+
+
 def main() raises:
     check_route(
         [[1], [0, 2], [2, 2, 0]], [39, 80, 5], [[0, 0], [0, 1], [1, 1]],
@@ -100,4 +163,6 @@ def main() raises:
         [[0, 1], [1, 2], [0, 2, 1]], [68, 146, 6], [[1, 0], [2, 0], [2, 1]],
         [4, 3, 2], [[2, 1], [1, 0], [2, 1]], 1, 4, 5,
     )
+    test_forced_crossing_without_good_edge_route()
+    require_contract("literal first physical hub crossing with complete flat one-step row, shortest diagonal at depth eight, no left-aligned good edge, and a right-aligned good edge at depth seven")
     require_contract("complete forced-overlap graphs, all actual first choices, necessary first-step hub-plane escape, and shortest direct and aligned-good-edge routes")
