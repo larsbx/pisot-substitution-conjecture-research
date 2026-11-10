@@ -118,7 +118,7 @@ def test_forced_overlap_budget_refuses_partial_result():
         closure(("01", "12", "021"), cap=64)
 
 
-def test_literal_first_crossing_can_never_visit_its_aligned_good_edge():
+def test_literal_first_crossing_can_reach_only_the_right_alignment_of_its_good_edge():
     sigma = ("1", "02", "002")
     assert sigma[1][0] == sigma[2][0] == "0"
 
@@ -155,6 +155,20 @@ def test_literal_first_crossing_can_never_visit_its_aligned_good_edge():
     aligned = {state[:2] for state in graph if not any(state[2])}
     assert aligned == {(0, 0), (2, 2), (0, 1), (1, 0), (0, 2), (2, 0)}
     assert graph[root] == [((2, 0), (2, 1, (1, 0, -1)))]
+
+    def right_good(state):
+        x, y, defect = state
+        return {x, y} == {1, 2} and add(defect, subtract(p(str(x)), p(str(y)))) == (0, 0, 0)
+
+    right_path = shortest(graph, root, right_good)
+    assert right_path == ((2, 0), (2, 1), (2, 0), (2, 0), (2, 1), (0, 2), (0, 2))
+    right_state = root
+    for digits in right_path:
+        right_state = dict(graph[right_state])[digits]
+    assert right_state == (1, 2, (0, -1, 1))
+    assert dict(graph[right_state])[(0, 1)] == (0, 0, (0, 0, 0))
+    assert dict(graph[right_state])[(1, 2)] == (2, 2, (0, 0, 0))
+
     path = shortest(graph, root, coincidence)
     assert path == ((2, 0), (2, 1), (2, 0), (1, 0), (0, 0), (1, 0), (2, 1), (1, 0))
     addresses = tuple((source, *(digits[i] for digits in path))

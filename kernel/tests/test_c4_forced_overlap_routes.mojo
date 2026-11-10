@@ -122,12 +122,19 @@ def test_forced_crossing_without_good_edge_route() raises:
     assert_false(graph.capped)
     assert_equal(graph.size(), 54)
     var edges = 0
-    var good = List[Bool]()
+    var left_good = List[Bool]()
+    var right_good = List[Bool]()
     for i in range(graph.size()):
         edges += len(graph.adj[i])
-        good.append(aligned_good(graph.states[i], 0))
+        var state = graph.states[i]
+        left_good.append(aligned_good(state, 0))
+        var end_alignment = cubic_sub_checked(tables.lengths.at(state.top),
+                                              tables.lengths.at(state.bottom))
+        right_good.append(state.top != state.bottom and state.top != 0 and
+                          state.bottom != 0 and state.shift == end_alignment)
     assert_equal(edges, 94)
-    assert_equal(first_depths(graph, good)[0], -1)
+    assert_equal(first_depths(graph, left_good)[0], -1)
+    assert_equal(first_depths(graph, right_good)[0], 7)
     assert_equal(first_coincidence_depths(graph)[0], 8)
 
     var top: List[Int] = [2, 2, 2, 1, 0, 1, 2, 1]
@@ -157,5 +164,5 @@ def main() raises:
         [4, 3, 2], [[2, 1], [1, 0], [2, 1]], 1, 4, 5,
     )
     test_forced_crossing_without_good_edge_route()
-    require_contract("literal first physical hub crossing with complete flat one-step row, shortest diagonal at depth eight, and no route to the original good edge")
+    require_contract("literal first physical hub crossing with complete flat one-step row, shortest diagonal at depth eight, no left-aligned good edge, and a right-aligned good edge at depth seven")
     require_contract("complete forced-overlap graphs, all actual first choices, necessary first-step hub-plane escape, and shortest direct and aligned-good-edge routes")

@@ -1,4 +1,4 @@
-# C4: a productive forced overlap without a route to the good edge
+# C4: a productive forced overlap without a left-aligned good edge
 
 ## Literature and scope
 
@@ -11,8 +11,8 @@ Those results do not require a productivity path to visit a specified
 good edge. The earlier [forced-overlap controls](c4-forced-overlap-routes-2026-11-04.md)
 showed that a visit can make a shortest route longer. Here the question
 is whether a literal first physical crossing, with a witnessed good
-edge and a complete flat one-step factor row, must reach the good edge
-at all. Proceed with an exact finite negative control. The proposed
+edge and a complete flat one-step factor row, must reach the
+left-aligned good edge at all. Proceed with an exact finite negative control. The proposed
 shortcut has weaker hypotheses than the fully strict child-closed
 problem in [#461](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/461).
 
@@ -71,6 +71,14 @@ puts the first diagonal along this marked path in parent
 This depth eight is the minimum for the specified overlap.
 The full word pair already has diagonals in its second inflation.
 
+Right alignment behaves differently. The first right-aligned
+`{1,2}` occurs at depth seven, at state `(1,2,e_2-e_1)`,
+via the digit pairs `(2,0),(2,1),(2,0),(2,0),(2,1),(0,2),(0,2)`.
+The images `02` and `002` have common suffix `02`. From
+that state, the next digits `(0,1)` give the aligned diagonal
+`0/0` at the start of that suffix. The route via
+this right alignment also attains depth eight.
+
 ## Replay and boundary
 
 ```sh
@@ -84,7 +92,7 @@ child from integer prefix vectors, certifies endpoints by incidence
 lifting, and replays the complete words to the cut. The graph cap
 is 128 states and the independent sign budget is 32 lifts. A capped
 graph supplies no absence certificate. The complete graph in this
-control establishes that transport through the original good edge
-can fail even when the crossing is literal and productive. Strict
+control establishes that transport through the original left-aligned
+good edge can fail even when the crossing is literal and productive. Strict
 child closure and uniform productivity in a hypothetical strict flat
 component remain separate obligations.
