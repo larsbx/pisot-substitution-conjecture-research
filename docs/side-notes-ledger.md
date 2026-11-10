@@ -2717,3 +2717,19 @@ claim-ledger promotion. Evidence: `docs/occurrence-path-replay-2026-10-16.md`,
 - **2026-11-10 — Correction to the oracle entry above:** `tests/test_ordered_hub_evidence.py` does not reconstruct the packet set; it reads the target-aware dumps that `tests/test_target_packet_evidence.py` verifies, so the fixed-point gap does not recur there.
 
   Locator: `proof/PscVerif/PscVerif/OccurrenceAddress.lean`.
+
+- **2026-11-10 — Quantifier audit, part II: the source-bound crosswalk.** Sections 10-20 of [the audit note](quantifier-transfer-audit-2026-11-09.md) cover:
+  - the reading ((E), (AE), (AE°), (A); one seed, every seed or every vertex) of each load-bearing statement;
+  - a transfer matrix over the C4, G1, direct-route, mass and R1 bridges;
+  - the stage-by-stage type-check of mass loss → physical overlap → literal Sync;
+  - the finite-domain, family and capped results with the scope of their evidence;
+  - the status surfaces that can be misread;
+  - the PR crosswalk;
+  - 45 findings and 20 work items.
+
+  How it was produced: six read-only route maps at `c5ed4e5`, one synthesis and one adversarial verifier per hazard class, then a writer and a critic. The critic re-opened about 250 locators and found 4 wrong; all were fixed. All 111 route-map hazards are mapped to rows (§20). Nothing was executed by the readers.
+  - **Same defect as the `PDS` repair, reported, not changed.** `PDSSpectralRoute` applies the imported `thm:bridge` (the proof of `thm:main-conditional` ends "Imported Theorem~\ref{thm:bridge} concludes", ms L336), but its record names no import, and `SpectralGateAssumed` does not assume one (§14.2, O13, W11). `PeriodicPairOneFibre` and `DefectTheorem` also apply imports that are not nodes (O15).
+  - **Not applied.** 32 dated corrections (D3-D15) were drafted with exact anchors and vetted by the critic (scratch `partII/corrections.json`, not in the repository). D13 has a precondition: the failing hosted logs at the heads of #457, #460 and #462 must be classified first (W19). The 25 owner decisions (O1-O25) and the two `README.llm.txt` wordings (D1, D2) are left to the owner.
+  - **Do not re-derive.** The readings of BH, #84, C4, G1 and G1b-1 are fixed in §10, the seven senses of "uniform" in §13.1, the three child-graph conventions in §15.1, and the R1 → canonical-carrier gaps T1-T8 in §15.4.
+
+  Locator: [audit, part II §§10-20](quantifier-transfer-audit-2026-11-09.md).
