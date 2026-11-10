@@ -1,0 +1,68 @@
+name: BPA B-prime independent audit (interfaces only)
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/bpa-bprime-audit.yml'
+      - 'docs/c4-bprime-independent-proof-audit-2026-11-07.md'
+      - 'tools/audit_bpa_bprime.py'
+      - 'proof/bpa/BpaPrefixBridge.lean'
+      - 'proof/quint/BpaCutBound.qnt'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  symbolic-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Exact-head validation
+        env:
+          EXPECTED: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED"
+      - name: Reproduce integer/swap-pair controls
+        run: python3 tools/audit_bpa_bprime.py
+
+  lean-bridge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Exact-head validation
+        env:
+          EXPECTED: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED"
+      - name: Set up pinned Lean and Mathlib
+        run: ./tools/setup_lean.sh
+      - name: Compile standalone shift identity (no B-prime acceptance)
+        working-directory: proof/PscVerif
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$HOME/.elan/bin/lake" env lean ../../proof/bpa/BpaPrefixBridge.lean
+
+  quint-cut-control:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Exact-head validation
+        env:
+          EXPECTED: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Typecheck finite cut model (Quint 0.33.1)
+        run: npx --yes @informalsystems/quint@0.33.1 typecheck proof/quint/BpaCutBound.qnt
+      - name: Sample finite cut-bound invariant (not exhaustive)
+        run: npx --yes @informalsystems/quint@0.33.1 run proof/quint/BpaCutBound.qnt --invariant=cutBound

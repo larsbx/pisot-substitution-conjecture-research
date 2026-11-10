@@ -1,0 +1,110 @@
+name: PSC R1F complete integer certificate (Lean and Quint)
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/psc-bprime-r1-smith.yml'
+      - 'proof/psc_routes/R1Smith.lean'
+      - 'proof/quint/PscR1Smith.qnt'
+      - 'docs/psc-bprime-r1-modular-cycle-2026-11-07.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lean-integer-membership:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Enforce exact head
+        env:
+          EXPECTED: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED"
+      - name: Fail closed on all Lean theorem-to-axiom-inventory bindings
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          source = Path("proof/psc_routes/R1Smith.lean").read_text(encoding="utf-8")
+          theorem_names = re.findall(r"(?m)^theorem\s+([A-Za-z_][A-Za-z_0-9]*)", source)
+          assert "for name in #[" in source, "missing axiom-audit loop"
+          audit = source.split("for name in #[", 1)[1].split("] do", 1)[0]
+          audited = re.findall(r"\`PscRoutes\.R1Smith\.([A-Za-z_][A-Za-z_0-9]*)", audit)
+          if len(theorem_names) != len(set(theorem_names)):
+              raise SystemExit("duplicate theorem declarations")
+          if set(theorem_names) != set(audited) or len(audited) != len(theorem_names):
+              raise SystemExit(f"axiom inventory mismatch: declarations={theorem_names!r}; audited={audited!r}")
+          print(f"EXACT_AXIOM_INVENTORY_OK R1Smith: {len(audited)} declarations")
+          PY
+      - name: Set up pinned Lean and Mathlib
+        run: ./tools/setup_lean.sh
+      - name: Compile Smith-diagonal membership lemmas and audit exact axioms
+        working-directory: proof/PscVerif
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$HOME/.elan/bin/lake" env lean ../../proof/psc_routes/R1Smith.lean | tee "$RUNNER_TEMP/r1-smith-lean.log"
+          if grep -Eq 'sorryAx|error:' "$RUNNER_TEMP/r1-smith-lean.log"; then
+            echo "Refusing unverified Lean declarations" >&2
+            exit 1
+          fi
+          test "$(grep -c 'PSC_R1SMITH_AXIOMS_OK' "$RUNNER_TEMP/r1-smith-lean.log")" -eq 14
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: psc-r1-smith-lean-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/r1-smith-lean.log
+          if-no-files-found: warn
+          retention-days: 30
+
+  quint-exact-prime-power-controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Enforce exact head
+        env:
+          EXPECTED: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Typecheck scalar congruence model
+        run: npx --yes @informalsystems/quint@0.33.1 typecheck proof/quint/PscR1Smith.qnt
+      - name: Replay all four residues modulo 4
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Smith.qnt --main=PscR1SmithModFour --invariant=canonicalF4
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Smith.qnt --main=PscR1SmithModFour --invariant=modFourRefuses
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1Smith.qnt --main=PscR1SmithModFour | tee "$RUNNER_TEMP/r1-smith-four.log"
+          grep -E '4 passing|4 passed' "$RUNNER_TEMP/r1-smith-four.log" >/dev/null
+      - name: Replay mod-three false-acceptance control
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Smith.qnt --main=PscR1SmithModThree --invariant=canonicalF3
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1Smith.qnt --main=PscR1SmithModThree | tee "$RUNNER_TEMP/r1-smith-three.log"
+          grep -E '1 passing|1 passed' "$RUNNER_TEMP/r1-smith-three.log" >/dev/null
+      - name: Replay concrete Tribonacci integer Smith matrix witnesses
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Smith.qnt --main=PscR1SmithTribonacciMatrix --invariant=finiteTestBox
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Smith.qnt --main=PscR1SmithTribonacciMatrix --invariant=exactSmithDiagonal
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1Smith.qnt --main=PscR1SmithTribonacciMatrix | tee "$RUNNER_TEMP/r1-smith-matrix.log"
+          grep -E '4 passing|4 passed' "$RUNNER_TEMP/r1-smith-matrix.log" >/dev/null
+      - name: Replay all three locally admissible Tribonacci period-one digits
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Smith.qnt --main=PscR1SmithTribonacciParity --invariant=allowedProperPrefixDigit
+          npx --yes @informalsystems/quint@0.33.1 run proof/quint/PscR1Smith.qnt --main=PscR1SmithTribonacciParity --invariant=onlyZeroPasses
+          npx --yes @informalsystems/quint@0.33.1 test proof/quint/PscR1Smith.qnt --main=PscR1SmithTribonacciParity | tee "$RUNNER_TEMP/r1-smith-parity.log"
+          grep -E '3 passing|3 passed' "$RUNNER_TEMP/r1-smith-parity.log" >/dev/null

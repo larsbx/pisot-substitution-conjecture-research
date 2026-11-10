@@ -1,0 +1,2 @@
+[PASS] bounded non-unit residue tables, exact named certificate, controls and SC witnesses
+contract-receipt: Three-letter image-length<=3 depth<=6 actual-prefix residue counts; named 1/021/001 depth-two strict-half algebra certificate and literal strong coincidences

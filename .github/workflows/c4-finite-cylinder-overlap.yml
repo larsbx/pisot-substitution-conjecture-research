@@ -1,0 +1,83 @@
+name: C4 finite-cylinder overlap verifier
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/c4-finite-cylinder-overlap.yml'
+      - 'docs/c4-finite-cylinder-overlap*.md'
+      - 'docs/c4-nonunit-madic-counting-bridge-2026-11-04.md'
+      - 'kernel/psc/c4_finite_cylinder_overlap.mojo'
+      - 'kernel/c4_finite_cylinder_overlap.mojo'
+      - 'kernel/psc/c4_cylinder_density.mojo'
+      - 'kernel/tests/test_c4_finite_cylinder_overlap.mojo'
+      - 'kernel/tests/test_c4_cylinder_density.mojo'
+      - 'oracles/python/c4_finite_cylinder_overlap.py'
+      - 'tests/test_c4_finite_cylinder_overlap_oracle.py'
+      - 'evidence/c4-finite-cylinder-overlap-2026-11-04/rejected-empty-strict-component.json'
+      - 'kernel/psc/c4_nonunit_residue_occupancy.mojo'
+      - 'kernel/psc/derived_system.mojo'
+      - 'kernel/psc/c4_cut_pair_reduction.mojo'
+      - 'kernel/psc/exact.mojo'
+      - 'kernel/psc/words.mojo'
+      - 'kernel/psc/bpa.mojo'
+      - 'kernel/finite_exact/**'
+      - 'kernel/finite_linear_algebra/**'
+      - 'kernel/substitution_dynamics/**'
+      - 'kernel/mojo_smoke/**'
+      - 'kernel/pixi.toml'
+      - 'kernel/pixi.lock'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  finite-certificate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Assert checked-out revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          pixi-version: v0.81.0
+          manifest-path: kernel/pixi.toml
+          locked: true
+      - name: Canonical outer-certificate and density refusal controls
+        working-directory: kernel
+        run: |
+          pixi run --locked mojo run -I . tests/test_c4_finite_cylinder_overlap.mojo
+          pixi run --locked mojo run -I . tests/test_c4_cylinder_density.mojo
+      - name: Emit the complete bounded native certificate
+        working-directory: kernel
+        run: pixi run --locked mojo run -I . c4_finite_cylinder_overlap.mojo > /tmp/cylinder.txt
+      - name: Independent rational-inverse and algebraic-corner verification
+        env:
+          PSC_CYLINDER_NATIVE_OUTPUT: /tmp/cylinder.txt
+        run: |
+          python tests/test_c4_finite_cylinder_overlap_oracle.py
+          python oracles/python/c4_finite_cylinder_overlap.py /tmp/cylinder.txt > /tmp/cylinder-report.json
+      - name: Evidence surfaces
+        run: |
+          python tools/make_proof_bank.py --check
+          PYTHONPATH=tools python -m claim_governance.cli --root .
+          python tools/check_markdown_source.py
+      - name: Retain finite certificate and independent report
+        uses: actions/upload-artifact@v4
+        with:
+          name: finite-cylinder-certificate-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            /tmp/cylinder.txt
+            /tmp/cylinder-report.json

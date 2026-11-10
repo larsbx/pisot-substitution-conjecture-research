@@ -1,0 +1,51 @@
+name: C4 uniform run-family coincidence (levels 2-4)
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/c4-third-level-family.yml'
+      - 'docs/c4-uniform-third-level-coincidence-family-2026-11-04.md'
+      - 'docs/c4-asymmetric-third-level-coincidence-2026-11-04.md'
+      - 'docs/c4-closed-run-family-four-level-coincidence-2026-11-04.md'
+      - 'docs/c4-reversed-run-family-four-level-coincidence-2026-11-04.md'
+      - 'docs/c4-forward-run-family-sharp-depth-2026-11-04.md'
+      - 'kernel/psc/c4_third_level_coincidence_family.mojo'
+      - 'kernel/tests/test_c4_third_level_coincidence_family.mojo'
+      - 'tests/test_c4_third_level_coincidence_family_oracle.py'
+      - 'tests/test_c4_reversed_run_family_oracle.py'
+      - 'tests/test_c4_forward_sharp_depth_oracle.py'
+      - 'kernel/pixi.lock'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-family-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Verify exact checked-out revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Independent exact integer and literal-word oracle
+        run: |
+          python -m pip install 'pytest>=7,<10'
+          python -m pytest -q tests/test_c4_third_level_coincidence_family_oracle.py tests/test_c4_reversed_run_family_oracle.py tests/test_c4_forward_sharp_depth_oracle.py
+      - name: Prove generated Proof Bank inventory did not drift
+        run: python tools/make_proof_bank.py --check
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          pixi-version: v0.81.0
+          manifest-path: kernel/pixi.toml
+          locked: true
+      - name: Canonical bounded Mojo complete run-quadrant letter and BPA proof controls
+        working-directory: kernel
+        run: pixi run --locked mojo run -I . tests/test_c4_third_level_coincidence_family.mojo

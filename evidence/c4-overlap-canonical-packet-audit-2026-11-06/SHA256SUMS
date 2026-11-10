@@ -1,0 +1,14 @@
+d5d7c9c6afb2bc38a234ee3d3235e204631410df7edf045bf8dee286c70d96c5  ./Audit0.lean.txt
+ddf85e83b16c8d00820f35b114629d083908c2405ffc33377841f1dddcb5f1ea  ./README.md
+6e279c1afb0a8c3db584243cca1be0a798f9cc055ba0b40d00250eed486e1b72  ./Source0.lean.gz
+f5aaa33ed04ceac0dd590741fdaa8f3067558b330a6c159447b6d98fdf33f07c  ./Source0.log.gz
+2f0931425dce8e675394381bba331129bfe289c2ef401e0f27d923270b734664  ./class-oracle-tests.txt
+b3095e7a406a7683b7f61e449ad0087f6bebcd95993a4ed9b5b702d45f314ad1  ./hosted-generic-audit.log.gz
+d1981e1e6a66b4c938479bfd1e457becd5b287ba28932f59d0acc3b06c3ae50b  ./hosted-oracle-receipt.json
+3f1c91180764631717080ea845553a272ac9afe07c02da2ca77159f878341f4a  ./hosted-packet-receipt.json
+dfe6e16e896614dde1bb50ad377f3d0edc1fa6c6de4160ac2a5e4fbfc6c90840  ./inspection.json
+297c0bb649ef53d7310ab1f5b691df3a5c2b471f4617c1371ac895faff7abb8c  ./local-validation.json
+c5e54b1f507bff8b10762c7b50867ff10c7dd6aff1e3a9c2df4d421e405c94f9  ./mutation-tests.txt
+7bfbf9c008823cc8d0f3cd090406ba3201571df43766b1dd33a3251b925d829f  ./payload-manifest.json
+59079853c5eff42d4637d57c90bea5a6b8a326329f4420f8b53c76132a012f3b  ./provenance.json
+a204a653cfa01b17d57caf7f0d0cc979752274c3d13509d9e1a95b008bb54044  ./wrong-proof-type-control.json

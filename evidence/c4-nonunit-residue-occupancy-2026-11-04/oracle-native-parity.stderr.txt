@@ -1,0 +1,16 @@
+test_exact_occupancy_bounds_not_volume_equalities (test_c4_nonunit_residue_occupancy_oracle.TestNonunitResidueOccupancy.test_exact_occupancy_bounds_not_volume_equalities) ... ok
+test_exact_residue_refinement_consistency (test_c4_nonunit_residue_occupancy_oracle.TestNonunitResidueOccupancy.test_exact_residue_refinement_consistency) ... ok
+test_first_level_half_bound_is_not_strict (test_c4_nonunit_residue_occupancy_oracle.TestNonunitResidueOccupancy.test_first_level_half_bound_is_not_strict) ... ok
+test_full_second_level_table (test_c4_nonunit_residue_occupancy_oracle.TestNonunitResidueOccupancy.test_full_second_level_table) ... ok
+test_incidence_perron_vector_and_pisot_algebra (test_c4_nonunit_residue_occupancy_oracle.TestNonunitResidueOccupancy.test_incidence_perron_vector_and_pisot_algebra) ... ok
+test_invalid_or_exhausted_inputs_refuse (test_c4_nonunit_residue_occupancy_oracle.TestNonunitResidueOccupancy.test_invalid_or_exhausted_inputs_refuse) ... ok
+test_literal_strong_coincidence_witnesses (test_c4_nonunit_residue_occupancy_oracle.TestNonunitResidueOccupancy.test_literal_strong_coincidence_witnesses) ... ok
+test_mass_conservation_at_six_depths (test_c4_nonunit_residue_occupancy_oracle.TestNonunitResidueOccupancy.test_mass_conservation_at_six_depths) ... ok
+test_native_driver_tables_against_fraction_oracle (test_c4_nonunit_residue_occupancy_oracle.TestNonunitResidueOccupancy.test_native_driver_tables_against_fraction_oracle) ... ok
+test_unimodular_quotient_is_trivial (test_c4_nonunit_residue_occupancy_oracle.TestNonunitResidueOccupancy.test_unimodular_quotient_is_trivial) ... ok
+test_word_order_cannot_be_recovered_from_incidence (test_c4_nonunit_residue_occupancy_oracle.TestNonunitResidueOccupancy.test_word_order_cannot_be_recovered_from_incidence) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.084s
+
+OK

@@ -10,6 +10,7 @@ Reachable == {
     "BoxAutomatonPDSCertificate",
     "BoxCycleContainment",
     "C3Locality",
+    "C4FromStrongCoincidence",
     "ClassABoundaryHittingHighGaps",
     "ClassABoundaryHittingLowGaps",
     "ClassCBoundaryHittingLowGaps",

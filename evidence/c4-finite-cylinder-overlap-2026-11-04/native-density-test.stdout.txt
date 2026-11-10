@@ -1,0 +1,2 @@
+C4_CYLINDER_DENSITY_PASS
+contract-receipt: bounded complete literal strict child closure, exact all-column pair coverage, non-Pisot uniform density 1/9, authenticated named-chart growth and physical lengths; missing children, false components, phase confusion and unsupported normalization refuse; no machine measure proof or general C4 conclusion

@@ -166,6 +166,10 @@
       "periodic-pair form of a strict zipper",
       "Theorem B"
     ],
+    "C4FromStrongCoincidence": [
+      "cut-pair reduction",
+      "Theorem A(4)"
+    ],
     "PDSImpliesSeedwiseTermination": [
       "seedwise bridge"
     ],
@@ -3067,29 +3071,66 @@
       ],
       "tags": []
     },
-    "C4": {
-      "id": "sha256:b08373a2c4d79c6aeeb3f3d1b4bc3db4c591019a7c4f65c190eb9acebb4573ff",
-      "kind": "pending_dependency",
-      "statement": "the C4 hypothesis of the boundary route",
+    "C4FromStrongCoincidence": {
+      "id": "sha256:9d77a2aa75e8cbde58f804f4a8cf9856851a521a5ec8b5f05eb142c434fbe79d",
+      "kind": "repository_theorem",
+      "statement": "every finite closed nonproductive noncoincident balanced-pair component has a first-letter pair with no left strong-coincidence witness; hence all-pairs prefix coincidence leaves no strict component and C3-local holds vacuously",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [],
       "evidence": [
         [
-          "reason",
-          "open sufficiency premise of the C4 route"
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/c4-cut-pair-productivity-2026-11-04.md, Theorem A(4); docs/c4-cut-attractor-window-2026-11-05.md, Propositions 2 and 3; docs/c4-finite-domain-closure-2026-11-05.md; human review pending"
+        ]
+      ],
+      "tags": []
+    },
+    "C4": {
+      "id": "sha256:2dd9882b38da4c505d504d40756463a1f03bd6d2fb927012e735d0d69e04ee33",
+      "kind": "repository_theorem",
+      "statement": "C3-local holds for every strict component of every ternary PIP substitution: under all-pairs prefix coincidence no strict component exists, so the C4 hypothesis of the boundary route follows from the aligned lemma A",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:9d77a2aa75e8cbde58f804f4a8cf9856851a521a5ec8b5f05eb142c434fbe79d",
+          "every finite closed nonproductive noncoincident balanced-pair component has a first-letter pair with no left strong-coincidence witness; hence all-pairs prefix coincidence leaves no strict component and C3-local holds vacuously",
+          "C4/C4FromStrongCoincidence",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:4fe470900f494dc44ffd7abf0bf94863119795fdd0be3c52a85721826b7efb95",
+          "for every ternary PIP substitution every pair of distinct letters is eventually prefix coincident (aligned lemma A; reduced to residual fixed-letter A1-prime by squaring)",
+          "C4/UniversalAlignedCoincidence",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/c4-finite-domain-closure-2026-11-05.md; the implication is the cut-pair reduction, the premise is UniversalAlignedCoincidence (issue #138); general C4 is equivalent to bounded-gap A1-prime (docs/c4-cut-attractor-window-2026-11-05.md, Proposition 3)"
         ]
       ],
       "tags": []
     },
     "C3Local": {
-      "id": "sha256:831865baeecbdc878ac721a5fd52ea4eb5b60ba26045ff0391eb3b8898af1796",
+      "id": "sha256:a6cdd93fc40e099e8a5e6a42b12f175f9c7a986c9ab89c1eeb7cb172bdfac655",
       "kind": "repository_theorem",
       "statement": "C4 gives C3-local",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:b08373a2c4d79c6aeeb3f3d1b4bc3db4c591019a7c4f65c190eb9acebb4573ff",
-          "the C4 hypothesis of the boundary route",
+          "sha256:2dd9882b38da4c505d504d40756463a1f03bd6d2fb927012e735d0d69e04ee33",
+          "C3-local holds for every strict component of every ternary PIP substitution: under all-pairs prefix coincidence no strict component exists, so the C4 hypothesis of the boundary route follows from the aligned lemma A",
           "C3Local/C4",
           "same",
           "accepted"
@@ -3115,13 +3156,13 @@
       "tags": []
     },
     "C2": {
-      "id": "sha256:45f16b829181ca02ac8c537030f86f2dd57fb7f870a52d105ba912f69f369d2f",
+      "id": "sha256:6bef2876afea0f60ee2ef7ce3a723e9b994ad3fbeab5e464b8474d0549229bcb",
       "kind": "repository_theorem",
       "statement": "C3-local gives C2",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:831865baeecbdc878ac721a5fd52ea4eb5b60ba26045ff0391eb3b8898af1796",
+          "sha256:a6cdd93fc40e099e8a5e6a42b12f175f9c7a986c9ab89c1eeb7cb172bdfac655",
           "C4 gives C3-local",
           "C2/C3Local",
           "same",
@@ -3141,7 +3182,7 @@
       "tags": []
     },
     "SCCProducer": {
-      "id": "sha256:589e30e66dfa010f3b12e0cda786abee7fa5c268538c6eb29b4562d33d0695d1",
+      "id": "sha256:cc8aeb746d8107a2df868ed13e2a289b0278e0edfdcac46b42b797104ef9e427",
       "kind": "repository_theorem",
       "statement": "SCC Producer / C1 follows from G1, the sink-SCC reduction, and C2",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
@@ -3161,7 +3202,7 @@
           "accepted"
         ],
         [
-          "sha256:45f16b829181ca02ac8c537030f86f2dd57fb7f870a52d105ba912f69f369d2f",
+          "sha256:6bef2876afea0f60ee2ef7ce3a723e9b994ad3fbeab5e464b8474d0549229bcb",
           "C3-local gives C2",
           "SCCProducer/C2",
           "same",
@@ -3187,7 +3228,7 @@
       ]
     },
     "PDS": {
-      "id": "sha256:d48553171235585c89256d5aef89abf11f2f771444c33b0514e4d40118b54081",
+      "id": "sha256:d2e9c7c7eb3fb748230d2fee0a8b3eca4aa00d88221d749e822e55564e9888ac",
       "kind": "repository_theorem",
       "statement": "pure discrete spectrum follows from G1 and SCC Producer",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
@@ -3200,7 +3241,7 @@
           "accepted"
         ],
         [
-          "sha256:589e30e66dfa010f3b12e0cda786abee7fa5c268538c6eb29b4562d33d0695d1",
+          "sha256:cc8aeb746d8107a2df868ed13e2a289b0278e0edfdcac46b42b797104ef9e427",
           "SCC Producer / C1 follows from G1, the sink-SCC reduction, and C2",
           "PDS/SCCProducer",
           "same",

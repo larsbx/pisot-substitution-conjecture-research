@@ -14,6 +14,7 @@ Reachable == {
     "BoxCycleContainment",
     "BrunCompositeSymbolicPDS",
     "C3Locality",
+    "C4FromStrongCoincidence",
     "ClassABoundaryHittingHighGaps",
     "ClassABoundaryHittingLowGaps",
     "ClassCBoundaryHittingLowGaps",

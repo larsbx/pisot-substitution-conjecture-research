@@ -1,0 +1,39 @@
+
+  PhysicalMassAdversarial
+    1) incompleteRootReachabilityRefusedTest failed after 1 test(s)
+
+  1 failed
+
+  1) incompleteRootReachabilityRefusedTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-physical-mass-snapshot-qarbchjq/partial-root-coverage-allowed.qnt:302:47
+        302:   run incompleteRootReachabilityRefusedTest = init.expect({
+                                                           ^^^^^^^^^^^^^
+        303:     val t = List(List(0, 0), List(0, 2))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        304:     val h = List(1, 1)
+             ^^^^^^^^^^^^^^^^^^^^^^
+        305:     val v = List(0, 1)
+             ^^^^^^^^^^^^^^^^^^^^^^
+        306:     val roots = Set(0)
+             ^^^^^^^^^^^^^^^^^^^^^^
+        307:     all {
+             ^^^^^^^^^
+        308:       premises(t, h, v, 2), deficit(t, h, 2) == List(2, 0),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        309:       closure(t, roots) == Set(0), not(fullRootCoverage(t, roots)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        310:       roots.forall(i => v[i] == 0), not(allZero(v)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        311:       not(sourceLoss(t, deficit(t, h, 2))),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        312:     }
+             ^^^^^
+        313:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f4 --match=incompleteRootReachabilityRefusedTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-physical-mass-snapshot-qarbchjq/partial-root-coverage-allowed.qnt
+error: Tests failed

@@ -1,0 +1,60 @@
+{
+  "format": "pr502-lean-hosted-evidence-v1",
+  "source_revision": "889cb6ced1fae155481a0ab6e992189b408e7e1b",
+  "base_revision": "56ecd728069465c6c0e58e4d53936d6bce986e1f",
+  "pull_request": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/503",
+  "workflow_run": {
+    "id": 42215167661,
+    "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42215167661",
+    "job_id": 127883241410,
+    "conclusion": "success"
+  },
+  "lean": "4.34.0-rc2",
+  "mathlib": "4edb0dbaa3b3cf729d86d1e2f035474d5ae2ac09",
+  "named_proofs": 99,
+  "permitted_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "main_conclusions": [
+    "TwoTail502.uniform_pairwise_five",
+    "TwoTail502.uniform_balanced_root_productivity",
+    "TwoTail502.no_smaller_common_bound"
+  ],
+  "proof_bank_check": {
+    "passed": true,
+    "governed_claims": 126,
+    "existing_named_proofs": 68,
+    "source_openings": 375
+  },
+  "artifact": {
+    "id": 13500603656,
+    "name": "pr502-lean-889cb6ced1fae155481a0ab6e992189b408e7e1b",
+    "digest": "sha256:560a8e81fe6002f3a6e042bd906ba82a1117a7c5c45643c200f20f2be6e11617",
+    "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42215167661/artifacts/13500603656",
+    "contains": [
+      "receipt.json",
+      "build.log",
+      "axioms.log",
+      "AxiomAudit.lean"
+    ]
+  },
+  "normalized_axiom_log": "axioms-from-hosted.log",
+  "normalization": "Only the runner's direct #print axioms output; GitHub timestamp prefixes removed. Build-time duplicate info messages excluded.",
+  "remaining_word_scope_kernel_obligations": [],
+  "non_claims": [
+    "No merge authorized or performed",
+    "No general PSC promotion",
+    "No overlap-certificate verification attributed",
+    "No incidence/Pisot or conditional spectral theorem formalized",
+    "No Mojo/compressed-DAG implementation refinement",
+    "No independent human review claimed"
+  ],
+  "failed_development_runs": [
+    42213515640,
+    42214110886,
+    42214706306
+  ],
+  "independence": "Written proof specialized directly to Lean lists; finite Python enumeration is not a premise of the unbounded theorems."
+}
