@@ -60,6 +60,9 @@ import PscVerif.OccurrenceStrict
 import PscVerif.OccurrenceFinite
 import PscVerif.OccurrenceSuccessor
 import PscVerif.OccurrenceRecurrence
+import PscVerif.OccurrenceMass
+import PscVerif.OccurrenceMassCounts
+import PscVerif.OccurrenceMassStrict
 import PscVerif.DescendantSpan
 import PscVerif.DescendantSpanStrict
 import PscVerif.ReductioControls
