@@ -59,13 +59,20 @@ def reaches_same(h, a, b):
     return False
 
 
+def load(name):
+    return [json.loads(line) for line in (EVIDENCE / f"{name}.jsonl").read_text().splitlines()]
+
+
 @pytest.mark.parametrize("name,counts", [
     ("real-secondary", (507, 948, 4)),
     ("non-pisot-strict", (46, 82, 1)),
     ("gf-actual", (153, 235, 1)),
 ])
 def test_mojo_graph_against_literal_word_oracle(name, counts):
-    rows = [json.loads(line) for line in (EVIDENCE / f"{name}.jsonl").read_text().splitlines()]
+    verify_dump(load(name), counts)
+
+
+def verify_dump(rows, counts):
     by = defaultdict(list)
     for row in rows:
         by[row["record"]].append(row)
@@ -174,6 +181,22 @@ def test_mojo_graph_against_literal_word_oracle(name, counts):
                 expected_edges[pid, packet_index[dest_key], td, bd] += 1
     assert expected_keys == set(packet_index)
     assert expected_edges == Counter((e["source"], e["destination"], *e["digits"]) for e in edges.values())
+
+    # The two equalities above make the packet set a fixed point: it contains
+    # the roots and is closed under the literal transition. Every packet must
+    # also be reachable from a root, so that the dump is the least such set and
+    # not a superset of it (test_root_unreachable_closed_packets_are_refused).
+    successors = defaultdict(list)
+    for e in edges.values():
+        successors[e["source"]].append(e["destination"])
+    reached = {i for i, p in packets.items() if p["factor_edge"] == -1}
+    frontier = deque(reached)
+    while frontier:
+        for j in successors[frontier.popleft()]:
+            if j not in reached:
+                reached.add(j)
+                frontier.append(j)
+    assert reached == set(packets), "packets unreachable from every root"
     assert splits == header["split_descendants"]
 
     incidence = [[Counter(sigma[j])[i] for j in range(3)] for i in range(3)]
@@ -242,6 +265,62 @@ def test_mojo_graph_against_literal_word_oracle(name, counts):
         assert value(q) > value(p) or r["strict"] and value(q) == value(p)
     assert summary["packets_without_target"] == len(packets) - len(depth)
     assert summary["terminal_misses"] == sum(not p["success"] and not any(e["source"] == i for e in edges.values()) for i, p in packets.items())
+
+
+def mirror(p, new_id):
+    """The same occurrence pair read in the other orientation."""
+    return {**p, "id": new_id, "orientation": -p["orientation"],
+            "occurrences": p["occurrences"][::-1],
+            "top_address": p["bottom_address"], "bottom_address": p["top_address"],
+            "target_letters": p["target_letters"][::-1],
+            "residual": [-x for x in p["residual"]]}
+
+
+def test_root_unreachable_closed_packets_are_refused():
+    """Negative control for the reachability check of verify_dump.
+
+    Add to the real-secondary dump the mirror images of the forward closure of
+    one archived packet cycle. Each added packet is a literal occurrence pair
+    and the enlarged set is still closed under the transition, so the fixed
+    point checks pass; none of the added packets is reachable from a root.
+    """
+    rows = load("real-secondary")
+    packets = {r["id"]: r for r in rows if r["record"] == "packet"}
+    edges = [r for r in rows if r["record"] == "edge"]
+    cycle = next(r for r in rows if r["record"] == "target_free_scc" and r["id"] == 3)["members"]
+    out = defaultdict(list)
+    for e in edges:
+        out[e["source"]].append(e)
+    closure, stack = set(cycle), list(cycle)
+    while stack:
+        for e in out[stack.pop()]:
+            if e["destination"] not in closure:
+                closure.add(e["destination"])
+                stack.append(e["destination"])
+    index = {key(p): i for i, p in packets.items()}
+    image, added = {}, []
+    for i in sorted(closure):
+        m = mirror(packets[i], max(packets) + 1 + len(added))
+        if key(m) in index:
+            image[i] = index[key(m)]
+        else:
+            image[i] = index[key(m)] = m["id"]
+            added.append(m)
+    seen = {(e["source"], e["destination"], *e["digits"]) for e in edges}
+    new_edges = []
+    for i in sorted(closure):
+        for e in out[i]:
+            row = (image[i], image[e["destination"]], e["digits"][1], e["digits"][0])
+            if row not in seen:
+                seen.add(row)
+                new_edges.append({"record": "edge", "id": max(r["id"] for r in edges) + 1 + len(new_edges),
+                                  "source": row[0], "destination": row[1], "digits": list(row[2:]),
+                                  "lambda": [-x for x in e["lambda"]]})
+    assert added and new_edges
+    forged = rows + added + new_edges
+    counts = (len(packets) + len(added), len(edges) + len(new_edges), 4)
+    with pytest.raises(AssertionError, match="packets unreachable from every root"):
+        verify_dump(forged, counts)
 
 
 def test_failed_mechanisms_have_concrete_controls():
