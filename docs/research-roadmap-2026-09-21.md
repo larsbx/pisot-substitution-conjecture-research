@@ -1,5 +1,32 @@
 # PSC research roadmap — 2026-09-21
 
+## 2026-11-10 implementation follow-up to #532
+
+The [concrete occurrence bridge](c4-concrete-occurrence-2026-11-10.md)
+connects literal balanced factors, their occurrence ordinals, physical
+prefix lengths and one-step interior newborn cuts. It derives rational
+length injectivity from irreducibility of the incidence cubic. Its input
+still includes actual located word occurrences; constructing those objects
+from arbitrary addresses and transporting an entire packet path remain
+separate obligations.
+
+The [degree-five completion](c4-degree-five-completion-2026-11-10.md)
+provides the reciprocal-polynomial factorization `q5=g^k`, the actual image
+rank `3k`, the zero-image case and determinant exclusion under the unchanged
+degree-five sieve hypotheses. Literal strict-child realizability remains
+open. The [original next-obligations note](c4-next-proof-obligations-2026-11-10.md)
+now distinguishes these implemented pieces from the rest of its program.
+
+**Next formal priority:** construct a `FactorOccurrence` from each actual
+global address, then prove the occurrence-to-packet transition square with
+the local residual, track order, normalization and child ordinal preserved.
+Compose finite realizable paths with the supplied-parent newborn theorem and
+the existing concrete strict-system closure theorem. Soundness, completeness
+for the declared occurrence universe and consistent infinite lifting retain
+separate statements. The next mathematical target is still productivity of
+at least one forced crossing in every supplied hypothetical strict PIP
+component. General C4, Concentration and global G1 remain open.
+
 ## 2026-11-10 C4 continuation after the reciprocal sieve and both-end control
 
 **Inspection baseline:** `main@c38e381cc8105d87597b0a9bfbe418b7bca86fc0`.
@@ -63,7 +90,7 @@ mass/support/rank theorems do **not** supply their open universal premises.
 | P0 | **Quantifier-safe composition** | For every proposed bridge, declare domain, quantifier order, existential vs all-edge reachability, finite vs arbitrary substitution, geometry and source-refinement premises; give a Lean/Quint lemma or a replayable countermodel for each nontrivial implication. In particular, `some target path` is not `all paths terminate`, and measure zero is not emptiness or a one-step `Sync_±` birth. | #497, #519, #520, #521; finite cyclic packet controls and productive-root/nonproductive-descendant regression. |
 | P0 | **Literal packet realization/refinement** | A commuting occurrence-to-packet transition square preserving *both* selected actual occurrence addresses, parent/child ordinal, orientation, residual Parikh and strict interior/boundary classification. Separately establish soundness, completeness relative to the declared occurrence universe, and (only if needed) consistent lifting of infinite abstract paths; do not infer any one from the others. | [target-aware diagnostic](target-aware-bpa-diagnostic-2026-10-02.md), [strict-birth atlas](c4-strict-birth-atlas-2026-11-02.md), [good-edge bridge](c4-good-edge-system-bridge.md). Reject strong G/F at literal factorization, not at a weaker algebraic layer. |
 | P0 | **C4 versus G1 extraction** | State C4 for a *supplied finite strict child-closed SCC with complete actual factorization* and state G1b-2/other global extraction separately. Prove any transfer only with its independent finiteness premise. | #9/#461; G1b-1 bounded discrepancy and UD derived from full incidence rank are already established; do not assume UD or finite BPA anew. |
-| P1 | **Degree-five Concentration continuation (updated 2026-11-10)** | Quotient/image transport, mixed weights, root lift and signed Perron sieve are accepted through #528. Next formalize reciprocal-polynomial multiplicities and image-rank divisibility, then test literal ordered-child invariants against the surviving `(2,2,1)` sector. | [Transport and realizability interface](c4-degree-five-spectral-transport.md), [current obligations](c4-next-proof-obligations-2026-11-10.md). The reciprocal plastic cubic is an abstract control, with literal realization a separate obligation. |
+| P1 | **Degree-five Concentration continuation (updated 2026-11-10)** | Quotient/image transport, mixed weights, root lift and signed Perron sieve are accepted through #528. Reciprocal-polynomial multiplicities, actual-image rank divisibility and the zero-image case are implemented in the [degree-five completion](c4-degree-five-completion-2026-11-10.md), with exact-revision acceptance required before integration. Next test literal ordered-child invariants against the surviving `(2,2,1)` sector. | [Transport and realizability interface](c4-degree-five-spectral-transport.md), [current obligations](c4-next-proof-obligations-2026-11-10.md). The reciprocal plastic cubic is an abstract control, with literal realization a separate obligation. |
 | P1 | **Ordered hub-residual dynamics** | Propose a literal word-level invariant or return-word/recognizability argument which forces an interior `Sync_+` or `Sync_-` newborn from the exact Barge–Diamond good-edge hypotheses; if false, archive a genuine occurrence-level PIP witness. Algebraic Parikh, free-Lie or quotient data alone do not prove alignment. | #457, #459/#461, existing degree-three/four concentration work; test phase-flat non-PIP and delayed PIP controls first. |
 | P1 | **Finite-to-uniform mechanism** | Prove a parameter-dependent well-founded ranking, a uniform recurrence exclusion, or a valid compactness argument with closed *realizable* transitions; document why productive cycles rule out all-edge descent. Finite censuses cannot discharge this. | 4,554 corpus, twelve-source physical-mass computations, class-A run-index family and known packet cycles. |
 | P1 | **Shared proof interface across C4/R1/mass/BH** | For each pair of routes, write the exact output/input type and one minimal transfer lemma or a counterexample to the attempted transfer. Physical-mass source loss must be refined to genuine geometric overlaps and then to a word cut before it can imply C4. | #497/#515/#519, #520, #138/#139; keep `zero measure → empty` explicitly invalid. |

@@ -13,8 +13,11 @@ image-root lift and signed Perron sieve of PRs
 [#527](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/527)
 and [#528](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/528).
 The [spectral transport note](c4-degree-five-spectral-transport.md) records
-their exact scope and hosted acceptance. The remaining algebraic target is
-reciprocal-polynomial multiplicity and image-rank classification; literal
+their exact scope and hosted acceptance. The
+[reciprocal completion](c4-degree-five-completion-2026-11-10.md) now implements
+multiplicity and actual-image rank classification, including the zero image
+and determinant exclusion. That new source requires its own exact-revision
+Lean and axiom-audit receipts; the older hosted runs do not cover it. Literal
 strict-child realizability remains open. No C4 or Concentration status changes.
 
 ## Lean statements
@@ -117,10 +120,12 @@ degree-four argument that forces a signed eigenvalue at the Perron modulus
 has no counterpart from this bound alone. The immediate mathematical
 obstruction is to exclude a nonzero realizable defect image supported on
 the surviving `(2,2,1)` weights, or to derive a stronger constraint on that
-image. Formalizing `q5 = g^k` for the reciprocal cubic `g`, including the
-zero-image case, and `rank Q5 = 3k` is a separate next target described in the
-spectral transport note. The finite multiplicity table alone does not prove
-that image-rank statement.
+image. `Degree5Completion.q5_eq_pow_rank` now implements `q5 = g^k`
+for the reciprocal cubic `g`, including the zero-image case, and
+`rank Q5 = 3k`. The proof uses rational irreducibility and induction on
+polynomial degree; the finite multiplicity table alone does not prove that
+image-rank statement. See the [completion note](c4-degree-five-completion-2026-11-10.md)
+for the theorem map, controls and exact verification boundary.
 
 The `StrictSystem` first-defect selection wrappers still cover degrees two,
 three and four, not degree five; the degree-five modules take `Equiv4`

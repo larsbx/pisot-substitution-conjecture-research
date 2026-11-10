@@ -47,11 +47,13 @@ import PscVerif.Degree5Weights
 import PscVerif.Degree5RootLift
 import PscVerif.Degree5Sector
 import PscVerif.Degree5Sieve
+import PscVerif.Degree5Completion
 import PscVerif.SectorBridge
 import PscVerif.Degree3Sector
 import PscVerif.Degree4Floor
 import PscVerif.Degree3Catalogue
 import PscVerif.StrictSystem
+import PscVerif.OccurrenceNewborn
 import PscVerif.ReductioControls
 import PscVerif.OverlapContraction
 import PscVerif.OverlapPacket

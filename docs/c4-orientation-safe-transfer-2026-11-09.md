@@ -111,12 +111,22 @@ it out.
 [OrientationSafe.lean](../evidence/c4-orientation-safe/OrientationSafe.lean)
 gives the generic relational path composition, closed-set obstruction and
 strictness contradiction. Its pinned Lean check passed at the PR #530
-revision in the hosted run recorded below. The occurrence transport,
-Perron argument and first-diagonal-to-newborn construction above remain
-mathematical proofs in prose: the standalone Lean source does not define
-words, tile intervals, actual factorization, source addresses or newborn
-cuts. Formalizing those realization-preserving bridges is a separate next
-obligation, not a consequence of the relational check.
+revision in the hosted run recorded below. At that revision the occurrence
+transport, Perron argument and first-diagonal-to-newborn construction above
+remained mathematical proofs in prose: the standalone Lean source does not
+define words, tile intervals, actual factorization, source addresses or
+newborn cuts.
+
+The [2026-11-10 concrete continuation](c4-concrete-occurrence-2026-11-10.md)
+adds a separate `OccurrenceNewborn` module over actual words and the
+complete `Reduction.red`. It covers common-factor ordinal uniqueness for
+already located tile occurrences, derives Perron-length injectivity from
+cubic irreducibility, extracts exact singleton factors and synchronized
+newborns, and lifts this extraction along literal `Descendants.Child`
+paths. Full global-address lookup, residual/sign transport, and packet
+soundness/completeness remain separate obligations. The new module needs
+its own revision's Lean acceptance; the historical generic-only receipt
+below does not verify the new source or discharge those remaining bridges.
 
 ## Finite replay
 
