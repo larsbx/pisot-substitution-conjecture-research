@@ -2754,3 +2754,20 @@ claim-ledger promotion. Evidence: `docs/occurrence-path-replay-2026-10-16.md`,
   - Each module had an adversarial review; no blocker or major finding, and the minor docstring findings were fixed. Graph logic and literal rows only: nothing here says that any packet table is sound or complete.
 
   Locator: `proof/PscVerif/PscVerif/{OccurrenceGraph,GraphEmbedding}.lean`.
+
+- **2026-11-10 — Packet square, wave A (Mojo): the packet-square-v1 exporter.** New files:
+  - `kernel/psc/packet_square_export.mojo` (canonical);
+  - the driver `kernel/packet_square_export.mojo`;
+  - the regression test `kernel/tests/test_packet_square_export.mojo` (contract only);
+  - `kernel/check_packet_square.sh`;
+  - `evidence/packet-square-2026-11-10/` (four JSONL files with `SHA256SUMS`: Tribonacci `01/02/0`, real-secondary `1/02/202`, non-Pisot strict `1/012/1`, strong G/F actual `1/2/021`).
+
+  Each packet carries its full literal digit star, with each split given by its two ordinals, so a split descendant is recorded rather than only counted. It also carries a root-reachable birth (the first incoming edge), a supplied key order and hub bits, with undefined bits as `null`. Caps and `sync-right` refuse.
+  - **Stricter than the Lean checker:** `verify_packet_square` requires the birth to be the first incoming edge; the planned Lean `birthOK` accepts any earlier packet whose star holds the child.
+  - **Unchanged:** `target_packets.mojo` and the archived `target-aware-bpa-v1` bytes are untouched and still reproduce (`check_target_packets.sh` PASS).
+  - **Lean comparison skipped:** `check_packet_square.sh` exits 1 until the Lean data modules are committed (wave K). With `--no-lean-compare` it exits 2 and prints INCOMPLETE, never PASS. The review's major finding was that the skipped comparison had reported PASS.
+  - **Mutation run:** 36 of 38 mutants killed. The two survivors are an address check made redundant by the key check, and an equivalent mutant.
+  - **Hidden dependencies:** the driver imports parsers from `kernel/target_aware_bpa.mojo` and `ints_json` from `psc/target_packet_report.mojo`, so the future `packet-square.yml` path filter must list both.
+  - **API deviations from the design brief §6.2:** an extra `command` argument to the Lean emitter, and `PacketSquare.hubs`.
+
+  Locator: `kernel/psc/packet_square_export.mojo`; `evidence/packet-square-2026-11-10/`.
