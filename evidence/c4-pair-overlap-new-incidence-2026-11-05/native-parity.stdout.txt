@@ -1,0 +1,451 @@
+{
+  "schema": "c4-pair-overlap-new-incidence-v1",
+  "canonical_language": "Mojo",
+  "source_count": 12,
+  "distinct_letter_root_count": 36,
+  "incidence": [
+    [
+      0,
+      1,
+      1
+    ],
+    [
+      2,
+      1,
+      1
+    ],
+    [
+      0,
+      1,
+      0
+    ]
+  ],
+  "characteristic_polynomial": [
+    -2,
+    -3,
+    -1,
+    1
+  ],
+  "radii": [
+    8,
+    8
+  ],
+  "block": 12,
+  "literal_digits_per_source": 178973,
+  "carrier": [
+    {
+      "pair": [
+        0,
+        0
+      ],
+      "bounds": [
+        [
+          -15,
+          15
+        ],
+        [
+          -14,
+          14
+        ],
+        [
+          -16,
+          16
+        ]
+      ]
+    },
+    {
+      "pair": [
+        0,
+        1
+      ],
+      "bounds": [
+        [
+          -15,
+          15
+        ],
+        [
+          -14,
+          14
+        ],
+        [
+          -16,
+          16
+        ]
+      ]
+    },
+    {
+      "pair": [
+        0,
+        2
+      ],
+      "bounds": [
+        [
+          -15,
+          15
+        ],
+        [
+          -14,
+          14
+        ],
+        [
+          -16,
+          16
+        ]
+      ]
+    },
+    {
+      "pair": [
+        1,
+        1
+      ],
+      "bounds": [
+        [
+          -15,
+          15
+        ],
+        [
+          -14,
+          14
+        ],
+        [
+          -16,
+          16
+        ]
+      ]
+    },
+    {
+      "pair": [
+        1,
+        2
+      ],
+      "bounds": [
+        [
+          -15,
+          15
+        ],
+        [
+          -14,
+          14
+        ],
+        [
+          -16,
+          16
+        ]
+      ]
+    },
+    {
+      "pair": [
+        2,
+        2
+      ],
+      "bounds": [
+        [
+          -15,
+          15
+        ],
+        [
+          -14,
+          14
+        ],
+        [
+          -16,
+          16
+        ]
+      ]
+    }
+  ],
+  "carrier_capacity": 178002,
+  "state_budget_per_source": 20000,
+  "weight_budget": 1000000,
+  "rate": [
+    125,
+    20
+  ],
+  "beta_squared_lower_bound": [
+    63,
+    10
+  ],
+  "finite_exponent": 3072,
+  "finite_upper_bound_strictly_below": [
+    1,
+    10
+  ],
+  "total_states": 43915,
+  "total_edges": 253395,
+  "sources": [
+    {
+      "index": 0,
+      "images": [
+        "11",
+        "012",
+        "01"
+      ],
+      "states": 3664,
+      "edges": 21151,
+      "residue_rejections": 104244,
+      "box_rejections": 13609,
+      "carrier_rejections": 0,
+      "sweeps": 51,
+      "minimum_gap": 125,
+      "maximum_weight": 3070,
+      "root_weights": [
+        934,
+        1400,
+        293
+      ],
+      "certificate_sha256": "2fc66be888a1a2858376af6887612f07cdaba629e6dd99b2e884fee3f2c73930"
+    },
+    {
+      "index": 1,
+      "images": [
+        "11",
+        "012",
+        "10"
+      ],
+      "states": 3649,
+      "edges": 21164,
+      "residue_rejections": 103734,
+      "box_rejections": 13456,
+      "carrier_rejections": 0,
+      "sweeps": 123,
+      "minimum_gap": 125,
+      "maximum_weight": 4553,
+      "root_weights": [
+        2491,
+        1395,
+        1201
+      ],
+      "certificate_sha256": "eb4607a92821c0293865411f1adae68a3efbc1b6eeecf8e98b1c691daaac6bc9"
+    },
+    {
+      "index": 2,
+      "images": [
+        "11",
+        "021",
+        "01"
+      ],
+      "states": 3667,
+      "edges": 21103,
+      "residue_rejections": 104246,
+      "box_rejections": 13636,
+      "carrier_rejections": 0,
+      "sweeps": 41,
+      "minimum_gap": 125,
+      "maximum_weight": 2418,
+      "root_weights": [
+        2,
+        1,
+        1528
+      ],
+      "certificate_sha256": "87484ad319e69f2e14fbedee527d066a48e6dd762ab296df37052a24894e2ae8"
+    },
+    {
+      "index": 3,
+      "images": [
+        "11",
+        "021",
+        "10"
+      ],
+      "states": 3667,
+      "edges": 21033,
+      "residue_rejections": 104376,
+      "box_rejections": 13725,
+      "carrier_rejections": 0,
+      "sweeps": 520,
+      "minimum_gap": 125,
+      "maximum_weight": 15778,
+      "root_weights": [
+        6477,
+        63,
+        7520
+      ],
+      "certificate_sha256": "243194daa6d61618d8280084e63755055e2f854f21b540018904c518cda41cbb"
+    },
+    {
+      "index": 4,
+      "images": [
+        "11",
+        "102",
+        "01"
+      ],
+      "states": 3653,
+      "edges": 21186,
+      "residue_rejections": 103895,
+      "box_rejections": 13429,
+      "carrier_rejections": 0,
+      "sweeps": 47,
+      "minimum_gap": 125,
+      "maximum_weight": 2936,
+      "root_weights": [
+        1834,
+        158,
+        1707
+      ],
+      "certificate_sha256": "2d497883cbe8c2dedefa277e505e0b5133a40587a145e6b85fe6a169273aaa12"
+    },
+    {
+      "index": 5,
+      "images": [
+        "11",
+        "102",
+        "10"
+      ],
+      "states": 3667,
+      "edges": 21168,
+      "residue_rejections": 104407,
+      "box_rejections": 13567,
+      "carrier_rejections": 0,
+      "sweeps": 50,
+      "minimum_gap": 125,
+      "maximum_weight": 1872,
+      "root_weights": [
+        2,
+        1,
+        1526
+      ],
+      "certificate_sha256": "b5a3b4bb67799f58a4331cb7b7f14fd9d56b07ac0d066df151542a7ad4307b20"
+    },
+    {
+      "index": 6,
+      "images": [
+        "11",
+        "120",
+        "01"
+      ],
+      "states": 3693,
+      "edges": 21144,
+      "residue_rejections": 104929,
+      "box_rejections": 13799,
+      "carrier_rejections": 0,
+      "sweeps": 467,
+      "minimum_gap": 125,
+      "maximum_weight": 15995,
+      "root_weights": [
+        5778,
+        5298,
+        3177
+      ],
+      "certificate_sha256": "7cef43184e5fbdf58d53630cbeacc696b9ef9ff36e4af063de9a452e1744cbf0"
+    },
+    {
+      "index": 7,
+      "images": [
+        "11",
+        "120",
+        "10"
+      ],
+      "states": 3674,
+      "edges": 21203,
+      "residue_rejections": 104379,
+      "box_rejections": 13582,
+      "carrier_rejections": 0,
+      "sweeps": 47,
+      "minimum_gap": 125,
+      "maximum_weight": 2434,
+      "root_weights": [
+        598,
+        703,
+        240
+      ],
+      "certificate_sha256": "82803b61ffa4960b7780c03fccf46294a0d498fae8cd431aabf8550c90853873"
+    },
+    {
+      "index": 8,
+      "images": [
+        "11",
+        "201",
+        "01"
+      ],
+      "states": 3643,
+      "edges": 20976,
+      "residue_rejections": 103621,
+      "box_rejections": 13465,
+      "carrier_rejections": 0,
+      "sweeps": 52,
+      "minimum_gap": 125,
+      "maximum_weight": 1887,
+      "root_weights": [
+        598,
+        704,
+        240
+      ],
+      "certificate_sha256": "875b321c28015d6431bf2061bef93936ccb611fe5f6e61ac4dd9b7389b4ebec4"
+    },
+    {
+      "index": 9,
+      "images": [
+        "11",
+        "201",
+        "10"
+      ],
+      "states": 3643,
+      "edges": 21054,
+      "residue_rejections": 103462,
+      "box_rejections": 13412,
+      "carrier_rejections": 0,
+      "sweeps": 41,
+      "minimum_gap": 125,
+      "maximum_weight": 2893,
+      "root_weights": [
+        1606,
+        966,
+        1073
+      ],
+      "certificate_sha256": "310f09f452280ae604064479c77ce07342d52a8d0ccc06a2349900f35cf1f33a"
+    },
+    {
+      "index": 10,
+      "images": [
+        "11",
+        "210",
+        "01"
+      ],
+      "states": 3646,
+      "edges": 21095,
+      "residue_rejections": 103528,
+      "box_rejections": 13409,
+      "carrier_rejections": 0,
+      "sweeps": 117,
+      "minimum_gap": 125,
+      "maximum_weight": 4595,
+      "root_weights": [
+        2046,
+        883,
+        2205
+      ],
+      "certificate_sha256": "503558322530cc5fab791e4d8884367ce62387bc0ba0da82620624799c7289c9"
+    },
+    {
+      "index": 11,
+      "images": [
+        "11",
+        "210",
+        "10"
+      ],
+      "states": 3649,
+      "edges": 21118,
+      "residue_rejections": 103635,
+      "box_rejections": 13414,
+      "carrier_rejections": 0,
+      "sweeps": 67,
+      "minimum_gap": 125,
+      "maximum_weight": 3087,
+      "root_weights": [
+        896,
+        1,
+        1744
+      ],
+      "certificate_sha256": "7923ea7d0294f2a65688c596aee4432e8f0ebc770a90213cc38dc29961812480"
+    }
+  ],
+  "normalized_packet_sha256": "c69df761aacbe9d4b2689634627e7bc55ba167c9f5695ced8dde663c820e6754",
+  "scope": "complete finite graphs and rational inequalities; nullity uses the written measure proof",
+  "non_claims": [
+    "general C4",
+    "BPA termination",
+    "SC",
+    "degree-one tiling",
+    "PDS",
+    "PSC"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "native-parity",
+  "started_utc": "2026-11-05T08:50:06.550443+00:00",
+  "duration_seconds": 11.020029,
+  "executed_local_commit": "b863dc5093e55f40fed487455588104abbe04400",
+  "source_tree": "3248cf2d72b2b1be72bf7326d2f95758c470bef2",
+  "cwd": "/workspace/scratch/bb3a4dbb8418/psc-publish",
+  "command": [
+    "/workspace/scratch/bb3a4dbb8418/psc-validation/bin/python",
+    "oracles/python/c4_pair_overlap_new_incidence.py",
+    "--native",
+    "/tmp/psc-new-incidence-final.txt"
+  ],
+  "explicit_environment": {
+    "MODULAR_HOME": "/workspace/scratch/ff95d1f2448c/mojo-prefix/share/max",
+    "PYTHONPATH": "/workspace/scratch/bb3a4dbb8418/psc-publish/tools"
+  },
+  "exit_code": 0,
+  "stdout": "/workspace/scratch/bb3a4dbb8418/psc-publish/evidence/c4-pair-overlap-new-incidence-2026-11-05/native-parity.stdout.txt",
+  "stderr": "native-parity.stderr.txt",
+  "stdout_sha256": "1035a9e57f4c1971d6c9656f559537604af4152f2eb2464501f48716369d95a7",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "committed_receipt_exact_match": true
+}

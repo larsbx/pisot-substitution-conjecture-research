@@ -71,3 +71,5 @@ import PscVerif.ReductioControls
 import PscVerif.OverlapContraction
 import PscVerif.OverlapPacket
 import PscVerif.PhysicalMass
+import PscVerif.OccurrenceGraphBinding
+import PscVerif.OccurrencePiece

@@ -451,12 +451,16 @@ inconclusive. Another passing finite corpus is not a uniform theorem.
 | 3, independently of 2 | Reciprocal polynomial/multiplicity and degree-five rank theorem: implemented in `Degree5Completion`. | `q5=g^k`, `rank Q5=3k`, zero-image handling and determinant exclusion under unchanged hypotheses, with exact-revision Lean/axiom replay. |
 | 4 | Finite actual interior recurrence and, independently, every-window descendant span/strict-carrier row detection: implemented. | Fresh full Lean/axiom, native and source-bound Quint acceptance; preserve exact scaling, actual mark compatibility, complete mass multiplicity and the fixed-row premise. |
 | 4a | Literal inverse-mark reversal, integral diagonal ancestry and actual track-swap quotient counts: implemented in this continuation. | Fresh full-bank acceptance and exact-revision native/18-test/13-mutation replay. Supplied finite swap-closed domain, exact occurrence inventory and geometric non-claims retained. |
-| 4b | Actual compact inverse-piece cover, sound residue/stable-box exclusions, nonunit Haar scaling and positive root measure. | Bind every geometric piece and exclusion to the literal inverse inventory; physical interval positivity cannot substitute for compact measure. |
+| 4a.1 | Historical twelve-source inverse rows now have literal positional binding, normalization bits, ordered internal completeness and earlier-state discovery witnesses. | Native full-packet/oracle equality, new bounded Quint controls and fresh full-bank acceptance of the generic Lean interface. The entire serialized packet is not yet a closed Lean term. |
+| 4b | The all-integral-ancestor set union now follows formally from original tile equations and explicit injective action, commutation and integral-range reflection. Construct the compact matrix-adic instance, finite pruned cover, Haar scaling and positive root measure. | Prove the geometric input hypotheses and every exclusion for the actual finite domain; physical interval positivity cannot substitute for compact measure. |
 | 5 | Uniform forced-crossing exclusion. | A theorem for arbitrary supplied component size, or a literal reproducible counterexample to the precise intermediate claim. |
 | 6 | Compose the successful bridge into C4. | Every input/output type, quantifier, realization premise and dependency is discharged; global extraction stays separate. |
 
-Reconcile open [#497](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/497),
-[#509](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/509),
+The [literal binding continuation](c4-literal-inverse-binding-2026-11-10.md) reconciles
+[#497](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/497) with
+accepted main through #537 while preserving all archived source/evidence pins.
+Its full integral union is not yet the finite geometrically pruned cover.
+Reconcile open [#509](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/509),
 and [#510](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/510)
 against current main before using their finite-overlap or R3/R4 scaffolds.
 Retain R1/R2 adversarial and R3/R4 independent interfaces as recorded in
