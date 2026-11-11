@@ -6,8 +6,9 @@ action to a bound on **every actual infinite-word prefix**. It continues
 in [PR #542](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/542)
 at `aa80845e9ccde9f4a0c90c00d1f6d6ade40559b5`. The
 [targeted source gate](c4-stable-prefix-window-literature-2026-11-11.md)
-was recorded before implementation in commit
-`5dafd886`.
+was recorded before implementation in local commit `5dafd886`, then
+published with the identical source tree as
+[`a6c95a6b`](https://github.com/larsbx/pisot-substitution-conjecture-research/commit/a6c95a6b411d8d01ce725cf51962af7a2014b059).
 
 The local finite inequalities are already available in the canonical
 [finite-cylinder verifier](c4-finite-cylinder-overlap-verifier-2026-11-04.md).
@@ -64,6 +65,9 @@ The finite digit family also supplies a bound without a numerical
 certificate: the sum of all its projected norms bounds each term.
 This gives a general compactness implication from contraction, while a
 checked tighter digit bound yields a smaller useful window.
+The Lean core does not require separate nonnegativity hypotheses on `D`
+and `R`: a Mark with empty prefix gives `D>=0`, and the invariant
+inequality together with `q<1` forces `R>=0`.
 
 ## 2. The all-prefix proof
 
@@ -232,6 +236,15 @@ implementation PR. Earlier #542 receipts cover its prior source revision,
 not this new module. Local compilation with cached dependencies is useful
 development feedback and does not replace the isolated whole-bank gate.
 
+The first hosted revision, `d0805bd1137146e9cea649c86a3c791bc54dd8ff`,
+failed [run 43055134353](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43055134353)
+on an addition-order elaboration mismatch and missing composition-power
+instances for raw additive-hom notation. The repair uses `add_le_add` and
+explicit `AddMonoid.End E` binders where actions are powered. It preserves
+all 26 named theorem statements and mathematical hypotheses. The failed
+run reached no completed axiom audit and remains a historical failure,
+not acceptance of the repaired source.
+
 ## 7. Next mathematical obligations
 
 | Obligation | What this continuation supplies | What remains |
@@ -241,6 +254,15 @@ development feedback and does not replace the isolated whole-bank gate.
 | Complete finite ancestor constructor | Compactness is an input for geometric bounds | Prove every actual nonempty piece is represented; justify every exclusion |
 | Forward completeness and mass | Earlier occurrence identities remain available | Prove the required complete-domain correspondence and product-Haar scaling |
 | Contradiction at a strict root | Existing conditional null-overlap machinery remains available | Supply the actual recurrence and strictly positive compact root measure |
+
+For the two named examples, the shortest next formal adapter is smaller
+than a complete numerical-packet decoder. Construct `W` and `B` in
+`Fin 2 -> R` with its sup norm, prove `WM=BW` and the finite-dimensional
+closed embedding, and authenticate the four entries of `B^12` strongly
+enough to obtain one strict row-norm bound. The canonical digit-sum
+theorem then gives qualitative compactness for the actual period-two
+words. A formal bound of five for every depth-twelve digit is needed
+for the sharper radius forty; it need not block this qualitative step.
 
 Boundedness and compactness advance the geometric setup. They do not
 establish a losing state, overlap positivity, C4, pure discrete spectrum,

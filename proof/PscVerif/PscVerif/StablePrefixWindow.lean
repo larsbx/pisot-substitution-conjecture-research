@@ -100,8 +100,8 @@ theorem prefix_norm_le (τ : Fin 3 → Word) (w : ℕ → Fin 3)
       have hstep := addressed_step τ w B pi q D fixed commute contract digits e
       rw [he] at hstep
       rcases lt_or_eq_of_le hparent with hlt | heq
-      · exact hstep.trans ((add_le_add_right (mul_le_mul_of_nonneg_left
-          (ih e.1 hlt) hq0) D).trans invariant)
+      · exact hstep.trans ((add_le_add (mul_le_mul_of_nonneg_left
+          (ih e.1 hlt) hq0) (le_refl D)).trans invariant)
       · rw [heq] at hstep
         exact self_bound hq1 invariant hstep
 
@@ -201,7 +201,7 @@ section ActionPowers
 variable {E : Type*} [AddCommGroup E]
 
 /-- The stable-coordinate action commutes at the same literal block scale. -/
-theorem action_pow_commute (s : Fin 3 → Word) (B : E →+ E)
+theorem action_pow_commute (s : Fin 3 → Word) (B : AddMonoid.End E)
     (pi : (Fin 3 → ℤ) →+ E)
     (commute : ∀ z, B (pi z) = pi (incidenceZ s *ᵥ z)) (k : ℕ) (z : Fin 3 → ℤ) :
     (B ^ k) (pi z) = pi (incidenceZ (iterateImages s k) *ᵥ z) := by
@@ -254,7 +254,7 @@ theorem compact_prefixTiles_canonical (s τ : Fin 3 → Word) (w : ℕ → Fin 3
 /-- Compactness at a compatible block exponent retains the original
 matrix-adic carrier and binds the actual action and all block digits. -/
 theorem compact_prefixTiles_at_multiple (s : Fin 3 → Word) (w : ℕ → Fin 3)
-    (B : E →+ E) (pi : (Fin 3 → ℤ) →+ E) (k r : ℕ) (q D R : ℝ)
+    (B : AddMonoid.End E) (pi : (Fin 3 → ℤ) →+ E) (k r : ℕ) (q D R : ℝ)
     (integralInjective : Function.Injective (fun z => incidenceZ s *ᵥ z))
     (nonerasing : ∀ a, s a ≠ []) (fixed : FixedPrefix (iterateImages s k) w)
     (commute : ∀ z, B (pi z) = pi (incidenceZ s *ᵥ z))
@@ -271,7 +271,7 @@ theorem compact_prefixTiles_at_multiple (s : Fin 3 → Word) (w : ℕ → Fin 3)
 /-- Every actual finite-history piece is compact. Its map still requires
 the separately supplied closed embedding; contraction does not supply one. -/
 theorem compact_historyPiece_at_multiple (s : Fin 3 → Word) (w : ℕ → Fin 3)
-    (B : E →+ E) (pi : (Fin 3 → ℤ) →+ E) (k r : ℕ) (q D R : ℝ)
+    (B : AddMonoid.End E) (pi : (Fin 3 → ℤ) →+ E) (k r : ℕ) (q D R : ℝ)
     (closedB : Topology.IsClosedEmbedding B)
     (integralInjective : Function.Injective (fun z => incidenceZ s *ᵥ z))
     (nonerasing : ∀ a, s a ≠ []) (fixed : FixedPrefix (iterateImages s k) w)
@@ -324,7 +324,7 @@ theorem period_two_to_twelve (s : Fin 3 → Word) (w : ℕ → Fin 3)
 /-- The existing period-two fixture may use the length-twelve calibration
 only with the full literal length-twelve digit bounds and action estimate. -/
 theorem compact_prefixTiles_two_twelve {E : Type*} [NormedAddCommGroup E] [ProperSpace E]
-    (s : Fin 3 → Word) (w : ℕ → Fin 3) (B : E →+ E) (pi : (Fin 3 → ℤ) →+ E)
+    (s : Fin 3 → Word) (w : ℕ → Fin 3) (B : AddMonoid.End E) (pi : (Fin 3 → ℤ) →+ E)
     (integralInjective : Function.Injective (fun z => incidenceZ s *ᵥ z))
     (nonerasing : ∀ a, s a ≠ []) (fixed : FixedPrefix (iterateImages s 2) w)
     (commute : ∀ z, B (pi z) = pi (incidenceZ s *ᵥ z))

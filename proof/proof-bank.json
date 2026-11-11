@@ -17812,7 +17812,7 @@
       "private": false,
       "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
       "line": 204,
-      "declaration": "theorem action_pow_commute (s : Fin 3 → Word) (B : E →+ E)"
+      "declaration": "theorem action_pow_commute (s : Fin 3 → Word) (B : AddMonoid.End E)"
     },
     {
       "name": "Psc.StablePrefixWindow.compact_prefixTiles",
@@ -22031,7 +22031,7 @@
     "proof/PscVerif/PscVerif/SignedCocycle.lean": "eccc753e1656cc949db13d50ff8d97883f084fe18ab32ef70226cded35237e7e",
     "proof/PscVerif/PscVerif/SignedIntertwiner.lean": "9db35d26a6a8d434ab893b31218fcc50ba73872a74a305da366d5f95543d5280",
     "proof/PscVerif/PscVerif/Spectral.lean": "f7a43295221c293c670593d4be8e916d87ce51f3241ec911456ef4a4ce0b39d3",
-    "proof/PscVerif/PscVerif/StablePrefixWindow.lean": "e9d941331f2479d0fef47d16f34a6b352ccef669e9b4f5e16ea4b63dbfecb142",
+    "proof/PscVerif/PscVerif/StablePrefixWindow.lean": "f92a5899a583689f5bcab503b3e632641f7dc8a48492d573f4c87093c684f1ef",
     "proof/PscVerif/PscVerif/StrictSystem.lean": "657d6c9f4041b04a2e478f19dea2ecb813952caf2fe1455789778306ad6c3a48",
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
