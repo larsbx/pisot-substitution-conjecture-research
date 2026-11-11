@@ -108,3 +108,7 @@ actual named chart certificate, universal stable realization, common tile
 attractor, Haar recurrence, strict-root positivity, C4, G1 or PSC result is
 asserted by this increment. Exact-head isolated Lean compilation and the
 compiled-declaration axiom audit remain acceptance gates.
+
+The real interior filter may use classical decidability. The proposed result
+constructs a finite mathematical carrier, not an executable real-inequality
+enumerator or an authenticated numerical chart/enclosure certificate.

@@ -5967,6 +5967,134 @@
       "declaration": "theorem reducible_root_containment_control :"
     },
     {
+      "name": "Psc.Degree5Exterior.wedge2_smul",
+      "module": "PscVerif.Degree5Exterior",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5Exterior.lean",
+      "line": 22,
+      "declaration": "theorem wedge2_smul {R : Type*} [CommRing R] (c : R)"
+    },
+    {
+      "name": "Psc.Degree5Exterior.charpoly_det_smul_wedge2",
+      "module": "PscVerif.Degree5Exterior",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5Exterior.lean",
+      "line": 31,
+      "declaration": "theorem charpoly_det_smul_wedge2 {R : Type*} [CommRing R]"
+    },
+    {
+      "name": "Psc.Degree5Exterior.reciprocal_eq_charpoly_det_wedge",
+      "module": "PscVerif.Degree5Exterior",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5Exterior.lean",
+      "line": 43,
+      "declaration": "theorem reciprocal_eq_charpoly_det_wedge (M : Matrix (Fin 3) (Fin 3) ℚ) :"
+    },
+    {
+      "name": "Psc.Degree5Exterior.reciprocal_eq_charpoly_wedge_of_det_one",
+      "module": "PscVerif.Degree5Exterior",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5Exterior.lean",
+      "line": 48,
+      "declaration": "theorem reciprocal_eq_charpoly_wedge_of_det_one"
+    },
+    {
+      "name": "Psc.Degree5Exterior.reciprocal_eq_charpoly_neg_wedge_of_det_neg_one",
+      "module": "PscVerif.Degree5Exterior",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5Exterior.lean",
+      "line": 54,
+      "declaration": "theorem reciprocal_eq_charpoly_neg_wedge_of_det_neg_one"
+    },
+    {
+      "name": "Psc.Degree5Exterior.reciprocal_eq_X_pow_three_of_det_zero",
+      "module": "PscVerif.Degree5Exterior",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5Exterior.lean",
+      "line": 61,
+      "declaration": "theorem reciprocal_eq_X_pow_three_of_det_zero"
+    },
+    {
+      "name": "Psc.Degree5Exterior.q5_eq_exterior_pow_rank",
+      "module": "PscVerif.Degree5Exterior",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5Exterior.lean",
+      "line": 77,
+      "declaration": "theorem q5_eq_exterior_pow_rank :"
+    },
+    {
+      "name": "Psc.Degree5Exterior.q5_eq_exterior_pow_rank_of_nonzero",
+      "module": "PscVerif.Degree5Exterior",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5Exterior.lean",
+      "line": 84,
+      "declaration": "theorem q5_eq_exterior_pow_rank_of_nonzero"
+    },
+    {
+      "name": "Psc.Degree5Exterior.q5_eq_wedge_pow_rank_of_det_one",
+      "module": "PscVerif.Degree5Exterior",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5Exterior.lean",
+      "line": 93,
+      "declaration": "theorem q5_eq_wedge_pow_rank_of_det_one (hd : (incQ S).det = 1) :"
+    },
+    {
+      "name": "Psc.Degree5Exterior.q5_eq_neg_wedge_pow_rank_of_det_neg_one",
+      "module": "PscVerif.Degree5Exterior",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5Exterior.lean",
+      "line": 100,
+      "declaration": "theorem q5_eq_neg_wedge_pow_rank_of_det_neg_one (hd : (incQ S).det = -1) :"
+    },
+    {
+      "name": "Psc.Degree5Exterior.incidence_column_sum",
+      "module": "PscVerif.Degree5Exterior",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5Exterior.lean",
+      "line": 111,
+      "declaration": "theorem incidence_column_sum {α : Type*} [Fintype α] [DecidableEq α]"
+    },
+    {
+      "name": "Psc.Degree5Exterior.incidence_root_norm_le_image_bound",
+      "module": "PscVerif.Degree5Exterior",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5Exterior.lean",
+      "line": 122,
+      "declaration": "theorem incidence_root_norm_le_image_bound"
+    },
+    {
+      "name": "Psc.Degree5Exterior.columns_eq_zero_of_nonunit_short_images",
+      "module": "PscVerif.Degree5Exterior",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5Exterior.lean",
+      "line": 146,
+      "declaration": "theorem columns_eq_zero_of_nonunit_short_images"
+    },
+    {
+      "name": "Psc.Degree5Exterior.Controls.singular_control",
+      "module": "PscVerif.Degree5Exterior",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5Exterior.lean",
+      "line": 168,
+      "declaration": "theorem singular_control :"
+    },
+    {
+      "name": "Psc.Degree5Exterior.Controls.negative_unit_sign_needed",
+      "module": "PscVerif.Degree5Exterior",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5Exterior.lean",
+      "line": 177,
+      "declaration": "theorem negative_unit_sign_needed :"
+    },
+    {
+      "name": "Psc.Degree5Exterior.Controls.nonunit_scale_needed",
+      "module": "PscVerif.Degree5Exterior",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/Degree5Exterior.lean",
+      "line": 185,
+      "declaration": "theorem nonunit_scale_needed :"
+    },
+    {
       "name": "Psc.Degree5RootLift.power5_map",
       "module": "PscVerif.Degree5RootLift",
       "private": false,
@@ -7381,6 +7509,142 @@
       "source": "proof/PscVerif/PscVerif/GaloisOrbit.lean",
       "line": 642,
       "declaration": "theorem mono211_ne_pow4 :"
+    },
+    {
+      "name": "Psc.GeometricPacketCarrier.stable_difference_bound",
+      "module": "PscVerif.GeometricPacketCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean",
+      "line": 62,
+      "declaration": "theorem stable_difference_bound {star : (Fin 3 → ℤ) →+ G}"
+    },
+    {
+      "name": "Psc.GeometricPacketCarrier.physical_offset_bound",
+      "module": "PscVerif.GeometricPacketCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean",
+      "line": 79,
+      "declaration": "theorem physical_offset_bound {star : (Fin 3 → ℤ) →+ G}"
+    },
+    {
+      "name": "Psc.GeometricPacketCarrier.integer_coordinate_bound",
+      "module": "PscVerif.GeometricPacketCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean",
+      "line": 92,
+      "declaration": "theorem integer_coordinate_bound {star : (Fin 3 → ℤ) →+ G}"
+    },
+    {
+      "name": "Psc.GeometricPacketCarrier.exists_natural_bounds",
+      "module": "PscVerif.GeometricPacketCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean",
+      "line": 120,
+      "declaration": "theorem exists_natural_bounds {star : (Fin 3 → ℤ) →+ G}"
+    },
+    {
+      "name": "Psc.GeometricPacketCarrier.mem_residualBox",
+      "module": "PscVerif.GeometricPacketCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean",
+      "line": 135,
+      "declaration": "theorem mem_residualBox (N : Fin 3 → ℕ) (z : Fin 3 → ℤ) :"
+    },
+    {
+      "name": "Psc.GeometricPacketCarrier.residualBox_card",
+      "module": "PscVerif.GeometricPacketCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean",
+      "line": 139,
+      "declaration": "theorem residualBox_card (N : Fin 3 → ℕ) :"
+    },
+    {
+      "name": "Psc.GeometricPacketCarrier.mem_boxPackets",
+      "module": "PscVerif.GeometricPacketCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean",
+      "line": 154,
+      "declaration": "theorem mem_boxPackets (N : Fin 3 → ℕ) (p : Packet) :"
+    },
+    {
+      "name": "Psc.GeometricPacketCarrier.mem_carrier",
+      "module": "PscVerif.GeometricPacketCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean",
+      "line": 175,
+      "declaration": "theorem mem_carrier (ℓ : Fin 3 → ℝ) (N : Fin 3 → ℕ) (p : Packet) :"
+    },
+    {
+      "name": "Psc.GeometricPacketCarrier.carrier_card_le",
+      "module": "PscVerif.GeometricPacketCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean",
+      "line": 181,
+      "declaration": "theorem carrier_card_le (ℓ : Fin 3 → ℝ) (N : Fin 3 → ℕ) :"
+    },
+    {
+      "name": "Psc.GeometricPacketCarrier.carrier_swap_closed",
+      "module": "PscVerif.GeometricPacketCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean",
+      "line": 192,
+      "declaration": "theorem carrier_swap_closed (ℓ : Fin 3 → ℝ) (N : Fin 3 → ℕ)"
+    },
+    {
+      "name": "Psc.GeometricPacketCarrier.nonempty_overlap_mem_carrier",
+      "module": "PscVerif.GeometricPacketCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean",
+      "line": 207,
+      "declaration": "theorem nonempty_overlap_mem_carrier (chart : ChartEnclosure star K ℓ)"
+    },
+    {
+      "name": "Psc.GeometricPacketCarrier.nonempty_inverse_ancestor_represented",
+      "module": "PscVerif.GeometricPacketCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean",
+      "line": 222,
+      "declaration": "theorem nonempty_inverse_ancestor_represented (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.GeometricPacketCarrier.outside_carrier_overlap_empty",
+      "module": "PscVerif.GeometricPacketCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean",
+      "line": 236,
+      "declaration": "theorem outside_carrier_overlap_empty (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.GeometricPacketCarrier.finite_carrier_history_cover",
+      "module": "PscVerif.GeometricPacketCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean",
+      "line": 253,
+      "declaration": "theorem finite_carrier_history_cover (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.GeometricPacketCarrier.missing_chart_control",
+      "module": "PscVerif.GeometricPacketCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean",
+      "line": 279,
+      "declaration": "theorem missing_chart_control (a b c : ℝ) :"
+    },
+    {
+      "name": "Psc.GeometricPacketCarrier.enclosure_boundary_control",
+      "module": "PscVerif.GeometricPacketCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean",
+      "line": 285,
+      "declaration": "theorem enclosure_boundary_control :"
+    },
+    {
+      "name": "Psc.GeometricPacketCarrier.undersized_box_control",
+      "module": "PscVerif.GeometricPacketCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean",
+      "line": 292,
+      "declaration": "theorem undersized_box_control : ¬ ((2 : ℝ) ≤ (1 : ℕ)) := by"
     },
     {
       "name": "Psc.Incidence.subst_cons",
@@ -21373,6 +21637,7 @@
     "proof/PscVerif/PscVerif/Degree4Floor.lean": "bc34017a101d388e497a394710ed7661250aaa1fb049a9454dba17f308515006",
     "proof/PscVerif/PscVerif/Degree4Sector.lean": "7afc131498833c8346b21872981c6f7aa4b7a736fdc952ff84b9b8c071b86f63",
     "proof/PscVerif/PscVerif/Degree5Completion.lean": "9dc69a390e7c1ae41700d6647473f647f4446efa4839c20f8c598c37bbf1b445",
+    "proof/PscVerif/PscVerif/Degree5Exterior.lean": "8c630d73045a3d3042dd897954fce3e38bf0a3ad50441ad36769dd3dee0183bc",
     "proof/PscVerif/PscVerif/Degree5RootLift.lean": "03793616a416af2378b1d2072eef77305d9f61b3fb7a72a09c6a3d1cb6f67740",
     "proof/PscVerif/PscVerif/Degree5Sector.lean": "1c4fd12cac7317ba0e724f4c3b757a1e06fdacd5b52f575d5549a83244d6ab46",
     "proof/PscVerif/PscVerif/Degree5Sieve.lean": "b787a6689480edad73655df8666b2ee97a02a64af6ec26fb88acd058add82b1c",
@@ -21383,6 +21648,7 @@
     "proof/PscVerif/PscVerif/Descendants.lean": "6641b65d81d90be34c13937b6ab8ebc029fcce91babd7c2ce398738dac783a40",
     "proof/PscVerif/PscVerif/FixedPointLimit.lean": "cd4a824f288d4c1072fd375e0e7b9014f56028e23e00cb4336fd678a210b7bbe",
     "proof/PscVerif/PscVerif/GaloisOrbit.lean": "4d3b5474dbd14205f4bf2d33e98149ebbdd6d7e0fb8fd3a33787b878bcad5f07",
+    "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean": "c04050d3910a6866d45efb6a29e2c3b93c97b6f178e9a2149b139491e4462854",
     "proof/PscVerif/PscVerif/Incidence.lean": "b0c865d4177dac9485a2ddbd35201143ee3d263ad735af05785b077e1f6bd6ff",
     "proof/PscVerif/PscVerif/Intertwiner2.lean": "4fdc6a9497a5c3fd4b39101b033e6814b70aec8391f0cbc8691028319b1143d6",
     "proof/PscVerif/PscVerif/Intertwiner3.lean": "23a3732cd2c16cd77175c71068e7d5fca3dc1df1a0c8ac11e94b5adfb988fde7",
@@ -21433,7 +21699,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "365c1efe51a2f369147d502177118021d6f9edcc446981befaab47455bb7cadb",
+    "proof/PscVerif/PscVerif.lean": "f704e166e7a2fb07a4535ca5bbac640105c57f8ea0c313dd1489da19f913b7c2",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
