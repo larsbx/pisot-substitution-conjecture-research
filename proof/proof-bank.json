@@ -10135,6 +10135,286 @@
       "declaration": "theorem control_last_and_exterior :"
     },
     {
+      "name": "Psc.OccurrenceAdmissibility.finite_selectedPair",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 38,
+      "declaration": "theorem finite_selectedPair (s : Fin 3 → Word) (p : Packet) :"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.selectedPair_card_eq",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 45,
+      "declaration": "theorem selectedPair_card_eq (s : Fin 3 → Word) (p : Packet) :"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.selectedPair_card_le",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 58,
+      "declaration": "theorem selectedPair_card_le (s : Fin 3 → Word) (p : Packet) :"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.pairAddress_injective",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 72,
+      "declaration": "theorem pairAddress_injective {s : Fin 3 → Word} {p : Packet} :"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.pairTarget_ofInverse",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 106,
+      "declaration": "@[simp] theorem pairTarget_ofInverse {s : Fin 3 → Word} {p u : Packet}"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.pairOfInverse_lift",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 111,
+      "declaration": "@[simp] theorem pairOfInverse_lift {s : Fin 3 → Word} {p : Packet}"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.finite_restrictedHistory",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 132,
+      "declaration": "theorem finite_restrictedHistory (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.localAdmissible_iff_nonintegral_empty",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 178,
+      "declaration": "theorem localAdmissible_iff_nonintegral_empty {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.localAdmissible_of_reflects",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 195,
+      "declaration": "theorem localAdmissible_of_reflects {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.representedAt_implies_local",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 202,
+      "declaration": "theorem representedAt_implies_local {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.representedAt_iff_unrepresented_empty",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 212,
+      "declaration": "theorem representedAt_iff_unrepresented_empty {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.pairPiece_subset_overlap",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 241,
+      "declaration": "theorem pairPiece_subset_overlap {p : Packet} (d : SelectedPair s p) :"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.overlap_mem_pairPiece",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 255,
+      "declaration": "theorem overlap_mem_pairPiece (p : Packet) {x : G} (hx : x ∈ overlap star K p) :"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.overlap_eq_iUnion_pairPiece",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 268,
+      "declaration": "theorem overlap_eq_iUnion_pairPiece (p : Packet) :"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.overlap_eq_set_iff_pairPiece_subset",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 281,
+      "declaration": "theorem overlap_eq_set_iff_pairPiece_subset (p : Packet) (R : Set G)"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.pairPiece_eq_piece",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 305,
+      "declaration": "theorem pairPiece_eq_piece {p : Packet} (d : SelectedPair s p)"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.pairPiece_ofInverse_eq",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 310,
+      "declaration": "theorem pairPiece_ofInverse_eq {p u : Packet} (e : InverseOccurrence s p u) :"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.representedAt_of_local",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 316,
+      "declaration": "theorem representedAt_of_local (S : Finset Packet) (p : Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.representedAt_all_ancestors",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 330,
+      "declaration": "theorem representedAt_all_ancestors"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.representedAt_iff_local_and_all_ancestors",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 344,
+      "declaration": "theorem representedAt_iff_local_and_all_ancestors"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.overlap_mem_piece_of_local",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 368,
+      "declaration": "theorem overlap_mem_piece_of_local (p : Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.overlap_eq_iUnion_inverse_of_local",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 379,
+      "declaration": "theorem overlap_eq_iUnion_inverse_of_local (p : Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.overlap_mem_piece_of_represented",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 392,
+      "declaration": "theorem overlap_mem_piece_of_represented (S : Finset Packet) (p : Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.overlap_eq_restricted_of_representedAt",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 401,
+      "declaration": "theorem overlap_eq_restricted_of_representedAt (S : Finset Packet) (p : Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.overlap_eq_restricted_iff_all_pairs",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 412,
+      "declaration": "theorem overlap_eq_restricted_iff_all_pairs (S : Finset Packet) (p : Packet) :"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.overlap_mem_historyWithin_of_representedAt",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 420,
+      "declaration": "theorem overlap_mem_historyWithin_of_representedAt (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.overlap_eq_iUnion_restrictedHistory_of_representedAt",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 435,
+      "declaration": "theorem overlap_eq_iUnion_restrictedHistory_of_representedAt (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.reflectsIntegralRange_of_integral_surjective",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 455,
+      "declaration": "theorem reflectsIntegralRange_of_integral_surjective {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.integral_surjective_of_reflects",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 464,
+      "declaration": "theorem integral_surjective_of_reflects {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.reflectsIntegralRange_iff_integral_surjective",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 471,
+      "declaration": "theorem reflectsIntegralRange_iff_integral_surjective {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.image_pairPiece_subset",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 489,
+      "declaration": "theorem image_pairPiece_subset {p : Packet} (d : SelectedPair s p) :"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.pairPiece_empty_of_projected_empty",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 501,
+      "declaration": "theorem pairPiece_empty_of_projected_empty {p : Packet} (d : SelectedPair s p)"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.localAdmissible_of_projected_exclusions",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 513,
+      "declaration": "theorem localAdmissible_of_projected_exclusions (p : Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.representedAt_of_projected_exclusions",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 523,
+      "declaration": "theorem representedAt_of_projected_exclusions (S : Finset Packet) (p : Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceAdmissibility.isCompact_pairPiece",
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean",
+      "line": 540,
+      "declaration": "theorem isCompact_pairPiece {s : Fin 3 → Word} (A : G →+ G)"
+    },
+    {
       "name": "Psc.OccurrenceCover.digit_card",
       "module": "PscVerif.OccurrenceCover",
       "private": false,
@@ -20569,6 +20849,7 @@
     "proof/PscVerif/PscVerif/LieWeights.lean": "f32639f83e519c69b8f428e153dd368c274e1f665a837183f88c5f1de0dd8adb",
     "proof/PscVerif/PscVerif/M0Pisot.lean": "65d17cf0aa71cdac825d16da73ad601dd49c214cd0b47ac58f124cb51a64a304",
     "proof/PscVerif/PscVerif/OccurrenceAddress.lean": "fd8d4020fc3f720c8a81d23c9811056802c901eec35a48efcbb40954c5a375ad",
+    "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean": "0843e0a255a2a13675132264eb1385d9a155b7122138359b02158916541e2b4e",
     "proof/PscVerif/PscVerif/OccurrenceCover.lean": "c66e2937532b2b289351b9ab10a18a1485b73434e362fd1e88edbfd3b6479cb6",
     "proof/PscVerif/PscVerif/OccurrenceFinite.lean": "65ef11444d2f03c9a49febf9a859eb8d48bd8dd0e1a37fd972c47935526b48a0",
     "proof/PscVerif/PscVerif/OccurrenceGraphBinding.lean": "31b2d7827438cd77c0e2f7fb72d4dc7791d016cd635952630220faf667e2084f",
@@ -20606,7 +20887,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "a3c32ea935376162b480629d7377df739aabfd154dc01d7464d44f6d718110f6",
+    "proof/PscVerif/PscVerif.lean": "a6bc5780b626b4c1eafc87b2083728f3f352059ba5f778a39300173f54bc8d3e",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
