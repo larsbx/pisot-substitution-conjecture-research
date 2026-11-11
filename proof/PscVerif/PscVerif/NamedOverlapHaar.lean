@@ -32,7 +32,7 @@ theorem measure_history_piece (k n : ℕ) (p : Packet)
     let A : AddMonoid.End (G (substitution f)) := T
     have hpow : (((A ^ k : AddMonoid.End (G (substitution f))) :
         G (substitution f) → G (substitution f))^[n]) x = (A ^ (k * n)) x :=
-      (congrFun (AddMonoid.End.coe_pow (A ^ k) n).symm x).trans
+      (congrFun (AddMonoid.End.coe_pow (G (substitution f)) (A ^ k) n).symm x).trans
         (congrArg (fun g : AddMonoid.End (G (substitution f)) => g x) (pow_mul A k n).symm)
     exact (historyMap_eq (iterateImages (substitution f) k) (T ^ k) star
       (block_commute f k) n p h x).trans
