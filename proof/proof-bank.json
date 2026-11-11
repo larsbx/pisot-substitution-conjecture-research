@@ -17695,6 +17695,214 @@
       "declaration": "theorem exB_k3 (a b e : Fin 3) :"
     },
     {
+      "name": "Psc.StablePrefixWindow.self_bound",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 31,
+      "declaration": "theorem self_bound {q D R x : ℝ} (hq : q < 1)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.geometric_radius",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 38,
+      "declaration": "theorem geometric_radius {q D : ℝ} (hq : q < 1) :"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.digitNormSum_nonneg",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 54,
+      "declaration": "theorem digitNormSum_nonneg (τ : Fin 3 → Word) (pi : (Fin 3 → ℤ) →+ E) :"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.digit_norm_le_sum",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 60,
+      "declaration": "theorem digit_norm_le_sum (τ : Fin 3 → Word) (pi : (Fin 3 → ℤ) →+ E)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.addressed_step",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 68,
+      "declaration": "theorem addressed_step (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.prefix_norm_le",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 85,
+      "declaration": "theorem prefix_norm_le (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.prefix_norm_le_geometric",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 109,
+      "declaration": "theorem prefix_norm_le_geometric (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.prefix_norm_le_canonical",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 122,
+      "declaration": "theorem prefix_norm_le_canonical (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.prefix_mem_closedBall",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 134,
+      "declaration": "theorem prefix_mem_closedBall (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.seed_prefix_norm_le",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 149,
+      "declaration": "theorem seed_prefix_norm_le (τ : Fin 3 → Word) (u : Word)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.subst_iterateImages",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 168,
+      "declaration": "theorem subst_iterateImages (s : Fin 3 → Word) (k : ℕ) :"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.fixedPrefix_subst_iterate",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 173,
+      "declaration": "theorem fixedPrefix_subst_iterate (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.fixedPrefix_period_lift",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 185,
+      "declaration": "theorem fixedPrefix_period_lift (s : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.nonerasing_iterateImages",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 194,
+      "declaration": "theorem nonerasing_iterateImages (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.action_pow_commute",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 204,
+      "declaration": "theorem action_pow_commute (s : Fin 3 → Word) (B : E →+ E)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.compact_prefixTiles",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 225,
+      "declaration": "theorem compact_prefixTiles (s τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.compact_prefixTiles_canonical",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 242,
+      "declaration": "theorem compact_prefixTiles_canonical (s τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.compact_prefixTiles_at_multiple",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 256,
+      "declaration": "theorem compact_prefixTiles_at_multiple (s : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.compact_historyPiece_at_multiple",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 273,
+      "declaration": "theorem compact_historyPiece_at_multiple (s : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.radius_forty_calibration",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 300,
+      "declaration": "theorem radius_forty_calibration :"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.prefix_norm_le_forty",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 307,
+      "declaration": "theorem prefix_norm_le_forty {E : Type*} [NormedAddCommGroup E]"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.period_two_to_twelve",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 319,
+      "declaration": "theorem period_two_to_twelve (s : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.compact_prefixTiles_two_twelve",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 326,
+      "declaration": "theorem compact_prefixTiles_two_twelve {E : Type*} [NormedAddCommGroup E] [ProperSpace E]"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.unit_contraction_control",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 339,
+      "declaration": "theorem unit_contraction_control :"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.radius_thirty_nine_control",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 344,
+      "declaration": "theorem radius_thirty_nine_control : ¬ ((7 / 8 : ℝ) * 39 + 5 ≤ 39) := by"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.zero_action_not_injective",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 348,
+      "declaration": "theorem zero_action_not_injective :"
+    },
+    {
       "name": "Psc.StrictSystem.isBlock_swap",
       "module": "PscVerif.StrictSystem",
       "private": false,
@@ -21823,11 +22031,12 @@
     "proof/PscVerif/PscVerif/SignedCocycle.lean": "eccc753e1656cc949db13d50ff8d97883f084fe18ab32ef70226cded35237e7e",
     "proof/PscVerif/PscVerif/SignedIntertwiner.lean": "9db35d26a6a8d434ab893b31218fcc50ba73872a74a305da366d5f95543d5280",
     "proof/PscVerif/PscVerif/Spectral.lean": "f7a43295221c293c670593d4be8e916d87ce51f3241ec911456ef4a4ce0b39d3",
+    "proof/PscVerif/PscVerif/StablePrefixWindow.lean": "e9d941331f2479d0fef47d16f34a6b352ccef669e9b4f5e16ea4b63dbfecb142",
     "proof/PscVerif/PscVerif/StrictSystem.lean": "657d6c9f4041b04a2e478f19dea2ecb813952caf2fe1455789778306ad6c3a48",
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "8b74c24f3ae4f755e9e45161c9563177d8f9b60e4930976a948eb37f07c09aa7",
+    "proof/PscVerif/PscVerif.lean": "62f0ade63d225bd3be7ed639d0334d4a446c991309c389ff2a563422781b3a57",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
