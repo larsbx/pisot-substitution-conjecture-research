@@ -1,5 +1,28 @@
 # Degree-five spectral transport and word realizability
 
+## Current acceptance and scope — 2026-11-10
+
+At main revision `c38e381cc8105d87597b0a9bfbe418b7bca86fc0`, the transport,
+mixed-weight, root-lift and signed-sieve results below are merged through
+[PR #528](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/528).
+Its exact head `0f0043c98c69313ac927f7640e85ca12e882e00e` passed the
+[isolated Lean build and whole-bank axiom audit](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42743831329)
+with 4,048 declarations and 3,070 theorems reached. The log explicitly audits
+`sieve5_roots`, `sieve5_full_orbit_of_primitive` and `det_cube_le_of_nonzero`
+using only `propext`, `Classical.choice` and `Quot.sound`. This hosted result
+supersedes the PR body's earlier local exit-137/pending-audit report; that
+failed local attempt remains part of the evidence history. This update
+records the existing run and does not claim a new local Lean replay.
+
+Those accepted results classify the image's root set and give a necessary
+determinant bound. The [reciprocal completion](c4-degree-five-completion-2026-11-10.md)
+now implements `q5 = g^k`, image rank `3k`, zero-image equivalence and the
+determinant-exclusion corollaries in `Degree5Completion`. Verification of
+that source belongs to the continuation PR's exact revision; the historical
+#528 receipt above does not cover it. Strict ordered-word exclusion remains
+open. Independent human review remains pending and is not a gate on
+continued development.
+
 ## Literature and decision
 
 The exact target is a transport theorem for the image of the degree-five
@@ -11,9 +34,10 @@ supplies no PSC hypothesis. [Barge and Diamond's coincidence theorem](https://ww
 requires actual aligned occurrences with equal prefix abelianizations.
 [Sirvent and Solomyak's balanced-pair criterion](https://citeseerx.ist.psu.edu/document?doi=ac6481cf41605ed271988fa1354fbf057680ba4e&repid=rep1&type=pdf)
 has separate termination and coincidence premises. Neither premise follows
-from a rational tensor image. Proceed with the quotient specialization and
-a narrowly scoped spectral control. Keep literal realization and global
-extraction as separate obligations.
+from a rational tensor image. The quotient specialization and narrowly scoped
+spectral control are now implemented as recorded above. Continue with the
+reciprocal completion and word realizability; keep global extraction as
+a separate obligation.
 
 ## Interfaces and evidence
 
@@ -134,8 +158,10 @@ degree-one balance implied by the degree-four hypotheses.
 `sieve5_full_orbit_of_primitive` shows that when there is a nonzero defect
 column, the roots of the image polynomial are exactly the three
 `(2,2,1)` values. It moves the single exponent onto each incidence root in
-turn. The result classifies the root set. The following factorization
-argument would also determine the form of the multiplicities.
+turn. That result classifies the root set. The continuation module
+`Degree5Completion` implements the following multiplicity argument, together
+with the rank and zero-image consequences; its exact scope and verification
+boundary are recorded in the [completion note](c4-degree-five-completion-2026-11-10.md).
 
 * Let the incidence roots be `r₀,r₁,r₂`, let `d = r₀r₁r₂ ≠ 0`, and write
   `e₁,e₂` for their first two elementary symmetric functions. The three
@@ -153,3 +179,35 @@ argument would also determine the form of the multiplicities.
   `det_cube_le_of_nonzero`. The unit plastic control satisfies this
   necessary condition, so the surviving case still needs information
   from actual ordered words.
+
+## Reciprocal completion and remaining algebraic targets
+
+`Degree5Completion.q5_eq_pow_rank` implements `q5 = g^k` and
+`rank Q5 = 3k` under the unchanged normalization, `Equiv4` on every state,
+irreducible incidence and Pisot/primitive hypotheses. The zero image is
+included; `q5_eq_one_iff` identifies it, and the nonzero-column version
+derives `k > 0`. `columns_eq_zero_of_det_bound` and
+`columns_eq_zero_of_nonunit_small_perron` implement the exclusions
+`beta < |det M|³` and, in particular, `|det M| >= 2` with `beta < 8`.
+See the [formal statement map and controls](c4-degree-five-completion-2026-11-10.md).
+
+Two further algebraic specializations remain separate:
+
+1. The optional upper bound `k <= 6` needs a transported homogeneous
+   decomposition. Each of the three `(2,2,1)` contents has six basis
+   elements, but the finite count alone does not prove `rank Q5 <= 18`.
+   Preserve numerical-weight collision controls when identifying the
+   relevant spectral subspaces.
+2. For substitutions with all images of length at most three, the
+   maximum-column-sum estimate gives `beta <= 3` mathematically. Composing
+   a formal version with the new exclusion would force unimodularity of a
+   nonzero degree-five image in that parameter class. The completion module
+   does not add that matrix-norm estimate or a new corpus computation.
+
+The main mathematical task remains a constraint on actual first-cut words
+which excludes the surviving image. The degree-three determinant-sector
+control and degree-four configuration (R) must remain in the adversarial
+suite alongside the reciprocal plastic control. Excluding degree five alone
+does not settle those cases, degrees `r ≥ 6`, or Concentration. The
+`StrictSystem` first-defect selection interface at degree five also remains
+to be connected; the present theorems assume degree-four balance directly.

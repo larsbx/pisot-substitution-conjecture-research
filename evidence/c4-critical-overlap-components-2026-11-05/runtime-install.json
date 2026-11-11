@@ -1,0 +1,33 @@
+{
+  "source": "exact versions and SHA-256 pins in kernel/pixi.lock",
+  "installation": "minimal local compiler installation, not full locked Pixi environment",
+  "prefix": "/workspace/scratch/bb3a4dbb8418/mojo-prefix",
+  "packages": [
+    {
+      "name": "mojo-compiler.conda",
+      "bytes": 69742462,
+      "sha256": "0d71889abb0887e2fa8a556c1081af4026034cdf98d27ad05b57cb096d7ad4f6"
+    },
+    {
+      "name": "mojo.conda",
+      "bytes": 117654770,
+      "sha256": "c73cf02c19b7de5774f8f6275b0b9eb4b656558f7d10f27d3508374fa0559d28"
+    }
+  ],
+  "relocations": [
+    {
+      "path": "share/max/modular.cfg",
+      "mode": "text",
+      "declared_by": "info/paths.json",
+      "before_sha256": "cfc00762a9141724458372a22ef543e6af6ae33a3e015440866e7cf7cf5bc311",
+      "after_sha256": "cbf5b166d3b845caeffda4dd35e40a9f4189214bee59571f49d1ab1251e534f9"
+    },
+    {
+      "path": "share/jupyter/kernels/mojo/kernel.json",
+      "mode": "text",
+      "declared_by": "info/paths.json",
+      "before_sha256": "12b91cccf8dd5f73311a3c680d9d6ef1d976583cdddf8164b7c203cfdf909fce",
+      "after_sha256": "015e272ddab72276bd90ae4daca71049e56d69a8dd07249e5a3ea299479de55b"
+    }
+  ]
+}

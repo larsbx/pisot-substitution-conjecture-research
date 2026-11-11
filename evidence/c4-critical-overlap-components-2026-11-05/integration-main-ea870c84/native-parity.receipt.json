@@ -1,0 +1,24 @@
+{
+  "name": "native-parity",
+  "started_utc": "2026-11-05T10:51:48.481684+00:00",
+  "duration_seconds": 21.917428,
+  "executed_local_commit": "dcfdded757b12e8fa9c630820e6d59a2ec7e0fd5",
+  "source_tree": "bfd53bd5575aaaa0ab677eb6af755fb3794e8195",
+  "cwd": "/workspace/scratch/bb3a4dbb8418/psc-critical",
+  "command": [
+    "/workspace/scratch/bb3a4dbb8418/psc-validation/bin/python",
+    "oracles/python/c4_overlap_scc_obstruction.py",
+    "--native",
+    "/tmp/psc-scc-integration-native.txt"
+  ],
+  "explicit_environment": {
+    "MODULAR_HOME": "/workspace/scratch/bb3a4dbb8418/mojo-prefix/share/max",
+    "PYTHONPATH": "/workspace/scratch/bb3a4dbb8418/psc-critical/tools"
+  },
+  "exit_code": 0,
+  "stdout": "/workspace/scratch/bb3a4dbb8418/psc-critical/evidence/c4-critical-overlap-components-2026-11-05/integration-main-ea870c84/native-parity.stdout.txt",
+  "stderr": "native-parity.stderr.txt",
+  "stdout_sha256": "a4e2e730de2a3ce8eb5dc7c3cd8a925542275713b0201f195d4587b2ad560c68",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "committed_receipt_exact_match": true
+}

@@ -1,0 +1,28 @@
+{
+  "name": "oracle-tests",
+  "started_utc": "2026-11-05T08:50:06.536975+00:00",
+  "duration_seconds": 21.870961,
+  "executed_local_commit": "b863dc5093e55f40fed487455588104abbe04400",
+  "source_tree": "3248cf2d72b2b1be72bf7326d2f95758c470bef2",
+  "cwd": "/workspace/scratch/bb3a4dbb8418/psc-publish",
+  "command": [
+    "/workspace/scratch/bb3a4dbb8418/psc-validation/bin/python",
+    "-m",
+    "pytest",
+    "--assert=plain",
+    "-o",
+    "addopts=",
+    "-q",
+    "tests/test_c4_pair_overlap_new_incidence_oracle.py"
+  ],
+  "explicit_environment": {
+    "MODULAR_HOME": "/workspace/scratch/ff95d1f2448c/mojo-prefix/share/max",
+    "PYTHONPATH": "/workspace/scratch/bb3a4dbb8418/psc-publish/tools",
+    "PSC_NEW_INCIDENCE_NATIVE_OUTPUT": "/tmp/psc-new-incidence-final.txt"
+  },
+  "exit_code": 0,
+  "stdout": "/workspace/scratch/bb3a4dbb8418/psc-publish/evidence/c4-pair-overlap-new-incidence-2026-11-05/oracle-tests.stdout.txt",
+  "stderr": "oracle-tests.stderr.txt",
+  "stdout_sha256": "47d97b665e21d476e7a9ce07ea9216b47e6e8975548fcb7942693a780bee0d8b",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

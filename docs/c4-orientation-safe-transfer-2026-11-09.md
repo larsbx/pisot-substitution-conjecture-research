@@ -1,9 +1,13 @@
 # C4 orientation-safe transfer
 
 Research candidate for [issue #461](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/461).
-The negative-control baseline is [PR #529](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/529)
+The current negative-control baseline is [PR #530](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/530)
+at `5b7b4bbb30c8199911cc5ed3bf18863a49026ec1`, extending
+[PR #529](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/529)
 at `f5539c75f245ebdec1e56ad0b15bb696472b73db`.
-The canonical regression extends that revision. This research note changes no governed claim status.
+The [2026-11-10 continuation note](c4-next-proof-obligations-2026-11-10.md)
+records the next proof obligations and their acceptance boundaries.
+This research note changes no governed claim status.
 
 ## Conditional lemma
 
@@ -70,6 +74,14 @@ The same equivalence holds with admissible endpoints as the target.
 Endpoint access is a sufficient route to the diagonal. A prescribed edge
 visit is unnecessary for the transfer proof.
 
+The [both-end counterexample](c4-both-end-route-obstruction-2026-11-09.md)
+in merged PR #530 makes this distinction necessary: its forced physical
+crossing reaches a diagonal but never either endpoint alignment of the
+nominated good pair, in either track order. Both prefix and suffix witnesses
+exist for that pair. The target for the continuation is therefore an actual
+diagonal route, with admissible endpoints retained as optional sufficient
+witnesses.
+
 A useful sufficient discharge would be an occurrence-level coverage result.
 For example, in a completed marked graph, exhibit a certified diagonal or
 admissible endpoint in a sink SCC reachable from the forced crossing. This
@@ -88,15 +100,33 @@ open step is to rule out that lift for a forced crossing under the genuine
 Pisot hypotheses and full recurrent legal ancestry. Equivalently, prove
 productivity for at least one of the forced crossings in each hypothetical
 component. A proof need not show every crossing productive or require that
-a path visits a named endpoint. Neither primitivity nor recurrence alone
+a path visits a named endpoint; nor must every possible path reach a
+diagonal. The quantifiers are: for every supplied component satisfying the
+full hypotheses, there exists a forced crossing and an actual finite path
+from it to a diagonal. Neither primitivity nor recurrence alone
 has been shown here to prove the required coverage. The graph criterion is
 an exact reduction of the obstruction and is not a substitute for ruling
 it out.
 
-[OrientationSafe.lean](../evidence/c4-orientation-safe/OrientationSafe.lean) gives the relational path composition, closed-set
-obstruction and strictness contradiction. The occurrence transport and
-Perron argument above are mathematical proofs in prose. The Lean source
-has no admissions and awaits a native kernel check.
+[OrientationSafe.lean](../evidence/c4-orientation-safe/OrientationSafe.lean)
+gives the generic relational path composition, closed-set obstruction and
+strictness contradiction. Its pinned Lean check passed at the PR #530
+revision in the hosted run recorded below. At that revision the occurrence
+transport, Perron argument and first-diagonal-to-newborn construction above
+remained mathematical proofs in prose: the standalone Lean source does not
+define words, tile intervals, actual factorization, source addresses or
+newborn cuts.
+
+The [2026-11-10 concrete continuation](c4-concrete-occurrence-2026-11-10.md)
+adds a separate `OccurrenceNewborn` module over actual words and the
+complete `Reduction.red`. It covers common-factor ordinal uniqueness for
+already located tile occurrences, derives Perron-length injectivity from
+cubic irreducibility, extracts exact singleton factors and synchronized
+newborns, and lifts this extraction along literal `Descendants.Child`
+paths. Full global-address lookup, residual/sign transport, and packet
+soundness/completeness remain separate obligations. The new module needs
+its own revision's Lean acceptance; the historical generic-only receipt
+below does not verify the new source or discharge those remaining bridges.
 
 ## Finite replay
 
@@ -109,9 +139,17 @@ aligned tiles can overlap only with their identical counterparts.
 
 | Substitution | Ordered states / edges | First left good alignment | First right good alignment | First diagonal |
 | --- | ---: | ---: | ---: | ---: |
+| `01/20/200` | 73 / 152 | absent, both track orders | absent, both track orders | 5 |
 | `1/02/002` | 54 / 94 | absent, both track orders | 7 | 8 |
 | `1/02/220` | 39 / 80 | 3 | 3 | 3 |
 | `01/12/021` | 68 / 146 | 4 | 2 | 3 |
+
+For PR #530, the legal actual child `(01200,20001)` has two complete
+flat noncoincident factor generations. Its forced physical crossing gives
+the first row of the table; the shortest diagonal refactors to a Sync₊
+newborn at local cut 6. The third complete factor generation already has
+diagonals. Thus the counterexample rejects the nominated-endpoint transfer
+rule while failing the fully strict child-closed premise of #461.
 
 For PR #529, the right route begins at source indices (1,2), with defect
 −e₁. The depth-seven state is (1,2,e₂−e₁); digits (0,1) align a common
@@ -154,7 +192,20 @@ python3 tests/test_c4_orientation_safe_oracle.py
 (cd kernel && pixi run --locked mojo run -I . tests/test_c4_forced_overlap_routes.mojo)
 ```
 
-The integer replay passed locally. The exact-head C4 recurrent flat exits workflow runs the canonical Mojo regression and the independent oracle. Its separate Lean job checks the standalone relational reduction using the pinned toolchain.
+The integer replay passed locally. On the PR #530 revision
+`5b7b4bbb30c8199911cc5ed3bf18863a49026ec1`,
+[C4 recurrent flat exits run 42765452559](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42765452559)
+completed successfully. Its `exact-replay` job passed the independent
+Python oracle and canonical Mojo regression; its `orientation-safe-lean`
+job passed the standalone relational reduction with the pinned Lean
+toolchain. Both jobs verified the exact checked-out revision.
+
+This is the dedicated acceptance receipt for the finite controls and
+generic relational source. The same revision's broader
+[PSC research checks](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42765452538)
+and [research branch integration conformance](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42765452605)
+failed. Their integration failures remain distinct from this passing
+workflow and from the open uniform mathematical premise.
 
 References: [Barge–Diamond](https://www.numdam.org/item/BSMF_2002__130_4_619_0/),
 [Akiyama–Lee](https://arxiv.org/abs/1003.2898),

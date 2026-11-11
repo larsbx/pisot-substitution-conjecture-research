@@ -1,0 +1,168 @@
+name: C4 literal inverse row binding
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/c4-literal-inverse-binding.yml'
+      - 'docs/c4-literal-inverse-binding*.md'
+      - 'kernel/psc/c4_literal_inverse_binding.mojo'
+      - 'kernel/c4_literal_inverse_binding.mojo'
+      - 'kernel/tests/test_c4_literal_inverse_binding.mojo'
+      - 'oracles/python/c4_literal_inverse_binding.py'
+      - 'tests/test_c4_literal_inverse_binding_oracle.py'
+      - 'kernel/psc/c4_pair_overlap_new_incidence.mojo'
+      - 'kernel/psc/c4_pair_overlap_carrier.mojo'
+      - 'kernel/psc/c4_nonunit_residue_occupancy.mojo'
+      - 'kernel/psc/c4_finite_cylinder_overlap.mojo'
+      - 'kernel/psc/derived_system.mojo'
+      - 'kernel/psc/pisot.mojo'
+      - 'kernel/psc/exact.mojo'
+      - 'kernel/psc/words.mojo'
+      - 'kernel/psc/bpa.mojo'
+      - 'kernel/finite_exact/**'
+      - 'kernel/finite_linear_algebra/**'
+      - 'kernel/substitution_dynamics/**'
+      - 'kernel/mojo_smoke/**'
+      - 'kernel/pixi.toml'
+      - 'kernel/pixi.lock'
+      - 'oracles/python/c4_pair_overlap_new_incidence.py'
+      - 'proof/PscVerif/PscVerif/Occurrence*.lean'
+      - 'proof/quint/C4LiteralInverseBinding.qnt'
+      - 'tools/check_c4_literal_inverse_binding_quint.py'
+      - 'vendored.toml'
+      - 'pyproject.toml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  complete-literal-binding:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Bind exact revision and replay sources
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, subprocess
+          paths = [
+              '.github/workflows/c4-literal-inverse-binding.yml',
+              'kernel/psc/c4_literal_inverse_binding.mojo',
+              'kernel/c4_literal_inverse_binding.mojo',
+              'kernel/tests/test_c4_literal_inverse_binding.mojo',
+              'oracles/python/c4_literal_inverse_binding.py',
+              'tests/test_c4_literal_inverse_binding_oracle.py',
+              'kernel/psc/c4_pair_overlap_new_incidence.mojo',
+              'kernel/psc/c4_pair_overlap_carrier.mojo',
+              'oracles/python/c4_pair_overlap_new_incidence.py',
+              'kernel/pixi.toml', 'kernel/pixi.lock', 'vendored.toml',
+          ]
+          receipt = {
+              'git_head': subprocess.check_output(['git','rev-parse','HEAD'], text=True).strip(),
+              'git_tree': subprocess.check_output(['git','rev-parse','HEAD^{tree}'], text=True).strip(),
+              'worktree_dirty': bool(subprocess.check_output(['git','status','--porcelain'], text=True).strip()),
+              'sources': {p: hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest() for p in paths},
+          }
+          if receipt['worktree_dirty']:
+              raise SystemExit('Refusing a dirty initial source checkout')
+          (pathlib.Path(os.environ['RUNNER_TEMP']) / 'literal-binding-source.json').write_text(json.dumps(receipt, indent=2)+'\n')
+          PY
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install the focused independent test runner
+        run: python -m pip install 'pytest>=7,<10'
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          pixi-version: v0.81.0
+          manifest-path: kernel/pixi.toml
+          locked: true
+      - name: Canonical native regression and full positional packet
+        working-directory: kernel
+        env:
+          MODULAR_TELEMETRY_ENABLED: '0'
+        run: |
+          # setup-pixi installed the complete locked default environment.
+          # Invoke its compiler directly without the first-activation telemetry script.
+          export MODULAR_HOME="$PWD/.pixi/envs/default/share/max"
+          .pixi/envs/default/bin/mojo --version
+          .pixi/envs/default/bin/mojo run -I . tests/test_c4_literal_inverse_binding.mojo
+          .pixi/envs/default/bin/mojo run -I . c4_literal_inverse_binding.mojo > "$RUNNER_TEMP/literal-binding-native.txt"
+      - name: Independent full inventory and adversarial controls
+        env:
+          PSC_LITERAL_INVERSE_NATIVE_OUTPUT: ${{ runner.temp }}/literal-binding-native.txt
+        run: |
+          python -m pytest --assert=plain -o addopts='' -q tests/test_c4_literal_inverse_binding_oracle.py
+          python oracles/python/c4_literal_inverse_binding.py \
+            --native "$RUNNER_TEMP/literal-binding-native.txt" \
+            --output "$RUNNER_TEMP/literal-binding-receipt.json"
+      - name: Verify source and revision did not change
+        run: |
+          python - <<'PY'
+          import hashlib, json, os, pathlib, subprocess
+          p = pathlib.Path(os.environ['RUNNER_TEMP']) / 'literal-binding-source.json'
+          receipt = json.loads(p.read_text())
+          if subprocess.check_output(['git','rev-parse','HEAD'], text=True).strip() != receipt['git_head']:
+              raise SystemExit('Revision changed during replay')
+          if subprocess.check_output(['git','rev-parse','HEAD^{tree}'], text=True).strip() != receipt['git_tree']:
+              raise SystemExit('Source tree changed during replay')
+          for path, expected in receipt['sources'].items():
+              if hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest() != expected:
+                  raise SystemExit('Replay source changed: ' + path)
+          if subprocess.check_output(['git','status','--porcelain','--untracked-files=no'], text=True).strip():
+              raise SystemExit('Tracked sources changed during replay')
+          receipt['source_and_revision_recheck'] = 'unchanged'
+          p.write_text(json.dumps(receipt, indent=2)+'\n')
+          PY
+          python tools/make_proof_bank.py --check
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: c4-literal-inverse-binding-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            ${{ runner.temp }}/literal-binding-source.json
+            ${{ runner.temp }}/literal-binding-native.txt
+            ${{ runner.temp }}/literal-binding-receipt.json
+          if-no-files-found: error
+          retention-days: 30
+
+  normalized-slot-quint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Verify exact revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check normalized occurrences and assertion-failing mutations
+        run: |
+          python3 tools/check_c4_literal_inverse_binding_quint.py \
+            --output "$RUNNER_TEMP/literal-binding-quint"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: c4-literal-inverse-binding-quint-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/literal-binding-quint
+          if-no-files-found: error
+          retention-days: 30

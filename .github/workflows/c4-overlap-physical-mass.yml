@@ -1,0 +1,63 @@
+name: C4 physical overlap mass
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/c4-overlap-physical-mass.yml'
+      - 'docs/c4-physical-*mass*.md'
+      - 'evidence/c4-physical-overlap-mass-2026-11-07/**'
+      - 'kernel/c4_overlap_physical_mass.mojo'
+      - 'kernel/tests/test_c4_overlap_physical_mass.mojo'
+      - 'kernel/psc/c4_*overlap*.mojo'
+      - 'kernel/psc/c4_nonunit_residue_occupancy.mojo'
+      - 'kernel/psc/real_root_sign.mojo'
+      - 'kernel/psc/pisot.mojo'
+      - 'kernel/psc/exact.mojo'
+      - 'kernel/finite_exact/**'
+      - 'kernel/finite_linear_algebra/**'
+      - 'kernel/finite_graph/**'
+      - 'kernel/pixi.toml'
+      - 'kernel/pixi.lock'
+      - 'oracles/python/c4_*overlap*.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  physical-mass-certificate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Assert exact checked-out revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          pixi-version: v0.81.0
+          manifest-path: kernel/pixi.toml
+          locked: true
+      - name: Native controls and full physical mass export
+        working-directory: kernel
+        run: |
+          pixi run --locked mojo run -I . tests/test_c4_overlap_physical_mass.mojo
+          pixi run --locked mojo run -I . c4_overlap_physical_mass.mojo > /tmp/physical-native.txt
+      - name: Independent literal interval sweep and packet parity
+        run: |
+          python oracles/python/c4_overlap_physical_mass.py > /tmp/physical-oracle.txt
+          cmp /tmp/physical-native.txt /tmp/physical-oracle.txt
+          grep -E '^(graph|block) ' /tmp/physical-native.txt |
+            diff - evidence/c4-physical-overlap-mass-2026-11-07/summary.txt
+          (cd /tmp && sha256sum -c "$GITHUB_WORKSPACE/evidence/c4-physical-overlap-mass-2026-11-07/packet.sha256")
+      - name: Retain the exact packet
+        uses: actions/upload-artifact@v4
+        with:
+          name: overlap-physical-mass-${{ github.event.pull_request.head.sha || github.sha }}
+          path: /tmp/physical-native.txt
