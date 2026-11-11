@@ -10135,6 +10135,254 @@
       "declaration": "theorem control_last_and_exterior :"
     },
     {
+      "name": "Psc.OccurrenceCover.digit_card",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 41,
+      "declaration": "theorem digit_card (s : Fin 3 → Word) :"
+    },
+    {
+      "name": "Psc.OccurrenceCover.incomingKey_injective",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 56,
+      "declaration": "theorem incomingKey_injective {s : Fin 3 → Word} {p : Packet}"
+    },
+    {
+      "name": "Psc.OccurrenceCover.finite_incoming",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 85,
+      "declaration": "theorem finite_incoming (s : Fin 3 → Word) (p : Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceCover.incoming_card_le",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 91,
+      "declaration": "theorem incoming_card_le (s : Fin 3 → Word) (p : Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceCover.finite_history",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 123,
+      "declaration": "theorem finite_history (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.OccurrenceCover.history_card_le",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 131,
+      "declaration": "theorem history_card_le (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.OccurrenceCover.historyAddress_length",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 163,
+      "declaration": "theorem historyAddress_length (s : Fin 3 → Word) (n : ℕ) (p : Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceCover.historyAddress_injective",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 171,
+      "declaration": "theorem historyAddress_injective (s : Fin 3 → Word) (n : ℕ) (p : Packet) :"
+    },
+    {
+      "name": "Psc.OccurrenceCover.history_integral_equation",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 212,
+      "declaration": "theorem history_integral_equation (s : Fin 3 → Word) (n : ℕ) (p : Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceCover.piece_empty_iff",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 234,
+      "declaration": "@[simp] theorem piece_empty_iff {s : Fin 3 → Word} (A : G →+ G)"
+    },
+    {
+      "name": "Psc.OccurrenceCover.historyMap_eq",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 250,
+      "declaration": "theorem historyMap_eq (s : Fin 3 → Word) (A : G →+ G)"
+    },
+    {
+      "name": "Psc.OccurrenceCover.historyPiece_eq_image",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 272,
+      "declaration": "theorem historyPiece_eq_image (s : Fin 3 → Word) (A : G →+ G)"
+    },
+    {
+      "name": "Psc.OccurrenceCover.piece_subset_overlap",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 291,
+      "declaration": "theorem piece_subset_overlap {p u : Packet} (e : InverseOccurrence s p u) :"
+    },
+    {
+      "name": "Psc.OccurrenceCover.historyPiece_subset",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 295,
+      "declaration": "theorem historyPiece_subset (n : ℕ) (p : Packet) (h : History s n p) :"
+    },
+    {
+      "name": "Psc.OccurrenceCover.overlap_mem_historyPiece",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 306,
+      "declaration": "theorem overlap_mem_historyPiece (reflects : ReflectsIntegralRange s A star)"
+    },
+    {
+      "name": "Psc.OccurrenceCover.overlap_eq_iUnion_history",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 317,
+      "declaration": "theorem overlap_eq_iUnion_history (reflects : ReflectsIntegralRange s A star)"
+    },
+    {
+      "name": "Psc.OccurrenceCover.overlap_mem_historyWithin",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 332,
+      "declaration": "theorem overlap_mem_historyWithin (reflects : ReflectsIntegralRange s A star)"
+    },
+    {
+      "name": "Psc.OccurrenceCover.overlap_eq_iUnion_restrictedHistory",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 348,
+      "declaration": "theorem overlap_eq_iUnion_restrictedHistory (reflects : ReflectsIntegralRange s A star)"
+    },
+    {
+      "name": "Psc.OccurrenceCover.mem_restrictedUnion",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 375,
+      "declaration": "theorem mem_restrictedUnion {s : Fin 3 → Word} (A : G →+ G)"
+    },
+    {
+      "name": "Psc.OccurrenceCover.restrictedUnion_subset",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 390,
+      "declaration": "theorem restrictedUnion_subset (S : Finset Packet) (p : Packet) :"
+    },
+    {
+      "name": "Psc.OccurrenceCover.overlap_eq_restricted_iff",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 398,
+      "declaration": "theorem overlap_eq_restricted_iff (reflects : ReflectsIntegralRange s A star)"
+    },
+    {
+      "name": "Psc.OccurrenceCover.overlap_eq_restricted_of_excluded_empty",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 421,
+      "declaration": "theorem overlap_eq_restricted_of_excluded_empty"
+    },
+    {
+      "name": "Psc.OccurrenceCover.overlap_eq_restricted_of_nonempty_represented",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 432,
+      "declaration": "theorem overlap_eq_restricted_of_nonempty_represented"
+    },
+    {
+      "name": "Psc.OccurrenceCover.overlap_eq_restricted_of_inverse_closed",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 446,
+      "declaration": "theorem overlap_eq_restricted_of_inverse_closed"
+    },
+    {
+      "name": "Psc.OccurrenceCover.overlap_mono_enclosure",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 458,
+      "declaration": "theorem overlap_mono_enclosure (star : (Fin 3 → ℤ) →+ G)"
+    },
+    {
+      "name": "Psc.OccurrenceCover.overlap_empty_of_enclosure",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 464,
+      "declaration": "theorem overlap_empty_of_enclosure (star : (Fin 3 → ℤ) →+ G)"
+    },
+    {
+      "name": "Psc.OccurrenceCover.overlap_empty_of_separating_coordinate",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 474,
+      "declaration": "theorem overlap_empty_of_separating_coordinate (star : (Fin 3 → ℤ) →+ G)"
+    },
+    {
+      "name": "Psc.OccurrenceCover.reflectsIntegralRange_of_residue",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 491,
+      "declaration": "theorem reflectsIntegralRange_of_residue {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.OccurrenceCover.isCompact_overlap",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 508,
+      "declaration": "theorem isCompact_overlap (star : (Fin 3 → ℤ) →+ G)"
+    },
+    {
+      "name": "Psc.OccurrenceCover.continuous_historyMap",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 515,
+      "declaration": "theorem continuous_historyMap (s : Fin 3 → Word) (A : G →+ G)"
+    },
+    {
+      "name": "Psc.OccurrenceCover.isCompact_historyPiece",
+      "module": "PscVerif.OccurrenceCover",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
+      "line": 525,
+      "declaration": "theorem isCompact_historyPiece (s : Fin 3 → Word) (A : G →+ G)"
+    },
+    {
       "name": "Psc.OccurrenceFinite.markAt_index",
       "module": "PscVerif.OccurrenceFinite",
       "private": false,
@@ -20321,6 +20569,7 @@
     "proof/PscVerif/PscVerif/LieWeights.lean": "f32639f83e519c69b8f428e153dd368c274e1f665a837183f88c5f1de0dd8adb",
     "proof/PscVerif/PscVerif/M0Pisot.lean": "65d17cf0aa71cdac825d16da73ad601dd49c214cd0b47ac58f124cb51a64a304",
     "proof/PscVerif/PscVerif/OccurrenceAddress.lean": "fd8d4020fc3f720c8a81d23c9811056802c901eec35a48efcbb40954c5a375ad",
+    "proof/PscVerif/PscVerif/OccurrenceCover.lean": "6d998b825859331c2990645ad5ee795c92d40bcb097636389b016893f3858d87",
     "proof/PscVerif/PscVerif/OccurrenceFinite.lean": "65ef11444d2f03c9a49febf9a859eb8d48bd8dd0e1a37fd972c47935526b48a0",
     "proof/PscVerif/PscVerif/OccurrenceGraphBinding.lean": "31b2d7827438cd77c0e2f7fb72d4dc7791d016cd635952630220faf667e2084f",
     "proof/PscVerif/PscVerif/OccurrenceInverse.lean": "f31fded6a56a9e7c9b67050319d766e5967ed431716ebb89f192caead73d5605",
@@ -20357,7 +20606,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "57ef293659149071f86c0ec39325bee4fa1b6c47335fdf921424893f2f306add",
+    "proof/PscVerif/PscVerif.lean": "a3c32ea935376162b480629d7377df739aabfd154dc01d7464d44f6d718110f6",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
