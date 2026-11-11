@@ -9,6 +9,42 @@ governed claim promotion. General C4, Concentration,
 A1′, BH, G1 and PSC remain open. The direct C4 tracker is
 [#461](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/461).
 
+### Current geometric continuation — 2026-11-11
+
+The historical receipts below are preserved. The current prefix route has
+advanced through the actual matrix-adic carrier in merged #541 and the
+literal-prefix equation at accepted source
+`aa80845e9ccde9f4a0c90c00d1f6d6ade40559b5` in open
+[PR #542](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/542).
+The [stable-prefix window continuation](c4-stable-prefix-window-2026-11-11.md)
+derives an all-prefix norm bound from a commuting contracting action and
+complete literal digits, including addresses whose parent equals the
+child index. In a proper space it supplies the compact window required
+by the actual prefix-closure theorem. Its own acceptance is recorded in
+its implementation PR; #542's prior receipts do not cover the extension.
+
+The [named stable-chart continuation](c4-named-stable-chart-2026-11-11.md)
+now implements the authentic real chart and stable-plane lift for
+`1/021/001` and `1/012/001`, their strict block-twelve contraction in the
+declared coordinate supremum norm, and original integral-incidence
+injectivity. It constructs the two distinct period-two words separately.
+The canonical complete digit sum then yields an all-prefix bound and
+compact, nonempty letter-indexed closures in the original matrix-adic
+product. Its implementation PR records its own fresh acceptance; prior
+#542/#543 receipts do not cover these new modules.
+
+The sharper radius forty separately requires a formal binding of the
+complete numerical digit bound of five. The adjacent finite-carrier work
+in [PR #544](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/544)
+is a subsequent composition target once independently accepted: its
+authentic reconstruction and physical-strip premises must be instantiated,
+not inferred merely from the name "stable chart". Integral-star
+injectivity/discreteness and a cut-and-project lattice are not newly
+registered by this compactness increment. Complete finite-domain
+representation, sound exclusions, product-Haar scaling and strict-root
+positivity remain subsequent obligations. Compactness does not discharge
+them.
+
 ### Implementation follow-up after #532
 
 The [concrete occurrence development](c4-concrete-occurrence-2026-11-10.md)
@@ -454,6 +490,7 @@ inconclusive. Another passing finite corpus is not a uniform theorem.
 | 4a.1 | Historical twelve-source inverse rows now have literal positional binding, normalization bits, ordered internal completeness and earlier-state discovery witnesses. | Native full-packet/oracle equality, new bounded Quint controls and fresh full-bank acceptance of the generic Lean interface. The entire serialized packet is not yet a closed Lean term. |
 | 4b | The all-integral-ancestor set union now follows formally from original tile equations and explicit injective action, commutation and integral-range reflection. Construct the compact matrix-adic instance, finite pruned cover, Haar scaling and positive root measure. | Prove the geometric input hypotheses and every exclusion for the actual finite domain; physical interval positivity cannot substitute for compact measure. |
 | 4b.1 | [Bounded actual histories](c4-bounded-compact-cover-2026-11-11.md) retain both positions and composed prefixes, with finite branching from injective integral incidence. Conditional full and restricted-depth covers, compactness, and sound residue/enclosure interfaces have explicit hypotheses. | Fresh canonical Lean/axiom acceptance and exact-head native/integer-oracle replay; instantiate the actual compact tiles and nonempty-ancestor representability for the historical finite graph. Finite levels do not prove global ancestor finiteness or Haar recurrence. |
+| 4b.2 | [Actual prefix windows](c4-stable-prefix-window-2026-11-11.md) derive boundedness and compactness from a commuting contraction; literal power transfer retains the same word and original `H_M`. | Complete Lean/axiom audit, independent bounded Quint controls and fresh replay of the existing exact native block bounds. Concrete native chart/digit certificates remain separate from a closed Lean instance until their soundness bridge is implemented. |
 | 5 | Uniform forced-crossing exclusion. | A theorem for arbitrary supplied component size, or a literal reproducible counterexample to the precise intermediate claim. |
 | 6 | Compose the successful bridge into C4. | Every input/output type, quantifier, realization premise and dependency is discharged; global extraction stays separate. |
 

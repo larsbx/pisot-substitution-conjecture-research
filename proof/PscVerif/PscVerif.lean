@@ -79,3 +79,9 @@ import PscVerif.OccurrenceAdmissibility
 import PscVerif.GeometricPacketCarrier
 import PscVerif.MadicResidue
 import PscVerif.OccurrenceResidue
+import PscVerif.PrefixAddress
+import PscVerif.PrefixClosure
+import PscVerif.StablePrefixWindow
+import PscVerif.NamedStableChart
+import PscVerif.NamedStableContraction
+import PscVerif.NamedPrefixCompact

@@ -10375,6 +10375,798 @@
       "declaration": "theorem continuous_action (M : V →ₗ[ℤ] V) : Continuous (action M) := by"
     },
     {
+      "name": "Psc.NamedPrefixCompact.incidence_eq",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 34,
+      "declaration": "theorem incidence_eq (fixture : Fin 2) : incidenceZ (substitution fixture) = MZ := by"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.nonerasing",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 37,
+      "declaration": "theorem nonerasing (fixture : Fin 2) (a : Fin 3) : substitution fixture a ≠ [] := by"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.square_nonerasing",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 40,
+      "declaration": "theorem square_nonerasing (fixture : Fin 2) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.seed_prolongable",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 44,
+      "declaration": "theorem seed_prolongable (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.seed_grows",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 48,
+      "declaration": "theorem seed_grows (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.word_fixed_two",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 58,
+      "declaration": "theorem word_fixed_two (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.word_fixed_twelve",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 64,
+      "declaration": "theorem word_fixed_twelve (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.word_initial",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 70,
+      "declaration": "theorem word_initial (fixture : Fin 2) (i : Fin 3) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.word_zero",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 88,
+      "declaration": "theorem word_zero (fixture : Fin 2) : word fixture 0 = 0 := by"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.words_distinct",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 92,
+      "declaration": "theorem words_distinct : word 0 ≠ word 1 := by"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.word_not_fixed_one",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 101,
+      "declaration": "theorem word_not_fixed_one (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.integralInjective",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 112,
+      "declaration": "theorem integralInjective (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.pi_commute",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 116,
+      "declaration": "theorem pi_commute (fixture : Fin 2) (z : Fin 3 → ℤ) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.radius_nonneg",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 127,
+      "declaration": "theorem radius_nonneg (fixture : Fin 2) : 0 ≤ radius fixture :="
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.prefix_norm_bound",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 131,
+      "declaration": "theorem prefix_norm_bound (fixture : Fin 2) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.prefix_mem_ball",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 145,
+      "declaration": "theorem prefix_mem_ball (fixture : Fin 2) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.tiles_compact",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 157,
+      "declaration": "theorem tiles_compact (fixture : Fin 2) (c : Fin 3) : IsCompact (tiles fixture c) :="
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.tiles_nonempty",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 162,
+      "declaration": "theorem tiles_nonempty (fixture : Fin 2) (c : Fin 3) : (tiles fixture c).Nonempty := by"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.ambientAction_closedEmbedding",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 171,
+      "declaration": "theorem ambientAction_closedEmbedding (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.tileEquation_two",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 176,
+      "declaration": "theorem tileEquation_two (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.tileEquation_twelve",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 185,
+      "declaration": "theorem tileEquation_twelve (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.sigma0_prefixTiles_compact",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 195,
+      "declaration": "theorem sigma0_prefixTiles_compact (c : Fin 3) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.sigma1_prefixTiles_compact",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 199,
+      "declaration": "theorem sigma1_prefixTiles_compact (c : Fin 3) :"
+    },
+    {
+      "name": "Psc.NamedStableChart.root_bracket",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 44,
+      "declaration": "theorem root_bracket :"
+    },
+    {
+      "name": "Psc.NamedStableChart.exists_root_in_bracket",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 49,
+      "declaration": "theorem exists_root_in_bracket :"
+    },
+    {
+      "name": "Psc.NamedStableChart.beta_ge_lo",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 59,
+      "declaration": "theorem beta_ge_lo : betaLo ≤ beta := (Classical.choose_spec exists_root_in_bracket).1.1"
+    },
+    {
+      "name": "Psc.NamedStableChart.beta_le_hi",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 60,
+      "declaration": "theorem beta_le_hi : beta ≤ betaHi := (Classical.choose_spec exists_root_in_bracket).1.2"
+    },
+    {
+      "name": "Psc.NamedStableChart.beta_cubic",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 61,
+      "declaration": "theorem beta_cubic : cubic beta = 0 := (Classical.choose_spec exists_root_in_bracket).2"
+    },
+    {
+      "name": "Psc.NamedStableChart.beta_gt_two",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 63,
+      "declaration": "theorem beta_gt_two : 2 < beta := root_bracket.1.trans_le beta_ge_lo"
+    },
+    {
+      "name": "Psc.NamedStableChart.beta_lt_five_halves",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 64,
+      "declaration": "theorem beta_lt_five_halves : beta < 5 / 2 := beta_le_hi.trans_lt root_bracket.2.2.1"
+    },
+    {
+      "name": "Psc.NamedStableChart.beta_pos",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 65,
+      "declaration": "theorem beta_pos : 0 < beta := lt_trans (by norm_num : (0 : ℝ) < 2) beta_gt_two"
+    },
+    {
+      "name": "Psc.NamedStableChart.beta_ne_zero",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 66,
+      "declaration": "theorem beta_ne_zero : beta ≠ 0 := ne_of_gt beta_pos"
+    },
+    {
+      "name": "Psc.NamedStableChart.root_unique_ge_two",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 70,
+      "declaration": "theorem root_unique_ge_two {x y : ℝ} (hx : 2 ≤ x) (hy : 2 ≤ y)"
+    },
+    {
+      "name": "Psc.NamedStableChart.beta_unique",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 81,
+      "declaration": "theorem beta_unique {x : ℝ} (hx : 2 ≤ x) (hfx : cubic x = 0) : x = beta :="
+    },
+    {
+      "name": "Psc.NamedStableChart.a_add_b_add_one",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 89,
+      "declaration": "theorem a_add_b_add_one : a + b + 1 = beta := by unfold a b; ring"
+    },
+    {
+      "name": "Psc.NamedStableChart.beta_mul_b",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 91,
+      "declaration": "theorem beta_mul_b : beta * b = 1 := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.beta_mul_a",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 97,
+      "declaration": "theorem beta_mul_a : beta * a = 1 + 2 * b := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.beta_mul_a_eq_c",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 103,
+      "declaration": "theorem beta_mul_a_eq_c : beta * a = c := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.beta_mul_c",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 108,
+      "declaration": "theorem beta_mul_c : beta * c = beta + 2 := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.a_pos",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 114,
+      "declaration": "theorem a_pos : 0 < a := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.b_pos",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 120,
+      "declaration": "theorem b_pos : 0 < b := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.b_eq_inv_beta",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 125,
+      "declaration": "theorem b_eq_inv_beta : b = 1 / beta := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.c_gt_one",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 129,
+      "declaration": "theorem c_gt_one : 1 < c := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.kappa_pos",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 133,
+      "declaration": "theorem kappa_pos : 0 < kappa := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.kappa_ne_zero",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 139,
+      "declaration": "theorem kappa_ne_zero : kappa ≠ 0 := ne_of_gt kappa_pos"
+    },
+    {
+      "name": "Psc.NamedStableChart.a_relation",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 141,
+      "declaration": "theorem a_relation : a * a + a * b + a = 1 + 2 * b := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.b_relation",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 145,
+      "declaration": "theorem b_relation : a * b + b * b + b = 1 := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.MR_eq",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 175,
+      "declaration": "theorem MR_eq : MR = !![0, 1, 2; 1, 1, 1; 0, 1, 0] := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.MR_mulVec",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 179,
+      "declaration": "theorem MR_mulVec (x : AmbientReal) :"
+    },
+    {
+      "name": "Psc.NamedStableChart.W_mulVec",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 185,
+      "declaration": "theorem W_mulVec (x : AmbientReal) : W *ᵥ x = ![x 0 - a * x 1, x 2 - b * x 1] := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.J_mulVec",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 189,
+      "declaration": "theorem J_mulVec (y : Stable) : J *ᵥ y = ![y 0, 0, y 1] := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.Bmat_mulVec",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 193,
+      "declaration": "theorem Bmat_mulVec (y : Stable) :"
+    },
+    {
+      "name": "Psc.NamedStableChart.B_apply",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 198,
+      "declaration": "theorem B_apply (y : Stable) : B y = Bmat *ᵥ y := rfl"
+    },
+    {
+      "name": "Psc.NamedStableChart.piZ_apply",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 199,
+      "declaration": "theorem piZ_apply (z : Fin 3 → ℤ) : piZ z = W *ᵥ castZ z := rfl"
+    },
+    {
+      "name": "Psc.NamedStableChart.physical_apply",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 201,
+      "declaration": "theorem physical_apply (x : AmbientReal) :"
+    },
+    {
+      "name": "Psc.NamedStableChart.physical_add",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 205,
+      "declaration": "theorem physical_add (x y : AmbientReal) : physical (x + y) = physical x + physical y := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.physical_sub",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 209,
+      "declaration": "theorem physical_sub (x y : AmbientReal) : physical (x - y) = physical x - physical y := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.physical_smul",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 213,
+      "declaration": "theorem physical_smul (t : ℝ) (x : AmbientReal) : physical (t • x) = t * physical x := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.WJ_eq_one",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 218,
+      "declaration": "theorem WJ_eq_one : W * J = 1 := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.WM_eq_BW",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 224,
+      "declaration": "theorem WM_eq_BW : W * MR = Bmat * W := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.perron_eigen",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 231,
+      "declaration": "theorem perron_eigen : MR *ᵥ r = beta • r := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.perron_vector_pos",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 237,
+      "declaration": "theorem perron_vector_pos (i : Fin 3) : 0 < r i := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.physical_row_pos",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 240,
+      "declaration": "theorem physical_row_pos (i : Fin 3) : 0 < physicalRow i := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.physical_eigen",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 243,
+      "declaration": "theorem physical_eigen (x : AmbientReal) : physical (MR *ᵥ x) = beta * physical x := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.W_r_zero",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 253,
+      "declaration": "theorem W_r_zero : W *ᵥ r = 0 := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.W_kernel_iff",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 259,
+      "declaration": "theorem W_kernel_iff (x : AmbientReal) :"
+    },
+    {
+      "name": "Psc.NamedStableChart.physical_r_eq_kappa",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 272,
+      "declaration": "theorem physical_r_eq_kappa : physical r = kappa := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.W_L",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 284,
+      "declaration": "theorem W_L (y : Stable) : W *ᵥ L y = y := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.physical_L",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 289,
+      "declaration": "theorem physical_L (y : Stable) : physical (L y) = 0 := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.quotient_reconstruction",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 295,
+      "declaration": "theorem quotient_reconstruction (x : AmbientReal) :"
+    },
+    {
+      "name": "Psc.NamedStableChart.reconstruction",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 303,
+      "declaration": "theorem reconstruction (x : AmbientReal) :"
+    },
+    {
+      "name": "Psc.NamedStableChart.L_W_of_physical_zero",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 322,
+      "declaration": "theorem L_W_of_physical_zero (x : AmbientReal) (hx : physical x = 0) : L (W *ᵥ x) = x := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.W_injective_on_stable",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 326,
+      "declaration": "theorem W_injective_on_stable {x y : AmbientReal}"
+    },
+    {
+      "name": "Psc.NamedStableChart.M_L",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 331,
+      "declaration": "theorem M_L (y : Stable) : MR *ᵥ L y = L (Bmat *ᵥ y) := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.MZ_det",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 337,
+      "declaration": "theorem MZ_det : MZ.det = 2 := by norm_num [MZ, Matrix.det_fin_three]"
+    },
+    {
+      "name": "Psc.NamedStableChart.MZ_mulVec_injective",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 339,
+      "declaration": "theorem MZ_mulVec_injective : Function.Injective (fun z : Fin 3 → ℤ => MZ *ᵥ z) :="
+    },
+    {
+      "name": "Psc.NamedStableChart.Bmat_det",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 342,
+      "declaration": "theorem Bmat_det : Bmat.det = 2 * b := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.Bmat_det_ne_zero",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 346,
+      "declaration": "theorem Bmat_det_ne_zero : Bmat.det ≠ 0 := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.B_isClosedEmbedding",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 350,
+      "declaration": "theorem B_isClosedEmbedding : Topology.IsClosedEmbedding B :="
+    },
+    {
+      "name": "Psc.NamedStableChart.castZ_mulVec",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 354,
+      "declaration": "theorem castZ_mulVec (z : Fin 3 → ℤ) : castZ (MZ *ᵥ z) = MR *ᵥ castZ z := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.piZ_commute",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 359,
+      "declaration": "theorem piZ_commute (z : Fin 3 → ℤ) : B (piZ z) = piZ (MZ *ᵥ z) := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.W_MR_pow",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 363,
+      "declaration": "theorem W_MR_pow (n : ℕ) : W * MR ^ n = Bmat ^ n * W := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.Bmat_pow_eq_WMpJ",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 375,
+      "declaration": "theorem Bmat_pow_eq_WMpJ (n : ℕ) : Bmat ^ n = W * MR ^ n * J := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.B_pow_apply_eq_matrix",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 378,
+      "declaration": "theorem B_pow_apply_eq_matrix (n : ℕ) (x : Stable) : (B ^ n) x = (Bmat ^ n) *ᵥ x := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.MZ_pow_two",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 386,
+      "declaration": "theorem MZ_pow_two : MZ ^ 2 = !![1, 3, 1; 1, 3, 3; 1, 1, 1] := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.MZ_pow_four",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 391,
+      "declaration": "theorem MZ_pow_four : MZ ^ 4 = !![5, 13, 11; 7, 15, 13; 3, 7, 5] := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.MZ_pow_eight",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 397,
+      "declaration": "theorem MZ_pow_eight : MZ ^ 8 = !![149, 337, 279; 179, 407, 337; 79, 179, 149] := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.MZ_pow_twelve",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 403,
+      "declaration": "theorem MZ_pow_twelve : MZ ^ 12 = !![3941, 8945, 7415; 4755, 10791, 8945; 2095, 4755, 3941] := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.MR_pow_twelve",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 409,
+      "declaration": "theorem MR_pow_twelve : MR ^ 12 = !![3941, 8945, 7415; 4755, 10791, 8945; 2095, 4755, 3941] := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.Bmat_pow_twelve",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 418,
+      "declaration": "theorem Bmat_pow_twelve : Bmat ^ 12 ="
+    },
+    {
+      "name": "Psc.NamedStableContraction.beta_coarse_bounds",
+      "module": "PscVerif.NamedStableContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableContraction.lean",
+      "line": 33,
+      "declaration": "theorem beta_coarse_bounds :"
+    },
+    {
+      "name": "Psc.NamedStableContraction.chart_coarse_bounds",
+      "module": "PscVerif.NamedStableContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableContraction.lean",
+      "line": 42,
+      "declaration": "theorem chart_coarse_bounds :"
+    },
+    {
+      "name": "Psc.NamedStableContraction.twelfth_entry_bounds",
+      "module": "PscVerif.NamedStableContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableContraction.lean",
+      "line": 54,
+      "declaration": "theorem twelfth_entry_bounds :"
+    },
+    {
+      "name": "Psc.NamedStableContraction.twelfth_row_bounds",
+      "module": "PscVerif.NamedStableContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableContraction.lean",
+      "line": 64,
+      "declaration": "theorem twelfth_row_bounds (i : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedStableContraction.norm_mulVec_le_of_row_bound",
+      "module": "PscVerif.NamedStableContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableContraction.lean",
+      "line": 78,
+      "declaration": "theorem norm_mulVec_le_of_row_bound (C : Matrix (Fin 2) (Fin 2) ℝ)"
+    },
+    {
+      "name": "Psc.NamedStableContraction.B_pow_twelve_contract",
+      "module": "PscVerif.NamedStableContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableContraction.lean",
+      "line": 96,
+      "declaration": "theorem B_pow_twelve_contract (x : Stable) :"
+    },
+    {
+      "name": "Psc.NamedStableContraction.B_test_vector",
+      "module": "PscVerif.NamedStableContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableContraction.lean",
+      "line": 104,
+      "declaration": "theorem B_test_vector : B (![1, -1] : Stable) = ![-2, 0] := by"
+    },
+    {
+      "name": "Psc.NamedStableContraction.B_pow_two_test_vector",
+      "module": "PscVerif.NamedStableContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableContraction.lean",
+      "line": 109,
+      "declaration": "theorem B_pow_two_test_vector : (B ^ 2) (![1, -1] : Stable) = ![2 * a, 2 * b] := by"
+    },
+    {
+      "name": "Psc.NamedStableContraction.not_B_pow_two_contract",
+      "module": "PscVerif.NamedStableContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableContraction.lean",
+      "line": 119,
+      "declaration": "theorem not_B_pow_two_contract :"
+    },
+    {
       "name": "Psc.OccurrenceAddress.locate_sound",
       "module": "PscVerif.OccurrenceAddress",
       "private": false,
@@ -15103,6 +15895,398 @@
       "declaration": "theorem Refinement.zero_of_supersolution {ι : Type*} [Fintype ι]"
     },
     {
+      "name": "Psc.PrefixAddress.prefix_length",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 27,
+      "declaration": "theorem prefix_length (w : ℕ → Fin 3) (n : ℕ) : (wordPrefix w n).length = n := by"
+    },
+    {
+      "name": "Psc.PrefixAddress.prefix_zero",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 31,
+      "declaration": "theorem prefix_zero (w : ℕ → Fin 3) : wordPrefix w 0 = [] := by simp [wordPrefix]"
+    },
+    {
+      "name": "Psc.PrefixAddress.prefix_getElem",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 34,
+      "declaration": "theorem prefix_getElem (w : ℕ → Fin 3) (n i : ℕ) (h : i < (wordPrefix w n).length) :"
+    },
+    {
+      "name": "Psc.PrefixAddress.prefix_take",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 37,
+      "declaration": "theorem prefix_take (w : ℕ → Fin 3) {m n : ℕ} (h : m ≤ n) :"
+    },
+    {
+      "name": "Psc.PrefixAddress.prefix_mono",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 44,
+      "declaration": "theorem prefix_mono (w : ℕ → Fin 3) {m n : ℕ} (h : m ≤ n) :"
+    },
+    {
+      "name": "Psc.PrefixAddress.prefix_succ",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 49,
+      "declaration": "theorem prefix_succ (w : ℕ → Fin 3) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PrefixAddress.cofinalImages_of_nonerasing",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 62,
+      "declaration": "theorem cofinalImages_of_nonerasing (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixAddress.inflated_index",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 84,
+      "declaration": "theorem inflated_index (τ : Fin 3 → Word) (w : ℕ → Fin 3) (e : Address τ w) :"
+    },
+    {
+      "name": "Psc.PrefixAddress.childIndex_lt",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 90,
+      "declaration": "theorem childIndex_lt (τ : Fin 3 → Word) (w : ℕ → Fin 3) (e : Address τ w) :"
+    },
+    {
+      "name": "Psc.PrefixAddress.childIndex_parent_le",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 95,
+      "declaration": "theorem childIndex_parent_le (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixAddress.childIndex_locate",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 104,
+      "declaration": "theorem childIndex_locate (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixAddress.childIndex_injective",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 115,
+      "declaration": "theorem childIndex_injective (τ : Fin 3 → Word) (w : ℕ → Fin 3) :"
+    },
+    {
+      "name": "Psc.PrefixAddress.childIndex_surjective",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 132,
+      "declaration": "theorem childIndex_surjective (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixAddress.childIndex_bijective",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 150,
+      "declaration": "theorem childIndex_bijective (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixAddress.prefix_childIndex",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 160,
+      "declaration": "theorem prefix_childIndex (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixAddress.letter_childIndex",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 170,
+      "declaration": "theorem letter_childIndex (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixAddress.parikhZ_prefix_childIndex",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 187,
+      "declaration": "theorem parikhZ_prefix_childIndex (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixAddress.complete_address",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 195,
+      "declaration": "theorem complete_address (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixAddress.seedWord_fixedPrefix",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 214,
+      "declaration": "theorem seedWord_fixedPrefix (τ : Fin 3 → Word) (u : Word)"
+    },
+    {
+      "name": "Psc.PrefixAddress.seedWord_cofinalImages",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 222,
+      "declaration": "theorem seedWord_cofinalImages (τ : Fin 3 → Word) (u : Word)"
+    },
+    {
+      "name": "Psc.PrefixAddress.seedWord_spec",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 230,
+      "declaration": "theorem seedWord_spec (τ : Fin 3 → Word) (u : Word)"
+    },
+    {
+      "name": "Psc.PrefixAddress.subst_erasing",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 240,
+      "declaration": "theorem subst_erasing (u : Word) : subst (fun _ : Fin 3 => []) u = [] := by"
+    },
+    {
+      "name": "Psc.PrefixAddress.erasing_fixedPrefix",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 246,
+      "declaration": "theorem erasing_fixedPrefix :"
+    },
+    {
+      "name": "Psc.PrefixAddress.erasing_not_cofinalImages",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 252,
+      "declaration": "theorem erasing_not_cofinalImages :"
+    },
+    {
+      "name": "Psc.PrefixClosure.raw_point_mem",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 34,
+      "declaration": "theorem raw_point_mem (w : ℕ → Fin 3) (star : (Fin 3 → ℤ) →+ G) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PrefixClosure.raw_origin_mem",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 37,
+      "declaration": "theorem raw_origin_mem (w : ℕ → Fin 3) (star : (Fin 3 → ℤ) →+ G) :"
+    },
+    {
+      "name": "Psc.PrefixClosure.raw_affine_point",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 44,
+      "declaration": "theorem raw_affine_point (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixClosure.raw_tileEquation",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 53,
+      "declaration": "theorem raw_tileEquation (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixClosure.tileEquation_iff_iUnion",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 73,
+      "declaration": "theorem tileEquation_iff_iUnion (τ : Fin 3 → Word) (A : G →+ G)"
+    },
+    {
+      "name": "Psc.PrefixClosure.erasing_not_raw_tileEquation",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 99,
+      "declaration": "theorem erasing_not_raw_tileEquation (A : G →+ G) (star : (Fin 3 → ℤ) →+ G) :"
+    },
+    {
+      "name": "Psc.PrefixClosure.closure_tileEquation",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 116,
+      "declaration": "theorem closure_tileEquation (τ : Fin 3 → Word) (A : G →+ G)"
+    },
+    {
+      "name": "Psc.PrefixClosure.prefixTiles_tileEquation",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 133,
+      "declaration": "theorem prefixTiles_tileEquation (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixClosure.prefixTiles_tileEquation_of_nonerasing",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 142,
+      "declaration": "theorem prefixTiles_tileEquation_of_nonerasing (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixClosure.prefixTiles_nonempty",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 154,
+      "declaration": "theorem prefixTiles_nonempty (w : ℕ → Fin 3) (star : (Fin 3 → ℤ) →+ G)"
+    },
+    {
+      "name": "Psc.PrefixClosure.seed_prefixTiles_tileEquation",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 158,
+      "declaration": "theorem seed_prefixTiles_tileEquation (τ : Fin 3 → Word) (u : Word)"
+    },
+    {
+      "name": "Psc.PrefixClosure.erasing_not_prefixTiles_tileEquation",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 170,
+      "declaration": "theorem erasing_not_prefixTiles_tileEquation (A : G →+ G)"
+    },
+    {
+      "name": "Psc.PrefixClosure.madic_action_isClosedEmbedding",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 187,
+      "declaration": "theorem madic_action_isClosedEmbedding (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.PrefixClosure.ambientAction_isClosedEmbedding",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 196,
+      "declaration": "theorem ambientAction_isClosedEmbedding (s : Fin 3 → Word) (B : E →+ E)"
+    },
+    {
+      "name": "Psc.PrefixClosure.closedEmbedding_pow",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 204,
+      "declaration": "theorem closedEmbedding_pow {X : Type*} [AddCommGroup X] [TopologicalSpace X]"
+    },
+    {
+      "name": "Psc.PrefixClosure.ambientAction_pow_isClosedEmbedding",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 214,
+      "declaration": "theorem ambientAction_pow_isClosedEmbedding (s : Fin 3 → Word) (B : E →+ E)"
+    },
+    {
+      "name": "Psc.PrefixClosure.ambientAction_pow_star",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 222,
+      "declaration": "theorem ambientAction_pow_star (s : Fin 3 → Word) (B : E →+ E)"
+    },
+    {
+      "name": "Psc.PrefixClosure.ambient_block_commute",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 236,
+      "declaration": "theorem ambient_block_commute (s : Fin 3 → Word) (B : E →+ E)"
+    },
+    {
+      "name": "Psc.PrefixClosure.ambient_block_reflectsIntegralRange",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 249,
+      "declaration": "theorem ambient_block_reflectsIntegralRange (s : Fin 3 → Word) (B : E →+ E)"
+    },
+    {
+      "name": "Psc.PrefixClosure.block_integralInjective",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 261,
+      "declaration": "theorem block_integralInjective (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.PrefixClosure.ambient_prefixTiles_tileEquation",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 271,
+      "declaration": "theorem ambient_prefixTiles_tileEquation (s : Fin 3 → Word) (k : ℕ) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixClosure.ambient_prefix_overlap_cover",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 288,
+      "declaration": "theorem ambient_prefix_overlap_cover (s : Fin 3 → Word) (k : ℕ) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixClosure.ambient_prefix_finite_history_cover",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 307,
+      "declaration": "theorem ambient_prefix_finite_history_cover (s : Fin 3 → Word) (k : ℕ) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixClosure.prefixTiles_compact_of_window",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 332,
+      "declaration": "theorem prefixTiles_compact_of_window (s : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixClosure.compact_prefix_historyPiece",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 349,
+      "declaration": "theorem compact_prefix_historyPiece (s : Fin 3 → Word) (k : ℕ) (w : ℕ → Fin 3)"
+    },
+    {
       "name": "Psc.PrimitiveExpansion.one_le_of_pos_pow",
       "module": "PscVerif.PrimitiveExpansion",
       "private": false,
@@ -17565,6 +18749,214 @@
       "source": "proof/PscVerif/PscVerif/SignedIntertwiner.lean",
       "line": 385,
       "declaration": "theorem exB_k3 (a b e : Fin 3) :"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.self_bound",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 31,
+      "declaration": "theorem self_bound {q D R x : ℝ} (hq : q < 1)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.geometric_radius",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 38,
+      "declaration": "theorem geometric_radius {q D : ℝ} (hq : q < 1) :"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.digitNormSum_nonneg",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 54,
+      "declaration": "theorem digitNormSum_nonneg (τ : Fin 3 → Word) (pi : (Fin 3 → ℤ) →+ E) :"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.digit_norm_le_sum",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 60,
+      "declaration": "theorem digit_norm_le_sum (τ : Fin 3 → Word) (pi : (Fin 3 → ℤ) →+ E)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.addressed_step",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 68,
+      "declaration": "theorem addressed_step (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.prefix_norm_le",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 85,
+      "declaration": "theorem prefix_norm_le (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.prefix_norm_le_geometric",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 109,
+      "declaration": "theorem prefix_norm_le_geometric (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.prefix_norm_le_canonical",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 122,
+      "declaration": "theorem prefix_norm_le_canonical (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.prefix_mem_closedBall",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 134,
+      "declaration": "theorem prefix_mem_closedBall (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.seed_prefix_norm_le",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 149,
+      "declaration": "theorem seed_prefix_norm_le (τ : Fin 3 → Word) (u : Word)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.subst_iterateImages",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 168,
+      "declaration": "theorem subst_iterateImages (s : Fin 3 → Word) (k : ℕ) :"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.fixedPrefix_subst_iterate",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 173,
+      "declaration": "theorem fixedPrefix_subst_iterate (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.fixedPrefix_period_lift",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 185,
+      "declaration": "theorem fixedPrefix_period_lift (s : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.nonerasing_iterateImages",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 194,
+      "declaration": "theorem nonerasing_iterateImages (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.action_pow_commute",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 204,
+      "declaration": "theorem action_pow_commute (s : Fin 3 → Word) (B : AddMonoid.End E)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.compact_prefixTiles",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 225,
+      "declaration": "theorem compact_prefixTiles (s τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.compact_prefixTiles_canonical",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 242,
+      "declaration": "theorem compact_prefixTiles_canonical (s τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.compact_prefixTiles_at_multiple",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 256,
+      "declaration": "theorem compact_prefixTiles_at_multiple (s : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.compact_historyPiece_at_multiple",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 273,
+      "declaration": "theorem compact_historyPiece_at_multiple (s : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.radius_forty_calibration",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 300,
+      "declaration": "theorem radius_forty_calibration :"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.prefix_norm_le_forty",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 307,
+      "declaration": "theorem prefix_norm_le_forty {E : Type*} [NormedAddCommGroup E]"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.period_two_to_twelve",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 319,
+      "declaration": "theorem period_two_to_twelve (s : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.compact_prefixTiles_two_twelve",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 326,
+      "declaration": "theorem compact_prefixTiles_two_twelve {E : Type*} [NormedAddCommGroup E] [ProperSpace E]"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.unit_contraction_control",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 339,
+      "declaration": "theorem unit_contraction_control :"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.radius_thirty_nine_control",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 344,
+      "declaration": "theorem radius_thirty_nine_control : ¬ ((7 / 8 : ℝ) * 39 + 5 ≤ 39) := by"
+    },
+    {
+      "name": "Psc.StablePrefixWindow.zero_action_not_injective",
+      "module": "PscVerif.StablePrefixWindow",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StablePrefixWindow.lean",
+      "line": 348,
+      "declaration": "theorem zero_action_not_injective :"
     },
     {
       "name": "Psc.StrictSystem.isBlock_swap",
@@ -21659,6 +23051,9 @@
     "proof/PscVerif/PscVerif/LieWeights.lean": "f32639f83e519c69b8f428e153dd368c274e1f665a837183f88c5f1de0dd8adb",
     "proof/PscVerif/PscVerif/M0Pisot.lean": "65d17cf0aa71cdac825d16da73ad601dd49c214cd0b47ac58f124cb51a64a304",
     "proof/PscVerif/PscVerif/MadicResidue.lean": "c7ff8430cb77c335f11478861584baea4129658b35f4fc67bf0c2b8509d50f6d",
+    "proof/PscVerif/PscVerif/NamedPrefixCompact.lean": "e6cbff61401e8f5109bc0c8654e77eca155e1186286703e76f4d55044ebd220e",
+    "proof/PscVerif/PscVerif/NamedStableChart.lean": "772d6dc46898bc22471db53283dc0404445f1dd28ac0b99ed16232c394336f9b",
+    "proof/PscVerif/PscVerif/NamedStableContraction.lean": "13381d9619cd2c574e15614ce0e00609d17e1b153b359ca788ebe73d45bde8fd",
     "proof/PscVerif/PscVerif/OccurrenceAddress.lean": "fd8d4020fc3f720c8a81d23c9811056802c901eec35a48efcbb40954c5a375ad",
     "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean": "0843e0a255a2a13675132264eb1385d9a155b7122138359b02158916541e2b4e",
     "proof/PscVerif/PscVerif/OccurrenceCover.lean": "c66e2937532b2b289351b9ab10a18a1485b73434e362fd1e88edbfd3b6479cb6",
@@ -21684,6 +23079,8 @@
     "proof/PscVerif/PscVerif/PerronExistence.lean": "a2ac1801abf2a99a6c312935d101ed4f760ffec0f96586d5f1f43bb176814c73",
     "proof/PscVerif/PscVerif/PerronSimple.lean": "1e4d9aca60b215f17067e39ba38bd8eaec7d9781fb716d8727fa7f9cbbf737a8",
     "proof/PscVerif/PscVerif/PhysicalMass.lean": "6578043c87ca7da4be96673630ae5d2d2e2356a681b1b2401c39bd9e9b036a36",
+    "proof/PscVerif/PscVerif/PrefixAddress.lean": "57261314c2c473fdf76e9815ad80f30ac46f0fe42e1a7ec7c3ad15524afe848d",
+    "proof/PscVerif/PscVerif/PrefixClosure.lean": "c9df601e2d5601af2b3ebeb05e75d43fd5600999bcba187af04e76b51e520006",
     "proof/PscVerif/PscVerif/PrimitiveExpansion.lean": "70307f2cb4fb0eb854086f20bb04ca82ceb04c5433d41f0984c29a5f70bd4eff",
     "proof/PscVerif/PscVerif/QuotientDistance.lean": "1431961ca4d26d60e5bf5165c7773440e7a708b51377697e339f94f7cf5896ef",
     "proof/PscVerif/PscVerif/ReductioControls.lean": "73c94ccd2ec83747f47d77035ff3cdca3843d611470f0cd3eae64c10104a0e76",
@@ -21695,11 +23092,12 @@
     "proof/PscVerif/PscVerif/SignedCocycle.lean": "eccc753e1656cc949db13d50ff8d97883f084fe18ab32ef70226cded35237e7e",
     "proof/PscVerif/PscVerif/SignedIntertwiner.lean": "9db35d26a6a8d434ab893b31218fcc50ba73872a74a305da366d5f95543d5280",
     "proof/PscVerif/PscVerif/Spectral.lean": "f7a43295221c293c670593d4be8e916d87ce51f3241ec911456ef4a4ce0b39d3",
+    "proof/PscVerif/PscVerif/StablePrefixWindow.lean": "f92a5899a583689f5bcab503b3e632641f7dc8a48492d573f4c87093c684f1ef",
     "proof/PscVerif/PscVerif/StrictSystem.lean": "657d6c9f4041b04a2e478f19dea2ecb813952caf2fe1455789778306ad6c3a48",
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "f704e166e7a2fb07a4535ca5bbac640105c57f8ea0c313dd1489da19f913b7c2",
+    "proof/PscVerif/PscVerif.lean": "af58cd542f025b563648e671e56c8669a93c2a2270a7427aaba805c99dd42d39",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
