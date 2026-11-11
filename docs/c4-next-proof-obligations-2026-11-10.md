@@ -1,8 +1,8 @@
 # C4 next proof obligations — 2026-11-10
 
 **Status:** research roadmap and verification reconciliation. The current
-baseline is `main@b0a64e50bd9790c0033d7ff674c8b3a9e72b0a92`, through
-[PR #535](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/535).
+baseline is `main@209910264171fef550938dd566213c19734a75b6`, through
+[PR #536](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/536).
 The original #530 inspection below remains a historical receipt. This note
 records accepted inputs and scoped follow-up deliverables; it makes no
 governed claim promotion. General C4, Concentration,
@@ -143,6 +143,48 @@ geometrically justified inverse domain, complete occurrence correspondence,
 compact overlap/Haar realization, and a genuine source-loss or different
 contradiction. Deleting an edge cannot provide that justification.
 
+This package was accepted in
+[PR #536](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/536)
+at head `ef2cb4168debe6c525d8bf079085d0522e5f4eb4`, with tree
+`c6a9ba209798f4508ec2bb58ace6c7dcf9b4c4d6` preserved by the merge
+`209910264171fef550938dd566213c19734a75b6`. The
+[fresh isolated whole-bank job](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42922539741/job/130200709689)
+checked 4,676 compiled declarations, 3,493 theorems and all 1,929 named
+proofs with only the permitted standard axioms. The
+[native C4 replay](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42922540048/job/130200711233)
+and [16-test/nine-mutation Quint job](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42922540048/job/130200711254)
+passed on that exact revision, as did the existing occurrence suite and
+scoped integration gates. These are #536 receipts and do not cover the
+following inverse adapter.
+
+### Actual inverse-occurrence continuation after #536
+
+The [inverse-occurrence development](c4-inverse-occurrence-2026-11-10.md)
+connects the two actual incoming marks and their integral inverse equation
+to a reverse forward digit occurrence without losing either position.
+Under positive exact image scaling, interior overlap pulls back to the
+ancestor. Actual same-word interval disjointness separately proves that
+an interior child of an integral diagonal is diagonal; backward ancestry
+of nondiagonal interior roots therefore has no fixed track-swap packets.
+
+For a supplied finite swap-closed domain, the complete positional edge
+inventory between its represented endpoints has an actual swap bijection.
+Both incoming and outgoing quotient-count uniformity follow from this
+bijection. The represented orbit fibers have size one or two; excluding
+diagonals gives constant size two and the unweighted transpose. The
+existing weighted deficit consumer is reused. No geometric completeness
+or finiteness theorem for an arbitrary inverse domain is inferred.
+
+The [controls](c4-inverse-occurrence-controls-2026-11-10.md) include the
+literal inverse-closed but forward-leaking `00/11/22` domain. Its existence
+keeps the intended inverse mass route separate from #536's conservative
+complete forward strict support. Next, establish an actual inverse-piece
+cover, sound residue/stable-box exclusions, nonunit product-Haar scaling,
+and positive compact measure at a represented strict cut root. Positive
+physical interval length alone supplies none of those compact-measure
+premises. The implementation PR must record fresh acceptance for this
+extension before treating it as mechanically certified.
+
 Coherent protected ancestry towers and an explicit cut-derived nonzero row
 on one complete three-generation window remain independent alternatives.
 The new every-window span theorem is available once such a row is actually
@@ -160,6 +202,7 @@ constructed; flatness or one avoiding cycle does not construct it.
 | [#533](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/533) | Concrete one-step newborn, Perron-length injectivity and degree-five reciprocal multiplicity/rank completion. | Literal degree-five strict-child realization remains open. |
 | [#534](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/534) | Global address lookup, actual interior affine digit lift, coherent finite reachability and strict-carrier closure. | Uniform productive-route existence, common legal-limit realization and exact production policy refinement remain separate. |
 | [#535](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/535) | Finite actual marked recurrence and fixed-row detection in every complete three-generation descendant window. | Actual marked recurrence does not identify a shared legal limit; the required common nonzero row is not constructed. |
+| [#536](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/536) | Actual overlap-mass subdivision, multiplicity-preserving deficits, weighted finite counts and strict-support conservation. | Uniform quotient counts needed an actual symmetry adapter; complete strict support itself supplies no losing vertex. |
 
 At the original `main@c38e381cc8105d87597b0a9bfbe418b7bca86fc0` inspection, the
 [exact-main Lean job](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/42768131163/job/129669358430)
@@ -407,6 +450,8 @@ inconclusive. Another passing finite corpus is not a uniform theorem.
 | 2 | Global address lookup, interior affine digit refinement, coherent finite reachability lifting, newborn extraction and actual strict-system composition are implemented. Production-graph and infinite-quotient interfaces remain separate. | Full Lean/axiom audit and exact-revision native/Quint replay for the three new modules; preserve prescribed-digit versus existential-history scope and the production-policy distinctions. |
 | 3, independently of 2 | Reciprocal polynomial/multiplicity and degree-five rank theorem: implemented in `Degree5Completion`. | `q5=g^k`, `rank Q5=3k`, zero-image handling and determinant exclusion under unchanged hypotheses, with exact-revision Lean/axiom replay. |
 | 4 | Finite actual interior recurrence and, independently, every-window descendant span/strict-carrier row detection: implemented. | Fresh full Lean/axiom, native and source-bound Quint acceptance; preserve exact scaling, actual mark compatibility, complete mass multiplicity and the fixed-row premise. |
+| 4a | Literal inverse-mark reversal, integral diagonal ancestry and actual track-swap quotient counts: implemented in this continuation. | Fresh full-bank acceptance and exact-revision native/18-test/13-mutation replay. Supplied finite swap-closed domain, exact occurrence inventory and geometric non-claims retained. |
+| 4b | Actual compact inverse-piece cover, sound residue/stable-box exclusions, nonunit Haar scaling and positive root measure. | Bind every geometric piece and exclusion to the literal inverse inventory; physical interval positivity cannot substitute for compact measure. |
 | 5 | Uniform forced-crossing exclusion. | A theorem for arbitrary supplied component size, or a literal reproducible counterexample to the precise intermediate claim. |
 | 6 | Compose the successful bridge into C4. | Every input/output type, quantifier, realization premise and dependency is discharged; global extraction stays separate. |
 
