@@ -19659,6 +19659,11 @@
       "statement_heading": "**Corollary B (the balanced pair algorithm off the Pisot cone).** Let `σ` be"
     },
     {
+      "source": "docs/c4-legal-seams-2026-11-04.md",
+      "line": 18,
+      "statement_heading": "**Lemma.** In a finite strict child-closed balanced SCC with positive"
+    },
+    {
       "source": "docs/c4-nonunit-madic-counting-bridge-2026-11-04.md",
       "line": 206,
       "statement_heading": "**Theorem M1 (lifted cut-pair bound).**"
@@ -19692,6 +19697,11 @@
       "source": "docs/c4-nonunit-residue-occupancy-2026-11-04.md",
       "line": 142,
       "statement_heading": "### Corollary R4 (stronger necessary condition for a strict system)"
+    },
+    {
+      "source": "docs/c4-oriented-alignment-2026-11-04.md",
+      "line": 18,
+      "statement_heading": "**Lemma.** Under the hypotheses of"
     },
     {
       "source": "docs/c4-overlap-carrier-enclosure-2026-11-04.md",
@@ -19744,9 +19754,34 @@
       "statement_heading": "**Lemma (exit mass).** For any supplied nonempty finite set of actual"
     },
     {
+      "source": "docs/c4-return-induction-prefix-satellite-counterexample-2026-11-04.md",
+      "line": 120,
+      "statement_heading": "**Proposition (exact all-powers loss of literal prefix satellites).**"
+    },
+    {
+      "source": "docs/c4-return-induction-prefix-satellite-counterexample-2026-11-04.md",
+      "line": 141,
+      "statement_heading": "**Corollary (one expanding residual suffix).** The four true physical return words satisfy the two **literal** identities"
+    },
+    {
+      "source": "docs/c4-return-induction-prefix-satellite-counterexample-2026-11-04.md",
+      "line": 165,
+      "statement_heading": "**Corollary (exact spectral transport with a killed return redundancy).**"
+    },
+    {
       "source": "docs/c4-reversed-run-family-four-level-coincidence-2026-11-04.md",
       "line": 17,
       "statement_heading": "**Theorem (uniform reversal coincidence).** For every such a,b, the three actual iterates rho^n(0),rho^n(1),rho^n(2) admit the same Parikh prefix Q followed by the same letter z at one common physical index p, with n<=4:"
+    },
+    {
+      "source": "docs/c4-right-hub-reversal-2026-11-04.md",
+      "line": 17,
+      "statement_heading": "**Lemma.** Supply a finite strict child-closed balanced SCC with"
+    },
+    {
+      "source": "docs/c4-seam-birth-orbits-2026-11-04.md",
+      "line": 10,
+      "statement_heading": "**Lemma.** In a supplied finite strict child-closed phase-zero balanced"
     },
     {
       "source": "docs/c4-w3-low-growth-and-interface-correction.md",

@@ -1,6 +1,50 @@
 # PSC research roadmap — 2026-09-21
 
+## 2026-11-11 current frontier through #541
+
+**Current accepted mainline baseline:**
+`2848e5f67b605669a550f362a1de4bf1c1529f7c`. The
+[current-state reconciliation](current-state-reconciliation-2026-11-11.md)
+separates exact-revision receipts, the older integration queue and the active
+#542–#544 research continuations. Older dated overlays below retain their
+historical baselines; their already-completed implementation tasks are not
+current blockers.
+
+The [bounded-history cover](c4-bounded-compact-cover-2026-11-11.md) was accepted
+on #539's repaired head, preserving #538's failed Lean receipt. The
+[local incoming interface](c4-local-admissibility-2026-11-11.md) and
+[matrix-adic carrier](c4-madic-residue-2026-11-11.md) were accepted in #540 and
+#541. The latter constructs the coherent inverse limit, its compactness and
+integral range reflection in the product with a supplied stable factor.
+Constructing that carrier is therefore no longer an open implementation task.
+
+The geometric route still needs authentic compact prefix tiles and their
+complete literal tile equations, sound stable/residue exclusions and complete
+representation of every nonempty incoming ancestor in the selected finite
+domain. The measure route additionally needs the exact product-Haar scaling,
+multiplicity-preserving recurrence and positive compact measure at a represented
+strict-cut root. Physical interval positivity and finite-depth coverage do not
+supply these premises. #542–#544 propose further prefix/window and finite-cover
+interfaces; their open PRs remain separate from accepted main.
+
+**Mathematical priority:** force at least one genuine productive crossing under
+the complete supplied strict PIP component and hub hypotheses. Realizable
+hierarchy recurrence and a common descendant-Parikh annihilator remain
+independent alternatives. No finite census, inverse matrix identity or compact
+ambient carrier supplies that uniform existence theorem. Global G1 extraction
+remains separate; C4, Concentration, A1′, BH and general PSC remain open.
+
+The status cleanup also preserves the already accepted all-PIP Class-D result,
+records the accepted R1 #520 decidability repair, and separates the merged
+Class-A finite/local results from uniform entry, coverage and realization.
+The [next-obligations note](c4-next-proof-obligations-2026-11-10.md) gives the
+remaining C4 contracts; the crosswalk records fresh receipts without replacing
+historical failed or pending observations with invented earlier successes.
+
 ## 2026-11-10 addressed refinement after #533
+
+**Historical frontier at #534.** Its subsequent full Lean/axiom and native/Quint
+acceptance is recorded in the [next-obligations note](c4-next-proof-obligations-2026-11-10.md).
 
 The [global-address module](c4-occurrence-addresses-2026-11-10.md) constructs
 the actual factor ordinal and local occurrence from each valid global word
@@ -15,8 +59,8 @@ The [strict-system adapter](../proof/PscVerif/PscVerif/OccurrenceStrict.lean)
 uses the existing actual `StrictSystem`: its realized packets are closed
 under these interior affine edges and avoid diagonals. A supplied strict
 component therefore excludes the resulting finite productive route. These
-sources require the implementation PR's full Lean/axiom and native/Quint
-receipts; the earlier #533 receipts do not certify a later revision.
+sources have their own #534 full Lean/axiom and native/Quint receipts; the
+earlier #533 receipts do not certify that later revision.
 
 **Next mathematical priority:** rule out this avoiding region for at least
 one genuine forced crossing under the complete PIP and hub hypotheses.

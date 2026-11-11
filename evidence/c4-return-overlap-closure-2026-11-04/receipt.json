@@ -1,0 +1,27 @@
+{
+  "initial_decorated_overlaps": 118,
+  "decorated_states": 1134,
+  "occurrence_edges": 3106,
+  "coincidence_states": 120,
+  "maximum_minimum_depth": 5,
+  "distance_histogram": {
+    "0": 120,
+    "1": 90,
+    "2": 278,
+    "3": 286,
+    "4": 256,
+    "5": 104
+  },
+  "physical_types": 87,
+  "physical_occurrence_edges": 230,
+  "physical_distance_histogram": {
+    "0": 3,
+    "1": 6,
+    "2": 16,
+    "3": 28,
+    "4": 26,
+    "5": 8
+  },
+  "largest_actual_register_coordinate": 2,
+  "graph_sha256": "ac438755b78e9407b1e3372286257a371651a9ca584b778ac7edcb62eac2e253"
+}

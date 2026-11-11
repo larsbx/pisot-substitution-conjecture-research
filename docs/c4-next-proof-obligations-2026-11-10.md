@@ -1,13 +1,51 @@
 # C4 next proof obligations — 2026-11-10
 
-**Status:** research roadmap and verification reconciliation. The current
-baseline is `main@209910264171fef550938dd566213c19734a75b6`, through
-[PR #536](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/536).
-The original #530 inspection below remains a historical receipt. This note
+**Status:** research roadmap and verification reconciliation, updated November 11.
+The current mainline baseline is `2848e5f67b605669a550f362a1de4bf1c1529f7c`,
+through [PR #541](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/541).
+The original #530 inspection and dated continuation receipts below remain
+historical records. This note
 records accepted inputs and scoped follow-up deliverables; it makes no
 governed claim promotion. General C4, Concentration,
 A1′, BH, G1 and PSC remain open. The direct C4 tracker is
 [#461](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/461).
+
+### Current accepted frontier through #541
+
+The [November 11 reconciliation](current-state-reconciliation-2026-11-11.md)
+binds the current status to exact heads and observed workflow conclusions.
+The repaired [bounded actual-history cover](c4-bounded-compact-cover-2026-11-11.md)
+passed full Lean and locked native/oracle acceptance at #539. The
+[local incoming-admissibility continuation](c4-local-admissibility-2026-11-11.md)
+was accepted at #540. Both retain the original complete tile-equation and
+action hypotheses; finite domain restriction requires complete representation
+of every nonempty incoming ancestor.
+
+The [matrix-adic continuation](c4-madic-residue-2026-11-11.md) accepted at #541
+constructs the actual coherent inverse-limit carrier from integer image-lattice
+quotients, proves compactness under injective integral incidence, and proves
+integral range reflection for the product with a supplied stable factor.
+The ambient compact matrix-adic construction and its integral lifting criterion
+are therefore completed implementation work. The canonical integer map is not
+asserted to be injective without the separate intersection-of-images condition.
+
+The live geometric premises are authentic compact prefix tiles with their
+complete literal tile equations; a suitable stable-factor realization and
+certified enclosures; and complete finite representation of all nonempty
+incoming ancestors, including represented intermediate sources. The live
+measure premises are product-Haar scaling, a multiplicity-preserving overlap
+recurrence and positive compact measure at a represented strict-cut root.
+Set-union redundancy does not justify deleting occurrence mass, and physical
+interval positivity is not compact-root positivity. The full serialized
+twelve-source packet is still not a closed Lean instance.
+
+The open #542–#544 continuations address further prefix, window and finite-cover
+interfaces and have their own targeted receipts. They are not included in this
+mainline baseline. The uniform productive-crossing theorem, common legal-limit
+realization, literal degree-five strict-child realizability and global G1
+extraction remain separate open targets. Historical instructions below to
+construct the compact matrix-adic carrier are superseded by #541 at precisely
+the scope just stated.
 
 ### Implementation follow-up after #532
 
@@ -452,8 +490,9 @@ inconclusive. Another passing finite corpus is not a uniform theorem.
 | 4 | Finite actual interior recurrence and, independently, every-window descendant span/strict-carrier row detection: implemented. | Fresh full Lean/axiom, native and source-bound Quint acceptance; preserve exact scaling, actual mark compatibility, complete mass multiplicity and the fixed-row premise. |
 | 4a | Literal inverse-mark reversal, integral diagonal ancestry and actual track-swap quotient counts: implemented in this continuation. | Fresh full-bank acceptance and exact-revision native/18-test/13-mutation replay. Supplied finite swap-closed domain, exact occurrence inventory and geometric non-claims retained. |
 | 4a.1 | Historical twelve-source inverse rows now have literal positional binding, normalization bits, ordered internal completeness and earlier-state discovery witnesses. | Native full-packet/oracle equality, new bounded Quint controls and fresh full-bank acceptance of the generic Lean interface. The entire serialized packet is not yet a closed Lean term. |
-| 4b | The all-integral-ancestor set union now follows formally from original tile equations and explicit injective action, commutation and integral-range reflection. Construct the compact matrix-adic instance, finite pruned cover, Haar scaling and positive root measure. | Prove the geometric input hypotheses and every exclusion for the actual finite domain; physical interval positivity cannot substitute for compact measure. |
-| 4b.1 | [Bounded actual histories](c4-bounded-compact-cover-2026-11-11.md) retain both positions and composed prefixes, with finite branching from injective integral incidence. Conditional full and restricted-depth covers, compactness, and sound residue/enclosure interfaces have explicit hypotheses. | Fresh canonical Lean/axiom acceptance and exact-head native/integer-oracle replay; instantiate the actual compact tiles and nonempty-ancestor representability for the historical finite graph. Finite levels do not prove global ancestor finiteness or Haar recurrence. |
+| 4b | The all-integral-ancestor set union follows from original tile equations and explicit action, commutation and integral-range reflection. #541 constructs the compact matrix-adic carrier and its range-reflection instance with a supplied stable factor. | Authentic compact tiles, their complete tile equations, the stable-factor realization, finite pruned cover, Haar scaling and positive compact root measure remain to be supplied. Physical interval positivity cannot substitute for compact measure. |
+| 4b.1 | [Bounded actual histories](c4-bounded-compact-cover-2026-11-11.md) retain both positions and composed prefixes, with finite branching from injective integral incidence. Conditional full and restricted-depth covers, compactness, and sound residue/enclosure interfaces have explicit hypotheses. Full Lean/axiom and exact-head native/integer-oracle acceptance passed on repaired #539. | Instantiate actual compact tiles and nonempty-ancestor representability for the historical finite graph. Finite levels do not prove global ancestor finiteness or Haar recurrence; preserve the historical #538 failure separately. |
+| 4b.2 | #540's local incoming-admissibility and #541's matrix-adic residue interfaces are implemented and accepted on their exact heads. | Derive the authentic original tile equations and, where block cylinders are used, the explicit iterated tile equation; discharge every excluded ancestor and preserve ordered occurrence multiplicity. |
 | 5 | Uniform forced-crossing exclusion. | A theorem for arbitrary supplied component size, or a literal reproducible counterexample to the precise intermediate claim. |
 | 6 | Compose the successful bridge into C4. | Every input/output type, quantifier, realization premise and dependency is discharged; global extraction stays separate. |
 
@@ -461,9 +500,11 @@ The [literal binding continuation](c4-literal-inverse-binding-2026-11-10.md) rec
 [#497](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/497) with
 accepted main through #537 while preserving all archived source/evidence pins.
 Its full integral union is not yet the finite geometrically pruned cover.
-Reconcile open [#509](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/509),
+The [current reconciliation queue](current-state-reconciliation-2026-11-11.md#older-branch-integration)
+integrates [#509](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/509)
 and [#510](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/510)
-against current main before using their finite-overlap or R3/R4 scaffolds.
+against current main; fresh combined-head acceptance remains distinct from
+their historical receipts.
 Retain R1/R2 adversarial and R3/R4 independent interfaces as recorded in
 [#511](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/511).
 Finite mass loss, a quotient kernel, or prefix-seeded returns become C4 inputs
