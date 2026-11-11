@@ -87,3 +87,4 @@ import PscVerif.NamedStableContraction
 import PscVerif.NamedPrefixCompact
 import PscVerif.NamedGeometricEnclosure
 import PscVerif.NamedFiniteCarrier
+import PscVerif.NamedOverlapHaar

@@ -10103,6 +10103,38 @@
       "declaration": "theorem m0_pisot : ∃ b : ℝ, 1 < b ∧ aeval (b : ℂ) f = 0 ∧"
     },
     {
+      "name": "Psc.MadicResidue.action_range_eq_ker_eval_one",
+      "module": "PscVerif.MadicActionRange",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicActionRange.lean",
+      "line": 10,
+      "declaration": "theorem action_range_eq_ker_eval_one (M : V →ₗ[ℤ] V)"
+    },
+    {
+      "name": "Psc.MadicResidue.action_isOpenEmbedding",
+      "module": "PscVerif.MadicHaar",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicHaar.lean",
+      "line": 17,
+      "declaration": "theorem action_isOpenEmbedding (hinj : Function.Injective M) :"
+    },
+    {
+      "name": "Psc.MadicResidue.measure_first_kernel",
+      "module": "PscVerif.MadicHaar",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicHaar.lean",
+      "line": 31,
+      "declaration": "theorem measure_first_kernel [Fintype (Residue M 1)]"
+    },
+    {
+      "name": "Psc.MadicResidue.measure_action_image",
+      "module": "PscVerif.MadicHaar",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicHaar.lean",
+      "line": 60,
+      "declaration": "theorem measure_action_image (hinj : Function.Injective M) [Fintype (Residue M 1)]"
+    },
+    {
       "name": "Psc.MadicResidue.quotient_surjective",
       "module": "PscVerif.MadicResidue",
       "private": false,
@@ -10695,6 +10727,46 @@
       "declaration": "theorem physicalLength_iterateImages (fixture : Fin 2) (k : ℕ) (letter : Fin 3) :"
     },
     {
+      "name": "Psc.NamedProductHaar.overlap_measure_finite",
+      "module": "PscVerif.NamedOverlapHaar",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapHaar.lean",
+      "line": 20,
+      "declaration": "theorem overlap_measure_finite (p : Packet) : μ (E p) ≠ ⊤ :="
+    },
+    {
+      "name": "Psc.NamedProductHaar.measure_history_piece",
+      "module": "PscVerif.NamedOverlapHaar",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapHaar.lean",
+      "line": 23,
+      "declaration": "theorem measure_history_piece (k n : ℕ) (p : Packet)"
+    },
+    {
+      "name": "Psc.NamedProductHaar.overlap_bound_of_history_cover",
+      "module": "PscVerif.NamedOverlapHaar",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapHaar.lean",
+      "line": 36,
+      "declaration": "theorem overlap_bound_of_history_cover (k n : ℕ) (p : Packet)"
+    },
+    {
+      "name": "Psc.NamedProductHaar.overlap_bound",
+      "module": "PscVerif.NamedOverlapHaar",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapHaar.lean",
+      "line": 54,
+      "declaration": "theorem overlap_bound (r n : ℕ) (p : Packet) (hp : p ∈ packets f) :"
+    },
+    {
+      "name": "Psc.NamedProductHaar.strict_overlap_bound",
+      "module": "PscVerif.NamedOverlapHaar",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapHaar.lean",
+      "line": 63,
+      "declaration": "theorem strict_overlap_bound (r n : ℕ) (p : Packet) (hp : p ∈ strictPackets f) :"
+    },
+    {
       "name": "Psc.NamedPrefixCompact.incidence_eq",
       "module": "PscVerif.NamedPrefixCompact",
       "private": false,
@@ -10877,6 +10949,54 @@
       "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
       "line": 199,
       "declaration": "theorem sigma1_prefixTiles_compact (c : Fin 3) :"
+    },
+    {
+      "name": "Psc.NamedProductHaar.integral_injective",
+      "module": "PscVerif.NamedProductHaar",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedProductHaar.lean",
+      "line": 20,
+      "declaration": "theorem integral_injective (σ : Fin 3 → Word) (hM : incidenceZ σ = MZ) :"
+    },
+    {
+      "name": "Psc.NamedProductHaar.first_residue_card",
+      "module": "PscVerif.NamedProductHaar",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedProductHaar.lean",
+      "line": 24,
+      "declaration": "theorem first_residue_card (σ : Fin 3 → Word) (hM : incidenceZ σ = MZ) :"
+    },
+    {
+      "name": "Psc.NamedProductHaar.action_index",
+      "module": "PscVerif.NamedProductHaar",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedProductHaar.lean",
+      "line": 34,
+      "declaration": "theorem action_index (σ : Fin 3 → Word) (hM : incidenceZ σ = MZ) :"
+    },
+    {
+      "name": "Psc.NamedProductHaar.measure_compact_action",
+      "module": "PscVerif.NamedProductHaar",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedProductHaar.lean",
+      "line": 39,
+      "declaration": "theorem measure_compact_action (σ : Fin 3 → Word) (hM : incidenceZ σ = MZ)"
+    },
+    {
+      "name": "Psc.NamedProductHaar.measure_product_action",
+      "module": "PscVerif.NamedProductHaar",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedProductHaar.lean",
+      "line": 49,
+      "declaration": "theorem measure_product_action (σ : Fin 3 → Word) (hM : incidenceZ σ = MZ)"
+    },
+    {
+      "name": "Psc.NamedProductHaar.measure_affine_power",
+      "module": "PscVerif.NamedProductHaar",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedProductHaar.lean",
+      "line": 95,
+      "declaration": "theorem measure_affine_power (σ : Fin 3 → Word) (hM : incidenceZ σ = MZ)"
     },
     {
       "name": "Psc.NamedStableChart.root_bracket",
@@ -23370,10 +23490,14 @@
     "proof/PscVerif/PscVerif/Lie5Data.lean": "df36055fa646536437bff13bf336304b211ba70a4d0ac11cd910c8c2751271fb",
     "proof/PscVerif/PscVerif/LieWeights.lean": "f32639f83e519c69b8f428e153dd368c274e1f665a837183f88c5f1de0dd8adb",
     "proof/PscVerif/PscVerif/M0Pisot.lean": "65d17cf0aa71cdac825d16da73ad601dd49c214cd0b47ac58f124cb51a64a304",
+    "proof/PscVerif/PscVerif/MadicActionRange.lean": "297a4102a077a50b42a955c5afee83f9d5bd6a47e2175c4c4c9d0300005de37d",
+    "proof/PscVerif/PscVerif/MadicHaar.lean": "a116c88bb856771b74ff7d5111e797c58216ce49057c99096ed5ddac3c2019a5",
     "proof/PscVerif/PscVerif/MadicResidue.lean": "c7ff8430cb77c335f11478861584baea4129658b35f4fc67bf0c2b8509d50f6d",
     "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean": "e5a3513ad78d72852f5a166c3da34d676161f1844bbbfe29ff8fbb4aac0321a9",
     "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean": "e91dfcffed8884f99863591d57d892933fbc7ce0a5de2899955a4a69a99233e6",
+    "proof/PscVerif/PscVerif/NamedOverlapHaar.lean": "fdea60934791c9669a66dc6bc4804484038968aa03ab521cf319cac54a60c4db",
     "proof/PscVerif/PscVerif/NamedPrefixCompact.lean": "e6cbff61401e8f5109bc0c8654e77eca155e1186286703e76f4d55044ebd220e",
+    "proof/PscVerif/PscVerif/NamedProductHaar.lean": "950da741de0b669a445ed1510aa750793d8f2eaf30d52c3e18092db514d2f04b",
     "proof/PscVerif/PscVerif/NamedStableChart.lean": "772d6dc46898bc22471db53283dc0404445f1dd28ac0b99ed16232c394336f9b",
     "proof/PscVerif/PscVerif/NamedStableContraction.lean": "13381d9619cd2c574e15614ce0e00609d17e1b153b359ca788ebe73d45bde8fd",
     "proof/PscVerif/PscVerif/OccurrenceAddress.lean": "fd8d4020fc3f720c8a81d23c9811056802c901eec35a48efcbb40954c5a375ad",
@@ -23419,7 +23543,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "c385613db46cf7bae8f9456cf13a61e8526f1d40572961bc316b766391a07600",
+    "proof/PscVerif/PscVerif.lean": "c0e1327b950201381a7dc93db74a95bae8e75703f594f395d26308ce9706d73f",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

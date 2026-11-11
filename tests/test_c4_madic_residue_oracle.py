@@ -1,6 +1,7 @@
 """Independent full-quotient, literal-profile and packet-tampering controls."""
 
 from dataclasses import replace
+from fractions import Fraction
 from pathlib import Path
 import os
 import subprocess
@@ -86,6 +87,30 @@ def test_actual_reductions_and_noninjective_actions(fixture):
     # Injectivity is a separate inverse-limit theorem with integral injectivity.
     if fixture == 0:
         assert certificate.levels[2].action[0] == certificate.levels[2].action[2] == 0
+
+
+@pytest.mark.parametrize("fixture", (0, 1))
+def test_half_index_and_duplicate_cover(fixture):
+    certificate = residue.reference(fixture)
+    first = certificate.levels[1]
+    for previous, level in zip(certificate.levels, certificate.levels[1:]):
+        division = {
+            (residue.class_of(level, residue.mv(certificate.matrix, z[:3])),
+             residue.class_of(previous, z[:3]))
+            for z in level.representatives
+        }
+        kernel = {i for i, z in enumerate(level.representatives)
+                  if residue.class_of(first, z[:3]) == 0}
+        parity_kernel = {i for i, z in enumerate(level.representatives)
+                         if (z[0] - z[2]) % 2 == 0}
+        assert kernel == parity_kernel
+        assert {image for image, _ in division} == kernel
+        assert {quotient for _, quotient in division} == set(range(previous.index))
+        assert len(division) == len(kernel) == previous.index
+        occurrences = (kernel, kernel)
+        union_mass = Fraction(len(set.union(*occurrences)), level.index)
+        occurrence_mass = sum(Fraction(len(piece), level.index) for piece in occurrences)
+        assert union_mass == Fraction(1, 2) < occurrence_mass == 1
 
 
 def test_repeated_residue_buckets_do_not_identify_literal_occurrences():
