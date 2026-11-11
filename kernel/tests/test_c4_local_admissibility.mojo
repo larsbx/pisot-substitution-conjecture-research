@@ -303,7 +303,7 @@ def test_bounds_apply_to_every_actual_basis_probe_pair() raises:
     for i in range(4):
         last.append(1)
     last.append(2)
-    model.images = [[0],middle,last]
+    model.images = [[0],middle^,last^]
     model.sources = [[0,0,0,0,0]]
     model.domain = [[0,0,0,0,0]]
     model.star = [0,0,0]
