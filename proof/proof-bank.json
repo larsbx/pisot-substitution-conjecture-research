@@ -10635,7 +10635,7 @@
       "module": "PscVerif.NamedFiniteCarrier",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
-      "line": 344,
+      "line": 346,
       "declaration": "theorem diagonal_control (fixture : Fin 2) (a : Fin 3) :"
     },
     {
@@ -10643,7 +10643,7 @@
       "module": "PscVerif.NamedFiniteCarrier",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
-      "line": 363,
+      "line": 367,
       "declaration": "theorem boundary_control (fixture : Fin 2) :"
     },
     {
@@ -10651,7 +10651,7 @@
       "module": "PscVerif.NamedFiniteCarrier",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
-      "line": 378,
+      "line": 382,
       "declaration": "theorem wrong_scale_two_control (fixture : Fin 2) :"
     },
     {
@@ -10963,7 +10963,7 @@
       "module": "PscVerif.NamedProductHaar",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedProductHaar.lean",
-      "line": 24,
+      "line": 26,
       "declaration": "theorem first_residue_card (σ : Fin 3 → Word) (hM : incidenceZ σ = MZ) :"
     },
     {
@@ -10971,7 +10971,7 @@
       "module": "PscVerif.NamedProductHaar",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedProductHaar.lean",
-      "line": 34,
+      "line": 36,
       "declaration": "theorem action_index (σ : Fin 3 → Word) (hM : incidenceZ σ = MZ) :"
     },
     {
@@ -10979,7 +10979,7 @@
       "module": "PscVerif.NamedProductHaar",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedProductHaar.lean",
-      "line": 39,
+      "line": 41,
       "declaration": "theorem measure_compact_action (σ : Fin 3 → Word) (hM : incidenceZ σ = MZ)"
     },
     {
@@ -10987,7 +10987,7 @@
       "module": "PscVerif.NamedProductHaar",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedProductHaar.lean",
-      "line": 49,
+      "line": 51,
       "declaration": "theorem measure_product_action (σ : Fin 3 → Word) (hM : incidenceZ σ = MZ)"
     },
     {
@@ -10995,7 +10995,7 @@
       "module": "PscVerif.NamedProductHaar",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedProductHaar.lean",
-      "line": 95,
+      "line": 99,
       "declaration": "theorem measure_affine_power (σ : Fin 3 → Word) (hM : incidenceZ σ = MZ)"
     },
     {
@@ -21755,6 +21755,11 @@
       "statement_heading": "**Corollary B (the balanced pair algorithm off the Pisot cone).** Let `σ` be"
     },
     {
+      "source": "docs/c4-legal-seams-2026-11-04.md",
+      "line": 18,
+      "statement_heading": "**Lemma.** In a finite strict child-closed balanced SCC with positive"
+    },
+    {
       "source": "docs/c4-nonunit-madic-counting-bridge-2026-11-04.md",
       "line": 206,
       "statement_heading": "**Theorem M1 (lifted cut-pair bound).**"
@@ -21788,6 +21793,11 @@
       "source": "docs/c4-nonunit-residue-occupancy-2026-11-04.md",
       "line": 142,
       "statement_heading": "### Corollary R4 (stronger necessary condition for a strict system)"
+    },
+    {
+      "source": "docs/c4-oriented-alignment-2026-11-04.md",
+      "line": 18,
+      "statement_heading": "**Lemma.** Under the hypotheses of"
     },
     {
       "source": "docs/c4-overlap-carrier-enclosure-2026-11-04.md",
@@ -21840,9 +21850,34 @@
       "statement_heading": "**Lemma (exit mass).** For any supplied nonempty finite set of actual"
     },
     {
+      "source": "docs/c4-return-induction-prefix-satellite-counterexample-2026-11-04.md",
+      "line": 120,
+      "statement_heading": "**Proposition (exact all-powers loss of literal prefix satellites).**"
+    },
+    {
+      "source": "docs/c4-return-induction-prefix-satellite-counterexample-2026-11-04.md",
+      "line": 141,
+      "statement_heading": "**Corollary (one expanding residual suffix).** The four true physical return words satisfy the two **literal** identities"
+    },
+    {
+      "source": "docs/c4-return-induction-prefix-satellite-counterexample-2026-11-04.md",
+      "line": 165,
+      "statement_heading": "**Corollary (exact spectral transport with a killed return redundancy).**"
+    },
+    {
       "source": "docs/c4-reversed-run-family-four-level-coincidence-2026-11-04.md",
       "line": 17,
       "statement_heading": "**Theorem (uniform reversal coincidence).** For every such a,b, the three actual iterates rho^n(0),rho^n(1),rho^n(2) admit the same Parikh prefix Q followed by the same letter z at one common physical index p, with n<=4:"
+    },
+    {
+      "source": "docs/c4-right-hub-reversal-2026-11-04.md",
+      "line": 17,
+      "statement_heading": "**Lemma.** Supply a finite strict child-closed balanced SCC with"
+    },
+    {
+      "source": "docs/c4-seam-birth-orbits-2026-11-04.md",
+      "line": 10,
+      "statement_heading": "**Lemma.** In a supplied finite strict child-closed phase-zero balanced"
     },
     {
       "source": "docs/c4-w3-low-growth-and-interface-correction.md",
@@ -23493,11 +23528,11 @@
     "proof/PscVerif/PscVerif/MadicActionRange.lean": "297a4102a077a50b42a955c5afee83f9d5bd6a47e2175c4c4c9d0300005de37d",
     "proof/PscVerif/PscVerif/MadicHaar.lean": "a116c88bb856771b74ff7d5111e797c58216ce49057c99096ed5ddac3c2019a5",
     "proof/PscVerif/PscVerif/MadicResidue.lean": "c7ff8430cb77c335f11478861584baea4129658b35f4fc67bf0c2b8509d50f6d",
-    "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean": "e5a3513ad78d72852f5a166c3da34d676161f1844bbbfe29ff8fbb4aac0321a9",
+    "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean": "13ef34fb3eb6b9ede477c4de920af612010aa280409049c185b1afb35a34a585",
     "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean": "e91dfcffed8884f99863591d57d892933fbc7ce0a5de2899955a4a69a99233e6",
     "proof/PscVerif/PscVerif/NamedOverlapHaar.lean": "fdea60934791c9669a66dc6bc4804484038968aa03ab521cf319cac54a60c4db",
     "proof/PscVerif/PscVerif/NamedPrefixCompact.lean": "e6cbff61401e8f5109bc0c8654e77eca155e1186286703e76f4d55044ebd220e",
-    "proof/PscVerif/PscVerif/NamedProductHaar.lean": "950da741de0b669a445ed1510aa750793d8f2eaf30d52c3e18092db514d2f04b",
+    "proof/PscVerif/PscVerif/NamedProductHaar.lean": "9e707489cea23df4992b6cce77400da75d7abc8365ff2fc2d1806aacd59b6f00",
     "proof/PscVerif/PscVerif/NamedStableChart.lean": "772d6dc46898bc22471db53283dc0404445f1dd28ac0b99ed16232c394336f9b",
     "proof/PscVerif/PscVerif/NamedStableContraction.lean": "13381d9619cd2c574e15614ce0e00609d17e1b153b359ca788ebe73d45bde8fd",
     "proof/PscVerif/PscVerif/OccurrenceAddress.lean": "fd8d4020fc3f720c8a81d23c9811056802c901eec35a48efcbb40954c5a375ad",

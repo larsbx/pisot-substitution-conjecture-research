@@ -19,7 +19,9 @@ abbrev G (σ : Fin 3 → Word) := Ambient σ Stable
 
 theorem integral_injective (σ : Fin 3 → Word) (hM : incidenceZ σ = MZ) :
     Function.Injective (M σ) := by
-  simpa only [incidenceLinear_apply, hM] using MZ_mulVec_injective
+  intro x y h
+  apply MZ_mulVec_injective
+  simpa only [M, incidenceLinear_apply, hM] using h
 
 theorem first_residue_card (σ : Fin 3 → Word) (hM : incidenceZ σ = MZ) :
     Nat.card (MadicResidue.Residue (M σ) 1) = 2 := by
@@ -72,8 +74,10 @@ theorem measure_product_action (σ : Fin 3 → Word) (hM : incidenceZ σ = MZ)
   let rect : Set (G σ) := cube ×ˢ univ
   have hcube : volume cube = 1 := by simp [cube, Real.volume_Icc_pi]
   have hrect : μ rect = 1 := by simp [μ, rect, Measure.prod_prod, hcube]
-  have himage : T '' rect = (Blinear '' cube) ×ˢ (MadicResidue.action (M σ) '' univ) :=
-    prodMap_image_prod _ _ _ _
+  have himage : T '' rect = (Blinear '' cube) ×ˢ (MadicResidue.action (M σ) '' univ) := by
+    change (Prod.map (Blinear : Stable → Stable)
+      (MadicResidue.action (M σ) : H σ → H σ)) '' (cube ×ˢ univ) = _
+    exact prodMap_image_prod _ _ _ _
   have hc : (addHaarScalarFactor (μ.comap T) μ : ℝ≥0∞) = ENNReal.ofReal beta⁻¹ := by
     have hr := congrArg (fun m : Measure (G σ) => m rect) h
     rw [hT.measurableEmbedding.comap_apply, himage, Measure.smul_apply, hrect] at hr
@@ -106,10 +110,12 @@ theorem measure_affine_power (σ : Fin 3 → Word) (hM : incidenceZ σ = MZ)
       rw [pow_succ']
       let T := ambientAction σ B
       change (volume.prod ν) ((T ∘ (T ^ k : AddMonoid.End (G σ))) '' s) = _
-      rw [← Set.image_image, measure_product_action σ hM, ih, pow_succ', mul_assoc]
+      rw [← Set.image_image T (T ^ k : AddMonoid.End (G σ)) s]
+      change (volume.prod ν) (ambientAction σ B '' ((ambientAction σ B ^ k) '' s)) = _
+      rw [measure_product_action σ hM, ih, pow_succ', mul_assoc]
   calc
     _ = (volume.prod ν) ((fun y => y + t) '' ((ambientAction σ B ^ k) '' s)) := by
-      simp only [Set.image_image, Function.comp_apply]
+      simp only [Set.image_image]
     _ = _ := by rw [Set.image_add_right, measure_preimage_add_right, scale]
 
 end Psc.NamedProductHaar

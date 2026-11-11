@@ -2,21 +2,19 @@
 
 Derivation: docs/class-a-boundary-r5-carrier-2026-10-28.md. No global closure.
 """
-from finite_exact.checked_int import checked_add, checked_mul
-from std.collections import Dict
-from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, member_transport, verify_member_edge
+from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge
 from psc.class_a_boundary_u_children import reverse_label
 from psc.class_a_boundary_y4_children import certify_y4_children, y4_source, y4_path, verify_y4_path, y4_star_interface, y4_exit_interface
 from psc.class_a_boundary_p_children import p_source
 from psc.class_a_boundary_h3_children import chain_source
 from psc.class_a_boundary_r4_children import _image, _transition
 from psc.class_a_boundary_e_children import _offset
-from psc.class_a_boundary_next_run import _parameters
 from psc.class_a_boundary_next_first import _linear, _cubic, _equal
 from psc.class_a_boundary_occurrences import symbolic_child, _equal3, _prefix, _child, FIRST, RUN, LAST
 from psc.class_a_boundary_signs import chamber_parameters, _cone_nonnegative
 from psc.param_poly import QX, qx_const, qx_add, qx_sub, qx_neg, tp_add, tp_sub, tp_mul, tp_scale, tp_mod_monic
 from psc.overlap_seed_patch import SeedOverlapTables
+from psc.class_a_boundary_family import BoundaryFamily, boundary_dimensions, append_child, verify_child_packet, verify_child_star
 
 
 def r5_source(kind: Int) raises -> BoundaryLabel:
@@ -122,10 +120,7 @@ def certify_r5_children(corrupt: Bool=False) raises:
 
 def _dimensions(kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int,Int,Int]:
     _=r5_source(kind)
-    var p=_parameters(-1,k,t)
-    var A=checked_add(p[0],p[1])
-    _=checked_add(A,12)
-    return(p[0],p[1],A,p[0]-1)
+    return boundary_dimensions(k,t,12)
 
 
 def r5_child_allowed(kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:
@@ -174,16 +169,20 @@ def in_r5_image(w: BoundaryLabel) raises -> Bool:
     return z.top==2 and (z.bottom==1 or z.bottom==2) and z.x==0 and (z.y==2 or z.y==3)
 
 
+@fieldwise_init
+struct R5Children(BoundaryFamily):
+    def name(self) -> String:return "R5"
+    def source(self,kind: Int) raises -> BoundaryLabel:return r5_source(kind)
+    def parameters(self,kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int]:
+        var p=_dimensions(kind,k,t)
+        return (p[0],p[1])
+    def swapped(self,kind: Int) -> Bool:return kind!=0
+    def allowed(self,kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:return r5_child_allowed(kind,k,t,i,j)
+    def in_image(self,w: BoundaryLabel) raises -> Bool:return in_r5_image(w)
+
+
 def _append(mut out: List[BoundaryEdge],kind: Int,k: Int,t: Int,i: Int,j: Int) raises:
-    var p=_dimensions(kind,k,t)
-    var a=i if kind==0 else j
-    var b=j if kind==0 else i
-    if not r5_child_allowed(kind,k,t,a,b):
-        raise Error("synthesized R5 guard failed")
-    var target=member_transport(-1,k,p[0],p[1],r5_source(kind),a,b)
-    if not in_r5_image(target):
-        raise Error("R5 target escaped exact image")
-    out.append(BoundaryEdge(a,b,target))
+    append_child(R5Children(),out,kind,k,t,i,j)
 
 
 def r5_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
@@ -202,24 +201,12 @@ def r5_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
 
 
 def verify_r5_packet(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,edge: BoundaryEdge) raises:
-    var p=_dimensions(kind,k,t)
-    if not r5_child_allowed(kind,k,t,edge.i,edge.j) or not in_r5_image(edge.target):
-        raise Error("R5 packet refused")
-    verify_member_edge(tables,-1,k,p[0],p[1],r5_source(kind),edge.i,edge.j,edge.target)
+    verify_child_packet(R5Children(),tables,kind,k,t,edge)
 
 
 def verify_r5_star(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,edges: List[BoundaryEdge]) raises:
     var p=_dimensions(kind,k,t)
-    if len(edges)!=2*p[0]+(2 if t==0 else 3):
-        raise Error("incomplete R5 indexed star")
-    var stride=checked_add(p[3] if kind==0 else p[2],2)
-    var seen=Dict[Int,Bool]()
-    for edge in edges:
-        verify_r5_packet(tables,kind,k,t,edge)
-        var key=checked_add(checked_mul(edge.i,stride),edge.j)
-        if key in seen:
-            raise Error("duplicate R5 occurrence")
-        seen[key]=True
+    verify_child_star(R5Children(),tables,kind,k,t,edges,2*p[0]+(2 if t==0 else 3))
 
 
 def r5_path(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:

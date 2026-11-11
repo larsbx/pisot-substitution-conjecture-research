@@ -2,9 +2,7 @@
 
 Only E7 receives new stars. All-child productivity is certified on t<=1 only.
 """
-from finite_exact.checked_int import checked_add, checked_mul
-from std.collections import Dict
-from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, member_transport, verify_member_edge
+from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, verify_member_edge
 from psc.class_a_boundary_u_children import reverse_label
 from psc.class_a_boundary_b4_children import b4_source, b4_path
 from psc.class_a_boundary_e2_children import e2_source, e2_path
@@ -17,12 +15,12 @@ from psc.class_a_boundary_p3_children import p3_source
 from psc.class_a_boundary_y4_children import _reverse_steps
 from psc.class_a_boundary_r4_children import _image, _transition
 from psc.class_a_boundary_e_children import _offset
-from psc.class_a_boundary_next_run import _parameters
 from psc.class_a_boundary_next_first import _linear, _cubic, _equal
 from psc.class_a_boundary_occurrences import symbolic_child, _equal3, _prefix, _child, FIRST, RUN, LAST
 from psc.class_a_boundary_signs import chamber_parameters, _cone_nonnegative
 from psc.param_poly import QX, qx_const, qx_add, qx_sub, qx_mul, qx_neg, tp_add, tp_sub, tp_mul, tp_scale, tp_mod_monic
 from psc.overlap_seed_patch import SeedOverlapTables
+from psc.class_a_boundary_family import BoundaryFamily, boundary_dimensions, append_child, verify_child_packet, verify_child_star
 
 
 def e7_source(kind: Int) raises -> BoundaryLabel:
@@ -122,10 +120,7 @@ def certify_e7_children(corrupt: Bool=False) raises:
 
 def _dimensions(kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int,Int,Int]:
     _=e7_source(kind)
-    var p=_parameters(-1,k,t)
-    var A=checked_add(p[0],p[1])
-    _=checked_add(A,16)
-    return(p[0],p[1],A,p[0]-1)
+    return boundary_dimensions(k,t,16)
 
 
 def e7_child_allowed(kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:
@@ -167,14 +162,20 @@ def in_e7_image(w: BoundaryLabel) raises -> Bool:
     return z.top==0 and z.bottom==2 and z.x==2 and z.y>=-8 and z.y<=-5
 
 
+@fieldwise_init
+struct E7Children(BoundaryFamily):
+    def name(self) -> String:return "E7"
+    def source(self,kind: Int) raises -> BoundaryLabel:return e7_source(kind)
+    def parameters(self,kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int]:
+        var p=_dimensions(kind,k,t)
+        return (p[0],p[1])
+    def swapped(self,kind: Int) -> Bool:return kind!=0
+    def allowed(self,kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:return e7_child_allowed(kind,k,t,i,j)
+    def in_image(self,w: BoundaryLabel) raises -> Bool:return in_e7_image(w)
+
+
 def _append(mut out: List[BoundaryEdge],kind: Int,k: Int,t: Int,i: Int,j: Int) raises:
-    var p=_dimensions(kind,k,t)
-    var a=i if kind==0 else j
-    var b=j if kind==0 else i
-    if not e7_child_allowed(kind,k,t,a,b):raise Error("synthesized E7 guard failed")
-    var target=member_transport(-1,k,p[0],p[1],e7_source(kind),a,b)
-    if not in_e7_image(target):raise Error("E7 target escaped image")
-    out.append(BoundaryEdge(a,b,target))
+    append_child(E7Children(),out,kind,k,t,i,j)
 
 
 def e7_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
@@ -193,21 +194,11 @@ def e7_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
 
 
 def verify_e7_packet(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,edge: BoundaryEdge) raises:
-    var p=_dimensions(kind,k,t)
-    if not e7_child_allowed(kind,k,t,edge.i,edge.j) or not in_e7_image(edge.target):raise Error("E7 packet refused")
-    verify_member_edge(tables,-1,k,p[0],p[1],e7_source(kind),edge.i,edge.j,edge.target)
+    verify_child_packet(E7Children(),tables,kind,k,t,edge)
 
 
 def verify_e7_star(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,edges: List[BoundaryEdge]) raises:
-    var p=_dimensions(kind,k,t)
-    if len(edges)!=max(1,2*t-1):raise Error("incomplete E7 indexed star")
-    var seen=Dict[Int,Bool]()
-    var stride=checked_add(p[2],2)
-    for edge in edges:
-        verify_e7_packet(tables,kind,k,t,edge)
-        var key=checked_add(checked_mul(edge.i,stride),edge.j)
-        if key in seen:raise Error("duplicate E7 occurrence")
-        seen[key]=True
+    verify_child_star(E7Children(),tables,kind,k,t,edges,max(1,2*t-1))
 
 
 def e7_path(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:

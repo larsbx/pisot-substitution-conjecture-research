@@ -337,7 +337,9 @@ theorem diagonal_overlap_eq (fixture : Fin 2) (a : Fin 3) :
     overlap (ambientStar (substitution fixture) piZ) (tiles fixture) (diagonalPacket a) =
       tiles fixture a := by
   ext x
-  simp [overlap, diagonalPacket]
+  change (x ∈ tiles fixture a ∧
+    x - ambientStar (substitution fixture) piZ 0 ∈ tiles fixture a) ↔ _
+  simp only [map_zero, sub_zero, and_self]
 
 /-- The full domain contains actual nonempty overlaps, while the strict
 domain excludes these same integral diagonals by definition. -/
@@ -352,8 +354,10 @@ theorem diagonal_control (fixture : Fin 2) (a : Fin 3) :
   have hi : (diagonalPacket a).Interior physicalRow := by
     apply (Packet.interior_iff_bounds physicalRow physical_row_pos (diagonalPacket a)).mpr
     have ha := physical_row_pos a
-    simp only [diagonalPacket, offset, Pi.zero_apply, Int.cast_zero, dotProduct_zero]
-    exact ⟨by linarith, ha⟩
+    have hz : offset physicalRow (0 : Fin 3 → ℤ) = 0 := by simp [offset, dotProduct]
+    change -physicalRow a < offset physicalRow 0 ∧ offset physicalRow 0 < physicalRow a
+    rw [hz]
+    exact ⟨neg_lt_zero.mpr ha, ha⟩
   refine ⟨nonempty_overlap_mem fixture _ hi hn, hn, ?_⟩
   intro hstrict
   exact ((mem_strictPackets fixture _).mp hstrict).2 ⟨rfl, rfl⟩
