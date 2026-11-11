@@ -161,6 +161,9 @@ theorem prefix_childIndex (τ : Fin 3 → Word) (w : ℕ → Fin 3)
     (fixed : FixedPrefix τ w) (e : Address τ w) :
     wordPrefix w (childIndex τ w e) = subst τ (wordPrefix w e.1) ++ e.2.before := by
   have h := ((parentMark w e.1).inflate τ e.2).take_index
+  change (subst τ (wordPrefix w (e.1 + 1))).take
+      ((parentMark w e.1).inflate τ e.2).index =
+    subst τ (wordPrefix w e.1) ++ e.2.before at h
   rw [inflated_index, ← fixed (e.1 + 1), prefix_take w (childIndex_lt τ w e).le] at h
   exact h
 
@@ -168,8 +171,13 @@ theorem letter_childIndex (τ : Fin 3 → Word) (w : ℕ → Fin 3)
     (fixed : FixedPrefix τ w) (e : Address τ w) :
     w (childIndex τ w e) = e.2.letter := by
   have h := ((parentMark w e.1).inflate τ e.2).selected
-  rw [inflated_index, ← fixed (e.1 + 1), prefix_getElem] at h
-  exact h
+  change (subst τ (wordPrefix w (e.1 + 1)))
+    [((parentMark w e.1).inflate τ e.2).index]'
+      ((parentMark w e.1).inflate τ e.2).index_lt = e.2.letter at h
+  have hs : (subst τ (wordPrefix w (e.1 + 1)))
+      [childIndex τ w e]'(childIndex_lt τ w e) = e.2.letter := by
+    simpa only [inflated_index] using h
+  simpa only [← fixed (e.1 + 1), prefix_getElem] using hs
 
 /-- The affine prefix formula is derived from the complete literal prefix
 identity, retaining its actual addressed occurrence. -/
@@ -205,9 +213,8 @@ theorem seedWord_fixedPrefix (τ : Fin 3 → Word) (u : Word)
     (grows : u.length < (subst τ u).length) :
     FixedPrefix τ (seedWord τ u nonerasing prolongable grows) := by
   intro n
-  simpa only [wordPrefix, seedWord, Function.iterate_one] using
-    Psc.FixedPointLimit.limit_fixed_eq τ (u := u) (p := 1) prolongable
-      (Psc.FixedPointLimit.grow_of_nonerasing τ nonerasing (p := 1) prolongable grows) n
+  exact Psc.FixedPointLimit.limit_fixed_eq τ (u := u) (p := 1) prolongable
+    (Psc.FixedPointLimit.grow_of_nonerasing τ nonerasing (p := 1) prolongable grows) n
 
 theorem seedWord_cofinalImages (τ : Fin 3 → Word) (u : Word)
     (nonerasing : ∀ a, τ a ≠ []) (prolongable : u <+: subst τ u)
@@ -243,6 +250,6 @@ theorem erasing_not_cofinalImages :
     ¬ CofinalImages (fun _ : Fin 3 => []) (fun _ : ℕ => (0 : Fin 3)) := by
   intro h
   obtain ⟨N, hN⟩ := h 0
-  simpa only [subst_erasing, List.length_nil, Nat.lt_irrefl] using hN
+  simp only [subst_erasing, List.length_nil, Nat.lt_irrefl] at hN
 
 end Psc.PrefixAddress
