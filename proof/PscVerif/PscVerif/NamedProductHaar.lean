@@ -59,8 +59,11 @@ theorem measure_product_action (σ : Fin 3 → Word) (hM : incidenceZ σ = MZ)
   letI : ∀ q, SecondCountableTopology (MadicResidue.Residue (M σ) q) :=
     fun q => DiscreteTopology.secondCountableTopology_of_countable
   letI : SecondCountableTopology (H σ) := by
-    change SecondCountableTopology (↥(MadicResidue.compatibleSequences (M σ)))
-    infer_instance
+    letI : SecondCountableTopology (∀ q : ℕ, MadicResidue.Residue (M σ) q) :=
+      inferInstance
+    exact Subtype.secondCountableTopology
+      (MadicResidue.compatibleSequences (M σ) :
+        Set (∀ q : ℕ, MadicResidue.Residue (M σ) q))
   letI : SecondCountableTopology (G σ) := by
     change SecondCountableTopology (Stable × H σ)
     infer_instance
@@ -117,7 +120,7 @@ theorem measure_affine_power (σ : Fin 3 → Word) (hM : incidenceZ σ = MZ)
     | succ k ih =>
       rw [pow_succ']
       let T := ambientAction σ B
-      change (volume.prod ν) ((T ∘ (T ^ k : AddMonoid.End (G σ))) '' s) = _
+      change (volume.prod ν) ((fun x : G σ => T ((T ^ k) x)) '' s) = _
       rw [← Set.image_image T (T ^ k : AddMonoid.End (G σ)) s]
       change (volume.prod ν) (ambientAction σ B '' ((ambientAction σ B ^ k) '' s)) = _
       rw [measure_product_action σ hM, ih, pow_succ', mul_assoc]
