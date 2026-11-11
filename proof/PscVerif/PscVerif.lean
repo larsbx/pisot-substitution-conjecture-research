@@ -73,3 +73,4 @@ import PscVerif.OverlapPacket
 import PscVerif.PhysicalMass
 import PscVerif.OccurrenceGraphBinding
 import PscVerif.OccurrencePiece
+import PscVerif.OccurrenceCover
