@@ -14839,6 +14839,398 @@
       "declaration": "theorem Refinement.zero_of_supersolution {ι : Type*} [Fintype ι]"
     },
     {
+      "name": "Psc.PrefixAddress.prefix_length",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 27,
+      "declaration": "theorem prefix_length (w : ℕ → Fin 3) (n : ℕ) : (wordPrefix w n).length = n := by"
+    },
+    {
+      "name": "Psc.PrefixAddress.prefix_zero",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 31,
+      "declaration": "theorem prefix_zero (w : ℕ → Fin 3) : wordPrefix w 0 = [] := by simp [wordPrefix]"
+    },
+    {
+      "name": "Psc.PrefixAddress.prefix_getElem",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 34,
+      "declaration": "theorem prefix_getElem (w : ℕ → Fin 3) (n i : ℕ) (h : i < (wordPrefix w n).length) :"
+    },
+    {
+      "name": "Psc.PrefixAddress.prefix_take",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 37,
+      "declaration": "theorem prefix_take (w : ℕ → Fin 3) {m n : ℕ} (h : m ≤ n) :"
+    },
+    {
+      "name": "Psc.PrefixAddress.prefix_mono",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 44,
+      "declaration": "theorem prefix_mono (w : ℕ → Fin 3) {m n : ℕ} (h : m ≤ n) :"
+    },
+    {
+      "name": "Psc.PrefixAddress.prefix_succ",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 49,
+      "declaration": "theorem prefix_succ (w : ℕ → Fin 3) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PrefixAddress.cofinalImages_of_nonerasing",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 62,
+      "declaration": "theorem cofinalImages_of_nonerasing (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixAddress.inflated_index",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 84,
+      "declaration": "theorem inflated_index (τ : Fin 3 → Word) (w : ℕ → Fin 3) (e : Address τ w) :"
+    },
+    {
+      "name": "Psc.PrefixAddress.childIndex_lt",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 90,
+      "declaration": "theorem childIndex_lt (τ : Fin 3 → Word) (w : ℕ → Fin 3) (e : Address τ w) :"
+    },
+    {
+      "name": "Psc.PrefixAddress.childIndex_parent_le",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 95,
+      "declaration": "theorem childIndex_parent_le (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixAddress.childIndex_locate",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 104,
+      "declaration": "theorem childIndex_locate (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixAddress.childIndex_injective",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 115,
+      "declaration": "theorem childIndex_injective (τ : Fin 3 → Word) (w : ℕ → Fin 3) :"
+    },
+    {
+      "name": "Psc.PrefixAddress.childIndex_surjective",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 132,
+      "declaration": "theorem childIndex_surjective (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixAddress.childIndex_bijective",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 150,
+      "declaration": "theorem childIndex_bijective (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixAddress.prefix_childIndex",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 160,
+      "declaration": "theorem prefix_childIndex (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixAddress.letter_childIndex",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 167,
+      "declaration": "theorem letter_childIndex (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixAddress.parikhZ_prefix_childIndex",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 176,
+      "declaration": "theorem parikhZ_prefix_childIndex (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixAddress.complete_address",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 184,
+      "declaration": "theorem complete_address (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixAddress.seedWord_fixedPrefix",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 203,
+      "declaration": "theorem seedWord_fixedPrefix (τ : Fin 3 → Word) (u : Word)"
+    },
+    {
+      "name": "Psc.PrefixAddress.seedWord_cofinalImages",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 212,
+      "declaration": "theorem seedWord_cofinalImages (τ : Fin 3 → Word) (u : Word)"
+    },
+    {
+      "name": "Psc.PrefixAddress.seedWord_spec",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 220,
+      "declaration": "theorem seedWord_spec (τ : Fin 3 → Word) (u : Word)"
+    },
+    {
+      "name": "Psc.PrefixAddress.subst_erasing",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 230,
+      "declaration": "theorem subst_erasing (u : Word) : subst (fun _ : Fin 3 => []) u = [] := by"
+    },
+    {
+      "name": "Psc.PrefixAddress.erasing_fixedPrefix",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 236,
+      "declaration": "theorem erasing_fixedPrefix :"
+    },
+    {
+      "name": "Psc.PrefixAddress.erasing_not_cofinalImages",
+      "module": "PscVerif.PrefixAddress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
+      "line": 242,
+      "declaration": "theorem erasing_not_cofinalImages :"
+    },
+    {
+      "name": "Psc.PrefixClosure.raw_point_mem",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 34,
+      "declaration": "theorem raw_point_mem (w : ℕ → Fin 3) (star : (Fin 3 → ℤ) →+ G) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PrefixClosure.raw_origin_mem",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 37,
+      "declaration": "theorem raw_origin_mem (w : ℕ → Fin 3) (star : (Fin 3 → ℤ) →+ G) :"
+    },
+    {
+      "name": "Psc.PrefixClosure.raw_affine_point",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 44,
+      "declaration": "theorem raw_affine_point (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixClosure.raw_tileEquation",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 53,
+      "declaration": "theorem raw_tileEquation (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixClosure.tileEquation_iff_iUnion",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 73,
+      "declaration": "theorem tileEquation_iff_iUnion (τ : Fin 3 → Word) (A : G →+ G)"
+    },
+    {
+      "name": "Psc.PrefixClosure.erasing_not_raw_tileEquation",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 99,
+      "declaration": "theorem erasing_not_raw_tileEquation (A : G →+ G) (star : (Fin 3 → ℤ) →+ G) :"
+    },
+    {
+      "name": "Psc.PrefixClosure.closure_tileEquation",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 116,
+      "declaration": "theorem closure_tileEquation (τ : Fin 3 → Word) (A : G →+ G)"
+    },
+    {
+      "name": "Psc.PrefixClosure.prefixTiles_tileEquation",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 133,
+      "declaration": "theorem prefixTiles_tileEquation (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixClosure.prefixTiles_tileEquation_of_nonerasing",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 142,
+      "declaration": "theorem prefixTiles_tileEquation_of_nonerasing (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixClosure.prefixTiles_nonempty",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 154,
+      "declaration": "theorem prefixTiles_nonempty (w : ℕ → Fin 3) (star : (Fin 3 → ℤ) →+ G)"
+    },
+    {
+      "name": "Psc.PrefixClosure.seed_prefixTiles_tileEquation",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 158,
+      "declaration": "theorem seed_prefixTiles_tileEquation (τ : Fin 3 → Word) (u : Word)"
+    },
+    {
+      "name": "Psc.PrefixClosure.erasing_not_prefixTiles_tileEquation",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 170,
+      "declaration": "theorem erasing_not_prefixTiles_tileEquation (A : G →+ G)"
+    },
+    {
+      "name": "Psc.PrefixClosure.madic_action_isClosedEmbedding",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 187,
+      "declaration": "theorem madic_action_isClosedEmbedding (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.PrefixClosure.ambientAction_isClosedEmbedding",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 196,
+      "declaration": "theorem ambientAction_isClosedEmbedding (s : Fin 3 → Word) (B : E →+ E)"
+    },
+    {
+      "name": "Psc.PrefixClosure.closedEmbedding_pow",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 204,
+      "declaration": "theorem closedEmbedding_pow {X : Type*} [AddCommGroup X] [TopologicalSpace X]"
+    },
+    {
+      "name": "Psc.PrefixClosure.ambientAction_pow_isClosedEmbedding",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 214,
+      "declaration": "theorem ambientAction_pow_isClosedEmbedding (s : Fin 3 → Word) (B : E →+ E)"
+    },
+    {
+      "name": "Psc.PrefixClosure.ambientAction_pow_star",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 222,
+      "declaration": "theorem ambientAction_pow_star (s : Fin 3 → Word) (B : E →+ E)"
+    },
+    {
+      "name": "Psc.PrefixClosure.ambient_block_commute",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 236,
+      "declaration": "theorem ambient_block_commute (s : Fin 3 → Word) (B : E →+ E)"
+    },
+    {
+      "name": "Psc.PrefixClosure.ambient_block_reflectsIntegralRange",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 249,
+      "declaration": "theorem ambient_block_reflectsIntegralRange (s : Fin 3 → Word) (B : E →+ E)"
+    },
+    {
+      "name": "Psc.PrefixClosure.block_integralInjective",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 261,
+      "declaration": "theorem block_integralInjective (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.PrefixClosure.ambient_prefixTiles_tileEquation",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 271,
+      "declaration": "theorem ambient_prefixTiles_tileEquation (s : Fin 3 → Word) (k : ℕ) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixClosure.ambient_prefix_overlap_cover",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 288,
+      "declaration": "theorem ambient_prefix_overlap_cover (s : Fin 3 → Word) (k : ℕ) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixClosure.ambient_prefix_finite_history_cover",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 307,
+      "declaration": "theorem ambient_prefix_finite_history_cover (s : Fin 3 → Word) (k : ℕ) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixClosure.prefixTiles_compact_of_window",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 332,
+      "declaration": "theorem prefixTiles_compact_of_window (s : Fin 3 → Word) (w : ℕ → Fin 3)"
+    },
+    {
+      "name": "Psc.PrefixClosure.compact_prefix_historyPiece",
+      "module": "PscVerif.PrefixClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PrefixClosure.lean",
+      "line": 349,
+      "declaration": "theorem compact_prefix_historyPiece (s : Fin 3 → Word) (k : ℕ) (w : ℕ → Fin 3)"
+    },
+    {
       "name": "Psc.PrimitiveExpansion.one_le_of_pos_pow",
       "module": "PscVerif.PrimitiveExpansion",
       "private": false,
@@ -21418,6 +21810,8 @@
     "proof/PscVerif/PscVerif/PerronExistence.lean": "a2ac1801abf2a99a6c312935d101ed4f760ffec0f96586d5f1f43bb176814c73",
     "proof/PscVerif/PscVerif/PerronSimple.lean": "1e4d9aca60b215f17067e39ba38bd8eaec7d9781fb716d8727fa7f9cbbf737a8",
     "proof/PscVerif/PscVerif/PhysicalMass.lean": "6578043c87ca7da4be96673630ae5d2d2e2356a681b1b2401c39bd9e9b036a36",
+    "proof/PscVerif/PscVerif/PrefixAddress.lean": "76ae1aaee386f334cc43860948ac039afe733a6ee82af3253c0785a7ffa667fb",
+    "proof/PscVerif/PscVerif/PrefixClosure.lean": "f5c170f674f5702403fb601cf56e0fcb7ef7747475aa439e376b868cbbf54ef1",
     "proof/PscVerif/PscVerif/PrimitiveExpansion.lean": "70307f2cb4fb0eb854086f20bb04ca82ceb04c5433d41f0984c29a5f70bd4eff",
     "proof/PscVerif/PscVerif/QuotientDistance.lean": "1431961ca4d26d60e5bf5165c7773440e7a708b51377697e339f94f7cf5896ef",
     "proof/PscVerif/PscVerif/ReductioControls.lean": "73c94ccd2ec83747f47d77035ff3cdca3843d611470f0cd3eae64c10104a0e76",
@@ -21433,7 +21827,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "365c1efe51a2f369147d502177118021d6f9edcc446981befaab47455bb7cadb",
+    "proof/PscVerif/PscVerif.lean": "8b74c24f3ae4f755e9e45161c9563177d8f9b60e4930976a948eb37f07c09aa7",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

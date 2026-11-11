@@ -77,3 +77,5 @@ import PscVerif.OccurrenceCover
 import PscVerif.OccurrenceAdmissibility
 import PscVerif.MadicResidue
 import PscVerif.OccurrenceResidue
+import PscVerif.PrefixAddress
+import PscVerif.PrefixClosure
