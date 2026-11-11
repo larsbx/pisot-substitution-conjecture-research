@@ -174,7 +174,7 @@ theorem ambientAction_closedEmbedding (fixture : Fin 2) :
 
 /-- The actual prefix equation is at the authentic word period two. -/
 theorem tileEquation_two (fixture : Fin 2) :
-    TileEquation (iterateImages (substitution fixture) 2)
+    OccurrencePiece.TileEquation (iterateImages (substitution fixture) 2)
       (ambientAction (substitution fixture) B ^ 2)
       (ambientStar (substitution fixture) piZ) (tiles fixture) :=
   ambient_prefixTiles_tileEquation _ 2 _ B piZ B_isClosedEmbedding
@@ -183,7 +183,7 @@ theorem tileEquation_two (fixture : Fin 2) :
 
 /-- Block twelve gives the same actual tiles their complete block equation. -/
 theorem tileEquation_twelve (fixture : Fin 2) :
-    TileEquation (iterateImages (substitution fixture) 12)
+    OccurrencePiece.TileEquation (iterateImages (substitution fixture) 12)
       (ambientAction (substitution fixture) B ^ 12)
       (ambientStar (substitution fixture) piZ) (tiles fixture) :=
   ambient_prefixTiles_tileEquation _ 12 _ B piZ B_isClosedEmbedding
