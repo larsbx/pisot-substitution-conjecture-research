@@ -23,17 +23,27 @@ child index. In a proper space it supplies the compact window required
 by the actual prefix-closure theorem. Its own acceptance is recorded in
 its implementation PR; #542's prior receipts do not cover the extension.
 
-The existing exact native block-twelve certificate can be reused for the
-two named nonunit controls. Its old proof took a maximum over already
-compact sets; the new actual-prefix induction supplies the noncircular
-boundedness argument. The next formal binding is the authentic stable
-chart and strict block-twelve contraction, with properness and original
-integral-incidence injectivity. The canonical complete digit sum then
-gives qualitative compactness without a numerical digit-hull decoder;
-the sharper radius forty separately requires the complete digit bound
-of five. Complete finite-domain representation, sound exclusions,
-product-Haar scaling and strict-root positivity remain subsequent
-obligations. Compactness does not discharge them.
+The [named stable-chart continuation](c4-named-stable-chart-2026-11-11.md)
+now implements the authentic real chart and stable-plane lift for
+`1/021/001` and `1/012/001`, their strict block-twelve contraction in the
+declared coordinate supremum norm, and original integral-incidence
+injectivity. It constructs the two distinct period-two words separately.
+The canonical complete digit sum then yields an all-prefix bound and
+compact, nonempty letter-indexed closures in the original matrix-adic
+product. Its implementation PR records its own fresh acceptance; prior
+#542/#543 receipts do not cover these new modules.
+
+The sharper radius forty separately requires a formal binding of the
+complete numerical digit bound of five. The adjacent finite-carrier work
+in [PR #544](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/544)
+is a subsequent composition target once independently accepted: its
+authentic reconstruction and physical-strip premises must be instantiated,
+not inferred merely from the name "stable chart". Integral-star
+injectivity/discreteness and a cut-and-project lattice are not newly
+registered by this compactness increment. Complete finite-domain
+representation, sound exclusions, product-Haar scaling and strict-root
+positivity remain subsequent obligations. Compactness does not discharge
+them.
 
 ### Implementation follow-up after #532
 

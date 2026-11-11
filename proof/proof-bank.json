@@ -10111,6 +10111,798 @@
       "declaration": "theorem continuous_action (M : V →ₗ[ℤ] V) : Continuous (action M) := by"
     },
     {
+      "name": "Psc.NamedPrefixCompact.incidence_eq",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 34,
+      "declaration": "theorem incidence_eq (fixture : Fin 2) : incidenceZ (substitution fixture) = MZ := by"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.nonerasing",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 37,
+      "declaration": "theorem nonerasing (fixture : Fin 2) (a : Fin 3) : substitution fixture a ≠ [] := by"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.square_nonerasing",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 40,
+      "declaration": "theorem square_nonerasing (fixture : Fin 2) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.seed_prolongable",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 44,
+      "declaration": "theorem seed_prolongable (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.seed_grows",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 48,
+      "declaration": "theorem seed_grows (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.word_fixed_two",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 58,
+      "declaration": "theorem word_fixed_two (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.word_fixed_twelve",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 64,
+      "declaration": "theorem word_fixed_twelve (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.word_initial",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 70,
+      "declaration": "theorem word_initial (fixture : Fin 2) (i : Fin 3) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.word_zero",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 88,
+      "declaration": "theorem word_zero (fixture : Fin 2) : word fixture 0 = 0 := by"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.words_distinct",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 92,
+      "declaration": "theorem words_distinct : word 0 ≠ word 1 := by"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.word_not_fixed_one",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 101,
+      "declaration": "theorem word_not_fixed_one (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.integralInjective",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 112,
+      "declaration": "theorem integralInjective (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.pi_commute",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 116,
+      "declaration": "theorem pi_commute (fixture : Fin 2) (z : Fin 3 → ℤ) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.radius_nonneg",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 127,
+      "declaration": "theorem radius_nonneg (fixture : Fin 2) : 0 ≤ radius fixture :="
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.prefix_norm_bound",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 131,
+      "declaration": "theorem prefix_norm_bound (fixture : Fin 2) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.prefix_mem_ball",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 145,
+      "declaration": "theorem prefix_mem_ball (fixture : Fin 2) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.tiles_compact",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 157,
+      "declaration": "theorem tiles_compact (fixture : Fin 2) (c : Fin 3) : IsCompact (tiles fixture c) :="
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.tiles_nonempty",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 162,
+      "declaration": "theorem tiles_nonempty (fixture : Fin 2) (c : Fin 3) : (tiles fixture c).Nonempty := by"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.ambientAction_closedEmbedding",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 171,
+      "declaration": "theorem ambientAction_closedEmbedding (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.tileEquation_two",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 176,
+      "declaration": "theorem tileEquation_two (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.tileEquation_twelve",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 185,
+      "declaration": "theorem tileEquation_twelve (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.sigma0_prefixTiles_compact",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 195,
+      "declaration": "theorem sigma0_prefixTiles_compact (c : Fin 3) :"
+    },
+    {
+      "name": "Psc.NamedPrefixCompact.sigma1_prefixTiles_compact",
+      "module": "PscVerif.NamedPrefixCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "line": 199,
+      "declaration": "theorem sigma1_prefixTiles_compact (c : Fin 3) :"
+    },
+    {
+      "name": "Psc.NamedStableChart.root_bracket",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 44,
+      "declaration": "theorem root_bracket :"
+    },
+    {
+      "name": "Psc.NamedStableChart.exists_root_in_bracket",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 49,
+      "declaration": "theorem exists_root_in_bracket :"
+    },
+    {
+      "name": "Psc.NamedStableChart.beta_ge_lo",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 59,
+      "declaration": "theorem beta_ge_lo : betaLo ≤ beta := (Classical.choose_spec exists_root_in_bracket).1.1"
+    },
+    {
+      "name": "Psc.NamedStableChart.beta_le_hi",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 60,
+      "declaration": "theorem beta_le_hi : beta ≤ betaHi := (Classical.choose_spec exists_root_in_bracket).1.2"
+    },
+    {
+      "name": "Psc.NamedStableChart.beta_cubic",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 61,
+      "declaration": "theorem beta_cubic : cubic beta = 0 := (Classical.choose_spec exists_root_in_bracket).2"
+    },
+    {
+      "name": "Psc.NamedStableChart.beta_gt_two",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 63,
+      "declaration": "theorem beta_gt_two : 2 < beta := root_bracket.1.trans_le beta_ge_lo"
+    },
+    {
+      "name": "Psc.NamedStableChart.beta_lt_five_halves",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 64,
+      "declaration": "theorem beta_lt_five_halves : beta < 5 / 2 := beta_le_hi.trans_lt root_bracket.2.2.1"
+    },
+    {
+      "name": "Psc.NamedStableChart.beta_pos",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 65,
+      "declaration": "theorem beta_pos : 0 < beta := lt_trans (by norm_num : (0 : ℝ) < 2) beta_gt_two"
+    },
+    {
+      "name": "Psc.NamedStableChart.beta_ne_zero",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 66,
+      "declaration": "theorem beta_ne_zero : beta ≠ 0 := ne_of_gt beta_pos"
+    },
+    {
+      "name": "Psc.NamedStableChart.root_unique_ge_two",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 70,
+      "declaration": "theorem root_unique_ge_two {x y : ℝ} (hx : 2 ≤ x) (hy : 2 ≤ y)"
+    },
+    {
+      "name": "Psc.NamedStableChart.beta_unique",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 81,
+      "declaration": "theorem beta_unique {x : ℝ} (hx : 2 ≤ x) (hfx : cubic x = 0) : x = beta :="
+    },
+    {
+      "name": "Psc.NamedStableChart.a_add_b_add_one",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 89,
+      "declaration": "theorem a_add_b_add_one : a + b + 1 = beta := by unfold a b; ring"
+    },
+    {
+      "name": "Psc.NamedStableChart.beta_mul_b",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 91,
+      "declaration": "theorem beta_mul_b : beta * b = 1 := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.beta_mul_a",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 97,
+      "declaration": "theorem beta_mul_a : beta * a = 1 + 2 * b := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.beta_mul_a_eq_c",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 103,
+      "declaration": "theorem beta_mul_a_eq_c : beta * a = c := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.beta_mul_c",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 108,
+      "declaration": "theorem beta_mul_c : beta * c = beta + 2 := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.a_pos",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 114,
+      "declaration": "theorem a_pos : 0 < a := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.b_pos",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 120,
+      "declaration": "theorem b_pos : 0 < b := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.b_eq_inv_beta",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 125,
+      "declaration": "theorem b_eq_inv_beta : b = 1 / beta := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.c_gt_one",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 129,
+      "declaration": "theorem c_gt_one : 1 < c := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.kappa_pos",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 133,
+      "declaration": "theorem kappa_pos : 0 < kappa := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.kappa_ne_zero",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 139,
+      "declaration": "theorem kappa_ne_zero : kappa ≠ 0 := ne_of_gt kappa_pos"
+    },
+    {
+      "name": "Psc.NamedStableChart.a_relation",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 141,
+      "declaration": "theorem a_relation : a * a + a * b + a = 1 + 2 * b := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.b_relation",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 145,
+      "declaration": "theorem b_relation : a * b + b * b + b = 1 := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.MR_eq",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 175,
+      "declaration": "theorem MR_eq : MR = !![0, 1, 2; 1, 1, 1; 0, 1, 0] := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.MR_mulVec",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 179,
+      "declaration": "theorem MR_mulVec (x : AmbientReal) :"
+    },
+    {
+      "name": "Psc.NamedStableChart.W_mulVec",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 185,
+      "declaration": "theorem W_mulVec (x : AmbientReal) : W *ᵥ x = ![x 0 - a * x 1, x 2 - b * x 1] := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.J_mulVec",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 189,
+      "declaration": "theorem J_mulVec (y : Stable) : J *ᵥ y = ![y 0, 0, y 1] := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.Bmat_mulVec",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 193,
+      "declaration": "theorem Bmat_mulVec (y : Stable) :"
+    },
+    {
+      "name": "Psc.NamedStableChart.B_apply",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 198,
+      "declaration": "theorem B_apply (y : Stable) : B y = Bmat *ᵥ y := rfl"
+    },
+    {
+      "name": "Psc.NamedStableChart.piZ_apply",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 199,
+      "declaration": "theorem piZ_apply (z : Fin 3 → ℤ) : piZ z = W *ᵥ castZ z := rfl"
+    },
+    {
+      "name": "Psc.NamedStableChart.physical_apply",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 201,
+      "declaration": "theorem physical_apply (x : AmbientReal) :"
+    },
+    {
+      "name": "Psc.NamedStableChart.physical_add",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 205,
+      "declaration": "theorem physical_add (x y : AmbientReal) : physical (x + y) = physical x + physical y := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.physical_sub",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 209,
+      "declaration": "theorem physical_sub (x y : AmbientReal) : physical (x - y) = physical x - physical y := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.physical_smul",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 213,
+      "declaration": "theorem physical_smul (t : ℝ) (x : AmbientReal) : physical (t • x) = t * physical x := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.WJ_eq_one",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 218,
+      "declaration": "theorem WJ_eq_one : W * J = 1 := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.WM_eq_BW",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 224,
+      "declaration": "theorem WM_eq_BW : W * MR = Bmat * W := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.perron_eigen",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 231,
+      "declaration": "theorem perron_eigen : MR *ᵥ r = beta • r := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.perron_vector_pos",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 237,
+      "declaration": "theorem perron_vector_pos (i : Fin 3) : 0 < r i := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.physical_row_pos",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 240,
+      "declaration": "theorem physical_row_pos (i : Fin 3) : 0 < physicalRow i := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.physical_eigen",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 243,
+      "declaration": "theorem physical_eigen (x : AmbientReal) : physical (MR *ᵥ x) = beta * physical x := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.W_r_zero",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 253,
+      "declaration": "theorem W_r_zero : W *ᵥ r = 0 := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.W_kernel_iff",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 259,
+      "declaration": "theorem W_kernel_iff (x : AmbientReal) :"
+    },
+    {
+      "name": "Psc.NamedStableChart.physical_r_eq_kappa",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 272,
+      "declaration": "theorem physical_r_eq_kappa : physical r = kappa := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.W_L",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 284,
+      "declaration": "theorem W_L (y : Stable) : W *ᵥ L y = y := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.physical_L",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 289,
+      "declaration": "theorem physical_L (y : Stable) : physical (L y) = 0 := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.quotient_reconstruction",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 295,
+      "declaration": "theorem quotient_reconstruction (x : AmbientReal) :"
+    },
+    {
+      "name": "Psc.NamedStableChart.reconstruction",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 303,
+      "declaration": "theorem reconstruction (x : AmbientReal) :"
+    },
+    {
+      "name": "Psc.NamedStableChart.L_W_of_physical_zero",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 322,
+      "declaration": "theorem L_W_of_physical_zero (x : AmbientReal) (hx : physical x = 0) : L (W *ᵥ x) = x := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.W_injective_on_stable",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 326,
+      "declaration": "theorem W_injective_on_stable {x y : AmbientReal}"
+    },
+    {
+      "name": "Psc.NamedStableChart.M_L",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 331,
+      "declaration": "theorem M_L (y : Stable) : MR *ᵥ L y = L (Bmat *ᵥ y) := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.MZ_det",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 337,
+      "declaration": "theorem MZ_det : MZ.det = 2 := by norm_num [MZ, Matrix.det_fin_three]"
+    },
+    {
+      "name": "Psc.NamedStableChart.MZ_mulVec_injective",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 339,
+      "declaration": "theorem MZ_mulVec_injective : Function.Injective (fun z : Fin 3 → ℤ => MZ *ᵥ z) :="
+    },
+    {
+      "name": "Psc.NamedStableChart.Bmat_det",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 342,
+      "declaration": "theorem Bmat_det : Bmat.det = 2 * b := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.Bmat_det_ne_zero",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 346,
+      "declaration": "theorem Bmat_det_ne_zero : Bmat.det ≠ 0 := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.B_isClosedEmbedding",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 350,
+      "declaration": "theorem B_isClosedEmbedding : Topology.IsClosedEmbedding B :="
+    },
+    {
+      "name": "Psc.NamedStableChart.castZ_mulVec",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 354,
+      "declaration": "theorem castZ_mulVec (z : Fin 3 → ℤ) : castZ (MZ *ᵥ z) = MR *ᵥ castZ z := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.piZ_commute",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 359,
+      "declaration": "theorem piZ_commute (z : Fin 3 → ℤ) : B (piZ z) = piZ (MZ *ᵥ z) := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.W_MR_pow",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 363,
+      "declaration": "theorem W_MR_pow (n : ℕ) : W * MR ^ n = Bmat ^ n * W := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.Bmat_pow_eq_WMpJ",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 375,
+      "declaration": "theorem Bmat_pow_eq_WMpJ (n : ℕ) : Bmat ^ n = W * MR ^ n * J := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.B_pow_apply_eq_matrix",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 378,
+      "declaration": "theorem B_pow_apply_eq_matrix (n : ℕ) (x : Stable) : (B ^ n) x = (Bmat ^ n) *ᵥ x := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.MZ_pow_two",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 386,
+      "declaration": "theorem MZ_pow_two : MZ ^ 2 = !![1, 3, 1; 1, 3, 3; 1, 1, 1] := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.MZ_pow_four",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 391,
+      "declaration": "theorem MZ_pow_four : MZ ^ 4 = !![5, 13, 11; 7, 15, 13; 3, 7, 5] := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.MZ_pow_eight",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 397,
+      "declaration": "theorem MZ_pow_eight : MZ ^ 8 = !![149, 337, 279; 179, 407, 337; 79, 179, 149] := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.MZ_pow_twelve",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 403,
+      "declaration": "theorem MZ_pow_twelve : MZ ^ 12 = !![3941, 8945, 7415; 4755, 10791, 8945; 2095, 4755, 3941] := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.MR_pow_twelve",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 409,
+      "declaration": "theorem MR_pow_twelve : MR ^ 12 = !![3941, 8945, 7415; 4755, 10791, 8945; 2095, 4755, 3941] := by"
+    },
+    {
+      "name": "Psc.NamedStableChart.Bmat_pow_twelve",
+      "module": "PscVerif.NamedStableChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableChart.lean",
+      "line": 418,
+      "declaration": "theorem Bmat_pow_twelve : Bmat ^ 12 ="
+    },
+    {
+      "name": "Psc.NamedStableContraction.beta_coarse_bounds",
+      "module": "PscVerif.NamedStableContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableContraction.lean",
+      "line": 33,
+      "declaration": "theorem beta_coarse_bounds :"
+    },
+    {
+      "name": "Psc.NamedStableContraction.chart_coarse_bounds",
+      "module": "PscVerif.NamedStableContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableContraction.lean",
+      "line": 42,
+      "declaration": "theorem chart_coarse_bounds :"
+    },
+    {
+      "name": "Psc.NamedStableContraction.twelfth_entry_bounds",
+      "module": "PscVerif.NamedStableContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableContraction.lean",
+      "line": 54,
+      "declaration": "theorem twelfth_entry_bounds :"
+    },
+    {
+      "name": "Psc.NamedStableContraction.twelfth_row_bounds",
+      "module": "PscVerif.NamedStableContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableContraction.lean",
+      "line": 64,
+      "declaration": "theorem twelfth_row_bounds (i : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedStableContraction.norm_mulVec_le_of_row_bound",
+      "module": "PscVerif.NamedStableContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableContraction.lean",
+      "line": 78,
+      "declaration": "theorem norm_mulVec_le_of_row_bound (C : Matrix (Fin 2) (Fin 2) ℝ)"
+    },
+    {
+      "name": "Psc.NamedStableContraction.B_pow_twelve_contract",
+      "module": "PscVerif.NamedStableContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableContraction.lean",
+      "line": 96,
+      "declaration": "theorem B_pow_twelve_contract (x : Stable) :"
+    },
+    {
+      "name": "Psc.NamedStableContraction.B_test_vector",
+      "module": "PscVerif.NamedStableContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableContraction.lean",
+      "line": 104,
+      "declaration": "theorem B_test_vector : B (![1, -1] : Stable) = ![-2, 0] := by"
+    },
+    {
+      "name": "Psc.NamedStableContraction.B_pow_two_test_vector",
+      "module": "PscVerif.NamedStableContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableContraction.lean",
+      "line": 109,
+      "declaration": "theorem B_pow_two_test_vector : (B ^ 2) (![1, -1] : Stable) = ![2 * a, 2 * b] := by"
+    },
+    {
+      "name": "Psc.NamedStableContraction.not_B_pow_two_contract",
+      "module": "PscVerif.NamedStableContraction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedStableContraction.lean",
+      "line": 119,
+      "declaration": "theorem not_B_pow_two_contract :"
+    },
+    {
       "name": "Psc.OccurrenceAddress.locate_sound",
       "module": "PscVerif.OccurrenceAddress",
       "private": false,
@@ -21993,6 +22785,9 @@
     "proof/PscVerif/PscVerif/LieWeights.lean": "f32639f83e519c69b8f428e153dd368c274e1f665a837183f88c5f1de0dd8adb",
     "proof/PscVerif/PscVerif/M0Pisot.lean": "65d17cf0aa71cdac825d16da73ad601dd49c214cd0b47ac58f124cb51a64a304",
     "proof/PscVerif/PscVerif/MadicResidue.lean": "c7ff8430cb77c335f11478861584baea4129658b35f4fc67bf0c2b8509d50f6d",
+    "proof/PscVerif/PscVerif/NamedPrefixCompact.lean": "c5ab8cc9444b37295c8e64c2b55970dade87576c7e5d3ed33748f5ba4eefaed2",
+    "proof/PscVerif/PscVerif/NamedStableChart.lean": "772d6dc46898bc22471db53283dc0404445f1dd28ac0b99ed16232c394336f9b",
+    "proof/PscVerif/PscVerif/NamedStableContraction.lean": "13381d9619cd2c574e15614ce0e00609d17e1b153b359ca788ebe73d45bde8fd",
     "proof/PscVerif/PscVerif/OccurrenceAddress.lean": "fd8d4020fc3f720c8a81d23c9811056802c901eec35a48efcbb40954c5a375ad",
     "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean": "0843e0a255a2a13675132264eb1385d9a155b7122138359b02158916541e2b4e",
     "proof/PscVerif/PscVerif/OccurrenceCover.lean": "c66e2937532b2b289351b9ab10a18a1485b73434e362fd1e88edbfd3b6479cb6",
@@ -22036,7 +22831,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "62f0ade63d225bd3be7ed639d0334d4a446c991309c389ff2a563422781b3a57",
+    "proof/PscVerif/PscVerif.lean": "c484e3eaa30a090b5cee88c836135cc30ae163ccdf0db104286b905e815da5e4",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
