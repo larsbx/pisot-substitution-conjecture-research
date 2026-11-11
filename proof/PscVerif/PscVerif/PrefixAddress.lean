@@ -171,13 +171,16 @@ theorem letter_childIndex (τ : Fin 3 → Word) (w : ℕ → Fin 3)
     (fixed : FixedPrefix τ w) (e : Address τ w) :
     w (childIndex τ w e) = e.2.letter := by
   have h := ((parentMark w e.1).inflate τ e.2).selected
-  change (subst τ (wordPrefix w (e.1 + 1)))
-    [((parentMark w e.1).inflate τ e.2).index]'
-      ((parentMark w e.1).inflate τ e.2).index_lt = e.2.letter at h
-  have hs : (subst τ (wordPrefix w (e.1 + 1)))
-      [childIndex τ w e]'(childIndex_lt τ w e) = e.2.letter := by
+  change (subst τ (wordPrefix w (e.1 + 1)))[((parentMark w e.1).inflate τ e.2).index]'
+    ((parentMark w e.1).inflate τ e.2).index_lt = e.2.letter at h
+  have hs : (subst τ (wordPrefix w (e.1 + 1)))[childIndex τ w e]'(childIndex_lt τ w e) =
+      e.2.letter := by
     simpa only [inflated_index] using h
-  simpa only [← fixed (e.1 + 1), prefix_getElem] using hs
+  have hs' : (subst τ (wordPrefix w (e.1 + 1)))[childIndex τ w e]? =
+      some e.2.letter := List.getElem?_eq_some_iff.mpr ⟨childIndex_lt τ w e, hs⟩
+  have hf := congrArg (fun v : Word => v[childIndex τ w e]?) (fixed (e.1 + 1))
+  obtain ⟨hp, he⟩ := List.getElem?_eq_some_iff.mp (hf.trans hs')
+  simpa only [prefix_getElem] using he
 
 /-- The affine prefix formula is derived from the complete literal prefix
 identity, retaining its actual addressed occurrence. -/

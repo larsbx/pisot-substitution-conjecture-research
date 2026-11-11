@@ -14971,7 +14971,7 @@
       "module": "PscVerif.PrefixAddress",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
-      "line": 184,
+      "line": 187,
       "declaration": "theorem parikhZ_prefix_childIndex (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
     },
     {
@@ -14979,7 +14979,7 @@
       "module": "PscVerif.PrefixAddress",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
-      "line": 192,
+      "line": 195,
       "declaration": "theorem complete_address (τ : Fin 3 → Word) (w : ℕ → Fin 3)"
     },
     {
@@ -14987,7 +14987,7 @@
       "module": "PscVerif.PrefixAddress",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
-      "line": 211,
+      "line": 214,
       "declaration": "theorem seedWord_fixedPrefix (τ : Fin 3 → Word) (u : Word)"
     },
     {
@@ -14995,7 +14995,7 @@
       "module": "PscVerif.PrefixAddress",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
-      "line": 219,
+      "line": 222,
       "declaration": "theorem seedWord_cofinalImages (τ : Fin 3 → Word) (u : Word)"
     },
     {
@@ -15003,7 +15003,7 @@
       "module": "PscVerif.PrefixAddress",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
-      "line": 227,
+      "line": 230,
       "declaration": "theorem seedWord_spec (τ : Fin 3 → Word) (u : Word)"
     },
     {
@@ -15011,7 +15011,7 @@
       "module": "PscVerif.PrefixAddress",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
-      "line": 237,
+      "line": 240,
       "declaration": "theorem subst_erasing (u : Word) : subst (fun _ : Fin 3 => []) u = [] := by"
     },
     {
@@ -15019,7 +15019,7 @@
       "module": "PscVerif.PrefixAddress",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
-      "line": 243,
+      "line": 246,
       "declaration": "theorem erasing_fixedPrefix :"
     },
     {
@@ -15027,7 +15027,7 @@
       "module": "PscVerif.PrefixAddress",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PrefixAddress.lean",
-      "line": 249,
+      "line": 252,
       "declaration": "theorem erasing_not_cofinalImages :"
     },
     {
@@ -21810,8 +21810,8 @@
     "proof/PscVerif/PscVerif/PerronExistence.lean": "a2ac1801abf2a99a6c312935d101ed4f760ffec0f96586d5f1f43bb176814c73",
     "proof/PscVerif/PscVerif/PerronSimple.lean": "1e4d9aca60b215f17067e39ba38bd8eaec7d9781fb716d8727fa7f9cbbf737a8",
     "proof/PscVerif/PscVerif/PhysicalMass.lean": "6578043c87ca7da4be96673630ae5d2d2e2356a681b1b2401c39bd9e9b036a36",
-    "proof/PscVerif/PscVerif/PrefixAddress.lean": "97464a8de9d7a8615ed776c86ab1ee53c2e9fb29db1ecdc7019820f1c1940539",
-    "proof/PscVerif/PscVerif/PrefixClosure.lean": "f5c170f674f5702403fb601cf56e0fcb7ef7747475aa439e376b868cbbf54ef1",
+    "proof/PscVerif/PscVerif/PrefixAddress.lean": "57261314c2c473fdf76e9815ad80f30ac46f0fe42e1a7ec7c3ad15524afe848d",
+    "proof/PscVerif/PscVerif/PrefixClosure.lean": "c9df601e2d5601af2b3ebeb05e75d43fd5600999bcba187af04e76b51e520006",
     "proof/PscVerif/PscVerif/PrimitiveExpansion.lean": "70307f2cb4fb0eb854086f20bb04ca82ceb04c5433d41f0984c29a5f70bd4eff",
     "proof/PscVerif/PscVerif/QuotientDistance.lean": "1431961ca4d26d60e5bf5165c7773440e7a708b51377697e339f94f7cf5896ef",
     "proof/PscVerif/PscVerif/ReductioControls.lean": "73c94ccd2ec83747f47d77035ff3cdca3843d611470f0cd3eae64c10104a0e76",

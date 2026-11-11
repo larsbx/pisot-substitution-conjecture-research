@@ -148,9 +148,9 @@ theorem prefixTiles_tileEquation_of_nonerasing (τ : Fin 3 → Word) (w : ℕ �
   prefixTiles_tileEquation τ w A star fixed
     (cofinalImages_of_nonerasing τ w nonerasing) commute continuousA closedA
 
+omit [IsTopologicalAddGroup G] in
 /-- A concrete letter occurrence, rather than the prefix equation alone,
 supplies nonemptiness of its prefix closure. -/
-omit [IsTopologicalAddGroup G] in
 theorem prefixTiles_nonempty (w : ℕ → Fin 3) (star : (Fin 3 → ℤ) →+ G)
     (c : Fin 3) (n : ℕ) (occurs : w n = c) : (prefixTiles w star c).Nonempty :=
   ⟨star (parikhZ (wordPrefix w n)), subset_closure ⟨n, occurs, rfl⟩⟩
@@ -243,9 +243,9 @@ theorem ambient_block_commute (s : Fin 3 → Word) (B : E →+ E)
   rw [incidenceLinear_iterateImages]
   exact ambientAction_pow_star s B pi commute k z
 
+omit [TopologicalSpace E] [IsTopologicalAddGroup E] [T2Space E] in
 /-- Level `k` of the original carrier reflects the integral range of the
 literal block incidence. No `H_(M^k)` isomorphism is required. -/
-omit [TopologicalSpace E] [IsTopologicalAddGroup E] [T2Space E] in
 theorem ambient_block_reflectsIntegralRange (s : Fin 3 → Word) (B : E →+ E)
     (pi : (Fin 3 → ℤ) →+ E) (k : ℕ) :
     ReflectsIntegralRange (iterateImages s k) (ambientAction s B ^ k) (ambientStar s pi) := by
@@ -265,9 +265,9 @@ theorem block_integralInjective (s : Fin 3 → Word)
   rw [incidenceLinear_iterateImages]
   exact Module.End.iterate_injective integralInjective k
 
+omit [T2Space E] in
 /-- The chosen word period remains in the statement. This is not an
 inference of the original one-step equation from a power equation. -/
-omit [T2Space E] in
 theorem ambient_prefixTiles_tileEquation (s : Fin 3 → Word) (k : ℕ) (w : ℕ → Fin 3)
     (B : E →+ E) (pi : (Fin 3 → ℤ) →+ E)
     (closedB : Topology.IsClosedEmbedding B)
@@ -282,9 +282,9 @@ theorem ambient_prefixTiles_tileEquation (s : Fin 3 → Word) (k : ℕ) (w : ℕ
     (ambientAction_pow_isClosedEmbedding s B closedB integralInjective k).continuous
     (ambientAction_pow_isClosedEmbedding s B closedB integralInjective k).isClosedMap
 
+omit [T2Space E] in
 /-- Complete actual inverse occurrences cover the defined prefix overlap;
 the tile equation has been derived from literal prefixes. -/
-omit [T2Space E] in
 theorem ambient_prefix_overlap_cover (s : Fin 3 → Word) (k : ℕ) (w : ℕ → Fin 3)
     (B : E →+ E) (pi : (Fin 3 → ℤ) →+ E)
     (closedB : Topology.IsClosedEmbedding B)
@@ -301,9 +301,9 @@ theorem ambient_prefix_overlap_cover (s : Fin 3 → Word) (k : ℕ) (w : ℕ →
     (ambient_block_commute s B pi commute k) (ambient_block_reflectsIntegralRange s B pi k)
     (ambient_prefixTiles_tileEquation s k w B pi closedB integralInjective commute fixed cofinal) p
 
+omit [T2Space E] in
 /-- Every finite depth has a complete, finitely indexed literal history
 cover with the stated budget. No finite global ancestor domain is asserted. -/
-omit [T2Space E] in
 theorem ambient_prefix_finite_history_cover (s : Fin 3 → Word) (k : ℕ) (w : ℕ → Fin 3)
     (B : E →+ E) (pi : (Fin 3 → ℤ) →+ E)
     (closedB : Topology.IsClosedEmbedding B)
@@ -326,9 +326,9 @@ theorem ambient_prefix_finite_history_cover (s : Fin 3 → Word) (k : ℕ) (w : 
     (ambient_prefixTiles_tileEquation s k w B pi closedB integralInjective commute fixed cofinal)
     (ambient_block_reflectsIntegralRange s B pi k) n p
 
+omit [IsTopologicalAddGroup E] in
 /-- Compactness follows from an actual compact stable-coordinate window
 containing every prefix projection, together with the proved compact factor. -/
-omit [IsTopologicalAddGroup E] in
 theorem prefixTiles_compact_of_window (s : Fin 3 → Word) (w : ℕ → Fin 3)
     (pi : (Fin 3 → ℤ) →+ E)
     (integralInjective : Function.Injective (fun z => incidenceZ s *ᵥ z))
