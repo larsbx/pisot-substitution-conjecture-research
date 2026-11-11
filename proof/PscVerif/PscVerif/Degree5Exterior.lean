@@ -72,6 +72,10 @@ variable {S : ChildSystem (Fin 3)} (P : Normalisation S)
     (hβ : aeval β (incQ S).charpoly = 0) (hβ1 : 1 < ‖β‖)
     (hpisot : ∀ z : ℂ, aeval z (incQ S).charpoly = 0 → z ≠ β → ‖z‖ < 1)
 
+-- These hypotheses do not occur in the image-polynomial conclusion itself.
+-- Retain them explicitly in every wrapper's declaration.
+include hM hprim hβ hβ1 hpisot
+
 /-- The actual image polynomial is a power of the twisted exterior polynomial;
 the zero image and exponent zero remain included. -/
 theorem q5_eq_exterior_pow_rank :

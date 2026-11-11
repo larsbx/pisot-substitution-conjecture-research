@@ -6019,7 +6019,7 @@
       "module": "PscVerif.Degree5Exterior",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Exterior.lean",
-      "line": 77,
+      "line": 81,
       "declaration": "theorem q5_eq_exterior_pow_rank :"
     },
     {
@@ -6027,7 +6027,7 @@
       "module": "PscVerif.Degree5Exterior",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Exterior.lean",
-      "line": 84,
+      "line": 88,
       "declaration": "theorem q5_eq_exterior_pow_rank_of_nonzero"
     },
     {
@@ -6035,7 +6035,7 @@
       "module": "PscVerif.Degree5Exterior",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Exterior.lean",
-      "line": 93,
+      "line": 97,
       "declaration": "theorem q5_eq_wedge_pow_rank_of_det_one (hd : (incQ S).det = 1) :"
     },
     {
@@ -6043,7 +6043,7 @@
       "module": "PscVerif.Degree5Exterior",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Exterior.lean",
-      "line": 100,
+      "line": 104,
       "declaration": "theorem q5_eq_neg_wedge_pow_rank_of_det_neg_one (hd : (incQ S).det = -1) :"
     },
     {
@@ -6051,7 +6051,7 @@
       "module": "PscVerif.Degree5Exterior",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Exterior.lean",
-      "line": 111,
+      "line": 115,
       "declaration": "theorem incidence_column_sum {α : Type*} [Fintype α] [DecidableEq α]"
     },
     {
@@ -6059,7 +6059,7 @@
       "module": "PscVerif.Degree5Exterior",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Exterior.lean",
-      "line": 122,
+      "line": 126,
       "declaration": "theorem incidence_root_norm_le_image_bound"
     },
     {
@@ -6067,7 +6067,7 @@
       "module": "PscVerif.Degree5Exterior",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Exterior.lean",
-      "line": 146,
+      "line": 150,
       "declaration": "theorem columns_eq_zero_of_nonunit_short_images"
     },
     {
@@ -6075,7 +6075,7 @@
       "module": "PscVerif.Degree5Exterior",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Exterior.lean",
-      "line": 168,
+      "line": 172,
       "declaration": "theorem singular_control :"
     },
     {
@@ -6083,7 +6083,7 @@
       "module": "PscVerif.Degree5Exterior",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Exterior.lean",
-      "line": 177,
+      "line": 181,
       "declaration": "theorem negative_unit_sign_needed :"
     },
     {
@@ -6091,7 +6091,7 @@
       "module": "PscVerif.Degree5Exterior",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Degree5Exterior.lean",
-      "line": 185,
+      "line": 189,
       "declaration": "theorem nonunit_scale_needed :"
     },
     {
@@ -21637,7 +21637,7 @@
     "proof/PscVerif/PscVerif/Degree4Floor.lean": "bc34017a101d388e497a394710ed7661250aaa1fb049a9454dba17f308515006",
     "proof/PscVerif/PscVerif/Degree4Sector.lean": "7afc131498833c8346b21872981c6f7aa4b7a736fdc952ff84b9b8c071b86f63",
     "proof/PscVerif/PscVerif/Degree5Completion.lean": "9dc69a390e7c1ae41700d6647473f647f4446efa4839c20f8c598c37bbf1b445",
-    "proof/PscVerif/PscVerif/Degree5Exterior.lean": "8c630d73045a3d3042dd897954fce3e38bf0a3ad50441ad36769dd3dee0183bc",
+    "proof/PscVerif/PscVerif/Degree5Exterior.lean": "d0bb3972b2228cf367ce42f8f7277bd77c51cf1f02f2d7a64a66e17c3b5aeef5",
     "proof/PscVerif/PscVerif/Degree5RootLift.lean": "03793616a416af2378b1d2072eef77305d9f61b3fb7a72a09c6a3d1cb6f67740",
     "proof/PscVerif/PscVerif/Degree5Sector.lean": "1c4fd12cac7317ba0e724f4c3b757a1e06fdacd5b52f575d5549a83244d6ab46",
     "proof/PscVerif/PscVerif/Degree5Sieve.lean": "b787a6689480edad73655df8666b2ee97a02a64af6ec26fb88acd058add82b1c",
@@ -21648,7 +21648,7 @@
     "proof/PscVerif/PscVerif/Descendants.lean": "6641b65d81d90be34c13937b6ab8ebc029fcce91babd7c2ce398738dac783a40",
     "proof/PscVerif/PscVerif/FixedPointLimit.lean": "cd4a824f288d4c1072fd375e0e7b9014f56028e23e00cb4336fd678a210b7bbe",
     "proof/PscVerif/PscVerif/GaloisOrbit.lean": "4d3b5474dbd14205f4bf2d33e98149ebbdd6d7e0fb8fd3a33787b878bcad5f07",
-    "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean": "c04050d3910a6866d45efb6a29e2c3b93c97b6f178e9a2149b139491e4462854",
+    "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean": "c3b266fc203b69f632063b38d044c0f76e7ec50825a16c6c04949fa696e275ec",
     "proof/PscVerif/PscVerif/Incidence.lean": "b0c865d4177dac9485a2ddbd35201143ee3d263ad735af05785b077e1f6bd6ff",
     "proof/PscVerif/PscVerif/Intertwiner2.lean": "4fdc6a9497a5c3fd4b39101b033e6814b70aec8391f0cbc8691028319b1143d6",
     "proof/PscVerif/PscVerif/Intertwiner3.lean": "23a3732cd2c16cd77175c71068e7d5fca3dc1df1a0c8ac11e94b5adfb988fde7",

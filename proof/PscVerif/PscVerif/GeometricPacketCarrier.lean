@@ -106,7 +106,7 @@ theorem integer_coordinate_bound {star : (Fin 3 → ℤ) →+ G}
         |chart.inverse j 0 * offset ℓ p.delta| +
         |chart.inverse j 1 * chart.coordinate 0 (star p.delta)| +
         |chart.inverse j 2 * chart.coordinate 1 (star p.delta)| :=
-      (abs_add _ _).trans (add_le_add_right (abs_add _ _) _)
+      (abs_add_le _ _).trans (add_le_add (abs_add_le _ _) le_rfl)
     _ ≤ chart.coordinateBound j := by
       simp only [abs_mul, ChartEnclosure.coordinateBound]
       exact add_le_add
