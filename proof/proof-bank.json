@@ -10995,7 +10995,7 @@
       "module": "PscVerif.NamedProductHaar",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedProductHaar.lean",
-      "line": 99,
+      "line": 107,
       "declaration": "theorem measure_affine_power (σ : Fin 3 → Word) (hM : incidenceZ σ = MZ)"
     },
     {
@@ -23532,7 +23532,7 @@
     "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean": "e91dfcffed8884f99863591d57d892933fbc7ce0a5de2899955a4a69a99233e6",
     "proof/PscVerif/PscVerif/NamedOverlapHaar.lean": "fdea60934791c9669a66dc6bc4804484038968aa03ab521cf319cac54a60c4db",
     "proof/PscVerif/PscVerif/NamedPrefixCompact.lean": "e6cbff61401e8f5109bc0c8654e77eca155e1186286703e76f4d55044ebd220e",
-    "proof/PscVerif/PscVerif/NamedProductHaar.lean": "9e707489cea23df4992b6cce77400da75d7abc8365ff2fc2d1806aacd59b6f00",
+    "proof/PscVerif/PscVerif/NamedProductHaar.lean": "4f358152e4f1659e3e21a41f193361cfd101c7c1ab4f1ddd3537ab24dedf81ec",
     "proof/PscVerif/PscVerif/NamedStableChart.lean": "772d6dc46898bc22471db53283dc0404445f1dd28ac0b99ed16232c394336f9b",
     "proof/PscVerif/PscVerif/NamedStableContraction.lean": "13381d9619cd2c574e15614ce0e00609d17e1b153b359ca788ebe73d45bde8fd",
     "proof/PscVerif/PscVerif/OccurrenceAddress.lean": "fd8d4020fc3f720c8a81d23c9811056802c901eec35a48efcbb40954c5a375ad",

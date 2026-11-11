@@ -56,6 +56,14 @@ theorem measure_product_action (σ : Fin 3 → Word) (hM : incidenceZ σ = MZ)
   letI := MadicResidue.carrier_compactSpace (M σ) (integral_injective σ hM)
   letI : ∀ q, Finite (MadicResidue.Residue (M σ) q) :=
     MadicResidue.residue_finite (M σ) (integral_injective σ hM)
+  letI : ∀ q, SecondCountableTopology (MadicResidue.Residue (M σ) q) :=
+    fun q => DiscreteTopology.secondCountableTopology_of_countable
+  letI : SecondCountableTopology (H σ) := by
+    change SecondCountableTopology (↥(MadicResidue.compatibleSequences (M σ)))
+    infer_instance
+  letI : SecondCountableTopology (G σ) := by
+    change SecondCountableTopology (Stable × H σ)
+    infer_instance
   let T := ambientAction σ B
   let μ : Measure (G σ) := volume.prod ν
   have hdet : LinearMap.det Blinear = 2 / beta := by
