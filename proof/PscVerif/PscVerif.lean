@@ -48,6 +48,7 @@ import PscVerif.Degree5RootLift
 import PscVerif.Degree5Sector
 import PscVerif.Degree5Sieve
 import PscVerif.Degree5Completion
+import PscVerif.Degree5Exterior
 import PscVerif.SectorBridge
 import PscVerif.Degree3Sector
 import PscVerif.Degree4Floor
@@ -75,5 +76,15 @@ import PscVerif.OccurrenceGraphBinding
 import PscVerif.OccurrencePiece
 import PscVerif.OccurrenceCover
 import PscVerif.OccurrenceAdmissibility
+import PscVerif.GeometricPacketCarrier
 import PscVerif.MadicResidue
 import PscVerif.OccurrenceResidue
+import PscVerif.PrefixAddress
+import PscVerif.PrefixClosure
+import PscVerif.StablePrefixWindow
+import PscVerif.NamedStableChart
+import PscVerif.NamedStableContraction
+import PscVerif.NamedPrefixCompact
+import PscVerif.NamedGeometricEnclosure
+import PscVerif.NamedFiniteCarrier
+import PscVerif.NamedOverlapHaar

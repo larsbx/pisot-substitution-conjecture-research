@@ -254,8 +254,43 @@ def test_budgets_and_arithmetic_refuse_incomplete_constructions() raises:
     print("C4_MADIC_FORWARD_LEAK",4,2,2)
 
 
+def test_action_image_and_one_level_division() raises:
+    for fixture in range(2):
+        var certificate = residue_fixture(fixture)
+        for depth in range(1, len(certificate.levels)):
+            var level = certificate.levels[depth].copy()
+            var previous = certificate.levels[depth - 1].copy()
+            # Record the division class at depth-1 for every depth image class.
+            var division = List[Int]()
+            for _ in range(level.index):
+                division.append(-1)
+            for x in range(level.index):
+                var image_class = level.action[x]
+                var quotient_class = level.reduction[x]
+                if division[image_class] == -1:
+                    division[image_class] = quotient_class
+                else:
+                    assert_equal(division[image_class], quotient_class)
+            var covered = 0
+            for image_class in range(level.index):
+                var first = image_class
+                for q in range(depth, 1, -1):
+                    first = certificate.levels[q].reduction[first]
+                assert_equal(division[image_class] != -1, first == 0)
+                if division[image_class] != -1:
+                    covered += 1
+            assert_equal(covered, previous.index)
+            assert_equal(2 * covered, level.index)
+            # Duplicate one complete occurrence cover. Each class is measured
+            # once in the union but twice in the sum over occurrences.
+            assert_true(covered > 0)
+            assert_true(covered < 2 * covered)
+            print("C4_MADIC_IMAGE_HALF", fixture, depth, covered, level.index)
+
+
 def main() raises:
     test_complete_quotients_and_all_actual_addresses()
+    test_action_image_and_one_level_division()
     test_named_group_is_not_the_cyclic_group_of_order_four()
     test_literal_multiplicity_and_profile_scope()
     test_column_lattice_and_finite_depth_alias()
