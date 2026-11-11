@@ -10747,7 +10747,7 @@
       "module": "PscVerif.NamedOverlapHaar",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedOverlapHaar.lean",
-      "line": 48,
+      "line": 54,
       "declaration": "theorem overlap_bound_of_history_cover (k n : ℕ) (p : Packet)"
     },
     {
@@ -10755,7 +10755,7 @@
       "module": "PscVerif.NamedOverlapHaar",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedOverlapHaar.lean",
-      "line": 66,
+      "line": 72,
       "declaration": "theorem overlap_bound (r n : ℕ) (p : Packet) (hp : p ∈ packets f) :"
     },
     {
@@ -10763,7 +10763,7 @@
       "module": "PscVerif.NamedOverlapHaar",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedOverlapHaar.lean",
-      "line": 75,
+      "line": 81,
       "declaration": "theorem strict_overlap_bound (r n : ℕ) (p : Packet) (hp : p ∈ strictPackets f) :"
     },
     {
@@ -23530,7 +23530,7 @@
     "proof/PscVerif/PscVerif/MadicResidue.lean": "c7ff8430cb77c335f11478861584baea4129658b35f4fc67bf0c2b8509d50f6d",
     "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean": "13ef34fb3eb6b9ede477c4de920af612010aa280409049c185b1afb35a34a585",
     "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean": "e91dfcffed8884f99863591d57d892933fbc7ce0a5de2899955a4a69a99233e6",
-    "proof/PscVerif/PscVerif/NamedOverlapHaar.lean": "d2a9cd701bb7950b83ff57f70013efa688b56a861f0f0e907e9cd5a057cf7ab4",
+    "proof/PscVerif/PscVerif/NamedOverlapHaar.lean": "adc8b65e57528ed0652e291a63696ddce4c5311433b0a4d3b9facba2cdf1a188",
     "proof/PscVerif/PscVerif/NamedPrefixCompact.lean": "e6cbff61401e8f5109bc0c8654e77eca155e1186286703e76f4d55044ebd220e",
     "proof/PscVerif/PscVerif/NamedProductHaar.lean": "e398c9b19b65cb794034138490453d35bfdc4dab256473318daca75528b9ac14",
     "proof/PscVerif/PscVerif/NamedStableChart.lean": "772d6dc46898bc22471db53283dc0404445f1dd28ac0b99ed16232c394336f9b",
