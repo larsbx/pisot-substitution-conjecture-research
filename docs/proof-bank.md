@@ -1281,7 +1281,7 @@ Each declaration below must be present in a fresh compiled-environment audit. Ge
 | `Psc.NamedProductHaar.action_index` | `PscVerif.NamedProductHaar` | no | [proof/PscVerif/PscVerif/NamedProductHaar.lean:36](../proof/PscVerif/PscVerif/NamedProductHaar.lean#L36) |
 | `Psc.NamedProductHaar.measure_compact_action` | `PscVerif.NamedProductHaar` | no | [proof/PscVerif/PscVerif/NamedProductHaar.lean:41](../proof/PscVerif/PscVerif/NamedProductHaar.lean#L41) |
 | `Psc.NamedProductHaar.measure_product_action` | `PscVerif.NamedProductHaar` | no | [proof/PscVerif/PscVerif/NamedProductHaar.lean:51](../proof/PscVerif/PscVerif/NamedProductHaar.lean#L51) |
-| `Psc.NamedProductHaar.measure_affine_power` | `PscVerif.NamedProductHaar` | no | [proof/PscVerif/PscVerif/NamedProductHaar.lean:110](../proof/PscVerif/PscVerif/NamedProductHaar.lean#L110) |
+| `Psc.NamedProductHaar.measure_affine_power` | `PscVerif.NamedProductHaar` | no | [proof/PscVerif/PscVerif/NamedProductHaar.lean:109](../proof/PscVerif/PscVerif/NamedProductHaar.lean#L109) |
 | `Psc.NamedStableChart.root_bracket` | `PscVerif.NamedStableChart` | no | [proof/PscVerif/PscVerif/NamedStableChart.lean:44](../proof/PscVerif/PscVerif/NamedStableChart.lean#L44) |
 | `Psc.NamedStableChart.exists_root_in_bracket` | `PscVerif.NamedStableChart` | no | [proof/PscVerif/PscVerif/NamedStableChart.lean:49](../proof/PscVerif/PscVerif/NamedStableChart.lean#L49) |
 | `Psc.NamedStableChart.beta_ge_lo` | `PscVerif.NamedStableChart` | no | [proof/PscVerif/PscVerif/NamedStableChart.lean:59](../proof/PscVerif/PscVerif/NamedStableChart.lean#L59) |

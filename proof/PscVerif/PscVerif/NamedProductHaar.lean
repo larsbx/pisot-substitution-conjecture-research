@@ -61,9 +61,8 @@ theorem measure_product_action (σ : Fin 3 → Word) (hM : incidenceZ σ = MZ)
   letI : SecondCountableTopology (H σ) := by
     letI : SecondCountableTopology (∀ q : ℕ, MadicResidue.Residue (M σ) q) :=
       inferInstance
-    exact Subtype.secondCountableTopology
-      (MadicResidue.compatibleSequences (M σ) :
-        Set (∀ q : ℕ, MadicResidue.Residue (M σ) q))
+    exact TopologicalSpace.secondCountableTopology_induced (H σ)
+      (∀ q : ℕ, MadicResidue.Residue (M σ) q) Subtype.val
   letI : SecondCountableTopology (G σ) := by
     change SecondCountableTopology (Stable × H σ)
     infer_instance
