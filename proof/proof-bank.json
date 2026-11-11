@@ -10295,6 +10295,262 @@
       "declaration": "theorem interiorSupport_nonempty {C : Finset WordPair}"
     },
     {
+      "name": "Psc.OccurrenceInverse.incidenceZ_iterateImages",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 31,
+      "declaration": "theorem incidenceZ_iterateImages (s : Fin 3 → Word) (k : ℕ) :"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.packet_ext",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 40,
+      "declaration": "theorem packet_ext {p q : Packet} (ht : p.top = q.top)"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.packet_swap_swap",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 49,
+      "declaration": "@[simp] theorem packet_swap_swap (p : Packet) : p.swap.swap = p := by"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.packet_swap_involutive",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 53,
+      "declaration": "theorem packet_swap_involutive : Function.Involutive Packet.swap := packet_swap_swap"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.packet_swap_eq_iff_diagonal",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 57,
+      "declaration": "theorem packet_swap_eq_iff_diagonal (p : Packet) : p.swap = p ↔ p.Diagonal := by"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.InverseOccurrence.iterate_equation",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 84,
+      "declaration": "theorem InverseOccurrence.iterate_equation (s : Fin 3 → Word) (k : ℕ)"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.InverseOccurrence.ext",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 90,
+      "declaration": "@[ext] theorem InverseOccurrence.ext {s : Fin 3 → Word} {p u : Packet}"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.InverseOccurrence.forward_packet_eq",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 100,
+      "declaration": "theorem InverseOccurrence.forward_packet_eq {s : Fin 3 → Word} {p u : Packet}"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.InverseOccurrence.digitStep",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 125,
+      "declaration": "theorem InverseOccurrence.digitStep {s : Fin 3 → Word} {p u : Packet}"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.nonempty_inverse_iff_digitStep",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 129,
+      "declaration": "theorem nonempty_inverse_iff_digitStep (s : Fin 3 → Word) (p u : Packet) :"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.ForwardOccurrence.ext",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 144,
+      "declaration": "@[ext] theorem ForwardOccurrence.ext {s : Fin 3 → Word} {p u : Packet}"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.InverseOccurrence.toForward_topIndex",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 165,
+      "declaration": "@[simp] theorem InverseOccurrence.toForward_topIndex {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.InverseOccurrence.toForward_bottomIndex",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 169,
+      "declaration": "@[simp] theorem InverseOccurrence.toForward_bottomIndex {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.InverseOccurrence.toForward_toInverse",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 173,
+      "declaration": "@[simp] theorem InverseOccurrence.toForward_toInverse {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.ForwardOccurrence.toInverse_toForward",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 179,
+      "declaration": "@[simp] theorem ForwardOccurrence.toInverse_toForward {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.InverseOccurrence.swap_topIndex",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 236,
+      "declaration": "@[simp] theorem InverseOccurrence.swap_topIndex {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.InverseOccurrence.swap_bottomIndex",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 240,
+      "declaration": "@[simp] theorem InverseOccurrence.swap_bottomIndex {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.mark_prefix_bounds",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 246,
+      "declaration": "theorem mark_prefix_bounds (ℓ : Fin 3 → ℝ) (hnonneg : ∀ a, 0 ≤ ℓ a)"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.physical_take_mono",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 255,
+      "declaration": "theorem physical_take_mono (ℓ : Fin 3 → ℝ) (hnonneg : ∀ a, 0 ≤ ℓ a)"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.mark_end_le_start",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 262,
+      "declaration": "theorem mark_end_le_start (ℓ : Fin 3 → ℝ) (hnonneg : ∀ a, 0 ≤ ℓ a)"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.marks_eq_of_overlap",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 272,
+      "declaration": "theorem marks_eq_of_overlap (ℓ : Fin 3 → ℝ) (hnonneg : ∀ a, 0 ≤ ℓ a)"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.marks_eq_of_packet_interior",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 286,
+      "declaration": "theorem marks_eq_of_packet_interior (ℓ : Fin 3 → ℝ) (hnonneg : ∀ a, 0 ≤ ℓ a)"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.diagonal_of_digitStep",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 301,
+      "declaration": "theorem diagonal_of_digitStep (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.InverseOccurrence.offset_equation",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 320,
+      "declaration": "theorem InverseOccurrence.offset_equation (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.InverseOccurrence.interior",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 332,
+      "declaration": "theorem InverseOccurrence.interior (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.InverseOccurrence.nondiagonal",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 351,
+      "declaration": "theorem InverseOccurrence.nondiagonal {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.inverseStep_swap",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 361,
+      "declaration": "theorem inverseStep_swap {s : Fin 3 → Word} {p u : Packet}"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.inverse_path_swap",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 366,
+      "declaration": "theorem inverse_path_swap {s : Fin 3 → Word} {p u : Packet}"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.inverse_path_interior_nondiagonal",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 375,
+      "declaration": "theorem inverse_path_interior_nondiagonal (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.inverse_ancestor_swap_ne",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 389,
+      "declaration": "theorem inverse_ancestor_swap_ne (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.ancestry_swap_closed",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 403,
+      "declaration": "theorem ancestry_swap_closed (s : Fin 3 → Word) (roots : Packet → Prop)"
+    },
+    {
+      "name": "Psc.OccurrenceInverse.ancestry_free",
+      "module": "PscVerif.OccurrenceInverse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceInverse.lean",
+      "line": 409,
+      "declaration": "theorem ancestry_free (s : Fin 3 → Word) (roots : Packet → Prop)"
+    },
+    {
       "name": "Psc.OccurrenceMass.intervalMass_nonneg",
       "module": "PscVerif.OccurrenceMass",
       "private": false,
@@ -11053,6 +11309,302 @@
       "source": "proof/PscVerif/PscVerif/OccurrenceSuccessor.lean",
       "line": 124,
       "declaration": "theorem interiorStep_exists (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.label_representative",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 49,
+      "declaration": "theorem label_representative (swap : Ω → Ω) (i : Label swap) :"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.orbit_swap",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 54,
+      "declaration": "theorem orbit_swap (swap : Ω → Ω) (hinv : Function.Involutive swap) (x : Ω) :"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.label_swap",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 60,
+      "declaration": "theorem label_swap (swap : Ω → Ω) (hinv : Function.Involutive swap) (x : Ω) :"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.label_eq_iff",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 65,
+      "declaration": "theorem label_eq_iff (swap : Ω → Ω) (hinv : Function.Involutive swap) (x y : Ω) :"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.label_fiber",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 79,
+      "declaration": "theorem label_fiber (swap : Ω → Ω) (hinv : Function.Involutive swap)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.fiber_size",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 95,
+      "declaration": "theorem fiber_size (swap : Ω → Ω) (hinv : Function.Involutive swap)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.fiber_size_two",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 106,
+      "declaration": "theorem fiber_size_two (swap : Ω → Ω) (hinv : Function.Involutive swap)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.forward_degree_swap",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 114,
+      "declaration": "theorem forward_degree_swap (swap : Ω → Ω) (hinv : Function.Involutive swap)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.inverse_degree_swap",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 138,
+      "declaration": "theorem inverse_degree_swap (swap : Ω → Ω) (hinv : Function.Involutive swap)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.forward_uniform",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 158,
+      "declaration": "theorem forward_uniform (swap : Ω → Ω) (hinv : Function.Involutive swap)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.inverse_uniform",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 175,
+      "declaration": "theorem inverse_uniform (swap : Ω → Ω) (hinv : Function.Involutive swap)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.involution_weighted_transport",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 185,
+      "declaration": "theorem involution_weighted_transport (swap : Ω → Ω) (hinv : Function.Involutive swap)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.involution_transpose",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 199,
+      "declaration": "theorem involution_transpose (swap : Ω → Ω) (hinv : Function.Involutive swap)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.stateSwap_involutive",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 223,
+      "declaration": "theorem stateSwap_involutive (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.digitPacket_swap",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 229,
+      "declaration": "theorem digitPacket_swap (s : Fin 3 → Word) (p : Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.edgeInverseOccurrence_top_index",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 259,
+      "declaration": "theorem edgeInverseOccurrence_top_index (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.edgeInverseOccurrence_bottom_index",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 267,
+      "declaration": "theorem edgeInverseOccurrence_bottom_index (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.inverseOccurrenceEdge_source",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 283,
+      "declaration": "theorem inverseOccurrenceEdge_source (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.inverseOccurrenceEdge_target",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 287,
+      "declaration": "theorem inverseOccurrenceEdge_target (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.inverseOccurrenceEdge_top_index",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 292,
+      "declaration": "theorem inverseOccurrenceEdge_top_index (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.inverseOccurrenceEdge_bottom_index",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 296,
+      "declaration": "theorem inverseOccurrenceEdge_bottom_index (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.inverseOccurrenceEdge_roundtrip",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 301,
+      "declaration": "theorem inverseOccurrenceEdge_roundtrip (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.edgeSwap_source",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 319,
+      "declaration": "theorem edgeSwap_source (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.edgeSwap_target",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 323,
+      "declaration": "theorem edgeSwap_target (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.edgeSwap_top_index",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 328,
+      "declaration": "theorem edgeSwap_top_index (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.edgeSwap_bottom_index",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 332,
+      "declaration": "theorem edgeSwap_bottom_index (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.edgeSwap_involutive",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 336,
+      "declaration": "theorem edgeSwap_involutive (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.packet_forward_uniform",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 360,
+      "declaration": "theorem packet_forward_uniform (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.packet_inverse_uniform",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 368,
+      "declaration": "theorem packet_inverse_uniform (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.packet_weighted_transport",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 377,
+      "declaration": "theorem packet_weighted_transport (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.packet_quotient_deficit",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 387,
+      "declaration": "theorem packet_quotient_deficit (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.stateSwap_eq_iff_diagonal",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 400,
+      "declaration": "theorem stateSwap_eq_iff_diagonal (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.packet_fiber_size",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 411,
+      "declaration": "theorem packet_fiber_size (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.stateSwap_free",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 418,
+      "declaration": "theorem stateSwap_free (S : Finset Packet) (closed : ∀ p ∈ S, p.swap ∈ S)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.packet_fiber_size_two",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 426,
+      "declaration": "theorem packet_fiber_size_two (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.packet_transpose",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 435,
+      "declaration": "theorem packet_transpose (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrenceSwapCounts.ancestry_packet_transpose",
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean",
+      "line": 446,
+      "declaration": "theorem ancestry_packet_transpose (s : Fin 3 → Word) (roots : Packet → Prop)"
     },
     {
       "name": "Psc.OccurrenceTransport.Mark.index_lt",
@@ -19342,6 +19894,7 @@
     "proof/PscVerif/PscVerif/M0Pisot.lean": "65d17cf0aa71cdac825d16da73ad601dd49c214cd0b47ac58f124cb51a64a304",
     "proof/PscVerif/PscVerif/OccurrenceAddress.lean": "fd8d4020fc3f720c8a81d23c9811056802c901eec35a48efcbb40954c5a375ad",
     "proof/PscVerif/PscVerif/OccurrenceFinite.lean": "65ef11444d2f03c9a49febf9a859eb8d48bd8dd0e1a37fd972c47935526b48a0",
+    "proof/PscVerif/PscVerif/OccurrenceInverse.lean": "f31fded6a56a9e7c9b67050319d766e5967ed431716ebb89f192caead73d5605",
     "proof/PscVerif/PscVerif/OccurrenceMass.lean": "dd68bb8c196a146aab302cbd7e86a3ea40ed3d6980fa77ab740c5a0e94c57d13",
     "proof/PscVerif/PscVerif/OccurrenceMassCounts.lean": "319649463bbf764279bfbeccaa2bae869325aa0afce9d58fdfa7e2dce3ba99d2",
     "proof/PscVerif/PscVerif/OccurrenceMassStrict.lean": "9dbfbc03613a68f116a522ed609228c7c780cefbd3f3754be87c340b04ba634d",
@@ -19349,6 +19902,7 @@
     "proof/PscVerif/PscVerif/OccurrenceRecurrence.lean": "9ce4b9cfab68581d39ef893d481eb5e12fe45ff2288ef0cf4f049d97898d3fbb",
     "proof/PscVerif/PscVerif/OccurrenceStrict.lean": "f5ee2c3e7bc7b580e760f65351d0cf129480835e7ef03877c0062c8220911b25",
     "proof/PscVerif/PscVerif/OccurrenceSuccessor.lean": "103e3cb42b93b234c593f46bf2d53426b198248e33408461e9c05fd3ce8c6f33",
+    "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean": "fdd8b6fff230eaf6d977ae724fe674be02ca37d2549b168f12c522f54668c382",
     "proof/PscVerif/PscVerif/OccurrenceTransport.lean": "3ef9fcb7df8c395c36879b63933eb626f57437f1b813e03ad429148b47d09fe0",
     "proof/PscVerif/PscVerif/OverlapContraction.lean": "09dd1ccc90a7245211336996f7da8b1276e86cab60dd1cc0b5471e3d7f6a2a30",
     "proof/PscVerif/PscVerif/OverlapPacket.lean": "572fd9fc85082e05377321fa812670558fff66ebed16e319a81816b22950a853",
@@ -19373,7 +19927,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "f1e295c2ae688a28d7ceaf6ed31988aa2db4ad89ad9d2d975cfe31b75dddf99c",
+    "proof/PscVerif/PscVerif.lean": "29ccecc3f9cfb3e3a1e8b0e488d3460e20838cef54564d17040a712c7893fcb4",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
