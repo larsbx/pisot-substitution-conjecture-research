@@ -82,6 +82,7 @@ theorem inverse_reconstruct (x : AmbientReal) (j : Fin 3) :
       congrFun (reconstruction x) j
     _ = inverse j 0 * physical x + inverse j 1 * (W *ᵥ x) 0 +
         inverse j 2 * (W *ᵥ x) 1 := by
+      generalize (W *ᵥ x) = y
       fin_cases j <;>
         simp [inverse, L, J_mulVec, physical_apply, r, Pi.add_apply,
           Pi.sub_apply, Pi.smul_apply, smul_eq_mul] <;> ring

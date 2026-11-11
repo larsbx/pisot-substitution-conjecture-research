@@ -152,6 +152,8 @@ This connection supplies a finite mathematical domain and exact set covers for t
 
 The immediate consumer is the compact overlap and inverse graph program: geometry now supplies the previously conditional finite-domain representation premise for these named instances. Turning the exact set cover into the required measure or loss conclusion is a further mathematical obligation.
 
+The first useful measure target is affine Haar image scaling on this same product. The real stable determinant is already `2 / beta`; the compact matrix-adic factor still needs its full action-range/index theorem and normalized Haar scaling by `1 / 2`. Their authenticated product would give scale `beta^(-k)` for actual affine pieces. `OverlapContraction.recurrence_of_cover` could then derive the subinvariant inequality by subadditivity: disjointness is not needed for that inequality. An additive equality would need further measure disjointness, while a null-overlap comparison still needs a rate-gap or actual loss certificate on these same literal counts. A contradiction from strict sources separately needs positive overlap measure or a positive cut set covered by the strict roots.
+
 ## Replay and acceptance
 
 The new source contributes 40 named proofs: nine in `NamedGeometricEnclosure` and 31 in `NamedFiniteCarrier`. The combined generated inventory has 2,425 named proofs, 126 governed claims and 404 source openings.
@@ -174,3 +176,5 @@ python3 -m pytest -q tests/test_proof_bank.py tests/test_markdown_links.py tests
 ```
 
 `check_lean.sh` must build the complete production import in a fresh isolated source workspace with pinned dependencies, audit every compiled local declaration, and reconcile every named source proof with the generated inventory. Local cache probes are development evidence only. The implementation PR records the exact published head, matching source tree, final hosted jobs and audit counts after they complete; pending or failed revisions remain distinct historical records. All governed claim statuses are unchanged. Independent human review remains separate validation debt.
+
+Development history: the initial short chart-import probe timed out without diagnostics. A subsequent single-worker exact-body probe completed and rejected the inverse reconstruction's final simplification: reassociation combined `J` and `W` before the explicit section formula could apply. Generalizing the stable coordinate vector before that calculation repaired the proof without changing its statement. The repaired exact physical-bound and inverse-chart bodies compiled against the genuine pinned named chart with exit zero; this narrow result does not certify the full new modules or combined bank.

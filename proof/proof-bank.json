@@ -10667,7 +10667,7 @@
       "module": "PscVerif.NamedGeometricEnclosure",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean",
-      "line": 89,
+      "line": 90,
       "declaration": "theorem integer_reconstruct (fixture : Fin 2) (z : Fin 3 → ℤ) (j : Fin 3) :"
     },
     {
@@ -10675,7 +10675,7 @@
       "module": "PscVerif.NamedGeometricEnclosure",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean",
-      "line": 114,
+      "line": 115,
       "declaration": "theorem physicalLength_image (fixture : Fin 2) (letter : Fin 3) :"
     },
     {
@@ -10683,7 +10683,7 @@
       "module": "PscVerif.NamedGeometricEnclosure",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean",
-      "line": 121,
+      "line": 122,
       "declaration": "theorem physicalLength_subst (fixture : Fin 2) (w : Word) :"
     },
     {
@@ -10691,7 +10691,7 @@
       "module": "PscVerif.NamedGeometricEnclosure",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean",
-      "line": 133,
+      "line": 134,
       "declaration": "theorem physicalLength_iterateImages (fixture : Fin 2) (k : ℕ) (letter : Fin 3) :"
     },
     {
@@ -23372,7 +23372,7 @@
     "proof/PscVerif/PscVerif/M0Pisot.lean": "65d17cf0aa71cdac825d16da73ad601dd49c214cd0b47ac58f124cb51a64a304",
     "proof/PscVerif/PscVerif/MadicResidue.lean": "c7ff8430cb77c335f11478861584baea4129658b35f4fc67bf0c2b8509d50f6d",
     "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean": "e5a3513ad78d72852f5a166c3da34d676161f1844bbbfe29ff8fbb4aac0321a9",
-    "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean": "2bdaf197b1d9ed1cb3a939d5869ddf92ca3aee715a421fbc623c45107655785e",
+    "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean": "e91dfcffed8884f99863591d57d892933fbc7ce0a5de2899955a4a69a99233e6",
     "proof/PscVerif/PscVerif/NamedPrefixCompact.lean": "e6cbff61401e8f5109bc0c8654e77eca155e1186286703e76f4d55044ebd220e",
     "proof/PscVerif/PscVerif/NamedStableChart.lean": "772d6dc46898bc22471db53283dc0404445f1dd28ac0b99ed16232c394336f9b",
     "proof/PscVerif/PscVerif/NamedStableContraction.lean": "13381d9619cd2c574e15614ce0e00609d17e1b153b359ca788ebe73d45bde8fd",
