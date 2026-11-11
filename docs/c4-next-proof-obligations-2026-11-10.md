@@ -27,9 +27,13 @@ The existing exact native block-twelve certificate can be reused for the
 two named nonunit controls. Its old proof took a maximum over already
 compact sets; the new actual-prefix induction supplies the noncircular
 boundedness argument. The next formal binding is the authentic stable
-chart and sound numerical certificate interpretation, followed by complete
-finite-domain representation, sound exclusions, product-Haar scaling and
-strict-root positivity. Compactness does not discharge those obligations.
+chart and strict block-twelve contraction, with properness and original
+integral-incidence injectivity. The canonical complete digit sum then
+gives qualitative compactness without a numerical digit-hull decoder;
+the sharper radius forty separately requires the complete digit bound
+of five. Complete finite-domain representation, sound exclusions,
+product-Haar scaling and strict-root positivity remain subsequent
+obligations. Compactness does not discharge them.
 
 ### Implementation follow-up after #532
 

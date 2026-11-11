@@ -179,10 +179,13 @@ and 18 pair upper bounds** across the two controls. Those two counts
 describe different inventories and must not be conflated.
 
 The generic Lean theorem and these computations have complementary
-scopes. A complete named Lean instance still needs formal chart
-commutation, sound interval/root evaluation, and the soundness of the
-complete digit-hull certificate. The scalar calibration does not prove
-those missing real-analytic bindings.
+scopes. A complete named radius-forty Lean instance still needs formal
+chart commutation, sound interval/root evaluation, and the soundness of
+the complete digit-hull certificate. Qualitative compactness can instead
+use the canonical digit sum once the chart and strict block contraction
+are authenticated, together with properness and original-incidence
+injectivity. The scalar calibration does not prove those missing
+real-analytic bindings.
 
 ## 6. Independent controls and replay
 
@@ -250,7 +253,7 @@ not acceptance of the repaired source.
 | Obligation | What this continuation supplies | What remains |
 | --- | --- | --- |
 | Uniform actual-prefix enclosure | Derivation from a commuting contraction and all literal digits, including self-parent addresses | Instantiate the intended stable realization from general Pisot data |
-| Compact actual prefix tiles | Closed-ball enclosure composed with the actual compact `H_M` | Bind every concrete numerical/chart certificate into Lean if claiming a closed named formal instance |
+| Compact actual prefix tiles | Closed-ball enclosure composed with the actual compact `H_M` | Authenticate the named chart and strict block contraction for qualitative compactness; bind the complete digit bound of five for radius forty |
 | Complete finite ancestor constructor | Compactness is an input for geometric bounds | Prove every actual nonempty piece is represented; justify every exclusion |
 | Forward completeness and mass | Earlier occurrence identities remain available | Prove the required complete-domain correspondence and product-Haar scaling |
 | Contradiction at a strict root | Existing conditional null-overlap machinery remains available | Supply the actual recurrence and strictly positive compact root measure |
