@@ -85,3 +85,5 @@ import PscVerif.StablePrefixWindow
 import PscVerif.NamedStableChart
 import PscVerif.NamedStableContraction
 import PscVerif.NamedPrefixCompact
+import PscVerif.NamedGeometricEnclosure
+import PscVerif.NamedFiniteCarrier

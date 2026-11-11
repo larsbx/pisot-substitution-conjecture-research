@@ -10375,6 +10375,326 @@
       "declaration": "theorem continuous_action (M : V →ₗ[ℤ] V) : Continuous (action M) := by"
     },
     {
+      "name": "Psc.NamedFiniteCarrier.coordinateBudget_certified",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 43,
+      "declaration": "theorem coordinateBudget_certified (fixture : Fin 2) (j : Fin 3) :"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.mem_packets",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 53,
+      "declaration": "theorem mem_packets (fixture : Fin 2) (p : Packet) :"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.packets_card_le",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 58,
+      "declaration": "theorem packets_card_le (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.packets_swap_closed",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 62,
+      "declaration": "theorem packets_swap_closed (fixture : Fin 2) (p : Packet) (hp : p ∈ packets fixture) :"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.mem_strictPackets",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 72,
+      "declaration": "theorem mem_strictPackets (fixture : Fin 2) (p : Packet) :"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.strictPackets_card_le",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 77,
+      "declaration": "theorem strictPackets_card_le (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.strictPackets_swap_closed",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 82,
+      "declaration": "theorem strictPackets_swap_closed (fixture : Fin 2) (p : Packet)"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.strictPackets_swap_ne",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 92,
+      "declaration": "theorem strictPackets_swap_ne (fixture : Fin 2) (p : Packet)"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.nonempty_overlap_mem",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 102,
+      "declaration": "theorem nonempty_overlap_mem (fixture : Fin 2) (p : Packet)"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.nonempty_inverse_ancestor_mem",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 112,
+      "declaration": "theorem nonempty_inverse_ancestor_mem (fixture : Fin 2) (k : ℕ)"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.inverse_path_interior",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 125,
+      "declaration": "theorem inverse_path_interior (fixture : Fin 2) (k : ℕ) (p u : Packet)"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.nonempty_inverse_path_mem",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 138,
+      "declaration": "theorem nonempty_inverse_path_mem (fixture : Fin 2) (k : ℕ) (p u : Packet)"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.finite_nonempty_ancestry",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 147,
+      "declaration": "theorem finite_nonempty_ancestry (fixture : Fin 2) (k : ℕ) (p : Packet)"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.strict_nonempty_inverse_ancestor_mem",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 158,
+      "declaration": "theorem strict_nonempty_inverse_ancestor_mem (fixture : Fin 2) (k : ℕ)"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.strict_nonempty_inverse_path_mem",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 169,
+      "declaration": "theorem strict_nonempty_inverse_path_mem (fixture : Fin 2) (k : ℕ)"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.finite_strict_nonempty_ancestry",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 182,
+      "declaration": "theorem finite_strict_nonempty_ancestry (fixture : Fin 2) (k : ℕ)"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.outside_strict_ancestor_empty",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 193,
+      "declaration": "theorem outside_strict_ancestor_empty (fixture : Fin 2) (k : ℕ)"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.block_action_injective",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 204,
+      "declaration": "theorem block_action_injective (fixture : Fin 2) (k : ℕ) :"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.block_commute",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 209,
+      "declaration": "theorem block_commute (fixture : Fin 2) (k : ℕ) (z : Fin 3 → ℤ) :"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.block_reflectsIntegralRange",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 216,
+      "declaration": "theorem block_reflectsIntegralRange (fixture : Fin 2) (k : ℕ) :"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.local_admissible",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 221,
+      "declaration": "theorem local_admissible (fixture : Fin 2) (k : ℕ) (p : Packet) :"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.representedAt_packets",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 231,
+      "declaration": "theorem representedAt_packets (fixture : Fin 2) (k : ℕ)"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.representedAt_strictPackets",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 241,
+      "declaration": "theorem representedAt_strictPackets (fixture : Fin 2) (k : ℕ)"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.tileEquation_even",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 253,
+      "declaration": "theorem tileEquation_even (fixture : Fin 2) (r : ℕ) :"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.historyPiece_compact",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 265,
+      "declaration": "theorem historyPiece_compact (fixture : Fin 2) (k n : ℕ) (p : Packet)"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.finite_compact_history_cover",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 279,
+      "declaration": "theorem finite_compact_history_cover (fixture : Fin 2) (r n : ℕ)"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.strict_finite_compact_history_cover",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 307,
+      "declaration": "theorem strict_finite_compact_history_cover (fixture : Fin 2) (r n : ℕ)"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.diagonal_overlap_eq",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 336,
+      "declaration": "theorem diagonal_overlap_eq (fixture : Fin 2) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.diagonal_control",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 344,
+      "declaration": "theorem diagonal_control (fixture : Fin 2) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.boundary_control",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 363,
+      "declaration": "theorem boundary_control (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedFiniteCarrier.wrong_scale_two_control",
+      "module": "PscVerif.NamedFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
+      "line": 378,
+      "declaration": "theorem wrong_scale_two_control (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedGeometricEnclosure.stableCoordinate_apply",
+      "module": "PscVerif.NamedGeometricEnclosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean",
+      "line": 34,
+      "declaration": "@[simp] theorem stableCoordinate_apply (fixture : Fin 2) (i : Fin 2)"
+    },
+    {
+      "name": "Psc.NamedGeometricEnclosure.tile_stable_norm_bound",
+      "module": "PscVerif.NamedGeometricEnclosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean",
+      "line": 40,
+      "declaration": "theorem tile_stable_norm_bound (fixture : Fin 2) (letter : Fin 3)"
+    },
+    {
+      "name": "Psc.NamedGeometricEnclosure.tile_coordinate_bound",
+      "module": "PscVerif.NamedGeometricEnclosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean",
+      "line": 55,
+      "declaration": "theorem tile_coordinate_bound (fixture : Fin 2) (letter : Fin 3)"
+    },
+    {
+      "name": "Psc.NamedGeometricEnclosure.length_le_physicalBound",
+      "module": "PscVerif.NamedGeometricEnclosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean",
+      "line": 65,
+      "declaration": "theorem length_le_physicalBound (letter : Fin 3) :"
+    },
+    {
+      "name": "Psc.NamedGeometricEnclosure.inverse_reconstruct",
+      "module": "PscVerif.NamedGeometricEnclosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean",
+      "line": 77,
+      "declaration": "theorem inverse_reconstruct (x : AmbientReal) (j : Fin 3) :"
+    },
+    {
+      "name": "Psc.NamedGeometricEnclosure.integer_reconstruct",
+      "module": "PscVerif.NamedGeometricEnclosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean",
+      "line": 89,
+      "declaration": "theorem integer_reconstruct (fixture : Fin 2) (z : Fin 3 → ℤ) (j : Fin 3) :"
+    },
+    {
+      "name": "Psc.NamedGeometricEnclosure.physicalLength_image",
+      "module": "PscVerif.NamedGeometricEnclosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean",
+      "line": 114,
+      "declaration": "theorem physicalLength_image (fixture : Fin 2) (letter : Fin 3) :"
+    },
+    {
+      "name": "Psc.NamedGeometricEnclosure.physicalLength_subst",
+      "module": "PscVerif.NamedGeometricEnclosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean",
+      "line": 121,
+      "declaration": "theorem physicalLength_subst (fixture : Fin 2) (w : Word) :"
+    },
+    {
+      "name": "Psc.NamedGeometricEnclosure.physicalLength_iterateImages",
+      "module": "PscVerif.NamedGeometricEnclosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean",
+      "line": 133,
+      "declaration": "theorem physicalLength_iterateImages (fixture : Fin 2) (k : ℕ) (letter : Fin 3) :"
+    },
+    {
       "name": "Psc.NamedPrefixCompact.incidence_eq",
       "module": "PscVerif.NamedPrefixCompact",
       "private": false,
@@ -23051,6 +23371,8 @@
     "proof/PscVerif/PscVerif/LieWeights.lean": "f32639f83e519c69b8f428e153dd368c274e1f665a837183f88c5f1de0dd8adb",
     "proof/PscVerif/PscVerif/M0Pisot.lean": "65d17cf0aa71cdac825d16da73ad601dd49c214cd0b47ac58f124cb51a64a304",
     "proof/PscVerif/PscVerif/MadicResidue.lean": "c7ff8430cb77c335f11478861584baea4129658b35f4fc67bf0c2b8509d50f6d",
+    "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean": "e5a3513ad78d72852f5a166c3da34d676161f1844bbbfe29ff8fbb4aac0321a9",
+    "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean": "2bdaf197b1d9ed1cb3a939d5869ddf92ca3aee715a421fbc623c45107655785e",
     "proof/PscVerif/PscVerif/NamedPrefixCompact.lean": "e6cbff61401e8f5109bc0c8654e77eca155e1186286703e76f4d55044ebd220e",
     "proof/PscVerif/PscVerif/NamedStableChart.lean": "772d6dc46898bc22471db53283dc0404445f1dd28ac0b99ed16232c394336f9b",
     "proof/PscVerif/PscVerif/NamedStableContraction.lean": "13381d9619cd2c574e15614ce0e00609d17e1b153b359ca788ebe73d45bde8fd",
@@ -23097,7 +23419,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "af58cd542f025b563648e671e56c8669a93c2a2270a7427aaba805c99dd42d39",
+    "proof/PscVerif/PscVerif.lean": "c385613db46cf7bae8f9456cf13a61e8526f1d40572961bc316b766391a07600",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
