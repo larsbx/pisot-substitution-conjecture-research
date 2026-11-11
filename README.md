@@ -103,6 +103,8 @@ The [finite-carrier and exact-measure construction](docs/c4-finite-overlap-carri
 
 The [critical-component derivation](docs/c4-critical-overlap-components-2026-11-05.md) applies the classical Frobenius–Victory eigencone theorem to the exact overlap equation. A critical component can support a nonnegative solution only when every proper ancestor is subcritical; supercritical ancestors and critical predecessors force downstream mass to zero. A new canonical Mojo certificate proves the same twelve-source nullity without consuming the earlier weight vectors: **40,765** singleton components are excluded by the cubic degree and all **28** larger components have nonsingular `g(A)` over `F₁₀₁`. Independent complete-packet reconstruction passes. This adds an exact exclusion method and identifies what a surviving critical ray would require; it does not enlarge the certified source class or supply a general PSC conclusion.
 
+The [literal inverse-row binding](docs/c4-literal-inverse-binding-2026-11-10.md) now reconstructs every one of the twelve-source graph's 253,395 occurrence slots, including both literal positions and normalization orientation. Canonical Mojo and an independent forward-position oracle agree on the full ordered inventory. New Lean proofs derive row-count transport and discovery ancestry, and derive the full inverse overlap union from original tile equations under explicit compact matrix-adic range hypotheses. The finite pruned compact cover, Haar scaling and positive strict-cut root remain separate geometric obligations; the complete serialized packet is not yet a closed Lean instance.
+
 ## Class A: an example of the overlap calculations
 
 One family studied in detail is the *minus class-A* normal form. For integers `k,t ≥ 0`, let

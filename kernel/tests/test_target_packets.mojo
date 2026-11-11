@@ -7,7 +7,8 @@ from psc.derived_system import build_derived_system
 from psc.target_packets import (
     build_packets, target_free_sccs, cycle_for_scc, replay_path, replay_edge,
     accumulated_forcing, target_distances, shortest_root, success_path,
-    potential_values, monovariant_counterexample,
+    potential_values, monovariant_counterexample, make_root, descendant,
+    verify_packet,
 )
 from psc.words import Pair
 from psc.occurrence_path import ImageHead, WordEdge, matched_target, certify_word_path
@@ -263,6 +264,169 @@ def test_synchronizing_targets_are_actual_interior_boundaries() raises:
         assert_true(replay_edge(g, i))
 
 
+def test_repeated_factor_ordinals_and_address_mutations() raises:
+    # A finite literal fixture, not a uniform PIP or productivity assertion.
+    # The actual parent image has the same singleton 2/2 at ordinals 1 and 3.
+    var sigma: List[List[Int]] = [[1], [0, 2], [2, 0, 2]]
+    var g = build_packets(sigma, build(sigma))
+    var parent = -1
+    for s in range(g.bpa.size()):
+        if g.bpa.states[s] == Pair([0, 2, 1], [1, 0, 2]):
+            parent = s
+            break
+    assert_true(parent >= 0)
+    var top = apply_substitution(sigma, g.bpa.states[parent].u)
+    var bottom = apply_substitution(sigma, g.bpa.states[parent].v)
+    assert_equal(top, [1, 2, 0, 2, 0, 2])
+    assert_equal(bottom, [0, 2, 1, 2, 0, 2])
+    assert_equal(coincidence_boundaries(top, bottom), [0, 3, 4, 5, 6])
+    var source3 = make_root(g, parent, 1, 2)
+    var source5 = make_root(g, parent, 2, 2)
+    var at3 = descendant(g, source3, 2, 0)
+    var at5 = descendant(g, source5, 1, 2)
+    assert_true(verify_packet(g, at3) and verify_packet(g, at5))
+    assert_true(at3.success and at5.success)
+    assert_equal(at3.top_letter, 2)
+    assert_equal(at3.bottom_letter, 2)
+    assert_equal(at5.top_letter, 2)
+    assert_equal(at5.bottom_letter, 2)
+    assert_equal(at3.key.state_id, at5.key.state_id)
+    assert_true(at3.key.factor_edge != at5.key.factor_edge)
+    assert_equal(g.factors[at3.key.factor_edge].ordinal, 1)
+    assert_equal(g.factors[at5.key.factor_edge].ordinal, 3)
+    assert_equal(at3.top_address.global_position, 3)
+    assert_equal(at5.top_address.global_position, 5)
+    assert_equal(at3.top_address.local_position, 0)
+    assert_equal(at5.top_address.local_position, 0)
+    assert_true(at3.residual.is_zero() and at5.residual.is_zero())
+
+    # Equal child words and equal zero residuals do not identify occurrences.
+    var bad = at3.copy()
+    bad.key.factor_edge = at5.key.factor_edge
+    assert_true(not verify_packet(g, bad))
+    bad = at3.copy()
+    bad.top_address.global_position = 0
+    assert_true(not verify_packet(g, bad))
+    bad = at3.copy()
+    bad.top_address.local_position = 3
+    assert_true(not verify_packet(g, bad))
+    bad = at3.copy()
+    bad.top_address.source_occurrence = 2
+    assert_true(not verify_packet(g, bad))
+    bad = at3.copy()
+    bad.top_address = at5.top_address.copy()
+    assert_true(not verify_packet(g, bad))
+    var bad_graph = g.copy()
+    bad_graph.factors[at3.key.factor_edge].ordinal = 3
+    assert_true(not verify_packet(bad_graph, at3))
+
+    # Both digit 2 choices are valid and select letter 2, but global positions
+    # 3 and 5 lie in different occurrences of the identical singleton factor.
+    var caught = False
+    try:
+        _ = descendant(g, source3, 2, 2)
+    except:
+        caught = True
+    assert_true(caught)
+    caught = False
+    try:
+        _ = make_root(g, parent, g.bpa.states[parent].length(), 0)
+    except:
+        caught = True
+    assert_true(caught)
+    caught = False
+    try:
+        _ = descendant(g, source3, 3, 0)
+    except:
+        caught = True
+    assert_true(caught)
+
+
+def test_orientation_sign_and_forcing_mutations() raises:
+    var sigma: List[List[Int]] = [[1], [0, 2], [2, 0, 2]]
+    var g = build_packets(sigma, build(sigma))
+    var parent = -1
+    for s in range(g.bpa.size()):
+        if g.bpa.states[s] == Pair([0, 2, 1], [1, 0, 2]):
+            parent = s
+            break
+    assert_true(parent >= 0)
+    var source = make_root(g, parent, 1, 0)
+    var forward = descendant(g, source, 0, 1)
+    assert_true(verify_packet(g, forward))
+    assert_equal(forward.key.sign, -1)
+    assert_equal(forward.key.top, 1)
+    assert_equal(forward.key.bottom, 1)
+    assert_equal(forward.residual.x, -1)
+    assert_equal(forward.residual.y, 1)
+    assert_equal(forward.residual.z, 0)
+    var bad = forward.copy()
+    bad.key.sign = 1
+    assert_true(not verify_packet(g, bad))
+
+    # A complete physical track swap exchanges the actual addresses and
+    # negates the residual. Its normalized child and factor ordinal persist.
+    var swapped = forward.copy()
+    swapped.key.sign = 1
+    swapped.top_address = forward.bottom_address.copy()
+    swapped.bottom_address = forward.top_address.copy()
+    swapped.top_letter = forward.bottom_letter
+    swapped.bottom_letter = forward.top_letter
+    swapped.residual.x = -forward.residual.x
+    swapped.residual.y = -forward.residual.y
+    swapped.residual.z = -forward.residual.z
+    assert_true(verify_packet(g, swapped))
+    bad = swapped.copy()
+    bad.residual = forward.residual.copy()
+    assert_true(not verify_packet(g, bad))
+
+    # Unequal local indices force the swap of key positions as well as the
+    # address records; the equal-index fixture above cannot detect that loss.
+    var unequal_source = make_root(g, parent, 1, 1)
+    var unequal = descendant(g, unequal_source, 0, 0)
+    assert_true(verify_packet(g, unequal))
+    assert_equal(unequal.key.sign, -1)
+    assert_equal(g.factors[unequal.key.factor_edge].ordinal, 0)
+    assert_equal(unequal.key.top, 1)
+    assert_equal(unequal.key.bottom, 2)
+    assert_equal(unequal.top_letter, 2)
+    assert_equal(unequal.bottom_letter, 1)
+    assert_equal(unequal.residual.x, -1)
+    assert_equal(unequal.residual.y, 1)
+    assert_equal(unequal.residual.z, -1)
+    var unequal_swapped = unequal.copy()
+    unequal_swapped.key.sign = 1
+    unequal_swapped.key.top = unequal.key.bottom
+    unequal_swapped.key.bottom = unequal.key.top
+    unequal_swapped.top_address = unequal.bottom_address.copy()
+    unequal_swapped.bottom_address = unequal.top_address.copy()
+    unequal_swapped.top_letter = unequal.bottom_letter
+    unequal_swapped.bottom_letter = unequal.top_letter
+    unequal_swapped.residual.x = -unequal.residual.x
+    unequal_swapped.residual.y = -unequal.residual.y
+    unequal_swapped.residual.z = -unequal.residual.z
+    assert_true(verify_packet(g, unequal_swapped))
+    bad = unequal_swapped.copy()
+    bad.key.top = unequal.key.top
+    bad.key.bottom = unequal.key.bottom
+    assert_true(not verify_packet(g, bad))
+
+    var edge = -1
+    for i in range(len(g.edges)):
+        ref e = g.edges[i]
+        if g.packets[e.source].key == source.key and g.packets[e.destination].key == forward.key and e.top_digit == 0 and e.bottom_digit == 1:
+            edge = i
+            break
+    assert_true(edge >= 0)
+    assert_true(replay_edge(g, edge))
+    assert_equal(g.edges[edge].forcing.x, -1)
+    assert_equal(g.edges[edge].forcing.y, 0)
+    assert_equal(g.edges[edge].forcing.z, 0)
+    var bad_graph = g.copy()
+    bad_graph.edges[edge].forcing.x = 0
+    assert_true(not replay_edge(bad_graph, edge))
+
+
 def main() raises:
     test_real_addresses_and_zero_are_not_enough()
     test_target_filter_and_shortest_depth()
@@ -272,6 +436,9 @@ def main() raises:
     test_fake_terminal_edges_are_not_realizable()
     test_documented_seed_and_naive_pair_negatives()
     test_synchronizing_targets_are_actual_interior_boundaries()
+    test_repeated_factor_ordinals_and_address_mutations()
+    test_orientation_sign_and_forcing_mutations()
     print("[PASS] target packets: addresses, orientation, cycles, depths, replay, caps")
+    require_contract("repeated equal factors retain distinct ordinals and global/local addresses; physical track swaps exchange addresses and negate the full residual; malformed signs, fields and forcing fail literal replay in finite fixtures")
     require_contract("unsynchronized successful target packets export actual ordered balanced factors that pass the graph-free occurrence certificate and exact matched-target check")
     require_contract("target-aware BPA diagnostics use actual ordered factorization and occurrence addresses; zero residual alone is insufficient; SCCs, shortest existential paths and monovariant counterexamples remain finite diagnostics")
