@@ -1250,9 +1250,9 @@ Each declaration below must be present in a fresh compiled-environment audit. Ge
 | `Psc.NamedGeometricEnclosure.physicalLength_iterateImages` | `PscVerif.NamedGeometricEnclosure` | no | [proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean:134](../proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean#L134) |
 | `Psc.NamedProductHaar.overlap_measure_finite` | `PscVerif.NamedOverlapHaar` | no | [proof/PscVerif/PscVerif/NamedOverlapHaar.lean:20](../proof/PscVerif/PscVerif/NamedOverlapHaar.lean#L20) |
 | `Psc.NamedProductHaar.measure_history_piece` | `PscVerif.NamedOverlapHaar` | no | [proof/PscVerif/PscVerif/NamedOverlapHaar.lean:23](../proof/PscVerif/PscVerif/NamedOverlapHaar.lean#L23) |
-| `Psc.NamedProductHaar.overlap_bound_of_history_cover` | `PscVerif.NamedOverlapHaar` | no | [proof/PscVerif/PscVerif/NamedOverlapHaar.lean:36](../proof/PscVerif/PscVerif/NamedOverlapHaar.lean#L36) |
-| `Psc.NamedProductHaar.overlap_bound` | `PscVerif.NamedOverlapHaar` | no | [proof/PscVerif/PscVerif/NamedOverlapHaar.lean:54](../proof/PscVerif/PscVerif/NamedOverlapHaar.lean#L54) |
-| `Psc.NamedProductHaar.strict_overlap_bound` | `PscVerif.NamedOverlapHaar` | no | [proof/PscVerif/PscVerif/NamedOverlapHaar.lean:63](../proof/PscVerif/PscVerif/NamedOverlapHaar.lean#L63) |
+| `Psc.NamedProductHaar.overlap_bound_of_history_cover` | `PscVerif.NamedOverlapHaar` | no | [proof/PscVerif/PscVerif/NamedOverlapHaar.lean:48](../proof/PscVerif/PscVerif/NamedOverlapHaar.lean#L48) |
+| `Psc.NamedProductHaar.overlap_bound` | `PscVerif.NamedOverlapHaar` | no | [proof/PscVerif/PscVerif/NamedOverlapHaar.lean:66](../proof/PscVerif/PscVerif/NamedOverlapHaar.lean#L66) |
+| `Psc.NamedProductHaar.strict_overlap_bound` | `PscVerif.NamedOverlapHaar` | no | [proof/PscVerif/PscVerif/NamedOverlapHaar.lean:75](../proof/PscVerif/PscVerif/NamedOverlapHaar.lean#L75) |
 | `Psc.NamedPrefixCompact.incidence_eq` | `PscVerif.NamedPrefixCompact` | no | [proof/PscVerif/PscVerif/NamedPrefixCompact.lean:34](../proof/PscVerif/PscVerif/NamedPrefixCompact.lean#L34) |
 | `Psc.NamedPrefixCompact.nonerasing` | `PscVerif.NamedPrefixCompact` | no | [proof/PscVerif/PscVerif/NamedPrefixCompact.lean:37](../proof/PscVerif/PscVerif/NamedPrefixCompact.lean#L37) |
 | `Psc.NamedPrefixCompact.square_nonerasing` | `PscVerif.NamedPrefixCompact` | no | [proof/PscVerif/PscVerif/NamedPrefixCompact.lean:40](../proof/PscVerif/PscVerif/NamedPrefixCompact.lean#L40) |

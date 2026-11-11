@@ -25,13 +25,25 @@ theorem measure_history_piece (k n : ℕ) (p : Packet)
     μ (historyPiece (iterateImages (substitution f) k) (T ^ k) star (tiles f) n p h) =
       (ENNReal.ofReal beta⁻¹) ^ (k * n) *
         μ (E (historyTarget (iterateImages (substitution f) k) n p h)) := by
-  rw [historyPiece_eq_image]
   have hm : historyMap (iterateImages (substitution f) k) (T ^ k) star n p h =
       fun x => (T ^ (k * n)) x + star
         (historyTopPrefix (iterateImages (substitution f) k) n p h) := by
     funext x
-    simp only [historyMap_eq _ _ _ (block_commute f k), pow_mul, AddMonoid.End.coe_pow]
-  rw [hm, measure_affine_power (substitution f) (incidence_eq f)]
+    simpa only [pow_mul, AddMonoid.End.coe_pow] using
+      (historyMap_eq (iterateImages (substitution f) k) (T ^ k) star
+        (block_commute f k) n p h x)
+  calc
+    _ = μ (historyMap (iterateImages (substitution f) k) (T ^ k) star n p h ''
+        E (historyTarget (iterateImages (substitution f) k) n p h)) :=
+      congrArg μ (historyPiece_eq_image (iterateImages (substitution f) k)
+        (T ^ k) star (tiles f) n p h)
+    _ = μ ((fun x => (T ^ (k * n)) x + star
+        (historyTopPrefix (iterateImages (substitution f) k) n p h)) ''
+        E (historyTarget (iterateImages (substitution f) k) n p h)) :=
+      congrArg (fun g => μ (g '' E (historyTarget (iterateImages (substitution f) k) n p h))) hm
+    _ = _ := measure_affine_power (substitution f) (incidence_eq f) ν (k * n)
+      (star (historyTopPrefix (iterateImages (substitution f) k) n p h))
+      (E (historyTarget (iterateImages (substitution f) k) n p h))
 
 theorem overlap_bound_of_history_cover (k n : ℕ) (p : Packet)
     {ι : Type*} [Finite ι] (h : ι → History (iterateImages (substitution f) k) n p)
