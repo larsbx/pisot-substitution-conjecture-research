@@ -163,7 +163,8 @@ from an adjacency matrix or an additive recurrence.
 A stronger convenient sufficient condition is
 
 \[
-\forall u,e,\quad u\notin S\Longrightarrow E(u)=\varnothing,
+\forall u,\ \forall e:\mathrm{InverseOccurrence}(s,p,u),
+\quad u\notin S\Longrightarrow E(u)=\varnothing,
 \]
 
 equivalently the representability condition that every nonempty incoming
