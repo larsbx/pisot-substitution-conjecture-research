@@ -1,15 +1,14 @@
 """Six P3/T/U oriented stars and at-most-two-step typed exits; no closure."""
-from finite_exact.checked_int import checked_add
-from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, member_transport, verify_member_edge
+from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, verify_member_edge
 from psc.class_a_boundary_u_children import reverse_label
 from psc.class_a_boundary_h5_children import certify_h5_children
 from psc.class_a_boundary_e_children import _offset
-from psc.class_a_boundary_next_run import _parameters
 from psc.class_a_boundary_next_first import _linear, _cubic, _equal
 from psc.class_a_boundary_occurrences import symbolic_child, _equal3, _prefix, FIRST, RUN, LAST
 from psc.class_a_boundary_signs import chamber_parameters, _cone_positive
 from psc.param_poly import QX, qx_const, qx_add, qx_sub, qx_neg, qx_mul, tp_add, tp_sub, tp_mul, tp_scale, tp_mod_monic
 from psc.overlap_seed_patch import SeedOverlapTables
+from psc.class_a_boundary_family import BoundaryFamily, boundary_dimensions, append_child, verify_child_packet
 
 
 def p3_source(kind: Int) raises -> BoundaryLabel:
@@ -116,10 +115,7 @@ def certify_p3_children(corrupt: Bool=False) raises:
 
 def _dimensions(kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int,Int,Int]:
     _=p3_source(kind)
-    var p=_parameters(-1,k,t)
-    var A=checked_add(p[0],p[1])
-    _=checked_add(A,12)
-    return(p[0],p[1],A,p[0]-1)
+    return boundary_dimensions(k,t,12)
 
 
 def p3_child_allowed(kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:
@@ -195,16 +191,20 @@ def in_p3_image(w: BoundaryLabel) raises -> Bool:
     return False
 
 
+@fieldwise_init
+struct P3Children(BoundaryFamily):
+    def name(self) -> String:return "P3"
+    def source(self,kind: Int) raises -> BoundaryLabel:return p3_source(kind)
+    def parameters(self,kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int]:
+        var p=_dimensions(kind,k,t)
+        return (p[0],p[1])
+    def swapped(self,kind: Int) -> Bool:return kind%2==1
+    def allowed(self,kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:return p3_child_allowed(kind,k,t,i,j)
+    def in_image(self,w: BoundaryLabel) raises -> Bool:return in_p3_image(w)
+
+
 def _append(mut out: List[BoundaryEdge],kind: Int,k: Int,t: Int,i: Int,j: Int) raises:
-    var p=_dimensions(kind,k,t)
-    var a=j if kind%2==1 else i
-    var b=i if kind%2==1 else j
-    if not p3_child_allowed(kind,k,t,a,b):
-        raise Error("synthesized P3-family guard failed")
-    var target=member_transport(-1,k,p[0],p[1],p3_source(kind),a,b)
-    if not in_p3_image(target):
-        raise Error("P3-family target escaped envelope")
-    out.append(BoundaryEdge(a,b,target))
+    append_child(P3Children(),out,kind,k,t,i,j)
 
 
 def p3_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
@@ -240,10 +240,7 @@ def p3_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
 
 
 def verify_p3_packet(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,edge: BoundaryEdge) raises:
-    var p=_dimensions(kind,k,t)
-    if not p3_child_allowed(kind,k,t,edge.i,edge.j) or not in_p3_image(edge.target):
-        raise Error("P3-family packet refused")
-    verify_member_edge(tables,-1,k,p[0],p[1],p3_source(kind),edge.i,edge.j,edge.target)
+    verify_child_packet(P3Children(),tables,kind,k,t,edge)
 
 
 def p3_path(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:

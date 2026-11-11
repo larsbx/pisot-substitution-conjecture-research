@@ -304,3 +304,72 @@ def test_all_twelve_strict_nonpip_literal_newborn_events():
     assert events[2][:9] == (2, 3, 14, 0, 1, (5, 1), (5, 0),
                              (1, -1, 0), (0, 0, 1))
     assert events[-1][:7] == (3, 8, 35, 1, 0, (13, 0), (12, 2))
+
+
+def test_fullrank_nonpip_strict_has_constant_whole_hub_words():
+    """Independent literal-word gauge calculation, not a PSC theorem."""
+    sigma = {"0": "10", "1": "102", "2": "211"}
+    states = [
+        ("102", "210"),
+        ("11102", "21110"),
+        ("10210211", "21110210"),
+        ("10210210210211", "21110210210210"),
+    ]
+    h = {a: w[0] for a, w in sigma.items()}
+    assert h == {"0": "1", "1": "1", "2": "2"}
+    idx = {state: i for i, state in enumerate(states)}
+    images = []
+    signs = []
+    for top, bottom in states:
+        raw = children(infl(sigma, top), infl(sigma, bottom))
+        images.append([idx[z] if z in idx else idx[(z[1], z[0])] for z in raw])
+        signs.append([1 if z in idx else -1 for z in raw])
+    assert images == [[2], [3], [2, 0, 0, 1, 0], [2, 0, 0, 1, 0, 1, 0, 1, 0]]
+    assert all(all(sign == 1 for sign in row) for row in signs)
+    # Complete Parikh intertwining is exact despite the rank-two
+    # obstruction: row_0(P)=row_2(P). PIP irreducibility would force
+    # rank three, so this is a precise excluded-template mechanism.
+    P = [[u.count(str(a)) for u, _ in states] for a in range(3)]
+    M = [[sig.count(str(a)) for sig in sigma.values()] for a in range(3)]
+    N = [[sum(dst == row for dst in images[col]) for col in range(4)]
+         for row in range(4)]
+    assert P == [[1, 1, 2, 4], [1, 3, 4, 6], [1, 1, 2, 4]]
+    assert N == [[0, 0, 3, 5], [0, 0, 1, 3],
+                 [1, 0, 1, 1], [0, 1, 0, 0]]
+    assert P[0] == P[2]
+    assert P[0][0] * P[1][1] - P[0][1] * P[1][0] == 2
+    for a in range(3):
+        for col in range(4):
+            assert sum(P[a][j] * N[j][col] for j in range(4)) == (
+                sum(M[a][j] * P[j][col] for j in range(3))
+            )
+    masks = []
+    for pair in ((0, 1), (0, 2), (1, 2)):
+        # A compatible good pair must not be the first pair of any
+        # strict state (nor occur along the deterministic endpoint orbit).
+        good = set(str(c) for c in pair)
+        candidate = all(set((u[0], v[0])) != good for u, v in states)
+        if candidate:
+            masks.append(pair)
+    assert masks == [(0, 1), (0, 2)]
+    for hub in "12":
+        xs = [0 if u[0] == hub else 1 for u, v in states]
+        assert xs == ([0] * 4 if hub == "1" else [1] * 4)
+        word_bits = [
+            [int(sign == -1) ^ xs[src] ^ xs[dst]
+             for dst, sign in zip(images[src], signs[src])]
+            for src in range(len(states))
+        ]
+        assert word_bits == [[0], [0], [0, 0, 0, 0, 0], [0] * 9]
+    # The prefix-fixed pair (1,2) remains bad forever; left pairs
+    # (2,0)/(1,0) also do not synchronize under suffix map.
+    suffix = {a: w[-1] for a, w in sigma.items()}
+    for u, v in states:
+        x, y = u[0], v[0]
+        for _ in range(4):
+            assert x != y
+            x, y = h[x], h[y]
+        x, y = u[-1], v[-1]
+        for _ in range(4):
+            assert x != y
+            x, y = suffix[x], suffix[y]

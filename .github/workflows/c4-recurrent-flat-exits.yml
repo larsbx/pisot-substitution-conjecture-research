@@ -1,6 +1,17 @@
 name: C4 recurrent flat exits
 
 on:
+  push:
+    branches:
+      - 'research/c4-*'
+    paths:
+      - '.github/workflows/c4-recurrent-flat-exits.yml'
+      - 'docs/c4-*.md'
+      - 'kernel/psc/c4_*.mojo'
+      - 'kernel/tests/test_c4_*.mojo'
+      - 'kernel/pixi.lock'
+      - 'proof/proof-bank.json'
+      - 'tests/test_c4_*_oracle.py'
   pull_request:
     paths:
       - '.github/workflows/c4-recurrent-flat-exits.yml'
@@ -52,6 +63,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Check generated proof bank at this revision
+        run: python tools/make_proof_bank.py --check
       - name: Independent Python oracle and both controls
         run: |
           python -m pip install 'pytest>=7'

@@ -1,7 +1,6 @@
 """W9 complete indexed stars and a constant sixteen-label memberwise image."""
 from finite_exact.checked_int import checked_add, checked_mul
-from std.collections import Dict
-from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, member_transport, verify_member_edge
+from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, member_transport
 from psc.class_a_boundary_u_children import reverse_label
 from psc.class_a_boundary_j9_children import _dimensions
 from psc.class_a_boundary_p9_children import p9_companion, p9_companion_path
@@ -18,6 +17,7 @@ from psc.class_a_boundary_occurrences import symbolic_child, _equal3, _prefix, _
 from psc.class_a_boundary_signs import chamber_parameters
 from psc.param_poly import QX, qx_mul, qx_const, qx_add, qx_sub, qx_neg, tp_add, tp_sub, tp_scale, tp_mul, tp_mod_monic
 from psc.overlap_seed_patch import SeedOverlapTables
+from psc.class_a_boundary_family import BoundaryFamily, append_child, verify_child_packet, verify_child_star, extend_edges
 
 
 def w9_source(kind: Int) raises -> BoundaryLabel:
@@ -151,14 +151,20 @@ def in_w9_image(w: BoundaryLabel) raises -> Bool:
     return z.top==0 and z.y>=2 and z.y<=4
 
 
+@fieldwise_init
+struct W9Children(BoundaryFamily):
+    def name(self) -> String:return "W9"
+    def source(self,kind: Int) raises -> BoundaryLabel:return w9_source(kind)
+    def parameters(self,kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int]:
+        var p=_dimensions(0,k,t)
+        return (p[0],p[1])
+    def swapped(self,kind: Int) -> Bool:return kind!=0
+    def allowed(self,kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:return w9_child_allowed(kind,k,t,i,j)
+    def in_image(self,w: BoundaryLabel) raises -> Bool:return in_w9_image(w)
+
+
 def _append(mut out: List[BoundaryEdge],kind: Int,k: Int,t: Int,i: Int,j: Int) raises:
-    var p=_dimensions(0,k,t)
-    var a=i if kind==0 else j
-    var b=j if kind==0 else i
-    if not w9_child_allowed(kind,k,t,a,b):raise Error("W9 synthesized guard failed")
-    var target=member_transport(-1,k,p[0],p[1],w9_source(kind),a,b)
-    if not in_w9_image(target):raise Error("W9 target escaped image")
-    out.append(BoundaryEdge(a,b,target))
+    append_child(W9Children(),out,kind,k,t,i,j)
 
 
 def w9_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
@@ -175,21 +181,11 @@ def w9_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
 
 
 def verify_w9_packet(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,edge: BoundaryEdge) raises:
-    var p=_dimensions(0,k,t)
-    if not w9_child_allowed(kind,k,t,edge.i,edge.j) or not in_w9_image(edge.target):raise Error("W9 packet refused")
-    verify_member_edge(tables,-1,k,p[0],p[1],w9_source(kind),edge.i,edge.j,edge.target)
+    verify_child_packet(W9Children(),tables,kind,k,t,edge)
 
 
 def verify_w9_star(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,edges: List[BoundaryEdge]) raises:
-    _=w9_source(kind)
-    if len(edges)!=w9_count(k,t):raise Error("incomplete W9 star")
-    var p=_dimensions(0,k,t)
-    var seen=Dict[Int,Bool]()
-    for edge in edges:
-        verify_w9_packet(tables,kind,k,t,edge)
-        var key=checked_add(checked_mul(edge.i,checked_add(p[2],2)),edge.j)
-        if key in seen:raise Error("duplicate W9 occurrence")
-        seen[key]=True
+    verify_child_star(W9Children(),tables,kind,k,t,edges,w9_count(k,t))
 
 
 def w9_path(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
@@ -203,10 +199,6 @@ def verify_w9_path(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,steps: List
 
 
 
-def _extend(mut out: List[BoundaryEdge],suffix: List[BoundaryEdge]):
-    for edge in suffix:out.append(edge)
-
-
 def w9_companion_path(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
     _=w9_companion(kind)
     var p=_dimensions(0,k,t)
@@ -214,16 +206,16 @@ def w9_companion_path(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
     var out=List[BoundaryEdge]()
     if group==0:
         out.append(BoundaryEdge(k+1,0,j8_source(5)))
-        _extend(out,j8_path(5,k,t))
+        extend_edges(out,j8_path(5,k,t))
     elif group==1 or group==4:
         out.append(BoundaryEdge(0,2,y4_source(0)))
-        _extend(out,y4_path(0,k,t))
+        extend_edges(out,y4_path(0,k,t))
     elif group==2 or group==5:
         out.append(BoundaryEdge(p[0]-1,0,eh_source(3)))
-        _extend(out,short_eh_path(3,k,t))
+        extend_edges(out,short_eh_path(3,k,t))
     else:
         out.append(BoundaryEdge(2*p[0]+1,0,chain_source(2)))
-        _extend(out,chain_path(2,k,t))
+        extend_edges(out,chain_path(2,k,t))
     if kind%2==1:_reverse_steps(out)
     return out^
 
@@ -243,7 +235,7 @@ def w9_child_walk(kind: Int,k: Int,t: Int,edge: BoundaryEdge) raises -> List[Bou
     var p=_dimensions(0,k,t)
     if not w9_child_allowed(kind,k,t,edge.i,edge.j) or member_transport(-1,k,p[0],p[1],w9_source(kind),edge.i,edge.j)!=edge.target:raise Error("wrong first W9 packet")
     var out: List[BoundaryEdge]=[edge]
-    _extend(out,w9_child_tail(edge.target,k,t))
+    extend_edges(out,w9_child_tail(edge.target,k,t))
     return out^
 
 
