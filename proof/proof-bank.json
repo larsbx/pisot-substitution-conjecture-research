@@ -9839,6 +9839,278 @@
       "declaration": "theorem m0_pisot : ∃ b : ℝ, 1 < b ∧ aeval (b : ℂ) f = 0 ∧"
     },
     {
+      "name": "Psc.MadicResidue.quotient_surjective",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 42,
+      "declaration": "theorem quotient_surjective (M : V →ₗ[ℤ] V) (q : ℕ) :"
+    },
+    {
+      "name": "Psc.MadicResidue.quotient_eq_iff",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 47,
+      "declaration": "theorem quotient_eq_iff (M : V →ₗ[ℤ] V) (q : ℕ) (z w : V) :"
+    },
+    {
+      "name": "Psc.MadicResidue.quotient_eq_zero_iff",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 51,
+      "declaration": "theorem quotient_eq_zero_iff (M : V →ₗ[ℤ] V) (q : ℕ) (z : V) :"
+    },
+    {
+      "name": "Psc.MadicResidue.quotient_zero_level",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 55,
+      "declaration": "theorem quotient_zero_level (M : V →ₗ[ℤ] V) (z : V) :"
+    },
+    {
+      "name": "Psc.MadicResidue.power_apply_commute",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 60,
+      "declaration": "theorem power_apply_commute (M : V →ₗ[ℤ] V) (q : ℕ) (z : V) :"
+    },
+    {
+      "name": "Psc.MadicResidue.powerRange_antitone",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 65,
+      "declaration": "theorem powerRange_antitone (M : V →ₗ[ℤ] V) : Antitone (powerRange M) := by"
+    },
+    {
+      "name": "Psc.MadicResidue.reduction_quotient",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 79,
+      "declaration": "theorem reduction_quotient (M : V →ₗ[ℤ] V) {m n : ℕ} (h : m ≤ n) (z : V) :"
+    },
+    {
+      "name": "Psc.MadicResidue.reduction_refl",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 82,
+      "declaration": "theorem reduction_refl (M : V →ₗ[ℤ] V) (q : ℕ) (x : Residue M q) :"
+    },
+    {
+      "name": "Psc.MadicResidue.reduction_trans",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 87,
+      "declaration": "theorem reduction_trans (M : V →ₗ[ℤ] V) {l m n : ℕ}"
+    },
+    {
+      "name": "Psc.MadicResidue.powerRange_invariant",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 93,
+      "declaration": "theorem powerRange_invariant (M : V →ₗ[ℤ] V) (q : ℕ) :"
+    },
+    {
+      "name": "Psc.MadicResidue.residueAction_quotient",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 103,
+      "declaration": "theorem residueAction_quotient (M : V →ₗ[ℤ] V) (q : ℕ) (z : V) :"
+    },
+    {
+      "name": "Psc.MadicResidue.reduction_residueAction",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 106,
+      "declaration": "theorem reduction_residueAction (M : V →ₗ[ℤ] V) {m n : ℕ}"
+    },
+    {
+      "name": "Psc.MadicResidue.carrier_ext",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 135,
+      "declaration": "theorem carrier_ext (M : V →ₗ[ℤ] V) {x y : Carrier M}"
+    },
+    {
+      "name": "Psc.MadicResidue.reduction_eval",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 139,
+      "declaration": "theorem reduction_eval (M : V →ₗ[ℤ] V) {m n : ℕ}"
+    },
+    {
+      "name": "Psc.MadicResidue.eval_star",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 156,
+      "declaration": "theorem eval_star (M : V →ₗ[ℤ] V) (q : ℕ) (z : V) :"
+    },
+    {
+      "name": "Psc.MadicResidue.eval_surjective",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 159,
+      "declaration": "theorem eval_surjective (M : V →ₗ[ℤ] V) (q : ℕ) :"
+    },
+    {
+      "name": "Psc.MadicResidue.star_eq_zero_iff",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 166,
+      "declaration": "theorem star_eq_zero_iff (M : V →ₗ[ℤ] V) (z : V) :"
+    },
+    {
+      "name": "Psc.MadicResidue.eval_action",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 193,
+      "declaration": "theorem eval_action (M : V →ₗ[ℤ] V) (q : ℕ) (x : Carrier M) :"
+    },
+    {
+      "name": "Psc.MadicResidue.action_star",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 196,
+      "declaration": "theorem action_star (M : V →ₗ[ℤ] V) (z : V) :"
+    },
+    {
+      "name": "Psc.MadicResidue.residueAction_pow_quotient",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 202,
+      "declaration": "theorem residueAction_pow_quotient (M : V →ₗ[ℤ] V) (q n : ℕ) (z : V) :"
+    },
+    {
+      "name": "Psc.MadicResidue.eval_action_pow",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 210,
+      "declaration": "theorem eval_action_pow (M : V →ₗ[ℤ] V) (q n : ℕ) (x : Carrier M) :"
+    },
+    {
+      "name": "Psc.MadicResidue.eval_action_pow_self_zero",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 219,
+      "declaration": "theorem eval_action_pow_self_zero (M : V →ₗ[ℤ] V) (q : ℕ) (x : Carrier M) :"
+    },
+    {
+      "name": "Psc.MadicResidue.eval_one_action",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 226,
+      "declaration": "theorem eval_one_action (M : V →ₗ[ℤ] V) (x : Carrier M) :"
+    },
+    {
+      "name": "Psc.MadicResidue.eval_one_star_eq_zero_iff",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 231,
+      "declaration": "theorem eval_one_star_eq_zero_iff (M : V →ₗ[ℤ] V) (z : V) :"
+    },
+    {
+      "name": "Psc.MadicResidue.action_preimage_star_iff",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 237,
+      "declaration": "theorem action_preimage_star_iff (M : V →ₗ[ℤ] V) (z : V) :"
+    },
+    {
+      "name": "Psc.MadicResidue.reduction_eq_zero_of_residueAction_eq_zero",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 248,
+      "declaration": "theorem reduction_eq_zero_of_residueAction_eq_zero (M : V →ₗ[ℤ] V)"
+    },
+    {
+      "name": "Psc.MadicResidue.action_eq_zero",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 259,
+      "declaration": "theorem action_eq_zero (M : V →ₗ[ℤ] V) (injective : Function.Injective M)"
+    },
+    {
+      "name": "Psc.MadicResidue.action_injective",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 269,
+      "declaration": "theorem action_injective (M : V →ₗ[ℤ] V) (injective : Function.Injective M) :"
+    },
+    {
+      "name": "Psc.MadicResidue.residue_finite",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 278,
+      "declaration": "theorem residue_finite [Module.Free ℤ V] [Module.Finite ℤ V]"
+    },
+    {
+      "name": "Psc.MadicResidue.compatibleSequences_isClosed",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 294,
+      "declaration": "theorem compatibleSequences_isClosed (M : V →ₗ[ℤ] V) :"
+    },
+    {
+      "name": "Psc.MadicResidue.carrier_compactSpace_of_finite",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 306,
+      "declaration": "theorem carrier_compactSpace_of_finite (M : V →ₗ[ℤ] V)"
+    },
+    {
+      "name": "Psc.MadicResidue.carrier_compactSpace",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 312,
+      "declaration": "theorem carrier_compactSpace [Module.Free ℤ V] [Module.Finite ℤ V]"
+    },
+    {
+      "name": "Psc.MadicResidue.continuous_eval",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 318,
+      "declaration": "theorem continuous_eval (M : V →ₗ[ℤ] V) (q : ℕ) : Continuous (eval M q) :="
+    },
+    {
+      "name": "Psc.MadicResidue.continuous_action",
+      "module": "PscVerif.MadicResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "line": 321,
+      "declaration": "theorem continuous_action (M : V →ₗ[ℤ] V) : Continuous (action M) := by"
+    },
+    {
       "name": "Psc.OccurrenceAddress.locate_sound",
       "module": "PscVerif.OccurrenceAddress",
       "private": false,
@@ -12101,6 +12373,278 @@
       "source": "proof/PscVerif/PscVerif/OccurrenceRecurrence.lean",
       "line": 166,
       "declaration": "theorem strict_actual_cycle (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.finite_incomingDigit",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 39,
+      "declaration": "theorem finite_incomingDigit (s : Fin 3 → Word) (c : Fin 3) :"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.finite_digitProfile",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 44,
+      "declaration": "theorem finite_digitProfile (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.image_tile_subset_digitProfile",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 52,
+      "declaration": "theorem image_tile_subset_digitProfile (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.digitProfile_subset_image_tile",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 65,
+      "declaration": "theorem digitProfile_subset_image_tile (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.image_tile_eq_digitProfile",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 77,
+      "declaration": "theorem image_tile_eq_digitProfile (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.overlap_empty_of_profile_separation",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 88,
+      "declaration": "theorem overlap_empty_of_profile_separation"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.empty_tiles_profile_control",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 103,
+      "declaration": "theorem empty_tiles_profile_control (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.incidenceLinear_apply",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 126,
+      "declaration": "theorem incidenceLinear_apply (s : Fin 3 → Word) (z : Fin 3 → ℤ) :"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.incidenceLinear_iterateImages",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 131,
+      "declaration": "theorem incidenceLinear_iterateImages (s : Fin 3 → Word) (q : ℕ) :"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.ambientAction_apply",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 157,
+      "declaration": "theorem ambientAction_apply (s : Fin 3 → Word) (B : E →+ E) (x : Ambient s E) :"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.ambientStar_apply",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 161,
+      "declaration": "theorem ambientStar_apply (s : Fin 3 → Word) (pi : (Fin 3 → ℤ) →+ E)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.residue_apply",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 166,
+      "declaration": "theorem residue_apply (s : Fin 3 → Word) (q : ℕ) (x : Ambient s E) :"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.residue_ambientStar",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 170,
+      "declaration": "theorem residue_ambientStar (s : Fin 3 → Word) (q : ℕ)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.residue_comp_ambientStar",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 174,
+      "declaration": "theorem residue_comp_ambientStar (s : Fin 3 → Word) (q : ℕ)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.residue_ambientAction",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 181,
+      "declaration": "theorem residue_ambientAction (s : Fin 3 → Word) (q : ℕ)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.ambientAction_pow_snd",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 186,
+      "declaration": "theorem ambientAction_pow_snd (s : Fin 3 → Word) (B : E →+ E)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.residue_ambientAction_pow_self_zero",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 199,
+      "declaration": "theorem residue_ambientAction_pow_self_zero (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.residue_one_ambientAction",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 205,
+      "declaration": "theorem residue_one_ambientAction (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.residue_one_ambientStar_eq_zero_iff",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 210,
+      "declaration": "theorem residue_one_ambientStar_eq_zero_iff (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.ambient_commute",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 215,
+      "declaration": "theorem ambient_commute (s : Fin 3 → Word) (B : E →+ E)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.ambientAction_injective",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 223,
+      "declaration": "theorem ambientAction_injective (s : Fin 3 → Word) (B : E →+ E)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.ambient_reflectsIntegralRange",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 235,
+      "declaration": "theorem ambient_reflectsIntegralRange (s : Fin 3 → Word) (B : E →+ E)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.ambient_preimage_star_iff",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 243,
+      "declaration": "theorem ambient_preimage_star_iff (s : Fin 3 → Word) (B : E →+ E)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.ambient_overlap_eq_iUnion_inverse",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 255,
+      "declaration": "theorem ambient_overlap_eq_iUnion_inverse (s : Fin 3 → Word) (B : E →+ E)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.ambient_overlap_eq_iUnion_history",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 270,
+      "declaration": "theorem ambient_overlap_eq_iUnion_history (s : Fin 3 → Word) (B : E →+ E)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.ambient_finite_history_cover",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 285,
+      "declaration": "theorem ambient_finite_history_cover (s : Fin 3 → Word) (B : E →+ E)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.ambient_overlap_eq_iUnion_restrictedHistory",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 301,
+      "declaration": "theorem ambient_overlap_eq_iUnion_restrictedHistory (s : Fin 3 → Word) (B : E →+ E)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.finite_blockProfile",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 326,
+      "declaration": "theorem finite_blockProfile (s : Fin 3 → Word) (q : ℕ) (c : Fin 3) :"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.image_tile_subset_blockProfile",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 333,
+      "declaration": "theorem image_tile_subset_blockProfile (s : Fin 3 → Word) (B : E →+ E)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.image_tile_eq_blockProfile",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 344,
+      "declaration": "theorem image_tile_eq_blockProfile (s : Fin 3 → Word) (B : E →+ E)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.overlap_empty_of_blockProfile_separation",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 358,
+      "declaration": "theorem overlap_empty_of_blockProfile_separation (s : Fin 3 → Word) (B : E →+ E)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.empty_tiles_blockProfile_control",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 371,
+      "declaration": "theorem empty_tiles_blockProfile_control (s : Fin 3 → Word) (B : E →+ E)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.continuous_ambientAction",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 388,
+      "declaration": "theorem continuous_ambientAction (s : Fin 3 → Word) (B : E →+ E)"
+    },
+    {
+      "name": "Psc.OccurrenceResidue.isCompact_ambient_historyPiece",
+      "module": "PscVerif.OccurrenceResidue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "line": 395,
+      "declaration": "theorem isCompact_ambient_historyPiece (s : Fin 3 → Word) (B : E →+ E)"
     },
     {
       "name": "Psc.OccurrenceStrict.realized_closed",
@@ -20848,6 +21392,7 @@
     "proof/PscVerif/PscVerif/Lie5Data.lean": "df36055fa646536437bff13bf336304b211ba70a4d0ac11cd910c8c2751271fb",
     "proof/PscVerif/PscVerif/LieWeights.lean": "f32639f83e519c69b8f428e153dd368c274e1f665a837183f88c5f1de0dd8adb",
     "proof/PscVerif/PscVerif/M0Pisot.lean": "65d17cf0aa71cdac825d16da73ad601dd49c214cd0b47ac58f124cb51a64a304",
+    "proof/PscVerif/PscVerif/MadicResidue.lean": "c7ff8430cb77c335f11478861584baea4129658b35f4fc67bf0c2b8509d50f6d",
     "proof/PscVerif/PscVerif/OccurrenceAddress.lean": "fd8d4020fc3f720c8a81d23c9811056802c901eec35a48efcbb40954c5a375ad",
     "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean": "0843e0a255a2a13675132264eb1385d9a155b7122138359b02158916541e2b4e",
     "proof/PscVerif/PscVerif/OccurrenceCover.lean": "c66e2937532b2b289351b9ab10a18a1485b73434e362fd1e88edbfd3b6479cb6",
@@ -20860,6 +21405,7 @@
     "proof/PscVerif/PscVerif/OccurrenceNewborn.lean": "7afaf823023d45cc6d1d4d9b6d08e2b3d6e74dce165d77174de86d7cd23dd1d0",
     "proof/PscVerif/PscVerif/OccurrencePiece.lean": "304a9f42f3fea45cac2c752ef0b61cfd6894e78967d191803c723233d63e9ec0",
     "proof/PscVerif/PscVerif/OccurrenceRecurrence.lean": "9ce4b9cfab68581d39ef893d481eb5e12fe45ff2288ef0cf4f049d97898d3fbb",
+    "proof/PscVerif/PscVerif/OccurrenceResidue.lean": "8552eb3d7584b6b467ae6f990a8204490ae9b543b38cecb243cd8576c58dd248",
     "proof/PscVerif/PscVerif/OccurrenceStrict.lean": "f5ee2c3e7bc7b580e760f65351d0cf129480835e7ef03877c0062c8220911b25",
     "proof/PscVerif/PscVerif/OccurrenceSuccessor.lean": "103e3cb42b93b234c593f46bf2d53426b198248e33408461e9c05fd3ce8c6f33",
     "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean": "fdd8b6fff230eaf6d977ae724fe674be02ca37d2549b168f12c522f54668c382",
@@ -20887,7 +21433,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "a6bc5780b626b4c1eafc87b2083728f3f352059ba5f778a39300173f54bc8d3e",
+    "proof/PscVerif/PscVerif.lean": "365c1efe51a2f369147d502177118021d6f9edcc446981befaab47455bb7cadb",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
