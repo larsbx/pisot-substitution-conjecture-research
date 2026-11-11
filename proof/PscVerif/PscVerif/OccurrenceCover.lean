@@ -1,5 +1,6 @@
 import PscVerif.OccurrencePiece
 import Mathlib.SetTheory.Cardinal.Finite
+import Mathlib.Basic.Real.Basic
 import Mathlib.Topology.Algebra.Group.Basic
 import Mathlib.Topology.Compactness.Compact
 
@@ -33,14 +34,15 @@ abbrev Incoming (s : Fin 3 → Word) (p : Packet) :=
 /-- A literal digit includes its source letter and full mark. -/
 abbrev Digit (s : Fin 3 → Word) := Σ a : Fin 3, Mark (s a)
 
-noncomputable def digitFintype (s : Fin 3 → Word) : Fintype (Digit s) := by
-  letI (a : Fin 3) : Fintype (Mark (s a)) :=
+@[instance_reducible] noncomputable def digitFintype (s : Fin 3 → Word) :
+    Fintype (Digit s) := by
+  let (a : Fin 3) : Fintype (Mark (s a)) :=
     Fintype.ofEquiv (Fin (s a).length) (markEquiv (s a)).symm
   exact inferInstanceAs (Fintype (Σ a : Fin 3, Mark (s a)))
 
 theorem digit_card (s : Fin 3 → Word) :
     Nat.card (Digit s) = ∑ a, (s a).length := by
-  letI (a : Fin 3) : Fintype (Mark (s a)) :=
+  let (a : Fin 3) : Fintype (Mark (s a)) :=
     Fintype.ofEquiv (Fin (s a).length) (markEquiv (s a)).symm
   rw [Nat.card_sigma]
   apply Finset.sum_congr rfl
@@ -75,7 +77,7 @@ theorem incomingKey_injective {s : Fin 3 → Word} {p : Packet}
 
 /-- Construct a finite incoming inventory from finite literal positions;
 there is no assumed global bound on ancestor residuals. -/
-noncomputable def incomingFintype (s : Fin 3 → Word) (p : Packet)
+@[instance_reducible] noncomputable def incomingFintype (s : Fin 3 → Word) (p : Packet)
     (integralInjective : Function.Injective (fun y => incidenceZ s *ᵥ y)) :
     Fintype (Incoming s p) := by
   classical
@@ -85,13 +87,13 @@ noncomputable def incomingFintype (s : Fin 3 → Word) (p : Packet)
 theorem finite_incoming (s : Fin 3 → Word) (p : Packet)
     (integralInjective : Function.Injective (fun y => incidenceZ s *ᵥ y)) :
     Finite (Incoming s p) := by
-  letI := incomingFintype s p integralInjective
+  let := incomingFintype s p integralInjective
   infer_instance
 
 theorem incoming_card_le (s : Fin 3 → Word) (p : Packet)
     (integralInjective : Function.Injective (fun y => incidenceZ s *ᵥ y)) :
     Nat.card (Incoming s p) ≤ (∑ a, (s a).length) ^ 2 := by
-  letI := digitFintype s
+  let := digitFintype s
   calc
     Nat.card (Incoming s p) ≤ Nat.card (Digit s × Digit s) :=
       Nat.card_le_card_of_injective incomingKey (incomingKey_injective integralInjective)
@@ -110,7 +112,7 @@ def historyWithin (s : Fin 3 → Word) (S : Finset Packet) :
   | 0, _, _ => True
   | n + 1, _, ⟨e, h⟩ => e.1 ∈ S ∧ historyWithin s S n e.1 h
 
-noncomputable def historyFintype (s : Fin 3 → Word)
+@[instance_reducible] noncomputable def historyFintype (s : Fin 3 → Word)
     (integralInjective : Function.Injective (fun y => incidenceZ s *ᵥ y)) :
     (n : ℕ) → (p : Packet) → Fintype (History s n p)
   | 0, _ => inferInstanceAs (Fintype Unit)
@@ -123,7 +125,7 @@ noncomputable def historyFintype (s : Fin 3 → Word)
 theorem finite_history (s : Fin 3 → Word)
     (integralInjective : Function.Injective (fun y => incidenceZ s *ᵥ y))
     (n : ℕ) (p : Packet) : Finite (History s n p) := by
-  letI := historyFintype s integralInjective n p
+  let := historyFintype s integralInjective n p
   infer_instance
 
 /-- A stated depth has an a priori finite budget from literal image sizes.
@@ -136,8 +138,8 @@ theorem history_card_le (s : Fin 3 → Word)
   induction n generalizing p with
   | zero => simp [History]
   | succ n ih =>
-      letI := incomingFintype s p integralInjective
-      letI (e : Incoming s p) : Finite (History s n e.1) :=
+      let := incomingFintype s p integralInjective
+      let (e : Incoming s p) : Finite (History s n e.1) :=
         finite_history s integralInjective n e.1
       change Nat.card (Σ e : Incoming s p, History s n e.1) ≤ _
       rw [Nat.card_sigma]
@@ -171,7 +173,7 @@ theorem historyAddress_length (s : Fin 3 → Word) (n : ℕ) (p : Packet)
 theorem historyAddress_injective (s : Fin 3 → Word) (n : ℕ) (p : Packet) :
     Function.Injective (historyAddress s n p) := by
   induction n generalizing p with
-  | zero => intro h k _; exact Subsingleton.elim h k
+  | zero => intro h k _; cases h; cases k; rfl
   | succ n ih =>
       rintro ⟨⟨u, e⟩, h⟩ ⟨⟨v, f⟩, k⟩ heq
       have he := List.cons.inj heq
@@ -220,7 +222,7 @@ theorem history_integral_equation (s : Fin 3 → Word) (n : ℕ) (p : Packet)
       simp only [historyTarget, historyTopPrefix, historyBottomPrefix,
         pow_succ', ← Matrix.mulVec_mulVec]
       rw [ih, Matrix.mulVec_sub, Matrix.mulVec_add, e.2.equation]
-      simp only [residual]
+      simp only [OccurrenceTransport.residual]
       abel
 
 variable {G : Type*} [AddCommGroup G]
@@ -278,7 +280,8 @@ theorem historyPiece_eq_image (s : Fin 3 → Word) (A : G →+ G)
   | zero => simp [historyPiece, historyMap, historyTarget]
   | succ n ih =>
       rcases h with ⟨e, h⟩
-      simp only [historyPiece, historyMap, historyTarget, ih, Set.image_image]
+      simp only [historyPiece, historyMap, historyTarget, ih, Set.image_image,
+        Function.comp_def]
 
 section TileCover
 
@@ -287,6 +290,8 @@ variable {s : Fin 3 → Word} (A : G →+ G)
   (injective : Function.Injective A)
   (commute : ∀ z, A (star z) = star (incidenceZ s *ᵥ z))
   (tiles : TileEquation s A star K)
+
+include injective commute tiles
 
 theorem piece_subset_overlap {p u : Packet} (e : InverseOccurrence s p u) :
     piece A star K e ⊆ overlap star K p :=
@@ -376,7 +381,7 @@ theorem mem_restrictedUnion {s : Fin 3 → Word} (A : G →+ G)
     (star : (Fin 3 → ℤ) →+ G) (K : Fin 3 → Set G)
     (S : Finset Packet) (p : Packet) (x : G) :
     x ∈ restrictedUnion s A star K S p ↔
-      ∃ u, ∃ hu : u ∈ S, ∃ e : InverseOccurrence s p u, x ∈ piece A star K e := by
+      ∃ u, ∃ _hu : u ∈ S, ∃ e : InverseOccurrence s p u, x ∈ piece A star K e := by
   simp [restrictedUnion]
 
 section RestrictedCover
@@ -386,6 +391,8 @@ variable {s : Fin 3 → Word} (A : G →+ G)
   (injective : Function.Injective A)
   (commute : ∀ z, A (star z) = star (incidenceZ s *ᵥ z))
   (tiles : TileEquation s A star K)
+
+include injective commute tiles
 
 theorem restrictedUnion_subset (S : Finset Packet) (p : Packet) :
     restrictedUnion s A star K S p ⊆ overlap star K p := by
@@ -467,7 +474,8 @@ theorem overlap_empty_of_enclosure (star : (Fin 3 → ℤ) →+ G)
   apply Set.eq_empty_iff_forall_notMem.mpr
   intro x hx
   have he := overlap_mono_enclosure star K B enclosed p hx
-  simpa [separated] using he
+  rw [separated] at he
+  exact he
 
 /-- A strict separating coordinate proves emptiness. Bounds on actual tiles
 (or authenticated enclosing boxes) are essential; a constructor cap is not one. -/
@@ -512,6 +520,7 @@ theorem isCompact_overlap (star : (Fin 3 → ℤ) →+ G)
   exact (compactTiles p.top).inter
     ((compactTiles p.bottom).image (continuous_id.add continuous_const))
 
+omit [T2Space G] in
 theorem continuous_historyMap (s : Fin 3 → Word) (A : G →+ G)
     (star : (Fin 3 → ℤ) →+ G) (continuousA : Continuous A)
     (n : ℕ) (p : Packet) (h : History s n p) :

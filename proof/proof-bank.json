@@ -10139,7 +10139,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 41,
+      "line": 43,
       "declaration": "theorem digit_card (s : Fin 3 → Word) :"
     },
     {
@@ -10147,7 +10147,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 56,
+      "line": 58,
       "declaration": "theorem incomingKey_injective {s : Fin 3 → Word} {p : Packet}"
     },
     {
@@ -10155,7 +10155,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 85,
+      "line": 87,
       "declaration": "theorem finite_incoming (s : Fin 3 → Word) (p : Packet)"
     },
     {
@@ -10163,7 +10163,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 91,
+      "line": 93,
       "declaration": "theorem incoming_card_le (s : Fin 3 → Word) (p : Packet)"
     },
     {
@@ -10171,7 +10171,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 123,
+      "line": 125,
       "declaration": "theorem finite_history (s : Fin 3 → Word)"
     },
     {
@@ -10179,7 +10179,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 131,
+      "line": 133,
       "declaration": "theorem history_card_le (s : Fin 3 → Word)"
     },
     {
@@ -10187,7 +10187,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 163,
+      "line": 165,
       "declaration": "theorem historyAddress_length (s : Fin 3 → Word) (n : ℕ) (p : Packet)"
     },
     {
@@ -10195,7 +10195,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 171,
+      "line": 173,
       "declaration": "theorem historyAddress_injective (s : Fin 3 → Word) (n : ℕ) (p : Packet) :"
     },
     {
@@ -10203,7 +10203,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 212,
+      "line": 214,
       "declaration": "theorem history_integral_equation (s : Fin 3 → Word) (n : ℕ) (p : Packet)"
     },
     {
@@ -10211,7 +10211,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 234,
+      "line": 236,
       "declaration": "@[simp] theorem piece_empty_iff {s : Fin 3 → Word} (A : G →+ G)"
     },
     {
@@ -10219,7 +10219,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 250,
+      "line": 252,
       "declaration": "theorem historyMap_eq (s : Fin 3 → Word) (A : G →+ G)"
     },
     {
@@ -10227,7 +10227,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 272,
+      "line": 274,
       "declaration": "theorem historyPiece_eq_image (s : Fin 3 → Word) (A : G →+ G)"
     },
     {
@@ -10235,7 +10235,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 291,
+      "line": 296,
       "declaration": "theorem piece_subset_overlap {p u : Packet} (e : InverseOccurrence s p u) :"
     },
     {
@@ -10243,7 +10243,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 295,
+      "line": 300,
       "declaration": "theorem historyPiece_subset (n : ℕ) (p : Packet) (h : History s n p) :"
     },
     {
@@ -10251,7 +10251,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 306,
+      "line": 311,
       "declaration": "theorem overlap_mem_historyPiece (reflects : ReflectsIntegralRange s A star)"
     },
     {
@@ -10259,7 +10259,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 317,
+      "line": 322,
       "declaration": "theorem overlap_eq_iUnion_history (reflects : ReflectsIntegralRange s A star)"
     },
     {
@@ -10267,7 +10267,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 332,
+      "line": 337,
       "declaration": "theorem overlap_mem_historyWithin (reflects : ReflectsIntegralRange s A star)"
     },
     {
@@ -10275,7 +10275,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 348,
+      "line": 353,
       "declaration": "theorem overlap_eq_iUnion_restrictedHistory (reflects : ReflectsIntegralRange s A star)"
     },
     {
@@ -10283,7 +10283,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 375,
+      "line": 380,
       "declaration": "theorem mem_restrictedUnion {s : Fin 3 → Word} (A : G →+ G)"
     },
     {
@@ -10291,7 +10291,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 390,
+      "line": 397,
       "declaration": "theorem restrictedUnion_subset (S : Finset Packet) (p : Packet) :"
     },
     {
@@ -10299,7 +10299,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 398,
+      "line": 405,
       "declaration": "theorem overlap_eq_restricted_iff (reflects : ReflectsIntegralRange s A star)"
     },
     {
@@ -10307,7 +10307,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 421,
+      "line": 428,
       "declaration": "theorem overlap_eq_restricted_of_excluded_empty"
     },
     {
@@ -10315,7 +10315,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 432,
+      "line": 439,
       "declaration": "theorem overlap_eq_restricted_of_nonempty_represented"
     },
     {
@@ -10323,7 +10323,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 446,
+      "line": 453,
       "declaration": "theorem overlap_eq_restricted_of_inverse_closed"
     },
     {
@@ -10331,7 +10331,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 458,
+      "line": 465,
       "declaration": "theorem overlap_mono_enclosure (star : (Fin 3 → ℤ) →+ G)"
     },
     {
@@ -10339,7 +10339,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 464,
+      "line": 471,
       "declaration": "theorem overlap_empty_of_enclosure (star : (Fin 3 → ℤ) →+ G)"
     },
     {
@@ -10347,7 +10347,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 474,
+      "line": 482,
       "declaration": "theorem overlap_empty_of_separating_coordinate (star : (Fin 3 → ℤ) →+ G)"
     },
     {
@@ -10355,7 +10355,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 491,
+      "line": 499,
       "declaration": "theorem reflectsIntegralRange_of_residue {s : Fin 3 → Word}"
     },
     {
@@ -10363,7 +10363,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 508,
+      "line": 516,
       "declaration": "theorem isCompact_overlap (star : (Fin 3 → ℤ) →+ G)"
     },
     {
@@ -10371,7 +10371,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 515,
+      "line": 524,
       "declaration": "theorem continuous_historyMap (s : Fin 3 → Word) (A : G →+ G)"
     },
     {
@@ -10379,7 +10379,7 @@
       "module": "PscVerif.OccurrenceCover",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceCover.lean",
-      "line": 525,
+      "line": 534,
       "declaration": "theorem isCompact_historyPiece (s : Fin 3 → Word) (A : G →+ G)"
     },
     {
@@ -20569,7 +20569,7 @@
     "proof/PscVerif/PscVerif/LieWeights.lean": "f32639f83e519c69b8f428e153dd368c274e1f665a837183f88c5f1de0dd8adb",
     "proof/PscVerif/PscVerif/M0Pisot.lean": "65d17cf0aa71cdac825d16da73ad601dd49c214cd0b47ac58f124cb51a64a304",
     "proof/PscVerif/PscVerif/OccurrenceAddress.lean": "fd8d4020fc3f720c8a81d23c9811056802c901eec35a48efcbb40954c5a375ad",
-    "proof/PscVerif/PscVerif/OccurrenceCover.lean": "6d998b825859331c2990645ad5ee795c92d40bcb097636389b016893f3858d87",
+    "proof/PscVerif/PscVerif/OccurrenceCover.lean": "c66e2937532b2b289351b9ab10a18a1485b73434e362fd1e88edbfd3b6479cb6",
     "proof/PscVerif/PscVerif/OccurrenceFinite.lean": "65ef11444d2f03c9a49febf9a859eb8d48bd8dd0e1a37fd972c47935526b48a0",
     "proof/PscVerif/PscVerif/OccurrenceGraphBinding.lean": "31b2d7827438cd77c0e2f7fb72d4dc7791d016cd635952630220faf667e2084f",
     "proof/PscVerif/PscVerif/OccurrenceInverse.lean": "f31fded6a56a9e7c9b67050319d766e5967ed431716ebb89f192caead73d5605",
