@@ -14,6 +14,12 @@ import sys
 import tokenize
 
 ROOT = Path(__file__).resolve().parents[1]
+MOJO_REVISION = '8450a9dc56d67985cf4c2bc5f489763aa7a56e1e'
+PROVENANCE = 'evidence/class-c-below-three-2026-10-29/provenance.json'
+
+
+def git_source(path):
+    return subprocess.check_output(['git', 'show', f'{MOJO_REVISION}:{path}'], cwd=ROOT)
 
 
 def import_modules(source):
@@ -30,23 +36,30 @@ def import_modules(source):
 
 
 def check():
+    # Reconstruct the archived Mojo import closure in the tree that recorded
+    # its source pins. The current kernels are exercised by the native suite.
+    paths = set(subprocess.check_output(
+        ['git', 'ls-tree', '-r', '--name-only', MOJO_REVISION, '--', 'kernel'],
+        cwd=ROOT, text=True).splitlines())
     todo = ['kernel/class_c_below_three.mojo', 'kernel/tests/test_class_c_below_three.mojo']
     seen, external = {}, set()
     while todo:
         name = todo.pop()
         if name in seen:
             continue
-        source = (ROOT / name).read_bytes()
+        source = git_source(name)
         seen[name] = hashlib.sha256(source).hexdigest()
         for module in import_modules(source.decode()):
-            path = ROOT / 'kernel' / module.replace('.', '/')
-            candidates = [path.with_suffix('.mojo'), path / '__init__.mojo']
-            found = next((p for p in candidates if p.is_file()), None)
+            prefix = 'kernel/' + module.replace('.', '/')
+            candidates = [prefix + '.mojo', prefix + '/__init__.mojo']
+            found = next((p for p in candidates if p in paths), None)
             if found:
-                todo.append(str(found.relative_to(ROOT)))
+                todo.append(found)
             else:
                 external.add(module.split('.')[0])
-    pins = json.loads((ROOT / 'evidence/class-c-below-three-2026-10-29/provenance.json').read_text())['sources']
+    provenance = git_source(PROVENANCE)
+    assert (ROOT / PROVENANCE).read_bytes() == provenance, 'archived source pins changed'
+    pins = json.loads(provenance)['sources']
     assert external == {'std', 'max'}, external
     assert all(pins.get(p) == h for p,h in seen.items()), 'missing or stale local-import pin'
     # Python initializes its package before loading overlap_graph. The

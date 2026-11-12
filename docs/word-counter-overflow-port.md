@@ -5,8 +5,9 @@ The vendored `substitution_dynamics` package matches
 [finite-math-kernels #98](https://github.com/larsbx/finite-math-kernels/pull/98)
 at head `c4afbbd5e7a069fe578aea45700820c272594cc8`. That PR merged as
 `da0683512cf31ce19048c1f64efe3bed9574e234` into
-`verification/lean-foundations-2026-11-06`. The existing PSC copy of
-`finite_exact/checked_int.mojo` matches the one used by that revision.
+`verification/lean-foundations-2026-11-06`. All vendored packages use that merge revision to preserve PSC's shared upstream
+pin. The `finite_exact` snapshot also includes upstream's `word_range.mojo`
+and its documentation entry. The existing `checked_int.mojo` is byte-identical.
 
 For valid alphabet indices, checked square and cube dimensions bound the
 row-major indices. The streaming recurrence appends the current letter to

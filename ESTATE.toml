@@ -28,7 +28,7 @@ pin = "sha256:412a64dea58d709aae21e5a0315b8e7e96488c310a9d999267927ba3d8146a30"
 # larsbx/finite-math-kernels, hashed together; re-pin whenever a package is re-vendored.
 [[dep]]
 id = "finite-math-kernels"
-pin = "sha256:e4d1dc5fedcf9ef694982da5c999df7af3ed2666ad85d78a9a49a59feff0e7fa"
+pin = "sha256:c5c402519735282d79e064ce57582cde882ae7fd3c75978c56bec7be99a2ed75"
 
 [exports]
 names = []

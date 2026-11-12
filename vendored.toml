@@ -4,11 +4,11 @@
 [[package]]
 name = "finite_exact"
 repository = "larsbx/finite-math-kernels"
-commit = "9633daf211e486669803dee0ba1a2eb6e3fe2bb5"
+commit = "da0683512cf31ce19048c1f64efe3bed9574e234"
 root = "kernel"
 
 [package.files]
-"finite_exact/__init__.mojo" = "97e07962648a1ff270483ecbd59c8c65d4ed1049b5a11f79e48ce86e877511a5"
+"finite_exact/__init__.mojo" = "d12dda2f6ec4ce7e115774e0d5ab6df3e6aa08a8d4680688f2b9f35f9d930e8d"
 "finite_exact/bigint_z.mojo" = "d02a0c033042661161a24f0b31f1e89fbf3ed908ccc86e42b5b80b8df4240df1"
 "finite_exact/checked_int.mojo" = "22bb031f2b1e9c19486d1ae9829e7924f9c57f90364dc3235a39184a6ef9a882"
 "finite_exact/closed_interval.mojo" = "f7eef73466857a2079841de96c1bf02353a507311145cd1fed37d3f89a722816"
@@ -20,11 +20,12 @@ root = "kernel"
 "finite_exact/integer_gcd.mojo" = "8585681c664bfadce075f90eeeb2ebf71a0c21647dd077dd78d84e2733244160"
 "finite_exact/rat_q.mojo" = "d7f8cc3a3879d76bfc242304a13d4f2c9d4cf2cdeeba586fa4af95980a4b9fa6"
 "finite_exact/rational.mojo" = "6d84b8f4c3b1699648eee2512f49c7736dd5d4c8f7236809585b09cf1b5631c0"
+"finite_exact/word_range.mojo" = "cf65ba95cae8350340278c2eb242b2f018371d3d962d18a20e43520e7f2a49e7"
 
 [[package]]
 name = "substitution_dynamics"
 repository = "larsbx/finite-math-kernels"
-commit = "c4afbbd5e7a069fe578aea45700820c272594cc8"
+commit = "da0683512cf31ce19048c1f64efe3bed9574e234"
 root = "kernel"
 
 [package.files]
@@ -49,7 +50,7 @@ root = "kernel"
 [[package]]
 name = "finite_linear_algebra"
 repository = "larsbx/finite-math-kernels"
-commit = "9633daf211e486669803dee0ba1a2eb6e3fe2bb5"
+commit = "da0683512cf31ce19048c1f64efe3bed9574e234"
 root = "kernel"
 
 [package.files]
@@ -77,7 +78,7 @@ root = "kernel"
 [[package]]
 name = "claim_governance"
 repository = "larsbx/finite-math-kernels"
-commit = "9633daf211e486669803dee0ba1a2eb6e3fe2bb5"
+commit = "da0683512cf31ce19048c1f64efe3bed9574e234"
 root = "tools"
 
 [package.files]
@@ -99,7 +100,7 @@ root = "tools"
 [[package]]
 name = "proof_records"
 repository = "larsbx/finite-math-kernels"
-commit = "9633daf211e486669803dee0ba1a2eb6e3fe2bb5"
+commit = "da0683512cf31ce19048c1f64efe3bed9574e234"
 root = "tools"
 
 [package.files]
@@ -114,7 +115,7 @@ root = "tools"
 [[package]]
 name = "oracle_refinement"
 repository = "larsbx/finite-math-kernels"
-commit = "9633daf211e486669803dee0ba1a2eb6e3fe2bb5"
+commit = "da0683512cf31ce19048c1f64efe3bed9574e234"
 root = "tools"
 
 [package.files]
@@ -123,7 +124,7 @@ root = "tools"
 [[package]]
 name = "parallel_fold"
 repository = "larsbx/finite-math-kernels"
-commit = "9633daf211e486669803dee0ba1a2eb6e3fe2bb5"
+commit = "da0683512cf31ce19048c1f64efe3bed9574e234"
 root = "kernel"
 
 [package.files]
@@ -133,7 +134,7 @@ root = "kernel"
 [[package]]
 name = "proof_architecture"
 repository = "larsbx/finite-math-kernels"
-commit = "9633daf211e486669803dee0ba1a2eb6e3fe2bb5"
+commit = "da0683512cf31ce19048c1f64efe3bed9574e234"
 root = "proof/tla"
 
 [package.files]
@@ -142,7 +143,7 @@ root = "proof/tla"
 [[package]]
 name = "finite_graph"
 repository = "larsbx/finite-math-kernels"
-commit = "9633daf211e486669803dee0ba1a2eb6e3fe2bb5"
+commit = "da0683512cf31ce19048c1f64efe3bed9574e234"
 root = "kernel"
 
 [package.files]
@@ -154,7 +155,7 @@ root = "kernel"
 [[package]]
 name = "finite_automata"
 repository = "larsbx/finite-math-kernels"
-commit = "9633daf211e486669803dee0ba1a2eb6e3fe2bb5"
+commit = "da0683512cf31ce19048c1f64efe3bed9574e234"
 root = "kernel"
 
 [package.files]
@@ -166,7 +167,7 @@ root = "kernel"
 [[package]]
 name = "mojo_smoke"
 repository = "larsbx/finite-math-kernels"
-commit = "9633daf211e486669803dee0ba1a2eb6e3fe2bb5"
+commit = "da0683512cf31ce19048c1f64efe3bed9574e234"
 root = "kernel"
 
 [package.files]
@@ -177,7 +178,7 @@ root = "kernel"
 [[package]]
 name = "vendoring"
 repository = "larsbx/finite-math-kernels"
-commit = "9633daf211e486669803dee0ba1a2eb6e3fe2bb5"
+commit = "da0683512cf31ce19048c1f64efe3bed9574e234"
 root = "tools"
 
 [package.files]
@@ -187,7 +188,7 @@ root = "tools"
 [[package]]
 name = "polyglot_envelope"
 repository = "larsbx/finite-math-kernels"
-commit = "9633daf211e486669803dee0ba1a2eb6e3fe2bb5"
+commit = "da0683512cf31ce19048c1f64efe3bed9574e234"
 root = "tools"
 
 [package.files]
