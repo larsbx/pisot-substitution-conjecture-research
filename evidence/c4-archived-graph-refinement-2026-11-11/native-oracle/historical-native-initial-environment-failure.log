@@ -1,0 +1,223 @@
+Failed to initialize Crashpad.  Crash reporting will not be available.  Cause: while locating crashpad handler: unable to locate crashpad handler executable
+/workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:1:1: error: unable to locate module 'std'
+"""Finite graph arithmetic controls. Measure theorem remains a written proof."""
+^
+/workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:1:1: error: 'std' is required for all normal mojo compiles.
+If you see this either:
+- Your mojo installation is broken and needs to be reinstalled or
+- You are a 'std' developer and are intentionally avoiding a pre-built 'std'
+"""Finite graph arithmetic controls. Measure theorem remains a written proof."""
+^
+/workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:2:6: error: unable to locate module 'std'
+from std.testing import assert_equal, assert_true
+     ^
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:3:
+./mojo_smoke/__init__.mojo:10:1: error: unable to locate module 'std'
+
+^
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:3:
+./mojo_smoke/claims.mojo:1:1: error: unable to locate module 'std'
+"""What a regression test stands for, declared by the test itself.
+^
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:3:
+./mojo_smoke/claims.mojo:36:32: error: use of unknown declaration 'String'
+def require_contract(contract: String) raises:
+                               ^~~~~~
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:3:
+./mojo_smoke/claims.mojo:36:22: error: unable to locate module 'std'
+def require_contract(contract: String) raises:
+                     ^
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:3:
+./mojo_smoke/claims.mojo:36:46: error: unable to locate module 'std'
+def require_contract(contract: String) raises:
+                                             ^
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:1:1: error: unable to locate module 'std'
+"""Complete compact M-adic pair graphs for #495 and all 18 source orders.
+^
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:148:31: error: use of unknown declaration 'Int'
+def build_pair_graph(fixture: Int, state_cap: Int = STATE_LIMIT) raises -> PairGraph:
+                              ^~~
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:148:22: error: unable to locate module 'std'
+def build_pair_graph(fixture: Int, state_cap: Int = STATE_LIMIT) raises -> PairGraph:
+                     ^
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:148:47: error: use of unknown declaration 'Int'
+def build_pair_graph(fixture: Int, state_cap: Int = STATE_LIMIT) raises -> PairGraph:
+                                              ^~~
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:19:24: error: unable to locate module 'std'
+comptime STATE_LIMIT = 16000
+                       ^
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:148:36: error: unable to locate module 'std'
+def build_pair_graph(fixture: Int, state_cap: Int = STATE_LIMIT) raises -> PairGraph:
+                                   ^
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:24:18: error: use of unknown declaration 'Copyable'
+struct PairGraph(Copyable, Movable):
+                 ^~~~~~~~
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:148:76: error: unable to locate module 'std'
+def build_pair_graph(fixture: Int, state_cap: Int = STATE_LIMIT) raises -> PairGraph:
+                                                                           ^
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:261:28: error: unable to locate module 'std'
+def construct_pair_weights(graph: PairGraph, iteration_cap: Int = 4000) raises -> Tuple[List[Int],Int]:
+                           ^
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:261:61: error: use of unknown declaration 'Int'
+def construct_pair_weights(graph: PairGraph, iteration_cap: Int = 4000) raises -> Tuple[List[Int],Int]:
+                                                            ^~~
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:261:67: error: unable to locate module 'std'
+def construct_pair_weights(graph: PairGraph, iteration_cap: Int = 4000) raises -> Tuple[List[Int],Int]:
+                                                                  ^
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:261:46: error: unable to locate module 'std'
+def construct_pair_weights(graph: PairGraph, iteration_cap: Int = 4000) raises -> Tuple[List[Int],Int]:
+                                             ^
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:261:83: error: use of unknown declaration 'Tuple'
+def construct_pair_weights(graph: PairGraph, iteration_cap: Int = 4000) raises -> Tuple[List[Int],Int]:
+                                                                                  ^~~~~
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:261:83: error: unable to locate module 'std'
+def construct_pair_weights(graph: PairGraph, iteration_cap: Int = 4000) raises -> Tuple[List[Int],Int]:
+                                                                                  ^
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:228:25: error: unable to locate module 'std'
+def verify_pair_weights(graph: PairGraph, weights: List[Int]) raises -> Int:
+                        ^
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:228:52: error: use of unknown declaration 'List'
+def verify_pair_weights(graph: PairGraph, weights: List[Int]) raises -> Int:
+                                                   ^~~~
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:228:43: error: unable to locate module 'std'
+def verify_pair_weights(graph: PairGraph, weights: List[Int]) raises -> Int:
+                                          ^
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:228:73: error: use of unknown declaration 'Int'
+def verify_pair_weights(graph: PairGraph, weights: List[Int]) raises -> Int:
+                                                                        ^~~
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:228:73: error: unable to locate module 'std'
+def verify_pair_weights(graph: PairGraph, weights: List[Int]) raises -> Int:
+                                                                        ^
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:114:25: error: use of unknown declaration 'Int'
+def outside_pair_box(x: Int, y: Int, z: Int) -> Bool:
+                        ^~~
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:114:22: error: unable to locate module 'std'
+def outside_pair_box(x: Int, y: Int, z: Int) -> Bool:
+                     ^
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:114:33: error: use of unknown declaration 'Int'
+def outside_pair_box(x: Int, y: Int, z: Int) -> Bool:
+                                ^~~
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:114:30: error: unable to locate module 'std'
+def outside_pair_box(x: Int, y: Int, z: Int) -> Bool:
+                             ^
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:114:41: error: use of unknown declaration 'Int'
+def outside_pair_box(x: Int, y: Int, z: Int) -> Bool:
+                                        ^~~
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:114:38: error: unable to locate module 'std'
+def outside_pair_box(x: Int, y: Int, z: Int) -> Bool:
+                                     ^
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:114:49: error: use of unknown declaration 'Bool'
+def outside_pair_box(x: Int, y: Int, z: Int) -> Bool:
+                                                ^~~~
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:114:49: error: unable to locate module 'std'
+def outside_pair_box(x: Int, y: Int, z: Int) -> Bool:
+                                                ^
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:107:23: error: use of unknown declaration 'Int'
+def canonical_pair(c: Int, d: Int, x: Int, y: Int, z: Int) -> List[Int]:
+                      ^~~
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:107:20: error: unable to locate module 'std'
+def canonical_pair(c: Int, d: Int, x: Int, y: Int, z: Int) -> List[Int]:
+                   ^
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:107:31: error: use of unknown declaration 'Int'
+def canonical_pair(c: Int, d: Int, x: Int, y: Int, z: Int) -> List[Int]:
+                              ^~~
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:107:28: error: unable to locate module 'std'
+def canonical_pair(c: Int, d: Int, x: Int, y: Int, z: Int) -> List[Int]:
+                           ^
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:107:39: error: use of unknown declaration 'Int'
+def canonical_pair(c: Int, d: Int, x: Int, y: Int, z: Int) -> List[Int]:
+                                      ^~~
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:107:36: error: unable to locate module 'std'
+def canonical_pair(c: Int, d: Int, x: Int, y: Int, z: Int) -> List[Int]:
+                                   ^
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:107:47: error: use of unknown declaration 'Int'
+def canonical_pair(c: Int, d: Int, x: Int, y: Int, z: Int) -> List[Int]:
+                                              ^~~
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:107:44: error: unable to locate module 'std'
+def canonical_pair(c: Int, d: Int, x: Int, y: Int, z: Int) -> List[Int]:
+                                           ^
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:107:55: error: use of unknown declaration 'Int'
+def canonical_pair(c: Int, d: Int, x: Int, y: Int, z: Int) -> List[Int]:
+                                                      ^~~
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:107:52: error: unable to locate module 'std'
+def canonical_pair(c: Int, d: Int, x: Int, y: Int, z: Int) -> List[Int]:
+                                                   ^
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:107:63: error: use of unknown declaration 'List'
+def canonical_pair(c: Int, d: Int, x: Int, y: Int, z: Int) -> List[Int]:
+                                                              ^~~~
+Imported from /workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:5:
+./psc/c4_pair_overlap_graph.mojo:107:63: error: unable to locate module 'std'
+def canonical_pair(c: Int, d: Int, x: Int, y: Int, z: Int) -> List[Int]:
+                                                              ^
+/workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:10:18: error: unable to locate module 'std'
+def main() raises:
+                 ^
+/workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:10:5: error: unable to locate module 'std'
+def main() raises:
+    ^
+/workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:10:9: error: 'builtin' does not refer to a nested package
+def main() raises:
+        ^
+/workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:11:16: error: use of unknown declaration 'List'
+    var sizes: List[Int] = [7150,7083]
+               ^~~~
+/workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:12:16: error: use of unknown declaration 'List'
+    var edges: List[Int] = [34826,34853]
+               ^~~~
+/workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:13:21: error: use of unknown declaration 'List'
+    var iterations: List[Int] = [856,1695]
+                    ^~~~
+/workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:14:16: error: use of unknown declaration 'List'
+    var roots: List[List[Int]] = [[38500,1,1],[82573,12935,44045]]
+               ^~~~
+/workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:15:20: error: use of unknown declaration 'range'
+    for fixture in range(2):
+                   ^~~~~
+/workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:43:19: error: unable to locate module 'std'
+    var refused = False
+                  ^
+/workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:44:5: error: unable to locate module 'std'
+    try:
+    ^
+/workspace/scratch/84c835820757/psc/kernel/tests/test_c4_pair_overlap_graph.mojo:52:5: error: use of unknown declaration 'print'
+    print("two complete overlap graphs and exact positive subinvariance passed")
+    ^~~~~
+/workspace/scratch/3dd470a03f25/toolchain/mojo-prefix/bin/mojo: error: failed to parse the provided Mojo source module

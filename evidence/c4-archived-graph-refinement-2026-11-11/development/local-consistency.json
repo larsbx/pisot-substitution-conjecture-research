@@ -1,0 +1,92 @@
+{
+  "governance_regressions": {
+    "command": "python -m pytest -q tests/test_proof_bank.py tests/test_source_pins.py tests/test_claim_governance.py tests/test_overlap_lean_packet_replay.py",
+    "command_status": "exact invocation and exit0 confirmed by root; log preserved verbatim",
+    "exit_code": 0,
+    "exit_code_provenance": "confirmed by root agent from the command result",
+    "log": "governance-regressions.log",
+    "log_sha256": "dade3222d09e00c1ba3f2f678a4a60f4493fa978f126d376a87022d57507ff8f",
+    "suite_count": 4,
+    "suites": [
+      "tests/test_proof_bank.py",
+      "tests/test_source_pins.py",
+      "tests/test_claim_governance.py",
+      "tests/test_overlap_lean_packet_replay.py"
+    ]
+  },
+  "historical_source_pin_check": {
+    "command": "python tools/source_pins.py",
+    "exit_code": 0,
+    "exit_code_provenance": "confirmed by root agent from the command result",
+    "individual_source_pins": 528,
+    "receipt": "historical-source-pins.json",
+    "receipt_sha256": "ea22fa14b288da30167257108f510c8b9aa74f36b13f5f452072d173f94cadaf",
+    "registered_drift_entries": 132,
+    "registered_manifests": 20,
+    "scope_note": "successful generation of the registered historical source-pin report; this receipt does not assert all current source pins match, zero drift, or report equality to baseline"
+  },
+  "native_oracle_source_hash_match": {
+    "all_match": true,
+    "checks": {
+      "evidence/c4-pair-overlap-graph-2026-11-05/receipt.json": {
+        "expected_sha256": "6c33772304f677a1d90e1674e6064dfb6b055fcdd370557350426162f6785dda",
+        "matches": true,
+        "observed_sha256": "6c33772304f677a1d90e1674e6064dfb6b055fcdd370557350426162f6785dda"
+      },
+      "kernel/c4_archived_graph_refinement.mojo": {
+        "expected_sha256": "cea15cbab4da15697f0c42cf2e388e7fd26b55bfdb5a0726759d2c0e5eaa8784",
+        "matches": true,
+        "observed_sha256": "cea15cbab4da15697f0c42cf2e388e7fd26b55bfdb5a0726759d2c0e5eaa8784"
+      },
+      "kernel/psc/c4_archived_graph_refinement.mojo": {
+        "expected_sha256": "183d620d3b0fe535ff8c67d54d7a63ba47637a37d5348d6a9ca6485f1a1b5086",
+        "matches": true,
+        "observed_sha256": "183d620d3b0fe535ff8c67d54d7a63ba47637a37d5348d6a9ca6485f1a1b5086"
+      },
+      "kernel/psc/c4_finite_cylinder_overlap.mojo": {
+        "expected_sha256": "0e79ddb1d9733ad2172b87820a1801621a73a3cec4db7d0aab111fe645547111",
+        "matches": true,
+        "observed_sha256": "0e79ddb1d9733ad2172b87820a1801621a73a3cec4db7d0aab111fe645547111"
+      },
+      "kernel/psc/c4_literal_inverse_binding.mojo": {
+        "expected_sha256": "90a8e73235947cd64e0e4d22e53cdbfe26f88aae5285d8075ed74a813fae336c",
+        "matches": true,
+        "observed_sha256": "90a8e73235947cd64e0e4d22e53cdbfe26f88aae5285d8075ed74a813fae336c"
+      },
+      "kernel/psc/c4_nonunit_residue_occupancy.mojo": {
+        "expected_sha256": "377d38872de1655569fda73d7817cc1586ad9a421c3198e85de1918d492ed05c",
+        "matches": true,
+        "observed_sha256": "377d38872de1655569fda73d7817cc1586ad9a421c3198e85de1918d492ed05c"
+      },
+      "kernel/psc/c4_pair_overlap_graph.mojo": {
+        "expected_sha256": "58db23df354aa0cbe3d23533aa0b226367854ec5c468ec3c6e2cc23598149feb",
+        "matches": true,
+        "observed_sha256": "58db23df354aa0cbe3d23533aa0b226367854ec5c468ec3c6e2cc23598149feb"
+      },
+      "kernel/tests/test_c4_archived_graph_refinement.mojo": {
+        "expected_sha256": "ad81f5193d7e1ca4726d0a2160e21588a29481c59d294ac0db1ed07fadcd06a1",
+        "matches": true,
+        "observed_sha256": "ad81f5193d7e1ca4726d0a2160e21588a29481c59d294ac0db1ed07fadcd06a1"
+      },
+      "oracles/python/c4_archived_graph_refinement.py": {
+        "expected_sha256": "221b14e443af240171d4c57ed0e836e7e234ab82dd17550d3dcf5981e1958e00",
+        "matches": true,
+        "observed_sha256": "221b14e443af240171d4c57ed0e836e7e234ab82dd17550d3dcf5981e1958e00"
+      },
+      "oracles/python/c4_pair_overlap_graph.py": {
+        "expected_sha256": "118297f5549b603a48100828f24e24b51e7d561a93df3283b010a213b338ee2f",
+        "matches": true,
+        "observed_sha256": "118297f5549b603a48100828f24e24b51e7d561a93df3283b010a213b338ee2f"
+      },
+      "tests/test_c4_archived_graph_refinement_oracle.py": {
+        "expected_sha256": "1631098cb0242a4c8b5abc388f31b41064380a732bda23930d6dca474577877e",
+        "matches": true,
+        "observed_sha256": "1631098cb0242a4c8b5abc388f31b41064380a732bda23930d6dca474577877e"
+      }
+    },
+    "files": 11
+  },
+  "recorded_at_utc": "2026-11-12T01:48:09.240048+00:00",
+  "schema": "c4-local-consistency-evidence-v1",
+  "scope": "local consistency evidence; no hosted acceptance or concrete Lean table instantiation claimed"
+}
