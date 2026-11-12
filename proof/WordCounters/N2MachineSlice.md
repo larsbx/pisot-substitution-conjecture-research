@@ -7,21 +7,23 @@ This receipt concerns the x86-64 executable built from PSC revision
 Two builds in the same checkout and toolchain directory had that digest.
 The executable embeds absolute source and toolchain paths.
 
-At entry `0xaa96`, `r12` holds the old count and `rbp` the increment.
-The sign tests select the corresponding signed bounds. Either overflow
-test leads to `0xaac8`. The other path reaches the register ADD at
-`0xab17`. The executable LOAD segment has equal file and virtual offsets
-for both slices. A restricted x86-64 decoder recognizes the instruction encodings in both
-slices. Lean evaluates the decoder at each of the 20 instruction addresses
-and symbolically executes the decoded sequence with projected registers and
-flags. The two stack reload values are arbitrary in the theorem. The model
-assumes those reads succeed.
+At entry `0xaa8a`, the two indexed loads read the increment and old count
+from little-endian memory. The sign tests select the corresponding signed
+bounds. Overflow takes the branch to `0xaac8`. The successful path adds the
+operands and stores at `0xab39`. The model stops at the rejection branch
+or immediately after the store.
 
-`N2MachineSlice.checked_binary_count` proves that the decoded execution rejects
-exactly the overflowing sums of two nonnegative signed 64-bit operands,
-and that the accepted register value equals the integer sum. This
-discharges the arithmetic behavior of the modeled slice for every such
-register pair.
+A restricted x86-64 decoder recognizes the 29 recorded instruction
+encodings. Lean symbolically executes their projected registers, flags,
+and byte memory. The memory model assumes valid reads and writes. Its
+stack-base premise requires that the reload at `rsp + 0xb0` restore the
+initial output base in `r13`. The other stack reload is unrestricted.
+
+`N2MachineSlice.checked_binary_update` proves that for nonnegative
+loaded operands, overflow reaches rejection with identical memory.
+Otherwise, the decoded store writes the exact sum at the same indexed
+address from which the old count was loaded. `writeWord_outside` gives
+the byte-level frame for the other addresses.
 
 ## Replay
 
@@ -31,8 +33,8 @@ Using the recorded Mojo toolchain and Lean pinned by PSC:
 (cd kernel && mojo build -I . tests/test_word_counter_overflow.mojo -o /tmp/psc-word-counters)
 sha256sum /tmp/psc-word-counters
 readelf -lW /tmp/psc-word-counters
-objdump -d --start-address=0xaa96 --stop-address=0xaac8 /tmp/psc-word-counters
-objdump -d --start-address=0xab01 --stop-address=0xab1a /tmp/psc-word-counters
+objdump -d --start-address=0xaa8a --stop-address=0xaac8 /tmp/psc-word-counters
+objdump -d --start-address=0xab01 --stop-address=0xab3e /tmp/psc-word-counters
 lean --run proof/WordCounters/N2MachineSlice.lean /tmp/psc-word-counters
 ```
 
@@ -43,8 +45,7 @@ arithmetic theorem's axiom report lists only `propext`,
 `Classical.choice`, and `Quot.sound`.
 
 The remaining binary obligations are to relate the projected instruction
-semantics to an independent x86-64 semantics, establish the entry invariant
-from the array loads, connect the ADD to the store and the rejection branch
-to the returned error, and prove the loop and runtime behavior for N2, N3,
-and N4. This receipt supplies no full-function or compiler-wide
-refinement claim.
+semantics to an independent x86-64 semantics, derive the address, memory
+validity, stack-base, and nonnegativity premises from the compiled loop
+invariant, and connect the rejection branch to the returned error.
+The N2, N3, and N4 loops and runtime still require their own proofs.
