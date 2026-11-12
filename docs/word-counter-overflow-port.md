@@ -76,3 +76,19 @@ snapshot restores the single vendor revision. The historical Class-C Mojo
 audit reads Git blobs at its original recording revision. The Class-D
 [rebind packet](../evidence/class-d-word-counter-rebind-2026-11-12/README.md)
 validates the fresh complete replay for the three changed archived source paths.
+
+At `9419b59b7560eda99f067deaec8a433ff4ccf1bb` the local Python suite passed
+2,112 tests and 28 subtests, with 12 skips. The three affected native
+catalogues matched the baseline byte for byte:
+
+| Report | SHA-256 |
+| --- | --- |
+| First defect degree | `0a7da71455fae0e861a05681f90a81a9a08711cda59aab0c7248e301faaf5a7e` |
+| Degree-three taxonomy | `d45788245bc114f38f679d41815ae684a8e173070bdebcfdb65d22c2150351ce` |
+| Wedge productivity | `8b12a09d8961813b5b9014bb5f8b2f08c59fdf6c366b08f3ad53efa6238cb0bb` |
+
+The Class-C integration workflow also verifies the preserved historical
+audit at its recording revision `3632f28242aa484485ecee752c5e28f9b713cf81`.
+The resulting provenance report remains byte-identical to the archive. The
+current-source native and independent-oracle steps still compare their
+outputs to the original certificate packet.
