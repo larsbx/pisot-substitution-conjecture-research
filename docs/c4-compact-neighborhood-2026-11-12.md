@@ -12,12 +12,40 @@ the count and measure arguments remain separate.
 
 ## Verification status
 
-The implementation and its independent controls are undergoing the pinned
-Lean build. Completed acceptance, exact source identities, full audit logs,
-and preserved development attempts will be recorded with the evidence
-archive. No current compilation or hosted success is asserted by this
-pre-verification status paragraph. Independent human review is pending.
-No governed claim status changes.
+The unchanged isolated `./tools/check_lean.sh` passed with exit code zero
+at code commit `6915e8d592b7ea5cb7c6950249811e354dc6c3e7`, tree
+`c79e97bdae1224068895afa9dcf6cca6d7fe9fbb`, on 2026-11-12 at
+19:37:14 UTC. HEAD, tree and recorded source bytes were unchanged throughout
+the run. The [evidence archive](../evidence/c4-compact-neighborhood-2026-11-12/README.md)
+contains the terminal receipt, complete compressed raw log, exact source
+inventory, declaration inspection and replay instructions.
+
+| Completed check | Result |
+| --- | --- |
+| Full pinned Lean build | 9,023 jobs completed successfully |
+| Compiled audit | 6,628 declarations, including 4,850 theorem constants |
+| Exact new source inventory | All 23 explicit theorems and eight definitions matched once with their expected owners and kinds |
+| New-module compiled inventory | 39 constants, including 31 theorem constants with compiler-generated auxiliaries |
+| Axiom dependencies | Only `propext`, `Classical.choice` and `Quot.sound` |
+| Proof bank | 126 governed claims, 2,693 named Lean proofs reached, 411 source openings |
+
+Acceptance comes from the third fresh invocation. The first attempt lost
+its session without a terminal result; the second exited one after cache
+extraction exhausted disk space. Their original records remain archived
+and receive no acceptance credit. A retained-workspace import also remains
+diagnostic only. The successful run took 3,065.692 seconds.
+
+Later archive, report and publication commits do not change the tested
+proof sources. Publication provenance maps original commits to exact-tree
+GitHub mirrors and preserves original commit objects in a restorable bundle;
+the local gate is credited to its actual original code revision. Hosted
+checks require their own observation at the published head. Independent
+human review remains pending. No governed claim status changes.
+
+Archive integration also adds the required `SHA256SUMS` metadata to the two
+preceding cut-prefix evidence packets. All 78 existing files and their
+historical manifests remain byte-for-byte unchanged. The new packet and
+publication packet use the same exact-file-set checksum convention.
 
 ## Mathematical result and quantifiers
 
@@ -155,8 +183,8 @@ They use only the intersections indexed by actual `CutPair C` labels.
 The all-distinct-label versions remain available as
 `eventually_strict_carrier_cuts_mem` and
 `finite_open_cover_captures_strict_cuts`.
-The fixed-source version requires distinct actual following letters
-explicitly. The conditional empty-overlap result only says that an empty
+The fixed-source all-distinct-pair corollary requires distinct actual
+following letters explicitly. The conditional empty-overlap result only says that an empty
 `I` would eventually exclude these distinct-letter cuts; it does not prove
 that `I` is empty for either fixture.
 
@@ -202,8 +230,9 @@ The existing overlap Lean workflow includes the new modules through the
 root import and records the actual candidate head.
 
 The next analytic obligations are the fixed-origin regular-cylinder
-lattice count, the correct product normalization and covolume, an original
-strict-cut density lower bound, and the outer-cover measure argument.
+lattice count, the lattice covolume matched to the existing product-Haar
+normalization, an original strict-cut density lower bound, and the
+outer-cover measure argument.
 Arbitrary measurable or half-open cylinder covers need a proved open
 neighborhood inclusion before this transfer can consume them.
 
