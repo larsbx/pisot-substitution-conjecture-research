@@ -1,0 +1,47 @@
+[
+  {
+    "module": "PscVerif.NamedArchivedDigits",
+    "source_closure_sha256": "0b83ed08ae223cbf431e581f5fa4ce18294beaf03c97195ca0fc483c7cc475a3",
+    "returncode": 0,
+    "seconds": 5.271,
+    "scope": "development compilation only; source-pinned upstream dependency cache",
+    "log": "development/NamedArchivedDigits.log",
+    "source_sha256": "12059a52f4598c316a42f64cadf269cdd716853a785bc1189023207689124775"
+  },
+  {
+    "module": "PscVerif.ArchivedPayload",
+    "source_closure_sha256": "60f021cff3b7cf737cad5536ce8ed3e87290998cf5d602934c85df7e3c1d5852",
+    "returncode": 0,
+    "seconds": 4.014,
+    "scope": "development compilation only; source-pinned upstream dependency cache",
+    "log": "development/ArchivedPayload.log",
+    "source_sha256": "38d3b2270c15baae23f36be3a7c369dcaab4255b26d5db6a00ed32ef084afe8d"
+  },
+  {
+    "module": "PscVerif.ArchivedPayloadControls",
+    "source_closure_sha256": "2578fc5bb8233e59fe7e28be3ef36788857459370c8fa6c82184c2cf286d93dd",
+    "returncode": 0,
+    "seconds": 3.828,
+    "scope": "development compilation only; source-pinned upstream dependency cache",
+    "log": "development/ArchivedPayloadControls.log",
+    "source_sha256": "c1687369bb8feec4b5c784c3ac6f4cc6dccb9ece05af539a13f11d1cffb83371"
+  },
+  {
+    "module": "PscVerif.ArchivedPayloadConsumer",
+    "source_closure_sha256": "88d34e4d4ba6d4edbe33269fc12f615ee1020c07eae0e049f6816d2f1d07db15",
+    "returncode": 0,
+    "seconds": 3.73,
+    "scope": "development compilation only; source-pinned upstream dependency cache",
+    "log": "development/ArchivedPayloadConsumer.log",
+    "source_sha256": "39768a54a2c022ef460e08dbd1879177fdf598bb8645702233264738ddf43e49"
+  },
+  {
+    "module": "PscVerif.ArchivedPayloadEmit",
+    "source_closure_sha256": "756a8d3e5d08c88210fec70a7bb66ee354a18e19d651505c646bee0bb4b20a72",
+    "returncode": 0,
+    "seconds": 3.382,
+    "scope": "development compilation only; source-pinned upstream dependency cache",
+    "log": "development/ArchivedPayloadEmit.log",
+    "source_sha256": "3d56413774e33215a1fb507ca418f08b4d048b3986c2c309a9cc9d626a15a6e3"
+  }
+]

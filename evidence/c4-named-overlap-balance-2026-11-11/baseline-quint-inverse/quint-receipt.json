@@ -1,0 +1,112 @@
+{
+  "backend": "typescript",
+  "constant_length_two_binary_substitutions": 16,
+  "executed_tests": [
+    "domainCountTest",
+    "literalInverseIdentityTest",
+    "incomingMarkGuardsTest",
+    "swappedLiteralDigitsTest",
+    "interiorPullbackTest",
+    "diagonalInteriorDescendantsTest",
+    "boundaryDiagonalCountercontrolTest",
+    "wrongScalingPullbackCountercontrolTest",
+    "swapFixedIffDiagonalTest",
+    "scalarZeroIsNotFixedTest",
+    "finiteTwoStepAncestryTest",
+    "actualFreeDomainSwapCountsTest",
+    "allSwapClosedSubdomainsTest",
+    "missingSwapEdgeCountercontrolTest",
+    "actualMixedOrbitWeightsTest",
+    "repeatedOccurrenceIdentityTest",
+    "nonSwapClosedDomainCountercontrolTest",
+    "inverseClosedForwardLeakTest"
+  ],
+  "git_head": "765bb39c83035b5ccacbc8115ecc26acc4111865",
+  "git_tree": "0040694a6c7f5e1df6dc9a9ad59581314226f138",
+  "leaking_inverse_candidate_occurrences": 9000,
+  "mixed_actual_occurrence_edges": 6,
+  "mixed_actual_ordered_states": 3,
+  "model_sha256": "d2daf56bb3e52b5424c6895afb17186a440fbbc0438b3d1df4c6ea37761809d1",
+  "note": "Every finite forall is exhausted; no compact inverse domain, Pisot census, geometric loss or C4 conclusion.",
+  "ordered_one_step_occurrences": 6400,
+  "ordered_two_step_histories": 25600,
+  "quint_version": "0.33.1",
+  "rejected_mutations": [
+    {
+      "name": "inverse-prefix-sign-reversed",
+      "sha256": "e07a6ccf24fcab770506ee83ef0c98bdae0107c04be9b4a08fedc631250a6a72",
+      "test": "literalInverseIdentityTest"
+    },
+    {
+      "name": "incoming-selected-letter-ignored",
+      "sha256": "e5ef7082b029a0c2fb1f64fbb02478d5e4870816dbdd9bb2f03f348258ccd130",
+      "test": "incomingMarkGuardsTest"
+    },
+    {
+      "name": "swap-digit-indices-not-swapped",
+      "sha256": "d11614bc2088137432625173c41a3b44d960459f97cc9165c44631298e932f16",
+      "test": "swappedLiteralDigitsTest"
+    },
+    {
+      "name": "forward-incidence-omitted",
+      "sha256": "4d36c91a21042e40fd043eed4d61ff2090ff7c8557777edfcb576330347c2364",
+      "test": "literalInverseIdentityTest"
+    },
+    {
+      "name": "diagonal-residual-ignored",
+      "sha256": "010159d8901a1f97fdde31c6cfa058063ce9d33022d4143fb9a862314ead2814",
+      "test": "scalarZeroIsNotFixedTest"
+    },
+    {
+      "name": "boundary-contact-counted-positive",
+      "sha256": "3355063827e88e63f74cdd2e4e161d788cb2da0e25b8e2527bc7dccb2a5596ad",
+      "test": "boundaryDiagonalCountercontrolTest"
+    },
+    {
+      "name": "exact-scaling-ignored",
+      "sha256": "5761b99740a8db3b1a350860eeb686e62baa2413865f5377038056a9ca141fc9",
+      "test": "wrongScalingPullbackCountercontrolTest"
+    },
+    {
+      "name": "edge-swap-closure-ignored",
+      "sha256": "b38c3dd1f3df43fcde5c27ac3fe02e94f1c2f9d46ef2d2d2e9fac09875fde6fc",
+      "test": "missingSwapEdgeCountercontrolTest"
+    },
+    {
+      "name": "outgoing-occurrences-deduplicated",
+      "sha256": "8bdfb16cf0304758c2eb6bf1c18265ca0b35ec18e443e27c5e58c29753c5724d",
+      "test": "repeatedOccurrenceIdentityTest"
+    },
+    {
+      "name": "incoming-count-direction-reversed",
+      "sha256": "1d872f2b4a867ef6062e676eade8c0969dbfe78dadcd52b2440b1464e1c523b5",
+      "test": "actualMixedOrbitWeightsTest"
+    },
+    {
+      "name": "all-orbit-weights-forced-two",
+      "sha256": "edef6eabe75a27eb1e11abc91943d41bcc94d78a4b031b6f7210ece1a09dc223",
+      "test": "actualMixedOrbitWeightsTest"
+    },
+    {
+      "name": "domain-swap-closure-ignored",
+      "sha256": "b723c081a23f347f0b55e6d85868ebcede852e03409d05713bc6b265ee199c4e",
+      "test": "nonSwapClosedDomainCountercontrolTest"
+    },
+    {
+      "name": "inverse-closure-treated-as-forward-closure",
+      "sha256": "a61c5bbf2158c3b706675d88644cc03974792b6003f310b07997458109df2f86",
+      "test": "inverseClosedForwardLeakTest"
+    }
+  ],
+  "runner_sha256": "557d2635b04e1842e30afb7db77cd7c583960c952048742a800d51983f7d92a4",
+  "schema": "psc-c4-inverse-occurrence-quint-v1",
+  "scope": "finite literal inverse digits, interior ancestry and actual swap-orbit edge counts",
+  "seed": "20261110",
+  "source_and_revision_recheck": "unchanged",
+  "source_type_residual_inputs": 1600,
+  "status": "passed",
+  "strict_nonpip_free_swap_orbits": 6,
+  "strict_nonpip_positive_packet_labels": 12,
+  "swap_closed_induced_subdomains": 64,
+  "worktree_dirty": false
+}

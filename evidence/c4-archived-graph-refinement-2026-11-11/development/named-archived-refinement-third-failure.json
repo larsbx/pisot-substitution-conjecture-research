@@ -1,0 +1,15 @@
+{
+  "accepted": false,
+  "elapsed_seconds": 132.0,
+  "exit_code": 1,
+  "log": "named-archived-refinement-third-failure.log.gz",
+  "log_uncompressed_sha256": "d801dd8af65c632a4002be4092e7dc1cd041b79aed70a80479f0fb60877dcf70",
+  "module": "PscVerif.NamedArchivedGraphRefinement",
+  "reason": "The doc comment before scoped set_option caused a declaration-syntax error. Direct exact application solved the unchanged period2 adapter; the pointwise fallback was unreachable. The module still failed and is not credited.",
+  "recorded_at_utc": "2026-11-12T01:58:13.230894+00:00",
+  "repair": "Remove the diagnostic-only scoped option and unreachable fallback, retaining direct exact application of the original even-period theorem.",
+  "schema": "c4-lean-development-failure-v1",
+  "scope": "Development syntax failure; the corrected source needs successful module and canonical acceptance.",
+  "source_sha256": "b922de76615afc934ef1912c454cf6f4fdc4da67cbd9b73f438075f7ad452847",
+  "source_snapshot": "named-archived-refinement-third-source.lean.txt.gz"
+}

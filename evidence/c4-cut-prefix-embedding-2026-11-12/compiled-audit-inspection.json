@@ -1,0 +1,502 @@
+{
+  "allowed_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "completion_counts_match": true,
+  "completion_marker": "PSC_AUDIT_COMPLETE\t6589\t4819",
+  "errors": [],
+  "explicit_new_definition_count": 7,
+  "explicit_new_theorem_count": 37,
+  "extracted_new_module_log_path": "/workspace/scratch/f96c28a561ad/cut-prefix-compiled-new-declarations.log",
+  "extracted_new_module_log_sha256": "cf6be6b94c1604ec8764305dfc4689323740c427eb6566c72a19af2435342590",
+  "global_compiled_constant_count": 6589,
+  "global_compiled_theorem_count": 4819,
+  "global_encountered_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "head_at_inspection": "73a0b6a95539beb1b6712afec0f8412571b41cd3",
+  "inspected_at_utc": "2026-11-12T16:33:59.360061+00:00",
+  "modules": [
+    {
+      "committed_source_sha256": "0f652300410b5a1fb9b8271d1b793d41dacc173f7faf3e106d4951e8256c45c3",
+      "compiled_owned_constant_count": 19,
+      "compiled_owned_theorem_count": 15,
+      "explicit_declarations": [
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixEmbedding.mark_decomposition",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixEmbedding.anchoredDigit",
+          "source_kind": "def"
+        },
+        {
+          "axioms": [],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixEmbedding.embeddedIndex",
+          "source_kind": "def"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixEmbedding.embedded_letter",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixEmbedding.embedded_prefix",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixEmbedding.correction",
+          "source_kind": "def"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixEmbedding.prefix_error",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixEmbedding.projected_prefix_error",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixEmbedding.embedded_mem_prefixTiles",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixEmbedding.correctionBound",
+          "source_kind": "def"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixEmbedding.correctionBound_nonneg",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixEmbedding.correction_norm_le",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixEmbedding.norm_pow_le",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixEmbedding.ambient_prefix_error",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixEmbedding.prefix_residue_eq",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixEmbedding.prefix_residue_eq_of_le",
+          "source_kind": "theorem"
+        }
+      ],
+      "explicit_definition_count": 4,
+      "explicit_theorem_count": 12,
+      "matches_subject_revision": true,
+      "module": "PscVerif.CutPrefixEmbedding",
+      "source_path": "proof/PscVerif/PscVerif/CutPrefixEmbedding.lean",
+      "source_sha256": "0f652300410b5a1fb9b8271d1b793d41dacc173f7faf3e106d4951e8256c45c3"
+    },
+    {
+      "committed_source_sha256": "34fa8b8a10ff483b463b15f9da906cd6c75441b6cdeeb0ec823ed8219185c901",
+      "compiled_owned_constant_count": 14,
+      "compiled_owned_theorem_count": 12,
+      "explicit_declarations": [
+        {
+          "axioms": [
+            "propext"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.NamedCutProximity.anchor",
+          "source_kind": "def"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.NamedCutProximity.anchor_occurs",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.NamedCutProximity.sourceBound",
+          "source_kind": "def"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.NamedCutProximity.sourceBound_nonneg",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.NamedCutProximity.correction_le_sourceBound",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.NamedCutProximity.block_contract",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.NamedCutProximity.word_fixed_block",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.NamedCutProximity.prefix_approximation",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.NamedCutProximity.source_error_tendsto_zero",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.NamedCutProximity.eventually_all_prefixes_close",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.NamedCutProximity.balanced_cut_approximation",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.NamedCutProximity.strict_cut_labels",
+          "source_kind": "theorem"
+        }
+      ],
+      "explicit_definition_count": 2,
+      "explicit_theorem_count": 10,
+      "matches_subject_revision": true,
+      "module": "PscVerif.NamedCutProximity",
+      "source_path": "proof/PscVerif/PscVerif/NamedCutProximity.lean",
+      "source_sha256": "34fa8b8a10ff483b463b15f9da906cd6c75441b6cdeeb0ec823ed8219185c901"
+    },
+    {
+      "committed_source_sha256": "6d6ecf01da60338db6f1a364f3565db18cbe6407aaa03f7996754058c5f9f2c5",
+      "compiled_owned_constant_count": 19,
+      "compiled_owned_theorem_count": 18,
+      "explicit_declarations": [
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixControls.same_incidence_different_words",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixControls.reference_occurrence_not_interchangeable",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixControls.actual_period_two_not_one",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixControls.actual_reference_prefix",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixControls.literal_nonzero_correction",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixControls.literal_correction_projection",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixControls.wrong_correction_sign",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixControls.doubling",
+          "source_kind": "def"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixControls.doubling_pow_apply",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixControls.same_finite_residue",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixControls.different_next_residue",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixControls.agreement_through_level",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixControls.finite_agreement_not_limit_equality",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixControls.shrinking_factor",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixControls.growing_correction_constant_error",
+          "source_kind": "theorem"
+        },
+        {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "compiled_record_matches": true,
+          "name": "Psc.CutPrefixControls.growing_corrections_do_not_converge",
+          "source_kind": "theorem"
+        }
+      ],
+      "explicit_definition_count": 1,
+      "explicit_theorem_count": 15,
+      "matches_subject_revision": true,
+      "module": "PscVerif.CutPrefixControls",
+      "source_path": "proof/PscVerif/PscVerif/CutPrefixControls.lean",
+      "source_sha256": "6d6ecf01da60338db6f1a364f3565db18cbe6407aaa03f7996754058c5f9f2c5"
+    }
+  ],
+  "new_module_compiled_constant_count": 52,
+  "new_module_compiled_theorem_count": 45,
+  "new_module_encountered_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "passed": true,
+  "required_gate_exit_status_confirmation": "Parent /root confirmed session 52391 exited 0 after the source build, compiled audit, and proof-bank verification; the inspection agent independently verifies the completed stable log only.",
+  "required_gate_exit_status_reported_by_parent": 0,
+  "required_gate_log_path": "/workspace/scratch/f96c28a561ad/isolated-lean-workspace-73a0b6a9.log",
+  "required_gate_log_sha256": "a6b1cfd63bc8750830c9533e5a204e1326c8e3958fd386d258dd70a3a6da5a43",
+  "schema": "psc-cut-prefix-compiled-audit-inspection-v1",
+  "scope": "Independent inspection of completed compiled ProofBankAudit output; no recompilation. This report does not independently certify the enclosing process exit status.",
+  "subject_revision": "73a0b6a95539beb1b6712afec0f8412571b41cd3"
+}

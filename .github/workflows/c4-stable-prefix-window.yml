@@ -1,0 +1,130 @@
+name: C4 stable prefix window
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/c4-stable-prefix-window.yml'
+      - 'docs/c4-stable-prefix-window*.md'
+      - 'proof/PscVerif/**'
+      - 'proof/quint/C4StablePrefixWindow.qnt'
+      - 'tools/check_c4_stable_prefix_window_quint.py'
+      - 'kernel/**'
+      - 'oracles/python/c4_finite_cylinder_overlap.py'
+      - 'tests/test_c4_finite_cylinder_overlap_oracle.py'
+      - 'vendored.toml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  existing-native-certificate:
+    name: Existing exact block bounds and literal controls
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Bind the exact source revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test -z "$(git status --porcelain)"
+          git rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/stable-window-native-revision.txt"
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, subprocess
+          paths = subprocess.check_output(['git','ls-files','-z','kernel','oracles/python/c4_finite_cylinder_overlap.py','tests/test_c4_finite_cylinder_overlap_oracle.py','proof/PscVerif/PscVerif/StablePrefixWindow.lean','proof/PscVerif/PscVerif/PrefixAddress.lean','proof/PscVerif/PscVerif/PrefixClosure.lean','vendored.toml'],text=True).split('\0')
+          sources = {p:hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest() for p in paths if p and pathlib.Path(p).is_file()}
+          (pathlib.Path(os.environ['RUNNER_TEMP'])/'stable-window-source.json').write_text(json.dumps(sources,sort_keys=True,indent=2)+'\n')
+          PY
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          pixi-version: v0.81.0
+          manifest-path: kernel/pixi.toml
+          locked: true
+      - name: Replay unchanged canonical certificates and literal controls
+        working-directory: kernel
+        env:
+          MODULAR_TELEMETRY_ENABLED: '0'
+        run: |
+          export MODULAR_HOME="$PWD/.pixi/envs/default/share/max"
+          .pixi/envs/default/bin/mojo --version
+          .pixi/envs/default/bin/mojo run -I . tests/test_c4_finite_cylinder_overlap.mojo
+          .pixi/envs/default/bin/mojo run -I . tests/test_c4_cylinder_density.mojo
+          .pixi/envs/default/bin/mojo run -I . tests/test_c4_prefix_closure.mojo
+          .pixi/envs/default/bin/mojo run -I . c4_finite_cylinder_overlap.mojo > "$RUNNER_TEMP/stable-window-cylinder.txt"
+      - name: Independent algebraic and complete literal verification
+        env:
+          PSC_CYLINDER_NATIVE_OUTPUT: ${{ runner.temp }}/stable-window-cylinder.txt
+        run: |
+          python tests/test_c4_finite_cylinder_overlap_oracle.py
+          python -O oracles/python/c4_finite_cylinder_overlap.py "$RUNNER_TEMP/stable-window-cylinder.txt" > "$RUNNER_TEMP/stable-window-cylinder-report.json"
+      - name: Recheck source bytes and revision
+        run: |
+          git rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/stable-window-native-revision-after.txt"
+          cmp "$RUNNER_TEMP/stable-window-native-revision.txt" "$RUNNER_TEMP/stable-window-native-revision-after.txt"
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib
+          source = pathlib.Path(os.environ['RUNNER_TEMP'])/'stable-window-source.json'
+          for name, digest in json.loads(source.read_text()).items():
+              if hashlib.sha256(pathlib.Path(name).read_bytes()).hexdigest() != digest:
+                  raise SystemExit('Source changed during replay: '+name)
+          PY
+          test -z "$(git status --porcelain --untracked-files=no)"
+          python tools/make_proof_bank.py --check
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: c4-stable-prefix-native-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            ${{ runner.temp }}/stable-window-native-revision.txt
+            ${{ runner.temp }}/stable-window-native-revision-after.txt
+            ${{ runner.temp }}/stable-window-source.json
+            ${{ runner.temp }}/stable-window-cylinder.txt
+            ${{ runner.temp }}/stable-window-cylinder-report.json
+          if-no-files-found: error
+          retention-days: 30
+
+  independent-quint:
+    name: Independent bounded prefix-window controls
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Bind the exact revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test -z "$(git status --porcelain)"
+          git rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/stable-window-quint-revision.txt"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Replay exact test inventory and reached-assertion mutations
+        run: python3 tools/check_c4_stable_prefix_window_quint.py --output "$RUNNER_TEMP/stable-window-quint"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: c4-stable-prefix-quint-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            ${{ runner.temp }}/stable-window-quint-revision.txt
+            ${{ runner.temp }}/stable-window-quint
+          if-no-files-found: error
+          retention-days: 30

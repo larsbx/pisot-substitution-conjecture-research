@@ -1,0 +1,302 @@
+{
+  "code_commit": "73a0b6a95539beb1b6712afec0f8412571b41cd3",
+  "count": 37,
+  "declarations": [
+    {
+      "declaration": "theorem same_incidence_different_words :",
+      "line": 22,
+      "module": "PscVerif.CutPrefixControls",
+      "name": "Psc.CutPrefixControls.same_incidence_different_words",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixControls.lean"
+    },
+    {
+      "declaration": "theorem reference_occurrence_not_interchangeable : word 0 1 = 2 ∧ word 1 1 = 1 :=",
+      "line": 28,
+      "module": "PscVerif.CutPrefixControls",
+      "name": "Psc.CutPrefixControls.reference_occurrence_not_interchangeable",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixControls.lean"
+    },
+    {
+      "declaration": "theorem actual_period_two_not_one (f : Fin 2) :",
+      "line": 32,
+      "module": "PscVerif.CutPrefixControls",
+      "name": "Psc.CutPrefixControls.actual_period_two_not_one",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixControls.lean"
+    },
+    {
+      "declaration": "theorem actual_reference_prefix : wordPrefix (word 0) 2 = [0, 2] := by",
+      "line": 37,
+      "module": "PscVerif.CutPrefixControls",
+      "name": "Psc.CutPrefixControls.actual_reference_prefix",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixControls.lean"
+    },
+    {
+      "declaration": "theorem literal_nonzero_correction :",
+      "line": 44,
+      "module": "PscVerif.CutPrefixControls",
+      "name": "Psc.CutPrefixControls.literal_nonzero_correction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixControls.lean"
+    },
+    {
+      "declaration": "theorem literal_correction_projection :",
+      "line": 53,
+      "module": "PscVerif.CutPrefixControls",
+      "name": "Psc.CutPrefixControls.literal_correction_projection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixControls.lean"
+    },
+    {
+      "declaration": "theorem wrong_correction_sign :",
+      "line": 60,
+      "module": "PscVerif.CutPrefixControls",
+      "name": "Psc.CutPrefixControls.wrong_correction_sign",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixControls.lean"
+    },
+    {
+      "declaration": "theorem doubling_pow_apply (q : ℕ) (z : ℤ) : (doubling ^ q) z = 2 ^ q * z := by",
+      "line": 80,
+      "module": "PscVerif.CutPrefixControls",
+      "name": "Psc.CutPrefixControls.doubling_pow_apply",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixControls.lean"
+    },
+    {
+      "declaration": "theorem same_finite_residue (q : ℕ) :",
+      "line": 88,
+      "module": "PscVerif.CutPrefixControls",
+      "name": "Psc.CutPrefixControls.same_finite_residue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixControls.lean"
+    },
+    {
+      "declaration": "theorem different_next_residue (q : ℕ) :",
+      "line": 94,
+      "module": "PscVerif.CutPrefixControls",
+      "name": "Psc.CutPrefixControls.different_next_residue",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixControls.lean"
+    },
+    {
+      "declaration": "theorem agreement_through_level (k q : ℕ) (hq : q ≤ k) :",
+      "line": 104,
+      "module": "PscVerif.CutPrefixControls",
+      "name": "Psc.CutPrefixControls.agreement_through_level",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixControls.lean"
+    },
+    {
+      "declaration": "theorem finite_agreement_not_limit_equality (k : ℕ) :",
+      "line": 113,
+      "module": "PscVerif.CutPrefixControls",
+      "name": "Psc.CutPrefixControls.finite_agreement_not_limit_equality",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixControls.lean"
+    },
+    {
+      "declaration": "theorem shrinking_factor : Tendsto (fun n : ℕ => (7 / 8 : ℝ) ^ n) atTop (𝓝 0) :=",
+      "line": 130,
+      "module": "PscVerif.CutPrefixControls",
+      "name": "Psc.CutPrefixControls.shrinking_factor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixControls.lean"
+    },
+    {
+      "declaration": "theorem growing_correction_constant_error (n : ℕ) :",
+      "line": 133,
+      "module": "PscVerif.CutPrefixControls",
+      "name": "Psc.CutPrefixControls.growing_correction_constant_error",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixControls.lean"
+    },
+    {
+      "declaration": "theorem growing_corrections_do_not_converge :",
+      "line": 140,
+      "module": "PscVerif.CutPrefixControls",
+      "name": "Psc.CutPrefixControls.growing_corrections_do_not_converge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixControls.lean"
+    },
+    {
+      "declaration": "theorem mark_decomposition (τ : Fin 3 → Word) (u : Word)",
+      "line": 29,
+      "module": "PscVerif.CutPrefixEmbedding",
+      "name": "Psc.CutPrefixEmbedding.mark_decomposition",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixEmbedding.lean"
+    },
+    {
+      "declaration": "theorem embedded_letter (τ : Fin 3 → Word) (w : ℕ → Fin 3)",
+      "line": 61,
+      "module": "PscVerif.CutPrefixEmbedding",
+      "name": "Psc.CutPrefixEmbedding.embedded_letter",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixEmbedding.lean"
+    },
+    {
+      "declaration": "theorem embedded_prefix (τ : Fin 3 → Word) (w : ℕ → Fin 3)",
+      "line": 67,
+      "module": "PscVerif.CutPrefixEmbedding",
+      "name": "Psc.CutPrefixEmbedding.embedded_prefix",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixEmbedding.lean"
+    },
+    {
+      "declaration": "theorem prefix_error (τ : Fin 3 → Word) (w : ℕ → Fin 3)",
+      "line": 81,
+      "module": "PscVerif.CutPrefixEmbedding",
+      "name": "Psc.CutPrefixEmbedding.prefix_error",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixEmbedding.lean"
+    },
+    {
+      "declaration": "theorem projected_prefix_error (τ : Fin 3 → Word) (w : ℕ → Fin 3)",
+      "line": 97,
+      "module": "PscVerif.CutPrefixEmbedding",
+      "name": "Psc.CutPrefixEmbedding.projected_prefix_error",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixEmbedding.lean"
+    },
+    {
+      "declaration": "theorem embedded_mem_prefixTiles (τ : Fin 3 → Word) (w : ℕ → Fin 3)",
+      "line": 111,
+      "module": "PscVerif.CutPrefixEmbedding",
+      "name": "Psc.CutPrefixEmbedding.embedded_mem_prefixTiles",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixEmbedding.lean"
+    },
+    {
+      "declaration": "theorem correctionBound_nonneg (w : ℕ → Fin 3) (anchor : Fin 3 → ℕ)",
+      "line": 133,
+      "module": "PscVerif.CutPrefixEmbedding",
+      "name": "Psc.CutPrefixEmbedding.correctionBound_nonneg",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixEmbedding.lean"
+    },
+    {
+      "declaration": "theorem correction_norm_le (w : ℕ → Fin 3) (anchor : Fin 3 → ℕ)",
+      "line": 137,
+      "module": "PscVerif.CutPrefixEmbedding",
+      "name": "Psc.CutPrefixEmbedding.correction_norm_le",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixEmbedding.lean"
+    },
+    {
+      "declaration": "theorem norm_pow_le (A : AddMonoid.End E) (q : ℝ) (hq : 0 ≤ q)",
+      "line": 160,
+      "module": "PscVerif.CutPrefixEmbedding",
+      "name": "Psc.CutPrefixEmbedding.norm_pow_le",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixEmbedding.lean"
+    },
+    {
+      "declaration": "theorem ambient_prefix_error (s : Fin 3 → Word) (k : ℕ) (w : ℕ → Fin 3)",
+      "line": 181,
+      "module": "PscVerif.CutPrefixEmbedding",
+      "name": "Psc.CutPrefixEmbedding.ambient_prefix_error",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixEmbedding.lean"
+    },
+    {
+      "declaration": "theorem prefix_residue_eq (s : Fin 3 → Word) (k : ℕ) (w : ℕ → Fin 3)",
+      "line": 195,
+      "module": "PscVerif.CutPrefixEmbedding",
+      "name": "Psc.CutPrefixEmbedding.prefix_residue_eq",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixEmbedding.lean"
+    },
+    {
+      "declaration": "theorem prefix_residue_eq_of_le (s : Fin 3 → Word) (k q : ℕ) (hq : q ≤ k)",
+      "line": 212,
+      "module": "PscVerif.CutPrefixEmbedding",
+      "name": "Psc.CutPrefixEmbedding.prefix_residue_eq_of_le",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CutPrefixEmbedding.lean"
+    },
+    {
+      "declaration": "theorem anchor_occurs (fixture : Fin 2) (a : Fin 3) :",
+      "line": 37,
+      "module": "PscVerif.NamedCutProximity",
+      "name": "Psc.NamedCutProximity.anchor_occurs",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCutProximity.lean"
+    },
+    {
+      "declaration": "theorem sourceBound_nonneg (fixture : Fin 2) (u : Word) :",
+      "line": 47,
+      "module": "PscVerif.NamedCutProximity",
+      "name": "Psc.NamedCutProximity.sourceBound_nonneg",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCutProximity.lean"
+    },
+    {
+      "declaration": "theorem correction_le_sourceBound (fixture : Fin 2) {u : Word} (m : Mark u) :",
+      "line": 51,
+      "module": "PscVerif.NamedCutProximity",
+      "name": "Psc.NamedCutProximity.correction_le_sourceBound",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCutProximity.lean"
+    },
+    {
+      "declaration": "theorem block_contract (n : ℕ) (x : Stable) :",
+      "line": 56,
+      "module": "PscVerif.NamedCutProximity",
+      "name": "Psc.NamedCutProximity.block_contract",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCutProximity.lean"
+    },
+    {
+      "declaration": "theorem word_fixed_block (fixture : Fin 2) (n : ℕ) :",
+      "line": 61,
+      "module": "PscVerif.NamedCutProximity",
+      "name": "Psc.NamedCutProximity.word_fixed_block",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCutProximity.lean"
+    },
+    {
+      "declaration": "theorem prefix_approximation (fixture : Fin 2) (u : Word) (n : ℕ)",
+      "line": 68,
+      "module": "PscVerif.NamedCutProximity",
+      "name": "Psc.NamedCutProximity.prefix_approximation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCutProximity.lean"
+    },
+    {
+      "declaration": "theorem source_error_tendsto_zero (fixture : Fin 2) (u : Word) :",
+      "line": 100,
+      "module": "PscVerif.NamedCutProximity",
+      "name": "Psc.NamedCutProximity.source_error_tendsto_zero",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCutProximity.lean"
+    },
+    {
+      "declaration": "theorem eventually_all_prefixes_close (fixture : Fin 2) (u : Word)",
+      "line": 109,
+      "module": "PscVerif.NamedCutProximity",
+      "name": "Psc.NamedCutProximity.eventually_all_prefixes_close",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCutProximity.lean"
+    },
+    {
+      "declaration": "theorem balanced_cut_approximation (fixture : Fin 2) (u v : Word) (n : ℕ)",
+      "line": 133,
+      "module": "PscVerif.NamedCutProximity",
+      "name": "Psc.NamedCutProximity.balanced_cut_approximation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCutProximity.lean"
+    },
+    {
+      "declaration": "theorem strict_cut_labels (fixture : Fin 2) {C : Finset WordPair}",
+      "line": 169,
+      "module": "PscVerif.NamedCutProximity",
+      "name": "Psc.NamedCutProximity.strict_cut_labels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCutProximity.lean"
+    }
+  ]
+}

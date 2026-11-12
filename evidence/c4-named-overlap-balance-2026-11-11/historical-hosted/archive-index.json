@@ -1,0 +1,26 @@
+{
+  "scope": "Historical hosted failures only; not acceptance of corrected source.",
+  "logs": [
+    {
+      "file": "physical_mass_43119366148_job_130855572693.log.gz",
+      "decompressed_sha256": "2fa7e1370b203315cf106902519c4105fac3722c06cd0febea82df3288dc9d93",
+      "raw_bytes": 75868,
+      "status": "failed",
+      "head_sha": "6472eab38efa623640f00285954b8525a56f6e8e"
+    },
+    {
+      "file": "packet_bridge_43119366484_job_130855573329.log.gz",
+      "decompressed_sha256": "69f1091954964bb430e3418cad3fa80cc14f7b95833e8d4b13a30d074b37e260",
+      "raw_bytes": 150429,
+      "status": "failed",
+      "head_sha": "6472eab38efa623640f00285954b8525a56f6e8e"
+    },
+    {
+      "file": "full_lean_43119366533_job_130855574394.log.gz",
+      "decompressed_sha256": "4ed8975a040e1fcbe12ccc7c0b32c93bb5451bf481a12690c08d3e73c93cf3ac",
+      "raw_bytes": 76182,
+      "status": "failed",
+      "head_sha": "6472eab38efa623640f00285954b8525a56f6e8e"
+    }
+  ]
+}

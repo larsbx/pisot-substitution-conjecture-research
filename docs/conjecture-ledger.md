@@ -1,6 +1,6 @@
 # Conjecture ledger
 
-The machine-checked dependency form is `proof/tla/Ledger.tla`. This prose ledger distinguishes repository proofs, imported theorems, finite-domain theorems, open gates, open bridges, empirical evidence, and retired claims. The concise status/source index is `docs/claim-status-and-source-map-2026-09-13.md`; the current architecture is `docs/current-proof-architecture-2026-09-14.md`; the live completion priorities are `docs/research-roadmap-2026-09-21.md`; the latest merged weekly snapshot is `docs/completion-ledger-2026-10-26.md`.
+The machine-checked dependency form is `proof/tla/Ledger.tla`. This prose ledger distinguishes repository proofs, imported theorems, finite-domain theorems, open gates, open bridges, empirical evidence, and retired claims. The concise status/source index is `docs/claim-status-and-source-map-2026-09-13.md`; the current architecture is `docs/current-proof-architecture-2026-09-14.md`; the live completion priorities are `docs/research-roadmap-2026-09-21.md`. The [November 2 completion ledger](completion-ledger-2026-11-02.md) records the family frontier; the [November 11 reconciliation](current-state-reconciliation-2026-11-11.md) updates implementation and verification status through main `2848e5f67b605669a550f362a1de4bf1c1529f7c` without promoting governed claims.
 
 ## Executive status — one shortest-path gate, several stronger parallel programmes
 
@@ -46,7 +46,7 @@ is part of this completion criterion.
 This is the primary universal theorem architecture. The two premises remain
 open universally; scoped and finite certificates below do not enlarge them.
 
-## Scoped finite-domain and family closure — reconciled 2026-10-19
+## Scoped finite-domain and family closure — reconciled 2026-11-11
 
 **Progression policy:** mechanically sufficient repository results at their exact
 recorded scope are load-bearing for continued work under the implicit project-
@@ -61,7 +61,8 @@ scope:
 | --- | --- | --- | --- |
 | Theorem Ω completed box certificates | **Finite-domain theorem** | PDS for exactly 145,806 ternary PIP substitutions with images length at most 4 or total length at most 8 | No all-PIP completeness theorem |
 | Theorems L/L′/L″ | **Computer-assisted family theorems; human review pending** | Boundary hitting on 47 declared one-parameter determinant-two lines | Does not cover all parameter cells or #139 uniformly |
-| Theorem W / Corollary W1 | **Computer-assisted family theorem; human review pending** | Declared class-D wedges; all PIP class-D members with `r >= q - 1` | Class D below the boundary and other classes remain |
+| Theorem W / Corollary W1 | **Computer-assisted family theorem; human review pending** | Original declared class-D wedges; all PIP class-D members with `r >= q - 1` | This original wedge scope is unchanged; the later class-D assembly covers the rest of Class D |
+| Class-D assembly and scoped G1 corollary | **Accepted family result; human review pending** | Every PIP member of Theorem E's Class D, as recorded in the [completion ledger](completion-ledger-2026-11-02.md) | No arbitrary-family BH, G1 or PSC conclusion; resolved Class-D certification is not reopened |
 | Sirvent–Solomyak flow-to-symbolic transfer | **Imported theorem** | PIP substitutions with tiling-flow PDS | Does not prove tiling-flow PDS; irreducibility remains essential |
 | Barge-class symbolic PDS | **Repository-proved from imported theorems; human review pending** | Exact power/rotation/mirror class; 1,248 of 4,554 standing-corpus specimens have a detector witness | No membership or PDS statement for arbitrary PIP substitutions |
 | Brun composites | **Imported family theorem** | Primitive admissible unordered Brun composites with irreducible Pisot characteristic polynomial | Says nothing outside the declared family or about #84 |
@@ -76,6 +77,25 @@ negative controls or reductions, not new closure rows. They require exact
 occurrence replay, reject one-path recurrence as a substitute for a
 child-closed bad SCC, and leave the accepted-proof provenance gap for general
 PSC unchanged.
+
+### Current implementation frontier
+
+The [November 11 crosswalk](current-state-reconciliation-2026-11-11.md) records
+the exact distinction between merged implementation, tested-revision acceptance
+and mathematical closure. In particular, #520 repaired and accepted the R1
+finite support/rank validators; their earlier Lean failure is historical.
+Complete source-bound extraction and uniform PIP existence remain open. The
+Class-A finite certificates and local arithmetic interfaces do not supply
+uniform entry or complete all-descendant coverage.
+
+For C4, accepted main through #541 includes actual finite occurrence histories,
+conditional compact covers, local incoming admissibility, a constructed compact
+matrix-adic carrier and integral range reflection with a supplied stable factor.
+Authentic prefix tiles and complete tile equations, finite nonempty-ancestor
+coverage, product-Haar scaling and positive compact strict-cut-root measure
+remain live premises. A uniform theorem forcing at least one productive
+physical crossing in a supplied strict PIP component remains open. The separate
+active #542–#544 continuations are not part of this mainline baseline.
 
 ## A. Stable base
 

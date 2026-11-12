@@ -1,0 +1,24 @@
+PscVerif/CompactNeighborhood.lean:92:29: error: Type mismatch
+  Finset.le_sup hi
+has type
+  ?m.137 i ≤ I.sup ?m.137
+but is expected to have type
+  i ≤ I.sup id
+PscVerif/CompactNeighborhood.lean:124:59: error(lean.unknownIdentifier): Unknown constant `Set.prod_setOf_eq`
+PscVerif/CompactNeighborhood.lean:124:2: error: Type mismatch: After simplification, term
+  h
+ has type
+  Metric.ball 0 ε ×ˢ {x | (MadicResidue.eval M q) x = 0} ∈ 𝓝 0 ×ˢ 𝓝 0
+but is expected to have type
+  {d | ‖d.1‖ < ε ∧ (MadicResidue.eval M q) d.2 = 0} ∈ 𝓝 0.1 ×ˢ 𝓝 0.2
+PscVerif/CompactNeighborhood.lean:138:19: error: Type mismatch: After simplification, term
+  hd.left
+ has type
+  ‖d.1‖ < ε
+but is expected to have type
+  dist d.1 0.1 < ε
+PscVerif/CompactNeighborhood.lean:157:25: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  IsTopologicalAddGroup (E × MadicResidue.Carrier M)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+PscVerif/CompactNeighborhood.lean:157:9: error: Tactic `rcases` failed: `x✝ : ?m.68` is not an inductive datatype

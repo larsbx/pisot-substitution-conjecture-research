@@ -25,6 +25,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -32,7 +33,7 @@ jobs:
         run: |
           python -m pip install 'pytest>=7'
           sha256sum -c evidence/class-a-boundary-y4-2026-10-28/SHA256SUMS
-          python3 tools/check_research_source_manifest.py evidence/class-a-boundary-y4-2026-10-28/source-sha256.txt
+          python3 tools/source_pins.py evidence/class-a-boundary-y4-2026-10-28/source-sha256.txt
           python -m pytest -q tests/test_class_a_boundary_y4_children.py
           python oracles/python/class_a_boundary_y4_children.py > /tmp/boundary-y4.json
           cmp /tmp/boundary-y4.json evidence/class-a-boundary-y4-2026-10-28/probe.json

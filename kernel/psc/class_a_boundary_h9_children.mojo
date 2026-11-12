@@ -1,7 +1,6 @@
 """H9 complete actual indexed stars, retaining equal-target endpoint events."""
 from finite_exact.checked_int import checked_add, checked_mul
-from std.collections import Dict
-from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, member_transport, verify_member_edge
+from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, member_transport
 from psc.class_a_boundary_u_children import reverse_label
 from psc.class_a_boundary_j9_children import j9_source, j9_path, _dimensions
 from psc.class_a_boundary_p9_children import certify_p9_children, p9_star_interface, p9_exit_interface, p9_companion, p9_companion_path
@@ -16,6 +15,7 @@ from psc.class_a_boundary_occurrences import symbolic_child, _equal3, _prefix, _
 from psc.class_a_boundary_signs import chamber_parameters
 from psc.param_poly import QX, qx_const, qx_add, qx_sub, qx_neg, tp_add, tp_sub, tp_scale, tp_mul, tp_mod_monic
 from psc.overlap_seed_patch import SeedOverlapTables
+from psc.class_a_boundary_family import BoundaryFamily, append_child, verify_child_packet, verify_child_star, extend_edges
 
 
 def h9_source(kind: Int) raises -> BoundaryLabel:
@@ -145,14 +145,20 @@ def in_h9_image(w: BoundaryLabel) raises -> Bool:
     return z.bottom==0 and z.y>=4 and z.y<=6
 
 
+@fieldwise_init
+struct H9Children(BoundaryFamily):
+    def name(self) -> String:return "H9"
+    def source(self,kind: Int) raises -> BoundaryLabel:return h9_source(kind)
+    def parameters(self,kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int]:
+        var p=_dimensions(0,k,t)
+        return (p[0],p[1])
+    def swapped(self,kind: Int) -> Bool:return kind!=0
+    def allowed(self,kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:return h9_child_allowed(kind,k,t,i,j)
+    def in_image(self,w: BoundaryLabel) raises -> Bool:return in_h9_image(w)
+
+
 def _append(mut out: List[BoundaryEdge],kind: Int,k: Int,t: Int,i: Int,j: Int) raises:
-    var p=_dimensions(0,k,t)
-    var a=i if kind==0 else j
-    var b=j if kind==0 else i
-    if not h9_child_allowed(kind,k,t,a,b):raise Error("H9 synthesized guard failed")
-    var target=member_transport(-1,k,p[0],p[1],h9_source(kind),a,b)
-    if not in_h9_image(target):raise Error("H9 target escaped image")
-    out.append(BoundaryEdge(a,b,target))
+    append_child(H9Children(),out,kind,k,t,i,j)
 
 
 def h9_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
@@ -171,21 +177,11 @@ def h9_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
 
 
 def verify_h9_packet(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,edge: BoundaryEdge) raises:
-    var p=_dimensions(0,k,t)
-    if not h9_child_allowed(kind,k,t,edge.i,edge.j) or not in_h9_image(edge.target):raise Error("H9 packet refused")
-    verify_member_edge(tables,-1,k,p[0],p[1],h9_source(kind),edge.i,edge.j,edge.target)
+    verify_child_packet(H9Children(),tables,kind,k,t,edge)
 
 
 def verify_h9_star(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,edges: List[BoundaryEdge]) raises:
-    _=h9_source(kind)
-    if len(edges)!=h9_count(k,t):raise Error("incomplete H9 star")
-    var p=_dimensions(0,k,t)
-    var seen=Dict[Int,Bool]()
-    for edge in edges:
-        verify_h9_packet(tables,kind,k,t,edge)
-        var key=checked_add(checked_mul(edge.i,checked_add(p[2],2)),edge.j)
-        if key in seen:raise Error("duplicate H9 occurrence")
-        seen[key]=True
+    verify_child_star(H9Children(),tables,kind,k,t,edges,h9_count(k,t))
 
 
 def h9_path(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
@@ -198,10 +194,6 @@ def verify_h9_path(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,steps: List
 
 
 
-def _extend(mut out: List[BoundaryEdge],suffix: List[BoundaryEdge]):
-    for edge in suffix:out.append(edge)
-
-
 def h9_companion_path(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
     _=h9_companion(kind)
     var p=_dimensions(0,k,t)
@@ -209,13 +201,13 @@ def h9_companion_path(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
     if kind//2==0:
         var target=BoundaryLabel(0,2,0,1,-2)
         out.append(BoundaryEdge(0,p[1]+3,target))
-        _extend(out,y4_child_tail(target,k,t))
+        extend_edges(out,y4_child_tail(target,k,t))
     elif kind//2==1:
         out.append(BoundaryEdge(0,t+5,b5_source(1)))
-        _extend(out,b5_path(1,k,t))
+        extend_edges(out,b5_path(1,k,t))
     else:
         out.append(BoundaryEdge(k+1,0,r4_source(11)))
-        _extend(out,r4_path(11,k,t))
+        extend_edges(out,r4_path(11,k,t))
     if kind%2==1:_reverse_steps(out)
     return out^
 
@@ -238,7 +230,7 @@ def h9_child_walk(kind: Int,k: Int,t: Int,edge: BoundaryEdge) raises -> List[Bou
     var p=_dimensions(0,k,t)
     if not h9_child_allowed(kind,k,t,edge.i,edge.j) or member_transport(-1,k,p[0],p[1],h9_source(kind),edge.i,edge.j)!=edge.target:raise Error("wrong first H9 packet")
     var out: List[BoundaryEdge]=[edge]
-    _extend(out,h9_child_tail(edge.target,k,t))
+    extend_edges(out,h9_child_tail(edge.target,k,t))
     return out^
 
 

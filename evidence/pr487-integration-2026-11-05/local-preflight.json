@@ -1,0 +1,17 @@
+{
+  "schema": "psc-pr487-integration-local-preflight-v1",
+  "source_pr_head": "9d980e1b6a64d05195508cca8aa1fd063428220d",
+  "observed_main": "60536272b3d68b4f53ce772e7674efabce840fde",
+  "repair_helper_unit_tests": {"passed": 10, "elapsed_seconds": 0.16},
+  "existing_boundary_and_overlap_oracles": {"passed": 16, "elapsed_seconds": 4.63},
+  "local_native_execution": "not_run_no_mojo_or_pixi",
+  "local_full_repository_regeneration": "not_run_no_complete_checkout",
+  "hosted_integration": "pending",
+  "merge_to_main": "not_performed",
+  "scope": "Tests of append-only ledger and source-inventory preservation plus the existing bounded specimen oracles; no new general C4 or PSC claim.",
+  "source_blobs": {
+    "tools/reconcile_pr487.py": "cec5204a7a20956cc899045e8947bf961af4bf51",
+    "tests/test_pr487_integration.py": "72079317c9c38c7b36be023c87763d267cf4bcec",
+    ".github/workflows/pr487-integration.yml": "8bdef8501804b98727476cbbc822029b159c76f7"
+  }
+}

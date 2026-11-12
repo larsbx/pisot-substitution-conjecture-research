@@ -4,7 +4,8 @@ on:
     paths:
       - 'kernel/**'
       - 'oracles/python/**'
-      - 'tools/check_research_source_manifest.py'
+      - 'tools/source_pins.py'
+      - 'source_pins.toml'
       - 'tests/**'
       - 'evidence/research-integration-2026-11-01/**'
       - 'archive/research-integration-sources-2026-11-01/**'
@@ -84,7 +85,8 @@ jobs:
       - name: Immutable sources, explicit metadata exceptions and negative controls
         run: |
           git rev-parse HEAD
-          python -m pytest -q tests/test_research_source_manifest.py tests/test_recorded_data_integrity.py
+          python -m pytest -q tests/test_source_pins.py tests/test_recorded_data_integrity.py
+          python tools/source_pins.py
           python tools/check_class_c_below_three_integration.py
           python tools/make_proof_bank.py --check
           PYTHONPATH=tools python -m claim_governance.cli --root .

@@ -1,0 +1,24 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+  C4NamedChartAdversarial
+    1) zeroProjectionRefusedTest failed after 1 test(s)
+
+  1 failed
+
+  1) zeroProjectionRefusedTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-c4-named-chart-snapshot-zcfkngiy/omit-section-authentication.qnt:195:35
+        195:   run zeroProjectionRefusedTest = init.expect({
+                                               ^^^^^^^^^^^^^
+        196:     val w = List(List(0, 0, 0), List(0, 0, 0))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        197:     all { basisCommutation(w), not(quotientAdmission(w)) }
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        198:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f7 --match=zeroProjectionRefusedTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-c4-named-chart-snapshot-zcfkngiy/omit-section-authentication.qnt
+error: Tests failed

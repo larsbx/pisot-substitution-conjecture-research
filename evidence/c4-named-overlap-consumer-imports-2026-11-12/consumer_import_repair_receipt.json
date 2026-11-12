@@ -1,0 +1,34 @@
+{
+  "schema": "psc-consumer-import-repair-v1",
+  "baseline_commit": "ed8251b95a770476fdb96248e42ef10ac54d0c93",
+  "scope": "Two explicit production imports only; all other bytes, including theorem statements and proof bodies, unchanged. Development compilation and canonical acceptance are separate.",
+  "sources": [
+    {
+      "path": "proof/PscVerif/PscVerif/ParikhRank.lean",
+      "added_import": "Mathlib.FieldTheory.Minpoly.Field",
+      "before_sha256": "be40494c796287c599d6a62f20662e1c7f80786c88d0e4881c8a58795b3e0d7a",
+      "after_sha256": "f13cddb90200af8a8a26d01428537235a2bebddf2e081849188753e97add6e69",
+      "exact_one_import_addition": true,
+      "all_other_bytes_unchanged": true
+    },
+    {
+      "path": "proof/PscVerif/PscVerif/DescendantSpan.lean",
+      "added_import": "Mathlib.LinearAlgebra.Matrix.DotProduct",
+      "before_sha256": "8562512a9646b9891d4c60cee5a12ad6246da9a323466a0797395329f580f2c5",
+      "after_sha256": "6a46eb2a94b7785ba2a69db88daf56a3e98935e738fdb6dc478d685162696e8c",
+      "exact_one_import_addition": true,
+      "all_other_bytes_unchanged": true
+    }
+  ],
+  "source_pins_check": {
+    "command": "python tools/source_pins.py",
+    "exit_code": 0,
+    "log": "source_pins_check.log",
+    "registry_modified": false
+  },
+  "development_compile": "pending",
+  "required_targets": [
+    "PscVerif.Degree2Sector",
+    "PscVerif.DescendantSpan"
+  ]
+}

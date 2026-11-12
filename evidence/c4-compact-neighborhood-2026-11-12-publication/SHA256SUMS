@@ -1,0 +1,10 @@
+b408fca33c9c37521a85eff565fd3c0b54d088b1b3dc71d5d52c60e14de0eaf6  ./README.md
+d4a77336f820e93bb17ddbb40ddf9ca26485cb1622fde0e12580ad3ec5be009c  ./bundle-restore-verification.json
+e8cf6e485ca5536953524be88776df2e3d8f3c4c6e2585a88c2299870811db1b  ./checks/compact-evidence-integrity-attempt-02.json
+d19b71acec91575b936d4156e800e15925179d57bc0630c7fc4a30a2af7a59d2  ./checks/compact-evidence-integrity-attempt-02.log
+9df2865f1519e4d4484f7b5bbf6d104936c87baa7fde4f31a327c9170a916d3a  ./commit-map.json
+9d910c2bc22ad7c5c4bb810e9c51aadaf278ffa2ff36cd2ab559650e217c64ee  ./compact-original-commits.bundle
+cd3db58f28d86940313dd50b7658221347f3bb60a842127b1771fa012e09dc17  ./history/compact-evidence-integrity.json
+51f5550d86043279227c92b72199d4ee1f66d30623405f70c98442058ffe76c7  ./history/compact-evidence-integrity.log
+2e07b997fdd48049e9608e080013c38c9a219c6d437fa16039a4572ad2e5b0d7  ./metadata-repair/installation.json
+4a85c0eeda4671cce147238ebe50fb15bbfc75cb992817f31a31338111dd3ed8  ./metadata-repair/plan.json

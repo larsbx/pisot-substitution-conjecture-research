@@ -1,0 +1,6 @@
+{
+  "fixture_compiles": true,
+  "typed_import_refuses": true,
+  "reason": "right-name declarations prove True instead of the required checked propositions",
+  "fixture_sha256": "646e9688690675671a7534c363fff3afca28d0148ee1cb24de781b75e4de5a28"
+}

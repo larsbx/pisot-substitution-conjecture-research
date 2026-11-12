@@ -15,14 +15,14 @@ from psc.symmetry import parse_substitution_key
 from psc.words import ALPHABET, Pair, is_zero, k2
 
 
-def has_nonzero_k2(a: Automaton, comp: List[Int]) -> Bool:
+def has_nonzero_k2(a: Automaton, comp: List[Int]) raises -> Bool:
     for s in range(len(comp)):
         if not is_zero(k2(a.states[comp[s]])):
             return True
     return False
 
 
-def is_strict_degree2(a: Automaton, comp: List[Int]) -> Bool:
+def is_strict_degree2(a: Automaton, comp: List[Int]) raises -> Bool:
     return profile_component(a, comp).is_closed_nonproductive() and has_nonzero_k2(a, comp)
 
 

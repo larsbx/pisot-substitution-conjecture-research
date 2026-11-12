@@ -1,0 +1,20 @@
+
+  C4OverlapMass
+    ok domainCountTest passed 1 test(s)
+    ok finiteIntervalPartitionTest passed 1 test(s)
+    ok finiteScaledSubdivisionTest passed 1 test(s)
+    ok affineTranslationTest passed 1 test(s)
+    ok strictCompleteCarrierConservativeTest passed 1 test(s)
+    ok occurrenceMultiplicityTest passed 1 test(s)
+    ok boundaryAndDegenerateTest passed 1 test(s)
+    ok positiveWrongRowTest passed 1 test(s)
+    ok omittedOccurrenceBudgetTest passed 1 test(s)
+    ok literalMixedOrbitCountsTest passed 1 test(s)
+    ok finiteQuotientCountsTest passed 1 test(s)
+    ok uniformityIsNecessaryTest passed 1 test(s)
+    ok allFixedAndFreeOrbitsTest passed 1 test(s)
+    ok transposeOrientationTest passed 1 test(s)
+    ok mixedConservativeWeightedTest passed 1 test(s)
+    ok mixedStrictWeightedTest passed 1 test(s)
+
+  16 passing (581ms)

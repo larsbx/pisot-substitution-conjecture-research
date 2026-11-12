@@ -4,11 +4,13 @@ set -euo pipefail
 PSC_ROOT=$(cd "$(dirname "$0")/.." && pwd -P)
 PSC_PACKET_EXPORTER=""
 PSC_PACKET_OUTPUT=""
+PSC_PACKET_KIND=""
 if [[ $# -gt 0 ]]; then
-    if [[ $# -ne 3 || "$1" != "--overlap-packets" ]]; then
-        echo "usage: check_lean.sh [--overlap-packets EXPORTER OUTPUT_DIRECTORY]" >&2
+    if [[ $# -ne 3 || ( "$1" != "--overlap-packets" && "$1" != "--archived-packets" ) ]]; then
+        echo "usage: check_lean.sh [--overlap-packets|--archived-packets EXPORTER OUTPUT_DIRECTORY]" >&2
         exit 2
     fi
+    PSC_PACKET_KIND="$1"
     PSC_PACKET_EXPORTER=$(python3 -c 'from pathlib import Path; import sys; print(Path(sys.argv[1]).resolve())' "$2")
     PSC_PACKET_OUTPUT=$(python3 -c 'from pathlib import Path; import sys; print(Path(sys.argv[1]).resolve())' "$3")
     if [[ ! -x "$PSC_PACKET_EXPORTER" ]]; then
@@ -60,7 +62,12 @@ check_fresh_pins
 run_pinned_lake --no-cache env lean ProofBankAudit.lean | tee "$PSC_AUDIT_LOG"
 python3 "$PSC_ROOT/tools/make_proof_bank.py" --check --audit-log "$PSC_AUDIT_LOG"
 if [[ -n "$PSC_PACKET_EXPORTER" ]]; then
-    python3 "$PSC_ROOT/tools/replay_overlap_lean_packets.py" \
+    if [[ "$PSC_PACKET_KIND" == "--archived-packets" ]]; then
+        PSC_PACKET_REPLAY="$PSC_ROOT/tools/replay_archived_payload_lean.py"
+    else
+        PSC_PACKET_REPLAY="$PSC_ROOT/tools/replay_overlap_lean_packets.py"
+    fi
+    python3 "$PSC_PACKET_REPLAY" \
         --exporter "$PSC_PACKET_EXPORTER" --project "$PWD" \
         --root "$PSC_ROOT" --output "$PSC_PACKET_OUTPUT"
     check_fresh_pins

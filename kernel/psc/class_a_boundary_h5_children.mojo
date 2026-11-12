@@ -1,6 +1,6 @@
 """Both complete H5 child stars; exact t separator, no closed-carrier/BH claim."""
 from finite_exact.checked_int import checked_add, checked_sub
-from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, member_transport, verify_member_edge
+from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, verify_member_edge
 from psc.class_a_boundary_u_children import reverse_label
 from psc.class_a_boundary_h5_exit import certify_h5_exits, h5_source, h5_path, verify_h5_path
 from psc.class_a_boundary_e_children import _offset
@@ -10,6 +10,7 @@ from psc.class_a_boundary_occurrences import symbolic_child, _equal3, _prefix, F
 from psc.class_a_boundary_signs import chamber_parameters, _same, _cone_positive, _cone_nonnegative
 from psc.param_poly import QX, qx_const, qx_add, qx_sub, qx_neg, tp_add, tp_sub, tp_mul, tp_scale, tp_mod_monic
 from psc.overlap_seed_patch import SeedOverlapTables
+from psc.class_a_boundary_family import BoundaryFamily, append_child, verify_child_packet
 
 
 def h5_child_source(flip: Int) raises -> BoundaryLabel:
@@ -150,16 +151,20 @@ def h5_image() raises -> List[BoundaryLabel]:
     return out^
 
 
-def _append(mut out: List[BoundaryEdge],flip: Int,k: Int,t: Int,i: Int,j: Int) raises:
-    var p=_dimensions(flip,k,t)
-    var a=j if flip==1 else i
-    var b=i if flip==1 else j
-    if not h5_child_allowed(flip,k,t,a,b):
-        raise Error("synthesized H5 child failed guard")
-    var target=member_transport(-1,k,p[0],p[1],h5_child_source(flip),a,b)
-    if not in_h5_image(target):
-        raise Error("H5 child escaped typed target packet")
-    out.append(BoundaryEdge(a,b,target))
+@fieldwise_init
+struct H5Children(BoundaryFamily):
+    def name(self) -> String:return "H5"
+    def source(self,kind: Int) raises -> BoundaryLabel:return h5_child_source(kind)
+    def parameters(self,kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int]:
+        var p=_dimensions(kind,k,t)
+        return (p[0],p[1])
+    def swapped(self,kind: Int) -> Bool:return kind==1
+    def allowed(self,kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:return h5_child_allowed(kind,k,t,i,j)
+    def in_image(self,w: BoundaryLabel) raises -> Bool:return in_h5_image(w)
+
+
+def _append(mut out: List[BoundaryEdge],kind: Int,k: Int,t: Int,i: Int,j: Int) raises:
+    append_child(H5Children(),out,kind,k,t,i,j)
 
 
 def h5_child_star(flip: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
@@ -180,10 +185,7 @@ def h5_child_star(flip: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
 
 
 def verify_h5_child_packet(tables: SeedOverlapTables,flip: Int,k: Int,t: Int,edge: BoundaryEdge) raises:
-    var p=_dimensions(flip,k,t)
-    if not h5_child_allowed(flip,k,t,edge.i,edge.j) or not in_h5_image(edge.target):
-        raise Error("H5 occurrence/typed target refused")
-    verify_member_edge(tables,-1,k,p[0],p[1],h5_child_source(flip),edge.i,edge.j,edge.target)
+    verify_child_packet(H5Children(),tables,flip,k,t,edge)
 
 
 def h5_child_path(flip: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:

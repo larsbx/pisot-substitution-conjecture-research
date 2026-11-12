@@ -1,0 +1,41 @@
+
+  C4OverlapMass
+    1) transposeOrientationTest failed after 1 test(s)
+
+  1 failed
+
+  1) transposeOrientationTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-c4-overlap-mass-w2dcqveq/transpose-indices-reversed.qnt:241:34
+        241:   run transposeOrientationTest = init.expect({
+                                              ^^^^^^^^^^^^^
+        242:     val f = List(List(1, 1), List(0, 1))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        243:     val t = List(List(1, 0), List(1, 1))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        244:     val h = List(1, 1)
+             ^^^^^^^^^^^^^^^^^^^^^^
+        245:     val m = List(2, 2)
+             ^^^^^^^^^^^^^^^^^^^^^^
+        246:     all {
+             ^^^^^^^^^
+        247:       countCorrespondence(f, t, m),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        248:       rowAction(t, weighted(h, m)) == List(2, 4),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        249:       transposeAction(t, weighted(h, m)) == List(4, 2),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        250:       forwardDeficit(f, h, 2) == List(0, 1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        251:       inverseDeficit(t, weighted(h, m), 2) == weighted(forwardDeficit(f, h, 2), m),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        252:     }
+             ^^^^^
+        253:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f6 --match=transposeOrientationTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-c4-overlap-mass-w2dcqveq/transpose-indices-reversed.qnt
+error: Tests failed

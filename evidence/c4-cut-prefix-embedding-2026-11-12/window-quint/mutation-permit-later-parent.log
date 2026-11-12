@@ -1,0 +1,38 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+  C4StablePrefixAdversarial
+    1) laterParentRefusedTest failed after 1 test(s)
+
+  1 failed
+
+  1) laterParentRefusedTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-c4-stable-prefix-snapshot-rwn27f30/permit-later-parent.qnt:169:32
+        169:   run laterParentRefusedTest = init.expect({
+                                            ^^^^^^^^^^^^^
+        170:     val values = List(1, 2, 4, 8, 16)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        171:     val parents = List(1, 2, 3, 4)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        172:     all {
+             ^^^^^^^^^
+        173:       parameters(2, 1, 0, 0),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        174:       positions(parents).forall(i => stepInequality(2, 1, 0, values[i], values[parents[i]])),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        175:       positions(values).forall(i => values[i] > 0),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        176:       not(orderedParents(parents)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        177:       not(arrayPremises(2, 1, 0, 0, values, parents)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        178:     }
+             ^^^^^
+        179:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f7 --match=laterParentRefusedTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-c4-stable-prefix-snapshot-rwn27f30/permit-later-parent.qnt
+error: Tests failed

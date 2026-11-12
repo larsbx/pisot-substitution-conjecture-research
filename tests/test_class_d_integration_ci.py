@@ -203,3 +203,43 @@ def test_changed_production_dependency_still_refuses_in_full_audit(monkeypatch):
     monkeypatch.setattr(Path, 'read_bytes', changed)
     with pytest.raises(ValueError, match='source, lock or workflow changed: pyproject.toml'):
         ci.validate(*packet())
+
+
+def test_exact_pdf_test_update_preserves_the_historical_acceptance_boundary():
+    before = b'[project]\nrequires-python=">=3.10"\ndependencies=[]\n[project.optional-dependencies]\ndev=["pytest>=7.0", "pypdf==6.19.0"]\n'
+    updated = before.replace(b'pypdf==6.19.0', b'pypdf==6.21.4')
+    with_sympy = updated.replace(b'"pypdf==6.21.4"]', b'"pypdf==6.21.4", "sympy==1.14.0"]')
+    assert ci.updated_pypdf_test_dependency_only(before, updated)
+    assert ci.updated_pypdf_test_dependency_only(before, with_sympy)
+    assert not ci.updated_pypdf_test_dependency_only(before, before)
+    for changed in [
+        with_sympy.replace(b'pypdf==6.21.4', b'pypdf>=6.21.4'),
+        with_sympy.replace(b'pypdf==6.21.4', b'pypdf==6.21.5'),
+        with_sympy.replace(b'pytest>=7.0', b'pytest>=8.0'),
+        with_sympy.replace(b'sympy==1.14.0', b'sympy>=1.14'),
+        with_sympy.replace(b'dependencies=[]', b'dependencies=["pypdf==6.21.4"]'),
+        with_sympy.replace(b'>=3.10', b'>=3.12'),
+        with_sympy + b'\n[build-system]\nrequires=["changed"]\n',
+        with_sympy.replace(b'"pytest>=7.0", ', b''),
+        with_sympy.replace(b'"pypdf==6.21.4", ', b'"pypdf==6.21.4", "pypdf==6.21.4", '),
+    ]:
+        assert not ci.updated_pypdf_test_dependency_only(before, changed)
+
+
+def test_pdf_provenance_job_update_refuses_other_execution_changes():
+    before = b'name: checks\non: push\njobs:\n  provenance:\n    steps:\n      - name: Install parser\n        run: python -m pip install "pypdf==6.19.0"\n      - run: ./tools/verify_all.sh provenance\n'
+    updated = before.replace(b'pypdf==6.19.0', b'pypdf==6.21.4')
+    with_concurrency = updated.replace(b'jobs:\n', b'concurrency:\n  group: checks\n  cancel-in-progress: true\njobs:\n')
+    assert ci.updated_pypdf_ci_dependency_only(before, updated)
+    assert ci.updated_pypdf_ci_dependency_only(before, with_concurrency)
+    assert not ci.updated_pypdf_ci_dependency_only(before, before)
+    for changed in [
+        updated.replace(b'6.21.4', b'6.21.5'),
+        updated.replace(b'==6.21.4', b'>=6.21.4'),
+        updated.replace(b'6.21.4"', b'6.21.4" unrelated-package'),
+        updated.replace(b'./tools/verify_all.sh provenance', b'true'),
+        updated.replace(b'on: push', b'on: workflow_dispatch'),
+        updated + b'        run: python -m pip install "pypdf==6.21.4"\n',
+        with_concurrency.replace(b'./tools/verify_all.sh provenance', b'true'),
+    ]:
+        assert not ci.updated_pypdf_ci_dependency_only(before, changed)

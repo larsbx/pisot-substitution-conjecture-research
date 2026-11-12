@@ -1,0 +1,17 @@
+'Psc.CutPrefixControls.same_incidence_different_words' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.CutPrefixControls.reference_occurrence_not_interchangeable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Psc.CutPrefixControls.actual_period_two_not_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.CutPrefixControls.actual_reference_prefix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.CutPrefixControls.literal_nonzero_correction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.CutPrefixControls.literal_correction_projection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.CutPrefixControls.wrong_correction_sign' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.CutPrefixControls.doubling_pow_apply' depends on axioms: [propext, Quot.sound]
+'Psc.CutPrefixControls.same_finite_residue' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.CutPrefixControls.different_next_residue' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.CutPrefixControls.agreement_through_level' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.CutPrefixControls.finite_agreement_not_limit_equality' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.CutPrefixControls.shrinking_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.CutPrefixControls.growing_correction_constant_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.CutPrefixControls.growing_corrections_do_not_converge' depends on axioms: [propext, Classical.choice, Quot.sound]

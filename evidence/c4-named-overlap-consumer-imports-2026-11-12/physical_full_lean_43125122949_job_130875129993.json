@@ -1,0 +1,109 @@
+{
+  "schema": "psc-hosted-ci-job-receipt-v1",
+  "observed_at_utc": "2026-11-12 00:19:20 UTC",
+  "repo": "larsbx/pisot-substitution-conjecture-research",
+  "head_sha": "ed8251b95a770476fdb96248e42ef10ac54d0c93",
+  "head_tree": "feb518be2f6a00331e9d794fdc3f71a65fb2c24d",
+  "run_id": 43125122949,
+  "run_status": "completed",
+  "run_conclusion": "failure",
+  "job_id": 130875129993,
+  "job_status": "completed",
+  "job_conclusion": "failure",
+  "started_at": "2026-11-12T00:09:02Z",
+  "completed_at": "2026-11-12T00:18:23Z",
+  "job_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43125122949/job/130875129993",
+  "steps": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 1,
+      "started_at": "2026-11-12T00:09:03Z",
+      "completed_at": "2026-11-12T00:09:04Z"
+    },
+    {
+      "name": "Run actions/checkout@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 2,
+      "started_at": "2026-11-12T00:09:04Z",
+      "completed_at": "2026-11-12T00:09:06Z"
+    },
+    {
+      "name": "Bind the exact revision",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 3,
+      "started_at": "2026-11-12T00:09:06Z",
+      "completed_at": "2026-11-12T00:09:06Z"
+    },
+    {
+      "name": "Acquire the pinned Lean releases through the official asset API",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 4,
+      "started_at": "2026-11-12T00:09:06Z",
+      "completed_at": "2026-11-12T00:09:17Z"
+    },
+    {
+      "name": "Provision repository-pinned Lean and Mathlib",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 5,
+      "started_at": "2026-11-12T00:09:17Z",
+      "completed_at": "2026-11-12T00:10:37Z"
+    },
+    {
+      "name": "Compile isolated sources and audit all compiled declarations",
+      "status": "completed",
+      "conclusion": "failure",
+      "number": 6,
+      "started_at": "2026-11-12T00:10:37Z",
+      "completed_at": "2026-11-12T00:18:18Z"
+    },
+    {
+      "name": "Run actions/upload-artifact@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 7,
+      "started_at": "2026-11-12T00:18:18Z",
+      "completed_at": "2026-11-12T00:18:19Z"
+    },
+    {
+      "name": "Post Run actions/checkout@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 14,
+      "started_at": "2026-11-12T00:18:19Z",
+      "completed_at": "2026-11-12T00:18:20Z"
+    },
+    {
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 15,
+      "started_at": "2026-11-12T00:18:20Z",
+      "completed_at": "2026-11-12T00:18:20Z"
+    }
+  ],
+  "failed_targets": [
+    "PscVerif.ParikhRank",
+    "PscVerif.DescendantSpan"
+  ],
+  "diagnostics": [
+    "ParikhRank.lean:119:6: Unknown identifier minpoly.eq_of_irreducible_of_monic; consequent unsolved goal at111:46",
+    "DescendantSpan.lean:189:8: Unknown identifier dotProduct_self_eq_zero.mp"
+  ],
+  "classification": "Blocking production import regression exposed by complete source build after the Cyclicity umbrella-import removal.",
+  "canonical_acceptance": false,
+  "compiled_axiom_audit": "Not reached because the full build failed.",
+  "suggested_imports": {
+    "ParikhRank.lean": "Mathlib.FieldTheory.Minpoly.Field",
+    "DescendantSpan.lean": "Mathlib.LinearAlgebra.Matrix.DotProduct"
+  },
+  "scope": "This failed exact-head gate is historical evidence; later repairs require a new complete source audit.",
+  "log_file": "physical_full_lean_43125122949_job_130875129993.log",
+  "log_bytes": 76411,
+  "log_sha256": "8fea1ae11ffc74443f3d5e9c8d15c48d224859d795257520dc14525ce566eb58"
+}

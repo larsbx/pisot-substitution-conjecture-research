@@ -1,16 +1,16 @@
 """Complete E2/Dxx stars and actual five-step exits; no global closure/BH."""
 from finite_exact.checked_int import checked_add
-from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, member_transport, verify_member_edge
+from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, verify_member_edge
 from psc.class_a_boundary_u_children import reverse_label
 from psc.class_a_boundary_p_children import certify_p_children
 from psc.class_a_boundary_e_children import eh_source, _offset
 from psc.class_a_boundary_h3_children import alpha_high, chain_source, chain_path
-from psc.class_a_boundary_next_run import _parameters
 from psc.class_a_boundary_next_first import _linear, _cubic, _equal
 from psc.class_a_boundary_occurrences import symbolic_child, _equal3, _prefix, _child, FIRST, RUN, LAST
 from psc.class_a_boundary_signs import chamber_parameters, _cone_nonnegative, _same
 from psc.param_poly import QX, qx_const, qx_add, qx_sub, qx_neg, tp_add, tp_sub, tp_mul, tp_scale, tp_mod_monic
 from psc.overlap_seed_patch import SeedOverlapTables
+from psc.class_a_boundary_family import BoundaryFamily, boundary_dimensions, append_child, verify_child_packet
 
 
 def e2_source(kind: Int) raises -> BoundaryLabel:
@@ -121,12 +121,9 @@ def certify_e2_children(corrupt: Bool=False) raises:
           "E2_t0_unique_last_child=true", "typed_exits_at_most_five=true", "global_closure=false", "BH=false")
 
 
-def _dimensions(kind: Int, k: Int, t: Int) raises -> Tuple[Int,Int,Int]:
+def _dimensions(kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int,Int,Int]:
     _=e2_source(kind)
-    var p=_parameters(-1,k,t)
-    var A=checked_add(p[0],p[1])
-    _=checked_add(A,8) # also bound unclipped diagonal/endpoint constants
-    return (p[0],p[1],A)
+    return boundary_dimensions(k,t,8) # also bound unclipped diagonal/endpoint constants
 
 
 def e2_child_allowed(kind: Int, k: Int, t: Int, i: Int, j: Int) raises -> Bool:
@@ -193,16 +190,20 @@ def e2_image() raises -> List[BoundaryLabel]:
     return out^
 
 
-def _append(mut out: List[BoundaryEdge], kind: Int, k: Int, t: Int, i: Int, j: Int) raises:
-    var p=_dimensions(kind,k,t)
-    var a=j if kind%2==1 else i
-    var b=i if kind%2==1 else j
-    if not e2_child_allowed(kind,k,t,a,b):
-        raise Error("synthesized E2 child failed exact guard")
-    var target=member_transport(-1,k,p[0],p[1],e2_source(kind),a,b)
-    if not in_e2_image(target):
-        raise Error("E2 child escaped typed target packet")
-    out.append(BoundaryEdge(a,b,target))
+@fieldwise_init
+struct E2Children(BoundaryFamily):
+    def name(self) -> String:return "E2"
+    def source(self,kind: Int) raises -> BoundaryLabel:return e2_source(kind)
+    def parameters(self,kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int]:
+        var p=_dimensions(kind,k,t)
+        return (p[0],p[1])
+    def swapped(self,kind: Int) -> Bool:return kind%2==1
+    def allowed(self,kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:return e2_child_allowed(kind,k,t,i,j)
+    def in_image(self,w: BoundaryLabel) raises -> Bool:return in_e2_image(w)
+
+
+def _append(mut out: List[BoundaryEdge],kind: Int,k: Int,t: Int,i: Int,j: Int) raises:
+    append_child(E2Children(),out,kind,k,t,i,j)
 
 
 def e2_child_star(kind: Int, k: Int, t: Int) raises -> List[BoundaryEdge]:
@@ -232,11 +233,8 @@ def e2_child_star(kind: Int, k: Int, t: Int) raises -> List[BoundaryEdge]:
     return out^
 
 
-def verify_e2_packet(tables: SeedOverlapTables, kind: Int, k: Int, t: Int, edge: BoundaryEdge) raises:
-    var p=_dimensions(kind,k,t)
-    if not e2_child_allowed(kind,k,t,edge.i,edge.j) or not in_e2_image(edge.target):
-        raise Error("E2 occurrence/target packet refused")
-    verify_member_edge(tables,-1,k,p[0],p[1],e2_source(kind),edge.i,edge.j,edge.target)
+def verify_e2_packet(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,edge: BoundaryEdge) raises:
+    verify_child_packet(E2Children(),tables,kind,k,t,edge)
 
 
 def e2_path(kind: Int, k: Int, t: Int) raises -> List[BoundaryEdge]:

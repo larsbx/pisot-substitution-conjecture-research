@@ -1,0 +1,6 @@
+Waiting for the single Lean development compiler lock.
+Acquired the single Lean development compiler lock.
+[1/2] current development object PscVerif.ConcentrationAlgebra
+[2/2] compiling actual source PscVerif.Cyclicity
+[2/2] result 0, 30.5s
+Development compilation finished; canonical isolated acceptance remains separate.

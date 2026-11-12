@@ -1,0 +1,415 @@
+{
+  "schema": "c4-historical-checksum-metadata-repair-v1",
+  "source_revision": "6915e8d592b7ea5cb7c6950249811e354dc6c3e7",
+  "scope": "Add required SHA256SUMS metadata only; preserve every original byte and prior manifest. Generated in scratch; not installed during running gate.",
+  "packets": [
+    {
+      "packet": "c4-cut-prefix-embedding-2026-11-12",
+      "original_file_count": 74,
+      "original_bytes_unchanged": true,
+      "new_checksum_source": "/workspace/scratch/f96c28a561ad/compact-historical-checksum-repair/c4-cut-prefix-embedding-2026-11-12-SHA256SUMS",
+      "new_checksum_sha256": "5d7c3efd402a17b38172276c3203bd786882222c1a08def39a8381d78f08d9ca",
+      "entries": [
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/README.md",
+          "relative": "README.md",
+          "sha256": "6fd597d35d42701e7f262c1583d1f530d93b3b437acb28475821d5690522d380"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/chart-quint.log",
+          "relative": "chart-quint.log",
+          "sha256": "69f8f70fe8f3893f380a27ed4379919b351676b1f42022dbe43a3711efa46694"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/chart-quint/C4NamedChartAdversarial.log",
+          "relative": "chart-quint/C4NamedChartAdversarial.log",
+          "sha256": "e7290bc08020866da4e89732f59cbed5de04866103455e73bdab74efaa4f3898"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/chart-quint/C4NamedChartAlgebra.log",
+          "relative": "chart-quint/C4NamedChartAlgebra.log",
+          "sha256": "15ab1ea0bae990c4131a0f771d6b5f297335010d133d135e3fa1a74c477dffee"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/chart-quint/C4NamedChartExhaustive.log",
+          "relative": "chart-quint/C4NamedChartExhaustive.log",
+          "sha256": "bffbd3e111531a94e1b112a49c86998128d45429811549c550a189aeb1a477eb"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/chart-quint/mutation-admit-unit-contraction.log",
+          "relative": "chart-quint/mutation-admit-unit-contraction.log",
+          "sha256": "bc85055eb7f335301a7d57bf67d034cc141c35a8efe5bdecd39aeaf4c114d3d9"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/chart-quint/mutation-admit-zero-denominator.log",
+          "relative": "chart-quint/mutation-admit-zero-denominator.log",
+          "sha256": "0db4cdd5d6fd6d89382515abd602219c870f459c17422fa52f295f79b5332725"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/chart-quint/mutation-drop-absolute-values.log",
+          "relative": "chart-quint/mutation-drop-absolute-values.log",
+          "sha256": "3168f02a235ef477376e4ff800bd37a1dbe53e263cf5b4a034e3de63b2334d48"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/chart-quint/mutation-ignore-block-identity.log",
+          "relative": "chart-quint/mutation-ignore-block-identity.log",
+          "sha256": "047b68cf61907a83b8cd81b3454a79039d03dfb07c9016635fb96dfbf09af0e4"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/chart-quint/mutation-ignore-matrix-identity.log",
+          "relative": "chart-quint/mutation-ignore-matrix-identity.log",
+          "sha256": "881ccb1504036051d587412c49ee146dfe44c53298847919f95ae1c051c58b29"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/chart-quint/mutation-omit-incidence-commutation.log",
+          "relative": "chart-quint/mutation-omit-incidence-commutation.log",
+          "sha256": "0d11d2dd18c5bda48cccbc33869d8ccca6cbac545ba49bd9b7e9aed2a6795b36"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/chart-quint/mutation-omit-second-row.log",
+          "relative": "chart-quint/mutation-omit-second-row.log",
+          "sha256": "a52a340c7e49ddf076e739dbe51340a3be6466ab0529eafd0aca945991cf9b31"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/chart-quint/mutation-omit-section-authentication.log",
+          "relative": "chart-quint/mutation-omit-section-authentication.log",
+          "sha256": "b4ec071c8d9802adfa80efeebe4e4733546a2a8f873ce5e386c342be3dbca1ed"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/chart-quint/mutation-substitute-column-norm.log",
+          "relative": "chart-quint/mutation-substitute-column-norm.log",
+          "sha256": "475a48b68f46f09b5b04e2705b922f067291d130b9db7a5125562d6a777c3d9f"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/chart-quint/mutation-substitute-entrywise-norm.log",
+          "relative": "chart-quint/mutation-substitute-entrywise-norm.log",
+          "sha256": "b773e6c288b4a2caaa5eab4313ebc010c4650df31e973740809a2c36a7b937ca"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/chart-quint/quint-receipt.json",
+          "relative": "chart-quint/quint-receipt.json",
+          "sha256": "affb9691f86863f2efab7f87c3a379db97642d535f30b1d4d82412e2890c8ba3"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/chart-quint/quint-typecheck.log",
+          "relative": "chart-quint/quint-typecheck.log",
+          "sha256": "7125f194612fcff2f454c05d848e7cb71facc1967b4d5017e25b34fdee3ba74f"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/chart-quint/quint-version.log",
+          "relative": "chart-quint/quint-version.log",
+          "sha256": "44b2e158cdbd04a2b0f1b33fabd5868c7bf5eecd3bdaf65e56aa8e44166f3e60"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/compact-followon-plan.md",
+          "relative": "compact-followon-plan.md",
+          "sha256": "09b64f78a5a7c4a0e38286633eb9508acd126ca5f97655534cb9466dc3deee1a"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/compiled-audit-inspection.json",
+          "relative": "compiled-audit-inspection.json",
+          "sha256": "4cff5cfba1841a4930acfdae3d8f013233f9c50e6b73a322d36456db330209ad"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/compiled-new-declarations.log.gz",
+          "relative": "compiled-new-declarations.log.gz",
+          "sha256": "801eeadec624aec420f16998735f9d2ddef938a66ad7384d554ab0e7798ce463"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/development-attempts.json",
+          "relative": "development-attempts.json",
+          "sha256": "b341e26e5d26c3bb14e5723ec8c3e1e21e22d1c7bb9de6876d043800e4bc97c0"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/development-controls-axioms.log",
+          "relative": "development-controls-axioms.log",
+          "sha256": "acd8b6b59422bac3a93a859b0759f28944a953b2d63d4fd121b724805189fbef"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/failed-chart-quint-stale-head.log",
+          "relative": "failed-chart-quint-stale-head.log",
+          "sha256": "55dd4826048240d96e7d1afaa399d7f1ab5eb4a067f20fad0222d57ea217f4ed"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/failed-chart-quint-stale-head/C4NamedChartAdversarial.log",
+          "relative": "failed-chart-quint-stale-head/C4NamedChartAdversarial.log",
+          "sha256": "289599db2fb45234b9567ce17110e8846f37603c287e298827b8efbcbebe972e"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/failed-chart-quint-stale-head/C4NamedChartAlgebra.log",
+          "relative": "failed-chart-quint-stale-head/C4NamedChartAlgebra.log",
+          "sha256": "be442f5d1cf8544385e9d0037f09bc74b52dba5b290ec3b49bc1f9acee8dabfc"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/failed-chart-quint-stale-head/C4NamedChartExhaustive.log",
+          "relative": "failed-chart-quint-stale-head/C4NamedChartExhaustive.log",
+          "sha256": "1813805ad218bd801e605c50f06eccda0480c426334d5b67e4eb8b1b9611aa13"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/failed-chart-quint-stale-head/mutation-admit-unit-contraction.log",
+          "relative": "failed-chart-quint-stale-head/mutation-admit-unit-contraction.log",
+          "sha256": "0c4f9b99201c59e856efcbf48e84033a572794ef988587649d40c486a69d87ec"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/failed-chart-quint-stale-head/mutation-admit-zero-denominator.log",
+          "relative": "failed-chart-quint-stale-head/mutation-admit-zero-denominator.log",
+          "sha256": "5bf7f635695a7d0ef712e44a28978f056bf01ce367151259298be11d4cd5c1bb"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/failed-chart-quint-stale-head/mutation-drop-absolute-values.log",
+          "relative": "failed-chart-quint-stale-head/mutation-drop-absolute-values.log",
+          "sha256": "c7d42892b8ba27665b1cea71b29a3c42f35945531b21842aef63b6f6eca216c6"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/failed-chart-quint-stale-head/mutation-ignore-block-identity.log",
+          "relative": "failed-chart-quint-stale-head/mutation-ignore-block-identity.log",
+          "sha256": "497315ce3c6067d72c0c0cd2ebf1050a7d584794b35638c3428f5f2052a2e085"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/failed-chart-quint-stale-head/mutation-ignore-matrix-identity.log",
+          "relative": "failed-chart-quint-stale-head/mutation-ignore-matrix-identity.log",
+          "sha256": "4fd722e1ce7c7c41192831ea1559199a22c39e9e6580648035bf825201f2694f"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/failed-chart-quint-stale-head/mutation-omit-incidence-commutation.log",
+          "relative": "failed-chart-quint-stale-head/mutation-omit-incidence-commutation.log",
+          "sha256": "c2e1dd27fc7da514b8d046ac531529b034a13ccc038a76610322d57abe5a63d1"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/failed-chart-quint-stale-head/mutation-omit-second-row.log",
+          "relative": "failed-chart-quint-stale-head/mutation-omit-second-row.log",
+          "sha256": "e1cb495405b51f0eca064a5f815e5f21b56753db36893714f05e701deb4101f6"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/failed-chart-quint-stale-head/mutation-omit-section-authentication.log",
+          "relative": "failed-chart-quint-stale-head/mutation-omit-section-authentication.log",
+          "sha256": "0a1fbb37243c72bb6bf0b02654441ef9840cb123ec8b9d164fc88f64a64c79b9"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/failed-chart-quint-stale-head/mutation-substitute-column-norm.log",
+          "relative": "failed-chart-quint-stale-head/mutation-substitute-column-norm.log",
+          "sha256": "e8b18ff0322729589d8ff9a8f4a62bb30e94bef8be99766ffc854c2e8b1ebf4a"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/failed-chart-quint-stale-head/mutation-substitute-entrywise-norm.log",
+          "relative": "failed-chart-quint-stale-head/mutation-substitute-entrywise-norm.log",
+          "sha256": "9c2b65249f20dadce78a7f7f72eed9aaa562f0384791e2d7f58a43ea393a9d18"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/failed-chart-quint-stale-head/quint-receipt.json",
+          "relative": "failed-chart-quint-stale-head/quint-receipt.json",
+          "sha256": "f9a007af60ecef31fe45fb3cb01a189009b8eaf5174e039ca66e32737e17df82"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/failed-chart-quint-stale-head/quint-typecheck.log",
+          "relative": "failed-chart-quint-stale-head/quint-typecheck.log",
+          "sha256": "7125f194612fcff2f454c05d848e7cb71facc1967b4d5017e25b34fdee3ba74f"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/failed-chart-quint-stale-head/quint-version.log",
+          "relative": "failed-chart-quint-stale-head/quint-version.log",
+          "sha256": "b7553935c436e58f734c1a0375d21901c853dcb062a55179c1dca1522165e802"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/failed-isolated-tmpfs.log.gz",
+          "relative": "failed-isolated-tmpfs.log.gz",
+          "sha256": "5514cdd0aee4c2d6845daf59c4790fa63c1417b3fb930e104a7118383c40d179"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/files.sha256",
+          "relative": "files.sha256",
+          "sha256": "d7eed235c4fc25f7b386a2d4841c503ebb3c0c3b69ce2b011d506a7b278a6526"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/governance-check.log",
+          "relative": "governance-check.log",
+          "sha256": "6940a57ab580c143a470ce9dfa57b03fcd085f8b569960cca2350b9ec0dbae49"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/interrupted-development-build.log.gz",
+          "relative": "interrupted-development-build.log.gz",
+          "sha256": "15c9f7761bb85e8de7596eaac723e3c8c1f01a0451f7c2ad5cccc30dd518e88d"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/interrupted-development-probe.log",
+          "relative": "interrupted-development-probe.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/isolated-lean.log.gz",
+          "relative": "isolated-lean.log.gz",
+          "sha256": "45e104cdf8fbd12f8f7f884793a5992f39eed85b058e42827fc4de0b3b382f4f"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/ledger-check.log",
+          "relative": "ledger-check.log",
+          "sha256": "87e6e3fc1f68a3418fbefd2f09df76e36d95d4624c7d11ffe2b3b6c64a09b9d6"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/native-local-receipt.json",
+          "relative": "native-local-receipt.json",
+          "sha256": "78101bf9f97c27e96f4fe4f5f4ea6eb3a3e2504da2ccdae9d0d9604a6d95c817"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/native-tests.log",
+          "relative": "native-tests.log",
+          "sha256": "a174bed0931ad0dd98f7feac078d97b255e7cf7c89605b270c88b47255bd860a"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/new-proof-inventory.json",
+          "relative": "new-proof-inventory.json",
+          "sha256": "c8f4f18a9fc935344d2200901cef3d0a9b81a3998204f31ea9c7b6bc11e5f8b0"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/oracle-receipt.json",
+          "relative": "oracle-receipt.json",
+          "sha256": "8960b533fa7d5d241532d21c5e1bd2d972633b2cdebfbbb4aa2d7e99974713db"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/packet.json.gz",
+          "relative": "packet.json.gz",
+          "sha256": "bacee8020d36d34a76f35ab29d0a163201fc543ac8f7c40abaa92f0baccfef8c"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/pr-body-policy-check.json",
+          "relative": "pr-body-policy-check.json",
+          "sha256": "1eef7ce46f51ab02b843105e03b85589be6898dc624e5e84c632679c37dfe815"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/pr-body.md",
+          "relative": "pr-body.md",
+          "sha256": "e5d220a71996dd8cd36b0d33bb1e6dcb89371346cdcfb2a8e2bd0dc0fc098a89"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/proof-bank-check.log",
+          "relative": "proof-bank-check.log",
+          "sha256": "6df796fdf3bc695f2c4f446cb8d58d5a87813cf117edeff101a3c3f8a053c6c0"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/python-tests.log",
+          "relative": "python-tests.log",
+          "sha256": "d63f4f315372e3b4b388c6447a3fef6b3fbe44f92d719ad382c5182d04e69b0c"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/receipt.json",
+          "relative": "receipt.json",
+          "sha256": "b2dcc5738c39be4d2583cdecc6cc68f182bf4ddc2dd1d57b97d11ba229b7f6a5"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/sources.json",
+          "relative": "sources.json",
+          "sha256": "c274b206de5c93ac1acfc91848bdf98b033c06f6ff89ad2fdd940d24e8c51997"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/window-quint.log",
+          "relative": "window-quint.log",
+          "sha256": "76d83b09fb9aad269cdc3112b33729a6012a9d2860b0d361c81aae97efc6e86b"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/window-quint/C4StablePrefixAdversarial.log",
+          "relative": "window-quint/C4StablePrefixAdversarial.log",
+          "sha256": "74bf7e4ba85f7664ae2ab09f9828e9ce885fa4b3e4434661b679470089057b18"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/window-quint/C4StablePrefixArrays.log",
+          "relative": "window-quint/C4StablePrefixArrays.log",
+          "sha256": "e93c9f76445e9f38378e651f02c3583e044f14085138d707e1b806f6b23b35c1"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/window-quint/C4StablePrefixScalar.log",
+          "relative": "window-quint/C4StablePrefixScalar.log",
+          "sha256": "711fbfc4e28e30005ff1e09b830b4c22fc992f5011fefcb160a76d478ca338d1"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/window-quint/mutation-accept-partial-digit-inventory.log",
+          "relative": "window-quint/mutation-accept-partial-digit-inventory.log",
+          "sha256": "996cd1f5dd090bb829438a07967f9d4efdc52d7adedffadf7266473ff135216e"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/window-quint/mutation-admit-negative-numerator.log",
+          "relative": "window-quint/mutation-admit-negative-numerator.log",
+          "sha256": "ff8cf9a3947fc2ca392c01fa0b6841ab6a1d23ec72b96e5cf8be1d8c81958258"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/window-quint/mutation-admit-unit-contraction.log",
+          "relative": "window-quint/mutation-admit-unit-contraction.log",
+          "sha256": "5eef2f982ae90864d30db4fcb9fca06a47bbd1a400fb69e534a2af9128a0eceb"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/window-quint/mutation-discard-equal-parent-case.log",
+          "relative": "window-quint/mutation-discard-equal-parent-case.log",
+          "sha256": "97d8a2025c2be7e9bf6a3bcd082ba96795d6472312af05f779fbf0e28300e7f1"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/window-quint/mutation-ignore-block-exponent.log",
+          "relative": "window-quint/mutation-ignore-block-exponent.log",
+          "sha256": "3e707d4ee4364e1efd9c09597bd54b900c9291833367173a6afd7284f44db8ee"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/window-quint/mutation-omit-digit-norm-bound.log",
+          "relative": "window-quint/mutation-omit-digit-norm-bound.log",
+          "sha256": "ef11941943a4d4a5ab59a6b3f5dd16bf04390aa9e1c221f1f72d91dca00124a8"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/window-quint/mutation-permit-later-parent.log",
+          "relative": "window-quint/mutation-permit-later-parent.log",
+          "sha256": "200f6c6088671e566606b011b6eb55ff31a35145ca575999e082c20a92fb0308"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/window-quint/mutation-replace-occurrence-identity-by-count.log",
+          "relative": "window-quint/mutation-replace-occurrence-identity-by-count.log",
+          "sha256": "ea0e599d036931abb075227f53c0fdfa2fa562356fb57cc8ee893566b150e792"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/window-quint/mutation-skip-invariant-radius.log",
+          "relative": "window-quint/mutation-skip-invariant-radius.log",
+          "sha256": "c4ae97285e63f5c99772062899161e4126016380fd77372c6cf7e8dbddf7a428"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/window-quint/quint-receipt.json",
+          "relative": "window-quint/quint-receipt.json",
+          "sha256": "ea1a2ce143fa441373b2f3d7e12e4aed5730869c4dac58c9bf032a32c6c590b6"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/window-quint/quint-typecheck.log",
+          "relative": "window-quint/quint-typecheck.log",
+          "sha256": "7125f194612fcff2f454c05d848e7cb71facc1967b4d5017e25b34fdee3ba74f"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12/window-quint/quint-version.log",
+          "relative": "window-quint/quint-version.log",
+          "sha256": "44b2e158cdbd04a2b0f1b33fabd5868c7bf5eecd3bdaf65e56aa8e44166f3e60"
+        }
+      ]
+    },
+    {
+      "packet": "c4-cut-prefix-embedding-2026-11-12-publication",
+      "original_file_count": 4,
+      "original_bytes_unchanged": true,
+      "new_checksum_source": "/workspace/scratch/f96c28a561ad/compact-historical-checksum-repair/c4-cut-prefix-embedding-2026-11-12-publication-SHA256SUMS",
+      "new_checksum_sha256": "907a31f7a38f00c2a6b1ee29b5a1507edfe4633e4b0054b799e42914932f4461",
+      "entries": [
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12-publication/README.md",
+          "relative": "README.md",
+          "sha256": "b7104141051b830016559472d789b61301c05e7e21dc72fc4465ad31914d7361"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12-publication/bundle-restore-verification.json",
+          "relative": "bundle-restore-verification.json",
+          "sha256": "1423ac789b661e3fc5bb852a99d6099456373114eec76fa7a069d1b30b82e8be"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12-publication/commit-map.json",
+          "relative": "commit-map.json",
+          "sha256": "2fd865fde22ba6854f55bae10db249953cf2183fdc5c0b4caceea0347a5125c6"
+        },
+        {
+          "file": "evidence/c4-cut-prefix-embedding-2026-11-12-publication/cut-prefix-original-commits.bundle",
+          "relative": "cut-prefix-original-commits.bundle",
+          "sha256": "1cdf0ba7e154b2f2925f84c8bb91bef8f4cf1d253895b610b29783428acc74e8"
+        }
+      ]
+    }
+  ]
+}

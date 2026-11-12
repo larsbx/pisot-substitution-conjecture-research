@@ -1,0 +1,48 @@
+{
+  "schema": "c4-archived-payload-lean-replay-v1",
+  "fixtures_verified": 2,
+  "both_original_fixtures_verified": true,
+  "scope": "original sharp-box rooted inverse ancestry; no all-strict-packet or positivity claim",
+  "kernel_evaluation": "decide +kernel; generated proof types and all transitive axioms audited",
+  "allowed_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "lean_toolchain": "leanprover/lean4:v4.34.0-rc2",
+  "exporter_sha256": "ce2906cb50b84f644f4c7e48da990bf6b4c34763fcbb502bc06dbdb35b66a0b7",
+  "complete_emitted_payload_sha256": "447d58d811359235d1f4689433500494ae14724b89b5da91f429e7e7247beaca",
+  "source_sha256": {
+    "proof/PscVerif/PscVerif/NamedArchivedDigits.lean": "12059a52f4598c316a42f64cadf269cdd716853a785bc1189023207689124775",
+    "proof/PscVerif/PscVerif/ArchivedPayload.lean": "38d3b2270c15baae23f36be3a7c369dcaab4255b26d5db6a00ed32ef084afe8d",
+    "proof/PscVerif/PscVerif/ArchivedPayloadConsumer.lean": "39768a54a2c022ef460e08dbd1879177fdf598bb8645702233264738ddf43e49",
+    "proof/PscVerif/PscVerif/ArchivedPayloadEmit.lean": "3d56413774e33215a1fb507ca418f08b4d048b3986c2c309a9cc9d626a15a6e3",
+    "kernel/psc/c4_archived_payload.mojo": "1e9eb8f5b4178f6bd228d6dc72ea0eebafbf1483f0e94d9be5dd26ce65738318",
+    "kernel/c4_archived_lean_export.mojo": "94ff2d5f27d023290378f86ea343875d242b6cea5b96b6d0bb719a90e33bb87a",
+    "oracles/python/c4_archived_payload.py": "b61b9564b1d783c1f4fc739cd19fa65c104e17857fa64c4de5ce4252758aaced",
+    "tools/replay_archived_payload_lean.py": "76bdcb833a3c91204c614ebf56b30c05e72e855f0cea5871d1c207242ac5c08a",
+    "tools/check_lean.sh": "eb63ce6fb0b837eee1208b3d47e759bcf8b3617b1374685a8850e48f283cba8d",
+    "evidence/c4-pair-overlap-graph-2026-11-05/receipt.json": "6c33772304f677a1d90e1674e6064dfb6b055fcdd370557350426162f6785dda",
+    "evidence/c4-archived-graph-refinement-2026-11-11/native-oracle/receipt.json": "387a52096b0f33b8dde0a72ffdd2f71f2b7e01b1f4fbad0b4fa7a76a4033bca3"
+  },
+  "sources": [
+    {
+      "fixture": 0,
+      "lean_sha256": "c49f74c45bcfac6ef4b29798b5d2825aebcca868359b705c66bc91008a1014b8",
+      "seconds": 1025.68,
+      "audit_sha256": "b1d3a4a9929ed0db7e23cff9ec6b353b6346fb0040724a43a32526f7fdc07181",
+      "declarations": 1799,
+      "theorem_declarations": 776
+    },
+    {
+      "fixture": 1,
+      "lean_sha256": "a2a496783dd875ea76f5bf90998ba469233e1e742cc695417c5f5de51b3ef17d",
+      "seconds": 940.468,
+      "audit_sha256": "d33b20b57051d9b382987837c8f8031ec7d4251f4cf93d2737d57bc7ba60a55a",
+      "declarations": 1799,
+      "theorem_declarations": 776
+    }
+  ],
+  "oracle_receipt_sha256": "74e8b8c00ff89f9a5ac634e022ab8acdd851ba48ca2f362f6b4d5f795ce24af5",
+  "oracle_schema": "c4-archived-payload-v1"
+}
