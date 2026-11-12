@@ -1,0 +1,175 @@
+{
+  "code_revision": "31f8046291f2428e839d95e8890c8342858ec210",
+  "code_tree": "e38c3f65efb79fa72860d8ef222e96695847a551",
+  "explicit_definition_count": 3,
+  "explicit_private_theorem_count": 3,
+  "explicit_public_theorem_count": 9,
+  "explicit_theorem_count": 12,
+  "head_at_inventory": "31f8046291f2428e839d95e8890c8342858ec210",
+  "modules": [
+    {
+      "declarations": [
+        {
+          "expected_compiled_kind": "declaration",
+          "line": 11,
+          "name": "Psc.StrictCutCount.factorStart",
+          "opening": "def factorStart (bs : List WordPair) (j : Fin bs.length) : Fin 3 \u2192 \u2124 :=",
+          "owner": "PscVerif.StrictCutCount",
+          "private": false,
+          "source_kind": "def"
+        },
+        {
+          "expected_compiled_kind": "declaration",
+          "line": 16,
+          "name": "Psc.StrictCutCount.startVectors",
+          "opening": "def startVectors (bs : List WordPair) : Finset (Fin 3 \u2192 \u2124) :=",
+          "owner": "PscVerif.StrictCutCount",
+          "private": false,
+          "source_kind": "def"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 19,
+          "name": "Psc.StrictCutCount.factorStart_injective",
+          "opening": "theorem factorStart_injective {bs : List WordPair}",
+          "owner": "PscVerif.StrictCutCount",
+          "private": false,
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 37,
+          "name": "Psc.StrictCutCount.card_startVectors",
+          "opening": "theorem card_startVectors {bs : List WordPair}",
+          "owner": "PscVerif.StrictCutCount",
+          "private": false,
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 42,
+          "name": "Psc.StrictCutCount.markAtFactorStart",
+          "opening": "private theorem markAtFactorStart (bs : List WordPair) (j : Fin bs.length)",
+          "owner": "PscVerif.StrictCutCount",
+          "private": true,
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 60,
+          "name": "Psc.StrictCutCount.exists_balanced_marks_of_mem",
+          "opening": "theorem exists_balanced_marks_of_mem {u v : Word} (hbal : Equiv1 u v)",
+          "owner": "PscVerif.StrictCutCount",
+          "private": false,
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 81,
+          "name": "Psc.StrictCutCount.physicalLength_le_mul_length",
+          "opening": "private theorem physicalLength_le_mul_length (\u2113 : Fin 3 \u2192 \u211d) (L : \u211d)",
+          "owner": "PscVerif.StrictCutCount",
+          "private": true,
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 94,
+          "name": "Psc.StrictCutCount.physicalLength_le_card_reduction_starts",
+          "opening": "theorem physicalLength_le_card_reduction_starts (\u2113 : Fin 3 \u2192 \u211d) (L : \u211d)",
+          "owner": "PscVerif.StrictCutCount",
+          "private": false,
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 104,
+          "name": "Psc.StrictCutCount.offset_mem_strip_of_mem",
+          "opening": "theorem offset_mem_strip_of_mem (\u2113 : Fin 3 \u2192 \u211d) (h\u2113 : \u2200 a, 0 < \u2113 a)",
+          "owner": "PscVerif.StrictCutCount",
+          "private": false,
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 120,
+          "name": "Psc.StrictCutCount.repeated_factor_control",
+          "opening": "theorem repeated_factor_control :",
+          "owner": "PscVerif.StrictCutCount",
+          "private": false,
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 129,
+          "name": "Psc.StrictCutCount.empty_startVectors",
+          "opening": "theorem empty_startVectors : startVectors [] = \u2205 := by",
+          "owner": "PscVerif.StrictCutCount",
+          "private": false,
+          "source_kind": "theorem"
+        }
+      ],
+      "explicit_definition_count": 2,
+      "explicit_private_theorem_count": 2,
+      "explicit_public_theorem_count": 7,
+      "explicit_theorem_count": 9,
+      "module": "PscVerif.StrictCutCount",
+      "source_bytes": 6140,
+      "source_git_blob_sha": "88bb5e983397b38ae962503a3bf2463769108cdb",
+      "source_path": "proof/PscVerif/PscVerif/StrictCutCount.lean",
+      "source_sha256": "465d1ad883556eca80db059bde0564a425a6a62407cd307d728347bc558d62b1"
+    },
+    {
+      "declarations": [
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 17,
+          "name": "Psc.NamedCutCount.physicalLength_iterate",
+          "opening": "private theorem physicalLength_iterate (fixture : Fin 2) (k : \u2115) (w : Word) :",
+          "owner": "PscVerif.NamedCutCount",
+          "private": true,
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "declaration",
+          "line": 27,
+          "name": "Psc.NamedCutCount.integerStarts",
+          "opening": "def integerStarts (fixture : Fin 2) (n : \u2115) (T : WordPair) : Finset (Fin 3 \u2192 \u2124) :=",
+          "owner": "PscVerif.NamedCutCount",
+          "private": false,
+          "source_kind": "def"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 33,
+          "name": "Psc.NamedCutCount.integerStarts_count_and_strip",
+          "opening": "theorem integerStarts_count_and_strip (fixture : Fin 2) {C : Finset WordPair}",
+          "owner": "PscVerif.NamedCutCount",
+          "private": false,
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 49,
+          "name": "Psc.NamedCutCount.eventually_integerStarts_mem",
+          "opening": "theorem eventually_integerStarts_mem (fixture : Fin 2) {C : Finset WordPair}",
+          "owner": "PscVerif.NamedCutCount",
+          "private": false,
+          "source_kind": "theorem"
+        }
+      ],
+      "explicit_definition_count": 1,
+      "explicit_private_theorem_count": 1,
+      "explicit_public_theorem_count": 2,
+      "explicit_theorem_count": 3,
+      "module": "PscVerif.NamedCutCount",
+      "source_bytes": 3180,
+      "source_git_blob_sha": "361a08262c9fe4c9e9dea4f5261b8cf44dfd374a",
+      "source_path": "proof/PscVerif/PscVerif/NamedCutCount.lean",
+      "source_sha256": "9e265aa7f9a9a4cf4dbef2a2f4f1a320740f8cc19a6d290679d6ec8343cfeae4"
+    }
+  ],
+  "schema": "psc-finite-cut-count-source-inventory-v1",
+  "scope": "Source inventory only; no compilation, log inspection, or acceptance is claimed by this file.",
+  "source_origin": "committed_revision"
+}
