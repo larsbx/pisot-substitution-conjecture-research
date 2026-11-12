@@ -25,23 +25,30 @@ Otherwise, the decoded store writes the exact sum at the same indexed
 address from which the old count was loaded. `writeWord_outside` gives
 the byte-level frame for the other addresses.
 
-The overflow continuation checks 28 more instructions across error
-preparation (`0xaae7–0xab00`), the tag assignment (`0xace8–0xace9`), and the
-return block (`0xad04–0xad4d`). It checks the 33 message bytes at `0xd5b0`.
+The overflow continuation checks 42 more instructions across error
+preparation (`0xaae7–0xab00`), conditional cleanup (`0xacbd–0xad03`), and
+the return block (`0xad04–0xad4d`). It checks the 33 message bytes at `0xd5b0`.
 `overflow_produces_error` composes this projection with the checked update
 and proves that an overflowing input produces tag 1, message length 33
 and the relocated address of `checked integer addition overflow`. It also
 establishes the return-buffer pointer and models the frame consumption
 through the return to the saved caller address.
 
-The error projection assumes a valid frame and a writable, disjoint
-return buffer. The omitted instructions and external stack-trace and
-free calls are a summary boundary. The composition assumes control
-reaches the recorded preparation, tag and return blocks with the
-projected fields and stack locations intact. The saved caller address
-and return-buffer address are inputs. The proof only observes the
-message fields, tag and return state, so it abstracts the other writes
-to disjoint ABI fields.
+The cleanup theorem covers both skip branches and both calls. It records
+a free of the first allocation exactly when the ownership byte is nonzero,
+then a free of the second allocation exactly when the saved signed count
+is positive. The decoded displacements target `0xacd7` and `0xad04` for
+the skips and the same aligned-free PLT entry for both calls. Each of the
+four paths reaches the return block with the message fields preserved and
+tag 1.
+
+The projection assumes a valid frame and disjoint ABI fields. Its inputs
+represent the ownership byte, saved signed count, allocation bases, return
+buffer, and saved caller address. The free-call model assumes each call
+returns with the projected state and stack intact. It records which frees
+were requested and leaves allocator behavior to a separate contract.
+The stack-trace call and the control-flow transition from preparation
+to cleanup remain summary boundaries.
 
 ## Replay
 
@@ -58,12 +65,14 @@ lean --run proof/WordCounters/N2MachineSlice.lean /tmp/psc-word-counters
 
 The Lean command checks the instruction slices and the error message bytes. The digest identifies
 the full recorded executable separately. A changed byte in either slice
-or a file truncated before the second slice must be refused. The
-arithmetic theorem's axiom report lists only `propext`,
-`Classical.choice`, and `Quot.sound`.
+or a file truncated before the second slice must be refused. Mutations of
+the cleanup skip displacements at `0xaccb` and `0xacf5` or the second
+free-call displacement at `0xacfd` are also refused. The axiom reports
+list only `propext`, `Classical.choice`, and `Quot.sound`.
 
 The remaining binary obligations are to relate the projected instruction
 semantics to an independent x86-64 semantics, derive the address, memory
 validity, stack-base, and nonnegativity premises from the compiled loop
-invariant, and connect the rejection branch to the returned error.
+invariant, and verify the omitted control-flow transitions and runtime
+contracts used by the error projection.
 The N2, N3, and N4 loops and runtime still require their own proofs.

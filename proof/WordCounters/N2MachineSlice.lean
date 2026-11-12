@@ -499,10 +499,18 @@ structure ErrorResult where
   consumedStackBytes : Nat
   deriving DecidableEq
 
+structure CleanupInputs where
+  ownership : UInt8 := 0
+  secondCount : Word := 0
+  firstBase : Word := 0
+  secondBase : Word := 0
+
 structure ErrorState where
   imageBase : Word
   buffer : Word
   caller : Word
+  cleanup : CleanupInputs := {}
+  freeCalls : List Word := []
   rax : Word := 0
   r11 : Word := 0
   bl : UInt8 := 0
@@ -538,6 +546,20 @@ inductive ErrorOp where
   | dropFrame
   | popSaved
   | ret
+  | testOwnership
+  | readSecondBase
+  | skipFirst
+  | saveFirstTrace
+  | freeFirst
+  | restoreFirstTrace
+  | testSecondCount
+  | reloadBuffer
+  | setCapacity
+  | skipSecond
+  | setSecondArgument
+  | saveSecondTrace
+  | freeSecond
+  | restoreSecondTrace
   deriving DecidableEq
 
 def errorEncodings : List (List UInt8 × ErrorOp) := [
@@ -568,7 +590,21 @@ def errorEncodings : List (List UInt8 × ErrorOp) := [
   ([0x41, 0x5e], .popSaved),
   ([0x41, 0x5f], .popSaved),
   ([0x5d], .popSaved),
-  ([0xc3], .ret)]
+  ([0xc3], .ret),
+  ([0x80, 0x7c, 0x24, 0x48, 0x00], .testOwnership),
+  ([0x4c, 0x8b, 0xb4, 0x24, 0xb0, 0x00, 0x00, 0x00], .readSecondBase),
+  ([0x74, 0x0b], .skipFirst),
+  ([0x49, 0x89, 0xf4], .saveFirstTrace),
+  ([0xe8, 0x7c, 0x63, 0xff, 0xff], .freeFirst),
+  ([0x4c, 0x89, 0xe6], .restoreFirstTrace),
+  ([0x48, 0x83, 0xbc, 0x24, 0x88, 0x00, 0x00, 0x00, 0x00], .testSecondCount),
+  ([0x4c, 0x8b, 0xbc, 0x24, 0x90, 0x00, 0x00, 0x00], .reloadBuffer),
+  ([0x49, 0xbc, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x20], .setCapacity),
+  ([0x7e, 0x0e], .skipSecond),
+  ([0x4c, 0x89, 0xf7], .setSecondArgument),
+  ([0x48, 0x89, 0xf5], .saveSecondTrace),
+  ([0xe8, 0x4f, 0x63, 0xff, 0xff], .freeSecond),
+  ([0x48, 0x89, 0xee], .restoreSecondTrace)]
 
 def decodeError := decodeLinear errorEncodings
 
@@ -578,6 +614,11 @@ def stepError (s : ErrorState) (op : ErrorOp) : ErrorState :=
   | .setMessage => { s with r11 := s.imageBase + 0xaaf3#64 + 0x2abd#64 }
   | .saveLength => { s with stackLength := s.rax }
   | .saveMessage => { s with stackMessage := s.r11 }
+  | .freeFirst => { s with freeCalls := s.freeCalls ++ [s.cleanup.firstBase] }
+  | .freeSecond => { s with freeCalls := s.freeCalls ++ [s.cleanup.secondBase] }
+  | .testOwnership | .readSecondBase | .skipFirst | .saveFirstTrace | .restoreFirstTrace |
+    .testSecondCount | .reloadBuffer | .setCapacity | .skipSecond | .setSecondArgument |
+    .saveSecondTrace | .restoreSecondTrace => s
   | .setTag => { s with bl := 1 }
   | .maskTag => { s with bl := s.bl &&& 1 }
   | .readLength => { s with rax := s.stackLength }
@@ -601,12 +642,49 @@ private theorem decode_error_prepare :
     decodeError 5 prepareErrorBytes =
       some [.setLength, .setMessage, .saveTraceFlag, .saveLength, .saveMessage] := by decide
 
-def tagErrorBytes : List UInt8 :=
-  [0xb3, 0x01]
+def cleanupEnterBytes : List UInt8 :=
+  [0x80, 0x7c, 0x24, 0x48, 0x00, 0x4c, 0x8b, 0xb4, 0x24, 0xb0, 0x00, 0x00,
+   0x00, 0x74, 0x0b]
 
-private theorem decode_error_tag :
-    decodeError 1 tagErrorBytes =
-      some [.setTag] := by decide
+def cleanupEnterSlice (binary : ByteArray) :=
+  (binary.extract 0xacbd 0xaccc).data.toList
+
+private theorem decode_cleanup_enter :
+    decodeError 3 cleanupEnterBytes =
+      some [.testOwnership, .readSecondBase, .skipFirst] := by decide
+
+def cleanupFirstBytes : List UInt8 :=
+  [0x49, 0x89, 0xf4, 0xe8, 0x7c, 0x63, 0xff, 0xff, 0x4c, 0x89, 0xe6]
+
+def cleanupFirstSlice (binary : ByteArray) :=
+  (binary.extract 0xaccc 0xacd7).data.toList
+
+private theorem decode_cleanup_first :
+    decodeError 3 cleanupFirstBytes =
+      some [.saveFirstTrace, .freeFirst, .restoreFirstTrace] := by decide
+
+def cleanupMiddleBytes : List UInt8 :=
+  [0x48, 0x83, 0xbc, 0x24, 0x88, 0x00, 0x00, 0x00, 0x00, 0x4c, 0x8b, 0xbc,
+   0x24, 0x90, 0x00, 0x00, 0x00, 0xb3, 0x01, 0x49, 0xbc, 0x00, 0x00, 0x00,
+   0x00, 0x00, 0x00, 0x00, 0x20, 0x7e, 0x0e]
+
+def cleanupMiddleSlice (binary : ByteArray) :=
+  (binary.extract 0xacd7 0xacf6).data.toList
+
+private theorem decode_cleanup_middle :
+    decodeError 5 cleanupMiddleBytes =
+      some [.testSecondCount, .reloadBuffer, .setTag, .setCapacity, .skipSecond] := by decide
+
+def cleanupSecondBytes : List UInt8 :=
+  [0x4c, 0x89, 0xf7, 0x48, 0x89, 0xf5, 0xe8, 0x4f, 0x63, 0xff, 0xff, 0x48,
+   0x89, 0xee]
+
+def cleanupSecondSlice (binary : ByteArray) :=
+  (binary.extract 0xacf6 0xad04).data.toList
+
+private theorem decode_cleanup_second :
+    decodeError 4 cleanupSecondBytes =
+      some [.setSecondArgument, .saveSecondTrace, .freeSecond, .restoreSecondTrace] := by decide
 
 def returnErrorBytes : List UInt8 :=
   [0x0f, 0xb6, 0x54, 0x24, 0x0f, 0x4d, 0x89, 0x6f, 0x30, 0x41, 0x88, 0x57,
@@ -622,43 +700,126 @@ private theorem decode_error_return :
       some [.readTraceFlag, .storeAuxiliary, .storeTraceFlag, .storeTrace, .storeCapacity, .maskTag, .readLength, .storeLength, .readMessage, .storeMessage, .storeExtra, .storeTag, .storeTrailing, .returnBuffer, .dropFrame, .popSaved, .popSaved, .popSaved, .popSaved, .popSaved, .popSaved, .ret] := by decide
 
 def prepareErrorSlice (binary : ByteArray) := (binary.extract 0xaae7 0xab01).data.toList
-def tagErrorSlice (binary : ByteArray) := (binary.extract 0xace8 0xacea).data.toList
 def returnErrorSlice (binary : ByteArray) := (binary.extract 0xad04 0xad4e).data.toList
 
 def overflowMessage : ByteArray := "checked integer addition overflow".toUTF8
 
+private def relativeTarget (next : Nat) (displacement : List UInt8) : Int :=
+  let magnitude := (displacement.zipIdx).foldl
+    (fun n (byte, i) => n + byte.toNat * 256 ^ i) 0
+  (next : Int) + (BitVec.ofNat (8 * displacement.length) magnitude).toInt
+
+theorem cleanup_targets :
+    relativeTarget 0xaccc (cleanupEnterBytes.drop 14) = 0xacd7 ∧
+    relativeTarget 0xacf6 (cleanupMiddleBytes.drop 30) = 0xad04 ∧
+    relativeTarget 0xacd4 ((cleanupFirstBytes.drop 4).take 4) = 0x1050 ∧
+    relativeTarget 0xad01 ((cleanupSecondBytes.drop 7).take 4) = 0x1050 := by decide
+
+def checkCleanup (binary : ByteArray) : Bool :=
+  (cleanupEnterSlice binary == cleanupEnterBytes) &&
+  (cleanupFirstSlice binary == cleanupFirstBytes) &&
+  (cleanupMiddleSlice binary == cleanupMiddleBytes) &&
+  (cleanupSecondSlice binary == cleanupSecondBytes)
+
 def checkErrorReturn (binary : ByteArray) : Bool :=
   (prepareErrorSlice binary == prepareErrorBytes) &&
-  (tagErrorSlice binary == tagErrorBytes) &&
+  (checkCleanup binary) &&
   (returnErrorSlice binary == returnErrorBytes) &&
   ((binary.extract 0xd5b0 0xd5d1).data == overflowMessage.data)
 
--- External stack trace and free calls are summarized by preservation of
--- the projected fields between preparation, the tag assignment, and the
--- return block. The valid frame supplies the caller address at offset 0xf8.
-def executeError (binary : ByteArray) (s : ErrorState) : Option ErrorResult := do
-  let prepare ← decodeError 5 (prepareErrorSlice binary)
-  let tag ← decodeError 1 (tagErrorSlice binary)
-  let tail ← decodeError 22 (returnErrorSlice binary)
-  let final := tail.foldl stepError (tag.foldl stepError (prepare.foldl stepError s))
-  if final.returned then
-    some ⟨final.resultTag, final.resultLength, final.resultMessage, final.rax,
-      final.caller, final.stackOffset⟩
-  else none
+-- JE at acca skips the first free to acd7 if ownership is zero.
+-- JLE at acf4 skips the second free to ad04 if the signed count is
+-- nonpositive. Both calls are summarized as returning with preserved
+-- projected fields and the original stack pointer.
+def executeCleanup (binary : ByteArray) (s : ErrorState) : Option ErrorState := do
+  let enter ← decodeError 3 (cleanupEnterSlice binary)
+  let first ← decodeError 3 (cleanupFirstSlice binary)
+  let middle ← decodeError 5 (cleanupMiddleSlice binary)
+  let second ← decodeError 4 (cleanupSecondSlice binary)
+  let entered := enter.foldl stepError s
+  let afterFirst := if entered.cleanup.ownership == 0 then entered
+    else first.foldl stepError entered
+  let afterMiddle := middle.foldl stepError afterFirst
+  return if zero.slt afterMiddle.cleanup.secondCount then second.foldl stepError afterMiddle
+    else afterMiddle
+
+def cleanupCalls (inputs : CleanupInputs) : List Word :=
+  (if inputs.ownership == 0 then [] else [inputs.firstBase]) ++
+    (if zero.slt inputs.secondCount then [inputs.secondBase] else [])
+
+theorem checked_cleanup (binary : ByteArray) (h : checkCleanup binary = true) (s : ErrorState) :
+    executeCleanup binary s =
+      some { s with bl := 1, freeCalls := s.freeCalls ++ cleanupCalls s.cleanup } := by
+  simp only [checkCleanup, Bool.and_eq_true, beq_iff_eq] at h
+  unfold executeCleanup
+  rw [h.1.1.1, h.1.1.2, h.1.2, h.2, decode_cleanup_enter, decode_cleanup_first,
+    decode_cleanup_middle, decode_cleanup_second]
+  cases hFirst : s.cleanup.ownership == 0 <;> cases hSecond : zero.slt s.cleanup.secondCount <;>
+    simp [Bind.bind, Option.bind, List.foldl, stepError, cleanupCalls, hFirst, hSecond,
+      List.append_assoc]
+
+def finishError (binary : ByteArray) (cleaned : ErrorState) : Option ErrorResult :=
+  (decodeError 22 (returnErrorSlice binary)).bind fun tail =>
+    let final := tail.foldl stepError cleaned
+    if final.returned then
+      some ⟨final.resultTag, final.resultLength, final.resultMessage, final.rax,
+        final.caller, final.stackOffset⟩
+    else none
+
+-- The earlier stack-trace call remains a summary boundary. The valid frame
+-- supplies the caller address at offset 0xf8.
+def afterPrepare (binary : ByteArray) (s : ErrorState) :
+    Option (List ErrorOp) → Option ErrorResult
+  | none => none
+  | some prepare =>
+      (executeCleanup binary (prepare.foldl stepError s)).bind (finishError binary)
+
+def executeError (binary : ByteArray) (s : ErrorState) : Option ErrorResult :=
+  afterPrepare binary s (decodeError 5 (prepareErrorSlice binary))
 
 def expectedError (base buffer caller : Word) : ErrorResult :=
   ⟨1, 33, base + 0xd5b0#64, buffer, caller, 0x100⟩
 
+private def preparedError (base buffer caller : Word) (cleanup : CleanupInputs) : ErrorState :=
+  { imageBase := base, buffer, caller, cleanup, rax := 33,
+    r11 := base + 0xaaf3#64 + 0x2abd#64, stackLength := 33,
+    stackMessage := base + 0xaaf3#64 + 0x2abd#64 }
+
+private theorem prepared_fold (binary : ByteArray) (base buffer caller : Word)
+    (cleanup : CleanupInputs) :
+    afterPrepare binary { imageBase := base, buffer, caller, cleanup }
+      (some [.setLength, .setMessage, .saveTraceFlag, .saveLength, .saveMessage]) =
+      (executeCleanup binary (preparedError base buffer caller cleanup)).bind (finishError binary) := rfl
+
+private theorem execute_prepared (binary : ByteArray) (h : prepareErrorSlice binary = prepareErrorBytes)
+    (base buffer caller : Word) (cleanup : CleanupInputs) :
+    executeError binary { imageBase := base, buffer, caller, cleanup } =
+      (executeCleanup binary (preparedError base buffer caller cleanup)).bind (finishError binary) :=
+  (congrArg (afterPrepare binary { imageBase := base, buffer, caller, cleanup })
+    ((congrArg (decodeError 5) h).trans decode_error_prepare)).trans
+    (prepared_fold binary base buffer caller cleanup)
+
+private theorem finish_prepared (binary : ByteArray) (h : returnErrorSlice binary = returnErrorBytes)
+    (base buffer caller : Word) (cleanup : CleanupInputs) (calls : List Word) :
+    finishError binary { preparedError base buffer caller cleanup with bl := 1, freeCalls := calls } =
+      some (expectedError base buffer caller) := by
+  unfold finishError
+  rw [h, decode_error_return]
+  simp [Option.bind, List.foldl, stepError, preparedError, expectedError, BitVec.add_assoc]
+
+attribute [local irreducible] executeCleanup finishError executeError
+
+set_option maxRecDepth 8192 in
 theorem checked_error_return (binary : ByteArray) (h : checkErrorReturn binary = true)
-    (base buffer caller : Word) :
-    executeError binary { imageBase := base, buffer, caller } =
+    (base buffer caller : Word) (cleanup : CleanupInputs) :
+    executeError binary { imageBase := base, buffer, caller, cleanup } =
         some (expectedError base buffer caller) ∧
       (binary.extract 0xd5b0 0xd5d1).data = overflowMessage.data := by
   simp only [checkErrorReturn, Bool.and_eq_true, beq_iff_eq] at h
   refine ⟨?_, h.2⟩
-  unfold executeError
-  rw [h.1.1.1, h.1.1.2, h.1.2, decode_error_prepare, decode_error_tag, decode_error_return]
-  simp [Bind.bind, Option.bind, List.foldl, stepError, expectedError, BitVec.add_assoc]
+  rw [execute_prepared binary h.1.1.1]
+  rw [checked_cleanup binary h.1.1.2]
+  exact finish_prepared binary h.1.2 base buffer caller cleanup _
 
 
 -- Compose the already checked update with the projected error epilogue.
@@ -667,16 +828,17 @@ theorem overflow_produces_error (binary : ByteArray) (hUpdate : checkUpdate bina
     (restore : readWord s.mem (s.rsp + 0xb0#64) = s.r13)
     (ha : 0 ≤ (oldCount s).toInt) (hb : 0 ≤ (increment s).toInt)
     (overflow : 9223372036854775807 < (oldCount s).toInt + (increment s).toInt)
-    (base buffer caller : Word) :
+    (base buffer caller : Word) (cleanup : CleanupInputs) :
     (match runUpdate binary s with
-      | .reject _ => executeError binary { imageBase := base, buffer, caller }
+      | .reject _ => executeError binary { imageBase := base, buffer, caller, cleanup }
       | _ => none) = some (expectedError base buffer caller) := by
   rw [checked_binary_update binary hUpdate s restore ha hb, ite_eq_left overflow]
-  exact (checked_error_return binary hReturn base buffer caller).1
+  exact (checked_error_return binary hReturn base buffer caller cleanup).1
 
 end N2MachineSlice
 
 #print axioms N2MachineSlice.checked_binary_update
+#print axioms N2MachineSlice.checked_cleanup
 #print axioms N2MachineSlice.overflow_produces_error
 
 def main (args : List String) : IO Unit := do
