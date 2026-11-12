@@ -34,6 +34,7 @@ jobs:
           toolchain=$(cat proof/PscVerif/lean-toolchain)
           "$HOME/.elan/bin/elan" toolchain install "$toolchain"
           "$HOME/.elan/bin/elan" run "$toolchain" lean proof/WordCounters/Refinement.lean | tee "$work/axioms.log"
+          "$HOME/.elan/bin/elan" run "$toolchain" lean proof/WordCounters/N2MachineSlice.lean | tee -a "$work/axioms.log"
           if grep -Fq sorryAx "$work/axioms.log"; then exit 1; fi
       - uses: prefix-dev/setup-pixi@v0.9.1
         with:
