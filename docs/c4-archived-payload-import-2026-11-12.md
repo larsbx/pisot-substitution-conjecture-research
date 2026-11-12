@@ -239,3 +239,73 @@ Exact-revision acceptance and preserved failed attempts belong in the
 [companion evidence packet](../evidence/c4-archived-payload-import-2026-11-12/README.md).
 Development compilation, native agreement and a generic soundness theorem
 are not by themselves acceptance of either concrete archived graph.
+
+## Exact-revision hosted acceptance
+
+Both concrete imports completed at accepted code revision
+`249a71b0330401ada5adbff7d9cd280bf0d7530f`, tree
+`97b54a6fdccb9a1828be815c2718fbcc5bc67960`.
+[Focused run 43175356240, attempt 1, job 131038172377](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43175356240/job/131038172377)
+checked out that exact head and completed successfully on November 12 at
+09:20:54 UTC. The complete source build finished 9,017 jobs; its compiled
+audit checked 6,537 declarations, including 4,774 theorem declarations,
+and reached all 2,633 inventoried named proofs. Each complete generated
+graph module separately passed its kernel checks, exact semantic-type
+checks and all-declaration axiom audit: 1,799 declarations and 776 theorem
+declarations per fixture, including generated auxiliary proofs. The only
+observed transitive axioms were `propext`, `Classical.choice`, `Quot.sound`.
+
+The actual finite `TableBinding`, candidate closure, roots, discovery and
+potential premises are therefore supplied by concrete proof terms for
+both original graphs. The domain equivalence and product-Haar nullity
+statements above retain their stated geometric scope and measure assumptions.
+
+The 19,222,973-byte
+[hosted artifact](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43175356240/artifacts/13929993392)
+was downloaded and matched its provider SHA256
+`e4e8ed4e5ed77385dbfce4a6b770c4b070fd4e1b2312ef2fa20102b4dfd317d1`.
+Artifact inspection verified its revision, source hashes, typed auditors,
+full audit logs, original and addressed graph digests, and mutation/refusal
+receipts. Both generated sources, both concrete audit logs and the complete
+payload are byte-identical to the successful local replay. The canonical
+native and Lean payloads have 3,908,423 bytes and SHA256
+`447d58d811359235d1f4689433500494ae14724b89b5da91f429e7e7247beaca`.
+
+The [durable acceptance supplement](../evidence/c4-archived-payload-accepted-2026-11-12/README.md)
+retains both complete generated sources and their auditors/logs, provider
+metadata, the canonical payload, controls and inspection history. Its
+later archival commit preserves acceptance of the code revision above;
+it is not itself the revision compiled by that earlier run. The archival
+change is restricted to evidence and append-only documentation, with
+complete tracked-source equivalence checked. Earlier failed development
+and inspection records remain historical failures. Independent human
+review remains pending.
+
+## Remaining obstruction-to-measure obligation
+
+For `hC : StrictSystem (substitution f) C`, a sufficient next theorem is
+to construct a set `Z` in the same original product space with
+
+\[
+ Z\subseteq\bigcup_{k:\operatorname{Fin}(3)} E_f(\operatorname{archivedRoot}(k)),
+ \qquad 0<(\operatorname{volume}\times\nu)(Z).
+\]
+
+The accepted `roots_null` result supplies the nullity premise of
+`PscVerif.OverlapContraction.no_positive_subset_of_null`; coverage and
+positive measure must still be derived from `hC`. Existing cut-pair
+existence/persistence, physical interval interior, nonempty compact overlap,
+exact mass balance and zero deficit--overlap products do not supply that
+positive product-Haar measure. A proof covering every nonempty
+`strictPackets` element by this rooted ancestry would be a separate
+extension; the present nullity result does not identify those carriers.
+
+The accepted ancestry statement uses `sigma^2`. A read-only follow-up found
+a possible combinatorial extension to one-step root ancestry: each root
+has a one-step predecessor among the root orientations (the corresponding
+prefixes are both empty, or both `[0]`), so an odd root path could be padded
+and consecutive edges grouped using `Mark.inflate` and `residual_inflate`.
+The required composition/parity/root-padding lemmas have not been
+formalized or audited. Exponent-one Haar scaling alone would not justify
+direct propagation for these tiles: the named tile equations currently
+provided are `tileEquation_two` and `tileEquation_even`.

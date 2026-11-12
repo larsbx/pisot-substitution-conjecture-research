@@ -1,0 +1,14 @@
+{
+  "cause": "parent concurrently added authorized append-only acceptance/scope annotations to two documentation files",
+  "command": "finalize_hosted_stage.py --inspection hosted-archived-payload-inspection-2 --download hosted-archived-payload-download",
+  "error": "repository changed during scratch staging",
+  "exit_code": 1,
+  "fresh_Lean_or_Mojo_execution": false,
+  "hosted_proof_and_artifact_inspection_results_unchanged": true,
+  "observed_changed_paths": [
+    "docs/c4-archived-payload-import-2026-11-12.md",
+    "docs/side-notes-ledger.md"
+  ],
+  "phase": "final worktree cleanliness guard after scratch archive writes",
+  "scope": "scratch staging/provenance history; no Lean or native failure"
+}

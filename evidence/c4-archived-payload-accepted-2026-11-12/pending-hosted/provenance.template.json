@@ -1,0 +1,46 @@
+{
+  "C4": false,
+  "accepted_code_revision": null,
+  "accepted_code_tree": null,
+  "all_strict_packet_representation": false,
+  "archive_commit": {
+    "complete_diff_or_source_closure_equivalence": "pending",
+    "hosted_acceptance_of_archive_revision_claimed": false,
+    "locate_archive_commit": "Git history or post-publication PR metadata",
+    "role": "later evidence-only archival successor",
+    "self_hash_recorded_in_this_file": false
+  },
+  "artifact": {
+    "downloaded_zip_sha256": null,
+    "expected_name": "original-c4-payload-249a71b0330401ada5adbff7d9cd280bf0d7530f",
+    "id": null,
+    "provider_digest": null,
+    "provider_digest_verified": null,
+    "zip_bytes": null
+  },
+  "candidate_revision": "249a71b0330401ada5adbff7d9cd280bf0d7530f",
+  "candidate_tree": "97b54a6fdccb9a1828be815c2718fbcc5bc67960",
+  "focused_run": {
+    "completed_at": null,
+    "conclusion": null,
+    "id": 43175356240,
+    "job_id": 131038172377,
+    "required_conclusion": "success",
+    "required_status": "completed",
+    "run_attempt": null,
+    "status": null
+  },
+  "general_PSC": false,
+  "independent_human_review": "not established by mechanical acceptance",
+  "inspection": {
+    "expected_payload_sha256": "447d58d811359235d1f4689433500494ae14724b89b5da91f429e7e7247beaca",
+    "receipt_sha256": null,
+    "scope": "artifact inspection, not fresh kernel acceptance",
+    "status": null
+  },
+  "mathematical_scope": "original named rooted inverse domains and product-Haar nullity with probability additive Haar assumptions",
+  "positive_strict_root_measure": false,
+  "schema": "c4-archived-hosted-acceptance-provenance-template-v1",
+  "status": "pending_hosted_completion_and_artifact_inspection",
+  "template_only": true
+}
