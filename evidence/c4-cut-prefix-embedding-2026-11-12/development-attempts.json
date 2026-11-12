@@ -1,0 +1,30 @@
+{
+  "attempts": [
+    {
+      "compiler_workers": 1,
+      "complete_build_credited": false,
+      "compression": "gzip; raw bytes preserved",
+      "dependency_artifacts": "existing pinned development dependencies; not the isolated acceptance gate",
+      "exit_code": 130,
+      "kind": "fresh-PSC-source-development-dependency-build",
+      "last_started_module": "PscVerif.Defect4Lie",
+      "log": "interrupted-development-build.log.gz",
+      "status": "manually interrupted",
+      "uncompressed_log_sha256": "50f66a59cecc683578e08661635357fbee6cbb8bb7c478bbef5cc9ca43af3ba9"
+    },
+    {
+      "compiler_workers": 2,
+      "complete_build_credited": false,
+      "exit_code": 130,
+      "kind": "unchanged-source-timing-probe",
+      "log": "interrupted-development-probe.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "module": "PscVerif.Defect4Lie",
+      "status": "inconclusive; manually interrupted"
+    }
+  ],
+  "code_commit": "73a0b6a95539beb1b6712afec0f8412571b41cd3",
+  "diagnosis": "No new proof error was reported; no cause of the timing difference is asserted.",
+  "reason_for_interruption": "Avoid duplicated development work and resource contention while the unchanged full isolated production gate was progressing.",
+  "schema": "c4-cut-prefix-development-attempts-v1"
+}

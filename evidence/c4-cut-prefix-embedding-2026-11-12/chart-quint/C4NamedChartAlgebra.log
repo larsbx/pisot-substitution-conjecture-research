@@ -1,0 +1,9 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+  C4NamedChartAlgebra
+    ok completeSectionFamilyTest passed 1 test(s)
+    ok correctedSectionTest passed 1 test(s)
+    ok fullReconstructionTest passed 1 test(s)
+    ok basisCommutationFamilyTest passed 1 test(s)
+
+  4 passing (134ms)

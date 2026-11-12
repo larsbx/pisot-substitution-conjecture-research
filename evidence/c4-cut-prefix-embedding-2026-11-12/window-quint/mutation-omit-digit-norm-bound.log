@@ -1,0 +1,32 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+  C4StablePrefixAdversarial
+    1) underestimatedDigitRefusedTest failed after 1 test(s)
+
+  1 failed
+
+  1) underestimatedDigitRefusedTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-c4-stable-prefix-snapshot-rwn27f30/omit-digit-norm-bound.qnt:205:40
+        205:   run underestimatedDigitRefusedTest = init.expect({
+                                                    ^^^^^^^^^^^^^
+        206:     val digits = List((0, 0, 0), (0, 1, 3))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        207:     all {
+             ^^^^^^^^^
+        208:       sameDigits(digits, digits), sameBlock(2, 2),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        209:       not(digitAdmission(digits, digits, 2, 2, 2)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        210:       digitAdmission(digits, digits, 2, 2, 3),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        211:     }
+             ^^^^^
+        212:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f7 --match=underestimatedDigitRefusedTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-c4-stable-prefix-snapshot-rwn27f30/omit-digit-norm-bound.qnt
+error: Tests failed

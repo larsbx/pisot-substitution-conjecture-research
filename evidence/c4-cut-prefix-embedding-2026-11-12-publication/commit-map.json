@@ -1,0 +1,55 @@
+{
+  "acceptance_scope": "Existing receipts remain tied to the original tested revision. Exact source-tree mapping does not claim a hosted run at the recreated or provenance-only commit.",
+  "base_commit": "9a1357ed5dae3b4502d29c34396d0e9403ccca75",
+  "base_tree": "fa8127d84df479c5e276b8578edd6a324bf175ab",
+  "bundle": {
+    "bytes": 276363,
+    "filename": "cut-prefix-original-commits.bundle",
+    "prerequisite_commit": "9a1357ed5dae3b4502d29c34396d0e9403ccca75",
+    "sha256": "1cdf0ba7e154b2f2925f84c8bb91bef8f4cf1d253895b610b29783428acc74e8"
+  },
+  "commits": [
+    {
+      "message": "docs(c4): gate actual cut-prefix embedding and uniform proximity\n",
+      "original_commit": "34999f2829412b24b43a82afdcf44370fc7d7f6c",
+      "original_parent": "9a1357ed5dae3b4502d29c34396d0e9403ccca75",
+      "published_commit": "61e94ebe08c9d7756c64b267d442a5a7a99e3968",
+      "published_parent": "9a1357ed5dae3b4502d29c34396d0e9403ccca75",
+      "published_tree": "6cbbd84c279bda1b861a6d681356c338a87006ad",
+      "source_tree": "6cbbd84c279bda1b861a6d681356c338a87006ad",
+      "source_tree_equality_verified": true
+    },
+    {
+      "message": "feat(proof): bind actual balanced cuts to uniform prefix-tile proximity\n",
+      "original_commit": "73a0b6a95539beb1b6712afec0f8412571b41cd3",
+      "original_parent": "34999f2829412b24b43a82afdcf44370fc7d7f6c",
+      "published_commit": "da16aaf64fc9e30a8cc862113ca63ef62b228414",
+      "published_parent": "61e94ebe08c9d7756c64b267d442a5a7a99e3968",
+      "published_tree": "8233701f593a8ba680356a88c2c6fc8e4cf01df5",
+      "source_tree": "8233701f593a8ba680356a88c2c6fc8e4cf01df5",
+      "source_tree_equality_verified": true
+    },
+    {
+      "message": "docs(c4): archive verified cut-prefix embedding evidence\n",
+      "original_commit": "68aac93df3a02c7813486bde7c3f8741674ebe5b",
+      "original_parent": "73a0b6a95539beb1b6712afec0f8412571b41cd3",
+      "published_commit": "80427e5b760ce2c67945e52df81eaec9bc44af8d",
+      "published_parent": "da16aaf64fc9e30a8cc862113ca63ef62b228414",
+      "published_tree": "cb0e5c406cc8d28971ebde200a7a30b7cbcf3c15",
+      "source_tree": "cb0e5c406cc8d28971ebde200a7a30b7cbcf3c15",
+      "source_tree_equality_verified": true
+    }
+  ],
+  "original_tip": "68aac93df3a02c7813486bde7c3f8741674ebe5b",
+  "original_tip_tree": "cb0e5c406cc8d28971ebde200a7a30b7cbcf3c15",
+  "provenance_commit_scope": "Only evidence/c4-cut-prefix-embedding-2026-11-12-publication/; no proof, native, test, workflow, governed claim or historical receipt edits.",
+  "schema": "c4-cut-prefix-publication-map-v1",
+  "status": "published_mirrors_verified",
+  "tested_original_commit": "73a0b6a95539beb1b6712afec0f8412571b41cd3",
+  "tested_source_tree": "8233701f593a8ba680356a88c2c6fc8e4cf01df5",
+  "verification": {
+    "blob_count": 88,
+    "method": "GitHub returned all 88 original Git blob SHAs and all three original tree SHAs; commit read-back verified every published parent/tree/message.",
+    "remote_commit_read_back": true
+  }
+}

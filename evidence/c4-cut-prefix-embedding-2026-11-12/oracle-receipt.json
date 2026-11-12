@@ -1,0 +1,33 @@
+{
+  "controls": [
+    "full_packet_mutation_0",
+    "full_packet_mutation_1",
+    "full_packet_mutation_2",
+    "full_packet_mutation_3",
+    "full_packet_mutation_4",
+    "full_packet_mutation_5",
+    "full_packet_mutation_6",
+    "full_packet_mutation_7",
+    "full_packet_mutation_8",
+    "full_packet_mutation_9",
+    "full_packet_mutation_10",
+    "full_packet_mutation_11",
+    "full_packet_mutation_12",
+    "full_packet_mutation_13",
+    "full_packet_mutation_14",
+    "strict_json_15",
+    "strict_json_16",
+    "strict_json_17",
+    "finite_residue_agreement_does_not_identify_points"
+  ],
+  "finite_domain_counts": [
+    3220,
+    21028,
+    272,
+    51
+  ],
+  "native_compared": true,
+  "native_sha256": "440127dd5d0617cc1f3b75a960db4fbde7e7c31cc931146a1635637a967b030e",
+  "schema": "c4-cut-prefix-embedding-v1",
+  "scope": "finite literal embedding and residue witnesses; no limiting or measure conclusion"
+}
