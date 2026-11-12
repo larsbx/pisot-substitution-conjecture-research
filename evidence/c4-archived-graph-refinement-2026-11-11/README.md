@@ -61,6 +61,30 @@ The full compiled audit retains the existing allowance of `propext`,
 axiom is admitted. The generated proof bank and existing source-pin and
 governance regressions are separate consistency gates.
 
+## Hosted recorded-data integrity repair
+
+At published head `e1646baa5fdedd2bc937b7e2f7788f8e55d268c2`, the
+[`historical-sources` job](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43139692291/job/130923404285)
+failed three recorded-data integrity tests. This new packet was missing
+its `SHA256SUMS`. Separately, the unchanged #549 named-overlap packet uses
+nested paths relative to its own directory, while the common reader treated
+those paths as repository-relative. The original manifests and records in
+both historical packet exceptions remain byte-for-byte unchanged.
+
+The bounded repair adds this packet's complete manifest with explicit
+`./`-prefixed relative paths and adds the named-overlap packet to the
+reader's existing explicit packet-relative exception set. Every digest,
+file-existence check, exact-file-set check and Git-tracking check remains
+enforced. No mathematical or native source changes are involved.
+
+[`historical-hosted/e1646baa-historical-sources.json`](historical-hosted/e1646baa-historical-sources.json)
+records the exact failed job, its decoded log digest and the distinction
+between the newly missing manifest and the preexisting path interpretation.
+Its losslessly compressed log is retained alongside the receipt. That
+failed run stopped before its source-pin report, proof-bank check and claim
+audit; it supplies no acceptance credit for those steps. Successful checks
+at a later revision must be recorded separately.
+
 ## What these receipts do not assert
 
 The native/oracle decoder is source-bound and exhaustive within the stated
