@@ -1,0 +1,32 @@
+{
+  "all_other_tracked_bytes_and_Git_file_modes_unchanged": true,
+  "append_only_documentation": {
+    "docs/c4-archived-payload-import-2026-11-12.md": {
+      "appended_bytes": 4065,
+      "new_bytes": 16422,
+      "new_sha256": "5b90171a977fdad8ad467b68bbfb23efbf308131976c8b72c37f9674af181d92",
+      "old_bytes": 12357,
+      "old_bytes_exact_prefix": true,
+      "old_sha256": "26c02ae1a3ff2594eb2937b637a97545aebb5a3d47c5c28f922a9c7111e13796"
+    },
+    "docs/side-notes-ledger.md": {
+      "appended_bytes": 2074,
+      "new_bytes": 533843,
+      "new_sha256": "12fb1cad5a398a8dad1bdabf99e53490ee379d663f03a2dbc0e5725b3f052f51",
+      "old_bytes": 531769,
+      "old_bytes_exact_prefix": true,
+      "old_sha256": "fa4322a4fc0580d2ae6021336b9bad11f7a7849ed4f0574eba93456355fd4270"
+    }
+  },
+  "complete_tracked_changed_paths": [
+    "docs/c4-archived-payload-import-2026-11-12.md",
+    "docs/side-notes-ledger.md"
+  ],
+  "later_archival_commit_equivalence_proved": false,
+  "other_tracked_files_unchanged": 6228,
+  "reference_revision": "249a71b0330401ada5adbff7d9cd280bf0d7530f",
+  "reference_tree": "97b54a6fdccb9a1828be815c2718fbcc5bc67960",
+  "root_still_to_verify_complete_final_Git_delta": true,
+  "scope": "working-tree source comparison before root copies/publishes the new archive; not acceptance of a later commit",
+  "tracked_records_checked": 6230
+}

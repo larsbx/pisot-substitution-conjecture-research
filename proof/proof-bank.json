@@ -2079,6 +2079,438 @@
       "declaration": "theorem graph_domain_mismatch_rejected :"
     },
     {
+      "name": "Psc.ArchivedPayload.packetEq_iff",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 51,
+      "declaration": "theorem packetEq_iff (p q : OccurrenceTransport.Packet) :"
+    },
+    {
+      "name": "Psc.ArchivedPayload.orbitCode_swap",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 67,
+      "declaration": "theorem orbitCode_swap (p : OccurrenceTransport.Packet) : orbitCode p.swap = orbitCode p := by"
+    },
+    {
+      "name": "Psc.ArchivedPayload.selectedPair_candidate",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 179,
+      "declaration": "theorem selectedPair_candidate (fixture : Fin 2) (p : OccurrenceTransport.Packet)"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.check_iff",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 247,
+      "declaration": "theorem Packet.check_iff (p : Packet) : p.check = true ↔ p.Valid := by"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.checkAt_iff",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 253,
+      "declaration": "theorem Packet.checkAt_iff (p : Packet) (i : Nat) :"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.checkRange_append",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 261,
+      "declaration": "theorem Packet.checkRange_append (p : Packet) (start a b : Nat)"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.valid_of_range",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 272,
+      "declaration": "theorem Packet.valid_of_range (p : Packet) (header : p.HeaderValid)"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.rowFacts",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 293,
+      "declaration": "theorem Packet.rowFacts (p : Packet) (h : p.Valid) (i : Fin p.count) : RowFacts p i := by"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.target_lt",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 297,
+      "declaration": "theorem Packet.target_lt (p : Packet) (h : p.Valid) (i : Fin p.count)"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.toCertificate_valid",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 308,
+      "declaration": "theorem Packet.toCertificate_valid (p : Packet) (h : p.Valid) :"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.toCertificate_check",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 313,
+      "declaration": "theorem Packet.toCertificate_check (p : Packet) (h : p.Valid) :"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.orbitDistinct",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 317,
+      "declaration": "theorem Packet.orbitDistinct (p : Packet) (h : p.Valid) : OrbitDistinct p.states := by"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.literalRowOrdered",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 329,
+      "declaration": "theorem Packet.literalRowOrdered (p : Packet) (h : p.Valid) (i : Fin p.count) :"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.admitted_orderedLift",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 333,
+      "declaration": "theorem Packet.admitted_orderedLift (p : Packet) (h : p.Valid)"
+    },
+    {
+      "name": "Psc.ArchivedPayload.inverseFromCheck_pair",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 351,
+      "declaration": "@[simp] theorem inverseFromCheck_pair (fixture : Fin 2) {p : OccurrenceTransport.Packet}"
+    },
+    {
+      "name": "Psc.ArchivedPayload.transportInverse_pair",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 360,
+      "declaration": "@[simp] theorem transportInverse_pair {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.ArchivedPayload.inverseToSlot_inverse",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 373,
+      "declaration": "@[simp] theorem inverseToSlot_inverse {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.slotResidue",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 385,
+      "declaration": "theorem Packet.slotResidue (p : Packet) (h : p.Valid) (i : Fin p.count)"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.slotCandidate",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 390,
+      "declaration": "theorem Packet.slotCandidate (p : Packet) (h : p.Valid) (i : Fin p.count)"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.boundSlot_pair",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 404,
+      "declaration": "theorem Packet.boundSlot_pair (p : Packet) (h : p.Valid) (i : Fin p.count)"
+    },
+    {
+      "name": "Psc.ArchivedPayload.selectedPair_index",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 414,
+      "declaration": "theorem selectedPair_index (fixture : Fin 2) (p : OccurrenceTransport.Packet)"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.matchingSlot",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 432,
+      "declaration": "theorem Packet.matchingSlot (p : Packet) (h : p.Valid) (i : Fin p.count)"
+    },
+    {
+      "name": "Psc.ArchivedPayload.slot_pairAddress",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 453,
+      "declaration": "theorem slot_pairAddress {s : Fin 3 → Word} {p u : OccurrenceTransport.Packet}"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.row_key_injective",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 467,
+      "declaration": "theorem Packet.row_key_injective (p : Packet) (h : p.Valid) (i : Fin p.count) :"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.row_exact",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 493,
+      "declaration": "theorem Packet.row_exact (p : Packet) (h : p.Valid) (i : Fin p.count) :"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.candidatesClosed",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 530,
+      "declaration": "theorem Packet.candidatesClosed (p : Packet) (h : p.Valid) :"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.rootBound",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 542,
+      "declaration": "theorem Packet.rootBound (p : Packet) (h : p.Valid) (i : Fin 3) :"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.numerator_eq",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 547,
+      "declaration": "theorem Packet.numerator_eq (p : Packet) (h : p.Valid) :"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.tableDiscovery",
+      "module": "PscVerif.ArchivedPayload",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+      "line": 554,
+      "declaration": "theorem Packet.tableDiscovery (p : Packet) (h : p.Valid) :"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.denominator_eq",
+      "module": "PscVerif.ArchivedPayloadConsumer",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayloadConsumer.lean",
+      "line": 23,
+      "declaration": "theorem Packet.denominator_eq (p : Packet) (h : p.Valid) :"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.rooted_nonempty_domain_iff",
+      "module": "PscVerif.ArchivedPayloadConsumer",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayloadConsumer.lean",
+      "line": 28,
+      "declaration": "theorem Packet.rooted_nonempty_domain_iff (p : Packet) (h : p.Valid)"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.states_null",
+      "module": "PscVerif.ArchivedPayloadConsumer",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayloadConsumer.lean",
+      "line": 40,
+      "declaration": "theorem Packet.states_null (p : Packet) (h : p.Valid)"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.roots_null",
+      "module": "PscVerif.ArchivedPayloadConsumer",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayloadConsumer.lean",
+      "line": 50,
+      "declaration": "theorem Packet.roots_null (p : Packet) (h : p.Valid)"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.ancestors_null",
+      "module": "PscVerif.ArchivedPayloadConsumer",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayloadConsumer.lean",
+      "line": 61,
+      "declaration": "theorem Packet.ancestors_null (p : Packet) (h : p.Valid)"
+    },
+    {
+      "name": "Psc.ArchivedPayloadControls.exact_original_header_accepted",
+      "module": "PscVerif.ArchivedPayloadControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayloadControls.lean",
+      "line": 54,
+      "declaration": "theorem exact_original_header_accepted : control.HeaderValid := by decide +kernel"
+    },
+    {
+      "name": "Psc.ArchivedPayloadControls.omitted_edges_preserve_numeric_contraction",
+      "module": "PscVerif.ArchivedPayloadControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayloadControls.lean",
+      "line": 66,
+      "declaration": "theorem omitted_edges_preserve_numeric_contraction : emptyPotential.check = true := by"
+    },
+    {
+      "name": "Psc.ArchivedPayloadControls.omitted_original_position_refused",
+      "module": "PscVerif.ArchivedPayloadControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayloadControls.lean",
+      "line": 70,
+      "declaration": "theorem omitted_original_position_refused : ¬control.PairComplete zero 0 10 := by"
+    },
+    {
+      "name": "Psc.ArchivedPayloadControls.original_direction_slot_accepted",
+      "module": "PscVerif.ArchivedPayloadControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayloadControls.lean",
+      "line": 73,
+      "declaration": "theorem original_direction_slot_accepted :"
+    },
+    {
+      "name": "Psc.ArchivedPayloadControls.swapped_direction_refused",
+      "module": "PscVerif.ArchivedPayloadControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayloadControls.lean",
+      "line": 76,
+      "declaration": "theorem swapped_direction_refused :"
+    },
+    {
+      "name": "Psc.ArchivedPayloadControls.graph_domain_target_mismatch_refused",
+      "module": "PscVerif.ArchivedPayloadControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayloadControls.lean",
+      "line": 79,
+      "declaration": "theorem graph_domain_target_mismatch_refused :"
+    },
+    {
+      "name": "Psc.ArchivedPayloadControls.out_of_range_target_refused",
+      "module": "PscVerif.ArchivedPayloadControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayloadControls.lean",
+      "line": 82,
+      "declaration": "theorem out_of_range_target_refused :"
+    },
+    {
+      "name": "Psc.ArchivedPayloadControls.impossible_digit_field_refused",
+      "module": "PscVerif.ArchivedPayloadControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayloadControls.lean",
+      "line": 85,
+      "declaration": "theorem impossible_digit_field_refused :"
+    },
+    {
+      "name": "Psc.ArchivedPayloadControls.impossible_state_letter_refused",
+      "module": "PscVerif.ArchivedPayloadControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayloadControls.lean",
+      "line": 88,
+      "declaration": "theorem impossible_state_letter_refused :"
+    },
+    {
+      "name": "Psc.ArchivedPayloadControls.hidden_slot_payload_refused",
+      "module": "PscVerif.ArchivedPayloadControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayloadControls.lean",
+      "line": 91,
+      "declaration": "theorem hidden_slot_payload_refused :"
+    },
+    {
+      "name": "Psc.ArchivedPayloadControls.later_wide_box_refused",
+      "module": "PscVerif.ArchivedPayloadControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayloadControls.lean",
+      "line": 94,
+      "declaration": "theorem later_wide_box_refused :"
+    },
+    {
+      "name": "Psc.ArchivedPayloadControls.reversed_graph_direction_refused",
+      "module": "PscVerif.ArchivedPayloadControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayloadControls.lean",
+      "line": 97,
+      "declaration": "theorem reversed_graph_direction_refused :"
+    },
+    {
+      "name": "Psc.ArchivedPayloadControls.wrong_substitution_power_refused",
+      "module": "PscVerif.ArchivedPayloadControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayloadControls.lean",
+      "line": 100,
+      "declaration": "theorem wrong_substitution_power_refused :"
+    },
+    {
+      "name": "Psc.ArchivedPayloadControls.incomplete_inverse_ancestry_refused",
+      "module": "PscVerif.ArchivedPayloadControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayloadControls.lean",
+      "line": 108,
+      "declaration": "theorem incomplete_inverse_ancestry_refused : ¬orphan.BirthValid ⟨3, by decide⟩ := by"
+    },
+    {
+      "name": "Psc.ArchivedPayloadControls.circular_inverse_ancestry_refused",
+      "module": "PscVerif.ArchivedPayloadControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayloadControls.lean",
+      "line": 116,
+      "declaration": "theorem circular_inverse_ancestry_refused : ¬circularBirth.BirthValid ⟨3, by decide⟩ := by"
+    },
+    {
+      "name": "Psc.ArchivedPayloadControls.hidden_row_payload_refused",
+      "module": "PscVerif.ArchivedPayloadControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayloadControls.lean",
+      "line": 126,
+      "declaration": "theorem hidden_row_payload_refused : hiddenRow.canonical 0 = false := by decide +kernel"
+    },
+    {
+      "name": "Psc.ArchivedPayloadControls.collapsed_index_refused",
+      "module": "PscVerif.ArchivedPayloadControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayloadControls.lean",
+      "line": 129,
+      "declaration": "theorem collapsed_index_refused :"
+    },
+    {
+      "name": "Psc.ArchivedPayloadControls.repeated_positional_addresses_refused",
+      "module": "PscVerif.ArchivedPayloadControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayloadControls.lean",
+      "line": 133,
+      "declaration": "theorem repeated_positional_addresses_refused :"
+    },
+    {
+      "name": "Psc.ArchivedPayloadControls.original_full_mark_slot_accepted",
+      "module": "PscVerif.ArchivedPayloadControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayloadControls.lean",
+      "line": 143,
+      "declaration": "theorem original_full_mark_slot_accepted :"
+    },
+    {
+      "name": "Psc.ArchivedPayloadControls.same_matrix_wrong_literal_source_refused",
+      "module": "PscVerif.ArchivedPayloadControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedPayloadControls.lean",
+      "line": 151,
+      "declaration": "theorem same_matrix_wrong_literal_source_refused :"
+    },
+    {
       "name": "Psc.ind_self",
       "module": "PscVerif.Basic",
       "private": false,
@@ -10581,6 +11013,198 @@
       "source": "proof/PscVerif/PscVerif/MadicResidue.lean",
       "line": 321,
       "declaration": "theorem continuous_action (M : V →ₗ[ℤ] V) : Continuous (action M) := by"
+    },
+    {
+      "name": "Psc.NamedArchivedDigits.length_two",
+      "module": "PscVerif.NamedArchivedDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedDigits.lean",
+      "line": 25,
+      "declaration": "theorem length_two (fixture : Fin 2) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.NamedArchivedDigits.flat_lt",
+      "module": "PscVerif.NamedArchivedDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedDigits.lean",
+      "line": 39,
+      "declaration": "theorem flat_lt (fixture : Fin 2) (k : Fin 15) :"
+    },
+    {
+      "name": "Psc.NamedArchivedDigits.start_add_flat",
+      "module": "PscVerif.NamedArchivedDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedDigits.lean",
+      "line": 44,
+      "declaration": "theorem start_add_flat (k : Fin 15) : start (parent k) + flat k = k.val := by"
+    },
+    {
+      "name": "Psc.NamedArchivedDigits.digit_parent",
+      "module": "PscVerif.NamedArchivedDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedDigits.lean",
+      "line": 52,
+      "declaration": "theorem digit_parent (fixture : Fin 2) (k : Fin 15) :"
+    },
+    {
+      "name": "Psc.NamedArchivedDigits.digit_flat",
+      "module": "PscVerif.NamedArchivedDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedDigits.lean",
+      "line": 55,
+      "declaration": "theorem digit_flat (fixture : Fin 2) (k : Fin 15) :"
+    },
+    {
+      "name": "Psc.NamedArchivedDigits.parent_index",
+      "module": "PscVerif.NamedArchivedDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedDigits.lean",
+      "line": 68,
+      "declaration": "theorem parent_index (fixture : Fin 2)"
+    },
+    {
+      "name": "Psc.NamedArchivedDigits.flat_index",
+      "module": "PscVerif.NamedArchivedDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedDigits.lean",
+      "line": 86,
+      "declaration": "theorem flat_index (fixture : Fin 2)"
+    },
+    {
+      "name": "Psc.NamedArchivedDigits.address_injective",
+      "module": "PscVerif.NamedArchivedDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedDigits.lean",
+      "line": 95,
+      "declaration": "theorem address_injective (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedArchivedDigits.digit_index",
+      "module": "PscVerif.NamedArchivedDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedDigits.lean",
+      "line": 107,
+      "declaration": "theorem digit_index (fixture : Fin 2)"
+    },
+    {
+      "name": "Psc.NamedArchivedDigits.index_digit",
+      "module": "PscVerif.NamedArchivedDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedDigits.lean",
+      "line": 115,
+      "declaration": "theorem index_digit (fixture : Fin 2) (k : Fin 15) :"
+    },
+    {
+      "name": "Psc.NamedArchivedDigits.digit_injective",
+      "module": "PscVerif.NamedArchivedDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedDigits.lean",
+      "line": 122,
+      "declaration": "theorem digit_injective (fixture : Fin 2) : Function.Injective (digit fixture) :="
+    },
+    {
+      "name": "Psc.NamedArchivedDigits.digit_surjective",
+      "module": "PscVerif.NamedArchivedDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedDigits.lean",
+      "line": 125,
+      "declaration": "theorem digit_surjective (fixture : Fin 2) : Function.Surjective (digit fixture) :="
+    },
+    {
+      "name": "Psc.NamedArchivedDigits.outerIndex_lt",
+      "module": "PscVerif.NamedArchivedDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedDigits.lean",
+      "line": 144,
+      "declaration": "theorem outerIndex_lt (fixture : Fin 2) (k : Fin 15) :"
+    },
+    {
+      "name": "Psc.NamedArchivedDigits.localIndex_lt",
+      "module": "PscVerif.NamedArchivedDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedDigits.lean",
+      "line": 152,
+      "declaration": "theorem localIndex_lt (fixture : Fin 2) (k : Fin 15) :"
+    },
+    {
+      "name": "Psc.NamedArchivedDigits.outerMark_index",
+      "module": "PscVerif.NamedArchivedDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedDigits.lean",
+      "line": 160,
+      "declaration": "theorem outerMark_index (fixture : Fin 2) (k : Fin 15) :"
+    },
+    {
+      "name": "Psc.NamedArchivedDigits.localMark_index",
+      "module": "PscVerif.NamedArchivedDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedDigits.lean",
+      "line": 163,
+      "declaration": "theorem localMark_index (fixture : Fin 2) (k : Fin 15) :"
+    },
+    {
+      "name": "Psc.NamedArchivedDigits.square_word",
+      "module": "PscVerif.NamedArchivedDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedDigits.lean",
+      "line": 167,
+      "declaration": "theorem square_word (fixture : Fin 2) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.NamedArchivedDigits.digit_inflate",
+      "module": "PscVerif.NamedArchivedDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedDigits.lean",
+      "line": 175,
+      "declaration": "theorem digit_inflate (fixture : Fin 2) (k : Fin 15) :"
+    },
+    {
+      "name": "Psc.NamedArchivedDigits.digit_before_inflate",
+      "module": "PscVerif.NamedArchivedDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedDigits.lean",
+      "line": 181,
+      "declaration": "theorem digit_before_inflate (fixture : Fin 2) (k : Fin 15) :"
+    },
+    {
+      "name": "Psc.NamedArchivedDigits.digit_letter_inflate",
+      "module": "PscVerif.NamedArchivedDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedDigits.lean",
+      "line": 187,
+      "declaration": "theorem digit_letter_inflate (fixture : Fin 2) (k : Fin 15) :"
+    },
+    {
+      "name": "Psc.NamedArchivedDigits.digit_after_inflate",
+      "module": "PscVerif.NamedArchivedDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedDigits.lean",
+      "line": 191,
+      "declaration": "theorem digit_after_inflate (fixture : Fin 2) (k : Fin 15) :"
+    },
+    {
+      "name": "Psc.NamedArchivedDigits.flat_eq_nested_index",
+      "module": "PscVerif.NamedArchivedDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedDigits.lean",
+      "line": 197,
+      "declaration": "theorem flat_eq_nested_index (fixture : Fin 2) (k : Fin 15) :"
+    },
+    {
+      "name": "Psc.NamedArchivedDigits.repeated_letters_retain_positions",
+      "module": "PscVerif.NamedArchivedDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedDigits.lean",
+      "line": 203,
+      "declaration": "theorem repeated_letters_retain_positions :"
+    },
+    {
+      "name": "Psc.NamedArchivedDigits.source_order_matters",
+      "module": "PscVerif.NamedArchivedDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedDigits.lean",
+      "line": 210,
+      "declaration": "theorem source_order_matters :"
     },
     {
       "name": "Psc.NamedArchivedGraph.decodedCandidate_of_occurrence",
@@ -24405,6 +25029,10 @@
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean": "87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean": "e18e726b6bd1c431f9e28500504edd6ffba157415af20069715b9c8f208f3f9b",
+    "proof/PscVerif/PscVerif/ArchivedPayload.lean": "38d3b2270c15baae23f36be3a7c369dcaab4255b26d5db6a00ed32ef084afe8d",
+    "proof/PscVerif/PscVerif/ArchivedPayloadConsumer.lean": "39768a54a2c022ef460e08dbd1879177fdf598bb8645702233264738ddf43e49",
+    "proof/PscVerif/PscVerif/ArchivedPayloadControls.lean": "c1687369bb8feec4b5c784c3ac6f4cc6dccb9ece05af539a13f11d1cffb83371",
+    "proof/PscVerif/PscVerif/ArchivedPayloadEmit.lean": "3d56413774e33215a1fb507ca418f08b4d048b3986c2c309a9cc9d626a15a6e3",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
     "proof/PscVerif/PscVerif/Binomial.lean": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
@@ -24450,6 +25078,7 @@
     "proof/PscVerif/PscVerif/MadicActionRange.lean": "297a4102a077a50b42a955c5afee83f9d5bd6a47e2175c4c4c9d0300005de37d",
     "proof/PscVerif/PscVerif/MadicHaar.lean": "a116c88bb856771b74ff7d5111e797c58216ce49057c99096ed5ddac3c2019a5",
     "proof/PscVerif/PscVerif/MadicResidue.lean": "c7ff8430cb77c335f11478861584baea4129658b35f4fc67bf0c2b8509d50f6d",
+    "proof/PscVerif/PscVerif/NamedArchivedDigits.lean": "12059a52f4598c316a42f64cadf269cdd716853a785bc1189023207689124775",
     "proof/PscVerif/PscVerif/NamedArchivedGraph.lean": "cfde4885aa910cd0c20b7a328c9f9e2af6978aa5e980f3739aadd3c37bb112b0",
     "proof/PscVerif/PscVerif/NamedArchivedGraphRefinement.lean": "590b8a5e07389f8111a347419ec066322a982dea41cf8c471b3b01d5d03b934c",
     "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean": "13ef34fb3eb6b9ede477c4de920af612010aa280409049c185b1afb35a34a585",
@@ -24508,12 +25137,12 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "0e633dafd4608acde60bf0653c35b59be6cd4c07552c80ed297e4904dc3b9a6c",
+    "proof/PscVerif/PscVerif.lean": "76dd30665b756e6744912b61ddcac689722bfa43668466df9cd5c94e78ef7745",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
     "proof/proof-bank.toml": "816ffbf106a4bea7faffd6bf4d1121062fb9b0b1df14936c75197bdf00932361",
-    "tools/check_lean.sh": "34d3f59b3ee45adcfa8c6b505cf69041566403c1c0a9c7d2246fc7cd6dbd82af",
+    "tools/check_lean.sh": "eb63ce6fb0b837eee1208b3d47e759bcf8b3617b1374685a8850e48f283cba8d",
     "tools/make_ledger.py": "2d64f2c5e3ee8df0bc709bcb8a09ab435ac0a1e9b9e84e67cbbcfea1ed647f9d",
     "tools/make_proof_bank.py": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8",
     "tools/setup_lean.sh": "b2c35ccc8d0b180a75275f8234f519a00d32efcbc8a9517f8b3d74a96b3ef8da"
