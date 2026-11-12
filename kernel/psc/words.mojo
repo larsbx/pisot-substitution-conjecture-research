@@ -17,12 +17,12 @@ def parikh(w: List[Int]) -> List[Int]:
     return sd.parikh(w, ALPHABET)
 
 
-def n2(w: List[Int]) -> List[Int]:
+def n2(w: List[Int]) raises -> List[Int]:
     """`N_{ij}(w)` flattened row-major into `Z^9`, streamed in O(n)."""
     return sd.n2(w, ALPHABET)
 
 
-def n3(w: List[Int]) -> List[Int]:
+def n3(w: List[Int]) raises -> List[Int]:
     """`N_{ijk}(w)` in lex coordinates of `V^(x3)`, streamed in O(n)."""
     return sd.n3(w, ALPHABET)
 
@@ -35,9 +35,9 @@ def k1(p: Pair) -> List[Int]:
     return sd.k1(p, ALPHABET)
 
 
-def k2(p: Pair) -> List[Int]:
+def k2(p: Pair) raises -> List[Int]:
     return sd.k2(p, ALPHABET)
 
 
-def k3(p: Pair) -> List[Int]:
+def k3(p: Pair) raises -> List[Int]:
     return sd.k3(p, ALPHABET)

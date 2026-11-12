@@ -24,11 +24,11 @@ root = "kernel"
 [[package]]
 name = "substitution_dynamics"
 repository = "larsbx/finite-math-kernels"
-commit = "9633daf211e486669803dee0ba1a2eb6e3fe2bb5"
+commit = "c4afbbd5e7a069fe578aea45700820c272594cc8"
 root = "kernel"
 
 [package.files]
-"substitution_dynamics/__init__.mojo" = "e53facf94d13e856fc0671329185197585c825908abc6a4fbe59c0efacae8986"
+"substitution_dynamics/__init__.mojo" = "fe7d73ab3315dc324c58c924d638e9de14844b8795eac576caa1623cd1dc61d2"
 "substitution_dynamics/automaton.mojo" = "a1d05636fdd4b7c2668901d0819be6e6a5833f3127aef3b3420714ea6908822f"
 "substitution_dynamics/balanced_pair_algorithm.mojo" = "02f45a6823038ddadc121f8282d09e5a34e9d2039e867f5b1544375fc9c4b8a7"
 "substitution_dynamics/balanced_pairs.mojo" = "8be78a124f6898bde665c4da38cd0110e843c16404f70804b0d700f385d37618"
@@ -44,7 +44,7 @@ root = "kernel"
 "substitution_dynamics/substitution.mojo" = "9dc5b2efaaba196e10fae8213f80db566a6d4d11c64b5a209c5c133679e000e7"
 "substitution_dynamics/symmetry.mojo" = "28275fec0cb02308e1a9a04f3b7e443ac0941c29b9d8ed997a3b0a170f4cf3b5"
 "substitution_dynamics/tuning.mojo" = "af035cbb59eb54e0a7e8d7d7cd295f6ffe2bdb504b9722a22a2ed3f81eace5f4"
-"substitution_dynamics/words.mojo" = "59eb2caefe20138da2a7d410a2e38db5b8d30c144759570e26501a7ed521442d"
+"substitution_dynamics/words.mojo" = "da8341a2506c4274559521370638758882dbd83f569ac2fc76920511a4acdac2"
 
 [[package]]
 name = "finite_linear_algebra"

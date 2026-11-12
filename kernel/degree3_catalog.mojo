@@ -18,7 +18,7 @@ from psc.words import is_zero, k2, k3
 from substitution_dynamics.automaton import Automaton
 
 
-def is_first_degree3_component(a: Automaton, comp: List[Int]) -> Bool:
+def is_first_degree3_component(a: Automaton, comp: List[Int]) raises -> Bool:
     """Every state has `K2 = 0` and at least one has `K3 != 0`."""
     var has_k3 = False
     for s in range(len(comp)):
