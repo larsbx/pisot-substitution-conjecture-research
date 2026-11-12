@@ -1,4 +1,4 @@
-# Compiled N2 checked addition
+# Compiled N2 checked addition and overflow return
 
 This receipt concerns the x86-64 executable built from PSC revision
 `9a1357ed5dae3b4502d29c34396d0e9403ccca75` with Mojo
@@ -25,6 +25,24 @@ Otherwise, the decoded store writes the exact sum at the same indexed
 address from which the old count was loaded. `writeWord_outside` gives
 the byte-level frame for the other addresses.
 
+The overflow continuation checks 28 more instructions across error
+preparation (`0xaae7–0xab00`), the tag assignment (`0xace8–0xace9`), and the
+return block (`0xad04–0xad4d`). It checks the 33 message bytes at `0xd5b0`.
+`overflow_produces_error` composes this projection with the checked update
+and proves that an overflowing input produces tag 1, message length 33
+and the relocated address of `checked integer addition overflow`. It also
+establishes the return-buffer pointer and models the frame consumption
+through the return to the saved caller address.
+
+The error projection assumes a valid frame and a writable, disjoint
+return buffer. The omitted instructions and external stack-trace and
+free calls are a summary boundary. The composition assumes control
+reaches the recorded preparation, tag and return blocks with the
+projected fields and stack locations intact. The saved caller address
+and return-buffer address are inputs. The proof only observes the
+message fields, tag and return state, so it abstracts the other writes
+to disjoint ABI fields.
+
 ## Replay
 
 Using the recorded Mojo toolchain and Lean pinned by PSC:
@@ -38,7 +56,7 @@ objdump -d --start-address=0xab01 --stop-address=0xab3e /tmp/psc-word-counters
 lean --run proof/WordCounters/N2MachineSlice.lean /tmp/psc-word-counters
 ```
 
-The Lean command checks both instruction slices. The digest identifies
+The Lean command checks the instruction slices and the error message bytes. The digest identifies
 the full recorded executable separately. A changed byte in either slice
 or a file truncated before the second slice must be refused. The
 arithmetic theorem's axiom report lists only `propext`,

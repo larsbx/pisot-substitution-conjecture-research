@@ -339,14 +339,17 @@ def memoryEncodings : List (List UInt8 × MemoryOp) := [
   ([0x4d, 0x89, 0xf1], .restoreIndex),
   ([0x4b, 0x89, 0x6c, 0xfd, 0x00], .store)]
 
-def decodeMemory : Nat → List UInt8 → Option (List MemoryOp)
+def decodeLinear (encodings : List (List UInt8 × α)) :
+    Nat → List UInt8 → Option (List α)
   | _, [] => some []
   | 0, _ => none
   | fuel + 1, bytes => do
-      let (encoding, op) ← memoryEncodings.find? fun (encoding, _) =>
+      let (encoding, op) ← encodings.find? fun (encoding, _) =>
         bytes.take encoding.length == encoding
-      let remaining ← decodeMemory fuel (bytes.drop encoding.length)
+      let remaining ← decodeLinear encodings fuel (bytes.drop encoding.length)
       return op :: remaining
+
+def decodeMemory := decodeLinear memoryEncodings
 
 def stepMemory (s : MemoryState) (op : MemoryOp) : MemoryState :=
   match op with
@@ -485,13 +488,200 @@ theorem checked_binary_update (binary : ByteArray) (h : checkUpdate binary = tru
     (finish_correct binary s _ h.2.2 restore ha hb _
       (checked_binary_exact binary h.1 _ _ _ _))
 
+-- The caller-visible projection of the overflow return record. Unobserved
+-- fields use different offsets in the valid, non-overlapping ABI buffer.
+structure ErrorResult where
+  tag : UInt8
+  length : Word
+  message : Word
+  resultPointer : Word
+  returnAddress : Word
+  consumedStackBytes : Nat
+  deriving DecidableEq
+
+structure ErrorState where
+  imageBase : Word
+  buffer : Word
+  caller : Word
+  rax : Word := 0
+  r11 : Word := 0
+  bl : UInt8 := 0
+  stackLength : Word := 0
+  stackMessage : Word := 0
+  resultTag : UInt8 := 0
+  resultLength : Word := 0
+  resultMessage : Word := 0
+  stackOffset : Nat := 0
+  returned : Bool := false
+
+inductive ErrorOp where
+  | setLength
+  | setMessage
+  | saveTraceFlag
+  | saveLength
+  | saveMessage
+  | setTag
+  | readTraceFlag
+  | storeAuxiliary
+  | storeTraceFlag
+  | storeTrace
+  | storeCapacity
+  | maskTag
+  | readLength
+  | storeLength
+  | readMessage
+  | storeMessage
+  | storeExtra
+  | storeTag
+  | storeTrailing
+  | returnBuffer
+  | dropFrame
+  | popSaved
+  | ret
+  deriving DecidableEq
+
+def errorEncodings : List (List UInt8 × ErrorOp) := [
+  ([0xb8, 0x21, 0x00, 0x00, 0x00], .setLength),
+  ([0x4c, 0x8d, 0x1d, 0xbd, 0x2a, 0x00, 0x00], .setMessage),
+  ([0x88, 0x54, 0x24, 0x0f], .saveTraceFlag),
+  ([0x48, 0x89, 0x44, 0x24, 0x50], .saveLength),
+  ([0x4c, 0x89, 0x5c, 0x24, 0x58], .saveMessage),
+  ([0xb3, 0x01], .setTag),
+  ([0x0f, 0xb6, 0x54, 0x24, 0x0f], .readTraceFlag),
+  ([0x4d, 0x89, 0x6f, 0x30], .storeAuxiliary),
+  ([0x41, 0x88, 0x57, 0x28], .storeTraceFlag),
+  ([0x49, 0x89, 0x77, 0x20], .storeTrace),
+  ([0x4d, 0x89, 0x67, 0x18], .storeCapacity),
+  ([0x80, 0xe3, 0x01], .maskTag),
+  ([0x48, 0x8b, 0x44, 0x24, 0x50], .readLength),
+  ([0x49, 0x89, 0x47, 0x10], .storeLength),
+  ([0x48, 0x8b, 0x44, 0x24, 0x58], .readMessage),
+  ([0x49, 0x89, 0x47, 0x08], .storeMessage),
+  ([0x4d, 0x89, 0x57, 0x38], .storeExtra),
+  ([0x41, 0x88, 0x1f], .storeTag),
+  ([0x49, 0x89, 0x6f, 0x40], .storeTrailing),
+  ([0x4c, 0x89, 0xf8], .returnBuffer),
+  ([0x48, 0x81, 0xc4, 0xc8, 0x00, 0x00, 0x00], .dropFrame),
+  ([0x5b], .popSaved),
+  ([0x41, 0x5c], .popSaved),
+  ([0x41, 0x5d], .popSaved),
+  ([0x41, 0x5e], .popSaved),
+  ([0x41, 0x5f], .popSaved),
+  ([0x5d], .popSaved),
+  ([0xc3], .ret)]
+
+def decodeError := decodeLinear errorEncodings
+
+def stepError (s : ErrorState) (op : ErrorOp) : ErrorState :=
+  match op with
+  | .setLength => { s with rax := 33 }
+  | .setMessage => { s with r11 := s.imageBase + 0xaaf3#64 + 0x2abd#64 }
+  | .saveLength => { s with stackLength := s.rax }
+  | .saveMessage => { s with stackMessage := s.r11 }
+  | .setTag => { s with bl := 1 }
+  | .maskTag => { s with bl := s.bl &&& 1 }
+  | .readLength => { s with rax := s.stackLength }
+  | .readMessage => { s with rax := s.stackMessage }
+  | .storeLength => { s with resultLength := s.rax }
+  | .storeMessage => { s with resultMessage := s.rax }
+  | .storeTag => { s with resultTag := s.bl }
+  | .returnBuffer => { s with rax := s.buffer }
+  | .dropFrame => { s with stackOffset := s.stackOffset + 0xc8 }
+  | .popSaved => { s with stackOffset := s.stackOffset + 8 }
+  | .ret => { s with returned := true, stackOffset := s.stackOffset + 8 }
+  | .saveTraceFlag | .readTraceFlag | .storeAuxiliary | .storeTraceFlag |
+    .storeTrace | .storeCapacity | .storeExtra | .storeTrailing => s
+
+def prepareErrorBytes : List UInt8 :=
+  [0xb8, 0x21, 0x00, 0x00, 0x00, 0x4c, 0x8d, 0x1d, 0xbd, 0x2a, 0x00, 0x00,
+   0x88, 0x54, 0x24, 0x0f, 0x48, 0x89, 0x44, 0x24, 0x50, 0x4c, 0x89, 0x5c,
+   0x24, 0x58]
+
+private theorem decode_error_prepare :
+    decodeError 5 prepareErrorBytes =
+      some [.setLength, .setMessage, .saveTraceFlag, .saveLength, .saveMessage] := by decide
+
+def tagErrorBytes : List UInt8 :=
+  [0xb3, 0x01]
+
+private theorem decode_error_tag :
+    decodeError 1 tagErrorBytes =
+      some [.setTag] := by decide
+
+def returnErrorBytes : List UInt8 :=
+  [0x0f, 0xb6, 0x54, 0x24, 0x0f, 0x4d, 0x89, 0x6f, 0x30, 0x41, 0x88, 0x57,
+   0x28, 0x49, 0x89, 0x77, 0x20, 0x4d, 0x89, 0x67, 0x18, 0x80, 0xe3, 0x01,
+   0x48, 0x8b, 0x44, 0x24, 0x50, 0x49, 0x89, 0x47, 0x10, 0x48, 0x8b, 0x44,
+   0x24, 0x58, 0x49, 0x89, 0x47, 0x08, 0x4d, 0x89, 0x57, 0x38, 0x41, 0x88,
+   0x1f, 0x49, 0x89, 0x6f, 0x40, 0x4c, 0x89, 0xf8, 0x48, 0x81, 0xc4, 0xc8,
+   0x00, 0x00, 0x00, 0x5b, 0x41, 0x5c, 0x41, 0x5d, 0x41, 0x5e, 0x41, 0x5f,
+   0x5d, 0xc3]
+
+private theorem decode_error_return :
+    decodeError 22 returnErrorBytes =
+      some [.readTraceFlag, .storeAuxiliary, .storeTraceFlag, .storeTrace, .storeCapacity, .maskTag, .readLength, .storeLength, .readMessage, .storeMessage, .storeExtra, .storeTag, .storeTrailing, .returnBuffer, .dropFrame, .popSaved, .popSaved, .popSaved, .popSaved, .popSaved, .popSaved, .ret] := by decide
+
+def prepareErrorSlice (binary : ByteArray) := (binary.extract 0xaae7 0xab01).data.toList
+def tagErrorSlice (binary : ByteArray) := (binary.extract 0xace8 0xacea).data.toList
+def returnErrorSlice (binary : ByteArray) := (binary.extract 0xad04 0xad4e).data.toList
+
+def overflowMessage : ByteArray := "checked integer addition overflow".toUTF8
+
+def checkErrorReturn (binary : ByteArray) : Bool :=
+  (prepareErrorSlice binary == prepareErrorBytes) &&
+  (tagErrorSlice binary == tagErrorBytes) &&
+  (returnErrorSlice binary == returnErrorBytes) &&
+  ((binary.extract 0xd5b0 0xd5d1).data == overflowMessage.data)
+
+-- External stack trace and free calls are summarized by preservation of
+-- the projected fields between preparation, the tag assignment, and the
+-- return block. The valid frame supplies the caller address at offset 0xf8.
+def executeError (binary : ByteArray) (s : ErrorState) : Option ErrorResult := do
+  let prepare ← decodeError 5 (prepareErrorSlice binary)
+  let tag ← decodeError 1 (tagErrorSlice binary)
+  let tail ← decodeError 22 (returnErrorSlice binary)
+  let final := tail.foldl stepError (tag.foldl stepError (prepare.foldl stepError s))
+  if final.returned then
+    some ⟨final.resultTag, final.resultLength, final.resultMessage, final.rax,
+      final.caller, final.stackOffset⟩
+  else none
+
+def expectedError (base buffer caller : Word) : ErrorResult :=
+  ⟨1, 33, base + 0xd5b0#64, buffer, caller, 0x100⟩
+
+theorem checked_error_return (binary : ByteArray) (h : checkErrorReturn binary = true)
+    (base buffer caller : Word) :
+    executeError binary { imageBase := base, buffer, caller } =
+        some (expectedError base buffer caller) ∧
+      (binary.extract 0xd5b0 0xd5d1).data = overflowMessage.data := by
+  simp only [checkErrorReturn, Bool.and_eq_true, beq_iff_eq] at h
+  refine ⟨?_, h.2⟩
+  unfold executeError
+  rw [h.1.1.1, h.1.1.2, h.1.2, decode_error_prepare, decode_error_tag, decode_error_return]
+  simp [Bind.bind, Option.bind, List.foldl, stepError, expectedError, BitVec.add_assoc]
+
+
+-- Compose the already checked update with the projected error epilogue.
+theorem overflow_produces_error (binary : ByteArray) (hUpdate : checkUpdate binary = true)
+    (hReturn : checkErrorReturn binary = true) (s : MemoryState)
+    (restore : readWord s.mem (s.rsp + 0xb0#64) = s.r13)
+    (ha : 0 ≤ (oldCount s).toInt) (hb : 0 ≤ (increment s).toInt)
+    (overflow : 9223372036854775807 < (oldCount s).toInt + (increment s).toInt)
+    (base buffer caller : Word) :
+    (match runUpdate binary s with
+      | .reject _ => executeError binary { imageBase := base, buffer, caller }
+      | _ => none) = some (expectedError base buffer caller) := by
+  rw [checked_binary_update binary hUpdate s restore ha hb, ite_eq_left overflow]
+  exact (checked_error_return binary hReturn base buffer caller).1
+
 end N2MachineSlice
 
 #print axioms N2MachineSlice.checked_binary_update
+#print axioms N2MachineSlice.overflow_produces_error
 
 def main (args : List String) : IO Unit := do
   let [path] := args | throw (IO.userError "expected path to recorded counter ELF")
   let binary ← IO.FS.readBinFile path
-  unless N2MachineSlice.checkUpdate binary do
+  unless N2MachineSlice.checkUpdate binary && N2MachineSlice.checkErrorReturn binary do
     throw (IO.userError "counter instruction bytes differ")
-  IO.println "N2 load, checked-add, and store instruction bytes matched"
+  IO.println "N2 update, overflow return and error-message bytes matched"
