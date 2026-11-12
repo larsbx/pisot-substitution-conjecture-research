@@ -85,6 +85,9 @@ import PscVerif.StablePrefixWindow
 import PscVerif.NamedStableChart
 import PscVerif.NamedStableContraction
 import PscVerif.NamedPrefixCompact
+import PscVerif.CutPrefixEmbedding
+import PscVerif.NamedCutProximity
+import PscVerif.CutPrefixControls
 import PscVerif.NamedGeometricEnclosure
 import PscVerif.NamedFiniteCarrier
 import PscVerif.NamedOverlapHaar
