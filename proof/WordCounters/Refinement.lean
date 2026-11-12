@@ -23,6 +23,40 @@ def step (counts : Counts) (letter : Letter) : Counts :=
 def exact (counts : Counts) (word : List Letter) : Counts :=
   word.foldl step counts
 
+-- The source updates in descending degree, so smaller coordinates still
+-- describe the old prefix when a degree is processed.
+def updateDegree (counts : Counts) (letter : Letter) (degree : Nat) : Counts :=
+  fun slot => if slot.length = degree then step counts letter slot else counts slot
+
+def sweepDown (counts : Counts) (letter : Letter) : Nat → Counts
+  | 0 => counts
+  | n + 1 => sweepDown (updateDegree counts letter (n + 1)) letter n
+
+theorem descending_reads_old_prefix (degree : Nat) (counts : Counts)
+    (letter : Letter) (slot : Slot) :
+    sweepDown counts letter degree slot =
+      if 0 < slot.length ∧ slot.length ≤ degree then step counts letter slot else counts slot := by
+  induction degree generalizing counts with
+  | zero => cases slot <;> simp [sweepDown]
+  | succ n ih =>
+    rw [sweepDown, ih]
+    cases slot with
+    | nil => simp [updateDegree]
+    | cons head tail =>
+      simp only [List.length_cons, Nat.zero_lt_succ, true_and]
+      by_cases h : tail.length + 1 ≤ n
+      · have hn : tail.length + 1 ≠ n + 1 := by omega
+        have ht : tail.length ≠ n + 1 := by omega
+        have hs : tail.length + 1 ≤ n + 1 := by omega
+        simp only [ite_eq_left h, ite_eq_left hs, step, increment, updateDegree, List.length_cons,
+          ite_eq_right hn, ite_eq_right ht]
+      · rw [ite_eq_right h]
+        by_cases he : tail.length + 1 = n + 1
+        · have hs : tail.length + 1 ≤ n + 1 := by omega
+          simp only [ite_eq_left hs, updateDegree, List.length_cons, ite_eq_left he]
+        · have hn : ¬ tail.length + 1 ≤ n + 1 := by omega
+          simp only [ite_eq_right hn, updateDegree, List.length_cons, ite_eq_right he]
+
 -- This is the positive-addend guard in checked_int.mojo, with subtraction
 -- interpreted in Int. Zero increments can also represent untouched slots.
 def addGuard (limit a b : Nat) : Bool :=
@@ -221,3 +255,4 @@ end PscWordCounters
 #print axioms PscWordCounters.mem_trackedSlots
 #print axioms PscWordCounters.extend_index_lt
 #print axioms PscWordCounters.difference_fits
+#print axioms PscWordCounters.descending_reads_old_prefix
