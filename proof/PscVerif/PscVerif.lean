@@ -97,3 +97,8 @@ import PscVerif.ArchivedGraphRefinement
 import PscVerif.NamedArchivedGraphRefinement
 import PscVerif.ArchivedGraphRefinementControls
 import PscVerif.NamedArchivedGraph
+import PscVerif.NamedArchivedDigits
+import PscVerif.ArchivedPayload
+import PscVerif.ArchivedPayloadConsumer
+import PscVerif.ArchivedPayloadEmit
+import PscVerif.ArchivedPayloadControls

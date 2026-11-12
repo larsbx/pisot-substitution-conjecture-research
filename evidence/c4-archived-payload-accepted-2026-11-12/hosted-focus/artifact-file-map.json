@@ -1,0 +1,217 @@
+{
+  "all_original_entries": {
+    "archive-sha256.txt": {
+      "bytes": 121,
+      "deduplicated_by_direct_byte_equality": false,
+      "retained": true,
+      "sha256": "7ba4c40d3618a4c582b4c27f6785ad2a047838ad3557df68ac0ef5f73d51819e",
+      "stored_path": "hosted-focus/artifact/archive-sha256.txt"
+    },
+    "lean-audit.log": {
+      "bytes": 995319,
+      "deduplicated_by_direct_byte_equality": false,
+      "retained": true,
+      "sha256": "79f811d9c62f17fb4b87ffe57123b3e8797c3fd0e709433fdd74d0a1e01dc7ac",
+      "stored_path": "hosted-focus/artifact/lean-audit.log.gz"
+    },
+    "lean/Audit0.lean": {
+      "bytes": 3497,
+      "deduplicated_by_direct_byte_equality": true,
+      "retained": true,
+      "sha256": "dd5951ce47fe351857784bac13e2ff1093074a0f8a41a2b59f12e888df764165",
+      "stored_path": "local-complete-replay/Audit0.lean"
+    },
+    "lean/Audit0.log": {
+      "bytes": 2126253,
+      "deduplicated_by_direct_byte_equality": true,
+      "retained": true,
+      "sha256": "b1d3a4a9929ed0db7e23cff9ec6b353b6346fb0040724a43a32526f7fdc07181",
+      "stored_path": "local-complete-replay/Audit0.log.gz"
+    },
+    "lean/Audit0.stderr": {
+      "bytes": 0,
+      "deduplicated_by_direct_byte_equality": true,
+      "retained": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "local-complete-replay/Audit0.stderr"
+    },
+    "lean/Audit1.lean": {
+      "bytes": 3497,
+      "deduplicated_by_direct_byte_equality": true,
+      "retained": true,
+      "sha256": "6fbbc908164621f1b5444e5e7320c210993a8e976b70ad4f7f595d3a3227bcd4",
+      "stored_path": "local-complete-replay/Audit1.lean"
+    },
+    "lean/Audit1.log": {
+      "bytes": 2110414,
+      "deduplicated_by_direct_byte_equality": true,
+      "retained": true,
+      "sha256": "d33b20b57051d9b382987837c8f8031ec7d4251f4cf93d2737d57bc7ba60a55a",
+      "stored_path": "local-complete-replay/Audit1.log.gz"
+    },
+    "lean/Audit1.stderr": {
+      "bytes": 0,
+      "deduplicated_by_direct_byte_equality": true,
+      "retained": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "local-complete-replay/Audit0.stderr"
+    },
+    "lean/Source0.compile.log": {
+      "bytes": 0,
+      "deduplicated_by_direct_byte_equality": true,
+      "retained": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "local-complete-replay/Audit0.stderr"
+    },
+    "lean/Source0.exporter.log": {
+      "bytes": 0,
+      "deduplicated_by_direct_byte_equality": true,
+      "retained": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "local-complete-replay/Audit0.stderr"
+    },
+    "lean/Source0.lean": {
+      "bytes": 1663738,
+      "deduplicated_by_direct_byte_equality": true,
+      "retained": true,
+      "sha256": "c49f74c45bcfac6ef4b29798b5d2825aebcca868359b705c66bc91008a1014b8",
+      "stored_path": "local-complete-replay/Source0.lean.gz"
+    },
+    "lean/Source0.olean": {
+      "bytes": 32200064,
+      "reason": "compiled object omitted",
+      "retained": false,
+      "sha256": "6bc5752e4151d31e30923d50dae4b1405d42726c9ffa00cb907a886b7c708b50"
+    },
+    "lean/Source1.compile.log": {
+      "bytes": 0,
+      "deduplicated_by_direct_byte_equality": true,
+      "retained": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "local-complete-replay/Audit0.stderr"
+    },
+    "lean/Source1.exporter.log": {
+      "bytes": 0,
+      "deduplicated_by_direct_byte_equality": true,
+      "retained": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "local-complete-replay/Audit0.stderr"
+    },
+    "lean/Source1.lean": {
+      "bytes": 1652412,
+      "deduplicated_by_direct_byte_equality": true,
+      "retained": true,
+      "sha256": "a2a496783dd875ea76f5bf90998ba469233e1e742cc695417c5f5de51b3ef17d",
+      "stored_path": "local-complete-replay/Source1.lean.gz"
+    },
+    "lean/Source1.olean": {
+      "bytes": 31916648,
+      "reason": "compiled object omitted",
+      "retained": false,
+      "sha256": "315fbea2a1b7f943271d61d98b4ab9559a23d802b950188ca1a6994f01b7469f"
+    },
+    "lean/lean-emitted-payload.txt": {
+      "bytes": 3908423,
+      "deduplicated_by_direct_byte_equality": true,
+      "retained": true,
+      "sha256": "447d58d811359235d1f4689433500494ae14724b89b5da91f429e7e7247beaca",
+      "stored_path": "local-complete-replay/lean-emitted-payload.txt.gz"
+    },
+    "lean/oracle-receipt.json": {
+      "bytes": 1406,
+      "deduplicated_by_direct_byte_equality": true,
+      "retained": true,
+      "sha256": "74e8b8c00ff89f9a5ac634e022ab8acdd851ba48ca2f362f6b4d5f795ce24af5",
+      "stored_path": "local-complete-replay/oracle-receipt.json"
+    },
+    "lean/receipt.json": {
+      "bytes": 2752,
+      "deduplicated_by_direct_byte_equality": false,
+      "retained": true,
+      "sha256": "1f33f17457ecbca6ba2e2796ca3fde1cd7bceaf96fab0b8539bb4975ae996753",
+      "stored_path": "hosted-focus/artifact/lean/receipt.json"
+    },
+    "lean/wrong-proof-type-control/Audit0.lean": {
+      "bytes": 3497,
+      "deduplicated_by_direct_byte_equality": true,
+      "retained": true,
+      "sha256": "dd5951ce47fe351857784bac13e2ff1093074a0f8a41a2b59f12e888df764165",
+      "stored_path": "local-complete-replay/Audit0.lean"
+    },
+    "lean/wrong-proof-type-control/Source0.lean": {
+      "bytes": 856,
+      "deduplicated_by_direct_byte_equality": true,
+      "retained": true,
+      "sha256": "646e9688690675671a7534c363fff3afca28d0148ee1cb24de781b75e4de5a28",
+      "stored_path": "local-complete-replay/wrong-proof-type-control/Source0.lean"
+    },
+    "lean/wrong-proof-type-control/Source0.olean": {
+      "bytes": 21136,
+      "reason": "compiled object omitted",
+      "retained": false,
+      "sha256": "08d0cd597f9abdfcd1687b46dd6131b177494f99660e23a70f87b151c67281ac"
+    },
+    "lean/wrong-proof-type-control/audit.log": {
+      "bytes": 2399,
+      "deduplicated_by_direct_byte_equality": false,
+      "retained": true,
+      "sha256": "1b553fcbefd61ec5b2025860e365f81a871ab6b32a69740a6706ef6081572bd3",
+      "stored_path": "hosted-focus/artifact/lean/wrong-proof-type-control/audit.log.gz"
+    },
+    "lean/wrong-proof-type-control/compile.log": {
+      "bytes": 0,
+      "deduplicated_by_direct_byte_equality": true,
+      "retained": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "local-complete-replay/Audit0.stderr"
+    },
+    "lean/wrong-proof-type-control/receipt.json": {
+      "bytes": 246,
+      "deduplicated_by_direct_byte_equality": true,
+      "retained": true,
+      "sha256": "a049bba2157be7fb80ebd1ab28a0b8cf280f419ea25771b26b05c3b6d03199a4",
+      "stored_path": "local-complete-replay/wrong-proof-type-control/receipt.json"
+    },
+    "native-oracle-receipt.json": {
+      "bytes": 5976,
+      "deduplicated_by_direct_byte_equality": false,
+      "retained": true,
+      "sha256": "53ef2793d4b7cdbb7d011c951f1535c5e9975e63750ab9a0a9322370a2dd1ca0",
+      "stored_path": "hosted-focus/artifact/native-oracle-receipt.json"
+    },
+    "native-packet.txt": {
+      "bytes": 3908423,
+      "deduplicated_by_direct_byte_equality": true,
+      "retained": true,
+      "sha256": "447d58d811359235d1f4689433500494ae14724b89b5da91f429e7e7247beaca",
+      "stored_path": "local-complete-replay/lean-emitted-payload.txt.gz"
+    },
+    "native-tests.log": {
+      "bytes": 1121,
+      "deduplicated_by_direct_byte_equality": false,
+      "retained": true,
+      "sha256": "0b7b5429a9ac908075162071f7a6cf095476b1794243148b2fe928c1e5ff9308",
+      "stored_path": "hosted-focus/artifact/native-tests.log"
+    },
+    "oracle-tests.log": {
+      "bytes": 80,
+      "deduplicated_by_direct_byte_equality": false,
+      "retained": true,
+      "sha256": "06955fb47f16312e5d13266c774a2aa4648c46e423cbe6564a92e25b68e39131",
+      "stored_path": "hosted-focus/artifact/oracle-tests.log"
+    },
+    "revision.txt": {
+      "bytes": 82,
+      "deduplicated_by_direct_byte_equality": true,
+      "retained": true,
+      "sha256": "f4102ee8188993e5e2403acf391e7503170e209eef32c5e4399b53d841ed7c34",
+      "stored_path": "source-provenance/revision.txt"
+    }
+  },
+  "artifact_id": 13929993392,
+  "job": 131038172377,
+  "run": 43175356240,
+  "scope": "complete logical original artifact mapping to retained identical bytes or explicit compiled omission",
+  "zip_bytes": 19222973,
+  "zip_sha256": "e4e8ed4e5ed77385dbfce4a6b770c4b070fd4e1b2312ef2fa20102b4dfd317d1"
+}

@@ -1,0 +1,51 @@
+{
+  "all_two_original_fixtures_verified": true,
+  "fixtures": [
+    {
+      "addressed_packet_sha256": "e960043f7481993fd56d7ac3976f119e132e00d5762bdcb78b8a061557ecfe8c",
+      "fixture": 0,
+      "historical_graph_sha256": "23f85af92c327a64f70983db990753a84cd1489e3c72c3047e51f14e97afce6e",
+      "lookup_nodes": 7150,
+      "maximum_rooted_inverse_depth": 13,
+      "ordered_lift_positions": 69652,
+      "packed_rows": 7150,
+      "positional_edges": 34826,
+      "radii": [
+        16,
+        8
+      ],
+      "rate": "99/20",
+      "sigma": [
+        "1",
+        "021",
+        "001"
+      ],
+      "states": 7150
+    },
+    {
+      "addressed_packet_sha256": "915126ff282c0b1347c4518c57b7b7e350ebaaf1c6838c56776e6a12bdc61bc9",
+      "fixture": 1,
+      "historical_graph_sha256": "a63d544b25b5f7146abbd25f1960fed77f85584a1f20957b5869bea30b389256",
+      "lookup_nodes": 7083,
+      "maximum_rooted_inverse_depth": 13,
+      "ordered_lift_positions": 69706,
+      "packed_rows": 7083,
+      "positional_edges": 34853,
+      "radii": [
+        16,
+        8
+      ],
+      "rate": "101/20",
+      "sigma": [
+        "1",
+        "012",
+        "001"
+      ],
+      "states": 7083
+    }
+  ],
+  "kernel_acceptance_supplied_by_this_oracle": false,
+  "payload_bytes": 3908423,
+  "payload_sha256": "447d58d811359235d1f4689433500494ae14724b89b5da91f429e7e7247beaca",
+  "schema": "c4-archived-payload-v1"
+}

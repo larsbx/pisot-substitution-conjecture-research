@@ -1,0 +1,119 @@
+[
+  {
+    "module": "PscVerif.ArchivedPayload",
+    "source_closure_sha256": "22acadf7992ae152be4bcdd58b73fef51a133ca05489478c2293c4912cd71ab1",
+    "returncode": 1,
+    "seconds": 5.476,
+    "scope": "development compilation only; source-pinned upstream dependency cache",
+    "log": "failures/PscVerif.ArchivedPayload-1794467441052486831.log.gz",
+    "log_uncompressed_sha256": "d96102477d76174ea9177a510a7e6499cf37b57d688916f8712edda7d24f94a2"
+  },
+  {
+    "module": "PscVerif.ArchivedPayload",
+    "source_closure_sha256": "d9f41956981af20a5d693e61d05a8c3e80b061ff3eca8d693e00d21b34e77bf5",
+    "returncode": 1,
+    "seconds": 5.092,
+    "scope": "development compilation only; source-pinned upstream dependency cache",
+    "log": "failures/PscVerif.ArchivedPayload-1794467466065594941.log.gz",
+    "log_uncompressed_sha256": "33a007e2395bf226ff770fba46f84274d026a0568ad5be2f4280a4d5884b3505"
+  },
+  {
+    "module": "PscVerif.ArchivedPayloadControls",
+    "source_closure_sha256": "6a3fd3233c726cc3e70da82369841f039b4b0765daec9ff862b360bb5028be5d",
+    "returncode": 1,
+    "seconds": 2.978,
+    "scope": "development compilation only; source-pinned upstream dependency cache",
+    "log": "failures/PscVerif.ArchivedPayloadControls-1794467557089067853.log.gz",
+    "log_uncompressed_sha256": "b70ce5a24746388465da6d7b1197aa0d7be1e51a6bde994b4781146914d15a5c"
+  },
+  {
+    "module": "PscVerif.ArchivedPayloadEmit",
+    "source_closure_sha256": "4b11214872045c69c1120d92e1855526cd633fc0c69187f0d7f6e1ffc8b36ade",
+    "returncode": 1,
+    "seconds": 3.713,
+    "scope": "development compilation only; source-pinned upstream dependency cache",
+    "log": "failures/PscVerif.ArchivedPayloadEmit-1794467580288507127.log.gz",
+    "log_uncompressed_sha256": "d7a0b99d732bfdb34b39318802e2bf8651624dd14a500d51da38fdea3bf160df"
+  },
+  {
+    "module": "PscVerif.NamedArchivedDigits",
+    "source_closure_sha256": "165a70dc4db40c4b08f6c51eafe6a9a4accaa34f690f668efac8fe81adbb3266",
+    "returncode": 1,
+    "seconds": 6.094,
+    "scope": "development compilation only; source-pinned upstream dependency cache",
+    "log": "failures/PscVerif.NamedArchivedDigits-1794467308789323565.log.gz",
+    "log_uncompressed_sha256": "29cf7f5edae5d9c376e85978c45892d854584ff9c90f68b8806d93bfb0d8d97f"
+  },
+  {
+    "module": "PscVerif.NamedArchivedDigits",
+    "source_closure_sha256": "165a70dc4db40c4b08f6c51eafe6a9a4accaa34f690f668efac8fe81adbb3266",
+    "returncode": 1,
+    "seconds": 11.555,
+    "scope": "development compilation only; source-pinned upstream dependency cache",
+    "log": "failures/PscVerif.NamedArchivedDigits-1794467317469749710.log.gz",
+    "log_uncompressed_sha256": "29cf7f5edae5d9c376e85978c45892d854584ff9c90f68b8806d93bfb0d8d97f"
+  },
+  {
+    "module": "PscVerif.NamedArchivedDigits",
+    "source_closure_sha256": "dd3414a6f1c2eb2173e2f658a935fabe4730f8047159256958c913cf23a400a8",
+    "returncode": 1,
+    "seconds": 4.607,
+    "scope": "development compilation only; source-pinned upstream dependency cache",
+    "log": "failures/PscVerif.NamedArchivedDigits-1794467339988368578.log.gz",
+    "log_uncompressed_sha256": "713bebe1800de76f58aa2ce919f35acf49cfb530906de89b467d8d3343dee235"
+  },
+  {
+    "module": "PscVerif.NamedArchivedDigits",
+    "source_closure_sha256": "dd3414a6f1c2eb2173e2f658a935fabe4730f8047159256958c913cf23a400a8",
+    "returncode": 1,
+    "seconds": 5.115,
+    "scope": "development compilation only; source-pinned upstream dependency cache",
+    "log": "failures/PscVerif.NamedArchivedDigits-1794467348360422751.log.gz",
+    "log_uncompressed_sha256": "713bebe1800de76f58aa2ce919f35acf49cfb530906de89b467d8d3343dee235"
+  },
+  {
+    "module": "PscVerif.NamedArchivedDigits",
+    "source_closure_sha256": "d423ab2a1408885036641a691c6fa1427a74d56cc04580bc838abbbe4256943f",
+    "returncode": 1,
+    "seconds": 5.74,
+    "scope": "development compilation only; source-pinned upstream dependency cache",
+    "log": "failures/PscVerif.NamedArchivedDigits-1794467382122185182.log.gz",
+    "log_uncompressed_sha256": "222a854128b3c075c1ae9359a88d7339319a849514cc8d9098acc0469fca7138"
+  },
+  {
+    "module": "PscVerif.NamedStableChart",
+    "source_closure_sha256": "36e0d45898eb5466bc8ca525bc746b76da8a09a768f5e857c5c5318f7041ea93",
+    "returncode": 1,
+    "seconds": 3.104,
+    "scope": "development compilation only; source-pinned upstream dependency cache",
+    "log": "failures/PscVerif.NamedStableChart-1794466851526608789.log.gz",
+    "log_uncompressed_sha256": "db19e6d794aed7e0f1b8c11b7abf64e61b507cfa23ce11a256c43aa502e1abdb"
+  },
+  {
+    "module": "PscVerif.NamedStableChart",
+    "source_closure_sha256": "36e0d45898eb5466bc8ca525bc746b76da8a09a768f5e857c5c5318f7041ea93",
+    "returncode": 1,
+    "seconds": 0.925,
+    "scope": "development compilation only; source-pinned upstream dependency cache",
+    "log": "failures/PscVerif.NamedStableChart-1794466915150604671.log.gz",
+    "log_uncompressed_sha256": "db19e6d794aed7e0f1b8c11b7abf64e61b507cfa23ce11a256c43aa502e1abdb"
+  },
+  {
+    "scope": "scratch toolchain setup failure; no code acceptance",
+    "log": "failures/c4-native-export-build.log.gz",
+    "sha256": "8be65b0ded2f2cf7458090511aca6016a1d9a8a2904a3a441e1ba8f15f820be3"
+  },
+  {
+    "scope": "scratch toolchain setup failure; no code acceptance",
+    "log": "failures/c4-native-export-build-explicit-stdlib.log.gz",
+    "sha256": "484cec3b0e1d3474e76a9f8f48da99be13ce849e640ae59b2d43870a638d86c5"
+  },
+  {
+    "scope": "first generated-source import failed before acceptance",
+    "reason": "ambiguous Table opened from both namespaces; repaired by qualified constructors",
+    "source": "failures/Source0.lean.gz",
+    "source_uncompressed_sha256": "fde6ea4bc003c0149d7a8e49714603e221eb667dd4265dad2685ab420aef44be",
+    "log": "failures/Source0.compile.log.gz",
+    "returncode": 1
+  }
+]

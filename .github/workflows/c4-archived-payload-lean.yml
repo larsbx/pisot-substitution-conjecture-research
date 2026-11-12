@@ -1,0 +1,106 @@
+name: Original C4 archived payload Lean import
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/c4-archived-payload-lean.yml'
+      - 'proof/PscVerif/**'
+      - 'proof/proof-bank.*'
+      - 'docs/proof-bank.md'
+      - 'tools/setup_lean.sh'
+      - 'tools/check_lean.sh'
+      - 'tools/make_proof_bank.py'
+      - 'tools/replay_archived_payload_lean.py'
+      - 'tests/test_archived_payload_lean_replay.py'
+      - 'tests/fixtures/c4_archived_bad_binding.lean'
+      - 'kernel/c4_archived_lean_export.mojo'
+      - 'kernel/psc/c4_archived_payload.mojo'
+      - 'kernel/tests/test_c4_archived_payload.mojo'
+      - 'kernel/psc/c4_archived_graph_refinement.mojo'
+      - 'kernel/psc/c4_pair_overlap_graph.mojo'
+      - 'kernel/psc/c4_literal_inverse_binding.mojo'
+      - 'kernel/psc/c4_finite_cylinder_overlap.mojo'
+      - 'kernel/psc/c4_nonunit_residue_occupancy.mojo'
+      - 'kernel/finite_exact/**'
+      - 'kernel/finite_linear_algebra/**'
+      - 'kernel/substitution_dynamics/**'
+      - 'kernel/mojo_smoke/claims.mojo'
+      - 'kernel/pixi.toml'
+      - 'kernel/pixi.lock'
+      - 'oracles/python/c4_archived_payload.py'
+      - 'oracles/python/c4_archived_graph_refinement.py'
+      - 'oracles/python/c4_pair_overlap_graph.py'
+      - 'tests/test_c4_archived_payload_oracle.py'
+      - 'evidence/c4-pair-overlap-graph-2026-11-05/**'
+      - 'evidence/c4-archived-graph-refinement-2026-11-11/**'
+      - 'evidence/c4-archived-payload-import-2026-11-12/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: original-c4-payload-${{ github.event.pull_request.head.ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  concrete-import:
+    name: Original graph proof terms, geometry and compiled axiom audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Bind exact candidate revision and archive
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          mkdir -p "$RUNNER_TEMP/c4-archived-payload"
+          git rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/c4-archived-payload/revision.txt"
+          sha256sum evidence/c4-pair-overlap-graph-2026-11-05/receipt.json > "$RUNNER_TEMP/c4-archived-payload/archive-sha256.txt"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install 'pytest>=7,<10'
+      - name: Provision pinned Lean and dependency sources
+        run: |
+          ./tools/setup_lean.sh
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          pixi-version: v0.81.0
+          manifest-path: kernel/pixi.toml
+          locked: true
+      - name: Canonical payload construction and import controls
+        working-directory: kernel
+        shell: bash
+        run: |
+          set -euo pipefail
+          pixi run --locked mojo run -I . tests/test_c4_archived_payload.mojo | tee "$RUNNER_TEMP/c4-archived-payload/native-tests.log"
+          pixi run --locked mojo build -I . c4_archived_lean_export.mojo -o "$RUNNER_TEMP/c4-archived-payload-export"
+          "$RUNNER_TEMP/c4-archived-payload-export" packet > "$RUNNER_TEMP/c4-archived-payload/native-packet.txt"
+      - name: Independent payload and original graph replay
+        shell: bash
+        env:
+          PSC_ARCHIVED_PAYLOAD_NATIVE_OUTPUT: ${{ runner.temp }}/c4-archived-payload/native-packet.txt
+        run: |
+          set -euo pipefail
+          test -s "$PSC_ARCHIVED_PAYLOAD_NATIVE_OUTPUT"
+          python -m pytest --assert=plain -q tests/test_c4_archived_payload_oracle.py | tee "$RUNNER_TEMP/c4-archived-payload/oracle-tests.log"
+          python oracles/python/c4_archived_payload.py --native "$PSC_ARCHIVED_PAYLOAD_NATIVE_OUTPUT" --controls > "$RUNNER_TEMP/c4-archived-payload/native-oracle-receipt.json"
+          python -m unittest discover -s tests -p test_archived_payload_lean_replay.py -v
+      - name: Isolated full build and both concrete geometric imports
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./tools/check_lean.sh --archived-packets "$RUNNER_TEMP/c4-archived-payload-export" "$RUNNER_TEMP/c4-archived-payload/lean" | tee "$RUNNER_TEMP/c4-archived-payload/lean-audit.log"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: original-c4-payload-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/c4-archived-payload
+          if-no-files-found: error
+          retention-days: 30

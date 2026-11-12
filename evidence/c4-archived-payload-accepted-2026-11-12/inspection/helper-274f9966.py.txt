@@ -1,0 +1,593 @@
+#!/usr/bin/env python3
+"""Inspect a downloaded hosted artifact; never compile or execute Lean/Mojo.
+
+All executable validation routines loaded here come from git show at REVISION.
+The ZIP is data, including its compiled objects. Successful inspection records
+hosted evidence consistency; it does not issue fresh kernel acceptance.
+"""
+from __future__ import annotations
+
+import argparse
+import ast
+import hashlib
+import importlib.util
+import io
+import json
+import re
+import stat
+import subprocess
+import sys
+import tomllib
+import zipfile
+from pathlib import Path, PurePosixPath
+
+REVISION = "249a71b0330401ada5adbff7d9cd280bf0d7530f"
+TREE = "97b54a6fdccb9a1828be815c2718fbcc5bc67960"
+RUN_ID = 43175356240
+JOB_ID = 131038172377
+REPOSITORY = "larsbx/pisot-substitution-conjecture-research"
+PAYLOAD_SHA = "447d58d811359235d1f4689433500494ae14724b89b5da91f429e7e7247beaca"
+PAYLOAD_BYTES = 3908423
+CONTROLS_SHA = "53ef2793d4b7cdbb7d011c951f1535c5e9975e63750ab9a0a9322370a2dd1ca0"
+ALLOWED = {"propext", "Classical.choice", "Quot.sound"}
+SOURCE_PATHS = (
+    "proof/PscVerif/PscVerif/NamedArchivedDigits.lean",
+    "proof/PscVerif/PscVerif/ArchivedPayload.lean",
+    "proof/PscVerif/PscVerif/ArchivedPayloadConsumer.lean",
+    "proof/PscVerif/PscVerif/ArchivedPayloadEmit.lean",
+    "kernel/psc/c4_archived_payload.mojo",
+    "kernel/c4_archived_lean_export.mojo",
+    "oracles/python/c4_archived_payload.py",
+    "tools/replay_archived_payload_lean.py",
+    "tools/check_lean.sh",
+    "evidence/c4-pair-overlap-graph-2026-11-05/receipt.json",
+    "evidence/c4-archived-graph-refinement-2026-11-11/native-oracle/receipt.json",
+)
+EXTRA_PINNED_PATHS = (
+    "proof/PscVerif/lean-toolchain",
+    "proof/proof-bank.json",
+    "tools/make_proof_bank.py",
+    "oracles/python/c4_archived_graph_refinement.py",
+    "oracles/python/c4_pair_overlap_graph.py",
+    "tests/fixtures/c4_archived_bad_binding.lean",
+    ".github/workflows/c4-archived-payload-lean.yml",
+    "pyproject.toml",
+    "tests/test_c4_archived_payload_oracle.py",
+)
+DEFAULT_BASE = Path("/workspace/scratch/84c835820757")
+
+
+class InspectionIncomplete(ValueError):
+    pass
+
+
+def require(condition, message):
+    if not condition:
+        raise InspectionIncomplete(message)
+
+
+def sha(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+
+
+def no_duplicate_keys(pairs):
+    result = {}
+    for key, value in pairs:
+        require(key not in result, "duplicate JSON key: " + key)
+        result[key] = value
+    return result
+
+
+def json_bytes(data: bytes):
+    def nonfinite(value):
+        raise InspectionIncomplete("nonstandard JSON constant: " + value)
+    return json.loads(data, object_pairs_hook=no_duplicate_keys, parse_constant=nonfinite)
+
+
+def read_json(path: Path):
+    return json_bytes(path.read_bytes())
+
+
+def git(repo: Path, *args: str) -> bytes:
+    return subprocess.check_output(
+        ["git", "--no-replace-objects", "-C", str(repo), *args], timeout=30)
+
+
+def pinned_sources(repo: Path) -> dict[str, bytes]:
+    require(git(repo, "rev-parse", REVISION + "^{commit}").decode().strip() == REVISION,
+            "immutable commit resolution mismatch")
+    require(git(repo, "rev-parse", REVISION + "^{tree}").decode().strip() == TREE,
+            "immutable tree resolution mismatch")
+    return {path: git(repo, "show", REVISION + ":" + path)
+            for path in SOURCE_PATHS + EXTRA_PINNED_PATHS}
+
+
+def archive_members(archive: zipfile.ZipFile):
+    """Reject ambiguous paths and dangerous file types before writing anything."""
+    members = archive.infolist()
+    require(0 < len(members) <= 256, "empty or oversized ZIP member inventory")
+    seen = {}
+    folded = set()
+    total = 0
+    for info in members:
+        raw = info.orig_filename
+        require(raw == info.filename and "\0" not in raw, "NUL-truncated ZIP path")
+        require(raw and not raw.startswith("/") and "\\" not in raw and ":" not in raw,
+                "absolute, platform-dependent or empty ZIP path")
+        is_dir = info.is_dir()
+        body = raw[:-1] if is_dir else raw
+        parts = body.split("/")
+        require(all(part and part not in {".", ".."} for part in parts),
+                "noncanonical or traversing ZIP path")
+        name = str(PurePosixPath(*parts))
+        require(name not in seen and name.casefold() not in folded,
+                "duplicate or case-alias ZIP path")
+        mode = stat.S_IFMT(info.external_attr >> 16)
+        require(mode in ({0, stat.S_IFDIR} if is_dir else {0, stat.S_IFREG}),
+                "ZIP symlink or special file")
+        require(not info.flag_bits & 1, "encrypted ZIP member")
+        require(0 <= info.file_size <= 128 * 1024 * 1024, "ZIP member exceeds size guard")
+        require(not is_dir or info.file_size == 0, "directory ZIP member contains data")
+        total += info.file_size
+        require(total <= 512 * 1024 * 1024, "ZIP total exceeds size guard")
+        seen[name] = (info, is_dir)
+        folded.add(name.casefold())
+    for name in seen:
+        for ancestor in PurePosixPath(name).parents:
+            if str(ancestor) != ".":
+                require(str(ancestor) not in seen or seen[str(ancestor)][1],
+                        "ZIP file is also used as a parent directory")
+    return seen
+
+
+def extract_archive(zip_path: Path, destination: Path):
+    destination.mkdir()
+    manifest = {}
+    with zipfile.ZipFile(zip_path) as archive:
+        members = archive_members(archive)
+        for name, (info, is_dir) in members.items():
+            target = destination / name
+            require(target.resolve().is_relative_to(destination.resolve()),
+                    "ZIP extraction escaped destination")
+            if is_dir:
+                target.mkdir(parents=True, exist_ok=True)
+                continue
+            target.parent.mkdir(parents=True, exist_ok=True)
+            digest = hashlib.sha256()
+            count = 0
+            with archive.open(info) as source, target.open("xb") as output:
+                while block := source.read(1024 * 1024):
+                    count += len(block)
+                    require(count <= info.file_size, "ZIP stream exceeds declared size")
+                    output.write(block)
+                    digest.update(block)
+            require(count == info.file_size, "truncated ZIP member")
+            manifest[name] = {"bytes": count, "sha256": digest.hexdigest()}
+    return manifest
+
+
+def load_module(name: str, path: Path):
+    spec = importlib.util.spec_from_file_location(name, path)
+    require(spec is not None and spec.loader is not None, "cannot load pinned validator")
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[name] = module
+    spec.loader.exec_module(module)
+    return module
+
+
+def load_validators(pinned: dict[str, bytes], stage: Path):
+    """Stage immutable repository code, never executable content from the ZIP."""
+    for relative, content in pinned.items():
+        path = stage / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(content)
+    sys.dont_write_bytecode = True
+    archive = load_module("c4_pair_overlap_graph", stage / "oracles/python/c4_pair_overlap_graph.py")
+    refinement = load_module("c4_archived_graph_refinement", stage / "oracles/python/c4_archived_graph_refinement.py")
+    oracle = load_module("c4_archived_payload", stage / "oracles/python/c4_archived_payload.py")
+    replay = load_module("_pinned_archived_replay", stage / "tools/replay_archived_payload_lean.py")
+    # Execute the exact existing log validator and its declared axiom allowlist.
+    # Its other module imports are unrelated to parsing an already emitted log.
+    parsed = ast.parse(pinned["tools/make_proof_bank.py"])
+    selected = [node for node in parsed.body if
+                (isinstance(node, ast.FunctionDef) and node.name == "check_audit") or
+                (isinstance(node, ast.Assign) and any(
+                    isinstance(target, ast.Name) and target.id == "STANDARD_AXIOMS"
+                    for target in node.targets))]
+    require(len(selected) == 2, "ambiguous pinned proof-bank validator")
+    namespace = {}
+    exec(compile(ast.Module(body=selected, type_ignores=[]),
+                 REVISION + ":tools/make_proof_bank.py", "exec"), namespace)
+    require(namespace["STANDARD_AXIOMS"] == ALLOWED and replay.ALLOWED == ALLOWED,
+            "pinned validator axiom policy mismatch")
+    return archive, refinement, oracle, replay, namespace["check_audit"]
+
+
+def check_job_context(run, job):
+    require(isinstance(run, dict) and type(run.get("id")) is int and run["id"] == RUN_ID
+            and run.get("head_sha") == REVISION
+            and run.get("status") == "completed" and run.get("conclusion") == "success",
+            "wrong or incomplete provider run for job binding")
+    require(isinstance(job, dict), "successful provider job metadata is required")
+    require(type(job.get("id")) is int and job["id"] == JOB_ID
+            and job.get("run_id") == RUN_ID and job.get("head_sha") == REVISION,
+            "wrong provider job/run/head binding")
+    require(type(run.get("run_attempt")) is int
+            and type(job.get("run_attempt")) is int
+            and job["run_attempt"] == run["run_attempt"], "provider run-attempt mismatch")
+    require(job.get("status") == "completed" and job.get("conclusion") == "success",
+            "focused provider job did not complete successfully")
+    steps = job.get("steps")
+    require(isinstance(steps, list), "provider job steps missing")
+    matches = [step for step in steps if isinstance(step, dict) and step.get("number") == 9]
+    require(len(matches) == 1, "missing or duplicate provider oracle step")
+    step = matches[0]
+    require(type(step.get("number")) is int
+            and step.get("name") == "Independent payload and original graph replay"
+            and step.get("status") == "completed" and step.get("conclusion") == "success",
+            "provider oracle step did not complete successfully")
+    return step
+
+
+def validate_oracle_test_log(log: bytes, pinned, run, job):
+    """Recognize this exact pinned double-quiet eight-case pytest invocation."""
+    step = check_job_context(run, job)
+    require(log == b"........" + b" " * 65 + b"[100%]\n",
+            "oracle log is not the exact complete eight-case quiet output")
+    config_path = "pyproject.toml"
+    config = tomllib.loads(pinned[config_path].decode())
+    require(config["tool"]["pytest"]["ini_options"]["addopts"] == "-q",
+            "pinned pytest configuration is not the expected quiet mode")
+    workflow_path = ".github/workflows/c4-archived-payload-lean.yml"
+    workflow = pinned[workflow_path].decode()
+    marker = "      - name: Independent payload and original graph replay\n"
+    require(workflow.count(marker) == 1, "ambiguous pinned oracle workflow step")
+    block = workflow.split(marker, 1)[1].split("\n      - ", 1)[0]
+    expected_command = (
+        '          python -m pytest --assert=plain -q tests/test_c4_archived_payload_oracle.py '
+        '| tee "$RUNNER_TEMP/c4-archived-payload/oracle-tests.log"\n')
+    require("          set -euo pipefail\n" in block and expected_command in block,
+            "pinned quiet pytest command or failure propagation changed")
+    test_path = "tests/test_c4_archived_payload_oracle.py"
+    parsed = ast.parse(pinned[test_path])
+    expected = {
+        "test_original_graph_fields_addresses_weights_and_lookup": 2,
+        "test_independent_exact_field_calibrations_keep_parallel_positions": 1,
+        "test_observed_complete_payload_negative_controls": 2,
+        "test_complete_native_packet_and_single_fixture_scope": 1,
+        "test_parser_refuses_omitted_duplicate_or_cross_source_records": 1,
+        "test_python_optimization_cannot_admit_truncated_payload": 1,
+    }
+    functions = [node for node in parsed.body
+                 if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
+                 and node.name.startswith("test_")]
+    require(len(functions) == 6 and {node.name for node in functions} == set(expected)
+            and not any(isinstance(node, ast.ClassDef) and node.name.startswith("Test")
+                        for node in parsed.body), "pinned test collection shape changed")
+    cases = {}
+    for function in functions:
+        require(isinstance(function, ast.FunctionDef), "unexpected asynchronous test")
+        require(not function.args.posonlyargs and not function.args.kwonlyargs
+                and not function.args.vararg and not function.args.kwarg
+                and not function.args.defaults and not function.args.kw_defaults,
+                "unexpected dynamic test arguments")
+        if expected[function.name] == 1:
+            require(not function.decorator_list and not function.args.args,
+                    "unexpected fixture or marker on unparametrized test")
+            cases[function.name] = 1
+            continue
+        require(len(function.decorator_list) == 1
+                and [arg.arg for arg in function.args.args] == ["fixture"],
+                "unexpected fixture parametrization")
+        decorator = function.decorator_list[0]
+        require(isinstance(decorator, ast.Call) and not decorator.keywords
+                and len(decorator.args) == 2
+                and ast.dump(decorator.func) == ast.dump(ast.parse("pytest.mark.parametrize", mode="eval").body)
+                and ast.literal_eval(decorator.args[0]) == "fixture"
+                and ast.literal_eval(decorator.args[1]) == [0, 1]
+                and all(type(value) is int for value in ast.literal_eval(decorator.args[1])),
+                "pinned test parametrization is not exactly fixture [0,1]")
+        cases[function.name] = 2
+    require(cases == expected and sum(cases.values()) == 8, "pinned collection is not eight cases")
+    return {
+        "format": "exact canonical double-quiet eight-dot completion",
+        "log_bytes": len(log), "log_sha256": sha(log),
+        "static_collection_cases": cases, "total_cases": 8,
+        "pyproject_sha256": sha(pinned[config_path]),
+        "test_source_sha256": sha(pinned[test_path]),
+        "workflow_sha256": sha(pinned[workflow_path]),
+        "provider_job": job["id"], "provider_run_attempt": job["run_attempt"],
+        "provider_step": step["number"], "provider_step_conclusion": step["conclusion"],
+        "full_inspection_or_kernel_acceptance_supplied_by_this_format_check": False,
+    }
+
+
+def check_context(run_path: Path, job_path: Path, artifact_path: Path | None, zip_path: Path):
+    run = read_json(run_path)
+    require(type(run.get("id")) is int and run["id"] == RUN_ID, "wrong hosted run")
+    require(run.get("head_sha") == REVISION, "wrong hosted run head")
+    require(run.get("status") == "completed" and run.get("conclusion") == "success",
+            "hosted run is not completed successfully")
+    if "repository" in run:
+        require(run["repository"].get("full_name") == REPOSITORY, "wrong run repository")
+    expected_url = f"https://github.com/{REPOSITORY}/actions/runs/{RUN_ID}"
+    if "html_url" in run:
+        require(run["html_url"] == expected_url, "wrong run URL")
+    job = read_json(job_path)
+    check_job_context(run, job)
+    artifact = read_json(artifact_path) if artifact_path else None
+    if artifact is not None:
+        require(artifact.get("name") == "original-c4-payload-" + REVISION,
+                "wrong hosted artifact name")
+        require(artifact.get("expired") is False, "expired or unconfirmed artifact")
+        binding = artifact.get("workflow_run", {})
+        require(binding.get("id") == RUN_ID and binding.get("head_sha") == REVISION,
+                "artifact is not bound to the expected hosted run and head")
+        if artifact.get("digest"):
+            require(artifact["digest"] == "sha256:" + sha(zip_path.read_bytes()),
+                    "downloaded ZIP disagrees with provider digest")
+    return run, job, artifact
+
+
+def inspect(args, output: Path):
+    pinned = pinned_sources(args.repo)
+    run, job, provider_artifact = check_context(args.run_json, args.job_json, args.artifact_json, args.zip)
+    (output / "run-context.json").write_bytes(args.run_json.read_bytes())
+    (output / "job-context.json").write_bytes(args.job_json.read_bytes())
+    if args.artifact_json:
+        (output / "artifact-context.json").write_bytes(args.artifact_json.read_bytes())
+    artifact = output / "artifact"
+    manifest = extract_archive(args.zip, artifact)
+    (output / "zip-files.json").write_text(json.dumps(manifest, indent=2) + "\n")
+    archive, refinement, oracle, replay, check_audit = load_validators(pinned, output / "pinned-source")
+    require((artifact / "revision.txt").read_text().splitlines() == [REVISION, TREE],
+            "hosted revision/tree receipt mismatch")
+    receipt = read_json(artifact / "lean/receipt.json")
+    local_receipt = read_json(args.local / "receipt.json")
+    for key, value in {
+        "schema": "c4-archived-payload-lean-replay-v1",
+        "fixtures_verified": 2,
+        "both_original_fixtures_verified": True,
+        "allowed_axioms": sorted(ALLOWED),
+        "lean_toolchain": pinned["proof/PscVerif/lean-toolchain"].decode().strip(),
+        "complete_emitted_payload_sha256": PAYLOAD_SHA,
+        "oracle_schema": "c4-archived-payload-v1",
+    }.items():
+        require(receipt.get(key) == value and type(receipt.get(key)) is type(value),
+                "wrong or incomplete hosted receipt field: " + key)
+        require(local_receipt.get(key) == value, "local acceptance baseline mismatch: " + key)
+    for key in ("scope", "kernel_evaluation"):
+        require(receipt.get(key) == local_receipt.get(key), "receipt scope mismatch: " + key)
+    require(set(receipt.get("source_sha256", {})) == set(SOURCE_PATHS),
+            "missing or additional CI source hash binding")
+    source_hashes = {path: sha(pinned[path]) for path in SOURCE_PATHS}
+    require(receipt["source_sha256"] == source_hashes == local_receipt["source_sha256"],
+            "CI/local source hashes disagree with immutable commit")
+    historical_path = SOURCE_PATHS[-2]
+    addressed_path = SOURCE_PATHS[-1]
+    expected_archive_line = source_hashes[historical_path] + "  " + historical_path + "\n"
+    require((artifact / "archive-sha256.txt").read_text() == expected_archive_line,
+            "archived receipt checksum binding mismatch")
+    sources = receipt.get("sources")
+    require(isinstance(sources, list) and len(sources) == 2
+            and all(isinstance(s, dict) and type(s.get("fixture")) is int for s in sources)
+            and [s.get("fixture") for s in sources] == [0, 1],
+            "missing, reordered or duplicate generated sources")
+    source_results = []
+    rebuilt = output / "reconstructed-payload.txt"
+    with rebuilt.open("w", encoding="utf-8", newline="\n") as stream:
+        stream.write("schema c4-archived-payload-v1\n")
+        for index, record in enumerate(sources):
+            local_record = local_receipt["sources"][index]
+            source = artifact / f"lean/Source{index}.lean"
+            source_bytes = source.read_bytes()
+            require(source_bytes == (args.local / source.name).read_bytes(),
+                    f"generated Source{index} differs from successful local source")
+            require(sha(source_bytes) == record.get("lean_sha256") == local_record["lean_sha256"],
+                    f"generated Source{index} digest mismatch")
+            audit = artifact / f"lean/Audit{index}.lean"
+            require(audit.read_bytes() == replay.audit_source(index).encode(),
+                    f"typed Audit{index} source differs from pinned generator")
+            log = artifact / f"lean/Audit{index}.log"
+            require(sha(log.read_bytes()) == record.get("audit_sha256"),
+                    f"Audit{index} log digest mismatch")
+            counts = replay.extract_packet(index, log, stream)
+            require(counts == {"declarations": 1799, "theorem_declarations": 776},
+                    f"unexpected concrete audit count for Source{index}")
+            require(all(record.get(key) == value == local_record[key]
+                        for key, value in counts.items()), "concrete count receipt mismatch")
+            for suffix in ("compile.log", "exporter.log"):
+                require((artifact / f"lean/Source{index}.{suffix}").read_bytes() == b"",
+                        f"unexpected Source{index} {suffix} diagnostics")
+            require((artifact / f"lean/Audit{index}.stderr").read_bytes() == b"",
+                    f"unexpected Audit{index} stderr")
+            compiled = artifact / f"lean/Source{index}.olean"
+            require(compiled.stat().st_size > 0, "missing compiled generated source")
+            used_axioms = sorted({ax for line in log.read_text().splitlines()
+                                  if line.startswith(f"PSC_ARCHIVED_AXIOMS {index}\t")
+                                  for ax in line.split("\t")[2].split(",") if ax})
+            source_results.append({
+                "fixture": index, **counts, "lean_sha256": sha(source_bytes),
+                "auditor_sha256": sha(audit.read_bytes()), "audit_sha256": sha(log.read_bytes()),
+                "observed_transitive_axioms": used_axioms,
+                "compiled_object_bytes": compiled.stat().st_size,
+                "compiled_object_sha256": sha(compiled.read_bytes()),
+                "compiled_object_executed_by_inspection": False,
+                "hosted_generation_compile_audit_seconds": record["seconds"],
+                "audit_log_identical_to_local": log.read_bytes() == (args.local / log.name).read_bytes(),
+            })
+    payload = rebuilt.read_bytes()
+    require(len(payload) == PAYLOAD_BYTES and sha(payload) == PAYLOAD_SHA,
+            "reconstructed full payload size/digest mismatch")
+    compared = {}
+    for label, path in {
+        "hosted_lean_payload": artifact / "lean/lean-emitted-payload.txt",
+        "hosted_native_payload": artifact / "native-packet.txt",
+        "successful_local_lean_payload": args.local / "lean-emitted-payload.txt",
+        "successful_local_native_payload": args.local_native,
+    }.items():
+        require(path.read_bytes() == payload, "complete byte comparison failed: " + label)
+        compared[label] = {"identical": True, "bytes": len(payload), "sha256": sha(payload)}
+    stored_oracle_bytes = (artifact / "lean/oracle-receipt.json").read_bytes()
+    require(sha(stored_oracle_bytes) == receipt.get("oracle_receipt_sha256"),
+            "hosted independent oracle receipt digest mismatch")
+    stored_oracle = json_bytes(stored_oracle_bytes)
+    require(stored_oracle == read_json(args.local / "oracle-receipt.json"),
+            "hosted oracle receipt differs from successful local full replay")
+    require(stored_oracle.get("kernel_acceptance_supplied_by_this_oracle") is False,
+            "oracle incorrectly claims kernel acceptance")
+    historical = json_bytes(pinned[historical_path])
+    addressed = json_bytes(pinned[addressed_path])
+    decoded = oracle.parse_payload(payload.decode())
+    require(payload.decode() == "schema c4-archived-payload-v1\n" + "".join(
+        "\n".join(oracle.payload_lines(p)) + "\n" for p in decoded),
+        "noncanonical payload serialization")
+    digest_results = []
+    for index, item in enumerate(decoded):
+        old = historical["fixtures"][index]
+        bound = addressed["fixtures"][index]
+        graph_digest = sha(archive.graph_text(
+            refinement.as_graph(item.binding), item.weights, item.sweeps).encode())
+        addressed_digest = sha(("\n".join(refinement.graph_lines(
+            item.binding, item.weights, item.sweeps, item.minimum_gap)) + "\n").encode())
+        summary = stored_oracle["fixtures"][index]
+        require(graph_digest == old["canonical_graph_sha256"] == bound["historical_graph_sha256"]
+                == summary["historical_graph_sha256"], "original graph digest mismatch")
+        require(addressed_digest == bound["addressed_packet_sha256"]
+                == summary["addressed_packet_sha256"], "complete addressed graph digest mismatch")
+        require(summary["states"] == summary["packed_rows"] == summary["lookup_nodes"]
+                == (7150, 7083)[index] and summary["positional_edges"] == (34826, 34853)[index]
+                and summary["radii"] == [16, 8] and summary["rate"] == old["rate"]
+                and summary["sigma"] == old["sigma"]
+                and summary["maximum_rooted_inverse_depth"] == 13,
+                "original fixture/count/geometry summary mismatch")
+        digest_results.append({**summary, "digests_recomputed_from_emitted_data": True})
+    native_controls = read_json(artifact / "native-oracle-receipt.json")
+    local_controls_bytes = args.local_controls.read_bytes()
+    require(sha(local_controls_bytes) == CONTROLS_SHA, "local controls baseline digest mismatch")
+    require(native_controls == json_bytes(local_controls_bytes), "hosted/native control receipt mismatch")
+    require({k: v for k, v in native_controls.items() if k != "observed_negative_controls"}
+            == stored_oracle, "native control receipt has different accepted payload scope")
+    controls = native_controls["observed_negative_controls"]
+    require(set(controls) == {"0", "1"} and all(
+        len(items) == 16 and all(v.get("rejected") is True and v.get("reason") for v in items.values())
+        for items in controls.values()), "missing oracle rejection controls")
+    native_log = (artifact / "native-tests.log").read_text()
+    require("archived payload full roundtrip 14233 69679" in native_log
+            and "archived payload field and semantic refusals 9 18" in native_log
+            and len(re.findall(r"^rejected ", native_log, re.M)) == 18,
+            "native roundtrip/refusal log incomplete")
+    pytest_evidence = validate_oracle_test_log(
+        (artifact / "oracle-tests.log").read_bytes(), pinned, run, job)
+    negative = artifact / "lean/wrong-proof-type-control"
+    negative_receipt = read_json(negative / "receipt.json")
+    negative_bytes = (negative / "Source0.lean").read_bytes()
+    require(negative_bytes == pinned["tests/fixtures/c4_archived_bad_binding.lean"],
+            "wrong-proof-type fixture is not the immutable source fixture")
+    require(negative_receipt.get("fixture_compiles") is True
+            and negative_receipt.get("typed_import_refuses") is True
+            and negative_receipt.get("fixture_sha256") == sha(negative_bytes),
+            "negative fixture receipt incomplete")
+    require((negative / "Audit0.lean").read_bytes() == replay.audit_source(0).encode(),
+            "negative fixture auditor mismatch")
+    require((negative / "Source0.olean").stat().st_size > 0
+            and (negative / "compile.log").read_bytes() == b"", "negative fixture did not compile cleanly")
+    negative_log = (negative / "audit.log").read_text()
+    require("type mismatch" in negative_log.lower() and all(
+        "Psc.ArchivedPayloadGenerated.Source0." + name in negative_log for name in replay.PROOFS),
+        "expected typed semantic refusals missing")
+    try:
+        replay.extract_packet(0, negative / "audit.log", io.StringIO())
+    except replay.ReplayIncomplete:
+        pass
+    else:
+        raise InspectionIncomplete("negative fixture log was accepted as a positive packet")
+    bank = json_bytes(pinned["proof/proof-bank.json"])
+    expected = {(d["module"], d["name"]) for d in bank["lean_declarations"]}
+    full_log = (artifact / "lean-audit.log").read_text()
+    bank_counts = check_audit(full_log, expected)
+    require("Prepared isolated Lean workspace from source/configuration only" in full_log,
+            "isolated source workspace marker missing")
+    require(all(f"Original fixture {i}: concrete kernel checks, geometric theorem types and axiom audit passed"
+                in full_log for i in (0, 1)), "two-fixture hosted replay completion missing")
+    return {
+        "schema": "c4-archived-payload-artifact-inspection-v1",
+        "status": "passed",
+        "scope": "artifact inspection, not fresh kernel acceptance",
+        "fresh_lean_or_mojo_execution": False,
+        "fresh_complete_oracle_reconstruction": False,
+        "immutable_revision": REVISION, "immutable_tree": TREE,
+        "hosted_run_status_from_supplied_metadata": {
+            "id": run["id"], "head_sha": run["head_sha"],
+            "status": run["status"], "conclusion": run["conclusion"],
+        },
+        "provider_artifact_metadata_supplied": provider_artifact is not None,
+        "provider_digest_verified": bool(provider_artifact and provider_artifact.get("digest")),
+        "provider_digest_absence": None if provider_artifact and provider_artifact.get("digest")
+            else "no provider artifact digest supplied; ZIP origin must be authenticated externally",
+        "provider_artifact_id": provider_artifact.get("id") if provider_artifact else None,
+        "zip": {"bytes": args.zip.stat().st_size, "sha256": sha(args.zip.read_bytes()),
+                "files": len(manifest), "safe_paths_and_no_duplicates": True},
+        "source_sha256_bound_to_immutable_commit": source_hashes,
+        "validator_and_reference_source_sha256": {p: sha(pinned[p]) for p in EXTRA_PINNED_PATHS},
+        "concrete_sources": source_results,
+        "complete_payload_comparisons": compared,
+        "fixture_digests": digest_results,
+        "oracle_negative_controls": {key: len(value) for key, value in controls.items()},
+        "oracle_pytest_completion": pytest_evidence,
+        "native_field_refusals": 9, "native_semantic_refusals": 18,
+        "negative_proof_type_fixture": negative_receipt,
+        "full_bank_log_validation": {
+            "validator": REVISION + ":tools/make_proof_bank.py:check_audit",
+            "declarations": bank_counts[0], "theorems": bank_counts[1],
+            "expected_named_proofs_reached": len(expected),
+            "audit_log_sha256": sha((artifact / "lean-audit.log").read_bytes()),
+        },
+        "exporter_binary_rehashed": False,
+        "exporter_binary_note": "workflow artifact does not include the exporter binary; its receipt hash is not rehashed here",
+        "mathematical_scope": receipt["scope"],
+        "no_C4_or_general_PSC_promotion": True,
+    }
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--zip", type=Path, required=True)
+    parser.add_argument("--run-json", type=Path, required=True,
+                        help="Raw successful GitHub workflow-run metadata from the provider")
+    parser.add_argument("--job-json", type=Path, required=True,
+                        help="Raw successful focused-job metadata including oracle step 9")
+    parser.add_argument("--artifact-json", type=Path,
+                        help="Optional raw GitHub artifact metadata; verifies provider ZIP digest when present")
+    parser.add_argument("--output", type=Path, required=True, help="New scratch inspection directory")
+    parser.add_argument("--repo", type=Path, default=DEFAULT_BASE / "psc")
+    parser.add_argument("--local", type=Path, default=DEFAULT_BASE / "archived-lean-development-2")
+    parser.add_argument("--local-native", type=Path, default=DEFAULT_BASE / "c4-native-payload.txt")
+    parser.add_argument("--local-controls", type=Path, default=DEFAULT_BASE / "c4-native-payload-controls.json")
+    args = parser.parse_args()
+    require(not args.output.resolve().is_relative_to(args.repo.resolve()),
+            "inspection output must remain outside the repository")
+    args.output.mkdir(parents=True, exist_ok=False)
+    result = None
+    try:
+        result = inspect(args, args.output)
+    except Exception as exc:
+        result = {
+            "schema": "c4-archived-payload-artifact-inspection-v1",
+            "status": "incomplete",
+            "scope": "artifact inspection, not fresh kernel acceptance",
+            "fresh_lean_or_mojo_execution": False,
+            "immutable_revision": REVISION, "immutable_tree": TREE,
+            "error_type": type(exc).__name__, "error": str(exc),
+        }
+        raise
+    finally:
+        if result is not None:
+            result["inspection_helper_sha256"] = sha(Path(__file__).read_bytes())
+            (args.output / "inspection.json").write_text(json.dumps(result, indent=2) + "\n")
+    print(json.dumps({"status": result["status"], "scope": result["scope"],
+                      "inspection": str(args.output / "inspection.json")}, indent=2))
+
+
+if __name__ == "__main__":
+    main()
