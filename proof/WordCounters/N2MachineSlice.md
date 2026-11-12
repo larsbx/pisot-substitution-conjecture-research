@@ -11,10 +11,13 @@ At entry `0xaa96`, `r12` holds the old count and `rbp` the increment.
 The sign tests select the corresponding signed bounds. Either overflow
 test leads to `0xaac8`. The other path reaches the register ADD at
 `0xab17`. The executable LOAD segment has equal file and virtual offsets
-for both slices. The register and branch equations are transcribed from
-the recorded instruction sequence.
+for both slices. A restricted x86-64 decoder recognizes the instruction encodings in both
+slices. Lean evaluates the decoder at each of the 20 instruction addresses
+and symbolically executes the decoded sequence with projected registers and
+flags. The two stack reload values are arbitrary in the theorem. The model
+assumes those reads succeed.
 
-`N2MachineSlice.execute_exact` proves that the modeled branch rejects
+`N2MachineSlice.checked_binary_count` proves that the decoded execution rejects
 exactly the overflowing sums of two nonnegative signed 64-bit operands,
 and that the accepted register value equals the integer sum. This
 discharges the arithmetic behavior of the modeled slice for every such
@@ -39,9 +42,9 @@ or a file truncated before the second slice must be refused. The
 arithmetic theorem's axiom report lists only `propext`,
 `Classical.choice`, and `Quot.sound`.
 
-The remaining binary obligations are to check the transcription against
-an x86-64 semantics, establish the entry invariant from the array
-loads, connect the ADD to the store and the rejection branch to the
-returned error, and prove the loop and runtime behavior for N2, N3,
+The remaining binary obligations are to relate the projected instruction
+semantics to an independent x86-64 semantics, establish the entry invariant
+from the array loads, connect the ADD to the store and the rejection branch
+to the returned error, and prove the loop and runtime behavior for N2, N3,
 and N4. This receipt supplies no full-function or compiler-wide
 refinement claim.
