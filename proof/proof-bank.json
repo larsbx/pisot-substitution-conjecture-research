@@ -8287,6 +8287,62 @@
       "declaration": "theorem reduction_limit (S : ChildSystem α) (hs : ∀ a, S.s a ≠ [])"
     },
     {
+      "name": "Psc.FundamentalCellPacking.measure_finite_vadd",
+      "module": "PscVerif.FundamentalCellPacking",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FundamentalCellPacking.lean",
+      "line": 27,
+      "declaration": "theorem measure_finite_vadd (Z : Finset Γ) {F : Set α}"
+    },
+    {
+      "name": "Psc.FundamentalCellPacking.measure_finite_fundamentalDomains",
+      "module": "PscVerif.FundamentalCellPacking",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FundamentalCellPacking.lean",
+      "line": 36,
+      "declaration": "theorem measure_finite_fundamentalDomains [Countable Γ] (Z : Finset Γ)"
+    },
+    {
+      "name": "Psc.FundamentalCellPacking.exists_positive_common_mass",
+      "module": "PscVerif.FundamentalCellPacking",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FundamentalCellPacking.lean",
+      "line": 46,
+      "declaration": "theorem exists_positive_common_mass [Countable Γ] (F : ι → Set α) (q₀ : ι)"
+    },
+    {
+      "name": "Psc.FundamentalCellPacking.card_mul_mass_le_of_enclosure",
+      "module": "PscVerif.FundamentalCellPacking",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FundamentalCellPacking.lean",
+      "line": 59,
+      "declaration": "theorem card_mul_mass_le_of_enclosure (Z : Finset Γ) {F R : Set α}"
+    },
+    {
+      "name": "Psc.FundamentalCellPacking.card_mul_mass_le_rectangle",
+      "module": "PscVerif.FundamentalCellPacking",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FundamentalCellPacking.lean",
+      "line": 85,
+      "declaration": "theorem card_mul_mass_le_rectangle (Z : Finset Γ) {F : Set α}"
+    },
+    {
+      "name": "Psc.FundamentalCellPacking.finite_vadd_subset_rectangle",
+      "module": "PscVerif.FundamentalCellPacking",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FundamentalCellPacking.lean",
+      "line": 113,
+      "declaration": "theorem finite_vadd_subset_rectangle (Z : Finset Γ) {F : Set α}"
+    },
+    {
+      "name": "Psc.FundamentalCellPacking.card_mul_mass_le_rectangle_of_strip",
+      "module": "PscVerif.FundamentalCellPacking",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FundamentalCellPacking.lean",
+      "line": 137,
+      "declaration": "theorem card_mul_mass_le_rectangle_of_strip (Z : Finset Γ) {F : Set α}"
+    },
+    {
       "name": "Psc.GaloisOrbit.root_eq_of_three",
       "module": "PscVerif.GaloisOrbit",
       "private": false,
@@ -11023,6 +11079,230 @@
       "declaration": "theorem action_range_eq_ker_eval_one (M : V →ₗ[ℤ] V)"
     },
     {
+      "name": "Psc.MadicFundamentalCell.intCast_apply",
+      "module": "PscVerif.MadicFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCell.lean",
+      "line": 37,
+      "declaration": "@[simp] theorem intCast_apply (z : Int3) (i : Fin 3) : intCast z i = (z i : ℝ) := rfl"
+    },
+    {
+      "name": "Psc.MadicFundamentalCell.intCast_injective",
+      "module": "PscVerif.MadicFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCell.lean",
+      "line": 39,
+      "declaration": "theorem intCast_injective : Function.Injective intCast := by"
+    },
+    {
+      "name": "Psc.MadicFundamentalCell.mem_coordinateCube",
+      "module": "PscVerif.MadicFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCell.lean",
+      "line": 47,
+      "declaration": "@[simp] theorem mem_coordinateCube (x : Real3) :"
+    },
+    {
+      "name": "Psc.MadicFundamentalCell.coordinateCube_measurableSet",
+      "module": "PscVerif.MadicFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCell.lean",
+      "line": 51,
+      "declaration": "theorem coordinateCube_measurableSet : MeasurableSet coordinateCube :="
+    },
+    {
+      "name": "Psc.MadicFundamentalCell.coordinateCube_subset_Icc",
+      "module": "PscVerif.MadicFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCell.lean",
+      "line": 54,
+      "declaration": "theorem coordinateCube_subset_Icc : coordinateCube ⊆ Set.Icc (0 : Real3) 1 := by"
+    },
+    {
+      "name": "Psc.MadicFundamentalCell.floor_remainder_mem",
+      "module": "PscVerif.MadicFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCell.lean",
+      "line": 60,
+      "declaration": "theorem floor_remainder_mem (x : Real3) :"
+    },
+    {
+      "name": "Psc.MadicFundamentalCell.cube_integer_difference_zero",
+      "module": "PscVerif.MadicFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCell.lean",
+      "line": 67,
+      "declaration": "theorem cube_integer_difference_zero {u v : Real3} (hu : u ∈ coordinateCube)"
+    },
+    {
+      "name": "Psc.MadicFundamentalCell.real_power_intCast",
+      "module": "PscVerif.MadicFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCell.lean",
+      "line": 81,
+      "declaration": "theorem real_power_intCast (hA : ∀ z, A (intCast z) = intCast (M z))"
+    },
+    {
+      "name": "Psc.MadicFundamentalCell.integer_map_injective",
+      "module": "PscVerif.MadicFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCell.lean",
+      "line": 91,
+      "declaration": "theorem integer_map_injective (hA : ∀ z, A (intCast z) = intCast (M z)) :"
+    },
+    {
+      "name": "Psc.MadicFundamentalCell.diagonal_apply",
+      "module": "PscVerif.MadicFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCell.lean",
+      "line": 106,
+      "declaration": "@[simp] theorem diagonal_apply (z : Int3) :"
+    },
+    {
+      "name": "Psc.MadicFundamentalCell.diagonal_injective",
+      "module": "PscVerif.MadicFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCell.lean",
+      "line": 109,
+      "declaration": "theorem diagonal_injective : Function.Injective (diagonal M phi) := by"
+    },
+    {
+      "name": "Psc.MadicFundamentalCell.cell_translate_eq_zero",
+      "module": "PscVerif.MadicFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCell.lean",
+      "line": 123,
+      "declaration": "theorem cell_translate_eq_zero (hA : ∀ z, A (intCast z) = intCast (M z))"
+    },
+    {
+      "name": "Psc.MadicFundamentalCell.exists_representative",
+      "module": "PscVerif.MadicFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCell.lean",
+      "line": 146,
+      "declaration": "theorem exists_representative (hA : ∀ z, A (intCast z) = intCast (M z))"
+    },
+    {
+      "name": "Psc.MadicFundamentalCell.existsUnique_representative",
+      "module": "PscVerif.MadicFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCell.lean",
+      "line": 171,
+      "declaration": "theorem existsUnique_representative (hA : ∀ z, A (intCast z) = intCast (M z))"
+    },
+    {
+      "name": "Psc.MadicFundamentalCell.existsUnique_add_mem",
+      "module": "PscVerif.MadicFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCell.lean",
+      "line": 183,
+      "declaration": "theorem existsUnique_add_mem (hA : ∀ z, A (intCast z) = intCast (M z))"
+    },
+    {
+      "name": "Psc.MadicFundamentalCell.translates_disjoint",
+      "module": "PscVerif.MadicFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCell.lean",
+      "line": 195,
+      "declaration": "theorem translates_disjoint (hA : ∀ z, A (intCast z) = intCast (M z)) (q : ℕ) :"
+    },
+    {
+      "name": "Psc.MadicFundamentalCell.cell_subset_compactContainer",
+      "module": "PscVerif.MadicFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCell.lean",
+      "line": 215,
+      "declaration": "theorem cell_subset_compactContainer (q : ℕ) :"
+    },
+    {
+      "name": "Psc.MadicFundamentalCell.compactContainer_isCompact",
+      "module": "PscVerif.MadicFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCell.lean",
+      "line": 221,
+      "declaration": "theorem compactContainer_isCompact (hA : ∀ z, A (intCast z) = intCast (M z))"
+    },
+    {
+      "name": "Psc.MadicFundamentalCell.cell_zero_subset",
+      "module": "PscVerif.MadicFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCell.lean",
+      "line": 226,
+      "declaration": "theorem cell_zero_subset :"
+    },
+    {
+      "name": "Psc.MadicFundamentalCell.diagonal_measurableConstVAdd",
+      "module": "PscVerif.MadicFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCell.lean",
+      "line": 238,
+      "declaration": "theorem diagonal_measurableConstVAdd :"
+    },
+    {
+      "name": "Psc.MadicFundamentalCell.diagonal_vaddInvariantMeasure",
+      "module": "PscVerif.MadicFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCell.lean",
+      "line": 248,
+      "declaration": "theorem diagonal_vaddInvariantMeasure (μ : Measure (E × MadicResidue.Carrier M))"
+    },
+    {
+      "name": "Psc.MadicFundamentalCell.cell_measurableSet",
+      "module": "PscVerif.MadicFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCell.lean",
+      "line": 261,
+      "declaration": "theorem cell_measurableSet (q : ℕ) : MeasurableSet (cell M A phi q) := by"
+    },
+    {
+      "name": "Psc.MadicFundamentalCell.isAddFundamentalDomain",
+      "module": "PscVerif.MadicFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCell.lean",
+      "line": 270,
+      "declaration": "theorem isAddFundamentalDomain (hA : ∀ z, A (intCast z) = intCast (M z))"
+    },
+    {
+      "name": "Psc.MadicFundamentalCellControls.product_order_interval_loses_uniqueness",
+      "module": "PscVerif.MadicFundamentalCellControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCellControls.lean",
+      "line": 35,
+      "declaration": "theorem product_order_interval_loses_uniqueness :"
+    },
+    {
+      "name": "Psc.MadicFundamentalCellControls.doubling_compatible",
+      "module": "PscVerif.MadicFundamentalCellControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCellControls.lean",
+      "line": 75,
+      "declaration": "theorem doubling_compatible (z : Int3) :"
+    },
+    {
+      "name": "Psc.MadicFundamentalCellControls.coarser_residue_translates_overlap",
+      "module": "PscVerif.MadicFundamentalCellControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCellControls.lean",
+      "line": 88,
+      "declaration": "theorem coarser_residue_translates_overlap :"
+    },
+    {
+      "name": "Psc.MadicFundamentalCellControls.firstBasis_nonzero_depth_one",
+      "module": "PscVerif.MadicFundamentalCellControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCellControls.lean",
+      "line": 121,
+      "declaration": "theorem firstBasis_nonzero_depth_one :"
+    },
+    {
+      "name": "Psc.MadicFundamentalCellControls.finer_residue_loses_coverage",
+      "module": "PscVerif.MadicFundamentalCellControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/MadicFundamentalCellControls.lean",
+      "line": 131,
+      "declaration": "theorem finer_residue_loses_coverage :"
+    },
+    {
       "name": "Psc.MadicResidue.action_isOpenEmbedding",
       "module": "PscVerif.MadicHaar",
       "private": false,
@@ -11679,6 +11959,94 @@
       "declaration": "theorem named_archived_ancestry_null {n : ℕ} [Nonempty (Fin n)]"
     },
     {
+      "name": "Psc.NamedCellBounds.physicalWidth_nonneg",
+      "module": "PscVerif.NamedCellBounds",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCellBounds.lean",
+      "line": 33,
+      "declaration": "theorem physicalWidth_nonneg (q : ℕ) : 0 ≤ physicalWidth q := by"
+    },
+    {
+      "name": "Psc.NamedCellBounds.physical_on_closedCube",
+      "module": "PscVerif.NamedCellBounds",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCellBounds.lean",
+      "line": 38,
+      "declaration": "theorem physical_on_closedCube {u : AmbientReal} (hu : u ∈ Icc 0 1) :"
+    },
+    {
+      "name": "Psc.NamedCellBounds.stable_on_closedCube",
+      "module": "PscVerif.NamedCellBounds",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCellBounds.lean",
+      "line": 49,
+      "declaration": "theorem stable_on_closedCube {u : AmbientReal} (hu : u ∈ Icc 0 1) :"
+    },
+    {
+      "name": "Psc.NamedCellBounds.physical_realIncidence_pow",
+      "module": "PscVerif.NamedCellBounds",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCellBounds.lean",
+      "line": 81,
+      "declaration": "theorem physical_realIncidence_pow (q : ℕ) (u : AmbientReal) :"
+    },
+    {
+      "name": "Psc.NamedCellBounds.stable_realIncidence_pow",
+      "module": "PscVerif.NamedCellBounds",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCellBounds.lean",
+      "line": 93,
+      "declaration": "theorem stable_realIncidence_pow (q : ℕ) (u : AmbientReal) :"
+    },
+    {
+      "name": "Psc.NamedCellBounds.cell_physical_bounds",
+      "module": "PscVerif.NamedCellBounds",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCellBounds.lean",
+      "line": 108,
+      "declaration": "theorem cell_physical_bounds (q : ℕ)"
+    },
+    {
+      "name": "Psc.NamedCellBounds.cell_block_stable_bound",
+      "module": "PscVerif.NamedCellBounds",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCellBounds.lean",
+      "line": 120,
+      "declaration": "theorem cell_block_stable_bound (n : ℕ)"
+    },
+    {
+      "name": "Psc.NamedCellBounds.cell_eval_eq_zero_of_le",
+      "module": "PscVerif.NamedCellBounds",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCellBounds.lean",
+      "line": 132,
+      "declaration": "theorem cell_eval_eq_zero_of_le {q m : ℕ} (hmq : m ≤ q)"
+    },
+    {
+      "name": "Psc.NamedCellBounds.block_error_tendsto_zero",
+      "module": "PscVerif.NamedCellBounds",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCellBounds.lean",
+      "line": 140,
+      "declaration": "theorem block_error_tendsto_zero :"
+    },
+    {
+      "name": "Psc.NamedCellBounds.eventually_cell_internal_zeroSlice",
+      "module": "PscVerif.NamedCellBounds",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCellBounds.lean",
+      "line": 148,
+      "declaration": "theorem eventually_cell_internal_zeroSlice (q : ℕ) (ε : ℝ) (hε : 0 < ε) :"
+    },
+    {
+      "name": "Psc.NamedCellBounds.eventually_cell_internal_mem",
+      "module": "PscVerif.NamedCellBounds",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCellBounds.lean",
+      "line": 164,
+      "declaration": "theorem eventually_cell_internal_mem"
+    },
+    {
       "name": "Psc.NamedCutCount.physicalLength_iterate",
       "module": "PscVerif.NamedCutCount",
       "private": true,
@@ -12125,6 +12493,182 @@
       "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
       "line": 382,
       "declaration": "theorem wrong_scale_two_control (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedFullChart.fullChartLinear_injective",
+      "module": "PscVerif.NamedFullChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFullChart.lean",
+      "line": 29,
+      "declaration": "theorem fullChartLinear_injective : Function.Injective fullChartLinear := by"
+    },
+    {
+      "name": "Psc.NamedFullChart.fullChart_inverse_formula",
+      "module": "PscVerif.NamedFullChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFullChart.lean",
+      "line": 38,
+      "declaration": "theorem fullChart_inverse_formula (y : ℝ × Stable) :"
+    },
+    {
+      "name": "Psc.NamedFullChart.fullChartLinear_surjective",
+      "module": "PscVerif.NamedFullChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFullChart.lean",
+      "line": 47,
+      "declaration": "theorem fullChartLinear_surjective : Function.Surjective fullChartLinear := by"
+    },
+    {
+      "name": "Psc.NamedFullChart.fullChart_apply",
+      "module": "PscVerif.NamedFullChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFullChart.lean",
+      "line": 56,
+      "declaration": "@[simp] theorem fullChart_apply (x : AmbientReal) :"
+    },
+    {
+      "name": "Psc.NamedFullChart.fullChart_symm_apply",
+      "module": "PscVerif.NamedFullChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFullChart.lean",
+      "line": 59,
+      "declaration": "theorem fullChart_symm_apply (y : ℝ × Stable) :"
+    },
+    {
+      "name": "Psc.NamedFullChart.realIncidence_det",
+      "module": "PscVerif.NamedFullChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFullChart.lean",
+      "line": 65,
+      "declaration": "theorem realIncidence_det : MR.det = 2 := by"
+    },
+    {
+      "name": "Psc.NamedFullChart.realIncidence_injective",
+      "module": "PscVerif.NamedFullChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFullChart.lean",
+      "line": 68,
+      "declaration": "theorem realIncidence_injective : Function.Injective MR.mulVecLin :="
+    },
+    {
+      "name": "Psc.NamedFullChart.realIncidence_surjective",
+      "module": "PscVerif.NamedFullChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFullChart.lean",
+      "line": 71,
+      "declaration": "theorem realIncidence_surjective : Function.Surjective MR.mulVecLin := by"
+    },
+    {
+      "name": "Psc.NamedFullChart.realIncidence_apply",
+      "module": "PscVerif.NamedFullChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFullChart.lean",
+      "line": 84,
+      "declaration": "@[simp] theorem realIncidence_apply (x : AmbientReal) :"
+    },
+    {
+      "name": "Psc.NamedFullChart.realIncidence_castZ",
+      "module": "PscVerif.NamedFullChart",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFullChart.lean",
+      "line": 87,
+      "declaration": "theorem realIncidence_castZ (z : Fin 3 → ℤ) :"
+    },
+    {
+      "name": "Psc.NamedFundamentalCell.compatible",
+      "module": "PscVerif.NamedFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFundamentalCell.lean",
+      "line": 41,
+      "declaration": "theorem compatible (f : Fin 2) (z : Int3) :"
+    },
+    {
+      "name": "Psc.NamedFundamentalCell.view_diagonal",
+      "module": "PscVerif.NamedFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFundamentalCell.lean",
+      "line": 55,
+      "declaration": "theorem view_diagonal (f : Fin 2) (z : Int3) :"
+    },
+    {
+      "name": "Psc.NamedFundamentalCell.view_add",
+      "module": "PscVerif.NamedFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFundamentalCell.lean",
+      "line": 58,
+      "declaration": "theorem view_add (f : Fin 2) (z : Int3) (x : Full f) :"
+    },
+    {
+      "name": "Psc.NamedFundamentalCell.fullMeasure_isAddLeftInvariant",
+      "module": "PscVerif.NamedFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFundamentalCell.lean",
+      "line": 71,
+      "declaration": "theorem fullMeasure_isAddLeftInvariant : (fullMeasure f ν).IsAddLeftInvariant := by"
+    },
+    {
+      "name": "Psc.NamedFundamentalCell.view_measurePreserving",
+      "module": "PscVerif.NamedFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFundamentalCell.lean",
+      "line": 76,
+      "declaration": "theorem view_measurePreserving :"
+    },
+    {
+      "name": "Psc.NamedFundamentalCell.cell_measurableSet",
+      "module": "PscVerif.NamedFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFundamentalCell.lean",
+      "line": 81,
+      "declaration": "theorem cell_measurableSet (q : ℕ) : MeasurableSet (cell f q) :="
+    },
+    {
+      "name": "Psc.NamedFundamentalCell.cell_isAddFundamentalDomain",
+      "module": "PscVerif.NamedFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFundamentalCell.lean",
+      "line": 85,
+      "declaration": "theorem cell_isAddFundamentalDomain (q : ℕ) :"
+    },
+    {
+      "name": "Psc.NamedFundamentalCell.cell_measure_finite",
+      "module": "PscVerif.NamedFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFundamentalCell.lean",
+      "line": 91,
+      "declaration": "theorem cell_measure_finite (q : ℕ) : (fullMeasure f ν) (cell f q) ≠ ∞ := by"
+    },
+    {
+      "name": "Psc.NamedFundamentalCell.exists_positive_common_mass",
+      "module": "PscVerif.NamedFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFundamentalCell.lean",
+      "line": 100,
+      "declaration": "theorem exists_positive_common_mass :"
+    },
+    {
+      "name": "Psc.NamedFundamentalCell.finite_packing",
+      "module": "PscVerif.NamedFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFundamentalCell.lean",
+      "line": 112,
+      "declaration": "theorem finite_packing (q : ℕ) (Z : Finset Int3) {c X L : ℝ}"
+    },
+    {
+      "name": "Psc.NamedFundamentalCell.finite_packing_of_internal_subset",
+      "module": "PscVerif.NamedFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFundamentalCell.lean",
+      "line": 132,
+      "declaration": "theorem finite_packing_of_internal_subset (q : ℕ) (Z : Finset Int3) {c X : ℝ}"
+    },
+    {
+      "name": "Psc.NamedFundamentalCell.exists_positive_uniform_packing",
+      "module": "PscVerif.NamedFundamentalCell",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFundamentalCell.lean",
+      "line": 152,
+      "declaration": "theorem exists_positive_uniform_packing :"
     },
     {
       "name": "Psc.NamedGeometricEnclosure.stableCoordinate_apply",
@@ -25644,6 +26188,7 @@
     "proof/PscVerif/PscVerif/DescendantSpanStrict.lean": "24a2d9d6f0eedf5a49dd17318ad90b0b9d82cc3c930a3f34336b0519f63f9c66",
     "proof/PscVerif/PscVerif/Descendants.lean": "6641b65d81d90be34c13937b6ab8ebc029fcce91babd7c2ce398738dac783a40",
     "proof/PscVerif/PscVerif/FixedPointLimit.lean": "cd4a824f288d4c1072fd375e0e7b9014f56028e23e00cb4336fd678a210b7bbe",
+    "proof/PscVerif/PscVerif/FundamentalCellPacking.lean": "692c018051faa7f7e1b58dfbf8ef13e19306771fa673041b747b565ce0b496f8",
     "proof/PscVerif/PscVerif/GaloisOrbit.lean": "4d3b5474dbd14205f4bf2d33e98149ebbdd6d7e0fb8fd3a33787b878bcad5f07",
     "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean": "c3b266fc203b69f632063b38d044c0f76e7ec50825a16c6c04949fa696e275ec",
     "proof/PscVerif/PscVerif/Incidence.lean": "b0c865d4177dac9485a2ddbd35201143ee3d263ad735af05785b077e1f6bd6ff",
@@ -25656,15 +26201,20 @@
     "proof/PscVerif/PscVerif/LieWeights.lean": "f32639f83e519c69b8f428e153dd368c274e1f665a837183f88c5f1de0dd8adb",
     "proof/PscVerif/PscVerif/M0Pisot.lean": "65d17cf0aa71cdac825d16da73ad601dd49c214cd0b47ac58f124cb51a64a304",
     "proof/PscVerif/PscVerif/MadicActionRange.lean": "297a4102a077a50b42a955c5afee83f9d5bd6a47e2175c4c4c9d0300005de37d",
+    "proof/PscVerif/PscVerif/MadicFundamentalCell.lean": "3f8cc5f9f4a52891efdf4dd709eb7de8b07f54761ab8cbb18cd0416a45d7f9f0",
+    "proof/PscVerif/PscVerif/MadicFundamentalCellControls.lean": "375e5fb84584e1f5135714448bc4ace44785115799ba167bd011b18973f5c8fd",
     "proof/PscVerif/PscVerif/MadicHaar.lean": "a116c88bb856771b74ff7d5111e797c58216ce49057c99096ed5ddac3c2019a5",
     "proof/PscVerif/PscVerif/MadicResidue.lean": "c7ff8430cb77c335f11478861584baea4129658b35f4fc67bf0c2b8509d50f6d",
     "proof/PscVerif/PscVerif/NamedArchivedDigits.lean": "12059a52f4598c316a42f64cadf269cdd716853a785bc1189023207689124775",
     "proof/PscVerif/PscVerif/NamedArchivedGraph.lean": "cfde4885aa910cd0c20b7a328c9f9e2af6978aa5e980f3739aadd3c37bb112b0",
     "proof/PscVerif/PscVerif/NamedArchivedGraphRefinement.lean": "590b8a5e07389f8111a347419ec066322a982dea41cf8c471b3b01d5d03b934c",
+    "proof/PscVerif/PscVerif/NamedCellBounds.lean": "18afa42bdcb2c7cdb2ce98338f36f7d5f9c106378134e958496ff270b3b72524",
     "proof/PscVerif/PscVerif/NamedCutCount.lean": "9e265aa7f9a9a4cf4dbef2a2f4f1a320740f8cc19a6d290679d6ec8343cfeae4",
     "proof/PscVerif/PscVerif/NamedCutNeighborhood.lean": "e9d6a9e1b05721fa3cc8b634d3ecd6cdb604d8b63277d42b5ba34d70327bc57e",
     "proof/PscVerif/PscVerif/NamedCutProximity.lean": "34fa8b8a10ff483b463b15f9da906cd6c75441b6cdeeb0ec823ed8219185c901",
     "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean": "13ef34fb3eb6b9ede477c4de920af612010aa280409049c185b1afb35a34a585",
+    "proof/PscVerif/PscVerif/NamedFullChart.lean": "c8f302af1785e92eaa12dfc9b7443d0f599a1e92d61b11a7e3ab8ba19e36d27a",
+    "proof/PscVerif/PscVerif/NamedFundamentalCell.lean": "d146d742f5c0767de9f569fc4e3570569f9a5c6d6f9503ec41e9cfdb8e5c03e4",
     "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean": "e91dfcffed8884f99863591d57d892933fbc7ce0a5de2899955a4a69a99233e6",
     "proof/PscVerif/PscVerif/NamedInverseDecoder.lean": "cba40f84a103617afa5e3384a6b21b13d9679f87d0fa2224443fdbed916f1293",
     "proof/PscVerif/PscVerif/NamedOverlapBalanceControls.lean": "ccf5d2d4241cbe382878cd18ba34f0ffb195b9d0a7c0c0dc049b9864e84273cb",
@@ -25721,7 +26271,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "113963f1f5582b039ca1ec8a760d09ae5375645f7e2771c23c32baed300a3b69",
+    "proof/PscVerif/PscVerif.lean": "f5d6b5a7c1f1767058273ffd892495df93245c18c2247b8206b408bf0d3850cf",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
