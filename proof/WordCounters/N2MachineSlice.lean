@@ -158,17 +158,19 @@ def fetch (guard accepted : List UInt8) (pc : Nat) : List UInt8 :=
   else []
 
 inductive Exit where
-  | reject | sum (value : Word) | invalid
+  | reject | cleanup | sum (value : Word) | invalid
   deriving DecidableEq, Repr
 
-def run (guard accepted : List UInt8) : Nat → State → Exit
+def runWithRejection (guard accepted : List UInt8) (onReject : State → Exit) : Nat → State → Exit
   | 0, _ => .invalid
   | fuel + 1, s =>
-      if s.pc == 0xaac8 then .reject
+      if s.pc == 0xaac8 then onReject s
       else if s.pc == 0xab1a then .sum s.rbp
       else match decode (fetch guard accepted s.pc) with
       | none => .invalid
-      | some (width, op) => run guard accepted fuel (step width op s)
+      | some (width, op) => runWithRejection guard accepted onReject fuel (step width op s)
+
+def run (guard accepted : List UInt8) := runWithRejection guard accepted (fun _ => .reject)
 
 def runRecorded (a b stackB0 stack60 : Word) : Exit :=
   run guardBytes.data.toList acceptedBytes.data.toList 21
@@ -259,7 +261,7 @@ theorem recorded_run_exact (a b stackB0 stack60 : Word) :
   cases hgt : (signedMax - b).slt a <;>
   cases hlt : a.slt (signedMax - b + 1#64) <;>
   cases hsign : b.msb <;> cases hpositive : zero.slt b <;>
-    simp [runRecorded, run, step, refuses, hgt, hlt, hsign, hpositive]
+    simp [runRecorded, run, runWithRejection, step, refuses, hgt, hlt, hsign, hpositive]
 
 -- For the recorded ELF, the executable LOAD segment has equal file and
 -- virtual offsets. The recorded full-file digest is separate from this check.
@@ -394,7 +396,7 @@ def commitStore (loaded : MemoryState) (restored value : Word) :
 def finishUpdate (binary : ByteArray) (loaded : MemoryState) (restored : Word) :
     Exit → MemoryExit
   | .reject => .reject loaded.mem
-  | .invalid => .invalid
+  | .invalid | .cleanup => .invalid
   | .sum value => commitStore loaded restored value (decodeMemory 6 (storeSlice binary))
 
 def startUpdate (binary : ByteArray) (arithmetic : Word → Word → Word → Word → Exit)
@@ -715,6 +717,57 @@ theorem cleanup_targets :
     relativeTarget 0xacd4 ((cleanupFirstBytes.drop 4).take 4) = 0x1050 ∧
     relativeTarget 0xad01 ((cleanupSecondBytes.drop 7).take 4) = 0x1050 := by decide
 
+-- The stack-trace call is modeled as returning normally and preserving the
+-- callee-saved BL and R13B. The surrounding XOR and MOV instructions do not
+-- write either byte. OR recomputes ZF, so earlier flags need not survive.
+def traceEntryBytes : List UInt8 :=
+  [0x31, 0xff, 0xe8, 0x71, 0x95, 0xff, 0xff, 0x4c, 0x8b, 0x44, 0x24, 0x70,
+   0x48, 0x8b, 0xbc, 0x24, 0xc0, 0x00, 0x00, 0x00, 0x4c, 0x8b, 0x94, 0x24,
+   0x98, 0x00, 0x00, 0x00, 0x48, 0x89, 0xc6]
+
+def checkTraceEntry (binary : ByteArray) : Bool :=
+  (binary.extract 0xaac8 0xaae7).data.toList == traceEntryBytes
+
+theorem trace_call_target :
+    relativeTarget 0xaacf ((traceEntryBytes.drop 3).take 4) = 0x4040 := by decide
+
+def continueRejection (accepted : List UInt8) (s : State) : Exit :=
+  match decode (accepted.take 3), decode (accepted.drop 3) with
+  | some (3, .orBlR13), some (6, .jne displacement) =>
+      let next := step 6 (.jne displacement) (step 3 .orBlR13 { s with pc := 0xab01 })
+      if next.pc == 0xacbd then .cleanup else .invalid
+  | _, _ => .invalid
+
+def runCleanupEntry (binary : ByteArray) (a b stackB0 stack60 : Word) : Exit :=
+  let accepted := (binary.extract 0xab01 0xab1a).data.toList
+  runWithRejection (binary.extract 0xaa96 0xaac8).data.toList accepted
+    (fun s => if checkTraceEntry binary && (prepareErrorSlice binary == prepareErrorBytes)
+      then continueRejection accepted s else .invalid)
+    21 { r12 := a, rbp := b, stackB0, stack60 }
+
+private theorem continue_recorded (s : State) :
+    continueRejection acceptedBytes.data.toList s =
+      if s.bl || s.r13b then .cleanup else .invalid := by
+  have hOr : decode (acceptedBytes.data.toList.take 3) = some (3, .orBlR13) := by decide
+  have hJne : decode (acceptedBytes.data.toList.drop 3) = some (6, .jne 0x1b3) := by decide
+  unfold continueRejection
+  rw [hOr, hJne]
+  cases s.bl <;> cases s.r13b <;> rfl
+
+theorem checked_cleanup_entry (binary : ByteArray) (h : checkSlices binary = true)
+    (hTrace : checkTraceEntry binary = true)
+    (hPrepare : prepareErrorSlice binary = prepareErrorBytes)
+    (a b stackB0 stack60 : Word) :
+    runCleanupEntry binary a b stackB0 stack60 =
+      if refuses a b then .cleanup else .sum (b + a) := by
+  simp only [checkSlices, Bool.and_eq_true, beq_iff_eq] at h
+  unfold runCleanupEntry
+  rw [h.1, h.2, hTrace, hPrepare]
+  cases hgt : (signedMax - b).slt a <;>
+  cases hlt : a.slt (signedMax - b + 1#64) <;>
+  cases hsign : b.msb <;> cases hpositive : zero.slt b <;>
+    simp [runWithRejection, continue_recorded, step, refuses, hgt, hlt, hsign, hpositive]
+
 def checkCleanup (binary : ByteArray) : Bool :=
   (cleanupEnterSlice binary == cleanupEnterBytes) &&
   (cleanupFirstSlice binary == cleanupFirstBytes) &&
@@ -822,28 +875,45 @@ theorem checked_error_return (binary : ByteArray) (h : checkErrorReturn binary =
   exact finish_prepared binary h.1.2 base buffer caller cleanup _
 
 
--- Compose the already checked update with the projected error epilogue.
+theorem overflow_reaches_cleanup (binary : ByteArray) (hUpdate : checkUpdate binary = true)
+    (hTrace : checkTraceEntry binary = true) (hReturn : checkErrorReturn binary = true)
+    (s : MemoryState) (ha : 0 ≤ (oldCount s).toInt) (hb : 0 ≤ (increment s).toInt)
+    (overflow : 9223372036854775807 < (oldCount s).toInt + (increment s).toInt) :
+    runCleanupEntry binary (oldCount s) (increment s)
+      (readWord s.mem (s.rsp + 0xb0#64)) (readWord s.mem (s.rsp + 0x60#64)) = .cleanup := by
+  simp only [checkUpdate, Bool.and_eq_true] at hUpdate
+  simp only [checkErrorReturn, Bool.and_eq_true, beq_iff_eq] at hReturn
+  rw [checked_cleanup_entry binary hUpdate.1 hTrace hReturn.1.1.1,
+    (branch_iff_overflow _ _ ha hb).2 overflow, ite_eq_left (show true = true from rfl)]
+
+-- Require both update rejection and a decoded route to cleanup before the
+-- projected error epilogue is allowed to return.
 theorem overflow_produces_error (binary : ByteArray) (hUpdate : checkUpdate binary = true)
-    (hReturn : checkErrorReturn binary = true) (s : MemoryState)
+    (hTrace : checkTraceEntry binary = true) (hReturn : checkErrorReturn binary = true)
+    (s : MemoryState)
     (restore : readWord s.mem (s.rsp + 0xb0#64) = s.r13)
     (ha : 0 ≤ (oldCount s).toInt) (hb : 0 ≤ (increment s).toInt)
     (overflow : 9223372036854775807 < (oldCount s).toInt + (increment s).toInt)
     (base buffer caller : Word) (cleanup : CleanupInputs) :
-    (match runUpdate binary s with
-      | .reject _ => executeError binary { imageBase := base, buffer, caller, cleanup }
-      | _ => none) = some (expectedError base buffer caller) := by
-  rw [checked_binary_update binary hUpdate s restore ha hb, ite_eq_left overflow]
+    (match runUpdate binary s, runCleanupEntry binary (oldCount s) (increment s)
+        (readWord s.mem (s.rsp + 0xb0#64)) (readWord s.mem (s.rsp + 0x60#64)) with
+      | .reject _, .cleanup => executeError binary { imageBase := base, buffer, caller, cleanup }
+      | _, _ => none) = some (expectedError base buffer caller) := by
+  rw [checked_binary_update binary hUpdate s restore ha hb, ite_eq_left overflow,
+    overflow_reaches_cleanup binary hUpdate hTrace hReturn s ha hb overflow]
   exact (checked_error_return binary hReturn base buffer caller cleanup).1
 
 end N2MachineSlice
 
 #print axioms N2MachineSlice.checked_binary_update
 #print axioms N2MachineSlice.checked_cleanup
+#print axioms N2MachineSlice.overflow_reaches_cleanup
 #print axioms N2MachineSlice.overflow_produces_error
 
 def main (args : List String) : IO Unit := do
   let [path] := args | throw (IO.userError "expected path to recorded counter ELF")
   let binary ← IO.FS.readBinFile path
-  unless N2MachineSlice.checkUpdate binary && N2MachineSlice.checkErrorReturn binary do
+  unless N2MachineSlice.checkUpdate binary && N2MachineSlice.checkTraceEntry binary &&
+      N2MachineSlice.checkErrorReturn binary do
     throw (IO.userError "counter instruction bytes differ")
   IO.println "N2 update, overflow return and error-message bytes matched"

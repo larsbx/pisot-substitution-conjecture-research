@@ -28,7 +28,7 @@ the byte-level frame for the other addresses.
 The overflow continuation checks 42 more instructions across error
 preparation (`0xaae7–0xab00`), conditional cleanup (`0xacbd–0xad03`), and
 the return block (`0xad04–0xad4d`). It checks the 33 message bytes at `0xd5b0`.
-`overflow_produces_error` composes this projection with the checked update
+`overflow_produces_error` requires both checked-update rejection and the decoded route to cleanup
 and proves that an overflowing input produces tag 1, message length 33
 and the relocated address of `checked integer addition overflow`. It also
 establishes the return-buffer pointer and models the frame consumption
@@ -47,8 +47,14 @@ represent the ownership byte, saved signed count, allocation bases, return
 buffer, and saved caller address. The free-call model assumes each call
 returns with the projected state and stack intact. It records which frees
 were requested and leaves allocator behavior to a separate contract.
-The stack-trace call and the control-flow transition from preparation
-to cleanup remain summary boundaries.
+The trace entry at `0xaac8–0xaae6` checks six more instruction encodings,
+including the relative call target at `0x4040`. The projected call contract
+requires normal return and preservation of the callee-saved BL and R13B.
+The surrounding trace-entry and preparation instructions preserve both
+bytes. The theorem `overflow_reaches_cleanup` runs the decoded guard and
+the shared OR/JNE at `0xab01–0xab09`, proving that the saved rejection
+bits send an overflowing update to cleanup at `0xacbd`. The trace
+payload and the implementation of the trace call remain abstract.
 
 ## Replay
 
@@ -67,12 +73,13 @@ The Lean command checks the instruction slices and the error message bytes. The 
 the full recorded executable separately. A changed byte in either slice
 or a file truncated before the second slice must be refused. Mutations of
 the cleanup skip displacements at `0xaccb` and `0xacf5` or the second
-free-call displacement at `0xacfd` are also refused. The axiom reports
+free-call displacement at `0xacfd` are also refused. Flipping the
+stack-trace call displacement byte at `0xaacb` is likewise refused. The axiom reports
 list only `propext`, `Classical.choice`, and `Quot.sound`.
 
 The remaining binary obligations are to relate the projected instruction
 semantics to an independent x86-64 semantics, derive the address, memory
 validity, stack-base, and nonnegativity premises from the compiled loop
-invariant, and verify the omitted control-flow transitions and runtime
-contracts used by the error projection.
+invariant, and discharge the runtime contracts and the memory and ABI
+premises used by the error projection.
 The N2, N3, and N4 loops and runtime still require their own proofs.
