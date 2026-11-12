@@ -20,6 +20,9 @@ on:
       - 'kernel/pixi.lock'
       - 'oracles/python/c4_pair_overlap_graph.py'
       - 'proof/PscVerif/**'
+      - 'proof/ArchivedC4/**'
+      - 'tools/import_archived_c4.py'
+      - 'tools/check_archived_c4_import.sh'
       - 'evidence/c4-pair-overlap-graph-2026-11-05/**'
       - 'evidence/c4-archived-graph-refinement-2026-11-11/**'
   workflow_dispatch:
@@ -35,7 +38,7 @@ jobs:
   native-oracle:
     name: Complete original graphs and independent addressed replay
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
         with:
@@ -75,6 +78,19 @@ jobs:
           python -m pytest --assert=plain -q tests/test_c4_archived_graph_refinement_oracle.py | tee "$RUNNER_TEMP/archived-c4-refinement/oracle-tests.log"
           python oracles/python/c4_archived_graph_refinement.py --native "$PSC_ARCHIVED_GRAPH_REFINEMENT_NATIVE_OUTPUT" --controls > "$RUNNER_TEMP/archived-c4-refinement/receipt.json"
           python tools/make_proof_bank.py --check
+      - name: Provision pinned Lean and build the contraction consumer
+        run: |
+          ./tools/setup_lean.sh
+          cd proof/PscVerif
+          "$HOME/.elan/bin/lake" --no-cache build PscVerif.NamedArchivedGraph
+      - name: Kernel-check both complete imported finite tables
+        working-directory: proof/PscVerif
+        shell: bash
+        run: |
+          set -euo pipefail
+          receipt="$RUNNER_TEMP/archived-c4-refinement"
+          "$HOME/.elan/bin/lake" --no-cache env ../../tools/check_archived_c4_import.sh \
+            "$receipt/native-packet.txt" "$RUNNER_TEMP/archived-c4-lean" | tee "$receipt/lean-import.log"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
