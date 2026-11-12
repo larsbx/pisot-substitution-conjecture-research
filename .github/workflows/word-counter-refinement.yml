@@ -33,8 +33,13 @@ jobs:
           "$work/elan-init" -y --no-modify-path --default-toolchain none
           toolchain=$(cat proof/PscVerif/lean-toolchain)
           "$HOME/.elan/bin/elan" toolchain install "$toolchain"
-          "$HOME/.elan/bin/elan" run "$toolchain" lean proof/WordCounters/Refinement.lean | tee "$work/axioms.log"
-          "$HOME/.elan/bin/elan" run "$toolchain" lean proof/WordCounters/N2MachineSlice.lean | tee -a "$work/axioms.log"
+          mkdir -p "$work/WordCounters"
+          export LEAN_PATH="$work"
+          for module in Refinement N2MachineSlice N2MachineRefinement; do
+            "$HOME/.elan/bin/elan" run "$toolchain" lean \
+              -o "$work/WordCounters/$module.olean" "proof/WordCounters/$module.lean" |
+              tee -a "$work/axioms.log"
+          done
           if grep -Fq sorryAx "$work/axioms.log"; then exit 1; fi
       - uses: prefix-dev/setup-pixi@v0.9.1
         with:
