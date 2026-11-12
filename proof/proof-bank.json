@@ -11679,6 +11679,30 @@
       "declaration": "theorem named_archived_ancestry_null {n : ℕ} [Nonempty (Fin n)]"
     },
     {
+      "name": "Psc.NamedCutCount.physicalLength_iterate",
+      "module": "PscVerif.NamedCutCount",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/NamedCutCount.lean",
+      "line": 17,
+      "declaration": "private theorem physicalLength_iterate (fixture : Fin 2) (k : ℕ) (w : Word) :"
+    },
+    {
+      "name": "Psc.NamedCutCount.integerStarts_count_and_strip",
+      "module": "PscVerif.NamedCutCount",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCutCount.lean",
+      "line": 33,
+      "declaration": "theorem integerStarts_count_and_strip (fixture : Fin 2) {C : Finset WordPair}"
+    },
+    {
+      "name": "Psc.NamedCutCount.eventually_integerStarts_mem",
+      "module": "PscVerif.NamedCutCount",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCutCount.lean",
+      "line": 49,
+      "declaration": "theorem eventually_integerStarts_mem (fixture : Fin 2) {C : Finset WordPair}"
+    },
+    {
       "name": "Psc.NamedCutNeighborhood.inter_subset_overlapUnion",
       "module": "PscVerif.NamedCutNeighborhood",
       "private": false,
@@ -21423,6 +21447,78 @@
       "declaration": "theorem zero_action_not_injective :"
     },
     {
+      "name": "Psc.StrictCutCount.factorStart_injective",
+      "module": "PscVerif.StrictCutCount",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictCutCount.lean",
+      "line": 19,
+      "declaration": "theorem factorStart_injective {bs : List WordPair}"
+    },
+    {
+      "name": "Psc.StrictCutCount.card_startVectors",
+      "module": "PscVerif.StrictCutCount",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictCutCount.lean",
+      "line": 37,
+      "declaration": "theorem card_startVectors {bs : List WordPair}"
+    },
+    {
+      "name": "Psc.StrictCutCount.markAtFactorStart",
+      "module": "PscVerif.StrictCutCount",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/StrictCutCount.lean",
+      "line": 42,
+      "declaration": "private theorem markAtFactorStart (bs : List WordPair) (j : Fin bs.length)"
+    },
+    {
+      "name": "Psc.StrictCutCount.exists_balanced_marks_of_mem",
+      "module": "PscVerif.StrictCutCount",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictCutCount.lean",
+      "line": 60,
+      "declaration": "theorem exists_balanced_marks_of_mem {u v : Word} (hbal : Equiv1 u v)"
+    },
+    {
+      "name": "Psc.StrictCutCount.physicalLength_le_mul_length",
+      "module": "PscVerif.StrictCutCount",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/StrictCutCount.lean",
+      "line": 81,
+      "declaration": "private theorem physicalLength_le_mul_length (ℓ : Fin 3 → ℝ) (L : ℝ)"
+    },
+    {
+      "name": "Psc.StrictCutCount.physicalLength_le_card_reduction_starts",
+      "module": "PscVerif.StrictCutCount",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictCutCount.lean",
+      "line": 94,
+      "declaration": "theorem physicalLength_le_card_reduction_starts (ℓ : Fin 3 → ℝ) (L : ℝ)"
+    },
+    {
+      "name": "Psc.StrictCutCount.offset_mem_strip_of_mem",
+      "module": "PscVerif.StrictCutCount",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictCutCount.lean",
+      "line": 104,
+      "declaration": "theorem offset_mem_strip_of_mem (ℓ : Fin 3 → ℝ) (hℓ : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.StrictCutCount.repeated_factor_control",
+      "module": "PscVerif.StrictCutCount",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictCutCount.lean",
+      "line": 120,
+      "declaration": "theorem repeated_factor_control :"
+    },
+    {
+      "name": "Psc.StrictCutCount.empty_startVectors",
+      "module": "PscVerif.StrictCutCount",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictCutCount.lean",
+      "line": 129,
+      "declaration": "theorem empty_startVectors : startVectors [] = ∅ := by"
+    },
+    {
       "name": "Psc.StrictSystem.isBlock_swap",
       "module": "PscVerif.StrictSystem",
       "private": false,
@@ -25565,6 +25661,7 @@
     "proof/PscVerif/PscVerif/NamedArchivedDigits.lean": "12059a52f4598c316a42f64cadf269cdd716853a785bc1189023207689124775",
     "proof/PscVerif/PscVerif/NamedArchivedGraph.lean": "cfde4885aa910cd0c20b7a328c9f9e2af6978aa5e980f3739aadd3c37bb112b0",
     "proof/PscVerif/PscVerif/NamedArchivedGraphRefinement.lean": "590b8a5e07389f8111a347419ec066322a982dea41cf8c471b3b01d5d03b934c",
+    "proof/PscVerif/PscVerif/NamedCutCount.lean": "9e265aa7f9a9a4cf4dbef2a2f4f1a320740f8cc19a6d290679d6ec8343cfeae4",
     "proof/PscVerif/PscVerif/NamedCutNeighborhood.lean": "e9d6a9e1b05721fa3cc8b634d3ecd6cdb604d8b63277d42b5ba34d70327bc57e",
     "proof/PscVerif/PscVerif/NamedCutProximity.lean": "34fa8b8a10ff483b463b15f9da906cd6c75441b6cdeeb0ec823ed8219185c901",
     "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean": "13ef34fb3eb6b9ede477c4de920af612010aa280409049c185b1afb35a34a585",
@@ -25619,11 +25716,12 @@
     "proof/PscVerif/PscVerif/SignedIntertwiner.lean": "9db35d26a6a8d434ab893b31218fcc50ba73872a74a305da366d5f95543d5280",
     "proof/PscVerif/PscVerif/Spectral.lean": "f7a43295221c293c670593d4be8e916d87ce51f3241ec911456ef4a4ce0b39d3",
     "proof/PscVerif/PscVerif/StablePrefixWindow.lean": "f92a5899a583689f5bcab503b3e632641f7dc8a48492d573f4c87093c684f1ef",
+    "proof/PscVerif/PscVerif/StrictCutCount.lean": "465d1ad883556eca80db059bde0564a425a6a62407cd307d728347bc558d62b1",
     "proof/PscVerif/PscVerif/StrictSystem.lean": "657d6c9f4041b04a2e478f19dea2ecb813952caf2fe1455789778306ad6c3a48",
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "0d1236c2b94dda5164f9f4cffc22c81f2e1de58b95c8a33c2199b1c13010a4c1",
+    "proof/PscVerif/PscVerif.lean": "113963f1f5582b039ca1ec8a760d09ae5375645f7e2771c23c32baed300a3b69",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

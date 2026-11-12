@@ -90,6 +90,8 @@ import PscVerif.NamedCutProximity
 import PscVerif.CutPrefixControls
 import PscVerif.CompactNeighborhood
 import PscVerif.NamedCutNeighborhood
+import PscVerif.StrictCutCount
+import PscVerif.NamedCutCount
 import PscVerif.CompactNeighborhoodControls
 import PscVerif.NamedGeometricEnclosure
 import PscVerif.NamedFiniteCarrier
