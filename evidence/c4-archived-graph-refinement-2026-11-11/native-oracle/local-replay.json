@@ -1,0 +1,94 @@
+{
+  "base_revision": "249b31a758997b0e0cbbb0c24551ac35d6e2214d",
+  "checks": [
+    {
+      "exit_code": 0,
+      "log": "historical-oracle-tests.log",
+      "name": "historical_python_tests",
+      "tests": 9
+    },
+    {
+      "classification": "runtime configuration failure before source compilation; missing std because MODULAR_HOME was absent",
+      "exit_code": 1,
+      "log": "historical-native-initial-environment-failure.log",
+      "name": "historical_native_initial_environment"
+    },
+    {
+      "exit_code": 0,
+      "log": "historical-native-corrected-environment.log",
+      "name": "historical_native_corrected_environment"
+    },
+    {
+      "exit_code": 0,
+      "fixtures": 2,
+      "log": "native-test.log",
+      "name": "new_native_full_graph_and_controls",
+      "negative_controls": 24
+    },
+    {
+      "exit_code": 0,
+      "log": "native-driver.log",
+      "name": "new_native_full_packet"
+    },
+    {
+      "exit_code": 0,
+      "log": "oracle-tests-with-native.log",
+      "name": "independent_python_tests_with_actual_native_packet",
+      "tests": 9
+    },
+    {
+      "exit_code": 0,
+      "fixtures": 2,
+      "log": "native-oracle.log",
+      "name": "complete_native_oracle_parity_and_named_controls",
+      "negative_controls": 30,
+      "receipt": "receipt.json"
+    }
+  ],
+  "logs_sha256": {
+    "historical-native-corrected-environment.log": "309ff2066192c8500ae2622c55371edd905d9a07c5ea983085091a3c02fc0b2c",
+    "historical-native-initial-environment-failure.log": "766e612ce27c1b500937ef20278275ab115ec20b6dfbec46398d49b675982690",
+    "historical-oracle-tests.log": "1d1a15bc6abbaeacfa418a821dbf38ac1b64373c1e62607621f22381dce8110a",
+    "native-driver.log": "8b33180b5dd484cbaa302cc68b3794e69204fc8de4d0b692cbb1332a95aa44d0",
+    "native-oracle.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native-test.log": "d21d331cfa59e1ebe44f1d6965e8d9fd6f0c56524a59dc7b0f1ddd0c584c6563",
+    "oracle-tests-with-native.log": "26e511eda19c13e9fb2300b59b5ac8c3635094535a924a3f19656574ff1d1076"
+  },
+  "native_observed_rejections": {
+    "different_original_substitution": 2,
+    "flipped_track_swap": 2,
+    "graph_domain_mismatch": 2,
+    "incomplete_inverse_ancestry": 2,
+    "omitted_repeated_positional_edge": 2,
+    "removed_ancestor_and_all_stored_edges": 2,
+    "swapped_graph_direction": 2,
+    "transposed_actual_rows": 2,
+    "unjustified_residue_exclusion": 2,
+    "wrong_24_12_box": 2,
+    "wrong_block_power": 2,
+    "wrong_nested_local_address": 2
+  },
+  "native_packet": {
+    "bytes": 2475711,
+    "lines": 98184,
+    "sha256": "a527913a9b7799632c812bb76c9758d8c1abf9d08db21bd5f951d3e4d4aaf26b",
+    "storage_scope": "full packet remains a development/CI artifact, not duplicated in the repository"
+  },
+  "nonclaims": [
+    "not a Lean deserializer",
+    "no all-strict-packet representation",
+    "no positive strict-root Haar measure",
+    "no C4 or general PSC closure"
+  ],
+  "recorded_at_utc": "2026-11-12T01:32:44.630465+00:00",
+  "revision_scope": "local development source hashes; new source was not yet committed; hosted exact-revision acceptance is separate",
+  "runtime": {
+    "MODULAR_HOME": "/workspace/scratch/3dd470a03f25/toolchain/mojo-prefix/share/max",
+    "environment_kind": "existing pinned minimal Mojo installation; separate from clean locked Pixi CI",
+    "mojo": "1.1.0.dev2026090805 (34562fa1)",
+    "mojo_prefix": "/workspace/scratch/3dd470a03f25/toolchain/mojo-prefix",
+    "python": "3.12.14"
+  },
+  "schema": "c4-archived-graph-refinement-local-replay-v1",
+  "source_set_sha256": "7afc6226e01790cd0fabe1aed11f74a88534087dce039439b01e2b9e68de1d67"
+}

@@ -1903,6 +1903,182 @@
   ],
   "lean_declarations": [
     {
+      "name": "Psc.ArchivedGraphRefinement.TableBinding.incoming_exists",
+      "module": "PscVerif.ArchivedGraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean",
+      "line": 54,
+      "declaration": "theorem TableBinding.incoming_exists {n : ℕ} {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinement.TableBinding.address_injective",
+      "module": "PscVerif.ArchivedGraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean",
+      "line": 78,
+      "declaration": "theorem TableBinding.address_injective {n : ℕ} {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinement.overlap_nonempty_swap_iff",
+      "module": "PscVerif.ArchivedGraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean",
+      "line": 99,
+      "declaration": "theorem overlap_nonempty_swap_iff (star : (Fin 3 → ℤ) →+ G)"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinement.represented_orderedLift",
+      "module": "PscVerif.ArchivedGraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean",
+      "line": 107,
+      "declaration": "theorem represented_orderedLift {n : ℕ} {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinement.excluded_ancestor_empty",
+      "module": "PscVerif.ArchivedGraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean",
+      "line": 123,
+      "declaration": "theorem excluded_ancestor_empty {n : ℕ} {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinement.TableBinding.raw_piece_eq_rowPiece",
+      "module": "PscVerif.ArchivedGraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean",
+      "line": 144,
+      "declaration": "theorem TableBinding.raw_piece_eq_rowPiece {n : ℕ} {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinement.TableBinding.overlap_eq_iUnion_rowPiece",
+      "module": "PscVerif.ArchivedGraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean",
+      "line": 155,
+      "declaration": "theorem TableBinding.overlap_eq_iUnion_rowPiece {n : ℕ} {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinement.restricted_history_cover",
+      "module": "PscVerif.ArchivedGraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean",
+      "line": 187,
+      "declaration": "theorem restricted_history_cover {n : ℕ} {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinement.nonempty_of_inverse_path",
+      "module": "PscVerif.ArchivedGraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean",
+      "line": 204,
+      "declaration": "theorem nonempty_of_inverse_path {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinement.nonempty_path_represented",
+      "module": "PscVerif.ArchivedGraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean",
+      "line": 222,
+      "declaration": "theorem nonempty_path_represented {n : ℕ} {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinement.TableBinding.rooted_nonempty_domain_iff",
+      "module": "PscVerif.ArchivedGraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean",
+      "line": 245,
+      "declaration": "theorem TableBinding.rooted_nonempty_domain_iff {n : ℕ} {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinement.archivedRoots_swap",
+      "module": "PscVerif.ArchivedGraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean",
+      "line": 277,
+      "declaration": "theorem archivedRoots_swap (p : Packet) (hp : ArchivedRoot p) : ArchivedRoot p.swap := by"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinement.archivedRoots_complete",
+      "module": "PscVerif.ArchivedGraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean",
+      "line": 284,
+      "declaration": "theorem archivedRoots_complete {n : ℕ} (states : Fin n → Packet)"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinementControls.omitted_positional_edge_rejected",
+      "module": "PscVerif.ArchivedGraphRefinementControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean",
+      "line": 40,
+      "declaration": "theorem omitted_positional_edge_rejected : ¬ omittedRow.Exact := by"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinementControls.duplicated_positional_edge_rejected",
+      "module": "PscVerif.ArchivedGraphRefinementControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean",
+      "line": 53,
+      "declaration": "theorem duplicated_positional_edge_rejected : ¬ duplicatedRow.Exact := by"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinementControls.parallel_target_keeps_distinct_addresses",
+      "module": "PscVerif.ArchivedGraphRefinementControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean",
+      "line": 60,
+      "declaration": "theorem parallel_target_keeps_distinct_addresses :"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinementControls.along_digit",
+      "module": "PscVerif.ArchivedGraphRefinementControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean",
+      "line": 67,
+      "declaration": "theorem along_digit (z : ℤ) :"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinementControls.swapped_direction_rejected",
+      "module": "PscVerif.ArchivedGraphRefinementControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean",
+      "line": 79,
+      "declaration": "theorem swapped_direction_rejected :"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinementControls.terminal_membership_does_not_cover_history",
+      "module": "PscVerif.ArchivedGraphRefinementControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean",
+      "line": 102,
+      "declaration": "theorem terminal_membership_does_not_cover_history :"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinementControls.same_matrix_different_literal_address",
+      "module": "PscVerif.ArchivedGraphRefinementControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean",
+      "line": 118,
+      "declaration": "theorem same_matrix_different_literal_address :"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinementControls.incorrect_box_rejected",
+      "module": "PscVerif.ArchivedGraphRefinementControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean",
+      "line": 137,
+      "declaration": "theorem incorrect_box_rejected :"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinementControls.graph_domain_mismatch_rejected",
+      "module": "PscVerif.ArchivedGraphRefinementControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean",
+      "line": 149,
+      "declaration": "theorem graph_domain_mismatch_rejected :"
+    },
+    {
       "name": "Psc.ind_self",
       "module": "PscVerif.Basic",
       "private": false,
@@ -10407,6 +10583,174 @@
       "declaration": "theorem continuous_action (M : V →ₗ[ℤ] V) : Continuous (action M) := by"
     },
     {
+      "name": "Psc.NamedArchivedGraph.decodedCandidate_of_occurrence",
+      "module": "PscVerif.NamedArchivedGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedGraph.lean",
+      "line": 41,
+      "declaration": "theorem decodedCandidate_of_occurrence (fixture : Fin 2) {p u : Packet}"
+    },
+    {
+      "name": "Psc.NamedArchivedGraph.candidateClosed_iff_decoded",
+      "module": "PscVerif.NamedArchivedGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedGraph.lean",
+      "line": 62,
+      "declaration": "theorem candidateClosed_iff_decoded (fixture : Fin 2) {n : ℕ}"
+    },
+    {
+      "name": "Psc.NamedArchivedGraph.digits_authenticated",
+      "module": "PscVerif.NamedArchivedGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedGraph.lean",
+      "line": 80,
+      "declaration": "theorem digits_authenticated (fixture : Fin 2) : NamedSharpBox.DigitsBound fixture :="
+    },
+    {
+      "name": "Psc.NamedArchivedGraph.tile_box",
+      "module": "PscVerif.NamedArchivedGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedGraph.lean",
+      "line": 84,
+      "declaration": "theorem tile_box (fixture : Fin 2) (letter : Fin 3)"
+    },
+    {
+      "name": "Psc.NamedArchivedGraph.admission_sound",
+      "module": "PscVerif.NamedArchivedGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedGraph.lean",
+      "line": 91,
+      "declaration": "theorem admission_sound (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedArchivedGraph.excluded_overlap_empty",
+      "module": "PscVerif.NamedArchivedGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedGraph.lean",
+      "line": 97,
+      "declaration": "theorem excluded_overlap_empty (fixture : Fin 2) (p : Packet)"
+    },
+    {
+      "name": "Psc.NamedArchivedGraph.archivedNumerator_cases",
+      "module": "PscVerif.NamedArchivedGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedGraph.lean",
+      "line": 105,
+      "declaration": "theorem archivedNumerator_cases (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedArchivedGraph.rooted_nonempty_domain_iff",
+      "module": "PscVerif.NamedArchivedGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedGraph.lean",
+      "line": 112,
+      "declaration": "theorem rooted_nonempty_domain_iff (fixture : Fin 2) {n : ℕ}"
+    },
+    {
+      "name": "Psc.NamedArchivedGraph.null_of_source_bound_table",
+      "module": "PscVerif.NamedArchivedGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedGraph.lean",
+      "line": 129,
+      "declaration": "theorem null_of_source_bound_table (fixture : Fin 2)"
+    },
+    {
+      "name": "Psc.NamedArchivedGraph.original_roots_null_of_table",
+      "module": "PscVerif.NamedArchivedGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedGraph.lean",
+      "line": 146,
+      "declaration": "theorem original_roots_null_of_table (fixture : Fin 2)"
+    },
+    {
+      "name": "Psc.NamedArchivedGraph.all_original_ancestors_null_of_table",
+      "module": "PscVerif.NamedArchivedGraph",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedGraph.lean",
+      "line": 162,
+      "declaration": "theorem all_original_ancestors_null_of_table (fixture : Fin 2)"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinement.named_tileEquation_two",
+      "module": "PscVerif.NamedArchivedGraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedGraphRefinement.lean",
+      "line": 40,
+      "declaration": "theorem named_tileEquation_two :"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinement.named_rooted_nonempty_domain_iff",
+      "module": "PscVerif.NamedArchivedGraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedGraphRefinement.lean",
+      "line": 47,
+      "declaration": "theorem named_rooted_nonempty_domain_iff {n : ℕ}"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinement.named_rowPiece_scaling",
+      "module": "PscVerif.NamedArchivedGraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedGraphRefinement.lean",
+      "line": 61,
+      "declaration": "theorem named_rowPiece_scaling {n : ℕ} (states : Fin n → Packet) (cert : Certificate n)"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinement.named_null_of_refinement",
+      "module": "PscVerif.NamedArchivedGraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedGraphRefinement.lean",
+      "line": 79,
+      "declaration": "theorem named_null_of_refinement {n : ℕ} [Nonempty (Fin n)]"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinement.named_beta_square_gap",
+      "module": "PscVerif.NamedArchivedGraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedGraphRefinement.lean",
+      "line": 99,
+      "declaration": "theorem named_beta_square_gap : (103 / 20 : ℝ) < beta ^ 2 := by"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinement.named_archived_gap",
+      "module": "PscVerif.NamedArchivedGraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedGraphRefinement.lean",
+      "line": 107,
+      "declaration": "theorem named_archived_gap {n : ℕ} (cert : Certificate n)"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinement.named_archived_null",
+      "module": "PscVerif.NamedArchivedGraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedGraphRefinement.lean",
+      "line": 114,
+      "declaration": "theorem named_archived_null {n : ℕ} [Nonempty (Fin n)]"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinement.named_overlap_swap_measure",
+      "module": "PscVerif.NamedArchivedGraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedGraphRefinement.lean",
+      "line": 127,
+      "declaration": "theorem named_overlap_swap_measure (p : Packet) : μ (E p.swap) = μ (E p) := by"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinement.named_archived_orderedLift_null",
+      "module": "PscVerif.NamedArchivedGraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedGraphRefinement.lean",
+      "line": 133,
+      "declaration": "theorem named_archived_orderedLift_null {n : ℕ} [Nonempty (Fin n)]"
+    },
+    {
+      "name": "Psc.ArchivedGraphRefinement.named_archived_ancestry_null",
+      "module": "PscVerif.NamedArchivedGraphRefinement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedArchivedGraphRefinement.lean",
+      "line": 150,
+      "declaration": "theorem named_archived_ancestry_null {n : ℕ} [Nonempty (Fin n)]"
+    },
+    {
       "name": "Psc.NamedFiniteCarrier.coordinateBudget_certified",
       "module": "PscVerif.NamedFiniteCarrier",
       "private": false,
@@ -10725,6 +11069,102 @@
       "source": "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean",
       "line": 134,
       "declaration": "theorem physicalLength_iterateImages (fixture : Fin 2) (k : ℕ) (letter : Fin 3) :"
+    },
+    {
+      "name": "Psc.NamedInverseDecoder.check_iff",
+      "module": "PscVerif.NamedInverseDecoder",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedInverseDecoder.lean",
+      "line": 35,
+      "declaration": "theorem check_iff (z : Fin 3 → ℤ) : check z = true ↔ ResidueValid z := by"
+    },
+    {
+      "name": "Psc.NamedInverseDecoder.adjugate_eq",
+      "module": "PscVerif.NamedInverseDecoder",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedInverseDecoder.lean",
+      "line": 39,
+      "declaration": "theorem adjugate_eq : (MZ ^ 2).adjugate ="
+    },
+    {
+      "name": "Psc.NamedInverseDecoder.adjugate_divisibility_iff",
+      "module": "PscVerif.NamedInverseDecoder",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedInverseDecoder.lean",
+      "line": 46,
+      "declaration": "theorem adjugate_divisibility_iff (z : Fin 3 → ℤ) :"
+    },
+    {
+      "name": "Psc.NamedInverseDecoder.inverse_equation",
+      "module": "PscVerif.NamedInverseDecoder",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedInverseDecoder.lean",
+      "line": 61,
+      "declaration": "theorem inverse_equation (z : Fin 3 → ℤ) (h : ResidueValid z) :"
+    },
+    {
+      "name": "Psc.NamedInverseDecoder.residueValid_of_equation",
+      "module": "PscVerif.NamedInverseDecoder",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedInverseDecoder.lean",
+      "line": 73,
+      "declaration": "theorem residueValid_of_equation (z u : Fin 3 → ℤ) (h : MZ ^ 2 *ᵥ u = z) :"
+    },
+    {
+      "name": "Psc.NamedInverseDecoder.residueValid_iff_range",
+      "module": "PscVerif.NamedInverseDecoder",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedInverseDecoder.lean",
+      "line": 84,
+      "declaration": "theorem residueValid_iff_range (z : Fin 3 → ℤ) :"
+    },
+    {
+      "name": "Psc.NamedInverseDecoder.inverse_unique",
+      "module": "PscVerif.NamedInverseDecoder",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedInverseDecoder.lean",
+      "line": 90,
+      "declaration": "theorem inverse_unique (z u : Fin 3 → ℤ) (h : MZ ^ 2 *ᵥ u = z) : u = inverse z := by"
+    },
+    {
+      "name": "Psc.NamedInverseDecoder.named_check_iff_range",
+      "module": "PscVerif.NamedInverseDecoder",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedInverseDecoder.lean",
+      "line": 96,
+      "declaration": "theorem named_check_iff_range (fixture : Fin 2) (z : Fin 3 → ℤ) :"
+    },
+    {
+      "name": "Psc.NamedInverseDecoder.occurrence_offset",
+      "module": "PscVerif.NamedInverseDecoder",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedInverseDecoder.lean",
+      "line": 104,
+      "declaration": "theorem occurrence_offset (fixture : Fin 2) {p u : Packet}"
+    },
+    {
+      "name": "Psc.NamedInverseDecoder.pairedPiece_empty_of_check_false",
+      "module": "PscVerif.NamedInverseDecoder",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedInverseDecoder.lean",
+      "line": 114,
+      "declaration": "theorem pairedPiece_empty_of_check_false (fixture : Fin 2) (p : Packet)"
+    },
+    {
+      "name": "Psc.NamedInverseDecoder.odd_vector_is_integral",
+      "module": "PscVerif.NamedInverseDecoder",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedInverseDecoder.lean",
+      "line": 127,
+      "declaration": "theorem odd_vector_is_integral :"
+    },
+    {
+      "name": "Psc.NamedInverseDecoder.nonintegral_vector_refused",
+      "module": "PscVerif.NamedInverseDecoder",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedInverseDecoder.lean",
+      "line": 133,
+      "declaration": "theorem nonintegral_vector_refused :"
     },
     {
       "name": "Psc.NamedOverlapBalanceControls.zero_power_digitPacket",
@@ -11245,6 +11685,174 @@
       "source": "proof/PscVerif/PscVerif/NamedProductHaar.lean",
       "line": 109,
       "declaration": "theorem measure_affine_power (σ : Fin 3 → Word) (hM : incidenceZ σ = MZ)"
+    },
+    {
+      "name": "Psc.NamedSharpBox.block_coordinate_bounds",
+      "module": "PscVerif.NamedSharpBox",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedSharpBox.lean",
+      "line": 28,
+      "declaration": "theorem block_coordinate_bounds (x : Stable) :"
+    },
+    {
+      "name": "Psc.NamedSharpBox.self_parent_box",
+      "module": "PscVerif.NamedSharpBox",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedSharpBox.lean",
+      "line": 48,
+      "declaration": "theorem self_parent_box {x y : ℝ}"
+    },
+    {
+      "name": "Psc.NamedSharpBox.box_invariant",
+      "module": "PscVerif.NamedSharpBox",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedSharpBox.lean",
+      "line": 54,
+      "declaration": "theorem box_invariant :"
+    },
+    {
+      "name": "Psc.NamedSharpBox.prefix_box_of_digits",
+      "module": "PscVerif.NamedSharpBox",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedSharpBox.lean",
+      "line": 60,
+      "declaration": "theorem prefix_box_of_digits (fixture : Fin 2) (digits : DigitsBound fixture) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.NamedSharpBox.tile_box_of_digits",
+      "module": "PscVerif.NamedSharpBox",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedSharpBox.lean",
+      "line": 96,
+      "declaration": "theorem tile_box_of_digits (fixture : Fin 2) (digits : DigitsBound fixture)"
+    },
+    {
+      "name": "Psc.NamedSharpBox.not_rejectCoordinate",
+      "module": "PscVerif.NamedSharpBox",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedSharpBox.lean",
+      "line": 150,
+      "declaration": "theorem not_rejectCoordinate {lo hi bound x y : ℤ} {c : ℝ}"
+    },
+    {
+      "name": "Psc.NamedSharpBox.nonempty_admitted_of_digits",
+      "module": "PscVerif.NamedSharpBox",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedSharpBox.lean",
+      "line": 174,
+      "declaration": "theorem nonempty_admitted_of_digits (fixture : Fin 2) (digits : DigitsBound fixture)"
+    },
+    {
+      "name": "Psc.NamedSharpBox.overlap_empty_of_reject",
+      "module": "PscVerif.NamedSharpBox",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedSharpBox.lean",
+      "line": 196,
+      "declaration": "theorem overlap_empty_of_reject (fixture : Fin 2) (digits : DigitsBound fixture)"
+    },
+    {
+      "name": "Psc.NamedSharpBox.boundary_contact_retained",
+      "module": "PscVerif.NamedSharpBox",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedSharpBox.lean",
+      "line": 204,
+      "declaration": "theorem boundary_contact_retained :"
+    },
+    {
+      "name": "Psc.NamedSharpBox.strict_separation_rejected",
+      "module": "PscVerif.NamedSharpBox",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedSharpBox.lean",
+      "line": 208,
+      "declaration": "theorem strict_separation_rejected :"
+    },
+    {
+      "name": "Psc.NamedSharpDigits.prefixScore_append",
+      "module": "PscVerif.NamedSharpDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedSharpDigits.lean",
+      "line": 30,
+      "declaration": "theorem prefixScore_append (weight : Fin 3 → ℤ) (u v : Word) :"
+    },
+    {
+      "name": "Psc.NamedSharpDigits.emptySummary_covers",
+      "module": "PscVerif.NamedSharpDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedSharpDigits.lean",
+      "line": 46,
+      "declaration": "theorem emptySummary_covers (weight : Fin 3 → ℤ) :"
+    },
+    {
+      "name": "Psc.NamedSharpDigits.singletonSummary_covers",
+      "module": "PscVerif.NamedSharpDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedSharpDigits.lean",
+      "line": 55,
+      "declaration": "theorem singletonSummary_covers (weight : Fin 3 → ℤ) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.NamedSharpDigits.appendSummary_covers",
+      "module": "PscVerif.NamedSharpDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedSharpDigits.lean",
+      "line": 69,
+      "declaration": "theorem appendSummary_covers (weight : Fin 3 → ℤ) (u v : Word)"
+    },
+    {
+      "name": "Psc.NamedSharpDigits.wordSummary_covers",
+      "module": "PscVerif.NamedSharpDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedSharpDigits.lean",
+      "line": 96,
+      "declaration": "theorem wordSummary_covers (weight : Fin 3 → ℤ) (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.NamedSharpDigits.blockSummary_covers",
+      "module": "PscVerif.NamedSharpDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedSharpDigits.lean",
+      "line": 111,
+      "declaration": "theorem blockSummary_covers (s : Fin 3 → Word) (weight : Fin 3 → ℤ)"
+    },
+    {
+      "name": "Psc.NamedSharpDigits.endpoints_authenticated",
+      "module": "PscVerif.NamedSharpDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedSharpDigits.lean",
+      "line": 136,
+      "declaration": "theorem endpoints_authenticated (fixture : Fin 2) (j : Fin 4) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.NamedSharpDigits.mark_endpoint_bounds",
+      "module": "PscVerif.NamedSharpDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedSharpDigits.lean",
+      "line": 142,
+      "declaration": "theorem mark_endpoint_bounds (fixture : Fin 2) (j : Fin 4) (a : Fin 3)"
+    },
+    {
+      "name": "Psc.NamedSharpDigits.prefixScore_counts",
+      "module": "PscVerif.NamedSharpDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedSharpDigits.lean",
+      "line": 152,
+      "declaration": "theorem prefixScore_counts (weight : Fin 3 → ℤ) (w : Word) :"
+    },
+    {
+      "name": "Psc.NamedSharpDigits.real_bound_of_integer_endpoints",
+      "module": "PscVerif.NamedSharpDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedSharpDigits.lean",
+      "line": 164,
+      "declaration": "theorem real_bound_of_integer_endpoints (x y : ℤ) (lo hi bound : ℤ) (t : ℝ)"
+    },
+    {
+      "name": "Psc.NamedSharpDigits.mark_coordinate_bound",
+      "module": "PscVerif.NamedSharpDigits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedSharpDigits.lean",
+      "line": 180,
+      "declaration": "theorem mark_coordinate_bound (fixture : Fin 2) (letter : Fin 3)"
     },
     {
       "name": "Psc.NamedStableChart.root_bracket",
@@ -23795,6 +24403,8 @@
   "input_digests": {
     "claim_governance.toml": "5642e664f9a79064ffbaf770719cf0acba52accc75fca568711d4b554a08803e",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
+    "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean": "87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025",
+    "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean": "e18e726b6bd1c431f9e28500504edd6ffba157415af20069715b9c8f208f3f9b",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
     "proof/PscVerif/PscVerif/Binomial.lean": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
@@ -23840,13 +24450,18 @@
     "proof/PscVerif/PscVerif/MadicActionRange.lean": "297a4102a077a50b42a955c5afee83f9d5bd6a47e2175c4c4c9d0300005de37d",
     "proof/PscVerif/PscVerif/MadicHaar.lean": "a116c88bb856771b74ff7d5111e797c58216ce49057c99096ed5ddac3c2019a5",
     "proof/PscVerif/PscVerif/MadicResidue.lean": "c7ff8430cb77c335f11478861584baea4129658b35f4fc67bf0c2b8509d50f6d",
+    "proof/PscVerif/PscVerif/NamedArchivedGraph.lean": "cfde4885aa910cd0c20b7a328c9f9e2af6978aa5e980f3739aadd3c37bb112b0",
+    "proof/PscVerif/PscVerif/NamedArchivedGraphRefinement.lean": "590b8a5e07389f8111a347419ec066322a982dea41cf8c471b3b01d5d03b934c",
     "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean": "13ef34fb3eb6b9ede477c4de920af612010aa280409049c185b1afb35a34a585",
     "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean": "e91dfcffed8884f99863591d57d892933fbc7ce0a5de2899955a4a69a99233e6",
+    "proof/PscVerif/PscVerif/NamedInverseDecoder.lean": "cba40f84a103617afa5e3384a6b21b13d9679f87d0fa2224443fdbed916f1293",
     "proof/PscVerif/PscVerif/NamedOverlapBalanceControls.lean": "ccf5d2d4241cbe382878cd18ba34f0ffb195b9d0a7c0c0dc049b9864e84273cb",
     "proof/PscVerif/PscVerif/NamedOverlapHaar.lean": "248fa98da0eaa0cb895530cf7ff55e43f7030e07ddfcd2f92714300b36db4002",
     "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean": "fd2f332087db1b010a7f2d7d8094a993c020e0228b56036d861b017d69057f30",
     "proof/PscVerif/PscVerif/NamedPrefixCompact.lean": "e6cbff61401e8f5109bc0c8654e77eca155e1186286703e76f4d55044ebd220e",
     "proof/PscVerif/PscVerif/NamedProductHaar.lean": "e398c9b19b65cb794034138490453d35bfdc4dab256473318daca75528b9ac14",
+    "proof/PscVerif/PscVerif/NamedSharpBox.lean": "44e2b209963a66409dfdd76b5224876e0d48108469e1fdb0dd32d6dc896093da",
+    "proof/PscVerif/PscVerif/NamedSharpDigits.lean": "f16257b92c77091e2246cc134734a1216b27a3cff54c3b3f70624135eb6a462e",
     "proof/PscVerif/PscVerif/NamedStableChart.lean": "772d6dc46898bc22471db53283dc0404445f1dd28ac0b99ed16232c394336f9b",
     "proof/PscVerif/PscVerif/NamedStableContraction.lean": "13381d9619cd2c574e15614ce0e00609d17e1b153b359ca788ebe73d45bde8fd",
     "proof/PscVerif/PscVerif/OccurrenceAddress.lean": "fd8d4020fc3f720c8a81d23c9811056802c901eec35a48efcbb40954c5a375ad",
@@ -23893,7 +24508,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "d9f5d502695f4382df668bb48a6e6237fae58e3116fa3636b65242058cf50920",
+    "proof/PscVerif/PscVerif.lean": "0e633dafd4608acde60bf0653c35b59be6cd4c07552c80ed297e4904dc3b9a6c",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

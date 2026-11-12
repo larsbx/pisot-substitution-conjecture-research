@@ -1,0 +1,15 @@
+{
+  "accepted": false,
+  "elapsed_seconds": 112.3,
+  "exit_code": 1,
+  "log": "archived-controls-second-failure.log.gz",
+  "log_uncompressed_sha256": "2287836371743329bc055a393974e15b2805aa6757edc3f9a23d67e9292eae65",
+  "module": "PscVerif.ArchivedGraphRefinementControls",
+  "reason": "The single omitted-slot control retained an opaque degree-dependent slot projection after norm_num; eight other theorem declarations emitted no errors, but no module acceptance is credited.",
+  "recorded_at_utc": "2026-11-12T01:48:39.591463+00:00",
+  "repair": "Use definitional change to express the constant slot address as Nat zero before deriving the arithmetic contradiction.",
+  "schema": "c4-lean-development-failure-v1",
+  "scope": "Development failure; subsequent controls require successful compilation and exact-revision canonical acceptance.",
+  "source_sha256": "a532f7f0b3103d4c9a64adef78da276bfea7b434f84c624f75ef39cfaa6129a3",
+  "source_snapshot": "archived-controls-second-source.lean.txt.gz"
+}

@@ -1,0 +1,14 @@
+{
+  "accepted": false,
+  "exit_code": 1,
+  "log": "archived-refinement-initial-controls-failure.log.gz",
+  "log_uncompressed_sha256": "8fe0c32875a3792b703c9c6f5533cf77b4cd7b4b6ff64ac4dbc83e6ceb37a249",
+  "module": "PscVerif.ArchivedGraphRefinementControls",
+  "reason": "Finite numeral/Subsingleton instance inference did not unfold row degree projections in two direct controls. Generic ArchivedGraphRefinement passed in the same attempt; controls did not.",
+  "recorded_at_utc": "2026-11-12T01:40:38.566628+00:00",
+  "repair": "Remove unnecessary singleton-index elimination for a constant slot and provide explicit Fin 2 types at duplicated-row keys.",
+  "schema": "c4-lean-development-failure-v1",
+  "scope": "Development failure only; no theorem-control acceptance is inferred.",
+  "source_sha256": "2cfa3fa54076e7358ce9e46bd8a62556886fa25df9982bd64b81dc921bf01705",
+  "source_snapshot": "archived-refinement-initial-controls-source.lean.txt.gz"
+}

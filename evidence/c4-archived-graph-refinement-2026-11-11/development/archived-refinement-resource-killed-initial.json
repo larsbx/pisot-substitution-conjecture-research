@@ -1,0 +1,13 @@
+{
+  "accepted": false,
+  "elapsed_seconds": 260.3,
+  "exit_code": -9,
+  "log": "archived-refinement-resource-killed-initial.log.gz",
+  "log_uncompressed_sha256": "bddf69b081c76f5747c291546f7e723fba06a649eb1392d598171febefd0757d",
+  "module": "PscVerif.ArchivedGraphRefinement (earlier unsplit development source)",
+  "reason": "Resource-killed without emitted theorem diagnostics while concurrent memory demand was high. This attempt establishes no compilation result. Subsequent split and serialized probes have their own exact source fingerprints.",
+  "recorded_at_utc": "2026-11-12T01:41:12.999487+00:00",
+  "schema": "c4-lean-development-failure-v1",
+  "scope": "Historical environment/resource failure; it does not certify the current split source.",
+  "source_snapshot_available": false
+}
