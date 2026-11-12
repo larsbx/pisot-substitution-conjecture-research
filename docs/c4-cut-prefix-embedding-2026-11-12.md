@@ -6,10 +6,21 @@ is the preceding commit. This increment formalizes the literal embedding
 and uniform approximation step in Section 4 of the
 [written compact counting bridge](c4-nonunit-madic-counting-bridge-2026-11-04.md).
 
-**Acceptance:** the implementation is a candidate until its complete
-isolated Lean build and compiled axiom audit pass at a recorded revision.
-Local source compilation and finite native/oracle replay are separate
-evidence. Independent human review remains pending and does not block
+**Local formal acceptance:** the complete isolated source build and compiled
+axiom audit passed at code revision
+`73a0b6a95539beb1b6712afec0f8412571b41cd3`, tree
+`8233701f593a8ba680356a88c2c6fc8e4cf01df5`. All 2,670 source-named
+proofs were reached, including the 37 new theorems. The audit inspected
+6,589 compiled declarations and found only `propext`, `Classical.choice`,
+and `Quot.sound`. The [local evidence archive](../evidence/c4-cut-prefix-embedding-2026-11-12/README.md)
+preserves the complete log, exact source bindings, all native witnesses,
+independent inspections, and earlier failed or interrupted attempts.
+
+Hosted candidate CI has not run. Local native replay passed with the exact
+lock-matched Mojo compiler; complete local locked-environment provisioning
+failed on a network dependency download and is not claimed successful.
+The later evidence-only commit does not claim a fresh build or hosted run
+of itself. Independent human review remains pending and does not block
 continued research. No governed claim status changes.
 
 ## Result
@@ -110,6 +121,11 @@ the infinite reference word. `strict_cut_labels` separately applies the
 existing `StrictSystem.cut_follow` and `cutPair_ne` theorems to actual
 strict-carrier membership.
 
+The witness ordinal can be reused by different original parent positions
+with the same letter and local digit. Future density counts must count the
+original common cut vectors; no injectivity of the reference witnesses is
+claimed.
+
 The witnesses belong to their respective tiles. The cut is not asserted
 to belong to either tile, or to their intersection, at a finite depth.
 
@@ -186,6 +202,22 @@ The unchanged independent named-chart and prefix-window Quint workflows
 remain selected by the proof changes. Local development caches are not
 substituted for the isolated-source acceptance gate.
 
+## Recorded local checks
+
+The full isolated build and compiled audit passed with the worktree clean
+at the code revision above. Independent inspection matched all 37 explicit
+theorems and seven source definitions to their compiled records, including
+the complete `strict_cut_labels` specialization. The three new modules own
+52 compiled constants, including generated helpers.
+
+The full native packet and optimized-mode oracle agree record by record;
+eight Python tests passed with native comparison enabled and zero skips.
+Native tests rejected 19 mutations. The oracle exercised 18 refusals and
+one finite-residue sanity control. At the same code head/tree, the existing
+named-chart Quint suite passed 22 tests and rejected 10 mutations, and the
+prefix-window suite passed 19 tests and rejected nine mutations. These
+bounded checks retain their own finite scope.
+
 ## Remaining machine-checked counting obligation
 
 This closes the literal and uniform-proximity step of the written M1
@@ -197,6 +229,12 @@ argument at the stated scope. The next analytic assembly still needs:
    normalization and covolume.
 3. The literal strict-cut density lower bound and the limit/outer-cover
    argument deriving positive product-Haar measure.
+
+The [compact-cover follow-on plan](../evidence/c4-cut-prefix-embedding-2026-11-12/compact-followon-plan.md)
+states the next exact target and identifies the pinned Mathlib route. It
+uses compact tiles and a product neighborhood basis; a separate precompact
+bound on the moving cut points is unnecessary for that proposed transfer.
+The plan is not an additional implemented Lean theorem.
 
 Those conclusions are not obtained from finite residue agreement,
 physical interval length, nonempty compact overlap or the contraction

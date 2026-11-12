@@ -1,0 +1,87 @@
+{
+  "claim_status_changes": 0,
+  "code_revision": {
+    "base": "9a1357ed5dae3b4502d29c34396d0e9403ccca75",
+    "commit": "73a0b6a95539beb1b6712afec0f8412571b41cd3",
+    "tracked_source_worktree_clean_before_and_after_required_gate": true,
+    "tree": "8233701f593a8ba680356a88c2c6fc8e4cf01df5"
+  },
+  "hosted_ci": {
+    "local_evidence_is_not_hosted_acceptance": true,
+    "status": "not_run"
+  },
+  "independent_human_review": "pending; separate validation debt",
+  "native_and_oracle": {
+    "balanced_cuts": 272,
+    "complete_locked_environment_provisioned": false,
+    "distinct_letter_cuts": 51,
+    "full_packet": "packet.json.gz",
+    "marks": 3220,
+    "native_refusals": 19,
+    "oracle_refusals": 18,
+    "oracle_sanity_controls": 1,
+    "packet_sha256": "440127dd5d0617cc1f3b75a960db4fbde7e7c31cc931146a1635637a967b030e",
+    "pytest_passed": 8,
+    "pytest_skipped": 0,
+    "receipt": "native-local-receipt.json",
+    "residue_witnesses": 21028,
+    "status": "passed at declared finite scope"
+  },
+  "post_evidence_checks": {
+    "governance": "passed;terminology/claims/coverage/promotion/numerics/consistency",
+    "ledger": "passed;32generatedsurfacescurrent",
+    "prepared_pr_body_policy": "passed;pr-body-policy-check.json",
+    "proof_bank": "passed;126claims/2670namedproofs/411sourceopenings"
+  },
+  "preserved_nonacceptance": [
+    "failed-isolated-tmpfs.log.gz",
+    "failed-chart-quint-stale-head/quint-receipt.json",
+    "development-attempts.json"
+  ],
+  "quint": {
+    "both_exact_head_and_tree": true,
+    "named_chart": {
+      "mutations_rejected": 10,
+      "receipt": "chart-quint/quint-receipt.json",
+      "tests_passed": 22
+    },
+    "prefix_window": {
+      "mutations_rejected": 9,
+      "receipt": "window-quint/quint-receipt.json",
+      "tests_passed": 19
+    }
+  },
+  "remaining_formal_obligations": [
+    "compact open-neighborhood transfer",
+    "fixed-origin regular-cylinder lattice count and normalization",
+    "original strict-cut density and positive-Haar-measure assembly"
+  ],
+  "required_isolated_lean": {
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "command": "./tools/check_lean.sh",
+    "exit_code": 0,
+    "extracted_new_module_records": "compiled-new-declarations.log.gz",
+    "full_log": "isolated-lean.log.gz",
+    "global_compiled_constants": 6589,
+    "global_compiled_theorem_constants": 4819,
+    "governed_claims": 126,
+    "independent_inspection": "compiled-audit-inspection.json",
+    "lean_commit": "6a10ac8c22beadecabdbb0919c2b50214762f91d",
+    "lean_version": "4.34.0-rc2",
+    "local_compiled_dependency_artifacts_used": false,
+    "new_owned_compiled_constants": 52,
+    "new_source_definitions": 7,
+    "new_source_theorems": 37,
+    "source_named_proofs": 2670,
+    "source_statement_openings": 411,
+    "status": "passed",
+    "temporary_filesystem": "workspace-backed TMPDIR; unchanged gate",
+    "uncompressed_log_sha256": "a6b1cfd63bc8750830c9533e5a204e1326c8e3958fd386d258dd70a3a6da5a43",
+    "upstream_source_hash_dependency_cache_used": true
+  },
+  "schema": "c4-cut-prefix-local-verification-v1"
+}

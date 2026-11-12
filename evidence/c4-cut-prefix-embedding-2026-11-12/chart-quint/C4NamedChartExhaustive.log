@@ -1,0 +1,10 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+  C4NamedChartExhaustive
+    ok matrixDomainCountTest passed 1 test(s)
+    ok exhaustiveRowBoundTest passed 1 test(s)
+    ok exhaustiveRationalContractionTest passed 1 test(s)
+    ok exactSignedExtremizerTest passed 1 test(s)
+    ok nonvacuousBoundaryTest passed 1 test(s)
+
+  5 passing (516ms)

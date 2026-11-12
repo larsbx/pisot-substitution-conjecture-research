@@ -1,0 +1,26 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+  C4StablePrefixAdversarial
+    1) invariantRadiusRefusedTest failed after 1 test(s)
+
+  1 failed
+
+  1) invariantRadiusRefusedTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-c4-stable-prefix-snapshot-rwn27f30/skip-invariant-radius.qnt:148:36
+        148:   run invariantRadiusRefusedTest = init.expect(all {
+                                                ^^^^^^^^^^^^^^^^^
+        149:     stepInequality(2, 1, 1, 2, 2), 2 > 0,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        150:     not(radiusSafe(2, 1, 1, 0)), not(parameters(2, 1, 1, 0)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        151:     not(selfPremises(2, 1, 1, 0, 2)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        152:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f7 --match=invariantRadiusRefusedTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-c4-stable-prefix-snapshot-rwn27f30/skip-invariant-radius.qnt
+error: Tests failed

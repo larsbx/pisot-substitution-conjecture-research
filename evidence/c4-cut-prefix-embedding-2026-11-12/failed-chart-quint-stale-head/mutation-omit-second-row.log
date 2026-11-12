@@ -1,0 +1,30 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+  C4NamedChartAdversarial
+    1) secondRowRefusedTest failed after 1 test(s)
+
+  1 failed
+
+  1) secondRowRefusedTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-c4-named-chart-snapshot-zcfkngiy/omit-second-row.qnt:166:30
+        166:   run secondRowRefusedTest = init.expect({
+                                          ^^^^^^^^^^^^^
+        167:     val m = matrix(0, 0, 6, 6)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        168:     all {
+             ^^^^^^^^^
+        169:       row0(m) == 0, 8 * row1(m) > 7 * 10,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        170:       not(admitted(m, 10, 7, 8)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        171:     }
+             ^^^^^
+        172:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f7 --match=secondRowRefusedTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-c4-named-chart-snapshot-zcfkngiy/omit-second-row.qnt
+error: Tests failed
