@@ -3,7 +3,7 @@
 from std.testing import assert_equal, assert_true
 from finite_exact.checked_int import checked_add
 from mojo_smoke.claims import require_contract
-from psc.defect_degree import first_defect_degree, is_degree3
+from psc.defect_degree import first_defect_degree, is_degree3, n4
 from psc.words import Pair, k3, n2, n3
 from substitution_dynamics import words as sd
 
@@ -89,7 +89,40 @@ def test_degree_four_refusal() raises:
     assert_true(refused)
 
 
+def test_short_words_against_position_masks() raises:
+    # Every ternary word through length six and every position subset.
+    var word_count = 1
+    for length in range(7):
+        for word_code in range(word_count):
+            var code = word_code
+            var word = List[Int]()
+            for _ in range(length):
+                word.append(code % 3)
+                code //= 3
+            var pairs = List[Int](length=9, fill=0)
+            var triples = List[Int](length=27, fill=0)
+            var quadruples = List[Int](length=81, fill=0)
+            for mask in range(1 << length):
+                var slot = 0
+                var degree = 0
+                for i in range(length):
+                    if (mask & (1 << i)) != 0:
+                        slot = 3 * slot + word[i]
+                        degree += 1
+                if degree == 2:
+                    pairs[slot] += 1
+                elif degree == 3:
+                    triples[slot] += 1
+                elif degree == 4:
+                    quadruples[slot] += 1
+            assert_equal(n2(word), pairs)
+            assert_equal(n3(word), triples)
+            assert_equal(n4(word), quadruples)
+        word_count *= 3
+
+
 def main() raises:
+    test_short_words_against_position_masks()
     test_dimensions()
     test_prefix_addition_boundary()
     test_triple_boundary()
