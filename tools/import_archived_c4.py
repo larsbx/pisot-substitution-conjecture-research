@@ -182,7 +182,7 @@ namespace ArchivedC4.Fixture{f}
 
 open Psc.ArchivedGraphRefinement Psc.OccurrenceGraphBinding
 open Psc.OccurrenceInverse (iterateImages)
-open Psc.NamedStableChart (substitution)
+open Psc.NamedPrefixCompact (substitution)
 
 def certificate : PscVerif.OverlapContraction.Certificate {count} :=
   toCertificate rows {NUMERATORS[f]} fun i =>
