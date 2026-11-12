@@ -13127,6 +13127,126 @@
       "declaration": "theorem strictPackets_conservative_source_ancestor (r : ℕ) (p : State (strictPackets f))"
     },
     {
+      "name": "Psc.NamedPositiveOverlap.open_add_tube",
+      "module": "PscVerif.NamedPositiveOverlap",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean",
+      "line": 20,
+      "declaration": "private theorem open_add_tube {G : Type*} [TopologicalSpace G] [AddMonoid G]"
+    },
+    {
+      "name": "Psc.NamedPositiveOverlap.density_le_of_eventually_packing",
+      "module": "PscVerif.NamedPositiveOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean",
+      "line": 37,
+      "declaration": "theorem density_le_of_eventually_packing {X : ℕ → ℝ} {a b W : ℝ}"
+    },
+    {
+      "name": "Psc.NamedPositiveOverlap.source_length_pos",
+      "module": "PscVerif.NamedPositiveOverlap",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean",
+      "line": 46,
+      "declaration": "private theorem source_length_pos {w : Word} (hw : w ≠ []) :"
+    },
+    {
+      "name": "Psc.NamedPositiveOverlap.strip_tendsto",
+      "module": "PscVerif.NamedPositiveOverlap",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean",
+      "line": 55,
+      "declaration": "private theorem strip_tendsto (t : ℝ) (ht : 0 < t) :"
+    },
+    {
+      "name": "Psc.NamedPositiveOverlap.carrier_injective",
+      "module": "PscVerif.NamedPositiveOverlap",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean",
+      "line": 61,
+      "declaration": "private theorem carrier_injective (f : Fin 2) : Function.Injective (M f) :="
+    },
+    {
+      "name": "Psc.NamedPositiveOverlap.carrier_secondCountable",
+      "module": "PscVerif.NamedPositiveOverlap",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean",
+      "line": 65,
+      "declaration": "private theorem carrier_secondCountable (f : Fin 2) : SecondCountableTopology (H f) := by"
+    },
+    {
+      "name": "Psc.NamedPositiveOverlap.exists_open_lower_bound",
+      "module": "PscVerif.NamedPositiveOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean",
+      "line": 78,
+      "declaration": "theorem exists_open_lower_bound {C : Finset WordPair}"
+    },
+    {
+      "name": "Psc.NamedPositiveOverlap.exists_overlap_lower_bound_of_outerRegular",
+      "module": "PscVerif.NamedPositiveOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean",
+      "line": 113,
+      "declaration": "theorem exists_overlap_lower_bound_of_outerRegular"
+    },
+    {
+      "name": "Psc.NamedPositiveOverlap.internalMeasure_outerRegular",
+      "module": "PscVerif.NamedPositiveOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean",
+      "line": 130,
+      "declaration": "theorem internalMeasure_outerRegular : (internalMeasure f ν).OuterRegular := by"
+    },
+    {
+      "name": "Psc.NamedPositiveOverlap.exists_overlap_lower_bound",
+      "module": "PscVerif.NamedPositiveOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean",
+      "line": 142,
+      "declaration": "theorem exists_overlap_lower_bound {C : Finset WordPair}"
+    },
+    {
+      "name": "Psc.NamedPositiveOverlap.carrierOverlap_measure_pos",
+      "module": "PscVerif.NamedPositiveOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean",
+      "line": 152,
+      "declaration": "theorem carrierOverlap_measure_pos {C : Finset WordPair}"
+    },
+    {
+      "name": "Psc.NamedPositiveOverlapControls.bounded_strip_counterexample",
+      "module": "PscVerif.NamedPositiveOverlapControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPositiveOverlapControls.lean",
+      "line": 12,
+      "declaration": "theorem bounded_strip_counterexample :"
+    },
+    {
+      "name": "Psc.NamedPositiveOverlapControls.moving_width_counterexample",
+      "module": "PscVerif.NamedPositiveOverlapControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPositiveOverlapControls.lean",
+      "line": 18,
+      "declaration": "theorem moving_width_counterexample :"
+    },
+    {
+      "name": "Psc.NamedPositiveOverlapControls.missing_containment_counterexample",
+      "module": "PscVerif.NamedPositiveOverlapControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPositiveOverlapControls.lean",
+      "line": 26,
+      "declaration": "theorem missing_containment_counterexample :"
+    },
+    {
+      "name": "Psc.NamedPositiveOverlapControls.one_open_superset_counterexample",
+      "module": "PscVerif.NamedPositiveOverlapControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedPositiveOverlapControls.lean",
+      "line": 36,
+      "declaration": "theorem one_open_superset_counterexample :"
+    },
+    {
       "name": "Psc.NamedPrefixCompact.incidence_eq",
       "module": "PscVerif.NamedPrefixCompact",
       "private": false,
@@ -26220,6 +26340,8 @@
     "proof/PscVerif/PscVerif/NamedOverlapBalanceControls.lean": "ccf5d2d4241cbe382878cd18ba34f0ffb195b9d0a7c0c0dc049b9864e84273cb",
     "proof/PscVerif/PscVerif/NamedOverlapHaar.lean": "248fa98da0eaa0cb895530cf7ff55e43f7030e07ddfcd2f92714300b36db4002",
     "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean": "fd2f332087db1b010a7f2d7d8094a993c020e0228b56036d861b017d69057f30",
+    "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean": "e5afb422378ef19867d1cb11ac428802f596b42993feff9903e5c336099a846e",
+    "proof/PscVerif/PscVerif/NamedPositiveOverlapControls.lean": "bf67f3dc80ad86c2a6bd3d16f8d7bff9ccd61f76103fbded3bb1b54ec89a39fa",
     "proof/PscVerif/PscVerif/NamedPrefixCompact.lean": "e6cbff61401e8f5109bc0c8654e77eca155e1186286703e76f4d55044ebd220e",
     "proof/PscVerif/PscVerif/NamedProductHaar.lean": "e398c9b19b65cb794034138490453d35bfdc4dab256473318daca75528b9ac14",
     "proof/PscVerif/PscVerif/NamedSharpBox.lean": "44e2b209963a66409dfdd76b5224876e0d48108469e1fdb0dd32d6dc896093da",
@@ -26271,7 +26393,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "f5d6b5a7c1f1767058273ffd892495df93245c18c2247b8206b408bf0d3850cf",
+    "proof/PscVerif/PscVerif.lean": "859034df397460800f9ac04ab60c56c0cfc6e65b90eaad46e504e488cba09602",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

@@ -97,6 +97,8 @@ import PscVerif.FundamentalCellPacking
 import PscVerif.NamedFullChart
 import PscVerif.NamedCellBounds
 import PscVerif.NamedFundamentalCell
+import PscVerif.NamedPositiveOverlap
+import PscVerif.NamedPositiveOverlapControls
 import PscVerif.MadicFundamentalCellControls
 import PscVerif.CompactNeighborhoodControls
 import PscVerif.NamedGeometricEnclosure
