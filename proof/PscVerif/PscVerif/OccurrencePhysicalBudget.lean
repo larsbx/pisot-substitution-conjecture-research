@@ -23,6 +23,8 @@ open Psc.OccurrenceInverse
 open PscVerif.OccurrenceMassCounts PscVerif.PhysicalMass
 open scoped BigOperators
 
+attribute [local instance] Classical.propDecidable
+
 /-- Ordered packets retain their full integral offset and track order. -/
 abbrev State (S : Finset Packet) := {p : Packet // p ∈ S}
 

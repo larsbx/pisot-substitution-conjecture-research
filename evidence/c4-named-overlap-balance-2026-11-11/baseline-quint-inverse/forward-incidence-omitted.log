@@ -1,0 +1,31 @@
+
+  C4InverseOccurrence
+    1) literalInverseIdentityTest failed after 1 test(s)
+
+  1 failed
+
+  1) literalInverseIdentityTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-c4-inverse-occurrence-d4m1ygpc/forward-incidence-omitted.qnt:107:36
+        107:   run literalInverseIdentityTest = init.expect(binaryImages.forall(u => binaryImages.forall(v => {
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        108:     val s = List(u, v, List(0, 0))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        109:     0.to(1).forall(a => 0.to(1).forall(b => offsets.forall(x => offsets.forall(y =>
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        110:       0.to(1).forall(i => 0.to(1).forall(j => {
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        111:         val p = (a, b, (x, y, 0))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        112:         incoming(s, p, child(s, p, i, j), i, j)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        113:       }))))))
+             ^^^^^^^^^^^^^
+        114:   })))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f6 --match=literalInverseIdentityTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-c4-inverse-occurrence-d4m1ygpc/forward-incidence-omitted.qnt
+error: Tests failed

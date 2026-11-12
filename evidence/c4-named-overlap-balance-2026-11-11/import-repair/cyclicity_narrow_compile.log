@@ -1,0 +1,24 @@
+Waiting for the single Lean development compiler lock.
+Acquired the single Lean development compiler lock.
+[1/2] current development object PscVerif.ConcentrationAlgebra
+[2/2] compiling actual source PscVerif.Cyclicity
+/workspace/scratch/2880dde43f60/psc/proof/PscVerif/PscVerif/Cyclicity.lean:112:8: error(lean.unknownIdentifier): Unknown identifier `charpoly_natDegree_eq_dim`
+/workspace/scratch/2880dde43f60/psc/proof/PscVerif/PscVerif/Cyclicity.lean:218:27: error(lean.unknownIdentifier): Unknown identifier `charpoly_monic`
+/workspace/scratch/2880dde43f60/psc/proof/PscVerif/PscVerif/Cyclicity.lean:218:54: error(lean.unknownIdentifier): Unknown identifier `charpoly_natDegree_eq_dim`
+/workspace/scratch/2880dde43f60/psc/proof/PscVerif/PscVerif/Cyclicity.lean:215:69: error: unsolved goals
+F : Type u_1
+inst✝ : Field F
+A : Matrix (Fin 3) (Fin 3) F
+hA : Irreducible A.charpoly
+r : F
+hr : eval r A.charpoly = 0
+this : ↑A.charpoly.natDegree = 1
+⊢ False
+/workspace/scratch/2880dde43f60/psc/proof/PscVerif/PscVerif/Cyclicity.lean:242:2: error: unsolved goals
+case hdeg
+F : Type u_1
+inst✝ : Field F
+M : Matrix (Fin 3) (Fin 3) F
+hM : Irreducible M.charpoly
+⊢ 1 ≤ (wedge2 M).charpoly.natDegree ∧ (wedge2 M).charpoly.natDegree ≤ 3
+[2/2] result 1, 54.1s

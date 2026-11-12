@@ -1,0 +1,5 @@
+Waiting for the single Lean development compiler lock.
+Acquired the single Lean development compiler lock.
+[1/42] current development object PscVerif.MadicResidue
+[2/42] current development object PscVerif.MadicActionRange
+[3/42] compiling actual source PscVerif.MadicHaar

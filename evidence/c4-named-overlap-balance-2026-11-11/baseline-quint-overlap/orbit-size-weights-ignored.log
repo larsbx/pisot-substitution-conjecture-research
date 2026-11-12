@@ -1,0 +1,39 @@
+
+  C4OverlapMass
+    1) mixedConservativeWeightedTest failed after 1 test(s)
+
+  1 failed
+
+  1) mixedConservativeWeightedTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-c4-overlap-mass-w2dcqveq/orbit-size-weights-ignored.qnt:255:39
+        255:   run mixedConservativeWeightedTest = init.expect({
+                                                   ^^^^^^^^^^^^^
+        256:     val f = List(List(0, 1), List(0, 1))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        257:     val t = List(List(0, 0), List(2, 1))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        258:     val h = List(1, 1)
+             ^^^^^^^^^^^^^^^^^^^^^^
+        259:     val m = List(2, 1)
+             ^^^^^^^^^^^^^^^^^^^^^^
+        260:     all {
+             ^^^^^^^^^
+        261:       countCorrespondence(f, t, m), weighted(h, m) == List(2, 1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        262:       forwardDeficit(f, h, 1) == List(0, 0),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        263:       inverseDeficit(t, weighted(h, m), 1) == List(0, 0),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        264:       inverseDeficit(t, h, 1) == List(-1, 0),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        265:     }
+             ^^^^^
+        266:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f6 --match=mixedConservativeWeightedTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-c4-overlap-mass-w2dcqveq/orbit-size-weights-ignored.qnt
+error: Tests failed

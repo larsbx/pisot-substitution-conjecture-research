@@ -1,0 +1,43 @@
+
+  C4OverlapMass
+    1) occurrenceMultiplicityTest failed after 1 test(s)
+
+  1 failed
+
+  1) occurrenceMultiplicityTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-c4-overlap-mass-w2dcqveq/equal-packet-occurrences-deduplicated.qnt:144:36
+        144:   run occurrenceMultiplicityTest = init.expect({
+                                                ^^^^^^^^^^^^^
+        145:     val s = List(List(0, 0), List(0, 0), List(0, 0))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        146:     val ls = List(1, 1, 1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        147:     val p = (0, 1, (0, 0, 0))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        148:     val cs = children(s, p)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        149:     val distinct = cs.foldl(Set(), (out, c) => out.union(Set(c)))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        150:     all {
+             ^^^^^^^^^
+        151:       cs.length() == 4, cs[0] == cs[3], distinct.size() == 3,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        152:       cs.foldl(List(), (out, c) => out.append(packetMass(c, ls))) == List(1, 0, 0, 1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        153:       sumMass(cs, ls) == 2,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        154:       distinct.fold(0, (out, c) => out + packetMass(c, ls)) == 1,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        155:       sumMass(cs, ls) == 2 * packetMass(p, ls),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        156:     }
+             ^^^^^
+        157:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f6 --match=occurrenceMultiplicityTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-c4-overlap-mass-w2dcqveq/equal-packet-occurrences-deduplicated.qnt
+error: Tests failed

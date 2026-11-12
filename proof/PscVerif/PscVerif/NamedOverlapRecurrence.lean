@@ -106,7 +106,11 @@ theorem subinvariance (r : ℕ) (S : Finset Packet)
     (fun p => Psc.NamedProductHaar.overlap_measure_finite f ν p.val)
     (fun p => (overlap_eq_iUnion_rowPiece f r S represented p).le)
     (fun p e => (scaled_measure_rowPiece f ν (2 * r) S p e).le) p
-  simpa only [overlapMass, row_sum_eq_action] using recurrence
+  change beta ^ (2 * r) * overlapMass f ν S p ≤
+    ∑ e : Row (iterateImages (substitution f) (2 * r)) S p,
+      overlapMass f ν S e.1 at recurrence
+  rw [row_sum_eq_action] at recurrence
+  exact recurrence
 
 /-- Physical positivity comes from the literal interior strip, independently
 of whether a compact overlap is nonempty or has positive measure. -/

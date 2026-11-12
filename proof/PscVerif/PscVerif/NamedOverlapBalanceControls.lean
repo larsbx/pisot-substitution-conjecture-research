@@ -20,18 +20,22 @@ open Psc.OccurrenceMass Psc.OccurrencePhysicalBudget
 open PscVerif.OccurrenceMassCounts PscVerif.PhysicalMass
 open scoped BigOperators
 
+attribute [local instance] Classical.propDecidable
+
 /-- The identity substitution power keeps the complete packet, including
 its integral displacement. -/
 theorem zero_power_digitPacket (s : Fin 3 → Word) (p : Packet)
     (i : Fin ((iterateImages s 0) p.top).length)
     (j : Fin ((iterateImages s 0) p.bottom).length) :
     digitPacket (iterateImages s 0) p i j = p := by
+  change Fin 1 at i j
   have hi : i = 0 := Subsingleton.elim _ _
   have hj : j = 0 := Subsingleton.elim _ _
   subst i
   subst j
   simp only [digitPacket, incidenceZ_iterateImages, pow_zero, Matrix.one_mulVec]
-  apply packet_ext <;> simp [iterateImages, markAt, residual, parikhZ]
+  apply packet_ext <;>
+    simp [iterateImages, markAt, Psc.OccurrenceTransport.residual, parikhZ]
 
 /-- Zero block power is the identity count matrix on any represented domain.
 It cannot manufacture a strict physical loss. -/
@@ -43,7 +47,11 @@ theorem zero_power_inverseCounts (s : Fin 3 → Word) (S : Finset Packet)
   simp only [zero_power_digitPacket]
   by_cases h : p = u
   · subst p
-    simp [Positions, iterateImages]
+    have hcard :
+        (Finset.univ : Finset (Positions (iterateImages s 0) u.val)).card = 1 := by
+      rw [Finset.card_univ, Fintype.card_prod]
+      simp [iterateImages]
+    simpa [hcard]
   · have hval : u.val ≠ p.val := fun he => h (Subtype.ext he.symm)
     simp [h, hval]
 
@@ -64,15 +72,17 @@ def repeatedForward (i : Fin 2) : ForwardOccurrence repeatedImages diagonal diag
   packet_eq := by
     fin_cases i <;>
       apply packet_ext <;>
-      simp [digitPacket, repeatedImages, diagonal, markAt, residual, parikhZ]
+      simp [digitPacket, repeatedImages, diagonal, markAt,
+        Psc.OccurrenceTransport.residual, parikhZ]
 
 def repeatedInverse (i : Fin 2) : InverseOccurrence repeatedImages diagonal diagonal :=
   (repeatedForward i).toInverse
 
 theorem repeatedInverse_injective : Function.Injective repeatedInverse := by
   intro i j hij
+  apply Fin.ext
   have h := congrArg (fun e : InverseOccurrence repeatedImages diagonal diagonal =>
-    e.toForward.topIndex) hij
+    e.toForward.topIndex.val) hij
   simpa [repeatedInverse, repeatedForward] using h
 
 /-- Deduplicating by the endpoint would change this genuine literal count. -/

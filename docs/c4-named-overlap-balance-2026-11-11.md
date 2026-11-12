@@ -149,6 +149,23 @@ regression evidence for reused contracts, not a decoder of the newly
 constructed noncomputable domain. The direct Lean proof is the binding
 between literal occurrences and the named Haar measures.
 
+The [archived baseline receipts](../evidence/c4-named-overlap-balance-2026-11-11/README.md)
+retain the successful native and Quint runs, the failed first Quint attempt,
+and the distinction between development imports and canonical acceptance.
+The new local probe initially stalled before any new declaration because
+the upstream `Cyclicity` module imported all of Mathlib. The accompanying
+build-layer repair replaces that blanket import with the specific modules
+used by its unchanged theorem statements and proof bodies. It does not
+weaken a mathematical hypothesis or replace a production proof dependency.
+
+All 39 new declarations subsequently passed pinned, source-matched local
+compilation: eight generic budget proofs, nine direct controls and 22 named
+Haar recurrence proofs. The first published head `6472eab3` failed its
+hosted builds on missing theorem-statement decidability; those raw logs and
+failed receipts remain preserved. Local success on the corrected source
+does not turn that failed revision into an accepted one. The implementation
+PR records the subsequent exact-head full-source and axiom-audit result.
+
 ## Negative controls
 
 - Repeated occurrences cannot be replaced by endpoint support. Deleting a
@@ -167,12 +184,64 @@ between literal occurrences and the named Haar measures.
 
 ## Non-claims / remaining gaps
 
-The next actionable certificate obligation is to bind an executable finite
-**nondiagonal domain** to these exact literal geometric rows, then produce
-actual positive losses reaching the required strict roots, or exclude the
-remaining conservative source components by an appropriate exact certificate. The accepted
-historical graph data cannot be substituted until that domain/row refinement
-has been proved.
+The next actionable obligation is to bind an executable finite
+**nondiagonal domain** to these exact literal geometric rows. Existing
+positive integer potentials already offer a direct contraction route for
+the named roots; a new numerical source-loss search is unnecessary for that
+route. The archived data cannot be substituted until its domain and row
+refinement has been proved.
+
+### Reuse the existing named potentials after refinement
+
+The [original two-fixture certificate](c4-pair-overlap-graph-2026-11-05.md)
+and its [receipt](../evidence/c4-pair-overlap-graph-2026-11-05/receipt.json)
+retain these exact bounds:
+
+| Fixture | Swap-normalized states | Literal occurrence slots | Rate |
+| --- | ---: | ---: | ---: |
+| `1/021/001` | 7,150 | 34,826 | `99/20` |
+| `1/012/001` | 7,083 | 34,853 | `101/20` |
+
+Their strictly positive integer weights satisfy `T w <= rate * w`, and
+the chart certificate gives `103/20 < beta^2`. The original actual-box
+target is `Q = [-16,16] x [-8,8]`, using the complete block-twelve digit
+bound `(23/5,14/5)`. The later
+[18-source common-attractor variant](c4-pair-overlap-class-2026-11-05.md)
+uses `Q_all = [-24,24] x [-12,12]`, larger graphs, and common rate `102/20`.
+These are different preserved certificates; their graph hashes, domains
+and potentials must not be mixed. This paragraph records existing evidence,
+not a new census or replay.
+
+The concrete formal refinement has four parts:
+
+1. Bind the complete sharp digit bound to the literal named block words
+   and authenticated chart, then derive that box for the actual compact
+   tiles using their block-twelve equation.
+2. Prove every geometrically excluded inverse candidate has empty actual
+   overlap. This supplies `RepresentedAt` on the ordered lift of the
+   decoded rooted graph.
+3. Construct `OccurrenceGraphBinding.Row.Exact` with both actual positions
+   and swapped-target orientation. Transport its repeated-target sums to
+   `OccurrencePhysicalBudget.row_sum_eq_action` and lift the potentials to
+   both orientations.
+4. Bind the exact integer checker to those rows. The new authentic
+   `NamedOverlapRecurrence.subinvariance` can then feed the existing
+   `OverlapContraction.zero_of_subinvariant` or `Certificate.null_of_cover`.
+
+This route targets the three zero-offset distinct-letter roots and their
+represented inverse closure. Those rooted domains are not identified with
+all of `strictPackets`. A theorem covering the whole latter domain needs
+an additional coverage argument. Its current radius is eight times a sum
+of all digit norms, and its coordinate budgets use `Classical.choose`;
+it is a mathematical finite set, not an executable inventory with the
+archived sharp bounds.
+
+The [twelve-source physical-loss certificate](c4-physical-overlap-mass-2026-11-07.md)
+belongs to substitutions with images `11`, a permutation of `012`, and
+`01` or `10`, hence a different incidence matrix. Its numerical deficits
+and losing source components cannot be imported for the present fixtures.
+
+### Scope that remains open
 
 The full domain is not a useful whole-domain source-loss target. It retains
 the three diagonal packets. Every positive physical forward child of a

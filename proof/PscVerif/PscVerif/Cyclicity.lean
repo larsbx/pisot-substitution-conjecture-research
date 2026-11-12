@@ -60,7 +60,13 @@ This module discharges the hypothesis `hcyc` of
   proves irreducibility of `χ_{Λ²M}` over any field; `irreducible_wedge2` is
   its `ℚ` instance.
 -/
-import Mathlib
+import Mathlib.Algebra.Polynomial.SpecificDegree
+import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
+import Mathlib.LinearAlgebra.Matrix.Charpoly.Coeff
+import Mathlib.Tactic.ComputeDegree
+import Mathlib.Tactic.FinCases
+import Mathlib.Tactic.NormNum
+import Mathlib.Tactic.Ring
 import PscVerif.ConcentrationAlgebra
 
 set_option linter.unusedSectionVars false
