@@ -166,6 +166,14 @@ failed receipts remain preserved. Local success on the corrected source
 does not turn that failed revision into an accepted one. The implementation
 PR records the subsequent exact-head full-source and axiom-audit result.
 
+The next candidate, `ed8251b9`, compiled all three new modules in the hosted
+full-bank build, but exposed missing transitive imports in the older
+`ParikhRank` and `DescendantSpan` consumers. Their
+[minimal import repair](../evidence/c4-named-overlap-consumer-imports-2026-11-12/README.md)
+adds the two Mathlib modules at their actual use sites and preserves every
+theorem statement and proof body. That failed full-bank receipt is retained
+separately; final acceptance still belongs to the corrected published head.
+
 ## Negative controls
 
 - Repeated occurrences cannot be replaced by endpoint support. Deleting a

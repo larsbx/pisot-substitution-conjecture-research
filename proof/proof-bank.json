@@ -6427,7 +6427,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 44,
+      "line": 45,
       "declaration": "theorem parikhQ_nil : parikhQ ([] : List α) = 0 := by"
     },
     {
@@ -6435,7 +6435,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 49,
+      "line": 50,
       "declaration": "theorem parikhQ_append (u v : List α) :"
     },
     {
@@ -6443,7 +6443,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 55,
+      "line": 56,
       "declaration": "theorem parikhQ_flatten (ws : List (List α)) :"
     },
     {
@@ -6451,7 +6451,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 61,
+      "line": 62,
       "declaration": "theorem parikhQ_subst (s : α → List α) (w : List α) :"
     },
     {
@@ -6459,7 +6459,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 68,
+      "line": 69,
       "declaration": "theorem parikhQ_iterate_subst (s : α → List α) (n : ℕ) (w : List α) :"
     },
     {
@@ -6467,7 +6467,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 77,
+      "line": 78,
       "declaration": "theorem parikhQ_ne_zero {w : List α} (hw : w ≠ []) : parikhQ w ≠ 0 := by"
     },
     {
@@ -6475,7 +6475,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 88,
+      "line": 89,
       "declaration": "theorem mass_sum_descR (s : α → List α) (n : ℕ)"
     },
     {
@@ -6483,7 +6483,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 108,
+      "line": 109,
       "declaration": "theorem descR_empty_succ (s : α → List α) (n : ℕ) :"
     },
     {
@@ -6491,7 +6491,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 126,
+      "line": 127,
       "declaration": "theorem mass_mem_windowSpan (s : Fin 3 → List (Fin 3)) (n : ℕ)"
     },
     {
@@ -6499,7 +6499,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 132,
+      "line": 133,
       "declaration": "theorem iterate_mass_mem_windowSpan (s : Fin 3 → List (Fin 3)) (n : ℕ)"
     },
     {
@@ -6507,7 +6507,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 144,
+      "line": 145,
       "declaration": "theorem windowSpan_eq_top (s : Fin 3 → List (Fin 3))"
     },
     {
@@ -6515,7 +6515,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 176,
+      "line": 177,
       "declaration": "theorem row_eq_zero_of_window (s : Fin 3 → List (Fin 3))"
     },
     {
@@ -6523,7 +6523,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 193,
+      "line": 194,
       "declaration": "theorem exists_detecting_occurrence (s : Fin 3 → List (Fin 3))"
     },
     {
@@ -6531,7 +6531,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 210,
+      "line": 211,
       "declaration": "theorem exists_detecting_occurrence_le_two (s : Fin 3 → List (Fin 3))"
     },
     {
@@ -6539,7 +6539,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 229,
+      "line": 230,
       "declaration": "theorem sharp_depth_one :"
     },
     {
@@ -6547,7 +6547,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 233,
+      "line": 234,
       "declaration": "theorem sharp_depth_two :"
     },
     {
@@ -6555,7 +6555,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 238,
+      "line": 239,
       "declaration": "theorem sharp_first_two_levels_vanish :"
     },
     {
@@ -6563,7 +6563,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 244,
+      "line": 245,
       "declaration": "theorem sharp_depth_two_ordinal_two :"
     },
     {
@@ -6571,7 +6571,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 251,
+      "line": 252,
       "declaration": "theorem sharp_pruned_level_vanishes :"
     },
     {
@@ -6579,7 +6579,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 258,
+      "line": 259,
       "declaration": "theorem sharp_multiplicity_matters :"
     },
     {
@@ -6587,7 +6587,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 271,
+      "line": 272,
       "declaration": "theorem reducible_depth_one :"
     },
     {
@@ -6595,7 +6595,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 276,
+      "line": 277,
       "declaration": "theorem reducible_depth_two :"
     },
     {
@@ -6603,7 +6603,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 284,
+      "line": 285,
       "declaration": "theorem reducible_three_levels_vanish :"
     },
     {
@@ -6611,7 +6611,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 295,
+      "line": 296,
       "declaration": "theorem empty_window_vanishes (s : Fin 3 → List (Fin 3)) (f : Fin 3 → ℚ) :"
     },
     {
@@ -15699,7 +15699,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 63,
+      "line": 64,
       "declaration": "theorem map_natCast_intCast {m n R : Type*} [Ring R] (A : Matrix m n ℕ) :"
     },
     {
@@ -15707,7 +15707,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 74,
+      "line": 75,
       "declaration": "theorem pow_intertwine (h : P * N = M * P) (n : ℕ) : P * N ^ n = M ^ n * P := by"
     },
     {
@@ -15715,7 +15715,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 81,
+      "line": 82,
       "declaration": "theorem aeval_intertwine (h : P * N = M * P) (f : ℚ[X]) :"
     },
     {
@@ -15723,7 +15723,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 91,
+      "line": 92,
       "declaration": "theorem surjective_of_intertwine (h : P * N = M * P) (hM : Irreducible M.charpoly)"
     },
     {
@@ -15731,7 +15731,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 104,
+      "line": 105,
       "declaration": "theorem card_ge_of_intertwine (h : P * N = M * P) (hM : Irreducible M.charpoly)"
     },
     {
@@ -15739,7 +15739,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 110,
+      "line": 111,
       "declaration": "theorem charpoly_dvd_of_intertwine (h : P * N = M * P) (hM : Irreducible M.charpoly)"
     },
     {
@@ -15747,7 +15747,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 124,
+      "line": 125,
       "declaration": "theorem charpoly_dvd_of_map_rat {κ : Type*} [Fintype κ] [DecidableEq κ] {A : Matrix κ κ ℤ}"
     },
     {
@@ -15755,7 +15755,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 133,
+      "line": 134,
       "declaration": "theorem charpoly_dvd_int_of_rat {κ : Type*} [Fintype κ] [DecidableEq κ]"
     },
     {
@@ -15763,7 +15763,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 141,
+      "line": 142,
       "declaration": "theorem similar_of_intertwine (h : P * N = M * P) (hM : Irreducible M.charpoly)"
     },
     {
@@ -15771,7 +15771,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 177,
+      "line": 178,
       "declaration": "theorem prep_nrep [Fintype α] (hbal : ∀ T ∈ S'.C, Equiv1 T.1 T.2) :"
     },
     {
@@ -15779,7 +15779,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 190,
+      "line": 191,
       "declaration": "theorem prep_ne_zero (hC : S'.C.Nonempty) (hne : ∀ T ∈ S'.C, T.1 ≠ []) :"
     },
     {
@@ -15787,7 +15787,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 215,
+      "line": 216,
       "declaration": "theorem prepQ_nrepQ (hbal : ∀ T ∈ S.C, Equiv1 T.1 T.2) :"
     },
     {
@@ -15795,7 +15795,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 226,
+      "line": 227,
       "declaration": "theorem prep_surjective (hC : S.C.Nonempty) : Function.Surjective (Matrix.mulVecLin (PrepQ P)) :="
     },
     {
@@ -15803,7 +15803,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 230,
+      "line": 231,
       "declaration": "theorem card_rep_ge (hC : S.C.Nonempty) : 3 ≤ Fintype.card P.Rep :="
     },
     {
@@ -15811,7 +15811,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 234,
+      "line": 235,
       "declaration": "theorem charpoly_dvd_rep (hC : S.C.Nonempty) : (incQ S).charpoly ∣ (NrepQ P).charpoly :="
     },
     {
@@ -15819,7 +15819,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 238,
+      "line": 239,
       "declaration": "theorem charpoly_dvd_rep_int (hC : S.C.Nonempty) :"
     },
     {
@@ -15827,7 +15827,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 243,
+      "line": 244,
       "declaration": "theorem similar_rep_of_equiv (e : P.Rep ≃ Fin 3) :"
     },
     {
@@ -15835,7 +15835,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 251,
+      "line": 252,
       "declaration": "theorem exists_similar_rep_of_card_eq (hcard : Fintype.card P.Rep = 3) :"
     },
     {
@@ -15843,7 +15843,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 268,
+      "line": 269,
       "declaration": "theorem pcQ_ncQ : PcQ S * NcQ S = incQ S * PcQ S := by"
     },
     {
@@ -15851,7 +15851,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 274,
+      "line": 275,
       "declaration": "theorem pcQ_aeval (f : ℚ[X]) : PcQ S * aeval (NcQ S) f = aeval (incQ S) f * PcQ S :="
     },
     {
@@ -15859,7 +15859,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 277,
+      "line": 278,
       "declaration": "theorem pcQ_ne_zero (hC : S.C.Nonempty) (hne : ∀ T ∈ S.C, T.1 ≠ []) : PcQ S ≠ 0 := by"
     },
     {
@@ -15867,7 +15867,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 292,
+      "line": 293,
       "declaration": "theorem pc_surjective (hC : S.C.Nonempty) : Function.Surjective (Matrix.mulVecLin (PcQ S)) :="
     },
     {
@@ -15875,7 +15875,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 296,
+      "line": 297,
       "declaration": "theorem card_ge (hC : S.C.Nonempty) : 3 ≤ Fintype.card (State S) :="
     },
     {
@@ -15883,7 +15883,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 300,
+      "line": 301,
       "declaration": "theorem charpoly_dvd (hC : S.C.Nonempty) : (incQ S).charpoly ∣ (NcQ S).charpoly :="
     },
     {
@@ -15891,7 +15891,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 304,
+      "line": 305,
       "declaration": "theorem charpoly_dvd_int (hC : S.C.Nonempty) :"
     },
     {
@@ -15899,7 +15899,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 310,
+      "line": 311,
       "declaration": "theorem similar_of_equiv (e : State S ≃ Fin 3) :"
     },
     {
@@ -15907,7 +15907,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 318,
+      "line": 319,
       "declaration": "theorem exists_similar_of_card_eq (hcard : Fintype.card (State S) = 3) :"
     },
     {
@@ -15915,7 +15915,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 327,
+      "line": 328,
       "declaration": "theorem card_state_eq_two_mul {α : Type*} [DecidableEq α] {S : ChildSystem α}"
     },
     {
@@ -15923,7 +15923,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 334,
+      "line": 335,
       "declaration": "theorem no_equiv_fin3 {S : ChildSystem (Fin 3)} (P : Normalisation S) :"
     },
     {
@@ -23822,7 +23822,7 @@
     "proof/PscVerif/PscVerif/Degree5Sieve.lean": "b787a6689480edad73655df8666b2ee97a02a64af6ec26fb88acd058add82b1c",
     "proof/PscVerif/PscVerif/Degree5Transport.lean": "1e5e153ac4ba75582d7b4133c8fc4f035b6313b86be83649a49c0555cdfe444b",
     "proof/PscVerif/PscVerif/Degree5Weights.lean": "b53740ff569e9e0c6fdaf9ab99815d9c04396c729f850f138b14b5549d827b84",
-    "proof/PscVerif/PscVerif/DescendantSpan.lean": "8562512a9646b9891d4c60cee5a12ad6246da9a323466a0797395329f580f2c5",
+    "proof/PscVerif/PscVerif/DescendantSpan.lean": "6a46eb2a94b7785ba2a69db88daf56a3e98935e738fdb6dc478d685162696e8c",
     "proof/PscVerif/PscVerif/DescendantSpanStrict.lean": "24a2d9d6f0eedf5a49dd17318ad90b0b9d82cc3c930a3f34336b0519f63f9c66",
     "proof/PscVerif/PscVerif/Descendants.lean": "6641b65d81d90be34c13937b6ab8ebc029fcce91babd7c2ce398738dac783a40",
     "proof/PscVerif/PscVerif/FixedPointLimit.lean": "cd4a824f288d4c1072fd375e0e7b9014f56028e23e00cb4336fd678a210b7bbe",
@@ -23870,7 +23870,7 @@
     "proof/PscVerif/PscVerif/OverlapContraction.lean": "09dd1ccc90a7245211336996f7da8b1276e86cab60dd1cc0b5471e3d7f6a2a30",
     "proof/PscVerif/PscVerif/OverlapPacket.lean": "572fd9fc85082e05377321fa812670558fff66ebed16e319a81816b22950a853",
     "proof/PscVerif/PscVerif/ParikhIntertwiner.lean": "bc7120433f0c103c966fc6faf41407b969537fd0881971a5d36b98169b220d96",
-    "proof/PscVerif/PscVerif/ParikhRank.lean": "be40494c796287c599d6a62f20662e1c7f80786c88d0e4881c8a58795b3e0d7a",
+    "proof/PscVerif/PscVerif/ParikhRank.lean": "f13cddb90200af8a8a26d01428537235a2bebddf2e081849188753e97add6e69",
     "proof/PscVerif/PscVerif/PerronCore.lean": "1f06da1e0b57e74b31fc03d753bd314f25561a37e512b3a8f7f05fda0d75458c",
     "proof/PscVerif/PscVerif/PerronExistence.lean": "a2ac1801abf2a99a6c312935d101ed4f760ffec0f96586d5f1f43bb176814c73",
     "proof/PscVerif/PscVerif/PerronSimple.lean": "1e4d9aca60b215f17067e39ba38bd8eaec7d9781fb716d8727fa7f9cbbf737a8",
