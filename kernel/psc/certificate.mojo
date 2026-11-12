@@ -69,7 +69,7 @@ def q_target1(m: Mat3, x: List[Int]) -> List[Int]:
     return out^
 
 
-def run_all(corpus_bound: Int = 2) -> List[Check]:
+def run_all(corpus_bound: Int = 2) raises -> List[Check]:
     var checks = List[Check]()
     var seeds = length7_seeds()
     var certA = certificate_seed_matrices()

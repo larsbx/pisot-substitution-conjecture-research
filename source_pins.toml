@@ -661,3 +661,7 @@ path = "kernel/pixi.toml"
 current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
 kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
+[[manifest.drift]]
+path = "vendored.toml"
+current = "420969bc12910aeba2ca479ec05492a0e76a0cbd03ec3b440d6d941d39b371b5"
+reason = "PSC word-counter overflow repair and coordinated finite-math-kernels #98 snapshot; historical replay uses the recorded revision"
