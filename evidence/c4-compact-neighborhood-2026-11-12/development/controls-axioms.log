@@ -1,0 +1,21 @@
+Psc.CompactNeighborhoodControls.closed_noncompact_control :
+  IsClosed Psc.CompactNeighborhoodControls.axis ∧
+    IsClosed Psc.CompactNeighborhoodControls.hyperbola ∧
+      Disjoint Psc.CompactNeighborhoodControls.axis Psc.CompactNeighborhoodControls.hyperbola ∧
+        ¬IsCompact Psc.CompactNeighborhoodControls.axis ∧
+          ¬IsCompact Psc.CompactNeighborhoodControls.hyperbola ∧
+            ¬∃ ε,
+                0 < ε ∧
+                  ∀ (x y z : ℝ × ℝ),
+                    y ∈ Psc.CompactNeighborhoodControls.axis →
+                      z ∈ Psc.CompactNeighborhoodControls.hyperbola → ‖x - y‖ < ε → ‖x - z‖ < ε → x ∈ ∅
+'Psc.CompactNeighborhoodControls.closed_noncompact_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+Psc.CompactNeighborhoodControls.compact_singleton_without_open_target :
+  IsCompact {0} ∧ ¬IsOpen {0} ∧ ¬∃ ε, 0 < ε ∧ ∀ (x : ℝ), ‖x - 0‖ < ε → ‖x - 0‖ < ε → x ∈ {0}
+'Psc.CompactNeighborhoodControls.compact_singleton_without_open_target' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Psc.CompactNeighborhoodControls.infinite_family_not_uniform :
+  (∀ (i : ℕ), Filter.Tendsto (fun n => Psc.CompactNeighborhoodControls.movingSpike n i) Filter.atTop (nhds 0)) ∧
+    ¬∃ N, ∀ (n : ℕ), N ≤ n → ∀ (i : ℕ), ‖Psc.CompactNeighborhoodControls.movingSpike n i‖ < 1 / 2
+'Psc.CompactNeighborhoodControls.infinite_family_not_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]

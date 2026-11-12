@@ -1,0 +1,528 @@
+{
+  "schema": "c4-compact-neighborhood-independent-review-v1",
+  "written_at_utc": "2026-11-12 17:25:09 UTC",
+  "scope": "Read-only CI audit and independent semantic source review; later authorized preparation of development build artifacts is separate from acceptance.",
+  "ci_audit": {
+    "repository": "larsbx/pisot-substitution-conjecture-research",
+    "head": "c5c38db3e54a3f18f9d92db1b9f34b3b9f6ec51b",
+    "observation_clock_after_final_ci_batch_utc": "2026-11-12 17:19:51 UTC",
+    "earlier_observation_clock_utc": "2026-11-12 17:18:42 UTC",
+    "pull_request": 557,
+    "pull_request_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/557",
+    "merged": true,
+    "merged_at": "2026-11-12T17:16:51Z",
+    "observed_main": "bdf033f647f73f911a47260e8bdad5f2e96f3c7a",
+    "checks_pagination": {
+      "filter": "all",
+      "per_page": 100,
+      "pages": [
+        {
+          "page": 1,
+          "returned": 99,
+          "total_count": 99
+        },
+        {
+          "page": 2,
+          "returned": 0,
+          "total_count": 99
+        }
+      ]
+    },
+    "check_counts": {
+      "queued": 98,
+      "cancelled": 1,
+      "success": 0,
+      "failure": 0
+    },
+    "commit_statuses_returned": 0,
+    "workflow_pagination": {
+      "per_page": 100,
+      "pages": [
+        {
+          "page": 1,
+          "returned": 39,
+          "total_count": 39
+        },
+        {
+          "page": 2,
+          "returned": 0,
+          "total_count": 39
+        }
+      ],
+      "counts": {
+        "queued": 38,
+        "cancelled": 1
+      },
+      "additional_resolved_run": {
+        "id": 43265117053,
+        "name": "PSC research checks",
+        "head": "c5c38db3e54a3f18f9d92db1b9f34b3b9f6ec51b",
+        "status": "queued",
+        "conclusion": null,
+        "note": "Referenced by check runs but absent from workflow-list response; fetched directly and its 20 queued jobs inspected."
+      }
+    },
+    "focused_jobs": [
+      {
+        "id": 131346488318,
+        "run_id": 43265117109,
+        "name": "Complete literal witnesses and independent refusal controls",
+        "head_sha": "c5c38db3e54a3f18f9d92db1b9f34b3b9f6ec51b",
+        "status": "queued",
+        "conclusion": null,
+        "runner_name": "",
+        "step_count": 0,
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43265117109/job/131346488318"
+      },
+      {
+        "id": 131346484966,
+        "run_id": 43265117378,
+        "name": "overlap-proof-bank",
+        "head_sha": "c5c38db3e54a3f18f9d92db1b9f34b3b9f6ec51b",
+        "status": "queued",
+        "conclusion": null,
+        "runner_name": "",
+        "step_count": 0,
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43265117378/job/131346484966"
+      },
+      {
+        "id": 131346483821,
+        "run_id": 43265116750,
+        "name": "Independent exact matrix-norm and chart controls",
+        "head_sha": "c5c38db3e54a3f18f9d92db1b9f34b3b9f6ec51b",
+        "status": "queued",
+        "conclusion": null,
+        "runner_name": "",
+        "step_count": 0,
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43265116750/job/131346483821"
+      },
+      {
+        "id": 131346485456,
+        "run_id": 43265117047,
+        "name": "Existing exact block bounds and literal controls",
+        "head_sha": "c5c38db3e54a3f18f9d92db1b9f34b3b9f6ec51b",
+        "status": "queued",
+        "conclusion": null,
+        "runner_name": "",
+        "step_count": 0,
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43265117047/job/131346485456"
+      },
+      {
+        "id": 131346486080,
+        "run_id": 43265117047,
+        "name": "Independent bounded prefix-window controls",
+        "head_sha": "c5c38db3e54a3f18f9d92db1b9f34b3b9f6ec51b",
+        "status": "queued",
+        "conclusion": null,
+        "runner_name": "",
+        "step_count": 0,
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43265117047/job/131346486080"
+      },
+      {
+        "id": 131346482805,
+        "run_id": 43265116813,
+        "name": "proof-bank-current",
+        "head_sha": "c5c38db3e54a3f18f9d92db1b9f34b3b9f6ec51b",
+        "status": "queued",
+        "conclusion": null,
+        "runner_name": "",
+        "step_count": 0,
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43265116813/job/131346482805"
+      },
+      {
+        "id": 131346484955,
+        "run_id": 43265117053,
+        "name": "mojo-kernel",
+        "head_sha": "c5c38db3e54a3f18f9d92db1b9f34b3b9f6ec51b",
+        "status": "queued",
+        "conclusion": null,
+        "runner_name": "",
+        "step_count": 0,
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43265117053/job/131346484955"
+      },
+      {
+        "id": 131346485948,
+        "run_id": 43265117053,
+        "name": "lean-proofs",
+        "head_sha": "c5c38db3e54a3f18f9d92db1b9f34b3b9f6ec51b",
+        "status": "queued",
+        "conclusion": null,
+        "runner_name": "",
+        "step_count": 0,
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43265117053/job/131346485948"
+      },
+      {
+        "id": 131346484149,
+        "run_id": 43265116932,
+        "name": "evidence-policy",
+        "head_sha": "c5c38db3e54a3f18f9d92db1b9f34b3b9f6ec51b",
+        "status": "completed",
+        "conclusion": "cancelled",
+        "runner_name": "",
+        "step_count": 0,
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43265116932/job/131346484149"
+      }
+    ],
+    "cancelled_policy": {
+      "job": 131346484149,
+      "run": 43265116932,
+      "runner_name": "",
+      "step_count": 0,
+      "conclusion": "cancelled",
+      "queued_successor_run": 43267727611,
+      "queued_successor_job": 131355716697
+    },
+    "conclusion": "No hosted CI pass is established at the audited head. All requested substantive gates were queued with no steps or assigned runner; there was no substantive failed gate log to inspect. The policy cancellation had no executed steps and a queued successor.",
+    "remote_writes": 0,
+    "workflow_retries": 0,
+    "no_further_ci_poll_after_observation": true
+  },
+  "semantic_review": {
+    "gate_commit": "571c8df9b5223aeef6b7f137c49b4495590d090e",
+    "gate_decision": "GO with narrowed compact neighborhood transfer; no count, Haar, or positivity promotion.",
+    "baseline_commit": "bdf033f647f73f911a47260e8bdad5f2e96f3c7a",
+    "reviewed_files": [
+      {
+        "path": "proof/PscVerif/PscVerif/NamedCutNeighborhood.lean",
+        "sha256": "91b956be3f80da945834498b919fb6f80c76226da771bc36ce8fae8b4c39ccf3",
+        "bytes": 10426,
+        "theorems": [
+          "inter_subset_overlapUnion",
+          "overlapUnion_compact",
+          "eventually_fixed_labels_mem",
+          "eventually_distinct_cuts_mem",
+          "eventually_cutPoints_subset",
+          "eventually_finite_source_cuts_subset",
+          "eventually_strict_carrier_cuts_mem",
+          "finite_open_cover_captures_strict_cuts",
+          "eventually_no_distinct_cuts_of_empty_overlap"
+        ],
+        "definitions": [
+          "overlapUnion",
+          "cutPoints"
+        ]
+      },
+      {
+        "path": "proof/PscVerif/PscVerif/CompactNeighborhood.lean",
+        "sha256": "bfc41eba2f94241d71f329458418d225c773e580b186cc9aac128957991409e4",
+        "bytes": 7591,
+        "theorems": [
+          "eventually_translate_mem",
+          "exists_difference_nhds_inter_subset",
+          "kernel_mem_nhds",
+          "exists_kernel_subset",
+          "zeroSlice_mem_nhds",
+          "exists_zeroSlice_subset",
+          "close_iff_sub_mem",
+          "exists_close_inter_subset"
+        ],
+        "definitions": [
+          "zeroSlice",
+          "Close"
+        ]
+      },
+      {
+        "path": "proof/PscVerif/PscVerif/NamedCutProximity.lean",
+        "sha256": "34fa8b8a10ff483b463b15f9da906cd6c75441b6cdeeb0ec823ed8219185c901",
+        "bytes": 9830,
+        "theorems": [
+          "anchor_occurs",
+          "sourceBound_nonneg",
+          "correction_le_sourceBound",
+          "block_contract",
+          "word_fixed_block",
+          "prefix_approximation",
+          "source_error_tendsto_zero",
+          "eventually_all_prefixes_close",
+          "balanced_cut_approximation",
+          "strict_cut_labels"
+        ],
+        "definitions": [
+          "anchor"
+        ]
+      },
+      {
+        "path": "docs/c4-compact-neighborhood-literature-2026-11-12.md",
+        "sha256": "2e5737a64d1f647c6ac6cbb383d613870d4bf664a56a1e0d2383a5cb7a639b1a",
+        "bytes": 10941,
+        "theorems": [],
+        "definitions": []
+      }
+    ],
+    "target": "PscVerif.NamedCutNeighborhood",
+    "conclusion": "No semantic scope defect found in the reviewed named adapter; compilation and the isolated acceptance gate were not established by this semantic review.",
+    "findings": [
+      {
+        "topic": "quantifier order",
+        "result": "passed source inspection",
+        "details": "For each fixed-label open neighborhood, epsilon and residue depth precede the fixed-source thresholds. Finite label conjunction and Finset.eventually_all yield a single threshold for the fixed finite C before all n, T in C, and actual marks. No growing or infinite source family is uniformly quantified."
+      },
+      {
+        "topic": "original common point",
+        "result": "passed source inspection",
+        "details": "Both actual marks retain complete source prefixes and exact Parikh equality. The common point is ambientStar of top.before; exact balance rewrites bottom approximation around that same point. Reference witness ordinals are not counted or asserted injective."
+      },
+      {
+        "topic": "fixture and carrier",
+        "result": "passed source inspection",
+        "details": "Tiles, fixed word, ambientStar, incidence endomorphism and quotient residues retain the same fixture. The existing matrix-adic carrier and topology are consumed directly."
+      },
+      {
+        "topic": "strict labels",
+        "result": "passed source inspection",
+        "details": "Generic distinct-cut statements assume distinct labels explicitly. The strict-carrier theorem derives them from the supplied actual StrictSystem via strict_cut_labels; no strict system is constructed."
+      },
+      {
+        "topic": "finite open cover",
+        "result": "passed source inspection",
+        "details": "overlapUnion_compact supplies a finite subcover J first. The eventual cut theorem is then applied to its open union to select N. The cover is not assumed to be an arbitrary measurable or half-open cover."
+      },
+      {
+        "topic": "scope boundaries",
+        "result": "passed source inspection",
+        "details": "The empty-overlap theorem remains conditional. No exact intersection membership, lattice count, Haar normalization, density, positive measure, PDS or PSC theorem is inferred."
+      }
+    ],
+    "source_edits_by_reviewer": 0,
+    "new_module_compilation": "not yet established at review recording",
+    "full_isolated_gate": "not run for new code at review recording",
+    "finite_tests": "not run by this review"
+  },
+  "development_setup": {
+    "project": "/workspace/scratch/f96c28a561ad/psc-compact/proof/PscVerif",
+    "wrapper": "/workspace/scratch/f96c28a561ad/compact-lean-dev.sh",
+    "package_sources": "/workspace/scratch/0c41f0cd3299/psc/proof/PscVerif/.lake/packages",
+    "all_nine_package_source_heads_match_manifest": true,
+    "copied_project_oleans": 47,
+    "copy_scope": "Development only. Original project artifacts are incomplete and are not accepted as fresh source compilation.",
+    "bootstrap_log": "/workspace/scratch/f96c28a561ad/compact-lean-bootstrap.log",
+    "bootstrap_status": "completed; all 14 selected baseline modules compiled successfully",
+    "lean_version": "4.34.0-rc2",
+    "lean_commit": "6a10ac8c22beadecabdbb0919c2b50214762f91d",
+    "lake_version": "5.0.0-src+6a10ac8 (Lean version 4.34.0-rc2)",
+    "elan_home": "/workspace/scratch/84c835820757/toolchains/elan",
+    "path_prefix": "/workspace/scratch/84c835820757/toolchains/elan/bin",
+    "recommended_tmpdir": "/workspace/scratch/f96c28a561ad/lean-isolation-tmp",
+    "future_gate_command": "ELAN_HOME=/workspace/scratch/84c835820757/toolchains/elan PATH=/workspace/scratch/84c835820757/toolchains/elan/bin:$PATH TMPDIR=/workspace/scratch/f96c28a561ad/lean-isolation-tmp ./tools/check_lean.sh",
+    "future_gate_working_directory": "/workspace/scratch/f96c28a561ad/psc-compact",
+    "future_gate_not_executed": true,
+    "bootstrap_observed_complete_at_utc": "2026-11-12 17:28:14 UTC",
+    "bootstrap_log_sha256": "0c31d15c13151b37ea91f6559cfc3969044644b05a86d564af4a0b288765c013",
+    "bootstrap_modules": [
+      {
+        "module": "PscVerif.CutPrefixEmbedding",
+        "exit_code": 0,
+        "elapsed_seconds": 10.986,
+        "source_sha256": "0f652300410b5a1fb9b8271d1b793d41dacc173f7faf3e106d4951e8256c45c3",
+        "artifact_sha256": "68b16e69a213054a240310cc7537c02e60efeba61d96dfe23a3f49c84414882b",
+        "compiler_arguments": [
+          "-j",
+          "2",
+          "-DautoImplicit=false",
+          "-o",
+          "/workspace/scratch/f96c28a561ad/psc-compact/proof/PscVerif/.lake/build/lib/lean/PscVerif/CutPrefixEmbedding.olean",
+          "PscVerif/CutPrefixEmbedding.lean"
+        ]
+      },
+      {
+        "module": "PscVerif.Defect4Lie",
+        "exit_code": 0,
+        "elapsed_seconds": 40.704,
+        "source_sha256": "edfd4b1eb95fb2ecc729712712643d8e5e544346c0c65a109d0991c5f2b76f37",
+        "artifact_sha256": "5720b9d901a90091409b39ff8782a564b84c45bda634136e80ba9322b15bbd90",
+        "compiler_arguments": [
+          "-j",
+          "2",
+          "-DautoImplicit=false",
+          "-o",
+          "/workspace/scratch/f96c28a561ad/psc-compact/proof/PscVerif/.lake/build/lib/lean/PscVerif/Defect4Lie.olean",
+          "PscVerif/Defect4Lie.lean"
+        ]
+      },
+      {
+        "module": "PscVerif.WeightModulus",
+        "exit_code": 0,
+        "elapsed_seconds": 29.783,
+        "source_sha256": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
+        "artifact_sha256": "700c9fa86205fec19099f825e68fb66112d87ac6f554fc7ec587a4de57f8a5ce",
+        "compiler_arguments": [
+          "-j",
+          "2",
+          "-DautoImplicit=false",
+          "-o",
+          "/workspace/scratch/f96c28a561ad/psc-compact/proof/PscVerif/.lake/build/lib/lean/PscVerif/WeightModulus.olean",
+          "PscVerif/WeightModulus.lean"
+        ]
+      },
+      {
+        "module": "PscVerif.GaloisOrbit",
+        "exit_code": 0,
+        "elapsed_seconds": 36.936,
+        "source_sha256": "4d3b5474dbd14205f4bf2d33e98149ebbdd6d7e0fb8fd3a33787b878bcad5f07",
+        "artifact_sha256": "b7de7502d370cca942a2e96816ee3b1323c9bf2bfdfe49c884f36a395712c2be",
+        "compiler_arguments": [
+          "-j",
+          "2",
+          "-DautoImplicit=false",
+          "-o",
+          "/workspace/scratch/f96c28a561ad/psc-compact/proof/PscVerif/.lake/build/lib/lean/PscVerif/GaloisOrbit.olean",
+          "PscVerif/GaloisOrbit.lean"
+        ]
+      },
+      {
+        "module": "PscVerif.SectorBridge",
+        "exit_code": 0,
+        "elapsed_seconds": 36.602,
+        "source_sha256": "52402b9cf47212fae4fc351435bd721babb702aea48e4b5c1f2d1ed40d4e6800",
+        "artifact_sha256": "7307abafb7db5790206eb1800a27f6ed88eedd7bb0bfba35b102b08e4fa60126",
+        "compiler_arguments": [
+          "-j",
+          "2",
+          "-DautoImplicit=false",
+          "-o",
+          "/workspace/scratch/f96c28a561ad/psc-compact/proof/PscVerif/.lake/build/lib/lean/PscVerif/SectorBridge.olean",
+          "PscVerif/SectorBridge.lean"
+        ]
+      },
+      {
+        "module": "PscVerif.PrimitiveExpansion",
+        "exit_code": 0,
+        "elapsed_seconds": 2.9,
+        "source_sha256": "70307f2cb4fb0eb854086f20bb04ca82ceb04c5433d41f0984c29a5f70bd4eff",
+        "artifact_sha256": "e0177861c354d1e67133aac36f9e7c57aa0c1ca32923d44f1797038ec73a7cff",
+        "compiler_arguments": [
+          "-j",
+          "2",
+          "-DautoImplicit=false",
+          "-o",
+          "/workspace/scratch/f96c28a561ad/psc-compact/proof/PscVerif/.lake/build/lib/lean/PscVerif/PrimitiveExpansion.olean",
+          "PscVerif/PrimitiveExpansion.lean"
+        ]
+      },
+      {
+        "module": "PscVerif.PerronExistence",
+        "exit_code": 0,
+        "elapsed_seconds": 31.316,
+        "source_sha256": "a2ac1801abf2a99a6c312935d101ed4f760ffec0f96586d5f1f43bb176814c73",
+        "artifact_sha256": "ed047d7046d22c05e4726b530be45decbf4b0a0c5c7283953641276fb5376b26",
+        "compiler_arguments": [
+          "-j",
+          "2",
+          "-DautoImplicit=false",
+          "-o",
+          "/workspace/scratch/f96c28a561ad/psc-compact/proof/PscVerif/.lake/build/lib/lean/PscVerif/PerronExistence.olean",
+          "PscVerif/PerronExistence.lean"
+        ]
+      },
+      {
+        "module": "PscVerif.Degree3Sector",
+        "exit_code": 0,
+        "elapsed_seconds": 45.108,
+        "source_sha256": "02875b90e69cf0089f1cbfa1f2a0de2fabc121cb022cc2a23fb5406d69c9e414",
+        "artifact_sha256": "4289c260519b2637faabb06b89b802892f7a5ab944b16c5b3b46f6f0cd537d14",
+        "compiler_arguments": [
+          "-j",
+          "2",
+          "-DautoImplicit=false",
+          "-o",
+          "/workspace/scratch/f96c28a561ad/psc-compact/proof/PscVerif/.lake/build/lib/lean/PscVerif/Degree3Sector.olean",
+          "PscVerif/Degree3Sector.lean"
+        ]
+      },
+      {
+        "module": "PscVerif.Degree4Sector",
+        "exit_code": 0,
+        "elapsed_seconds": 3.306,
+        "source_sha256": "7afc131498833c8346b21872981c6f7aa4b7a736fdc952ff84b9b8c071b86f63",
+        "artifact_sha256": "97b1ba6ee63423edc95929115b28ba91aabb3c8d242889541d7879efacc241e7",
+        "compiler_arguments": [
+          "-j",
+          "2",
+          "-DautoImplicit=false",
+          "-o",
+          "/workspace/scratch/f96c28a561ad/psc-compact/proof/PscVerif/.lake/build/lib/lean/PscVerif/Degree4Sector.olean",
+          "PscVerif/Degree4Sector.lean"
+        ]
+      },
+      {
+        "module": "PscVerif.Wielandt",
+        "exit_code": 0,
+        "elapsed_seconds": 3.958,
+        "source_sha256": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
+        "artifact_sha256": "443418e2bfe8a2eeb1e57517485c19c48f35696c2c7add0fd262bc5a2e871b8d",
+        "compiler_arguments": [
+          "-j",
+          "2",
+          "-DautoImplicit=false",
+          "-o",
+          "/workspace/scratch/f96c28a561ad/psc-compact/proof/PscVerif/.lake/build/lib/lean/PscVerif/Wielandt.olean",
+          "PscVerif/Wielandt.lean"
+        ]
+      },
+      {
+        "module": "PscVerif.CocycleSpectrum",
+        "exit_code": 0,
+        "elapsed_seconds": 39.801,
+        "source_sha256": "5937db527975a492a4c45f3bdbc7550b0a1d202dd4e71634d8b35ebcfcc24ed4",
+        "artifact_sha256": "e7cd6a02f608f011f8f3cee0cbdf745d2c749c518dbcac0009f62191880178f2",
+        "compiler_arguments": [
+          "-j",
+          "2",
+          "-DautoImplicit=false",
+          "-o",
+          "/workspace/scratch/f96c28a561ad/psc-compact/proof/PscVerif/.lake/build/lib/lean/PscVerif/CocycleSpectrum.olean",
+          "PscVerif/CocycleSpectrum.lean"
+        ]
+      },
+      {
+        "module": "PscVerif.Degree4Floor",
+        "exit_code": 0,
+        "elapsed_seconds": 39.189,
+        "source_sha256": "bc34017a101d388e497a394710ed7661250aaa1fb049a9454dba17f308515006",
+        "artifact_sha256": "fb86e5bf22ce3ea27bcda4e572f118893186b47fdf9b68e3ec6c5d6d6b47a3cc",
+        "compiler_arguments": [
+          "-j",
+          "2",
+          "-DautoImplicit=false",
+          "-o",
+          "/workspace/scratch/f96c28a561ad/psc-compact/proof/PscVerif/.lake/build/lib/lean/PscVerif/Degree4Floor.olean",
+          "PscVerif/Degree4Floor.lean"
+        ]
+      },
+      {
+        "module": "PscVerif.StrictSystem",
+        "exit_code": 0,
+        "elapsed_seconds": 50.889,
+        "source_sha256": "657d6c9f4041b04a2e478f19dea2ecb813952caf2fe1455789778306ad6c3a48",
+        "artifact_sha256": "3b1a28d83e55ac2f379b557bf65cc8c6f24b925879c88144e13d1682be1377af",
+        "compiler_arguments": [
+          "-j",
+          "2",
+          "-DautoImplicit=false",
+          "-o",
+          "/workspace/scratch/f96c28a561ad/psc-compact/proof/PscVerif/.lake/build/lib/lean/PscVerif/StrictSystem.olean",
+          "PscVerif/StrictSystem.lean"
+        ]
+      },
+      {
+        "module": "PscVerif.NamedCutProximity",
+        "exit_code": 0,
+        "elapsed_seconds": 31.04,
+        "source_sha256": "34fa8b8a10ff483b463b15f9da906cd6c75441b6cdeeb0ec823ed8219185c901",
+        "artifact_sha256": "d5b1bee7cdd8e8def6a55dccec414fcc5d1ff309f6c588b27c539948bc8f7919",
+        "compiler_arguments": [
+          "-j",
+          "2",
+          "-DautoImplicit=false",
+          "-o",
+          "/workspace/scratch/f96c28a561ad/psc-compact/proof/PscVerif/.lake/build/lib/lean/PscVerif/NamedCutProximity.olean",
+          "PscVerif/NamedCutProximity.lean"
+        ]
+      }
+    ],
+    "bootstrap_reused_dependency_artifacts": true,
+    "bootstrap_is_isolated_acceptance": false,
+    "no_further_compilation_by_reviewer_after_bootstrap": true
+  },
+  "updated_at_utc": "2026-11-12 17:28:14 UTC"
+}

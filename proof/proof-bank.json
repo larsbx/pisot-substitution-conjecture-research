@@ -3607,6 +3607,94 @@
       "declaration": "theorem two_ssign :"
     },
     {
+      "name": "Psc.CompactNeighborhood.eventually_translate_mem",
+      "module": "PscVerif.CompactNeighborhood",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CompactNeighborhood.lean",
+      "line": 33,
+      "declaration": "theorem eventually_translate_mem {K W : Set G} (hK : IsCompact K)"
+    },
+    {
+      "name": "Psc.CompactNeighborhood.exists_difference_nhds_inter_subset",
+      "module": "PscVerif.CompactNeighborhood",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CompactNeighborhood.lean",
+      "line": 45,
+      "declaration": "theorem exists_difference_nhds_inter_subset [T2Space G] {K L U : Set G}"
+    },
+    {
+      "name": "Psc.CompactNeighborhood.kernel_mem_nhds",
+      "module": "PscVerif.CompactNeighborhood",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CompactNeighborhood.lean",
+      "line": 71,
+      "declaration": "theorem kernel_mem_nhds (M : V →ₗ[ℤ] V) (q : ℕ) :"
+    },
+    {
+      "name": "Psc.CompactNeighborhood.exists_kernel_subset",
+      "module": "PscVerif.CompactNeighborhood",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CompactNeighborhood.lean",
+      "line": 80,
+      "declaration": "theorem exists_kernel_subset (M : V →ₗ[ℤ] V) {W : Set (MadicResidue.Carrier M)}"
+    },
+    {
+      "name": "Psc.CompactNeighborhood.zeroSlice_mem_nhds",
+      "module": "PscVerif.CompactNeighborhood",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CompactNeighborhood.lean",
+      "line": 120,
+      "declaration": "theorem zeroSlice_mem_nhds (M : V →ₗ[ℤ] V) (q : ℕ) {ε : ℝ} (hε : 0 < ε) :"
+    },
+    {
+      "name": "Psc.CompactNeighborhood.exists_zeroSlice_subset",
+      "module": "PscVerif.CompactNeighborhood",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CompactNeighborhood.lean",
+      "line": 131,
+      "declaration": "theorem exists_zeroSlice_subset (M : V →ₗ[ℤ] V)"
+    },
+    {
+      "name": "Psc.CompactNeighborhood.close_iff_sub_mem",
+      "module": "PscVerif.CompactNeighborhood",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CompactNeighborhood.lean",
+      "line": 146,
+      "declaration": "theorem close_iff_sub_mem (M : V →ₗ[ℤ] V) (ε : ℝ) (q : ℕ)"
+    },
+    {
+      "name": "Psc.CompactNeighborhood.exists_close_inter_subset",
+      "module": "PscVerif.CompactNeighborhood",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CompactNeighborhood.lean",
+      "line": 156,
+      "declaration": "theorem exists_close_inter_subset (M : V →ₗ[ℤ] V)"
+    },
+    {
+      "name": "Psc.CompactNeighborhoodControls.closed_noncompact_control",
+      "module": "PscVerif.CompactNeighborhoodControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CompactNeighborhoodControls.lean",
+      "line": 35,
+      "declaration": "theorem closed_noncompact_control :"
+    },
+    {
+      "name": "Psc.CompactNeighborhoodControls.compact_singleton_without_open_target",
+      "module": "PscVerif.CompactNeighborhoodControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CompactNeighborhoodControls.lean",
+      "line": 77,
+      "declaration": "theorem compact_singleton_without_open_target :"
+    },
+    {
+      "name": "Psc.CompactNeighborhoodControls.infinite_family_not_uniform",
+      "module": "PscVerif.CompactNeighborhoodControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/CompactNeighborhoodControls.lean",
+      "line": 95,
+      "declaration": "theorem infinite_family_not_uniform :"
+    },
+    {
       "name": "Psc.ConcentrationAlgebra.isRoot_of_left_eigen",
       "module": "PscVerif.ConcentrationAlgebra",
       "private": false,
@@ -11589,6 +11677,102 @@
       "source": "proof/PscVerif/PscVerif/NamedArchivedGraphRefinement.lean",
       "line": 150,
       "declaration": "theorem named_archived_ancestry_null {n : ℕ} [Nonempty (Fin n)]"
+    },
+    {
+      "name": "Psc.NamedCutNeighborhood.inter_subset_overlapUnion",
+      "module": "PscVerif.NamedCutNeighborhood",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCutNeighborhood.lean",
+      "line": 37,
+      "declaration": "theorem inter_subset_overlapUnion (fixture : Fin 2) (a b : Fin 3) (hab : a ≠ b) :"
+    },
+    {
+      "name": "Psc.NamedCutNeighborhood.overlapUnion_compact",
+      "module": "PscVerif.NamedCutNeighborhood",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCutNeighborhood.lean",
+      "line": 44,
+      "declaration": "theorem overlapUnion_compact (fixture : Fin 2) : IsCompact (overlapUnion fixture) := by"
+    },
+    {
+      "name": "Psc.NamedCutNeighborhood.eventually_fixed_labels_mem",
+      "module": "PscVerif.NamedCutNeighborhood",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCutNeighborhood.lean",
+      "line": 55,
+      "declaration": "theorem eventually_fixed_labels_mem (fixture : Fin 2) (u v : Word) (a b : Fin 3)"
+    },
+    {
+      "name": "Psc.NamedCutNeighborhood.eventually_distinct_cuts_mem",
+      "module": "PscVerif.NamedCutNeighborhood",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCutNeighborhood.lean",
+      "line": 93,
+      "declaration": "theorem eventually_distinct_cuts_mem (fixture : Fin 2) (u v : Word)"
+    },
+    {
+      "name": "Psc.NamedCutNeighborhood.eventually_cutPoints_subset",
+      "module": "PscVerif.NamedCutNeighborhood",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCutNeighborhood.lean",
+      "line": 128,
+      "declaration": "theorem eventually_cutPoints_subset (fixture : Fin 2) (u v : Word)"
+    },
+    {
+      "name": "Psc.NamedCutNeighborhood.eventually_finite_source_cuts_subset",
+      "module": "PscVerif.NamedCutNeighborhood",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCutNeighborhood.lean",
+      "line": 138,
+      "declaration": "theorem eventually_finite_source_cuts_subset (fixture : Fin 2) (C : Finset WordPair)"
+    },
+    {
+      "name": "Psc.NamedCutNeighborhood.eventually_strict_carrier_cuts_mem",
+      "module": "PscVerif.NamedCutNeighborhood",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCutNeighborhood.lean",
+      "line": 149,
+      "declaration": "theorem eventually_strict_carrier_cuts_mem (fixture : Fin 2) {C : Finset WordPair}"
+    },
+    {
+      "name": "Psc.NamedCutNeighborhood.finite_open_cover_captures_strict_cuts",
+      "module": "PscVerif.NamedCutNeighborhood",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCutNeighborhood.lean",
+      "line": 168,
+      "declaration": "theorem finite_open_cover_captures_strict_cuts (fixture : Fin 2)"
+    },
+    {
+      "name": "Psc.NamedCutNeighborhood.eventually_no_distinct_cuts_of_empty_overlap",
+      "module": "PscVerif.NamedCutNeighborhood",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCutNeighborhood.lean",
+      "line": 188,
+      "declaration": "theorem eventually_no_distinct_cuts_of_empty_overlap (fixture : Fin 2) (u v : Word)"
+    },
+    {
+      "name": "Psc.NamedCutNeighborhood.carrierOverlap_compact",
+      "module": "PscVerif.NamedCutNeighborhood",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCutNeighborhood.lean",
+      "line": 201,
+      "declaration": "theorem carrierOverlap_compact (fixture : Fin 2) (C : Finset WordPair) :"
+    },
+    {
+      "name": "Psc.NamedCutNeighborhood.eventually_carrierOverlap_strict_cuts_mem",
+      "module": "PscVerif.NamedCutNeighborhood",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCutNeighborhood.lean",
+      "line": 214,
+      "declaration": "theorem eventually_carrierOverlap_strict_cuts_mem (fixture : Fin 2)"
+    },
+    {
+      "name": "Psc.NamedCutNeighborhood.finite_carrierOverlap_cover_captures_strict_cuts",
+      "module": "PscVerif.NamedCutNeighborhood",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedCutNeighborhood.lean",
+      "line": 258,
+      "declaration": "theorem finite_carrierOverlap_cover_captures_strict_cuts (fixture : Fin 2)"
     },
     {
       "name": "Psc.NamedCutProximity.anchor_occurs",
@@ -25336,6 +25520,8 @@
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
     "proof/PscVerif/PscVerif/ClassBRegime.lean": "1c873d0aea0201c3a60486dc90bce00e9f9612019ad72c5344cfa927d93a23e6",
     "proof/PscVerif/PscVerif/CocycleSpectrum.lean": "5937db527975a492a4c45f3bdbc7550b0a1d202dd4e71634d8b35ebcfcc24ed4",
+    "proof/PscVerif/PscVerif/CompactNeighborhood.lean": "bfc41eba2f94241d71f329458418d225c773e580b186cc9aac128957991409e4",
+    "proof/PscVerif/PscVerif/CompactNeighborhoodControls.lean": "6c0fe9d92143d0c7441c606fc46d5148643dde152e9fea49cc36d55d875f3ee1",
     "proof/PscVerif/PscVerif/ConcentrationAlgebra.lean": "301a1a13eca8a554d1313afc96e0a374dfc0774dfa8d2a2e8e60b97345c921b2",
     "proof/PscVerif/PscVerif/ConcentrationControls.lean": "881e9c16e846722918332385c74503f0e1e697e02db4ff20dec004679feed7d7",
     "proof/PscVerif/PscVerif/CountBridge.lean": "ee00588159713544ce4259d8652545a87b74ec69ca20877489d085d6e0cacc9e",
@@ -25379,6 +25565,7 @@
     "proof/PscVerif/PscVerif/NamedArchivedDigits.lean": "12059a52f4598c316a42f64cadf269cdd716853a785bc1189023207689124775",
     "proof/PscVerif/PscVerif/NamedArchivedGraph.lean": "cfde4885aa910cd0c20b7a328c9f9e2af6978aa5e980f3739aadd3c37bb112b0",
     "proof/PscVerif/PscVerif/NamedArchivedGraphRefinement.lean": "590b8a5e07389f8111a347419ec066322a982dea41cf8c471b3b01d5d03b934c",
+    "proof/PscVerif/PscVerif/NamedCutNeighborhood.lean": "e9d6a9e1b05721fa3cc8b634d3ecd6cdb604d8b63277d42b5ba34d70327bc57e",
     "proof/PscVerif/PscVerif/NamedCutProximity.lean": "34fa8b8a10ff483b463b15f9da906cd6c75441b6cdeeb0ec823ed8219185c901",
     "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean": "13ef34fb3eb6b9ede477c4de920af612010aa280409049c185b1afb35a34a585",
     "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean": "e91dfcffed8884f99863591d57d892933fbc7ce0a5de2899955a4a69a99233e6",
@@ -25436,7 +25623,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "b69563a154a87618c39fcd215b6c4b15bf5a33e93472b9e52cb7597788c67c05",
+    "proof/PscVerif/PscVerif.lean": "0d1236c2b94dda5164f9f4cffc22c81f2e1de58b95c8a33c2199b1c13010a4c1",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

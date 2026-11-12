@@ -88,6 +88,9 @@ import PscVerif.NamedPrefixCompact
 import PscVerif.CutPrefixEmbedding
 import PscVerif.NamedCutProximity
 import PscVerif.CutPrefixControls
+import PscVerif.CompactNeighborhood
+import PscVerif.NamedCutNeighborhood
+import PscVerif.CompactNeighborhoodControls
 import PscVerif.NamedGeometricEnclosure
 import PscVerif.NamedFiniteCarrier
 import PscVerif.NamedOverlapHaar

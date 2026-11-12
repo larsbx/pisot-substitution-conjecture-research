@@ -1,0 +1,73 @@
+{
+  "schema": "c4-compact-development-attempts-v1",
+  "scope": "Development diagnostics and controls; none substitutes for the isolated source build and compiled audit.",
+  "attempts": [
+    {
+      "module": "CompactNeighborhood",
+      "log": "generic-01.log",
+      "observed_result": "compile errors retained",
+      "diagnostics": [
+        "Finset.le_sup implicit argument inference",
+        "unknown Set.prod_setOf_eq",
+        "norm-ball product conversion",
+        "missing imported topological additive group instance"
+      ]
+    },
+    {
+      "module": "CompactNeighborhood",
+      "log": "generic-02.log",
+      "observed_result": "empty output log retained",
+      "exit_code": null
+    },
+    {
+      "module": "NamedCutNeighborhood",
+      "log": "named-01.log",
+      "observed_result": "compile error retained",
+      "diagnostics": [
+        "bounded existential simplification required exists_prop"
+      ]
+    },
+    {
+      "module": "NamedCutNeighborhood",
+      "log": "named-02.log",
+      "observed_result": "empty output log retained",
+      "exit_code": null
+    },
+    {
+      "module": "NamedCutNeighborhood",
+      "log": "named-03.log",
+      "observed_result": "empty output log retained after carrier-specific adapter addition",
+      "exit_code": null
+    },
+    {
+      "module": "CompactNeighborhoodControls",
+      "log": "controls-01.log",
+      "observed_result": "compile error and warning retained",
+      "diagnostics": [
+        "unknown Set.not_mem_empty",
+        "deprecated if_neg warning"
+      ]
+    },
+    {
+      "module": "CompactNeighborhoodControls",
+      "log": "controls-02.log",
+      "observed_result": "empty output log retained",
+      "exit_code": null
+    },
+    {
+      "module": "CompactNeighborhoodControls",
+      "log": "controls-axioms.log",
+      "audit_source": "controls-axioms.lean",
+      "observed_result": "three named control statements and standard axiom dependencies printed",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "scope": "development cache used; complete compiled audit remains pending"
+    }
+  ],
+  "silence_is_not_exit_success": true,
+  "bootstrap_log": "bootstrap.log",
+  "bootstrap_actual_exit_records": 14
+}
