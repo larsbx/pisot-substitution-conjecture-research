@@ -32,6 +32,8 @@ jobs:
         sign: [plus, minus]
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Install Pixi
         run: |
           set -o pipefail
@@ -73,10 +75,23 @@ jobs:
           python3 oracles/python/check_class_c_lower_strip.py "$packet" > kernel/build/class-c-lower/oracle.json
           diff "$packet/oracle.json" kernel/build/class-c-lower/oracle.json
           python3 - <<'PY'
-          import hashlib,json,pathlib
-          p=pathlib.Path('evidence/class-c-lower-strip-2026-10-29/provenance.json')
-          for name,digest in json.loads(p.read_text())['sources'].items():
-              assert hashlib.sha256(pathlib.Path(name).read_bytes()).hexdigest()==digest,name
+          import hashlib
+          import json
+          from pathlib import Path
+          import subprocess
+
+          revision = 'ac2f5f9642905d74eb7ab02dc85d56420e13bbd4'
+          packet = Path('evidence/class-c-lower-strip-2026-10-29/provenance.json')
+
+          def recorded(path):
+              return subprocess.check_output(['git', 'show', f'{revision}:{path}'])
+
+          provenance = recorded(packet.as_posix())
+          if packet.read_bytes() != provenance:
+              raise SystemExit('archived lower-strip provenance changed')
+          for name, digest in json.loads(provenance)['sources'].items():
+              if hashlib.sha256(recorded(name)).hexdigest() != digest:
+                  raise SystemExit(f'archived source hash mismatch: {name}')
           PY
           diff evidence/class-c-tail-theorem-2026-10-28/theorem-plus.log "$packet/replay-theorem-plus.log"
           diff evidence/class-c-tail-theorem-2026-10-28/theorem-minus.log "$packet/replay-theorem-minus.log"
