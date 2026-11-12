@@ -18,6 +18,7 @@ descendants, not the graph with terminal or omitted coincidence blocks.
 -/
 import PscVerif.Descendants
 import PscVerif.Cyclicity
+import Mathlib.LinearAlgebra.Matrix.DotProduct
 
 namespace Psc.DescendantSpan
 

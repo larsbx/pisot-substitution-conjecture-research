@@ -1,0 +1,50 @@
+{
+  "scope": "Source-matched local development compilation only; not canonical isolated-source, complete-bank, or hosted acceptance.",
+  "module": "PscVerif.NamedOverlapBalanceControls",
+  "source_path": "proof/PscVerif/PscVerif/NamedOverlapBalanceControls.lean",
+  "source_sha256": "ccf5d2d4241cbe382878cd18ba34f0ffb195b9d0a7c0c0dc049b9864e84273cb",
+  "object_sha256": "77d79961aac6c07660307dcaac42c5d7d9d05cccc2b8bae27557f5a3b95852e5",
+  "transitive_source_fingerprint": "13f51b1aaaca3955b88dae1357a60d38397d04474056b33201adec0d1b6fcc40",
+  "lean_toolchain": "leanprover/lean4:v4.34.0-rc2",
+  "flags": [
+    "-j1",
+    "-DautoImplicit=false"
+  ],
+  "proof_declarations": [
+    "zero_power_digitPacket",
+    "zero_power_inverseCounts",
+    "zero_power_deficit",
+    "repeatedInverse_injective",
+    "repeated_inverse_count_at_least_two",
+    "repeated_inverse_count_not_endpoint_support",
+    "zero_physical_weight_does_not_force_balance",
+    "missing_budget_does_not_force_balance",
+    "conservation_does_not_supply_positive_overlap"
+  ],
+  "accepted_attempt": {
+    "log": "named_balance_controls_compile_retry3.log",
+    "exit_code": 0,
+    "elapsed_seconds": 47.4
+  },
+  "historical_attempts": [
+    {
+      "log": "named_balance_controls_compile.log",
+      "exit_code": 130,
+      "status": "interrupted while compiling dependency; controls not reached"
+    },
+    {
+      "log": "named_balance_controls_compile_retry.log",
+      "exit_code": 1,
+      "elapsed_seconds": 49.0,
+      "status": "Fin1 coercion, residual namespace and index/cardinality elaboration failures"
+    },
+    {
+      "log": "named_balance_controls_compile_retry2.log",
+      "exit_code": 1,
+      "elapsed_seconds": 47.4,
+      "status": "one remaining cardinality simplification failure"
+    }
+  ],
+  "assumption_changes": "none; explicit finite-index/cardinality proofs and namespace qualification, plus classical decidability for theorem-statement conditionals",
+  "canonical_acceptance": "pending; PR records finalized exact-head hosted result separately"
+}

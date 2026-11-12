@@ -1,0 +1,33 @@
+
+  C4InverseOccurrence
+    1) missingSwapEdgeCountercontrolTest failed after 1 test(s)
+
+  1 failed
+
+  1) missingSwapEdgeCountercontrolTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-c4-inverse-occurrence-d4m1ygpc/edge-swap-closure-ignored.qnt:227:43
+        227:   run missingSwapEdgeCountercontrolTest = init.expect({
+                                                       ^^^^^^^^^^^^^
+        228:     val es = actualEdges(strictSigma, strictStates)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        229:     val broken = es.select(e => e != es[0])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        230:     all {
+             ^^^^^^^^^
+        231:       edgeSwapClosed(es), uniform(es, strictStates),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        232:       broken.length() == es.length() - 1,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        233:       not(edgeSwapClosed(broken)), not(uniform(broken, strictStates)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        234:     }
+             ^^^^^
+        235:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f6 --match=missingSwapEdgeCountercontrolTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-c4-inverse-occurrence-d4m1ygpc/edge-swap-closure-ignored.qnt
+error: Tests failed

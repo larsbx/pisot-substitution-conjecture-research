@@ -1,0 +1,24 @@
+{
+  "baseline_commit": "765bb39c83035b5ccacbc8115ecc26acc4111865",
+  "candidate_at_recording": "6472eab38efa623640f00285954b8525a56f6e8e",
+  "native_scope": "three existing source-bound contract tests; not a decoder of new mathematical domains",
+  "native_tests": [
+    "test_c4_overlap_physical_mass",
+    "test_c4_overlap_mass",
+    "test_c4_inverse_occurrence"
+  ],
+  "new_lean_acceptance": "pending; development caches are not canonical acceptance",
+  "quint_mutations_rejected": 28,
+  "quint_scope": "existing finite tests and assertion-reaching mutations; not a universal theorem",
+  "quint_tests": 54,
+  "schema": "psc-named-overlap-balance-baseline-v1",
+  "unchanged_contract_git_objects": {
+    "kernel": "2f1030ee0e9e2413d6b371cc1078b14f41a35ce1",
+    "proof/quint/C4InverseOccurrence.qnt": "a2a0806a186a1f0956dbbce7514d83d6c651b794",
+    "proof/quint/C4OverlapMass.qnt": "cafd0a33638870443fc6a81801ec46fdd6a2815d",
+    "proof/quint/PhysicalMass.qnt": "dd64b3705eb2eb90920d024ec55d1a22886dfabc",
+    "tools/check_c4_inverse_occurrence_quint.py": "950d7dbc469455bd67e193ecd534c1c4e0e7d99f",
+    "tools/check_c4_overlap_mass_quint.py": "c9324a394b7a8bba64ed725b7fd217ff6ccf546c",
+    "tools/check_physical_mass_quint.py": "53e37f730c3522fec82b5e76aa5117e55c530228"
+  }
+}

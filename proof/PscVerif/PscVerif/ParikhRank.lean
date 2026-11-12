@@ -54,6 +54,7 @@ assumed (`hne`).
 import PscVerif.ParikhIntertwiner
 import PscVerif.SignedCocycle
 import PscVerif.Cyclicity
+import Mathlib.FieldTheory.Minpoly.Field
 
 namespace Psc.ParikhRank
 

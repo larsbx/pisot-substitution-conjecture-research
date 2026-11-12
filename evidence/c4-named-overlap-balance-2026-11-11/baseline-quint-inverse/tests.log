@@ -1,0 +1,22 @@
+
+  C4InverseOccurrence
+    ok domainCountTest passed 1 test(s)
+    ok literalInverseIdentityTest passed 1 test(s)
+    ok incomingMarkGuardsTest passed 1 test(s)
+    ok swappedLiteralDigitsTest passed 1 test(s)
+    ok interiorPullbackTest passed 1 test(s)
+    ok diagonalInteriorDescendantsTest passed 1 test(s)
+    ok boundaryDiagonalCountercontrolTest passed 1 test(s)
+    ok wrongScalingPullbackCountercontrolTest passed 1 test(s)
+    ok swapFixedIffDiagonalTest passed 1 test(s)
+    ok scalarZeroIsNotFixedTest passed 1 test(s)
+    ok finiteTwoStepAncestryTest passed 1 test(s)
+    ok actualFreeDomainSwapCountsTest passed 1 test(s)
+    ok allSwapClosedSubdomainsTest passed 1 test(s)
+    ok missingSwapEdgeCountercontrolTest passed 1 test(s)
+    ok actualMixedOrbitWeightsTest passed 1 test(s)
+    ok repeatedOccurrenceIdentityTest passed 1 test(s)
+    ok nonSwapClosedDomainCountercontrolTest passed 1 test(s)
+    ok inverseClosedForwardLeakTest passed 1 test(s)
+
+  18 passing (4749ms)

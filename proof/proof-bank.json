@@ -3187,7 +3187,7 @@
       "module": "PscVerif.Cyclicity",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Cyclicity.lean",
-      "line": 78,
+      "line": 84,
       "declaration": "theorem cyclic_of_irreducible (W : Matrix (Fin 3) (Fin 3) F)"
     },
     {
@@ -3195,7 +3195,7 @@
       "module": "PscVerif.Cyclicity",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Cyclicity.lean",
-      "line": 116,
+      "line": 122,
       "declaration": "theorem invariant_eq_bot_or_top (W : Matrix (Fin 3) (Fin 3) F)"
     },
     {
@@ -3203,7 +3203,7 @@
       "module": "PscVerif.Cyclicity",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Cyclicity.lean",
-      "line": 158,
+      "line": 164,
       "declaration": "theorem wedge2_transpose_mul_mul (M : Matrix (Fin 3) (Fin 3) R) :"
     },
     {
@@ -3211,7 +3211,7 @@
       "module": "PscVerif.Cyclicity",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Cyclicity.lean",
-      "line": 166,
+      "line": 172,
       "declaration": "theorem wedge2_map {R' : Type*} [CommRing R'] (f : R →+* R') (M : Matrix (Fin 3) (Fin 3) R) :"
     },
     {
@@ -3219,7 +3219,7 @@
       "module": "PscVerif.Cyclicity",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Cyclicity.lean",
-      "line": 172,
+      "line": 178,
       "declaration": "theorem charpoly_fin_three (M : Matrix (Fin 3) (Fin 3) R) :"
     },
     {
@@ -3227,7 +3227,7 @@
       "module": "PscVerif.Cyclicity",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Cyclicity.lean",
-      "line": 181,
+      "line": 187,
       "declaration": "theorem trace_wedge2_wedge2 (M : Matrix (Fin 3) (Fin 3) R) :"
     },
     {
@@ -3235,7 +3235,7 @@
       "module": "PscVerif.Cyclicity",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Cyclicity.lean",
-      "line": 188,
+      "line": 194,
       "declaration": "theorem det_wedge2 (M : Matrix (Fin 3) (Fin 3) R) : (wedge2 M).det = M.det ^ 2 := by"
     },
     {
@@ -3243,7 +3243,7 @@
       "module": "PscVerif.Cyclicity",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Cyclicity.lean",
-      "line": 195,
+      "line": 201,
       "declaration": "theorem charpoly_wedge2 (M : Matrix (Fin 3) (Fin 3) R) :"
     },
     {
@@ -3251,7 +3251,7 @@
       "module": "PscVerif.Cyclicity",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Cyclicity.lean",
-      "line": 209,
+      "line": 215,
       "declaration": "theorem not_isRoot_of_irreducible (A : Matrix (Fin 3) (Fin 3) F)"
     },
     {
@@ -3259,7 +3259,7 @@
       "module": "PscVerif.Cyclicity",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Cyclicity.lean",
-      "line": 217,
+      "line": 223,
       "declaration": "theorem det_ne_zero_of_irreducible (A : Matrix (Fin 3) (Fin 3) F)"
     },
     {
@@ -3267,7 +3267,7 @@
       "module": "PscVerif.Cyclicity",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Cyclicity.lean",
-      "line": 223,
+      "line": 229,
       "declaration": "theorem vecMul_wedgePairing_ne_zero (v : Fin 3 → F) (hv : v ≠ 0) :"
     },
     {
@@ -3275,7 +3275,7 @@
       "module": "PscVerif.Cyclicity",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Cyclicity.lean",
-      "line": 234,
+      "line": 240,
       "declaration": "theorem irreducible_wedge2_of_field (M : Matrix (Fin 3) (Fin 3) F)"
     },
     {
@@ -3283,7 +3283,7 @@
       "module": "PscVerif.Cyclicity",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Cyclicity.lean",
-      "line": 259,
+      "line": 265,
       "declaration": "theorem irreducible_wedge2 (M : Matrix (Fin 3) (Fin 3) ℚ)"
     },
     {
@@ -3291,7 +3291,7 @@
       "module": "PscVerif.Cyclicity",
       "private": false,
       "source": "proof/PscVerif/PscVerif/Cyclicity.lean",
-      "line": 267,
+      "line": 273,
       "declaration": "theorem eigenrow_wedge2 {K : Type*} [Field K] [Algebra ℚ K]"
     },
     {
@@ -6427,7 +6427,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 44,
+      "line": 45,
       "declaration": "theorem parikhQ_nil : parikhQ ([] : List α) = 0 := by"
     },
     {
@@ -6435,7 +6435,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 49,
+      "line": 50,
       "declaration": "theorem parikhQ_append (u v : List α) :"
     },
     {
@@ -6443,7 +6443,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 55,
+      "line": 56,
       "declaration": "theorem parikhQ_flatten (ws : List (List α)) :"
     },
     {
@@ -6451,7 +6451,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 61,
+      "line": 62,
       "declaration": "theorem parikhQ_subst (s : α → List α) (w : List α) :"
     },
     {
@@ -6459,7 +6459,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 68,
+      "line": 69,
       "declaration": "theorem parikhQ_iterate_subst (s : α → List α) (n : ℕ) (w : List α) :"
     },
     {
@@ -6467,7 +6467,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 77,
+      "line": 78,
       "declaration": "theorem parikhQ_ne_zero {w : List α} (hw : w ≠ []) : parikhQ w ≠ 0 := by"
     },
     {
@@ -6475,7 +6475,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 88,
+      "line": 89,
       "declaration": "theorem mass_sum_descR (s : α → List α) (n : ℕ)"
     },
     {
@@ -6483,7 +6483,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 108,
+      "line": 109,
       "declaration": "theorem descR_empty_succ (s : α → List α) (n : ℕ) :"
     },
     {
@@ -6491,7 +6491,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 126,
+      "line": 127,
       "declaration": "theorem mass_mem_windowSpan (s : Fin 3 → List (Fin 3)) (n : ℕ)"
     },
     {
@@ -6499,7 +6499,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 132,
+      "line": 133,
       "declaration": "theorem iterate_mass_mem_windowSpan (s : Fin 3 → List (Fin 3)) (n : ℕ)"
     },
     {
@@ -6507,7 +6507,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 144,
+      "line": 145,
       "declaration": "theorem windowSpan_eq_top (s : Fin 3 → List (Fin 3))"
     },
     {
@@ -6515,7 +6515,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 176,
+      "line": 177,
       "declaration": "theorem row_eq_zero_of_window (s : Fin 3 → List (Fin 3))"
     },
     {
@@ -6523,7 +6523,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 193,
+      "line": 194,
       "declaration": "theorem exists_detecting_occurrence (s : Fin 3 → List (Fin 3))"
     },
     {
@@ -6531,7 +6531,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 210,
+      "line": 211,
       "declaration": "theorem exists_detecting_occurrence_le_two (s : Fin 3 → List (Fin 3))"
     },
     {
@@ -6539,7 +6539,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 229,
+      "line": 230,
       "declaration": "theorem sharp_depth_one :"
     },
     {
@@ -6547,7 +6547,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 233,
+      "line": 234,
       "declaration": "theorem sharp_depth_two :"
     },
     {
@@ -6555,7 +6555,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 238,
+      "line": 239,
       "declaration": "theorem sharp_first_two_levels_vanish :"
     },
     {
@@ -6563,7 +6563,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 244,
+      "line": 245,
       "declaration": "theorem sharp_depth_two_ordinal_two :"
     },
     {
@@ -6571,7 +6571,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 251,
+      "line": 252,
       "declaration": "theorem sharp_pruned_level_vanishes :"
     },
     {
@@ -6579,7 +6579,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 258,
+      "line": 259,
       "declaration": "theorem sharp_multiplicity_matters :"
     },
     {
@@ -6587,7 +6587,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 271,
+      "line": 272,
       "declaration": "theorem reducible_depth_one :"
     },
     {
@@ -6595,7 +6595,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 276,
+      "line": 277,
       "declaration": "theorem reducible_depth_two :"
     },
     {
@@ -6603,7 +6603,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 284,
+      "line": 285,
       "declaration": "theorem reducible_three_levels_vanish :"
     },
     {
@@ -6611,7 +6611,7 @@
       "module": "PscVerif.DescendantSpan",
       "private": false,
       "source": "proof/PscVerif/PscVerif/DescendantSpan.lean",
-      "line": 295,
+      "line": 296,
       "declaration": "theorem empty_window_vanishes (s : Fin 3 → List (Fin 3)) (f : Fin 3 → ℚ) :"
     },
     {
@@ -10727,6 +10727,78 @@
       "declaration": "theorem physicalLength_iterateImages (fixture : Fin 2) (k : ℕ) (letter : Fin 3) :"
     },
     {
+      "name": "Psc.NamedOverlapBalanceControls.zero_power_digitPacket",
+      "module": "PscVerif.NamedOverlapBalanceControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapBalanceControls.lean",
+      "line": 27,
+      "declaration": "theorem zero_power_digitPacket (s : Fin 3 → Word) (p : Packet)"
+    },
+    {
+      "name": "Psc.NamedOverlapBalanceControls.zero_power_inverseCounts",
+      "module": "PscVerif.NamedOverlapBalanceControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapBalanceControls.lean",
+      "line": 42,
+      "declaration": "theorem zero_power_inverseCounts (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.NamedOverlapBalanceControls.zero_power_deficit",
+      "module": "PscVerif.NamedOverlapBalanceControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapBalanceControls.lean",
+      "line": 58,
+      "declaration": "theorem zero_power_deficit (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.NamedOverlapBalanceControls.repeatedInverse_injective",
+      "module": "PscVerif.NamedOverlapBalanceControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapBalanceControls.lean",
+      "line": 81,
+      "declaration": "theorem repeatedInverse_injective : Function.Injective repeatedInverse := by"
+    },
+    {
+      "name": "Psc.NamedOverlapBalanceControls.repeated_inverse_count_at_least_two",
+      "module": "PscVerif.NamedOverlapBalanceControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapBalanceControls.lean",
+      "line": 89,
+      "declaration": "theorem repeated_inverse_count_at_least_two (S : Finset Packet) (hp : diagonal ∈ S) :"
+    },
+    {
+      "name": "Psc.NamedOverlapBalanceControls.repeated_inverse_count_not_endpoint_support",
+      "module": "PscVerif.NamedOverlapBalanceControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapBalanceControls.lean",
+      "line": 96,
+      "declaration": "theorem repeated_inverse_count_not_endpoint_support (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.NamedOverlapBalanceControls.zero_physical_weight_does_not_force_balance",
+      "module": "PscVerif.NamedOverlapBalanceControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapBalanceControls.lean",
+      "line": 103,
+      "declaration": "theorem zero_physical_weight_does_not_force_balance :"
+    },
+    {
+      "name": "Psc.NamedOverlapBalanceControls.missing_budget_does_not_force_balance",
+      "module": "PscVerif.NamedOverlapBalanceControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapBalanceControls.lean",
+      "line": 111,
+      "declaration": "theorem missing_budget_does_not_force_balance :"
+    },
+    {
+      "name": "Psc.NamedOverlapBalanceControls.conservation_does_not_supply_positive_overlap",
+      "module": "PscVerif.NamedOverlapBalanceControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapBalanceControls.lean",
+      "line": 119,
+      "declaration": "theorem conservation_does_not_supply_positive_overlap :"
+    },
+    {
       "name": "Psc.NamedProductHaar.overlap_measure_finite",
       "module": "PscVerif.NamedOverlapHaar",
       "private": false,
@@ -10765,6 +10837,182 @@
       "source": "proof/PscVerif/PscVerif/NamedOverlapHaar.lean",
       "line": 81,
       "declaration": "theorem strict_overlap_bound (r n : ℕ) (p : Packet) (hp : p ∈ strictPackets f) :"
+    },
+    {
+      "name": "Psc.NamedOverlapRecurrence.overlapMass_nonneg",
+      "module": "PscVerif.NamedOverlapRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean",
+      "line": 44,
+      "declaration": "theorem overlapMass_nonneg (S : Finset Packet) (p : State S) :"
+    },
+    {
+      "name": "Psc.NamedOverlapRecurrence.overlapMass_eq_zero_iff",
+      "module": "PscVerif.NamedOverlapRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean",
+      "line": 47,
+      "declaration": "theorem overlapMass_eq_zero_iff (S : Finset Packet) (p : State S) :"
+    },
+    {
+      "name": "Psc.NamedOverlapRecurrence.measure_rowPiece",
+      "module": "PscVerif.NamedOverlapRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean",
+      "line": 58,
+      "declaration": "theorem measure_rowPiece (k : ℕ) (S : Finset Packet) (p : State S)"
+    },
+    {
+      "name": "Psc.NamedOverlapRecurrence.scaled_measure_rowPiece",
+      "module": "PscVerif.NamedOverlapRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean",
+      "line": 64,
+      "declaration": "theorem scaled_measure_rowPiece (k : ℕ) (S : Finset Packet) (p : State S)"
+    },
+    {
+      "name": "Psc.NamedOverlapRecurrence.overlap_eq_iUnion_rowPiece",
+      "module": "PscVerif.NamedOverlapRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean",
+      "line": 75,
+      "declaration": "theorem overlap_eq_iUnion_rowPiece (r : ℕ) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.NamedOverlapRecurrence.subinvariance",
+      "module": "PscVerif.NamedOverlapRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean",
+      "line": 96,
+      "declaration": "theorem subinvariance (r : ℕ) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.NamedOverlapRecurrence.physicalMass_pos",
+      "module": "PscVerif.NamedOverlapRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean",
+      "line": 117,
+      "declaration": "theorem physicalMass_pos (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.NamedOverlapRecurrence.physical_budget",
+      "module": "PscVerif.NamedOverlapRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean",
+      "line": 123,
+      "declaration": "theorem physical_budget (r : ℕ) (S : Finset Packet) (p : State S) :"
+    },
+    {
+      "name": "Psc.NamedOverlapRecurrence.balance",
+      "module": "PscVerif.NamedOverlapRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean",
+      "line": 133,
+      "declaration": "theorem balance (r : ℕ) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.NamedOverlapRecurrence.deficit_product_zero",
+      "module": "PscVerif.NamedOverlapRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean",
+      "line": 145,
+      "declaration": "theorem deficit_product_zero (r : ℕ) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.NamedOverlapRecurrence.packets_subinvariance",
+      "module": "PscVerif.NamedOverlapRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean",
+      "line": 157,
+      "declaration": "theorem packets_subinvariance (r : ℕ) (p : State (packets f)) :"
+    },
+    {
+      "name": "Psc.NamedOverlapRecurrence.strictPackets_subinvariance",
+      "module": "PscVerif.NamedOverlapRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean",
+      "line": 164,
+      "declaration": "theorem strictPackets_subinvariance (r : ℕ) (p : State (strictPackets f)) :"
+    },
+    {
+      "name": "Psc.NamedOverlapRecurrence.packets_balance",
+      "module": "PscVerif.NamedOverlapRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean",
+      "line": 170,
+      "declaration": "theorem packets_balance (r : ℕ) (p : State (packets f)) :"
+    },
+    {
+      "name": "Psc.NamedOverlapRecurrence.strictPackets_balance",
+      "module": "PscVerif.NamedOverlapRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean",
+      "line": 177,
+      "declaration": "theorem strictPackets_balance (r : ℕ) (p : State (strictPackets f)) :"
+    },
+    {
+      "name": "Psc.NamedOverlapRecurrence.packets_deficit_product_zero",
+      "module": "PscVerif.NamedOverlapRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean",
+      "line": 185,
+      "declaration": "theorem packets_deficit_product_zero (r : ℕ) (p : State (packets f)) :"
+    },
+    {
+      "name": "Psc.NamedOverlapRecurrence.strictPackets_deficit_product_zero",
+      "module": "PscVerif.NamedOverlapRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean",
+      "line": 191,
+      "declaration": "theorem strictPackets_deficit_product_zero (r : ℕ) (p : State (strictPackets f)) :"
+    },
+    {
+      "name": "Psc.NamedOverlapRecurrence.null_at_loss",
+      "module": "PscVerif.NamedOverlapRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean",
+      "line": 199,
+      "declaration": "theorem null_at_loss (r : ℕ) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.NamedOverlapRecurrence.null_of_loss_reaches",
+      "module": "PscVerif.NamedOverlapRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean",
+      "line": 211,
+      "declaration": "theorem null_of_loss_reaches (r : ℕ) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.NamedOverlapRecurrence.null_of_source_loss",
+      "module": "PscVerif.NamedOverlapRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean",
+      "line": 227,
+      "declaration": "theorem null_of_source_loss (r : ℕ) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.NamedOverlapRecurrence.conservative_source_ancestor",
+      "module": "PscVerif.NamedOverlapRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean",
+      "line": 244,
+      "declaration": "theorem conservative_source_ancestor (r : ℕ) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.NamedOverlapRecurrence.strictPackets_null_of_source_loss",
+      "module": "PscVerif.NamedOverlapRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean",
+      "line": 265,
+      "declaration": "theorem strictPackets_null_of_source_loss (r : ℕ)"
+    },
+    {
+      "name": "Psc.NamedOverlapRecurrence.strictPackets_conservative_source_ancestor",
+      "module": "PscVerif.NamedOverlapRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean",
+      "line": 278,
+      "declaration": "theorem strictPackets_conservative_source_ancestor (r : ℕ) (p : State (strictPackets f))"
     },
     {
       "name": "Psc.NamedPrefixCompact.incidence_eq",
@@ -13679,6 +13927,70 @@
       "declaration": "theorem dependent_lengths_control :"
     },
     {
+      "name": "Psc.OccurrencePhysicalBudget.inverseCounts_nonneg",
+      "module": "PscVerif.OccurrencePhysicalBudget",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrencePhysicalBudget.lean",
+      "line": 74,
+      "declaration": "theorem inverseCounts_nonneg (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrencePhysicalBudget.inverseCounts_eq_card",
+      "module": "PscVerif.OccurrencePhysicalBudget",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrencePhysicalBudget.lean",
+      "line": 79,
+      "declaration": "theorem inverseCounts_eq_card (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrencePhysicalBudget.inverseCounts_pos_iff",
+      "module": "PscVerif.OccurrencePhysicalBudget",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrencePhysicalBudget.lean",
+      "line": 87,
+      "declaration": "theorem inverseCounts_pos_iff (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrencePhysicalBudget.row_sum_eq_action",
+      "module": "PscVerif.OccurrencePhysicalBudget",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrencePhysicalBudget.lean",
+      "line": 93,
+      "declaration": "theorem row_sum_eq_action (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrencePhysicalBudget.transpose_eq_retained",
+      "module": "PscVerif.OccurrencePhysicalBudget",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrencePhysicalBudget.lean",
+      "line": 105,
+      "declaration": "theorem transpose_eq_retained (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrencePhysicalBudget.transpose_budget",
+      "module": "PscVerif.OccurrencePhysicalBudget",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrencePhysicalBudget.lean",
+      "line": 125,
+      "declaration": "theorem transpose_budget (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrencePhysicalBudget.deficit_eq_omitted_positions",
+      "module": "PscVerif.OccurrencePhysicalBudget",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrencePhysicalBudget.lean",
+      "line": 147,
+      "declaration": "theorem deficit_eq_omitted_positions (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
+      "name": "Psc.OccurrencePhysicalBudget.deficit_pos_iff",
+      "module": "PscVerif.OccurrencePhysicalBudget",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrencePhysicalBudget.lean",
+      "line": 170,
+      "declaration": "theorem deficit_pos_iff (s : Fin 3 → Word) (S : Finset Packet)"
+    },
+    {
       "name": "Psc.OccurrencePiece.overlap_eq_inter_translate",
       "module": "PscVerif.OccurrencePiece",
       "private": false,
@@ -15387,7 +15699,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 63,
+      "line": 64,
       "declaration": "theorem map_natCast_intCast {m n R : Type*} [Ring R] (A : Matrix m n ℕ) :"
     },
     {
@@ -15395,7 +15707,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 74,
+      "line": 75,
       "declaration": "theorem pow_intertwine (h : P * N = M * P) (n : ℕ) : P * N ^ n = M ^ n * P := by"
     },
     {
@@ -15403,7 +15715,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 81,
+      "line": 82,
       "declaration": "theorem aeval_intertwine (h : P * N = M * P) (f : ℚ[X]) :"
     },
     {
@@ -15411,7 +15723,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 91,
+      "line": 92,
       "declaration": "theorem surjective_of_intertwine (h : P * N = M * P) (hM : Irreducible M.charpoly)"
     },
     {
@@ -15419,7 +15731,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 104,
+      "line": 105,
       "declaration": "theorem card_ge_of_intertwine (h : P * N = M * P) (hM : Irreducible M.charpoly)"
     },
     {
@@ -15427,7 +15739,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 110,
+      "line": 111,
       "declaration": "theorem charpoly_dvd_of_intertwine (h : P * N = M * P) (hM : Irreducible M.charpoly)"
     },
     {
@@ -15435,7 +15747,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 124,
+      "line": 125,
       "declaration": "theorem charpoly_dvd_of_map_rat {κ : Type*} [Fintype κ] [DecidableEq κ] {A : Matrix κ κ ℤ}"
     },
     {
@@ -15443,7 +15755,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 133,
+      "line": 134,
       "declaration": "theorem charpoly_dvd_int_of_rat {κ : Type*} [Fintype κ] [DecidableEq κ]"
     },
     {
@@ -15451,7 +15763,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 141,
+      "line": 142,
       "declaration": "theorem similar_of_intertwine (h : P * N = M * P) (hM : Irreducible M.charpoly)"
     },
     {
@@ -15459,7 +15771,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 177,
+      "line": 178,
       "declaration": "theorem prep_nrep [Fintype α] (hbal : ∀ T ∈ S'.C, Equiv1 T.1 T.2) :"
     },
     {
@@ -15467,7 +15779,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 190,
+      "line": 191,
       "declaration": "theorem prep_ne_zero (hC : S'.C.Nonempty) (hne : ∀ T ∈ S'.C, T.1 ≠ []) :"
     },
     {
@@ -15475,7 +15787,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 215,
+      "line": 216,
       "declaration": "theorem prepQ_nrepQ (hbal : ∀ T ∈ S.C, Equiv1 T.1 T.2) :"
     },
     {
@@ -15483,7 +15795,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 226,
+      "line": 227,
       "declaration": "theorem prep_surjective (hC : S.C.Nonempty) : Function.Surjective (Matrix.mulVecLin (PrepQ P)) :="
     },
     {
@@ -15491,7 +15803,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 230,
+      "line": 231,
       "declaration": "theorem card_rep_ge (hC : S.C.Nonempty) : 3 ≤ Fintype.card P.Rep :="
     },
     {
@@ -15499,7 +15811,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 234,
+      "line": 235,
       "declaration": "theorem charpoly_dvd_rep (hC : S.C.Nonempty) : (incQ S).charpoly ∣ (NrepQ P).charpoly :="
     },
     {
@@ -15507,7 +15819,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 238,
+      "line": 239,
       "declaration": "theorem charpoly_dvd_rep_int (hC : S.C.Nonempty) :"
     },
     {
@@ -15515,7 +15827,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 243,
+      "line": 244,
       "declaration": "theorem similar_rep_of_equiv (e : P.Rep ≃ Fin 3) :"
     },
     {
@@ -15523,7 +15835,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 251,
+      "line": 252,
       "declaration": "theorem exists_similar_rep_of_card_eq (hcard : Fintype.card P.Rep = 3) :"
     },
     {
@@ -15531,7 +15843,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 268,
+      "line": 269,
       "declaration": "theorem pcQ_ncQ : PcQ S * NcQ S = incQ S * PcQ S := by"
     },
     {
@@ -15539,7 +15851,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 274,
+      "line": 275,
       "declaration": "theorem pcQ_aeval (f : ℚ[X]) : PcQ S * aeval (NcQ S) f = aeval (incQ S) f * PcQ S :="
     },
     {
@@ -15547,7 +15859,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 277,
+      "line": 278,
       "declaration": "theorem pcQ_ne_zero (hC : S.C.Nonempty) (hne : ∀ T ∈ S.C, T.1 ≠ []) : PcQ S ≠ 0 := by"
     },
     {
@@ -15555,7 +15867,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 292,
+      "line": 293,
       "declaration": "theorem pc_surjective (hC : S.C.Nonempty) : Function.Surjective (Matrix.mulVecLin (PcQ S)) :="
     },
     {
@@ -15563,7 +15875,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 296,
+      "line": 297,
       "declaration": "theorem card_ge (hC : S.C.Nonempty) : 3 ≤ Fintype.card (State S) :="
     },
     {
@@ -15571,7 +15883,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 300,
+      "line": 301,
       "declaration": "theorem charpoly_dvd (hC : S.C.Nonempty) : (incQ S).charpoly ∣ (NcQ S).charpoly :="
     },
     {
@@ -15579,7 +15891,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 304,
+      "line": 305,
       "declaration": "theorem charpoly_dvd_int (hC : S.C.Nonempty) :"
     },
     {
@@ -15587,7 +15899,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 310,
+      "line": 311,
       "declaration": "theorem similar_of_equiv (e : State S ≃ Fin 3) :"
     },
     {
@@ -15595,7 +15907,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 318,
+      "line": 319,
       "declaration": "theorem exists_similar_of_card_eq (hcard : Fintype.card (State S) = 3) :"
     },
     {
@@ -15603,7 +15915,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 327,
+      "line": 328,
       "declaration": "theorem card_state_eq_two_mul {α : Type*} [DecidableEq α] {S : ChildSystem α}"
     },
     {
@@ -15611,7 +15923,7 @@
       "module": "PscVerif.ParikhRank",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ParikhRank.lean",
-      "line": 334,
+      "line": 335,
       "declaration": "theorem no_equiv_fin3 {S : ChildSystem (Fin 3)} (P : Normalisation S) :"
     },
     {
@@ -23493,7 +23805,7 @@
     "proof/PscVerif/PscVerif/ConcentrationAlgebra.lean": "301a1a13eca8a554d1313afc96e0a374dfc0774dfa8d2a2e8e60b97345c921b2",
     "proof/PscVerif/PscVerif/ConcentrationControls.lean": "881e9c16e846722918332385c74503f0e1e697e02db4ff20dec004679feed7d7",
     "proof/PscVerif/PscVerif/CountBridge.lean": "ee00588159713544ce4259d8652545a87b74ec69ca20877489d085d6e0cacc9e",
-    "proof/PscVerif/PscVerif/Cyclicity.lean": "22076d9fcce5ac3dde6cbebdea2d7ee46fe7aa064920385792fd1ca922747b3d",
+    "proof/PscVerif/PscVerif/Cyclicity.lean": "a31b77d0fcb06d1dcb582156679c7316d2847fab2ff9b06db2b998ca6effa770",
     "proof/PscVerif/PscVerif/Defect4.lean": "c9033863c13086fc26c8e43de294cea144702f1df36a379d0fa09dbebdb37d84",
     "proof/PscVerif/PscVerif/Defect4Lie.lean": "edfd4b1eb95fb2ecc729712712643d8e5e544346c0c65a109d0991c5f2b76f37",
     "proof/PscVerif/PscVerif/Defect5.lean": "8ef3ed8261d8e6bf78acdb21794af46ee43a99448fb07728d4799c2de84bf4d2",
@@ -23510,7 +23822,7 @@
     "proof/PscVerif/PscVerif/Degree5Sieve.lean": "b787a6689480edad73655df8666b2ee97a02a64af6ec26fb88acd058add82b1c",
     "proof/PscVerif/PscVerif/Degree5Transport.lean": "1e5e153ac4ba75582d7b4133c8fc4f035b6313b86be83649a49c0555cdfe444b",
     "proof/PscVerif/PscVerif/Degree5Weights.lean": "b53740ff569e9e0c6fdaf9ab99815d9c04396c729f850f138b14b5549d827b84",
-    "proof/PscVerif/PscVerif/DescendantSpan.lean": "8562512a9646b9891d4c60cee5a12ad6246da9a323466a0797395329f580f2c5",
+    "proof/PscVerif/PscVerif/DescendantSpan.lean": "6a46eb2a94b7785ba2a69db88daf56a3e98935e738fdb6dc478d685162696e8c",
     "proof/PscVerif/PscVerif/DescendantSpanStrict.lean": "24a2d9d6f0eedf5a49dd17318ad90b0b9d82cc3c930a3f34336b0519f63f9c66",
     "proof/PscVerif/PscVerif/Descendants.lean": "6641b65d81d90be34c13937b6ab8ebc029fcce91babd7c2ce398738dac783a40",
     "proof/PscVerif/PscVerif/FixedPointLimit.lean": "cd4a824f288d4c1072fd375e0e7b9014f56028e23e00cb4336fd678a210b7bbe",
@@ -23530,7 +23842,9 @@
     "proof/PscVerif/PscVerif/MadicResidue.lean": "c7ff8430cb77c335f11478861584baea4129658b35f4fc67bf0c2b8509d50f6d",
     "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean": "13ef34fb3eb6b9ede477c4de920af612010aa280409049c185b1afb35a34a585",
     "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean": "e91dfcffed8884f99863591d57d892933fbc7ce0a5de2899955a4a69a99233e6",
+    "proof/PscVerif/PscVerif/NamedOverlapBalanceControls.lean": "ccf5d2d4241cbe382878cd18ba34f0ffb195b9d0a7c0c0dc049b9864e84273cb",
     "proof/PscVerif/PscVerif/NamedOverlapHaar.lean": "248fa98da0eaa0cb895530cf7ff55e43f7030e07ddfcd2f92714300b36db4002",
+    "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean": "fd2f332087db1b010a7f2d7d8094a993c020e0228b56036d861b017d69057f30",
     "proof/PscVerif/PscVerif/NamedPrefixCompact.lean": "e6cbff61401e8f5109bc0c8654e77eca155e1186286703e76f4d55044ebd220e",
     "proof/PscVerif/PscVerif/NamedProductHaar.lean": "e398c9b19b65cb794034138490453d35bfdc4dab256473318daca75528b9ac14",
     "proof/PscVerif/PscVerif/NamedStableChart.lean": "772d6dc46898bc22471db53283dc0404445f1dd28ac0b99ed16232c394336f9b",
@@ -23545,6 +23859,7 @@
     "proof/PscVerif/PscVerif/OccurrenceMassCounts.lean": "319649463bbf764279bfbeccaa2bae869325aa0afce9d58fdfa7e2dce3ba99d2",
     "proof/PscVerif/PscVerif/OccurrenceMassStrict.lean": "9dbfbc03613a68f116a522ed609228c7c780cefbd3f3754be87c340b04ba634d",
     "proof/PscVerif/PscVerif/OccurrenceNewborn.lean": "7afaf823023d45cc6d1d4d9b6d08e2b3d6e74dce165d77174de86d7cd23dd1d0",
+    "proof/PscVerif/PscVerif/OccurrencePhysicalBudget.lean": "2b1ab3d3ac6477c4bd0c81ff00445934944c05958428dd6748e89dbe0ce5d21c",
     "proof/PscVerif/PscVerif/OccurrencePiece.lean": "304a9f42f3fea45cac2c752ef0b61cfd6894e78967d191803c723233d63e9ec0",
     "proof/PscVerif/PscVerif/OccurrenceRecurrence.lean": "9ce4b9cfab68581d39ef893d481eb5e12fe45ff2288ef0cf4f049d97898d3fbb",
     "proof/PscVerif/PscVerif/OccurrenceResidue.lean": "8552eb3d7584b6b467ae6f990a8204490ae9b543b38cecb243cd8576c58dd248",
@@ -23555,7 +23870,7 @@
     "proof/PscVerif/PscVerif/OverlapContraction.lean": "09dd1ccc90a7245211336996f7da8b1276e86cab60dd1cc0b5471e3d7f6a2a30",
     "proof/PscVerif/PscVerif/OverlapPacket.lean": "572fd9fc85082e05377321fa812670558fff66ebed16e319a81816b22950a853",
     "proof/PscVerif/PscVerif/ParikhIntertwiner.lean": "bc7120433f0c103c966fc6faf41407b969537fd0881971a5d36b98169b220d96",
-    "proof/PscVerif/PscVerif/ParikhRank.lean": "be40494c796287c599d6a62f20662e1c7f80786c88d0e4881c8a58795b3e0d7a",
+    "proof/PscVerif/PscVerif/ParikhRank.lean": "f13cddb90200af8a8a26d01428537235a2bebddf2e081849188753e97add6e69",
     "proof/PscVerif/PscVerif/PerronCore.lean": "1f06da1e0b57e74b31fc03d753bd314f25561a37e512b3a8f7f05fda0d75458c",
     "proof/PscVerif/PscVerif/PerronExistence.lean": "a2ac1801abf2a99a6c312935d101ed4f760ffec0f96586d5f1f43bb176814c73",
     "proof/PscVerif/PscVerif/PerronSimple.lean": "1e4d9aca60b215f17067e39ba38bd8eaec7d9781fb716d8727fa7f9cbbf737a8",
@@ -23578,7 +23893,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "c0e1327b950201381a7dc93db74a95bae8e75703f594f395d26308ce9706d73f",
+    "proof/PscVerif/PscVerif.lean": "d9f5d502695f4382df668bb48a6e6237fae58e3116fa3636b65242058cf50920",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

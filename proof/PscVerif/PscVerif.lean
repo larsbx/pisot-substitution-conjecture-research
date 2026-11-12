@@ -88,3 +88,5 @@ import PscVerif.NamedPrefixCompact
 import PscVerif.NamedGeometricEnclosure
 import PscVerif.NamedFiniteCarrier
 import PscVerif.NamedOverlapHaar
+import PscVerif.NamedOverlapRecurrence
+import PscVerif.NamedOverlapBalanceControls

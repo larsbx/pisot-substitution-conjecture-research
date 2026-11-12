@@ -1,0 +1,33 @@
+
+  C4InverseOccurrence
+    1) boundaryDiagonalCountercontrolTest failed after 1 test(s)
+
+  1 failed
+
+  1) boundaryDiagonalCountercontrolTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-c4-inverse-occurrence-d4m1ygpc/boundary-contact-counted-positive.qnt:160:44
+        160:   run boundaryDiagonalCountercontrolTest = init.expect({
+                                                        ^^^^^^^^^^^^^
+        161:     val p = (0, 0, (0, 0, 0))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        162:     val q = child(mixedSigma, p, 0, 1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        163:     all {
+             ^^^^^^^^^
+        164:       diagonal(p), incoming(mixedSigma, p, q, 0, 1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        165:       q == (0, 0, (-1, 0, 0)), mass(q, lengths) == 0, not(diagonal(q)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        166:       mass((0, 1, (1, 0, 0)), lengths) == 0,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        167:     }
+             ^^^^^
+        168:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f6 --match=boundaryDiagonalCountercontrolTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-c4-inverse-occurrence-d4m1ygpc/boundary-contact-counted-positive.qnt
+error: Tests failed

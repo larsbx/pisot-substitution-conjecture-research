@@ -1,0 +1,96 @@
+{
+  "schema": "psc-hosted-ci-job-receipt-v1",
+  "observed_at_utc": "2026-11-12 00:23:21 UTC",
+  "head_sha": "ed8251b95a770476fdb96248e42ef10ac54d0c93",
+  "head_tree": "feb518be2f6a00331e9d794fdc3f71a65fb2c24d",
+  "run_id": 43125122828,
+  "run_status": "completed",
+  "run_conclusion": "failure",
+  "job_id": 130875128361,
+  "job_status": "completed",
+  "job_conclusion": "failure",
+  "started_at": "2026-11-12T00:10:47Z",
+  "completed_at": "2026-11-12T00:19:40Z",
+  "job_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43125122828/job/130875128361",
+  "steps": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 1,
+      "started_at": "2026-11-12T00:10:47Z",
+      "completed_at": "2026-11-12T00:10:48Z"
+    },
+    {
+      "name": "Run actions/checkout@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 2,
+      "started_at": "2026-11-12T00:10:48Z",
+      "completed_at": "2026-11-12T00:10:50Z"
+    },
+    {
+      "name": "Verify exact revision",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 3,
+      "started_at": "2026-11-12T00:10:50Z",
+      "completed_at": "2026-11-12T00:10:50Z"
+    },
+    {
+      "name": "Provision the pinned Lean release and dependency sources",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 4,
+      "started_at": "2026-11-12T00:10:50Z",
+      "completed_at": "2026-11-12T00:12:29Z"
+    },
+    {
+      "name": "Compile from isolated sources and audit every local declaration",
+      "status": "completed",
+      "conclusion": "failure",
+      "number": 5,
+      "started_at": "2026-11-12T00:12:29Z",
+      "completed_at": "2026-11-12T00:19:36Z"
+    },
+    {
+      "name": "Retain the exact-head audit receipt",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 6,
+      "started_at": "2026-11-12T00:19:36Z",
+      "completed_at": "2026-11-12T00:19:38Z"
+    },
+    {
+      "name": "Post Run actions/checkout@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 12,
+      "started_at": "2026-11-12T00:19:38Z",
+      "completed_at": "2026-11-12T00:19:39Z"
+    },
+    {
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 13,
+      "started_at": "2026-11-12T00:19:39Z",
+      "completed_at": "2026-11-12T00:19:39Z"
+    }
+  ],
+  "failed_targets": [
+    "PscVerif.ParikhRank",
+    "PscVerif.DescendantSpan"
+  ],
+  "diagnostics": [
+    "ParikhRank.lean:119:6: Unknown identifier minpoly.eq_of_irreducible_of_monic; consequent unsolved goal at111:46",
+    "DescendantSpan.lean:189:8: Unknown identifier dotProduct_self_eq_zero.mp"
+  ],
+  "classification": "Blocking production import regression exposed by complete source build after the Cyclicity umbrella-import removal.",
+  "canonical_acceptance": false,
+  "compiled_axiom_audit": "Not reached because the full build failed.",
+  "scope": "This failed exact-head gate is historical evidence; the two later import additions require a new complete audit.",
+  "log_file": "dedicated_full_lean_43125122828_job_130875128361.log",
+  "log_bytes": 69126,
+  "log_sha256": "9cc003c146807d2921c45074ab128908ab451ce99cea0852b265d747db5b7999"
+}
