@@ -84,3 +84,57 @@ validity, stack-base, and nonnegativity premises from the compiled loop
 invariant, and verify the omitted control-flow transitions and runtime
 contracts used by the error projection.
 The N2, N3, and N4 loops and runtime still require their own proofs.
+
+## Projected update sequence
+
+`N2MachineRefinement.trace_exact` quantifies over every finite sequence of
+planned updates satisfying `Ready`. Each reached step relates two loaded
+words to natural-number operands and checks the saved output base, saved
+return address and protected byte ranges. The source guard is the one
+defined in `Refinement.lean`. The proof lifts the single decoded update
+through the sequence by induction. It preserves the frame and result-buffer
+bytes at each successful store and stops at the first overflow. On refusal,
+the observation includes memory immediately before the failed store and the
+projected error record. Earlier successful stores can still be present.
+The error observation uses the recorded cleanup model and its runtime
+preservation assumptions. It does not model post-cleanup heap ownership.
+
+`Ready` is an obligation on the schedule of slice entries. It does not
+establish that the native loop produces that schedule. An independent
+machine proof still needs to derive the schedule from allocation,
+initialization, loop counters, the back edges, and the `seen[j]` update.
+It must establish the valid mapped ranges, the return-buffer layout, the
+values restored into callee-saved registers, and the actual success and
+error return paths. The omitted error transition and the stack-trace and
+free calls still require contracts on control transfer, stack and memory
+preservation, and allocator ownership.
+
+The checked-add proof, protected byte ranges, trace induction and error
+observation can be reused for N3 and N4 after matching each implementation's
+instructions and ABI. N3 needs its pair-prefix and triple-loop schedule.
+N4 needs its triple-prefix and quadruple-loop schedule. Each needs its own
+checked dimensions, index bounds, source-array lifetimes and cleanup
+order, plus caller-level refusal propagation through the defect consumers.
+
+Run the Lean proof with the repository's pinned toolchain:
+
+```sh
+work=$(mktemp -d)
+mkdir -p "$work/WordCounters"
+export LEAN_PATH="$work"
+for module in Refinement N2MachineSlice N2MachineRefinement; do
+  lean -o "$work/WordCounters/$module.olean" "proof/WordCounters/$module.lean"
+done
+```
+
+Replay full-file identity, slice checks, eight byte mutations and the native
+overflow regression using the original ELF:
+
+```sh
+bash proof/WordCounters/replay-n2-binary.sh /path/to/recorded-elf
+```
+
+The script requires the original digest before testing or executing the
+snapshot. A rebuild in a different path may have a different digest.
+The Lean controls independently rule out a mismatched saved base, a store
+overlapping a protected range and continuation past a refused update.
