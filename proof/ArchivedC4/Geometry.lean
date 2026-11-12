@@ -19,6 +19,18 @@ def statesOf {n : Nat} (rows : Nat → Option Row) (i : Fin n) :
     Psc.OccurrenceTransport.Packet :=
   (rowAt rows i).state.toGeometry
 
+def finiteRoot (i : Fin 3) : Packet := roots[i.val]'(i.isLt)
+
+theorem rootGeometry (i : Fin 3) :
+    (finiteRoot i).toGeometry = Psc.ArchivedGraphRefinement.archivedRoot i := by
+  have zero : (![0, 0, 0] : Fin 3 → Int) = 0 := by
+    funext j
+    fin_cases j <;> rfl
+  fin_cases i
+  · exact congrArg (Psc.OccurrenceTransport.Packet.mk 0 1) zero
+  · exact congrArg (Psc.OccurrenceTransport.Packet.mk 0 2) zero
+  · exact congrArg (Psc.OccurrenceTransport.Packet.mk 1 2) zero
+
 theorem birthWitness {n : Nat} {rows : Nat → Option Row} (i : Fin n)
     (valid : birthOK rows i (rowAt rows i) = true) :
     i.val < 3 ∨ ∃ (j : Fin n) (k : Fin (rowAt rows j).slots.length),

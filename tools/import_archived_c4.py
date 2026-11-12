@@ -17,6 +17,7 @@ PACKET_HASHES = (
 COUNTS = (7150, 7083)
 NUMERATORS = (99, 101)
 CHUNK_SIZE = 32
+SHARD_SIZE = CHUNK_SIZE * 16
 
 
 @dataclass
@@ -80,12 +81,11 @@ def lookup(name, type_name, entries):
         return (f"(if i < {mid * CHUNK_SIZE} then {branch(lo, mid)}"
                 f" else {branch(mid, hi)})")
 
-    lines.append(f"def {name} (i : Nat) : Option {type_name} := "
-                 f"{branch(0, len(lines))}\n")
-    return "\n".join(lines)
+    tree = f"def {name} (i : Nat) : Option {type_name} := {branch(0, len(lines))}\n"
+    return lines, tree
 
 
-def emit_data(f, data):
+def emit_data(f, data, output):
     order = sorted(range(len(data.nodes)), key=lambda i: data.nodes[i][:5])
     ranks = {i: rank for rank, i in enumerate(order)}
     nodes = []
@@ -102,13 +102,30 @@ def emit_data(f, data):
     for selected, parent, position, x, y, z, outer, local in data.digits:
         marks.append(lean_record(selected, parent, position, outer, local, lean_record(x, y, z)))
     images = lean_list(lean_list(word) for word in data.images)
+    row_leaves, row_tree = lookup("rows", "Row", nodes)
+    rank_leaves, rank_tree = lookup("byRank", "Nat", order)
+    imports = []
+    leaves = row_leaves + rank_leaves
+    leaves_per_module = SHARD_SIZE // CHUNK_SIZE
+    for start in range(0, len(leaves), leaves_per_module):
+        module = f"Fixture{f}Leaves{start}"
+        imports.append(f"import {module}")
+        (output / f"{module}.lean").write_text("\n".join([
+            "import Check",
+            "noncomputable section",
+            f"namespace ArchivedC4.Fixture{f}",
+            *leaves[start:start + leaves_per_module],
+            f"end ArchivedC4.Fixture{f}",
+            "",
+        ]))
     return "\n".join([
-        "import Check",
+        *imports,
+        "noncomputable section",
         f"namespace ArchivedC4.Fixture{f}",
         f"def marks : List Digit := {lean_list(marks)}",
         f"theorem literalMarks : marks = digits {images} := by decide +kernel",
-        lookup("rows", "Row", nodes),
-        lookup("byRank", "Nat", order),
+        row_tree,
+        rank_tree,
         f"def acceptedRow := rowOK marks rows byRank {len(data.nodes)} {NUMERATORS[f]}",
         f"end ArchivedC4.Fixture{f}",
         "",
@@ -126,7 +143,7 @@ def emit_checks(f, count, start, stop):
         size = min(CHUNK_SIZE, count - first)
         lines.append(f"theorem chunk{first} : checkChunk {first} {size} acceptedRow = true := "
                      "by decide +kernel")
-    names = [f"(fun i lo hi => row_of_chunk chunk{first} lo hi)"
+    names = [f"(fun _i lo hi => row_of_chunk chunk{first} lo hi)"
              for first in range(start, stop, CHUNK_SIZE)]
     lines.extend([
         f"theorem rows{start}Accepted : ∀ i, {start} ≤ i → i < {stop} → acceptedRow i = true :=",
@@ -159,6 +176,8 @@ def emit_bridge(f, count):
     return f"""import Geometry
 import Fixture{f}Accepted
 
+noncomputable section
+
 namespace ArchivedC4.Fixture{f}
 
 open Psc.ArchivedGraphRefinement Psc.OccurrenceGraphBinding
@@ -176,7 +195,9 @@ def rootID (i : Fin 3) : Fin {count} := ⟨i.val, by omega⟩
 
 theorem rootBound (i : Fin 3) :
     statesOf rows (rootID i) = Psc.ArchivedGraphRefinement.archivedRoot i := by
-  fin_cases i <;> rfl
+  rw [← rootGeometry i]
+  apply congrArg Packet.toGeometry
+  fin_cases i <;> decide +kernel
 
 theorem discovery
     (table : TableBinding (iterateImages (substitution {f}) 2) (statesOf rows) certificate) :
@@ -232,13 +253,13 @@ def main():
         raise oracle.InvalidCertificate("altered payload digest was accepted")
     args.output_directory.mkdir(parents=True, exist_ok=True)
     for f, (data, count) in enumerate(zip(fixtures, COUNTS, strict=True)):
-        (args.output_directory / f"Fixture{f}Data.lean").write_text(emit_data(f, data))
+        (args.output_directory / f"Fixture{f}Data.lean").write_text(emit_data(f, data, args.output_directory))
         (args.output_directory / f"Fixture{f}Controls.lean").write_text(emit_controls(f, data))
         (args.output_directory / f"Fixture{f}Bridge.lean").write_text(emit_bridge(f, count))
-        starts = range(0, count, CHUNK_SIZE * 16)
+        starts = range(0, count, SHARD_SIZE)
         for start in starts:
             module = f"Fixture{f}Rows{start}"
-            stop = min(count, start + CHUNK_SIZE * 16)
+            stop = min(count, start + SHARD_SIZE)
             (args.output_directory / f"{module}.lean").write_text(
                 emit_checks(f, count, start, stop))
         (args.output_directory / f"Fixture{f}Accepted.lean").write_text(

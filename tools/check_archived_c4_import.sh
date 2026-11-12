@@ -19,6 +19,9 @@ compile Check
 compile Contraction
 compile Geometry
 for fixture in 0 1; do
+    for source in Fixture"${fixture}"Leaves*.lean; do
+        compile "${source%.lean}"
+    done
     compile "Fixture${fixture}Data"
     for source in Fixture"${fixture}"Rows*.lean Fixture"${fixture}"Controls.lean; do
         compile "${source%.lean}"
