@@ -55,3 +55,24 @@ observations at the #98 head. PSC's regressions exercise the vendored native
 code through the PSC bindings. A proof that compiled Mojo implements the
 Lean model for every valid input remains a separate refinement obligation.
 There is no new Lean assertion about the PSC degree-four implementation.
+
+## Verification record
+
+The original PSC binary returned `-7780085407041551616` on the four-million-letter
+input. The patched native regression reached its contract receipt using Mojo
+`1.1.0.dev2026090805 (34562fa1)`. The baseline and port produced byte-identical
+ten-check spectral certificate reports (SHA-256
+`6225bb4a203a3f006b766c1e99c549318e00cafd3572394334c172a6480973f8`).
+The existing small streaming, kernel and census-library regression reports
+also matched byte for byte.
+
+PSC [run 43171890790](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43171890790)
+passed the Mojo kernel, spectral replay and Lean proof jobs at initial port
+head `294ae330de2938c4eea2cc7c6234639fb8780437`. The dedicated
+[defect census run](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43171890744)
+passed all three catalogues. Initial Python and provenance gates found
+historical source-pin drift and a mixed vendor revision. The coordinated
+snapshot restores the single vendor revision. The historical Class-C Mojo
+audit reads Git blobs at its original recording revision. The Class-D
+[rebind packet](../evidence/class-d-word-counter-rebind-2026-11-12/README.md)
+validates the fresh complete replay for the three changed archived source paths.
