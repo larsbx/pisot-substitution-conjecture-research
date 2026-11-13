@@ -70,13 +70,10 @@ identity, without an incidence-only or normalized-state identification. -/
 theorem check_checkedStates (fixture : Fin 2) :
     check fixture (checkedStates fixture) = true := by
   fin_cases fixture
-  · change Psc.ForwardCarrier.check
-      Psc.GeneratedForwardCarrier.fixture0Substitution
-      Psc.GeneratedForwardCarrier.fixture0States = true
+  · simp only [check, checkedStates, substitution, Matrix.cons_val_zero]
     exact Psc.GeneratedForwardCarrier.fixture0ForwardCheck
-  · change Psc.ForwardCarrier.check
-      Psc.GeneratedForwardCarrier.fixture1Substitution
-      Psc.GeneratedForwardCarrier.fixture1States = true
+  · simp only [check, checkedStates, substitution, Matrix.cons_val_one,
+      Matrix.cons_val_zero]
     exact Psc.GeneratedForwardCarrier.fixture1ForwardCheck
 
 /-- The concrete forward certificate supplies named seed-generated
