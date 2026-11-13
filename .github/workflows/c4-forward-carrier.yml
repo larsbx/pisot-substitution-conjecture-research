@@ -8,6 +8,7 @@ on:
       - 'oracles/python/check_forward_carrier.py'
       - 'tests/test_forward_carrier_evidence.py'
       - 'proof/PscVerif/PscVerif/NamedForwardCarrierData*.lean'
+      - 'proof/PscVerif/PscVerif/NamedForwardCarrierWords*.lean'
       - 'evidence/c4-forward-carrier-2026-11-12/**'
       - 'docs/c4-forward-carrier*.md'
       - 'pyproject.toml'

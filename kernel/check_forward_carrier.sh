@@ -138,7 +138,9 @@ def source_snapshot():
         "evidence/c4-forward-carrier-2026-11-12/fixture0.json",
         "evidence/c4-forward-carrier-2026-11-12/fixture1.json",
         "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
-        "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean")}
+        "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+        "proof/PscVerif/PscVerif/NamedForwardCarrierWords0.lean",
+        "proof/PscVerif/PscVerif/NamedForwardCarrierWords1.lean")}
     # Hash all Mojo sources, including new local files and the vendored imports,
     # without traversing installed environments or generated build directories.
     for directory, subdirs, files in os.walk(kernel):
@@ -205,17 +207,24 @@ try:
     (out / "BINARIES.sha256").write_text("".join(
         f"{record['sha256']}  {record['path']}\n" for record in receipt["binaries"].values()))
     run("native-controls", [native_test], cwd=kernel)
+    lean_source_files = []
     for fixture, length_cap in ((0, 100000), (1, 10000)):
         run(f"export-fixture{fixture}", [exporter, str(fixture), "20000", str(length_cap)],
             cwd=kernel, stdout_name=f"fixture{fixture}.json")
         run(f"compare-fixture{fixture}", ["cmp", evidence / f"fixture{fixture}.json", out / f"fixture{fixture}.json"])
-        run(f"emit-lean-fixture{fixture}", [exporter, str(fixture), "20000", str(length_cap), "--lean"],
-            cwd=kernel, stdout_name=f"NamedForwardCarrierData{fixture}.lean")
-        run(f"compare-lean-fixture{fixture}", ["cmp",
-            root / f"proof/PscVerif/PscVerif/NamedForwardCarrierData{fixture}.lean",
-            out / f"NamedForwardCarrierData{fixture}.lean"])
+        for kind, flag, stem in (
+                ("lean-data", "--lean-data", "NamedForwardCarrierWords"),
+                ("lean", "--lean", "NamedForwardCarrierData")):
+            filename = f"{stem}{fixture}.lean"
+            run(f"emit-{kind}-fixture{fixture}",
+                [exporter, str(fixture), "20000", str(length_cap), flag],
+                cwd=kernel, stdout_name=filename)
+            run(f"compare-{kind}-fixture{fixture}", ["cmp",
+                root / "proof/PscVerif/PscVerif" / filename, out / filename])
+            lean_source_files.append(filename)
     receipt["archived_packets_reproduced_byte_for_byte"] = True
     receipt["lean_sources_reproduced_byte_for_byte"] = True
+    receipt["lean_source_files"] = lean_source_files
     cap_refusal("fixture0-length-cap-refusal", exporter, 20000, 10000, 2)
     cap_refusal("fixture0-state-cap-refusal", exporter, 1, 100000, 1)
     run("independent-oracle", [sys.executable, "-O", root / "oracles/python/check_forward_carrier.py",
