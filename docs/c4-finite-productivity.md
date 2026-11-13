@@ -101,6 +101,13 @@ actual source revision and distinguished from the pending parent
 acceptance. The full audit permits only the repository's existing
 standard axiom allowlist.
 
+The [development evidence packet](../evidence/c4-finite-productivity-2026-11-13/README.md)
+preserves the 57-test proof-bank result, source and governance checks,
+source hashes, and the focused-build observations. These checks supply
+no compiled acceptance for the new modules. The first focused attempt's
+object-lookup error is retained alongside the subsequent attempt's
+status; neither a pending process nor a queued workflow is a pass.
+
 ### Negative controls
 
 `thueMorse_finite_nonproductive` reuses the actual substitution
@@ -134,3 +141,56 @@ can consume a fully checked carrier containing the actual swap seeds.
 No G1, universal C4, pure discrete spectrum, or PSC conclusion is
 asserted. All governed claim statuses remain unchanged. Independent
 human review remains separate validation debt.
+
+## Next step: check a finite forward carrier
+
+A read-only source review on 2026-11-13, based on
+`510239ac0005fb24f880369e55a4b54776224981`, found **no named forward
+`ChildNC` carrier certificate** for either `1/021/001` or `1/012/001`.
+Their zero-based shared-corpus indices are respectively 86 and 75 in the
+[literal identity records](../evidence/rauzy-torus-2026-10-21/corpus.jsonl);
+these identity records are not forward certificates.
+The existing [BPA census fold](../kernel/psc/parallel_census.mojo) builds
+each specimen but retains aggregate counts, maximum size and failure
+indices, not each successful specimen's words and complete child rows.
+The archived inverse-overlap graphs do not supply those forward rows.
+
+Reuse the canonical [BPA interface](../kernel/psc/bpa.mojo) or its
+[bounded builder](../kernel/psc/bounded_bpa.mojo), with exhausted budgets
+remaining inconclusive. No new search algorithm or full-corpus census is
+needed. The [target-packet preparation](../kernel/psc/target_packets.mojo)
+already checks literal ordered factorizations against complete adjacency
+rows, and its [reporter](../kernel/psc/target_packet_report.mojo) emits
+state words, factor ordinals, child indices, orientations and cut spans.
+The existing [archived replay](../kernel/check_target_packets.sh) covers
+three different substitutions; it contains neither named carrier. A thin
+forward-carrier exporter can reuse this contract without constructing the
+additional occurrence-packet graph.
+
+The representation bridge is essential: Mojo's
+[`normalise` and `seed_states`](../kernel/substitution_dynamics/balanced_pairs.mojo)
+identify a pair with its track swap and start from the three seeds with
+`a < b`. Lean's `ChildNC` uses ordered pairs and all six unequal ordered
+letter seeds. Export the ordered double cover, or prove the signed
+decoding bridge using `Descendants.child_swap`; normalized state indices
+alone cannot be passed off as Lean's carrier.
+
+The smallest sufficient formal obligation is a finite decoded carrier
+containing every ordered seed and every actual child of each
+noncoincident member. Complete decoded row equality should be checked
+against `red (subst s T.1) (subst s T.2)`, with empty rows at coincidences,
+preserving order, orientation and multiplicity. The existing
+[`bpaStatesNC_subset`](../proof/PscVerif/PscVerif/Descendants.lean)
+then bounds all seed-generated reachability by that finite set. A
+**finite closed superset suffices**: a discovery witness is needed only
+to claim that the exported carrier is exactly the reachable set. This
+step needs no productivity rank because the present named consumer
+already supplies productivity once actual reachability is finite.
+
+Before using such a packet, bind its literal substitution and complete
+rows, reject omitted exits and incorrect orientations, and obtain the
+required exact-source compiled acceptance. The resulting scope would be
+the two seed-generated automata; finiteness from an arbitrary balanced
+block would still need its own argument. This review performed no new
+enumeration or compilation, supplies no named carrier size, and promotes
+neither G1 nor any unconditional named termination claim.
