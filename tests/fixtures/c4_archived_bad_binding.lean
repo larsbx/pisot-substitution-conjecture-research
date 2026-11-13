@@ -31,5 +31,11 @@ theorem domain_iff : True := True.intro
 theorem roots_null : True := True.intro
 theorem ancestors_null : True := True.intro
 theorem no_strict_system (_ : Finset Psc.OccurrenceTransport.WordPair) : True := True.intro
+theorem seed_terminates {T : Psc.OccurrenceTransport.WordPair}
+    (_ : T ∈ (Psc.Descendants.seeds : Finset Psc.OccurrenceTransport.WordPair)) : True :=
+  True.intro
+theorem reachable_terminates {T : Psc.OccurrenceTransport.WordPair}
+    (_ : T ∈ Psc.Descendants.bpaStatesNC (Psc.NamedPrefixCompact.substitution packet.fixture)) :
+    True := True.intro
 
 end Psc.ArchivedPayloadGenerated.Source0

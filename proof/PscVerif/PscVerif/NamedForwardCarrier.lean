@@ -61,7 +61,7 @@ theorem fixture1Substitution_eq :
     Psc.GeneratedForwardCarrier.fixture1Substitution = substitution 1 := rfl
 
 /-- Select the literal ordered carrier for the same named fixture. -/
-def checkedStates (fixture : Fin 2) : List (List (Fin 3) × List (Fin 3)) :=
+noncomputable def checkedStates (fixture : Fin 2) : List (List (Fin 3) × List (Fin 3)) :=
   ![Psc.GeneratedForwardCarrier.fixture0States,
     Psc.GeneratedForwardCarrier.fixture1States] fixture
 

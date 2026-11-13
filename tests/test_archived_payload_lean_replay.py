@@ -6,8 +6,11 @@ Actual graph/address mutations are in the independent payload oracle suite.
 from io import StringIO
 from pathlib import Path
 import importlib.util
+import json
+import subprocess
 import tempfile
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 SPEC = importlib.util.spec_from_file_location("archived_replay", ROOT / "tools/replay_archived_payload_lean.py")
@@ -39,8 +42,8 @@ class ArchivedAuditProtocol(unittest.TestCase):
             with self.subTest(axiom=axiom), self.assertRaises(replay.ReplayIncomplete):
                 self.parse(self.sample().replace("propext", axiom))
 
-    def test_missing_geometric_proof_refused(self):
-        for name in ("domain_iff", "roots_null", "ancestors_null", "typed_accepted", "no_strict_system"):
+    def test_every_semantic_proof_required(self):
+        for name in replay.PROOFS:
             with self.subTest(name=name), self.assertRaises(replay.ReplayIncomplete):
                 self.parse(self.sample().replace(f".{name}\t", ".wrong_name\t"))
 
@@ -51,6 +54,23 @@ class ArchivedAuditProtocol(unittest.TestCase):
         legacy = legacy.replace(f"0\t{count}\t{count}", f"0\t{count - 1}\t{count - 1}")
         with self.assertRaises(replay.ReplayIncomplete):
             self.parse(legacy)
+
+    def test_previous_seven_proof_protocol_without_termination_refused(self):
+        count = len(replay.PROOFS)
+        legacy = "\n".join(line for line in self.sample().splitlines()
+                           if not any(f".{name}\t" in line for name in replay.TERMINATION_PROOFS))
+        legacy = legacy.replace(f"0\t{count}\t{count}", "0\t7\t7")
+        with self.assertRaises(replay.ReplayIncomplete):
+            self.parse(legacy)
+
+    def test_each_termination_proof_required_even_with_adjusted_counts(self):
+        count = len(replay.PROOFS)
+        for name in replay.TERMINATION_PROOFS:
+            omitted = "\n".join(line for line in self.sample().splitlines()
+                                if f".{name}\t" not in line)
+            omitted = omitted.replace(f"0\t{count}\t{count}", f"0\t{count - 1}\t{count - 1}")
+            with self.subTest(name=name), self.assertRaises(replay.ReplayIncomplete):
+                self.parse(omitted)
 
     def test_every_data_family_is_required(self):
         for kind in replay.RECORDS:
@@ -86,6 +106,57 @@ class ArchivedAuditProtocol(unittest.TestCase):
                 replay.audit_source(index)
             with self.assertRaises(replay.ReplayIncomplete):
                 replay.exclusion_type_check(index)
+            for name in replay.TERMINATION_PROOFS:
+                with self.assertRaises(replay.ReplayIncomplete):
+                    replay.termination_type_check(index, name)
+        with self.assertRaises(replay.ReplayIncomplete):
+            replay.termination_type_check(0, "unsupported_endpoint")
+
+
+class ArchivedTerminationControlOrchestration(unittest.TestCase):
+    """Mock compiler outcomes test orchestration only, never mathematical acceptance."""
+
+    def run_control(self, output, overrides=None):
+        overrides = overrides or {}
+
+        def compile_result(command, **kwargs):
+            filename = Path(command[-1]).name
+            if filename == "Source0.lean":
+                return subprocess.CompletedProcess(command, 0, "", "")
+            declaration = {
+                "Audit0.lean": "accepted",
+                "ExclusionAudit0.lean": "no_strict_system",
+                "seed_terminates_audit.lean": "seed_terminates",
+                "reachable_terminates_audit.lean": "reachable_terminates",
+            }[filename]
+            code, message = overrides.get(filename, (1, f"type mismatch: {declaration}"))
+            return subprocess.CompletedProcess(command, code, message, "")
+
+        with patch.object(replay.subprocess, "run", side_effect=compile_result) as runner:
+            replay.validate_negative_control(ROOT, ROOT, output, "test-pin", "test-lean-path")
+        return runner
+
+    def test_both_endpoint_controls_run_independently(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory)
+            runner = self.run_control(output)
+            calls = [Path(call.args[0][-1]).name for call in runner.call_args_list]
+            self.assertEqual(calls[-2:], ["seed_terminates_audit.lean", "reachable_terminates_audit.lean"])
+            receipt = json.loads((output / "wrong-proof-type-control/receipt.json").read_text())
+            for name in replay.TERMINATION_PROOFS:
+                self.assertIs(receipt[f"{name}_wrong_type_refused"], True)
+
+    def test_endpoint_success_or_unrelated_failure_never_earns_control_credit(self):
+        for name in replay.TERMINATION_PROOFS:
+            outcomes = ((0, f"type mismatch: {name}"),
+                        (1, f"unknown identifier: {name}"),
+                        (1, "type mismatch: no_strict_system"))
+            for outcome in outcomes:
+                with self.subTest(name=name, outcome=outcome), tempfile.TemporaryDirectory() as directory:
+                    output = Path(directory)
+                    with self.assertRaises(replay.ReplayIncomplete):
+                        self.run_control(output, {f"{name}_audit.lean": outcome})
+                    self.assertFalse((output / "wrong-proof-type-control/receipt.json").exists())
 
 
 if __name__ == "__main__":
