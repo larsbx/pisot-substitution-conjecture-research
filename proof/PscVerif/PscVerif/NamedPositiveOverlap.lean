@@ -68,7 +68,8 @@ private theorem carrier_secondCountable (f : Fin 2) : SecondCountableTopology (H
   letI : ∀ q : ℕ, SecondCountableTopology (MadicResidue.Residue (M f) q) :=
     fun _ => inferInstance
   letI : SecondCountableTopology (∀ q : ℕ, MadicResidue.Residue (M f) q) := inferInstance
-  exact Subtype.secondCountableTopology (MadicResidue.compatibleSequences (M f) : Set _)
+  exact Subtype.secondCountableTopology
+    (MadicResidue.compatibleSequences (M f) : Set (∀ q : ℕ, MadicResidue.Residue (M f) q))
 
 variable (f : Fin 2) (ν : Measure (H f)) [ν.IsAddHaarMeasure] [IsProbabilityMeasure ν]
 
@@ -134,7 +135,8 @@ theorem internalMeasure_outerRegular : (internalMeasure f ν).OuterRegular := by
     fun _ => inferInstance
   letI : PseudoMetrizableSpace (H f) := by
     letI : PseudoMetrizableSpace (∀ q : ℕ, MadicResidue.Residue (M f) q) := inferInstance
-    exact PseudoMetrizableSpace.subtype (MadicResidue.compatibleSequences (M f) : Set _)
+    exact PseudoMetrizableSpace.subtype
+      (MadicResidue.compatibleSequences (M f) : Set (∀ q : ℕ, MadicResidue.Residue (M f) q))
   letI : (internalMeasure f ν).Regular := inferInstance
   infer_instance
 
