@@ -1,0 +1,573 @@
+{
+  "acceptance_credit": false,
+  "bundle": {
+    "bytes": 1314048,
+    "embedded_manifest_sha256": "b8e7716e0b2e4cec7d882007b06597765ccb7ce09b0f07d3107b91f792acafbd",
+    "file": "failure-evidence.tar.gz",
+    "member_count": 23,
+    "sha256": "07ceb31cba9d2ff934eb0f99b85d4c6cb232d3ab93868d01143bd841fb354189"
+  },
+  "concrete_lean_payload_acceptance": false,
+  "derived_file_count": 1,
+  "failure": {
+    "and_comm_reported_unused": true,
+    "column": 14,
+    "diagnostic": "unsolved goals",
+    "goal": "\u22a2 x \u2208 K 1 \u2227 x \u2208 K 0 \u2194 x \u2208 K 0 \u2227 x \u2208 K 1",
+    "line": 42,
+    "module": "PscVerif.NamedStrictExclusion",
+    "same_goal_observed_in_both_jobs": true,
+    "source_path": "proof/PscVerif/PscVerif/NamedStrictExclusion.lean"
+  },
+  "full_proof_bank_audit_accepted": false,
+  "outcome": "both_hosted_jobs_failed",
+  "package_byte_integrity_verified": true,
+  "partial_success": {
+    "compiled_dependency_is_not_full_axiom_audit": true,
+    "named_positive_overlap_compiled_in_both_jobs": true,
+    "native_construction_and_oracle_steps_successful": true,
+    "native_contract_roundtrip": {
+      "positional_slots": 69679,
+      "states": 14233
+    },
+    "native_fixtures": [
+      {
+        "addressed_packet_sha256": "e960043f7481993fd56d7ac3976f119e132e00d5762bdcb78b8a061557ecfe8c",
+        "fixture": 0,
+        "historical_graph_sha256": "23f85af92c327a64f70983db990753a84cd1489e3c72c3047e51f14e97afce6e",
+        "lookup_nodes": 7150,
+        "maximum_rooted_inverse_depth": 13,
+        "ordered_lift_positions": 69652,
+        "packed_rows": 7150,
+        "positional_edges": 34826,
+        "radii": [
+          16,
+          8
+        ],
+        "rate": "99/20",
+        "sigma": [
+          "1",
+          "021",
+          "001"
+        ],
+        "states": 7150
+      },
+      {
+        "addressed_packet_sha256": "915126ff282c0b1347c4518c57b7b7e350ebaaf1c6838c56776e6a12bdc61bc9",
+        "fixture": 1,
+        "historical_graph_sha256": "a63d544b25b5f7146abbd25f1960fed77f85584a1f20957b5869bea30b389256",
+        "lookup_nodes": 7083,
+        "maximum_rooted_inverse_depth": 13,
+        "ordered_lift_positions": 69706,
+        "packed_rows": 7083,
+        "positional_edges": 34853,
+        "radii": [
+          16,
+          8
+        ],
+        "rate": "101/20",
+        "sigma": [
+          "1",
+          "012",
+          "001"
+        ],
+        "states": 7083
+      }
+    ],
+    "native_kernel_acceptance_supplied_by_oracle": false,
+    "native_negative_controls_per_fixture": {
+      "0": 16,
+      "1": 16
+    },
+    "native_negative_controls_rejected": 32,
+    "native_oracle_receipt_sha256": "53ef2793d4b7cdbb7d011c951f1535c5e9975e63750ab9a0a9322370a2dd1ca0",
+    "native_payload_bytes": 3908423,
+    "native_payload_sha256": "447d58d811359235d1f4689433500494ae14724b89b5da91f429e7e7247beaca",
+    "native_test_recorded_field_refusals": 9,
+    "native_test_recorded_semantic_refusals": 18,
+    "oracle_test_log_form": "eight-dot [100%] quiet transcript; no textual passed-count summary is fabricated",
+    "oracle_test_log_sha256": "06955fb47f16312e5d13266c774a2aa4648c46e423cbe6564a92e25b68e39131"
+  },
+  "raw_and_derived_file_manifest": [
+    {
+      "archive_path": "derived/archived-job-131624030047.log",
+      "bytes": 169061,
+      "capture": "decoded_original_json_string",
+      "derived_from": "raw/archived-job-131624030047.json",
+      "operation": "json.loads(original UTF-8 JSON).encode(UTF-8); original JSON retained unchanged",
+      "sha256": "8a7b0758f36505bdf8777a1a868b412fd36c7c78d2030f392e18e97bf0dd8aed"
+    },
+    {
+      "archive_path": "raw/archived-artifact.zip",
+      "bytes": 1183308,
+      "capture": "original_input_bytes",
+      "input_relative_path": "archived-artifact.zip",
+      "sha256": "a3ba4c34e2246aa4a9f077205ec95b57b9f387694106bae2ed6c2ad3eea188b5"
+    },
+    {
+      "archive_path": "raw/archived-artifact/archive-sha256.txt",
+      "bytes": 121,
+      "capture": "original_input_bytes",
+      "input_relative_path": "archived-artifact/archive-sha256.txt",
+      "sha256": "7ba4c40d3618a4c582b4c27f6785ad2a047838ad3557df68ac0ef5f73d51819e"
+    },
+    {
+      "archive_path": "raw/archived-artifact/lean-audit.log",
+      "bytes": 27716,
+      "capture": "original_input_bytes",
+      "input_relative_path": "archived-artifact/lean-audit.log",
+      "sha256": "e9338389f130c243bd15008ed4231ef12942430c71041c337a3c612b3ff21ab3"
+    },
+    {
+      "archive_path": "raw/archived-artifact/native-oracle-receipt.json",
+      "bytes": 5976,
+      "capture": "original_input_bytes",
+      "input_relative_path": "archived-artifact/native-oracle-receipt.json",
+      "sha256": "53ef2793d4b7cdbb7d011c951f1535c5e9975e63750ab9a0a9322370a2dd1ca0"
+    },
+    {
+      "archive_path": "raw/archived-artifact/native-tests.log",
+      "bytes": 1121,
+      "capture": "original_input_bytes",
+      "input_relative_path": "archived-artifact/native-tests.log",
+      "sha256": "0b7b5429a9ac908075162071f7a6cf095476b1794243148b2fe928c1e5ff9308"
+    },
+    {
+      "archive_path": "raw/archived-artifact/oracle-tests.log",
+      "bytes": 80,
+      "capture": "original_input_bytes",
+      "input_relative_path": "archived-artifact/oracle-tests.log",
+      "sha256": "06955fb47f16312e5d13266c774a2aa4648c46e423cbe6564a92e25b68e39131"
+    },
+    {
+      "archive_path": "raw/archived-artifact/revision.txt",
+      "bytes": 82,
+      "capture": "original_input_bytes",
+      "input_relative_path": "archived-artifact/revision.txt",
+      "sha256": "3b4e59ce53b845356f06129b6d0a142fe03f8d4f475aa2197957c9050606da44"
+    },
+    {
+      "archive_path": "raw/archived-artifacts.json",
+      "bytes": 944,
+      "capture": "original_input_bytes",
+      "input_relative_path": "archived-artifacts.json",
+      "sha256": "460f9fbe94396ca54d7c6e83800d5fd596ee4947fdff2b9789ba186a2261ebf9"
+    },
+    {
+      "archive_path": "raw/archived-download-receipt.json",
+      "bytes": 490,
+      "capture": "original_input_bytes",
+      "input_relative_path": "archived-download-receipt.json",
+      "sha256": "c97b6ed227a827a23428e9126a1ecd832f709ce7ca6aa1d370a1af58c3d45585"
+    },
+    {
+      "archive_path": "raw/archived-job-131624030047.json",
+      "bytes": 175547,
+      "capture": "original_input_bytes",
+      "input_relative_path": "archived-job-131624030047.json",
+      "sha256": "4baa1b7dad6de1077cd8d4d8190c0fb3e92a8aa3378363668d7ce8e1ee14c541"
+    },
+    {
+      "archive_path": "raw/archived-jobs.json",
+      "bytes": 5335,
+      "capture": "original_input_bytes",
+      "input_relative_path": "archived-jobs.json",
+      "sha256": "a9e6194ab31d1491e81a20c07141d64e3d191e7d7ee70a8c4d42b0ed1f15d129"
+    },
+    {
+      "archive_path": "raw/archived-run.json",
+      "bytes": 16485,
+      "capture": "original_input_bytes",
+      "input_relative_path": "archived-run.json",
+      "sha256": "6e8f9b1139ef5ac6d12b8be0de5d29bd183bb08b75776e6163c2254a242ad8e9"
+    },
+    {
+      "archive_path": "raw/overlap-artifact.zip",
+      "bytes": 4526,
+      "capture": "original_input_bytes",
+      "input_relative_path": "overlap-artifact.zip",
+      "sha256": "c9ee81c9cd6c781526bbfed77e10368ec5bcb261326344d623d512a248bae93c"
+    },
+    {
+      "archive_path": "raw/overlap-artifact/c4-overlap-lean-audit.log",
+      "bytes": 27721,
+      "capture": "original_input_bytes",
+      "input_relative_path": "overlap-artifact/c4-overlap-lean-audit.log",
+      "sha256": "f3ea723626dda3d45bccf21db3426beada9c53f48a06ca5a320725c6d80b9709"
+    },
+    {
+      "archive_path": "raw/overlap-artifacts.json",
+      "bytes": 937,
+      "capture": "original_input_bytes",
+      "input_relative_path": "overlap-artifacts.json",
+      "sha256": "f9241f445e70a018e1cd9b28bf80ca137cfeaf52e3e8a95c0dec9371e2063f4f"
+    },
+    {
+      "archive_path": "raw/overlap-download-receipt.json",
+      "bytes": 399,
+      "capture": "original_input_bytes",
+      "input_relative_path": "overlap-download-receipt.json",
+      "sha256": "32a227cad9f1f12e69b8b1c7a2942b0c6b6ef160fe4bd9da63ed9585993b449d"
+    },
+    {
+      "archive_path": "raw/overlap-job-131624024712.json",
+      "bytes": 93148,
+      "capture": "original_input_bytes",
+      "input_relative_path": "overlap-job-131624024712.json",
+      "sha256": "3c1d23baab0303a8af9f0d513f3528f1b5803476566a0916ed00ff561b661483"
+    },
+    {
+      "archive_path": "raw/overlap-job-131624024712.log",
+      "bytes": 91996,
+      "capture": "original_input_bytes",
+      "input_relative_path": "overlap-job-131624024712.log",
+      "sha256": "ad73974c333d8b0e02039979bab7ad60997f05872e1753bf8ca7e4363d660c52"
+    },
+    {
+      "archive_path": "raw/overlap-jobs.json",
+      "bytes": 3400,
+      "capture": "original_input_bytes",
+      "input_relative_path": "overlap-jobs.json",
+      "sha256": "a70be391a41eb4a02a9da43db9fa59ee9970221638e9cf5de2d0cefb223bbe8f"
+    },
+    {
+      "archive_path": "raw/overlap-run.json",
+      "bytes": 16464,
+      "capture": "original_input_bytes",
+      "input_relative_path": "overlap-run.json",
+      "sha256": "df544ab0981b3d27661ac3cea08cac1bd6cbb15f07e3ec878e8fbca2dc470341"
+    }
+  ],
+  "raw_input_file_count": 20,
+  "readme": {
+    "bytes": 5296,
+    "sha256": "81a87757dd91733b97da0e3ec8b15ff97ea1aef491c108eef916c4afb63b5268"
+  },
+  "recorded_at_utc": "2026-11-13T04:22:06.361043+00:00",
+  "retention": {
+    "duplicate_extracted_native_packet_omitted": true,
+    "gzip_mtime": 0,
+    "native_packet_retained_at": "raw/archived-artifact.zip::native-packet.txt",
+    "original_inputs_unchanged": true,
+    "original_zip_bytes_retained": true,
+    "safe_relative_regular_tar_members_only": true,
+    "tar_gid": 0,
+    "tar_mode": "0644",
+    "tar_mtime": 0,
+    "tar_uid": 0,
+    "temporary_signed_download_urls_retained": false
+  },
+  "runs": [
+    {
+      "artifact": {
+        "download_receipt": "raw/archived-download-receipt.json",
+        "github_digest": "sha256:a3ba4c34e2246aa4a9f077205ec95b57b9f387694106bae2ed6c2ad3eea188b5",
+        "github_digest_verified_from_bytes": true,
+        "id": 14009577399,
+        "members": [
+          {
+            "bytes": 121,
+            "path": "archive-sha256.txt",
+            "sha256": "7ba4c40d3618a4c582b4c27f6785ad2a047838ad3557df68ac0ef5f73d51819e"
+          },
+          {
+            "bytes": 27716,
+            "path": "lean-audit.log",
+            "sha256": "e9338389f130c243bd15008ed4231ef12942430c71041c337a3c612b3ff21ab3"
+          },
+          {
+            "bytes": 5976,
+            "path": "native-oracle-receipt.json",
+            "sha256": "53ef2793d4b7cdbb7d011c951f1535c5e9975e63750ab9a0a9322370a2dd1ca0"
+          },
+          {
+            "bytes": 3908423,
+            "path": "native-packet.txt",
+            "sha256": "447d58d811359235d1f4689433500494ae14724b89b5da91f429e7e7247beaca"
+          },
+          {
+            "bytes": 1121,
+            "path": "native-tests.log",
+            "sha256": "0b7b5429a9ac908075162071f7a6cf095476b1794243148b2fe928c1e5ff9308"
+          },
+          {
+            "bytes": 80,
+            "path": "oracle-tests.log",
+            "sha256": "06955fb47f16312e5d13266c774a2aa4648c46e423cbe6564a92e25b68e39131"
+          },
+          {
+            "bytes": 82,
+            "path": "revision.txt",
+            "sha256": "3b4e59ce53b845356f06129b6d0a142fe03f8d4f475aa2197957c9050606da44"
+          }
+        ],
+        "name": "original-c4-payload-16dd825648d1a1bcdba9038e079463a9bebbaf3d",
+        "zip_bytes": 1183308,
+        "zip_sha256": "a3ba4c34e2246aa4a9f077205ec95b57b9f387694106bae2ed6c2ad3eea188b5"
+      },
+      "concrete_lean_replay_receipt_present": false,
+      "full_lean_acceptance": false,
+      "full_proof_bank_audit_completion_observed": false,
+      "head_sha": "16dd825648d1a1bcdba9038e079463a9bebbaf3d",
+      "job_completed_at": "2026-11-13T04:14:43Z",
+      "job_conclusion": "failure",
+      "job_id": 131624030047,
+      "job_started_at": "2026-11-13T04:02:04Z",
+      "job_status": "completed",
+      "label": "archived",
+      "positive_overlap_build_line": "\u26a0 [9025/9035] Built PscVerif.NamedPositiveOverlap (6.3s)",
+      "remaining_goal": "\u22a2 x \u2208 K 1 \u2227 x \u2208 K 0 \u2194 x \u2208 K 0 \u2227 x \u2208 K 1",
+      "run_attempt": 1,
+      "run_conclusion": "failure",
+      "run_id": 43345576753,
+      "run_status": "completed",
+      "run_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43345576753",
+      "source_errors": [
+        "error: PscVerif/NamedStrictExclusion.lean:42:14: unsolved goals"
+      ],
+      "steps": [
+        {
+          "completed_at": "2026-11-13T04:02:06Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "started_at": "2026-11-13T04:02:04Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-13T04:02:09Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "started_at": "2026-11-13T04:02:06Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-13T04:02:09Z",
+          "conclusion": "success",
+          "name": "Bind exact candidate revision and archive",
+          "number": 3,
+          "started_at": "2026-11-13T04:02:09Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-13T04:02:09Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-python@v5",
+          "number": 4,
+          "started_at": "2026-11-13T04:02:09Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-13T04:02:12Z",
+          "conclusion": "success",
+          "name": "Run python -m pip install 'pytest>=7,<10'",
+          "number": 5,
+          "started_at": "2026-11-13T04:02:09Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-13T04:03:53Z",
+          "conclusion": "success",
+          "name": "Provision pinned Lean and dependency sources",
+          "number": 6,
+          "started_at": "2026-11-13T04:02:12Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-13T04:04:13Z",
+          "conclusion": "success",
+          "name": "Run prefix-dev/setup-pixi@v0.9.1",
+          "number": 7,
+          "started_at": "2026-11-13T04:03:53Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-13T04:04:35Z",
+          "conclusion": "success",
+          "name": "Canonical payload construction and import controls",
+          "number": 8,
+          "started_at": "2026-11-13T04:04:14Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-13T04:05:33Z",
+          "conclusion": "success",
+          "name": "Independent payload and original graph replay",
+          "number": 9,
+          "started_at": "2026-11-13T04:04:35Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-13T04:14:33Z",
+          "conclusion": "failure",
+          "name": "Isolated full build and both concrete geometric imports",
+          "number": 10,
+          "started_at": "2026-11-13T04:05:33Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-13T04:14:36Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 11,
+          "started_at": "2026-11-13T04:14:33Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-13T04:14:41Z",
+          "conclusion": "success",
+          "name": "Post Run prefix-dev/setup-pixi@v0.9.1",
+          "number": 20,
+          "started_at": "2026-11-13T04:14:36Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-13T04:14:41Z",
+          "conclusion": "skipped",
+          "name": "Post Run actions/setup-python@v5",
+          "number": 21,
+          "started_at": "2026-11-13T04:14:41Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-13T04:14:42Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 22,
+          "started_at": "2026-11-13T04:14:41Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-13T04:14:42Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 23,
+          "started_at": "2026-11-13T04:14:42Z",
+          "status": "completed"
+        }
+      ],
+      "workflow_name": "Original C4 archived payload Lean import",
+      "workflow_path": ".github/workflows/c4-archived-payload-lean.yml"
+    },
+    {
+      "artifact": {
+        "download_receipt": "raw/overlap-download-receipt.json",
+        "github_digest": "sha256:c9ee81c9cd6c781526bbfed77e10368ec5bcb261326344d623d512a248bae93c",
+        "github_digest_verified_from_bytes": true,
+        "id": 14009985306,
+        "members": [
+          {
+            "bytes": 27721,
+            "path": "c4-overlap-lean-audit.log",
+            "sha256": "f3ea723626dda3d45bccf21db3426beada9c53f48a06ca5a320725c6d80b9709"
+          }
+        ],
+        "name": "c4-overlap-lean-16dd825648d1a1bcdba9038e079463a9bebbaf3d",
+        "zip_bytes": 4526,
+        "zip_sha256": "c9ee81c9cd6c781526bbfed77e10368ec5bcb261326344d623d512a248bae93c"
+      },
+      "concrete_lean_replay_receipt_present": false,
+      "full_lean_acceptance": false,
+      "full_proof_bank_audit_completion_observed": false,
+      "head_sha": "16dd825648d1a1bcdba9038e079463a9bebbaf3d",
+      "job_completed_at": "2026-11-13T04:10:43Z",
+      "job_conclusion": "failure",
+      "job_id": 131624024712,
+      "job_started_at": "2026-11-13T04:00:32Z",
+      "job_status": "completed",
+      "label": "overlap",
+      "positive_overlap_build_line": "\u26a0 [9026/9035] Built PscVerif.NamedPositiveOverlap (5.7s)",
+      "remaining_goal": "\u22a2 x \u2208 K 1 \u2227 x \u2208 K 0 \u2194 x \u2208 K 0 \u2227 x \u2208 K 1",
+      "run_attempt": 1,
+      "run_conclusion": "failure",
+      "run_id": 43345576693,
+      "run_status": "completed",
+      "run_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43345576693",
+      "source_errors": [
+        "error: PscVerif/NamedStrictExclusion.lean:42:14: unsolved goals"
+      ],
+      "steps": [
+        {
+          "completed_at": "2026-11-13T04:00:34Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "started_at": "2026-11-13T04:00:33Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-13T04:00:37Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "started_at": "2026-11-13T04:00:34Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-13T04:00:37Z",
+          "conclusion": "success",
+          "name": "Verify exact revision",
+          "number": 3,
+          "started_at": "2026-11-13T04:00:37Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-13T04:02:22Z",
+          "conclusion": "success",
+          "name": "Provision the pinned Lean release and dependency sources",
+          "number": 4,
+          "started_at": "2026-11-13T04:00:37Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-13T04:10:38Z",
+          "conclusion": "failure",
+          "name": "Compile from isolated sources and audit every local declaration",
+          "number": 5,
+          "started_at": "2026-11-13T04:02:22Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-13T04:10:40Z",
+          "conclusion": "success",
+          "name": "Retain the exact-head audit receipt",
+          "number": 6,
+          "started_at": "2026-11-13T04:10:39Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-13T04:10:40Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 12,
+          "started_at": "2026-11-13T04:10:40Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-13T04:10:40Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 13,
+          "started_at": "2026-11-13T04:10:40Z",
+          "status": "completed"
+        }
+      ],
+      "workflow_name": "C4 overlap Lean verification",
+      "workflow_path": ".github/workflows/c4-overlap-lean.yml"
+    }
+  ],
+  "schema": "c4-named-strict-exclusion-failed-hosted-v1",
+  "scope": {
+    "fixtures_only": [
+      "1/021/001",
+      "1/012/001"
+    ],
+    "general_c4_open": true,
+    "independent_human_review_claimed": false,
+    "repair_acceptance_claimed": false
+  },
+  "source_commit": "16dd825648d1a1bcdba9038e079463a9bebbaf3d",
+  "source_identity_binding": "Both raw GitHub run/job records identify the same failed head; the archived artifact revision.txt also records its exact tree.",
+  "source_tree": "ae73f53be5b43879d92c8995597960909afef684"
+}
