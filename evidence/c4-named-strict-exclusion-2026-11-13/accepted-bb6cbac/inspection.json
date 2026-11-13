@@ -1,0 +1,216 @@
+{
+  "artifact_identity": {
+    "binding_limit": "Input files identify the run/job and exact artifact content. GitHub artifact ID/download ZIP digest are not present in these inputs; retain the download provenance separately.",
+    "file_count": 32,
+    "github_artifact_id_supplied": false,
+    "manifest_sha256": "f91abfae0dddcfb2ac4d76360e6324bd859bcc23d713cc10c196cc975ad6fd84",
+    "original_archive_sha256": "6c33772304f677a1d90e1674e6064dfb6b055fcdd370557350426162f6785dda",
+    "supplied_root": "/workspace/scratch/5535bb23ca85/hosted-bb6cbac/archived/extracted",
+    "total_bytes": 80590878,
+    "workflow_declared_artifact_name": "original-c4-payload-bb6cbac16a620da4784f5b30d0a9a242618aef22"
+  },
+  "concrete_fixtures": [
+    {
+      "audit_sha256": "f3ed3d6c217e4e1a2c34b1da02b1718a0ba01f70fa121ef9e650eef194bc265e",
+      "declarations": 1800,
+      "fixture": 0,
+      "semantic_proofs": [
+        "accepted",
+        "ancestors_null",
+        "domain_iff",
+        "no_strict_system",
+        "roots_null",
+        "typed_accepted",
+        "valid"
+      ],
+      "source_sha256": "95d63da6c9eebeacefe657619f6c8a8e8c35a8b0196491d5f81949a9450e81a2",
+      "theorem_declarations": 777
+    },
+    {
+      "audit_sha256": "86a2a7ece02769dbcfd16852ac74ec40b3707021f78022958c63248e32239b57",
+      "declarations": 1800,
+      "fixture": 1,
+      "semantic_proofs": [
+        "accepted",
+        "ancestors_null",
+        "domain_iff",
+        "no_strict_system",
+        "roots_null",
+        "typed_accepted",
+        "valid"
+      ],
+      "source_sha256": "0b5a00bded6e85e5ab4ceec4cda88f307f2eca99ae1bf1dee4110f6c4ae67490",
+      "theorem_declarations": 777
+    }
+  ],
+  "concrete_replay_receipt_sha256": "c5d311f80ba60b90093837c4e53d7d982f6ce00122ff17b01dd720f1b39a534b",
+  "critical_step_verdicts": [
+    {
+      "completed_at": "2026-11-13T05:45:13Z",
+      "conclusion": "success",
+      "name": "Bind exact candidate revision and archive",
+      "number": 3,
+      "started_at": "2026-11-13T05:45:13Z",
+      "status": "completed"
+    },
+    {
+      "completed_at": "2026-11-13T05:47:03Z",
+      "conclusion": "success",
+      "name": "Provision pinned Lean and dependency sources",
+      "number": 6,
+      "started_at": "2026-11-13T05:45:16Z",
+      "status": "completed"
+    },
+    {
+      "completed_at": "2026-11-13T05:47:50Z",
+      "conclusion": "success",
+      "name": "Canonical payload construction and import controls",
+      "number": 8,
+      "started_at": "2026-11-13T05:47:25Z",
+      "status": "completed"
+    },
+    {
+      "completed_at": "2026-11-13T05:48:56Z",
+      "conclusion": "success",
+      "name": "Independent payload and original graph replay",
+      "number": 9,
+      "started_at": "2026-11-13T05:47:50Z",
+      "status": "completed"
+    },
+    {
+      "completed_at": "2026-11-13T06:39:13Z",
+      "conclusion": "success",
+      "name": "Isolated full build and both concrete geometric imports",
+      "number": 10,
+      "started_at": "2026-11-13T05:48:56Z",
+      "status": "completed"
+    }
+  ],
+  "exclusion_only_wrong_type_control_verified": true,
+  "github_job_verdict": {
+    "completed_at": "2026-11-13T06:39:21Z",
+    "conclusion": "success",
+    "head_sha": "bb6cbac16a620da4784f5b30d0a9a242618aef22",
+    "html_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43365333027/job/131688284776",
+    "id": 131688284776,
+    "name": "Original graph proof terms, geometry and compiled axiom audit",
+    "run_attempt": 1,
+    "run_id": 43365333027,
+    "started_at": "2026-11-13T05:45:08Z",
+    "status": "completed",
+    "url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/jobs/131688284776"
+  },
+  "github_run_verdict": {
+    "artifacts_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43365333027/artifacts",
+    "conclusion": "success",
+    "created_at": "2026-11-13T04:24:36Z",
+    "event": "pull_request",
+    "head_sha": "bb6cbac16a620da4784f5b30d0a9a242618aef22",
+    "html_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43365333027",
+    "id": 43365333027,
+    "name": "Original C4 archived payload Lean import",
+    "path": ".github/workflows/c4-archived-payload-lean.yml",
+    "run_attempt": 1,
+    "run_number": 24,
+    "run_started_at": "2026-11-13T04:24:36Z",
+    "status": "completed",
+    "updated_at": "2026-11-13T06:39:22Z",
+    "url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43365333027"
+  },
+  "global_audit": {
+    "acknowledgement": "Lean axiom audit: 6805 declarations, 4996 theorems; all named proofs reached",
+    "allowed_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "constants": 6805,
+    "expected_named_proofs_reached": 2798,
+    "theorems": 4996
+  },
+  "inspected_at_utc": "2026-11-13T06:45:19.026216+00:00",
+  "inspection_outcome": "verified_completed_hosted_acceptance_evidence",
+  "inspector_sha256": "dcf15450b88c4048b551b199ad9a870848d4bc68acdbc811aad91a59f2a555b7",
+  "jobs_metadata_sha256": "898fe2ba3a835592563b71bcb6431a6b0afc61dc117f5a26122039a4cab47c72",
+  "lean_audit_log_sha256": "9a9c9f4d1b8604e53e5e42ec27493c18000259191b675714249fef1b9f03f01b",
+  "lean_emitted_payload_sha256": "447d58d811359235d1f4689433500494ae14724b89b5da91f429e7e7247beaca",
+  "lean_or_test_processes_launched_by_inspector": false,
+  "native_negative_controls_rejected": 32,
+  "native_payload_sha256": "447d58d811359235d1f4689433500494ae14724b89b5da91f429e7e7247beaca",
+  "new_declarations": {
+    "all_owner_constants": 16,
+    "all_owner_theorems": 14,
+    "explicit_definitions_matched": 2,
+    "explicit_theorems_matched": 10,
+    "extracted_rows_sha256": "c389738f0b595a16e8c6e59dfe5edb35c4983b406b559f160c3825271c388fa1"
+  },
+  "no_local_gate_returncode_inferred": true,
+  "oracle_pytest": {
+    "bound_github_step_conclusion": "success",
+    "bound_github_step_number": 9,
+    "log_sha256": "06955fb47f16312e5d13266c774a2aa4648c46e423cbe6564a92e25b68e39131",
+    "normal_pass_summary_present": false,
+    "observed_progress_dot_count": 8,
+    "reported_passed_count": null,
+    "stdout_summary_fabricated": false,
+    "transcript_form": "eight_dot_quiet_100_percent",
+    "validated_expected_pass_count": 8
+  },
+  "reported_exporter_sha256": "1c8c80849f88f486e8e1873e5c75154d15de68e4925d79e5efdb034f6fdc182a",
+  "run_metadata_sha256": "f87b777e170c6ac66dc60722e804db8ccda7827c272d15fb134feafbded065bd",
+  "schema": "c4-hosted-named-exclusion-inspection-v1",
+  "scope": "Postprocessing of successful GitHub evidence for the two literal fixtures and arbitrary finite carriers. No general C4/PSC conclusion or independent human review.",
+  "source": {
+    "commit": "bb6cbac16a620da4784f5b30d0a9a242618aef22",
+    "status_porcelain": "",
+    "tree": "42472cf9f43d2e13bb999fd5c339abfea782d690"
+  },
+  "source_metadata_sha256": "0dc8a1c7ad4da1b8c2fc4a92f40ab0a8b2a8251559a43ac75163b5dc664d3123",
+  "verified_replay_source_sha256": {
+    "evidence/c4-archived-graph-refinement-2026-11-11/native-oracle/receipt.json": "387a52096b0f33b8dde0a72ffdd2f71f2b7e01b1f4fbad0b4fa7a76a4033bca3",
+    "evidence/c4-pair-overlap-graph-2026-11-05/receipt.json": "6c33772304f677a1d90e1674e6064dfb6b055fcdd370557350426162f6785dda",
+    "kernel/c4_archived_lean_export.mojo": "41a738300044d4083088730b34f695eee5952353c62adb5085c041c962df28cf",
+    "kernel/psc/c4_archived_payload.mojo": "1e9eb8f5b4178f6bd228d6dc72ea0eebafbf1483f0e94d9be5dd26ce65738318",
+    "oracles/python/c4_archived_payload.py": "b61b9564b1d783c1f4fc739cd19fa65c104e17857fa64c4de5ce4252758aaced",
+    "proof/PscVerif/PscVerif/ArchivedPayload.lean": "38d3b2270c15baae23f36be3a7c369dcaab4255b26d5db6a00ed32ef084afe8d",
+    "proof/PscVerif/PscVerif/ArchivedPayloadConsumer.lean": "39768a54a2c022ef460e08dbd1879177fdf598bb8645702233264738ddf43e49",
+    "proof/PscVerif/PscVerif/ArchivedPayloadEmit.lean": "3d56413774e33215a1fb507ca418f08b4d048b3986c2c309a9cc9d626a15a6e3",
+    "proof/PscVerif/PscVerif/NamedArchivedDigits.lean": "12059a52f4598c316a42f64cadf269cdd716853a785bc1189023207689124775",
+    "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean": "ba4554df8e4339d5c61f1da910ca53177a9610bfe78ceb0cc8f062950b1e51fc",
+    "proof/PscVerif/PscVerif/NamedPositiveOverlapControls.lean": "bf67f3dc80ad86c2a6bd3d16f8d7bff9ccd61f76103fbded3bb1b54ec89a39fa",
+    "proof/PscVerif/PscVerif/NamedStrictExclusion.lean": "80ddbe716a339bb19705de5ddb0914c5cb4b7fb75dbc3ff812df6685855f551a",
+    "proof/PscVerif/PscVerif/NamedStrictExclusionControls.lean": "e5e5c2a1fbfb87f256ae71a645f9d863ad03da63b6cadaed2e4a5da15265d1d7",
+    "tests/fixtures/c4_archived_bad_binding.lean": "9adbb304ce94013457bc3fdde4cebd640361344f0dc334d8a8f3d60202ca3c7c",
+    "tools/check_lean.sh": "eb63ce6fb0b837eee1208b3d47e759bcf8b3617b1374685a8850e48f283cba8d",
+    "tools/replay_archived_payload_lean.py": "26d2742a7b6c298682dcac9ce058a53d3388d3bad64ec3eecfb33c40f80ebfdd"
+  },
+  "verified_static_review_source_sha256": {
+    "docs/c4-named-strict-exclusion.md": "6f729d5749311600a677b8e6afd44748146c51ee95f6e7a053e0eaa502cfbbbe",
+    "docs/side-notes-ledger.md": "48ddaaa0efa44a78d91374d61259e85fb71f2692ae2354aed937936c69194335",
+    "evidence/c4-finite-cut-count-2026-11-12/gate/inspect-count-audit.py": "f5e61978cdd108ce70a3151d460f8071fb39909a8a6c5c83edf8376e7a4e7478",
+    "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
+    "proof/PscVerif/PscVerif.lean": "d1ba1062cdaab3cdb133f9c7eef29f4674b884510cb636e13f5f73058c98fbb7",
+    "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean": "87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025",
+    "proof/PscVerif/PscVerif/ArchivedPayloadConsumer.lean": "39768a54a2c022ef460e08dbd1879177fdf598bb8645702233264738ddf43e49",
+    "proof/PscVerif/PscVerif/MadicHaar.lean": "a116c88bb856771b74ff7d5111e797c58216ce49057c99096ed5ddac3c2019a5",
+    "proof/PscVerif/PscVerif/MadicResidue.lean": "c7ff8430cb77c335f11478861584baea4129658b35f4fc67bf0c2b8509d50f6d",
+    "proof/PscVerif/PscVerif/NamedCutNeighborhood.lean": "e9d6a9e1b05721fa3cc8b634d3ecd6cdb604d8b63277d42b5ba34d70327bc57e",
+    "proof/PscVerif/PscVerif/NamedFundamentalCell.lean": "d146d742f5c0767de9f569fc4e3570569f9a5c6d6f9503ec41e9cfdb8e5c03e4",
+    "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean": "ba4554df8e4339d5c61f1da910ca53177a9610bfe78ceb0cc8f062950b1e51fc",
+    "proof/PscVerif/PscVerif/NamedPrefixCompact.lean": "e6cbff61401e8f5109bc0c8654e77eca155e1186286703e76f4d55044ebd220e",
+    "proof/PscVerif/PscVerif/NamedProductHaar.lean": "e398c9b19b65cb794034138490453d35bfdc4dab256473318daca75528b9ac14",
+    "proof/PscVerif/PscVerif/NamedStrictExclusion.lean": "80ddbe716a339bb19705de5ddb0914c5cb4b7fb75dbc3ff812df6685855f551a",
+    "proof/PscVerif/PscVerif/NamedStrictExclusionControls.lean": "e5e5c2a1fbfb87f256ae71a645f9d863ad03da63b6cadaed2e4a5da15265d1d7",
+    "proof/PscVerif/PscVerif/OccurrencePiece.lean": "304a9f42f3fea45cac2c752ef0b61cfd6894e78967d191803c723233d63e9ec0",
+    "proof/PscVerif/PscVerif/OccurrenceResidue.lean": "8552eb3d7584b6b467ae6f990a8204490ae9b543b38cecb243cd8576c58dd248",
+    "proof/PscVerif/PscVerif/OverlapContraction.lean": "09dd1ccc90a7245211336996f7da8b1276e86cab60dd1cc0b5471e3d7f6a2a30",
+    "proof/PscVerif/PscVerif/StrictSystem.lean": "657d6c9f4041b04a2e478f19dea2ecb813952caf2fe1455789778306ad6c3a48",
+    "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
+    "proof/proof-bank.json": "c39d52977eeeb2cf5d4972c97c0282cd8640ff958735fdb4f65364d7d2acc00f",
+    "tests/fixtures/c4_archived_bad_binding.lean": "9adbb304ce94013457bc3fdde4cebd640361344f0dc334d8a8f3d60202ca3c7c",
+    "tools/check_lean.sh": "eb63ce6fb0b837eee1208b3d47e759bcf8b3617b1374685a8850e48f283cba8d",
+    "tools/make_proof_bank.py": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8",
+    "tools/replay_archived_payload_lean.py": "26d2742a7b6c298682dcac9ce058a53d3388d3bad64ec3eecfb33c40f80ebfdd"
+  },
+  "workflow_source_sha256": "747e633654a85ab1eaa20e2f965a77035c56ae8176ce2262e53a9e7b4a41dd7c"
+}

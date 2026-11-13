@@ -15675,7 +15675,7 @@
       "module": "PscVerif.NamedStrictExclusion",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedStrictExclusion.lean",
-      "line": 51,
+      "line": 60,
       "declaration": "theorem carrierOverlap_subset_archivedRoots (f : Fin 2)"
     },
     {
@@ -15683,7 +15683,7 @@
       "module": "PscVerif.NamedStrictExclusion",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedStrictExclusion.lean",
-      "line": 66,
+      "line": 75,
       "declaration": "theorem no_strictSystem_of_roots_null (f : Fin 2)"
     },
     {
@@ -15691,7 +15691,7 @@
       "module": "PscVerif.NamedStrictExclusion",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedStrictExclusion.lean",
-      "line": 83,
+      "line": 92,
       "declaration": "theorem exists_probabilityHaar (f : Fin 2) :"
     },
     {
@@ -15699,7 +15699,7 @@
       "module": "PscVerif.NamedStrictExclusion",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedStrictExclusion.lean",
-      "line": 104,
+      "line": 113,
       "declaration": "theorem Packet.no_strictSystem_of_measure (p : Packet) (h : p.Valid)"
     },
     {
@@ -15707,7 +15707,7 @@
       "module": "PscVerif.NamedStrictExclusion",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedStrictExclusion.lean",
-      "line": 114,
+      "line": 123,
       "declaration": "theorem Packet.no_strictSystem (p : Packet) (h : p.Valid)"
     },
     {
@@ -15715,7 +15715,7 @@
       "module": "PscVerif.NamedStrictExclusion",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedStrictExclusion.lean",
-      "line": 125,
+      "line": 134,
       "declaration": "theorem Packet.no_strictComponent (p : Packet) (h : p.Valid)"
     },
     {
@@ -15723,7 +15723,7 @@
       "module": "PscVerif.NamedStrictExclusion",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedStrictExclusion.lean",
-      "line": 133,
+      "line": 142,
       "declaration": "theorem Packet.no_bpaStrictComponent (p : Packet) (h : p.Valid)"
     },
     {
@@ -27844,7 +27844,7 @@
     "proof/PscVerif/PscVerif/NamedSharpDigits.lean": "f16257b92c77091e2246cc134734a1216b27a3cff54c3b3f70624135eb6a462e",
     "proof/PscVerif/PscVerif/NamedStableChart.lean": "772d6dc46898bc22471db53283dc0404445f1dd28ac0b99ed16232c394336f9b",
     "proof/PscVerif/PscVerif/NamedStableContraction.lean": "13381d9619cd2c574e15614ce0e00609d17e1b153b359ca788ebe73d45bde8fd",
-    "proof/PscVerif/PscVerif/NamedStrictExclusion.lean": "f3b2c1214635333acd509f3514660752d5064f8d41e96723b9f37a06ea761684",
+    "proof/PscVerif/PscVerif/NamedStrictExclusion.lean": "80ddbe716a339bb19705de5ddb0914c5cb4b7fb75dbc3ff812df6685855f551a",
     "proof/PscVerif/PscVerif/NamedStrictExclusionControls.lean": "e5e5c2a1fbfb87f256ae71a645f9d863ad03da63b6cadaed2e4a5da15265d1d7",
     "proof/PscVerif/PscVerif/OccurrenceAddress.lean": "fd8d4020fc3f720c8a81d23c9811056802c901eec35a48efcbb40954c5a375ad",
     "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean": "0843e0a255a2a13675132264eb1385d9a155b7122138359b02158916541e2b4e",
