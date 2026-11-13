@@ -39,11 +39,11 @@ theorem intersection_eq_archivedRoot {G : Type*} [AddCommGroup G]
   · exact (hab rfl).elim
   · exact ⟨0, by ext x; simp [overlap, archivedRoot]⟩
   · exact ⟨1, by ext x; simp [overlap, archivedRoot]⟩
-  · exact ⟨0, by ext x; simp [overlap, archivedRoot, and_comm]⟩
+  · exact ⟨0, by rw [Set.inter_comm]; ext x; simp [overlap, archivedRoot]⟩
   · exact (hab rfl).elim
   · exact ⟨2, by ext x; simp [overlap, archivedRoot]⟩
-  · exact ⟨1, by ext x; simp [overlap, archivedRoot, and_comm]⟩
-  · exact ⟨2, by ext x; simp [overlap, archivedRoot, and_comm]⟩
+  · exact ⟨1, by rw [Set.inter_comm]; ext x; simp [overlap, archivedRoot]⟩
+  · exact ⟨2, by rw [Set.inter_comm]; ext x; simp [overlap, archivedRoot]⟩
   · exact (hab rfl).elim
 
 /-- The overlap carrying the strict-cut lower bound is covered by the
