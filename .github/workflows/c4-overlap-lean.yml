@@ -24,7 +24,9 @@ permissions:
 jobs:
   overlap-proof-bank:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    # One focused carrier alone took 25m21s locally; this gate builds both
+    # carriers and the complete proof bank before auditing every declaration.
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
         with:

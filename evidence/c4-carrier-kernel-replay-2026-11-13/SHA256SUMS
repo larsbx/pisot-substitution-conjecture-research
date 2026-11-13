@@ -1,6 +1,9 @@
 dab28905d3cdc338eeff802e34bf18af2f46149dfefe20216fcbc0c53581cef7  ./README.md
 312cd5d7cc16517a94366707cd5257b6564d326d03bc5c7df0fc768f16a08252  ./chunk-native-regeneration.json
 68fb7c07b5a02b91ea64e0e556d3fe754abc62ff7d0925b0bc9d49b0626c69ae  ./decode-bench.tar.gz
+ea72b72bb9e0b733207b0101bf3312a560e72dd7c703edd01c93ef4cd9f341c5  ./fixture1-compiled-d21b4cb/README.md
+8d43deaedff111fb00e301b80ea156eb62e3cafbcbc8d370b91bf7354279035d  ./fixture1-compiled-d21b4cb/concrete-carrier-compilation.tar.gz
+4cda21afb43fbf4932b267cbd43c53cf276a353ab1c060ad4f97ade4994e548e  ./fixture1-compiled-d21b4cb/literal-type-axiom-audit.tar.gz
 733674a81b6b566d6d55680498e6ab1ba2a0c8195263c5762165f62d6f3eefbc  ./forward-export-source-bound.json
 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  ./forward-export-source-bound.log
 649492f359d15a88900d6287bc22a76cb773afd817a50652502ec3cdb48d2e23  ./forward-native-test-build.json

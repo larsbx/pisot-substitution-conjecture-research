@@ -261,3 +261,35 @@ missing payload imports, fixture substitutions and namespace mismatches,
 before reconstructing the complete literal contract across the two modules.
 The actual checker replay is recorded separately, with its exact imported
 Words object bound in the start receipt.
+
+## Focused fixture-1 compilation and literal audit
+
+At source commit `d21b4cb8e72e585317bcf5b26b2e4085cb2efad6`, the complete
+fixture-1 checker compiled successfully in 1,521.163 seconds with sampled
+peak RSS 3,721,379,840 bytes. All 520 individual rows, their aggregation,
+validity, original forward-check equality and finite-descendant theorem
+reached successful object serialization. Source and bound imported
+payload bytes remained unchanged. The earlier unsuccessful runs retain
+their recorded outcomes.
+
+The subsequent focused audit checked three closed types containing the
+literal `1/012/001` substitution: packet validity, the original forward
+checker equality on the actual states, and finiteness of actual
+`bpaStatesNC`. Its six transitive-axiom records contained only `propext`,
+`Classical.choice` and `Quot.sound`. It passed in 23.112 seconds and
+retained all 37 recorded inputs unchanged. This audit uses recorded cached
+dependencies and does not import named strict exclusion or claim
+termination. Full isolated project acceptance remains separate.
+
+The full Lean workflow now allows 180 minutes rather than 30, retaining
+all existing isolated-build and audit commands. The observed focused
+serial fixture-1 run alone used more than 25 minutes, and the full gate
+also builds fixture 0 and the remaining proof bank. This budget change is
+not a hosted runtime prediction or an attribution of earlier runner
+shutdowns to the previous time limit. The archived-payload gate keeps its
+existing 240-minute allowance.
+
+Exact sources, objects, terminal receipts and scope are retained in the
+[focused fixture-1 packet](../evidence/c4-carrier-kernel-replay-2026-11-13/fixture1-compiled-d21b4cb/README.md).
+Fixture 0's full checker, the combined termination consumers and the
+isolated audit remain pending; all 126 governed statuses stay unchanged.
