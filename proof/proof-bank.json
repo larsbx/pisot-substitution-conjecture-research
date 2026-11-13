@@ -13179,7 +13179,7 @@
       "module": "PscVerif.NamedPositiveOverlap",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean",
-      "line": 78,
+      "line": 79,
       "declaration": "theorem exists_open_lower_bound {C : Finset WordPair}"
     },
     {
@@ -13187,7 +13187,7 @@
       "module": "PscVerif.NamedPositiveOverlap",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean",
-      "line": 113,
+      "line": 114,
       "declaration": "theorem exists_overlap_lower_bound_of_outerRegular"
     },
     {
@@ -13195,7 +13195,7 @@
       "module": "PscVerif.NamedPositiveOverlap",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean",
-      "line": 130,
+      "line": 131,
       "declaration": "theorem internalMeasure_outerRegular : (internalMeasure f ν).OuterRegular := by"
     },
     {
@@ -13203,7 +13203,7 @@
       "module": "PscVerif.NamedPositiveOverlap",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean",
-      "line": 142,
+      "line": 141,
       "declaration": "theorem exists_overlap_lower_bound {C : Finset WordPair}"
     },
     {
@@ -13211,7 +13211,7 @@
       "module": "PscVerif.NamedPositiveOverlap",
       "private": false,
       "source": "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean",
-      "line": 152,
+      "line": 151,
       "declaration": "theorem carrierOverlap_measure_pos {C : Finset WordPair}"
     },
     {
@@ -26420,7 +26420,7 @@
     "proof/PscVerif/PscVerif/NamedOverlapBalanceControls.lean": "ccf5d2d4241cbe382878cd18ba34f0ffb195b9d0a7c0c0dc049b9864e84273cb",
     "proof/PscVerif/PscVerif/NamedOverlapHaar.lean": "248fa98da0eaa0cb895530cf7ff55e43f7030e07ddfcd2f92714300b36db4002",
     "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean": "fd2f332087db1b010a7f2d7d8094a993c020e0228b56036d861b017d69057f30",
-    "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean": "b02ec648ac17e3214b87c32d9f261b0232e1aca822e9b9a5f7c1378d8921547f",
+    "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean": "ba4554df8e4339d5c61f1da910ca53177a9610bfe78ceb0cc8f062950b1e51fc",
     "proof/PscVerif/PscVerif/NamedPositiveOverlapControls.lean": "bf67f3dc80ad86c2a6bd3d16f8d7bff9ccd61f76103fbded3bb1b54ec89a39fa",
     "proof/PscVerif/PscVerif/NamedPrefixCompact.lean": "e6cbff61401e8f5109bc0c8654e77eca155e1186286703e76f4d55044ebd220e",
     "proof/PscVerif/PscVerif/NamedProductHaar.lean": "e398c9b19b65cb794034138490453d35bfdc4dab256473318daca75528b9ac14",
