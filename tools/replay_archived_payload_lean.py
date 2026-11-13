@@ -18,12 +18,24 @@ import time
 
 ALLOWED = {"propext", "Classical.choice", "Quot.sound"}
 COUNTS = (7150, 7083)
-PROOFS = {"valid", "accepted", "typed_accepted", "domain_iff", "roots_null", "ancestors_null"}
+PROOFS = {"valid", "accepted", "typed_accepted", "domain_iff", "roots_null", "ancestors_null",
+          "no_strict_system"}
 RECORDS = {"graph", "image", "digit", "node", "row", "slot", "packed", "lookup"}
 
 
 class ReplayIncomplete(ValueError):
     pass
+
+
+def exclusion_type_check(index: int) -> str:
+    """Check the closed exclusion at the literal source fixture, with no Haar premise."""
+    if index not in (0, 1):
+        raise ReplayIncomplete("unsupported original fixture")
+    ns = f"Psc.ArchivedPayloadGenerated.Source{index}"
+    return f'''example (C : Finset Psc.OccurrenceTransport.WordPair) :
+    ¬ Psc.StrictSystem.StrictSystem (Psc.NamedPrefixCompact.substitution ({index} : Fin 2)) C :=
+  {ns}.no_strict_system C
+'''
 
 
 def audit_source(index: int) -> str:
@@ -62,6 +74,7 @@ example (ν : Measure (H (substitution {ns}.packet.fixture)))
     (volume.prod ν)
       (overlap (ambientStar (substitution {ns}.packet.fixture) piZ)
         (tiles {ns}.packet.fixture) u) = 0 := {ns}.ancestors_null ν u hu
+{exclusion_type_check(index)}
 open Lean Elab Command in
 run_cmd do
   let env ← getEnv
@@ -80,7 +93,7 @@ run_cmd do
     if info.isTheorem then proofs := proofs + 1
     let names := String.intercalate "," (axs.toList.map toString)
     liftIO <| IO.println s!"PSC_ARCHIVED_AXIOMS {index}\\t{{name}}\\t{{names}}"
-  if proofs < 6 then throwError "Missing concrete semantic proofs"
+  if proofs < {len(PROOFS)} then throwError "Missing concrete semantic proofs"
   liftIO <| IO.println s!"PSC_ARCHIVED_AUDIT_COMPLETE {index}\\t{{count}}\\t{{proofs}}"
 def main : IO Unit := {ns}.packet.emit
 '''
@@ -155,8 +168,20 @@ def validate_negative_control(project: Path, root: Path, output: Path, pin: str,
     (control / "audit.log").write_text(diagnostics)
     if result.returncode == 0 or "type mismatch" not in diagnostics.lower() or "accepted" not in diagnostics:
         raise ReplayIncomplete("wrong-proof-type control did not refuse for the expected reason")
+    # Isolate the new obligation so failures of the earlier wrong-type proofs
+    # cannot make this exclusion check appear to have been reached.
+    exclusion_audit = control / "ExclusionAudit0.lean"
+    exclusion_audit.write_text("import Source0\n" + exclusion_type_check(0))
+    exclusion_result = subprocess.run(["elan", "run", pin, "lean", str(exclusion_audit)],
+                                      cwd=project, env=env, capture_output=True, text=True, timeout=600)
+    exclusion_diagnostics = exclusion_result.stdout + exclusion_result.stderr
+    (control / "exclusion-audit.log").write_text(exclusion_diagnostics)
+    if (exclusion_result.returncode == 0 or "type mismatch" not in exclusion_diagnostics.lower()
+            or "no_strict_system" not in exclusion_diagnostics):
+        raise ReplayIncomplete("wrong-type strict-system exclusion did not refuse for the expected reason")
     (control / "receipt.json").write_text(json.dumps({
         "fixture_compiles": True, "typed_import_refuses": True,
+        "no_strict_system_wrong_type_refused": True,
         "reason": "right-name declarations prove True instead of the required checked propositions",
         "fixture_sha256": hashlib.sha256(source.read_bytes()).hexdigest()}, indent=2) + "\n")
 
@@ -200,7 +225,7 @@ def run(exporter: Path, project: Path, root: Path, output: Path,
             sources.append({"fixture": index, "lean_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
                             "seconds": round(time.monotonic() - started, 3),
                             "audit_sha256": hashlib.sha256(log.read_bytes()).hexdigest(), **counts})
-            print(f"Original fixture {index}: concrete kernel checks, geometric theorem types and axiom audit passed",
+            print(f"Original fixture {index}: concrete kernel checks, geometric and exclusion theorem types, and axiom audit passed",
                   flush=True)
     command = [sys.executable, str(root / "oracles/python/c4_archived_payload.py"), "--native", str(combined)]
     if fixture is not None:
@@ -236,6 +261,11 @@ def run(exporter: Path, project: Path, root: Path, output: Path,
         "proof/PscVerif/PscVerif/ArchivedPayload.lean",
         "proof/PscVerif/PscVerif/ArchivedPayloadConsumer.lean",
         "proof/PscVerif/PscVerif/ArchivedPayloadEmit.lean",
+        "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean",
+        "proof/PscVerif/PscVerif/NamedPositiveOverlapControls.lean",
+        "proof/PscVerif/PscVerif/NamedStrictExclusion.lean",
+        "proof/PscVerif/PscVerif/NamedStrictExclusionControls.lean",
+        "tests/fixtures/c4_archived_bad_binding.lean",
         "kernel/psc/c4_archived_payload.mojo", "kernel/c4_archived_lean_export.mojo",
         "oracles/python/c4_archived_payload.py", "tools/replay_archived_payload_lean.py",
         "tools/check_lean.sh", "evidence/c4-pair-overlap-graph-2026-11-05/receipt.json",
@@ -250,7 +280,8 @@ def run(exporter: Path, project: Path, root: Path, output: Path,
     result = {
         "schema": "c4-archived-payload-lean-replay-v1",
         "fixtures_verified": len(sources), "both_original_fixtures_verified": fixture is None,
-        "scope": "original sharp-box rooted inverse ancestry; no all-strict-packet or positivity claim",
+        "scope": "original sharp-box rooted inverse ancestry and strict-system exclusion for the verified named fixtures; no general C4 or PSC claim",
+        "semantic_proofs": sorted(PROOFS), "strict_system_exclusion_fixtures": list(indices),
         "kernel_evaluation": "decide +kernel; generated proof types and all transitive axioms audited",
         "allowed_axioms": sorted(ALLOWED), "lean_toolchain": pin,
         "exporter_sha256": hashlib.sha256(exporter.read_bytes()).hexdigest(),

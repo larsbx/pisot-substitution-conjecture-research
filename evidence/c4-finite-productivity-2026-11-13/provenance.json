@@ -1,0 +1,20 @@
+{
+  "claim_status_changes": false,
+  "compiled_acceptance": false,
+  "lean_compiler_sha256": "e8baaa71855a616dc351028f3ad2200051b0671f423a1696a100e809302d5550",
+  "lean_pin": "leanprover/lean4:v4.34.0-rc2",
+  "private_inventory_repair_commit": "95e3c6ccb022dcc3fa269e69b334b5632040f64d",
+  "published_source_commit": "510239ac0005fb24f880369e55a4b54776224981",
+  "published_source_tree": "1d9a5e7e87c7a6e29effa60e5dc83ef7b66ab2ef",
+  "recorded_at_utc": "2026-11-13T03:12:30.524317+00:00",
+  "schema": "c4-finite-productivity-development-evidence-v1",
+  "source_checks_scope": "Working-tree sources subsequently published in 510239ac. This packet and the later forward-carrier documentation are not represented as part of those earlier check runs.",
+  "verified_source_files": {
+    "docs/proof-bank.md": "1e8788ed68e240cf1749975ee6c324989819d685c5718cb6a008cc6098ac10c6",
+    "proof/PscVerif/PscVerif.lean": "dc097e2eef65a439545270b1235116f6a0719386be1d92cb3c780a5325d75ddb",
+    "proof/PscVerif/PscVerif/FiniteProductivity.lean": "cc64e649a03c9ef0e5668fc051d679ffd2ea538135bbc6fc5974c2dc37fb13d8",
+    "proof/PscVerif/PscVerif/NamedFiniteProductivity.lean": "4f8558a777f6d4ca3871aa8adeb1862488a06b78d89a1513cef3074bd7bc91c0",
+    "proof/proof-bank.json": "654259891c1afe3fee15578ccff9a2a3cb631c6eeb08985f516be749134ca379",
+    "tests/test_proof_bank.py": "b2c4ed83ac8cb78cc9c51498b426645c3a59d6819441f82f683bc613be71d8a9"
+  }
+}

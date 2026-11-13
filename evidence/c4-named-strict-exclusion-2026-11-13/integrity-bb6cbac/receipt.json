@@ -1,0 +1,258 @@
+{
+  "archive": {
+    "bytes": 9117,
+    "format": "deterministic USTAR with regular relative members; gzip mtime 0",
+    "member_count": 6,
+    "path": "failure-record.tar.gz",
+    "sha256": "71b9fce234429adbda351e92c6fda1dee2ec159fedc1d2a0f9a2dc460189a4ba"
+  },
+  "artifact_zip_downloaded": false,
+  "artifact_zip_not_needed_reason": "Raw run/jobs verdicts and complete decoded job log preserve the observed failure.",
+  "clean_head_test_claimed": false,
+  "created_at_utc": "2026-11-13T05:29:45.652919+00:00",
+  "failed_subject_commit": "bb6cbac16a620da4784f5b30d0a9a242618aef22",
+  "failed_subject_tree": "42472cf9f43d2e13bb999fd5c339abfea782d690",
+  "job": {
+    "conclusion": "failure",
+    "head_sha": "bb6cbac16a620da4784f5b30d0a9a242618aef22",
+    "id": 131688284672,
+    "name": "exact-gap-theorem",
+    "run_attempt": 1,
+    "run_id": 43365333191,
+    "status": "completed",
+    "steps": [
+      {
+        "completed_at": "2026-11-13T05:19:51Z",
+        "conclusion": "success",
+        "name": "Set up job",
+        "number": 1,
+        "started_at": "2026-11-13T05:19:50Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-11-13T05:19:54Z",
+        "conclusion": "success",
+        "name": "Run actions/checkout@v4",
+        "number": 2,
+        "started_at": "2026-11-13T05:19:51Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-11-13T05:19:54Z",
+        "conclusion": "success",
+        "name": "Run actions/setup-python@v5",
+        "number": 3,
+        "started_at": "2026-11-13T05:19:54Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-11-13T05:19:57Z",
+        "conclusion": "success",
+        "name": "Run python -m pip install 'pytest>=7'",
+        "number": 4,
+        "started_at": "2026-11-13T05:19:54Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-11-13T05:20:49Z",
+        "conclusion": "failure",
+        "name": "Independent ray oracle and evidence integrity",
+        "number": 5,
+        "started_at": "2026-11-13T05:19:57Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-11-13T05:20:49Z",
+        "conclusion": "skipped",
+        "name": "Install Pixi",
+        "number": 6,
+        "started_at": "2026-11-13T05:20:49Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-11-13T05:20:49Z",
+        "conclusion": "skipped",
+        "name": "Locked native arithmetic, closure, occurrence, coverage and assembly checks",
+        "number": 7,
+        "started_at": "2026-11-13T05:20:49Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-11-13T05:20:50Z",
+        "conclusion": "success",
+        "name": "Preserve acceptance receipts",
+        "number": 8,
+        "started_at": "2026-11-13T05:20:49Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-11-13T05:20:50Z",
+        "conclusion": "skipped",
+        "name": "Post Run actions/setup-python@v5",
+        "number": 15,
+        "started_at": "2026-11-13T05:20:50Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-11-13T05:20:50Z",
+        "conclusion": "success",
+        "name": "Post Run actions/checkout@v4",
+        "number": 16,
+        "started_at": "2026-11-13T05:20:50Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-11-13T05:20:50Z",
+        "conclusion": "success",
+        "name": "Complete job",
+        "number": 17,
+        "started_at": "2026-11-13T05:20:50Z",
+        "status": "completed"
+      }
+    ]
+  },
+  "lean_or_mathematical_acceptance_claimed": false,
+  "missing_packet_root_manifests_before_repair": [
+    "evidence/c4-named-strict-exclusion-2026-11-13"
+  ],
+  "observed_pytest": {
+    "elapsed_seconds": 52.03,
+    "failed": 1,
+    "failed_node": "tests/test_recorded_data_integrity.py::test_every_evidence_packet_is_pinned",
+    "passed": 217,
+    "step_exit_code_from_log": 1
+  },
+  "original_packet_files_unchanged": [
+    {
+      "bytes": 5296,
+      "path": "evidence/c4-named-strict-exclusion-2026-11-13/failed-head16dd/README.md",
+      "sha256": "81a87757dd91733b97da0e3ec8b15ff97ea1aef491c108eef916c4afb63b5268"
+    },
+    {
+      "bytes": 1314048,
+      "path": "evidence/c4-named-strict-exclusion-2026-11-13/failed-head16dd/failure-evidence.tar.gz",
+      "sha256": "07ceb31cba9d2ff934eb0f99b85d4c6cb232d3ab93868d01143bd841fb354189"
+    },
+    {
+      "bytes": 21174,
+      "path": "evidence/c4-named-strict-exclusion-2026-11-13/failed-head16dd/receipt.json",
+      "sha256": "019dcdb394dc6ed1d05a5018156cec330721b43dae9ee90c5bdd7040c29a3df8"
+    },
+    {
+      "bytes": 10336,
+      "path": "evidence/c4-named-strict-exclusion-2026-11-13/pending-bb6cbac/README.md",
+      "sha256": "454e3018cad2f3d0bfcd0151e27d8f59c9ffd576e8e03eed709f553f9d82fd61"
+    },
+    {
+      "bytes": 23696,
+      "path": "evidence/c4-named-strict-exclusion-2026-11-13/pending-bb6cbac/checkpoint.json",
+      "sha256": "455d41da3b3429541c64203d3431f8d6a70136f2cc908a13d34d84f4ef9cfd77"
+    },
+    {
+      "bytes": 39120,
+      "path": "evidence/c4-named-strict-exclusion-2026-11-13/pending-bb6cbac/pending-verification.tar.gz",
+      "sha256": "cf0eda31872d94332af272b09b3ab117e11027e21286046b0fd9987a835915ab"
+    },
+    {
+      "bytes": 8454,
+      "path": "evidence/c4-named-strict-exclusion-2026-11-13/pending/README.md",
+      "sha256": "b5575dde0b1a0465fa03d4bcd22515d58eafc11903bd91e8ce774f164e73bda3"
+    },
+    {
+      "bytes": 66834,
+      "path": "evidence/c4-named-strict-exclusion-2026-11-13/pending/checkpoint.json",
+      "sha256": "87adde8a5d22b44624573085d06f140b32dd496469ca1b38187bd8bab01c4c43"
+    },
+    {
+      "bytes": 100952,
+      "path": "evidence/c4-named-strict-exclusion-2026-11-13/pending/pending-evidence.tar.gz",
+      "sha256": "b5f25a5e5f9685cddbab92afd9ad4362489196e01b7afce42d4f5a8dc2b811da"
+    }
+  ],
+  "preservation_base_head": "a0fd88e5f4a587cf25e0ca49c93e8fb853cfc114",
+  "preservation_worktree": "/workspace/scratch/5535bb23ca85/psc-evidence",
+  "prospective_repair_test_results_in_this_receipt": false,
+  "raw_capture": [
+    {
+      "bytes": 15147,
+      "completed_at_utc": "2026-11-13T05:27:03.057Z",
+      "file": "run.json",
+      "kind": "rest",
+      "name": "uniform-gap-run",
+      "representation": "Exact UTF-8 bytes of connector-returned content; no reformatting or added newline.",
+      "sha256": "ed3782d8188d150c4cc2008b8a6da5e5cdcaf43077b9923606a141d7885f8206",
+      "started_at_utc": "2026-11-13T05:27:02.698Z",
+      "tool": "mcp__codex_apps__github_fetch",
+      "url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43365333191"
+    },
+    {
+      "bytes": 2953,
+      "completed_at_utc": "2026-11-13T05:27:03.076Z",
+      "file": "jobs.json",
+      "kind": "rest",
+      "name": "uniform-gap-jobs",
+      "representation": "Exact UTF-8 bytes of connector-returned content; no reformatting or added newline.",
+      "sha256": "d90d4900b26029a75468a17326ae55021eb309049ed41b98233683cd48e17733",
+      "started_at_utc": "2026-11-13T05:27:02.698Z",
+      "tool": "mcp__codex_apps__github_fetch",
+      "url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43365333191/jobs?filter=latest&per_page=100"
+    },
+    {
+      "bytes": 21500,
+      "completed_at_utc": "2026-11-13T05:27:03.355Z",
+      "file": "job.log",
+      "kind": "log",
+      "name": "uniform-gap-job-log",
+      "representation": "Exact UTF-8 bytes of connector-returned content; no reformatting or added newline.",
+      "sha256": "3e3a953c029fa7a25332c019096416db3a9515b35bb9e733b2e9f1167b03d843",
+      "started_at_utc": "2026-11-13T05:27:02.698Z",
+      "tool": "mcp__codex_apps__github_fetch_workflow_job_logs",
+      "url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/jobs/131688284672/logs"
+    }
+  ],
+  "raw_retained_members": [
+    {
+      "bytes": 2303,
+      "path": "raw/capture.json",
+      "sha256": "ecd6be1e9938bc9058f9fb8da7ace47425b172ebff1923b26f707cfe64a5ecee"
+    },
+    {
+      "bytes": 21500,
+      "path": "raw/job.log",
+      "sha256": "3e3a953c029fa7a25332c019096416db3a9515b35bb9e733b2e9f1167b03d843"
+    },
+    {
+      "bytes": 2953,
+      "path": "raw/jobs.json",
+      "sha256": "d90d4900b26029a75468a17326ae55021eb309049ed41b98233683cd48e17733"
+    },
+    {
+      "bytes": 21501,
+      "path": "raw/previously-retained-job.log",
+      "sha256": "e5a53e04e16a4ca99dcdddcbbd5fdbd71c55d48cdc65b25e57351859f1d6af91"
+    },
+    {
+      "bytes": 15147,
+      "path": "raw/run.json",
+      "sha256": "ed3782d8188d150c4cc2008b8a6da5e5cdcaf43077b9923606a141d7885f8206"
+    }
+  ],
+  "readme": {
+    "bytes": 3771,
+    "path": "README.md",
+    "sha256": "12dba4d07b4612d98703a1d9d8270fa9cf6542b7869862e61726d641892e15f5"
+  },
+  "repair_scope": "Add this historical failure record and a packet-root SHA256SUMS covering every packet file except itself with full repository-relative paths; preserve all previous packet bytes.",
+  "run": {
+    "conclusion": "failure",
+    "head_sha": "bb6cbac16a620da4784f5b30d0a9a242618aef22",
+    "html_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43365333191",
+    "id": 43365333191,
+    "name": "Class-A uniform gap theorem",
+    "path": ".github/workflows/class-a-gap-theorem.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "schema": "psc-recorded-evidence-integrity-failure-v1",
+  "tests_recorded_separately_after_staging": true
+}
