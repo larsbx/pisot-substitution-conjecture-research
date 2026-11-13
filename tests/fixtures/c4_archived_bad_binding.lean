@@ -1,4 +1,5 @@
 import PscVerif.ArchivedPayloadConsumer
+import PscVerif.StrictSystem
 
 /- This deliberate negative fixture is not a mathematical acceptance proof.
 The names are right and every declaration is harmless, but the types are wrong. -/

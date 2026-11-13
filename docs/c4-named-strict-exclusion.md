@@ -81,6 +81,16 @@ Acceptance status at source construction: **pending**. Terminal results,
 exact source identities and preserved failed attempts will be recorded in
 the PR evidence before any acceptance statement is made.
 
+The native payload reconstruction has passed for both original fixtures,
+including all 32 mutation controls. The first isolated Lean run ended with
+exit 137 after dependency provisioning and supplied no acceptance result.
+A second run progressed into the project build and was deliberately
+interrupted after source inspection found that the wrong-type control
+needed an explicit `StrictSystem` import. That import is now present, so
+the isolated exclusion check can test the intended type mismatch. Neither
+incomplete run is credited as theorem acceptance; a fresh complete run
+at the corrected revision is required.
+
 ### Negative controls
 
 Two Lean counterexamples use a unit point mass on integer singleton tiles.
