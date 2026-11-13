@@ -1,14 +1,14 @@
 import PscVerif.NamedCutCount
 import PscVerif.NamedFundamentalCell
 import Mathlib.Analysis.SpecificLimits.Basic
-import Mathlib.Topology.Metrizable.Basic
+import Mathlib.Topology.Metrizable.Urysohn
 import Mathlib.Topology.Instances.Discrete
 
 /-! The lower and upper bounds count the same original integer vectors. -/
 
 noncomputable section
 
-open Set Filter MeasureTheory
+open Set Filter MeasureTheory TopologicalSpace
 open scoped ENNReal Topology
 
 namespace Psc.NamedPositiveOverlap
@@ -67,8 +67,9 @@ private theorem carrier_secondCountable (f : Fin 2) : SecondCountableTopology (H
     MadicResidue.residue_finite (M f) (carrier_injective f)
   letI : ∀ q : ℕ, SecondCountableTopology (MadicResidue.Residue (M f) q) :=
     fun _ => inferInstance
-  change SecondCountableTopology (↥(MadicResidue.compatibleSequences (M f)))
-  infer_instance
+  letI : SecondCountableTopology (∀ q : ℕ, MadicResidue.Residue (M f) q) := inferInstance
+  exact Subtype.secondCountableTopology
+    (MadicResidue.compatibleSequences (M f) : Set (∀ q : ℕ, MadicResidue.Residue (M f) q))
 
 variable (f : Fin 2) (ν : Measure (H f)) [ν.IsAddHaarMeasure] [IsProbabilityMeasure ν]
 
@@ -105,7 +106,7 @@ theorem exists_open_lower_bound {C : Finset WordPair}
   calc
     c / L * X n ≤ c * ((integerStarts f n T).card : ℝ) := by
       rw [div_mul_eq_mul_div₀, div_le_iff₀ hL]
-      simpa [mul_assoc, mul_left_comm, mul_comm] using
+      simpa [X, t, mul_assoc, mul_left_comm, mul_comm] using
         mul_le_mul_of_nonneg_left hlower hc.le
     _ ≤ _ := hupper
 
@@ -130,11 +131,9 @@ omit [ν.IsAddHaarMeasure] in
 theorem internalMeasure_outerRegular : (internalMeasure f ν).OuterRegular := by
   letI := MadicResidue.carrier_compactSpace (M f) (carrier_injective f)
   letI := carrier_secondCountable f
-  letI : ∀ q : ℕ, PseudoMetrizableSpace (MadicResidue.Residue (M f) q) :=
-    fun _ => inferInstance
-  letI : PseudoMetrizableSpace (H f) := by
-    change PseudoMetrizableSpace (↥(MadicResidue.compatibleSequences (M f)))
-    infer_instance
+  letI : RegularSpace (H f) := inferInstance
+  letI : PseudoMetrizableSpace (H f) :=
+    PseudoMetrizableSpace.of_regularSpace_secondCountableTopology (H f)
   letI : (internalMeasure f ν).Regular := inferInstance
   infer_instance
 
