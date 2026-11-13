@@ -118,3 +118,5 @@ import PscVerif.ArchivedPayload
 import PscVerif.ArchivedPayloadConsumer
 import PscVerif.ArchivedPayloadEmit
 import PscVerif.ArchivedPayloadControls
+import PscVerif.NamedStrictExclusion
+import PscVerif.NamedStrictExclusionControls
