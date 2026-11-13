@@ -331,10 +331,10 @@ def generated_tracks(source, fixture):
     """
     prefix = f"fixture{fixture}"
     chunk_pattern = re.compile(
-        rf"def ({prefix}Chunk[0-9]+) : List \(Fin 3\) := \[([0-9]+(?:,[0-9]+)*)\]")
+        rf"noncomputable def ({prefix}Chunk[0-9]+) : List \(Fin 3\) := \[([0-9]+(?:,[0-9]+)*)\]")
     chunks = {}
     for line in source.splitlines():
-        if not line.startswith(f"def {prefix}Chunk"):
+        if re.match(rf"(?:noncomputable )?def {prefix}Chunk", line) is None:
             continue
         match = chunk_pattern.fullmatch(line)
         if match is None or match[1] in chunks:
@@ -344,13 +344,11 @@ def generated_tracks(source, fixture):
             raise ValueError("invalid typed chunk letters")
         chunks[match[1]] = letters
     state_pattern = re.compile(
-        rf"def {prefix}State([0-9]+) : List \(Fin 3\) × List \(Fin 3\) :=\n"
+        rf"^noncomputable def {prefix}State([0-9]+) : List \(Fin 3\) × List \(Fin 3\) :=\n"
         rf"  \(\[({prefix}Chunk[0-9]+(?:,{prefix}Chunk[0-9]+)*)\]\.flatten, "
-        rf"\[({prefix}Chunk[0-9]+(?:,{prefix}Chunk[0-9]+)*)\]\.flatten\)")
+        rf"\[({prefix}Chunk[0-9]+(?:,{prefix}Chunk[0-9]+)*)\]\.flatten\)$", re.MULTILINE)
     states = {}
-    expected_states = sum(line.startswith(f"def {prefix}State") and
-                          not line.startswith((f"def {prefix}StateArray", f"def {prefix}States")) and
-                          line[len(f"def {prefix}State"):len(f"def {prefix}State") + 1].isdigit()
+    expected_states = sum(re.match(rf"(?:noncomputable )?def {prefix}State[0-9]+ ", line) is not None
                           for line in source.splitlines())
     for match in state_pattern.finditer(source):
         index = int(match[1])
@@ -382,7 +380,8 @@ def test_typed_chunks_reconstruct_every_original_ordered_word(native_packet):
 
 @pytest.mark.parametrize("mutation", [
     "empty_chunk", "nonternary_letter", "missing_chunk", "unknown_reference",
-    "wrong_flattening", "reordered_references",
+    "wrong_flattening", "reordered_references", "missing_chunk_modifier",
+    "missing_state_modifier",
 ])
 def test_chunk_encoding_corruption_is_detected(native_packet, mutation):
     source = (ROOT / "proof/PscVerif/PscVerif" /
@@ -391,7 +390,7 @@ def test_chunk_encoding_corruption_is_detected(native_packet, mutation):
     assert_generated_tracks_match(source, native_packet)
     prefix = f"fixture{native_packet['fixture']}"
     first = next(line for line in source.splitlines()
-                 if line.startswith(f"def {prefix}Chunk0 "))
+                 if line.startswith(f"noncomputable def {prefix}Chunk0 "))
     if mutation == "empty_chunk":
         corrupt = source.replace(first, first.split(":=")[0] + ":= []", 1)
     elif mutation == "nonternary_letter":
@@ -404,6 +403,12 @@ def test_chunk_encoding_corruption_is_detected(native_packet, mutation):
         corrupt = source.replace(marker, f"[{prefix}Chunk999999]", 1)
     elif mutation == "wrong_flattening":
         corrupt = source.replace("].flatten", "]", 1)
+    elif mutation == "missing_chunk_modifier":
+        corrupt = source.replace(first, first.removeprefix("noncomputable "), 1)
+    elif mutation == "missing_state_modifier":
+        marker = f"noncomputable def {prefix}State0 "
+        assert marker in source
+        corrupt = source.replace(marker, marker.removeprefix("noncomputable "), 1)
     else:
         ref_pattern = re.compile(rf"\[({prefix}Chunk[0-9]+),({prefix}Chunk[0-9]+)")
         refs = ref_pattern.search(source)

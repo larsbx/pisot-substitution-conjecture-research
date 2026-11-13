@@ -90,3 +90,42 @@ new 150/180-second diagnostic stops did not localize a declaration cost,
 and the first marker experiment had an `IO`/`BaseIO` instrumentation error.
 Those unsuccessful probes remain diagnostic history, not mathematical
 counterexamples or successful proof checks.
+
+## Explicit proof-only definitions
+
+The first actual fixture-1 compilation of the typed-chunk source terminated
+with compiler return code `-9` (SIGKILL) after 1,576.880 seconds. Its sampled
+maximum resident memory was 4,353,761,280 bytes. Neither the local time guard
+nor the memory guard fired, so the cause of the signal is unconfirmed. The
+source remained unchanged, no object was produced, and the log reported no
+Lean proof error. This failed replay is retained; it is not formal acceptance.
+
+The next representation-only change explicitly marks the generated closed
+data definitions, and their named `checkedStates` consumer, `noncomputable`.
+In the pinned Lean v4.34.0-rc2 compiler source
+(`Lean/Elab/PreDefinition/Basic.lean`, commit
+`6a10ac8c22beadecabdbb0919c2b50214762f91d`), `shouldGenCodeFor` skips native
+code generation for a definition whose explicit modifier is noncomputable.
+An enclosing `noncomputable section` alone does not implement that rule.
+The ordinary transparent kernel definition is still added and checked before
+this compilation decision. The generic Boolean checker and every
+`decide +kernel` obligation stay unchanged.
+
+This removes unused native compilation of proof-only payloads; it does not
+establish a measured speedup or guarantee a successful replay. Bounded
+Init-only prefix comparisons ended before producing objects and had unequal
+post-import budgets, so they do not establish a comparative timing result.
+The regenerated literal words, original packet bytes, and refusal controls
+must be checked again, followed by new terminal concrete Lean compilations.
+Earlier native checks remain evidence for their earlier exact sources only.
+
+The rebuilt exporter reproduced both original JSON packets byte-for-byte.
+Removing only the new explicit modifiers and explanatory comment from its
+Lean output reproduces the previous typed-chunk modules exactly. The new
+source digests are
+`019856bf4e01550382be9e2607d28a126b36da66c0533929c550e26a2c171d1a`
+for fixture 0 and
+`4d1d3a9a1d16b04536ec12dba5e1e55a86b2a37d5dd27cc75a5d8b9661500844`
+for fixture 1. The complete focused suite then passed 186 tests in 59.648
+seconds, including removal controls for the required chunk and state
+declaration modifiers. Concrete Lean acceptance is still pending.
