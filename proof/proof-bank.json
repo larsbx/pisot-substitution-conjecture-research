@@ -8135,6 +8135,78 @@
       "declaration": "theorem fib_descR_two :"
     },
     {
+      "name": "Psc.FiniteProductivity.isBlock_of_reachableNC",
+      "module": "PscVerif.FiniteProductivity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FiniteProductivity.lean",
+      "line": 27,
+      "declaration": "theorem isBlock_of_reachableNC (hT : IsBlock T)"
+    },
+    {
+      "name": "Psc.FiniteProductivity.reachableNC_subset",
+      "module": "PscVerif.FiniteProductivity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FiniteProductivity.lean",
+      "line": 35,
+      "declaration": "theorem reachableNC_subset (hTU : Relation.ReflTransGen (ChildNC s) T U) :"
+    },
+    {
+      "name": "Psc.FiniteProductivity.productive_of_finite_reachable",
+      "module": "PscVerif.FiniteProductivity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FiniteProductivity.lean",
+      "line": 42,
+      "declaration": "theorem productive_of_finite_reachable"
+    },
+    {
+      "name": "Psc.FiniteProductivity.terminates_of_finite_reachable",
+      "module": "PscVerif.FiniteProductivity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FiniteProductivity.lean",
+      "line": 58,
+      "declaration": "theorem terminates_of_finite_reachable"
+    },
+    {
+      "name": "Psc.FiniteProductivity.terminates_iff_finite_reachable",
+      "module": "PscVerif.FiniteProductivity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FiniteProductivity.lean",
+      "line": 69,
+      "declaration": "theorem terminates_iff_finite_reachable"
+    },
+    {
+      "name": "Psc.FiniteProductivity.infinite_reachable_of_not_productive",
+      "module": "PscVerif.FiniteProductivity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FiniteProductivity.lean",
+      "line": 78,
+      "declaration": "theorem infinite_reachable_of_not_productive"
+    },
+    {
+      "name": "Psc.FiniteProductivity.not_terminates_iff_infinite_reachable",
+      "module": "PscVerif.FiniteProductivity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FiniteProductivity.lean",
+      "line": 86,
+      "declaration": "theorem not_terminates_iff_infinite_reachable"
+    },
+    {
+      "name": "Psc.FiniteProductivity.thueMorse_finite_nonproductive",
+      "module": "PscVerif.FiniteProductivity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FiniteProductivity.lean",
+      "line": 95,
+      "declaration": "theorem thueMorse_finite_nonproductive :"
+    },
+    {
+      "name": "Psc.FiniteProductivity.fibonacci_terminates",
+      "module": "PscVerif.FiniteProductivity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FiniteProductivity.lean",
+      "line": 107,
+      "declaration": "theorem fibonacci_terminates : TerminatesWithCoincidence fibSubst tmPair := by"
+    },
+    {
       "name": "Psc.FixedPointLimit.iterate_subst_prefix",
       "module": "PscVerif.FixedPointLimit",
       "private": false,
@@ -12493,6 +12565,54 @@
       "source": "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean",
       "line": 382,
       "declaration": "theorem wrong_scale_two_control (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.productive_of_finite_reachable",
+      "module": "PscVerif.NamedFiniteProductivity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteProductivity.lean",
+      "line": 21,
+      "declaration": "theorem Packet.productive_of_finite_reachable (p : Packet) (h : p.Valid)"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.terminates_of_finite_reachable",
+      "module": "PscVerif.NamedFiniteProductivity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteProductivity.lean",
+      "line": 29,
+      "declaration": "theorem Packet.terminates_of_finite_reachable (p : Packet) (h : p.Valid)"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.terminates_iff_finite_reachable",
+      "module": "PscVerif.NamedFiniteProductivity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteProductivity.lean",
+      "line": 37,
+      "declaration": "theorem Packet.terminates_iff_finite_reachable (p : Packet) (h : p.Valid)"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.infinite_reachable_of_not_productive",
+      "module": "PscVerif.NamedFiniteProductivity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteProductivity.lean",
+      "line": 45,
+      "declaration": "theorem Packet.infinite_reachable_of_not_productive (p : Packet) (h : p.Valid)"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.not_terminates_iff_infinite_reachable",
+      "module": "PscVerif.NamedFiniteProductivity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteProductivity.lean",
+      "line": 53,
+      "declaration": "theorem Packet.not_terminates_iff_infinite_reachable (p : Packet) (h : p.Valid)"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.seed_terminates_of_finite_reachable",
+      "module": "PscVerif.NamedFiniteProductivity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedFiniteProductivity.lean",
+      "line": 61,
+      "declaration": "theorem Packet.seed_terminates_of_finite_reachable (p : Packet) (h : p.Valid)"
     },
     {
       "name": "Psc.NamedFullChart.fullChartLinear_injective",
@@ -26387,6 +26507,7 @@
     "proof/PscVerif/PscVerif/DescendantSpan.lean": "6a46eb2a94b7785ba2a69db88daf56a3e98935e738fdb6dc478d685162696e8c",
     "proof/PscVerif/PscVerif/DescendantSpanStrict.lean": "24a2d9d6f0eedf5a49dd17318ad90b0b9d82cc3c930a3f34336b0519f63f9c66",
     "proof/PscVerif/PscVerif/Descendants.lean": "6641b65d81d90be34c13937b6ab8ebc029fcce91babd7c2ce398738dac783a40",
+    "proof/PscVerif/PscVerif/FiniteProductivity.lean": "cc64e649a03c9ef0e5668fc051d679ffd2ea538135bbc6fc5974c2dc37fb13d8",
     "proof/PscVerif/PscVerif/FixedPointLimit.lean": "cd4a824f288d4c1072fd375e0e7b9014f56028e23e00cb4336fd678a210b7bbe",
     "proof/PscVerif/PscVerif/FundamentalCellPacking.lean": "692c018051faa7f7e1b58dfbf8ef13e19306771fa673041b747b565ce0b496f8",
     "proof/PscVerif/PscVerif/GaloisOrbit.lean": "4d3b5474dbd14205f4bf2d33e98149ebbdd6d7e0fb8fd3a33787b878bcad5f07",
@@ -26413,6 +26534,7 @@
     "proof/PscVerif/PscVerif/NamedCutNeighborhood.lean": "e9d6a9e1b05721fa3cc8b634d3ecd6cdb604d8b63277d42b5ba34d70327bc57e",
     "proof/PscVerif/PscVerif/NamedCutProximity.lean": "34fa8b8a10ff483b463b15f9da906cd6c75441b6cdeeb0ec823ed8219185c901",
     "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean": "13ef34fb3eb6b9ede477c4de920af612010aa280409049c185b1afb35a34a585",
+    "proof/PscVerif/PscVerif/NamedFiniteProductivity.lean": "4f8558a777f6d4ca3871aa8adeb1862488a06b78d89a1513cef3074bd7bc91c0",
     "proof/PscVerif/PscVerif/NamedFullChart.lean": "c8f302af1785e92eaa12dfc9b7443d0f599a1e92d61b11a7e3ab8ba19e36d27a",
     "proof/PscVerif/PscVerif/NamedFundamentalCell.lean": "d146d742f5c0767de9f569fc4e3570569f9a5c6d6f9503ec41e9cfdb8e5c03e4",
     "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean": "e91dfcffed8884f99863591d57d892933fbc7ce0a5de2899955a4a69a99233e6",
@@ -26475,7 +26597,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "d1ba1062cdaab3cdb133f9c7eef29f4674b884510cb636e13f5f73058c98fbb7",
+    "proof/PscVerif/PscVerif.lean": "dc097e2eef65a439545270b1235116f6a0719386be1d92cb3c780a5325d75ddb",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

@@ -120,3 +120,5 @@ import PscVerif.ArchivedPayloadEmit
 import PscVerif.ArchivedPayloadControls
 import PscVerif.NamedStrictExclusion
 import PscVerif.NamedStrictExclusionControls
+import PscVerif.FiniteProductivity
+import PscVerif.NamedFiniteProductivity
