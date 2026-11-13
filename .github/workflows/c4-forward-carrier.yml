@@ -1,0 +1,46 @@
+name: Named C4 forward carriers
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/c4-forward-carrier.yml'
+      - 'proof/PscVerif/**'
+      - 'kernel/**'
+      - 'tools/check_forward_carriers.sh'
+      - 'tools/setup_lean.sh'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  forward-carriers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Bind exact revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          manifest-path: kernel/pixi.toml
+          locked: true
+      - name: Provision pinned Lean
+        run: |
+          ./tools/setup_lean.sh
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Replay native and Lean certificates
+        run: |
+          set -o pipefail
+          (cd proof/PscVerif && lake exe cache get)
+          ./tools/check_forward_carriers.sh |& tee /tmp/c4-forward-carrier.log
+      - name: Retain replay receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: c4-forward-carrier-${{ github.event.pull_request.head.sha || github.sha }}
+          path: /tmp/c4-forward-carrier.log

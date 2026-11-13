@@ -91,6 +91,31 @@ the isolated exclusion check can test the intended type mismatch. Neither
 incomplete run is credited as theorem acceptance; a fresh complete run
 at the corrected revision is required.
 
+The [nonterminal checkpoint](../evidence/c4-named-strict-exclusion-2026-11-13/pending/README.md)
+preserves the later source checks, native receipts, static reviews and
+incomplete local execution history. A third ordinary run was deliberately
+interrupted to try external compiler scheduling. The scheduled run at
+`16dd825648d1a1bcdba9038e079463a9bebbaf3d` recorded 49 completed project
+modules, but its execution handle became unavailable without a terminal
+receipt. Its present liveness and final outcome are unknown; the retained
+log prefixes supply no full-gate acceptance.
+
+The [hosted full-library run at that same revision](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43345576693)
+completed compilation of `NamedPositiveOverlap`, then failed on an
+unsolved reversed-intersection goal in `NamedStrictExclusion`. The goal
+was precisely `x ∈ K 1 ∧ x ∈ K 0 ↔ x ∈ K 0 ∧ x ∈ K 1`; adding
+`and_comm` to the simplifier had not closed it. The independent
+[archived-payload workflow](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43345576753)
+failed at the same goal after native construction and graph/oracle replay
+passed. Its payload bytes match the earlier development output, and all
+32 oracle mutation controls were rejected. The exact failed verdicts,
+logs and digest-verified downloaded artifacts are retained in the
+[failed-head evidence](../evidence/c4-named-strict-exclusion-2026-11-13/failed-head16dd/README.md).
+The repair invokes commutativity explicitly in all three reversed cases, preserving the
+statement, roots, measure and fixture scope. A fresh complete hosted run
+is required for this corrected source. Neither partial module compilation
+nor the unsuccessful whole-library run is credited as complete acceptance.
+
 ### Negative controls
 
 Two Lean counterexamples use a unit point mass on integer singleton tiles.
