@@ -1,4 +1,5 @@
 import PscVerif.ArchivedPayloadConsumer
+import PscVerif.StrictSystem
 
 /- This deliberate negative fixture is not a mathematical acceptance proof.
 The names are right and every declaration is harmless, but the types are wrong. -/
@@ -29,5 +30,6 @@ theorem typed_accepted : True := True.intro
 theorem domain_iff : True := True.intro
 theorem roots_null : True := True.intro
 theorem ancestors_null : True := True.intro
+theorem no_strict_system (_ : Finset Psc.OccurrenceTransport.WordPair) : True := True.intro
 
 end Psc.ArchivedPayloadGenerated.Source0

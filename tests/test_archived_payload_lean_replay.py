@@ -19,7 +19,8 @@ class ArchivedAuditProtocol(unittest.TestCase):
     def sample(self):
         ns = "Psc.ArchivedPayloadGenerated.Source0"
         lines = [f"PSC_ARCHIVED_AXIOMS 0\t{ns}.{name}\tpropext" for name in sorted(replay.PROOFS)]
-        lines += ["PSC_ARCHIVED_AUDIT_COMPLETE 0\t6\t6", "graph 0 2 16 8 0 7150"]
+        count = len(replay.PROOFS)
+        lines += [f"PSC_ARCHIVED_AUDIT_COMPLETE 0\t{count}\t{count}", "graph 0 2 16 8 0 7150"]
         lines += [f"{kind} 0 0" for kind in sorted(replay.RECORDS - {"graph"})]
         return "\n".join(lines) + "\n"
 
@@ -30,7 +31,8 @@ class ArchivedAuditProtocol(unittest.TestCase):
             return replay.extract_packet(0, log, StringIO())
 
     def test_synthetic_complete_protocol(self):
-        self.assertEqual(self.parse(self.sample()), {"declarations": 6, "theorem_declarations": 6})
+        count = len(replay.PROOFS)
+        self.assertEqual(self.parse(self.sample()), {"declarations": count, "theorem_declarations": count})
 
     def test_every_nonstandard_transitive_axiom_refused(self):
         for axiom in ("sorryAx", "Lean.ofReduceBool", "_native.native_decide.ax", "User.unproved"):
@@ -38,9 +40,17 @@ class ArchivedAuditProtocol(unittest.TestCase):
                 self.parse(self.sample().replace("propext", axiom))
 
     def test_missing_geometric_proof_refused(self):
-        for name in ("domain_iff", "roots_null", "ancestors_null", "typed_accepted"):
+        for name in ("domain_iff", "roots_null", "ancestors_null", "typed_accepted", "no_strict_system"):
             with self.subTest(name=name), self.assertRaises(replay.ReplayIncomplete):
                 self.parse(self.sample().replace(f".{name}\t", ".wrong_name\t"))
+
+    def test_previous_protocol_without_exclusion_refused(self):
+        count = len(replay.PROOFS)
+        legacy = "\n".join(line for line in self.sample().splitlines()
+                           if ".no_strict_system\t" not in line)
+        legacy = legacy.replace(f"0\t{count}\t{count}", f"0\t{count - 1}\t{count - 1}")
+        with self.assertRaises(replay.ReplayIncomplete):
+            self.parse(legacy)
 
     def test_every_data_family_is_required(self):
         for kind in replay.RECORDS:
@@ -60,10 +70,12 @@ class ArchivedAuditProtocol(unittest.TestCase):
                 self.parse(content)
 
     def test_missing_or_false_completion_refused(self):
-        samples = (self.sample().replace("PSC_ARCHIVED_AUDIT_COMPLETE 0\t6\t6\n", ""),
-                   self.sample().replace("0\t6\t6", "0\t7\t6"),
-                   self.sample().replace("0\t6\t6", "0\t6\t5"),
-                   self.sample().replace("0\t6\t6", "0\tx\t6"))
+        count = len(replay.PROOFS)
+        completion = f"0\t{count}\t{count}"
+        samples = (self.sample().replace(f"PSC_ARCHIVED_AUDIT_COMPLETE {completion}\n", ""),
+                   self.sample().replace(completion, f"0\t{count + 1}\t{count}"),
+                   self.sample().replace(completion, f"0\t{count}\t{count - 1}"),
+                   self.sample().replace(completion, f"0\tx\t{count}"))
         for content in samples:
             with self.assertRaises(replay.ReplayIncomplete):
                 self.parse(content)
@@ -72,6 +84,8 @@ class ArchivedAuditProtocol(unittest.TestCase):
         for index in (-1, 2, 18):
             with self.assertRaises(replay.ReplayIncomplete):
                 replay.audit_source(index)
+            with self.assertRaises(replay.ReplayIncomplete):
+                replay.exclusion_type_check(index)
 
 
 if __name__ == "__main__":
