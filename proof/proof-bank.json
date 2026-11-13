@@ -8135,6 +8135,286 @@
       "declaration": "theorem fib_descR_two :"
     },
     {
+      "name": "Psc.FastForwardCarrier.Counter.get_zero",
+      "module": "PscVerif.FastForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+      "line": 46,
+      "declaration": "@[simp] theorem get_zero (c : Fin 3) : zero.get c = 0 := by"
+    },
+    {
+      "name": "Psc.FastForwardCarrier.Counter.eq_zero_of_get",
+      "module": "PscVerif.FastForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+      "line": 49,
+      "declaration": "theorem eq_zero_of_get {d : Counter} (h : ∀ c, d.get c = 0) : d = zero := by"
+    },
+    {
+      "name": "Psc.FastForwardCarrier.Counter.get_step",
+      "module": "PscVerif.FastForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+      "line": 58,
+      "declaration": "theorem get_step (d : Counter) (a b c : Fin 3) :"
+    },
+    {
+      "name": "Psc.FastForwardCarrier.int_count_cons",
+      "module": "PscVerif.FastForwardCarrier",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+      "line": 70,
+      "declaration": "private theorem int_count_cons (a c : Fin 3) (u : Word) :"
+    },
+    {
+      "name": "Psc.FastForwardCarrier.shiftedBalanced_cons_iff",
+      "module": "PscVerif.FastForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+      "line": 77,
+      "declaration": "theorem shiftedBalanced_cons_iff (d : Counter) (a b : Fin 3) (u v : Word) :"
+    },
+    {
+      "name": "Psc.FastForwardCarrier.scan_sound",
+      "module": "PscVerif.FastForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+      "line": 101,
+      "declaration": "theorem scan_sound {d : Counter} {u v : Word} (h : scan d u v = true) :"
+    },
+    {
+      "name": "Psc.FastForwardCarrier.isBlockCheck_sound",
+      "module": "PscVerif.FastForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+      "line": 153,
+      "declaration": "theorem isBlockCheck_sound {T : Pair} (h : isBlockCheck T = true) : IsBlock T := by"
+    },
+    {
+      "name": "Psc.FastForwardCarrier.block_control",
+      "module": "PscVerif.FastForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+      "line": 169,
+      "declaration": "theorem block_control : isBlockCheck ([0, 1], [1, 0]) = true := by decide"
+    },
+    {
+      "name": "Psc.FastForwardCarrier.empty_control",
+      "module": "PscVerif.FastForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+      "line": 171,
+      "declaration": "theorem empty_control : isBlockCheck ([], []) = false := by decide"
+    },
+    {
+      "name": "Psc.FastForwardCarrier.unequal_lengths_control",
+      "module": "PscVerif.FastForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+      "line": 173,
+      "declaration": "theorem unequal_lengths_control : isBlockCheck ([0], [0, 0]) = false := by decide"
+    },
+    {
+      "name": "Psc.FastForwardCarrier.unbalanced_endpoint_control",
+      "module": "PscVerif.FastForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+      "line": 175,
+      "declaration": "theorem unbalanced_endpoint_control : isBlockCheck ([0], [1]) = false := by decide"
+    },
+    {
+      "name": "Psc.FastForwardCarrier.proper_balanced_prefix_control",
+      "module": "PscVerif.FastForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+      "line": 177,
+      "declaration": "theorem proper_balanced_prefix_control : isBlockCheck ([0, 1], [0, 1]) = false := by decide"
+    },
+    {
+      "name": "Psc.FastForwardCarrier.singleton_coincidence_control",
+      "module": "PscVerif.FastForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+      "line": 179,
+      "declaration": "theorem singleton_coincidence_control : isBlockCheck ([2], [2]) = true := by decide"
+    },
+    {
+      "name": "Psc.FastForwardCarrier.literal_word_decoded",
+      "module": "PscVerif.FastForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+      "line": 197,
+      "declaration": "theorem literal_word_decoded : decodeWord \"012\" = some [0, 1, 2] := by decide"
+    },
+    {
+      "name": "Psc.FastForwardCarrier.malformed_word_rejected",
+      "module": "PscVerif.FastForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+      "line": 199,
+      "declaration": "theorem malformed_word_rejected : decodeWord \"01x2\" = none := by decide"
+    },
+    {
+      "name": "Psc.FastForwardCarrier.Packet.checkAt_iff",
+      "module": "PscVerif.FastForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+      "line": 243,
+      "declaration": "theorem Packet.checkAt_iff (p : Packet n) (s : Fin 3 → Word) (i : Nat) :"
+    },
+    {
+      "name": "Psc.FastForwardCarrier.Packet.checkRange_append",
+      "module": "PscVerif.FastForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+      "line": 251,
+      "declaration": "theorem Packet.checkRange_append (p : Packet n) (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.FastForwardCarrier.Packet.valid_of_range",
+      "module": "PscVerif.FastForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+      "line": 266,
+      "declaration": "theorem Packet.valid_of_range (p : Packet n) (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.FastForwardCarrier.Packet.isBlock",
+      "module": "PscVerif.FastForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+      "line": 276,
+      "declaration": "theorem Packet.isBlock (p : Packet n) (s : Fin 3 → Word) (h : p.Valid s)"
+    },
+    {
+      "name": "Psc.FastForwardCarrier.Packet.children_eq_red",
+      "module": "PscVerif.FastForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+      "line": 282,
+      "declaration": "theorem Packet.children_eq_red (p : Packet n) (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.FastForwardCarrier.Packet.forward_valid",
+      "module": "PscVerif.FastForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+      "line": 296,
+      "declaration": "theorem Packet.forward_valid (p : Packet n) (s : Fin 3 → Word) (h : p.Valid s) :"
+    },
+    {
+      "name": "Psc.FastForwardCarrier.Packet.forward_check",
+      "module": "PscVerif.FastForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+      "line": 310,
+      "declaration": "theorem Packet.forward_check (p : Packet n) (s : Fin 3 → Word) (h : p.Valid s) :"
+    },
+    {
+      "name": "Psc.FastForwardCarrier.Packet.finite_bpaStatesNC",
+      "module": "PscVerif.FastForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+      "line": 314,
+      "declaration": "theorem Packet.finite_bpaStatesNC (p : Packet n) (s : Fin 3 → Word) (h : p.Valid s) :"
+    },
+    {
+      "name": "Psc.FastForwardCarrier.Packet.finite_reachable",
+      "module": "PscVerif.FastForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+      "line": 318,
+      "declaration": "theorem Packet.finite_reachable (p : Packet n) (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.FastForwardCarrierControls.positive_seeds",
+      "module": "PscVerif.FastForwardCarrierControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrierControls.lean",
+      "line": 43,
+      "declaration": "theorem positive_seeds : positive.SeedsValid := by decide"
+    },
+    {
+      "name": "Psc.FastForwardCarrierControls.positive_complete_rows",
+      "module": "PscVerif.FastForwardCarrierControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrierControls.lean",
+      "line": 45,
+      "declaration": "theorem positive_complete_rows : positive.checkRange constantSubst 0 8 = true := by"
+    },
+    {
+      "name": "Psc.FastForwardCarrierControls.positive_valid",
+      "module": "PscVerif.FastForwardCarrierControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrierControls.lean",
+      "line": 48,
+      "declaration": "theorem positive_valid : positive.Valid constantSubst :="
+    },
+    {
+      "name": "Psc.FastForwardCarrierControls.positive_finite",
+      "module": "PscVerif.FastForwardCarrierControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrierControls.lean",
+      "line": 52,
+      "declaration": "theorem positive_finite : (Psc.Descendants.bpaStatesNC constantSubst).Finite :="
+    },
+    {
+      "name": "Psc.FastForwardCarrierControls.every_child_block_check_required",
+      "module": "PscVerif.FastForwardCarrierControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrierControls.lean",
+      "line": 65,
+      "declaration": "theorem every_child_block_check_required :"
+    },
+    {
+      "name": "Psc.FastForwardCarrierControls.omitted_exit_rejected",
+      "module": "PscVerif.FastForwardCarrierControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrierControls.lean",
+      "line": 90,
+      "declaration": "theorem omitted_exit_rejected : omittedExit.checkAt constantSubst 0 = false := by"
+    },
+    {
+      "name": "Psc.FastForwardCarrierControls.multiplicity_changes_rejected",
+      "module": "PscVerif.FastForwardCarrierControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrierControls.lean",
+      "line": 95,
+      "declaration": "theorem multiplicity_changes_rejected :"
+    },
+    {
+      "name": "Psc.FastForwardCarrierControls.reordered_occurrences_rejected",
+      "module": "PscVerif.FastForwardCarrierControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrierControls.lean",
+      "line": 101,
+      "declaration": "theorem reordered_occurrences_rejected :"
+    },
+    {
+      "name": "Psc.FastForwardCarrierControls.identity_packet_valid",
+      "module": "PscVerif.FastForwardCarrierControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrierControls.lean",
+      "line": 112,
+      "declaration": "theorem identity_packet_valid : identityPacket.Valid identitySubst :="
+    },
+    {
+      "name": "Psc.FastForwardCarrierControls.wrong_orientation_rejected",
+      "module": "PscVerif.FastForwardCarrierControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrierControls.lean",
+      "line": 121,
+      "declaration": "theorem wrong_orientation_rejected :"
+    },
+    {
+      "name": "Psc.FastForwardCarrierControls.wrong_literal_source_rejected",
+      "module": "PscVerif.FastForwardCarrierControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/FastForwardCarrierControls.lean",
+      "line": 127,
+      "declaration": "theorem wrong_literal_source_rejected : positive.checkAt identitySubst 0 = false := by"
+    },
+    {
       "name": "Psc.FiniteProductivity.isBlock_of_reachableNC",
       "module": "PscVerif.FiniteProductivity",
       "private": false,
@@ -8357,6 +8637,126 @@
       "source": "proof/PscVerif/PscVerif/FixedPointLimit.lean",
       "line": 346,
       "declaration": "theorem reduction_limit (S : ChildSystem α) (hs : ∀ a, S.s a ≠ [])"
+    },
+    {
+      "name": "Psc.ForwardCarrier.check_eq_true_iff",
+      "module": "PscVerif.ForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ForwardCarrier.lean",
+      "line": 41,
+      "declaration": "theorem check_eq_true_iff (s : α → List α) (states : List (List α × List α)) :"
+    },
+    {
+      "name": "Psc.ForwardCarrier.Valid.child_mem",
+      "module": "PscVerif.ForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ForwardCarrier.lean",
+      "line": 49,
+      "declaration": "theorem Valid.child_mem (h : Valid s states) (hT : T ∈ states)"
+    },
+    {
+      "name": "Psc.ForwardCarrier.Valid.reachable_mem",
+      "module": "PscVerif.ForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ForwardCarrier.lean",
+      "line": 55,
+      "declaration": "theorem Valid.reachable_mem (h : Valid s states) (hT : T ∈ states)"
+    },
+    {
+      "name": "Psc.ForwardCarrier.Valid.finite_reachable",
+      "module": "PscVerif.ForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ForwardCarrier.lean",
+      "line": 62,
+      "declaration": "theorem Valid.finite_reachable (h : Valid s states) (hT : T ∈ states) :"
+    },
+    {
+      "name": "Psc.ForwardCarrier.Valid.bpaStatesNC_subset",
+      "module": "PscVerif.ForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ForwardCarrier.lean",
+      "line": 67,
+      "declaration": "theorem Valid.bpaStatesNC_subset (h : Valid s states) :"
+    },
+    {
+      "name": "Psc.ForwardCarrier.Valid.finite_bpaStatesNC",
+      "module": "PscVerif.ForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ForwardCarrier.lean",
+      "line": 75,
+      "declaration": "theorem Valid.finite_bpaStatesNC (h : Valid s states) :"
+    },
+    {
+      "name": "Psc.ForwardCarrier.Valid.finite_bpaStates",
+      "module": "PscVerif.ForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ForwardCarrier.lean",
+      "line": 82,
+      "declaration": "theorem Valid.finite_bpaStates (h : Valid s states) :"
+    },
+    {
+      "name": "Psc.ForwardCarrier.finite_bpaStatesNC_of_check",
+      "module": "PscVerif.ForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ForwardCarrier.lean",
+      "line": 87,
+      "declaration": "theorem finite_bpaStatesNC_of_check (h : check s states = true) :"
+    },
+    {
+      "name": "Psc.ForwardCarrier.finite_reachable_of_check",
+      "module": "PscVerif.ForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ForwardCarrier.lean",
+      "line": 92,
+      "declaration": "theorem finite_reachable_of_check (h : check s states = true) (hT : T ∈ states) :"
+    },
+    {
+      "name": "Psc.ForwardCarrier.fibonacci_carrier_accepted",
+      "module": "PscVerif.ForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ForwardCarrier.lean",
+      "line": 103,
+      "declaration": "theorem fibonacci_carrier_accepted : check fibSubst fibonacciCarrier = true := by"
+    },
+    {
+      "name": "Psc.ForwardCarrier.empty_carrier_rejected",
+      "module": "PscVerif.ForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ForwardCarrier.lean",
+      "line": 107,
+      "declaration": "theorem empty_carrier_rejected : check fibSubst [] = false := by"
+    },
+    {
+      "name": "Psc.ForwardCarrier.missing_actual_child_rejected",
+      "module": "PscVerif.ForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ForwardCarrier.lean",
+      "line": 112,
+      "declaration": "theorem missing_actual_child_rejected :"
+    },
+    {
+      "name": "Psc.ForwardCarrier.normalized_carrier_rejected",
+      "module": "PscVerif.ForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ForwardCarrier.lean",
+      "line": 117,
+      "declaration": "theorem normalized_carrier_rejected :"
+    },
+    {
+      "name": "Psc.ForwardCarrier.finite_superset_accepted",
+      "module": "PscVerif.ForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ForwardCarrier.lean",
+      "line": 123,
+      "declaration": "theorem finite_superset_accepted :"
+    },
+    {
+      "name": "Psc.ForwardCarrier.thueMorse_carrier_accepted",
+      "module": "PscVerif.ForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ForwardCarrier.lean",
+      "line": 130,
+      "declaration": "theorem thueMorse_carrier_accepted :"
     },
     {
       "name": "Psc.FundamentalCellPacking.measure_finite_vadd",
@@ -12613,6 +13013,894 @@
       "source": "proof/PscVerif/PscVerif/NamedFiniteProductivity.lean",
       "line": 61,
       "declaration": "theorem Packet.seed_terminates_of_finite_reachable (p : Packet) (h : p.Valid)"
+    },
+    {
+      "name": "Psc.NamedForwardCarrier.valid_of_check",
+      "module": "PscVerif.NamedForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrier.lean",
+      "line": 33,
+      "declaration": "theorem valid_of_check (fixture : Fin 2)"
+    },
+    {
+      "name": "Psc.NamedForwardCarrier.finite_bpaStatesNC_of_check",
+      "module": "PscVerif.NamedForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrier.lean",
+      "line": 41,
+      "declaration": "theorem finite_bpaStatesNC_of_check (fixture : Fin 2)"
+    },
+    {
+      "name": "Psc.NamedForwardCarrier.finite_reachable_of_mem",
+      "module": "PscVerif.NamedForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrier.lean",
+      "line": 48,
+      "declaration": "theorem finite_reachable_of_mem (fixture : Fin 2)"
+    },
+    {
+      "name": "Psc.NamedForwardCarrier.fixture0Substitution_eq",
+      "module": "PscVerif.NamedForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrier.lean",
+      "line": 56,
+      "declaration": "theorem fixture0Substitution_eq :"
+    },
+    {
+      "name": "Psc.NamedForwardCarrier.fixture1Substitution_eq",
+      "module": "PscVerif.NamedForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrier.lean",
+      "line": 60,
+      "declaration": "theorem fixture1Substitution_eq :"
+    },
+    {
+      "name": "Psc.NamedForwardCarrier.check_checkedStates",
+      "module": "PscVerif.NamedForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrier.lean",
+      "line": 70,
+      "declaration": "theorem check_checkedStates (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.NamedForwardCarrier.finite_bpaStatesNC",
+      "module": "PscVerif.NamedForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrier.lean",
+      "line": 84,
+      "declaration": "theorem finite_bpaStatesNC (fixture : Fin 2) :"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.terminates_of_forwardCarrier",
+      "module": "PscVerif.NamedForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrier.lean",
+      "line": 100,
+      "declaration": "theorem Packet.terminates_of_forwardCarrier (p : Packet) (hp : p.Valid)"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.reachable_terminates_of_forwardCarrier",
+      "module": "PscVerif.NamedForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrier.lean",
+      "line": 110,
+      "declaration": "theorem Packet.reachable_terminates_of_forwardCarrier (p : Packet) (hp : p.Valid)"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.seed_terminates_of_forwardCarrier",
+      "module": "PscVerif.NamedForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrier.lean",
+      "line": 123,
+      "declaration": "theorem Packet.seed_terminates_of_forwardCarrier (p : Packet) (hp : p.Valid)"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.reachable_terminates",
+      "module": "PscVerif.NamedForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrier.lean",
+      "line": 132,
+      "declaration": "theorem Packet.reachable_terminates (p : Packet) (hp : p.Valid)"
+    },
+    {
+      "name": "Psc.ArchivedPayload.Packet.seed_terminates",
+      "module": "PscVerif.NamedForwardCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrier.lean",
+      "line": 142,
+      "declaration": "theorem Packet.seed_terminates (p : Packet) (hp : p.Valid)"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Seeds",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 809,
+      "declaration": "theorem fixture0Seeds : fixture0Packet.SeedsValid := by decide +kernel"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Range0",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 811,
+      "declaration": "theorem fixture0Range0 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Range8",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 814,
+      "declaration": "theorem fixture0Range8 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Range16",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 817,
+      "declaration": "theorem fixture0Range16 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Range24",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 820,
+      "declaration": "theorem fixture0Range24 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Range32",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 823,
+      "declaration": "theorem fixture0Range32 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Range40",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 826,
+      "declaration": "theorem fixture0Range40 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Range48",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 829,
+      "declaration": "theorem fixture0Range48 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Range56",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 832,
+      "declaration": "theorem fixture0Range56 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Range64",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 835,
+      "declaration": "theorem fixture0Range64 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Range72",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 838,
+      "declaration": "theorem fixture0Range72 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Range80",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 841,
+      "declaration": "theorem fixture0Range80 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Range88",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 844,
+      "declaration": "theorem fixture0Range88 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Range96",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 847,
+      "declaration": "theorem fixture0Range96 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Range104",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 850,
+      "declaration": "theorem fixture0Range104 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Range112",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 853,
+      "declaration": "theorem fixture0Range112 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Range120",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 856,
+      "declaration": "theorem fixture0Range120 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Range128",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 859,
+      "declaration": "theorem fixture0Range128 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Range136",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 862,
+      "declaration": "theorem fixture0Range136 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Range144",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 865,
+      "declaration": "theorem fixture0Range144 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Range152",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 868,
+      "declaration": "theorem fixture0Range152 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Range160",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 871,
+      "declaration": "theorem fixture0Range160 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Range168",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 874,
+      "declaration": "theorem fixture0Range168 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Range176",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 877,
+      "declaration": "theorem fixture0Range176 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Range184",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 880,
+      "declaration": "theorem fixture0Range184 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0AllRows",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 883,
+      "declaration": "theorem fixture0AllRows :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Valid",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 911,
+      "declaration": "theorem fixture0Valid : fixture0Packet.Valid fixture0Substitution :="
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0ForwardCheck",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 916,
+      "declaration": "theorem fixture0ForwardCheck :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture0Finite",
+      "module": "PscVerif.NamedForwardCarrierData0",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "line": 920,
+      "declaration": "theorem fixture0Finite :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Seeds",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2121,
+      "declaration": "theorem fixture1Seeds : fixture1Packet.SeedsValid := by decide +kernel"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range0",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2123,
+      "declaration": "theorem fixture1Range0 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range8",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2126,
+      "declaration": "theorem fixture1Range8 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range16",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2129,
+      "declaration": "theorem fixture1Range16 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range24",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2132,
+      "declaration": "theorem fixture1Range24 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range32",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2135,
+      "declaration": "theorem fixture1Range32 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range40",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2138,
+      "declaration": "theorem fixture1Range40 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range48",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2141,
+      "declaration": "theorem fixture1Range48 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range56",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2144,
+      "declaration": "theorem fixture1Range56 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range64",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2147,
+      "declaration": "theorem fixture1Range64 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range72",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2150,
+      "declaration": "theorem fixture1Range72 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range80",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2153,
+      "declaration": "theorem fixture1Range80 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range88",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2156,
+      "declaration": "theorem fixture1Range88 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range96",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2159,
+      "declaration": "theorem fixture1Range96 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range104",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2162,
+      "declaration": "theorem fixture1Range104 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range112",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2165,
+      "declaration": "theorem fixture1Range112 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range120",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2168,
+      "declaration": "theorem fixture1Range120 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range128",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2171,
+      "declaration": "theorem fixture1Range128 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range136",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2174,
+      "declaration": "theorem fixture1Range136 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range144",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2177,
+      "declaration": "theorem fixture1Range144 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range152",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2180,
+      "declaration": "theorem fixture1Range152 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range160",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2183,
+      "declaration": "theorem fixture1Range160 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range168",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2186,
+      "declaration": "theorem fixture1Range168 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range176",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2189,
+      "declaration": "theorem fixture1Range176 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range184",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2192,
+      "declaration": "theorem fixture1Range184 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range192",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2195,
+      "declaration": "theorem fixture1Range192 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range200",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2198,
+      "declaration": "theorem fixture1Range200 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range208",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2201,
+      "declaration": "theorem fixture1Range208 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range216",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2204,
+      "declaration": "theorem fixture1Range216 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range224",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2207,
+      "declaration": "theorem fixture1Range224 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range232",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2210,
+      "declaration": "theorem fixture1Range232 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range240",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2213,
+      "declaration": "theorem fixture1Range240 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range248",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2216,
+      "declaration": "theorem fixture1Range248 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range256",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2219,
+      "declaration": "theorem fixture1Range256 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range264",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2222,
+      "declaration": "theorem fixture1Range264 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range272",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2225,
+      "declaration": "theorem fixture1Range272 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range280",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2228,
+      "declaration": "theorem fixture1Range280 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range288",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2231,
+      "declaration": "theorem fixture1Range288 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range296",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2234,
+      "declaration": "theorem fixture1Range296 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range304",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2237,
+      "declaration": "theorem fixture1Range304 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range312",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2240,
+      "declaration": "theorem fixture1Range312 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range320",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2243,
+      "declaration": "theorem fixture1Range320 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range328",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2246,
+      "declaration": "theorem fixture1Range328 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range336",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2249,
+      "declaration": "theorem fixture1Range336 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range344",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2252,
+      "declaration": "theorem fixture1Range344 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range352",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2255,
+      "declaration": "theorem fixture1Range352 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range360",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2258,
+      "declaration": "theorem fixture1Range360 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range368",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2261,
+      "declaration": "theorem fixture1Range368 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range376",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2264,
+      "declaration": "theorem fixture1Range376 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range384",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2267,
+      "declaration": "theorem fixture1Range384 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range392",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2270,
+      "declaration": "theorem fixture1Range392 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range400",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2273,
+      "declaration": "theorem fixture1Range400 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range408",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2276,
+      "declaration": "theorem fixture1Range408 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range416",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2279,
+      "declaration": "theorem fixture1Range416 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range424",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2282,
+      "declaration": "theorem fixture1Range424 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range432",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2285,
+      "declaration": "theorem fixture1Range432 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range440",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2288,
+      "declaration": "theorem fixture1Range440 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range448",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2291,
+      "declaration": "theorem fixture1Range448 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range456",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2294,
+      "declaration": "theorem fixture1Range456 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range464",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2297,
+      "declaration": "theorem fixture1Range464 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range472",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2300,
+      "declaration": "theorem fixture1Range472 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range480",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2303,
+      "declaration": "theorem fixture1Range480 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range488",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2306,
+      "declaration": "theorem fixture1Range488 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range496",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2309,
+      "declaration": "theorem fixture1Range496 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range504",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2312,
+      "declaration": "theorem fixture1Range504 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Range512",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2315,
+      "declaration": "theorem fixture1Range512 :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1AllRows",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2318,
+      "declaration": "theorem fixture1AllRows :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Valid",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2387,
+      "declaration": "theorem fixture1Valid : fixture1Packet.Valid fixture1Substitution :="
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1ForwardCheck",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2392,
+      "declaration": "theorem fixture1ForwardCheck :"
+    },
+    {
+      "name": "Psc.GeneratedForwardCarrier.fixture1Finite",
+      "module": "PscVerif.NamedForwardCarrierData1",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "line": 2396,
+      "declaration": "theorem fixture1Finite :"
     },
     {
       "name": "Psc.NamedFullChart.fullChartLinear_injective",
@@ -26507,8 +27795,11 @@
     "proof/PscVerif/PscVerif/DescendantSpan.lean": "6a46eb2a94b7785ba2a69db88daf56a3e98935e738fdb6dc478d685162696e8c",
     "proof/PscVerif/PscVerif/DescendantSpanStrict.lean": "24a2d9d6f0eedf5a49dd17318ad90b0b9d82cc3c930a3f34336b0519f63f9c66",
     "proof/PscVerif/PscVerif/Descendants.lean": "6641b65d81d90be34c13937b6ab8ebc029fcce91babd7c2ce398738dac783a40",
+    "proof/PscVerif/PscVerif/FastForwardCarrier.lean": "fba7b08223e333d9380ff1e090ad85cad6aadbe8eadd1a2dde8d6b92bfcf0689",
+    "proof/PscVerif/PscVerif/FastForwardCarrierControls.lean": "5a1fe7b40c3336cfa8df07045e27d560b63de8747b761c0001772691e0c39e47",
     "proof/PscVerif/PscVerif/FiniteProductivity.lean": "cc64e649a03c9ef0e5668fc051d679ffd2ea538135bbc6fc5974c2dc37fb13d8",
     "proof/PscVerif/PscVerif/FixedPointLimit.lean": "cd4a824f288d4c1072fd375e0e7b9014f56028e23e00cb4336fd678a210b7bbe",
+    "proof/PscVerif/PscVerif/ForwardCarrier.lean": "df91e154ecb52a909c2ec7c06af1813f99ff2b38bd7053fb1df78928741c890e",
     "proof/PscVerif/PscVerif/FundamentalCellPacking.lean": "692c018051faa7f7e1b58dfbf8ef13e19306771fa673041b747b565ce0b496f8",
     "proof/PscVerif/PscVerif/GaloisOrbit.lean": "4d3b5474dbd14205f4bf2d33e98149ebbdd6d7e0fb8fd3a33787b878bcad5f07",
     "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean": "c3b266fc203b69f632063b38d044c0f76e7ec50825a16c6c04949fa696e275ec",
@@ -26535,6 +27826,9 @@
     "proof/PscVerif/PscVerif/NamedCutProximity.lean": "34fa8b8a10ff483b463b15f9da906cd6c75441b6cdeeb0ec823ed8219185c901",
     "proof/PscVerif/PscVerif/NamedFiniteCarrier.lean": "13ef34fb3eb6b9ede477c4de920af612010aa280409049c185b1afb35a34a585",
     "proof/PscVerif/PscVerif/NamedFiniteProductivity.lean": "4f8558a777f6d4ca3871aa8adeb1862488a06b78d89a1513cef3074bd7bc91c0",
+    "proof/PscVerif/PscVerif/NamedForwardCarrier.lean": "d91b37df26dc194cacdfc67ede3310146177270caca9dc241ecd03f40826e056",
+    "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean": "d1113f9d7349238f8903d1c783f6057a3973de2c1a918f7ec0b3e96e7f5d72bd",
+    "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean": "0fcd94c0961b26e9c1af02705fa3f28f96d48461f7716cd608f4c0407e650585",
     "proof/PscVerif/PscVerif/NamedFullChart.lean": "c8f302af1785e92eaa12dfc9b7443d0f599a1e92d61b11a7e3ab8ba19e36d27a",
     "proof/PscVerif/PscVerif/NamedFundamentalCell.lean": "d146d742f5c0767de9f569fc4e3570569f9a5c6d6f9503ec41e9cfdb8e5c03e4",
     "proof/PscVerif/PscVerif/NamedGeometricEnclosure.lean": "e91dfcffed8884f99863591d57d892933fbc7ce0a5de2899955a4a69a99233e6",
@@ -26550,7 +27844,7 @@
     "proof/PscVerif/PscVerif/NamedSharpDigits.lean": "f16257b92c77091e2246cc134734a1216b27a3cff54c3b3f70624135eb6a462e",
     "proof/PscVerif/PscVerif/NamedStableChart.lean": "772d6dc46898bc22471db53283dc0404445f1dd28ac0b99ed16232c394336f9b",
     "proof/PscVerif/PscVerif/NamedStableContraction.lean": "13381d9619cd2c574e15614ce0e00609d17e1b153b359ca788ebe73d45bde8fd",
-    "proof/PscVerif/PscVerif/NamedStrictExclusion.lean": "78abbc8f6a853abf39358daf842370686989c96d1f6f6297aecab33ee540b627",
+    "proof/PscVerif/PscVerif/NamedStrictExclusion.lean": "f3b2c1214635333acd509f3514660752d5064f8d41e96723b9f37a06ea761684",
     "proof/PscVerif/PscVerif/NamedStrictExclusionControls.lean": "e5e5c2a1fbfb87f256ae71a645f9d863ad03da63b6cadaed2e4a5da15265d1d7",
     "proof/PscVerif/PscVerif/OccurrenceAddress.lean": "fd8d4020fc3f720c8a81d23c9811056802c901eec35a48efcbb40954c5a375ad",
     "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean": "0843e0a255a2a13675132264eb1385d9a155b7122138359b02158916541e2b4e",
@@ -26597,7 +27891,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "dc097e2eef65a439545270b1235116f6a0719386be1d92cb3c780a5325d75ddb",
+    "proof/PscVerif/PscVerif.lean": "3ffc0b8857d74624deefb2eef716adb1523ef9ab78900bdae2fc7520eaf25f91",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
