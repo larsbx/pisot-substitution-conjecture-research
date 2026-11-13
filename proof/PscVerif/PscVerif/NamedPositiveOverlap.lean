@@ -1,7 +1,7 @@
 import PscVerif.NamedCutCount
 import PscVerif.NamedFundamentalCell
 import Mathlib.Analysis.SpecificLimits.Basic
-import Mathlib.Topology.Metrizable.Basic
+import Mathlib.Topology.Metrizable.Urysohn
 import Mathlib.Topology.Instances.Discrete
 
 /-! The lower and upper bounds count the same original integer vectors. -/
@@ -131,12 +131,9 @@ omit [ν.IsAddHaarMeasure] in
 theorem internalMeasure_outerRegular : (internalMeasure f ν).OuterRegular := by
   letI := MadicResidue.carrier_compactSpace (M f) (carrier_injective f)
   letI := carrier_secondCountable f
-  letI : ∀ q : ℕ, PseudoMetrizableSpace (MadicResidue.Residue (M f) q) :=
-    fun _ => inferInstance
-  letI : PseudoMetrizableSpace (H f) := by
-    letI : PseudoMetrizableSpace (∀ q : ℕ, MadicResidue.Residue (M f) q) := inferInstance
-    exact PseudoMetrizableSpace.subtype
-      (MadicResidue.compatibleSequences (M f) : Set (∀ q : ℕ, MadicResidue.Residue (M f) q))
+  letI : RegularSpace (H f) := inferInstance
+  letI : PseudoMetrizableSpace (H f) :=
+    PseudoMetrizableSpace.of_regularSpace_secondCountableTopology (H f)
   letI : (internalMeasure f ν).Regular := inferInstance
   infer_instance
 
