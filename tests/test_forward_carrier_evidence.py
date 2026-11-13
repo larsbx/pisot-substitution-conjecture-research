@@ -10,6 +10,7 @@ import hashlib
 import importlib.util
 import json
 from pathlib import Path
+import re
 import subprocess
 import sys
 
@@ -320,3 +321,95 @@ def test_cli_refusal_is_atomic_and_survives_optimization(packet, tmp_path, optim
     assert result.returncode != 0
     assert not result.stdout
     assert "partial or capped packet is inconclusive" in result.stderr
+
+
+def generated_tracks(source, fixture):
+    """Independently decode the deliberately small emitted literal grammar.
+
+    This checks lossless representation against original native packets; it
+    does not replace Lean's block, row, seed, or refinement checks.
+    """
+    prefix = f"fixture{fixture}"
+    chunk_pattern = re.compile(
+        rf"def ({prefix}Chunk[0-9]+) : List \(Fin 3\) := \[([0-9]+(?:,[0-9]+)*)\]")
+    chunks = {}
+    for line in source.splitlines():
+        if not line.startswith(f"def {prefix}Chunk"):
+            continue
+        match = chunk_pattern.fullmatch(line)
+        if match is None or match[1] in chunks:
+            raise ValueError("invalid or repeated chunk definition")
+        letters = tuple(int(x) for x in match[2].split(","))
+        if not 1 <= len(letters) <= 32 or any(x not in (0, 1, 2) for x in letters):
+            raise ValueError("invalid typed chunk letters")
+        chunks[match[1]] = letters
+    state_pattern = re.compile(
+        rf"def {prefix}State([0-9]+) : List \(Fin 3\) × List \(Fin 3\) :=\n"
+        rf"  \(\[({prefix}Chunk[0-9]+(?:,{prefix}Chunk[0-9]+)*)\]\.flatten, "
+        rf"\[({prefix}Chunk[0-9]+(?:,{prefix}Chunk[0-9]+)*)\]\.flatten\)")
+    states = {}
+    expected_states = sum(line.startswith(f"def {prefix}State") and
+                          not line.startswith((f"def {prefix}StateArray", f"def {prefix}States")) and
+                          line[len(f"def {prefix}State"):len(f"def {prefix}State") + 1].isdigit()
+                          for line in source.splitlines())
+    for match in state_pattern.finditer(source):
+        index = int(match[1])
+        if index in states:
+            raise ValueError("repeated state definition")
+        try:
+            states[index] = tuple(tuple(letter for ref in group.split(",")
+                                        for letter in chunks[ref])
+                                  for group in (match[2], match[3]))
+        except KeyError as error:
+            raise ValueError("unknown chunk reference") from error
+    if not chunks or len(states) != expected_states:
+        raise ValueError("missing state or invalid flattening")
+    return states
+
+
+def assert_generated_tracks_match(source, packet):
+    tracks = generated_tracks(source, packet["fixture"])
+    expected = {i: pair(state) for i, state in enumerate(packet["states"])}
+    if tracks != expected:
+        raise ValueError("generated words differ from original ordered packet")
+
+
+def test_typed_chunks_reconstruct_every_original_ordered_word(native_packet):
+    source = (ROOT / "proof/PscVerif/PscVerif" /
+              f"NamedForwardCarrierData{native_packet['fixture']}.lean").read_text()
+    assert_generated_tracks_match(source, native_packet)
+
+
+@pytest.mark.parametrize("mutation", [
+    "empty_chunk", "nonternary_letter", "missing_chunk", "unknown_reference",
+    "wrong_flattening", "reordered_references",
+])
+def test_chunk_encoding_corruption_is_detected(native_packet, mutation):
+    source = (ROOT / "proof/PscVerif/PscVerif" /
+              f"NamedForwardCarrierData{native_packet['fixture']}.lean").read_text()
+    # Prove a complete positive baseline outside the rejection catcher.
+    assert_generated_tracks_match(source, native_packet)
+    prefix = f"fixture{native_packet['fixture']}"
+    first = next(line for line in source.splitlines()
+                 if line.startswith(f"def {prefix}Chunk0 "))
+    if mutation == "empty_chunk":
+        corrupt = source.replace(first, first.split(":=")[0] + ":= []", 1)
+    elif mutation == "nonternary_letter":
+        corrupt = source.replace(first, first.replace("[", "[3,", 1), 1)
+    elif mutation == "missing_chunk":
+        corrupt = source.replace(first + "\n", "", 1)
+    elif mutation == "unknown_reference":
+        marker = f"[{prefix}Chunk0]"
+        assert marker in source
+        corrupt = source.replace(marker, f"[{prefix}Chunk999999]", 1)
+    elif mutation == "wrong_flattening":
+        corrupt = source.replace("].flatten", "]", 1)
+    else:
+        ref_pattern = re.compile(rf"\[({prefix}Chunk[0-9]+),({prefix}Chunk[0-9]+)")
+        refs = ref_pattern.search(source)
+        while refs is not None and refs[1] == refs[2]:
+            refs = ref_pattern.search(source, refs.end())
+        assert refs is not None
+        corrupt = source[:refs.start()] + f"[{refs[2]},{refs[1]}" + source[refs.end():]
+    with pytest.raises(ValueError):
+        assert_generated_tracks_match(corrupt, native_packet)

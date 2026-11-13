@@ -19,7 +19,8 @@ import time
 ALLOWED = {"propext", "Classical.choice", "Quot.sound"}
 COUNTS = (7150, 7083)
 PROOFS = {"valid", "accepted", "typed_accepted", "domain_iff", "roots_null", "ancestors_null",
-          "no_strict_system"}
+          "no_strict_system", "seed_terminates", "reachable_terminates"}
+TERMINATION_PROOFS = ("seed_terminates", "reachable_terminates")
 RECORDS = {"graph", "image", "digit", "node", "row", "slot", "packed", "lookup"}
 
 
@@ -35,6 +36,25 @@ def exclusion_type_check(index: int) -> str:
     return f'''example (C : Finset Psc.OccurrenceTransport.WordPair) :
     ¬ Psc.StrictSystem.StrictSystem (Psc.NamedPrefixCompact.substitution ({index} : Fin 2)) C :=
   {ns}.no_strict_system C
+'''
+
+
+def termination_type_check(index: int, name: str) -> str:
+    """Bind each endpoint to its literal fixture without a caller validity premise."""
+    if index not in (0, 1):
+        raise ReplayIncomplete("unsupported original fixture")
+    if name not in TERMINATION_PROOFS:
+        raise ReplayIncomplete("unsupported termination endpoint")
+    ns = f"Psc.ArchivedPayloadGenerated.Source{index}"
+    sigma = f"Psc.NamedPrefixCompact.substitution ({index} : Fin 2)"
+    if name == "seed_terminates":
+        premise = "T ∈ (Psc.Descendants.seeds : Finset Psc.OccurrenceTransport.WordPair)"
+    else:
+        premise = f"T ∈ Psc.Descendants.bpaStatesNC ({sigma})"
+    return f'''example {{T : Psc.OccurrenceTransport.WordPair}}
+    (hT : {premise}) :
+    Psc.StrictSystem.TerminatesWithCoincidence ({sigma}) T :=
+  {ns}.{name} hT
 '''
 
 
@@ -75,6 +95,8 @@ example (ν : Measure (H (substitution {ns}.packet.fixture)))
       (overlap (ambientStar (substitution {ns}.packet.fixture) piZ)
         (tiles {ns}.packet.fixture) u) = 0 := {ns}.ancestors_null ν u hu
 {exclusion_type_check(index)}
+{termination_type_check(index, "seed_terminates")}
+{termination_type_check(index, "reachable_terminates")}
 open Lean Elab Command in
 run_cmd do
   let env ← getEnv
@@ -179,9 +201,24 @@ def validate_negative_control(project: Path, root: Path, output: Path, pin: str,
     if (exclusion_result.returncode == 0 or "type mismatch" not in exclusion_diagnostics.lower()
             or "no_strict_system" not in exclusion_diagnostics):
         raise ReplayIncomplete("wrong-type strict-system exclusion did not refuse for the expected reason")
+    # Compile each endpoint use in its own module. An earlier rejected proof
+    # must not earn credit for a termination type check that was never reached.
+    termination_controls = {}
+    for name in TERMINATION_PROOFS:
+        endpoint_audit = control / f"{name}_audit.lean"
+        endpoint_audit.write_text("import Source0\n" + termination_type_check(0, name))
+        endpoint_result = subprocess.run(["elan", "run", pin, "lean", str(endpoint_audit)],
+                                         cwd=project, env=env, capture_output=True, text=True, timeout=600)
+        endpoint_diagnostics = endpoint_result.stdout + endpoint_result.stderr
+        (control / f"{name}-audit.log").write_text(endpoint_diagnostics)
+        if (endpoint_result.returncode == 0 or "type mismatch" not in endpoint_diagnostics.lower()
+                or name not in endpoint_diagnostics):
+            raise ReplayIncomplete(f"wrong-type {name} did not refuse for the expected reason")
+        termination_controls[f"{name}_wrong_type_refused"] = True
     (control / "receipt.json").write_text(json.dumps({
         "fixture_compiles": True, "typed_import_refuses": True,
         "no_strict_system_wrong_type_refused": True,
+        **termination_controls,
         "reason": "right-name declarations prove True instead of the required checked propositions",
         "fixture_sha256": hashlib.sha256(source.read_bytes()).hexdigest()}, indent=2) + "\n")
 
@@ -225,7 +262,7 @@ def run(exporter: Path, project: Path, root: Path, output: Path,
             sources.append({"fixture": index, "lean_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
                             "seconds": round(time.monotonic() - started, 3),
                             "audit_sha256": hashlib.sha256(log.read_bytes()).hexdigest(), **counts})
-            print(f"Original fixture {index}: concrete kernel checks, geometric and exclusion theorem types, and axiom audit passed",
+            print(f"Original fixture {index}: concrete kernel checks, geometric, exclusion and termination theorem types, and axiom audit passed",
                   flush=True)
     command = [sys.executable, str(root / "oracles/python/c4_archived_payload.py"), "--native", str(combined)]
     if fixture is not None:
@@ -265,6 +302,13 @@ def run(exporter: Path, project: Path, root: Path, output: Path,
         "proof/PscVerif/PscVerif/NamedPositiveOverlapControls.lean",
         "proof/PscVerif/PscVerif/NamedStrictExclusion.lean",
         "proof/PscVerif/PscVerif/NamedStrictExclusionControls.lean",
+        "proof/PscVerif/PscVerif/FiniteProductivity.lean",
+        "proof/PscVerif/PscVerif/NamedFiniteProductivity.lean",
+        "proof/PscVerif/PscVerif/ForwardCarrier.lean",
+        "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+        "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+        "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+        "proof/PscVerif/PscVerif/NamedForwardCarrier.lean",
         "tests/fixtures/c4_archived_bad_binding.lean",
         "kernel/psc/c4_archived_payload.mojo", "kernel/c4_archived_lean_export.mojo",
         "oracles/python/c4_archived_payload.py", "tools/replay_archived_payload_lean.py",
@@ -280,8 +324,9 @@ def run(exporter: Path, project: Path, root: Path, output: Path,
     result = {
         "schema": "c4-archived-payload-lean-replay-v1",
         "fixtures_verified": len(sources), "both_original_fixtures_verified": fixture is None,
-        "scope": "original sharp-box rooted inverse ancestry and strict-system exclusion for the verified named fixtures; no general C4 or PSC claim",
+        "scope": "original sharp-box rooted inverse ancestry, strict-system exclusion, and coincidence termination for every ordered swap seed and its actual ChildNC descendants of the verified named fixtures; no arbitrary unlisted block, general C4 or PSC claim",
         "semantic_proofs": sorted(PROOFS), "strict_system_exclusion_fixtures": list(indices),
+        "seed_and_reachable_termination_fixtures": list(indices),
         "kernel_evaluation": "decide +kernel; generated proof types and all transitive axioms audited",
         "allowed_axioms": sorted(ALLOWED), "lean_toolchain": pin,
         "exporter_sha256": hashlib.sha256(exporter.read_bytes()).hexdigest(),
