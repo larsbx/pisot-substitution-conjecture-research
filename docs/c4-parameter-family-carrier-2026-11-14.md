@@ -131,19 +131,23 @@ or word-length cap.
 
 ## Lean scope and next obligation
 
-`proof/psc_routes/C4ParameterFamilyWords.lean` proves the two period rotations
-and both seed-track identities for arbitrary repetition counts. Run
-`lean -DautoImplicit=false proof/psc_routes/C4ParameterFamilyWords.lean` using
-the pinned toolchain. All four public declarations were checked with
-`#print axioms` and depend only on `propext`.
+The standalone Lean module
+`proof/psc_routes/C4ParameterFamilyWords.lean` verifies both substituted
+tracks of every representative symbolic row for arbitrary `k=n+5`. It
+also proves that the referenced indices are in range, that swapping indices
+swaps the tracks, and that each noncoincident representative row contains
+a diagonal child. The four new declarations used by the carrier proof
+depend only on `propext` and `Quot.sound`.
 
-The next Lean obligation is to compose the period identities into every
-symbolic row and feed the resulting track concatenations and irreducibility
-proofs to `Psc.Reduction.red_unique`. Then check the three literal boundary
-carriers in Lean, specialize the existing strong-coincidence witness
-constructor, and invoke `Psc.FiniteProductivity.terminates_of_finite_reachable`.
-The symbolic and native replays above establish the mathematical carrier
-independently of the unfinished project-level Lean proof.
+```sh
+lean -DautoImplicit=false proof/psc_routes/C4ParameterFamilyWords.lean
+```
+
+The remaining Lean obligation is to supply `IsBlock` for the decoded states,
+apply `Psc.Reduction.red_unique` to the two verified concatenations, and
+check the literal carriers at `k=2,3,4`. A proof using the checked diagonal
+children can establish productivity directly. The existing
+finite-productivity bridge and strong coincidence provide a second route.
 
 The family uses PR #570's revised evidence base `87e1536a09c160385964af9c95671975a0258164`.
 The named archive's nine-endpoint replay has its own
