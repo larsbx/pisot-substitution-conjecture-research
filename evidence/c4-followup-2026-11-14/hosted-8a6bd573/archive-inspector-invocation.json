@@ -1,0 +1,32 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "/workspace/scratch/2880252a6b94/psc/evidence/c4-named-termination-2026-11-13/prepared-inspector/inspect-hosted-concrete-termination-audit.py",
+    "--artifact-root",
+    "/workspace/scratch/2880252a6b94/psc-run/hosted-8a6bd573/archive-artifact",
+    "--run-metadata",
+    "/workspace/scratch/2880252a6b94/psc-run/hosted-8a6bd573/archive-run-metadata.json",
+    "--jobs-metadata",
+    "/workspace/scratch/2880252a6b94/psc-run/hosted-8a6bd573/archive-jobs-metadata.json",
+    "--metadata",
+    "/workspace/scratch/2880252a6b94/psc-run/source-metadata-8a6bd573.json",
+    "--root",
+    "/workspace/scratch/2880252a6b94/psc",
+    "--output",
+    "/workspace/scratch/2880252a6b94/psc-run/hosted-8a6bd573/archive-inspection",
+    "--expected-commit",
+    "8a6bd5732fefba94ad4fef5df2333065c1302452",
+    "--expected-tree",
+    "a7dcb3ebf30f3bb686d8f1beb3545dec26df8448",
+    "--expected-run-id",
+    "43570948106"
+  ],
+  "inspection_result_sha256": "135160fbca60762574b62832bad2c40dd51f177c2eb832d6ee17c5eb6554fd8f",
+  "observation_recorded_at_utc": "2026-11-14T08:30:54.799077+00:00",
+  "schema": "psc-hosted-inspector-invocation-observation-v1",
+  "scope": "Observed successful local evidence postprocessor invocation. No local Lean build was executed by this inspector and no process start identity is fabricated.",
+  "script_path": "/workspace/scratch/2880252a6b94/psc/evidence/c4-named-termination-2026-11-13/prepared-inspector/inspect-hosted-concrete-termination-audit.py",
+  "script_sha256": "fb9805719e3966383d8b28ffd43342611f26ed51cce6ec6290d7fe0a1f424ab3",
+  "tool_process_exit_code_observed": 0
+}

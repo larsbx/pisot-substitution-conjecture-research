@@ -1,0 +1,248 @@
+{
+  "artifact_identity": {
+    "binding_limit": "Input files identify the run/job and exact artifact content. GitHub artifact ID/download ZIP digest are not present in these inputs; retain the download provenance separately.",
+    "file_count": 36,
+    "github_artifact_id_supplied": false,
+    "manifest_sha256": "b64b4c66386eb0143a9309255cb7bc5ca8a01ea17e43facd0a482b5da8ef0951",
+    "original_archive_sha256": "6c33772304f677a1d90e1674e6064dfb6b055fcdd370557350426162f6785dda",
+    "supplied_root": "/workspace/scratch/2880252a6b94/psc-run/hosted-8a6bd573/archive-artifact",
+    "total_bytes": 81339745,
+    "workflow_declared_artifact_name": "original-c4-payload-8a6bd5732fefba94ad4fef5df2333065c1302452"
+  },
+  "concrete_fixtures": [
+    {
+      "audit_sha256": "d8adf60b1f86c5db4430e80c52d17f25f2b290cd1d28432f0925445e3918606c",
+      "compiled_object_sha256": "07d611846cb29d88a22abc07e48ee2667e1e7fab956363ef5f99fffcb8d550e6",
+      "declarations": 1802,
+      "fixture": 0,
+      "semantic_proofs": [
+        "accepted",
+        "ancestors_null",
+        "domain_iff",
+        "no_strict_system",
+        "reachable_terminates",
+        "roots_null",
+        "seed_terminates",
+        "typed_accepted",
+        "valid"
+      ],
+      "source_sha256": "9aab0a1ab11bf4279330a5ccd6467b7a260ffcafa7936a6e27809ac3d86d3138",
+      "theorem_declarations": 779
+    },
+    {
+      "audit_sha256": "9b5ffad41e4ca7e2891e659b05e21d9eecd787a0c2de28d389edd38e468cdcf3",
+      "compiled_object_sha256": "ba03f7764065a6b458552396bc992dac554fbbd61229a740ca6e9cac9c1ad97f",
+      "declarations": 1802,
+      "fixture": 1,
+      "semantic_proofs": [
+        "accepted",
+        "ancestors_null",
+        "domain_iff",
+        "no_strict_system",
+        "reachable_terminates",
+        "roots_null",
+        "seed_terminates",
+        "typed_accepted",
+        "valid"
+      ],
+      "source_sha256": "3a7102b3ec4c4eef381c45d9400c785f2c461cf8ebf2732f9b9d16718328f9dc",
+      "theorem_declarations": 779
+    }
+  ],
+  "concrete_replay_receipt_sha256": "b186dd65adc17497cc8cbe168c9f79d01caa98bfed45be458bd5d425403b7c45",
+  "critical_step_verdicts": [
+    {
+      "completed_at": "2026-11-14T07:25:07Z",
+      "conclusion": "success",
+      "name": "Bind exact candidate revision and archive",
+      "number": 3,
+      "started_at": "2026-11-14T07:25:07Z",
+      "status": "completed"
+    },
+    {
+      "completed_at": "2026-11-14T07:26:43Z",
+      "conclusion": "success",
+      "name": "Provision pinned Lean and dependency sources",
+      "number": 6,
+      "started_at": "2026-11-14T07:25:10Z",
+      "status": "completed"
+    },
+    {
+      "completed_at": "2026-11-14T07:27:22Z",
+      "conclusion": "success",
+      "name": "Canonical payload construction and import controls",
+      "number": 8,
+      "started_at": "2026-11-14T07:26:56Z",
+      "status": "completed"
+    },
+    {
+      "completed_at": "2026-11-14T07:28:37Z",
+      "conclusion": "success",
+      "name": "Independent payload and original graph replay",
+      "number": 9,
+      "started_at": "2026-11-14T07:27:22Z",
+      "status": "completed"
+    },
+    {
+      "completed_at": "2026-11-14T08:27:12Z",
+      "conclusion": "success",
+      "name": "Isolated full build and both concrete geometric imports",
+      "number": 10,
+      "started_at": "2026-11-14T07:28:37Z",
+      "status": "completed"
+    }
+  ],
+  "exclusion_only_wrong_type_control_verified": true,
+  "github_job_verdict": {
+    "completed_at": "2026-11-14T08:27:21Z",
+    "conclusion": "success",
+    "head_sha": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+    "html_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43570948106/job/132374993239",
+    "id": 132374993239,
+    "name": "Original graph proof terms, geometry and compiled axiom audit",
+    "run_attempt": 1,
+    "run_id": 43570948106,
+    "started_at": "2026-11-14T07:25:02Z",
+    "status": "completed",
+    "url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/jobs/132374993239"
+  },
+  "github_run_verdict": {
+    "artifacts_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43570948106/artifacts",
+    "conclusion": "success",
+    "created_at": "2026-11-14T07:24:23Z",
+    "event": "pull_request",
+    "head_sha": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+    "html_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43570948106",
+    "id": 43570948106,
+    "name": "Original C4 archived payload Lean import",
+    "path": ".github/workflows/c4-archived-payload-lean.yml",
+    "run_attempt": 1,
+    "run_number": 39,
+    "run_started_at": "2026-11-14T07:24:23Z",
+    "status": "completed",
+    "updated_at": "2026-11-14T08:27:22Z",
+    "url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43570948106"
+  },
+  "global_audit": {
+    "acknowledgement": "Lean axiom audit: 11322 declarations, 7273 theorems; all named proofs reached",
+    "allowed_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "constants": 11322,
+    "expected_named_proofs_reached": 3597,
+    "theorems": 7273
+  },
+  "inspected_at_utc": "2026-11-14T08:28:39.229141+00:00",
+  "inspection_outcome": "verified_completed_hosted_acceptance_evidence",
+  "inspector_sha256": "fb9805719e3966383d8b28ffd43342611f26ed51cce6ec6290d7fe0a1f424ab3",
+  "jobs_metadata_sha256": "e142dc15275cbb71c7f2712393f91c357a32257610080d776b40474ce5613636",
+  "lean_audit_log_sha256": "cc582add2248808bd6caa0ec951af921bbe2ed47b3b4c9c7d2df55b14cd45ced",
+  "lean_emitted_payload_sha256": "447d58d811359235d1f4689433500494ae14724b89b5da91f429e7e7247beaca",
+  "lean_or_test_processes_launched_by_inspector": false,
+  "native_negative_controls_rejected": 32,
+  "native_payload_sha256": "447d58d811359235d1f4689433500494ae14724b89b5da91f429e7e7247beaca",
+  "new_declarations": {
+    "all_owner_constants": 45,
+    "all_owner_theorems": 41,
+    "explicit_definitions_matched": 4,
+    "explicit_theorems_matched": 37,
+    "extracted_rows_sha256": "160efc677af80f4e43e9532a030bece88b56eeb5b1d340aa78e9b38b1f5c99eb"
+  },
+  "no_local_gate_returncode_inferred": true,
+  "oracle_pytest": {
+    "bound_github_step_conclusion": "success",
+    "bound_github_step_number": 9,
+    "log_sha256": "06955fb47f16312e5d13266c774a2aa4648c46e423cbe6564a92e25b68e39131",
+    "normal_pass_summary_present": false,
+    "observed_progress_dot_count": 8,
+    "reported_passed_count": null,
+    "stdout_summary_fabricated": false,
+    "transcript_form": "eight_dot_quiet_100_percent",
+    "validated_expected_pass_count": 8
+  },
+  "reported_exporter_sha256": "8cd9ee852d58d0e3c0039cadd57fd1a9f1e6f5505121068bebbc27934a41578d",
+  "run_metadata_sha256": "bf42cbd7e8dd6815c8375956fe4ef656bf0e5ebd121c059a50a7b7f6734d94ce",
+  "schema": "c4-hosted-concrete-termination-inspection-v1",
+  "scope": "Postprocessing of successful GitHub evidence for strict-system exclusion over arbitrary finite carriers of the two literal fixtures, plus coincidence termination for every ordered swap seed and its actual ChildNC descendants. No arbitrary unlisted starting block, universal path-termination bound, general C4/PSC conclusion, or independent human review.",
+  "seed_and_reachable_termination_fixtures": [
+    0,
+    1
+  ],
+  "source": {
+    "commit": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+    "status_porcelain": "",
+    "tree": "a7dcb3ebf30f3bb686d8f1beb3545dec26df8448"
+  },
+  "source_metadata_sha256": "b9e8f9b291f49e22491f21e04bfceff75a1be967b32bb3644e4d7d3483c2631e",
+  "termination_wrong_type_controls_verified": {
+    "reachable_terminates": true,
+    "seed_terminates": true
+  },
+  "verified_replay_source_sha256": {
+    "evidence/c4-archived-graph-refinement-2026-11-11/native-oracle/receipt.json": "387a52096b0f33b8dde0a72ffdd2f71f2b7e01b1f4fbad0b4fa7a76a4033bca3",
+    "evidence/c4-pair-overlap-graph-2026-11-05/receipt.json": "6c33772304f677a1d90e1674e6064dfb6b055fcdd370557350426162f6785dda",
+    "kernel/c4_archived_lean_export.mojo": "3a4998c5d8a570f6c1f6bd2bae52f4b5429ed7d1397df52a692e7674e36d72b8",
+    "kernel/psc/c4_archived_payload.mojo": "1e9eb8f5b4178f6bd228d6dc72ea0eebafbf1483f0e94d9be5dd26ce65738318",
+    "oracles/python/c4_archived_payload.py": "b61b9564b1d783c1f4fc739cd19fa65c104e17857fa64c4de5ce4252758aaced",
+    "proof/PscVerif/PscVerif/ArchivedPayload.lean": "38d3b2270c15baae23f36be3a7c369dcaab4255b26d5db6a00ed32ef084afe8d",
+    "proof/PscVerif/PscVerif/ArchivedPayloadConsumer.lean": "39768a54a2c022ef460e08dbd1879177fdf598bb8645702233264738ddf43e49",
+    "proof/PscVerif/PscVerif/ArchivedPayloadEmit.lean": "3d56413774e33215a1fb507ca418f08b4d048b3986c2c309a9cc9d626a15a6e3",
+    "proof/PscVerif/PscVerif/FastForwardCarrier.lean": "fba7b08223e333d9380ff1e090ad85cad6aadbe8eadd1a2dde8d6b92bfcf0689",
+    "proof/PscVerif/PscVerif/FiniteProductivity.lean": "cc64e649a03c9ef0e5668fc051d679ffd2ea538135bbc6fc5974c2dc37fb13d8",
+    "proof/PscVerif/PscVerif/ForwardCarrier.lean": "df91e154ecb52a909c2ec7c06af1813f99ff2b38bd7053fb1df78928741c890e",
+    "proof/PscVerif/PscVerif/NamedArchivedDigits.lean": "12059a52f4598c316a42f64cadf269cdd716853a785bc1189023207689124775",
+    "proof/PscVerif/PscVerif/NamedFiniteProductivity.lean": "4f8558a777f6d4ca3871aa8adeb1862488a06b78d89a1513cef3074bd7bc91c0",
+    "proof/PscVerif/PscVerif/NamedForwardCarrier.lean": "d046dcf83ae5889ffe0525c7d1b2de9429502d848e30c5c6ae85acc0195e7783",
+    "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean": "5026901eb6a7f9c2500f38f7835aa96a235c6eb0e5722da1084a45fb83b2b905",
+    "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean": "a49d8fa4146b534cff95259beab31a06903088184676704c239eb11b98cc4c0a",
+    "proof/PscVerif/PscVerif/NamedForwardCarrierWords0.lean": "6583596c0d3d21a11a3e283954ec4c8ad72572969155e406bb2cd6f6baceb72a",
+    "proof/PscVerif/PscVerif/NamedForwardCarrierWords1.lean": "a44fee6794080f4f0cde90167c862476b6022115a7e3120078dff042c153702b",
+    "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean": "ba4554df8e4339d5c61f1da910ca53177a9610bfe78ceb0cc8f062950b1e51fc",
+    "proof/PscVerif/PscVerif/NamedPositiveOverlapControls.lean": "bf67f3dc80ad86c2a6bd3d16f8d7bff9ccd61f76103fbded3bb1b54ec89a39fa",
+    "proof/PscVerif/PscVerif/NamedStrictExclusion.lean": "80ddbe716a339bb19705de5ddb0914c5cb4b7fb75dbc3ff812df6685855f551a",
+    "proof/PscVerif/PscVerif/NamedStrictExclusionControls.lean": "e5e5c2a1fbfb87f256ae71a645f9d863ad03da63b6cadaed2e4a5da15265d1d7",
+    "tests/fixtures/c4_archived_bad_binding.lean": "fa8fa63a180a24370559cfe30eff268fae43f3936934a26d03c1b539169e57fa",
+    "tools/check_lean.sh": "eb63ce6fb0b837eee1208b3d47e759bcf8b3617b1374685a8850e48f283cba8d",
+    "tools/replay_archived_payload_lean.py": "0ba2b4e0cd0ab2cb06d714e88a919fc4f8aef363b067d5bdc66a40ee20e3fbb9"
+  },
+  "verified_static_review_source_sha256": {
+    "docs/c4-named-strict-exclusion.md": "4c3f660e7447895485681858d8af2de91be496e0df4610a2aa905c929dab42bd",
+    "docs/side-notes-ledger.md": "988fe80be46d237d6f2b078714c4d11bda307ca27e2b50b8b91cf19fa3f2145a",
+    "evidence/c4-finite-cut-count-2026-11-12/gate/inspect-count-audit.py": "f5e61978cdd108ce70a3151d460f8071fb39909a8a6c5c83edf8376e7a4e7478",
+    "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
+    "proof/PscVerif/PscVerif.lean": "3ffc0b8857d74624deefb2eef716adb1523ef9ab78900bdae2fc7520eaf25f91",
+    "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean": "87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025",
+    "proof/PscVerif/PscVerif/ArchivedPayloadConsumer.lean": "39768a54a2c022ef460e08dbd1879177fdf598bb8645702233264738ddf43e49",
+    "proof/PscVerif/PscVerif/FastForwardCarrier.lean": "fba7b08223e333d9380ff1e090ad85cad6aadbe8eadd1a2dde8d6b92bfcf0689",
+    "proof/PscVerif/PscVerif/FiniteProductivity.lean": "cc64e649a03c9ef0e5668fc051d679ffd2ea538135bbc6fc5974c2dc37fb13d8",
+    "proof/PscVerif/PscVerif/ForwardCarrier.lean": "df91e154ecb52a909c2ec7c06af1813f99ff2b38bd7053fb1df78928741c890e",
+    "proof/PscVerif/PscVerif/MadicHaar.lean": "a116c88bb856771b74ff7d5111e797c58216ce49057c99096ed5ddac3c2019a5",
+    "proof/PscVerif/PscVerif/MadicResidue.lean": "c7ff8430cb77c335f11478861584baea4129658b35f4fc67bf0c2b8509d50f6d",
+    "proof/PscVerif/PscVerif/NamedCutNeighborhood.lean": "e9d6a9e1b05721fa3cc8b634d3ecd6cdb604d8b63277d42b5ba34d70327bc57e",
+    "proof/PscVerif/PscVerif/NamedFiniteProductivity.lean": "4f8558a777f6d4ca3871aa8adeb1862488a06b78d89a1513cef3074bd7bc91c0",
+    "proof/PscVerif/PscVerif/NamedForwardCarrier.lean": "d046dcf83ae5889ffe0525c7d1b2de9429502d848e30c5c6ae85acc0195e7783",
+    "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean": "5026901eb6a7f9c2500f38f7835aa96a235c6eb0e5722da1084a45fb83b2b905",
+    "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean": "a49d8fa4146b534cff95259beab31a06903088184676704c239eb11b98cc4c0a",
+    "proof/PscVerif/PscVerif/NamedForwardCarrierWords0.lean": "6583596c0d3d21a11a3e283954ec4c8ad72572969155e406bb2cd6f6baceb72a",
+    "proof/PscVerif/PscVerif/NamedForwardCarrierWords1.lean": "a44fee6794080f4f0cde90167c862476b6022115a7e3120078dff042c153702b",
+    "proof/PscVerif/PscVerif/NamedFundamentalCell.lean": "d146d742f5c0767de9f569fc4e3570569f9a5c6d6f9503ec41e9cfdb8e5c03e4",
+    "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean": "ba4554df8e4339d5c61f1da910ca53177a9610bfe78ceb0cc8f062950b1e51fc",
+    "proof/PscVerif/PscVerif/NamedPrefixCompact.lean": "e6cbff61401e8f5109bc0c8654e77eca155e1186286703e76f4d55044ebd220e",
+    "proof/PscVerif/PscVerif/NamedProductHaar.lean": "e398c9b19b65cb794034138490453d35bfdc4dab256473318daca75528b9ac14",
+    "proof/PscVerif/PscVerif/NamedStrictExclusion.lean": "80ddbe716a339bb19705de5ddb0914c5cb4b7fb75dbc3ff812df6685855f551a",
+    "proof/PscVerif/PscVerif/NamedStrictExclusionControls.lean": "e5e5c2a1fbfb87f256ae71a645f9d863ad03da63b6cadaed2e4a5da15265d1d7",
+    "proof/PscVerif/PscVerif/OccurrencePiece.lean": "304a9f42f3fea45cac2c752ef0b61cfd6894e78967d191803c723233d63e9ec0",
+    "proof/PscVerif/PscVerif/OccurrenceResidue.lean": "8552eb3d7584b6b467ae6f990a8204490ae9b543b38cecb243cd8576c58dd248",
+    "proof/PscVerif/PscVerif/OverlapContraction.lean": "09dd1ccc90a7245211336996f7da8b1276e86cab60dd1cc0b5471e3d7f6a2a30",
+    "proof/PscVerif/PscVerif/StrictSystem.lean": "657d6c9f4041b04a2e478f19dea2ecb813952caf2fe1455789778306ad6c3a48",
+    "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
+    "proof/proof-bank.json": "be267fb8f6fb6cf7984c73f3dee7b3d1fab28c5a84b49585f402abf09dff5fc7",
+    "tests/fixtures/c4_archived_bad_binding.lean": "fa8fa63a180a24370559cfe30eff268fae43f3936934a26d03c1b539169e57fa",
+    "tools/check_lean.sh": "eb63ce6fb0b837eee1208b3d47e759bcf8b3617b1374685a8850e48f283cba8d",
+    "tools/make_proof_bank.py": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8",
+    "tools/replay_archived_payload_lean.py": "0ba2b4e0cd0ab2cb06d714e88a919fc4f8aef363b067d5bdc66a40ee20e3fbb9"
+  },
+  "workflow_source_sha256": "747e633654a85ab1eaa20e2f965a77035c56ae8176ce2262e53a9e7b4a41dd7c"
+}

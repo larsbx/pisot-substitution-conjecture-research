@@ -1,7 +1,7 @@
 # PSC next steps — November 14, 2026
 
-**Priority: complete the two named termination acceptance gates, then extend
-the proof mechanism to a precisely specified infinite family.** The positive
+**Priority: review and integrate the accepted two-fixture chain, then pursue
+the scoped infinite-family forward-closure target.** The positive
 overlap argument, strict-system exclusion, forward carriers and termination
 consumers already exist. Their source presence and their compiled acceptance
 have different evidentiary scopes. This note changes no governed claim status
@@ -14,7 +14,7 @@ and authorizes no automatic merge or promotion.
 | Open integration PR [#560](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/560) | `1ce54efeff586ecda2ec1bd11a2f9c6617b2fb87` | Contains the merged #561–#566 and #568 developments; targets `main`. Integration is not complete acceptance. |
 | Historical failed head of [#569](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/569) | `52614a3b5a7199b1d17cb7a0b435da71e1e80569` | Formal verification failed at the named-carrier consumer after both generated carrier checkers compiled. |
 | Historical named strict exclusion | `bb6cbac16a620da4784f5b30d0a9a242618aef22`; [run 43365333027](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43365333027) | Successful complete original-archive replay at seven semantic endpoints, including exclusion of every finite strict system for each literal fixture. |
-| Current selector-transport repair in [#569](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/569) | `8a6bd5732fefba94ad4fef5df2333065c1302452`; tree `a7dcb3ebf30f3bb686d8f1beb3545dec26df8448` | The [full isolated build and compiled audit](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43570948335) passed, including both actual carriers and the production consumer. The original nine-endpoint archive replay remains independently pending. |
+| Accepted selector-transport repair in [#569](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/569) | `8a6bd5732fefba94ad4fef5df2333065c1302452`; tree `a7dcb3ebf30f3bb686d8f1beb3545dec26df8448` | Both the [full isolated audit](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43570948335) and [original nine-endpoint replay](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43570948106) succeeded. The unchanged inspector verified both original fixtures and controls. |
 
 The historical strict-exclusion result is preserved at its own revision.
 Neither it nor successful native forward replay certifies a later modified
@@ -55,7 +55,7 @@ termination with coincidence for every actual descendant of every ordered
 swap seed. An inverse archive cannot replace the forward carrier, and
 incidence-matrix equality cannot replace literal word-order binding.
 
-The required next checks, in order, are:
+The completed source-specific acceptance contract is:
 
 1. Compile the repaired production `NamedForwardCarrier` against both actual
    generated carriers, then inspect its exact theorem types and transitive
@@ -65,21 +65,26 @@ The required next checks, in order, are:
 3. Replay both original archives at all nine endpoints: `valid`, `accepted`,
    `typed_accepted`, `domain_iff`, `roots_null`, `ancestors_null`,
    `no_strict_system`, `seed_terminates` and `reachable_terminates`.
-4. Inspect the final artifacts and negative controls, record successful
-   terminal results with exact source identity, and check the final
-   integration revision's relevant governance and repository gates.
+4. Inspect the final artifacts and negative controls and record successful
+   terminal results with exact source identity.
 
-The repaired source has now passed the first two checks. The original full
-audit artifact confirms 11,322 constants, 7,273 theorems, all 3,597 named
-source proofs and all 41 explicitly tracked declarations; see the
+The repaired source has passed all four checks. Both compiled audits confirm
+11,322 constants, 7,273 theorems, all 3,597 named source proofs and all 41
+explicitly tracked declarations. Each original archive module passes all nine
+endpoints, with 1,802 audited declarations and 779 theorem declarations; see the
 [exact-source verification packet](../evidence/c4-followup-2026-11-14/README.md).
-Original archive acceptance and final integration remain separate.
+The original ZIP, transport binding, raw terminal metadata and unchanged
+inspector output are preserved there. Final integration remains separate:
+check the integration revision's relevant governance and repository gates.
+The broader current-source research workflow was last observed at 19/20
+successful jobs, with Mojo regressions still active; no all-CI verdict is
+inferred from the two decisive Lean gates.
 
 Canonical commands and artifact requirements are in the
 [acceptance note](c4-named-termination-acceptance-2026-11-13.md#replay).
 Missing endpoints, wrong literal types, omitted exits, changed orientation,
 disallowed axioms and nonterminal jobs must refuse acceptance. Resource
-limits remain inconclusive. A complete successful result would establish
+limits remain inconclusive. The complete successful result establishes
 the stated two-fixture theorem; independent human review remains separate
 validation debt, and merge decisions remain with the user.
 
