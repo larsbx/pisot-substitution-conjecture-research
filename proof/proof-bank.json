@@ -48876,6 +48876,11 @@
       "statement_heading": "**Theorem (periodic-ray criterion).** A finite strict system exists if and"
     },
     {
+      "source": "docs/c4-phase-aligned-rays-2026-11-14.md",
+      "line": 26,
+      "statement_heading": "**Theorem (flat periodic-ray criterion).** A finite strict system of phase"
+    },
+    {
       "source": "docs/c4-phase-lattice-index-conservation-2026-11-04.md",
       "line": 21,
       "statement_heading": "**Theorem 1 (phase index conservation).** Under §1, for each k modulo h,"

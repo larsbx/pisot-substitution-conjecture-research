@@ -130,3 +130,85 @@ EXPECTED = {
     "three-cyclic-letters": [(0, 1, 5, -1), (0, 2, 6, -1), (1, 2, 4, -1)],
     "parameter-three": [(0, 1, 2, -1)],
 }
+
+
+PHASE_FIXTURES = {
+    # source, hub, ordered root, phase, earliest forbidden depth, diagonal depth
+    "fixed-hub": (("01", "12", "021"), 1, (0, 1), 0, 3, 4),
+    "swapping-hub": (("1", "02", "002"), 0, (0, 1), 1, 5, 7),
+}
+
+
+def literal_words(images, root, digits):
+    words, positions = [], []
+    for a, path in zip(root, digits, strict=True):
+        word, position = (a,), 0
+        for digit in path:
+            if not 0 <= digit < len(images[word[position]]):
+                raise ValueError("occurrence digit outside its source image")
+            position = sum(len(images[c]) for c in word[:position]) + digit
+            word = tuple(int(c) for parent in word for c in images[parent])
+        words.append(word)
+        positions.append(position)
+    return words, positions
+
+
+def literal_forbidden_starts(images, hub, root, phase, limit):
+    words = tuple((a,) for a in root)
+    side = root.index(hub)
+    for depth in range(1, limit + 1):
+        words = tuple(tuple(int(c) for parent in word for c in images[parent]) for word in words)
+        side ^= phase
+        upper, lower = words
+        prefix_difference = [0, 0, 0]
+        for i, (a, b) in enumerate(zip(upper, lower)):
+            if not any(prefix_difference) and a != b and (a, b)[side] != hub:
+                yield depth, i, a, b
+            prefix_difference[a] += 1
+            prefix_difference[b] -= 1
+
+
+@pytest.mark.parametrize("name", PHASE_FIXTURES)
+def test_shortest_forbidden_hub_start(name):
+    images, hub, root, phase, depth, diagonal = PHASE_FIXTURES[name]
+    assert not list(literal_forbidden_starts(images, hub, root, phase, depth - 1))
+    assert list(literal_forbidden_starts(images, hub, root, phase, depth))
+    assert next(r[4] for r in rows(images) if r[:2] == root) == diagonal
+
+
+def test_native_phase_addresses_replay_to_literal_forbidden_cuts():
+    native_path = os.environ.get("PSC_PERIODIC_RAY_NATIVE")
+    if native_path is None:
+        pytest.skip("set PSC_PERIODIC_RAY_NATIVE to compare the native receipt")
+    observed = {}
+    for line in Path(native_path).read_text().splitlines():
+        if line.startswith("PHASE "):
+            _, name, depth, top, bottom, top_address, bottom_address = line.split()
+            assert name not in observed
+            observed[name] = int(depth), int(top), int(bottom), tuple(
+                tuple(map(int, side.split(",")[1:])) for side in (top_address, bottom_address)
+            )
+    assert observed.keys() == PHASE_FIXTURES.keys()
+    for name, (depth, top, bottom, addresses) in observed.items():
+        images, hub, root, phase, expected_depth, _ = PHASE_FIXTURES[name]
+        assert depth == expected_depth and all(len(address) == depth for address in addresses)
+        words, positions = literal_words(images, root, addresses)
+        assert positions[0] == positions[1]
+        assert [word[position] for word, position in zip(words, positions, strict=True)] == [top, bottom]
+        assert (depth, positions[0], top, bottom) in list(
+            literal_forbidden_starts(images, hub, root, phase, depth)
+        )
+
+
+def test_phase_forgetful_graph_would_miss_or_invent_orientation():
+    images, hub, root, _, _, _ = PHASE_FIXTURES["swapping-hub"]
+    # Its first child starts at the common origin with the hub on the opposite
+    # track. Treating phase one as zero invents a depth-one defect.
+    assert list(literal_forbidden_starts(images, hub, root, 0, 1)) == [(1, 0, 1, 0)]
+    assert not list(literal_forbidden_starts(images, hub, root, 1, 1))
+
+
+def test_literal_replay_rejects_a_digit_past_its_image():
+    images, _, root, _, _, _ = PHASE_FIXTURES["swapping-hub"]
+    with pytest.raises(ValueError, match="outside its source image"):
+        literal_words(images, root, ((1,), (0,)))
