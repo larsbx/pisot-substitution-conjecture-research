@@ -1,13 +1,23 @@
 # Follow-up scope and verification history
 
-This documentation follow-up records the proportional family stop/go review
-and preserves the unsuccessful local Lean attempts made while the hosted
-acceptance of PR #569 at `84f7b2b70adbd632c0e0cc06cbd246aee2020f70` was
-running. That candidate subsequently failed; its original hosted evidence is
-preserved below. The current successor is
+**Both decisive named-termination gates passed** at source
 `8a6bd5732fefba94ad4fef5df2333065c1302452`, tree
-`a7dcb3ebf30f3bb686d8f1beb3545dec26df8448`. No compiled theorem is accepted
-by the historical records in this packet.
+`a7dcb3ebf30f3bb686d8f1beb3545dec26df8448`. The unchanged inspector verifies
+both literal fixtures at all nine semantic endpoints. This follow-up retains
+the original successful artifacts, source-bound inspections, and all earlier
+failure/resource-limit records. Historical attempts retain their original
+verdicts. The separate family review remains analytical and uncompiled.
+
+| Gate | Run / job, attempt 1 | Verdict |
+| --- | --- | --- |
+| Full isolated Lean build and compiled audit | `43570948335` / `132374993676` | Success; original audit artifact inspected |
+| Both original archives and nine endpoints | `43570948106` / `132374993239` | Success; unchanged prepared inspector exited 0 |
+
+The receipts establish the existing coincidence-termination predicate for
+every ordered unequal-letter swap seed and its actual `ChildNC` descendants
+of `1/021/001` and `1/012/001`. They do not cover arbitrary unlisted starting
+blocks or termination of every selected walk. No universal C4/PSC or governed
+status promotion follows, and independent human review remains separate.
 
 ## Exact-source full Lean acceptance
 
@@ -39,11 +49,66 @@ Fresh `source-metadata-8a6bd573.json`, its regeneration helper, and the
 directory. They bind source/protocol checks; the successful original audit
 artifact supplies the compiled result.
 
+## Exact-source original archive acceptance
+
 The separate [original-archive run
-43570948106](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43570948106)
-still requires terminal success and inspection of both original fixtures at
-all nine semantic endpoints. The full Lean result alone does not assert
-that original archive acceptance.
+43570948106](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43570948106),
+job `132374993239`, attempt 1, completed successfully at `08:27:21 UTC` on
+November 14. The trusted prepared inspector, unchanged at SHA-256
+`fb9805719e3966383d8b28ffd43342611f26ed51cce6ec6290d7fe0a1f424ab3`,
+reported `verified_completed_hosted_acceptance_evidence` at `08:28:39 UTC`.
+Its invocation and original output are retained under `hosted-8a6bd573/`.
+
+Each original module has 1,802 audited declarations, including 779 theorems.
+Both pass all nine exact semantic endpoints: `valid`, `accepted`,
+`typed_accepted`, `domain_iff`, `roots_null`, `ancestors_null`,
+`no_strict_system`, `seed_terminates`, and `reachable_terminates`.
+The existing exclusion-only wrong-type control and the independent wrong-type
+controls for both termination endpoints were verified. All 32 native mutation
+controls were rejected. The native and Lean-emitted payload SHA-256 values
+are identical:
+`447d58d811359235d1f4689433500494ae14724b89b5da91f429e7e7247beaca`.
+
+The inspection retains the producer's actual quiet eight-dot oracle transcript
+and its successful GitHub step; it does not fabricate a textual pass-count
+summary. It launches no Lean/test process and executes no artifact code.
+Compiled acceptance comes from the exact successful hosted job and its
+verified original receipts.
+
+### Original ZIP retention and replay
+
+Provider artifact `14105484504` has 19,278,227 bytes and SHA-256
+`d948ee6722572efa3d6d33183bcfc80778ec1c7a35b8ec60213b302803e4123f`.
+`archive-download-extraction-receipt.json` binds the requested artifact ID,
+returned connector file ID, provider digest/size, source/tree, run/job,
+attempt and timestamps. Safe extraction yielded 36 original files. This
+transport receipt closes the ZIP-identity boundary that the acceptance
+inspector deliberately reports separately.
+
+The original ZIP is retained byte-for-byte as three contiguous parts of at
+most 8 MiB, with a verified whole-file reassembly hash in
+`archive-artifact-parts.json`. From `hosted-8a6bd573/` in a fresh replay copy:
+
+```sh
+cat archive-artifact.zip.part01 archive-artifact.zip.part02 archive-artifact.zip.part03 > archive-artifact.zip
+sha256sum --check archive-artifact.zip.sha256
+```
+
+Use the retained extraction verifier and the unchanged inspector from a clean
+checkout of the accepted `8a6bd573` source. The exact inspected invocation is
+in `archive-inspector-invocation.json`; supply a fresh output directory.
+`archive-inspection/inspection.json` and its artifact manifest retain the
+original 36-file identities. The extracted files are represented by the
+original ZIP, rather than duplicated in this packet.
+
+The terminal raw `archive-job.log` has 2,251,022 bytes and SHA-256
+`3b7a2078e4ebc5b261d316ec12e2e45c0f08e8289551427fdaad8b858ea87956`.
+It records fixture 0 acceptance at `08:10:13 UTC` and fixture 1 at
+`08:26:50 UTC`. `original-hosted-README.md` and
+`original-hosted-SHA256SUMS` preserve the inspector workspace's original
+description and manifest; that manifest describes the complete reconstructed
+workspace, including extracted files. This packet's root `SHA256SUMS`
+covers the files actually retained here.
 
 ## Hosted explicit-only failure
 
@@ -116,8 +181,11 @@ another agent; they have no compiled acceptance receipt. The decision redirects
 an unnecessary root-nullity search toward the remaining finite forward-carrier
 obligation. All governed claims retain their previous status.
 
-The parent candidate remains unchanged while its hosted acceptance runs. This
-follow-up changes documentation and historical evidence only. Any successful
-hosted result must remain bound to the source revision that produced it.
+The accepted parent candidate remains unchanged. This follow-up changes
+documentation and evidence only; its new commit does not relabel the accepted
+source revision. The final integration revision still needs its own relevant
+CI and review. The broader research workflow was last observed with 19 of 20
+jobs successful and Mojo regressions running; full repository CI success is
+not claimed by this packet.
 
 `SHA256SUMS` pins every other file in this packet.
