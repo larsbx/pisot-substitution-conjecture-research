@@ -1,0 +1,3 @@
+Failed to initialize Crashpad.  Crash reporting will not be available.  Cause: while locating crashpad handler: unable to locate crashpad handler executable
+CLASS_A_ENTRY_DEFECT_COUNTERCONTROL_PASS k=0 t=0 literal_pairs= 106 first_occurrences= 2 second_occurrences= 13 first_target_depth=3 zero_depth=4
+contract-receipt: k=t=0 actual cyclic S18 descendant with both affine defects zero outside H; no H-or-integral-zero entry in one or two steps; productive four-step zero witness; no uniform source-entry claim

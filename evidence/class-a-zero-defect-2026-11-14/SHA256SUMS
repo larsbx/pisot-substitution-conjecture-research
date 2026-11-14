@@ -1,0 +1,15 @@
+83e368c2764c7ce04131d4dddc667778f2012afacf4ae2d77b431b97071076e2  evidence/class-a-zero-defect-2026-11-14/countercontrol-native.log
+6940a57ab580c143a470ce9dfa57b03fcd085f8b569960cca2350b9ec0dbae49  evidence/class-a-zero-defect-2026-11-14/governance.log
+99f714b3065430d4eac1b86c6d10179567f2a38f20abfee922a2e4901630ce50  evidence/class-a-zero-defect-2026-11-14/lean-audit-initial-refusal.log.gz
+f62f05e9965a7796a6bf973f2710a22197424e5d4f9504c19e02f5ea49319585  evidence/class-a-zero-defect-2026-11-14/lean-audit-pass.log
+fa593501045a65e8b7e3595a9a4bc5acfcf6a0b05837cf57f6f8cb825d6f7a79  evidence/class-a-zero-defect-2026-11-14/lean-development-initial-failure.log.gz
+50076befdddc4cb3d7d2a295972c3c34d749c1a084873459df6906f9e13ef7c4  evidence/class-a-zero-defect-2026-11-14/lean-development-ordinal-failure.log.gz
+f47ae2c3be94b926c75055728062a79208d40d5b095ace7492bc5a25b87b81e8  evidence/class-a-zero-defect-2026-11-14/lean-development-pass.log
+af970d13926c46eb910e92e0eb1d64c79cb1c6ccc256c02fb6b855d0b05872d3  evidence/class-a-zero-defect-2026-11-14/literal-and-differential.json
+f774c6093cd696df78f393ca1e0eac29cc09df2ee1b4091cddb7abca4c740870  evidence/class-a-zero-defect-2026-11-14/local-checks.json
+2f98dd33fdecb728d8e51ec8b73bb253707f11cfbd228fa53ad9112308432584  evidence/class-a-zero-defect-2026-11-14/native-paths.log
+81325410cf75c5e678027c3a5159313731cbd4351783e1cbb611ca71cbca6caf  evidence/class-a-zero-defect-2026-11-14/proof-bank.log
+d38549e808a49a312452407a2c4ba3f315ab89feae2abcf2303bccf0e68fb6ec  evidence/class-a-zero-defect-2026-11-14/pytest.log
+18b5191cee9a1664296aa645be22a80bb61bfb4529e5ef87f18df053ae6710e8  evidence/class-a-zero-defect-2026-11-14/source-inputs.sha256
+237e8539a0fa4661972aebb31e409d09dc482d97c62293fffa6bc6fb2bc15232  evidence/class-a-zero-defect-2026-11-14/symbolic.json
+e8d155882db130e44383ec6d1f0767dd421fc94c07aaa3fe2263b786200eea5b  evidence/class-a-zero-defect-2026-11-14/vendored.log

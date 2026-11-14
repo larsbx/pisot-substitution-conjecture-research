@@ -2879,6 +2879,134 @@
       "declaration": "theorem no_equal_row_sums (M : Matrix (Fin 3) (Fin 3) ℚ) (hM : NoEigenvalue M)"
     },
     {
+      "name": "Psc.ClassAZeroDefectEscape.runMark_index",
+      "module": "PscVerif.ClassAZeroDefectEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean",
+      "line": 59,
+      "declaration": "@[simp] theorem runMark_index (n d : ℕ) (a : Fin 3) (j : ℕ)"
+    },
+    {
+      "name": "Psc.ClassAZeroDefectEscape.lastMark_index",
+      "module": "PscVerif.ClassAZeroDefectEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean",
+      "line": 63,
+      "declaration": "@[simp] theorem lastMark_index (n d : ℕ) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.ClassAZeroDefectEscape.positiveMark_before",
+      "module": "PscVerif.ClassAZeroDefectEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean",
+      "line": 73,
+      "declaration": "@[simp] theorem positiveMark_before (n d : ℕ) (a : Fin 3) (j : ℕ)"
+    },
+    {
+      "name": "Psc.ClassAZeroDefectEscape.positiveMark_index",
+      "module": "PscVerif.ClassAZeroDefectEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean",
+      "line": 82,
+      "declaration": "@[simp] theorem positiveMark_index (n d : ℕ) (a : Fin 3) (j : ℕ)"
+    },
+    {
+      "name": "Psc.ClassAZeroDefectEscape.positiveMark_letter_of_lt",
+      "module": "PscVerif.ClassAZeroDefectEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean",
+      "line": 87,
+      "declaration": "theorem positiveMark_letter_of_lt (n d : ℕ) (a : Fin 3) (j : ℕ)"
+    },
+    {
+      "name": "Psc.ClassAZeroDefectEscape.IndexedDigitStep.digitStep",
+      "module": "PscVerif.ClassAZeroDefectEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean",
+      "line": 100,
+      "declaration": "theorem IndexedDigitStep.digitStep {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.ClassAZeroDefectEscape.positive_step",
+      "module": "PscVerif.ClassAZeroDefectEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean",
+      "line": 111,
+      "declaration": "theorem positive_step (n d : ℕ) (_hn : 1 ≤ n) (a b : Fin 3)"
+    },
+    {
+      "name": "Psc.ClassAZeroDefectEscape.interior_source_of_digitStep",
+      "module": "PscVerif.ClassAZeroDefectEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean",
+      "line": 131,
+      "declaration": "theorem interior_source_of_digitStep"
+    },
+    {
+      "name": "Psc.ClassAZeroDefectEscape.IndexedInteriorStep.interiorStep",
+      "module": "PscVerif.ClassAZeroDefectEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean",
+      "line": 177,
+      "declaration": "theorem IndexedInteriorStep.interiorStep {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.ClassAZeroDefectEscape.zero_packet_interior",
+      "module": "PscVerif.ClassAZeroDefectEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean",
+      "line": 182,
+      "declaration": "theorem zero_packet_interior (ℓ : Fin 3 → ℝ) (hpos : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.ClassAZeroDefectEscape.overrun_four_digit_steps",
+      "module": "PscVerif.ClassAZeroDefectEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean",
+      "line": 199,
+      "declaration": "theorem overrun_four_digit_steps (n d : ℕ) (hn : 2 ≤ n) :"
+    },
+    {
+      "name": "Psc.ClassAZeroDefectEscape.overrun_four_steps",
+      "module": "PscVerif.ClassAZeroDefectEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean",
+      "line": 256,
+      "declaration": "theorem overrun_four_steps (n d : ℕ) (hn : 2 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAZeroDefectEscape.overrun_composable_path",
+      "module": "PscVerif.ClassAZeroDefectEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean",
+      "line": 274,
+      "declaration": "theorem overrun_composable_path (n d : ℕ) (hn : 2 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAZeroDefectEscape.runLength_pos",
+      "module": "PscVerif.ClassAZeroDefectEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean",
+      "line": 292,
+      "declaration": "theorem runLength_pos (n d : ℕ) (hn : 2 ≤ n) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.ClassAZeroDefectEscape.run_slice_two_digit_steps",
+      "module": "PscVerif.ClassAZeroDefectEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean",
+      "line": 300,
+      "declaration": "theorem run_slice_two_digit_steps (n d : ℕ) (hn : 2 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAZeroDefectEscape.run_slice_two_steps",
+      "module": "PscVerif.ClassAZeroDefectEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean",
+      "line": 357,
+      "declaration": "theorem run_slice_two_steps (n d : ℕ) (hn : 2 ≤ n)"
+    },
+    {
       "name": "PscVerif.ClassBRegime.segment_difference",
       "module": "PscVerif.ClassBRegime",
       "private": false,
@@ -24940,7 +25068,7 @@
     },
     {
       "source": "docs/proof-ladder.md",
-      "line": 314,
+      "line": 340,
       "statement_heading": "**Imported theorem:** Barge–Štimac–Williams supplies the dense-eventual-coincidence-to-PDS implication in the precise one-dimensional Pisot-family setting checked in manuscript Imported Theorem 5.37. Hence Theorem 5.38 has no G1 hypothesis."
     },
     {
@@ -25506,6 +25634,7 @@
   ],
   "input_digests": {
     "claim_governance.toml": "5642e664f9a79064ffbaf770719cf0acba52accc75fca568711d4b554a08803e",
+    "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "8a4fda395ae5e20a25f52a2525702f82c08f4e75b4160006604a562a4c92de48",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean": "87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean": "e18e726b6bd1c431f9e28500504edd6ffba157415af20069715b9c8f208f3f9b",
@@ -25518,6 +25647,7 @@
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
     "proof/PscVerif/PscVerif/BoundarySeedPath.lean": "bea69cb93d5bcd15b1b88c48062b4404a721908092af1b5f5b42e6184f7abae3",
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
+    "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean": "a50672744789443300b5c7c4b6c0467c941fec5b1d833d7544e62440c729fa58",
     "proof/PscVerif/PscVerif/ClassBRegime.lean": "1c873d0aea0201c3a60486dc90bce00e9f9612019ad72c5344cfa927d93a23e6",
     "proof/PscVerif/PscVerif/CocycleSpectrum.lean": "5937db527975a492a4c45f3bdbc7550b0a1d202dd4e71634d8b35ebcfcc24ed4",
     "proof/PscVerif/PscVerif/CompactNeighborhood.lean": "bfc41eba2f94241d71f329458418d225c773e580b186cc9aac128957991409e4",
@@ -25623,7 +25753,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "0d1236c2b94dda5164f9f4cffc22c81f2e1de58b95c8a33c2199b1c13010a4c1",
+    "proof/PscVerif/PscVerif.lean": "9ddf0a73aaa8ba35784d5f7f4cb653613604786a134da90943bc29e52caddc5f",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

@@ -1,0 +1,20 @@
+PscVerif/ClassAZeroDefectEscape.lean:233:37: warning: Unused tactic linter: `omega` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+PscVerif/ClassAZeroDefectEscape.lean:252:54: warning: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+PscVerif/ClassAZeroDefectEscape.lean:233:37: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+PscVerif/ClassAZeroDefectEscape.lean:252:54: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+PscVerif/ClassAZeroDefectEscape.lean:231:50: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+PscVerif/ClassAZeroDefectEscape.lean:241:50: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+
+return=0 elapsed=21.085 peak_rss_kib=2694876

@@ -1,0 +1,80 @@
+[
+  {
+    "receipt": "pytest.log",
+    "command": [
+      "/workspace/scratch/f53f64a9a0d0/checks-venv/bin/python",
+      "-m",
+      "pytest",
+      "-o",
+      "addopts=",
+      "-q",
+      "tests/test_class_a_zero_defect_escape.py",
+      "tests/test_class_a_zero_return_oracle.py"
+    ],
+    "working_directory": "/workspace/scratch/f53f64a9a0d0/psc",
+    "exit_code": 0
+  },
+  {
+    "receipt": "symbolic.json",
+    "command": [
+      "python",
+      "oracles/python/class_a_zero_defect_symbolic.py"
+    ],
+    "working_directory": "/workspace/scratch/f53f64a9a0d0/psc",
+    "exit_code": 0
+  },
+  {
+    "receipt": "literal-and-differential.json",
+    "command": [
+      "python",
+      "oracles/python/class_a_zero_defect_escape.py",
+      "--native-log",
+      "/workspace/scratch/f53f64a9a0d0/psc/evidence/class-a-zero-defect-2026-11-14/native-paths.log"
+    ],
+    "working_directory": "/workspace/scratch/f53f64a9a0d0/psc",
+    "exit_code": 0
+  },
+  {
+    "receipt": "countercontrol-native.log",
+    "command": [
+      "/workspace/scratch/de1b765a2576/mojo-env/bin/mojo",
+      "run",
+      "-I",
+      ".",
+      "tests/test_class_a_entry_defect.mojo"
+    ],
+    "working_directory": "/workspace/scratch/f53f64a9a0d0/psc/kernel",
+    "exit_code": 0
+  },
+  {
+    "receipt": "governance.log",
+    "command": [
+      "python",
+      "-m",
+      "claim_governance.cli",
+      "--root",
+      "."
+    ],
+    "working_directory": "/workspace/scratch/f53f64a9a0d0/psc",
+    "exit_code": 0
+  },
+  {
+    "receipt": "proof-bank.log",
+    "command": [
+      "python",
+      "tools/make_proof_bank.py",
+      "--check"
+    ],
+    "working_directory": "/workspace/scratch/f53f64a9a0d0/psc",
+    "exit_code": 0
+  },
+  {
+    "receipt": "vendored.log",
+    "command": [
+      "python",
+      "tools/vendoring/check_vendored_sync.py"
+    ],
+    "working_directory": "/workspace/scratch/f53f64a9a0d0/psc",
+    "exit_code": 0
+  }
+]
