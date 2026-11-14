@@ -5,6 +5,8 @@ primitive irreducible nonunit Pisot, but its parameters `k >= 2` already admit
 short strong-coincidence witnesses using an existing repository argument.
 The useful remaining candidate is finite actual forward reachability, subject
 to a further identification check before new machinery is implemented.
+Published trace-bound coverage already supplies PDS for `k=1,2`; the
+substantive infinite-extension question starts at `k>=3`.
 
 This note records a feasibility and literature review. The displayed algebra
 and word identities were hand-derived and independently checked by a second
@@ -116,6 +118,14 @@ to the uncompiled family specialization.
    Pisot substitutions, one unequal-letter swap seed satisfying this complete
    condition suffices for tiling PDS. Finiteness remains a separate obligation.
 
+5. **Akiyama, Gähler and Lee, Determining pure discrete spectrum for some
+   self-affine tilings**, [publisher PDF](https://dmtcs.episciences.org/en/articles/2089/download),
+   Proposition 2.2, pp. 307–309. Primitive irreducible cubic Pisot substitutions
+   of trace at most `2` have PDS, including nonunits. Here `tr(M_k)=k`, so this
+   covers `k=1,2`, but not the infinite `k>=3` range. It does not supply this
+   repository's literal forward-carrier certificate. The source was already
+   recorded in `docs/p1b-catch-up-free-ppvc-2026-10-07.md`, §3.
+
 ## Prior coverage and conjugacy screen
 
 The candidate is not literally one of the inspected catch-up-free A–D or
@@ -136,10 +146,24 @@ For `k>=2`, `f_k(k)<0<f_k(k+1)` and the finite greedy digit sequence of `1`
 is `(k,2,2)`: the first remainder is `beta_k-k`, its next product is
 `beta_k(beta_k-k)=2+2/beta_k`, and the remaining products give digit `2`
 followed by zero remainder.
-The standard beta-substitution is `0->0^k1, 1->002, 2->00`. No conjugacy of
-the candidate to that substitution, including a return-substitution or other
-recoding conjugacy, was established. Shared polynomial data supplies none.
-Prior family coverage must be rechecked if such a map is found.
+The standard beta-substitution is `psi_k=(0^k1,002,00)`. Shared polynomial
+data supplies no conjugacy. There is a precise elementary obstruction to
+literal **one-step nonerasing** word-morphism intertwiners:
+
+- If `h sigma_k = psi_k h`, put `q(a)=last(h(a))`. Then
+  `q L_sigma = L_psi q`, with `L_sigma=(1,2,1)` and `L_psi=(1,2,0)`.
+  The two-cycle `1<->2` forces `q(1)=L_psi^2(q(1))`, impossible because
+  the square of that three-cycle has no fixed point.
+- If `g psi_k = sigma_k g`, put `p(a)=first(g(a))`. Then
+  `p F_psi = F_sigma p`, where `F_psi=(0,0,0)` and `F_sigma=(1,0,0)`.
+  At `0` this forces `p(0)=F_sigma(p(0))`, but `F_sigma` has no fixed point.
+
+Thus a nonerasing one-step factorization `sigma_k=uv`, `psi_k=vu` is also
+impossible: it would give `v sigma_k = psi_k v`. These are hand-checked
+identities, not compiled theorems. They do **not** establish dynamical
+nonconjugacy. Powers, shifted word identities, return substitutions and more
+general symbolic or tiling conjugacies remain unresolved. Prior coverage
+must be rechecked if such an identification is found.
 
 The companion `0->1, 1->02 1^k, 2->001` is a useful stopping control: every
 image ends in `1`, so every inflated nonempty balanced pair has terminal diagonal
@@ -154,6 +178,8 @@ finite actual `ChildNC` reachability from `([0,1],[1,0])`. A parameter-dependent
 finite carrier and bound are sufficient. Its membership proof must include
 the seed and every actual child, with ordered words and complete reduction.
 No new census, fixed parameter sample or resource cap supplies this theorem.
+The clean all-`k>=2` statement may retain `k=2` as a known-PDS control;
+research priority is the unbounded `k>=3` extension.
 
 The existing finite-productivity bridge can then combine finiteness with
 strict exclusion. A spectral consequence would additionally retain the exact

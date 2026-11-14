@@ -14,7 +14,7 @@ and authorizes no automatic merge or promotion.
 | Open integration PR [#560](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/560) | `1ce54efeff586ecda2ec1bd11a2f9c6617b2fb87` | Contains the merged #561–#566 and #568 developments; targets `main`. Integration is not complete acceptance. |
 | Historical failed head of [#569](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/569) | `52614a3b5a7199b1d17cb7a0b435da71e1e80569` | Formal verification failed at the named-carrier consumer after both generated carrier checkers compiled. |
 | Historical named strict exclusion | `bb6cbac16a620da4784f5b30d0a9a242618aef22`; [run 43365333027](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43365333027) | Successful complete original-archive replay at seven semantic endpoints, including exclusion of every finite strict system for each literal fixture. |
-| Current selector-transport repair in [#569](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/569) | `8a6bd5732fefba94ad4fef5df2333065c1302452`; tree `a7dcb3ebf30f3bb686d8f1beb3545dec26df8448` | Uses generic vector-selection lemmas and explicit literal-substitution transport, with the generated checkers' recursion allowance scoped to this one theorem. The preceding explicit-only candidate `84f7b2b7` failed at its selector equality; complete successor acceptance remains pending. |
+| Current selector-transport repair in [#569](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/569) | `8a6bd5732fefba94ad4fef5df2333065c1302452`; tree `a7dcb3ebf30f3bb686d8f1beb3545dec26df8448` | The [full isolated build and compiled audit](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43570948335) passed, including both actual carriers and the production consumer. The original nine-endpoint archive replay remains independently pending. |
 
 The historical strict-exclusion result is preserved at its own revision.
 Neither it nor successful native forward replay certifies a later modified
@@ -69,6 +69,12 @@ The required next checks, in order, are:
    terminal results with exact source identity, and check the final
    integration revision's relevant governance and repository gates.
 
+The repaired source has now passed the first two checks. The original full
+audit artifact confirms 11,322 constants, 7,273 theorems, all 3,597 named
+source proofs and all 41 explicitly tracked declarations; see the
+[exact-source verification packet](../evidence/c4-followup-2026-11-14/README.md).
+Original archive acceptance and final integration remain separate.
+
 Canonical commands and artifact requirements are in the
 [acceptance note](c4-named-termination-acceptance-2026-11-13.md#replay).
 Missing endpoints, wrong literal types, omitted exits, changed orientation,
@@ -100,7 +106,7 @@ must identify which remaining fixture-specific hypothesis it discharges.
 
 ## 4. Next mathematical target after acceptance
 
-A subsequent [four-source family review](c4-parameter-family-stop-go-2026-11-14.md)
+A subsequent [five-source family review](c4-parameter-family-stop-go-2026-11-14.md)
 redirects the first concrete candidate `sigma_k=(1,0 1^k 2,001)`: existing
 prefix-witness lemmas already give the hand-derived strict-exclusion route for
 `k>=2`. Subject to the remaining prior-coverage/conjugacy identification
@@ -108,6 +114,10 @@ check, its useful target is finite actual `ChildNC` reachability from seed
 `01/10`, allowing a parameter-dependent carrier bound. The exact
 word identities, boundary cases, prior-coverage checks and uncompiled scope
 are recorded in that review. No family Lean acceptance is claimed.
+The trace-bound literature already covers PDS for `k=1,2`; retain `k=2` as
+a control and focus the substantive infinite extension on `k>=3`. Direct
+one-step nonerasing beta intertwiners are excluded by endpoint cycles, while
+powers and more general recodings remain unresolved.
 
 The broader geometric programme below remains available for families without
 such an already applicable coincidence mechanism.
@@ -145,6 +155,11 @@ and then the stated PDS conclusion. The alternate
 [C4 target (#461)](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/461)
 still needs a uniform theorem on a supplied complete strict PIP component;
 global finite-BPA extraction is a separate obligation where required.
+
+For a direct universal attack, #84 ranks BH first, then residual A1′;
+BH alone also supplies the stated G1 implication. Issue #84 tracks their
+assembly rather than a third independent proof search. The narrower named
+and parameter-family work above does not replace either universal premise.
 
 The two-fixture chain supplies none of these universal quantifiers. General
 A1′, BH, C4, G1 and PSC therefore retain their existing open status.

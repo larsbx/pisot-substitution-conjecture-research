@@ -1,0 +1,26 @@
+test_current_parser_and_nine_proof_receipt_contracts (__main__.EndpointContractTests.test_current_parser_and_nine_proof_receipt_contracts) ... ok
+test_each_semantic_proof_is_required (__main__.EndpointContractTests.test_each_semantic_proof_is_required) ... ok
+test_new_full_log_markers_required_once_after_global_acknowledgement (__main__.EndpointContractTests.test_new_full_log_markers_required_once_after_global_acknowledgement) ... ok
+test_old_fixture_and_axiom_guards_remain (__main__.EndpointContractTests.test_old_fixture_and_axiom_guards_remain) ... ok
+test_old_seven_proof_contract_refused_even_with_new_flags (__main__.EndpointContractTests.test_old_seven_proof_contract_refused_even_with_new_flags) ... ok
+test_termination_fixture_results_cannot_be_missing_partial_or_reversed (__main__.EndpointContractTests.test_termination_fixture_results_cannot_be_missing_partial_or_reversed) ... ok
+test_nonterminal_or_failed_runs_never_pass (__main__.HostedVerdictTests.test_nonterminal_or_failed_runs_never_pass) ... ok
+test_wrong_head_attempt_and_unsuccessful_critical_step_refused (__main__.HostedVerdictTests.test_wrong_head_attempt_and_unsuccessful_critical_step_refused) ... ok
+test_each_endpoint_flag_required_independently (__main__.IndependentWrongTypeControlTests.test_each_endpoint_flag_required_independently) ... ok
+test_each_endpoint_source_and_log_required_independently (__main__.IndependentWrongTypeControlTests.test_each_endpoint_source_and_log_required_independently) ... ok
+test_independent_control_file_contract_only (__main__.IndependentWrongTypeControlTests.test_independent_control_file_contract_only) ... ok
+test_old_control_sources_logs_and_compiled_fixture_remain_required (__main__.IndependentWrongTypeControlTests.test_old_control_sources_logs_and_compiled_fixture_remain_required) ... ok
+test_other_failure_or_combined_failure_cannot_credit_an_endpoint (__main__.IndependentWrongTypeControlTests.test_other_failure_or_combined_failure_cannot_credit_an_endpoint) ... ok
+test_wrong_or_combined_control_source_is_refused (__main__.IndependentWrongTypeControlTests.test_wrong_or_combined_control_source_is_refused) ... ok
+test_all_37_named_theorems_match_the_exact_candidate_proof_bank (__main__.SourceAndDeclarationTests.test_all_37_named_theorems_match_the_exact_candidate_proof_bank) ... ok
+test_duplicate_wrong_owner_wrong_kind_and_private_inventory_refused (__main__.SourceAndDeclarationTests.test_duplicate_wrong_owner_wrong_kind_and_private_inventory_refused) ... ok
+test_each_compiled_explicit_declaration_required (__main__.SourceAndDeclarationTests.test_each_compiled_explicit_declaration_required) ... ok
+test_each_explicit_static_declaration_required (__main__.SourceAndDeclarationTests.test_each_explicit_static_declaration_required) ... ok
+test_each_metadata_path_required_and_duplicates_and_extras_refused (__main__.SourceAndDeclarationTests.test_each_metadata_path_required_and_duplicates_and_extras_refused) ... ok
+test_exact_replay_manifest_matches_actual_candidate_producer (__main__.SourceAndDeclarationTests.test_exact_replay_manifest_matches_actual_candidate_producer) ... ok
+test_fresh_source_metadata_and_all_35_git_bound_bytes (__main__.SourceAndDeclarationTests.test_fresh_source_metadata_and_all_35_git_bound_bytes) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.148s
+
+OK

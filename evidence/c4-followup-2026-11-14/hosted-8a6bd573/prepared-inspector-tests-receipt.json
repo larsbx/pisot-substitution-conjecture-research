@@ -1,0 +1,13 @@
+{
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-14T07:29:13.048691+00:00",
+  "log_sha256": "b7766dd42551160687f1cf55faa0cef193428fcfb4362ea5a9cd02a6d2405973",
+  "metadata_path": "/workspace/scratch/2880252a6b94/psc-run/source-metadata-8a6bd573.json",
+  "metadata_sha256": "b9e8f9b291f49e22491f21e04bfceff75a1be967b32bb3644e4d7d3483c2631e",
+  "schema": "psc-prepared-inspector-test-receipt-v1",
+  "scope": "Inspector/source metadata protocol tests only; no compiled or hosted theorem acceptance.",
+  "source_revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+  "source_tree": "a7dcb3ebf30f3bb686d8f1beb3545dec26df8448",
+  "started_at_utc": "2026-11-14T07:29:12.763692+00:00",
+  "test_script_sha256": "ba878e56c383e86bfb5bd9fa3b3aa91c1ae882d2edf09e71ee137989911f54c5"
+}
