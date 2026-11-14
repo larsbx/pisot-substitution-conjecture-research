@@ -1,3 +1,16 @@
-3fe2241d8e14b7bee123581d69186d5d73d05d857158692ee0dca19a166df3c7  ./README.md
+67fc306a97ce59c9057442b0fd204136cb83327c6056ee773d4febedb60f41c5  ./README.md
+700665aba6e08d7f56dafbde8d0600057dc3aa93008218f2c8ff7f3a9cdc912e  ./hosted-8a6bd573/full-job-log-excluded-BOM-line.txt
+1034974b0ff6ef92a33dc90649aa4782adaf9941fab1c3ba5e670f24b41dc265  ./hosted-8a6bd573/full-job-log-normalization-refusal.json
+85ea0c83fe5d282a0f0cee19eb8188ff64d9ecf3b4ec397405880d5c0485b779  ./hosted-8a6bd573/full-lean-artifact.zip
+30f09df52a03baa977d19915a7e3fcfaa8e1c75d53ffcb722c0819f9d9dd5af1  ./hosted-8a6bd573/full-lean-artifacts-metadata.json
+484436d11bfb537f1a6ee7a589ac4267bd4a32f450b30909f8efcb74259cd98c  ./hosted-8a6bd573/full-lean-download-receipt.json
+b497d9dca4e791473b33fd197bc54cba7f8470c1049f2eec55a1abf2344fc0b0  ./hosted-8a6bd573/full-lean-inspection.json
+f2abbc27cd3abd6e5519b5b31047d445fc343bf846fe52a24fd5290e053f9d3f  ./hosted-8a6bd573/full-lean-job.log
+f7512ba6f4c079747de8d04adedde7bda457a19a53d6c332118cb3c4b3d986ca  ./hosted-8a6bd573/full-lean-jobs-metadata.json
+bc3b24837f70ae415570e18cb3da64fe2dd85117661b01754f476aa4c4dcad37  ./hosted-8a6bd573/full-lean-run-metadata.json
+55bcd4707634321b2413a1d31b160dab8c0b17dab709ab205010969da6a90db5  ./hosted-8a6bd573/prepared-inspector-tests-receipt.json
+b7766dd42551160687f1cf55faa0cef193428fcfb4362ea5a9cd02a6d2405973  ./hosted-8a6bd573/prepared-inspector-tests.log
+4d9f894b3cdacf7369309b410479054ee5537ecf7aec9861290ed4d9ea2535df  ./hosted-8a6bd573/regenerate-termination-source-metadata.py
+b9e8f9b291f49e22491f21e04bfceff75a1be967b32bb3644e4d7d3483c2631e  ./hosted-8a6bd573/source-metadata-8a6bd573.json
 b697a568d0d945611c6fc40b76b334d0f1029962b6ff3df3f1b5b4d0472f6d57  ./hosted-failure-84f7b2b7.tar.gz
 c348ffaa270f109754c783ce3c86c69500feb45355f621074e08f0c49b324b40  ./local-diagnostics.tar.gz

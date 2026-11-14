@@ -9,6 +9,42 @@ preserved below. The current successor is
 `a7dcb3ebf30f3bb686d8f1beb3545dec26df8448`. No compiled theorem is accepted
 by the historical records in this packet.
 
+## Exact-source full Lean acceptance
+
+The successor's [full isolated Lean run
+43570948335](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43570948335),
+job `132374993676`, attempt 1, completed successfully at the exact `8a6bd573`
+revision and `a7dcb3eb` tree above. The complete 9,045-job build compiled both
+actual carrier modules and `NamedForwardCarrier`. The compiled audit reports
+11,322 constants and 7,273 theorems, reaches all 3,597 named source proofs,
+and matches all 41 explicit declarations (37 theorems and 4 definitions).
+The axiom allowlist remains `Classical.choice`, `Quot.sound`, `propext`.
+
+The original audit artifact `14104782130` is preserved unchanged in
+`hosted-8a6bd573/full-lean-artifact.zip`; its SHA-256 is
+`85ea0c83fe5d282a0f0cee19eb8188ff64d9ecf3b4ec397405880d5c0485b779`.
+Raw run/jobs/artifact metadata, the full job log, verified transport receipt,
+and `full-lean-inspection.json` bind that outcome to this exact source and
+attempt. The original audit log was parsed without normalization by the
+unchanged repository proof-bank parser. No artifact code was executed.
+
+A preliminary attempt to parse a timestamp-stripped GitHub wrapper log
+missed one line because a Unicode BOM preceded its timestamp. That local
+postprocessing refusal and the affected original line are retained. They
+are distinct from the successful hosted audit; parsing the untouched
+artifact transcript resolves the discrepancy without changing the parser.
+
+Fresh `source-metadata-8a6bd573.json`, its regeneration helper, and the
+21 passing prepared-inspector protocol tests are retained in the same
+directory. They bind source/protocol checks; the successful original audit
+artifact supplies the compiled result.
+
+The separate [original-archive run
+43570948106](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43570948106)
+still requires terminal success and inspection of both original fixtures at
+all nine semantic endpoints. The full Lean result alone does not assert
+that original archive acceptance.
+
 ## Hosted explicit-only failure
 
 The original full-isolated Lean run

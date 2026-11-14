@@ -1,0 +1,696 @@
+{
+  "allowed_axioms_for_later_compiled_audit": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "changed_nonproof_sources": [],
+  "counts": {
+    "candidate_named_proof_inventory": 3597,
+    "explicit_declarations": 41,
+    "explicit_definitions": 4,
+    "explicit_theorems": 37,
+    "source_paths": 35
+  },
+  "created_at_utc": "2026-11-14T07:29:03.422999+00:00",
+  "derivation": {
+    "helper_sha256": "4d9f894b3cdacf7369309b410479054ee5537ecf7aec9861290ed4d9ea2535df",
+    "inspector_path": "evidence/c4-named-termination-2026-11-13/prepared-inspector/inspect-hosted-concrete-termination-audit.py",
+    "inspector_sha256": "fb9805719e3966383d8b28ffd43342611f26ed51cce6ec6290d7fe0a1f424ab3",
+    "source_declarations": "Fresh lexical source inventory cross-checked against candidate proof bank",
+    "source_identification": "Explicit expected commit/tree; working bytes checked against Git blobs"
+  },
+  "full_hosted_acceptance_claimed": false,
+  "human_review_performed": false,
+  "kernel_acceptance_claimed": false,
+  "lean_toolchain": "leanprover/lean4:v4.34.0-rc2",
+  "mathlib_revision": "4edb0dbaa3b3cf729d86d1e2f035474d5ae2ac09",
+  "modules": [
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/PscVerif/FiniteProductivity.lean",
+      "declarations": [
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 107,
+          "name": "Psc.FiniteProductivity.fibonacci_terminates",
+          "opening": "theorem fibonacci_terminates : TerminatesWithCoincidence fibSubst tmPair := by",
+          "owner": "PscVerif.FiniteProductivity",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 78,
+          "name": "Psc.FiniteProductivity.infinite_reachable_of_not_productive",
+          "opening": "theorem infinite_reachable_of_not_productive",
+          "owner": "PscVerif.FiniteProductivity",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 27,
+          "name": "Psc.FiniteProductivity.isBlock_of_reachableNC",
+          "opening": "theorem isBlock_of_reachableNC (hT : IsBlock T)",
+          "owner": "PscVerif.FiniteProductivity",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 86,
+          "name": "Psc.FiniteProductivity.not_terminates_iff_infinite_reachable",
+          "opening": "theorem not_terminates_iff_infinite_reachable",
+          "owner": "PscVerif.FiniteProductivity",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 42,
+          "name": "Psc.FiniteProductivity.productive_of_finite_reachable",
+          "opening": "theorem productive_of_finite_reachable",
+          "owner": "PscVerif.FiniteProductivity",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 35,
+          "name": "Psc.FiniteProductivity.reachableNC_subset",
+          "opening": "theorem reachableNC_subset (hTU : Relation.ReflTransGen (ChildNC s) T U) :",
+          "owner": "PscVerif.FiniteProductivity",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 69,
+          "name": "Psc.FiniteProductivity.terminates_iff_finite_reachable",
+          "opening": "theorem terminates_iff_finite_reachable",
+          "owner": "PscVerif.FiniteProductivity",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 58,
+          "name": "Psc.FiniteProductivity.terminates_of_finite_reachable",
+          "opening": "theorem terminates_of_finite_reachable",
+          "owner": "PscVerif.FiniteProductivity",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 95,
+          "name": "Psc.FiniteProductivity.thueMorse_finite_nonproductive",
+          "opening": "theorem thueMorse_finite_nonproductive :",
+          "owner": "PscVerif.FiniteProductivity",
+          "private": false
+        }
+      ],
+      "module": "PscVerif.FiniteProductivity",
+      "path": "proof/PscVerif/PscVerif/FiniteProductivity.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "cc64e649a03c9ef0e5668fc051d679ffd2ea538135bbc6fc5974c2dc37fb13d8",
+      "source_bytes": 5384,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/PscVerif/NamedFiniteProductivity.lean",
+      "declarations": [
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 45,
+          "name": "Psc.ArchivedPayload.Packet.infinite_reachable_of_not_productive",
+          "opening": "theorem Packet.infinite_reachable_of_not_productive (p : Packet) (h : p.Valid)",
+          "owner": "PscVerif.NamedFiniteProductivity",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 53,
+          "name": "Psc.ArchivedPayload.Packet.not_terminates_iff_infinite_reachable",
+          "opening": "theorem Packet.not_terminates_iff_infinite_reachable (p : Packet) (h : p.Valid)",
+          "owner": "PscVerif.NamedFiniteProductivity",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 21,
+          "name": "Psc.ArchivedPayload.Packet.productive_of_finite_reachable",
+          "opening": "theorem Packet.productive_of_finite_reachable (p : Packet) (h : p.Valid)",
+          "owner": "PscVerif.NamedFiniteProductivity",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 61,
+          "name": "Psc.ArchivedPayload.Packet.seed_terminates_of_finite_reachable",
+          "opening": "theorem Packet.seed_terminates_of_finite_reachable (p : Packet) (h : p.Valid)",
+          "owner": "PscVerif.NamedFiniteProductivity",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 37,
+          "name": "Psc.ArchivedPayload.Packet.terminates_iff_finite_reachable",
+          "opening": "theorem Packet.terminates_iff_finite_reachable (p : Packet) (h : p.Valid)",
+          "owner": "PscVerif.NamedFiniteProductivity",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 29,
+          "name": "Psc.ArchivedPayload.Packet.terminates_of_finite_reachable",
+          "opening": "theorem Packet.terminates_of_finite_reachable (p : Packet) (h : p.Valid)",
+          "owner": "PscVerif.NamedFiniteProductivity",
+          "private": false
+        }
+      ],
+      "module": "PscVerif.NamedFiniteProductivity",
+      "path": "proof/PscVerif/PscVerif/NamedFiniteProductivity.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "4f8558a777f6d4ca3871aa8adeb1862488a06b78d89a1513cef3074bd7bc91c0",
+      "source_bytes": 3608,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/PscVerif/NamedForwardCarrier.lean",
+      "declarations": [
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 138,
+          "name": "Psc.ArchivedPayload.Packet.reachable_terminates",
+          "opening": "theorem Packet.reachable_terminates (p : Packet) (hp : p.Valid)",
+          "owner": "PscVerif.NamedForwardCarrier",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 116,
+          "name": "Psc.ArchivedPayload.Packet.reachable_terminates_of_forwardCarrier",
+          "opening": "theorem Packet.reachable_terminates_of_forwardCarrier (p : Packet) (hp : p.Valid)",
+          "owner": "PscVerif.NamedForwardCarrier",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 148,
+          "name": "Psc.ArchivedPayload.Packet.seed_terminates",
+          "opening": "theorem Packet.seed_terminates (p : Packet) (hp : p.Valid)",
+          "owner": "PscVerif.NamedForwardCarrier",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 129,
+          "name": "Psc.ArchivedPayload.Packet.seed_terminates_of_forwardCarrier",
+          "opening": "theorem Packet.seed_terminates_of_forwardCarrier (p : Packet) (hp : p.Valid)",
+          "owner": "PscVerif.NamedForwardCarrier",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 106,
+          "name": "Psc.ArchivedPayload.Packet.terminates_of_forwardCarrier",
+          "opening": "theorem Packet.terminates_of_forwardCarrier (p : Packet) (hp : p.Valid)",
+          "owner": "PscVerif.NamedForwardCarrier",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "declaration",
+          "line": 29,
+          "name": "Psc.NamedForwardCarrier.check",
+          "opening": "def check (fixture : Fin 2) (states : List (List (Fin 3) \u00d7 List (Fin 3))) : Bool :=",
+          "owner": "PscVerif.NamedForwardCarrier",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 73,
+          "name": "Psc.NamedForwardCarrier.check_checkedStates",
+          "opening": "theorem check_checkedStates (fixture : Fin 2) :",
+          "owner": "PscVerif.NamedForwardCarrier",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "declaration",
+          "line": 64,
+          "name": "Psc.NamedForwardCarrier.checkedStates",
+          "opening": "noncomputable def checkedStates (fixture : Fin 2) : List (List (Fin 3) \u00d7 List (Fin 3)) :=",
+          "owner": "PscVerif.NamedForwardCarrier",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 90,
+          "name": "Psc.NamedForwardCarrier.finite_bpaStatesNC",
+          "opening": "theorem finite_bpaStatesNC (fixture : Fin 2) :",
+          "owner": "PscVerif.NamedForwardCarrier",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 41,
+          "name": "Psc.NamedForwardCarrier.finite_bpaStatesNC_of_check",
+          "opening": "theorem finite_bpaStatesNC_of_check (fixture : Fin 2)",
+          "owner": "PscVerif.NamedForwardCarrier",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 48,
+          "name": "Psc.NamedForwardCarrier.finite_reachable_of_mem",
+          "opening": "theorem finite_reachable_of_mem (fixture : Fin 2)",
+          "owner": "PscVerif.NamedForwardCarrier",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 56,
+          "name": "Psc.NamedForwardCarrier.fixture0Substitution_eq",
+          "opening": "theorem fixture0Substitution_eq :",
+          "owner": "PscVerif.NamedForwardCarrier",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 60,
+          "name": "Psc.NamedForwardCarrier.fixture1Substitution_eq",
+          "opening": "theorem fixture1Substitution_eq :",
+          "owner": "PscVerif.NamedForwardCarrier",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 33,
+          "name": "Psc.NamedForwardCarrier.valid_of_check",
+          "opening": "theorem valid_of_check (fixture : Fin 2)",
+          "owner": "PscVerif.NamedForwardCarrier",
+          "private": false
+        }
+      ],
+      "module": "PscVerif.NamedForwardCarrier",
+      "path": "proof/PscVerif/PscVerif/NamedForwardCarrier.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "d046dcf83ae5889ffe0525c7d1b2de9429502d848e30c5c6ae85acc0195e7783",
+      "source_bytes": 7835,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/PscVerif/NamedStrictExclusion.lean",
+      "declarations": [
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 142,
+          "name": "Psc.ArchivedPayload.Packet.no_bpaStrictComponent",
+          "opening": "theorem Packet.no_bpaStrictComponent (p : Packet) (h : p.Valid)",
+          "owner": "PscVerif.NamedStrictExclusion",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 134,
+          "name": "Psc.ArchivedPayload.Packet.no_strictComponent",
+          "opening": "theorem Packet.no_strictComponent (p : Packet) (h : p.Valid)",
+          "owner": "PscVerif.NamedStrictExclusion",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 123,
+          "name": "Psc.ArchivedPayload.Packet.no_strictSystem",
+          "opening": "theorem Packet.no_strictSystem (p : Packet) (h : p.Valid)",
+          "owner": "PscVerif.NamedStrictExclusion",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 113,
+          "name": "Psc.ArchivedPayload.Packet.no_strictSystem_of_measure",
+          "opening": "theorem Packet.no_strictSystem_of_measure (p : Packet) (h : p.Valid)",
+          "owner": "PscVerif.NamedStrictExclusion",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 60,
+          "name": "Psc.NamedStrictExclusion.carrierOverlap_subset_archivedRoots",
+          "opening": "theorem carrierOverlap_subset_archivedRoots (f : Fin 2)",
+          "owner": "PscVerif.NamedStrictExclusion",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 92,
+          "name": "Psc.NamedStrictExclusion.exists_probabilityHaar",
+          "opening": "theorem exists_probabilityHaar (f : Fin 2) :",
+          "owner": "PscVerif.NamedStrictExclusion",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 34,
+          "name": "Psc.NamedStrictExclusion.intersection_eq_archivedRoot",
+          "opening": "theorem intersection_eq_archivedRoot {G : Type*} [AddCommGroup G]",
+          "owner": "PscVerif.NamedStrictExclusion",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 75,
+          "name": "Psc.NamedStrictExclusion.no_strictSystem_of_roots_null",
+          "opening": "theorem no_strictSystem_of_roots_null (f : Fin 2)",
+          "owner": "PscVerif.NamedStrictExclusion",
+          "private": false
+        }
+      ],
+      "module": "PscVerif.NamedStrictExclusion",
+      "path": "proof/PscVerif/PscVerif/NamedStrictExclusion.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "80ddbe716a339bb19705de5ddb0914c5cb4b7fb75dbc3ff812df6685855f551a",
+      "source_bytes": 6813,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/PscVerif/NamedStrictExclusionControls.lean",
+      "declarations": [
+        {
+          "expected_compiled_kind": "declaration",
+          "line": 11,
+          "name": "Psc.NamedStrictExclusionControls.diagonalTiles",
+          "opening": "def diagonalTiles (a : Fin 3) : Set \u2124 := if a = 0 then {0} else \u2205",
+          "owner": "PscVerif.NamedStrictExclusionControls",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 15,
+          "name": "Psc.NamedStrictExclusionControls.dropping_distinct_labels_counterexample",
+          "opening": "theorem dropping_distinct_labels_counterexample :",
+          "owner": "PscVerif.NamedStrictExclusionControls",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "declaration",
+          "line": 24,
+          "name": "Psc.NamedStrictExclusionControls.omittedRootTiles",
+          "opening": "def omittedRootTiles (a : Fin 3) : Set \u2124 := if a = 0 then \u2205 else {0}",
+          "owner": "PscVerif.NamedStrictExclusionControls",
+          "private": false
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 28,
+          "name": "Psc.NamedStrictExclusionControls.omitting_root_counterexample",
+          "opening": "theorem omitting_root_counterexample :",
+          "owner": "PscVerif.NamedStrictExclusionControls",
+          "private": false
+        }
+      ],
+      "module": "PscVerif.NamedStrictExclusionControls",
+      "path": "proof/PscVerif/PscVerif/NamedStrictExclusionControls.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "e5e5c2a1fbfb87f256ae71a645f9d863ad03da63b6cadaed2e4a5da15265d1d7",
+      "source_bytes": 1555,
+      "working_bytes_match_commit": true
+    }
+  ],
+  "repository": "larsbx/pisot-substitution-conjecture-research",
+  "reviewed_repository_dependencies_and_audit_sources": [
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/docs/c4-named-strict-exclusion.md",
+      "path": "docs/c4-named-strict-exclusion.md",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "4c3f660e7447895485681858d8af2de91be496e0df4610a2aa905c929dab42bd",
+      "source_bytes": 9209,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/docs/side-notes-ledger.md",
+      "path": "docs/side-notes-ledger.md",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "988fe80be46d237d6f2b078714c4d11bda307ca27e2b50b8b91cf19fa3f2145a",
+      "source_bytes": 562741,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/evidence/c4-finite-cut-count-2026-11-12/gate/inspect-count-audit.py",
+      "path": "evidence/c4-finite-cut-count-2026-11-12/gate/inspect-count-audit.py",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "f5e61978cdd108ce70a3151d460f8071fb39909a8a6c5c83edf8376e7a4e7478",
+      "source_bytes": 17448,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/ProofBankAudit.lean",
+      "path": "proof/PscVerif/ProofBankAudit.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
+      "source_bytes": 1689,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/PscVerif.lean",
+      "path": "proof/PscVerif/PscVerif.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "3ffc0b8857d74624deefb2eef716adb1523ef9ab78900bdae2fc7520eaf25f91",
+      "source_bytes": 4276,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean",
+      "path": "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025",
+      "source_bytes": 14665,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/PscVerif/ArchivedPayloadConsumer.lean",
+      "path": "proof/PscVerif/PscVerif/ArchivedPayloadConsumer.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "39768a54a2c022ef460e08dbd1879177fdf598bb8645702233264738ddf43e49",
+      "source_bytes": 3739,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+      "path": "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "fba7b08223e333d9380ff1e090ad85cad6aadbe8eadd1a2dde8d6b92bfcf0689",
+      "source_bytes": 12512,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/PscVerif/ForwardCarrier.lean",
+      "path": "proof/PscVerif/PscVerif/ForwardCarrier.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "df91e154ecb52a909c2ec7c06af1813f99ff2b38bd7053fb1df78928741c890e",
+      "source_bytes": 5589,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/PscVerif/MadicHaar.lean",
+      "path": "proof/PscVerif/PscVerif/MadicHaar.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "a116c88bb856771b74ff7d5111e797c58216ce49057c99096ed5ddac3c2019a5",
+      "source_bytes": 3913,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/PscVerif/MadicResidue.lean",
+      "path": "proof/PscVerif/PscVerif/MadicResidue.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "c7ff8430cb77c335f11478861584baea4129658b35f4fc67bf0c2b8509d50f6d",
+      "source_bytes": 13453,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/PscVerif/NamedCutNeighborhood.lean",
+      "path": "proof/PscVerif/PscVerif/NamedCutNeighborhood.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "e9d6a9e1b05721fa3cc8b634d3ecd6cdb604d8b63277d42b5ba34d70327bc57e",
+      "source_bytes": 14946,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "path": "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "5026901eb6a7f9c2500f38f7835aa96a235c6eb0e5722da1084a45fb83b2b905",
+      "source_bytes": 41420,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "path": "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "a49d8fa4146b534cff95259beab31a06903088184676704c239eb11b98cc4c0a",
+      "source_bytes": 110956,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/PscVerif/NamedForwardCarrierWords0.lean",
+      "path": "proof/PscVerif/PscVerif/NamedForwardCarrierWords0.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "6583596c0d3d21a11a3e283954ec4c8ad72572969155e406bb2cd6f6baceb72a",
+      "source_bytes": 610729,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/PscVerif/NamedForwardCarrierWords1.lean",
+      "path": "proof/PscVerif/PscVerif/NamedForwardCarrierWords1.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "a44fee6794080f4f0cde90167c862476b6022115a7e3120078dff042c153702b",
+      "source_bytes": 405608,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/PscVerif/NamedFundamentalCell.lean",
+      "path": "proof/PscVerif/PscVerif/NamedFundamentalCell.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "d146d742f5c0767de9f569fc4e3570569f9a5c6d6f9503ec41e9cfdb8e5c03e4",
+      "source_bytes": 8452,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/PscVerif/NamedPositiveOverlap.lean",
+      "path": "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "ba4554df8e4339d5c61f1da910ca53177a9610bfe78ceb0cc8f062950b1e51fc",
+      "source_bytes": 7929,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "path": "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "e6cbff61401e8f5109bc0c8654e77eca155e1186286703e76f4d55044ebd220e",
+      "source_bytes": 9695,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/PscVerif/NamedProductHaar.lean",
+      "path": "proof/PscVerif/PscVerif/NamedProductHaar.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "e398c9b19b65cb794034138490453d35bfdc4dab256473318daca75528b9ac14",
+      "source_bytes": 6593,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/PscVerif/OccurrencePiece.lean",
+      "path": "proof/PscVerif/PscVerif/OccurrencePiece.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "304a9f42f3fea45cac2c752ef0b61cfd6894e78967d191803c723233d63e9ec0",
+      "source_bytes": 12988,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "path": "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "8552eb3d7584b6b467ae6f990a8204490ae9b543b38cecb243cd8576c58dd248",
+      "source_bytes": 20210,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/PscVerif/OverlapContraction.lean",
+      "path": "proof/PscVerif/PscVerif/OverlapContraction.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "09dd1ccc90a7245211336996f7da8b1276e86cab60dd1cc0b5471e3d7f6a2a30",
+      "source_bytes": 13551,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/PscVerif/StrictSystem.lean",
+      "path": "proof/PscVerif/PscVerif/StrictSystem.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "657d6c9f4041b04a2e478f19dea2ecb813952caf2fe1455789778306ad6c3a48",
+      "source_bytes": 162938,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/PscVerif/lake-manifest.json",
+      "path": "proof/PscVerif/lake-manifest.json",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
+      "source_bytes": 3179,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/proof/proof-bank.json",
+      "path": "proof/proof-bank.json",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "be267fb8f6fb6cf7984c73f3dee7b3d1fab28c5a84b49585f402abf09dff5fc7",
+      "source_bytes": 1286874,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/tests/fixtures/c4_archived_bad_binding.lean",
+      "path": "tests/fixtures/c4_archived_bad_binding.lean",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "fa8fa63a180a24370559cfe30eff268fae43f3936934a26d03c1b539169e57fa",
+      "source_bytes": 1335,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/tools/check_lean.sh",
+      "path": "tools/check_lean.sh",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "eb63ce6fb0b837eee1208b3d47e759bcf8b3617b1374685a8850e48f283cba8d",
+      "source_bytes": 3438,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/tools/make_proof_bank.py",
+      "path": "tools/make_proof_bank.py",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8",
+      "source_bytes": 25134,
+      "working_bytes_match_commit": true
+    },
+    {
+      "canonical_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/8a6bd5732fefba94ad4fef5df2333065c1302452/tools/replay_archived_payload_lean.py",
+      "path": "tools/replay_archived_payload_lean.py",
+      "repository": "larsbx/pisot-substitution-conjecture-research",
+      "revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "sha256": "0ba2b4e0cd0ab2cb06d714e88a919fc4f8aef363b067d5bdc66a40ee20e3fbb9",
+      "source_bytes": 20513,
+      "working_bytes_match_commit": true
+    }
+  ],
+  "schema": "psc-concrete-termination-source-binding-v1",
+  "scope": "Fresh mechanical source binding derived from the explicit clean committed candidate. No earlier receipt is relabeled; no compilation or hosted acceptance is supplied by this metadata.",
+  "source_binding_only": true,
+  "subject_revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+  "subject_tree": "a7dcb3ebf30f3bb686d8f1beb3545dec26df8448"
+}
