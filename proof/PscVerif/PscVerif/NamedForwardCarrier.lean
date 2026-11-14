@@ -70,11 +70,12 @@ identity, without an incidence-only or normalized-state identification. -/
 theorem check_checkedStates (fixture : Fin 2) :
     check fixture (checkedStates fixture) = true := by
   fin_cases fixture
-  · simp only [check, checkedStates, substitution, Matrix.cons_val_zero]
-    exact Psc.GeneratedForwardCarrier.fixture0ForwardCheck
-  · simp only [check, checkedStates, substitution, Matrix.cons_val_one,
-      Matrix.cons_val_zero]
-    exact Psc.GeneratedForwardCarrier.fixture1ForwardCheck
+  · have hstates : checkedStates 0 = Psc.GeneratedForwardCarrier.fixture0States := rfl
+    exact (congrArg₂ Psc.ForwardCarrier.check fixture0Substitution_eq hstates.symm).symm.trans
+      Psc.GeneratedForwardCarrier.fixture0ForwardCheck
+  · have hstates : checkedStates 1 = Psc.GeneratedForwardCarrier.fixture1States := rfl
+    exact (congrArg₂ Psc.ForwardCarrier.check fixture1Substitution_eq hstates.symm).symm.trans
+      Psc.GeneratedForwardCarrier.fixture1ForwardCheck
 
 /-- The concrete forward certificate supplies named seed-generated
 finiteness independently of any inverse-overlap archive. -/

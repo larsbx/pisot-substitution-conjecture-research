@@ -1,5 +1,29 @@
 # Acceptance of the two named termination consumers
 
+## Production follow-up — November 14
+
+The selector-only repair recorded below was published in PR #569 at
+`52614a3b5a7199b1d17cb7a0b435da71e1e80569`. Its
+[full Lean run](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43492499736)
+and [original-archive run](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43492499714)
+both compiled the two actual generated carriers, then failed at
+`NamedForwardCarrier.lean:77:10` with maximum recursion depth. The preceding
+focused probe's empty unused fixture-0 slot did not establish production
+acceptance. The inherited failure at the #560 source remains a failure.
+
+The follow-up proof transports each existing `fixtureNForwardCheck` through
+the literal substitution equality and a local equality selecting its actual
+carrier. `congrArg₂` and equality transitivity make that transport explicit.
+It preserves both production carriers, theorem statements, generated checker
+proofs, the declaration inventory and default consumer recursion settings.
+No new mathematical contract or axiom is introduced.
+
+Actual two-fixture production compilation, the complete isolated compiled
+audit and both original archives' nine-endpoint replay remain required.
+The [current next-steps note](psc-next-steps-2026-11-14.md) distinguishes the
+completed mathematical components from these outstanding acceptance gates.
+The remainder of this note preserves the earlier source and probe history.
+
 This continuation verifies the existing concrete forward-carrier and
 archived-payload composition for `1/021/001` and `1/012/001`. It introduces
 no new mathematical predicate. The forward-carrier and finite-productivity
