@@ -1,0 +1,75 @@
+{
+  "archive_artifact_bytes": 19278227,
+  "archive_artifact_id": 14105484504,
+  "archive_artifact_sha256": "d948ee6722572efa3d6d33183bcfc80778ec1c7a35b8ec60213b302803e4123f",
+  "archive_extracted_files": 36,
+  "artifact_code_executed": false,
+  "both_literal_fixtures_verified": true,
+  "broad_jobs_snapshot": {
+    "not_success": [
+      {
+        "conclusion": null,
+        "id": 132375058402,
+        "name": "mojo-kernel",
+        "status": "in_progress"
+      }
+    ],
+    "snapshot_observed_at_utc": "2026-11-14T08:29:04Z",
+    "success": 19,
+    "total_count": 20
+  },
+  "explicit_definitions_matched": 4,
+  "explicit_theorems_matched": 37,
+  "full_lean_job_id": 132374993676,
+  "full_lean_run_id": 43570948335,
+  "full_lean_verdict": "success",
+  "global_audit": {
+    "acknowledgement": "Lean axiom audit: 11322 declarations, 7273 theorems; all named proofs reached",
+    "allowed_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "constants": 11322,
+    "expected_named_proofs_reached": 3597,
+    "theorems": 7273
+  },
+  "inspector_sha256": "fb9805719e3966383d8b28ffd43342611f26ed51cce6ec6290d7fe0a1f424ab3",
+  "job_log_BOM_normalization_refusal_preserved": true,
+  "local_lean_execution_claimed_by_inspector": false,
+  "native_and_lean_payload_bytes_identical": true,
+  "native_negative_controls_rejected": 32,
+  "original_archive_job_id": 132374993239,
+  "original_archive_run_id": 43570948106,
+  "original_archive_verdict": "success",
+  "prior_failed_heads_retained_elsewhere": [
+    "52614a3b5a7199b1d17cb7a0b435da71e1e80569",
+    "84f7b2b70adbd632c0e0cc06cbd246aee2020f70"
+  ],
+  "recorded_at_utc": "2026-11-14T08:30:54.798776+00:00",
+  "schema": "psc-named-termination-acceptance-summary-v1",
+  "scope": "Postprocessing of successful GitHub evidence for strict-system exclusion over arbitrary finite carriers of the two literal fixtures, plus coincidence termination for every ordered swap seed and its actual ChildNC descendants. No arbitrary unlisted starting block, universal path-termination bound, general C4/PSC conclusion, or independent human review.",
+  "seed_and_reachable_termination_fixtures": [
+    0,
+    1
+  ],
+  "semantic_proofs": [
+    "accepted",
+    "ancestors_null",
+    "domain_iff",
+    "no_strict_system",
+    "reachable_terminates",
+    "roots_null",
+    "seed_terminates",
+    "typed_accepted",
+    "valid"
+  ],
+  "source_parser_weakened": false,
+  "subject_revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+  "subject_tree": "a7dcb3ebf30f3bb686d8f1beb3545dec26df8448",
+  "termination_wrong_type_controls_verified": {
+    "reachable_terminates": true,
+    "seed_terminates": true
+  },
+  "unchanged_nine_endpoint_inspector_outcome": "verified_completed_hosted_acceptance_evidence"
+}

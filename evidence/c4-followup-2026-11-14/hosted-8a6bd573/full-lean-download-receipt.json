@@ -1,0 +1,41 @@
+{
+  "artifact_timestamps_within_attempt_job": true,
+  "checked_at_utc": "2026-11-14T07:50:24.238097+00:00",
+  "download_method": "GitHub plugin download_workflow_artifact then HTTPS retrieval of returned file URI; initial executor transport failed before retrieval and retry succeeded.",
+  "extracted_bytes": 1774519,
+  "extracted_file": "full-lean-artifact/c4-overlap-lean-audit.log",
+  "extracted_sha256": "0ce48fdd7f2d13cd50e4fb19389a4fd6a644c9dc5b2d9ec9ea7aff17c308ec62",
+  "head": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+  "job_id": 132374993676,
+  "no_artifact_code_executed": true,
+  "provider_artifact_metadata": {
+    "archive_download_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/artifacts/14104782130/zip",
+    "created_at": "2026-11-14T07:43:24Z",
+    "digest": "sha256:85ea0c83fe5d282a0f0cee19eb8188ff64d9ecf3b4ec397405880d5c0485b779",
+    "expired": false,
+    "expires_at": "2026-12-14T07:43:24Z",
+    "id": 14104782130,
+    "name": "c4-overlap-lean-8a6bd5732fefba94ad4fef5df2333065c1302452",
+    "node_id": "MDg6QXJ0aWZhY3QxNDEwNDc4MjEzMA==",
+    "size_in_bytes": 105777,
+    "updated_at": "2026-11-14T07:43:24Z",
+    "url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/artifacts/14104782130",
+    "workflow_run": {
+      "head_branch": "research/c4-named-termination-acceptance",
+      "head_repository_id": 1361945122,
+      "head_sha": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+      "id": 43570948335,
+      "repository_id": 1361945122
+    }
+  },
+  "provider_digest_matches": true,
+  "requested_artifact_id": 14104782130,
+  "returned_connector_file_id": "file_00000000aa84822fbbb60a90fce3e46d",
+  "run_attempt": 1,
+  "run_id": 43570948335,
+  "safe_extraction": "Exactly one regular expected audit-log member; no traversal, symlink, duplicate or encryption",
+  "schema": "psc-full-hosted-lean-artifact-download-v1",
+  "tree": "a7dcb3ebf30f3bb686d8f1beb3545dec26df8448",
+  "zip_bytes": 105777,
+  "zip_sha256": "85ea0c83fe5d282a0f0cee19eb8188ff64d9ecf3b4ec397405880d5c0485b779"
+}

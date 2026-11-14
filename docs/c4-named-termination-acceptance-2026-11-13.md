@@ -1,5 +1,23 @@
 # Acceptance of the two named termination consumers
 
+## Completion — November 14
+
+The successor at `8a6bd5732fefba94ad4fef5df2333065c1302452`, tree
+`a7dcb3ebf30f3bb686d8f1beb3545dec26df8448`, has now passed both decisive
+gates: [full isolated Lean build and compiled audit](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43570948335)
+and [both original archived payloads at nine semantic endpoints](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43570948106).
+The unchanged artifact inspector accepted both literal fixtures, including
+`seed_terminates` and `reachable_terminates`, with their independent controls.
+The [complete evidence packet](../evidence/c4-followup-2026-11-14/README.md)
+retains original artifacts, exact source/attempt binding, raw metadata,
+inspection outputs and earlier failed attempts. The
+[current next-step plan](psc-next-steps-2026-11-14.md) records integration and
+the scoped family target. No universal claim status changes.
+
+The notes below preserve the chronology and publication-time statuses of the
+earlier attempts. Their pending or failed results are not retroactively
+relabelled as successful.
+
 ## Production follow-up — November 14
 
 The explicit transport at `84f7b2b70adbd632c0e0cc06cbd246aee2020f70`
