@@ -39,15 +39,30 @@ elan run "$PSC_FAMILY_PIN" lake --no-cache env true
 psc_family_check_pins
 elan run "$PSC_FAMILY_PIN" lake --no-cache exe cache get
 elan run "$PSC_FAMILY_PIN" lake --no-cache build \
-    PscVerif.C4ParameterFamilyCarrier PscVerif.C4ParameterFamilyControls
+    PscVerif.C4ParameterFamilyBridge PscVerif.C4ParameterFamilyControls \
+    PscVerif.UniversalClosureReduction
 psc_family_check_pins
 elan run "$PSC_FAMILY_PIN" lake --no-cache env lean C4ParameterFamilyAudit.lean \
     | tee "$PSC_FAMILY_TMP/family-audit.log"
-test "$(grep -c '^PSC_PARAMETER_FAMILY_ENDPOINT' "$PSC_FAMILY_TMP/family-audit.log")" -eq 3
-for PSC_FAMILY_ENDPOINT in finite_and_productive coincidence_child terminates_with_coincidence; do
-    test "$(awk -F '\t' -v name="Psc.ParameterFamily.$PSC_FAMILY_ENDPOINT" \
+test "$(grep -c '^PSC_PARAMETER_FAMILY_ENDPOINT' "$PSC_FAMILY_TMP/family-audit.log")" -eq 11
+for PSC_FAMILY_ENDPOINT in \
+    Psc.ParameterFamily.finite_and_productive \
+    Psc.ParameterFamily.coincidence_child \
+    Psc.ParameterFamily.terminates_with_coincidence \
+    Psc.ParameterFamilyPisot.primitive \
+    Psc.ParameterFamilyPisot.irreducible \
+    Psc.ParameterFamilyPisot.pisot \
+    Psc.TerminationFactors.terminates_iff_finite_factors_and_coincidences \
+    Psc.ParameterFamilyBridge.full_factor_termination \
+    Psc.ParameterFamilyBridge.spectral_criterion_inputs \
+    Psc.UniversalClosureReduction.all_blocks_productive \
+    Psc.UniversalClosureReduction.infinite_seed_reachability; do
+    test "$(awk -F '\t' -v name="$PSC_FAMILY_ENDPOINT" \
         '$1 == "PSC_PARAMETER_FAMILY_ENDPOINT" && $2 == name {n++} END {print n+0}' \
         "$PSC_FAMILY_TMP/family-audit.log")" -eq 1
 done
-test "$(grep -Fxc $'PSC_PARAMETER_FAMILY_AUDIT_COMPLETE\t3\t6' "$PSC_FAMILY_TMP/family-audit.log")" -eq 1
+test "$(grep -c '^PSC_PARAMETER_FAMILY_MODULE' "$PSC_FAMILY_TMP/family-audit.log")" -eq 8
+test "$(awk -F '\t' '$1 == "PSC_PARAMETER_FAMILY_DECLARATIONS" && $2 == 8 {n++} END {print n+0}' \
+    "$PSC_FAMILY_TMP/family-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_PARAMETER_FAMILY_AUDIT_COMPLETE\t11\t22' "$PSC_FAMILY_TMP/family-audit.log")" -eq 1
 psc_family_check_pins

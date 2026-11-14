@@ -148,44 +148,35 @@ The recent compatible-substitution theorem inspected in that review requires
 unimodularity and does not apply to this determinant-two family. The scoped
 forward-closure result makes no exhaustive noncoverage or nonconjugacy claim.
 
-The next concrete work is:
+The original family source `32015cfb9d0914cedc9867f3290ea4bcdbbbb3b7` has now
+passed both jobs in the [dedicated family gate](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43625009731)
+and the [full isolated Lean audit](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43625009501).
+The latter inspected 11,854 constants, 7,747 theorem constants and all 3,774
+named proofs. Its former pending status is historical.
 
-1. Complete the new focused, source-isolated family gate and full-library
-   audit at the published revision; retain exact types and the `k=2`
-   delayed-coincidence counterexample. Native samples alone cannot supply
-   this gate.
-2. Formalize the parameter family's incidence polynomial, positive square,
-   irreducibility and Pisot inequalities, binding each to the literal
-   substitution. Compose the documented family conclusion with the exact
-   hypotheses of Barge–Štimac–Williams Corollary 2; keep that external spectral
-   theorem explicitly external until it has an actual formal development.
-3. Return to the universal BH / residual A1′ obligations with the completed
-   family as a positive control. A new family alone cannot replace either
-   universal quantifier.
+The next proof increment now supplies the previously missing arithmetic and
+correspondence: `C4ParameterFamilyPisot` proves the literal primitive
+irreducible Pisot hypotheses for `k>=1`, `TerminationFactors` proves the
+general single-seed full-iterate equivalence, and `C4ParameterFamilyBridge`
+assembles the complete literal criterion inputs for `k>=2`. All three modules
+and their independent exact-type audit compiled successfully in development.
+New source-isolated hosted acceptance remains distinct from predecessor results.
 
-The broader geometric programme below remains available for families without
-such an already applicable coincidence mechanism.
+The [family spectral account](c4-family-spectral-closure-2026-11-14.md)
+reconstructs aperiodicity and finite local complexity and applies the published
+Barge–Štimac–Williams implication. The analytic/topological theorem remains
+external to Lean. The all-parameter family conclusion is not an all-substitution
+result. The fresh [universal closure review](psc-universal-closure-review-2026-11-14.md)
+identifies the remaining occurrence-level obstacle and the fixed factor-length
+bound used by the accepted packing argument.
 
-Select one explicitly defined infinite substitution family and seek a
-**uniform, occurrence-preserving root-nullity or source-loss certificate**
-for every admissible parameter. The first deliverable is a written family
-definition, exact hypotheses and a targeted stop/go review of three to six
-primary sources, following [AGENTS.md](../AGENTS.md). Read the append-only
-[side-notes ledger](side-notes-ledger.md) before selecting the mechanism.
-
-The proposed certificate must retain actual prefix tiles and their complete
-equations, a faithful physical/stable/integral chart, nonunit matrix-adic
-coordinates, complete representation of nonempty incoming ancestors, and
-every positional occurrence in the overlap recurrence. It must justify the
-loss that forces root nullity throughout the family. Removing an occurrence
-or assuming a positive deficit cannot supply that argument.
-
-A successful abstraction of the existing geometry is reusable infrastructure;
-its unproved family premises remain obligations. Extra finite specimens,
-shared incidence data or parameter samples cannot establish the infinite
-quantifier. Any new executable support belongs in canonical Mojo, with
-independent oracle checks where useful and explicit refusal on incomplete
-searches. Record a failed proposed invariant at its actual scope.
+The mathematical priority is now the actual universal BH hit: for each cyclic
+seed-reachable strict-zipper overlap, construct a composable sequence of literal
+child occurrences reaching zero offset. Retain all prefix addresses and
+orientation in `M^m w = p-q`; locally admissible correction digits alone are
+insufficient. Once that obligation is proved, use the existing overlap-depth
+argument to obtain bounded balanced-factor lengths. Residual one-sided A1′
+remains the other universal assembly premise.
 
 ## 5. Universal completion remains separate
 
@@ -207,3 +198,11 @@ and parameter-family work above does not replace either universal premise.
 
 The two-fixture chain supplies none of these universal quantifiers. General
 A1′, BH, C4, G1 and PSC therefore retain their existing open status.
+
+The new binary control `0->00001, 1->011` tests a tempting generic shortcut:
+its common prefix gives productivity, while defect growth rules out finite
+seed reachability. It is outside the Pisot class. It demonstrates why the
+generic strict-exclusion consumer keeps a finiteness premise; it does not
+prove independence of those properties inside PIP or provide a PSC
+counterexample. The new source and acceptance are documented in the
+[universal review](psc-universal-closure-review-2026-11-14.md).

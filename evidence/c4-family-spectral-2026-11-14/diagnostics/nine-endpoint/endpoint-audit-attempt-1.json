@@ -1,0 +1,12 @@
+{
+  "exit": 0,
+  "elapsed": 7.627748012542725,
+  "command": [
+    "/workspace/scratch/gnr-next.qHyoM1/toolchains/lean-4.34.0-rc2-linux/bin/lean",
+    "-j2",
+    "-DautoImplicit=false",
+    "C4ParameterFamilyAudit.lean"
+  ],
+  "source_sha256": "debe07a2a07e8a9c6aedc24ac0c578534c9ec73b81328497138da9de6f957dfe",
+  "log_sha256": "aa0e98e72ddb9f7cbd955a8803fe948bac0e81c7236b37e7bbf06071d46e2803"
+}

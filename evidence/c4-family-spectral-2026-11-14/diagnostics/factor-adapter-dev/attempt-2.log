@@ -1,0 +1,12 @@
+PscVerif/TerminationFactors.lean:110:30: error(lean.unknownIdentifier): Unknown identifier `subst_cons`
+PscVerif/TerminationFactors.lean:110:19: error: `simp` made no progress
+PscVerif/TerminationFactors.lean:147:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  red ((subst fibSubst)^[2] ([?m.57, ?m.58], [?m.58, ?m.57]).1)
+    ((subst fibSubst)^[2] ([?m.57, ?m.58], [?m.58, ?m.57]).2)
+in the target expression
+  ([1], [1]) ∈ red ((subst fibSubst)^[2] tmPair.1) ((subst fibSubst)^[2] tmPair.2)
+
+case left
+⊢ ([1], [1]) ∈ red ((subst fibSubst)^[2] tmPair.1) ((subst fibSubst)^[2] tmPair.2)
+PscVerif/TerminationFactors.lean:147:56: error: Expected type must not contain metavariables
+  ?m.57 ≠ ?m.58

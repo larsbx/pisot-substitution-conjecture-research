@@ -1,0 +1,35 @@
+import took 26.1s
+.olean serialization took 463ms
+interpretation of Mathlib.Tactic._aux_Mathlib_Tactic_NormNum_Core___elabRules_Mathlib_Tactic_normNum_1._boxed took 608ms
+interpretation of Mathlib.Tactic._aux_Mathlib_Tactic_Linarith_Frontend___elabRules_Mathlib_Tactic_nlinarith_1._boxed took 152ms
+interpretation of Mathlib.Tactic._aux_Mathlib_Tactic_Linarith_Frontend___elabRules_Mathlib_Tactic_nlinarith_1._boxed took 119ms
+cumulative profiling times:
+	.olean serialization 463ms
+	attribute application 0.774ms
+	blocked (unaccounted) 3.21s
+	compilation (IR) 5.25ms
+	compilation (LCNF base) 13.9ms
+	compilation (LCNF impure) 6.14ms
+	compilation (LCNF mono) 9.24ms
+	congr simp thm 14.5ms
+	dsimp 0.926ms
+	elaboration 246ms
+	fix level params 2.45ms
+	import 26.1s
+	initialization 69.7ms
+	instantiate metavars 7.82ms
+	interpretation 2.16s
+	let-to-have transformation 1.25ms
+	linting 42.5ms
+	module linting 0.0147ms
+	norm_num 275ms
+	overlappingInstancesLinter 14.5ms
+	parsing 48.8ms
+	process pre-definitions 63.5ms
+	ring 97.5ms
+	share common exprs 27.9ms
+	simp 114ms
+	tactic execution 550ms
+	tacticAnalysis 47.9ms
+	type checking 213ms
+	typeclass inference 959ms

@@ -1,0 +1,36 @@
+PscVerif/UniversalClosureReduction.lean:30:42: error: failed to synthesize
+  Decidable (IsBlock seed)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+PscVerif/UniversalClosureReduction.lean:52:4: error: Tactic `apply` failed: could not unify the conclusion of `equiv1_cancel ?m.106`
+  Equiv1 [0] [0]
+with the goal
+  Equiv1 u v
+
+Note: The full type of `equiv1_cancel ?m.106` is
+  Equiv1 (?m.96 ++ [0]) (?m.97 ++ [0]) → Equiv1 [0] [0]
+
+T : Pair
+hT : IsBlock T
+hne : T.1 ≠ T.2
+u : List (Fin 2)
+hu : subst substitution T.1 = 0 :: u
+hbot : T.2 ≠ []
+v : List (Fin 2)
+hv : subst substitution T.2 = 0 :: v
+hbal : Equiv1 (subst substitution T.1) (subst substitution T.2)
+⊢ Equiv1 u v
+PscVerif/UniversalClosureReduction.lean:60:25: error: failed to synthesize
+  Decidable (IsBlock ([0], [0]))
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+PscVerif/UniversalClosureReduction.lean:89:4: error: Type mismatch: After simplification, term
+  Nat.add_le_add ha ih
+ has type
+  List.length (substitution a) + (List.map substitution w).flatten.length ≤ 5 + 5 * w.length
+but is expected to have type
+  (List.map substitution (a :: w)).flatten.length ≤ 5 * w.length + 5
+PscVerif/UniversalClosureReduction.lean:96:2: error: mod_cast has type
+  K2 u v 0 1 = (List.map (fun T => K2 T.1 T.2 0 1) (red u v)).sum
+but is expected to have type
+  ↑(defect (u, v)) = (List.map (fun T => ↑(defect T)) (red u v)).sum
