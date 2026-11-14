@@ -1,64 +1,58 @@
-PSC AGENT PRIORITY ADDENDUM — 2026-11-09 (planning, not proof)
+PSC AGENT PRIORITY ADDENDUM — 2026-11-14 (planning, not proof)
 =======================================================================
-Read this overlay with AGENTS.md and the current claim governance; the
-historical agent orientation below is not automatically the current branch
-state. First inspect main, issue #9 (closed for routing, NOT a proof), successor
-#461, #138/#139, and current exact-head PRs and receipts. Do not close C4, G1,
-#84 or PSC from documentation, a merge, a census or a CI badge.
+Read docs/bh-escape-roadmap-2026-11-14.md first, with AGENTS.md and current
+claim governance. This overlay supersedes the November 9 task ordering;
+the orientation below retains its historical baseline. The immediate
+completion target is TERNARY PIP, including nonunits. An all-alphabet
+extension and a fully internal Lean spectral theorem remain separate.
 
-PRIMARY NEGLECTED WORK — preserve order of mathematical dependency:
-P0 QUANTIFIERS: Audit ∃ selected target path vs ∀ admissible paths and
-closed-SCC exclusion; measure-zero vs empty overlap; finite vs uniform;
-conditional theorem vs proved antecedent. Produce explicit theorem interfaces,
-minimal countermodels and a source-bound proof/PR crosswalk.
-P0 OCCURRENCE REFINEMENT: Formalize commutation of actual substitution-child
-occurrence edges with certified packet transitions. Every packet carries both
-source occurrence addresses, chosen indices, ordered parent/ordinal/child,
-orientation, residual Parikh, strict interior/boundary and target. Soundness,
-completeness and infinite-path lifting are DIFFERENT proof obligations.
-P0 C4/G1 SEPARATION: C4 starts with a supplied finite, strict, child-closed
-SCC and full word factorization. G1b-2 or other extraction/termination is
-separate; prove that input rather than assuming the existence of a finite SCC.
-P1 WORD DYNAMICS: Attack the actual hub-residual word with recognizability,
-return words or noncommutative invariants; do not infer word alignment from
-Parikh, quotient or free-Lie compatibility. Force a one-step interior Sync_±
-newborn or preserve a genuine PIP counterexample to the proposed lemma.
-P1 UNIFORMITY: Find a parameter-uniform exclusion, parameter-dependent rank,
-or closed-realizable compactness argument; do not infer it from 4,554 specimens,
-twelve-source mass computations or bounded depth.
-P1 SHARED BRIDGES: Type-check mass-loss->physical overlap->literal Sync,
-R1 complete support/rank->canonical Mojo PIP carrier, and C4->BH/#138
-interfaces separately. No free transfer from null measure to emptiness.
-P1 ADVERSARIAL: Search only with exact PIP screening, actual word addresses,
-full child stars and deterministic caps. Classify first violated premise;
-preserve counterexamples as negative controls.
+PRIMARY MATHEMATICAL WORK:
+P0 BH EXISTENCE (#139): Force some actual, composable child-occurrence path
+from every required cyclic seed-reachable strict-zipper source to ZERO
+INTEGRAL DISPLACEMENT. Terminal letters may differ; physical zero alone is
+not the contract. Retain original prefix addresses in M^m w=p-q and the
+sign conversion delta=-w to the Lean packet convention.
+P0 CONCRETE TARGET (#452): For minus Class A, prove uniform entry of every
+required nonzero cyclic source into the nine classified zero-return
+predecessor segments, intersected with the actual seed graph. Prove source
+coverage separately from a selected escape rule; complete child closure or
+an independent coverage theorem is required. A parameter-dependent rank
+or an escape from each child-closed target-free terminal SCC may suffice.
+Do not require every edge to decrease: productive cycles are valid controls.
+P1 RESIDUAL A1-PRIME (#138), IN PARALLEL: Prove same-position proximality of
+the prescribed fixed-hub rays under the residual hub hypotheses, or supply
+direct one-sided coincidence. New family witnesses do not cover all hubs.
+ASSEMBLY (#84): Use the established two-obstruction theorem after both
+universal premises; #84 is not a third independent existence problem.
 
 REUSE FIRST:
-docs/target-aware-bpa-diagnostic-2026-10-02.md
-docs/c4-good-edge-system-bridge.md
-docs/c4-strict-birth-atlas-2026-11-02.md
-docs/c4-ordered-word-completion-interface-2026-11-02.md
-docs/completion-ledger-2026-11-02.md
-docs/side-notes-ledger.md
-PRs #457/#459/#462/#497/#499/#504/#515/#519/#520/#521, issue #461.
-Before any new theorem-facing diagnostic, follow the targeted literature
-stop/go gate in AGENTS.md; prefer existing Mojo and independent oracle
-infrastructure. The known controls include second-letter, depth-one, naive
-six-state, strong G/F, productive packet cycles, phase-flat non-PIP strict
-systems, rank-three delayed PIP synchronization, zero source defect with
-different parents, and the binary productive-root/nonproductive-descendant
-example. Test rejection at the appropriate literal/algebraic layer.
+OccurrenceAddress.locateSubst, PrefixAddress.complete_address,
+OccurrenceTransport.packet_path_lift and AddressedPath.child_path already
+provide mainline occurrence decoding and coherent finite path composition
+at their stated hypotheses. A supplied original transcript has a narrower
+preservation contract; constructing ordinary finite lifting is not the gap.
+Draft #574 adds BHFiniteCarrier and scoped A1 tail results at fd23a668;
+its focused workflow 43638030436 passed, while full-library 43638030298
+was in progress at this snapshot. Draft #573 family, full-library and
+original-archive gates passed at 6bf0b970. These sources are not mainline.
+The roadmap pins full revisions, exact premises and workflow URLs.
 
-DELIVERABLE STANDARD:
-State exact hypotheses, quantified theorem or countermodel, missing witness,
-source revision, deterministic inputs and caps, literal rows/addresses,
-independent oracle, formal scope and exact-head CI separately. Make explicit
-whether evidence was merely reported, replayed locally, hosted, merged or
-independently reviewed. A mechanical result can support progression at its
-proved scope while independent human review remains pending. No global
-unimodularity, independent tile-length assumption, free UD assumption,
-Euclidean-only non-unit transfer, invalid predecessor contraction or
-realization of a quotient cycle without proof.
+QUANTIFIERS AND SCOPE:
+Depth may depend on sigma and the source. Take a finite maximum only after
+hits cover the complete required seed-overlap graph, including transient
+sources; graph finiteness alone supplies neither hits nor a factor bound.
+C4 (#461) still needs uniform strict-system exclusion and a separate
+finite-carrier extraction theorem wherever its consumer requires one.
+Retain non-unit finite-place data and the published spectral boundary.
+
+ACCEPTANCE:
+Use the roadmap's symbolic coverage/escape contract, canonical Mojo replay,
+Lean proof interfaces, independent controls and exact-source receipts.
+Before new theorem-facing diagnostics, apply AGENTS.md's literature stop/go
+gate and read docs/side-notes-ledger.md. Keep scoped proofs, finite samples,
+hosted results, merge state and independent review distinct. Research may
+continue at accepted scope while human review remains validation debt.
+Do not promote #138/#139/#84/C4/G1/PSC from this documentation or a CI badge.
 
 =======================================================================
 
@@ -77,8 +71,9 @@ Organization: mathematical dependency / evidentiary strength, NOT chronology.
 =======================================================================
 
 Goal: prove pure discrete spectrum (PDS) for primitive irreducible Pisot
-substitutions in the repository's standing generality. In particular:
-  - substitution alphabet finite, primitive;
+substitutions. The present two-obstruction completion programme is ternary;
+extension to every finite alphabet is a further goal. In particular:
+  - current completion target: three letters, primitive substitution;
   - det(incidence matrix) != 0;
   - characteristic polynomial irreducible over Q;
   - Perron eigenvalue beta is Pisot;

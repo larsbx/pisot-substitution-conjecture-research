@@ -4,7 +4,7 @@ This repository studies the Pisot Substitution Conjecture (PSC), with particular
 
 This page introduces the mathematics and the evidence behind it. Research and coding agents should use [README.llm.txt](README.llm.txt) and [AGENTS.md](AGENTS.md) for implementation and verification conventions.
 
-The [current-state reconciliation of November 11](docs/current-state-reconciliation-2026-11-11.md) records the accepted mainline through #541, exact-revision verification receipts, the older integration queue, and the separate active research PRs. It distinguishes completed implementation work from the mathematical premises that remain open.
+**Next mathematical target:** prove that every required strict-zipper source has an actual path to zero offset. The most concrete next theorem is [Class-A predecessor entry, issue #452](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/452); work on residual A1′ proceeds in parallel. The [November 14 BH roadmap](docs/bh-escape-roadmap-2026-11-14.md) gives the exact target, reusable proofs and current acceptance evidence. The [November 11 reconciliation](docs/current-state-reconciliation-2026-11-11.md) retains earlier integration and verification history.
 
 ## The question
 
@@ -13,6 +13,8 @@ A substitution assigns a nonempty word to each letter of a finite alphabet. Iter
 The Pisot condition requires a dominant eigenvalue greater than one whose other algebraic conjugates lie strictly inside the unit circle. The conjecture asks whether a primitive, irreducible Pisot substitution gives rise to a dynamical system with *pure discrete spectrum*. Informally, this means the spectral behavior is accounted for by eigenfunctions rather than a continuous spectral component.
 
 The repository does not assume that the incidence matrix is unimodular. Its determinant may have absolute value greater than one. That distinction matters: a proof based only on Euclidean contracting coordinates may lose the finite-place information needed in the non-unit case.
+
+The current universal proof programme targets **three-letter substitutions, including nonunits**. Extending its completion theorem to arbitrary alphabet size requires a further argument.
 
 The main method studies overlaps between substituted tiles. An overlap is called *productive* when a sequence of genuine substitution-child occurrences leads to a coincidence: equal tile types at zero displacement. An overlap is described not only by its displacement but also by the particular letters and occurrences that produce its descendants.
 
@@ -51,6 +53,8 @@ For ternary primitive irreducible Pisot substitutions, the repository's two-obst
 
 Together, these results would establish the missing seed productivity premise, [issue #84](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/84), and complete the route to pure discrete spectrum. Both universal assertions remain unproved. The [direct-attack analysis](docs/direct-attack-frontier-2026-10-23.md) explains their present formulations and the work still required.
 
+BH asks for **some successful path from each required source**. A productive graph can contain cycles when successful exits are not chosen. Once the required hits and complete seed coverage are proved, a fixed substitution's finite graph supplies a maximum hitting depth and hence a bound on balanced-factor lengths. Graph finiteness alone does not supply a hit. The depth may depend on the substitution and the source; no common depth for all parameters is required.
+
 There is also a useful distinction involving balanced-pair automata. The repository proves that pure discrete spectrum implies their finiteness (G1), along with termination with coincidence from every swap seed. These are implications, not unconditional proofs of G1. Finiteness and the associated strongly connected component arguments remain valuable parallel approaches; they are not prerequisites for the shorter route above.
 
 ## What the evidence establishes
@@ -71,9 +75,15 @@ child offset = M × parent offset
 
 where `M` is the incidence matrix. A coordinate update alone is insufficient: the selected prefixes must occur in the substitution words, and the resulting overlap must be geometrically strict. This is why the repository maintains independent occurrence-level checks alongside symbolic calculations.
 
+The existing [occurrence transport proofs](docs/c4-occurrence-transport-2026-11-10.md) already lift a supplied sequence of valid interior steps to a coherent path of actual marked occurrences. Ordinary finite path composition is available. The main missing theorem must force a successful path to exist for every required source. Preserving a separately supplied prefix transcript is a narrower additional interface, described in the [BH roadmap](docs/bh-escape-roadmap-2026-11-14.md).
+
 The [onboarding notes](docs/project-onboarding-2026-10-23.md), [claim/source map](docs/claim-status-and-source-map-2026-09-13.md) and [proof bank](docs/proof-bank.md) document the supporting arguments and their precise hypotheses.
 
 ### Results for infinite families
+
+For `sigma_k=(1,0 1^k 2,001)`, draft [#572](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/572) and [#573](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/573) establish finite actual reachability and termination with coincidence from `01/10` for every `k>=2`, together with the arithmetic and full-iterate factor correspondence needed by the published spectral criterion. At `6bf0b970`, the dedicated family gate, full isolated Lean audit and original archived-payload import have passed. The [family spectral account](https://github.com/larsbx/pisot-substitution-conjecture-research/blob/6bf0b9704501eb763cbb4323c3fd1f939d6f11c8/docs/c4-family-spectral-closure-2026-11-14.md) applies that external theorem; the spectral implication itself remains outside Lean. This mathematically complete family result is in an unmerged proof stack, with broader verification and independent review recorded separately in the [acceptance snapshot](docs/bh-escape-roadmap-2026-11-14.md).
+
+The newer draft [#574](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/574), at `fd23a668`, adds a conditional Lean bridge from a finite, completely covered actual overlap carrier with zero-offset hits to finite balanced-pair reachability, plus coincidences for specified A1′ tail families. Its [focused hosted gate](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43638030436) has passed; full-library acceptance was still running at the November 14 observation. The bridge retains complete coverage and a zero hit for every packet as hypotheses. Neither development supplies universal BH or residual A1′.
 
 The most developed boundary-hitting work concerns structured ternary determinant-two families. Class D has a completed boundary-hitting certificate at its stated scope, with corresponding finite balanced-pair consequences. See the [class-D assembly](docs/class-d-assembly-audit-2026-10-21.md) and [corollary](docs/class-d-g1-corollary-2026-10-22.md).
 
@@ -134,17 +144,17 @@ Two more explicit states illustrate the progress:
 
 The mainline also records a [four-edge coincidence path from U](docs/class-a-boundary-U-hit-recovery-2026-10-31.md), [selected coincidence completion after every genuine CY first choice](docs/class-a-boundary-cy-every-child-2026-10-31.md) within seven edges from CY, and the [four-occurrence star of `CC = (c,c,0,-2,3)`](docs/class-a-boundary-cc-carrier-2026-10-31.md). The [CC every-first-choice result](docs/class-a-boundary-cc-every-child-2026-10-31.md) gives a selected completion within five edges from CC. These statements allow a selected continuation after the first choice; they do not require every subsequent path to terminate. The Y0 last-letter transition to this exact CC state is strict only when `t=0`.
 
-The [accepted 22-specimen finite certificate](docs/completion-ledger-2026-11-02.md) supplies complete outgoing records and shortest-distance witnesses at its named parameters. Subsequent merged work gives a uniform one-generation target-predecessor description, finite-place digit-ladder interfaces and a Smith trichotomy. Their [separate evidence and scope record](docs/current-state-reconciliation-2026-11-11.md#class-a-implemented-pieces-and-open-gates) retains the historical failed workflows. Uniform entry into the predecessor segments, complete all-descendant coverage, native-to-Lean refinement and the non-unit realization transfer remain open.
+The [accepted 22-specimen finite certificate](docs/completion-ledger-2026-11-02.md) supplies complete outgoing records and shortest-distance witnesses at its named parameters. The merged [one-step zero-return classification](docs/class-a-uniform-zero-return-2026-11-02.md) gives nine oriented affine integer segments, together with the zero-offset FIRST/FIRST parents. Their complete literal predecessor set has `18n+6d+7 = 24k+30t+91` states, including nine zero-offset parents. This is a predecessor classification, not a count of seed-reachable states.
 
-The class-A calculations provide increasingly detailed information about the descendant graph. The remaining task is not merely to find more short paths, but to account for **all relevant cyclic strict-zipper states** through a uniform argument.
+The next theorem, [#452](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/452), must show that **every required nonzero cyclic seed-reachable strict-zipper state enters the nonzero part of that predecessor set**. Its already-classified final edge then reaches zero offset. Prove complete source coverage and an occurrence-compatible selected escape, for example through a parameter-dependent rank or a contradiction in an actual child-closed target-free terminal component. Finite tables and selected paths from a few states do not discharge this universal entry obligation. Native-to-Lean refinement and the non-unit realization transfer retain their [separate scope and evidence requirements](docs/current-state-reconciliation-2026-11-11.md#class-a-implemented-pieces-and-open-gates).
 
 ## The work ahead
 
-The immediate goal is a general proof of BH. In the structured determinant-two families, this means finishing the class-A and class-C parameter regions and the class-B top layer while keeping every occurrence and endpoint condition. Beyond those families, the argument must work in the complete non-unit representation space, including the necessary finite-place coordinates.
+**First, force BH escape.** Start with the explicit Class-A target above, reusing the existing address and path proofs. Complete Class-C and Class-B coverage remains relevant; a general theorem must extend beyond these structured determinant-two families and preserve the full non-unit representation, including finite-place coordinates.
 
-The aligned A1′ problem is separate. Its remaining fixed-hub cases, including the non-crossing family-F residue, must also be resolved without adding hypotheses absent from the original conjecture.
+**In parallel, prove residual A1′.** A concrete approach is proximality of the prescribed fixed-hub rays: for every length `N`, find one position `r` at which both rays have the same length-`N` block. The position must match in both rays. The [proximality reduction](docs/p1a-a1-proximality-2026-10-19.md) then uses the published Barge–Zamboni implication under its primitive irreducible Pisot hypotheses. The new tail-family witnesses leave the universal residual-hub assertion open.
 
-When both obstructions are eliminated, the completion theorem will connect them to seed productivity and the density-to-spectrum implication. Other investigations—renewal finiteness, finite balanced-pair automata, component productivity and realization—may supply useful tools, but need not all be solved first.
+**Then assemble the ternary conclusion.** Universal BH and A1′ feed the existing #84 completion theorem. The alternative [C4 route, #461](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/461), still needs uniform strict-system exclusion and, where its consumer requires it, a separate finite-carrier extraction argument. The non-Pisot productive-but-infinite control shows why generic productivity cannot replace that premise. The [detailed roadmap](docs/bh-escape-roadmap-2026-11-14.md) states the acceptance contract, known controls and remaining all-alphabet and internal Lean spectral boundaries.
 
 The scope of each result matters. The standing assumptions are primitivity, nonzero determinant, irreducibility over the rationals, and the Pisot condition. A proof must not quietly assume unimodularity, independent tile lengths, injectivity, a uniform finite collar, or a Euclidean-only realization.
 
