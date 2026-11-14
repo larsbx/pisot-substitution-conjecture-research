@@ -8,6 +8,7 @@ import PscVerif.BoundaryRounding
 import PscVerif.BoundarySeedPath
 import PscVerif.SelectedRank
 import PscVerif.QuotientDistance
+import PscVerif.ClassAZeroDefectEscape
 
 import PscVerif.ClassBRegime
 import PscVerif.Binomial

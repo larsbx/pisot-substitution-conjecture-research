@@ -1,0 +1,10 @@
+PSC_CLASS_A_ESCAPE_MODULE	PscVerif.ClassAZeroDefectEscape	71	53
+PSC_CLASS_A_ESCAPE_DECLARATIONS	1	71	53
+PSC_CLASS_A_ESCAPE_ENDPOINT	Psc.ClassAZeroDefectEscape.overrun_four_digit_steps
+PSC_CLASS_A_ESCAPE_ENDPOINT	Psc.ClassAZeroDefectEscape.overrun_four_steps
+PSC_CLASS_A_ESCAPE_ENDPOINT	Psc.ClassAZeroDefectEscape.overrun_composable_path
+PSC_CLASS_A_ESCAPE_ENDPOINT	Psc.ClassAZeroDefectEscape.run_slice_two_digit_steps
+PSC_CLASS_A_ESCAPE_ENDPOINT	Psc.ClassAZeroDefectEscape.run_slice_two_steps
+PSC_CLASS_A_ESCAPE_AUDIT_COMPLETE	5	15
+
+return=0 elapsed=4.361 peak_rss_kib=2621160

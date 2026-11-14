@@ -1,0 +1,102 @@
+name: Class-A zero-defect escape and occurrence proofs
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/class-a-zero-defect.yml'
+      - 'kernel/psc/class_a_*.mojo'
+      - 'kernel/tests/test_class_a_entry_defect.mojo'
+      - 'kernel/tests/test_class_a_zero_defect_escape.mojo'
+      - 'oracles/python/class_a_zero_defect*.py'
+      - 'oracles/python/class_a_boundary_children.py'
+      - 'tests/test_class_a_zero_defect_escape.py'
+      - 'proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean'
+      - 'proof/PscVerif/ClassAZeroDefectEscapeAudit.lean'
+      - 'tools/check_class_a_zero_defect.sh'
+      - 'docs/bh-class-a-entry-stop-go-2026-11-14.md'
+      - 'docs/class-a-zero-defect-escape-2026-11-14.md'
+      - 'evidence/class-a-zero-defect-2026-11-14/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native-and-independent:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Verify exact source revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          mkdir -p /tmp/psc-class-a-entry
+          git rev-parse HEAD > /tmp/psc-class-a-entry/head.txt
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Independent literal, symbolic and refusal checks
+        shell: bash
+        run: |
+          set -o pipefail
+          python -m pip install pytest==8.4.2 sympy==1.14.0
+          python -m pytest -o addopts='' -q tests/test_class_a_zero_defect_escape.py tests/test_class_a_zero_return_oracle.py | tee /tmp/psc-class-a-entry/pytest.log
+          python oracles/python/class_a_zero_defect_symbolic.py | tee /tmp/psc-class-a-entry/symbolic.json
+      - name: Install locked Mojo environment
+        run: |
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Replay canonical actual occurrence paths
+        working-directory: kernel
+        shell: bash
+        run: |
+          set -o pipefail
+          pixi run --locked mojo run -I . tests/test_class_a_zero_return.mojo | tee /tmp/psc-class-a-entry/one-step-native.log
+          pixi run --locked mojo run -I . tests/test_class_a_entry_defect.mojo | tee /tmp/psc-class-a-entry/countercontrol-native.log
+          pixi run --locked mojo run -I . tests/test_class_a_zero_defect_escape.mojo --emit | tee /tmp/psc-class-a-entry/paths-native.log
+      - name: Compare every native source, ordinal and full offset
+        shell: bash
+        run: |
+          set -o pipefail
+          python oracles/python/class_a_zero_defect_escape.py --native-log /tmp/psc-class-a-entry/paths-native.log | tee /tmp/psc-class-a-entry/literal-and-differential.json
+      - name: Retain exact-source native and independent receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-a-zero-defect-native-${{ github.event.pull_request.head.sha || github.sha }}
+          path: /tmp/psc-class-a-entry/
+          if-no-files-found: error
+          retention-days: 30
+
+  scoped-lean-from-sources:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Verify exact source revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+      - name: Provision pinned Lean release
+        run: |
+          ./tools/setup_lean.sh
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Compile and audit the scoped occurrence theorems from isolated sources
+        shell: bash
+        run: |
+          set -o pipefail
+          ./tools/check_class_a_zero_defect.sh | tee /tmp/psc-class-a-zero-defect-lean.log
+      - name: Retain exact-source Lean audit receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-a-zero-defect-lean-${{ github.event.pull_request.head.sha || github.sha }}
+          path: /tmp/psc-class-a-zero-defect-lean.log
+          if-no-files-found: error
+          retention-days: 30
