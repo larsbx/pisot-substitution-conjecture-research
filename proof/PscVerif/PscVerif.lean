@@ -10,6 +10,7 @@ import PscVerif.SelectedRank
 import PscVerif.QuotientDistance
 import PscVerif.ClassAZeroDefectEscape
 import PscVerif.ClassACentralRecurrence
+import PscVerif.ClassAMinusConstantRecurrence
 
 import PscVerif.ClassBRegime
 import PscVerif.Binomial

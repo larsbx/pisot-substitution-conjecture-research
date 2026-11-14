@@ -1,0 +1,128 @@
+name: Minus-Class-A constant entry and original RUN descent
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/class-a-minus-constant-entry.yml'
+      - 'kernel/psc/class_a_*.mojo'
+      - 'kernel/psc/overlap_seed_patch.mojo'
+      - 'kernel/psc/overlap_seed_graph.mojo'
+      - 'kernel/tests/test_class_a_minus_constant_entry.mojo'
+      - 'kernel/tests/test_class_a_minus_entry_search.mojo'
+      - 'kernel/pixi.toml'
+      - 'kernel/pixi.lock'
+      - 'oracles/python/class_a_*.py'
+      - 'tests/test_class_a_minus_constant_entry.py'
+      - 'tests/test_class_a_minus_constant_symbolic.py'
+      - 'proof/PscVerif/PscVerif/ClassAMinusConstantRecurrence.lean'
+      - 'proof/PscVerif/PscVerif/ClassACentralRecurrence.lean'
+      - 'proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean'
+      - 'proof/PscVerif/PscVerif/Occurrence*.lean'
+      - 'proof/PscVerif/ClassAMinusConstantRecurrenceAudit.lean'
+      - 'proof/PscVerif/PscVerif.lean'
+      - 'proof/PscVerif/lean-toolchain'
+      - 'proof/PscVerif/lakefile.toml'
+      - 'proof/PscVerif/lake-manifest.json'
+      - 'tools/check_class_a_minus_constant_entry.sh'
+      - 'tools/make_proof_bank.py'
+      - 'docs/bh-class-a-minus-constant-stop-go-2026-11-14.md'
+      - 'docs/class-a-minus-constant-entry-2026-11-14.md'
+      - 'evidence/class-a-minus-constant-entry-2026-11-14/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native-and-independent:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Bind the exact checked-out source
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          mkdir -p /tmp/psc-class-a-minus-constant-entry
+          git rev-parse HEAD > /tmp/psc-class-a-minus-constant-entry/head.txt
+          git rev-parse HEAD^{tree} > /tmp/psc-class-a-minus-constant-entry/tree.txt
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Independent symbolic and refusal checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install pytest==8.4.2 sympy==1.14.0
+          python -m pytest -o addopts='' -q --junitxml=/tmp/psc-class-a-minus-constant-entry/pytest.xml tests/test_class_a_minus_constant_entry.py tests/test_class_a_minus_constant_symbolic.py | tee /tmp/psc-class-a-minus-constant-entry/pytest.log
+          python - <<'PY'
+          import xml.etree.ElementTree as E
+          cases = E.parse('/tmp/psc-class-a-minus-constant-entry/pytest.xml').getroot().findall('.//testcase')
+          if len(cases) != 39 or any(case.find(tag) is not None for case in cases for tag in ('failure', 'error', 'skipped')):
+              raise SystemExit('the 39 required independent cases did not all pass')
+          PY
+          python oracles/python/class_a_minus_constant_symbolic.py | tee /tmp/psc-class-a-minus-constant-entry/symbolic.json
+          python tools/make_proof_bank.py --check | tee /tmp/psc-class-a-minus-constant-entry/proof-bank.log
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          pixi-version: v0.81.0
+          manifest-path: kernel/pixi.toml
+          locked: true
+      - name: Canonical constant paths and full entry paths
+        working-directory: kernel
+        shell: bash
+        run: |
+          set -euo pipefail
+          pixi run --locked mojo --version > /tmp/psc-class-a-minus-constant-entry/mojo-version.txt
+          pixi run --locked mojo run -I . tests/test_class_a_minus_constant_entry.mojo --emit | tee /tmp/psc-class-a-minus-constant-entry/central-native.log
+          pixi run --locked mojo run -I . tests/test_class_a_minus_entry_search.mojo --emit | tee /tmp/psc-class-a-minus-constant-entry/entry-native.log
+      - name: Replay every original occurrence and composed prefix certificate
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat /tmp/psc-class-a-minus-constant-entry/central-native.log /tmp/psc-class-a-minus-constant-entry/entry-native.log > /tmp/psc-class-a-minus-constant-entry/paths-native.log
+          python oracles/python/class_a_minus_constant_entry.py --native-log /tmp/psc-class-a-minus-constant-entry/paths-native.log | tee /tmp/psc-class-a-minus-constant-entry/literal-and-differential.json
+      - name: Retain exact-source native and independent receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-a-minus-constant-entry-native-${{ github.event.pull_request.head.sha || github.sha }}
+          path: /tmp/psc-class-a-minus-constant-entry/
+          if-no-files-found: error
+          retention-days: 30
+
+  scoped-lean-from-sources:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Bind the exact checked-out source
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          mkdir -p /tmp/psc-class-a-minus-constant-entry-lean
+          git rev-parse HEAD > /tmp/psc-class-a-minus-constant-entry-lean/head.txt
+          git rev-parse HEAD^{tree} > /tmp/psc-class-a-minus-constant-entry-lean/tree.txt
+      - name: Provision pinned Lean release
+        run: |
+          ./tools/setup_lean.sh
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Compile and audit all seven endpoints from isolated sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./tools/check_class_a_minus_constant_entry.sh | tee /tmp/psc-class-a-minus-constant-entry-lean/audit.log
+      - name: Retain exact-source Lean and source-binding receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-a-minus-constant-entry-lean-${{ github.event.pull_request.head.sha || github.sha }}
+          path: /tmp/psc-class-a-minus-constant-entry-lean/
+          if-no-files-found: error
+          retention-days: 30

@@ -2,6 +2,25 @@
 
 **Status:** planning and source reconciliation; universal BH and A1′ remain open.
 
+**November 14, lower-chamber continuation.** The
+[constant-entry theorem](class-a-minus-constant-entry-2026-11-14.md) proves
+typed coincidence from every strict integral overlap for `d>=5,n>=d+1`,
+including the former residual strip `d+1<=n<5d`. One-level word counts
+force central entry; a positive-coefficient recurrence is eventually
+constant; three actual RUN edges lower any nonzero constant height.
+Every original prefix address is retained through `M^m w=P-Q`.
+Together with the preceding upper chamber and the inherited `d<=4` and
+`d=n,n+1` certificates, the source-scoped mathematical parameter cover
+now spans the complete **minus-Class-A swap-seed domain**
+`n>=1,1<=d<=2n-1`. The inherited certificates retain their seed scopes
+and their original validation records. The new
+[evidence packet](../evidence/class-a-minus-constant-entry-2026-11-14/README.md)
+separates passing canonical and cached formal checks from the local
+source-isolated gate blocked by upstream Mathlib HTTP 403, and from
+pending exact-head hosted acceptance. The next mathematical extension
+is to the unresolved plus-Class-A and other BH domains. Universal BH,
+arbitrary-ternary A1′ and the all-alphabet extension remain open.
+
 **November 14 continuation.** The [central-entry proof](class-a-central-entry-2026-11-14.md)
 now supplies a written solution of the mathematical entry target of #452
 for its stated minus-Class-A chamber `n+2<=d<=2n-1`. For `n>=6`, it

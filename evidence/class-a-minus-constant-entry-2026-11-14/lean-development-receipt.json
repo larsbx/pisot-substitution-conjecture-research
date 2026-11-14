@@ -1,0 +1,51 @@
+{
+  "scope": "cached development compile and exact endpoint/axiom audit; not fresh-source or whole-library acceptance",
+  "source_before": {
+    "proof/PscVerif/PscVerif/ClassAMinusConstantRecurrence.lean": "748b13de20f335033940b3cdddf2d648d10365c23080301b66dfd8db8a498e04",
+    "proof/PscVerif/ClassAMinusConstantRecurrenceAudit.lean": "6e90eee52630956763ce1bca0525ecc0fd20b02b956ac09a5007863e8c930ecc"
+  },
+  "source_after": {
+    "proof/PscVerif/PscVerif/ClassAMinusConstantRecurrence.lean": "748b13de20f335033940b3cdddf2d648d10365c23080301b66dfd8db8a498e04",
+    "proof/PscVerif/ClassAMinusConstantRecurrenceAudit.lean": "6e90eee52630956763ce1bca0525ecc0fd20b02b956ac09a5007863e8c930ecc"
+  },
+  "source_unchanged": true,
+  "toolchain": "leanprover/lean4:v4.34.0-rc2",
+  "lean_binary": "/home/agent/.elan/bin/lean",
+  "lean_cwd": "/workspace/scratch/f53f64a9a0d0/psc/proof/PscVerif",
+  "LEAN_PATH": "/workspace/scratch/f53f64a9a0d0/central-lean-build:/workspace/scratch/f53f64a9a0d0/class-a-lean-build:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/proofwidgets/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/Qq/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/batteries/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/Cli/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/mathlib/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/plausible/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/aesop/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/importGraph/.lake/build/lib/lean",
+  "commands": [
+    {
+      "label": "module",
+      "command": [
+        "python",
+        "/workspace/scratch/f53f64a9a0d0/run_central_lean.py",
+        "PscVerif/ClassAMinusConstantRecurrence.lean",
+        "-o",
+        "/workspace/scratch/f53f64a9a0d0/central-lean-build/PscVerif/ClassAMinusConstantRecurrence.olean"
+      ],
+      "cwd": "/workspace/scratch/f53f64a9a0d0/psc",
+      "started_utc": "2026-11-14T22:58:48.186303+00:00",
+      "ended_utc": "2026-11-14T22:58:52.084059+00:00",
+      "elapsed_seconds": 3.898,
+      "exit_code": 0,
+      "log": "/workspace/scratch/f53f64a9a0d0/minus-constant-lean-development/module.log",
+      "log_sha256": "185029f6c4bb2c4dcd78bbeae9cdde1d9277eb2eb7f199d6264440cf9a978858"
+    },
+    {
+      "label": "audit",
+      "command": [
+        "python",
+        "/workspace/scratch/f53f64a9a0d0/run_central_lean.py",
+        "ClassAMinusConstantRecurrenceAudit.lean"
+      ],
+      "cwd": "/workspace/scratch/f53f64a9a0d0/psc",
+      "started_utc": "2026-11-14T22:58:52.084169+00:00",
+      "ended_utc": "2026-11-14T22:58:54.668336+00:00",
+      "elapsed_seconds": 2.584,
+      "exit_code": 0,
+      "log": "/workspace/scratch/f53f64a9a0d0/minus-constant-lean-development/audit.log",
+      "log_sha256": "b7fdcbd7de6c9135a01f698e22df97f5d454c392d6fc456b6b278d8898a66066"
+    }
+  ],
+  "accepted": true
+}

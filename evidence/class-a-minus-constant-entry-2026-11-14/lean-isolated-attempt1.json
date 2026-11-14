@@ -1,0 +1,23 @@
+{
+  "attempt": 1,
+  "command": [
+    "bash",
+    "tools/check_class_a_minus_constant_entry.sh"
+  ],
+  "elapsed_seconds": 204.825,
+  "exit_code": 1,
+  "finished_at_utc": "2026-11-14T23:03:59.388635+00:00",
+  "log_sha256": "4c9fcfd37998ed17da16ac70625ea389378b57a5b9e997ed3bf6325ab956c30f",
+  "scope": "fresh source-isolated scoped Lean acceptance; full-family geometry remains written",
+  "source_sha256_after": {
+    "proof/PscVerif/ClassAMinusConstantRecurrenceAudit.lean": "6e90eee52630956763ce1bca0525ecc0fd20b02b956ac09a5007863e8c930ecc",
+    "proof/PscVerif/PscVerif/ClassAMinusConstantRecurrence.lean": "748b13de20f335033940b3cdddf2d648d10365c23080301b66dfd8db8a498e04",
+    "tools/check_class_a_minus_constant_entry.sh": "4152ef185934775d81fbd328c4a089ea554f16257c6358445524d91ee50ecbfe"
+  },
+  "source_sha256_before": {
+    "proof/PscVerif/ClassAMinusConstantRecurrenceAudit.lean": "6e90eee52630956763ce1bca0525ecc0fd20b02b956ac09a5007863e8c930ecc",
+    "proof/PscVerif/PscVerif/ClassAMinusConstantRecurrence.lean": "748b13de20f335033940b3cdddf2d648d10365c23080301b66dfd8db8a498e04",
+    "tools/check_class_a_minus_constant_entry.sh": "4152ef185934775d81fbd328c4a089ea554f16257c6358445524d91ee50ecbfe"
+  },
+  "started_at_utc": "2026-11-14T23:00:34.563431+00:00"
+}
