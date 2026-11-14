@@ -1,0 +1,57 @@
+name: C4 periodic-ray decision
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/c4-periodic-rays.yml'
+      - 'docs/c4-periodic-ray-decision*.md'
+      - 'docs/c4-phase-aligned-ray*.md'
+      - 'kernel/psc/c4_periodic_rays.mojo'
+      - 'kernel/psc/overlap_seed_patch.mojo'
+      - 'kernel/psc/perron_field3.mojo'
+      - 'kernel/psc/c4_addressed_newborn.mojo'
+      - 'kernel/tests/test_c4_periodic_rays.mojo'
+      - 'kernel/pixi.lock'
+      - 'reference/psc_research/overlap_graph.py'
+      - 'reference/psc_research/pip_screen.py'
+      - 'tests/test_c4_periodic_rays_oracle.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  MODULAR_TELEMETRY_ENABLED: 'false'
+  MODULAR_CRASH_REPORTING_ENABLED: 'false'
+
+jobs:
+  periodic-ray-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Verify exact revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          pixi-version: v0.81.0
+          manifest-path: kernel/pixi.toml
+          locked: true
+      - name: Replay canonical Mojo graphs and addressed newborn
+        working-directory: kernel
+        run: |
+          set -o pipefail
+          pixi run --locked mojo run -I . tests/test_c4_periodic_rays.mojo | tee "$RUNNER_TEMP/c4-periodic-rays.txt"
+      - name: Match the independent exact graphs and literal addresses
+        run: |
+          python -m pip install 'pytest>=7,<10'
+          PSC_PERIODIC_RAY_NATIVE="$RUNNER_TEMP/c4-periodic-rays.txt" python -m pytest tests/test_c4_periodic_rays_oracle.py
+      - name: Check generated proof inventory
+        run: python tools/make_proof_bank.py --check

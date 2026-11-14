@@ -23854,6 +23854,16 @@
       "statement_heading": "**Theorem 3 (exact phase balance).** Let v>0 be a right Perron vector of N, Nv=beta v (the eigenvalue equality follows from the positive left vector ell^T P of the complete strictly closed system). Write v^(k) for v restricted to class k, with zeros outside. Then"
     },
     {
+      "source": "docs/c4-periodic-ray-decision-2026-11-14.md",
+      "line": 33,
+      "statement_heading": "**Theorem (periodic-ray criterion).** A finite strict system exists if and"
+    },
+    {
+      "source": "docs/c4-phase-aligned-rays-2026-11-14.md",
+      "line": 26,
+      "statement_heading": "**Theorem (flat periodic-ray criterion).** A finite strict system of phase"
+    },
+    {
       "source": "docs/c4-phase-lattice-index-conservation-2026-11-04.md",
       "line": 21,
       "statement_heading": "**Theorem 1 (phase index conservation).** Under §1, for each k modulo h,"
@@ -24940,7 +24950,7 @@
     },
     {
       "source": "docs/proof-ladder.md",
-      "line": 314,
+      "line": 340,
       "statement_heading": "**Imported theorem:** Barge–Štimac–Williams supplies the dense-eventual-coincidence-to-PDS implication in the precise one-dimensional Pisot-family setting checked in manuscript Imported Theorem 5.37. Hence Theorem 5.38 has no G1 hypothesis."
     },
     {
