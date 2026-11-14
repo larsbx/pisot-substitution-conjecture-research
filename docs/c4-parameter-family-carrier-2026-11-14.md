@@ -43,7 +43,12 @@ these two concatenations and irreducibility with the actual reduction.
 For `k=2,3,4` the proof can use finite literal carriers. The canonical Mojo
 engine built a closed carrier and checked every actual ordered child,
 then restricted to `(01,10)`. An independent literal Parikh-prefix reduction
-agreed on every reported count.
+agreed on every reported count. It also checked productivity directly.
+Every noncoincident block has a path of length at most two to coincidence
+for `k=2`, and an immediate coincidence child for `k=3,4`. For `k≥5` every
+symbolic noncoincident row explicitly contains a singleton diagonal child
+for every parameter. This proves the stronger one-step productivity statement
+on the unbounded range. Tracks swapped in either orientation retain that exit.
 
 | k | Reachable ordered states | Longest track | Ordered child occurrences |
 | --- | ---: | ---: | ---: |
@@ -93,9 +98,12 @@ is a necessary endpoint condition. General dynamical conjugacy, including
 return recodings and shifted intertwiners of powers, remains open. No all-parameter published
 identification was found in this search.
 
-The family already has strong-coincidence witnesses for every `k ≥ 2`.
-Together with the verified finite carrier, they give termination with
-coincidence through the repository's existing finite-productivity implication.
+The finite carrier and direct productivity prove termination with coincidence.
+Expanding a singleton coincidence produces only singleton coincidences, so
+passing from terminal `ChildNC` to the full reduction does not add new
+noncoincident states and adds at most the three diagonal letter pairs.
+The existing strong-coincidence witnesses for every `k ≥ 2` also give
+termination through the repository's finite-productivity implication.
 The spectral corollary uses the primitive irreducible Pisot arithmetic in the
 pre-code note and [Barge, Štimac and Williams, Corollary 2](https://web.math.pmf.unizg.hr/~sonja/PDSfinal.pdf).
 These are the family-specific mathematical deductions from the executable

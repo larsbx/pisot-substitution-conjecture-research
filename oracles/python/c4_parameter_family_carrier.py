@@ -63,6 +63,7 @@ def coalesce(tokens):
     """Combine adjacent identical pieces as affine exponents."""
     result = []
     for symbol, exponent in tokens:
+        require(min(exponent) >= 0, f'negative affine exponent: {exponent}')
         if exponent == ZERO:
             continue
         if result and result[-1][0] == symbol:
@@ -152,7 +153,9 @@ def block(word_top, word_bottom):
 
 
 def signed_index(token):
-    return int(token.rstrip("'")) + (25 if token.endswith("'") else 0)
+    index = int(token.rstrip("'"))
+    require(0 <= index < 25, f'invalid state ID: {token}')
+    return index + (25 if token.endswith("'") else 0)
 
 
 def row_tracks(tokens, states, side):
@@ -195,7 +198,11 @@ def symbolic(table=TABLE):
     entries = [line.split('|') for line in table]
     base = [tuple(map(decode_word, pair.split())) for pair, _ in entries]
     states = base + [(v, u) for u, v in base]
+    require(len(base) == 25, 'expected 25 representatives')
     require(base[1] == (decode_word('01'), decode_word('10')), 'missing ordered seed')
+    require(base[0] == (decode_word('0'), decode_word('0')), 'invalid 0 coincidence')
+    require(base[10] == (decode_word('1'), decode_word('1')), 'invalid 1 coincidence')
+    require(base[11] == (decode_word('1120'), decode_word('2011')), 'invalid period block')
     for i, ((top, bottom), (_, row)) in enumerate(zip(base, entries, strict=True)):
         try:
             block(top, bottom)
@@ -207,6 +214,8 @@ def symbolic(table=TABLE):
                 supplied = row_tracks(row.split(), states, side)
                 require(supplied == actual,
                         f'track {side}: supplied {supplied!r}, inflated {actual!r}')
+            require(any(token in {'0', '10', 'J'} for token in row.split()),
+                    'row lacks a parameter-independent one-step coincidence exit')
         except ValueError as error:
             raise ValueError(f'row {i}: {error}') from error
 
@@ -247,18 +256,31 @@ def literal(k, *, show=True):
     seed = ('01', '10')
     seen = {seed}
     queue = [seed]
+    rows = {}
     occurrences = 0
     for pair in queue:
         require(len(queue) <= 250 and len(pair[0]) <= 2000, 'literal budget exhausted')
         if pair[0] == pair[1]:
             continue
-        for child in literal_children(images, pair):
+        children = list(literal_children(images, pair))
+        rows[pair] = children
+        for child in children:
             occurrences += 1
             if child not in seen:
                 seen.add(child)
                 queue.append(child)
+    productive = {pair for pair in seen if pair[0] == pair[1]}
+    depth = 0
+    while productive != seen:
+        next_productive = productive | {
+            pair for pair, children in rows.items() if any(child in productive for child in children)
+        }
+        require(next_productive != productive, 'some reached blocks have no coincidence path')
+        productive = next_productive
+        depth += 1
+    require(depth == (2 if k == 2 else 1), f'unexpected coincidence path bound at k={k}')
     if show:
-        print(k, len(queue), max(len(top) for top, _ in queue), occurrences)
+        print(k, len(queue), max(len(top) for top, _ in queue), occurrences, depth)
     return seen
 
 
