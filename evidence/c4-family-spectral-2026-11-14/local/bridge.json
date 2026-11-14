@@ -1,0 +1,14 @@
+{
+  "exit_code": 0,
+  "seconds": 8.868135344004259,
+  "source_sha256": "eb29f8b3bf9c325163a1e932dcfc324bd094f0b754ed28a2789daadb45e0354a",
+  "source_unchanged": true,
+  "command": [
+    "/workspace/scratch/gnr-next.qHyoM1/toolchains/lean-4.34.0-rc2-linux/bin/lean",
+    "-j2",
+    "-DautoImplicit=false",
+    "-o",
+    "/workspace/scratch/640fcc79ecb3/family-bridge-dev/PscVerif/C4ParameterFamilyBridge.olean",
+    "/workspace/scratch/640fcc79ecb3/psc/proof/PscVerif/PscVerif/C4ParameterFamilyBridge.lean"
+  ]
+}
