@@ -1,0 +1,13 @@
+{
+  "exit": 0,
+  "elapsed": 21.237629175186157,
+  "source": "17c1a41e6726dfef7f04f3ccc0594f0cbfc5eb90fd61325114179541c763423c",
+  "command": [
+    "/workspace/scratch/gnr-next.qHyoM1/toolchains/lean-4.34.0-rc2-linux/bin/lean",
+    "-j2",
+    "-DautoImplicit=false",
+    "-o",
+    "PscVerif/C4ParameterFamilyPisot.olean",
+    "PscVerif/C4ParameterFamilyPisot.lean"
+  ]
+}

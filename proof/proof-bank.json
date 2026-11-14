@@ -2831,6 +2831,22 @@
       "declaration": "theorem selected_stage_rank_decreases (i : ℕ) (hi : i < 6) :"
     },
     {
+      "name": "Psc.ParameterFamilyBridge.full_factor_termination",
+      "module": "PscVerif.C4ParameterFamilyBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyBridge.lean",
+      "line": 22,
+      "declaration": "theorem full_factor_termination (k : Nat) (hk : 2 ≤ k) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyBridge.spectral_criterion_inputs",
+      "module": "PscVerif.C4ParameterFamilyBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyBridge.lean",
+      "line": 37,
+      "declaration": "theorem spectral_criterion_inputs (k : Nat) (hk : 2 ≤ k) :"
+    },
+    {
       "name": "Psc.ParameterFamilyCarrier.ones_slide",
       "module": "PscVerif.C4ParameterFamilyCarrier",
       "private": true,
@@ -3381,6 +3397,174 @@
       "source": "proof/PscVerif/PscVerif/C4ParameterFamilyControls.lean",
       "line": 101,
       "declaration": "theorem delayedPair_no_coincidence_child :"
+    },
+    {
+      "name": "Psc.ParameterFamilyPisot.incidence_eq",
+      "module": "PscVerif.C4ParameterFamilyPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean",
+      "line": 40,
+      "declaration": "theorem incidence_eq (k : ℕ) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyPisot.incidence_sq",
+      "module": "PscVerif.C4ParameterFamilyPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean",
+      "line": 48,
+      "declaration": "theorem incidence_sq (k : ℕ) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyPisot.primitive",
+      "module": "PscVerif.C4ParameterFamilyPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean",
+      "line": 56,
+      "declaration": "theorem primitive (k : ℕ) (hk : 1 ≤ k) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyPisot.incidenceQ_eq",
+      "module": "PscVerif.C4ParameterFamilyPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean",
+      "line": 67,
+      "declaration": "theorem incidenceQ_eq (k : ℕ) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyPisot.determinant",
+      "module": "PscVerif.C4ParameterFamilyPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean",
+      "line": 74,
+      "declaration": "theorem determinant (k : ℕ) : (incidenceQ k).det = 2 := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyPisot.charpoly_eq",
+      "module": "PscVerif.C4ParameterFamilyPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean",
+      "line": 84,
+      "declaration": "theorem charpoly_eq (k : ℕ) : (incidenceQ k).charpoly = polynomial k := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyPisot.polynomial_natDegree",
+      "module": "PscVerif.C4ParameterFamilyPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean",
+      "line": 89,
+      "declaration": "theorem polynomial_natDegree (k : ℕ) : (polynomial k).natDegree = 3 := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyPisot.integerPolynomial_monic",
+      "module": "PscVerif.C4ParameterFamilyPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean",
+      "line": 93,
+      "declaration": "theorem integerPolynomial_monic (k : ℕ) : (integerPolynomial k).Monic := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyPisot.polynomial_eq_map",
+      "module": "PscVerif.C4ParameterFamilyPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean",
+      "line": 97,
+      "declaration": "theorem polynomial_eq_map (k : ℕ) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyPisot.polynomial_monic",
+      "module": "PscVerif.C4ParameterFamilyPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean",
+      "line": 102,
+      "declaration": "theorem polynomial_monic (k : ℕ) : (polynomial k).Monic := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyPisot.aeval_polynomial",
+      "module": "PscVerif.C4ParameterFamilyPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean",
+      "line": 106,
+      "declaration": "theorem aeval_polynomial {A : Type*} [CommRing A] [Algebra ℚ A] (k : ℕ) (z : A) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyPisot.aeval_integerPolynomial",
+      "module": "PscVerif.C4ParameterFamilyPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean",
+      "line": 110,
+      "declaration": "theorem aeval_integerPolynomial {A : Type*} [CommRing A] [Algebra ℤ A]"
+    },
+    {
+      "name": "Psc.ParameterFamilyPisot.no_rational_root",
+      "module": "PscVerif.C4ParameterFamilyPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean",
+      "line": 116,
+      "declaration": "theorem no_rational_root (k : ℕ) (hk : 1 ≤ k) (x : ℚ) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyPisot.polynomial_irreducible",
+      "module": "PscVerif.C4ParameterFamilyPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean",
+      "line": 136,
+      "declaration": "theorem polynomial_irreducible (k : ℕ) (hk : 1 ≤ k) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyPisot.irreducible",
+      "module": "PscVerif.C4ParameterFamilyPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean",
+      "line": 142,
+      "declaration": "theorem irreducible (k : ℕ) (hk : 1 ≤ k) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyPisot.real_root",
+      "module": "PscVerif.C4ParameterFamilyPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean",
+      "line": 148,
+      "declaration": "theorem real_root (k : ℕ) (hk : 1 ≤ k) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyPisot.other_root",
+      "module": "PscVerif.C4ParameterFamilyPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean",
+      "line": 164,
+      "declaration": "theorem other_root (k : ℕ) {b : ℝ} (hb2 : 2 < b)"
+    },
+    {
+      "name": "Psc.ParameterFamilyPisot.pisot",
+      "module": "PscVerif.C4ParameterFamilyPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean",
+      "line": 214,
+      "declaration": "theorem pisot (k : ℕ) (hk : 1 ≤ k) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyPisot.root_irrational",
+      "module": "PscVerif.C4ParameterFamilyPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean",
+      "line": 226,
+      "declaration": "theorem root_irrational (k : ℕ) (hk : 1 ≤ k) {b : ℝ}"
+    },
+    {
+      "name": "Psc.ParameterFamilyPisot.positive_left_eigenvector",
+      "module": "PscVerif.C4ParameterFamilyPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean",
+      "line": 237,
+      "declaration": "theorem positive_left_eigenvector (k : ℕ) {b : ℝ} (hb2 : 2 < b)"
+    },
+    {
+      "name": "Psc.ParameterFamilyPisot.zero_no_root_above_two",
+      "module": "PscVerif.C4ParameterFamilyPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean",
+      "line": 250,
+      "declaration": "theorem zero_no_root_above_two {b : ℝ} (hb : 2 < b) :"
     },
     {
       "name": "Psc.ParameterFamilyWords.rotate_repeat",
@@ -31895,6 +32079,70 @@
       "declaration": "theorem hasBothSigns_controls : HasBothSigns thueMorseSubst {tmPair, tmPair.swap} ∧"
     },
     {
+      "name": "Psc.TerminationFactors.productive_of_full_child_path",
+      "module": "PscVerif.TerminationFactors",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/TerminationFactors.lean",
+      "line": 32,
+      "declaration": "theorem productive_of_full_child_path {s : α → List α} {T U : List α × List α}"
+    },
+    {
+      "name": "Psc.TerminationFactors.productive_iff_iterate_coincidence",
+      "module": "PscVerif.TerminationFactors",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/TerminationFactors.lean",
+      "line": 45,
+      "declaration": "theorem productive_iff_iterate_coincidence {s : α → List α} {T : List α × List α}"
+    },
+    {
+      "name": "Psc.TerminationFactors.finite_factors_iff_finite_reachableNC",
+      "module": "PscVerif.TerminationFactors",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/TerminationFactors.lean",
+      "line": 61,
+      "declaration": "theorem finite_factors_iff_finite_reachableNC [Finite α] {s : α → List α}"
+    },
+    {
+      "name": "Psc.TerminationFactors.terminates_iff_finite_factors_and_coincidences",
+      "module": "PscVerif.TerminationFactors",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/TerminationFactors.lean",
+      "line": 81,
+      "declaration": "theorem terminates_iff_finite_factors_and_coincidences [Finite α]"
+    },
+    {
+      "name": "Psc.TerminationFactors.subst_singletons",
+      "module": "PscVerif.TerminationFactors",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/TerminationFactors.lean",
+      "line": 107,
+      "declaration": "private theorem subst_singletons (w : List α) : subst (fun a : α => [a]) w = w := by"
+    },
+    {
+      "name": "Psc.TerminationFactors.iterate_subst_singletons",
+      "module": "PscVerif.TerminationFactors",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/TerminationFactors.lean",
+      "line": 113,
+      "declaration": "private theorem iterate_subst_singletons (n : Nat) (w : List α) :"
+    },
+    {
+      "name": "Psc.TerminationFactors.identity_finite_without_coincidence",
+      "module": "PscVerif.TerminationFactors",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/TerminationFactors.lean",
+      "line": 121,
+      "declaration": "theorem identity_finite_without_coincidence :"
+    },
+    {
+      "name": "Psc.TerminationFactors.full_factor_need_not_be_terminal_reachable",
+      "module": "PscVerif.TerminationFactors",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/TerminationFactors.lean",
+      "line": 142,
+      "declaration": "theorem full_factor_need_not_be_terminal_reachable :"
+    },
+    {
       "name": "Psc.trace_sq_cyclicPlus",
       "module": "PscVerif.TraceLemma",
       "private": false,
@@ -31941,6 +32189,142 @@
       "source": "proof/PscVerif/PscVerif/TraceLemma.lean",
       "line": 67,
       "declaration": "theorem Aq_not_conj_cyclicMinus (k : Fin 6) (P Q : Matrix (Fin 3) (Fin 3) ℚ)"
+    },
+    {
+      "name": "Psc.UniversalClosureReduction.seed_isBlock",
+      "module": "PscVerif.UniversalClosureReduction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/UniversalClosureReduction.lean",
+      "line": 32,
+      "declaration": "theorem seed_isBlock : IsBlock seed := by"
+    },
+    {
+      "name": "Psc.UniversalClosureReduction.seed_defect",
+      "module": "PscVerif.UniversalClosureReduction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/UniversalClosureReduction.lean",
+      "line": 36,
+      "declaration": "theorem seed_defect : defect seed = 1 := by decide +kernel"
+    },
+    {
+      "name": "Psc.UniversalClosureReduction.image_has_initial_zero",
+      "module": "PscVerif.UniversalClosureReduction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/UniversalClosureReduction.lean",
+      "line": 38,
+      "declaration": "theorem image_has_initial_zero (a : Fin 2) : ∃ w, substitution a = 0 :: w := by"
+    },
+    {
+      "name": "Psc.UniversalClosureReduction.subst_has_initial_zero",
+      "module": "PscVerif.UniversalClosureReduction",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/UniversalClosureReduction.lean",
+      "line": 41,
+      "declaration": "private theorem subst_has_initial_zero {w : Word} (hne : w ≠ []) :"
+    },
+    {
+      "name": "Psc.UniversalClosureReduction.immediate_coincidence",
+      "module": "PscVerif.UniversalClosureReduction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/UniversalClosureReduction.lean",
+      "line": 48,
+      "declaration": "theorem immediate_coincidence {T : Pair} (hT : IsBlock T) (hne : T.1 ≠ T.2) :"
+    },
+    {
+      "name": "Psc.UniversalClosureReduction.all_blocks_productive",
+      "module": "PscVerif.UniversalClosureReduction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/UniversalClosureReduction.lean",
+      "line": 68,
+      "declaration": "theorem all_blocks_productive {T : Pair} (hT : IsBlock T) :"
+    },
+    {
+      "name": "Psc.UniversalClosureReduction.defect_subst",
+      "module": "PscVerif.UniversalClosureReduction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/UniversalClosureReduction.lean",
+      "line": 75,
+      "declaration": "theorem defect_subst {u v : Word} (h : Equiv1 u v) :"
+    },
+    {
+      "name": "Psc.UniversalClosureReduction.image_length_le",
+      "module": "PscVerif.UniversalClosureReduction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/UniversalClosureReduction.lean",
+      "line": 85,
+      "declaration": "theorem image_length_le (a : Fin 2) : (substitution a).length ≤ 5 := by"
+    },
+    {
+      "name": "Psc.UniversalClosureReduction.subst_length_le",
+      "module": "PscVerif.UniversalClosureReduction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/UniversalClosureReduction.lean",
+      "line": 88,
+      "declaration": "theorem subst_length_le (w : Word) : (subst substitution w).length ≤ 5 * w.length := by"
+    },
+    {
+      "name": "Psc.UniversalClosureReduction.defect_reduction",
+      "module": "PscVerif.UniversalClosureReduction",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/UniversalClosureReduction.lean",
+      "line": 96,
+      "declaration": "private theorem defect_reduction {u v : Word} (h : Equiv1 u v) :"
+    },
+    {
+      "name": "Psc.UniversalClosureReduction.abs_defect_le_of_rows",
+      "module": "PscVerif.UniversalClosureReduction",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/UniversalClosureReduction.lean",
+      "line": 104,
+      "declaration": "private theorem abs_defect_le_of_rows (bs : List Pair) (r : ℝ)"
+    },
+    {
+      "name": "Psc.UniversalClosureReduction.no_finite_forward_carrier",
+      "module": "PscVerif.UniversalClosureReduction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/UniversalClosureReduction.lean",
+      "line": 119,
+      "declaration": "theorem no_finite_forward_carrier (C : Finset Pair) (hseed : seed ∈ C)"
+    },
+    {
+      "name": "Psc.UniversalClosureReduction.infinite_seed_reachability",
+      "module": "PscVerif.UniversalClosureReduction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/UniversalClosureReduction.lean",
+      "line": 174,
+      "declaration": "theorem infinite_seed_reachability :"
+    },
+    {
+      "name": "Psc.UniversalClosureReduction.productive_but_not_terminating",
+      "module": "PscVerif.UniversalClosureReduction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/UniversalClosureReduction.lean",
+      "line": 190,
+      "declaration": "theorem productive_but_not_terminating :"
+    },
+    {
+      "name": "Psc.UniversalClosureReduction.incidence_matrix",
+      "module": "PscVerif.UniversalClosureReduction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/UniversalClosureReduction.lean",
+      "line": 197,
+      "declaration": "theorem incidence_matrix : inc substitution = !![4, 1; 1, 2] := by"
+    },
+    {
+      "name": "Psc.UniversalClosureReduction.incidence_charpoly",
+      "module": "PscVerif.UniversalClosureReduction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/UniversalClosureReduction.lean",
+      "line": 201,
+      "declaration": "theorem incidence_charpoly :"
+    },
+    {
+      "name": "Psc.UniversalClosureReduction.two_expanding_roots",
+      "module": "PscVerif.UniversalClosureReduction",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/UniversalClosureReduction.lean",
+      "line": 209,
+      "declaration": "theorem two_expanding_roots :"
     },
     {
       "name": "Psc.WeightModulus.norm_d",
@@ -34154,7 +34538,7 @@
   ],
   "input_digests": {
     "claim_governance.toml": "5642e664f9a79064ffbaf770719cf0acba52accc75fca568711d4b554a08803e",
-    "proof/PscVerif/C4ParameterFamilyAudit.lean": "27171819fd5680aa064d18b0326db64b5f194e7d0a07165087a96c745ac45a76",
+    "proof/PscVerif/C4ParameterFamilyAudit.lean": "71861a4249ef9a84e9f4357f227e038000ca6b32f5ed2a5e947cd140bc7edb8a",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean": "87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean": "e18e726b6bd1c431f9e28500504edd6ffba157415af20069715b9c8f208f3f9b",
@@ -34166,8 +34550,10 @@
     "proof/PscVerif/PscVerif/Binomial.lean": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
     "proof/PscVerif/PscVerif/BoundarySeedPath.lean": "bea69cb93d5bcd15b1b88c48062b4404a721908092af1b5f5b42e6184f7abae3",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyBridge.lean": "eb29f8b3bf9c325163a1e932dcfc324bd094f0b754ed28a2789daadb45e0354a",
     "proof/PscVerif/PscVerif/C4ParameterFamilyCarrier.lean": "fba5f9b5a2a20c08107aa3e7714c20f2e92a4aeacd28e816e1a4e331e5e03208",
     "proof/PscVerif/PscVerif/C4ParameterFamilyControls.lean": "98b75297c14f75b6a2c87c651d06b3da13131616cf1b53c2630d7b498a1b5540",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean": "17c1a41e6726dfef7f04f3ccc0594f0cbfc5eb90fd61325114179541c763423c",
     "proof/PscVerif/PscVerif/C4ParameterFamilyWords.lean": "e49cc02bc7b82b8f44101ce153d93982f02e31684501ffe7499cfb53d55c86d7",
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
     "proof/PscVerif/PscVerif/ClassBRegime.lean": "1c873d0aea0201c3a60486dc90bce00e9f9612019ad72c5344cfa927d93a23e6",
@@ -34295,10 +34681,12 @@
     "proof/PscVerif/PscVerif/StrictCutCount.lean": "465d1ad883556eca80db059bde0564a425a6a62407cd307d728347bc558d62b1",
     "proof/PscVerif/PscVerif/StrictSystem.lean": "3951836967cf862f37e34fe31288f16fe6c53a51cb2f987d3134e3cbad4814d4",
     "proof/PscVerif/PscVerif/Termination.lean": "bdc24ad4fddd5d01aee6f986c8d5476aead0655902db7a129e14c1921d364196",
+    "proof/PscVerif/PscVerif/TerminationFactors.lean": "3415e1034becf2c937f29aa61326fa174cfcbb52a605fb467a362721d20bf831",
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
+    "proof/PscVerif/PscVerif/UniversalClosureReduction.lean": "aaf84f504e5609b7d74be4187ec325e195e5facc098386b42e36b469f2318e24",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "9181a6b2df74bb031f6d085b4e926e3715a07c64ab3c8ea1d50757ce1dbaccdf",
+    "proof/PscVerif/PscVerif.lean": "25f71249a966b8dd140d6d85855c6f4c3af45d804a03f98121f9fc3210c003d9",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

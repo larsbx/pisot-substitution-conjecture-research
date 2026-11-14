@@ -1,0 +1,16 @@
+{
+  "exit": 0,
+  "elapsed": 4.360337734222412,
+  "source_sha256": "3415e1034becf2c937f29aa61326fa174cfcbb52a605fb467a362721d20bf831",
+  "source_match": true,
+  "log": "/workspace/scratch/640fcc79ecb3/factor-adapter-dev/attempt-3.log",
+  "command": [
+    "/workspace/scratch/gnr-next.qHyoM1/toolchains/lean-4.34.0-rc2-linux/bin/lean",
+    "-DautoImplicit=false",
+    "-j",
+    "2",
+    "-o",
+    "PscVerif/TerminationFactors.olean",
+    "PscVerif/TerminationFactors.lean"
+  ]
+}

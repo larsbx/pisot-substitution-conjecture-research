@@ -1,0 +1,8 @@
+PscVerif/UniversalClosureReduction.lean:99:2: error: mod_cast has type
+  K2 u v 0 1 = (List.map (fun T => K2 T.1 T.2 0 1) (red u v)).sum
+but is expected to have type
+  ↑(K2 u v 0 1) = (List.map (fun T => ↑(K2 T.1 T.2 0 1)) (red u v)).sum
+PscVerif/UniversalClosureReduction.lean:180:68: error: Invalid projection: Projections cannot be used on functions, and
+  ih
+has function type
+  b✝ ∈ hfin.toFinset → IsBlock b✝

@@ -1,0 +1,25 @@
+{
+  "base_commit": "32015cfb9d0914cedc9867f3290ea4bcdbbbb3b7",
+  "sha256": {
+    "proof/PscVerif/PscVerif/Termination.lean": "bdc24ad4fddd5d01aee6f986c8d5476aead0655902db7a129e14c1921d364196",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyWords.lean": "e49cc02bc7b82b8f44101ce153d93982f02e31684501ffe7499cfb53d55c86d7",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyCarrier.lean": "fba5f9b5a2a20c08107aa3e7714c20f2e92a4aeacd28e816e1a4e331e5e03208",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyControls.lean": "98b75297c14f75b6a2c87c651d06b3da13131616cf1b53c2630d7b498a1b5540",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean": "17c1a41e6726dfef7f04f3ccc0594f0cbfc5eb90fd61325114179541c763423c",
+    "proof/PscVerif/PscVerif/TerminationFactors.lean": "3415e1034becf2c937f29aa61326fa174cfcbb52a605fb467a362721d20bf831",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyBridge.lean": "eb29f8b3bf9c325163a1e932dcfc324bd094f0b754ed28a2789daadb45e0354a",
+    "proof/PscVerif/PscVerif/UniversalClosureReduction.lean": "aaf84f504e5609b7d74be4187ec325e195e5facc098386b42e36b469f2318e24",
+    "proof/PscVerif/PscVerif/Intertwiner2.lean": "4fdc6a9497a5c3fd4b39101b033e6814b70aec8391f0cbc8691028319b1143d6",
+    "proof/PscVerif/PscVerif.lean": "25f71249a966b8dd140d6d85855c6f4c3af45d804a03f98121f9fc3210c003d9",
+    "proof/PscVerif/C4ParameterFamilyAudit.lean": "71861a4249ef9a84e9f4357f227e038000ca6b32f5ed2a5e947cd140bc7edb8a",
+    "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
+    "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
+    "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
+    "tools/check_c4_parameter_family.sh": "ee8ec32e2c2d977a823ed1e56d59bce2d12df034a8f9f3c9eabb8c0af7ad2f61",
+    ".github/workflows/c4-parameter-family.yml": "02fdf1f319647aa4f2112e7dfb08b04e848efad87a99ea3f7abe9b2f3666ddd6",
+    "tools/make_proof_bank.py": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8",
+    "tools/check_lean.sh": "eb63ce6fb0b837eee1208b3d47e759bcf8b3617b1374685a8850e48f283cba8d",
+    "tools/setup_lean.sh": "b2c35ccc8d0b180a75275f8234f519a00d32efcbc8a9517f8b3d74a96b3ef8da"
+  },
+  "scope": "Exact reviewed source/configuration inputs; the generated proof bank separately binds all governed Lean inputs."
+}

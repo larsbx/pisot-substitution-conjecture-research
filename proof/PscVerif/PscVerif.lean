@@ -132,3 +132,7 @@ import PscVerif.C4ParameterFamilyWords
 import PscVerif.C4ParameterFamilyCarrier
 import PscVerif.C4ParameterFamilyControls
 import PscVerif.Termination
+import PscVerif.TerminationFactors
+import PscVerif.C4ParameterFamilyPisot
+import PscVerif.C4ParameterFamilyBridge
+import PscVerif.UniversalClosureReduction

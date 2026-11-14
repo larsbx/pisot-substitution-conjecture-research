@@ -1,0 +1,50 @@
+{
+  "proof_bank": {
+    "label": "proof_bank",
+    "chunk_id": "0510b4",
+    "wall_time_seconds": 2.5576e-05,
+    "exit_code": 0,
+    "original_token_count": 17,
+    "output": "Proof bank: 126 claims, 3822 named Lean proofs, 411 source openings\n"
+  },
+  "proof_bank_tests": {
+    "label": "proof_bank_tests",
+    "chunk_id": "739f78",
+    "wall_time_seconds": 1.3182e-05,
+    "exit_code": 0,
+    "original_token_count": 194,
+    "output": ".........................................................                [100%]\n=============================== warnings summary ===============================\n../../../../opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14\n  /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14: PytestRemovedIn10Warning: _pytest.python.CallSpec2 has been renamed to CallSpec.\n  The CallSpec2 alias will be removed in pytest 10.\n  Update imports to use CallSpec instead.\n  See https://docs.pytest.org/en/stable/deprecations.html#callspec2-renamed\n    from _pytest.python import CallSpec2\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n"
+  },
+  "governance": {
+    "label": "governance",
+    "chunk_id": "95e8eb",
+    "wall_time_seconds": 1.2596e-05,
+    "exit_code": 0,
+    "original_token_count": 38,
+    "output": "OK: claim governance audit of larsbx/pisot-substitution-conjecture-research passed [terminology, claims, coverage, promotion, numerics, consistency]\n"
+  },
+  "markdown": {
+    "label": "markdown",
+    "chunk_id": "e53f7f",
+    "wall_time_seconds": 0.243151759,
+    "exit_code": 0,
+    "original_token_count": 13,
+    "output": "OK Markdown source integrity: 536 file(s) checked\n"
+  },
+  "vendor": {
+    "label": "vendor",
+    "chunk_id": "4ba0dd",
+    "wall_time_seconds": 0.097376732,
+    "exit_code": 0,
+    "original_token_count": 66,
+    "output": "OK: vendored packages match their pins (finite_exact, substitution_dynamics, finite_linear_algebra, claim_governance, proof_records, oracle_refinement, parallel_fold, proof_architecture, finite_graph, finite_automata, mojo_smoke, vendoring, polyglot_envelope).\n"
+  },
+  "whitespace": {
+    "label": "whitespace",
+    "chunk_id": "ed1748",
+    "wall_time_seconds": 0.082545122,
+    "exit_code": 0,
+    "original_token_count": 0,
+    "output": ""
+  }
+}

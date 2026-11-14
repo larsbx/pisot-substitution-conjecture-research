@@ -1,0 +1,17 @@
+PscVerif/UniversalClosureReduction.lean:107:2: error: Type mismatch: After simplification, term
+  hc
+ has type
+  ↑(K2 u v 0 1) =
+    (List.map (fun (z : ℝ) => z) do
+        let a ← List.map (fun T => K2 T.1 T.2 0 1) (red u v)
+        pure ↑a).sum
+but is expected to have type
+  ↑(K2 u v 0 1) = (List.map (fun (T : Pair) => ↑(K2 T.1 T.2 0 1)) (red u v)).sum
+PscVerif/UniversalClosureReduction.lean:189:78: error: Application type mismatch: The argument
+  hVU.right
+has type
+  Child substitution b✝ c✝
+but is expected to have type
+  U ∈ red (subst substitution b✝.1) (subst substitution b✝.2)
+in the application
+  red_isBlock (equiv1_subst substitution ih.right.left) U hVU.right
