@@ -3,8 +3,9 @@
 **Decision: redirect the proposed root-nullity search.** The family below is
 primitive irreducible nonunit Pisot, but its parameters `k >= 2` already admit
 short strong-coincidence witnesses using an existing repository argument.
-The useful remaining candidate is finite actual forward reachability, subject
-to a further identification check before new machinery is implemented.
+The useful remaining candidate is finite actual forward reachability. The
+bounded identification screen below found no applicable all-parameter import;
+broader conjugacy questions remain recorded without a novelty claim.
 Published trace-bound coverage already supplies PDS for `k=1,2`; the
 substantive infinite-extension question starts at `k>=3`.
 
@@ -126,6 +127,22 @@ to the uncompiled family specialization.
    repository's literal forward-carrier certificate. The source was already
    recorded in `docs/p1b-catch-up-free-ppvc-2026-10-07.md`, §3.
 
+6. **Gohlke, Mitchell, Rust and Samuel, Rauzy fractals of random substitutions**,
+   *Advances in Mathematics* 485 (2026), 110713,
+   [publisher PDF at the authors' university](https://pure-oai.bham.ac.uk/ws/files/284512886/GohlkeP2025Rauzy.pdf),
+   Corollary 6.5, p. 48. The compatible-collection criterion requires
+   unimodularity and an enveloping Rauzy-volume bound. Here `det(M_k)=2`,
+   and no required volume bound has been established. Question 8.5, p. 57,
+   presents related mixture-volume control as an open direction, not an
+   automatic transfer between word orderings.
+
+The bounded screen included the literal family, its notation `(b,ab^kc,aab)`,
+the exact parameterized cubic, and relevant cubic/nonunit results. It found
+no applicable theorem for the entire `k>=3` range. This records the search
+outcome, not an exhaustive absence theorem. The proportional gate permits
+the scoped forward-closure target below; later source identifications should
+be reused if discovered.
+
 ## Prior coverage and conjugacy screen
 
 The candidate is not literally one of the inspected catch-up-free A–D or
@@ -169,11 +186,48 @@ The companion `0->1, 1->02 1^k, 2->001` is a useful stopping control: every
 image ends in `1`, so every inflated nonempty balanced pair has terminal diagonal
 factor `(1,1)`. Its strict exclusion needs no new root-nullity machinery.
 
+## First actual child rows and the path quantifier
+
+For `k>=2`, the following hand-derived reductions are complete minimal
+balanced factorizations, independently checked with their original ordering:
+
+\[
+\operatorname{Red}(\sigma_k(01),\sigma_k(10))=
+[(10,01),\underbrace{(1,1),\ldots,(1,1)}_{k-1},(12,21)],
+\]
+
+\[
+\operatorname{Red}(\sigma_k(12),\sigma_k(21))=
+[(0,0),(1^k2001,0101^k2)].
+\]
+
+In the first row, the initial factor occupies `[0,2)`, the singleton at
+factor ordinal `j` occupies `[j+1,j+2)` for `1<=j<=k-1`, and the last
+factor, ordinal `k`, occupies `[k+1,k+3)`. Concatenation recovers both
+inflated words. The unequal-letter swap factors have no balanced proper
+nonempty prefix, and each singleton is minimal.
+
+In the second row, the remaining factor has ordinal `1`, interval `[1,k+5)`
+and length `k+4`. Its two words have Parikh vector `(2,k+1,1)`. For prefix
+lengths `1<=r<=k`, its top word has no `0` while the bottom word does. For
+`k+1<=r<=k+3`, the top contains `2` while the bottom does not. These exhaust
+all proper nonempty prefixes, proving that the remaining factor is
+irreducible. Both displayed rows therefore retain every child occurrence.
+
+The source definition in `Descendants.lean` makes `ChildNC` require a
+noncoincident **parent**; coincident targets are permitted and terminal.
+Swapping tracks in the first row gives a genuine reachable two-cycle
+`(01,10) -> (10,01) -> (01,10)`, alongside the immediate `(1,1)` exits.
+Thus an infinite walk through noncoincident states can coexist with a path
+to coincidence. The cycle is not a closed nonproductive component, and
+these two rows do not form a complete forward carrier. This illustrates the
+path quantifier without claiming finite closure or family Lean acceptance.
+
 ## Narrow next obligation and scope
 
 **Stop the proposed new root-nullity search for this family.** Reuse the
-short existing coincidence mechanism. Conditional on the remaining prior-art
-and conjugacy screen, the precise further target is: for every `k>=2`, prove
+short existing coincidence mechanism. After the proportional screen above,
+the precise further target is: for every `k>=2`, prove
 finite actual `ChildNC` reachability from `([0,1],[1,0])`. A parameter-dependent
 finite carrier and bound are sufficient. Its membership proof must include
 the seed and every actual child, with ordered words and complete reduction.
