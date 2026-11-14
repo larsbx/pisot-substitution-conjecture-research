@@ -106,11 +106,11 @@ must identify which remaining fixture-specific hypothesis it discharges.
 
 ## 4. Next mathematical target after acceptance
 
-A subsequent [five-source family review](c4-parameter-family-stop-go-2026-11-14.md)
+A subsequent [six-source family review](c4-parameter-family-stop-go-2026-11-14.md)
 redirects the first concrete candidate `sigma_k=(1,0 1^k 2,001)`: existing
 prefix-witness lemmas already give the hand-derived strict-exclusion route for
-`k>=2`. Subject to the remaining prior-coverage/conjugacy identification
-check, its useful target is finite actual `ChildNC` reachability from seed
+`k>=2`. The bounded prior-coverage screen found no applicable all-parameter
+import. Its useful target is finite actual `ChildNC` reachability from seed
 `01/10`, allowing a parameter-dependent carrier bound. The exact
 word identities, boundary cases, prior-coverage checks and uncompiled scope
 are recorded in that review. No family Lean acceptance is claimed.
@@ -118,6 +118,10 @@ The trace-bound literature already covers PDS for `k=1,2`; retain `k=2` as
 a control and focus the substantive infinite extension on `k>=3`. Direct
 one-step nonerasing beta intertwiners are excluded by endpoint cycles, while
 powers and more general recodings remain unresolved.
+The recent compatible-substitution theorem inspected in that review requires
+unimodularity and does not apply to this determinant-two family. The scoped
+forward-closure work can proceed without claiming an exhaustive noncoverage
+or nonconjugacy theorem.
 
 The broader geometric programme below remains available for families without
 such an already applicable coincidence mechanism.
