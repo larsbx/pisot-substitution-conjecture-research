@@ -1,0 +1,35 @@
+✔ [2181/2196] Built PscVerif.Binomial (318s)
+✔ [2182/2196] Built PscVerif.PerronCore (317s)
+✔ [2183/2196] Built PscVerif.ConcentrationAlgebra (317s)
+✔ [2184/2196] Built PscVerif.FixedPointLimit (1.9s)
+✔ [2185/2196] Built PscVerif.Incidence (2.3s)
+✔ [2186/2196] Built PscVerif.Cyclicity (3.2s)
+✔ [2187/2196] Built PscVerif.ParikhIntertwiner (2.3s)
+✔ [2188/2196] Built PscVerif.SignedCocycle (2.4s)
+✔ [2189/2196] Built PscVerif.Reduction (2.1s)
+✔ [2190/2196] Built PscVerif.Descendants (3.7s)
+✔ [2191/2196] Built PscVerif.Termination (1.9s)
+⚠ [2192/2196] Built PscVerif.OccurrenceNewborn (2.8s)
+warning: PscVerif/OccurrenceNewborn.lean:53:0: automatically included section variable(s) unused in theorem `Psc.OccurrenceNewborn.SyncPlus.eventual`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: PscVerif/OccurrenceNewborn.lean:61:0: automatically included section variable(s) unused in theorem `Psc.OccurrenceNewborn.SyncMinus.eventual`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [2193/2196] Built PscVerif.TerminationFactors (3.4s)
+warning: PscVerif/TerminationFactors.lean:107:8: automatically included section variable(s) unused in theorem `_private.PscVerif.TerminationFactors.0.Psc.TerminationFactors.subst_singletons`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+✔ [2194/2196] Built PscVerif.OccurrenceAddress (3.6s)
+✔ [2195/2196] Built PscVerif.OccurrenceTransport (2.0s)
+✔ [2196/2196] Built PscVerif.OccurrenceSuccessor (2.4s)
+Build completed successfully (2196 jobs).

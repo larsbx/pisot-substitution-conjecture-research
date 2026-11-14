@@ -1903,6 +1903,486 @@
   ],
   "lean_declarations": [
     {
+      "name": "Psc.A1PrimeTailCoincidence.residual_parameter_cases",
+      "module": "PscVerif.A1PrimeTailCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean",
+      "line": 24,
+      "declaration": "theorem residual_parameter_cases (e Z j : ℤ)"
+    },
+    {
+      "name": "Psc.A1PrimeTailCoincidence.incidenceZ_eq",
+      "module": "PscVerif.A1PrimeTailCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean",
+      "line": 56,
+      "declaration": "theorem incidenceZ_eq (e : ℕ) (v w : Word)"
+    },
+    {
+      "name": "Psc.A1PrimeTailCoincidence.marked_counts",
+      "module": "PscVerif.A1PrimeTailCoincidence",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean",
+      "line": 129,
+      "declaration": "private theorem marked_counts {m : MarkedPair} {a b : Fin 3}"
+    },
+    {
+      "name": "Psc.A1PrimeTailCoincidence.marked_prefixes",
+      "module": "PscVerif.A1PrimeTailCoincidence",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean",
+      "line": 135,
+      "declaration": "private theorem marked_prefixes (m : MarkedPair) (x y : Word) (a : Fin 3)"
+    },
+    {
+      "name": "Psc.A1PrimeTailCoincidence.final_packet",
+      "module": "PscVerif.A1PrimeTailCoincidence",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean",
+      "line": 162,
+      "declaration": "private theorem final_packet (e : ℕ) (v w : Word)"
+    },
+    {
+      "name": "Psc.A1PrimeTailCoincidence.six_level_coincidence",
+      "module": "PscVerif.A1PrimeTailCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean",
+      "line": 224,
+      "declaration": "theorem six_level_coincidence (e : ℕ) (v w : Word)"
+    },
+    {
+      "name": "Psc.A1PrimeTailCoincidence.boundary_middle_counts",
+      "module": "PscVerif.A1PrimeTailCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean",
+      "line": 246,
+      "declaration": "theorem boundary_middle_counts (b d : ℕ) :"
+    },
+    {
+      "name": "Psc.A1PrimeTailCoincidence.boundary_layer_six_level",
+      "module": "PscVerif.A1PrimeTailCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean",
+      "line": 256,
+      "declaration": "theorem boundary_layer_six_level (b d : ℕ) :"
+    },
+    {
+      "name": "Psc.A1PrimeTailCoincidence.second_prefix_counts",
+      "module": "PscVerif.A1PrimeTailCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean",
+      "line": 274,
+      "declaration": "theorem second_prefix_counts (b d : ℕ) :"
+    },
+    {
+      "name": "Psc.A1PrimeTailCoincidence.second_incidenceZ_eq",
+      "module": "PscVerif.A1PrimeTailCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean",
+      "line": 280,
+      "declaration": "theorem second_incidenceZ_eq (b d : ℕ) (w : Word)"
+    },
+    {
+      "name": "Psc.A1PrimeTailCoincidence.secondStage6_words",
+      "module": "PscVerif.A1PrimeTailCoincidence",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean",
+      "line": 373,
+      "declaration": "private theorem secondStage6_words (b d : ℕ) (w : Word) :"
+    },
+    {
+      "name": "Psc.A1PrimeTailCoincidence.second_final_packet",
+      "module": "PscVerif.A1PrimeTailCoincidence",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean",
+      "line": 380,
+      "declaration": "private theorem second_final_packet (b d : ℕ) (w : Word)"
+    },
+    {
+      "name": "Psc.A1PrimeTailCoincidence.second_layer_six_level",
+      "module": "PscVerif.A1PrimeTailCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean",
+      "line": 446,
+      "declaration": "theorem second_layer_six_level (b d : ℕ) (w : Word)"
+    },
+    {
+      "name": "Psc.A1PrimeTailCoincidence.tail_split",
+      "module": "PscVerif.A1PrimeTailCoincidence",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean",
+      "line": 456,
+      "declaration": "private theorem tail_split (head tail : Word) (m n : ℕ) :"
+    },
+    {
+      "name": "Psc.A1PrimeTailCoincidence.z4_head_counts",
+      "module": "PscVerif.A1PrimeTailCoincidence",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean",
+      "line": 484,
+      "declaration": "private theorem z4_head_counts (shape : Fin 3) (b : ℕ) :"
+    },
+    {
+      "name": "Psc.A1PrimeTailCoincidence.z4_incidenceZ_eq",
+      "module": "PscVerif.A1PrimeTailCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean",
+      "line": 490,
+      "declaration": "theorem z4_incidenceZ_eq (shape : Fin 3) (b d : ℕ) :"
+    },
+    {
+      "name": "Psc.A1PrimeTailCoincidence.z4_final_packet",
+      "module": "PscVerif.A1PrimeTailCoincidence",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean",
+      "line": 572,
+      "declaration": "private theorem z4_final_packet (shape : Fin 3) (b d : ℕ) :"
+    },
+    {
+      "name": "Psc.A1PrimeTailCoincidence.z4_three_level",
+      "module": "PscVerif.A1PrimeTailCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean",
+      "line": 603,
+      "declaration": "theorem z4_three_level (shape : Fin 3) (b d : ℕ) :"
+    },
+    {
+      "name": "Psc.A1PrimeTailCoincidence.simultaneous_of_residual",
+      "module": "PscVerif.A1PrimeTailCoincidence",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean",
+      "line": 616,
+      "declaration": "private theorem simultaneous_of_residual (s : Fin 3 → Word) (n : ℕ) (c : Fin 3)"
+    },
+    {
+      "name": "Psc.A1PrimeTailCoincidence.first_layer_simultaneous",
+      "module": "PscVerif.A1PrimeTailCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean",
+      "line": 651,
+      "declaration": "theorem first_layer_simultaneous (e : ℕ) (v w : Word)"
+    },
+    {
+      "name": "Psc.A1PrimeTailCoincidence.second_layer_simultaneous",
+      "module": "PscVerif.A1PrimeTailCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean",
+      "line": 666,
+      "declaration": "theorem second_layer_simultaneous (b d : ℕ) (w : Word)"
+    },
+    {
+      "name": "Psc.A1PrimeTailCoincidence.z4_simultaneous",
+      "module": "PscVerif.A1PrimeTailCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean",
+      "line": 680,
+      "declaration": "theorem z4_simultaneous (shape : Fin 3) (b d : ℕ) :"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.residual_run_split",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 38,
+      "declaration": "theorem residual_run_split (a c r t e j : ℤ)"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.matrix_sq",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 57,
+      "declaration": "theorem matrix_sq (e j : ℕ) :"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.matrix_primitive",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 67,
+      "declaration": "theorem matrix_primitive (e j : ℕ) (hj : j = 1 ∨ j = 2) :"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.matrixQ_eq",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 78,
+      "declaration": "theorem matrixQ_eq (e j : ℕ) :"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.matrix_determinant",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 83,
+      "declaration": "theorem matrix_determinant (e j : ℕ) : (matrixQ e j).det = 2 := by"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.matrix_charpoly",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 96,
+      "declaration": "theorem matrix_charpoly (e j : ℕ) : (matrixQ e j).charpoly = polynomial e j := by"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.polynomial_natDegree",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 101,
+      "declaration": "theorem polynomial_natDegree (e j : ℕ) : (polynomial e j).natDegree = 3 := by"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.integerPolynomial_monic",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 105,
+      "declaration": "theorem integerPolynomial_monic (e j : ℕ) : (integerPolynomial e j).Monic := by"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.polynomial_eq_map",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 109,
+      "declaration": "theorem polynomial_eq_map (e j : ℕ) :"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.polynomial_monic",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 114,
+      "declaration": "theorem polynomial_monic (e j : ℕ) : (polynomial e j).Monic := by"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.aeval_polynomial",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 118,
+      "declaration": "theorem aeval_polynomial {A : Type*} [CommRing A] [Algebra ℚ A] (e j : ℕ) (z : A) :"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.aeval_integerPolynomial",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 124,
+      "declaration": "theorem aeval_integerPolynomial {A : Type*} [CommRing A] [Algebra ℤ A]"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.no_rational_root",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 131,
+      "declaration": "theorem no_rational_root (e j : ℕ) (hj : j = 1 ∨ j = 2) (x : ℚ) :"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.polynomial_irreducible",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 153,
+      "declaration": "theorem polynomial_irreducible (e j : ℕ) (hj : j = 1 ∨ j = 2) :"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.matrix_irreducible",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 159,
+      "declaration": "theorem matrix_irreducible (e j : ℕ) (hj : j = 1 ∨ j = 2) :"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.real_root",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 164,
+      "declaration": "theorem real_root (e j : ℕ) (hj : j = 1 ∨ j = 2) :"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.other_root",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 188,
+      "declaration": "theorem other_root (e j : ℕ) (hj : j = 1 ∨ j = 2) {b : ℝ} (hb2 : 2 < b)"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.matrix_pisot",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 248,
+      "declaration": "theorem matrix_pisot (e j : ℕ) (hj : j = 1 ∨ j = 2) :"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.root_irrational",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 265,
+      "declaration": "theorem root_irrational (e j : ℕ) (hj : j = 1 ∨ j = 2) {b : ℝ}"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.matrix_positive_left_eigenvector",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 275,
+      "declaration": "theorem matrix_positive_left_eigenvector (e j : ℕ) {b : ℝ} (hb3 : 3 < b)"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.third_layer_unit_root",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 288,
+      "declaration": "theorem third_layer_unit_root (e : ℕ) :"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.third_layer_no_pisot_above_two",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 294,
+      "declaration": "theorem third_layer_no_pisot_above_two (e : ℕ) :"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.parameter_ge_two",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 309,
+      "declaration": "theorem parameter_ge_two (e : ℕ) (w : Word)"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.incidence_eq",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 315,
+      "declaration": "theorem incidence_eq (e : ℕ) (v w : Word)"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.primitive",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 325,
+      "declaration": "theorem primitive (e : ℕ) (v w : Word)"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.incidenceQ_eq",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 335,
+      "declaration": "theorem incidenceQ_eq (e : ℕ) (v w : Word)"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.determinant",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 342,
+      "declaration": "theorem determinant (e : ℕ) (v w : Word)"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.charpoly_eq",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 349,
+      "declaration": "theorem charpoly_eq (e : ℕ) (v w : Word)"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.irreducible",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 356,
+      "declaration": "theorem irreducible (e : ℕ) (v w : Word)"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.pisot",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 363,
+      "declaration": "theorem pisot (e : ℕ) (v w : Word)"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.positive_left_eigenvector",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 373,
+      "declaration": "theorem positive_left_eigenvector (e : ℕ) (v w : Word)"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.second_incidence_eq",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 386,
+      "declaration": "theorem second_incidence_eq (b d : ℕ) (w : Word)"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.second_primitive",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 395,
+      "declaration": "theorem second_primitive (b d : ℕ) (w : Word)"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.secondIncidenceQ_eq",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 405,
+      "declaration": "theorem secondIncidenceQ_eq (b d : ℕ) (w : Word)"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.second_determinant",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 411,
+      "declaration": "theorem second_determinant (b d : ℕ) (w : Word)"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.second_charpoly_eq",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 417,
+      "declaration": "theorem second_charpoly_eq (b d : ℕ) (w : Word)"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.second_irreducible",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 423,
+      "declaration": "theorem second_irreducible (b d : ℕ) (w : Word)"
+    },
+    {
+      "name": "Psc.A1PrimeTailPisot.second_pisot",
+      "module": "PscVerif.A1PrimeTailPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean",
+      "line": 429,
+      "declaration": "theorem second_pisot (b d : ℕ) (w : Word)"
+    },
+    {
       "name": "Psc.ArchivedGraphRefinement.TableBinding.incoming_exists",
       "module": "PscVerif.ArchivedGraphRefinement",
       "private": false,
@@ -2509,6 +2989,158 @@
       "source": "proof/PscVerif/PscVerif/ArchivedPayloadControls.lean",
       "line": 151,
       "declaration": "theorem same_matrix_wrong_literal_source_refused :"
+    },
+    {
+      "name": "Psc.BHFiniteCarrier.covers_seed_iterates_of_closed",
+      "module": "PscVerif.BHFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHFiniteCarrier.lean",
+      "line": 22,
+      "declaration": "theorem covers_seed_iterates_of_closed"
+    },
+    {
+      "name": "Psc.BHFiniteCarrier.finite_factors_of_closed_packet_cover",
+      "module": "PscVerif.BHFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHFiniteCarrier.lean",
+      "line": 34,
+      "declaration": "theorem finite_factors_of_closed_packet_cover"
+    },
+    {
+      "name": "Psc.BHFiniteCarrier.finite_reachable_of_closed_packet_cover",
+      "module": "PscVerif.BHFiniteCarrier",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHFiniteCarrier.lean",
+      "line": 48,
+      "declaration": "theorem finite_reachable_of_closed_packet_cover"
+    },
+    {
+      "name": "Psc.BHFiniteReachability.physicalLength_subst",
+      "module": "PscVerif.BHFiniteReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHFiniteReachability.lean",
+      "line": 46,
+      "declaration": "theorem physicalLength_subst (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.BHFiniteReachability.physicalLength_iterate",
+      "module": "PscVerif.BHFiniteReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHFiniteReachability.lean",
+      "line": 54,
+      "declaration": "theorem physicalLength_iterate (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.BHFiniteReachability.mark_bounds",
+      "module": "PscVerif.BHFiniteReachability",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHFiniteReachability.lean",
+      "line": 64,
+      "declaration": "private theorem mark_bounds (ℓ : Fin 3 → ℝ) (hℓ : ∀ a, 0 ≤ ℓ a)"
+    },
+    {
+      "name": "Psc.BHFiniteReachability.packet_path_tileCut",
+      "module": "PscVerif.BHFiniteReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHFiniteReachability.lean",
+      "line": 76,
+      "declaration": "theorem packet_path_tileCut (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.BHFiniteReachability.TileCut.pad",
+      "module": "PscVerif.BHFiniteReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHFiniteReachability.lean",
+      "line": 124,
+      "declaration": "theorem TileCut.pad (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.BHFiniteReachability.uniform_tileCut_depth",
+      "module": "PscVerif.BHFiniteReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHFiniteReachability.lean",
+      "line": 143,
+      "declaration": "theorem uniform_tileCut_depth (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.BHFiniteReachability.balanced_prefix_boundary",
+      "module": "PscVerif.BHFiniteReachability",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHFiniteReachability.lean",
+      "line": 163,
+      "declaration": "private theorem balanced_prefix_boundary (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.BHFiniteReachability.factor_bound_of_tileCuts",
+      "module": "PscVerif.BHFiniteReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHFiniteReachability.lean",
+      "line": 178,
+      "declaration": "theorem factor_bound_of_tileCuts (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.BHFiniteReachability.length_mul_le_physicalLength",
+      "module": "PscVerif.BHFiniteReachability",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHFiniteReachability.lean",
+      "line": 261,
+      "declaration": "private theorem length_mul_le_physicalLength (ℓ : Fin 3 → ℝ) (μ : ℝ)"
+    },
+    {
+      "name": "Psc.BHFiniteReachability.finite_words_length_le",
+      "module": "PscVerif.BHFiniteReachability",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHFiniteReachability.lean",
+      "line": 270,
+      "declaration": "private theorem finite_words_length_le (N : ℕ) :"
+    },
+    {
+      "name": "Psc.BHFiniteReachability.finite_balanced_pairs_of_physical_bound",
+      "module": "PscVerif.BHFiniteReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHFiniteReachability.lean",
+      "line": 288,
+      "declaration": "theorem finite_balanced_pairs_of_physical_bound (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.BHFiniteReachability.bounded_late_factors_of_finite_packet_hits",
+      "module": "PscVerif.BHFiniteReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHFiniteReachability.lean",
+      "line": 313,
+      "declaration": "theorem bounded_late_factors_of_finite_packet_hits"
+    },
+    {
+      "name": "Psc.BHFiniteReachability.finite_factors_of_finite_packet_hits",
+      "module": "PscVerif.BHFiniteReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHFiniteReachability.lean",
+      "line": 342,
+      "declaration": "theorem finite_factors_of_finite_packet_hits"
+    },
+    {
+      "name": "Psc.BHFiniteReachability.finite_reachable_of_finite_packet_hits",
+      "module": "PscVerif.BHFiniteReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHFiniteReachability.lean",
+      "line": 367,
+      "declaration": "theorem finite_reachable_of_finite_packet_hits"
+    },
+    {
+      "name": "Psc.BHFiniteReachability.physicalLength_unit",
+      "module": "PscVerif.BHFiniteReachability",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHFiniteReachability.lean",
+      "line": 386,
+      "declaration": "private theorem physicalLength_unit (w : Word) :"
+    },
+    {
+      "name": "Psc.BHFiniteReachability.physical_zero_does_not_supply_tileCut",
+      "module": "PscVerif.BHFiniteReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHFiniteReachability.lean",
+      "line": 395,
+      "declaration": "theorem physical_zero_does_not_supply_tileCut :"
     },
     {
       "name": "Psc.ind_self",
@@ -22903,6 +23535,70 @@
       "declaration": "theorem isCompact_pairPiece {s : Fin 3 → Word} (A : G →+ G)"
     },
     {
+      "name": "Psc.OccurrenceAncestry.mark_drop",
+      "module": "PscVerif.OccurrenceAncestry",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAncestry.lean",
+      "line": 16,
+      "declaration": "private theorem mark_drop {w : Word} (m : Mark w) :"
+    },
+    {
+      "name": "Psc.OccurrenceAncestry.mark_eq_of_index",
+      "module": "PscVerif.OccurrenceAncestry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAncestry.lean",
+      "line": 23,
+      "declaration": "theorem mark_eq_of_index {w : Word} (m n : Mark w) (h : m.index = n.index) : m = n := by"
+    },
+    {
+      "name": "Psc.OccurrenceAncestry.markAt_index",
+      "module": "PscVerif.OccurrenceAncestry",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAncestry.lean",
+      "line": 43,
+      "declaration": "private theorem markAt_index (w : Word) (i : ℕ) (hi : i < w.length) :"
+    },
+    {
+      "name": "Psc.OccurrenceAncestry.mark_uninflate",
+      "module": "PscVerif.OccurrenceAncestry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAncestry.lean",
+      "line": 49,
+      "declaration": "theorem mark_uninflate (s : Fin 3 → Word) (w : Word) (child : Mark (subst s w)) :"
+    },
+    {
+      "name": "Psc.OccurrenceAncestry.physicalLength_subst",
+      "module": "PscVerif.OccurrenceAncestry",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAncestry.lean",
+      "line": 85,
+      "declaration": "private theorem physicalLength_subst (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.OccurrenceAncestry.inflate_interval_bounds",
+      "module": "PscVerif.OccurrenceAncestry",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAncestry.lean",
+      "line": 92,
+      "declaration": "private theorem inflate_interval_bounds (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.OccurrenceAncestry.overlapping_parent",
+      "module": "PscVerif.OccurrenceAncestry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAncestry.lean",
+      "line": 109,
+      "declaration": "theorem overlapping_parent (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.OccurrenceAncestry.covers_iterates_of_closed",
+      "module": "PscVerif.OccurrenceAncestry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceAncestry.lean",
+      "line": 143,
+      "declaration": "theorem covers_iterates_of_closed (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
       "name": "Psc.OccurrenceCover.digit_card",
       "module": "PscVerif.OccurrenceCover",
       "private": false,
@@ -34538,14 +35234,20 @@
   ],
   "input_digests": {
     "claim_governance.toml": "5642e664f9a79064ffbaf770719cf0acba52accc75fca568711d4b554a08803e",
+    "proof/PscVerif/A1PrimeTailAudit.lean": "eee41a524a6a114716a7704f169726b6484ab56c2398431dcd297fe6809a0b23",
+    "proof/PscVerif/BHFiniteReachabilityAudit.lean": "5469fdefea80286841bb3b40b7944a4674de5dce03ca12b490ee72b77ca2b79d",
     "proof/PscVerif/C4ParameterFamilyAudit.lean": "71861a4249ef9a84e9f4357f227e038000ca6b32f5ed2a5e947cd140bc7edb8a",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
+    "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean": "f1c4480b95159800bb52cd42164763d01e6ab6045dc72b07874f164409a0eaf1",
+    "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean": "6387c221871d7b70efca50349c815fac07421bb44a28122f9157ff0652cb074f",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean": "87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean": "e18e726b6bd1c431f9e28500504edd6ffba157415af20069715b9c8f208f3f9b",
     "proof/PscVerif/PscVerif/ArchivedPayload.lean": "38d3b2270c15baae23f36be3a7c369dcaab4255b26d5db6a00ed32ef084afe8d",
     "proof/PscVerif/PscVerif/ArchivedPayloadConsumer.lean": "39768a54a2c022ef460e08dbd1879177fdf598bb8645702233264738ddf43e49",
     "proof/PscVerif/PscVerif/ArchivedPayloadControls.lean": "c1687369bb8feec4b5c784c3ac6f4cc6dccb9ece05af539a13f11d1cffb83371",
     "proof/PscVerif/PscVerif/ArchivedPayloadEmit.lean": "3d56413774e33215a1fb507ca418f08b4d048b3986c2c309a9cc9d626a15a6e3",
+    "proof/PscVerif/PscVerif/BHFiniteCarrier.lean": "58ca13926d84d3107cf69408c457a4e7da3ca96761818e5cc0086d2c017537fe",
+    "proof/PscVerif/PscVerif/BHFiniteReachability.lean": "5b9f2fd96957c25211ebadb767ba7747dd2966b474bce2922c56e87d4f623e94",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
     "proof/PscVerif/PscVerif/Binomial.lean": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
@@ -34640,6 +35342,7 @@
     "proof/PscVerif/PscVerif/NamedStrictExclusionControls.lean": "e5e5c2a1fbfb87f256ae71a645f9d863ad03da63b6cadaed2e4a5da15265d1d7",
     "proof/PscVerif/PscVerif/OccurrenceAddress.lean": "fd8d4020fc3f720c8a81d23c9811056802c901eec35a48efcbb40954c5a375ad",
     "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean": "0843e0a255a2a13675132264eb1385d9a155b7122138359b02158916541e2b4e",
+    "proof/PscVerif/PscVerif/OccurrenceAncestry.lean": "7576fc3fd0b96bd17d3359e1179bde0c909626a7cdd6c7b0fb2cce8c0f03acb3",
     "proof/PscVerif/PscVerif/OccurrenceCover.lean": "c66e2937532b2b289351b9ab10a18a1485b73434e362fd1e88edbfd3b6479cb6",
     "proof/PscVerif/PscVerif/OccurrenceFinite.lean": "65ef11444d2f03c9a49febf9a859eb8d48bd8dd0e1a37fd972c47935526b48a0",
     "proof/PscVerif/PscVerif/OccurrenceGraphBinding.lean": "31b2d7827438cd77c0e2f7fb72d4dc7791d016cd635952630220faf667e2084f",
@@ -34686,7 +35389,7 @@
     "proof/PscVerif/PscVerif/UniversalClosureReduction.lean": "aaf84f504e5609b7d74be4187ec325e195e5facc098386b42e36b469f2318e24",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "25f71249a966b8dd140d6d85855c6f4c3af45d804a03f98121f9fc3210c003d9",
+    "proof/PscVerif/PscVerif.lean": "3c572ee0853b1a59fb08e3974cbb9ae5e6a1c36bd9b167077accf7375a07be6a",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

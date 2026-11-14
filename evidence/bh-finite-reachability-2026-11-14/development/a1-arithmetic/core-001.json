@@ -1,0 +1,42 @@
+{
+  "source": "/workspace/scratch/psc-next/a1-pisot-development/PscVerif/A1CoreDiagnostic.lean",
+  "sha256": "365bcf2309a9b55f28ca83330fa31bce053a6c75019ea6c512a420268cfc4599",
+  "repository_source_sha256": "2cd3212968da64d4f7eba5d83fc4beba576d3967b22315b0dd6cebaef7ba7443",
+  "source_snapshot": "/workspace/scratch/psc-next/a1-pisot-development/core-001.lean",
+  "direct_import_objects": {
+    "/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib/Algebra/Polynomial/SpecificDegree.olean": "08bba985d5a395912d4f424f42c8763e9b0c7dd922daab636244ebdeab857d23",
+    "/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib/Analysis/Complex/Norm.olean": "1ef71a3b79d2f2a43fa880c9ed44a8bf2eeb2992cd8b6558282e0c2a809369ad",
+    "/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib/LinearAlgebra/Matrix/Charpoly/Basic.olean": "7a5780dfb5dc773ab166a2f11b57172d2a1c802e6f852d11808fee519a048290",
+    "/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib/NumberTheory/Real/Irrational.olean": "12717ea74b8ff02323ddafe99c305c974e0d71bdca3e53e243423dcc32f51bef",
+    "/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib/RingTheory/Polynomial/RationalRoot.olean": "9d5288bf2d85d8a2f5d8cb9656e2845ead2624cdb9d6ae83a03b1646a02fe731",
+    "/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib/Topology/Order/IntermediateValue.olean": "ad25f8ffacb5418cd9c6f376cf932446a1b726953811750e02fffa2dd9139b07",
+    "/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib/Tactic/ComputeDegree.olean": "8763c215da521188e3b4dd456bf5e101405d4b84eee8afba2cc76996f92becd5",
+    "/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib/Tactic/FinCases.olean": "0fe552404d449ac2a0cf99fa0459218fa8bb8e42dfc7277e2ce19a5bf27d82ae",
+    "/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib/Tactic/FunProp.olean": "76d3166ca446095b164f96a03a41d3dbefeed6db2ad69c0751daf628d49d2568",
+    "/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib/Tactic/Linarith.olean": "ab8dd820c9d2501158830a6ccfbf83fa82430768ad37232d57205d20efcde9ea",
+    "/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib/Tactic/LinearCombination.olean": "e8ed44f5d908892c929d1f537fe4e093314b9527accd83a133bdfd0810aa5d93",
+    "/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib/Tactic/NormNum.olean": "a63e6b05d99d509528c75e4c4f9b7b9accc6b2ad0c8fda72b6ff57613b25156e",
+    "/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib/Tactic/Ring.olean": "b0106b5b7da97713e33bd0b4981f45745edf65f766c1b5690c7e1a474ed1eeca",
+    "/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/build/lib/lean/PscVerif/Incidence.olean": "ba8ff9cf760c5708949b4bd3033e6dd69c0db3f9a77246e51db28222e2582161"
+  },
+  "command": [
+    "/home/agent/.elan/toolchains/leanprover--lean4---v4.34.0-rc2/bin/lean",
+    "-DautoImplicit=false",
+    "-j",
+    "2",
+    "-o",
+    "/workspace/scratch/psc-next/a1-pisot-development/PscVerif/A1CoreDiagnostic.olean",
+    "/workspace/scratch/psc-next/a1-pisot-development/PscVerif/A1CoreDiagnostic.lean"
+  ],
+  "cwd": "/workspace/scratch/psc-next/psc/proof/PscVerif",
+  "scope": "Private matrix-core diagnostic; excludes all literal bindings and is not acceptance of the repository module.",
+  "timeout_seconds": 600,
+  "started_at": 1794687205.4453743,
+  "terminal_exit": 1,
+  "outcome": "completed",
+  "elapsed_seconds": 0.11434200500002589,
+  "source_unchanged": true,
+  "object_written": false,
+  "log": "/workspace/scratch/psc-next/a1-pisot-development/logs/core-001.log",
+  "log_sha256": "03e142ef0e959ab270147d610b35dc8f3f2ab22ffcf0eeacf8fcd876a854ce4c"
+}

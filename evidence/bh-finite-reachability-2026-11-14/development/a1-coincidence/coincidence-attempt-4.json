@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/home/agent/.elan/bin/elan",
+    "run",
+    "leanprover/lean4:v4.34.0-rc2",
+    "lake",
+    "--no-cache",
+    "build",
+    "PscVerif.A1PrimeTailCoincidence"
+  ],
+  "cwd": "/workspace/scratch/psc-next/psc/proof/PscVerif",
+  "source_sha256": "5ca222c29dd76e9153fb2abd5416a70a425dda71bbd65c6c0c96b3e45d9c79cb",
+  "timeout_seconds": 600,
+  "threads": 2,
+  "scope": "Development source build after recovery; dependencies built centrally.",
+  "terminal_exit_code": 0,
+  "elapsed_seconds": 10.166748,
+  "source_unchanged": true
+}

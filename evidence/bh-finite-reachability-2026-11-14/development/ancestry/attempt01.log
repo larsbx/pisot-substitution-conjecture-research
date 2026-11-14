@@ -1,0 +1,67 @@
+PscVerif/OccurrenceAncestry.lean:18:2: error: Type mismatch: After simplification, term
+  congrArg (List.drop (m.index + 1)) m.split
+ has type
+  List.drop (List.length m.before + 1) w = List.drop (List.length m.before + 1) m.before ++ m.after
+but is expected to have type
+  List.drop (List.length m.before + 1) w = m.after
+PscVerif/OccurrenceAncestry.lean:22:70: error: Tactic `rewrite` failed: motive is not type correct:
+  fun _a => w[_a] = w[n.index]
+Error: Application type mismatch: The argument
+  Mark.index_lt m
+has type
+  m.index < List.length w
+but is expected to have type
+  _a < List.length w
+in the application
+  w[_a]
+
+Explanation: The rewrite tactic rewrites an expression 'e' using an equality 'a = b' by the following process. First, it looks for all 'a' in 'e'. Second, it tries to abstract these occurrences of 'a' to create a function 'm := fun _a => ...', called the *motive*, with the property that 'm a' is definitionally equal to 'e'. Third, we observe that 'congrArg' implies that 'm a = m b', which can be used with lemmas such as 'Eq.mpr' to change the goal. However, if 'e' depends on specific properties of 'a', then the motive 'm' might not typecheck.
+
+Possible solutions: use rewrite's 'occs' configuration option to limit which occurrences are rewritten, or use 'simp' or 'conv' mode, which have strategies for certain kinds of dependencies (these tactics can handle proofs and 'Decidable' instances whose types depend on the rewritten term, and 'simp' can apply user-defined '@[congr]' theorems as well).
+
+w : Word
+m n : Mark w
+h : m.index = n.index
+hb : m.before = n.before
+⊢ w[m.index] = w[n.index]
+PscVerif/OccurrenceAncestry.lean:53:4: error: unsolved goals
+case pos
+s : Fin 3 → Word
+a : Fin 3
+w : List (Fin 3)
+ih : ∀ (child : Mark (subst s w)), ∃ parent digit, Mark.inflate s parent digit = child
+child : Mark (subst s (a :: w))
+hfirst : child.index < List.length (s a)
+parent : Mark (a :: w) := { before := [], letter := a, after := w, split := ⋯ }
+digit : Mark (s a) := markAt (s a) child.index hfirst
+⊢ List.length child.before ≤ List.length (s a)
+PscVerif/OccurrenceAncestry.lean:60:12: error: Tactic `rewrite` failed: motive is not type correct:
+  fun _a => child.index < _a.length
+Error: Application type mismatch: The argument
+  child
+has type
+  Mark (subst s (a :: w))
+but is expected to have type
+  Mark _a
+in the application
+  child.index
+
+Explanation: The rewrite tactic rewrites an expression 'e' using an equality 'a = b' by the following process. First, it looks for all 'a' in 'e'. Second, it tries to abstract these occurrences of 'a' to create a function 'm := fun _a => ...', called the *motive*, with the property that 'm a' is definitionally equal to 'e'. Third, we observe that 'congrArg' implies that 'm a = m b', which can be used with lemmas such as 'Eq.mpr' to change the goal. However, if 'e' depends on specific properties of 'a', then the motive 'm' might not typecheck.
+
+Possible solutions: use rewrite's 'occs' configuration option to limit which occurrences are rewritten, or use 'simp' or 'conv' mode, which have strategies for certain kinds of dependencies (these tactics can handle proofs and 'Decidable' instances whose types depend on the rewritten term, and 'simp' can apply user-defined '@[congr]' theorems as well).
+
+s : Fin 3 → Word
+a : Fin 3
+w : List (Fin 3)
+ih : ∀ (child : Mark (subst s w)), ∃ parent digit, Mark.inflate s parent digit = child
+child : Mark (subst s (a :: w))
+hfirst : ¬child.index < List.length (s a)
+h : child.index < (subst s (a :: w)).length
+⊢ child.index - List.length (s a) < (subst s w).length
+PscVerif/OccurrenceAncestry.lean:57:8: warning: This simp argument is unused:
+  Nat.min_eq_left (Nat.le_of_lt hfirst)
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [parent, digit, Mark.inflate, Mark.index, markAt, subst]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

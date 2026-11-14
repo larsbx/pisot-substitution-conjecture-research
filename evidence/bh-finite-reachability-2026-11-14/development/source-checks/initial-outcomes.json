@@ -1,0 +1,23 @@
+{
+  "environment_setup_attempt": {
+    "exit_code": 1,
+    "reason": "Default Python did not have pytest installed; no tests ran.",
+    "recovery": "Created a scratch virtual environment and installed pytest there; no project dependency or compiler pin changed."
+  },
+  "proof_bank_tests_attempt_1": {
+    "exit_code": 1,
+    "failed_test": "tests/test_proof_bank.py::test_bank_is_current_and_includes_every_governed_claim_and_lean_proof",
+    "reason": "Source line numbers changed during ongoing proof edits after the inventory generation. The other 56 tests passed.",
+    "status": "Failed inventory-freshness guard must be rerun after final source freeze; this is not a green suite receipt."
+  },
+  "governance": {
+    "exit_code": 0,
+    "message": "claim governance audit passed [terminology, claims, coverage, promotion, numerics, consistency]",
+    "statuses_changed": false
+  },
+  "markdown": {
+    "exit_code": 0,
+    "message": "OK Markdown source integrity: 538 file(s) checked",
+    "scope": "Pre-publication documentation revision; final edited docs retain a separate check."
+  }
+}

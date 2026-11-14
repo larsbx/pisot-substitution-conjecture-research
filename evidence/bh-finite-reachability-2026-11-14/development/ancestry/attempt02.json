@@ -1,0 +1,21 @@
+{
+  "command": [
+    "/home/agent/.elan/bin/elan",
+    "run",
+    "leanprover/lean4:v4.34.0-rc2",
+    "lake",
+    "--no-cache",
+    "env",
+    "lean",
+    "-DautoImplicit=false",
+    "-j",
+    "2",
+    "-o",
+    ".lake/build/lib/lean/PscVerif/OccurrenceAncestry.olean",
+    "PscVerif/OccurrenceAncestry.lean"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 48.37384077699994,
+  "source_sha256": "7576fc3fd0b96bd17d3359e1179bde0c909626a7cdd6c7b0fb2cce8c0f03acb3",
+  "source_unchanged": true
+}

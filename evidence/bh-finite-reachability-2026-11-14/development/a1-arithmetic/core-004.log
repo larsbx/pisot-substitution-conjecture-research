@@ -1,0 +1,12 @@
+/workspace/scratch/psc-next/a1-pisot-development/PscVerif/A1CoreDiagnostic.lean:53:39: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/workspace/scratch/psc-next/a1-pisot-development/PscVerif/A1CoreDiagnostic.lean:276:71: error: unsolved goals
+e : ℕ
+b : ℝ
+hb : 2 < b
+left✝ : (aeval ↑b) (matrixQ e 3).charpoly = 0
+hroots : ∀ (z : ℂ), (aeval z) (matrixQ e 3).charpoly = 0 → z ≠ ↑b → ‖z‖ < 1
+hne : 1 ≠ ↑b
+h : ‖1‖ < 1
+⊢ False
