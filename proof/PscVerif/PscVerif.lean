@@ -136,3 +136,8 @@ import PscVerif.TerminationFactors
 import PscVerif.C4ParameterFamilyPisot
 import PscVerif.C4ParameterFamilyBridge
 import PscVerif.UniversalClosureReduction
+import PscVerif.OccurrenceAncestry
+import PscVerif.BHFiniteReachability
+import PscVerif.BHFiniteCarrier
+import PscVerif.A1PrimeTailCoincidence
+import PscVerif.A1PrimeTailPisot

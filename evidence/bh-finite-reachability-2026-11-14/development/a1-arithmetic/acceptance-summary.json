@@ -1,0 +1,43 @@
+{
+  "scope": "Source-bound local development passes against centrally compiled dependencies; final fresh focused gate is separate.",
+  "sources": {
+    "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean": "f1c4480b95159800bb52cd42164763d01e6ab6045dc72b07874f164409a0eaf1",
+    "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean": "6387c221871d7b70efca50349c815fac07421bb44a28122f9157ff0652cb074f",
+    "proof/PscVerif/A1PrimeTailAudit.lean": "eee41a524a6a114716a7704f169726b6484ab56c2398431dcd297fe6809a0b23"
+  },
+  "arithmetic_receipt": "/workspace/scratch/psc-next/a1-pisot-development/logs/pisot-002.json",
+  "audit_receipt": "/workspace/scratch/psc-next/a1-pisot-development/logs/audit-001.json",
+  "module_counts": [
+    [
+      "PscVerif.A1PrimeTailCoincidence",
+      "179",
+      "125"
+    ],
+    [
+      "PscVerif.A1PrimeTailPisot",
+      "70",
+      "64"
+    ]
+  ],
+  "owned_declarations": 249,
+  "owned_theorems": 189,
+  "exact_unique_endpoints": 15,
+  "rejected_controls": 30,
+  "endpoints": [
+    "Psc.A1PrimeTailCoincidence.six_level_coincidence",
+    "Psc.A1PrimeTailPisot.primitive",
+    "Psc.A1PrimeTailPisot.irreducible",
+    "Psc.A1PrimeTailPisot.pisot",
+    "Psc.A1PrimeTailCoincidence.second_layer_six_level",
+    "Psc.A1PrimeTailPisot.second_primitive",
+    "Psc.A1PrimeTailPisot.second_irreducible",
+    "Psc.A1PrimeTailPisot.second_pisot",
+    "Psc.A1PrimeTailCoincidence.z4_three_level",
+    "Psc.A1PrimeTailPisot.third_layer_unit_root",
+    "Psc.A1PrimeTailCoincidence.residual_parameter_cases",
+    "Psc.A1PrimeTailPisot.residual_run_split",
+    "Psc.A1PrimeTailCoincidence.first_layer_simultaneous",
+    "Psc.A1PrimeTailCoincidence.second_layer_simultaneous",
+    "Psc.A1PrimeTailCoincidence.z4_simultaneous"
+  ]
+}

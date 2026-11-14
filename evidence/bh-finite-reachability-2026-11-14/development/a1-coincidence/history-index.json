@@ -1,0 +1,58 @@
+{
+  "scope": "Recovered-environment development attempts. Attempt1 source hash is retained but no separate source snapshot was captured. Earlier lost-environment attempts are described in the source review and receive no pass credit.",
+  "attempts": [
+    {
+      "attempt": 1,
+      "files": [
+        "coincidence-attempt-1.json",
+        "coincidence-attempt-1.log"
+      ],
+      "source_snapshot_captured": false
+    },
+    {
+      "attempt": 2,
+      "files": [
+        "coincidence-attempt-2.json",
+        "coincidence-attempt-2.log",
+        "coincidence-attempt-2.source.lean"
+      ],
+      "source_snapshot_captured": true
+    },
+    {
+      "attempt": 3,
+      "files": [
+        "coincidence-attempt-3.json",
+        "coincidence-attempt-3.log",
+        "coincidence-attempt-3.source.lean"
+      ],
+      "source_snapshot_captured": true
+    },
+    {
+      "attempt": 4,
+      "files": [
+        "coincidence-attempt-4.json",
+        "coincidence-attempt-4.log",
+        "coincidence-attempt-4.source.lean"
+      ],
+      "source_snapshot_captured": true
+    },
+    {
+      "attempt": 5,
+      "files": [
+        "coincidence-attempt-5.json",
+        "coincidence-attempt-5.log",
+        "coincidence-attempt-5.source.lean"
+      ],
+      "source_snapshot_captured": true
+    },
+    {
+      "attempt": 6,
+      "files": [
+        "coincidence-attempt-6.json",
+        "coincidence-attempt-6.log",
+        "coincidence-attempt-6.source.lean"
+      ],
+      "source_snapshot_captured": true
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+import took 2.23s
+PSC_BH_FINITE_MODULE	PscVerif.OccurrenceAncestry	16	14
+PSC_BH_FINITE_MODULE	PscVerif.BHFiniteReachability	26	23
+PSC_BH_FINITE_MODULE	PscVerif.BHFiniteCarrier	3	3
+PSC_BH_FINITE_DECLARATIONS	3	45	40
+PSC_BH_FINITE_ENDPOINT	Psc.BHFiniteReachability.packet_path_tileCut
+PSC_BH_FINITE_ENDPOINT	Psc.BHFiniteReachability.TileCut.pad
+PSC_BH_FINITE_ENDPOINT	Psc.BHFiniteReachability.uniform_tileCut_depth
+PSC_BH_FINITE_ENDPOINT	Psc.BHFiniteReachability.factor_bound_of_tileCuts
+PSC_BH_FINITE_ENDPOINT	Psc.BHFiniteReachability.finite_balanced_pairs_of_physical_bound
+PSC_BH_FINITE_ENDPOINT	Psc.BHFiniteReachability.bounded_late_factors_of_finite_packet_hits
+PSC_BH_FINITE_ENDPOINT	Psc.BHFiniteReachability.finite_factors_of_finite_packet_hits
+PSC_BH_FINITE_ENDPOINT	Psc.BHFiniteReachability.finite_reachable_of_finite_packet_hits
+PSC_BH_FINITE_ENDPOINT	Psc.BHFiniteReachability.physical_zero_does_not_supply_tileCut
+PSC_BH_FINITE_ENDPOINT	Psc.OccurrenceAncestry.covers_iterates_of_closed
+PSC_BH_FINITE_ENDPOINT	Psc.BHFiniteCarrier.finite_reachable_of_closed_packet_cover
+PSC_BH_FINITE_AUDIT_COMPLETE	11	22
+cumulative profiling times:
+	attribute application 0.158ms
+	blocked (unaccounted) 154ms
+	compilation (IR) 2.14ms
+	compilation (LCNF base) 82.8ms
+	compilation (LCNF impure) 17.8ms
+	compilation (LCNF mono) 21.5ms
+	do element elaborator 67.5ms
+	elaboration 86.2ms
+	fix level params 0.206ms
+	import 2.23s
+	initialization 23.9ms
+	instantiate metavars 0.19ms
+	interpretation 231ms
+	let-to-have transformation 0.101ms
+	linting 12.7ms
+	module linting 0.00112ms
+	overlappingInstancesLinter 3.77ms
+	parsing 11.2ms
+	process pre-definitions 8.06ms
+	share common exprs 1.62ms
+	tacticAnalysis 24.9ms
+	type checking 8.78ms
+	typeclass inference 92.6ms

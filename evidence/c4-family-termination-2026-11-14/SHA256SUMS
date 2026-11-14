@@ -1,0 +1,9 @@
+d5374fe22f539a6d003f821bd947382827de715dbe425e2cadfaa4993f6d6df5  evidence/c4-family-termination-2026-11-14/README.md
+bd970c59a32f8cc17bfb2aeafeb7eda25a3484a3c70056c309e2f5b339f1a36b  evidence/c4-family-termination-2026-11-14/controls-compile.json
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  evidence/c4-family-termination-2026-11-14/controls-compile.log
+17263599c4e46a5f6912d2884fe583028b4cecae462985f75221c68102780ba7  evidence/c4-family-termination-2026-11-14/controls-default-threads-cancelled.json
+65ce5edb231ee8d4792031cda2bd0a2d7116de001252d44ee75b10f983a0c595  evidence/c4-family-termination-2026-11-14/controls-direct-failed.log
+1bd1ba31ab4ceb6336315c5745f6e077aa46481953453dba6a353002a4ae14d1  evidence/c4-family-termination-2026-11-14/integration-run-snapshot.json
+0221b6f262efac9086c4acd0d43fa3eb2c0a7d86d8eac97e5ec6030f4a3f239f  evidence/c4-family-termination-2026-11-14/local-checked-source.sha256
+5c1355afd1d5cb8f9aabbfd9c7cc41bd05bbd620313f627df14fdbe1f575b232  evidence/c4-family-termination-2026-11-14/mojo-family.log
+ddaed7a74668013295a0eda4f6d25cbd1c22cc1ca814b752578839c51fbd3c21  evidence/c4-family-termination-2026-11-14/oracle-family.log

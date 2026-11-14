@@ -1,0 +1,12 @@
+{
+  "status": "independent read-only mathematical review; not Lean elaboration or acceptance",
+  "reviewer_agent": "family_pisot",
+  "reviewed_source_sha256": "f9a06b5e562f02b19798e642d7fe1e73409977fc6cc98d02697cc327294f700c",
+  "scope": [
+    "factor_bound_of_tileCuts",
+    "bounded_late_factors_of_finite_packet_hits",
+    "finite_factors_of_finite_packet_hits",
+    "finite_reachable_of_finite_packet_hits"
+  ],
+  "finding": "The interval argument and final hypotheses have no identified mathematical gap. Inclusive TileCut bounds are safe because the whole scaled containing tile lies strictly inside the hypothesized overlong factor interval. The early-generation set is explicitly a finite list. No finite balanced-word carrier, supplied factor-length bound, or rational independence is hidden in the endpoint assumptions. Actual complete overlap coverage and literal integral-zero hits remain explicit."
+}

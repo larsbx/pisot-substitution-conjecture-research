@@ -1,0 +1,3 @@
+/workspace/scratch/psc-next/a1-pisot-development/PscVerif/A1CoreDiagnostic.lean:53:39: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
