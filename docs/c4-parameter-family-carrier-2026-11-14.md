@@ -129,28 +129,93 @@ state. A refused construction exits with an error. The symbolic replay uses
 integer affine rules for the word and row identities, without a parameter
 or word-length cap.
 
-## Lean scope and next obligation
+## Formal termination theorem
 
-The standalone Lean module
-`proof/psc_routes/C4ParameterFamilyWords.lean` verifies both substituted
-tracks of every representative symbolic row for arbitrary `k=n+5`. It
-also proves that the referenced indices are in range, that swapping indices
-swaps the tracks, and that each noncoincident representative row contains
-a diagonal child. The four new declarations used by the carrier proof
-depend only on `propext` and `Quot.sound`.
+The family now belongs to the governed `PscVerif` library. The earlier
+standalone word proof has moved to
+[`C4ParameterFamilyWords.lean`](../proof/PscVerif/PscVerif/C4ParameterFamilyWords.lean).
+Its former `proof/psc_routes/` location was outside the full-library audit;
+earlier broad green CI did not by itself establish its hosted compilation.
 
-```sh
-lean -DautoImplicit=false proof/psc_routes/C4ParameterFamilyWords.lean
+[`C4ParameterFamilyCarrier.lean`](../proof/PscVerif/PscVerif/C4ParameterFamilyCarrier.lean)
+supplies the remaining deductions. Its public endpoints are:
+
+```lean
+Psc.ParameterFamily.finite_and_productive
+Psc.ParameterFamily.coincidence_child
+Psc.ParameterFamily.terminates_with_coincidence
 ```
 
-The remaining Lean obligation is to supply `IsBlock` for the decoded states,
-apply `Psc.Reduction.red_unique` to the two verified concatenations, and
-check the literal carriers at `k=2,3,4`. A proof using the checked diagonal
-children can establish productivity directly. The existing
-finite-productivity bridge and strong coincidence provide a second route.
+For every natural parameter `k >= 2`, the literal ordered seed `01/10`
+has finitely many reachable states under the repository's actual `ChildNC`
+relation, and every reached state has a path to coincidence. The final
+endpoint has the existing `Psc.StrictSystem.TerminatesWithCoincidence`
+type. For `k >= 3`, every reached noncoincident state has an immediate
+coincidence child. No supplied finiteness, strong-coincidence, strict-exclusion
+or original-archive premise enters these endpoints.
 
-The family uses PR #570's revised evidence base `87e1536a09c160385964af9c95671975a0258164`.
+The existing `Productive` and `TerminatesWithCoincidence` definitions are
+extracted unchanged into
+[`Termination.lean`](../proof/PscVerif/PscVerif/Termination.lean).
+Their names, implicit parameters and bodies are preserved; `StrictSystem`
+imports them. This keeps the family consumer's dependency closure within
+the needed combinatorial library while the full audit still verifies every
+existing spectral consumer.
+
+For the symbolic range `k=n+5`, an aligned-run proof establishes `IsBlock`
+for every decoded state. In the arbitrarily long equal-`1` spans, the
+prefix-count difference is a fixed nonzero vector; finite unequal-letter
+segments are checked exactly. The earlier two-track identities and
+`red_unique` then identify each complete listed row with actual reduction.
+Track swaps preserve occurrence order. Closure embeds every reachable
+state into the image of `Fin 50`, sufficient for finiteness; this formal
+upper carrier does not assert an exact reachable cardinality of 48.
+
+For `k=2,3,4`, literal tables contain respectively 128, 60 and 48 ordered
+states. Kernel evaluation checks each state's irreducibility, both inflated
+track concatenations, bounded child indices, and an actual child with a
+strictly smaller natural rank. Well-founded induction gives productivity.
+The checks for `k=3,4` additionally require that chosen child to be diagonal.
+All finite decisions use Lean kernel reduction, without native evaluation
+axioms.
+
+### The immediate-exit threshold is sharp
+
+[`C4ParameterFamilyControls.lean`](../proof/PscVerif/PscVerif/C4ParameterFamilyControls.lean)
+checks a seven-edge literal path at `k=2` from `01/10` to
+`010112/200111`. That state's complete reduction consists only of
+`10112101120112001/00111011201120112`, another noncoincident state.
+Thus extending the immediate-exit conclusion to all `k>=2` would be false.
+The available multi-step coincidence path at this boundary is retained.
+
+### Reproduce formal acceptance
+
+```sh
+./tools/setup_lean.sh
+./tools/check_c4_parameter_family.sh
+./tools/check_lean.sh
+```
+
+The focused family gate copies source and pinned configuration into a fresh
+workspace, downloads dependency artifacts from the fixed upstream source-hash
+cache, recompiles the complete family dependency closure, and checks the
+public endpoint types against an independently written literal substitution
+and ordered seed. Missing declarations and wrong theorem types are refused.
+The only permitted transitive axioms are `propext`, `Classical.choice` and
+`Quot.sound`. The unchanged full-library gate separately inventories and
+audits every project declaration, including all new family proofs and controls.
+
+The [family evidence packet](../evidence/c4-family-termination-2026-11-14/README.md)
+records the local compilation scope and source hashes. Hosted results must
+be read at their producing revision. The canonical Mojo samples and
+independent Python symbolic replay remain corroborating checks; the universal
+quantifier is discharged by the Lean deduction.
+
+The family extends PR #570 at `dcfbef0808e3c5fc058a1e0c4f78c7f410630fde`,
+which includes #571's word identities and independent replay.
 The named archive's nine-endpoint replay has its own
 [successful run 43570948106](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43570948106)
 at source revision `8a6bd5732fefba94ad4fef5df2333065c1302452`.
-Universal A1′, BH, C4, G1 and PSC are outside the family result.
+The primitive, irreducible Pisot arithmetic and the published spectral
+implication are documented mathematical arguments, not new Lean endpoints
+in this increment. Universal A1′, BH, C4, G1 and PSC are outside the family result.

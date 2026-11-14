@@ -1,11 +1,13 @@
 # PSC next steps — November 14, 2026
 
-**Priority: review and integrate the accepted two-fixture chain, then pursue
-the scoped infinite-family forward-closure target.** The positive
-overlap argument, strict-system exclusion, forward carriers and termination
-consumers already exist. Their source presence and their compiled acceptance
-have different evidentiary scopes. This note changes no governed claim status
-and authorizes no automatic merge or promotion.
+**Priority: complete acceptance of the infinite-family termination theorem,
+then discharge its explicit spectral and arithmetic boundary.** The named
+two-fixture chain has passed every relevant integration gate. The parameter
+family now has a direct Lean construction of finite forward closure and
+coincidence paths for every `k>=2`; see the
+[formal family result and evidence](c4-parameter-family-carrier-2026-11-14.md#formal-termination-theorem).
+Research continues with the existing human-review label carried as validation
+debt. This note changes no governed claim status or merge decision.
 
 ## 1. Current source and acceptance boundary
 
@@ -23,8 +25,15 @@ has tree `a7dcb3ebf30f3bb686d8f1beb3545dec26df8448`, exactly matching
 the accepted proof source. The documentation/evidence follow-up [#570](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/570)
 targets the #560 integration branch. Both #560 and #570 remain drafts;
 `main` remains at `c9358c2d46d7b306853609e2c5a090328aff92c3` at this check.
-This reconciliation does not reassign the existing run receipts to the merge
-commit or discharge the final integration gates.
+Fresh integration receipts now also exist at `251079fc`: the
+[full isolated Lean audit](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43574509547),
+[original nine-endpoint archive replay](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43574509582),
+[native forward-carrier replay](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43574509424),
+and all 20 jobs in the
+[broad research workflow](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43574509965)
+completed successfully. These are the merge revision's own receipts, not
+reassigned historical receipts. #571 subsequently merged its family word
+identities into #570 at `dcfbef0808e3c5fc058a1e0c4f78c7f410630fde`.
 
 The historical strict-exclusion result is preserved at its own revision.
 Neither it nor successful native forward replay certifies a later modified
@@ -84,11 +93,10 @@ explicitly tracked declarations. Each original archive module passes all nine
 endpoints, with 1,802 audited declarations and 779 theorem declarations; see the
 [exact-source verification packet](../evidence/c4-followup-2026-11-14/README.md).
 The original ZIP, transport binding, raw terminal metadata and unchanged
-inspector output are preserved there. Final integration remains separate:
-check the integration revision's relevant governance and repository gates.
-The broader current-source research workflow was last observed at 19/20
-successful jobs, with Mojo regressions still active; no all-CI verdict is
-inferred from the two decisive Lean gates.
+inspector output are preserved there. The newer `251079fc` integration runs
+listed above discharge the previously pending integration checks, including
+all 20 broad-workflow jobs. The historical 19/20 snapshot remains a historical
+observation; it is no longer the current blocker.
 
 Canonical commands and artifact requirements are in the
 [acceptance note](c4-named-termination-acceptance-2026-11-13.md#replay).
@@ -119,24 +127,41 @@ shared product measure. Probability Haar existence is discharged internally.
 Reimplementing those steps would duplicate completed work. The next extension
 must identify which remaining fixture-specific hypothesis it discharges.
 
-## 4. Next mathematical target after acceptance
+## 4. Infinite-family closure and next mathematical target
 
 A subsequent [six-source family review](c4-parameter-family-stop-go-2026-11-14.md)
 redirects the first concrete candidate `sigma_k=(1,0 1^k 2,001)`: existing
 prefix-witness lemmas already give the hand-derived strict-exclusion route for
 `k>=2`. The bounded prior-coverage screen found no applicable all-parameter
-import. Its useful target is finite actual `ChildNC` reachability from seed
-`01/10`, allowing a parameter-dependent carrier bound. The exact
-word identities, boundary cases, prior-coverage checks and uncompiled scope
-are recorded in that review. No family Lean acceptance is claimed.
+import. Its finite actual `ChildNC` reachability target from seed `01/10`
+is implemented in the new
+[`C4ParameterFamilyCarrier`](../proof/PscVerif/PscVerif/C4ParameterFamilyCarrier.lean)
+module, together with direct productivity and the existing termination
+predicate. The original review's hand-derived scope remains historical;
+the [family packet](../evidence/c4-family-termination-2026-11-14/README.md)
+records the new compilation and acceptance scope.
 The trace-bound literature already covers PDS for `k=1,2`; retain `k=2` as
 a control and focus the substantive infinite extension on `k>=3`. Direct
 one-step nonerasing beta intertwiners are excluded by endpoint cycles, while
 powers and more general recodings remain unresolved.
 The recent compatible-substitution theorem inspected in that review requires
 unimodularity and does not apply to this determinant-two family. The scoped
-forward-closure work can proceed without claiming an exhaustive noncoverage
-or nonconjugacy theorem.
+forward-closure result makes no exhaustive noncoverage or nonconjugacy claim.
+
+The next concrete work is:
+
+1. Complete the new focused, source-isolated family gate and full-library
+   audit at the published revision; retain exact types and the `k=2`
+   delayed-coincidence counterexample. Native samples alone cannot supply
+   this gate.
+2. Formalize the parameter family's incidence polynomial, positive square,
+   irreducibility and Pisot inequalities, binding each to the literal
+   substitution. Compose the documented family conclusion with the exact
+   hypotheses of Barge–Štimac–Williams Corollary 2; keep that external spectral
+   theorem explicitly external until it has an actual formal development.
+3. Return to the universal BH / residual A1′ obligations with the completed
+   family as a positive control. A new family alone cannot replace either
+   universal quantifier.
 
 The broader geometric programme below remains available for families without
 such an already applicable coincidence mechanism.

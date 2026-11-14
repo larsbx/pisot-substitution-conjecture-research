@@ -1,0 +1,115 @@
+name: C4 parameter family termination
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/c4-parameter-family.yml'
+      - 'proof/PscVerif/**'
+      - 'proof/proof-bank.json'
+      - 'proof/proof-bank.toml'
+      - 'tools/check_c4_parameter_family.sh'
+      - 'tools/setup_lean.sh'
+      - 'tools/make_proof_bank.py'
+      - 'kernel/**'
+      - 'oracles/python/c4_parameter_family_carrier.py'
+      - 'docs/c4-parameter-family*.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lean-family:
+    name: Isolated universal family proof and exact endpoint audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Bind the exact source revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test -z "$(git status --porcelain)"
+          mkdir -p "$RUNNER_TEMP/c4-family"
+          git rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/c4-family/source.txt"
+      - name: Provision the pinned release
+        run: |
+          ./tools/setup_lean.sh
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Compile isolated family sources and audit literal endpoints
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./tools/check_c4_parameter_family.sh | tee "$RUNNER_TEMP/c4-family/lean.log"
+      - name: Recheck source identity after verification
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test -z "$(git status --porcelain --untracked-files=no)"
+      - name: Retain the exact source and terminal log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: c4-family-lean-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/c4-family
+          if-no-files-found: error
+          retention-days: 30
+
+  native-oracle:
+    name: Canonical sampled carriers and independent symbolic oracle
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      MODULAR_TELEMETRY_ENABLED: '0'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Bind the exact source revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test -z "$(git status --porcelain)"
+          mkdir -p "$RUNNER_TEMP/c4-family-native"
+          git rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/c4-family-native/source.txt"
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          pixi-version: v0.81.0
+          manifest-path: kernel/pixi.toml
+          locked: true
+      - name: Replay sampled literal carriers in the canonical kernel
+        working-directory: kernel
+        shell: bash
+        run: |
+          set -euo pipefail
+          pixi run mojo run -I . tests/test_c4_parameter_family_carrier.mojo | tee "$RUNNER_TEMP/c4-family-native/mojo.log"
+      - name: Replay the independent symbolic and boundary oracle
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 oracles/python/c4_parameter_family_carrier.py | tee "$RUNNER_TEMP/c4-family-native/oracle.log"
+      - name: Recheck source identity after verification
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test -z "$(git status --porcelain --untracked-files=no)"
+      - name: Retain replay logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: c4-family-native-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/c4-family-native
+          if-no-files-found: error
+          retention-days: 30

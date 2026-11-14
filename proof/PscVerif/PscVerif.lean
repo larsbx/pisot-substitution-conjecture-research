@@ -204,3 +204,7 @@ import PscVerif.EvenCompanionWords
 import PscVerif.EvenCompanionFamily
 import PscVerif.EvenSeamCycles
 import PscVerif.PeriodicPartnerEvenSolenoid
+import PscVerif.C4ParameterFamilyWords
+import PscVerif.C4ParameterFamilyCarrier
+import PscVerif.C4ParameterFamilyControls
+import PscVerif.Termination
