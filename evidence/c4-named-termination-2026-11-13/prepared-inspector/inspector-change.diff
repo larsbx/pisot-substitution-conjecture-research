@@ -1,0 +1,380 @@
+--- predecessor/inspect-hosted-named-exclusion-audit.py
++++ prepared/inspect-hosted-concrete-termination-audit.py
+@@ -1,9 +1,12 @@
+ #!/usr/bin/env python3
+-"""Inspect a completed, successful hosted C4 artifact without running Lean.
++"""Inspect a completed hosted nine-proof C4 termination artifact without Lean.
+ 
+ The expected run, commit and tree must be supplied explicitly. It reads raw
+ GitHub REST run/jobs JSON, the downloaded artifact, and the exact clean source.
+ It never fabricates a local process return code or executes artifact content.
++This successor retains the exclusion inspector's gates and extends them to the
++existing seed/actual-descendant endpoints. Download ID/ZIP-digest provenance
++must still be retained separately; these inputs do not authenticate that link.
+ """
+ from __future__ import annotations
+ 
+@@ -33,7 +36,8 @@
+ )
+ ALLOWED = {"propext", "Classical.choice", "Quot.sound"}
+ PROOFS = {"valid", "accepted", "typed_accepted", "domain_iff", "roots_null",
+-          "ancestors_null", "no_strict_system"}
++          "ancestors_null", "no_strict_system", "seed_terminates", "reachable_terminates"}
++TERMINATION_PROOFS = ("seed_terminates", "reachable_terminates")
+ EXPECTED_DECLARATIONS = {
+     **{("PscVerif.NamedStrictExclusion", "Psc.NamedStrictExclusion." + name): "theorem"
+        for name in ("intersection_eq_archivedRoot", "carrierOverlap_subset_archivedRoots",
+@@ -44,7 +48,72 @@
+        for name, kind in (("diagonalTiles", "declaration"), ("omittedRootTiles", "declaration"),
+                           ("dropping_distinct_labels_counterexample", "theorem"),
+                           ("omitting_root_counterexample", "theorem"))},
++    **{("PscVerif.FiniteProductivity", "Psc.FiniteProductivity." + name): "theorem"
++       for name in ("isBlock_of_reachableNC", "reachableNC_subset",
++                    "productive_of_finite_reachable", "terminates_of_finite_reachable",
++                    "terminates_iff_finite_reachable", "infinite_reachable_of_not_productive",
++                    "not_terminates_iff_infinite_reachable", "thueMorse_finite_nonproductive",
++                    "fibonacci_terminates")},
++    **{("PscVerif.NamedFiniteProductivity", "Psc.ArchivedPayload.Packet." + name): "theorem"
++       for name in ("productive_of_finite_reachable", "terminates_of_finite_reachable",
++                    "terminates_iff_finite_reachable", "infinite_reachable_of_not_productive",
++                    "not_terminates_iff_infinite_reachable", "seed_terminates_of_finite_reachable")},
++    **{("PscVerif.NamedForwardCarrier", "Psc.NamedForwardCarrier." + name): kind
++       for name, kind in (("check", "declaration"), ("checkedStates", "declaration"),
++                          ("valid_of_check", "theorem"), ("finite_bpaStatesNC_of_check", "theorem"),
++                          ("finite_reachable_of_mem", "theorem"), ("fixture0Substitution_eq", "theorem"),
++                          ("fixture1Substitution_eq", "theorem"), ("check_checkedStates", "theorem"),
++                          ("finite_bpaStatesNC", "theorem"))},
++    **{("PscVerif.NamedForwardCarrier", "Psc.ArchivedPayload.Packet." + name): "theorem"
++       for name in ("terminates_of_forwardCarrier", "reachable_terminates_of_forwardCarrier",
++                    "seed_terminates_of_forwardCarrier", "reachable_terminates", "seed_terminates")},
+ }
++EXPECTED_MODULE_PATHS = {
++    "proof/PscVerif/PscVerif/" + owner.removeprefix("PscVerif.") + ".lean": owner
++    for owner, _ in EXPECTED_DECLARATIONS
++}
++ADDED_REPLAY_SOURCES = (
++    "proof/PscVerif/PscVerif/FiniteProductivity.lean",
++    "proof/PscVerif/PscVerif/NamedFiniteProductivity.lean",
++    "proof/PscVerif/PscVerif/ForwardCarrier.lean",
++    "proof/PscVerif/PscVerif/FastForwardCarrier.lean",
++    "proof/PscVerif/PscVerif/NamedForwardCarrierWords0.lean",
++    "proof/PscVerif/PscVerif/NamedForwardCarrierWords1.lean",
++    "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean",
++    "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean",
++    "proof/PscVerif/PscVerif/NamedForwardCarrier.lean",
++)
++# Preserve every source path in the predecessor's 26-path static review, and
++# require the nine exact new proof sources. No omitted or extra path silently
++# changes which source bytes the metadata purports to bind.
++REQUIRED_METADATA_PATHS = frozenset({
++    "proof/PscVerif/PscVerif/NamedStrictExclusion.lean",
++    "proof/PscVerif/PscVerif/NamedStrictExclusionControls.lean",
++    "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean",
++    "proof/PscVerif/PscVerif/NamedFundamentalCell.lean",
++    "proof/PscVerif/PscVerif/NamedPrefixCompact.lean",
++    "proof/PscVerif/PscVerif/NamedCutNeighborhood.lean",
++    "proof/PscVerif/PscVerif/StrictSystem.lean",
++    "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean",
++    "proof/PscVerif/PscVerif/OccurrencePiece.lean",
++    "proof/PscVerif/PscVerif/OccurrenceResidue.lean",
++    "proof/PscVerif/PscVerif/NamedProductHaar.lean",
++    "proof/PscVerif/PscVerif/MadicResidue.lean",
++    "proof/PscVerif/PscVerif/MadicHaar.lean",
++    "proof/PscVerif/PscVerif/ArchivedPayloadConsumer.lean",
++    "proof/PscVerif/PscVerif/OverlapContraction.lean",
++    "proof/PscVerif/PscVerif.lean",
++    "proof/PscVerif/ProofBankAudit.lean",
++    "proof/PscVerif/lake-manifest.json",
++    "proof/proof-bank.json",
++    "tools/check_lean.sh",
++    "tools/make_proof_bank.py",
++    "tools/replay_archived_payload_lean.py",
++    "evidence/c4-finite-cut-count-2026-11-12/gate/inspect-count-audit.py",
++    "docs/c4-named-strict-exclusion.md",
++    "docs/side-notes-ledger.md",
++    "tests/fixtures/c4_archived_bad_binding.lean",
++} | set(ADDED_REPLAY_SOURCES))
+ ARCHIVE = "evidence/c4-pair-overlap-graph-2026-11-05/receipt.json"
+ ADDRESSED_ARCHIVE = "evidence/c4-archived-graph-refinement-2026-11-11/native-oracle/receipt.json"
+ REPLAY_SOURCES = (
+@@ -56,6 +125,7 @@
+     "proof/PscVerif/PscVerif/NamedPositiveOverlapControls.lean",
+     "proof/PscVerif/PscVerif/NamedStrictExclusion.lean",
+     "proof/PscVerif/PscVerif/NamedStrictExclusionControls.lean",
++    *ADDED_REPLAY_SOURCES,
+     "tests/fixtures/c4_archived_bad_binding.lean",
+     "kernel/psc/c4_archived_payload.mojo", "kernel/c4_archived_lean_export.mojo",
+     "oracles/python/c4_archived_payload.py", "tools/replay_archived_payload_lean.py",
+@@ -268,6 +338,132 @@
+             "bound_github_step_conclusion": step["conclusion"], "stdout_summary_fabricated": False}
+ 
+ 
++def metadata_source_records(metadata):
++    """Require the fixed 35-path metadata contract, without duplicate shadowing."""
++    records = []
++    for key in ("modules", "reviewed_repository_dependencies_and_audit_sources",
++                "changed_nonproof_sources"):
++        group = metadata.get(key)
++        require(isinstance(group, list) and all(isinstance(item, dict) for item in group),
++                f"Missing or malformed static source group: {key}")
++        records.extend(group)
++    paths = [item.get("path") for item in records]
++    require(all(isinstance(path, str) for path in paths), "Static source path is not a string")
++    require(len(paths) == len(set(paths)), "Duplicate static source metadata path")
++    require(set(paths) == REQUIRED_METADATA_PATHS,
++            "Static source metadata must contain exactly the 35 required paths")
++    return records
++
++
++def declaration_inventory(metadata):
++    """Pin all prior exclusion declarations and the three new consumer modules."""
++    modules = metadata.get("modules")
++    require(isinstance(modules, list) and len(modules) == len(EXPECTED_MODULE_PATHS),
++            "Expected exactly five explicit-declaration modules")
++    require({module.get("path"): module.get("module") for module in modules} == EXPECTED_MODULE_PATHS,
++            "Static metadata has the wrong explicit-declaration module identities")
++    inventory = []
++    for module in modules:
++        declarations = module.get("declarations")
++        require(isinstance(declarations, list), "Missing explicit declaration inventory")
++        for declaration in declarations:
++            require(isinstance(declaration, dict)
++                    and declaration.get("owner") == module["module"],
++                    "Explicit declaration assigned to the wrong source module")
++            require(declaration.get("private") is False,
++                    "Required explicit declaration is private or has unknown visibility")
++            inventory.append(declaration)
++    identities = [(item.get("owner"), item.get("name")) for item in inventory]
++    require(len(identities) == 41 and len(set(identities)) == 41,
++            "Expected 41 distinct explicit declarations")
++    require({(d["owner"], d["name"]): d.get("expected_compiled_kind") for d in inventory}
++            == EXPECTED_DECLARATIONS,
++            "Static metadata does not contain the exact 41 required declaration identities/kinds")
++    require(sum(d["expected_compiled_kind"] == "theorem" for d in inventory) == 37,
++            "Expected 37 explicit theorem declarations")
++    require(sum(d["expected_compiled_kind"] == "declaration" for d in inventory) == 4,
++            "Expected four explicit definitions")
++    return inventory
++
++
++def compiled_declarations(rows, inventory):
++    """Match explicit declarations after the complete proof-bank parser succeeds."""
++    owners = set(EXPECTED_MODULE_PATHS.values())
++    selected = [row for row in rows if row[2] in owners]
++    for declaration in inventory:
++        matches = [row for row in selected if (row[2], row[4])
++                   == (declaration["owner"], declaration["name"])]
++        require(len(matches) == 1, f"Missing/duplicate compiled declaration: {declaration['name']}")
++        row = matches[0]
++        require(row[1] == declaration["expected_compiled_kind"] and row[3] == declaration["name"]
++                and declaration["private"] is False,
++                f"Wrong compiled declaration identity: {declaration['name']}")
++    return selected
++
++
++def replay_contract(replay_tool):
++    require(replay_tool.PROOFS == PROOFS and replay_tool.ALLOWED == ALLOWED
++            and replay_tool.TERMINATION_PROOFS == TERMINATION_PROOFS,
++            "Unexpected nine-proof replay parser contract")
++
++
++def replay_receipt_header(receipt, pin):
++    require(receipt.get("schema") == "c4-archived-payload-lean-replay-v1", "Wrong concrete replay schema")
++    require(receipt.get("both_original_fixtures_verified") is True and receipt.get("fixtures_verified") == 2,
++            "Concrete receipt does not verify both original fixtures")
++    require(receipt.get("strict_system_exclusion_fixtures") == [0, 1], "Missing fixture exclusion results")
++    require(receipt.get("seed_and_reachable_termination_fixtures") == [0, 1],
++            "Missing seed and actual-descendant termination results for both fixtures")
++    require(receipt.get("semantic_proofs") == sorted(PROOFS),
++            "Concrete semantic proof set differs from all nine obligations")
++    require(receipt.get("allowed_axioms") == sorted(ALLOWED) and receipt.get("lean_toolchain") == pin,
++            "Concrete axiom allowlist or toolchain mismatch")
++
++
++def fixture_acknowledgement(full, index, acknowledgement):
++    marker = (f"Original fixture {index}: concrete kernel checks, geometric, exclusion and "
++              "termination theorem types, and axiom audit passed")
++    require(full.splitlines().count(marker) == 1 and full.index(marker) > full.index(acknowledgement),
++            f"Missing/out-of-order full-gate termination acknowledgement: {index}")
++
++
++def wrong_type_controls(artifact, root, replay_tool):
++    """Verify old controls and both isolated endpoint uses, each on its own evidence."""
++    control_prefix = "lean/wrong-proof-type-control/"
++    control = artifact.json(control_prefix + "receipt.json")
++    for key in ("fixture_compiles", "typed_import_refuses", "no_strict_system_wrong_type_refused",
++                *(name + "_wrong_type_refused" for name in TERMINATION_PROOFS)):
++        require(control.get(key) is True, f"Unobserved wrong-type control: {key}")
++    bad_fixture = (root / "tests/fixtures/c4_archived_bad_binding.lean").read_bytes()
++    require(artifact.read(control_prefix + "Source0.lean") == bad_fixture
++            and control.get("fixture_sha256") == sha(bad_fixture),
++            "Wrong-type control source is not the exact candidate fixture")
++    require(bool(artifact.read(control_prefix + "Source0.olean")),
++            "Wrong-type fixture has no retained compiled object")
++    require(artifact.text(control_prefix + "Audit0.lean") == replay_tool.audit_source(0),
++            "Wrong-type full audit source changed")
++    require(artifact.text(control_prefix + "ExclusionAudit0.lean")
++            == "import Source0\n" + replay_tool.exclusion_type_check(0),
++            "Exclusion-only control source changed")
++    artifact.read(control_prefix + "compile.log")
++    diagnostics_to_check = [("audit.log", "accepted"), ("exclusion-audit.log", "no_strict_system")]
++    for name in TERMINATION_PROOFS:
++        require(artifact.text(control_prefix + name + "_audit.lean")
++                == "import Source0\n" + replay_tool.termination_type_check(0, name),
++                f"Isolated {name} control source differs from the pinned auditor")
++        diagnostics_to_check.append((name + "-audit.log", name))
++    for file, name in diagnostics_to_check:
++        diagnostics = artifact.text(control_prefix + file)
++        require("type mismatch" in diagnostics.lower() and name in diagnostics,
++                f"Wrong-type control lacks its intended type-mismatch diagnostic: {file}")
++        require(not re.search(r"unknown (?:identifier|constant)", diagnostics, re.IGNORECASE),
++                f"Wrong-type control has an unresolved-name error: {file}")
++        if name in TERMINATION_PROOFS:
++            require(all(other not in diagnostics for other in TERMINATION_PROOFS if other != name),
++                    f"Isolated {name} diagnostic includes a different termination endpoint")
++    return {name: True for name in TERMINATION_PROOFS}
++
++
+ def inspect(args, output):
+     root = args.root.resolve(strict=True)
+     artifact_root = args.artifact_root.resolve(strict=True)
+@@ -286,8 +482,8 @@
+             "Static review metadata has a different subject")
+     require(set(metadata["allowed_axioms_for_later_compiled_audit"]) == ALLOWED,
+             "Static metadata axiom allowlist changed")
+-    source_records = (metadata["modules"] + metadata["reviewed_repository_dependencies_and_audit_sources"]
+-                      + metadata.get("changed_nonproof_sources", []))
++    source_records = metadata_source_records(metadata)
++    inventory = declaration_inventory(metadata)
+     source_hashes = {}
+     for item in source_records:
+         require(item.get("repository") == REPOSITORY and item.get("revision") == commit,
+@@ -315,7 +511,7 @@
+     sys.path.insert(0, str(root / "tools"))
+     proof_bank = load_source_module("hosted_verified_proof_bank", root / "tools/make_proof_bank.py")
+     replay_tool = load_source_module("hosted_verified_replay_parser", root / "tools/replay_archived_payload_lean.py")
+-    require(replay_tool.PROOFS == PROOFS and replay_tool.ALLOWED == ALLOWED, "Unexpected replay parser contract")
++    replay_contract(replay_tool)
+     bank = json.loads((root / "proof/proof-bank.json").read_text())
+     expected_proofs = {(item["module"], item["name"]) for item in bank["lean_declarations"]}
+     full = artifact.text("lean-audit.log")
+@@ -325,31 +521,10 @@
+     completion_line = f"PSC_AUDIT_COMPLETE\t{global_counts[0]}\t{global_counts[1]}"
+     require(full.index(completion_line) < full.index(acknowledgement), "Global audit acknowledgement precedes completion")
+     rows = [line.split("\t") for line in full.splitlines() if line.startswith("PSC_AXIOMS\t")]
+-    owners = {"PscVerif.NamedStrictExclusion", "PscVerif.NamedStrictExclusionControls"}
+-    selected = [row for row in rows if row[2] in owners]
+-    inventory = [declaration for module in metadata["modules"] for declaration in module["declarations"]]
+-    require(len(inventory) == 12, "Expected twelve explicit new declarations")
+-    require({(d["owner"], d["name"]): d["expected_compiled_kind"] for d in inventory} == EXPECTED_DECLARATIONS,
+-            "Static metadata does not contain the exact twelve required declaration identities/kinds")
+-    require(sum(d["expected_compiled_kind"] == "theorem" for d in inventory) == 10,
+-            "Expected ten explicit new theorem declarations")
+-    require(sum(d["expected_compiled_kind"] == "declaration" for d in inventory) == 2,
+-            "Expected two explicit control definitions")
+-    for declaration in inventory:
+-        matches = [row for row in selected if (row[2], row[4]) == (declaration["owner"], declaration["name"])]
+-        require(len(matches) == 1, f"Missing/duplicate compiled declaration: {declaration['name']}")
+-        row = matches[0]
+-        require(row[1] == declaration["expected_compiled_kind"] and row[3] == declaration["name"]
+-                and declaration["private"] is False, f"Wrong compiled declaration identity: {declaration['name']}")
++    selected = compiled_declarations(rows, inventory)
+ 
+     receipt = artifact.json("lean/receipt.json")
+-    require(receipt.get("schema") == "c4-archived-payload-lean-replay-v1", "Wrong concrete replay schema")
+-    require(receipt.get("both_original_fixtures_verified") is True and receipt.get("fixtures_verified") == 2,
+-            "Concrete receipt does not verify both original fixtures")
+-    require(receipt.get("strict_system_exclusion_fixtures") == [0, 1], "Missing fixture exclusion results")
+-    require(receipt.get("semantic_proofs") == sorted(PROOFS), "Concrete semantic proof set differs from all seven obligations")
+-    require(receipt.get("allowed_axioms") == sorted(ALLOWED) and receipt.get("lean_toolchain") == pin,
+-            "Concrete axiom allowlist or toolchain mismatch")
++    replay_receipt_header(receipt, pin)
+     expected_hashes = {relative: file_sha(root / relative) for relative in REPLAY_SOURCES}
+     require(receipt.get("source_sha256") == expected_hashes, "Concrete replay source manifest is incomplete or differs from candidate")
+     require(re.fullmatch(r"[0-9a-f]{64}", receipt.get("exporter_sha256", "")) is not None,
+@@ -365,15 +540,16 @@
+         require(sha(artifact.read(f"lean/Audit{index}.log")) == item.get("audit_sha256"), "Fixture audit log hash mismatch")
+         require(artifact.text(f"lean/Audit{index}.lean") == replay_tool.audit_source(index),
+                 f"Fixture {index} type/axiom audit source differs from pinned auditor")
++        generated_object = artifact.read(prefix + ".olean")
++        require(bool(generated_object), f"Fixture {index} has no retained compiled object")
+         for required in (prefix + ".compile.log", prefix + ".exporter.log", f"lean/Audit{index}.stderr"):
+             artifact.read(required)
+         counts = replay_tool.extract_packet(index, artifact_root / f"lean/Audit{index}.log", emitted)
+         require(all(item.get(key) == value for key, value in counts.items()), "Concrete audit counts differ from receipt")
+-        marker = f"Original fixture {index}: concrete kernel checks, geometric and exclusion theorem types, and axiom audit passed"
+-        require(full.splitlines().count(marker) == 1 and full.index(marker) > full.index(acknowledgement),
+-                f"Missing/out-of-order full-gate fixture acknowledgement: {index}")
++        fixture_acknowledgement(full, index, acknowledgement)
+         fixture_results.append({"fixture": index, **counts, "semantic_proofs": sorted(PROOFS),
+-                                "source_sha256": item["lean_sha256"], "audit_sha256": item["audit_sha256"]})
++                                "source_sha256": item["lean_sha256"], "audit_sha256": item["audit_sha256"],
++                                "compiled_object_sha256": sha(generated_object)})
+     packet = artifact.read("lean/lean-emitted-payload.txt")
+     require(emitted.getvalue().encode() == packet, "Retained Lean-emitted packet differs from audited payload records")
+     require(sha(packet) == receipt.get("complete_emitted_payload_sha256"), "Lean payload digest mismatch")
+@@ -383,23 +559,7 @@
+     verify_oracle(lean_oracle, packet, archive, addressed, "Lean-emitted")
+     require(receipt.get("oracle_schema") == lean_oracle["schema"], "Lean oracle schema receipt mismatch")
+ 
+-    control = artifact.json("lean/wrong-proof-type-control/receipt.json")
+-    for key in ("fixture_compiles", "typed_import_refuses", "no_strict_system_wrong_type_refused"):
+-        require(control.get(key) is True, f"Unobserved wrong-type control: {key}")
+-    bad_fixture = (root / "tests/fixtures/c4_archived_bad_binding.lean").read_bytes()
+-    control_prefix = "lean/wrong-proof-type-control/"
+-    require(artifact.read(control_prefix + "Source0.lean") == bad_fixture
+-            and control.get("fixture_sha256") == sha(bad_fixture), "Wrong-type control source is not the exact candidate fixture")
+-    require(artifact.text(control_prefix + "Audit0.lean") == replay_tool.audit_source(0), "Wrong-type full audit source changed")
+-    require(artifact.text(control_prefix + "ExclusionAudit0.lean") == "import Source0\n" + replay_tool.exclusion_type_check(0),
+-            "Exclusion-only control source changed")
+-    artifact.read(control_prefix + "compile.log")
+-    for file, name in (("audit.log", "accepted"), ("exclusion-audit.log", "no_strict_system")):
+-        diagnostics = artifact.text(control_prefix + file)
+-        require("type mismatch" in diagnostics.lower() and name in diagnostics,
+-                f"Wrong-type control lacks its intended type-mismatch diagnostic: {file}")
+-        require(not re.search(r"unknown (?:identifier|constant)", diagnostics, re.IGNORECASE),
+-                f"Wrong-type control has an unresolved-name error: {file}")
++    termination_controls = wrong_type_controls(artifact, root, replay_tool)
+ 
+     native_packet = artifact.read("native-packet.txt")
+     native = artifact.json("native-oracle-receipt.json")
+@@ -440,7 +600,7 @@
+     job_fields = ("id", "run_id", "run_attempt", "name", "head_sha", "status", "conclusion",
+                   "started_at", "completed_at", "html_url", "url")
+     return {
+-        "schema": "c4-hosted-named-exclusion-inspection-v1", "inspected_at_utc": now(),
++        "schema": "c4-hosted-concrete-termination-inspection-v1", "inspected_at_utc": now(),
+         "inspection_outcome": "verified_completed_hosted_acceptance_evidence",
+         "source": source, "github_run_verdict": {key: run.get(key) for key in run_fields},
+         "github_job_verdict": {key: job.get(key) for key in job_fields}, "critical_step_verdicts": steps,
+@@ -458,9 +618,11 @@
+                          "acknowledgement": acknowledgement, "allowed_axioms": sorted(ALLOWED)},
+         "new_declarations": {"all_owner_constants": len(selected),
+                              "all_owner_theorems": sum(row[1] == "theorem" for row in selected),
+-                             "explicit_theorems_matched": 10, "explicit_definitions_matched": 2,
++                             "explicit_theorems_matched": 37, "explicit_definitions_matched": 4,
+                              "extracted_rows_sha256": sha(extracted)},
+         "concrete_fixtures": fixture_results, "exclusion_only_wrong_type_control_verified": True,
++        "termination_wrong_type_controls_verified": termination_controls,
++        "seed_and_reachable_termination_fixtures": [0, 1],
+         "native_negative_controls_rejected": 32, "oracle_pytest": pytest_verdict,
+         "native_payload_sha256": sha(native_packet), "lean_emitted_payload_sha256": sha(packet),
+         "reported_exporter_sha256": receipt["exporter_sha256"],
+@@ -469,7 +631,7 @@
+         "verified_replay_source_sha256": expected_hashes, "verified_static_review_source_sha256": source_hashes,
+         "workflow_source_sha256": file_sha(root / WORKFLOW), "inspector_sha256": file_sha(Path(__file__)),
+         "no_local_gate_returncode_inferred": True, "lean_or_test_processes_launched_by_inspector": False,
+-        "scope": "Postprocessing of successful GitHub evidence for the two literal fixtures and arbitrary finite carriers. No general C4/PSC conclusion or independent human review.",
++        "scope": "Postprocessing of successful GitHub evidence for strict-system exclusion over arbitrary finite carriers of the two literal fixtures, plus coincidence termination for every ordered swap seed and its actual ChildNC descendants. No arbitrary unlisted starting block, universal path-termination bound, general C4/PSC conclusion, or independent human review.",
+     }
+ 
+ 
+@@ -493,7 +655,7 @@
+     try:
+         result = inspect(args, output)
+     except Exception as exc:
+-        refusal = {"schema": "c4-hosted-named-exclusion-inspection-refusal-v1", "at_utc": now(),
++        refusal = {"schema": "c4-hosted-concrete-termination-inspection-refusal-v1", "at_utc": now(),
+                    "inspection_outcome": "refused", "error": f"{type(exc).__name__}: {exc}",
+                    "expected_run_id": args.expected_run_id, "expected_commit": args.expected_commit,
+                    "expected_tree": args.expected_tree,
