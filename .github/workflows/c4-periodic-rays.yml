@@ -8,12 +8,16 @@ on:
       - 'docs/c4-phase-aligned-ray*.md'
       - 'docs/c4-strict-component-period-*.md'
       - 'docs/c4-bilateral-newborn-family-*.md'
+      - 'docs/c4-determinant-three-carrier-*.md'
       - 'docs/c4-phase-one-newborn-stop-go-*.md'
       - 'docs/c4-strict-period-stop-go-*.md'
       - 'kernel/psc/c4_periodic_rays.mojo'
       - 'kernel/psc/overlap_seed_patch.mojo'
       - 'kernel/psc/perron_field3.mojo'
       - 'kernel/psc/c4_addressed_newborn.mojo'
+      - 'kernel/psc/c4_affine_carrier.mojo'
+      - 'kernel/psc/ordered_occurrence_graph.mojo'
+      - 'kernel/tests/test_c4_determinant_three_carrier.mojo'
       - 'kernel/tests/test_c4_periodic_rays.mojo'
       - 'kernel/tests/test_c4_strict_period.mojo'
       - 'kernel/tests/test_c4_phase_one_seams.mojo'
@@ -29,6 +33,7 @@ on:
       - 'tests/test_c4_periodic_rays_oracle.py'
       - 'tests/test_c4_strict_period_oracle.py'
       - 'tests/test_c4_phase_one_seams_oracle.py'
+      - 'tests/test_c4_determinant_three_carrier_oracle.py'
   workflow_dispatch:
 
 permissions:
@@ -71,9 +76,14 @@ jobs:
         run: |
           pixi run --locked mojo run -I . tests/test_c4_phase_one_seams.mojo
           pixi run --locked mojo run -I . tests/test_c4_overlap_enclosure.mojo
+      - name: Prove the determinant-three symbolic carrier and replay the boundary
+        working-directory: kernel
+        run: |
+          set -o pipefail
+          pixi run --locked mojo run -I . tests/test_c4_determinant_three_carrier.mojo | tee "$RUNNER_TEMP/c4-det3.txt"
       - name: Match the independent exact graphs and literal addresses
         run: |
           python -m pip install 'pytest>=7,<10'
-          PSC_PERIODIC_RAY_NATIVE="$RUNNER_TEMP/c4-periodic-rays.txt" python -m pytest tests/test_c4_periodic_rays_oracle.py tests/test_c4_strict_period_oracle.py tests/test_c4_phase_one_seams_oracle.py tests/test_c4_overlap_enclosure_oracle.py
+          PSC_PERIODIC_RAY_NATIVE="$RUNNER_TEMP/c4-periodic-rays.txt" PSC_DET3_NATIVE="$RUNNER_TEMP/c4-det3.txt" python -m pytest tests/test_c4_periodic_rays_oracle.py tests/test_c4_strict_period_oracle.py tests/test_c4_phase_one_seams_oracle.py tests/test_c4_overlap_enclosure_oracle.py tests/test_c4_determinant_three_carrier_oracle.py
       - name: Check generated proof inventory
         run: python tools/make_proof_bank.py --check

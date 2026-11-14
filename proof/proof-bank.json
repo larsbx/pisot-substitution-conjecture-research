@@ -48446,6 +48446,11 @@
       "statement_heading": "**Proposition (bounded PIP corpus).** Among the 4,554 primitive ternary"
     },
     {
+      "source": "docs/c4-determinant-three-carrier-2026-11-14.md",
+      "line": 8,
+      "statement_heading": "**Theorem.** For every integer $k\\ge 3$, the balanced-pair algorithm for"
+    },
+    {
       "source": "docs/c4-endpoint-core-program.md",
       "line": 124,
       "statement_heading": "### Proposition 3"
