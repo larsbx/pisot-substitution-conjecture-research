@@ -227,6 +227,7 @@ Not proved here:
   `C4StandingCorpus` histogram, which does not list specimens.
 -/
 import PscVerif.Descendants
+import PscVerif.Termination
 import PscVerif.Degree2Sector
 import PscVerif.Degree3Sector
 import PscVerif.Defect4Lie
@@ -596,18 +597,6 @@ theorem exists_strictSystem_iff {s : α → List α} :
     exact ⟨_, strictSystem_of_factorSet hT hne hfin hnc⟩
 
 /-! ### Productivity (`def:bpa`) -/
-
-/-- `def:bpa`: a state is **productive** if some directed path of `B_σ`
-(coincidence blocks terminal, `ChildNC`) from it reaches a coincidence block. -/
-def Productive (s : α → List α) (T : List α × List α) : Prop :=
-  ∃ U, Relation.ReflTransGen (ChildNC s) T U ∧ U.1 = U.2
-
-/-- `def:bpa`: the balanced pair algorithm started at `T₀` **terminates with
-coincidence** if the set of states reachable from `T₀` in `B_σ` is finite and
-every one of them is productive. -/
-def TerminatesWithCoincidence (s : α → List α) (T₀ : List α × List α) : Prop :=
-  {U | Relation.ReflTransGen (ChildNC s) T₀ U}.Finite ∧
-    ∀ U, Relation.ReflTransGen (ChildNC s) T₀ U → Productive s U
 
 theorem productive_of_reflTransGen {s : α → List α} {T U : List α × List α}
     (hTU : Relation.ReflTransGen (ChildNC s) T U) (hU : Productive s U) : Productive s T :=
