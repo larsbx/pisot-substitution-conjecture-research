@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/home/agent/.elan/bin/elan",
+    "run",
+    "leanprover/lean4:v4.34.0-rc2",
+    "lake",
+    "--no-cache",
+    "build",
+    "PscVerif.OccurrenceSuccessor",
+    "PscVerif.TerminationFactors"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 346.31247696700007,
+  "base_commit": "6bf0b9704501eb763cbb4323c3fd1f939d6f11c8",
+  "scope": "Development dependency build in recovered checkout; not an isolated source acceptance gate."
+}
