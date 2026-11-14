@@ -111,6 +111,17 @@ def emit_consumers():
     print("    (volume.prod ν)")
     print("      (overlap (ambientStar (substitution packet.fixture) piZ) (tiles packet.fixture) u) = 0 :=")
     print("  packet.ancestors_null valid ν u hu")
+    print("theorem no_strict_system (C : Finset Psc.OccurrenceTransport.WordPair) :")
+    print("    ¬ Psc.StrictSystem.StrictSystem (substitution packet.fixture) C :=")
+    print("  packet.no_strictSystem valid C")
+    print("theorem seed_terminates {T : Psc.OccurrenceTransport.WordPair}")
+    print("    (hT : T ∈ (Psc.Descendants.seeds : Finset Psc.OccurrenceTransport.WordPair)) :")
+    print("    Psc.StrictSystem.TerminatesWithCoincidence (substitution packet.fixture) T :=")
+    print("  packet.seed_terminates valid hT")
+    print("theorem reachable_terminates {T : Psc.OccurrenceTransport.WordPair}")
+    print("    (hT : T ∈ Psc.Descendants.bpaStatesNC (substitution packet.fixture)) :")
+    print("    Psc.StrictSystem.TerminatesWithCoincidence (substitution packet.fixture) T :=")
+    print("  packet.reachable_terminates valid hT")
 
 
 def main() raises:
@@ -139,6 +150,8 @@ def main() raises:
         if depth > maximum_depth:
             maximum_depth = depth
     print("import PscVerif.ArchivedPayloadConsumer")
+    print("import PscVerif.NamedStrictExclusion")
+    print("import PscVerif.NamedForwardCarrier")
     print("set_option maxRecDepth 1000000")
     print("set_option Elab.async false")
     print("set_option maxHeartbeats 0")

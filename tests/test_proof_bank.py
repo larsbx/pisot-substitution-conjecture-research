@@ -245,8 +245,12 @@ def audit_line(name="Psc.target1", axioms="propext,Classical.choice,Quot.sound",
 def test_private_proofs_reconcile_by_source_name_and_module_without_collapsing_counts(tmp_path, modules):
     project = tmp_path / pb.PROJECT
     shutil.copytree(ROOT / pb.PROJECT, project, ignore=shutil.ignore_patterns(".lake"))
+    fixture_modules = {f"PscVerif.{module}" for module in modules}
     root = project / "PscVerif.lean"
     root.write_text("".join(f"import PscVerif.{m}\n" for m in modules) + root.read_text())
+    # Root-module source lines shift with the imports; capture the baseline
+    # afterwards so those private declarations keep their complete records.
+    baseline_private = [d for d in pb.lean_declarations(tmp_path) if d["private"]]
     for module in modules:
         (project / "PscVerif" / f"{module}.lean").write_text(
             "namespace PrivateBank\nprivate theorem helper : True := trivial\n"
@@ -254,7 +258,17 @@ def test_private_proofs_reconcile_by_source_name_and_module_without_collapsing_c
     pb.check_imports(tmp_path)
     inventory = pb.lean_declarations(tmp_path)
     private = [d for d in inventory if d["private"]]
-    assert len(private) == 2 * len(modules)
+    fixture_private = [d for d in private if d["module"] in fixture_modules]
+    production_private = [d for d in private if d["module"] not in fixture_modules]
+    assert len(fixture_private) == 2 * len(modules)
+    assert {(d["module"], d["name"]) for d in fixture_private} == {
+        (module, f"PrivateBank.{name}")
+        for module in fixture_modules for name in ("helper", "helper_lemma")
+    }
+    # The copied project may already contain private proofs. Keep every one
+    # in the full audit while counting the synthetic declarations separately.
+    assert production_private == baseline_private
+    assert len(private) == len(baseline_private) + len(fixture_private)
     expected = {(d["module"], d["name"]) for d in inventory}
 
     def line(d):
@@ -264,12 +278,14 @@ def test_private_proofs_reconcile_by_source_name_and_module_without_collapsing_c
     log = "".join(line(d) for d in inventory)
     log += f"PSC_AUDIT_COMPLETE\t{len(inventory)}\t{len(inventory)}\n"
     assert pb.check_audit(log, expected) == (len(inventory), len(inventory))
-    omitted = private[0]
-    incomplete = [d for d in inventory if d is not omitted]
-    log = "".join(line(d) for d in incomplete)
-    log += f"PSC_AUDIT_COMPLETE\t{len(incomplete)}\t{len(incomplete)}\n"
-    with pytest.raises(ValueError, match=f"Incomplete Lean audit.*{omitted['module']}"):
-        pb.check_audit(log, expected)
+    # Dropping any fixture proof must fail even when another module has the
+    # same source name. A real project private proof must remain required too.
+    for omitted in fixture_private + production_private[:1]:
+        incomplete = [d for d in inventory if d is not omitted]
+        log = "".join(line(d) for d in incomplete)
+        log += f"PSC_AUDIT_COMPLETE\t{len(incomplete)}\t{len(incomplete)}\n"
+        with pytest.raises(ValueError, match=f"Incomplete Lean audit.*{omitted['module']}"):
+            pb.check_audit(log, expected)
 
 
 def test_audit_accepts_standard_axioms_and_requires_every_named_proof():

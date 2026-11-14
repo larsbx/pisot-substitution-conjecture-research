@@ -1,0 +1,520 @@
+{
+  "archive": {
+    "bytes": 39120,
+    "embedded_manifest": {
+      "bytes": 22964,
+      "path": "manifest.json",
+      "sha256": "df1ea17c2efe134a0a21321691205b5798063e64a99724dc8e37f734d8a453de"
+    },
+    "member_count": 28,
+    "path": "pending-verification.tar.gz",
+    "sha256": "cf0eda31872d94332af272b09b3ab117e11027e21286046b0fd9987a835915ab"
+  },
+  "archive_conventions": {
+    "format": "USTAR",
+    "gzip_mtime": 0,
+    "gzip_original_filename": "",
+    "member_gid": 0,
+    "member_gname": "",
+    "member_mode": "0644",
+    "member_mtime": 0,
+    "member_uid": 0,
+    "member_uname": "",
+    "original_input_bytes_preserved": true,
+    "safe_relative_regular_files_only": true,
+    "sorted_members": true
+  },
+  "checkpoint_operations": [
+    "read retained evidence",
+    "read clean Git identity without optional locks",
+    "preserve fresh GET run/jobs JSON capture",
+    "construct deterministic archive",
+    "verify retained bytes and archive structure"
+  ],
+  "compiled_repaired_acceptance_claimed": false,
+  "current_status_snapshot": {
+    "capture_completed_at_utc": "2026-11-13T04:44:16.519Z",
+    "capture_records": [
+      {
+        "bytes": 15156,
+        "completed_at_utc": "2026-11-13T04:44:16.470Z",
+        "file": "primary-run.json",
+        "method": "GET",
+        "name": "primary-run",
+        "representation": "Exact UTF-8 bytes of connector-returned raw REST JSON content; no reformatting.",
+        "sha256": "100e980abed78758e006eea0a18c7b9dba4fcf56863e887bba8b21edea520ec5",
+        "started_at_utc": "2026-11-13T04:44:16.143Z",
+        "url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43365333027"
+      },
+      {
+        "bytes": 1054,
+        "completed_at_utc": "2026-11-13T04:44:16.519Z",
+        "file": "primary-jobs.json",
+        "method": "GET",
+        "name": "primary-jobs",
+        "representation": "Exact UTF-8 bytes of connector-returned raw REST JSON content; no reformatting.",
+        "sha256": "c85ed080f5af3dd7d0323fb31fc42d5e4eade3bd03821dc823fa3a7c495cdd8e",
+        "started_at_utc": "2026-11-13T04:44:16.144Z",
+        "url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43365333027/jobs?filter=latest&per_page=100"
+      }
+    ],
+    "job": {
+      "completed_at": null,
+      "conclusion": null,
+      "head_sha": "bb6cbac16a620da4784f5b30d0a9a242618aef22",
+      "id": 131688284776,
+      "name": "Original graph proof terms, geometry and compiled axiom audit",
+      "run_attempt": 1,
+      "run_id": 43365333027,
+      "runner_id": 0,
+      "started_at": "2026-11-13T04:24:36Z",
+      "status": "queued",
+      "steps": []
+    },
+    "job_started_at_caveat": "Raw started_at is retained but does not establish execution while queued with runner_id 0 and no steps.",
+    "representation": "Exact connector-returned UTF-8 REST JSON bytes; no reformatting",
+    "run": {
+      "conclusion": null,
+      "created_at": "2026-11-13T04:24:36Z",
+      "head_sha": "bb6cbac16a620da4784f5b30d0a9a242618aef22",
+      "html_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43365333027",
+      "id": 43365333027,
+      "name": "Original C4 archived payload Lean import",
+      "path": ".github/workflows/c4-archived-payload-lean.yml",
+      "run_attempt": 1,
+      "status": "queued",
+      "updated_at": "2026-11-13T04:24:36Z"
+    },
+    "scope": "Status as of the independently timestamped GET captures only; no terminal verdict or later liveness inference."
+  },
+  "historical_evidence_references": [
+    {
+      "bytes": 8454,
+      "path": "evidence/c4-named-strict-exclusion-2026-11-13/pending/README.md",
+      "retained_in_this_archive": false,
+      "sha256": "b5575dde0b1a0465fa03d4bcd22515d58eafc11903bd91e8ce774f164e73bda3",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/bb6cbac16a620da4784f5b30d0a9a242618aef22/evidence/c4-named-strict-exclusion-2026-11-13/pending/README.md"
+    },
+    {
+      "bytes": 66834,
+      "path": "evidence/c4-named-strict-exclusion-2026-11-13/pending/checkpoint.json",
+      "retained_in_this_archive": false,
+      "sha256": "87adde8a5d22b44624573085d06f140b32dd496469ca1b38187bd8bab01c4c43",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/bb6cbac16a620da4784f5b30d0a9a242618aef22/evidence/c4-named-strict-exclusion-2026-11-13/pending/checkpoint.json"
+    },
+    {
+      "bytes": 100952,
+      "path": "evidence/c4-named-strict-exclusion-2026-11-13/pending/pending-evidence.tar.gz",
+      "retained_in_this_archive": false,
+      "sha256": "b5f25a5e5f9685cddbab92afd9ad4362489196e01b7afce42d4f5a8dc2b811da",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/bb6cbac16a620da4784f5b30d0a9a242618aef22/evidence/c4-named-strict-exclusion-2026-11-13/pending/pending-evidence.tar.gz"
+    },
+    {
+      "bytes": 5296,
+      "path": "evidence/c4-named-strict-exclusion-2026-11-13/failed-head16dd/README.md",
+      "retained_in_this_archive": false,
+      "sha256": "81a87757dd91733b97da0e3ec8b15ff97ea1aef491c108eef916c4afb63b5268",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/bb6cbac16a620da4784f5b30d0a9a242618aef22/evidence/c4-named-strict-exclusion-2026-11-13/failed-head16dd/README.md"
+    },
+    {
+      "bytes": 21174,
+      "path": "evidence/c4-named-strict-exclusion-2026-11-13/failed-head16dd/receipt.json",
+      "retained_in_this_archive": false,
+      "sha256": "019dcdb394dc6ed1d05a5018156cec330721b43dae9ee90c5bdd7040c29a3df8",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/bb6cbac16a620da4784f5b30d0a9a242618aef22/evidence/c4-named-strict-exclusion-2026-11-13/failed-head16dd/receipt.json"
+    },
+    {
+      "bytes": 1314048,
+      "path": "evidence/c4-named-strict-exclusion-2026-11-13/failed-head16dd/failure-evidence.tar.gz",
+      "retained_in_this_archive": false,
+      "sha256": "07ceb31cba9d2ff934eb0f99b85d4c6cb232d3ab93868d01143bd841fb354189",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/bb6cbac16a620da4784f5b30d0a9a242618aef22/evidence/c4-named-strict-exclusion-2026-11-13/failed-head16dd/failure-evidence.tar.gz"
+    }
+  ],
+  "historical_failed_head": "16dd825648d1a1bcdba9038e079463a9bebbaf3d",
+  "historical_hosted_runs": [
+    {
+      "conclusion": "failure",
+      "run_id": 43345576753,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "run_id": 43345576693,
+      "status": "completed"
+    }
+  ],
+  "historical_native_controls": {
+    "compiled_acceptance_implied": false,
+    "literal_fixtures": [
+      "1/021/001",
+      "1/012/001"
+    ],
+    "oracle_mutation_refusals_observed": 32,
+    "rerun_at_repaired_candidate_for_this_checkpoint": false,
+    "source": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/bb6cbac16a620da4784f5b30d0a9a242618aef22/evidence/c4-named-strict-exclusion-2026-11-13/failed-head16dd/receipt.json"
+  },
+  "integrity_verification": {
+    "all_retained_input_hashes_checked": true,
+    "archive_members_compared_byte_for_byte": true,
+    "deterministic_rebuild_bytes_equal": true,
+    "no_repository_checks_or_compilers_executed": true,
+    "raw_REST_capture_hashes_checked": true,
+    "retained_SHA256SUMS_checked": true,
+    "source_receipts_and_logs_cross_checked": true
+  },
+  "pending_compiled_gates": [
+    "Completed successful bound hosted run, relevant job and all required steps",
+    "Isolated complete aggregate build and global compiled proof-bank audit",
+    "All twelve new declarations compiled with permitted axioms",
+    "Both literal fixture seven-proof semantic consumers and exact types",
+    "Archive identities and all replay source hashes",
+    "Intended exclusion-only wrong-type compiled rejection",
+    "Bound successful hosted artifact inspection with actual hosted verdicts"
+  ],
+  "prepared_at_utc": "2026-11-13T04:50:48.554891+00:00",
+  "readme": {
+    "bytes": 10336,
+    "path": "README.md",
+    "sha256": "454e3018cad2f3d0bfcd0151e27d8f59c9ffd576e8e03eed709f553f9d82fd61"
+  },
+  "repository": "larsbx/pisot-substitution-conjecture-research",
+  "repository_or_remote_mutated_for_checkpoint": false,
+  "retained_input_bytes": 142067,
+  "retained_input_count": 26,
+  "retained_inputs": [
+    {
+      "archive_path": "artifacts/hosted-acceptance-inspector.md",
+      "bytes": 8211,
+      "capture_kind": "preserved_exact_input_bytes",
+      "original_relative_path": "hosted-acceptance-inspector.md",
+      "sha256": "a08562efb523b2050939d17bde13daab050346e0f430a6cc0ecd1adf95fab5f5"
+    },
+    {
+      "archive_path": "artifacts/inspect-hosted-named-exclusion-audit.py",
+      "bytes": 31083,
+      "capture_kind": "preserved_exact_input_bytes",
+      "original_relative_path": "inspect-hosted-named-exclusion-audit.py",
+      "sha256": "dcf15450b88c4048b551b199ad9a870848d4bc68acdbc811aad91a59f2a555b7"
+    },
+    {
+      "archive_path": "artifacts/refresh-named-exclusion-metadata.py",
+      "bytes": 16512,
+      "capture_kind": "preserved_exact_input_bytes",
+      "original_relative_path": "refresh-named-exclusion-metadata.py",
+      "sha256": "18ea491b266dfaea74970fa31f5936ff738e3c2dda6149c7e0fc514e46318a4d"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v5/SHA256SUMS",
+      "bytes": 1439,
+      "capture_kind": "preserved_exact_input_bytes",
+      "original_relative_path": "source-checks-v5/SHA256SUMS",
+      "sha256": "f4bbfc96cc00098d8628c834db69c09350faf0717c7e6ade2c0b10ea9c3e6294"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v5/context.json",
+      "bytes": 944,
+      "capture_kind": "preserved_exact_input_bytes",
+      "original_relative_path": "source-checks-v5/context.json",
+      "sha256": "809c02779428025606df87aecaef52f269f7bba5178c445c826c98c42c862e90"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v5/logs/audit-protocol.log",
+      "bytes": 1276,
+      "capture_kind": "preserved_exact_input_bytes",
+      "original_relative_path": "source-checks-v5/logs/audit-protocol.log",
+      "sha256": "cfc4b0208f2e28c095108dc2beaa5ad35ca58c7587fccb261479ace770da5ca4"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v5/logs/claim-governance.log",
+      "bytes": 149,
+      "capture_kind": "preserved_exact_input_bytes",
+      "original_relative_path": "source-checks-v5/logs/claim-governance.log",
+      "sha256": "6940a57ab580c143a470ce9dfa57b03fcd085f8b569960cca2350b9ec0dbae49"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v5/logs/ledger.log",
+      "bytes": 39,
+      "capture_kind": "preserved_exact_input_bytes",
+      "original_relative_path": "source-checks-v5/logs/ledger.log",
+      "sha256": "87e6e3fc1f68a3418fbefd2f09df76e36d95d4624c7d11ffe2b3b6c64a09b9d6"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v5/logs/manuscript-source.log",
+      "bytes": 69,
+      "capture_kind": "preserved_exact_input_bytes",
+      "original_relative_path": "source-checks-v5/logs/manuscript-source.log",
+      "sha256": "b8b6216a8335b48ba12fb2b8582d9d371b5c04ed1d19f94438f9768f98da1b9d"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v5/logs/markdown-source.log",
+      "bytes": 50,
+      "capture_kind": "preserved_exact_input_bytes",
+      "original_relative_path": "source-checks-v5/logs/markdown-source.log",
+      "sha256": "f6b121b2f5e251503d205186826b5cab8ff2f220ffa35d30e819b921b34d929c"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v5/logs/proof-bank.log",
+      "bytes": 68,
+      "capture_kind": "preserved_exact_input_bytes",
+      "original_relative_path": "source-checks-v5/logs/proof-bank.log",
+      "sha256": "11f32f3d3d7074ede4c069e3b51ed6a0a4f95e0101019908102ddc2b5d261594"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v5/logs/vendored-pins.log",
+      "bytes": 261,
+      "capture_kind": "preserved_exact_input_bytes",
+      "original_relative_path": "source-checks-v5/logs/vendored-pins.log",
+      "sha256": "e8d155882db130e44383ec6d1f0767dd421fc94c07aaa3fe2263b786200eea5b"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v5/receipts/audit-protocol.json",
+      "bytes": 1329,
+      "capture_kind": "preserved_exact_input_bytes",
+      "original_relative_path": "source-checks-v5/receipts/audit-protocol.json",
+      "sha256": "9f50214c435fd44bc90b16112a1ef1216ece3f921d724183ab8cfacc0b86d10b"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v5/receipts/claim-governance.json",
+      "bytes": 1269,
+      "capture_kind": "preserved_exact_input_bytes",
+      "original_relative_path": "source-checks-v5/receipts/claim-governance.json",
+      "sha256": "587561fb2b243d196f536e4814db8d27d131ec4dac919d245a23ab48e46bc43b"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v5/receipts/ledger.json",
+      "bytes": 1181,
+      "capture_kind": "preserved_exact_input_bytes",
+      "original_relative_path": "source-checks-v5/receipts/ledger.json",
+      "sha256": "87faabd5183369f45ae447372dc8b046d7cc3079a73c95658f269ee70060725d"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v5/receipts/manuscript-source.json",
+      "bytes": 1204,
+      "capture_kind": "preserved_exact_input_bytes",
+      "original_relative_path": "source-checks-v5/receipts/manuscript-source.json",
+      "sha256": "eff242afa84f2c1d4fff3f50ef95f0d9392acf8da278d57fecf70ea0839b763f"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v5/receipts/markdown-source.json",
+      "bytes": 1196,
+      "capture_kind": "preserved_exact_input_bytes",
+      "original_relative_path": "source-checks-v5/receipts/markdown-source.json",
+      "sha256": "a632f783312c31954233855edddda59c5be58a894f61d1a58b1a3dade573182a"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v5/receipts/proof-bank.json",
+      "bytes": 1197,
+      "capture_kind": "preserved_exact_input_bytes",
+      "original_relative_path": "source-checks-v5/receipts/proof-bank.json",
+      "sha256": "fcd8e20b00517cf6cb16269dd2d827a79fdc5faf8d116903d0c257813be20ff9"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v5/receipts/vendored-pins.json",
+      "bytes": 1208,
+      "capture_kind": "preserved_exact_input_bytes",
+      "original_relative_path": "source-checks-v5/receipts/vendored-pins.json",
+      "sha256": "1d4ca505a8a840a79e2a07ff2e514738e7427ec200f5ded29b840a60a9e0e72d"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v5/summary.json",
+      "bytes": 10162,
+      "capture_kind": "preserved_exact_input_bytes",
+      "original_relative_path": "source-checks-v5/summary.json",
+      "sha256": "de7a437eda625ce63c5a5f305aebd2b040883e50994d786e413a5af459e86c4f"
+    },
+    {
+      "archive_path": "artifacts/static-review-v5/SHA256SUMS",
+      "bytes": 172,
+      "capture_kind": "preserved_exact_input_bytes",
+      "original_relative_path": "static-review-v5/SHA256SUMS",
+      "sha256": "a738a9ceaa04d31ae7697b6374d909d386bf4de778da6c5b2fd24e60d5e214ff"
+    },
+    {
+      "archive_path": "artifacts/static-review-v5/provenance-note.md",
+      "bytes": 1435,
+      "capture_kind": "preserved_exact_input_bytes",
+      "original_relative_path": "static-review-v5/provenance-note.md",
+      "sha256": "f20d67b95ef6e8d8afc006d38a7bddf36f3c5fe1e484cdf4c2fdd3d6b4a16e01"
+    },
+    {
+      "archive_path": "artifacts/static-review-v5/source-metadata.json",
+      "bytes": 44167,
+      "capture_kind": "preserved_exact_input_bytes",
+      "original_relative_path": "static-review-v5/source-metadata.json",
+      "sha256": "0dc8a1c7ad4da1b8c2fc4a92f40ab0a8b2a8251559a43ac75163b5dc664d3123"
+    },
+    {
+      "archive_path": "artifacts/verification-ready-capture/capture.json",
+      "bytes": 1236,
+      "capture_kind": "preserved_exact_input_bytes",
+      "original_relative_path": "verification-ready-capture/capture.json",
+      "sha256": "daad128d9009933d6d800d34e82ab1a7d9c850c21ede35ab81b895eda0174ced"
+    },
+    {
+      "archive_path": "artifacts/verification-ready-capture/primary-jobs.json",
+      "bytes": 1054,
+      "capture_kind": "preserved_exact_input_bytes",
+      "original_relative_path": "verification-ready-capture/primary-jobs.json",
+      "sha256": "c85ed080f5af3dd7d0323fb31fc42d5e4eade3bd03821dc823fa3a7c495cdd8e"
+    },
+    {
+      "archive_path": "artifacts/verification-ready-capture/primary-run.json",
+      "bytes": 15156,
+      "capture_kind": "preserved_exact_input_bytes",
+      "original_relative_path": "verification-ready-capture/primary-run.json",
+      "sha256": "100e980abed78758e006eea0a18c7b9dba4fcf56863e887bba8b21edea520ec5"
+    }
+  ],
+  "schema": "psc-named-strict-exclusion-verification-ready-checkpoint-v1",
+  "scope": "Two literal substitutions, arbitrary finite strict carrier for each; no general C4 or PSC conclusion.",
+  "snapshot_only": true,
+  "source_after": {
+    "commit": "bb6cbac16a620da4784f5b30d0a9a242618aef22",
+    "status_porcelain": "",
+    "tree": "42472cf9f43d2e13bb999fd5c339abfea782d690"
+  },
+  "source_before": {
+    "commit": "bb6cbac16a620da4784f5b30d0a9a242618aef22",
+    "status_porcelain": "",
+    "tree": "42472cf9f43d2e13bb999fd5c339abfea782d690"
+  },
+  "source_checks": {
+    "all_passed": true,
+    "checks": [
+      {
+        "check": "audit-protocol",
+        "completed_utc": "2026-11-13T04:27:01.075520+00:00",
+        "display_command": "python -m unittest discover -s tests -p test_archived_payload_lean_replay.py -v",
+        "elapsed_seconds": 0.114251,
+        "exit_code": 0,
+        "raw_log": "logs/audit-protocol.log",
+        "raw_log_bytes": 1276,
+        "raw_log_sha256": "cfc4b0208f2e28c095108dc2beaa5ad35ca58c7587fccb261479ace770da5ca4",
+        "source_unchanged_and_clean": true,
+        "started_utc": "2026-11-13T04:27:00.961014+00:00"
+      },
+      {
+        "check": "proof-bank",
+        "completed_utc": "2026-11-13T04:27:03.178114+00:00",
+        "display_command": "python tools/make_proof_bank.py --check",
+        "elapsed_seconds": 2.072701,
+        "exit_code": 0,
+        "raw_log": "logs/proof-bank.log",
+        "raw_log_bytes": 68,
+        "raw_log_sha256": "11f32f3d3d7074ede4c069e3b51ed6a0a4f95e0101019908102ddc2b5d261594",
+        "source_unchanged_and_clean": true,
+        "started_utc": "2026-11-13T04:27:01.105338+00:00"
+      },
+      {
+        "check": "ledger",
+        "completed_utc": "2026-11-13T04:27:03.382478+00:00",
+        "display_command": "python tools/make_ledger.py --check",
+        "elapsed_seconds": 0.164442,
+        "exit_code": 0,
+        "raw_log": "logs/ledger.log",
+        "raw_log_bytes": 39,
+        "raw_log_sha256": "87e6e3fc1f68a3418fbefd2f09df76e36d95d4624c7d11ffe2b3b6c64a09b9d6",
+        "source_unchanged_and_clean": true,
+        "started_utc": "2026-11-13T04:27:03.218003+00:00"
+      },
+      {
+        "check": "claim-governance",
+        "completed_utc": "2026-11-13T04:27:11.153672+00:00",
+        "display_command": "PYTHONPATH=tools python -m claim_governance.cli --root .",
+        "elapsed_seconds": 7.73669,
+        "exit_code": 0,
+        "raw_log": "logs/claim-governance.log",
+        "raw_log_bytes": 149,
+        "raw_log_sha256": "6940a57ab580c143a470ce9dfa57b03fcd085f8b569960cca2350b9ec0dbae49",
+        "source_unchanged_and_clean": true,
+        "started_utc": "2026-11-13T04:27:03.416889+00:00"
+      },
+      {
+        "check": "vendored-pins",
+        "completed_utc": "2026-11-13T04:27:11.254887+00:00",
+        "display_command": "python tools/vendoring/check_vendored_sync.py",
+        "elapsed_seconds": 0.06413,
+        "exit_code": 0,
+        "raw_log": "logs/vendored-pins.log",
+        "raw_log_bytes": 261,
+        "raw_log_sha256": "e8d155882db130e44383ec6d1f0767dd421fc94c07aaa3fe2263b786200eea5b",
+        "source_unchanged_and_clean": true,
+        "started_utc": "2026-11-13T04:27:11.190732+00:00"
+      },
+      {
+        "check": "markdown-source",
+        "completed_utc": "2026-11-13T04:27:11.500486+00:00",
+        "display_command": "python tools/check_markdown_source.py",
+        "elapsed_seconds": 0.214496,
+        "exit_code": 0,
+        "raw_log": "logs/markdown-source.log",
+        "raw_log_bytes": 50,
+        "raw_log_sha256": "f6b121b2f5e251503d205186826b5cab8ff2f220ffa35d30e819b921b34d929c",
+        "source_unchanged_and_clean": true,
+        "started_utc": "2026-11-13T04:27:11.285960+00:00"
+      },
+      {
+        "check": "manuscript-source",
+        "completed_utc": "2026-11-13T04:27:12.444641+00:00",
+        "display_command": "python tools/check_manuscript_source.py",
+        "elapsed_seconds": 0.916007,
+        "exit_code": 0,
+        "raw_log": "logs/manuscript-source.log",
+        "raw_log_bytes": 69,
+        "raw_log_sha256": "b8b6216a8335b48ba12fb2b8582d9d371b5c04ed1d19f94438f9768f98da1b9d",
+        "source_unchanged_and_clean": true,
+        "started_utc": "2026-11-13T04:27:11.528606+00:00"
+      }
+    ],
+    "completed_utc": "2026-11-13T04:27:12.461593+00:00",
+    "count": 7,
+    "pypdf_version": "6.21.4",
+    "scope": "Source/governance checks and audit-protocol controls only; no Lean compiler or mathematical acceptance",
+    "summary_path": "artifacts/source-checks-v5/summary.json"
+  },
+  "source_root_observed": "/workspace/scratch/5535bb23ca85/psc-symmetry-fix",
+  "static_metadata": {
+    "compilation_pending": true,
+    "explicit_declaration_count": 12,
+    "explicit_definition_count": 2,
+    "explicit_theorem_count": 10,
+    "human_review_claimed": false,
+    "lean_toolchain": "leanprover/lean4:v4.34.0-rc2",
+    "mathlib_revision": "4edb0dbaa3b3cf729d86d1e2f035474d5ae2ac09",
+    "new_independent_theorem_review_claimed": false,
+    "path": "artifacts/static-review-v5/source-metadata.json",
+    "prior_static_review_missed_real_elaboration_error": true,
+    "provenance_note": "artifacts/static-review-v5/provenance-note.md",
+    "repository_source_record_count": 26,
+    "review_status": "narrow_symmetry_repair_source_review_compilation_pending",
+    "sha256": "0dc8a1c7ad4da1b8c2fc4a92f40ab0a8b2a8251559a43ac75163b5dc664d3123"
+  },
+  "status": "SOURCE_CHECKS_PASSED_HOSTED_QUEUED_AT_CAPTURE_LEAN_ACCEPTANCE_PENDING",
+  "subject_commit": "bb6cbac16a620da4784f5b30d0a9a242618aef22",
+  "subject_tree": "42472cf9f43d2e13bb999fd5c339abfea782d690",
+  "successful_hosted_inspector_execution_claimed": false,
+  "terminal_repaired_gate_receipt_retained": false,
+  "tests_or_compilers_launched_for_checkpoint": false,
+  "tooling_provenance": {
+    "hosted_inspector": {
+      "independent_agent_source_review_reported": true,
+      "latest_delta": "Accept the exact observed eight-dot [100%] quiet pytest transcript only together with a successful bound oracle step; no acceptance requirements weakened or stdout rewritten.",
+      "path": "artifacts/inspect-hosted-named-exclusion-audit.py",
+      "prior_reviewed_sha256": "d09562064b2172db7878ae1dd14a8fc3213434582fe25f9b5b8da2bb041f620d",
+      "sha256": "dcf15450b88c4048b551b199ad9a870848d4bc68acdbc811aad91a59f2a555b7",
+      "successful_repaired_artifact_inspected": false
+    },
+    "inspector_guidance": {
+      "path": "artifacts/hosted-acceptance-inspector.md",
+      "sha256": "a08562efb523b2050939d17bde13daab050346e0f430a6cc0ecd1adf95fab5f5"
+    },
+    "refresh_helper": {
+      "independent_agent_source_review_reported": true,
+      "path": "artifacts/refresh-named-exclusion-metadata.py",
+      "scope": "Metadata helper tooling, not independent theorem review",
+      "sha256": "18ea491b266dfaea74970fa31f5936ff738e3c2dda6149c7e0fc514e46318a4d"
+    },
+    "review_evidence_basis": "Agent source-review reports and preserved provenance/guidance. No human review is represented."
+  }
+}
