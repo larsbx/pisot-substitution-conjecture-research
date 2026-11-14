@@ -128,3 +128,7 @@ import PscVerif.FastForwardCarrierControls
 import PscVerif.NamedForwardCarrierData0
 import PscVerif.NamedForwardCarrierData1
 import PscVerif.NamedForwardCarrier
+import PscVerif.C4ParameterFamilyWords
+import PscVerif.C4ParameterFamilyCarrier
+import PscVerif.C4ParameterFamilyControls
+import PscVerif.Termination

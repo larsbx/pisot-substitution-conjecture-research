@@ -1,0 +1,33 @@
+PscVerif/C4ParameterFamilyControls.lean:35:35: error: failed to synthesize
+  Decidable (ChildNC (substitution 2) ([0, 1], [1, 0]) (word "12", word "21"))
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+PscVerif/C4ParameterFamilyControls.lean:37:43: error: failed to synthesize
+  Decidable (ChildNC (substitution 2) (word "12", word "21") (word "112001", word "010112"))
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+PscVerif/C4ParameterFamilyControls.lean:39:51: error: failed to synthesize
+  Decidable (ChildNC (substitution 2) (word "112001", word "010112") (word "2001110112", word "1120112001"))
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+PscVerif/C4ParameterFamilyControls.lean:41:57: error: failed to synthesize
+  Decidable
+    (ChildNC (substitution 2) (word "2001110112", word "1120112001") (word "0111011201120", word "1120112001101"))
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+PscVerif/C4ParameterFamilyControls.lean:44:53: error: failed to synthesize
+  Decidable
+    (ChildNC (substitution 2) (word "0111011201120", word "1120112001101")
+      (word "1201121011201120011011201120011", word "2001101120112001110112011210112"))
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+PscVerif/C4ParameterFamilyControls.lean:48:49: error: failed to synthesize
+  Decidable
+    (ChildNC (substitution 2) (word "1201121011201120011011201120011", word "2001101120112001110112011210112")
+      (word "200101121", word "112011200"))
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+PscVerif/C4ParameterFamilyControls.lean:50:24: error: failed to synthesize
+  Decidable (ChildNC (substitution 2) (word "200101121", word "112011200") delayedPair)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.

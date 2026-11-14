@@ -1,0 +1,48 @@
+{
+  "observed_at": "2026-11-14 18:00:41 UTC",
+  "repository": "larsbx/pisot-substitution-conjecture-research",
+  "commit_sha": "251079fc55c1fa7f6a9d3392e612c7e63132eefc",
+  "scope": "Selected integration workflow run metadata retrieved by exact commit; not a receipt for the new family source.",
+  "workflow_runs": [
+    {
+      "id": 43574509424,
+      "name": "C4 named forward-carrier native replay",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 12,
+      "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43574509424/jobs",
+      "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43574509424/logs",
+      "workflow_id": 416877386
+    },
+    {
+      "id": 43574509547,
+      "name": "C4 overlap Lean verification",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 93,
+      "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43574509547/jobs",
+      "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43574509547/logs",
+      "workflow_id": 408437354
+    },
+    {
+      "id": 43574509582,
+      "name": "Original C4 archived payload Lean import",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 40,
+      "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43574509582/jobs",
+      "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43574509582/logs",
+      "workflow_id": 415687755
+    },
+    {
+      "id": 43574509965,
+      "name": "PSC research checks",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 5189,
+      "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43574509965/jobs",
+      "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43574509965/logs",
+      "workflow_id": 353526446
+    }
+  ]
+}
