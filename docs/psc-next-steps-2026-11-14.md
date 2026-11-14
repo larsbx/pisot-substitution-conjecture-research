@@ -12,9 +12,9 @@ and authorizes no automatic merge or promotion.
 | Item | Exact source or evidence | Established scope |
 | --- | --- | --- |
 | Open integration PR [#560](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/560) | `1ce54efeff586ecda2ec1bd11a2f9c6617b2fb87` | Contains the merged #561–#566 and #568 developments; targets `main`. Integration is not complete acceptance. |
-| Open corrective PR [#569](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/569) | `52614a3b5a7199b1d17cb7a0b435da71e1e80569` | Its formal verification failed at the named-carrier consumer. The inherited recursion problem remains an acceptance blocker. |
+| Historical failed head of [#569](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/569) | `52614a3b5a7199b1d17cb7a0b435da71e1e80569` | Formal verification failed at the named-carrier consumer after both generated carrier checkers compiled. |
 | Historical named strict exclusion | `bb6cbac16a620da4784f5b30d0a9a242618aef22`; [run 43365333027](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43365333027) | Successful complete original-archive replay at seven semantic endpoints, including exclusion of every finite strict system for each literal fixture. |
-| Current selector-transport repair | Follow-up source in this branch | Uses explicit substitution and local carrier-selection equalities, with the generated checkers' recursion allowance scoped to this one theorem. The preceding explicit-only candidate `84f7b2b7` failed at its selector equality; complete successor acceptance remains pending. |
+| Current selector-transport repair in [#569](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/569) | `8a6bd5732fefba94ad4fef5df2333065c1302452`; tree `a7dcb3ebf30f3bb686d8f1beb3545dec26df8448` | Uses generic vector-selection lemmas and explicit literal-substitution transport, with the generated checkers' recursion allowance scoped to this one theorem. The preceding explicit-only candidate `84f7b2b7` failed at its selector equality; complete successor acceptance remains pending. |
 
 The historical strict-exclusion result is preserved at its own revision.
 Neither it nor successful native forward replay certifies a later modified
@@ -99,6 +99,18 @@ Reimplementing those steps would duplicate completed work. The next extension
 must identify which remaining fixture-specific hypothesis it discharges.
 
 ## 4. Next mathematical target after acceptance
+
+A subsequent [four-source family review](c4-parameter-family-stop-go-2026-11-14.md)
+redirects the first concrete candidate `sigma_k=(1,0 1^k 2,001)`: existing
+prefix-witness lemmas already give the hand-derived strict-exclusion route for
+`k>=2`. Subject to the remaining prior-coverage/conjugacy identification
+check, its useful target is finite actual `ChildNC` reachability from seed
+`01/10`, allowing a parameter-dependent carrier bound. The exact
+word identities, boundary cases, prior-coverage checks and uncompiled scope
+are recorded in that review. No family Lean acceptance is claimed.
+
+The broader geometric programme below remains available for families without
+such an already applicable coincidence mechanism.
 
 Select one explicitly defined infinite substitution family and seek a
 **uniform, occurrence-preserving root-nullity or source-loss certificate**
