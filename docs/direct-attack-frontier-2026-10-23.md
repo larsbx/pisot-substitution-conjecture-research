@@ -1,5 +1,28 @@
 # Direct lines of attack: how #84, #138 and #139 have narrowed (2026-10-23)
 
+## November 14 priority update
+
+Use the [BH escape roadmap](bh-escape-roadmap-2026-11-14.md) for the current
+next theorem, formal interfaces and exact-source acceptance. The October 23
+ranked tasks below are the earlier research snapshot.
+
+The leading concrete target is [#452](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/452):
+prove occurrence-compatible entry into minus Class A's classified zero-return
+predecessor segments for every required nonzero cyclic seed descendant.
+The final edge is known; source coverage and a successful escape from every
+required source remain open. Reuse the existing occurrence-address and finite
+path-lifting theorems. A selected parameter-dependent descent or an escape
+from each child-closed target-free terminal SCC is sufficient in its proved
+domain; descent along every edge is unnecessary.
+
+Keep residual A1′ in parallel, with same-position proximality of its prescribed
+hub rays as a sufficient target. The unmerged #574 conditional BH bridge and
+scoped A1′ witnesses refine the available machinery without closing universal
+#139 or #138. The #84 assembly targets ternary PIP including nonunits;
+all-alphabet closure and an internal Lean spectral implication remain separate.
+
+## Historical October 23 orientation
+
 **Status:** orientation and planning surface. It changes no claim status,
 proof-ledger node or manuscript statement. When it disagrees with
 `claim_governance.toml`, the [proof ladder](proof-ladder.md), the
@@ -81,7 +104,7 @@ PIP (ternary, standing regime, non-unit allowed)
   class A (`n/10 < L_n ≤ n+2`, [run-index note](p1b-class-a-run-index-2026-10-21.md)).
   A rank therefore has to be parameter-dependent and run-indexed.
 
-## 3. The direct lines of attack, in order
+## 3. The October 23 lines of attack, in their recorded order
 
 1. **A d-uniform BH certificate for classes A and C.** The
    [gap-uniformity stop/go](class-a-gap-uniformity-stopgo-2026-10-23.md)

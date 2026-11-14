@@ -1,5 +1,27 @@
 # Current-state reconciliation — 2026-11-11
 
+## November 14 continuation
+
+The [BH escape roadmap](bh-escape-roadmap-2026-11-14.md) is the current
+priority and proof-stack update. At the new observation, `main` is
+`c9358c2d46d7b306853609e2c5a090328aff92c3`; the #572–#574 developments are
+unmerged drafts. The family, full-library and original-archive gates passed
+at #573's `6bf0b9704501eb763cbb4323c3fd1f939d6f11c8`. The newer conditional
+BH finite-carrier and A1′ tail-family increment, #574 at
+`fd23a6681db651762e49c9c959a9aad682fb007f`, has passed its focused hosted
+gate; its full-library gate was still running. The linked roadmap retains
+the exact run URLs and separates those sources from mainline integration.
+
+The main mathematical task is successful escape from every required BH
+source. Existing finite occurrence-path composition can be reused.
+[#452](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/452)
+provides a concrete Class-A entry target; universal residual A1′ remains a
+parallel obligation. The November 11 observations and historical receipts
+below retain their original dates and do not describe the new proof-stack
+acceptance. No claim status is promoted by this documentation update.
+
+## November 11 observation
+
 **Scope:** reconcile current implementation, verification and tracker status.
 The observed mainline baseline is
 [`2848e5f67b605669a550f362a1de4bf1c1529f7c`](https://github.com/larsbx/pisot-substitution-conjecture-research/commit/2848e5f67b605669a550f362a1de4bf1c1529f7c),

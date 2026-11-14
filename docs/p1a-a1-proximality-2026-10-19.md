@@ -3,6 +3,10 @@
 **Status:** imported equivalence plus a narrowed open theorem target for #138.
 This note does not prove A1′, strong coincidence, #84 or PSC.
 
+The [November 14 roadmap](bh-escape-roadmap-2026-11-14.md) places this
+residual-hub target alongside BH escape and records the newer scoped A1′
+tail-family proofs. The universal proximality statement below remains open.
+
 ## 1. Standing A1′ configuration
 
 After the endpoint normal form and Theorem C's squaring reduction, a hypothetical
@@ -63,9 +67,11 @@ The final aligned lemma can therefore be attacked as:
 > aligned obstruction normal form, the two substitution-fixed rays
 > `u=sigma^infinity(x)` and `v=sigma^infinity(c)` are proximal.
 
-Equivalently, for every `N` there are shifts `k` at which `u` and `v`
-agree on a word of length `N`. Proving A1-Prox proves A1′ by the imported
-Barge–Zamboni proposition.
+Equivalently, for every `N` there is one position `r` such that
+`u[r:r+N] = v[r:r+N]`. The same shift is applied to both rays, as in the
+[primary source's definition of proximality](https://arxiv.org/pdf/1301.5745),
+§2. Common factors at unrelated positions do not satisfy this condition.
+Proving A1-Prox proves A1′ by the imported Barge–Zamboni proposition.
 
 The IP-set version gives a second exact target:
 
@@ -86,8 +92,8 @@ The C4 recognizability track has already proved:
 Those results do **not** force alignment by themselves. But A1-Prox changes the
 quantity to force: rather than aiming immediately at an equal Parikh prefix and
 equal next letter, it suffices to force arbitrarily long common legal blocks
-between the two fixed rays. Once proximality is obtained, Barge–Zamboni supplies
-the strong-coincidence conclusion.
+at the same position in both fixed rays. Once proximality is obtained,
+Barge–Zamboni supplies the strong-coincidence conclusion.
 
 The next proposed lemma is therefore narrower than generic recognizability:
 
