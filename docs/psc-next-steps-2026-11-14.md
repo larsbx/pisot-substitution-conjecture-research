@@ -14,7 +14,7 @@ and authorizes no automatic merge or promotion.
 | Open integration PR [#560](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/560) | `1ce54efeff586ecda2ec1bd11a2f9c6617b2fb87` | Contains the merged #561–#566 and #568 developments; targets `main`. Integration is not complete acceptance. |
 | Open corrective PR [#569](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/569) | `52614a3b5a7199b1d17cb7a0b435da71e1e80569` | Its formal verification failed at the named-carrier consumer. The inherited recursion problem remains an acceptance blocker. |
 | Historical named strict exclusion | `bb6cbac16a620da4784f5b30d0a9a242618aef22`; [run 43365333027](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43365333027) | Successful complete original-archive replay at seven semantic endpoints, including exclusion of every finite strict system for each literal fixture. |
-| Current selector-transport repair | Follow-up source in this branch | Uses explicit substitution and local carrier-selection equalities to transport the existing checked theorem. Production compilation and complete isolated replay remain pending. |
+| Current selector-transport repair | Follow-up source in this branch | Uses explicit substitution and local carrier-selection equalities, with the generated checkers' recursion allowance scoped to this one theorem. The preceding explicit-only candidate `84f7b2b7` failed at its selector equality; complete successor acceptance remains pending. |
 
 The historical strict-exclusion result is preserved at its own revision.
 Neither it nor successful native forward replay certifies a later modified
@@ -23,7 +23,7 @@ Lean consumer. Earlier failures remain failures. The
 retains the preceding diagnostic history, including both hosted carrier
 compilations followed by the consumer recursion error.
 
-The current repair addresses that same proof-transport boundary. It must
+The explicit-only candidate `84f7b2b70adbd632c0e0cc06cbd246aee2020f70` also failed at the fixture-1 selector equality after both carriers compiled. The current repair addresses that same proof-transport boundary with a theorem-local recursion allowance. It must
 preserve both literal substitutions, every carrier word and complete child
 row, the checker predicate, theorem statement and axiom allowlist. This is a
 regression repair to an already reviewed contract; the existing literature

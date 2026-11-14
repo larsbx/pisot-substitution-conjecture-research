@@ -2,6 +2,22 @@
 
 ## Production follow-up — November 14
 
+The explicit transport at `84f7b2b70adbd632c0e0cc06cbd246aee2020f70`
+subsequently compiled both actual generated carriers, but its
+[full Lean run](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43568767809)
+failed at the fixture-1 local selector equality (`NamedForwardCarrier.lean:76:83`).
+The broad checker conversion was avoided; reducing the full selected state-list
+wrapper still exceeded the default recursion allowance. That run remains a
+failure, without a complete audit or termination acceptance.
+
+The successor proves the local state equalities with the pinned generic
+`Matrix.cons_val_zero` and `Matrix.cons_val_one` lemmas instead of `rfl` on
+the concrete tables. It also raises `maxRecDepth` to `200000` only for
+`check_checkedStates`, matching the existing generated checker allowance. This is an elaboration resource setting, not a new premise,
+axiom, checker bypass or altered theorem statement. The complete successor
+acceptance remains pending at publication. Earlier claims below about default
+recursion settings describe the preceding attempts, not this successor.
+
 The selector-only repair recorded below was published in PR #569 at
 `52614a3b5a7199b1d17cb7a0b435da71e1e80569`. Its
 [full Lean run](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43492499736)

@@ -65,15 +65,23 @@ noncomputable def checkedStates (fixture : Fin 2) : List (List (Fin 3) × List (
   ![Psc.GeneratedForwardCarrier.fixture0States,
     Psc.GeneratedForwardCarrier.fixture1States] fixture
 
+-- Use generic selector lemmas instead of comparing expanded state lists.
+-- Scope the generated checkers' allowance to remaining conversion here.
+set_option maxRecDepth 200000 in
 /-- Generated complete checks are transported by literal definitional
 identity, without an incidence-only or normalized-state identification. -/
 theorem check_checkedStates (fixture : Fin 2) :
     check fixture (checkedStates fixture) = true := by
   fin_cases fixture
-  · have hstates : checkedStates 0 = Psc.GeneratedForwardCarrier.fixture0States := rfl
+  · have hstates : checkedStates 0 = Psc.GeneratedForwardCarrier.fixture0States :=
+      Matrix.cons_val_zero Psc.GeneratedForwardCarrier.fixture0States
+        ![Psc.GeneratedForwardCarrier.fixture1States]
     exact (congrArg₂ Psc.ForwardCarrier.check fixture0Substitution_eq hstates.symm).symm.trans
       Psc.GeneratedForwardCarrier.fixture0ForwardCheck
-  · have hstates : checkedStates 1 = Psc.GeneratedForwardCarrier.fixture1States := rfl
+  · have hstates : checkedStates 1 = Psc.GeneratedForwardCarrier.fixture1States :=
+      (Matrix.cons_val_one Psc.GeneratedForwardCarrier.fixture0States
+        ![Psc.GeneratedForwardCarrier.fixture1States]).trans
+        (Matrix.cons_val_zero Psc.GeneratedForwardCarrier.fixture1States ![])
     exact (congrArg₂ Psc.ForwardCarrier.check fixture1Substitution_eq hstates.symm).symm.trans
       Psc.GeneratedForwardCarrier.fixture1ForwardCheck
 
