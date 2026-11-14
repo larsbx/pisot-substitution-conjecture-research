@@ -49086,6 +49086,11 @@
       "statement_heading": "**Lemma.** In a supplied finite strict child-closed phase-zero balanced"
     },
     {
+      "source": "docs/c4-strict-component-period-2026-11-14.md",
+      "line": 9,
+      "statement_heading": "**Theorem (strict-component primitivity).** Let σ have primitive irreducible"
+    },
+    {
       "source": "docs/c4-unique-partner-exclusion-2026-11-18.md",
       "line": 54,
       "statement_heading": "### Theorem UP (unique partners)"
