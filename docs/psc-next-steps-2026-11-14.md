@@ -11,10 +11,20 @@ and authorizes no automatic merge or promotion.
 
 | Item | Exact source or evidence | Established scope |
 | --- | --- | --- |
-| Open integration PR [#560](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/560) | `1ce54efeff586ecda2ec1bd11a2f9c6617b2fb87` | Contains the merged #561–#566 and #568 developments; targets `main`. Integration is not complete acceptance. |
+| Open integration PR [#560](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/560) | `251079fc55c1fa7f6a9d3392e612c7e63132eefc` | Contains the merged #561–#566, #568 and #569 developments; targets `main`. Its tree is identical to the accepted `8a6bd573` source; the original run receipts retain their producing commit identity. |
 | Historical failed head of [#569](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/569) | `52614a3b5a7199b1d17cb7a0b435da71e1e80569` | Formal verification failed at the named-carrier consumer after both generated carrier checkers compiled. |
 | Historical named strict exclusion | `bb6cbac16a620da4784f5b30d0a9a242618aef22`; [run 43365333027](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43365333027) | Successful complete original-archive replay at seven semantic endpoints, including exclusion of every finite strict system for each literal fixture. |
 | Accepted selector-transport repair in [#569](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/569) | `8a6bd5732fefba94ad4fef5df2333065c1302452`; tree `a7dcb3ebf30f3bb686d8f1beb3545dec26df8448` | Both the [full isolated audit](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43570948335) and [original nine-endpoint replay](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43570948106) succeeded. The unchanged inspector verified both original fixtures and controls. |
+
+GitHub records [#569](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/569)
+as merged by `larsbx` into #560 at 08:10:05 UTC on November 14. The
+[merge commit](https://github.com/larsbx/pisot-substitution-conjecture-research/commit/251079fc55c1fa7f6a9d3392e612c7e63132eefc)
+has tree `a7dcb3ebf30f3bb686d8f1beb3545dec26df8448`, exactly matching
+the accepted proof source. The documentation/evidence follow-up [#570](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/570)
+targets the #560 integration branch. Both #560 and #570 remain drafts;
+`main` remains at `c9358c2d46d7b306853609e2c5a090328aff92c3` at this check.
+This reconciliation does not reassign the existing run receipts to the merge
+commit or discharge the final integration gates.
 
 The historical strict-exclusion result is preserved at its own revision.
 Neither it nor successful native forward replay certifies a later modified
