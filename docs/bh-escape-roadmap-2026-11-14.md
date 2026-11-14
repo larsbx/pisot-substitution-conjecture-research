@@ -2,6 +2,20 @@
 
 **Status:** planning and source reconciliation; universal BH and A1′ remain open.
 
+**November 14 continuation.** The [central-entry proof](class-a-central-entry-2026-11-14.md)
+now supplies a written solution of the mathematical entry target of #452
+for its stated minus-Class-A chamber `n+2<=d<=2n-1`. For `n>=6`, it
+constructs typed coincidence from every strict integral source; complete
+S18 certificates cover the six remaining parameters. Its original-address
+and seed-domain arguments are part of the proof, and its
+[evidence packet](../evidence/class-a-central-entry-2026-11-14/README.md)
+separates exact replay, the formal recurrence subset, and pending hosted
+acceptance. The earlier planning snapshot below is retained as history.
+The next mathematical extension is beyond this chamber: establish the
+corresponding actual-entry and cycle-exit mechanisms on the remaining BH
+domains. The arbitrary-ternary A1′ problem remains separate; the stronger
+construction supplies aligned coincidence within this chamber itself.
+
 **Priority: prove that every required BH source has a successful escape.**
 The most concrete next theorem is uniform entry into the minus Class-A
 zero-return predecessor set, [issue #452](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/452).

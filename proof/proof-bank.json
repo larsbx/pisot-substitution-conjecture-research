@@ -2879,6 +2879,190 @@
       "declaration": "theorem no_equal_row_sums (M : Matrix (Fin 3) (Fin 3) ℚ) (hM : NoEigenvalue M)"
     },
     {
+      "name": "Psc.ClassACentralRecurrence.Nearest.neg",
+      "module": "PscVerif.ClassACentralRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean",
+      "line": 29,
+      "declaration": "theorem Nearest.neg {h α : ℝ} {a b c : ℤ} (he : Nearest h α a b c) :"
+    },
+    {
+      "name": "Psc.ClassACentralRecurrence.Nearest.unique",
+      "module": "PscVerif.ClassACentralRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean",
+      "line": 39,
+      "declaration": "theorem Nearest.unique {h α : ℝ} {a b c d : ℤ}"
+    },
+    {
+      "name": "Psc.ClassACentralRecurrence.nearest_bound",
+      "module": "PscVerif.ClassACentralRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean",
+      "line": 50,
+      "declaration": "theorem nearest_bound {h α : ℝ} (hp : Parameters h α) {a b c : ℤ} {C : ℝ}"
+    },
+    {
+      "name": "Psc.ClassACentralRecurrence.recurrence_bounded",
+      "module": "PscVerif.ClassACentralRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean",
+      "line": 66,
+      "declaration": "theorem recurrence_bounded {h α : ℝ} (hp : Parameters h α)"
+    },
+    {
+      "name": "Psc.ClassACentralRecurrence.maximum_inequality",
+      "module": "PscVerif.ClassACentralRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean",
+      "line": 80,
+      "declaration": "theorem maximum_inequality {h α : ℝ} (hp : Parameters h α)"
+    },
+    {
+      "name": "Psc.ClassACentralRecurrence.extrema_equal",
+      "module": "PscVerif.ClassACentralRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean",
+      "line": 90,
+      "declaration": "theorem extrema_equal {h α : ℝ} (hp : Parameters h α)"
+    },
+    {
+      "name": "Psc.ClassACentralRecurrence.extreme_predecessor",
+      "module": "PscVerif.ClassACentralRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean",
+      "line": 111,
+      "declaration": "theorem extreme_predecessor {h α : ℝ} (hp : Parameters h α)"
+    },
+    {
+      "name": "Psc.ClassACentralRecurrence.alternating_nearest",
+      "module": "PscVerif.ClassACentralRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean",
+      "line": 138,
+      "declaration": "theorem alternating_nearest {h α : ℝ} (hp : Parameters h α)"
+    },
+    {
+      "name": "Psc.ClassACentralRecurrence.bounded_two_sided_alternates",
+      "module": "PscVerif.ClassACentralRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean",
+      "line": 156,
+      "declaration": "theorem bounded_two_sided_alternates {h α : ℝ} (hp : Parameters h α)"
+    },
+    {
+      "name": "Psc.ClassACentralRecurrence.recurrence_has_integer_bound",
+      "module": "PscVerif.ClassACentralRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean",
+      "line": 281,
+      "declaration": "theorem recurrence_has_integer_bound {h α : ℝ} (hp : Parameters h α)"
+    },
+    {
+      "name": "Psc.ClassACentralRecurrence.periodic_recurrence_classification",
+      "module": "PscVerif.ClassACentralRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean",
+      "line": 300,
+      "declaration": "theorem periodic_recurrence_classification {h α : ℝ} (hp : Parameters h α)"
+    },
+    {
+      "name": "Psc.ClassACentralRecurrence.central_gap_in_run",
+      "module": "PscVerif.ClassACentralRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean",
+      "line": 319,
+      "declaration": "theorem central_gap_in_run (n : ℕ) (hn : 6 ≤ n) (β θ : ℝ)"
+    },
+    {
+      "name": "Psc.ClassACentralRecurrence.run_gap_digit_step",
+      "module": "PscVerif.ClassACentralRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean",
+      "line": 337,
+      "declaration": "theorem run_gap_digit_step (n d : ℕ) (hn : 2 ≤ n) (p q r g : ℤ)"
+    },
+    {
+      "name": "Psc.ClassACentralRecurrence.central_coordinate_recurrence",
+      "module": "PscVerif.ClassACentralRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean",
+      "line": 358,
+      "declaration": "theorem central_coordinate_recurrence (h α : ℝ) (a b r : ℤ)"
+    },
+    {
+      "name": "Psc.ClassACentralRecurrence.forward_integer_bound",
+      "module": "PscVerif.ClassACentralRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean",
+      "line": 368,
+      "declaration": "theorem forward_integer_bound (h α : ℝ) (hpos : 0 < h) (hsmall : h < 1 / 8)"
+    },
+    {
+      "name": "Psc.ClassACentralRecurrence.periodic_cycle_classification",
+      "module": "PscVerif.ClassACentralRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean",
+      "line": 377,
+      "declaration": "theorem periodic_cycle_classification (h α : ℝ) (hpos : 0 < h) (hsmall : h < 1 / 8)"
+    },
+    {
+      "name": "Psc.ClassACentralRecurrence.bounded_two_sided_classification",
+      "module": "PscVerif.ClassACentralRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean",
+      "line": 387,
+      "declaration": "theorem bounded_two_sided_classification (h α : ℝ) (hpos : 0 < h)"
+    },
+    {
+      "name": "Psc.ClassACentralRecurrence.nonzero_cycle_control",
+      "module": "PscVerif.ClassACentralRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean",
+      "line": 398,
+      "declaration": "theorem nonzero_cycle_control :"
+    },
+    {
+      "name": "Psc.ClassACentralRecurrence.repeated_pair_tail",
+      "module": "PscVerif.ClassACentralRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean",
+      "line": 408,
+      "declaration": "theorem repeated_pair_tail {h α : ℝ} (u : ℕ → ℤ)"
+    },
+    {
+      "name": "Psc.ClassACentralRecurrence.recurrence_eventually_periodic",
+      "module": "PscVerif.ClassACentralRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean",
+      "line": 424,
+      "declaration": "theorem recurrence_eventually_periodic {h α : ℝ} (hp : Parameters h α)"
+    },
+    {
+      "name": "Psc.ClassACentralRecurrence.periodic_residue_shift",
+      "module": "PscVerif.ClassACentralRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean",
+      "line": 453,
+      "declaration": "theorem periodic_residue_shift (T : ℕ) (hT : 0 < T) (z : ℤ) (m : ℕ) :"
+    },
+    {
+      "name": "Psc.ClassACentralRecurrence.nat_periodic_classification",
+      "module": "PscVerif.ClassACentralRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean",
+      "line": 463,
+      "declaration": "theorem nat_periodic_classification {h α : ℝ} (hp : Parameters h α)"
+    },
+    {
+      "name": "Psc.ClassACentralRecurrence.eventual_alternating_tail",
+      "module": "PscVerif.ClassACentralRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean",
+      "line": 500,
+      "declaration": "theorem eventual_alternating_tail (h α : ℝ) (hpos : 0 < h) (hsmall : h < 1/8)"
+    },
+    {
       "name": "Psc.ClassAZeroDefectEscape.runMark_index",
       "module": "PscVerif.ClassAZeroDefectEscape",
       "private": false,
@@ -24087,6 +24271,11 @@
       "statement_heading": "**Corollary C (class-A line boundary hitting).** For every integer `n >= 4`,"
     },
     {
+      "source": "docs/class-a-central-entry-2026-11-14.md",
+      "line": 10,
+      "statement_heading": "**Theorem (repository-proved).** For the literal minus-Class-A substitution below, with"
+    },
+    {
       "source": "docs/class-a-cover-obstruction-2026-10-21.md",
       "line": 56,
       "statement_heading": "**Proposition (repository-proved, scoped written argument with coefficient-checked"
@@ -25634,6 +25823,7 @@
   ],
   "input_digests": {
     "claim_governance.toml": "5642e664f9a79064ffbaf770719cf0acba52accc75fca568711d4b554a08803e",
+    "proof/PscVerif/ClassACentralRecurrenceAudit.lean": "c312940fe33a565e0031cf0c87e303a291755da0db9080f65222b1ffa6a4519b",
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "8a4fda395ae5e20a25f52a2525702f82c08f4e75b4160006604a562a4c92de48",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean": "87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025",
@@ -25647,6 +25837,7 @@
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
     "proof/PscVerif/PscVerif/BoundarySeedPath.lean": "bea69cb93d5bcd15b1b88c48062b4404a721908092af1b5f5b42e6184f7abae3",
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
+    "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean": "f7e27955fe4238bf0a74bf31f6afe618c6d4769f047ad8ce5ffbdb4d39484a5b",
     "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean": "a50672744789443300b5c7c4b6c0467c941fec5b1d833d7544e62440c729fa58",
     "proof/PscVerif/PscVerif/ClassBRegime.lean": "1c873d0aea0201c3a60486dc90bce00e9f9612019ad72c5344cfa927d93a23e6",
     "proof/PscVerif/PscVerif/CocycleSpectrum.lean": "5937db527975a492a4c45f3bdbc7550b0a1d202dd4e71634d8b35ebcfcc24ed4",
@@ -25753,7 +25944,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "9ddf0a73aaa8ba35784d5f7f4cb653613604786a134da90943bc29e52caddc5f",
+    "proof/PscVerif/PscVerif.lean": "4c33c90a775f073c805d024621cf8d6707cd0e747ae2adce5940415fe90c48e7",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

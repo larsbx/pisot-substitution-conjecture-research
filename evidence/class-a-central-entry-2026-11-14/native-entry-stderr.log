@@ -1,0 +1,6 @@
+Failed to initialize Crashpad.  Crash reporting will not be available.  Cause: while locating crashpad handler: unable to locate crashpad handler executable
+Included from /workspace/scratch/f53f64a9a0d0/psc/kernel/tests/test_class_a_entry_search.mojo:8:
+Included from ./psc/class_a_entry_search.mojo:14:
+./psc/class_a_central_entry.mojo:140:36: warning: assignment to 'addresses' was never used; assign to '_' instead?
+    var addresses = List[List[Int]]()
+                                   ^

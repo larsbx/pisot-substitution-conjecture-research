@@ -1,0 +1,24 @@
+{
+  "command": [
+    "bash",
+    "tools/check_class_a_central_entry.sh"
+  ],
+  "working_directory": "/workspace/scratch/f53f64a9a0d0/psc",
+  "environment_overrides": {
+    "TMPDIR": "/workspace/scratch/f53f64a9a0d0/fresh-central-gate-tmp",
+    "PATH_prepend": "/home/agent/.elan/bin"
+  },
+  "script_sha256": "443d2b227c85b0d9a8fc25dd9db9e6d1aa5d9a25264f62e56c5c10e2694221a5",
+  "started_utc": "2026-11-14T21:57:25Z",
+  "log": "/workspace/scratch/f53f64a9a0d0/central-fresh-source-attempt-1.log",
+  "exit_code": 0,
+  "seconds": 179.0822455460002,
+  "finished_utc": "2026-11-14T22:00:24Z",
+  "log_sha256": "4a810cbba8f14be5e8c31fb94589ae37ef05216a35a048ae0e4e98c4772ceee0",
+  "archived_log": {
+    "path": "lean-source-isolated.log.gz",
+    "stored_sha256": "eac43191681df36138c5629fa56559194f9f90d6524405c91276ff7709338fd7",
+    "uncompressed_sha256": "4a810cbba8f14be5e8c31fb94589ae37ef05216a35a048ae0e4e98c4772ceee0",
+    "uncompressed_bytes": 35881
+  }
+}
