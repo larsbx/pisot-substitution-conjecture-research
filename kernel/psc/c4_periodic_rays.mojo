@@ -74,6 +74,43 @@ def common_endpoint_depth(
     return worst
 
 
+def _occurrence_digits(
+    tables: SeedOverlapTables, graph: SeedOverlapAutomaton,
+    mut cache: Dict[CubicElt, Int], source: Int, target: Int,
+) raises -> Tuple[Int, Int]:
+    """Recover the first literal edge to target while checking the ordered row."""
+    var state = graph.states[source]
+    var row_idx = 0
+    var top_digit = -1
+    var bottom_digit = -1
+    for i in range(len(tables.sigma[state.top])):
+        for j in range(len(tables.sigma[state.bottom])):
+            var child = selected_overlap_child(tables, state, i, j)
+            if not interior_overlap_cached(tables, cache, child):
+                continue
+            if row_idx >= len(graph.adj[source]):
+                raise Error("periodic-ray child row omitted a literal occurrence")
+            var at_slot = graph.adj[source][row_idx]
+            if graph.states[at_slot] != child:
+                raise Error("periodic-ray child row does not match literal order")
+            row_idx += 1
+            if top_digit == -1 and at_slot == target:
+                top_digit = i
+                bottom_digit = j
+    if row_idx != len(graph.adj[source]) or top_digit == -1:
+        raise Error("periodic-ray child row failed occurrence replay")
+    return Tuple(top_digit, bottom_digit)
+
+
+def _cyclic_first_letter(sigma: List[List[Int]], letter: Int) -> Bool:
+    var first = letter
+    for _ in range(3):
+        first = sigma[first][0]
+        if first == letter:
+            return True
+    return False
+
+
 def _decide_pair(
     tables: SeedOverlapTables, top: Int, bottom: Int, max_states: Int
 ) raises -> PeriodicRayDecision:
@@ -92,32 +129,21 @@ def _decide_pair(
     if coincidence[0] == -1:
         boundary_depth = common_endpoint_depth(tables, graph)
 
-    # Replay a shortest coincidence path using the exact occurrence addresses.
-    # A repeated target keeps its position in the complete child row.
     var top_digits = List[Int]()
     var bottom_digits = List[Int]()
     var vertex = 0
     while coincidence[vertex] > 0:
-        var row_idx = 0
         var next_vertex = -1
-        var state = graph.states[vertex]
-        for i in range(len(tables.sigma[state.top])):
-            for j in range(len(tables.sigma[state.bottom])):
-                var child = selected_overlap_child(tables, state, i, j)
-                if not interior_overlap_cached(tables, cache, child):
-                    continue
-                if row_idx >= len(graph.adj[vertex]):
-                    raise Error("periodic-ray child row omitted a literal occurrence")
-                var target = graph.adj[vertex][row_idx]
-                if graph.states[target] != child:
-                    raise Error("periodic-ray child row does not match literal order")
-                row_idx += 1
-                if next_vertex == -1 and coincidence[target] == coincidence[vertex] - 1:
-                    top_digits.append(i)
-                    bottom_digits.append(j)
-                    next_vertex = target
-        if row_idx != len(graph.adj[vertex]) or next_vertex == -1:
-            raise Error("periodic-ray child row failed coincidence path replay")
+        for k in range(len(graph.adj[vertex])):
+            var target = graph.adj[vertex][k]
+            if coincidence[target] == coincidence[vertex] - 1:
+                next_vertex = target
+                break
+        if next_vertex == -1:
+            raise Error("periodic-ray distance has no decreasing edge")
+        var digits = _occurrence_digits(tables, graph, cache, vertex, next_vertex)
+        top_digits.append(digits[0])
+        bottom_digits.append(digits[1])
         vertex = next_vertex
 
     return PeriodicRayDecision(
@@ -135,12 +161,7 @@ def decide_periodic_rays(
     var tables = build_seed_overlap_tables_screened(sigma)
     var cyclic = List[Bool]()
     for a in range(3):
-        var first = a
-        var returns = False
-        for _ in range(3):
-            first = sigma[first][0]
-            returns = returns or first == a
-        cyclic.append(returns)
+        cyclic.append(_cyclic_first_letter(sigma, a))
 
     var result = List[PeriodicRayDecision]()
     for a in range(3):
@@ -148,3 +169,93 @@ def decide_periodic_rays(
             if cyclic[a] and cyclic[b]:
                 result.append(_decide_pair(tables, a, b, max_states))
     return result^
+
+
+struct ForbiddenHubStart(Copyable, Movable):
+    """Shortest addressed distinct aligned start violating the expected hub side."""
+
+    var depth: Int
+    var top: Int
+    var bottom: Int
+    var top_digits: List[Int]
+    var bottom_digits: List[Int]
+
+    def __init__(
+        out self, depth: Int, top: Int, bottom: Int,
+        var top_digits: List[Int], var bottom_digits: List[Int],
+    ):
+        self.depth = depth
+        self.top = top
+        self.bottom = bottom
+        self.top_digits = top_digits^
+        self.bottom_digits = bottom_digits^
+
+
+def first_forbidden_hub_start(
+    sigma: List[List[Int]], hub: Int, top: Int, bottom: Int, phase: Int,
+    max_states: Int = 20000,
+) raises -> ForbiddenHubStart:
+    """Check a phase candidate after verifying the complementary good edge.
+
+    Depth -1 means no forbidden *distinct* aligned start in the complete graph.
+    Diagonal productivity and common-vertex gaps are separate tests.
+    """
+    if hub < 0 or hub >= 3 or top < 0 or top >= 3 or bottom < 0 or bottom >= 3:
+        raise Error("periodic-ray letters lie outside 0..2")
+    if top == bottom or (top != hub and bottom != hub) or phase < 0 or phase > 1:
+        raise Error("invalid cyclic hub pair or phase")
+    var tables = build_seed_overlap_tables_screened(sigma)
+    if not _cyclic_first_letter(sigma, top) or not _cyclic_first_letter(sigma, bottom):
+        raise Error("periodic-ray root must have two cyclic first letters")
+
+    var good = List[Int]()
+    for a in range(3):
+        if a != hub:
+            good.append(a)
+    if _decide_pair(tables, good[0], good[1], max_states).coincidence_depth < 0:
+        raise Error("complementary good edge needs an actual coincidence witness")
+
+    var seeds: List[OverlapState] = [OverlapState(top, bottom, CubicElt())]
+    var cache = Dict[CubicElt, Int]()
+    var graph = build_overlap_graph_from_seeds(tables, seeds, cache, max_states)
+    if graph.capped:
+        raise Error("hub-start reachability is undefined on a capped graph")
+
+    # Pack (overlap index, expected hub side), with 0 for top and 1 for bottom.
+    var initial = 0 if top == hub else 1
+    var queue: List[Int] = [initial]
+    var parent = List[Int]()
+    for _ in range(graph.size()):
+        parent.append(-1)
+        parent.append(-1)
+    parent[initial] = initial
+    var head = 0
+    while head < len(queue):
+        var current = queue[head]
+        head += 1
+        var vertex = current // 2
+        var side = current % 2
+        var state = graph.states[vertex]
+        var actual_hub = state.top if side == 0 else state.bottom
+        if state.shift.is_zero() and state.top != state.bottom and actual_hub != hub:
+            var top_digits = List[Int]()
+            var bottom_digits = List[Int]()
+            while current != initial:
+                var previous = parent[current]
+                var digits = _occurrence_digits(tables, graph, cache, previous // 2, current // 2)
+                top_digits.append(digits[0])
+                bottom_digits.append(digits[1])
+                current = previous
+            top_digits.reverse()
+            bottom_digits.reverse()
+            return ForbiddenHubStart(
+                len(top_digits), state.top, state.bottom, top_digits^, bottom_digits^
+            )
+        var next_side = side ^ phase
+        for k in range(len(graph.adj[vertex])):
+            var target = 2 * graph.adj[vertex][k] + next_side
+            if parent[target] == -1:
+                parent[target] = current
+                queue.append(target)
+
+    return ForbiddenHubStart(-1, -1, -1, List[Int](), List[Int]())

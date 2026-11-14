@@ -5,6 +5,7 @@ on:
     paths:
       - '.github/workflows/c4-periodic-rays.yml'
       - 'docs/c4-periodic-ray-decision*.md'
+      - 'docs/c4-phase-aligned-ray*.md'
       - 'kernel/psc/c4_periodic_rays.mojo'
       - 'kernel/psc/overlap_seed_patch.mojo'
       - 'kernel/psc/perron_field3.mojo'

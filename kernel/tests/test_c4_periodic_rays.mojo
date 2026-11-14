@@ -4,7 +4,9 @@ from std.testing import assert_equal, assert_false, assert_true
 from mojo_smoke.claims import require_contract
 from psc.bpa import newborn_sync_positions
 from psc.c4_addressed_newborn import addressed_newborn
-from psc.c4_periodic_rays import common_endpoint_depth, decide_periodic_rays, has_common_endpoint
+from psc.c4_periodic_rays import (
+    common_endpoint_depth, decide_periodic_rays, first_forbidden_hub_start, has_common_endpoint,
+)
 from psc.overlap_seed_patch import (
     OverlapState, SeedOverlapAutomaton, build_seed_overlap_tables_screened, interior_overlap,
 )
@@ -58,11 +60,26 @@ def check_boundary_distance() raises:
     assert_equal(common_endpoint_depth(tables, SeedOverlapAutomaton(states, without_endpoint, False)), -1)
 
 
+def check_phase(
+    name: String, sigma: List[List[Int]], hub: Int, phase: Int, depth: Int,
+) raises:
+    var witness = first_forbidden_hub_start(sigma, hub, 0, 1, phase)
+    assert_equal(witness.depth, depth)
+    assert_equal(len(witness.top_digits), depth)
+    assert_equal(len(witness.bottom_digits), depth)
+    print("PHASE", name, depth, witness.top, witness.bottom,
+          digits(witness.top_digits), digits(witness.bottom_digits))
+
+
 def main() raises:
     check_boundary_distance()
     check_source("left-proper-power", [[0, 1], [0, 2], [0]], [], [], [])
     var phase_zero: List[List[Int]] = [[0, 1], [1, 2], [0, 2, 1]]
     check_source("phase-zero", phase_zero, [0], [1], [4])
+    check_phase("fixed-hub", phase_zero, 1, 0, 3)
+    var swapping: List[List[Int]] = [[1], [0, 2], [0, 0, 2]]
+    check_phase("swapping-hub", swapping, 0, 1, 5)
+    assert_equal(first_forbidden_hub_start(swapping, 0, 0, 1, 0).depth, 1)
     var ray = decide_periodic_rays(phase_zero)[0].copy()
     var birth = addressed_newborn(
         phase_zero, Pair([0, 1], [1, 0]), 0, 0, ray.top_digits, ray.bottom_digits,
@@ -102,3 +119,4 @@ def main() raises:
         refused = True
     assert_true(refused)
     require_contract("complete periodic-ray overlap decisions with literal coincidence addresses and both closed endpoints")
+    require_contract("phase-aware periodic-ray starts preserve hub orientation at every generation or return a literal violating address")
