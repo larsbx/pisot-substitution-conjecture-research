@@ -23854,6 +23854,11 @@
       "statement_heading": "**Theorem 3 (exact phase balance).** Let v>0 be a right Perron vector of N, Nv=beta v (the eigenvalue equality follows from the positive left vector ell^T P of the complete strictly closed system). Write v^(k) for v restricted to class k, with zeros outside. Then"
     },
     {
+      "source": "docs/c4-periodic-ray-decision-2026-11-14.md",
+      "line": 33,
+      "statement_heading": "**Theorem (periodic-ray criterion).** A finite strict system exists if and"
+    },
+    {
       "source": "docs/c4-phase-lattice-index-conservation-2026-11-04.md",
       "line": 21,
       "statement_heading": "**Theorem 1 (phase index conservation).** Under §1, for each k modulo h,"
