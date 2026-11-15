@@ -1,0 +1,16 @@
+[
+  {
+    "original_name": "governance-initial.log",
+    "container": "governance-initial.log.gz",
+    "raw_sha256": "64f8f6d9aef308854f0f7284888478d32cd7637cfc4dc8f4844d8252db11d7f4",
+    "container_sha256": "4610597fb4a787f608efb2aeab398decde20743f7dbde29520535bc0fbc4270a",
+    "reason": "Preserve verbatim raw trailing whitespace in deterministic gzip container"
+  },
+  {
+    "original_name": "governance-final.log",
+    "container": "governance-final.log.gz",
+    "raw_sha256": "90df5654149d78f30c69ad18f28a1c8060d5c02babe15415ebbe0f12d7f00984",
+    "container_sha256": "e6fb45b49635073fd5bc8c55bfc15418341421e73f1213c9bcdff74f3d76c5e5",
+    "reason": "Preserve verbatim raw trailing whitespace in deterministic gzip container"
+  }
+]

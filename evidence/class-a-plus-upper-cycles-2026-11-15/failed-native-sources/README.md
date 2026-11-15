@@ -1,0 +1,3 @@
+# Preserved reconstruction failures
+
+The archived driver is reconstructed from the recorded edits and authenticates byte-for-byte against both failed attempt receipts. The module is unchanged. Attempt 1 invoked the pinned binary without its required MODULAR_HOME and failed to locate std; attempt 2 supplied the runtime environment and then exposed the reserved Mojo word `case` used as a loop variable. The corrected driver uses `specimen` and adds the public zero-state binding and genuine prefix-overflow controls. Attempt 3 passed; the final source-bound runner also re-enumerates the source path set after execution. No refused attempt is counted as acceptance.

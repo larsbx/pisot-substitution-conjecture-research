@@ -1,0 +1,32 @@
+{
+  "command": [
+    "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+    "-m",
+    "pytest",
+    "-o",
+    "addopts=",
+    "-q",
+    "tests/test_class_a_plus_upper_cycles.py",
+    "tests/test_class_a_plus_upper_symbolic.py",
+    "tests/test_class_a_plus_upper_audit.py",
+    "--junitxml=/workspace/scratch/7b7b91dcb7fe/psc-upper/evidence/class-a-plus-upper-cycles-2026-11-15/pytest.xml"
+  ],
+  "counts": {
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0,
+    "tests": 119
+  },
+  "exit_code": 0,
+  "seconds": 3.8365337450013612,
+  "source_inputs": {
+    "oracles/python/class_a_plus_upper_cycles.py": "3884e545a912096c936d53bc46246a42bfb8a2868338cc6c33a41d8d2bc30af3",
+    "oracles/python/class_a_plus_upper_independent.py": "b8b6b93423ac4baf67660ed3d8d3f26c40ca1f1b867afe8e931164fa1aaee579",
+    "oracles/python/class_a_plus_upper_symbolic.py": "791db6f79e236d43328eacede27617c74709eeac2c6d49f28345db7dc89b6582",
+    "tests/test_class_a_plus_upper_audit.py": "ea886819eaf0228fcf4d6a32bc46e1d92db164994806da57cc06b1818b958162",
+    "tests/test_class_a_plus_upper_cycles.py": "0b1fb28e378c39adb11896b10b69aacc5c66969c2d333a03e9dfb7b78a2960f3",
+    "tests/test_class_a_plus_upper_symbolic.py": "e4a51b16b6bd4a9a608688cd24682f219cbcee7701c3c497e70c7344a576df3c",
+    "tools/check_class_a_plus_upper_audit.py": "9ed25a914955be981ed86e5fdad7cf5c3ac00783ee06ae30f7e0bdfe47dcbdc0"
+  },
+  "sources_unchanged": true
+}

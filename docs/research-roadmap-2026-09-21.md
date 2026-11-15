@@ -1,8 +1,31 @@
 # PSC research roadmap — 2026-09-21
 
+## 2026-11-14 current priority: BH escape, with A1′ in parallel
+
+The [BH escape roadmap](bh-escape-roadmap-2026-11-14.md) gives the current
+next theorem and acceptance contract. It distinguishes `main` from the
+unmerged #573 family result and #574 conditional BH finite-carrier/A1′ work;
+earlier dated frontiers below retain their historical evidence.
+
+Prioritize [#452](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/452):
+every required nonzero cyclic seed-reachable minus-Class-A state reaches one
+of the classified zero-return predecessor segments by literal occurrence
+edges. Prove source coverage and selected escape separately. Existing
+address decomposition and coherent finite path lifting already verify a
+supplied path; the universal existence argument is the principal gap.
+
+In parallel, prove residual one-sided A1′ for its prescribed fixed-hub pair,
+for example through same-position proximality. Extend the scoped BH argument
+to every required ternary PIP substitution, retaining non-unit finite-place
+data, then use the established #84 assembly when both premises are proved.
+The all-alphabet extension and a fully internal Lean spectral theorem remain
+further developments. C4 still needs uniform strict-system exclusion and
+separate finite-carrier extraction where required; a finite overlap graph
+alone supplies neither a hit nor a uniform balanced-factor bound.
+
 ## 2026-11-11 current frontier through #541
 
-**Current accepted mainline baseline:**
+**Accepted mainline baseline at that review:**
 `2848e5f67b605669a550f362a1de4bf1c1529f7c`. The
 [current-state reconciliation](current-state-reconciliation-2026-11-11.md)
 separates exact-revision receipts, the older integration queue and the active
