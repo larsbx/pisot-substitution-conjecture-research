@@ -7,7 +7,9 @@ Theorem C. With it come the elementary lemmas TW, I1–I3, R and the Transfer
 Lemma (§3–§4), written proofs whose finite regressions are in
 `kernel/tests/test_class_a_chamber_entry.mojo`, and the literature and route
 stop/go decision of §2 and §5. Corollary CA-1 (§6.4) gives #452's entry into Z and H on
-`𝒯_CA` and nowhere else. The complement `{t ≥ 6, t ≥ k}` stays an open theorem target.
+`𝒯_CA` and nowhere else. On `main` the complement `{t ≥ 6, t ≥ k}` stays an
+open theorem target; a written proof covering the whole chamber exists on the
+unmerged #577 stack (§2, "Parallel route"), and Theorem CA is independent of it.
 
 Canonical implementation: `kernel/psc/symbolic_cone.mojo` (with an opt-in
 Bernstein sign rule), `kernel/class_b_cone_certificate.mojo` (the cover, now
@@ -114,7 +116,27 @@ lines in the stop/go scratch; summarized here):
 | finite S18 certificates (22 specimens) | #447, #448 | finite | hosted run 41448531108 passed at `4ec572a` (`evidence/class-a-finite-hosted-acceptance-2026-11-02/README.md:3-6`) |
 | nine segments and T0; M-adic ladder; Smith trichotomy | #451, #453, #454 | target side | ladder: "parameter-uniform elementary integral-algebra theorem and canonical finite-level verifier **proposed**" (`docs/class-a-madic-digit-ladder-2026-11-02.md:3`); receipts: #451's dedicated run passed and its broader run failed, #453's and #454's exact-head runs failed (`docs/current-state-reconciliation-2026-11-11.md:124-127`) |
 
-None of these is a parameter-uniform coverage result. Theorem CA is.
+None of these is a parameter-uniform coverage result. Theorem CA is the first
+on `main`.
+
+**Parallel route, not on `main`** [R, PR bodies as of 2026-11-15]. The draft
+stack of #577 contains, merged into its branch and not into `main`, PR
+[#578](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/578) "Prove uniform minus-Class-A entry with original prefix
+witnesses". Its body states "a written proof of the **mathematical
+uniform-entry target of #452 throughout its declared minus-Class-A chamber**"
+(`n+2 <= d <= 2n-1`, the chamber here): every strict integral overlap reaches
+typed coincidence for `n >= 6`, and every vertex of the six complete S18 graphs
+does for `n < 6`, with "Exact-head hosted acceptance and independent human
+review remain pending". Its method is different: two-level literal word counts
+force a central `y/y` overlap, a nearest RUN child gives a bounded integer
+recurrence whose nonzero periodic tails are alternating states, and explicit
+actual exits close those. Five of its Lean source modules reached `main`
+through #583 (`ClassACentralRecurrence`, `ClassAZeroDefectEscape`, and the
+constant-recurrence modules), the entry theorem and its note did not. If that
+stack lands, Theorem CA is a second, independent and computer-assisted method
+on `𝒯_CA` (cones and seed-patch graphs against density counts and a nearest
+recurrence), and R-A below is superseded as the route to #452. Nothing of the
+stack is cited as a premise here, and this note does not assess its proof.
 **Class-B programme on the same matrix:** Theorem C ("Status: repository-proved,
 computer-assisted, unreviewed.", `docs/p1b-symbolic-cone-2026-10-08.md:146-147`,
 no governed record); the ray and middle certificates (`docs/class-b-middle-certificate-2026-10-27.md:3-5,16-19`,
@@ -326,7 +348,7 @@ sample points.
 | Route | Decision | Basis |
 | --- | --- | --- |
 | **R-C** cone/line certificates (class-A Theorem-C analogue) | **GO, done on 𝒯_CA** (§6) | the engine is generic in endings (`kernel/psc/symbolic_cone.mojo:3-8`); the brackets read only `M` |
-| **R-A** class-B-twin partition certificate for `{t ≥ 6, t ≥ k}` | **GO, narrowed**, next target | P1 rays `K ≤ K0` may fit reachable labels; P2/P3 default to the strict-core closure ("The uniform carrier is the core closure `C_q`, not a fit of the reachable graph", `docs/class-b-gap-uniformity-stopgo-2026-10-27.md:137-138`); child update from `symbolic_child` (`kernel/psc/class_a_boundary_occurrences.mojo:65`); signs from `kernel/psc/class_b_middle_geometry.mojo` at `g = K` |
+| **R-A** class-B-twin partition certificate for `{t ≥ 6, t ≥ k}` | **GO, narrowed**, but superseded as the #452 route if the #577 stack's whole-chamber proof (#578) is accepted; then only as an independent second method | P1 rays `K ≤ K0` may fit reachable labels; P2/P3 default to the strict-core closure ("The uniform carrier is the core closure `C_q`, not a fit of the reachable graph", `docs/class-b-gap-uniformity-stopgo-2026-10-27.md:137-138`); child update from `symbolic_child` (`kernel/psc/class_a_boundary_occurrences.mojo:65`); signs from `kernel/psc/class_b_middle_geometry.mojo` at `g = K` |
 | class-A sign box `class_a_gap_uniform` / `poly_hu` (`u = dh ≤ 1/5`) | **not reused** | "`u>1` **for all** these `k,t>=0`" (`docs/class-a-boundary-chamber-2026-10-26.md:41`); "no transfer of #335's u<=1/5 chamber into this strip" (ledger:1925) |
 | **R-S** contradiction from a target-free terminal SCC | **DEFER: not pursued in this increment; not retired** | it is the roadmap's second form, which stays open (`docs/bh-escape-roadmap-2026-11-14.md:102-127`). One instantiation is as hard as T1: "every vertex returns to X" implies T1 via `X → Q ∈ H` (`docs/class-a-x-productivity-2026-10-31.md:170`). Re-open on an invariant of target-free closed subsets of Γ that forces a vertex with an actual exit. The per-instance check `summarize` stays (`kernel/psc/class_a_x_productivity.mojo:158`) |
 | **R-β** PDS via L2 by conjugacy or MLD | **DEFER, not retired** | the critical-exponent obstruction sketch is unverified. Owed: (1) a primary read of L6 Thm 17 for `d_β(1) = (n+2)((t+2)n)^ω`; (2) an invariance lemma for the asymptotic critical exponent under conjugacy; (3) L2's non-unit branch. Untouched: factor maps, other β′. Scratch searches at `(0,0)` were negative within their classes (ledger:3059) |
@@ -453,7 +475,8 @@ not re-examined here, and G1 is not stated.
 
 **6.6 What is left of #452.** The chamber minus 𝒯_CA is `{t ≥ 6, t ≥ k}`
 (every point has `D ≥ 2`). The cone slopes `p/q = 3 − K/q` accumulate at 3, so
-cones cover finitely many D only. The uniform remainder goes to R-A.
+cones cover finitely many D only. The uniform remainder goes to R-A unless the
+#577 stack's whole-chamber proof (§2) lands first.
 
 ## 7. Finite observations [F]
 
@@ -471,7 +494,8 @@ rests on `build_indexed` alone (cap 6000, not hit, Cartesian verifier off).
 ## 8. Non-claims
 
 - Theorem CA and Corollary CA-1 cover 𝒯_CA only. Nothing here proves BH,
-  entry, A1′, G1 or PSC elsewhere. T1 is open on `{t ≥ 6, t ≥ k}`.
+  entry, A1′, G1 or PSC elsewhere. On `main`, T1 is open on `{t ≥ 6, t ≥ k}`;
+the #577 stack's proof of the whole chamber is neither cited nor assessed here.
 - Theorem CA is repository-proved, computer-assisted and human review
   pending. Like Theorem C it is not registered in the claim ledger;
   registering it, and Corollary CA-1, is a deliberate later act.

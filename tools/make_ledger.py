@@ -51,6 +51,10 @@ BOX_LC_REVIEWED = frozenset({
     "LeftmostChainCycleStructure", "LeftmostChainG1Certificate",
 })
 
+BPRIME_SRC = ("docs/c4-bprime-lean-2026-11-09.md; Lean {decls} in proof/PscVerif/PscVerif/BPrime.lean over BPrimeCore and BPrimeBinding, "
+              "standard axioms only (ProofBankAudit); hosted ci.yml lean-proofs job 132870714519 of run 43733407182 at 71afd61 and job 129725849872 "
+              "of run 42785583506 at 0baaf07, the three modules byte-identical through the merge into main; {extra}Lean-checked, human review pending, novelty not asserted")
+
 # name -> (kind, statement, source or reason, dependencies, tags)
 # Dependencies are one-way proof sufficiency, never a converse implication
 # (proof/tla/ProofArchitecture.tla). A proved node whose dependencies are open is a
@@ -218,6 +222,17 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
            "docs/c4-finite-domain-closure-2026-11-05.md; the implication is the cut-pair reduction, the premise is UniversalAlignedCoincidence (issue #138); general C4 is equivalent to bounded-gap A1-prime (docs/c4-cut-attractor-window-2026-11-05.md, Proposition 3)",
            ("C4FromStrongCoincidence", "UniversalAlignedCoincidence"), ()),
     "C3Local": (T, "C4 gives C3-local", "docs/c3-locality-reduction.md", ("C4", "C3Locality"), ()),
+    # --- off the Pisot cone: prefix-seeded balanced pairs (Lean) ---------------------
+    # Not restricted to PIP (see SCOPES); vacuous on the standing regime, so no
+    # PIP node depends on them and they discharge nothing of C4, G1 or PSC.
+    "PrefixBPATerminationPisotOrSalem": (T, "for every primitive substitution on a finite alphabet whose incidence characteristic polynomial chi_M is irreducible over Q, with beta the eigenvalue of a positive left eigenvector, every one-sided fixed point u (Lean IsFixed) and every nonempty prefix W of u: if the Sirvent-Solomyak prefix-seeded set I(W) (Lean BPrimeBinding.IW: all levels, coincidence blocks retained; termination means finiteness, not coincidence) is finite, then every root z != beta of chi_M has |z| <= 1; on two or more letters beta is then Pisot or Salem (beta > 1 and an algebraic integer whose minimal polynomial is chi_M), and when chi_M has degree three beta is Pisot; the strict disc is not asserted in degree two or in degree >= 4, and no termination, coincidence or PDS fact for a Pisot substitution follows",
+                                         BPRIME_SRC.format(decls="Psc.BPrime.bprime, bprime_ss (the literal recursion (3.1)), bprime_isPisotOrSalem, bprime_cubic, bprime_cubic_isPisot",
+                                                           extra="corrected statement of docs/c4-bprime-independent-proof-audit-2026-11-07.md, formalized by frequency-free averaging and cyclicity rather than the Galois-conjugate argument of docs/c4-general-structure-2026-11-06.md section 3; "),
+                                         (), ()),
+    "NonPisotPrefixBPANontermination": (T, "for every primitive substitution on a finite alphabet whose chi_M is irreducible over Q and has a root z != beta with |z| > 1, beta the eigenvalue of a positive left eigenvector (on two or more letters: beta is neither Pisot nor Salem; on three letters, natDegree chi_M = 3: beta is not Pisot), the prefix-seeded set I(W) is infinite for every one-sided fixed point u and every nonempty prefix W of u, also for the literal recursion (3.1); Corollary B (ii)-(iii), seeds that are not prefixes of a fixed point and periodic points that are not fixed are not asserted",
+                                        BPRIME_SRC.format(decls="Psc.BPrime.corB_infinite, corB_infinite_of_not_isPisotOrSalem, corB_infinite_cubic, corB_infinite_ss, corB_infinite_cubic_ss (contrapositive of Proposition B'), specimen 0->01, 1->2, 2->00 in zetaU_IW_infinite,",
+                                                          extra=""),
+                                        ("PrefixBPATerminationPisotOrSalem",), ()),
     "C2": (T, "C3-local gives C2", f"{MANUSCRIPT}, boundary route", ("C3Local",), ()),
     "SCCProducer": (T, "SCC Producer / C1 follows from G1, the sink-SCC reduction, and C2", f"{LEDGER_DOC}; manuscript unresolved statements",
                     ("G1", "SinkSCCReduction", "C2"), ("status:open",)),
@@ -366,6 +381,8 @@ ALIASES = {
     "BoxAutomatonSymbolicPDSCertificate": ["per-specimen box symbolic PDS certificate"],
     "BrunCompositeSymbolicPDS": ["Corollary B″", "Brun composites have symbolic PDS"],
     "DetTwoBoundaryHittingLines": ["Theorems L/L′/L″", "47 determinant-two lines"],
+    "PrefixBPATerminationPisotOrSalem": ["Proposition B′", "terminating prefix-seeded BPA forces Pisot or Salem (two or more letters)"],
+    "NonPisotPrefixBPANontermination": ["Corollary B (i)", "prefix-seeded BPA off the Pisot cone"],
     "ClassDWedgeBoundaryHitting": ["Theorem W", "class-D wedge boundary hitting"],
     "ClassABoundaryHittingLowGaps": ["class-A gaps d <= 4"],
     "ClassABoundaryHittingHighGaps": ["class-A gaps d >= 5, n >= 5d"],
@@ -425,6 +442,8 @@ SURFACES = {  # prose surfaces on which each claim's status is spelled out (labe
     "AlignedOverlapsAreStrongCoincidence": [surface(MAP, "| Endpoint-aligned overlaps = strong-coincidence boundary cases |")],
     "BoundaryCoincidenceCriterion": [surface(MAP, "| Boundary-hitting criterion |")],
     "DetTwoBoundaryHittingLines": [surface(MAP, "| Determinant-two boundary hitting on 47 lines |")],
+    "PrefixBPATerminationPisotOrSalem": [surface(MAP, "| Proposition B′: terminating prefix-seeded BPA forces Pisot or Salem (two or more letters) |")],
+    "NonPisotPrefixBPANontermination": [surface(MAP, "| Corollary B (i): prefix-seeded BPA off the Pisot cone |")],
     "ClassDWedgeBoundaryHitting": [surface(MAP, "| Class-D wedge boundary hitting |")],
     "ClassABoundaryHittingLowGaps": [surface(MAP, "| Class-A boundary hitting, gaps `d <= 4` |")],
     "ClassABoundaryHittingHighGaps": [surface(MAP, "| Class-A boundary hitting, gaps `d >= 5`, `n >= 5d` |")],
@@ -467,6 +486,14 @@ SURFACES = {  # prose surfaces on which each claim's status is spelled out (labe
 }
 
 
+# Records whose statement is not confined to the standing regime carry their own scope.
+SCOPES = {
+    "PrefixBPATerminationPisotOrSalem": "primitive substitutions on a finite alphabet with irreducible incidence characteristic polynomial (not restricted to PIP; vacuous on it)",
+    "NonPisotPrefixBPANontermination": "primitive substitutions on a finite alphabet with irreducible incidence characteristic polynomial (not restricted to PIP; vacuous on it)",
+}
+LEAN_CHECKED = frozenset({"PrefixBPATerminationPisotOrSalem", "NonPisotPrefixBPANontermination"})
+
+
 def records() -> dict[str, Record]:
     built: dict[str, Record] = {}
 
@@ -492,13 +519,16 @@ def records() -> dict[str, Record]:
         if name in {"ClassDFiniteBPA", "ClassDBoundaryHitting", "PlusClassDBoundaryHitting", "PlusClassDBoundaryLine", "PlusClassDPositiveBBoundaryHitting", "DetTwoBoundaryHittingLines", "ClassDWedgeBoundaryHitting", "ClassABoundaryHittingLowGaps", "ClassABoundaryHittingHighGaps", "ClassCBoundaryHittingLowGaps", "MinusClassDPositiveBBoundaryHitting", "MinusClassDSeedCarrierClosure", "MinusClassDPositiveBCycleSum", "MinusClassDBoundaryLine", "MinusClassDBoundaryStrips", "MinusClassDResidualBoundaryHitting", "MinusClassDBoundaryHitting"}:
             evidence += (("human_review_pending", "true"),
                          ("computer_assisted", "true"))
+        if name in LEAN_CHECKED:
+            evidence += (("human_review_pending", "true"),
+                         ("lean_checked", "true"))
         if name == "G1":
             evidence += (("dependency_alternatives", json.dumps(
                 [[build(r).id] for r in ("G1FromRenewal", "G1OverlapRoute", "G1HalfCoincidenceRoute", "G1FormalProductivityRoute")],
                 separators=(",", ":"))),)
         if name in STATUS_NOTES:
             evidence += (("status_note", STATUS_NOTES[name]),)
-        built[name] = identified(Record("", kind, statement, SCOPE, edges, evidence, frozenset(tags)))
+        built[name] = identified(Record("", kind, statement, SCOPES.get(name, SCOPE), edges, evidence, frozenset(tags)))
         return built[name]
 
     return {name: build(name) for name in TABLE}

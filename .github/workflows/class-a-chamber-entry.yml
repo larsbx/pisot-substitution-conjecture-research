@@ -133,3 +133,32 @@ jobs:
       - name: Theorem CA cone certificate, every family
         working-directory: kernel
         run: pixi run --locked mojo run -I . class_a_chamber_cone_certificate.mojo all
+
+  # Theorem C (class-B sectors, docs/p1b-symbolic-cone-2026-10-08.md) runs on the
+  # same cover and engine; this PR made the cover generic in the class and added
+  # the bracket-order check, so its full certificate is replayed here and must
+  # reproduce archive/2026-10-08/class-b-cone-run/ (regions, shifts, totals).
+  theorem-c-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    strategy:
+      fail-fast: false
+      matrix:
+        branch: [plus, minus]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install locked Mojo environment
+        run: |
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Theorem C cover, ${{ matrix.branch }} branch
+        working-directory: kernel
+        run: pixi run --locked mojo run -I . class_b_cone_certificate.mojo ${{ matrix.branch }} | tee "$RUNNER_TEMP/replay.log"
+      - name: Certified regions and totals equal the archived run
+        run: |
+          archive="archive/2026-10-08/class-b-cone-run/${{ matrix.branch }}.out"
+          diff <(grep -E 'vertices$' "$archive" | grep -v exact) <(grep -E 'vertices$' "$RUNNER_TEMP/replay.log" | grep -v exact)
+          diff <(grep '^regions' "$archive") <(grep '^regions' "$RUNNER_TEMP/replay.log")
+          if [ "${{ matrix.branch }}" = minus ]; then
+            diff <(grep exact "$archive") <(grep exact "$RUNNER_TEMP/replay.log")
+          fi

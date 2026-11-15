@@ -4,6 +4,12 @@
 
 **Source:** PR #504 at `e9cfafebb0b0c7448757fee6ef53f77d8042e95a`; independent audit PR #505, `docs/c4-bprime-independent-proof-audit-2026-11-07.md`. Source classifications are unchanged.
 
+*Status update, 2026-11-15.* The machine-verification gate of this note is met: the Lean
+proof of the corrected B′ and of Corollary B (i) (`docs/c4-bprime-lean-2026-11-09.md`) passed
+hosted `lean-proofs` at `0baaf07` and `71afd61`. Both are registered in the claim ledger
+(`PrefixBPATerminationPisotOrSalem`, `NonPisotPrefixBPANontermination`), status proved with
+human review pending. The deferral of independent human and novelty review stands unchanged.
+
 ## Work shown
 
 ### Assumptions and hypotheses

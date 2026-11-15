@@ -233,6 +233,14 @@
       "Theorems L/L′/L″",
       "47 determinant-two lines"
     ],
+    "PrefixBPATerminationPisotOrSalem": [
+      "Proposition B′",
+      "terminating prefix-seeded BPA forces Pisot or Salem (two or more letters)"
+    ],
+    "NonPisotPrefixBPANontermination": [
+      "Corollary B (i)",
+      "prefix-seeded BPA off the Pisot cone"
+    ],
     "ClassDWedgeBoundaryHitting": [
       "Theorem W",
       "class-D wedge boundary hitting"
@@ -610,6 +618,20 @@
       {
         "path": "docs/claim-status-and-source-map-2026-09-13.md",
         "anchor": "| Determinant-two boundary hitting on 47 lines |",
+        "window_lines": 0
+      }
+    ],
+    "PrefixBPATerminationPisotOrSalem": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Proposition B′: terminating prefix-seeded BPA forces Pisot or Salem (two or more letters) |",
+        "window_lines": 0
+      }
+    ],
+    "NonPisotPrefixBPANontermination": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Corollary B (i): prefix-seeded BPA off the Pisot cone |",
         "window_lines": 0
       }
     ],
@@ -3153,6 +3175,66 @@
         [
           "source",
           "docs/c3-locality-reduction.md"
+        ]
+      ],
+      "tags": []
+    },
+    "PrefixBPATerminationPisotOrSalem": {
+      "id": "sha256:a8ef33bb14f494f56d9bd773adeda69df23e5a9b39fa8c7929ffda3fd1b38bb2",
+      "kind": "repository_theorem",
+      "statement": "for every primitive substitution on a finite alphabet whose incidence characteristic polynomial chi_M is irreducible over Q, with beta the eigenvalue of a positive left eigenvector, every one-sided fixed point u (Lean IsFixed) and every nonempty prefix W of u: if the Sirvent-Solomyak prefix-seeded set I(W) (Lean BPrimeBinding.IW: all levels, coincidence blocks retained; termination means finiteness, not coincidence) is finite, then every root z != beta of chi_M has |z| <= 1; on two or more letters beta is then Pisot or Salem (beta > 1 and an algebraic integer whose minimal polynomial is chi_M), and when chi_M has degree three beta is Pisot; the strict disc is not asserted in degree two or in degree >= 4, and no termination, coincidence or PDS fact for a Pisot substitution follows",
+      "scope": "primitive substitutions on a finite alphabet with irreducible incidence characteristic polynomial (not restricted to PIP; vacuous on it)",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/c4-bprime-lean-2026-11-09.md; Lean Psc.BPrime.bprime, bprime_ss (the literal recursion (3.1)), bprime_isPisotOrSalem, bprime_cubic, bprime_cubic_isPisot in proof/PscVerif/PscVerif/BPrime.lean over BPrimeCore and BPrimeBinding, standard axioms only (ProofBankAudit); hosted ci.yml lean-proofs job 132870714519 of run 43733407182 at 71afd61 and job 129725849872 of run 42785583506 at 0baaf07, the three modules byte-identical through the merge into main; corrected statement of docs/c4-bprime-independent-proof-audit-2026-11-07.md, formalized by frequency-free averaging and cyclicity rather than the Galois-conjugate argument of docs/c4-general-structure-2026-11-06.md section 3; Lean-checked, human review pending, novelty not asserted"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "lean_checked",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "NonPisotPrefixBPANontermination": {
+      "id": "sha256:a9b071c9f7ce209414b23d9e166ef59de814a5281c02714d11047da8547914da",
+      "kind": "repository_theorem",
+      "statement": "for every primitive substitution on a finite alphabet whose chi_M is irreducible over Q and has a root z != beta with |z| > 1, beta the eigenvalue of a positive left eigenvector (on two or more letters: beta is neither Pisot nor Salem; on three letters, natDegree chi_M = 3: beta is not Pisot), the prefix-seeded set I(W) is infinite for every one-sided fixed point u and every nonempty prefix W of u, also for the literal recursion (3.1); Corollary B (ii)-(iii), seeds that are not prefixes of a fixed point and periodic points that are not fixed are not asserted",
+      "scope": "primitive substitutions on a finite alphabet with irreducible incidence characteristic polynomial (not restricted to PIP; vacuous on it)",
+      "depends_on": [
+        [
+          "sha256:a8ef33bb14f494f56d9bd773adeda69df23e5a9b39fa8c7929ffda3fd1b38bb2",
+          "for every primitive substitution on a finite alphabet whose incidence characteristic polynomial chi_M is irreducible over Q, with beta the eigenvalue of a positive left eigenvector, every one-sided fixed point u (Lean IsFixed) and every nonempty prefix W of u: if the Sirvent-Solomyak prefix-seeded set I(W) (Lean BPrimeBinding.IW: all levels, coincidence blocks retained; termination means finiteness, not coincidence) is finite, then every root z != beta of chi_M has |z| <= 1; on two or more letters beta is then Pisot or Salem (beta > 1 and an algebraic integer whose minimal polynomial is chi_M), and when chi_M has degree three beta is Pisot; the strict disc is not asserted in degree two or in degree >= 4, and no termination, coincidence or PDS fact for a Pisot substitution follows",
+          "NonPisotPrefixBPANontermination/PrefixBPATerminationPisotOrSalem",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/c4-bprime-lean-2026-11-09.md; Lean Psc.BPrime.corB_infinite, corB_infinite_of_not_isPisotOrSalem, corB_infinite_cubic, corB_infinite_ss, corB_infinite_cubic_ss (contrapositive of Proposition B'), specimen 0->01, 1->2, 2->00 in zetaU_IW_infinite, in proof/PscVerif/PscVerif/BPrime.lean over BPrimeCore and BPrimeBinding, standard axioms only (ProofBankAudit); hosted ci.yml lean-proofs job 132870714519 of run 43733407182 at 71afd61 and job 129725849872 of run 42785583506 at 0baaf07, the three modules byte-identical through the merge into main; Lean-checked, human review pending, novelty not asserted"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "lean_checked",
+          "true"
         ]
       ],
       "tags": []

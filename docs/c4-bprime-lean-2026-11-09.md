@@ -7,6 +7,16 @@ and no claim status changes. Human mathematical review and novelty review stay d
 after PSC closure, as the [priority note](c4-bprime-machine-verification-priority-2026-11-07.md)
 decided. Nothing here bears on the Pisot side: C4, A1′, BH and PSC remain open.
 
+*Status update, 2026-11-15.* Hosted `ci.yml` `lean-proofs` (clean-room build plus
+`ProofBankAudit`) passed with these three modules byte-identical at `0baaf07` (run
+42785583506, job 129725849872) and `71afd61` (run 43733407182, job 132870714519). On that
+receipt Proposition B′ and Corollary B (i) are registered as `PrefixBPATerminationPisotOrSalem`
+and `NonPisotPrefixBPANontermination` (`tools/make_ledger.py`; status proved, Lean-checked,
+human review pending; own scope "not restricted to PIP; vacuous on it"), with `lean_support`
+bindings in `proof/proof-bank.toml`. They enter `main` through the integrating PR, whose
+exact-head `lean-proofs` must pass before merge. Human and novelty review stay deferred as
+the priority note decided; Corollary B (ii)–(iii) are not registered.
+
 **Sources.** [General-structure note](c4-general-structure-2026-11-06.md) §3 (Proposition B′,
 Corollary B and the written proof); the [independent audit](c4-bprime-independent-proof-audit-2026-11-07.md)
 (corrected theorem, six-step proof, assumption inventory, acceptance matrix); the
@@ -232,6 +242,7 @@ nonempty prefix `W`. The literal-(3.1) forms are `corB_infinite_ss` and `corB_in
 | `tools/audit_bpa_bprime.py` | pass; Krylov determinant 1; 12-generation swap-seed regression `[1, 2, 4, …, 16]` |
 | `sorry`/`admit`/`axiom`/`native_decide`/`private`/`set_option` in the three modules | none |
 
+*(Superseded 2026-11-15 by the hosted receipts in the status update at the top.)*
 **No hosted CI receipt exists for an exact head.** Under the priority note's
 automation-first policy, a missing job is no acceptance. Lean credit attaches to the exact
 commit whose hosted `lake build` and axiom audit pass, and only to the declarations it
