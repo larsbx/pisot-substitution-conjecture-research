@@ -2879,6 +2879,126 @@
       "declaration": "theorem no_equal_row_sums (M : Matrix (Fin 3) (Fin 3) ℚ) (hM : NoEigenvalue M)"
     },
     {
+      "name": "Psc.ClassABoundaryEscape.runOriginShift_swap",
+      "module": "PscVerif.ClassABoundaryEscape",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassABoundaryEscape.lean",
+      "line": 17,
+      "declaration": "private theorem runOriginShift_swap (ℓ : Fin 3 → ℝ) (β : ℝ) (p : Packet) :"
+    },
+    {
+      "name": "Psc.ClassABoundaryEscape.edge_swap",
+      "module": "PscVerif.ClassABoundaryEscape",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassABoundaryEscape.lean",
+      "line": 22,
+      "declaration": "private theorem edge_swap {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ} {p q : Packet}"
+    },
+    {
+      "name": "Psc.ClassABoundaryEscape.rep_y",
+      "module": "PscVerif.ClassABoundaryEscape",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassABoundaryEscape.lean",
+      "line": 27,
+      "declaration": "private theorem rep_y (α h : ℝ) (j : ℕ) :"
+    },
+    {
+      "name": "Psc.ClassABoundaryEscape.image_length",
+      "module": "PscVerif.ClassABoundaryEscape",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassABoundaryEscape.lean",
+      "line": 31,
+      "declaration": "private theorem image_length (n d : ℕ) (α h : ℝ) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.ClassABoundaryEscape.upper_boundary_mass",
+      "module": "PscVerif.ClassABoundaryEscape",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassABoundaryEscape.lean",
+      "line": 36,
+      "declaration": "private theorem upper_boundary_mass (n d : ℕ) (α h β : ℝ) (hβ : 0 < β)"
+    },
+    {
+      "name": "Psc.ClassABoundaryEscape.upper_boundary_full_child",
+      "module": "PscVerif.ClassABoundaryEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassABoundaryEscape.lean",
+      "line": 63,
+      "declaration": "theorem upper_boundary_full_child (n d : ℕ) (hn : 7 ≤ n) (α h β : ℝ)"
+    },
+    {
+      "name": "Psc.ClassABoundaryEscape.unit_mass_in_run_gap",
+      "module": "PscVerif.ClassABoundaryEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassABoundaryEscape.lean",
+      "line": 127,
+      "declaration": "theorem unit_mass_in_run_gap (n d : ℕ) (α h β : ℝ) (hβ9 : 9 ≤ β)"
+    },
+    {
+      "name": "Psc.ClassABoundaryEscape.minus_class_a_strict_enters_run_gap",
+      "module": "PscVerif.ClassABoundaryEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassABoundaryEscape.lean",
+      "line": 147,
+      "declaration": "theorem minus_class_a_strict_enters_run_gap (k t : ℕ) (hn : 7 ≤ k+t+3) (α h β : ℝ)"
+    },
+    {
+      "name": "Psc.ClassABoundaryEscape.minus_class_a_strict_reaches_residual",
+      "module": "PscVerif.ClassABoundaryEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassABoundaryEscape.lean",
+      "line": 211,
+      "declaration": "theorem minus_class_a_strict_reaches_residual (k t : ℕ) (hn : 7 ≤ k+t+3) (α h β : ℝ)"
+    },
+    {
+      "name": "Psc.ClassABoundaryEscape.minus_class_a_strict_path",
+      "module": "PscVerif.ClassABoundaryEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassABoundaryEscape.lean",
+      "line": 260,
+      "declaration": "theorem minus_class_a_strict_path (k t : ℕ) (hk : 4 ≤ k) (α h β : ℝ)"
+    },
+    {
+      "name": "Psc.ClassABoundaryEscape.minus_class_a_marked_path",
+      "module": "PscVerif.ClassABoundaryEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassABoundaryEscape.lean",
+      "line": 272,
+      "declaration": "theorem minus_class_a_marked_path (k t : ℕ) (hk : 4 ≤ k) (α h β : ℝ)"
+    },
+    {
+      "name": "Psc.ClassABoundaryEscape.stop_at_coincidence",
+      "module": "PscVerif.ClassABoundaryEscape",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassABoundaryEscape.lean",
+      "line": 283,
+      "declaration": "private theorem stop_at_coincidence {s : Fin 3 → Word} {T U : WordPair}"
+    },
+    {
+      "name": "Psc.ClassABoundaryEscape.minus_class_a_block_has_coincidence",
+      "module": "PscVerif.ClassABoundaryEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassABoundaryEscape.lean",
+      "line": 297,
+      "declaration": "theorem minus_class_a_block_has_coincidence (k t : ℕ) (hk : 4 ≤ k) (α h β : ℝ)"
+    },
+    {
+      "name": "Psc.ClassABoundaryEscape.minus_class_a_lengths_exist",
+      "module": "PscVerif.ClassABoundaryEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassABoundaryEscape.lean",
+      "line": 323,
+      "declaration": "theorem minus_class_a_lengths_exist (k t : ℕ) :"
+    },
+    {
+      "name": "Psc.ClassABoundaryEscape.minus_class_a_all_blocks",
+      "module": "PscVerif.ClassABoundaryEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassABoundaryEscape.lean",
+      "line": 385,
+      "declaration": "theorem minus_class_a_all_blocks (k t : ℕ) (hk : 4 ≤ k)"
+    },
+    {
       "name": "Psc.ClassACentralRecurrence.Nearest.neg",
       "module": "PscVerif.ClassACentralRecurrence",
       "private": false,
@@ -4255,6 +4375,134 @@
       "declaration": "theorem constant_composable_path (n d : ℕ) (hd : 5 ≤ d) (H : ℤ)"
     },
     {
+      "name": "Psc.ClassARunDescent.cast_natAbs",
+      "module": "PscVerif.ClassARunDescent",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassARunDescent.lean",
+      "line": 19,
+      "declaration": "private theorem cast_natAbs (z : ℤ) : (z.natAbs : ℝ) = |(z : ℝ)| := by"
+    },
+    {
+      "name": "Psc.ClassARunDescent.exists_round_of_nonneg",
+      "module": "PscVerif.ClassARunDescent",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassARunDescent.lean",
+      "line": 22,
+      "declaration": "private theorem exists_round_of_nonneg (c R : ℝ) (hc : 0 ≤ c) (hR : 1/2 ≤ R) (hR1 : R ≤ 1) :"
+    },
+    {
+      "name": "Psc.ClassARunDescent.exists_round",
+      "module": "PscVerif.ClassARunDescent",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassARunDescent.lean",
+      "line": 41,
+      "declaration": "private theorem exists_round (c R : ℝ) (hR : 1/2 ≤ R) (hR1 : R ≤ 1) :"
+    },
+    {
+      "name": "Psc.ClassARunDescent.offset_yy",
+      "module": "PscVerif.ClassARunDescent",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassARunDescent.lean",
+      "line": 52,
+      "declaration": "private theorem offset_yy (α h : ℝ) (p b q : ℤ) :"
+    },
+    {
+      "name": "Psc.ClassARunDescent.interior_of_abs_shift_lt_one",
+      "module": "PscVerif.ClassARunDescent",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassARunDescent.lean",
+      "line": 57,
+      "declaration": "private theorem interior_of_abs_shift_lt_one {α h : ℝ} (hpos : ∀ a, 0 < lengths α h a)"
+    },
+    {
+      "name": "Psc.ClassARunDescent.run_to",
+      "module": "PscVerif.ClassARunDescent",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassARunDescent.lean",
+      "line": 67,
+      "declaration": "theorem run_to (n d : ℕ) (hn : 2 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassARunDescent.rounded_run_step",
+      "module": "PscVerif.ClassARunDescent",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassARunDescent.lean",
+      "line": 111,
+      "declaration": "theorem rounded_run_step (n d : ℕ) (hn : 2 ≤ n) (α h β R : ℝ)"
+    },
+    {
+      "name": "Psc.ClassARunDescent.shrinks_new_slot",
+      "module": "PscVerif.ClassARunDescent",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassARunDescent.lean",
+      "line": 152,
+      "declaration": "theorem shrinks_new_slot (n d : ℕ) (hn : 2 ≤ n) (α h β R : ℝ)"
+    },
+    {
+      "name": "Psc.ClassARunDescent.run_preserves_radius",
+      "module": "PscVerif.ClassARunDescent",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassARunDescent.lean",
+      "line": 169,
+      "declaration": "theorem run_preserves_radius (n d : ℕ) (hn : 2 ≤ n) (α h β R : ℝ)"
+    },
+    {
+      "name": "Psc.ClassARunDescent.reaches_small_radius",
+      "module": "PscVerif.ClassARunDescent",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassARunDescent.lean",
+      "line": 186,
+      "declaration": "theorem reaches_small_radius (n d : ℕ) (hn : 2 ≤ n) (α h β R : ℝ)"
+    },
+    {
+      "name": "Psc.ClassARunDescent.parameter_residual_bound",
+      "module": "PscVerif.ClassARunDescent",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassARunDescent.lean",
+      "line": 221,
+      "declaration": "theorem parameter_residual_bound (n K m : ℕ) (α h β R : ℝ)"
+    },
+    {
+      "name": "Psc.ClassARunDescent.central_path_to_zero",
+      "module": "PscVerif.ClassARunDescent",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassARunDescent.lean",
+      "line": 248,
+      "declaration": "theorem central_path_to_zero (n d K : ℕ) (hn : 7 ≤ n) (hK5 : 5 ≤ K)"
+    },
+    {
+      "name": "Psc.ClassARunDescent.enters_central_run",
+      "module": "PscVerif.ClassARunDescent",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassARunDescent.lean",
+      "line": 297,
+      "declaration": "theorem enters_central_run (n d : ℕ) (hn : 2 ≤ n) (α h β : ℝ)"
+    },
+    {
+      "name": "Psc.ClassARunDescent.run_gap_path_to_zero",
+      "module": "PscVerif.ClassARunDescent",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassARunDescent.lean",
+      "line": 353,
+      "declaration": "theorem run_gap_path_to_zero (n d K : ℕ) (hn : 7 ≤ n) (hK5 : 5 ≤ K)"
+    },
+    {
+      "name": "Psc.ClassARunDescent.minus_class_a_length_arithmetic",
+      "module": "PscVerif.ClassARunDescent",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassARunDescent.lean",
+      "line": 375,
+      "declaration": "theorem minus_class_a_length_arithmetic (k t : ℕ) (α h β : ℝ)"
+    },
+    {
+      "name": "Psc.ClassARunDescent.minus_class_a_run_gap_path",
+      "module": "PscVerif.ClassARunDescent",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassARunDescent.lean",
+      "line": 424,
+      "declaration": "theorem minus_class_a_run_gap_path (k t : ℕ) (hk : 4 ≤ k) (α h β : ℝ)"
+    },
+    {
       "name": "Psc.ClassAZeroDefectEscape.runMark_index",
       "module": "PscVerif.ClassAZeroDefectEscape",
       "private": false,
@@ -4367,11 +4615,19 @@
       "declaration": "theorem runLength_pos (n d : ℕ) (hn : 2 ≤ n) (a : Fin 3) :"
     },
     {
+      "name": "Psc.ClassAZeroDefectEscape.run_slice_first_digit_step",
+      "module": "PscVerif.ClassAZeroDefectEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean",
+      "line": 297,
+      "declaration": "theorem run_slice_first_digit_step (n d : ℕ) (hn : 2 ≤ n)"
+    },
+    {
       "name": "Psc.ClassAZeroDefectEscape.run_slice_two_digit_steps",
       "module": "PscVerif.ClassAZeroDefectEscape",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean",
-      "line": 300,
+      "line": 327,
       "declaration": "theorem run_slice_two_digit_steps (n d : ℕ) (hn : 2 ≤ n)"
     },
     {
@@ -4379,8 +4635,32 @@
       "module": "PscVerif.ClassAZeroDefectEscape",
       "private": false,
       "source": "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean",
-      "line": 357,
+      "line": 365,
       "declaration": "theorem run_slice_two_steps (n d : ℕ) (hn : 2 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAZeroDefectEscape.zero_defect_y_y_interior_iff",
+      "module": "PscVerif.ClassAZeroDefectEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean",
+      "line": 392,
+      "declaration": "theorem zero_defect_y_y_interior_iff (n d : ℕ) (hn : 1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAZeroDefectEscape.run_slice_first_interior_step",
+      "module": "PscVerif.ClassAZeroDefectEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean",
+      "line": 433,
+      "declaration": "theorem run_slice_first_interior_step (n d : ℕ) (hn : 2 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAZeroDefectEscape.run_slice_overrun_path",
+      "module": "PscVerif.ClassAZeroDefectEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean",
+      "line": 450,
+      "declaration": "theorem run_slice_overrun_path (n d : ℕ) (hn : 2 ≤ n) (a b : Fin 3) (S h : ℤ)"
     },
     {
       "name": "PscVerif.ClassBRegime.segment_difference",
@@ -18399,6 +18679,62 @@
       "declaration": "theorem packet_path_newborn (s : Fin 3 → Word) (hs : ∀ a, s a ≠ [])"
     },
     {
+      "name": "Psc.OccurrenceWidth.le_intervalMass_of_common",
+      "module": "PscVerif.OccurrenceWidth",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceWidth.lean",
+      "line": 10,
+      "declaration": "theorem le_intervalMass_of_common (a b c d l m : ℝ)"
+    },
+    {
+      "name": "Psc.OccurrenceWidth.child_of_marks",
+      "module": "PscVerif.OccurrenceWidth",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceWidth.lean",
+      "line": 19,
+      "declaration": "theorem child_of_marks (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.OccurrenceWidth.mark_length",
+      "module": "PscVerif.OccurrenceWidth",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/OccurrenceWidth.lean",
+      "line": 48,
+      "declaration": "private theorem mark_length {w : Word} (ℓ : Fin 3 → ℝ) (m : Mark w) :"
+    },
+    {
+      "name": "Psc.OccurrenceWidth.marks_in_window",
+      "module": "PscVerif.OccurrenceWidth",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/OccurrenceWidth.lean",
+      "line": 56,
+      "declaration": "private theorem marks_in_window (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.OccurrenceWidth.inflated_mass",
+      "module": "PscVerif.OccurrenceWidth",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceWidth.lean",
+      "line": 83,
+      "declaration": "theorem inflated_mass (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ) (hβ : 0 ≤ β)"
+    },
+    {
+      "name": "Psc.OccurrenceWidth.child_mass_at_least",
+      "module": "PscVerif.OccurrenceWidth",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceWidth.lean",
+      "line": 95,
+      "declaration": "theorem child_mass_at_least (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.OccurrenceWidth.reaches_half_mass",
+      "module": "PscVerif.OccurrenceWidth",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/OccurrenceWidth.lean",
+      "line": 175,
+      "declaration": "theorem reaches_half_mass (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
       "name": "PscVerif.OverlapContraction.fixed_of_unique_iterate",
       "module": "PscVerif.OverlapContraction",
       "private": false,
@@ -27025,11 +27361,13 @@
   ],
   "input_digests": {
     "claim_governance.toml": "5642e664f9a79064ffbaf770719cf0acba52accc75fca568711d4b554a08803e",
+    "proof/PscVerif/ClassABoundaryEscapeAudit.lean": "f5b5147990567d0ca653e6f96336d3e44e00087dc6a577c101b840592495abdb",
     "proof/PscVerif/ClassACentralRecurrenceAudit.lean": "c312940fe33a565e0031cf0c87e303a291755da0db9080f65222b1ffa6a4519b",
     "proof/PscVerif/ClassAMinusConstantRecurrenceAudit.lean": "6e90eee52630956763ce1bca0525ecc0fd20b02b956ac09a5007863e8c930ecc",
     "proof/PscVerif/ClassAMinusLiteralEntryAudit.lean": "118ac35be0083152782fda109158afaebdf6f8a1cad899d315eac573528904b4",
     "proof/PscVerif/ClassAPlusConstantRecurrenceAudit.lean": "abdabdd452dedc3de239263c8c2f052b84216552baf205106606a45635b1b631",
-    "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "8a4fda395ae5e20a25f52a2525702f82c08f4e75b4160006604a562a4c92de48",
+    "proof/PscVerif/ClassARunDescentAudit.lean": "a1fe09a772c2112929a6f892993da045628ef410f15cd53b1d8eba74343959fc",
+    "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "81efe5b8745576f8f15a59a263563b31e08307e9c432e78fa2ef9021a613b2d1",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean": "87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean": "e18e726b6bd1c431f9e28500504edd6ffba157415af20069715b9c8f208f3f9b",
@@ -27042,6 +27380,7 @@
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
     "proof/PscVerif/PscVerif/BoundarySeedPath.lean": "bea69cb93d5bcd15b1b88c48062b4404a721908092af1b5f5b42e6184f7abae3",
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
+    "proof/PscVerif/PscVerif/ClassABoundaryEscape.lean": "3f4fd5237cbd01f356a0f12bb2c2dcb1684a338166e7c8ca17505654a8dc5476",
     "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean": "f7e27955fe4238bf0a74bf31f6afe618c6d4769f047ad8ce5ffbdb4d39484a5b",
     "proof/PscVerif/PscVerif/ClassAMinusCentralBridge.lean": "bed7f4d4b05a4df2e9ed8cf10d141312b9303b6bedf215e512a375021e232011",
     "proof/PscVerif/PscVerif/ClassAMinusConstantRecurrence.lean": "748b13de20f335033940b3cdddf2d648d10365c23080301b66dfd8db8a498e04",
@@ -27051,7 +27390,8 @@
     "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean": "a2d6944184b75c47c6d307cee5cf5f6db78de4768f0b09b3d3218861665aaa7d",
     "proof/PscVerif/PscVerif/ClassAMinusRootSpectrum.lean": "e93ebfbf01b50b749a5165c2b2c9b2db27a6bd283fdd18d16bcf3398b279e4eb",
     "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean": "c6dbd0f1065e698ee58a04c1781d63692129f2b5c17c97d0a74cc832fd25f79a",
-    "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean": "a50672744789443300b5c7c4b6c0467c941fec5b1d833d7544e62440c729fa58",
+    "proof/PscVerif/PscVerif/ClassARunDescent.lean": "3c061edddf00f76298b34e81021b46c4f7aff61203d769e50652c1dd4205654b",
+    "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean": "04c10c8f84a07b5712dd1e5f05f713478d511a526496f4c1cb082a14d86188a7",
     "proof/PscVerif/PscVerif/ClassBRegime.lean": "1c873d0aea0201c3a60486dc90bce00e9f9612019ad72c5344cfa927d93a23e6",
     "proof/PscVerif/PscVerif/CocycleSpectrum.lean": "5937db527975a492a4c45f3bdbc7550b0a1d202dd4e71634d8b35ebcfcc24ed4",
     "proof/PscVerif/PscVerif/CompactNeighborhood.lean": "bfc41eba2f94241d71f329458418d225c773e580b186cc9aac128957991409e4",
@@ -27131,6 +27471,7 @@
     "proof/PscVerif/PscVerif/OccurrenceSuccessor.lean": "103e3cb42b93b234c593f46bf2d53426b198248e33408461e9c05fd3ce8c6f33",
     "proof/PscVerif/PscVerif/OccurrenceSwapCounts.lean": "fdd8b6fff230eaf6d977ae724fe674be02ca37d2549b168f12c522f54668c382",
     "proof/PscVerif/PscVerif/OccurrenceTransport.lean": "3ef9fcb7df8c395c36879b63933eb626f57437f1b813e03ad429148b47d09fe0",
+    "proof/PscVerif/PscVerif/OccurrenceWidth.lean": "7aa7c547afc99d6a6cbae3397390c4a6804948aab403ba458139bc7046f774c8",
     "proof/PscVerif/PscVerif/OverlapContraction.lean": "09dd1ccc90a7245211336996f7da8b1276e86cab60dd1cc0b5471e3d7f6a2a30",
     "proof/PscVerif/PscVerif/OverlapPacket.lean": "572fd9fc85082e05377321fa812670558fff66ebed16e319a81816b22950a853",
     "proof/PscVerif/PscVerif/ParikhIntertwiner.lean": "bc7120433f0c103c966fc6faf41407b969537fd0881971a5d36b98169b220d96",
@@ -27157,7 +27498,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "8080f0e7b4725d9cc67fa654f3c40b016087b7f6a19f42382f0c60d57034da27",
+    "proof/PscVerif/PscVerif.lean": "eda851e901a2ecafcb0dfc2b05824b564e7ec707ee8a2dd44225f667c311573d",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
