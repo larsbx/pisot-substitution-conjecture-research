@@ -8,6 +8,14 @@ executable and formal acceptance are recorded separately, and independent
 human review remains pending.** The full theorem is not end-to-end Lean
 formalized. This note does not change a governed claim status by itself.
 
+**Formal follow-on:** [literal Lean specialization](class-a-minus-literal-lean-2026-11-14.md)
+now connects the actual incidence cubic, its dominant root, positive length
+scaling, half-unit exclusion, actual central RUN recurrence, constant-height
+descent and complete nested original-prefix assembly. The remaining
+all-strict-source entry interface is the actual common-interval block
+decomposition and center assignment. Its acceptance is recorded separately
+from the historical #579 receipts below.
+
 **Theorem (repository-proved).** Let `d,n` be integers with `d>=5` and `n>=d+1`, and use the
 literal substitution
 
