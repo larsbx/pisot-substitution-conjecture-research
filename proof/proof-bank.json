@@ -49101,6 +49101,11 @@
       "statement_heading": "**Theorem (strict-component primitivity).** Let σ have primitive irreducible"
     },
     {
+      "source": "docs/c4-two-parameter-carrier-2026-11-14.md",
+      "line": 6,
+      "statement_heading": "**Theorem.** For integers $r\\ge4$ and $k\\ge r+3$, let"
+    },
+    {
       "source": "docs/c4-unique-partner-exclusion-2026-11-18.md",
       "line": 54,
       "statement_heading": "### Theorem UP (unique partners)"
