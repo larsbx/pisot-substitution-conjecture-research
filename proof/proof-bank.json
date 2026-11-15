@@ -3271,6 +3271,190 @@
       "declaration": "theorem constant_composable_path (n d : ℕ) (hd : 5 ≤ d) (H : ℤ)"
     },
     {
+      "name": "Psc.ClassAPlusConstantRecurrence.nearest_central_iff",
+      "module": "PscVerif.ClassAPlusConstantRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean",
+      "line": 25,
+      "declaration": "theorem nearest_central_iff (A B : ℝ) (a b c : ℤ) :"
+    },
+    {
+      "name": "Psc.ClassAPlusConstantRecurrence.Nearest.neg",
+      "module": "PscVerif.ClassAPlusConstantRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean",
+      "line": 33,
+      "declaration": "theorem Nearest.neg {A B : ℝ} {a b c : ℤ} (he : Nearest A B a b c) :"
+    },
+    {
+      "name": "Psc.ClassAPlusConstantRecurrence.Nearest.unique",
+      "module": "PscVerif.ClassAPlusConstantRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean",
+      "line": 38,
+      "declaration": "theorem Nearest.unique {A B : ℝ} {a b c d : ℤ}"
+    },
+    {
+      "name": "Psc.ClassAPlusConstantRecurrence.nearest_bound",
+      "module": "PscVerif.ClassAPlusConstantRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean",
+      "line": 44,
+      "declaration": "theorem nearest_bound {A B : ℝ} (hp : Parameters A B) {a b c : ℤ} {C : ℝ}"
+    },
+    {
+      "name": "Psc.ClassAPlusConstantRecurrence.recurrence_bounded",
+      "module": "PscVerif.ClassAPlusConstantRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean",
+      "line": 55,
+      "declaration": "theorem recurrence_bounded {A B : ℝ} (hp : Parameters A B)"
+    },
+    {
+      "name": "Psc.ClassAPlusConstantRecurrence.recurrence_has_integer_bound",
+      "module": "PscVerif.ClassAPlusConstantRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean",
+      "line": 70,
+      "declaration": "theorem recurrence_has_integer_bound {A B : ℝ} (hp : Parameters A B)"
+    },
+    {
+      "name": "Psc.ClassAPlusConstantRecurrence.maximum_predecessor",
+      "module": "PscVerif.ClassAPlusConstantRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean",
+      "line": 90,
+      "declaration": "theorem maximum_predecessor {A B : ℝ} (hp : Parameters A B)"
+    },
+    {
+      "name": "Psc.ClassAPlusConstantRecurrence.constant_nearest_iff",
+      "module": "PscVerif.ClassAPlusConstantRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean",
+      "line": 107,
+      "declaration": "theorem constant_nearest_iff (A B : ℝ) (H : ℤ) :"
+    },
+    {
+      "name": "Psc.ClassAPlusConstantRecurrence.positive_maximum_constant",
+      "module": "PscVerif.ClassAPlusConstantRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean",
+      "line": 117,
+      "declaration": "theorem positive_maximum_constant {A B : ℝ} (hp : Parameters A B)"
+    },
+    {
+      "name": "Psc.ClassAPlusConstantRecurrence.bounded_two_sided_constant",
+      "module": "PscVerif.ClassAPlusConstantRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean",
+      "line": 171,
+      "declaration": "theorem bounded_two_sided_constant {A B : ℝ} (hp : Parameters A B)"
+    },
+    {
+      "name": "Psc.ClassAPlusConstantRecurrence.periodic_recurrence_classification",
+      "module": "PscVerif.ClassAPlusConstantRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean",
+      "line": 207,
+      "declaration": "theorem periodic_recurrence_classification {A B : ℝ} (hp : Parameters A B)"
+    },
+    {
+      "name": "Psc.ClassAPlusConstantRecurrence.recurrence_eventually_periodic",
+      "module": "PscVerif.ClassAPlusConstantRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean",
+      "line": 225,
+      "declaration": "theorem recurrence_eventually_periodic {A B : ℝ} (hp : Parameters A B)"
+    },
+    {
+      "name": "Psc.ClassAPlusConstantRecurrence.nat_periodic_classification",
+      "module": "PscVerif.ClassAPlusConstantRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean",
+      "line": 255,
+      "declaration": "theorem nat_periodic_classification {A B : ℝ} (hp : Parameters A B)"
+    },
+    {
+      "name": "Psc.ClassAPlusConstantRecurrence.forward_integer_bound",
+      "module": "PscVerif.ClassAPlusConstantRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean",
+      "line": 284,
+      "declaration": "theorem forward_integer_bound (A B : ℝ) (hA : 0 ≤ A) (hsmall : A < 1/2)"
+    },
+    {
+      "name": "Psc.ClassAPlusConstantRecurrence.bounded_two_sided_classification",
+      "module": "PscVerif.ClassAPlusConstantRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean",
+      "line": 290,
+      "declaration": "theorem bounded_two_sided_classification (A B : ℝ) (hA : 0 ≤ A) (hsmall : A < 1/2)"
+    },
+    {
+      "name": "Psc.ClassAPlusConstantRecurrence.periodic_cycle_classification",
+      "module": "PscVerif.ClassAPlusConstantRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean",
+      "line": 297,
+      "declaration": "theorem periodic_cycle_classification (A B : ℝ) (hA : 0 ≤ A) (hsmall : A < 1/2)"
+    },
+    {
+      "name": "Psc.ClassAPlusConstantRecurrence.eventual_constant_tail",
+      "module": "PscVerif.ClassAPlusConstantRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean",
+      "line": 307,
+      "declaration": "theorem eventual_constant_tail (A B : ℝ) (hA : 0 ≤ A) (hsmall : A < 1/2)"
+    },
+    {
+      "name": "Psc.ClassAPlusConstantRecurrence.nonzero_constant_control",
+      "module": "PscVerif.ClassAPlusConstantRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean",
+      "line": 323,
+      "declaration": "theorem nonzero_constant_control :"
+    },
+    {
+      "name": "Psc.ClassAPlusConstantRecurrence.yy_run_digit_step",
+      "module": "PscVerif.ClassAPlusConstantRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean",
+      "line": 356,
+      "declaration": "theorem yy_run_digit_step (n d i j : ℕ)"
+    },
+    {
+      "name": "Psc.ClassAPlusConstantRecurrence.three_run_decrement",
+      "module": "PscVerif.ClassAPlusConstantRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean",
+      "line": 380,
+      "declaration": "theorem three_run_decrement (n d H : ℕ) (hd : 5 ≤ d) (hH : 1 ≤ H)"
+    },
+    {
+      "name": "Psc.ClassAPlusConstantRecurrence.nonnegative_constant_digit_path",
+      "module": "PscVerif.ClassAPlusConstantRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean",
+      "line": 419,
+      "declaration": "theorem nonnegative_constant_digit_path (n d H : ℕ) (hd : 5 ≤ d)"
+    },
+    {
+      "name": "Psc.ClassAPlusConstantRecurrence.constant_digit_path",
+      "module": "PscVerif.ClassAPlusConstantRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean",
+      "line": 439,
+      "declaration": "theorem constant_digit_path (n d : ℕ) (hd : 5 ≤ d) (H : ℤ)"
+    },
+    {
+      "name": "Psc.ClassAPlusConstantRecurrence.constant_composable_path",
+      "module": "PscVerif.ClassAPlusConstantRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean",
+      "line": 460,
+      "declaration": "theorem constant_composable_path (n d : ℕ) (hd : 5 ≤ d) (H : ℤ)"
+    },
+    {
       "name": "Psc.ClassAZeroDefectEscape.runMark_index",
       "module": "PscVerif.ClassAZeroDefectEscape",
       "private": false,
@@ -24599,6 +24783,11 @@
       "statement_heading": "**Corollary C' (boundary hitting on the minus line).** For every integer"
     },
     {
+      "source": "docs/class-a-plus-constant-entry-2026-11-14.md",
+      "line": 14,
+      "statement_heading": "**Theorem (repository-proved).** Let `n,d` be integers with `n>=6` and"
+    },
+    {
       "source": "docs/class-a-residue-rays-2026-10-22.md",
       "line": 88,
       "statement_heading": "**Theorem R.** For each tabulated ray and every `n >= floor` on it, the"
@@ -26038,6 +26227,7 @@
     "claim_governance.toml": "5642e664f9a79064ffbaf770719cf0acba52accc75fca568711d4b554a08803e",
     "proof/PscVerif/ClassACentralRecurrenceAudit.lean": "c312940fe33a565e0031cf0c87e303a291755da0db9080f65222b1ffa6a4519b",
     "proof/PscVerif/ClassAMinusConstantRecurrenceAudit.lean": "6e90eee52630956763ce1bca0525ecc0fd20b02b956ac09a5007863e8c930ecc",
+    "proof/PscVerif/ClassAPlusConstantRecurrenceAudit.lean": "abdabdd452dedc3de239263c8c2f052b84216552baf205106606a45635b1b631",
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "8a4fda395ae5e20a25f52a2525702f82c08f4e75b4160006604a562a4c92de48",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean": "87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025",
@@ -26053,6 +26243,7 @@
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
     "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean": "f7e27955fe4238bf0a74bf31f6afe618c6d4769f047ad8ce5ffbdb4d39484a5b",
     "proof/PscVerif/PscVerif/ClassAMinusConstantRecurrence.lean": "748b13de20f335033940b3cdddf2d648d10365c23080301b66dfd8db8a498e04",
+    "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean": "c6dbd0f1065e698ee58a04c1781d63692129f2b5c17c97d0a74cc832fd25f79a",
     "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean": "a50672744789443300b5c7c4b6c0467c941fec5b1d833d7544e62440c729fa58",
     "proof/PscVerif/PscVerif/ClassBRegime.lean": "1c873d0aea0201c3a60486dc90bce00e9f9612019ad72c5344cfa927d93a23e6",
     "proof/PscVerif/PscVerif/CocycleSpectrum.lean": "5937db527975a492a4c45f3bdbc7550b0a1d202dd4e71634d8b35ebcfcc24ed4",
@@ -26159,7 +26350,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "8c55fded8b2404213593be64ce4ceabce7432449c39a40745195dec6eec7c8f4",
+    "proof/PscVerif/PscVerif.lean": "d9ded5be60d92a8cf558e12c7dc8d4a5a7c9158e0b95d9c3876465cd2f5ca7fd",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
