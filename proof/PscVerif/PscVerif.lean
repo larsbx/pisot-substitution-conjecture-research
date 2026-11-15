@@ -108,6 +108,7 @@ import PscVerif.ArchivedPayload
 import PscVerif.ArchivedPayloadConsumer
 import PscVerif.ArchivedPayloadEmit
 import PscVerif.ArchivedPayloadControls
+import PscVerif.ClassAPlusUpperCycles
 import PscVerif.BPrimeCore
 import PscVerif.BPrimeBinding
 import PscVerif.BPrime

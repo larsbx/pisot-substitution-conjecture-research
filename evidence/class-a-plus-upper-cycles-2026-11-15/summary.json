@@ -1,0 +1,86 @@
+{
+  "base_commit": "a19670c521927a8f6ac7e08f26cd3d563eafdce3",
+  "hosted_acceptance": "Observe producing revision separately after publication",
+  "observed": {
+    "fresh_lean_declarations": 167,
+    "fresh_lean_endpoints": 8,
+    "fresh_lean_local_modules": 20,
+    "fresh_lean_negative_controls": 24,
+    "fresh_lean_success": true,
+    "fresh_lean_theorems": 114,
+    "independent_edges": 3780,
+    "independent_paths": 1008,
+    "native_controls": 23,
+    "native_edges": 600,
+    "native_paths": 160,
+    "python_skips": 0,
+    "python_tests": 119,
+    "symbolic_controls": 17,
+    "symbolic_directed_paths": 16,
+    "symbolic_edges": 60,
+    "symbolic_occurrences": 120
+  },
+  "remaining": [
+    "upper recurrence derivation and periodic classification",
+    "arbitrary-source upper entry",
+    "small n outside n>=7",
+    "family Perron construction in Lean",
+    "universal BH #139 and PSC"
+  ],
+  "schema": "psc-class-a-plus-upper-cycles-v1",
+  "scope": {
+    "both_orientations": true,
+    "cases": [
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        4,
+        1
+      ]
+    ],
+    "complete_original_prefixes": true,
+    "d": "2*n+12-J",
+    "depths": [
+      3,
+      3,
+      5,
+      7,
+      3,
+      5,
+      2,
+      2
+    ],
+    "formal_strictness_premises": [
+      "positive letter lengths",
+      "positive inflation",
+      "exact literal substitution length scaling"
+    ],
+    "n": "all n>=7 in written and Lean occurrence statements"
+  }
+}

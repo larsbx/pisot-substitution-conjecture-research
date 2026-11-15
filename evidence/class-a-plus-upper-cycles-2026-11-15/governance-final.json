@@ -1,0 +1,124 @@
+{
+  "prior_successes": [
+    {
+      "command": [
+        "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+        "tools/vendoring/check_vendored_sync.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.09970177900322597
+    },
+    {
+      "command": [
+        "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+        "tools/make_ledger.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.20313666999936686
+    },
+    {
+      "command": [
+        "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+        "tools/make_math_catalogue.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.07754694799950812
+    },
+    {
+      "command": [
+        "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+        "tools/polyglot_envelope/render.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.037566758001048584
+    },
+    {
+      "command": [
+        "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+        "tools/check_markdown_source.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.31230838899864466
+    },
+    {
+      "command": [
+        "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+        "tools/check_manuscript_source.py"
+      ],
+      "exit_code": 0,
+      "seconds": 1.460753832001501
+    },
+    {
+      "command": [
+        "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+        "-m",
+        "claim_governance.cli",
+        "--root",
+        "."
+      ],
+      "exit_code": 0,
+      "seconds": 8.444630204001442
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.10028245699868421
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "tools/setup_lean.sh"
+      ],
+      "exit_code": 0,
+      "seconds": 0.002569686999777332
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "tools/check_class_a_plus_upper_cycles.sh"
+      ],
+      "exit_code": 0,
+      "seconds": 0.0017098099997383542
+    }
+  ],
+  "rechecks": [
+    {
+      "command": [
+        "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+        "tools/make_proof_bank.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 2.145722494999063
+    },
+    {
+      "command": [
+        "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+        "tools/check_markdown_source.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.22057309199954034
+    },
+    {
+      "command": [
+        "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+        "-m",
+        "claim_governance.cli",
+        "--root",
+        "."
+      ],
+      "exit_code": 0,
+      "seconds": 8.64507927899831
+    }
+  ],
+  "status": "passed"
+}

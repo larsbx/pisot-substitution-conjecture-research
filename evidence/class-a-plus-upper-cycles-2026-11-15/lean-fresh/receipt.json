@@ -1,0 +1,234 @@
+{
+  "artifacts": {
+    "attempt-3-result.json": "5898f4bb158ffc31c5556469c8b3850fa34b5c4f4c65aafaca77798f7bb9479b",
+    "attempt-3.log": "3c5390f959718f9c4feac15eb2c42b65be0cd1dc43b85a27a86ac4bddf0c79c6",
+    "audit-parser-at-build.py": "f69c0a31e30e7159152bddc5618709be8d5519eec998ddd63fe9ae9534acf272",
+    "audit.log": "fe7bbb6913e0ea492844c77f939a5d7af3fb050647e2af7712ab14b0689376bd",
+    "parser-revalidation.json": "f62036b3b67462ea9ff9cc213443ad3639b6121becfbf2e36390ccce97033a12",
+    "parser-revalidation.log": "572ec65bdf936094549512b8703de924fab50462c397d460a5d4fe87d360da6f",
+    "parser-tests-result.json": "8c72787624330f2d46de917cfabd70744f460ee16c1c15524b14b0bf1312156c",
+    "parser-tests.log": "8ed66fba8eb6d896ef3d7d3d8e27434ded29b99c3bc28901bddc66a7f701a277",
+    "source-bindings.json": "5be0479a196dd3fcc45799ecd0c15268ff431b5509ee86a4bef4f3906a192193"
+  },
+  "audit": {
+    "declarations": 167,
+    "endpoints": 8,
+    "modules": 2,
+    "negative_controls": 24,
+    "theorems": 114
+  },
+  "compiler": "Lean 4.34.0-rc2; 6a10ac8c22beadecabdbb0919c2b50214762f91d",
+  "current_parser_tests": {
+    "command": [
+      "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+      "-m",
+      "pytest",
+      "-o",
+      "addopts=",
+      "-q",
+      "tests/test_class_a_plus_upper_audit.py"
+    ],
+    "ended_at": "2026-11-15T15:02:40.434156+00:00",
+    "exit_code": 0,
+    "sources": {
+      "tests/test_class_a_plus_upper_audit.py": "ea886819eaf0228fcf4d6a32bc46e1d92db164994806da57cc06b1818b958162",
+      "tools/check_class_a_plus_upper_audit.py": "9ed25a914955be981ed86e5fdad7cf5c3ac00783ee06ae30f7e0bdfe47dcbdc0"
+    },
+    "started_at": "2026-11-15T15:02:40.026663+00:00",
+    "tests_passed": 51
+  },
+  "notes": [
+    "This is the fresh replacement-environment run, distinct from historical cached acceptance.",
+    "Moving attempt 3 from default /tmp to workspace storage did not change any Lean source or weaken the acceptance contract.",
+    "Gate log retains Lean linter warnings; no sorry or nonstandard axiom was accepted.",
+    "The extracted audit.log contains the exact matching audit rows from the successful producing log, not a synthetic fixture.",
+    "Parser CLI now reads bytes before UTF-8 decoding so CR input cannot be normalized into accepted output.",
+    "After the fresh kernel pass, the receipt reader was hardened from splitlines() to LF-only complete lines. The exact parser used by the producing gate is archived separately. The current reader accepted unchanged actual audit bytes; no new Lean compile is claimed."
+  ],
+  "parser_revalidation": {
+    "audit": {
+      "declarations": 167,
+      "endpoints": 8,
+      "modules": 2,
+      "negative_controls": 24,
+      "theorems": 114
+    },
+    "audit_is_exact_contiguous_bytes_of_fresh_producing_log": true,
+    "audit_sha256": "fe7bbb6913e0ea492844c77f939a5d7af3fb050647e2af7712ab14b0689376bd",
+    "checked_at": "2026-11-15T15:02:20.752637+00:00",
+    "command": [
+      "python3",
+      "tools/check_class_a_plus_upper_audit.py",
+      "evidence/class-a-plus-upper-cycles-2026-11-15/lean-fresh/audit.log"
+    ],
+    "current_parser_sha256": "9ed25a914955be981ed86e5fdad7cf5c3ac00783ee06ae30f7e0bdfe47dcbdc0",
+    "exit_code": 0,
+    "fresh_lean_recompiled": false,
+    "old_parser_preserved_as": "audit-parser-at-build.py",
+    "old_parser_sha256": "f69c0a31e30e7159152bddc5618709be8d5519eec998ddd63fe9ae9534acf272",
+    "parser_contract": "LF-only complete lines with required final LF; additional empty ASCII LF lines allowed",
+    "unchanged_kernel_run": "attempt-3.log"
+  },
+  "preserved_failed_attempts": [
+    {
+      "attempt": 1,
+      "exit_code": 127,
+      "log": "attempt-1.log",
+      "reason": "external /usr/bin/time launcher unavailable; gate did not start"
+    },
+    {
+      "attempt": 2,
+      "exit_code": 1,
+      "log": "attempt-2.log",
+      "reason": "12 GiB disk guard refused default /tmp tmpfs before dependency retrieval"
+    }
+  ],
+  "process": {
+    "command": [
+      "timeout",
+      "3600",
+      "bash",
+      "tools/check_class_a_plus_upper_cycles.sh"
+    ],
+    "ended_at": "2026-11-15T14:58:36.806319+00:00",
+    "exit_code": 0,
+    "seconds": 205.878,
+    "source_isolated_success": true,
+    "started_at": "2026-11-15T14:55:10.928155+00:00",
+    "tmpdir": "/workspace/scratch/7b7b91dcb7fe/upper-lean-temporary"
+  },
+  "producing_attempt": 3,
+  "schema": "psc-class-a-plus-upper-cycles-fresh-lean-v1",
+  "scope": {
+    "cases": [
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        4,
+        1
+      ]
+    ],
+    "d": "2*n + 12 - J",
+    "n": "all n >= 7",
+    "nonclaims": [
+      "upper-region recurrence classification",
+      "all-source upper entry",
+      "small n outside n >= 7",
+      "universal BH #139",
+      "full Pisot substitution conjecture"
+    ],
+    "orientations": "both actual ordered track orientations",
+    "paths": "literal original child indices, complete integral offsets, typed yy zero endpoint",
+    "strict_prefix_endpoint": "positive tile lengths, positive inflation beta, exact substitution-length scaling; two traces of the same signed transcript and full incidence-power identity"
+  },
+  "source_isolation": {
+    "external_cache": "https://cache.mathlib.org/mathlib4-master",
+    "fresh_local_library_modules": 20,
+    "fresh_pinned_dependency_checkouts": true,
+    "fresh_standalone_audit_sources": 1,
+    "local_source_closure": [
+      "ClassAPlusUpperCyclesAudit",
+      "PscVerif.Binomial",
+      "PscVerif.ClassACentralRecurrence",
+      "PscVerif.ClassAMinusConstantRecurrence",
+      "PscVerif.ClassAMinusPrefixAssembly",
+      "PscVerif.ClassAPlusConstantRecurrence",
+      "PscVerif.ClassAPlusUpperCycles",
+      "PscVerif.ClassAZeroDefectEscape",
+      "PscVerif.ConcentrationAlgebra",
+      "PscVerif.Cyclicity",
+      "PscVerif.Descendants",
+      "PscVerif.FixedPointLimit",
+      "PscVerif.Incidence",
+      "PscVerif.OccurrenceAddress",
+      "PscVerif.OccurrenceNewborn",
+      "PscVerif.OccurrenceSuccessor",
+      "PscVerif.OccurrenceTransport",
+      "PscVerif.ParikhIntertwiner",
+      "PscVerif.PerronCore",
+      "PscVerif.Reduction",
+      "PscVerif.SignedCocycle"
+    ],
+    "project_artifacts_reused": false,
+    "selected_upstream_artifacts": 2165,
+    "upstream_roots": [
+      "Mathlib.Algebra.BigOperators.Ring.Finset",
+      "Mathlib.Algebra.Polynomial.AlgebraMap",
+      "Mathlib.Algebra.Polynomial.SpecificDegree",
+      "Mathlib.Analysis.Complex.Basic",
+      "Mathlib.Data.Finset.Lattice.Fold",
+      "Mathlib.Data.Fintype.Card",
+      "Mathlib.Data.Fintype.Pigeonhole",
+      "Mathlib.Data.Int.LeastGreatest",
+      "Mathlib.Data.List.Basic",
+      "Mathlib.Data.Matrix.Mul",
+      "Mathlib.Data.Nat.Choose.Basic",
+      "Mathlib.Data.Nat.Periodic",
+      "Mathlib.LinearAlgebra.FiniteDimensional.Lemmas",
+      "Mathlib.LinearAlgebra.Matrix.Charpoly.Basic",
+      "Mathlib.LinearAlgebra.Matrix.Charpoly.Coeff",
+      "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+      "Mathlib.LinearAlgebra.Matrix.ToLin",
+      "Mathlib.LinearAlgebra.Matrix.ToLinearEquiv",
+      "Mathlib.LinearAlgebra.Quotient.Basic",
+      "Mathlib.Logic.Function.Iterate",
+      "Mathlib.Tactic.ComputeDegree",
+      "Mathlib.Tactic.FinCases",
+      "Mathlib.Tactic.Linarith",
+      "Mathlib.Tactic.NormNum",
+      "Mathlib.Tactic.Ring"
+    ]
+  },
+  "source_snapshot": {
+    "files": 128,
+    "path": "source-bindings.json",
+    "sha256": "5be0479a196dd3fcc45799ecd0c15268ff431b5509ee86a4bef4f3906a192193",
+    "successful_rechecks": [
+      "after-clone",
+      "after-upstream-cache",
+      "after-build",
+      "after-audit"
+    ]
+  },
+  "sources": {
+    "proof/PscVerif/ClassAPlusUpperCyclesAudit.lean": "f1674a21d8c96382b5c3ea009525c43baf210a2a6db427dd3bbb60923b087c6e",
+    "proof/PscVerif/PscVerif/ClassAPlusUpperCycles.lean": "5d3cf8f6ce61e49f654710965d03761de7c046e931498bbc2aa09b872471384b",
+    "tests/test_class_a_plus_upper_audit.py": "ea886819eaf0228fcf4d6a32bc46e1d92db164994806da57cc06b1818b958162",
+    "tools/check_class_a_plus_upper_audit.py": "9ed25a914955be981ed86e5fdad7cf5c3ac00783ee06ae30f7e0bdfe47dcbdc0",
+    "tools/check_class_a_plus_upper_cycles.sh": "e313965802acd2192b62970fc848f4c6dc81c7c92ae0f9c29ce0ba329dd85166"
+  },
+  "sources_at_fresh_acceptance": {
+    "proof/PscVerif/ClassAPlusUpperCyclesAudit.lean": "f1674a21d8c96382b5c3ea009525c43baf210a2a6db427dd3bbb60923b087c6e",
+    "proof/PscVerif/PscVerif/ClassAPlusUpperCycles.lean": "5d3cf8f6ce61e49f654710965d03761de7c046e931498bbc2aa09b872471384b",
+    "tests/test_class_a_plus_upper_audit.py": "6fd9f50c9017754ea228243d8d1ba44f7ebfb63d560d2e2011d38dc97c5b5a7f",
+    "tools/check_class_a_plus_upper_audit.py": "f69c0a31e30e7159152bddc5618709be8d5519eec998ddd63fe9ae9534acf272",
+    "tools/check_class_a_plus_upper_cycles.sh": "e313965802acd2192b62970fc848f4c6dc81c7c92ae0f9c29ce0ba329dd85166"
+  },
+  "status": "passed"
+}
