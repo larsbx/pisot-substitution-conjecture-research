@@ -1,0 +1,232 @@
+{
+  "acceptance_complete": true,
+  "archive_status": "complete_local_isolated_acceptance",
+  "artifact_checksums": "SHA256SUMS",
+  "artifact_manifest": "artifact-manifest.json",
+  "claim_status_changes": 0,
+  "code_revision": {
+    "base": "bdf033f647f73f911a47260e8bdad5f2e96f3c7a",
+    "commit": "6915e8d592b7ea5cb7c6950249811e354dc6c3e7",
+    "gate_direct_parent_of_code": true,
+    "literature_gate": "571c8df9b5223aeef6b7f137c49b4495590d090e",
+    "source_inventory": "source-inventory.json",
+    "source_manifest": "source-manifest.json",
+    "tree": "c79e97bdae1224068895afa9dcf6cca6d7fe9fbb"
+  },
+  "development": {
+    "bootstrap": {
+      "log": "development/bootstrap.log",
+      "receipt": "review/initial-ci-and-semantic.json",
+      "reused_project_and_dependency_artifacts": true,
+      "selected_modules": 14,
+      "status": "passed as development compilation"
+    },
+    "controls_axioms": "development/controls-axioms.log",
+    "new_module_attempts": "development/attempts.json",
+    "note": "Failures and silent later logs are retained. Silence alone is not a successful exit receipt. The development controls print only permitted standard axioms; this is not the complete isolated audit."
+  },
+  "execution_history": {
+    "aggregate_diagnostic": {
+      "aggregate_olean_created": false,
+      "directory": "history/aggregate-diagnostic",
+      "elapsed_seconds": 58.95742816599886,
+      "exit_code": 0,
+      "formal_acceptance_credit": false
+    },
+    "attempt_01": {
+      "acceptance_complete": false,
+      "archive": "history/attempt-01.tar.gz",
+      "archive_bytes": 16878,
+      "archive_format": "deterministic gzip of USTAR; seven original regular files",
+      "archive_sha256": "2c171163cf7e8541cfba85ad9f1a28997b548f6a8a175a0939b55cbde3955c97",
+      "exit_code": null,
+      "extracted_names_and_bytes_match_original": true,
+      "restore_instructions": "history/README.md",
+      "restored_file_count": 7,
+      "session_id_reported_by_root": 25398,
+      "terminal_outcome": "unknown"
+    },
+    "attempt_02": {
+      "acceptance_complete": false,
+      "directory": "history/attempt-02",
+      "elapsed_seconds": 136.322,
+      "exit_code": 1,
+      "failure": "official dependency cache decompression: no space left on device",
+      "raw_start_receipt_snapshot_captured": false,
+      "session_id_reported_by_root": 52196,
+      "terminal_outcome": "failed",
+      "unchanged_head_tree_and_sources": true
+    },
+    "attempt_03": {
+      "acceptance_is_recorded_only_in_required_isolated_lean": true,
+      "runner": "gate/attempt-03-runner.py",
+      "session_id_reported_by_root": 45485,
+      "snapshot_provenance": "gate/attempt-03-start-snapshot-provenance.json",
+      "start_snapshot": "gate/attempt-03-process-start-snapshot.json"
+    },
+    "cache_cleanup": {
+      "archived_record_only": true,
+      "owner": "root",
+      "receipt": "history/cache-cleanup.json",
+      "scope": "abandoned generated first-attempt workspace only"
+    },
+    "index": "history/README.md",
+    "integration_provenance": "history/integration-provenance.json"
+  },
+  "finalization_condition": "Satisfied: terminal process exit zero, exact unchanged source/head/tree, matching complete raw-log digest and successful independent compiled inspection. Hosted and independent-human-review status remain unchanged.",
+  "finalized_at_utc": "2026-11-12T19:37:28.155680+00:00",
+  "finalizer_source_sha256": "fc430b18726a506b8e370c0a5e8a9385d4818a8abad6639eba6c75bf9468bb4f",
+  "history_integrated_at_utc": "2026-11-12T18:47:31.042727+00:00",
+  "hosted_ci": {
+    "historical_check_counts": {
+      "cancelled": 1,
+      "failure": 0,
+      "queued": 98,
+      "success": 0
+    },
+    "historical_notes": "review/initial-ci-and-semantic.json",
+    "historical_observation_utc": "2026-11-12 17:19:51 UTC",
+    "historical_previous_pr_head": "c5c38db3e54a3f18f9d92db1b9f34b3b9f6ec51b",
+    "historical_snapshot_is_not_current_status": true,
+    "initial_pr_558": {
+      "all_pages_fetched": true,
+      "counts": {
+        "completed/cancelled": 1,
+        "queued": 77
+      },
+      "head_sha": "630415d2a90dac8e8e1de6625bed13edcc9a5523",
+      "newer_evidence_policy_check_queued": true,
+      "observed_at_utc": "2026-11-12 18:46:37 UTC",
+      "pr_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/558",
+      "record": "review/hosted-checks-20261112T184637Z.json",
+      "returned_count": 78,
+      "scope": "Initial source-mirror PR head only; not acceptance or final-evidence-head CI.",
+      "success_claimed": false
+    },
+    "status": "preliminary initial-PR-head observation only; final publication head requires a separate observation",
+    "subject_revision": "6915e8d592b7ea5cb7c6950249811e354dc6c3e7",
+    "success_claimed": false
+  },
+  "local_source_checks": {
+    "governance": {
+      "log": "checks/governance.log",
+      "observed_output": "success message for terminology, claims, coverage, promotion, numerics, consistency"
+    },
+    "ledger": {
+      "log": "checks/ledger.log",
+      "observed_output": "32 generated surfaces current"
+    },
+    "process_exit_codes_not_embedded_in_these_text_logs": true,
+    "proof_bank": {
+      "log": "checks/proof-bank-check.log",
+      "observed_output": "126 claims, 2693 named Lean proofs, 411 source openings",
+      "scope": "generated-source inventory only"
+    },
+    "proof_bank_generation_log": "checks/proof-bank-generation.log"
+  },
+  "next_count_interface_review": {
+    "path": "next-count-interface-review.md",
+    "promotes_claim": false,
+    "scope": "reviewed proposed proof interfaces; not implemented or compiled acceptance",
+    "sha256": "9f4c74e7cd02bda5b529ff0ef441b05ffaf209da7b02501fc3a07250ec7f670e"
+  },
+  "next_count_plan": "next-count-plan.md",
+  "remaining_obligations": [
+    "literal original integer cut-set cardinality and positive physical-length lower bound",
+    "fixed-origin regular-cylinder lattice count",
+    "all-depth original-carrier cylinder normalization and actual chart covolume",
+    "regular outer-cover measure argument and positive-overlap assembly"
+  ],
+  "remote_mutations_during_preparation": 0,
+  "repository_or_head_mutations_during_preparation": 0,
+  "required_isolated_lean": {
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "attempt_number": 3,
+    "command": "./tools/check_lean.sh",
+    "compiled_audit_inspection": "gate/compiled-audit-inspection.json",
+    "compiled_audit_inspection_sha256": "cb20ea240e1b3277d7eebbaa34091234d3deae5d62f4b808b5c31bf8d7403f67",
+    "compiled_new_declarations": "gate/compiled-new-declarations.log.gz",
+    "compiled_new_declarations_archive_sha256": "b845c4167c144c85c890c3ddda7ece6c9c5e7922a418e18ef43b6f563a2fa3b5",
+    "compiled_new_declarations_raw_bytes": 7446,
+    "compiled_new_declarations_raw_sha256": "05c1483446bcf09b3283a068b4ffd0f89f1114f6401308cc7c57ac96f140cdf6",
+    "completed_at_utc": "2026-11-12T19:37:14.200269+00:00",
+    "development_artifacts_are_not_acceptance": true,
+    "elapsed_seconds": 3065.692,
+    "exit_code": 0,
+    "full_log": "gate/isolated-lean.log.gz",
+    "full_log_archive_bytes": 70617,
+    "full_log_archive_sha256": "71aa7e6dcf3405e3967dffb9e4b2b401b7fe6cfd5aacc7992518c31bd5b02b90",
+    "full_log_bytes": 1027067,
+    "full_log_sha256": "f09119a393d64203a795c68f8540e4bcd1a2fc53444d18f2616dee864fa292f7",
+    "gate_runner": "gate/attempt-03-runner.py",
+    "gate_start_snapshot": "gate/attempt-03-process-start-snapshot.json",
+    "global_compiled_constants": 6628,
+    "global_compiled_theorem_constants": 4850,
+    "global_encountered_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "historical_attempt_01_in_progress_log_snapshot": "gate/isolated-in-progress-snapshot.log",
+    "historical_attempt_01_start_snapshot": "gate/process-start-snapshot.json",
+    "historical_snapshots_retained": true,
+    "inspector_source": "gate/inspect-compact-audit.py",
+    "inspector_source_sha256": "09f4ca7cfae3a7f5aa6c8a9a74d499aead203b2bdd2d6572f09e079e0beef23a",
+    "local_compiled_dependency_artifacts_used": false,
+    "new_explicit_definitions_verified": 8,
+    "new_explicit_theorems_verified": 23,
+    "new_module_encountered_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "new_owned_compiled_constants": 39,
+    "new_owned_compiled_theorem_constants": 31,
+    "raw_log_input": "compact-isolated-attempt-03.log",
+    "source_inventory_sha256": "253643a43e08c02676bed4c1672f3aef5c2cbff75acae6d5811d6dd9cf5650a9",
+    "source_tree_clean_before_and_after": true,
+    "started_at_utc": "2026-11-12T18:46:08.507683+00:00",
+    "status": "passed",
+    "terminal_process_input": "compact-isolated-attempt-03.json",
+    "terminal_process_receipt": "gate/process-terminal.json",
+    "terminal_process_receipt_sha256": "31dd66514a0855a8c40341c0a808dac416c33dc455f6733d0c92fcedd44f4d40",
+    "upstream_source_hash_dependency_cache_used": true,
+    "working_directory": "repository root at code revision"
+  },
+  "review": {
+    "final_named_addendum": "review/final-source-scope-addendum.json",
+    "independent_human_review": "pending; separate validation debt",
+    "initial_notes": "review/initial-ci-and-semantic.json"
+  },
+  "schema": "c4-compact-neighborhood-local-verification-v1",
+  "source_inventory": {
+    "compiled_audit_counts_are_not_source_counts": true,
+    "explicit_definitions": 8,
+    "explicit_theorems": 23,
+    "governed_claims": 126,
+    "modules": [
+      {
+        "definitions": 2,
+        "name": "PscVerif.CompactNeighborhood",
+        "theorems": 8
+      },
+      {
+        "definitions": 3,
+        "name": "PscVerif.NamedCutNeighborhood",
+        "theorems": 12
+      },
+      {
+        "definitions": 3,
+        "name": "PscVerif.CompactNeighborhoodControls",
+        "theorems": 3
+      }
+    ],
+    "source_named_proof_bank_total": 2693,
+    "source_statement_openings": 411
+  },
+  "staged_at_utc": "2026-11-12 17:36:03 UTC"
+}

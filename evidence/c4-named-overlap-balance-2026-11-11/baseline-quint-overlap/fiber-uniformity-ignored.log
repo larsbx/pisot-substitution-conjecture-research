@@ -1,0 +1,33 @@
+
+  C4OverlapMass
+    1) uniformityIsNecessaryTest failed after 1 test(s)
+
+  1 failed
+
+  1) uniformityIsNecessaryTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-c4-overlap-mass-w2dcqveq/fiber-uniformity-ignored.qnt:210:35
+        210:   run uniformityIsNecessaryTest = init.expect({
+                                               ^^^^^^^^^^^^^
+        211:     val es = List((0, 2))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+        212:     val labels = List(0, 0, 1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        213:     val representatives = List(0, 2)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        214:     all {
+             ^^^^^^^^^
+        215:       not(uniformCounts(es, labels, representatives)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        216:       not(countCorrespondence(forward(es, labels, representatives), inverse(es, labels, representatives), fiberWeights(labels, representatives))),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        217:     }
+             ^^^^^
+        218:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f6 --match=uniformityIsNecessaryTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-c4-overlap-mass-w2dcqveq/fiber-uniformity-ignored.qnt
+error: Tests failed

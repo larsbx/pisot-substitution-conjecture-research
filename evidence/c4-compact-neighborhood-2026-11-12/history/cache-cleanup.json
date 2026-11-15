@@ -1,0 +1,10 @@
+{
+  "removed_path": "/workspace/scratch/f96c28a561ad/lean-isolation-tmp/tmp.UOZg5YfDvP",
+  "scope": "Abandoned generated attempt01 isolated source/build/cache workspace only; repository and archived logs/receipts retained.",
+  "archive_checksums_passed": true,
+  "before_free_bytes": 1371938816,
+  "started_at_utc": "2026-11-12T18:45:49.833580+00:00",
+  "after_free_bytes": 10683248640,
+  "ended_at_utc": "2026-11-12T18:45:52.601693+00:00",
+  "removed": true
+}

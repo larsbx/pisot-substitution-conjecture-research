@@ -4,6 +4,16 @@ This directory separates live proof status, source provenance, mathematical
 exposition, exact finite certificates, and historical snapshots. Start with
 the section matching the question you are asking.
 
+**Current mathematical priority (November 14):** use the
+[BH escape roadmap](bh-escape-roadmap-2026-11-14.md) for the next theorem:
+uniform entry into the explicit minus-Class-A zero-return predecessor set,
+with complete source coverage and actual occurrence paths. Residual A1′
+proceeds in parallel. The note records the existing path machinery, newer
+unmerged family and conditional results, and exact-revision acceptance;
+universal BH, A1′ and PSC remain open. Dated snapshots below retain their
+original scope and should be read with this update and the
+[current-state reconciliation](current-state-reconciliation-2026-11-11.md).
+
 **PSC literature context:** See [the 2026-11-04 literature-to-proof crosswalk](motivations/psc-literature-crosswalk-2026-11-04.md)
 for source-linked theorem scopes, non-unit/strong-coincidence cautions,
 the Nakaishi audit and the open #84/#138/#139/#461 interfaces. It adds

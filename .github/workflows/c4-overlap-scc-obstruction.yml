@@ -1,0 +1,104 @@
+name: C4 complete overlap SCC obstruction
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/c4-overlap-scc-obstruction.yml'
+      - 'docs/c4-critical-overlap-components*.md'
+      - 'docs/c4-finite-overlap-carrier*.md'
+      - 'docs/c4-nonunit-madic-counting-bridge-2026-11-04.md'
+      - 'kernel/psc/c4_overlap_scc_obstruction.mojo'
+      - 'kernel/c4_overlap_scc_obstruction.mojo'
+      - 'kernel/tests/test_c4_overlap_scc_obstruction.mojo'
+      - 'oracles/python/c4_overlap_scc_obstruction.py'
+      - 'tests/test_c4_overlap_scc_obstruction_oracle.py'
+      - 'evidence/c4-critical-overlap-components-2026-11-05/**'
+      - 'kernel/psc/c4_pair_overlap_new_incidence.mojo'
+      - 'kernel/psc/c4_pair_overlap_carrier.mojo'
+      - 'oracles/python/c4_pair_overlap_new_incidence.py'
+      - 'kernel/psc/c4_nonunit_residue_occupancy.mojo'
+      - 'kernel/psc/c4_finite_cylinder_overlap.mojo'
+      - 'kernel/psc/c4_cylinder_density.mojo'
+      - 'kernel/psc/derived_system.mojo'
+      - 'kernel/psc/real_root_sign.mojo'
+      - 'kernel/psc/pisot.mojo'
+      - 'kernel/psc/exact.mojo'
+      - 'kernel/psc/words.mojo'
+      - 'kernel/psc/bpa.mojo'
+      - 'kernel/finite_exact/**'
+      - 'kernel/finite_linear_algebra/**'
+      - 'kernel/substitution_dynamics/**'
+      - 'kernel/finite_graph/**'
+      - 'kernel/mojo_smoke/**'
+      - 'kernel/pixi.toml'
+      - 'kernel/pixi.lock'
+      - 'vendored.toml'
+      - 'pyproject.toml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  complete-scc-certificate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Assert exact checked-out revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install the focused oracle test runner
+        run: python -m pip install 'pytest>=7,<10'
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          pixi-version: v0.81.0
+          manifest-path: kernel/pixi.toml
+          locked: true
+      - name: Canonical complete SCC and spectral-witness regression
+        working-directory: kernel
+        run: pixi run --locked mojo run -I . tests/test_c4_overlap_scc_obstruction.mojo
+      - name: Emit the full twelve-source native SCC packet
+        working-directory: kernel
+        run: pixi run --locked mojo run -I . c4_overlap_scc_obstruction.mojo > /tmp/overlap-scc-native.txt
+      - name: Independent reconstruction and adversarial oracle tests
+        env:
+          PSC_OVERLAP_SCC_NATIVE_OUTPUT: /tmp/overlap-scc-native.txt
+        run: python -m pytest --assert=plain -o addopts='' -q tests/test_c4_overlap_scc_obstruction_oracle.py
+      - name: Authenticate the native packet and committed exact receipt
+        run: |
+          python oracles/python/c4_overlap_scc_obstruction.py --native /tmp/overlap-scc-native.txt > /tmp/overlap-scc-receipt.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          actual = json.loads(Path('/tmp/overlap-scc-receipt.json').read_text())
+          expected = json.loads(Path('evidence/c4-critical-overlap-components-2026-11-05/receipt.json').read_text())
+          if actual != expected:
+              raise SystemExit('Native-authenticated receipt differs from the committed exact receipt')
+          print('Complete native SCC packet matches the independent oracle and committed exact receipt.')
+          PY
+      - name: Generated evidence and governance surfaces
+        run: |
+          python tools/make_proof_bank.py --check
+          PYTHONPATH=tools python -m claim_governance.cli --root .
+          python tools/check_markdown_source.py
+      - name: Retain the full native packet and independent receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: overlap-scc-certificate-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            /tmp/overlap-scc-native.txt
+            /tmp/overlap-scc-receipt.json
+          if-no-files-found: ignore

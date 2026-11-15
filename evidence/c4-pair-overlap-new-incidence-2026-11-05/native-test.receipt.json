@@ -1,0 +1,24 @@
+{
+  "name": "native-test",
+  "started_utc": "2026-11-05T08:48:53.439987+00:00",
+  "duration_seconds": 16.882199,
+  "executed_local_commit": "b863dc5093e55f40fed487455588104abbe04400",
+  "source_tree": "3248cf2d72b2b1be72bf7326d2f95758c470bef2",
+  "cwd": "/workspace/scratch/bb3a4dbb8418/psc-publish/kernel",
+  "command": [
+    "/workspace/scratch/ff95d1f2448c/mojo-prefix/bin/mojo",
+    "run",
+    "-I",
+    ".",
+    "tests/test_c4_pair_overlap_new_incidence.mojo"
+  ],
+  "explicit_environment": {
+    "MODULAR_HOME": "/workspace/scratch/ff95d1f2448c/mojo-prefix/share/max",
+    "PYTHONPATH": "/workspace/scratch/bb3a4dbb8418/psc-publish/tools"
+  },
+  "exit_code": 0,
+  "stdout": "/workspace/scratch/bb3a4dbb8418/psc-publish/evidence/c4-pair-overlap-new-incidence-2026-11-05/native-test.stdout.txt",
+  "stderr": "native-test.stderr.txt",
+  "stdout_sha256": "a9e23bbeedce0f066348163105b7c7c702a54b659b94576c29ecf9b34763fbbb",
+  "stderr_sha256": "8b33180b5dd484cbaa302cc68b3794e69204fc8de4d0b692cbb1332a95aa44d0"
+}

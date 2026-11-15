@@ -90,7 +90,7 @@ def _sigma(a: String, b: String, c: String) -> List[List[Int]]:
     return [_w(a), _w(b), _w(c)]
 
 
-def _k2_nonzero(p: Pair) -> Bool:
+def _k2_nonzero(p: Pair) raises -> Bool:
     var d = k2(p)
     for t in range(len(d)):
         if d[t] != 0:

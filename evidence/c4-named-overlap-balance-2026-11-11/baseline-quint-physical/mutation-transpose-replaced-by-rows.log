@@ -1,0 +1,39 @@
+
+  PhysicalMassAdversarial
+    1) incorrectTransposeRefusedTest failed after 1 test(s)
+
+  1 failed
+
+  1) incorrectTransposeRefusedTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-physical-mass-snapshot-rntrpznc/transpose-replaced-by-rows.qnt:272:39
+        272:   run incorrectTransposeRefusedTest = init.expect({
+                                                   ^^^^^^^^^^^^^
+        273:     val t = List(List(0, 1), List(0, 2))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        274:     val h = List(1, 1)
+             ^^^^^^^^^^^^^^^^^^^^^^
+        275:     val v = List(1, 2)
+             ^^^^^^^^^^^^^^^^^^^^^^
+        276:     val wrongDeficit = List(2 * h[0] - mv(t, h)[0], 2 * h[1] - mv(t, h)[1])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        277:     all {
+             ^^^^^^^^^
+        278:       mv(t, v) == List(2, 4), wrongDeficit == List(1, 0),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        279:       nonnegative(wrongDeficit), sourceLoss(t, wrongDeficit),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        280:       tmv(t, h) == List(0, 3), deficit(t, h, 2) == List(2, -1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        281:       not(premises(t, h, v, 2)), not(allZero(v)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        282:     }
+             ^^^^^
+        283:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f4 --match=incorrectTransposeRefusedTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-physical-mass-snapshot-rntrpznc/transpose-replaced-by-rows.qnt
+error: Tests failed

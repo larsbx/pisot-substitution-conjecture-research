@@ -1,0 +1,260 @@
+{
+  "schema": "psc-development-compile-receipt-v1",
+  "scope": "Development-only Lean compilation of OccurrencePhysicalBudget and its genuine source dependency closure; not canonical clean acceptance.",
+  "receipt_written_at_utc": "2026-11-11T23:39:21.080958+00:00",
+  "observation_source": "Structured metadata from observed tool-session outputs. Raw compiler streams were not saved to a file and are not reconstructed here.",
+  "source": {
+    "path": "/workspace/scratch/2880dde43f60/psc/proof/PscVerif/PscVerif/OccurrencePhysicalBudget.lean",
+    "module": "PscVerif.OccurrencePhysicalBudget",
+    "sha256": "2b1ab3d3ac6477c4bd0c81ff00445934944c05958428dd6748e89dbe0ce5d21c"
+  },
+  "compiler": {
+    "path": "/home/agent/.elan/toolchains/leanprover--lean4---v4.34.0-rc2/bin/lean",
+    "version": "Lean (version 4.34.0-rc2, x86_64-unknown-linux-gnu, commit 6a10ac8c22beadecabdbb0919c2b50214762f91d, Release)",
+    "lean_toolchain": "leanprover/lean4:v4.34.0-rc2",
+    "flags": [
+      "-j1",
+      "-DautoImplicit=false"
+    ],
+    "library_manifest_sha256": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
+    "packages": [
+      {
+        "name": "mathlib",
+        "rev": "4edb0dbaa3b3cf729d86d1e2f035474d5ae2ac09"
+      },
+      {
+        "name": "plausible",
+        "rev": "d9598f07b1bc701f1e3aae163d2681c1fd978793"
+      },
+      {
+        "name": "LeanSearchClient",
+        "rev": "ba67e212be1197b84c1f1f6299488a10a3002713"
+      },
+      {
+        "name": "importGraph",
+        "rev": "1681d78dd6e65e38b143f9740d829c826673807c"
+      },
+      {
+        "name": "proofwidgets",
+        "rev": "a8acbfd87375ff4abe14ce09db5b7664d383bc7f"
+      },
+      {
+        "name": "aesop",
+        "rev": "18889deb9e83ea7420ef51c160d6f88552e744e3"
+      },
+      {
+        "name": "Qq",
+        "rev": "507746ab8f4b643ccdacb2ec4cdb5853fa9f8ab3"
+      },
+      {
+        "name": "batteries",
+        "rev": "4cac2177c37f5530c4da76aa8e4307f3fc9e4dcb"
+      },
+      {
+        "name": "Cli",
+        "rev": "ab3a82db9fea14cf0fd7f5a2de650f4b534640af"
+      }
+    ]
+  },
+  "development_helper": {
+    "path": "/workspace/scratch/2880dde43f60/psc_dev_compile.py",
+    "shared_cache": "/workspace/scratch/2880dde43f60/psc_dev_lean",
+    "single_compiler_lock": "/workspace/scratch/2880dde43f60/psc_dev_lean.lock",
+    "source_matching_seed_provenance": "/workspace/scratch/2880dde43f60/psc_dev_lean/development-seed-provenance.json"
+  },
+  "dependency_rebuild": {
+    "reason": "Genuine production Cyclicity imports were narrowed without changes to theorem or proof bodies after an import-only probe showed the Mathlib umbrella caused severe paging before any new declaration. Source fingerprints forced recompilation of affected consumers.",
+    "fresh_modules_after_import_repair": [
+      {
+        "module": "PscVerif.Cyclicity",
+        "elapsed_seconds": 30.5,
+        "observation": "verification_setup reported successful pinned source compile; declaration and proof bytes preserved"
+      },
+      {
+        "module": "PscVerif.OccurrenceNewborn",
+        "elapsed_seconds": 46.1
+      },
+      {
+        "module": "PscVerif.OccurrenceAddress",
+        "elapsed_seconds": 48.8
+      },
+      {
+        "module": "PscVerif.OccurrenceTransport",
+        "elapsed_seconds": 50.2
+      },
+      {
+        "module": "PscVerif.OccurrenceFinite",
+        "elapsed_seconds": 48.4
+      },
+      {
+        "module": "PscVerif.OccurrenceSuccessor",
+        "elapsed_seconds": 51.7
+      },
+      {
+        "module": "PscVerif.OccurrenceMass",
+        "elapsed_seconds": 53.1
+      },
+      {
+        "module": "PscVerif.OccurrenceInverse",
+        "elapsed_seconds": 56.0
+      }
+    ],
+    "remaining_dependencies": "Reused development objects authenticated against matching source and transitive PSC source fingerprints; historical objects are documented in development-seed-provenance.json. This is not a cache-cleared build.",
+    "current_source_and_transitive_fingerprints_rechecked_at_receipt": true
+  },
+  "first_genuine_new_module_attempt": {
+    "tool_session_id": 19245,
+    "exit_code": 1,
+    "elapsed_seconds": 50.9,
+    "raw_log_file": null,
+    "primary_diagnostic_summary": "Lean could not synthesize Decidable for digitPacket membership in S in the conditional expressions of theorem statements (then-source lines 107 and 151). The classical tactic inside a proof body does not scope the preceding theorem statement. Later split_ifs and parser-inserted sorry diagnostics were consequences of those malformed statements; no sorry was authored.",
+    "repair": "Added attribute [local instance] Classical.propDecidable before the declarations. No theorem proposition was weakened, no extra mathematical premise was introduced, and no new axiom was declared."
+  },
+  "successful_retry": {
+    "tool_session_id": 8834,
+    "exit_code": 0,
+    "module_elapsed_seconds": 46.7,
+    "source_sha256": "2b1ab3d3ac6477c4bd0c81ff00445934944c05958428dd6748e89dbe0ce5d21c",
+    "raw_log_file": null,
+    "helper_result": "Development compilation finished; canonical isolated acceptance remains separate.",
+    "warning_summary": "Three deprecation warnings for if_true/if_false. No errors or authored sorry/axiom/unsafe/partial declarations.",
+    "accepted_named_theorems": [
+      "inverseCounts_nonneg",
+      "inverseCounts_eq_card",
+      "inverseCounts_pos_iff",
+      "row_sum_eq_action",
+      "transpose_eq_retained",
+      "transpose_budget",
+      "deficit_eq_omitted_positions",
+      "deficit_pos_iff"
+    ]
+  },
+  "dependency_objects_at_receipt_time": [
+    {
+      "module": "PscVerif.PhysicalMass",
+      "source_sha256": "6578043c87ca7da4be96673630ae5d2d2e2356a681b1b2401c39bd9e9b036a36",
+      "object_sha256": "3a48d753bb0c36ca757c8f7fda29be17e7e7deddf27df9a4eb489009772b7fb5",
+      "transitive_source_fingerprint": "6578043c87ca7da4be96673630ae5d2d2e2356a681b1b2401c39bd9e9b036a36"
+    },
+    {
+      "module": "PscVerif.OccurrenceMassCounts",
+      "source_sha256": "319649463bbf764279bfbeccaa2bae869325aa0afce9d58fdfa7e2dce3ba99d2",
+      "object_sha256": "b48a31e5dfa3f06679f881029e7cf7764d9797cd81f85057924d1f6158a299bb",
+      "transitive_source_fingerprint": "b08a7a6f477ba576eb332a410edfcc45d76e46714f67825b6dd97542b4bf9197"
+    },
+    {
+      "module": "PscVerif.Binomial",
+      "source_sha256": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
+      "object_sha256": "273d5129cfd23c70dbc398ab6efb74d180a7199212cc3c786738c82fff1d37be",
+      "transitive_source_fingerprint": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8"
+    },
+    {
+      "module": "PscVerif.Incidence",
+      "source_sha256": "b0c865d4177dac9485a2ddbd35201143ee3d263ad735af05785b077e1f6bd6ff",
+      "object_sha256": "ea87aedd8b415ed8224dff217cf5dbb6ba5b7018b3b1f39016481765e1a5db18",
+      "transitive_source_fingerprint": "f9797b22ff3952a49899188bbd70d545d4af18b749296b4b116be13a63c28c8d"
+    },
+    {
+      "module": "PscVerif.PerronCore",
+      "source_sha256": "1f06da1e0b57e74b31fc03d753bd314f25561a37e512b3a8f7f05fda0d75458c",
+      "object_sha256": "f2c8265f8b42bf0871fb9119c6df53413d6fbf3af677469eb2f7f50b3d43ac23",
+      "transitive_source_fingerprint": "1f06da1e0b57e74b31fc03d753bd314f25561a37e512b3a8f7f05fda0d75458c"
+    },
+    {
+      "module": "PscVerif.ConcentrationAlgebra",
+      "source_sha256": "301a1a13eca8a554d1313afc96e0a374dfc0774dfa8d2a2e8e60b97345c921b2",
+      "object_sha256": "2931e399735343ca88aee5b8bc06294232c119af6b8a2513505679947a9bc75e",
+      "transitive_source_fingerprint": "301a1a13eca8a554d1313afc96e0a374dfc0774dfa8d2a2e8e60b97345c921b2"
+    },
+    {
+      "module": "PscVerif.ParikhIntertwiner",
+      "source_sha256": "bc7120433f0c103c966fc6faf41407b969537fd0881971a5d36b98169b220d96",
+      "object_sha256": "93492da0888eb8f238abc0350dd2389274b62a2c74a3450cc7da1bfdf9d041e7",
+      "transitive_source_fingerprint": "42240630a2c2d5f5eb36854dccab82bbb5f7f2ab6d1ed33440fccd7ab11a4d92"
+    },
+    {
+      "module": "PscVerif.SignedCocycle",
+      "source_sha256": "eccc753e1656cc949db13d50ff8d97883f084fe18ab32ef70226cded35237e7e",
+      "object_sha256": "b9fa7e44aa13f2637594d3589885e2d6856c70b87a8461063638ed90e76f763e",
+      "transitive_source_fingerprint": "a8bb8d8e7f792980a3baf7f700acb7f87386bdbabe2f05d87e9427a5cb206fd0"
+    },
+    {
+      "module": "PscVerif.FixedPointLimit",
+      "source_sha256": "cd4a824f288d4c1072fd375e0e7b9014f56028e23e00cb4336fd678a210b7bbe",
+      "object_sha256": "388bb3d1d376a221306d95daf3a70aa2d348cd9f6465fd745ae395f7e39b9313",
+      "transitive_source_fingerprint": "c4a964face63c362960218dfe5801511e95cb57140b8cda43f219697ca08b498"
+    },
+    {
+      "module": "PscVerif.Reduction",
+      "source_sha256": "357fa49ab6991513e07f249b8a4d74caabad75f68db76ce501395b3a0af87d2d",
+      "object_sha256": "1825ad5c6eb0e7f379b93932b81d8fc3858a752a8091e47d9b833c1a2f1923ee",
+      "transitive_source_fingerprint": "500c4a826010059e66dcddfe0b6b987bf7698cea98c71f9ff20ad1b7bbbe20ac"
+    },
+    {
+      "module": "PscVerif.Descendants",
+      "source_sha256": "6641b65d81d90be34c13937b6ab8ebc029fcce91babd7c2ce398738dac783a40",
+      "object_sha256": "d09ddf7d9a327aba07c1a34c4897024261902435c1167dfb7020d56a160fe0e1",
+      "transitive_source_fingerprint": "eeff77a7995a43b0855f154516420d7eee76f22c2860e493117ac6b7c86070e8"
+    },
+    {
+      "module": "PscVerif.Cyclicity",
+      "source_sha256": "a31b77d0fcb06d1dcb582156679c7316d2847fab2ff9b06db2b998ca6effa770",
+      "object_sha256": "331daa591fbc502e7b83ab91c556b2a472cabe2619c8b5e3e3028f81a65a5363",
+      "transitive_source_fingerprint": "f2df3d1d6a05a9d5135947a78d58c1fc89011271db3b8c648392bf41a9f601ce"
+    },
+    {
+      "module": "PscVerif.OccurrenceNewborn",
+      "source_sha256": "7afaf823023d45cc6d1d4d9b6d08e2b3d6e74dce165d77174de86d7cd23dd1d0",
+      "object_sha256": "b6508dbd918452f9735a1860dc9531fdfd5459d44bb7e0ff00b24027e6e5ae83",
+      "transitive_source_fingerprint": "73160b2319d1dc3ac3f4f88efd5a3d93b62bfa3c31d55755082bdcb1d82c3e12"
+    },
+    {
+      "module": "PscVerif.OccurrenceAddress",
+      "source_sha256": "fd8d4020fc3f720c8a81d23c9811056802c901eec35a48efcbb40954c5a375ad",
+      "object_sha256": "d5cf22cdf0eb1e2ce717938c6dd594bef033be075537618fe0f10fba82e7f1d8",
+      "transitive_source_fingerprint": "c4acca192f2c2162fd3eb614e71e8f8fabed63667ec4bcae79a290b5b3c93c30"
+    },
+    {
+      "module": "PscVerif.OccurrenceTransport",
+      "source_sha256": "3ef9fcb7df8c395c36879b63933eb626f57437f1b813e03ad429148b47d09fe0",
+      "object_sha256": "97fe8840ceaa9ea5a1a8d77d5f98fd4581fe8530cf306605e4e224accfbe0b96",
+      "transitive_source_fingerprint": "c8aca6cec611c8602182e2b8e3490805e1245bf5dc00e7aa5cc140fd5c68cb78"
+    },
+    {
+      "module": "PscVerif.OccurrenceFinite",
+      "source_sha256": "65ef11444d2f03c9a49febf9a859eb8d48bd8dd0e1a37fd972c47935526b48a0",
+      "object_sha256": "ae0a397b2bce562a09308cf6e86737a00b984f6c317c08647f672db795ea1aa9",
+      "transitive_source_fingerprint": "40961445a1dd5b40259b99e20853d67c5895daec85862cff5d0b9bfc07247485"
+    },
+    {
+      "module": "PscVerif.OccurrenceSuccessor",
+      "source_sha256": "103e3cb42b93b234c593f46bf2d53426b198248e33408461e9c05fd3ce8c6f33",
+      "object_sha256": "5d64dab0a92a7f868ffae0c1d7173b0ee4bc1e58ce9fd45f1f16196acd041f73",
+      "transitive_source_fingerprint": "17c9be500b688a43501be51d49a06b381f4efd48595606a647c781150f6bd233"
+    },
+    {
+      "module": "PscVerif.OccurrenceMass",
+      "source_sha256": "dd68bb8c196a146aab302cbd7e86a3ea40ed3d6980fa77ab740c5a0e94c57d13",
+      "object_sha256": "da73ba6f180ca77ee3a70964778db950476390a6e7c79420298a64d0f1b85cd6",
+      "transitive_source_fingerprint": "b21a31bd3646070b6cab5f4145a97ac0a159bab58984c9d6464981f947459c6c"
+    },
+    {
+      "module": "PscVerif.OccurrenceInverse",
+      "source_sha256": "f31fded6a56a9e7c9b67050319d766e5967ed431716ebb89f192caead73d5605",
+      "object_sha256": "038f4aa87498a156ec7fba4ea89d348446000b410d9f1c107902c2d7d3025e2e",
+      "transitive_source_fingerprint": "09d1edf827b1b5f80fcb86f3d8a97513efb110ad199c6dfde8883d21de840f78"
+    },
+    {
+      "module": "PscVerif.OccurrencePhysicalBudget",
+      "source_sha256": "2b1ab3d3ac6477c4bd0c81ff00445934944c05958428dd6748e89dbe0ce5d21c",
+      "object_sha256": "0ea1d564af66feca2a07bf700872024781dc57af89626152308c95837f3c4400",
+      "transitive_source_fingerprint": "567af32d94a785e64fa589ef542d10183e40f7da4f7d08fdd86d1aaa9f550e61"
+    }
+  ],
+  "non_canonical_boundary": [
+    "This receipt binds the stated source hash and development object closure, not a complete repository commit or integration tree.",
+    "It is not tools/check_lean.sh clean-cache acceptance, a complete compiled axiom audit, or hosted CI acceptance.",
+    "Source-matching preexisting dependency objects were allowed for development; the clean hosted exact-revision gate remains required.",
+    "The generic counting and budget lemmas do not supply an authenticated geometric cover, a positive loss certificate, positive compact overlap measure, or C4/PSC closure."
+  ]
+}

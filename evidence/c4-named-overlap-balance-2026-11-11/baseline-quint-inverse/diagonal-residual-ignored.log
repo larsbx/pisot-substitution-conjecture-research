@@ -1,0 +1,23 @@
+
+  C4InverseOccurrence
+    1) scalarZeroIsNotFixedTest failed after 1 test(s)
+
+  1 failed
+
+  1) scalarZeroIsNotFixedTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-c4-inverse-occurrence-d4m1ygpc/diagonal-residual-ignored.qnt:188:34
+        188:   run scalarZeroIsNotFixedTest = init.expect({
+                                              ^^^^^^^^^^^^^
+        189:     val p = (0, 0, (1, -1, 0))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        190:     all { dot(lengths, p._3) == 0, mass(p, lengths) == 1, not(diagonal(p)), swap(p) != p }
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        191:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f6 --match=scalarZeroIsNotFixedTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-c4-inverse-occurrence-d4m1ygpc/diagonal-residual-ignored.qnt
+error: Tests failed

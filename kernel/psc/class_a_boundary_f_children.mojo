@@ -1,6 +1,5 @@
 """Eight F/Z/E3/G2 stars; every direct F child has a short typed tail."""
-from finite_exact.checked_int import checked_add, checked_sub
-from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, member_transport, verify_member_edge
+from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, verify_member_edge
 from psc.class_a_boundary_u_children import reverse_label
 from psc.class_a_boundary_h5_children import certify_h5_children
 from psc.class_a_boundary_p_children import p_source, p_path
@@ -12,6 +11,7 @@ from psc.class_a_boundary_occurrences import symbolic_child, _equal3, _prefix, F
 from psc.class_a_boundary_signs import chamber_parameters, _cone_positive
 from psc.param_poly import QX, qx_const, qx_add, qx_sub, qx_neg, tp_add, tp_sub, tp_mul, tp_scale, tp_mod_monic
 from psc.overlap_seed_patch import SeedOverlapTables
+from psc.class_a_boundary_family import BoundaryFamily, boundary_dimensions, append_child, verify_child_packet
 
 
 def f_source(kind: Int) raises -> BoundaryLabel:
@@ -155,10 +155,7 @@ def certify_f_children(corrupt: Bool=False) raises:
 
 def _dimensions(kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int,Int,Int]:
     _=f_source(kind)
-    var p=_parameters(-1,k,t)
-    var A=checked_add(p[0],p[1])
-    _=checked_add(A,12)
-    return(p[0],p[1],A,p[0]-1)
+    return boundary_dimensions(k,t,12)
 
 
 def f_child_allowed(kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:
@@ -252,16 +249,20 @@ def in_f_image(w: BoundaryLabel) raises -> Bool:
     return _in_base(w) or _in_base(reverse_label(w))
 
 
+@fieldwise_init
+struct FChildren(BoundaryFamily):
+    def name(self) -> String:return "F"
+    def source(self,kind: Int) raises -> BoundaryLabel:return f_source(kind)
+    def parameters(self,kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int]:
+        var p=_dimensions(kind,k,t)
+        return (p[0],p[1])
+    def swapped(self,kind: Int) -> Bool:return kind%2==1
+    def allowed(self,kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:return f_child_allowed(kind,k,t,i,j)
+    def in_image(self,w: BoundaryLabel) raises -> Bool:return in_f_image(w)
+
+
 def _append(mut out: List[BoundaryEdge],kind: Int,k: Int,t: Int,i: Int,j: Int) raises:
-    var p=_dimensions(kind,k,t)
-    var a=j if kind%2==1 else i
-    var b=i if kind%2==1 else j
-    if not f_child_allowed(kind,k,t,a,b):
-        raise Error("synthesized F-family guard failed")
-    var target=member_transport(-1,k,p[0],p[1],f_source(kind),a,b)
-    if not in_f_image(target):
-        raise Error("F-family target escaped envelope")
-    out.append(BoundaryEdge(a,b,target))
+    append_child(FChildren(),out,kind,k,t,i,j)
 
 
 def f_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
@@ -308,10 +309,7 @@ def f_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
 
 
 def verify_f_packet(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,edge: BoundaryEdge) raises:
-    var p=_dimensions(kind,k,t)
-    if not f_child_allowed(kind,k,t,edge.i,edge.j) or not in_f_image(edge.target):
-        raise Error("F-family packet refused")
-    verify_member_edge(tables,-1,k,p[0],p[1],f_source(kind),edge.i,edge.j,edge.target)
+    verify_child_packet(FChildren(),tables,kind,k,t,edge)
 
 
 def _orient(mut out: List[BoundaryEdge],flip: Int,i: Int,j: Int,w: BoundaryLabel) raises:

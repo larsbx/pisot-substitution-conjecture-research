@@ -1,8 +1,34 @@
 # Proof ladder
 
+## November 14 priority: existence of a BH escape
+
+The [BH escape roadmap](bh-escape-roadmap-2026-11-14.md) records the current
+mathematical priority and source-specific acceptance, including the unmerged
+#573 family result and #574 conditional finite-carrier/A1′ continuation.
+Their family and conditional scopes leave universal BH and A1′ open.
+
+The next concrete target is [#452](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/452):
+every required nonzero cyclic seed-reachable state in minus Class A must
+reach the classified zero-return predecessor segments by actual occurrence
+edges. Coverage and selected escape are separate obligations. Existing
+occurrence decoding and finite path lifting already compose a supplied legal
+path; the missing universal argument forces a successful path to exist.
+BH ends at zero **integral** displacement, allowing unequal terminal letters.
+
+Run residual one-sided A1′ in parallel through the prescribed fixed-hub pair
+and same-position proximality. Once both universal premises hold, use the
+existing #84 assembly for the ternary PIP regime, including nonunits.
+The all-alphabet extension and the internal Lean spectral implication remain
+separate. A finite maximum hitting depth requires coverage and hits throughout
+the relevant seed graph, including transient sources; graph finiteness alone
+does not bound balanced factors. C4's strict-system exclusion and its required
+finite-carrier extraction remain separate obligations.
+
+Earlier dated reconciliations below retain their historical scope and receipts.
+
 ## November 2 C4/BH/finite-quotient scope reconciliation
 
-The live [November 2 completion ledger](completion-ledger-2026-11-02.md)
+The [November 2 completion ledger](completion-ledger-2026-11-02.md)
 records scoped Class-B/C certificates and the Class-A finite completeness
 addition without promoting universal BH. The
 [C4 ordered-word completion interface](c4-ordered-word-completion-interface-2026-11-02.md)

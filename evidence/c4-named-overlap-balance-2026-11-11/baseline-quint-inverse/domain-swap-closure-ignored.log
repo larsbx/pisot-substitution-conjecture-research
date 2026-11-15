@@ -1,0 +1,25 @@
+
+  C4InverseOccurrence
+    1) nonSwapClosedDomainCountercontrolTest failed after 1 test(s)
+
+  1 failed
+
+  1) nonSwapClosedDomainCountercontrolTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-c4-inverse-occurrence-d4m1ygpc/domain-swap-closure-ignored.qnt:264:47
+        264:   run nonSwapClosedDomainCountercontrolTest = init.expect({
+                                                           ^^^^^^^^^^^^^
+        265:     val ps = List(mixedStates[0], mixedStates[2])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        266:     val es = actualEdges(mixedSigma, ps)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        267:     all { not(swapClosed(ps)), not(edgeSwapClosed(es)), weight(ps, mixedStates[0]) == 1 }
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        268:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f6 --match=nonSwapClosedDomainCountercontrolTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-c4-inverse-occurrence-d4m1ygpc/domain-swap-closure-ignored.qnt
+error: Tests failed

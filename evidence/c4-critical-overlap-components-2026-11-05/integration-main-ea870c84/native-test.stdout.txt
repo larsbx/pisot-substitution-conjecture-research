@@ -1,0 +1,2 @@
+[PASS] complete SCC polynomial exclusions, verified spectral witnesses, safe zero propagation and refusal controls
+contract-receipt: Authenticated complete paired-overlap SCC partitions, all twelve new-source modular certificates without old weight inputs, positive spectral witness checks, incoming-equation preservation and bounded inconclusive refusals

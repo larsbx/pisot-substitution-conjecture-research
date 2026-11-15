@@ -1,0 +1,201 @@
+{
+  "schema": "c4-archived-payload-artifact-inspection-v1",
+  "status": "passed",
+  "scope": "artifact inspection, not fresh kernel acceptance",
+  "fresh_lean_or_mojo_execution": false,
+  "fresh_complete_oracle_reconstruction": false,
+  "immutable_revision": "249a71b0330401ada5adbff7d9cd280bf0d7530f",
+  "immutable_tree": "97b54a6fdccb9a1828be815c2718fbcc5bc67960",
+  "hosted_run_status_from_supplied_metadata": {
+    "id": 43175356240,
+    "head_sha": "249a71b0330401ada5adbff7d9cd280bf0d7530f",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "provider_artifact_metadata_supplied": true,
+  "provider_digest_verified": true,
+  "provider_digest_absence": null,
+  "provider_artifact_id": 13929993392,
+  "zip": {
+    "bytes": 19222973,
+    "sha256": "e4e8ed4e5ed77385dbfce4a6b770c4b070fd4e1b2312ef2fa20102b4dfd317d1",
+    "files": 30,
+    "safe_paths_and_no_duplicates": true
+  },
+  "source_sha256_bound_to_immutable_commit": {
+    "proof/PscVerif/PscVerif/NamedArchivedDigits.lean": "12059a52f4598c316a42f64cadf269cdd716853a785bc1189023207689124775",
+    "proof/PscVerif/PscVerif/ArchivedPayload.lean": "38d3b2270c15baae23f36be3a7c369dcaab4255b26d5db6a00ed32ef084afe8d",
+    "proof/PscVerif/PscVerif/ArchivedPayloadConsumer.lean": "39768a54a2c022ef460e08dbd1879177fdf598bb8645702233264738ddf43e49",
+    "proof/PscVerif/PscVerif/ArchivedPayloadEmit.lean": "3d56413774e33215a1fb507ca418f08b4d048b3986c2c309a9cc9d626a15a6e3",
+    "kernel/psc/c4_archived_payload.mojo": "1e9eb8f5b4178f6bd228d6dc72ea0eebafbf1483f0e94d9be5dd26ce65738318",
+    "kernel/c4_archived_lean_export.mojo": "94ff2d5f27d023290378f86ea343875d242b6cea5b96b6d0bb719a90e33bb87a",
+    "oracles/python/c4_archived_payload.py": "b61b9564b1d783c1f4fc739cd19fa65c104e17857fa64c4de5ce4252758aaced",
+    "tools/replay_archived_payload_lean.py": "76bdcb833a3c91204c614ebf56b30c05e72e855f0cea5871d1c207242ac5c08a",
+    "tools/check_lean.sh": "eb63ce6fb0b837eee1208b3d47e759bcf8b3617b1374685a8850e48f283cba8d",
+    "evidence/c4-pair-overlap-graph-2026-11-05/receipt.json": "6c33772304f677a1d90e1674e6064dfb6b055fcdd370557350426162f6785dda",
+    "evidence/c4-archived-graph-refinement-2026-11-11/native-oracle/receipt.json": "387a52096b0f33b8dde0a72ffdd2f71f2b7e01b1f4fbad0b4fa7a76a4033bca3"
+  },
+  "validator_and_reference_source_sha256": {
+    "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
+    "proof/proof-bank.json": "7d427cf943b647149869642dc13960760a04cd5889db4529fc9a380ddafe8831",
+    "tools/make_proof_bank.py": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8",
+    "oracles/python/c4_archived_graph_refinement.py": "221b14e443af240171d4c57ed0e836e7e234ab82dd17550d3dcf5981e1958e00",
+    "oracles/python/c4_pair_overlap_graph.py": "118297f5549b603a48100828f24e24b51e7d561a93df3283b010a213b338ee2f",
+    "tests/fixtures/c4_archived_bad_binding.lean": "646e9688690675671a7534c363fff3afca28d0148ee1cb24de781b75e4de5a28",
+    ".github/workflows/c4-archived-payload-lean.yml": "747e633654a85ab1eaa20e2f965a77035c56ae8176ce2262e53a9e7b4a41dd7c",
+    "pyproject.toml": "22ed319e1c803b211c23ecbd4fd3b696b5f42e90f56cf49045ca13fde41751c7",
+    "tests/test_c4_archived_payload_oracle.py": "364758b50997e84afc26e66fb2f474d2a186f3ffcff22c8be2efbc9e15a847d9"
+  },
+  "concrete_sources": [
+    {
+      "fixture": 0,
+      "declarations": 1799,
+      "theorem_declarations": 776,
+      "lean_sha256": "c49f74c45bcfac6ef4b29798b5d2825aebcca868359b705c66bc91008a1014b8",
+      "auditor_sha256": "dd5951ce47fe351857784bac13e2ff1093074a0f8a41a2b59f12e888df764165",
+      "audit_sha256": "b1d3a4a9929ed0db7e23cff9ec6b353b6346fb0040724a43a32526f7fdc07181",
+      "observed_transitive_axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "compiled_object_bytes": 32200064,
+      "compiled_object_sha256": "6bc5752e4151d31e30923d50dae4b1405d42726c9ffa00cb907a886b7c708b50",
+      "compiled_object_executed_by_inspection": false,
+      "hosted_generation_compile_audit_seconds": 1025.68,
+      "audit_log_identical_to_local": true
+    },
+    {
+      "fixture": 1,
+      "declarations": 1799,
+      "theorem_declarations": 776,
+      "lean_sha256": "a2a496783dd875ea76f5bf90998ba469233e1e742cc695417c5f5de51b3ef17d",
+      "auditor_sha256": "6fbbc908164621f1b5444e5e7320c210993a8e976b70ad4f7f595d3a3227bcd4",
+      "audit_sha256": "d33b20b57051d9b382987837c8f8031ec7d4251f4cf93d2737d57bc7ba60a55a",
+      "observed_transitive_axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "compiled_object_bytes": 31916648,
+      "compiled_object_sha256": "315fbea2a1b7f943271d61d98b4ab9559a23d802b950188ca1a6994f01b7469f",
+      "compiled_object_executed_by_inspection": false,
+      "hosted_generation_compile_audit_seconds": 940.468,
+      "audit_log_identical_to_local": true
+    }
+  ],
+  "complete_payload_comparisons": {
+    "hosted_lean_payload": {
+      "identical": true,
+      "bytes": 3908423,
+      "sha256": "447d58d811359235d1f4689433500494ae14724b89b5da91f429e7e7247beaca"
+    },
+    "hosted_native_payload": {
+      "identical": true,
+      "bytes": 3908423,
+      "sha256": "447d58d811359235d1f4689433500494ae14724b89b5da91f429e7e7247beaca"
+    },
+    "successful_local_lean_payload": {
+      "identical": true,
+      "bytes": 3908423,
+      "sha256": "447d58d811359235d1f4689433500494ae14724b89b5da91f429e7e7247beaca"
+    },
+    "successful_local_native_payload": {
+      "identical": true,
+      "bytes": 3908423,
+      "sha256": "447d58d811359235d1f4689433500494ae14724b89b5da91f429e7e7247beaca"
+    }
+  },
+  "fixture_digests": [
+    {
+      "addressed_packet_sha256": "e960043f7481993fd56d7ac3976f119e132e00d5762bdcb78b8a061557ecfe8c",
+      "fixture": 0,
+      "historical_graph_sha256": "23f85af92c327a64f70983db990753a84cd1489e3c72c3047e51f14e97afce6e",
+      "lookup_nodes": 7150,
+      "maximum_rooted_inverse_depth": 13,
+      "ordered_lift_positions": 69652,
+      "packed_rows": 7150,
+      "positional_edges": 34826,
+      "radii": [
+        16,
+        8
+      ],
+      "rate": "99/20",
+      "sigma": [
+        "1",
+        "021",
+        "001"
+      ],
+      "states": 7150,
+      "digests_recomputed_from_emitted_data": true
+    },
+    {
+      "addressed_packet_sha256": "915126ff282c0b1347c4518c57b7b7e350ebaaf1c6838c56776e6a12bdc61bc9",
+      "fixture": 1,
+      "historical_graph_sha256": "a63d544b25b5f7146abbd25f1960fed77f85584a1f20957b5869bea30b389256",
+      "lookup_nodes": 7083,
+      "maximum_rooted_inverse_depth": 13,
+      "ordered_lift_positions": 69706,
+      "packed_rows": 7083,
+      "positional_edges": 34853,
+      "radii": [
+        16,
+        8
+      ],
+      "rate": "101/20",
+      "sigma": [
+        "1",
+        "012",
+        "001"
+      ],
+      "states": 7083,
+      "digests_recomputed_from_emitted_data": true
+    }
+  ],
+  "oracle_negative_controls": {
+    "0": 16,
+    "1": 16
+  },
+  "oracle_pytest_completion": {
+    "format": "exact canonical double-quiet eight-dot completion",
+    "log_bytes": 80,
+    "log_sha256": "06955fb47f16312e5d13266c774a2aa4648c46e423cbe6564a92e25b68e39131",
+    "static_collection_cases": {
+      "test_original_graph_fields_addresses_weights_and_lookup": 2,
+      "test_independent_exact_field_calibrations_keep_parallel_positions": 1,
+      "test_observed_complete_payload_negative_controls": 2,
+      "test_complete_native_packet_and_single_fixture_scope": 1,
+      "test_parser_refuses_omitted_duplicate_or_cross_source_records": 1,
+      "test_python_optimization_cannot_admit_truncated_payload": 1
+    },
+    "total_cases": 8,
+    "pyproject_sha256": "22ed319e1c803b211c23ecbd4fd3b696b5f42e90f56cf49045ca13fde41751c7",
+    "test_source_sha256": "364758b50997e84afc26e66fb2f474d2a186f3ffcff22c8be2efbc9e15a847d9",
+    "workflow_sha256": "747e633654a85ab1eaa20e2f965a77035c56ae8176ce2262e53a9e7b4a41dd7c",
+    "provider_job": 131038172377,
+    "provider_run_attempt": 1,
+    "provider_step": 9,
+    "provider_step_conclusion": "success",
+    "full_inspection_or_kernel_acceptance_supplied_by_this_format_check": false
+  },
+  "native_field_refusals": 9,
+  "native_semantic_refusals": 18,
+  "negative_proof_type_fixture": {
+    "fixture_compiles": true,
+    "typed_import_refuses": true,
+    "reason": "right-name declarations prove True instead of the required checked propositions",
+    "fixture_sha256": "646e9688690675671a7534c363fff3afca28d0148ee1cb24de781b75e4de5a28"
+  },
+  "full_bank_log_validation": {
+    "validator": "249a71b0330401ada5adbff7d9cd280bf0d7530f:tools/make_proof_bank.py:check_audit",
+    "declarations": 6537,
+    "theorems": 4774,
+    "expected_named_proofs_reached": 2633,
+    "audit_log_sha256": "79f811d9c62f17fb4b87ffe57123b3e8797c3fd0e709433fdd74d0a1e01dc7ac"
+  },
+  "exporter_binary_rehashed": false,
+  "exporter_binary_note": "workflow artifact does not include the exporter binary; its receipt hash is not rehashed here",
+  "mathematical_scope": "original sharp-box rooted inverse ancestry; no all-strict-packet or positivity claim",
+  "no_C4_or_general_PSC_promotion": true,
+  "inspection_helper_sha256": "274f99662e31c0fc93f674a226dd7034a06a6cf25777c678b4654306cf65a8ab"
+}

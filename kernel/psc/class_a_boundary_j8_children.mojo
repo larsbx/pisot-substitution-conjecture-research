@@ -2,9 +2,7 @@
 
 Conditional image/helper tails never become full-cone uniform interfaces.
 """
-from finite_exact.checked_int import checked_add, checked_mul
-from std.collections import Dict
-from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, member_transport, verify_member_edge
+from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, member_transport
 from psc.class_a_boundary_u_children import reverse_label
 from psc.class_a_boundary_d0_children import certify_d0_children, d0_star_interface, d0_exit_interface
 from psc.class_a_boundary_e7_children import e7_source, verify_e7_steps
@@ -15,12 +13,12 @@ from psc.class_a_boundary_p_children import p_source, p_path
 from psc.class_a_boundary_p3_children import p3_source, p3_path
 from psc.class_a_boundary_e_children import eh_source, short_eh_path, _offset
 from psc.class_a_boundary_y4_children import _reverse_steps
-from psc.class_a_boundary_next_run import _parameters
 from psc.class_a_boundary_next_first import _linear, _cubic, _equal
 from psc.class_a_boundary_occurrences import symbolic_child, _equal3, _prefix, _child, FIRST, RUN, LAST
 from psc.class_a_boundary_signs import chamber_parameters
 from psc.param_poly import QX, qx_const, qx_add, qx_sub, qx_neg, tp_add, tp_sub, tp_mul, tp_scale, tp_mod_monic
 from psc.overlap_seed_patch import SeedOverlapTables
+from psc.class_a_boundary_family import BoundaryFamily, boundary_dimensions, append_child, verify_child_packet, verify_child_star, extend_edges
 
 
 def j8_source(kind: Int) raises -> BoundaryLabel:
@@ -168,10 +166,7 @@ def certify_j8_children(corrupt: Bool=False) raises:
 
 def _dimensions(kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int,Int,Int]:
     _=j8_source(kind)
-    var p=_parameters(-1,k,t)
-    var A=checked_add(p[0],p[1])
-    _=checked_add(A,20)
-    return(p[0],p[1],A,p[0]-1)
+    return boundary_dimensions(k,t,20)
 
 
 def j8_child_allowed(kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:
@@ -205,14 +200,20 @@ def in_j8_image(w: BoundaryLabel) raises -> Bool:
     return z.top==1 and z.bottom==2 and z.x == -1 and z.y>=5 and z.y<=7
 
 
+@fieldwise_init
+struct J8Children(BoundaryFamily):
+    def name(self) -> String:return "J8"
+    def source(self,kind: Int) raises -> BoundaryLabel:return j8_source(kind)
+    def parameters(self,kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int]:
+        var p=_dimensions(kind,k,t)
+        return (p[0],p[1])
+    def swapped(self,kind: Int) -> Bool:return kind!=0
+    def allowed(self,kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:return j8_child_allowed(kind,k,t,i,j)
+    def in_image(self,w: BoundaryLabel) raises -> Bool:return in_j8_image(w)
+
+
 def _append(mut out: List[BoundaryEdge],kind: Int,k: Int,t: Int,i: Int,j: Int) raises:
-    var p=_dimensions(kind,k,t)
-    var a=i if kind==0 else j
-    var b=j if kind==0 else i
-    if not j8_child_allowed(kind,k,t,a,b):raise Error("synthesized J8 guard failed")
-    var target=member_transport(-1,k,p[0],p[1],j8_source(kind),a,b)
-    if not in_j8_image(target):raise Error("J8 target escaped image")
-    out.append(BoundaryEdge(a,b,target))
+    append_child(J8Children(),out,kind,k,t,i,j)
 
 
 def j8_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
@@ -228,25 +229,12 @@ def j8_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
 
 
 def verify_j8_packet(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,edge: BoundaryEdge) raises:
-    var p=_dimensions(kind,k,t)
-    if not j8_child_allowed(kind,k,t,edge.i,edge.j) or not in_j8_image(edge.target):raise Error("J8 packet refused")
-    verify_member_edge(tables,-1,k,p[0],p[1],j8_source(kind),edge.i,edge.j,edge.target)
+    verify_child_packet(J8Children(),tables,kind,k,t,edge)
 
 
 def verify_j8_star(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,edges: List[BoundaryEdge]) raises:
     var p=_dimensions(kind,k,t)
-    if len(edges)!=2*p[0]+3+(1 if k==0 else 0):raise Error("incomplete J8 indexed star")
-    var stride=checked_add(p[2] if kind==0 else p[3],2)
-    var seen=Dict[Int,Bool]()
-    for edge in edges:
-        verify_j8_packet(tables,kind,k,t,edge)
-        var key=checked_add(checked_mul(edge.i,stride),edge.j)
-        if key in seen:raise Error("duplicate J8 occurrence")
-        seen[key]=True
-
-
-def _extend(mut out: List[BoundaryEdge],suffix: List[BoundaryEdge]):
-    for edge in suffix:out.append(edge)
+    verify_child_star(J8Children(),tables,kind,k,t,edges,2*p[0]+3+(1 if k==0 else 0))
 
 
 def j8_path(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
@@ -259,48 +247,48 @@ def j8_path(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
     var out=List[BoundaryEdge]()
     if group==0:
         out.append(BoundaryEdge(0,2 if k==0 else k,r4_source(10 if k==0 else 4)))
-        _extend(out,r4_path(10 if k==0 else 4,k,t))
+        extend_edges(out,r4_path(10 if k==0 else 4,k,t))
     elif group==1:
         out.append(BoundaryEdge(0,d+4,p3_source(5 if n==3 else 3)))
-        _extend(out,p3_path(5 if n==3 else 3,k,t))
+        extend_edges(out,p3_path(5 if n==3 else 3,k,t))
     elif group==2:
         return chain_path(7-kind%2,k,t)
     elif group==3:
         out.append(BoundaryEdge(0,n if k==0 else t+3,j8_source(14) if k==0 else chain_source(5)))
-        _extend(out,j8_path(14,k,t) if k==0 else chain_path(5,k,t))
+        extend_edges(out,j8_path(14,k,t) if k==0 else chain_path(5,k,t))
     elif group==4:
         out.append(BoundaryEdge(k+1,0,j8_source(16)))
-        _extend(out,j8_path(16,k,t))
+        extend_edges(out,j8_path(16,k,t))
     elif group==5:
         if k<=1:
             out.append(BoundaryEdge(0,n,j8_source(18 if k==0 else 24)))
-            _extend(out,j8_path(18 if k==0 else 24,k,t))
+            extend_edges(out,j8_path(18 if k==0 else 24,k,t))
         else:
             out.append(BoundaryEdge(1,t+4,p_source(3)))
-            _extend(out,p_path(3,k,t))
+            extend_edges(out,p_path(3,k,t))
     elif group==6:
         out.append(BoundaryEdge(k+1,0,j8_source(0)))
-        _extend(out,j8_path(0,k,t))
+        extend_edges(out,j8_path(0,k,t))
     elif group==7:
         out.append(BoundaryEdge(0,k+1,b4_source(4)))
-        _extend(out,b4_path(4,k,t))
+        extend_edges(out,b4_path(4,k,t))
     elif group==8:
         return r4_path(11-kind%2,k,t)
     elif group==9:
         out.append(BoundaryEdge(1,k+2,j8_source(6)))
-        _extend(out,j8_path(6,k,t))
+        extend_edges(out,j8_path(6,k,t))
     elif group==10:
         out.append(BoundaryEdge(2*n,0,chain_source(2)))
-        _extend(out,chain_path(2,k,t))
+        extend_edges(out,chain_path(2,k,t))
     elif group==11:
         out.append(BoundaryEdge(p[2]+1,0,j8_source(20)))
-        _extend(out,j8_path(20,k,t))
+        extend_edges(out,j8_path(20,k,t))
     elif group==12:
         out.append(BoundaryEdge(t+4,1,p_source(7)))
-        _extend(out,p_path(7,k,t))
+        extend_edges(out,p_path(7,k,t))
     else:
         out.append(BoundaryEdge(n+1,0,j8_source(22)))
-        _extend(out,j8_path(22,k,t))
+        extend_edges(out,j8_path(22,k,t))
     if kind%2==1:_reverse_steps(out)
     return out^
 
@@ -320,7 +308,7 @@ def j8_walk(kind: Int,k: Int,t: Int,edge: BoundaryEdge) raises -> List[BoundaryE
     var p=_dimensions(kind,k,t)
     if not j8_child_allowed(kind,k,t,edge.i,edge.j) or member_transport(-1,k,p[0],p[1],j8_source(kind),edge.i,edge.j)!=edge.target:raise Error("wrong J8 first indexed packet")
     var out: List[BoundaryEdge]=[edge]
-    _extend(out,j8_child_tail(edge.target,k,t))
+    extend_edges(out,j8_child_tail(edge.target,k,t))
     return out^
 
 

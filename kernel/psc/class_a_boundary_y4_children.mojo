@@ -2,8 +2,6 @@
 
 No forward closure or global BH. Derivation: docs/class-a-boundary-y4-carrier-2026-10-28.md.
 """
-from finite_exact.checked_int import checked_add, checked_mul
-from std.collections import Dict
 from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, member_transport, verify_member_edge
 from psc.class_a_boundary_u_children import reverse_label
 from psc.class_a_boundary_r4_children import certify_r4_children, r4_source, r4_path, r4_star_interface, r4_exit_interface, _image, _transition
@@ -13,12 +11,12 @@ from psc.class_a_boundary_p3_children import p3_source
 from psc.class_a_boundary_p_children import p_source, p_path
 from psc.class_a_boundary_w_children import minus_seed_path
 from psc.class_a_boundary_e_children import _offset
-from psc.class_a_boundary_next_run import _parameters
 from psc.class_a_boundary_next_first import _linear, _cubic, _equal
 from psc.class_a_boundary_occurrences import symbolic_child, _equal3, _prefix, _child, FIRST, RUN, LAST
 from psc.class_a_boundary_signs import chamber_parameters, _cone_positive, _cone_nonnegative
 from psc.param_poly import QX, qx_const, qx_add, qx_sub, qx_neg, tp_add, tp_sub, tp_mul, tp_scale, tp_mod_monic
 from psc.overlap_seed_patch import SeedOverlapTables
+from psc.class_a_boundary_family import BoundaryFamily, boundary_dimensions, append_child, verify_child_packet, verify_child_star
 
 
 def y4_source(kind: Int) raises -> BoundaryLabel:
@@ -170,10 +168,7 @@ def certify_y4_children(corrupt: Bool=False) raises:
 
 def _dimensions(kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int,Int,Int]:
     _=y4_source(kind)
-    var p=_parameters(-1,k,t)
-    var A=checked_add(p[0],p[1])
-    _=checked_add(A,12)
-    return(p[0],p[1],A,p[0]-1)
+    return boundary_dimensions(k,t,12)
 
 
 def y4_child_allowed(kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:
@@ -220,16 +215,20 @@ def in_y4_image(w: BoundaryLabel) raises -> Bool:
     return z==y4_source(4)
 
 
+@fieldwise_init
+struct Y4Children(BoundaryFamily):
+    def name(self) -> String:return "Y4"
+    def source(self,kind: Int) raises -> BoundaryLabel:return y4_source(kind)
+    def parameters(self,kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int]:
+        var p=_dimensions(kind,k,t)
+        return (p[0],p[1])
+    def swapped(self,kind: Int) -> Bool:return kind!=0
+    def allowed(self,kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:return y4_child_allowed(kind,k,t,i,j)
+    def in_image(self,w: BoundaryLabel) raises -> Bool:return in_y4_image(w)
+
+
 def _append(mut out: List[BoundaryEdge],kind: Int,k: Int,t: Int,i: Int,j: Int) raises:
-    var p=_dimensions(kind,k,t)
-    var a=i if kind==0 else j
-    var b=j if kind==0 else i
-    if not y4_child_allowed(kind,k,t,a,b):
-        raise Error("synthesized Y4 guard failed")
-    var target=member_transport(-1,k,p[0],p[1],y4_source(kind),a,b)
-    if not in_y4_image(target):
-        raise Error("Y4 target escaped exact image")
-    out.append(BoundaryEdge(a,b,target))
+    append_child(Y4Children(),out,kind,k,t,i,j)
 
 
 def y4_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
@@ -251,24 +250,13 @@ def y4_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
 
 
 def verify_y4_packet(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,edge: BoundaryEdge) raises:
-    var p=_dimensions(kind,k,t)
-    if not y4_child_allowed(kind,k,t,edge.i,edge.j) or not in_y4_image(edge.target):
-        raise Error("Y4 packet refused")
-    verify_member_edge(tables,-1,k,p[0],p[1],y4_source(kind),edge.i,edge.j,edge.target)
+    verify_child_packet(Y4Children(),tables,kind,k,t,edge)
 
 
 def verify_y4_star(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,edges: List[BoundaryEdge]) raises:
     var p=_dimensions(kind,k,t)
-    if kind>=2 or len(edges)!=2*p[0]+2:
-        raise Error("incomplete Y4 indexed star or unsupported companion star")
-    var stride=checked_add(p[3] if kind==0 else p[2],2)
-    var seen=Dict[Int,Bool]()
-    for edge in edges:
-        verify_y4_packet(tables,kind,k,t,edge)
-        var key=checked_add(checked_mul(edge.i,stride),edge.j)
-        if key in seen:
-            raise Error("duplicate Y4 occurrence")
-        seen[key]=True
+    if kind>=2:raise Error("unsupported Y4 companion star")
+    verify_child_star(Y4Children(),tables,kind,k,t,edges,2*p[0]+2)
 
 
 def _reverse_steps(mut steps: List[BoundaryEdge]) raises:

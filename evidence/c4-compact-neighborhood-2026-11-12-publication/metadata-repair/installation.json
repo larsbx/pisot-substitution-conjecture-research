@@ -1,0 +1,18 @@
+{
+  "schema": "c4-compact-evidence-installation-v1",
+  "source_revision": "6915e8d592b7ea5cb7c6950249811e354dc6c3e7",
+  "installed_packet_files": 56,
+  "historical_checksum_repairs": [
+    {
+      "packet": "c4-cut-prefix-embedding-2026-11-12",
+      "original_files_preserved": 74,
+      "new_checksum_sha256": "5d7c3efd402a17b38172276c3203bd786882222c1a08def39a8381d78f08d9ca"
+    },
+    {
+      "packet": "c4-cut-prefix-embedding-2026-11-12-publication",
+      "original_files_preserved": 4,
+      "new_checksum_sha256": "907a31f7a38f00c2a6b1ee29b5a1507edfe4633e4b0054b799e42914932f4461"
+    }
+  ],
+  "scope": "Archive copy and two checksum metadata additions only; all original historical record bytes preserved."
+}

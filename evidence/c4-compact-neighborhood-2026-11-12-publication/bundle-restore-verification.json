@@ -1,0 +1,104 @@
+{
+  "base_commit": "bdf033f647f73f911a47260e8bdad5f2e96f3c7a",
+  "base_fetch_depth": 1,
+  "changed_blob_bytes_equal": true,
+  "checked_changed_blob_count": 64,
+  "commands": [
+    {
+      "command": [
+        "git",
+        "init",
+        "--quiet"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "git",
+        "fetch",
+        "--quiet",
+        "--depth=1",
+        "--no-tags",
+        "/workspace/scratch/f96c28a561ad/psc-compact",
+        "bdf033f647f73f911a47260e8bdad5f2e96f3c7a"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "git",
+        "bundle",
+        "verify",
+        "/workspace/scratch/f96c28a561ad/compact-publication-staging-azmby2uo/compact-original-commits.bundle"
+      ],
+      "exit_code": 0,
+      "stderr": "/workspace/scratch/f96c28a561ad/compact-publication-staging-azmby2uo/compact-original-commits.bundle is okay\n",
+      "stdout": "The bundle contains this ref:\nf9bcf72ebcbf6d51795beb0d1971596922ceedd5 HEAD\nThe bundle requires this ref:\nbdf033f647f73f911a47260e8bdad5f2e96f3c7a \nThe bundle uses this hash algorithm: sha1\n"
+    },
+    {
+      "command": [
+        "git",
+        "fetch",
+        "--quiet",
+        "--no-tags",
+        "/workspace/scratch/f96c28a561ad/compact-publication-staging-azmby2uo/compact-original-commits.bundle",
+        "HEAD:refs/heads/restored"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "git",
+        "rev-list",
+        "--reverse",
+        "bdf033f647f73f911a47260e8bdad5f2e96f3c7a..refs/heads/restored"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "571c8df9b5223aeef6b7f137c49b4495590d090e\n6915e8d592b7ea5cb7c6950249811e354dc6c3e7\nf9bcf72ebcbf6d51795beb0d1971596922ceedd5\n"
+    },
+    {
+      "command": [
+        "git",
+        "fsck",
+        "--no-reflogs",
+        "--connectivity-only",
+        "f9bcf72ebcbf6d51795beb0d1971596922ceedd5"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": ""
+    }
+  ],
+  "commit_objects_byte_equal": true,
+  "expected_commits": [
+    "571c8df9b5223aeef6b7f137c49b4495590d090e",
+    "6915e8d592b7ea5cb7c6950249811e354dc6c3e7",
+    "f9bcf72ebcbf6d51795beb0d1971596922ceedd5"
+  ],
+  "network_policy": {
+    "GIT_ALLOW_PROTOCOL": "file",
+    "GIT_CONFIG_GLOBAL": "/dev/null",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_NO_LAZY_FETCH": "1",
+    "GIT_NO_REPLACE_OBJECTS": "1",
+    "GIT_OPTIONAL_LOCKS": "0",
+    "GIT_TERMINAL_PROMPT": "0",
+    "LC_ALL": "C"
+  },
+  "original_tree_ids_equal": true,
+  "restored_commits": [
+    "571c8df9b5223aeef6b7f137c49b4495590d090e",
+    "6915e8d592b7ea5cb7c6950249811e354dc6c3e7",
+    "f9bcf72ebcbf6d51795beb0d1971596922ceedd5"
+  ],
+  "scope": "Restore only the exact base snapshot at depth one plus the new incremental commits. No full-history fetch or validation of pre-existing ancestor history is attempted or claimed.",
+  "status": "passed_with_depth_one_base",
+  "tree_entries_and_modes_equal": true
+}

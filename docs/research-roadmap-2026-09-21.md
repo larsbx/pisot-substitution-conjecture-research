@@ -1,5 +1,178 @@
 # PSC research roadmap — 2026-09-21
 
+## 2026-11-14 current priority: BH escape, with A1′ in parallel
+
+The [BH escape roadmap](bh-escape-roadmap-2026-11-14.md) gives the current
+next theorem and acceptance contract. It distinguishes `main` from the
+unmerged #573 family result and #574 conditional BH finite-carrier/A1′ work;
+earlier dated frontiers below retain their historical evidence.
+
+Prioritize [#452](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/452):
+every required nonzero cyclic seed-reachable minus-Class-A state reaches one
+of the classified zero-return predecessor segments by literal occurrence
+edges. Prove source coverage and selected escape separately. Existing
+address decomposition and coherent finite path lifting already verify a
+supplied path; the universal existence argument is the principal gap.
+
+In parallel, prove residual one-sided A1′ for its prescribed fixed-hub pair,
+for example through same-position proximality. Extend the scoped BH argument
+to every required ternary PIP substitution, retaining non-unit finite-place
+data, then use the established #84 assembly when both premises are proved.
+The all-alphabet extension and a fully internal Lean spectral theorem remain
+further developments. C4 still needs uniform strict-system exclusion and
+separate finite-carrier extraction where required; a finite overlap graph
+alone supplies neither a hit nor a uniform balanced-factor bound.
+
+## 2026-11-11 current frontier through #541
+
+**Accepted mainline baseline at that review:**
+`2848e5f67b605669a550f362a1de4bf1c1529f7c`. The
+[current-state reconciliation](current-state-reconciliation-2026-11-11.md)
+separates exact-revision receipts, the older integration queue and the active
+#542–#544 research continuations. Older dated overlays below retain their
+historical baselines; their already-completed implementation tasks are not
+current blockers.
+
+The [bounded-history cover](c4-bounded-compact-cover-2026-11-11.md) was accepted
+on #539's repaired head, preserving #538's failed Lean receipt. The
+[local incoming interface](c4-local-admissibility-2026-11-11.md) and
+[matrix-adic carrier](c4-madic-residue-2026-11-11.md) were accepted in #540 and
+#541. The latter constructs the coherent inverse limit, its compactness and
+integral range reflection in the product with a supplied stable factor.
+Constructing that carrier is therefore no longer an open implementation task.
+
+The geometric route still needs authentic compact prefix tiles and their
+complete literal tile equations, sound stable/residue exclusions and complete
+representation of every nonempty incoming ancestor in the selected finite
+domain. The measure route additionally needs the exact product-Haar scaling,
+multiplicity-preserving recurrence and positive compact measure at a represented
+strict-cut root. Physical interval positivity and finite-depth coverage do not
+supply these premises. #542–#544 propose further prefix/window and finite-cover
+interfaces; their open PRs remain separate from accepted main.
+
+**Mathematical priority:** force at least one genuine productive crossing under
+the complete supplied strict PIP component and hub hypotheses. Realizable
+hierarchy recurrence and a common descendant-Parikh annihilator remain
+independent alternatives. No finite census, inverse matrix identity or compact
+ambient carrier supplies that uniform existence theorem. Global G1 extraction
+remains separate; C4, Concentration, A1′, BH and general PSC remain open.
+
+The status cleanup also preserves the already accepted all-PIP Class-D result,
+records the accepted R1 #520 decidability repair, and separates the merged
+Class-A finite/local results from uniform entry, coverage and realization.
+The [next-obligations note](c4-next-proof-obligations-2026-11-10.md) gives the
+remaining C4 contracts; the crosswalk records fresh receipts without replacing
+historical failed or pending observations with invented earlier successes.
+
+## 2026-11-10 addressed refinement after #533
+
+**Historical frontier at #534.** Its subsequent full Lean/axiom and native/Quint
+acceptance is recorded in the [next-obligations note](c4-next-proof-obligations-2026-11-10.md).
+
+The [global-address module](c4-occurrence-addresses-2026-11-10.md) constructs
+the actual factor ordinal and local occurrence from each valid global word
+position, with uniqueness, prefix/letter reconstruction and exact physical
+start preservation. The [affine transport module](c4-occurrence-transport-2026-11-10.md)
+proves the digit/residual square, balanced-prefix cancellation and track-swap
+sign law. Every interior affine digit edge from an actual marked block has
+a common actual child. Finite affine reachability lifts to a coherent chosen
+literal child history and composes with the newborn theorem.
+
+The [strict-system adapter](../proof/PscVerif/PscVerif/OccurrenceStrict.lean)
+uses the existing actual `StrictSystem`: its realized packets are closed
+under these interior affine edges and avoid diagonals. A supplied strict
+component therefore excludes the resulting finite productive route. These
+sources have their own #534 full Lean/axiom and native/Quint receipts; the
+earlier #533 receipts do not certify that later revision.
+
+**Next mathematical priority:** rule out this avoiding region for at least
+one genuine forced crossing under the complete PIP and hub hypotheses.
+Investigate realizable hierarchy recurrence and the common descendant-Parikh
+annihilator as separate candidates. The new finite lift supplies the
+local-to-word implication once an interior affine diagonal route exists;
+it does not prove existence of that route. Global G1 extraction remains
+separate.
+
+The formal relation is the explicitly defined interior affine digit
+relation. Exact production packet IDs, interning, stopping and success
+policies, preservation of an external full transcript, and consistent
+lifting of arbitrary infinite quotient paths retain their own interfaces.
+Fixed one-step digit choices are preserved; the finite reachability theorem
+chooses a coherent history and does not assert an external trace length.
+The [bounded controls](c4-address-transport-controls-2026-11-10.md) distinguish
+these facts using 20 tests and seven deliberately rejected mutations.
+General C4, Concentration and PSC remain open.
+
+## 2026-11-10 implementation follow-up to #532
+
+**Historical frontier at #533; the addressed refinement above continues it.**
+
+The [concrete occurrence bridge](c4-concrete-occurrence-2026-11-10.md)
+connects literal balanced factors, their occurrence ordinals, physical
+prefix lengths and one-step interior newborn cuts. It derives rational
+length injectivity from irreducibility of the incidence cubic. Its input
+still includes actual located word occurrences; constructing those objects
+from arbitrary addresses and transporting an entire packet path remain
+separate obligations.
+
+The [degree-five completion](c4-degree-five-completion-2026-11-10.md)
+provides the reciprocal-polynomial factorization `q5=g^k`, the actual image
+rank `3k`, the zero-image case and determinant exclusion under the unchanged
+degree-five sieve hypotheses. Literal strict-child realizability remains
+open. The [original next-obligations note](c4-next-proof-obligations-2026-11-10.md)
+now distinguishes these implemented pieces from the rest of its program.
+
+**Formal priority recorded at #533:** construct a `FactorOccurrence` from each actual
+global address, then prove the occurrence-to-packet transition square with
+the local residual, track order, normalization and child ordinal preserved.
+Compose finite realizable paths with the supplied-parent newborn theorem and
+the existing concrete strict-system closure theorem. Soundness, completeness
+for the declared occurrence universe and consistent infinite lifting retain
+separate statements. The next mathematical target is still productivity of
+at least one forced crossing in every supplied hypothetical strict PIP
+component. General C4, Concentration and global G1 remain open.
+
+## 2026-11-10 C4 continuation after the reciprocal sieve and both-end control
+
+**Inspection baseline:** `main@c38e381cc8105d87597b0a9bfbe418b7bca86fc0`.
+The [next proof obligations](c4-next-proof-obligations-2026-11-10.md) give
+the detailed contracts, exact hosted evidence, negative controls and
+acceptance sequence. This overlay supersedes the earlier degree-five
+transport task below: #524–#528 have merged and the complete Lean/axiom audit
+passes at the inspected main. General C4, Concentration, A1′, BH, G1 and PSC
+remain open.
+
+1. **Restore the evidence baseline.** Pin the existing orientation-safe
+   packet and reconcile stale pending-verification statements. The known
+   main integrity failure is its missing `SHA256SUMS`, separate from the
+   passing Lean proof bank and from #526's source-pin redesign.
+2. **Primary formal PR: occurrence transport and newborn extraction.**
+   Prove the actual overlap-to-common-factor/packet refinement, then extract
+   a one-step interior `Sync_+` or `Sync_-` newborn from the first diagonal.
+   Preserve both occurrence addresses, parent/ordinal, orientation and
+   residual; prove soundness and declared-universe completeness separately.
+3. **Independent algebraic PR: reciprocal multiplicities and image rank.**
+   From the accepted degree-five root-set sieve, formalize `q5=g^k` and
+   `rank Q5=3k`, including the zero image, plus the determinant-bound
+   exclusion corollary. Actual strict-child realizability remains open.
+4. **Main research theorem: one productive forced crossing.** Under the
+   full supplied strict-component and hub hypotheses, rule out a
+   diagonal-free successor-closed lift for at least one actual forced
+   crossing. Test realizable hierarchy recurrence and the common-Parikh-
+   annihilator candidate independently. #530 refutes requiring either
+   alignment of the nominated good edge; a direct diagonal route suffices.
+5. **Compose only proved interfaces.** Retain separate G1 extraction and
+   the degree-three, degree-four and higher-degree Concentration gaps;
+   reconcile #497/#509/#510 before using their scoped scaffolds. A finite
+   search or passing generic graph lemma does not discharge the universal
+   occurrence-level premise.
+
+The [orientation-safe note](c4-orientation-safe-transfer-2026-11-09.md) and
+[spectral transport note](c4-degree-five-spectral-transport.md) are the two
+working interfaces. Use existing Mojo/Lean/Quint machinery and preserved
+counterexamples; prioritize a discriminating word-level theorem over another
+standing-corpus expansion. Human review remains final validation debt.
+
 ## 2026-11-09 neglected-interface roadmap (priority overlay; no claim promotion)
 
 **Snapshot:** research-planning update based on the 2026-11-09 PSC completion
@@ -22,6 +195,7 @@ mass/support/rank theorems do **not** supply their open universal premises.
 | P0 | **Quantifier-safe composition** | For every proposed bridge, declare domain, quantifier order, existential vs all-edge reachability, finite vs arbitrary substitution, geometry and source-refinement premises; give a Lean/Quint lemma or a replayable countermodel for each nontrivial implication. In particular, `some target path` is not `all paths terminate`, and measure zero is not emptiness or a one-step `Sync_±` birth. | #497, #519, #520, #521; finite cyclic packet controls and productive-root/nonproductive-descendant regression. |
 | P0 | **Literal packet realization/refinement** | A commuting occurrence-to-packet transition square preserving *both* selected actual occurrence addresses, parent/child ordinal, orientation, residual Parikh and strict interior/boundary classification. Separately establish soundness, completeness relative to the declared occurrence universe, and (only if needed) consistent lifting of infinite abstract paths; do not infer any one from the others. | [target-aware diagnostic](target-aware-bpa-diagnostic-2026-10-02.md), [strict-birth atlas](c4-strict-birth-atlas-2026-11-02.md), [good-edge bridge](c4-good-edge-system-bridge.md). Reject strong G/F at literal factorization, not at a weaker algebraic layer. |
 | P0 | **C4 versus G1 extraction** | State C4 for a *supplied finite strict child-closed SCC with complete actual factorization* and state G1b-2/other global extraction separately. Prove any transfer only with its independent finiteness premise. | #9/#461; G1b-1 bounded discrepancy and UD derived from full incidence rank are already established; do not assume UD or finite BPA anew. |
+| P1 | **Degree-five Concentration continuation (updated 2026-11-10)** | Quotient/image transport, mixed weights, root lift and signed Perron sieve are accepted through #528. Reciprocal-polynomial multiplicities, actual-image rank divisibility and the zero-image case are implemented in the [degree-five completion](c4-degree-five-completion-2026-11-10.md), with exact-revision acceptance required before integration. Next test literal ordered-child invariants against the surviving `(2,2,1)` sector. | [Transport and realizability interface](c4-degree-five-spectral-transport.md), [current obligations](c4-next-proof-obligations-2026-11-10.md). The reciprocal plastic cubic is an abstract control, with literal realization a separate obligation. |
 | P1 | **Ordered hub-residual dynamics** | Propose a literal word-level invariant or return-word/recognizability argument which forces an interior `Sync_+` or `Sync_-` newborn from the exact Barge–Diamond good-edge hypotheses; if false, archive a genuine occurrence-level PIP witness. Algebraic Parikh, free-Lie or quotient data alone do not prove alignment. | #457, #459/#461, existing degree-three/four concentration work; test phase-flat non-PIP and delayed PIP controls first. |
 | P1 | **Finite-to-uniform mechanism** | Prove a parameter-dependent well-founded ranking, a uniform recurrence exclusion, or a valid compactness argument with closed *realizable* transitions; document why productive cycles rule out all-edge descent. Finite censuses cannot discharge this. | 4,554 corpus, twelve-source physical-mass computations, class-A run-index family and known packet cycles. |
 | P1 | **Shared proof interface across C4/R1/mass/BH** | For each pair of routes, write the exact output/input type and one minimal transfer lemma or a counterexample to the attempted transfer. Physical-mass source loss must be refined to genuine geometric overlaps and then to a word cut before it can imply C4. | #497/#515/#519, #520, #138/#139; keep `zero measure → empty` explicitly invalid. |

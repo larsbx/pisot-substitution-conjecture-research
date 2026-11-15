@@ -187,7 +187,7 @@ namespace Psc.PacketSquareControls
 
 open Psc.Binomial Psc.Reduction Psc.Descendants Psc.Incidence
 open Psc.QuantifierInterface Psc.QuantifierBinding
-open Psc.OccurrenceAddress Psc.OccurrenceGraph Psc.OccurrenceRealisation Psc.GraphRefinement
+open Psc.CutAddress Psc.OccurrenceGraph Psc.OccurrenceRealisation Psc.GraphRefinement
 open Psc.PacketCertificate Psc.PacketSquare
 open PscVerif.PacketSquareData
 

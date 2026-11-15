@@ -1,0 +1,22 @@
+{
+  "name": "proof-bank",
+  "started_utc": "2026-11-05T10:44:08.443528+00:00",
+  "duration_seconds": 0.519372,
+  "executed_local_commit": "d3d506526ca2468679b99856cd8511affa839ab8",
+  "source_tree": "4b57fc3ed8e0c98c808a905879da579e200929db",
+  "cwd": "/workspace/scratch/bb3a4dbb8418/psc-critical",
+  "command": [
+    "/workspace/scratch/bb3a4dbb8418/psc-validation/bin/python",
+    "tools/make_proof_bank.py",
+    "--check"
+  ],
+  "explicit_environment": {
+    "MODULAR_HOME": "/workspace/scratch/bb3a4dbb8418/mojo-prefix/share/max",
+    "PYTHONPATH": "/workspace/scratch/bb3a4dbb8418/psc-critical/tools"
+  },
+  "exit_code": 0,
+  "stdout": "/workspace/scratch/bb3a4dbb8418/psc-critical/evidence/c4-critical-overlap-components-2026-11-05/proof-bank.stdout.txt",
+  "stderr": "proof-bank.stderr.txt",
+  "stdout_sha256": "5935c5a31802fb33991e1ceea5226449eaa6c838d3a8886631e044448a5a2231",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

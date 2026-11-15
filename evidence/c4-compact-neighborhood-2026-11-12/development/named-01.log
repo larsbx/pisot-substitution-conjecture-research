@@ -1,0 +1,6 @@
+PscVerif/NamedCutNeighborhood.lean:184:2: error: Type mismatch: After simplification, term
+  hN n hn T hT top bottom balanced
+ has type
+  ∃ i, ∃ (_ : i ∈ J), (ambientStar (substitution fixture) piZ) (parikhZ top.before) ∈ U i
+but is expected to have type
+  ∃ i ∈ J, (ambientStar (substitution fixture) piZ) (parikhZ top.before) ∈ U i

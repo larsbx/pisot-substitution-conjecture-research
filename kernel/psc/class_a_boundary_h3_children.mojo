@@ -2,8 +2,8 @@
 
 Minus boundary only; exact alpha=1/2 separator, not universal BH or closure.
 """
-from finite_exact.checked_int import checked_add, checked_sub, checked_mul
-from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, member_transport, verify_member_edge
+from finite_exact.checked_int import checked_add, checked_sub
+from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, verify_member_edge
 from psc.class_a_boundary_u_children import reverse_label
 from psc.class_a_boundary_e_children import certify_eh_children, eh_source, verify_eh_packet, _offset
 from psc.class_a_boundary_next_run import _parameters
@@ -12,6 +12,7 @@ from psc.class_a_boundary_occurrences import symbolic_child, _equal3, FIRST, RUN
 from psc.class_a_boundary_signs import chamber_parameters, _same, _cone_positive
 from psc.param_poly import QX, qx_const, qx_add, qx_sub, qx_mul, qx_neg
 from psc.overlap_seed_patch import SeedOverlapTables
+from psc.class_a_boundary_family import BoundaryFamily, append_child
 
 
 def alpha_high(k: Int, t: Int) raises -> Bool:
@@ -272,16 +273,20 @@ def chain_image() raises -> List[BoundaryLabel]:
     return out^
 
 
-def _append(mut out: List[BoundaryEdge], kind: Int, k: Int, t: Int, i: Int, j: Int) raises:
-    var p=_dimensions(kind,k,t)
-    var a=j if kind%2==1 else i
-    var b=i if kind%2==1 else j
-    if not chain_child_allowed(kind,k,t,a,b):
-        raise Error("synthesized H3-chain child failed exact guard")
-    var target=member_transport(-1,k,p[0],p[1],chain_source(kind),a,b)
-    if not in_chain_image(target):
-        raise Error("H3-chain child escaped target packet")
-    out.append(BoundaryEdge(a,b,target))
+@fieldwise_init
+struct H3Children(BoundaryFamily):
+    def name(self) -> String:return "H3"
+    def source(self,kind: Int) raises -> BoundaryLabel:return chain_source(kind)
+    def parameters(self,kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int]:
+        var p=_dimensions(kind,k,t)
+        return (p[0],p[1])
+    def swapped(self,kind: Int) -> Bool:return kind%2==1
+    def allowed(self,kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:return chain_child_allowed(kind,k,t,i,j)
+    def in_image(self,w: BoundaryLabel) raises -> Bool:return in_chain_image(w)
+
+
+def _append(mut out: List[BoundaryEdge],kind: Int,k: Int,t: Int,i: Int,j: Int) raises:
+    append_child(H3Children(),out,kind,k,t,i,j)
 
 
 def chain_child_star(kind: Int, k: Int, t: Int) raises -> List[BoundaryEdge]:

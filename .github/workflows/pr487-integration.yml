@@ -1,0 +1,115 @@
+name: PR487 return-family native acceptance
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/pr487-integration.yml'
+      - 'docs/c4-*.md'
+      - 'kernel/psc/c4_*.mojo'
+      - 'kernel/tests/test_c4_*.mojo'
+      - 'kernel/pixi.lock'
+      - 'tests/test_c4_*_oracle.py'
+      - 'tests/test_pr487_integration.py'
+      - 'tools/reconcile_pr487.py'
+      - 'proof/proof-bank.json'
+      - 'docs/proof-bank.md'
+  push:
+    branches:
+      - main
+      - 'reconcile/**'
+      - research/c4-return-induction-prefix-satellite-2026-11-04
+    paths:
+      - '.github/workflows/pr487-integration.yml'
+      - 'docs/c4-*.md'
+      - 'kernel/psc/c4_*.mojo'
+      - 'kernel/tests/test_c4_*.mojo'
+      - 'kernel/pixi.lock'
+      - 'tests/test_c4_*_oracle.py'
+      - 'tests/test_pr487_integration.py'
+      - 'tools/reconcile_pr487.py'
+      - 'proof/proof-bank.json'
+      - 'docs/proof-bank.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: psc-pr487-acceptance-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify-integrated-revision:
+    if: github.repository == 'larsbx/pisot-substitution-conjecture-research'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Require exact checked-out revision
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Independent return-family and historical repair-guard controls
+        run: |
+          set -o pipefail
+          mkdir -p "$RUNNER_TEMP/pr487-replay"
+          python -m pip install 'pytest>=7,<10'
+          python -m pytest -q tests/test_pr487_integration.py tests/test_c4_return_induction_prefix_satellite_oracle.py tests/test_c4_return_boundary_carrier_oracle.py tests/test_c4_return_overlap_closure_oracle.py tests/test_c4_cut_alignment_oracle.py tests/test_c4_overlap_enclosure_oracle.py 2>&1 | tee "$RUNNER_TEMP/pr487-replay/independent-controls.log"
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          pixi-version: v0.81.0
+          manifest-path: kernel/pixi.toml
+          locked: true
+      - name: Native return-induction and boundary-carrier contracts
+        working-directory: kernel
+        run: |
+          set -o pipefail
+          pixi run --locked mojo run -I . tests/test_c4_return_induction_prefix_satellite.mojo 2>&1 | tee "$RUNNER_TEMP/pr487-replay/native-return-induction.log"
+          pixi run --locked mojo run -I . tests/test_c4_return_boundary_carrier.mojo 2>&1 | tee "$RUNNER_TEMP/pr487-replay/native-boundary-carrier.log"
+      - name: Native ordered-hub and oriented-enclosure controls
+        working-directory: kernel
+        run: |
+          set -o pipefail
+          pixi run --locked mojo run -I . tests/test_c4_strict_birth_atlas.mojo 2>&1 | tee "$RUNNER_TEMP/pr487-replay/native-strict-birth.log"
+          pixi run --locked mojo run -I . tests/test_c4_overlap_enclosure.mojo 2>&1 | tee "$RUNNER_TEMP/pr487-replay/native-overlap-enclosure.log"
+      - name: Native complete overlap states occurrences and distances
+        working-directory: kernel
+        run: |
+          set -o pipefail
+          pixi run --locked mojo run -I . tests/test_c4_return_overlap_closure.mojo 2>&1 | tee "$RUNNER_TEMP/pr487-replay/native-overlap.log"
+      - name: Independent equality of the complete native and Python graphs
+        run: |
+          set -o pipefail
+          python tests/test_c4_return_overlap_closure_oracle.py --native-log "$RUNNER_TEMP/pr487-replay/native-overlap.log" 2>&1 | tee "$RUNNER_TEMP/pr487-replay/full-graph-parity.log"
+      - name: Preserve mainline regression and governance acceptance
+        run: |
+          set -o pipefail
+          python -m pytest -q tests/test_c4_cut_pair_reduction_oracle.py tests/test_c4_pairwise_cut_frequency_oracle.py tests/test_c4_nonunit_residue_occupancy_oracle.py tests/test_c4_finite_cylinder_overlap_oracle.py 2>&1 | tee "$RUNNER_TEMP/pr487-replay/mainline-regressions.log"
+          python tools/make_proof_bank.py --check 2>&1 | tee "$RUNNER_TEMP/pr487-replay/proof-bank.log"
+          PYTHONPATH=tools python -m claim_governance.cli --root . 2>&1 | tee "$RUNNER_TEMP/pr487-replay/governance.log"
+          python tools/check_markdown_source.py 2>&1 | tee "$RUNNER_TEMP/pr487-replay/markdown.log"
+          git diff --check
+      - name: Require unchanged tested revision
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test -z "$(git status --porcelain)"
+      - name: Retain complete source snapshots and exact revision identity
+        if: always()
+        run: |
+          mkdir -p "$RUNNER_TEMP/pr487-replay"
+          git rev-parse HEAD > "$RUNNER_TEMP/pr487-replay/checked-head.txt"
+          git status --porcelain > "$RUNNER_TEMP/pr487-replay/worktree-status.txt"
+          git archive --format=tar.gz HEAD > "$RUNNER_TEMP/pr487-replay/checked-source.tar.gz"
+          git archive --format=tar.gz origin/main > "$RUNNER_TEMP/pr487-replay/main-source.tar.gz"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr487-acceptance-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/pr487-replay/
+          if-no-files-found: error

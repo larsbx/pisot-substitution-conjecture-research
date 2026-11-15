@@ -1,0 +1,293 @@
+{
+  "code_revision": "6915e8d592b7ea5cb7c6950249811e354dc6c3e7",
+  "code_tree": "c79e97bdae1224068895afa9dcf6cca6d7fe9fbb",
+  "explicit_definition_count": 8,
+  "explicit_theorem_count": 23,
+  "head_at_inventory": "6915e8d592b7ea5cb7c6950249811e354dc6c3e7",
+  "modules": [
+    {
+      "declarations": [
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 33,
+          "name": "Psc.CompactNeighborhood.eventually_translate_mem",
+          "opening": "theorem eventually_translate_mem {K W : Set G} (hK : IsCompact K)",
+          "owner": "PscVerif.CompactNeighborhood",
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 45,
+          "name": "Psc.CompactNeighborhood.exists_difference_nhds_inter_subset",
+          "opening": "theorem exists_difference_nhds_inter_subset [T2Space G] {K L U : Set G}",
+          "owner": "PscVerif.CompactNeighborhood",
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 71,
+          "name": "Psc.CompactNeighborhood.kernel_mem_nhds",
+          "opening": "theorem kernel_mem_nhds (M : V \u2192\u2097[\u2124] V) (q : \u2115) :",
+          "owner": "PscVerif.CompactNeighborhood",
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 80,
+          "name": "Psc.CompactNeighborhood.exists_kernel_subset",
+          "opening": "theorem exists_kernel_subset (M : V \u2192\u2097[\u2124] V) {W : Set (MadicResidue.Carrier M)}",
+          "owner": "PscVerif.CompactNeighborhood",
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "declaration",
+          "line": 111,
+          "name": "Psc.CompactNeighborhood.zeroSlice",
+          "opening": "def zeroSlice (M : V \u2192\u2097[\u2124] V) (\u03b5 : \u211d) (q : \u2115) : Set (E \u00d7 MadicResidue.Carrier M) :=",
+          "owner": "PscVerif.CompactNeighborhood",
+          "source_kind": "def"
+        },
+        {
+          "expected_compiled_kind": "declaration",
+          "line": 116,
+          "name": "Psc.CompactNeighborhood.Close",
+          "opening": "def Close (M : V \u2192\u2097[\u2124] V) (\u03b5 : \u211d) (q : \u2115)",
+          "owner": "PscVerif.CompactNeighborhood",
+          "source_kind": "def"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 120,
+          "name": "Psc.CompactNeighborhood.zeroSlice_mem_nhds",
+          "opening": "theorem zeroSlice_mem_nhds (M : V \u2192\u2097[\u2124] V) (q : \u2115) {\u03b5 : \u211d} (h\u03b5 : 0 < \u03b5) :",
+          "owner": "PscVerif.CompactNeighborhood",
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 131,
+          "name": "Psc.CompactNeighborhood.exists_zeroSlice_subset",
+          "opening": "theorem exists_zeroSlice_subset (M : V \u2192\u2097[\u2124] V)",
+          "owner": "PscVerif.CompactNeighborhood",
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 146,
+          "name": "Psc.CompactNeighborhood.close_iff_sub_mem",
+          "opening": "theorem close_iff_sub_mem (M : V \u2192\u2097[\u2124] V) (\u03b5 : \u211d) (q : \u2115)",
+          "owner": "PscVerif.CompactNeighborhood",
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 156,
+          "name": "Psc.CompactNeighborhood.exists_close_inter_subset",
+          "opening": "theorem exists_close_inter_subset (M : V \u2192\u2097[\u2124] V)",
+          "owner": "PscVerif.CompactNeighborhood",
+          "source_kind": "theorem"
+        }
+      ],
+      "explicit_definition_count": 2,
+      "explicit_theorem_count": 8,
+      "module": "PscVerif.CompactNeighborhood",
+      "source_bytes": 7591,
+      "source_git_blob_sha": "ce7c44c6ced6897de6aaa7f31ee897c2dd0d635a",
+      "source_path": "proof/PscVerif/PscVerif/CompactNeighborhood.lean",
+      "source_sha256": "bfc41eba2f94241d71f329458418d225c773e580b186cc9aac128957991409e4"
+    },
+    {
+      "declarations": [
+        {
+          "expected_compiled_kind": "declaration",
+          "line": 34,
+          "name": "Psc.NamedCutNeighborhood.overlapUnion",
+          "opening": "def overlapUnion (fixture : Fin 2) : Set (Ambient (substitution fixture) Stable) :=",
+          "owner": "PscVerif.NamedCutNeighborhood",
+          "source_kind": "def"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 37,
+          "name": "Psc.NamedCutNeighborhood.inter_subset_overlapUnion",
+          "opening": "theorem inter_subset_overlapUnion (fixture : Fin 2) (a b : Fin 3) (hab : a \u2260 b) :",
+          "owner": "PscVerif.NamedCutNeighborhood",
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 44,
+          "name": "Psc.NamedCutNeighborhood.overlapUnion_compact",
+          "opening": "theorem overlapUnion_compact (fixture : Fin 2) : IsCompact (overlapUnion fixture) := by",
+          "owner": "PscVerif.NamedCutNeighborhood",
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 55,
+          "name": "Psc.NamedCutNeighborhood.eventually_fixed_labels_mem",
+          "opening": "theorem eventually_fixed_labels_mem (fixture : Fin 2) (u v : Word) (a b : Fin 3)",
+          "owner": "PscVerif.NamedCutNeighborhood",
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 93,
+          "name": "Psc.NamedCutNeighborhood.eventually_distinct_cuts_mem",
+          "opening": "theorem eventually_distinct_cuts_mem (fixture : Fin 2) (u v : Word)",
+          "owner": "PscVerif.NamedCutNeighborhood",
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "declaration",
+          "line": 121,
+          "name": "Psc.NamedCutNeighborhood.cutPoints",
+          "opening": "def cutPoints (fixture : Fin 2) (u v : Word) (n : \u2115) :",
+          "owner": "PscVerif.NamedCutNeighborhood",
+          "source_kind": "def"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 128,
+          "name": "Psc.NamedCutNeighborhood.eventually_cutPoints_subset",
+          "opening": "theorem eventually_cutPoints_subset (fixture : Fin 2) (u v : Word)",
+          "owner": "PscVerif.NamedCutNeighborhood",
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 138,
+          "name": "Psc.NamedCutNeighborhood.eventually_finite_source_cuts_subset",
+          "opening": "theorem eventually_finite_source_cuts_subset (fixture : Fin 2) (C : Finset WordPair)",
+          "owner": "PscVerif.NamedCutNeighborhood",
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 149,
+          "name": "Psc.NamedCutNeighborhood.eventually_strict_carrier_cuts_mem",
+          "opening": "theorem eventually_strict_carrier_cuts_mem (fixture : Fin 2) {C : Finset WordPair}",
+          "owner": "PscVerif.NamedCutNeighborhood",
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 168,
+          "name": "Psc.NamedCutNeighborhood.finite_open_cover_captures_strict_cuts",
+          "opening": "theorem finite_open_cover_captures_strict_cuts (fixture : Fin 2)",
+          "owner": "PscVerif.NamedCutNeighborhood",
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 188,
+          "name": "Psc.NamedCutNeighborhood.eventually_no_distinct_cuts_of_empty_overlap",
+          "opening": "theorem eventually_no_distinct_cuts_of_empty_overlap (fixture : Fin 2) (u v : Word)",
+          "owner": "PscVerif.NamedCutNeighborhood",
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "declaration",
+          "line": 196,
+          "name": "Psc.NamedCutNeighborhood.carrierOverlap",
+          "opening": "def carrierOverlap (fixture : Fin 2) (C : Finset WordPair) :",
+          "owner": "PscVerif.NamedCutNeighborhood",
+          "source_kind": "def"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 201,
+          "name": "Psc.NamedCutNeighborhood.carrierOverlap_compact",
+          "opening": "theorem carrierOverlap_compact (fixture : Fin 2) (C : Finset WordPair) :",
+          "owner": "PscVerif.NamedCutNeighborhood",
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 214,
+          "name": "Psc.NamedCutNeighborhood.eventually_carrierOverlap_strict_cuts_mem",
+          "opening": "theorem eventually_carrierOverlap_strict_cuts_mem (fixture : Fin 2)",
+          "owner": "PscVerif.NamedCutNeighborhood",
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 258,
+          "name": "Psc.NamedCutNeighborhood.finite_carrierOverlap_cover_captures_strict_cuts",
+          "opening": "theorem finite_carrierOverlap_cover_captures_strict_cuts (fixture : Fin 2)",
+          "owner": "PscVerif.NamedCutNeighborhood",
+          "source_kind": "theorem"
+        }
+      ],
+      "explicit_definition_count": 3,
+      "explicit_theorem_count": 12,
+      "module": "PscVerif.NamedCutNeighborhood",
+      "source_bytes": 14946,
+      "source_git_blob_sha": "35fb99f27b27991baf2b4c2dd2031827ce24f2a5",
+      "source_path": "proof/PscVerif/PscVerif/NamedCutNeighborhood.lean",
+      "source_sha256": "e9d6a9e1b05721fa3cc8b634d3ecd6cdb604d8b63277d42b5ba34d70327bc57e"
+    },
+    {
+      "declarations": [
+        {
+          "expected_compiled_kind": "declaration",
+          "line": 27,
+          "name": "Psc.CompactNeighborhoodControls.axis",
+          "opening": "def axis : Set (\u211d \u00d7 \u211d) := {p | p.2 = 0}",
+          "owner": "PscVerif.CompactNeighborhoodControls",
+          "source_kind": "def"
+        },
+        {
+          "expected_compiled_kind": "declaration",
+          "line": 29,
+          "name": "Psc.CompactNeighborhoodControls.hyperbola",
+          "opening": "def hyperbola : Set (\u211d \u00d7 \u211d) := {p | p.1 * p.2 = 1}",
+          "owner": "PscVerif.CompactNeighborhoodControls",
+          "source_kind": "def"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 35,
+          "name": "Psc.CompactNeighborhoodControls.closed_noncompact_control",
+          "opening": "theorem closed_noncompact_control :",
+          "owner": "PscVerif.CompactNeighborhoodControls",
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 77,
+          "name": "Psc.CompactNeighborhoodControls.compact_singleton_without_open_target",
+          "opening": "theorem compact_singleton_without_open_target :",
+          "owner": "PscVerif.CompactNeighborhoodControls",
+          "source_kind": "theorem"
+        },
+        {
+          "expected_compiled_kind": "declaration",
+          "line": 90,
+          "name": "Psc.CompactNeighborhoodControls.movingSpike",
+          "opening": "def movingSpike (n i : \u2115) : \u211d := if i = n then 1 else 0",
+          "owner": "PscVerif.CompactNeighborhoodControls",
+          "source_kind": "def"
+        },
+        {
+          "expected_compiled_kind": "theorem",
+          "line": 95,
+          "name": "Psc.CompactNeighborhoodControls.infinite_family_not_uniform",
+          "opening": "theorem infinite_family_not_uniform :",
+          "owner": "PscVerif.CompactNeighborhoodControls",
+          "source_kind": "theorem"
+        }
+      ],
+      "explicit_definition_count": 3,
+      "explicit_theorem_count": 3,
+      "module": "PscVerif.CompactNeighborhoodControls",
+      "source_bytes": 4916,
+      "source_git_blob_sha": "99cc576fcc565d40a4887a145b07db1b6be6a64a",
+      "source_path": "proof/PscVerif/PscVerif/CompactNeighborhoodControls.lean",
+      "source_sha256": "6c0fe9d92143d0c7441c606fc46d5148643dde152e9fea49cc36d55d875f3ee1"
+    }
+  ],
+  "schema": "psc-compact-neighborhood-source-inventory-v1",
+  "scope": "Source inventory only; no compilation, log inspection, or acceptance is claimed by this file.",
+  "source_origin": "committed_revision"
+}

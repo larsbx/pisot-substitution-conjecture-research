@@ -43,7 +43,8 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 PACKET = ROOT / 'evidence/class-d-closure-rebind-2026-10-26'
 PACKETS = (PACKET, ROOT / 'evidence/class-d-closure-rebind-2026-10-30',
-           ROOT / 'evidence/class-d-assembly-rebind-2026-10-30')
+           ROOT / 'evidence/class-d-assembly-rebind-2026-10-30',
+           ROOT / 'evidence/class-d-word-counter-rebind-2026-11-12')
 FORMAT = 'class-d-closure-rebind-v1'
 FORMATS = (FORMAT, 'class-d-closure-rebind-v2')
 ACCEPTED_HEAD = 'a9457d9a08e971d57a635e68086a558fcff88e11'

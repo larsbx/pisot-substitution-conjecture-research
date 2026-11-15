@@ -1,0 +1,58 @@
+{
+  "aggregate_olean_exists": false,
+  "cgroup_memory_after": {},
+  "cgroup_memory_before": {},
+  "command": [
+    "/workspace/scratch/84c835820757/toolchains/elan/bin/elan",
+    "run",
+    "leanprover/lean4:v4.34.0-rc2",
+    "lake",
+    "--no-cache",
+    "env",
+    "lean",
+    "PscVerif.lean"
+  ],
+  "elapsed_seconds": 58.95742816599886,
+  "environment_overrides": {
+    "ELAN_HOME": "/workspace/scratch/84c835820757/toolchains/elan",
+    "LAKE_ARTIFACT_CACHE": "false",
+    "LAKE_CACHE_DIR": "",
+    "LAKE_CONFIG": "",
+    "LAKE_RESTORE_ARTIFACTS": "false",
+    "MATHLIB_CACHE_DIR": "/workspace/scratch/f96c28a561ad/lean-isolation-tmp/tmp.UOZg5YfDvP/download-cache",
+    "MATHLIB_CACHE_GET_URL": "https://cache.mathlib.org/mathlib4-master"
+  },
+  "finished_at_utc": "2026-11-12T18:40:25.162624+00:00",
+  "formal_acceptance_credit": false,
+  "heartbeat_seconds": 20,
+  "max_sampled_process_group_rss_kb": 5464904,
+  "process_log_path": "/workspace/scratch/f96c28a561ad/compact-aggregate-diagnostic-processes.jsonl",
+  "process_log_sha256": "61809f101811266f82467263b74d76d4e6851b4885387239eb0ac96a4a62e2fc",
+  "project": "/workspace/scratch/f96c28a561ad/lean-isolation-tmp/tmp.UOZg5YfDvP/proof/PscVerif",
+  "purpose": "Diagnostic root aggregate import without -o or output artifact requests; retained workspace only.",
+  "raw_log_path": "/workspace/scratch/f96c28a561ad/compact-aggregate-diagnostic-child.log",
+  "raw_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "real_child_returncode": 0,
+  "source_hashes_after": {
+    "ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
+    "PscVerif.lean": "0d1236c2b94dda5164f9f4cffc22c81f2e1de58b95c8a33c2199b1c13010a4c1",
+    "lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
+    "lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
+    "lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88"
+  },
+  "source_hashes_before": {
+    "ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
+    "PscVerif.lean": "0d1236c2b94dda5164f9f4cffc22c81f2e1de58b95c8a33c2199b1c13010a4c1",
+    "lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
+    "lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
+    "lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88"
+  },
+  "sources_unchanged": true,
+  "started_at_utc": "2026-11-12T18:39:26.205074+00:00",
+  "timed_out": false,
+  "timeout_seconds": 300,
+  "timeout_signal_sent": null,
+  "waited_children_rusage_maxrss_kb": 5047676,
+  "waited_children_system_cpu_seconds": 16.804811,
+  "waited_children_user_cpu_seconds": 8.240442
+}

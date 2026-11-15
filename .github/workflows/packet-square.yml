@@ -174,7 +174,7 @@ jobs:
               return path
 
           def lean_closure():
-              roots = ["GraphRefinement", "GraphEmbedding", "OccurrenceAddress", "OccurrenceGraph",
+              roots = ["GraphRefinement", "GraphEmbedding", "CutAddress", "OccurrenceGraph",
                        "OccurrenceRealisation", "PacketCertificate", "PacketSquare",
                        "PacketSquareData.Tribonacci", "PacketSquareData.RealSecondary",
                        "PacketSquareData.NonPisot", "PacketSquareData.GfActual",
@@ -411,7 +411,7 @@ jobs:
           cat > "$out/PacketSquareAudit.lean" <<'LEAN'
           import PscVerif.GraphRefinement
           import PscVerif.GraphEmbedding
-          import PscVerif.OccurrenceAddress
+          import PscVerif.CutAddress
           import PscVerif.OccurrenceGraph
           import PscVerif.OccurrenceRealisation
           import PscVerif.PacketCertificate
@@ -427,7 +427,7 @@ jobs:
           run_cmd do
             let env ← getEnv
             let audited : Array Name := #[`PscVerif.GraphRefinement, `PscVerif.GraphEmbedding,
-              `PscVerif.OccurrenceAddress, `PscVerif.OccurrenceGraph, `PscVerif.OccurrenceRealisation,
+              `PscVerif.CutAddress, `PscVerif.OccurrenceGraph, `PscVerif.OccurrenceRealisation,
               `PscVerif.PacketCertificate, `PscVerif.PacketSquare,
               `PscVerif.PacketSquareData.Tribonacci, `PscVerif.PacketSquareData.RealSecondary,
               `PscVerif.PacketSquareData.NonPisot, `PscVerif.PacketSquareData.GfActual,

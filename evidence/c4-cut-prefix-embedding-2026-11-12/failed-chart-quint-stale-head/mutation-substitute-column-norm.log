@@ -1,0 +1,32 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+  C4NamedChartAdversarial
+    1) columnNormRefusedTest failed after 1 test(s)
+
+  1 failed
+
+  1) columnNormRefusedTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-c4-named-chart-snapshot-zcfkngiy/substitute-column-norm.qnt:143:31
+        143:   run columnNormRefusedTest = init.expect({
+                                           ^^^^^^^^^^^^^
+        144:     val m = matrix(6, 6, 1, 0)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        145:     all {
+             ^^^^^^^^^
+        146:       active, columnNorm(m) == 7, 8 * columnNorm(m) <= 7 * 10,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        147:       8 * norm2(apply2(m, List(1, 1))) > 7 * 10,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        148:       not(admitted(m, 10, 7, 8)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        149:     }
+             ^^^^^
+        150:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f7 --match=columnNormRefusedTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-c4-named-chart-snapshot-zcfkngiy/substitute-column-norm.qnt
+error: Tests failed

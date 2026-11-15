@@ -1,0 +1,24 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+  C4StablePrefixAdversarial
+    1) selfParentMustRemainAdmittedTest failed after 1 test(s)
+
+  1 failed
+
+  1) selfParentMustRemainAdmittedTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-c4-stable-prefix-snapshot-rwn27f30/discard-equal-parent-case.qnt:181:42
+        181:   run selfParentMustRemainAdmittedTest = init.expect(all {
+                                                      ^^^^^^^^^^^^^^^^^
+        182:     orderedParents(List(0, 1, 2)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        183:     arrayPremises(2, 1, 1, 2, List(2, 2, 2), List(0, 1, 2)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        184:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f7 --match=selfParentMustRemainAdmittedTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-c4-stable-prefix-snapshot-rwn27f30/discard-equal-parent-case.qnt
+error: Tests failed

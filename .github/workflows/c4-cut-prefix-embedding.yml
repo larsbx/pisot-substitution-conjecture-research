@@ -1,0 +1,105 @@
+name: C4 actual cut-prefix embedding
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/c4-cut-prefix-embedding.yml'
+      - 'docs/c4-cut-prefix-embedding*.md'
+      - 'kernel/psc/c4_cut_prefix_embedding.mojo'
+      - 'kernel/c4_cut_prefix_embedding.mojo'
+      - 'kernel/tests/test_c4_cut_prefix_embedding.mojo'
+      - 'kernel/psc/words.mojo'
+      - 'kernel/psc/c4_nonunit_residue_occupancy.mojo'
+      - 'kernel/psc/c4_finite_cylinder_overlap.mojo'
+      - 'kernel/finite_linear_algebra/**'
+      - 'kernel/finite_exact/**'
+      - 'kernel/substitution_dynamics/**'
+      - 'kernel/mojo_smoke/**'
+      - 'kernel/pixi.toml'
+      - 'kernel/pixi.lock'
+      - 'oracles/python/c4_cut_prefix_embedding.py'
+      - 'tests/test_c4_cut_prefix_embedding_oracle.py'
+      - 'proof/PscVerif/PscVerif/CutPrefixEmbedding.lean'
+      - 'proof/PscVerif/PscVerif/NamedCutProximity.lean'
+      - 'proof/PscVerif/PscVerif/CutPrefixControls.lean'
+      - 'proof/PscVerif/PscVerif/NamedPrefixCompact.lean'
+      - 'proof/PscVerif/PscVerif/NamedStableContraction.lean'
+      - 'proof/PscVerif/PscVerif/PrefixAddress.lean'
+      - 'proof/PscVerif/PscVerif/PrefixClosure.lean'
+      - 'proof/PscVerif/PscVerif/OccurrenceTransport.lean'
+      - 'proof/PscVerif/PscVerif/OccurrenceResidue.lean'
+      - 'proof/PscVerif/PscVerif/MadicResidue.lean'
+      - 'proof/PscVerif/PscVerif/StrictSystem.lean'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  literal-witness-replay:
+    name: Complete literal witnesses and independent refusal controls
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Bind exact candidate revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test -z "$(git status --porcelain)"
+          mkdir -p "$RUNNER_TEMP/cut-prefix"
+          git rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/cut-prefix/revision.txt"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install 'pytest>=7,<10'
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          pixi-version: v0.81.0
+          manifest-path: kernel/pixi.toml
+          locked: true
+      - name: Canonical locked native construction
+        working-directory: kernel
+        shell: bash
+        env:
+          MODULAR_TELEMETRY_ENABLED: '0'
+        run: |
+          set -euo pipefail
+          export MODULAR_HOME="$PWD/.pixi/envs/default/share/max"
+          .pixi/envs/default/bin/mojo --version | tee "$RUNNER_TEMP/cut-prefix/mojo-version.txt"
+          .pixi/envs/default/bin/mojo run -I . tests/test_c4_cut_prefix_embedding.mojo | tee "$RUNNER_TEMP/cut-prefix/native-tests.log"
+          .pixi/envs/default/bin/mojo run -I . c4_cut_prefix_embedding.mojo > "$RUNNER_TEMP/cut-prefix/packet.json"
+      - name: Independently reconstruct every record and exercise refusals
+        shell: bash
+        env:
+          C4_CUT_PREFIX_NATIVE: ${{ runner.temp }}/cut-prefix/packet.json
+        run: |
+          set -euo pipefail
+          python -m pytest --assert=plain -o addopts='' -q tests/test_c4_cut_prefix_embedding_oracle.py | tee "$RUNNER_TEMP/cut-prefix/oracle-tests.log"
+          python -O oracles/python/c4_cut_prefix_embedding.py --native "$C4_CUT_PREFIX_NATIVE" --controls > "$RUNNER_TEMP/cut-prefix/oracle-receipt.json"
+          sha256sum "$C4_CUT_PREFIX_NATIVE" > "$RUNNER_TEMP/cut-prefix/packet-sha256.txt"
+      - name: Recheck revision and proof inventory
+        run: |
+          git rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/cut-prefix/revision-after.txt"
+          cmp "$RUNNER_TEMP/cut-prefix/revision.txt" "$RUNNER_TEMP/cut-prefix/revision-after.txt"
+          test -z "$(git status --porcelain --untracked-files=no)"
+          python tools/make_proof_bank.py --check
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: c4-cut-prefix-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/cut-prefix
+          if-no-files-found: error
+          retention-days: 30
+
+# The existing C4 overlap Lean verification workflow is selected by every
+# proof/PscVerif change. It performs the complete isolated source build and
+# compiled axiom audit; this workflow does not replace or duplicate that gate.

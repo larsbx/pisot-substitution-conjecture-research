@@ -1,0 +1,100 @@
+{
+  "base_commit": "9a1357ed5dae3b4502d29c34396d0e9403ccca75",
+  "base_fetch_depth": 1,
+  "commands": [
+    {
+      "command": [
+        "git",
+        "init",
+        "--quiet"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "git",
+        "fetch",
+        "--quiet",
+        "--depth=1",
+        "--no-tags",
+        "/workspace/scratch/f96c28a561ad/psc",
+        "9a1357ed5dae3b4502d29c34396d0e9403ccca75"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "git",
+        "bundle",
+        "verify",
+        "/workspace/scratch/f96c28a561ad/cut-prefix-publication/cut-prefix-original-commits.bundle"
+      ],
+      "exit_code": 0,
+      "stderr": "/workspace/scratch/f96c28a561ad/cut-prefix-publication/cut-prefix-original-commits.bundle is okay\n",
+      "stdout": "The bundle contains this ref:\n68aac93df3a02c7813486bde7c3f8741674ebe5b HEAD\nThe bundle requires this ref:\n9a1357ed5dae3b4502d29c34396d0e9403ccca75 \nThe bundle uses this hash algorithm: sha1\n"
+    },
+    {
+      "command": [
+        "git",
+        "fetch",
+        "--quiet",
+        "--no-tags",
+        "/workspace/scratch/f96c28a561ad/cut-prefix-publication/cut-prefix-original-commits.bundle",
+        "HEAD:refs/heads/restored"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "git",
+        "rev-list",
+        "--reverse",
+        "9a1357ed5dae3b4502d29c34396d0e9403ccca75..refs/heads/restored"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "34999f2829412b24b43a82afdcf44370fc7d7f6c\n73a0b6a95539beb1b6712afec0f8412571b41cd3\n68aac93df3a02c7813486bde7c3f8741674ebe5b\n"
+    },
+    {
+      "command": [
+        "git",
+        "fsck",
+        "--no-reflogs",
+        "--connectivity-only",
+        "68aac93df3a02c7813486bde7c3f8741674ebe5b"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": ""
+    }
+  ],
+  "commit_objects_byte_equal": true,
+  "expected_commits": [
+    "34999f2829412b24b43a82afdcf44370fc7d7f6c",
+    "73a0b6a95539beb1b6712afec0f8412571b41cd3",
+    "68aac93df3a02c7813486bde7c3f8741674ebe5b"
+  ],
+  "historical_fetch_attempt": {
+    "exit_code": 128,
+    "missing_historical_object": "3facfb31751aa8cb026cdfb3ccdf7504cf5737ed",
+    "scope": "A full local fetch of all base history was unavailable. The successful isolated check fetched the exact base snapshot at depth one, then restored all three new commits. It does not claim complete validation of pre-existing repository history.",
+    "status": "failed"
+  },
+  "network_policy": {
+    "GIT_ALLOW_PROTOCOL": "file",
+    "GIT_NO_LAZY_FETCH": "1"
+  },
+  "original_tree_ids_equal": true,
+  "restored_commits": [
+    "34999f2829412b24b43a82afdcf44370fc7d7f6c",
+    "73a0b6a95539beb1b6712afec0f8412571b41cd3",
+    "68aac93df3a02c7813486bde7c3f8741674ebe5b"
+  ],
+  "status": "passed_with_depth_one_base"
+}

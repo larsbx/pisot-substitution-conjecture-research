@@ -1,0 +1,26 @@
+{
+  "name": "native-driver",
+  "started_utc": "2026-11-05T08:48:53.445871+00:00",
+  "duration_seconds": 13.163597,
+  "executed_local_commit": "b863dc5093e55f40fed487455588104abbe04400",
+  "source_tree": "3248cf2d72b2b1be72bf7326d2f95758c470bef2",
+  "cwd": "/workspace/scratch/bb3a4dbb8418/psc-publish/kernel",
+  "command": [
+    "/workspace/scratch/ff95d1f2448c/mojo-prefix/bin/mojo",
+    "run",
+    "-I",
+    ".",
+    "c4_pair_overlap_new_incidence.mojo"
+  ],
+  "explicit_environment": {
+    "MODULAR_HOME": "/workspace/scratch/ff95d1f2448c/mojo-prefix/share/max",
+    "PYTHONPATH": "/workspace/scratch/bb3a4dbb8418/psc-publish/tools"
+  },
+  "exit_code": 0,
+  "stdout": "/tmp/psc-new-incidence-final.txt",
+  "stderr": "native-driver.stderr.txt",
+  "stdout_sha256": "c69df761aacbe9d4b2689634627e7bc55ba167c9f5695ced8dde663c820e6754",
+  "stderr_sha256": "8b33180b5dd484cbaa302cc68b3794e69204fc8de4d0b692cbb1332a95aa44d0",
+  "stdout_archive": "native-packet.txt.gz",
+  "archived_packet_exact_match": true
+}

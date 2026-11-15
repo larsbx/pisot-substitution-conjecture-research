@@ -1,0 +1,107 @@
+{
+  "changed_sources_and_gate_configuration": [
+    {
+      "matches_committed_blob": true,
+      "path": ".github/workflows/c4-cut-prefix-embedding.yml",
+      "sha256": "775f7709a7d27356a9058d47a3e6110853faa5b59e1cfa33a363e6fa1eacd0d8"
+    },
+    {
+      "matches_committed_blob": true,
+      "path": "docs/c4-cut-prefix-embedding-2026-11-12.md",
+      "sha256": "d278628eaffdaf5eb90344b4fee911cbcab30aeba0573b0f47a6e2136d9ea954"
+    },
+    {
+      "matches_committed_blob": true,
+      "path": "docs/c4-cut-prefix-embedding-literature-2026-11-12.md",
+      "sha256": "bd4b9db151c39c55a929fe9454e1331df21e9f6625294d972b590ad058bee089"
+    },
+    {
+      "matches_committed_blob": true,
+      "path": "docs/proof-bank.md",
+      "sha256": "e063a4f3528dee081616eb26fa4787c94f677c7a9cc5702270794ad02fed462f"
+    },
+    {
+      "matches_committed_blob": true,
+      "path": "docs/side-notes-ledger.md",
+      "sha256": "62407c8a38342649a7f2f60313730aa9e473d95f906808fa9859b69a247bd725"
+    },
+    {
+      "matches_committed_blob": true,
+      "path": "kernel/c4_cut_prefix_embedding.mojo",
+      "sha256": "0475ec14465a816c756dc27a1bb58c9c843218b1d0431a004975635dacaaf4a8"
+    },
+    {
+      "matches_committed_blob": true,
+      "path": "kernel/pixi.lock",
+      "sha256": "1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8"
+    },
+    {
+      "matches_committed_blob": true,
+      "path": "kernel/psc/c4_cut_prefix_embedding.mojo",
+      "sha256": "26b5978d50df99e244d5717cc157830d76d31782e3590bd4fc4ac246a116948c"
+    },
+    {
+      "matches_committed_blob": true,
+      "path": "kernel/tests/test_c4_cut_prefix_embedding.mojo",
+      "sha256": "c77e3d16c33ae7d9889e0abc8082ae93bdd2166f904c1527648328cb82cc638a"
+    },
+    {
+      "matches_committed_blob": true,
+      "path": "oracles/python/c4_cut_prefix_embedding.py",
+      "sha256": "be0d28682d8b51848c66be0000381611b1a45051f6e68a5a63658785cafb7485"
+    },
+    {
+      "matches_committed_blob": true,
+      "path": "proof/PscVerif/PscVerif.lean",
+      "sha256": "b69563a154a87618c39fcd215b6c4b15bf5a33e93472b9e52cb7597788c67c05"
+    },
+    {
+      "matches_committed_blob": true,
+      "path": "proof/PscVerif/PscVerif/CutPrefixControls.lean",
+      "sha256": "6d6ecf01da60338db6f1a364f3565db18cbe6407aaa03f7996754058c5f9f2c5"
+    },
+    {
+      "matches_committed_blob": true,
+      "path": "proof/PscVerif/PscVerif/CutPrefixEmbedding.lean",
+      "sha256": "0f652300410b5a1fb9b8271d1b793d41dacc173f7faf3e106d4951e8256c45c3"
+    },
+    {
+      "matches_committed_blob": true,
+      "path": "proof/PscVerif/PscVerif/NamedCutProximity.lean",
+      "sha256": "34fa8b8a10ff483b463b15f9da906cd6c75441b6cdeeb0ec823ed8219185c901"
+    },
+    {
+      "matches_committed_blob": true,
+      "path": "proof/PscVerif/lake-manifest.json",
+      "sha256": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2"
+    },
+    {
+      "matches_committed_blob": true,
+      "path": "proof/PscVerif/lean-toolchain",
+      "sha256": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88"
+    },
+    {
+      "matches_committed_blob": true,
+      "path": "proof/proof-bank.json",
+      "sha256": "00424786c94e351ab03919c7175df2415924b574eefff24bacae1308ed72da68"
+    },
+    {
+      "matches_committed_blob": true,
+      "path": "tests/test_c4_cut_prefix_embedding_oracle.py",
+      "sha256": "cf183737b6645fd54eda0e757c9f78186365a262153e6fbd4b090a2fb611ece2"
+    },
+    {
+      "matches_committed_blob": true,
+      "path": "tools/check_lean.sh",
+      "sha256": "eb63ce6fb0b837eee1208b3d47e759bcf8b3617b1374685a8850e48f283cba8d"
+    },
+    {
+      "matches_committed_blob": true,
+      "path": "tools/make_proof_bank.py",
+      "sha256": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8"
+    }
+  ],
+  "commit": "73a0b6a95539beb1b6712afec0f8412571b41cd3",
+  "schema": "c4-cut-prefix-local-sources-v1",
+  "tree": "8233701f593a8ba680356a88c2c6fc8e4cf01df5"
+}

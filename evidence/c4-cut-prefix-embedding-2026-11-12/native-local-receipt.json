@@ -1,0 +1,137 @@
+{
+  "compiler": {
+    "MODULAR_HOME": "/workspace/scratch/20703ddfc887/mojo-local/.pixi/envs/default/share/max",
+    "binary_sha256": "0d5f0b700b0543223a10c47e818bc4f43f3228166c34ab13d52ab7f2ad02ffcd",
+    "execution": "direct version-pinned compiler from existing auxiliary environment",
+    "installed_package_metadata_matches_lock": true,
+    "lock_sha256": "1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8",
+    "observed_version": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+    "package_archive_rehashed_for_this_receipt": false,
+    "package_sha256_in_lock_and_installed_metadata": "0d71889abb0887e2fa8a556c1081af4026034cdf98d27ad05b57cb096d7ad4f6",
+    "package_url": "https://conda.modular.com/max-nightly/linux-64/mojo-compiler-1.1.0.dev2026090805-release.conda",
+    "path": "/workspace/scratch/20703ddfc887/mojo-local/.pixi/envs/default/bin/mojo"
+  },
+  "complete_packet": {
+    "balanced_cuts": 272,
+    "bytes": 2060008,
+    "comparison": "all fields, full literal marks, order, counts, JSON types and residue witnesses",
+    "distinct_letter_balanced_cuts": 51,
+    "path": "/workspace/scratch/f96c28a561ad/c4-cut-prefix-native.json",
+    "residue_witnesses": 21028,
+    "sha256": "440127dd5d0617cc1f3b75a960db4fbde7e7c31cc931146a1635637a967b030e",
+    "status": "native and independent Python match",
+    "witnesses": 3220
+  },
+  "full_locked_environment": {
+    "claimed_as_passed": false,
+    "reason": "Network provisioning failure while downloading conda dependencies (uvicorn tunnel unavailable); direct pinned-compiler replay is separate.",
+    "scope": "complete repository pixi install --locked",
+    "status": "FAILED"
+  },
+  "limits": {
+    "does_not_certify": [
+      "universal Lean theorem",
+      "positive overlap measure",
+      "C4 or PSC closure",
+      "complete locked pixi environment",
+      "hosted CI"
+    ],
+    "finite_replay_only": true,
+    "powers": [
+      0,
+      2,
+      4,
+      6
+    ],
+    "source_length_cap": 8,
+    "word_cap": 100000
+  },
+  "native_tests": {
+    "balanced_cuts": 272,
+    "expected_refusals": 19,
+    "log": "/workspace/scratch/f96c28a561ad/c4-cut-prefix-native-tests.log",
+    "log_sha256": "a174bed0931ad0dd98f7feac078d97b255e7cf7c89605b270c88b47255bd860a",
+    "observed_refusals": 19,
+    "residue_witnesses": 7860,
+    "status": "passed",
+    "valid_mutation_baselines_verified_outside_exception_boundaries": true,
+    "witnesses": 1204
+  },
+  "oracle": {
+    "control_inventory": [
+      "full_packet_mutation_0",
+      "full_packet_mutation_1",
+      "full_packet_mutation_2",
+      "full_packet_mutation_3",
+      "full_packet_mutation_4",
+      "full_packet_mutation_5",
+      "full_packet_mutation_6",
+      "full_packet_mutation_7",
+      "full_packet_mutation_8",
+      "full_packet_mutation_9",
+      "full_packet_mutation_10",
+      "full_packet_mutation_11",
+      "full_packet_mutation_12",
+      "full_packet_mutation_13",
+      "full_packet_mutation_14",
+      "strict_json_15",
+      "strict_json_16",
+      "strict_json_17",
+      "finite_residue_agreement_does_not_identify_points"
+    ],
+    "receipt": "/workspace/scratch/f96c28a561ad/c4-cut-prefix-native-oracle.json",
+    "receipt_sha256": "8960b533fa7d5d241532d21c5e1bd2d972633b2cdebfbbb4aa2d7e99974713db",
+    "rejection_controls": 18,
+    "sanity_controls": 1,
+    "status": "passed under python -O"
+  },
+  "publication": {
+    "hosted_candidate_ci": "not_run",
+    "scope": "local replay only"
+  },
+  "pytest": {
+    "environment_variable": "C4_CUT_PREFIX_NATIVE",
+    "failures": 0,
+    "log": "/workspace/scratch/f96c28a561ad/cut-prefix-python.log",
+    "log_sha256": "d63f4f315372e3b4b388c6447a3fef6b3fbe44f92d719ad382c5182d04e69b0c",
+    "native_packet_supplied": true,
+    "passed": 8,
+    "skips": 0,
+    "status": "passed",
+    "warning": "AnyIO plugin CallSpec2 deprecation; no test failure",
+    "warnings": 1
+  },
+  "revision": {
+    "commit": "73a0b6a95539beb1b6712afec0f8412571b41cd3",
+    "source_binding": "The five candidate files match their committed Git blobs. Local native and oracle runs were completed during development before this commit; no optional tests were rerun to produce this receipt.",
+    "tree": "8233701f593a8ba680356a88c2c6fc8e4cf01df5"
+  },
+  "schema": "c4-cut-prefix-native-local-receipt-v1",
+  "sources": [
+    {
+      "matches_committed_blob": true,
+      "path": "kernel/psc/c4_cut_prefix_embedding.mojo",
+      "sha256": "26b5978d50df99e244d5717cc157830d76d31782e3590bd4fc4ac246a116948c"
+    },
+    {
+      "matches_committed_blob": true,
+      "path": "kernel/tests/test_c4_cut_prefix_embedding.mojo",
+      "sha256": "c77e3d16c33ae7d9889e0abc8082ae93bdd2166f904c1527648328cb82cc638a"
+    },
+    {
+      "matches_committed_blob": true,
+      "path": "kernel/c4_cut_prefix_embedding.mojo",
+      "sha256": "0475ec14465a816c756dc27a1bb58c9c843218b1d0431a004975635dacaaf4a8"
+    },
+    {
+      "matches_committed_blob": true,
+      "path": "oracles/python/c4_cut_prefix_embedding.py",
+      "sha256": "be0d28682d8b51848c66be0000381611b1a45051f6e68a5a63658785cafb7485"
+    },
+    {
+      "matches_committed_blob": true,
+      "path": "tests/test_c4_cut_prefix_embedding_oracle.py",
+      "sha256": "cf183737b6645fd54eda0e757c9f78186365a262153e6fbd4b090a2fb611ece2"
+    }
+  ]
+}

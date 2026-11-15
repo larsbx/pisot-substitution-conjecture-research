@@ -1,0 +1,121 @@
+{
+  "copied_at_utc": "2026-11-12T17:35:14.200076+00:00",
+  "files": [
+    {
+      "archived": "development/generic-01.log",
+      "bytes": 1167,
+      "sha256": "867fb1eb725de2ae0b62e7b1363cc73a54d55ddb2fef27ab6e7180f33223fde6",
+      "source": "compact-neighborhood-dev-1.log"
+    },
+    {
+      "archived": "development/generic-02.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "compact-neighborhood-dev-2.log"
+    },
+    {
+      "archived": "development/named-01.log",
+      "bytes": 348,
+      "sha256": "9d3bba2364e8fd6b02152a52786856272c632a8fcbef1c6a11118046e97a164e",
+      "source": "named-cut-neighborhood-dev-1.log"
+    },
+    {
+      "archived": "development/named-02.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "named-cut-neighborhood-dev-2.log"
+    },
+    {
+      "archived": "development/named-03.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "named-cut-neighborhood-dev-3.log"
+    },
+    {
+      "archived": "development/controls-01.log",
+      "bytes": 233,
+      "sha256": "64cfd68bf01deb47b064ab8e5237ed0da31bf1d73b7f900024f503a44d64e3d9",
+      "source": "compact-controls-dev-build-01.log"
+    },
+    {
+      "archived": "development/controls-02.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "compact-controls-dev-build-02.log"
+    },
+    {
+      "archived": "development/controls-axioms.log",
+      "bytes": 1552,
+      "sha256": "2dbbd95656371c38e6ec98bdbff0e3a4fd954b846d6d4d34f90313f621a30a12",
+      "source": "compact-controls-dev-axioms.log"
+    },
+    {
+      "archived": "development/controls-axioms.lean",
+      "bytes": 484,
+      "sha256": "e99c34f53c1b0956ca29a7b37be7744f0f1bc81c6621f4c396615696e769ebba",
+      "source": "compact-controls-audit.lean"
+    },
+    {
+      "archived": "development/bootstrap.log",
+      "bytes": 1128,
+      "sha256": "0c31d15c13151b37ea91f6559cfc3969044644b05a86d564af4a0b288765c013",
+      "source": "compact-lean-bootstrap.log"
+    },
+    {
+      "archived": "review/initial-ci-and-semantic.json",
+      "bytes": 21536,
+      "sha256": "a4333ce610c408bf4c01e924fcd88740cd5360b3211cb25f62ea8a0e11a9316a",
+      "source": "compact-review-notes.json"
+    },
+    {
+      "archived": "checks/governance.log",
+      "bytes": 149,
+      "sha256": "6940a57ab580c143a470ce9dfa57b03fcd085f8b569960cca2350b9ec0dbae49",
+      "source": "compact-governance-check.log"
+    },
+    {
+      "archived": "checks/ledger.log",
+      "bytes": 39,
+      "sha256": "87e6e3fc1f68a3418fbefd2f09df76e36d95d4624c7d11ffe2b3b6c64a09b9d6",
+      "source": "compact-ledger-check.log"
+    },
+    {
+      "archived": "checks/proof-bank-check.log",
+      "bytes": 68,
+      "sha256": "f37fc999bedf96bff6439c33493218b771d5b5c81682abb92cf40fd5863270cc",
+      "source": "compact-proof-bank-check.log"
+    },
+    {
+      "archived": "checks/proof-bank-generation.log",
+      "bytes": 68,
+      "sha256": "f37fc999bedf96bff6439c33493218b771d5b5c81682abb92cf40fd5863270cc",
+      "source": "compact-proof-bank-generation.log"
+    },
+    {
+      "archived": "source-inventory.json",
+      "bytes": 12555,
+      "sha256": "253643a43e08c02676bed4c1672f3aef5c2cbff75acae6d5811d6dd9cf5650a9",
+      "source": "compact-source-inventory.json"
+    },
+    {
+      "archived": "next-count-plan.md",
+      "bytes": 11585,
+      "sha256": "b04c6a1c9ad18cddb32fa1c94c0d0abc3301c3714041cbd33c84aaba622a370c",
+      "source": "compact-next-count-plan.md"
+    },
+    {
+      "archived": "gate/process-start-snapshot.json",
+      "bytes": 15656,
+      "sha256": "30d1c62c5156bcb90989b2316a69d4d43563e43c95e29b0eccfbe253e1f13b72",
+      "source": "compact-isolated-process.json"
+    },
+    {
+      "archived": "gate/isolated-in-progress-snapshot.log",
+      "bytes": 16009,
+      "sha256": "e465d45704aa0a2aade9155b3a74d53670cb8a675aa64a8865aed7589be26b41",
+      "source": "compact-isolated-lean.log"
+    }
+  ],
+  "schema": "c4-compact-stage-copies-v1",
+  "warning": "Gate process/log are in-progress snapshots, not terminal acceptance. Original development failures and silent logs are preserved byte-for-byte."
+}

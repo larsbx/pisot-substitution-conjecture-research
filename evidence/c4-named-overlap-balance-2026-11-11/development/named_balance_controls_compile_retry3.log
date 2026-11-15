@@ -1,0 +1,60 @@
+Waiting for the single Lean development compiler lock.
+Acquired the single Lean development compiler lock.
+[1/21] current development object PscVerif.PhysicalMass
+[2/21] current development object PscVerif.OccurrenceMassCounts
+[3/21] current development object PscVerif.Binomial
+[4/21] current development object PscVerif.Incidence
+[5/21] current development object PscVerif.PerronCore
+[6/21] current development object PscVerif.ConcentrationAlgebra
+[7/21] current development object PscVerif.ParikhIntertwiner
+[8/21] current development object PscVerif.SignedCocycle
+[9/21] current development object PscVerif.FixedPointLimit
+[10/21] current development object PscVerif.Reduction
+[11/21] current development object PscVerif.Descendants
+[12/21] current development object PscVerif.Cyclicity
+[13/21] current development object PscVerif.OccurrenceNewborn
+[14/21] current development object PscVerif.OccurrenceAddress
+[15/21] current development object PscVerif.OccurrenceTransport
+[16/21] current development object PscVerif.OccurrenceFinite
+[17/21] current development object PscVerif.OccurrenceSuccessor
+[18/21] current development object PscVerif.OccurrenceMass
+[19/21] current development object PscVerif.OccurrenceInverse
+[20/21] current development object PscVerif.OccurrencePhysicalBudget
+[21/21] compiling actual source PscVerif.NamedOverlapBalanceControls
+/workspace/scratch/2880dde43f60/psc/proof/PscVerif/PscVerif/NamedOverlapBalanceControls.lean:38:67: warning: This simp argument is unused:
+  parikhZ
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [iterateImages, markAt, Psc.OccurrenceTransport.residual]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/workspace/scratch/2880dde43f60/psc/proof/PscVerif/PscVerif/NamedOverlapBalanceControls.lean:54:4: warning: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+/workspace/scratch/2880dde43f60/psc/proof/PscVerif/PscVerif/NamedOverlapBalanceControls.lean:76:42: warning: This simp argument is unused:
+  parikhZ
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [digitPacket, repeatedImages, diagonal, markAt, Psc.OccurrenceTransport.residual]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/workspace/scratch/2880dde43f60/psc/proof/PscVerif/PscVerif/NamedOverlapBalanceControls.lean:104:7: warning: Variable name `i` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _i
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+/workspace/scratch/2880dde43f60/psc/proof/PscVerif/PscVerif/NamedOverlapBalanceControls.lean:112:7: warning: Variable name `i` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _i
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+/workspace/scratch/2880dde43f60/psc/proof/PscVerif/PscVerif/NamedOverlapBalanceControls.lean:122:9: warning: Variable name `i` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _i
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+[21/21] result 0, 47.4s
+Development compilation finished; canonical isolated acceptance remains separate.

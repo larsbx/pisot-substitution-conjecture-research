@@ -1,0 +1,10 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+  C4StablePrefixScalar
+    ok scalarDomainCountTest passed 1 test(s)
+    ok exhaustiveParentStepTest passed 1 test(s)
+    ok exhaustiveSelfParentTest passed 1 test(s)
+    ok acceptedBoundaryAndZeroTest passed 1 test(s)
+    ok existingRadiusArithmeticTest passed 1 test(s)
+
+  5 passing (265ms)

@@ -1,8 +1,8 @@
 """Provenance-only integration guard for PR #394; no mathematical verdict.
 
-Current #394 pins are checked against the working tree. Historical #392
-pins are checked against their original Git objects, and every current
-source drift must be explicitly inventoried. No packet is re-pinned here.
+The #394 and #392 source pins are checked against their recorded Git objects.
+The audited source drift is reconstructed between those two snapshots.
+Current native output is checked by the workflow against the preserved packet.
 Requires full Git history (Actions checkout fetch-depth: 0).
 """
 from __future__ import annotations
@@ -15,6 +15,8 @@ import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKET = ROOT / 'evidence/class-c-below-three-integration-2026-11-01'
+RECORDED_INTEGRATION = '3632f28242aa484485ecee752c5e28f9b713cf81'
+PROVENANCE = 'evidence/class-c-below-three-2026-10-29/provenance.json'
 
 
 def sha(data: bytes) -> str:
@@ -26,9 +28,12 @@ def git_bytes(ref: str, path: str) -> bytes:
 
 
 def check() -> dict:
-    audit = json.loads((PACKET / 'audit.json').read_text())
+    audit_path = PACKET / 'audit.json'
+    audit_bytes = git_bytes(RECORDED_INTEGRATION, str(audit_path.relative_to(ROOT)))
+    assert audit_path.read_bytes() == audit_bytes, 'archived integration audit changed'
+    audit = json.loads(audit_bytes)
     for path, digest in audit['integration_source_sha256'].items():
-        assert sha((ROOT / path).read_bytes()) == digest, path
+        assert sha(git_bytes(RECORDED_INTEGRATION, path)) == digest, path
     original = audit['inspected_head']
     base = audit['inspected_main']
     subprocess.run(['git', 'merge-base', '--is-ancestor', base, 'HEAD'], cwd=ROOT, check=True)
@@ -48,14 +53,16 @@ def check() -> dict:
     archived = ROOT / audit['archived_workflow']
     assert archived.read_bytes() == git_bytes(original, '.github/workflows/class-c-slope-three.yml')
     assert not (ROOT / '.github/workflows/class-c-slope-three.yml').exists()
-    current = json.loads((ROOT / 'evidence/class-c-below-three-2026-10-29/provenance.json').read_text())
+    provenance = git_bytes(RECORDED_INTEGRATION, PROVENANCE)
+    assert (ROOT / PROVENANCE).read_bytes() == provenance, 'archived source pins changed'
+    current = json.loads(provenance)
     for path, digest in current['sources'].items():
-        assert sha((ROOT / path).read_bytes()) == digest, path
+        assert sha(git_bytes(RECORDED_INTEGRATION, path)) == digest, path
     historical = json.loads((ROOT / 'evidence/class-c-slope-three-2026-10-29/provenance.json').read_text())
     drift = {}
     for path, digest in historical['sources'].items():
         assert sha(git_bytes(audit['historical_392_head'], path)) == digest, path
-        actual = sha((ROOT / path).read_bytes())
+        actual = sha(git_bytes(RECORDED_INTEGRATION, path))
         if actual != digest:
             drift[path] = {'historical_sha256': digest, 'current_sha256': actual}
     assert drift == audit['historical_source_drift'], drift

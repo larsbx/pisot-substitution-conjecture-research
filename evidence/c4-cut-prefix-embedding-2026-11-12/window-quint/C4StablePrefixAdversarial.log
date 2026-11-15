@@ -1,0 +1,15 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+  C4StablePrefixAdversarial
+    ok strictContractionRefusedTest passed 1 test(s)
+    ok invariantRadiusRefusedTest passed 1 test(s)
+    ok negativeNumeratorRefusedTest passed 1 test(s)
+    ok invalidSignsRefusedTest passed 1 test(s)
+    ok laterParentRefusedTest passed 1 test(s)
+    ok selfParentMustRemainAdmittedTest passed 1 test(s)
+    ok omittedDigitRefusedTest passed 1 test(s)
+    ok wrongBlockRefusedTest passed 1 test(s)
+    ok underestimatedDigitRefusedTest passed 1 test(s)
+    ok repeatedPositionIdentityTest passed 1 test(s)
+
+  10 passing (14ms)

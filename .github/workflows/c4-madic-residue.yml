@@ -1,0 +1,119 @@
+name: C4 matrix-adic residue bridge
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/c4-madic-residue.yml'
+      - 'docs/c4-madic-residue*.md'
+      - 'kernel/psc/c4_madic_residue.mojo'
+      - 'kernel/c4_madic_residue.mojo'
+      - 'kernel/tests/test_c4_madic_residue.mojo'
+      - 'oracles/python/c4_madic_residue.py'
+      - 'oracles/python/c4_bounded_cover.py'
+      - 'tests/test_c4_madic_residue_oracle.py'
+      - 'kernel/psc/c4_bounded_cover.mojo'
+      - 'kernel/psc/affine_ancestry_trace.mojo'
+      - 'kernel/psc/c4_literal_inverse_binding.mojo'
+      - 'kernel/psc/c4_pair_overlap_new_incidence.mojo'
+      - 'kernel/psc/c4_nonunit_residue_occupancy.mojo'
+      - 'kernel/finite_exact/**'
+      - 'kernel/finite_linear_algebra/**'
+      - 'kernel/substitution_dynamics/**'
+      - 'kernel/mojo_smoke/**'
+      - 'kernel/pixi.toml'
+      - 'kernel/pixi.lock'
+      - 'proof/PscVerif/PscVerif/Occurrence*.lean'
+      - 'proof/PscVerif/PscVerif/MadicResidue.lean'
+      - 'vendored.toml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  madic-native-and-integer-oracle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Bind exact revision before execution
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, subprocess, sys
+          sys.path.insert(0, 'oracles/python')
+          from c4_madic_residue import SOURCES
+          receipt = {
+              'git_head': subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+              'git_tree': subprocess.check_output(['git','rev-parse','HEAD^{tree}'],text=True).strip(),
+              'worktree_dirty': bool(subprocess.check_output(['git','status','--porcelain'],text=True).strip()),
+              'sources': {p:hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest() for p in SOURCES},
+          }
+          if receipt['worktree_dirty']:
+              raise SystemExit('Refusing a dirty initial checkout')
+          (pathlib.Path(os.environ['RUNNER_TEMP'])/'madic-residue-source.json').write_text(json.dumps(receipt,indent=2)+'\n')
+          PY
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install focused independent test runner
+        run: python -m pip install 'pytest>=7,<10'
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          pixi-version: v0.81.0
+          manifest-path: kernel/pixi.toml
+          locked: true
+      - name: Canonical locked native replay
+        working-directory: kernel
+        env:
+          MODULAR_TELEMETRY_ENABLED: '0'
+        run: |
+          export MODULAR_HOME="$PWD/.pixi/envs/default/share/max"
+          .pixi/envs/default/bin/mojo --version
+          .pixi/envs/default/bin/mojo run -I . tests/test_c4_madic_residue.mojo
+          .pixi/envs/default/bin/mojo run -I . c4_madic_residue.mojo > "$RUNNER_TEMP/madic-residue-native.txt"
+      - name: Independent complete packet and refusal controls
+        env:
+          C4_MADIC_RESIDUE_NATIVE: ${{ runner.temp }}/madic-residue-native.txt
+        run: |
+          python -m pytest --assert=plain -o addopts='' -q tests/test_c4_madic_residue_oracle.py
+          python -O oracles/python/c4_madic_residue.py \
+            --native-output "$RUNNER_TEMP/madic-residue-native.txt" \
+            --output "$RUNNER_TEMP/madic-residue-receipt.json"
+      - name: Verify source revision after replay
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, subprocess
+          p=pathlib.Path(os.environ['RUNNER_TEMP'])/'madic-residue-source.json'
+          r=json.loads(p.read_text())
+          for key,ref in [('git_head','HEAD'),('git_tree','HEAD^{tree}')]:
+              if subprocess.check_output(['git','rev-parse',ref],text=True).strip()!=r[key]:
+                  raise SystemExit('Revision changed during replay')
+          for path,digest in r['sources'].items():
+              if hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()!=digest:
+                  raise SystemExit('Source changed: '+path)
+          if subprocess.check_output(['git','status','--porcelain','--untracked-files=no'],text=True).strip():
+              raise SystemExit('Tracked sources changed during replay')
+          r['source_and_revision_recheck']='unchanged'
+          p.write_text(json.dumps(r,indent=2)+'\n')
+          PY
+          python tools/make_proof_bank.py --check
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: c4-madic-residue-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            ${{ runner.temp }}/madic-residue-source.json
+            ${{ runner.temp }}/madic-residue-native.txt
+            ${{ runner.temp }}/madic-residue-receipt.json
+          if-no-files-found: error
+          retention-days: 30

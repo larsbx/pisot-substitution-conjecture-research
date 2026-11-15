@@ -2,9 +2,7 @@
 
 Exact guards and scope: docs/class-a-boundary-b4-carrier-2026-10-28.md.
 """
-from finite_exact.checked_int import checked_add, checked_mul
-from std.collections import Dict
-from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, member_transport, verify_member_edge
+from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, verify_member_edge
 from psc.class_a_boundary_u_children import reverse_label
 from psc.class_a_boundary_r3_children import r3_source
 from psc.class_a_boundary_b3_children import certify_b3_children, b3_star_interface
@@ -12,12 +10,12 @@ from psc.class_a_boundary_p3_children import p3_source
 from psc.class_a_boundary_e2_children import certify_e2_children, e2_source, e2_path
 from psc.class_a_boundary_h3_children import alpha_high, chain_source, chain_path
 from psc.class_a_boundary_e_children import _offset
-from psc.class_a_boundary_next_run import _parameters
 from psc.class_a_boundary_next_first import _linear, _cubic, _equal
 from psc.class_a_boundary_occurrences import symbolic_child, _equal3, _prefix, _child, FIRST, RUN, LAST
 from psc.class_a_boundary_signs import chamber_parameters, _cone_positive, _cone_nonnegative
 from psc.param_poly import QX, qx_const, qx_add, qx_sub, qx_neg, tp_add, tp_sub, tp_mul, tp_scale, tp_mod_monic
 from psc.overlap_seed_patch import SeedOverlapTables
+from psc.class_a_boundary_family import BoundaryFamily, boundary_dimensions, append_child, verify_child_packet, verify_child_star
 
 
 def b4_source(kind: Int) raises -> BoundaryLabel:
@@ -150,10 +148,7 @@ def certify_b4_children(corrupt: Bool=False) raises:
 
 def _dimensions(kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int,Int,Int]:
     _=b4_source(kind)
-    var p=_parameters(-1,k,t)
-    var A=checked_add(p[0],p[1])
-    _=checked_add(A,12)
-    return(p[0],p[1],A,p[0]-1)
+    return boundary_dimensions(k,t,12)
 
 
 def b4_child_allowed(kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:
@@ -208,16 +203,20 @@ def in_b4_image(w: BoundaryLabel) raises -> Bool:
     return False
 
 
+@fieldwise_init
+struct B4Children(BoundaryFamily):
+    def name(self) -> String:return "B4"
+    def source(self,kind: Int) raises -> BoundaryLabel:return b4_source(kind)
+    def parameters(self,kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int]:
+        var p=_dimensions(kind,k,t)
+        return (p[0],p[1])
+    def swapped(self,kind: Int) -> Bool:return kind!=0
+    def allowed(self,kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:return b4_child_allowed(kind,k,t,i,j)
+    def in_image(self,w: BoundaryLabel) raises -> Bool:return in_b4_image(w)
+
+
 def _append(mut out: List[BoundaryEdge],kind: Int,k: Int,t: Int,i: Int,j: Int) raises:
-    var p=_dimensions(kind,k,t)
-    var a=i if kind==0 else j
-    var b=j if kind==0 else i
-    if not b4_child_allowed(kind,k,t,a,b):
-        raise Error("synthesized B4 guard failed")
-    var target=member_transport(-1,k,p[0],p[1],b4_source(kind),a,b)
-    if not in_b4_image(target):
-        raise Error("B4 target escaped exact image")
-    out.append(BoundaryEdge(a,b,target))
+    append_child(B4Children(),out,kind,k,t,i,j)
 
 
 def b4_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
@@ -241,24 +240,12 @@ def b4_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
 
 
 def verify_b4_packet(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,edge: BoundaryEdge) raises:
-    var p=_dimensions(kind,k,t)
-    if not b4_child_allowed(kind,k,t,edge.i,edge.j) or not in_b4_image(edge.target):
-        raise Error("B4 packet refused")
-    verify_member_edge(tables,-1,k,p[0],p[1],b4_source(kind),edge.i,edge.j,edge.target)
+    verify_child_packet(B4Children(),tables,kind,k,t,edge)
 
 
 def verify_b4_star(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,edges: List[BoundaryEdge]) raises:
-    var p=_dimensions(kind,k,t)
-    if kind>=2 or len(edges)!=max(1,2*t-1):
-        raise Error("incomplete B4 indexed star or unsupported companion star")
-    var stride=checked_add(p[2] if kind==0 else p[3],2)
-    var seen=Dict[Int,Bool]()
-    for edge in edges:
-        verify_b4_packet(tables,kind,k,t,edge)
-        var key=checked_add(checked_mul(edge.i,stride),edge.j)
-        if key in seen:
-            raise Error("duplicate B4 occurrence")
-        seen[key]=True
+    if kind>=2:raise Error("unsupported B4 companion star")
+    verify_child_star(B4Children(),tables,kind,k,t,edges,max(1,2*t-1))
 
 
 def b4_path(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:

@@ -1,0 +1,14 @@
+{
+  "acceptance_complete_when_copied": false,
+  "archived": "gate/attempt-03-process-start-snapshot.json",
+  "attempt": 3,
+  "bytes": 15662,
+  "captured_at_utc": "2026-11-12T18:46:31.191315+00:00",
+  "metadata_stable_during_capture": true,
+  "schema": "c4-compact-running-receipt-snapshot-v1",
+  "session_id_reported_by_root": 45485,
+  "sha256": "e32608f303fdca782223e7d6f9a496f3d2681d020917e51aac6eacc302298571",
+  "source": "/workspace/scratch/f96c28a561ad/compact-isolated-attempt-03.json",
+  "started_at_utc": "2026-11-12T18:46:08.507683+00:00",
+  "status_when_copied": "running"
+}

@@ -1,0 +1,40 @@
+{
+  "base_gate_code": [
+    {
+      "author_time": "2026-11-12T12:16:50-05:00",
+      "commit": "bdf033f647f73f911a47260e8bdad5f2e96f3c7a",
+      "commit_time": "2026-11-12T12:16:50-05:00",
+      "message": "Merge pull request #557 from larsbx/research/c4-cut-prefix-embedding\n\nProve uniform prefix-tile proximity for actual balanced cuts",
+      "parents": [
+        "a102450f4b59a88b1f6912461b64f2129973870d",
+        "c5c38db3e54a3f18f9d92db1b9f34b3b9f6ec51b"
+      ],
+      "tree": "73201424138427d63ddf05c9c1102f424af5b1af"
+    },
+    {
+      "author_time": "2026-11-12T17:21:30Z",
+      "commit": "571c8df9b5223aeef6b7f137c49b4495590d090e",
+      "commit_time": "2026-11-12T17:21:30Z",
+      "message": "docs(c4): gate compact neighborhood transfer for actual cuts",
+      "parents": [
+        "bdf033f647f73f911a47260e8bdad5f2e96f3c7a"
+      ],
+      "tree": "9bdb1e1a896f4f29b570d843693d8672de29d06b"
+    },
+    {
+      "author_time": "2026-11-12T17:32:20Z",
+      "commit": "6915e8d592b7ea5cb7c6950249811e354dc6c3e7",
+      "commit_time": "2026-11-12T17:32:20Z",
+      "message": "feat(proof): capture actual strict cuts in compact open covers",
+      "parents": [
+        "571c8df9b5223aeef6b7f137c49b4495590d090e"
+      ],
+      "tree": "c79e97bdae1224068895afa9dcf6cca6d7fe9fbb"
+    }
+  ],
+  "gate_direct_parent_of_code": true,
+  "gate_note_path": "docs/c4-compact-neighborhood-literature-2026-11-12.md",
+  "gate_note_sha256": "2e5737a64d1f647c6ac6cbb383d613870d4bf664a56a1e0d2383a5cb7a639b1a",
+  "gate_unchanged_in_code_commit": true,
+  "schema": "c4-compact-gate-chronology-v1"
+}

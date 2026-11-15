@@ -1,0 +1,177 @@
+{
+  "backend": "typescript",
+  "domain_note": "These are exact forall-domain sizes, not accepted-premise or random sample counts. The rational matrix action is represented by its numerator and positive denominator. The chart controls are separate integer examples, not the named algebraic Pisot chart. This model does not select a real root, prove the named power identity, authenticate an infinite word, prove compactness, or decode native numerical certificates.",
+  "executed_test_count": 22,
+  "executed_tests": [
+    {
+      "count": 5,
+      "log_sha256": "bffbd3e111531a94e1b112a49c86998128d45429811549c550a189aeb1a477eb",
+      "module": "C4NamedChartExhaustive",
+      "names": [
+        "matrixDomainCountTest",
+        "exhaustiveRowBoundTest",
+        "exhaustiveRationalContractionTest",
+        "exactSignedExtremizerTest",
+        "nonvacuousBoundaryTest"
+      ]
+    },
+    {
+      "count": 4,
+      "log_sha256": "15ab1ea0bae990c4131a0f771d6b5f297335010d133d135e3fa1a74c477dffee",
+      "module": "C4NamedChartAlgebra",
+      "names": [
+        "completeSectionFamilyTest",
+        "correctedSectionTest",
+        "fullReconstructionTest",
+        "basisCommutationFamilyTest"
+      ]
+    },
+    {
+      "count": 13,
+      "log_sha256": "e7290bc08020866da4e89732f59cbed5de04866103455e73bdab74efaa4f3898",
+      "module": "C4NamedChartAdversarial",
+      "names": [
+        "columnNormRefusedTest",
+        "entrywiseNormRefusedTest",
+        "signedCancellationRefusedTest",
+        "secondRowRefusedTest",
+        "unitContractionRefusedTest",
+        "invalidDenominatorRefusedTest",
+        "wrongMatrixRefusedTest",
+        "wrongBlockRefusedTest",
+        "zeroProjectionRefusedTest",
+        "missingCommutationRefusedTest",
+        "coordinateRescalingRefusedTest",
+        "quotientNormNotIsometryTest",
+        "rawSectionNotStablePlaneTest"
+      ]
+    }
+  ],
+  "finite_domain_cardinalities": {
+    "basis_commutation_extension_tuples": 3125,
+    "integer_vectors_three": 125,
+    "integer_vectors_two": 25,
+    "matrix_vector_tuples": 2025,
+    "projection_section_tuples": 625,
+    "rational_contraction_tuples": 54675,
+    "two_by_two_integer_matrices": 81
+  },
+  "git_head": "73a0b6a95539beb1b6712afec0f8412571b41cd3",
+  "git_tree": "8233701f593a8ba680356a88c2c6fc8e4cf01df5",
+  "model": "proof/quint/C4NamedStableChart.qnt",
+  "model_sha256": "b4fcd711c7d6eaf740ef27912cd3ce3606514ff3fca5621163f85ea94d5b8906",
+  "quint_version": "0.33.1",
+  "rejected_mutation_count": 10,
+  "rejected_mutations": [
+    {
+      "log_sha256": "475a48b68f46f09b5b04e2705b922f067291d130b9db7a5125562d6a777c3d9f",
+      "mutant_sha256": "0c80600bb3bc741774d3e3db2f07066a700d55913a27cc7191ae89148e624981",
+      "name": "substitute-column-norm",
+      "replace_once": {
+        "after": "  pure def rowsSafe(m, den, num, qden) = qden * columnNorm(m) <= num * den",
+        "before": "  pure def rowsSafe(m, den, num, qden) = all {\n    qden * row0(m) <= num * den,\n    qden * row1(m) <= num * den,\n  }"
+      },
+      "test": "columnNormRefusedTest"
+    },
+    {
+      "log_sha256": "b773e6c288b4a2caaa5eab4313ebc010c4650df31e973740809a2c36a7b937ca",
+      "mutant_sha256": "addb989f21ded2226deef264ff18f8d92e3430e560e5cec639e33409c4731e71",
+      "name": "substitute-entrywise-norm",
+      "replace_once": {
+        "after": "  pure def rowsSafe(m, den, num, qden) = qden * entryNorm(m) <= num * den",
+        "before": "  pure def rowsSafe(m, den, num, qden) = all {\n    qden * row0(m) <= num * den,\n    qden * row1(m) <= num * den,\n  }"
+      },
+      "test": "entrywiseNormRefusedTest"
+    },
+    {
+      "log_sha256": "3168f02a235ef477376e4ff800bd37a1dbe53e263cf5b4a034e3de63b2334d48",
+      "mutant_sha256": "00f6497babb6f53a166a4c1b39676cf7573e4749330e42b2f74575b6d0edeb2e",
+      "name": "drop-absolute-values",
+      "replace_once": {
+        "after": "  pure def rowsSafe(m, den, num, qden) = all {\n    qden * (m[0][0] + m[0][1]) <= num * den,\n    qden * (m[1][0] + m[1][1]) <= num * den,\n  }",
+        "before": "  pure def rowsSafe(m, den, num, qden) = all {\n    qden * row0(m) <= num * den,\n    qden * row1(m) <= num * den,\n  }"
+      },
+      "test": "signedCancellationRefusedTest"
+    },
+    {
+      "log_sha256": "a52a340c7e49ddf076e739dbe51340a3be6466ab0529eafd0aca945991cf9b31",
+      "mutant_sha256": "c005f084a4acfeed3d1589abf14575949d043d9d8d6f09a557bb8df3a1e39c43",
+      "name": "omit-second-row",
+      "replace_once": {
+        "after": "  pure def rowsSafe(m, den, num, qden) = qden * row0(m) <= num * den",
+        "before": "  pure def rowsSafe(m, den, num, qden) = all {\n    qden * row0(m) <= num * den,\n    qden * row1(m) <= num * den,\n  }"
+      },
+      "test": "secondRowRefusedTest"
+    },
+    {
+      "log_sha256": "bc85055eb7f335301a7d57bf67d034cc141c35a8efe5bdecd39aeaf4c114d3d9",
+      "mutant_sha256": "93df0291021107c1c390aacef0724de28a675a80eeab19a25915a88a0101ab06",
+      "name": "admit-unit-contraction",
+      "replace_once": {
+        "after": "    den > 0, qden > 0, num >= 0, num <= qden,",
+        "before": "    den > 0, qden > 0, num >= 0, num < qden,"
+      },
+      "test": "unitContractionRefusedTest"
+    },
+    {
+      "log_sha256": "0db4cdd5d6fd6d89382515abd602219c870f459c17422fa52f295f79b5332725",
+      "mutant_sha256": "71e3ed20328f6031d1b6f2e4268dc0ba9bbbb62370d150d9bdfc8d0fd40ae4a0",
+      "name": "admit-zero-denominator",
+      "replace_once": {
+        "after": "    den >= 0, qden > 0, num >= 0, num < qden,",
+        "before": "    den > 0, qden > 0, num >= 0, num < qden,"
+      },
+      "test": "invalidDenominatorRefusedTest"
+    },
+    {
+      "log_sha256": "881ccb1504036051d587412c49ee146dfe44c53298847919f95ae1c051c58b29",
+      "mutant_sha256": "4542608e222c419ee52733e8319ec81bd475f3667d63c42a27f17061d0fbd2b9",
+      "name": "ignore-matrix-identity",
+      "replace_once": {
+        "after": "  pure def sameMatrix(expected, supplied) = true",
+        "before": "  pure def sameMatrix(expected, supplied) = expected == supplied"
+      },
+      "test": "wrongMatrixRefusedTest"
+    },
+    {
+      "log_sha256": "047b68cf61907a83b8cd81b3454a79039d03dfb07c9016635fb96dfbf09af0e4",
+      "mutant_sha256": "5f38666b4855701e40279fab2e85684331f218f71ee5c46f1f7f755e85678681",
+      "name": "ignore-block-identity",
+      "replace_once": {
+        "after": "  pure def sameBlock(expected, supplied) = true",
+        "before": "  pure def sameBlock(expected, supplied) = expected == supplied"
+      },
+      "test": "wrongBlockRefusedTest"
+    },
+    {
+      "log_sha256": "b4ec071c8d9802adfa80efeebe4e4733546a2a8f873ce5e386c342be3dbca1ed",
+      "mutant_sha256": "ca2d7fb80f078665ba3dab9da1037ef2b9156a645614cccbfed9dab500cfd257",
+      "name": "omit-section-authentication",
+      "replace_once": {
+        "after": "    true,",
+        "before": "    sectionIdentity(w),"
+      },
+      "test": "zeroProjectionRefusedTest"
+    },
+    {
+      "log_sha256": "0d11d2dd18c5bda48cccbc33869d8ccca6cbac545ba49bd9b7e9aed2a6795b36",
+      "mutant_sha256": "c7c8023ae91072557c2dde3ecea2a307433a728509a92e1e610108759f16a96d",
+      "name": "omit-incidence-commutation",
+      "replace_once": {
+        "after": "    true,",
+        "before": "    basisCommutation(w),"
+      },
+      "test": "missingCommutationRefusedTest"
+    }
+  ],
+  "runner_sha256": "e76704bfadb4622e3a308299841cf5a4c2101857309a67b7a8401e587ca6611f",
+  "schema": "psc-c4-named-stable-chart-quint-receipt-v1",
+  "scope": "bounded exhaustive matrix-norm and chart implications with deterministic adversarial controls",
+  "seed": "20261111",
+  "source_and_revision_recheck": "unchanged",
+  "source_snapshot_used": true,
+  "status": "passed",
+  "worktree_dirty": false,
+  "worktree_status_for_model_and_runner": "",
+  "worktree_status_for_model_and_runner_at_completion": ""
+}

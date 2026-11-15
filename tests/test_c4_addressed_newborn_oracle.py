@@ -83,3 +83,12 @@ def test_split_is_inherited_and_no_final_diagonal_is_rejected():
         resolve(sigma, root, ((0, 1, 0), (0, 0, 0)))
     with pytest.raises(ValueError, match="missing final"):
         resolve(sigma, root, ((1, 0), (1, 0)))
+
+
+def test_first_diagonal_does_not_validate_a_malformed_suffix():
+    sigma, root = ("01", "0", "2"), ("01", "10")
+    # The independent oracle searches the full untrimmed address stream.
+    with pytest.raises(StopIteration):
+        resolve(sigma, root, ((0, 0, 2), (0, 0, 1)))
+    with pytest.raises(ValueError, match="split"):
+        resolve(sigma, root, ((0, 0, 0), (0, 0, 1)))

@@ -1,0 +1,39 @@
+
+  C4OverlapMass
+    1) boundaryAndDegenerateTest failed after 1 test(s)
+
+  1 failed
+
+  1) boundaryAndDegenerateTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-c4-overlap-mass-w2dcqveq/boundary-contact-counted-positive.qnt:158:35
+        158:   run boundaryAndDegenerateTest = init.expect({
+                                               ^^^^^^^^^^^^^
+        159:     val empty = List(List(), List(), List())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        160:     val zeroLength = List(List(0), List(0), List(0))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        161:     all {
+             ^^^^^^^^^
+        162:       overlapLength(0, 1, 1, 2) == 0, overlapLength(0, 1, 2, 3) == 0,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        163:       overlapLength(0, 0, -1, 1) == 0,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        164:       scaledImages(empty, List(1, 1, 1), 0),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        165:       sumMass(children(empty, (0, 1, (0, 0, 0))), List(1, 1, 1)) == 0,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        166:       scaledImages(zeroLength, List(0, 0, 0), 2),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        167:       sumMass(children(zeroLength, (0, 1, (2, -1, 0))), List(0, 0, 0)) == 0,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        168:     }
+             ^^^^^
+        169:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f6 --match=boundaryAndDegenerateTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-c4-overlap-mass-w2dcqveq/boundary-contact-counted-positive.qnt
+error: Tests failed

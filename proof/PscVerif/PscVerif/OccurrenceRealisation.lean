@@ -148,7 +148,7 @@ namespace Psc.OccurrenceRealisation
 
 open Psc.Binomial Psc.Reduction Psc.Descendants Psc.Incidence
 open Psc.QuantifierInterface Psc.QuantifierBinding
-open Psc.OccurrenceAddress Psc.OccurrenceGraph Psc.GraphRefinement
+open Psc.CutAddress Psc.OccurrenceGraph Psc.GraphRefinement
 
 variable {α : Type*} [DecidableEq α]
 

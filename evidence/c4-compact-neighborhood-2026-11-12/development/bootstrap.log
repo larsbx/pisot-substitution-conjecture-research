@@ -1,0 +1,43 @@
+DEVELOPMENT bootstrap only: reused pinned package/project artifacts; final isolated gate is separate.
+
+COMPILING PscVerif.CutPrefixEmbedding
+RESULT PscVerif.CutPrefixEmbedding 0 10.986
+
+COMPILING PscVerif.Defect4Lie
+RESULT PscVerif.Defect4Lie 0 40.704
+
+COMPILING PscVerif.WeightModulus
+RESULT PscVerif.WeightModulus 0 29.783
+
+COMPILING PscVerif.GaloisOrbit
+RESULT PscVerif.GaloisOrbit 0 36.936
+
+COMPILING PscVerif.SectorBridge
+RESULT PscVerif.SectorBridge 0 36.602
+
+COMPILING PscVerif.PrimitiveExpansion
+RESULT PscVerif.PrimitiveExpansion 0 2.9
+
+COMPILING PscVerif.PerronExistence
+RESULT PscVerif.PerronExistence 0 31.316
+
+COMPILING PscVerif.Degree3Sector
+RESULT PscVerif.Degree3Sector 0 45.108
+
+COMPILING PscVerif.Degree4Sector
+RESULT PscVerif.Degree4Sector 0 3.306
+
+COMPILING PscVerif.Wielandt
+RESULT PscVerif.Wielandt 0 3.958
+
+COMPILING PscVerif.CocycleSpectrum
+RESULT PscVerif.CocycleSpectrum 0 39.801
+
+COMPILING PscVerif.Degree4Floor
+RESULT PscVerif.Degree4Floor 0 39.189
+
+COMPILING PscVerif.StrictSystem
+RESULT PscVerif.StrictSystem 0 50.889
+
+COMPILING PscVerif.NamedCutProximity
+RESULT PscVerif.NamedCutProximity 0 31.04

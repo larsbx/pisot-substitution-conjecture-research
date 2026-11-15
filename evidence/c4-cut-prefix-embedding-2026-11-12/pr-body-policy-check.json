@@ -1,0 +1,29 @@
+{
+  "body": "pr-body.md",
+  "body_sha256": "e5d220a71996dd8cd36b0d33bb1e6dcb89371346cdcfb2a8e2bd0dc0fc098a89",
+  "required_sections": [
+    {
+      "heading": "### Assumptions and hypotheses",
+      "visible_section_characters": 686
+    },
+    {
+      "heading": "### Derivation / reduction",
+      "visible_section_characters": 976
+    },
+    {
+      "heading": "### Evidence and replay",
+      "visible_section_characters": 3126
+    },
+    {
+      "heading": "### Negative controls",
+      "visible_section_characters": 906
+    },
+    {
+      "heading": "### Non-claims / remaining gaps",
+      "visible_section_characters": 1489
+    }
+  ],
+  "schema": "c4-cut-prefix-local-pr-body-policy-v1",
+  "scope": "Local prepared-body heading/content check using the checked-in show-your-work policy; not a hosted PR run.",
+  "status": "passed"
+}

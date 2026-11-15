@@ -1,0 +1,49 @@
+
+  PhysicalMassAdversarial
+    1) omittedRepeatedOccurrenceRefusedTest failed after 1 test(s)
+
+  1 failed
+
+  1) omittedRepeatedOccurrenceRefusedTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-physical-mass-snapshot-rntrpznc/occurrences-collapsed-to-support.qnt:254:46
+        254:   run omittedRepeatedOccurrenceRefusedTest = init.expect({
+                                                          ^^^^^^^^^^^^^
+        255:     val expected = List((0, 0, 0), (0, 0, 1))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        256:     val supplied = List((0, 0, 0))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        257:     val actual = occurrenceMatrix(expected)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        258:     val fake = occurrenceMatrix(supplied)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        259:     val h = List(1, 1)
+             ^^^^^^^^^^^^^^^^^^^^^^
+        260:     val v = List(1, 0)
+             ^^^^^^^^^^^^^^^^^^^^^^
+        261:     all {
+             ^^^^^^^^^
+        262:       occurrenceSupport(expected) == occurrenceSupport(supplied),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        263:       not(sameOccurrences(expected, supplied)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        264:       actual == List(List(2, 0), List(0, 0)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        265:       fake == List(List(1, 0), List(0, 0)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        266:       premises(actual, h, v, 2), not(sourceLoss(actual, deficit(actual, h, 2))),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        267:       sourceLoss(fake, deficit(fake, h, 2)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        268:       not(premises(fake, h, v, 2)), not(allZero(v)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        269:     }
+             ^^^^^
+        270:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f4 --match=omittedRepeatedOccurrenceRefusedTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-physical-mass-snapshot-rntrpznc/occurrences-collapsed-to-support.qnt
+error: Tests failed

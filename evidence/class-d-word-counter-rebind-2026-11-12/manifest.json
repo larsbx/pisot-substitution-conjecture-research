@@ -1,0 +1,28 @@
+{
+  "format": "class-d-closure-rebind-v2",
+  "accepted_head": "a9457d9a08e971d57a635e68086a558fcff88e11",
+  "rebind_head": "294ae330de2938c4eea2cc7c6234639fb8780437",
+  "tested_merge": "51518eb507a4b730e09092637f23986d541838ea",
+  "plus_receipt": "CLASS_D_PLUS_POSITIVE_B_CHAMBERS_CERTIFIED wedges= 6 explicit_lines= 6 boundary_lines= 51 finite_prefix_pip= 287 max_symbolic_vertices= 164",
+  "paths": {
+    "kernel/psc/words.mojo": {
+      "kind": "native-replay",
+      "sha256": "8a807fd7a451e4cd5618c2effd55996f01a8f14bccad2574e8d22266d61b2633",
+      "reason": "Upstream checked word counters and the PSC raising contract; complete plus-chamber replay passed with the existing receipt line."
+    },
+    "kernel/substitution_dynamics/__init__.mojo": {
+      "kind": "native-replay",
+      "sha256": "fe7d73ab3315dc324c58c924d638e9de14844b8795eac576caa1623cd1dc61d2",
+      "reason": "Upstream checked word counters and the PSC raising contract; complete plus-chamber replay passed with the existing receipt line."
+    },
+    "kernel/substitution_dynamics/words.mojo": {
+      "kind": "native-replay",
+      "sha256": "da8341a2506c4274559521370638758882dbd83f569ac2fc76920511a4acdac2",
+      "reason": "Upstream checked word counters and the PSC raising contract; complete plus-chamber replay passed with the existing receipt line."
+    }
+  },
+  "log_sha256": {
+    "131026925051.log": "86a6bfd3a3cf81ed9b46beb16c2648cf8838e39afe4a5e53aabf1649db31cbb5"
+  },
+  "independent_human_review": false
+}

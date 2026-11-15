@@ -1,0 +1,24 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+  C4StablePrefixAdversarial
+    1) strictContractionRefusedTest failed after 1 test(s)
+
+  1 failed
+
+  1) strictContractionRefusedTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-c4-stable-prefix-snapshot-rwn27f30/admit-unit-contraction.qnt:143:38
+        143:   run strictContractionRefusedTest = init.expect(all {
+                                                  ^^^^^^^^^^^^^^^^^
+        144:     active, radiusSafe(1, 1, 0, 0), stepInequality(1, 1, 0, 1, 1), 1 > 0,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        145:     not(parameters(1, 1, 0, 0)), not(selfPremises(1, 1, 0, 0, 1)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        146:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f7 --match=strictContractionRefusedTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-c4-stable-prefix-snapshot-rwn27f30/admit-unit-contraction.qnt
+error: Tests failed

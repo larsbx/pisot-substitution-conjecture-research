@@ -1,0 +1,8 @@
+import PscVerif.CompactNeighborhoodControls
+
+#check Psc.CompactNeighborhoodControls.closed_noncompact_control
+#print axioms Psc.CompactNeighborhoodControls.closed_noncompact_control
+#check Psc.CompactNeighborhoodControls.compact_singleton_without_open_target
+#print axioms Psc.CompactNeighborhoodControls.compact_singleton_without_open_target
+#check Psc.CompactNeighborhoodControls.infinite_family_not_uniform
+#print axioms Psc.CompactNeighborhoodControls.infinite_family_not_uniform

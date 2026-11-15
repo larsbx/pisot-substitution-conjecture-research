@@ -1,0 +1,15 @@
+{
+  "accepted": false,
+  "elapsed_seconds": 136.6,
+  "exit_code": 1,
+  "log": "named-archived-refinement-second-failure.log.gz",
+  "log_uncompressed_sha256": "5c16729b098d829302474ee435e94a4b48e782145cef88bb21f0076671403cb1",
+  "module": "PscVerif.NamedArchivedGraphRefinement",
+  "reason": "Restricting arithmetic simplification did not resolve the same two even TileEquation applications; the apparent type mismatch requires an explicit period2 adapter or expanded diagnostics.",
+  "recorded_at_utc": "2026-11-12T01:53:22.545128+00:00",
+  "repair_attempt": "Isolate the unchanged period2 proposition and try direct/pointwise application, with pp.all enabled for any remaining mismatch.",
+  "schema": "c4-lean-development-failure-v1",
+  "scope": "Failed development attempt; no canonical or module compilation acceptance.",
+  "source_sha256": "0b7d2ec9467017ffe853715ac80400b0691498251670c2bc26c609b251726c3a",
+  "source_snapshot": "named-archived-refinement-second-source.lean.txt.gz"
+}

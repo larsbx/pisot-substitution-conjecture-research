@@ -1,0 +1,2 @@
+PscVerif/CompactNeighborhoodControls.lean:71:11: error(lean.unknownIdentifier): Unknown constant `Set.not_mem_empty`
+PscVerif/CompactNeighborhoodControls.lean:104:30: warning: `if_neg` has been deprecated: Use `ite_eq_right` instead

@@ -1,0 +1,29 @@
+Failed to initialize Crashpad.  Crash reporting will not be available.  Cause: while locating crashpad handler: unable to locate crashpad handler executable
+rejected omitted_repeated_positional_edge
+rejected swapped_graph_direction
+rejected wrong_24_12_box
+rejected wrong_block_power
+rejected incomplete_inverse_ancestry
+rejected graph_domain_mismatch
+rejected different_original_substitution
+rejected wrong_nested_local_address
+rejected unjustified_residue_exclusion
+rejected flipped_track_swap
+rejected transposed_actual_rows
+rejected removed_ancestor_and_all_stored_edges
+bound 0 7150 34826 17313 1648
+rejected omitted_repeated_positional_edge
+rejected swapped_graph_direction
+rejected wrong_24_12_box
+rejected wrong_block_power
+rejected incomplete_inverse_ancestry
+rejected graph_domain_mismatch
+rejected different_original_substitution
+rejected wrong_nested_local_address
+rejected unjustified_residue_exclusion
+rejected flipped_track_swap
+rejected transposed_actual_rows
+rejected removed_ancestor_and_all_stored_edges
+bound 1 7083 34853 17279 1650
+source-bound historical graph negative controls 24
+contract-receipt: source-bound two named 16,8 paired-occurrence graphs; all literal parent/flat/nested positions, exact residue and strict box exclusions, track-swap lift, repeated slots, rooted complete inverse ancestry and forward transpose; rejects numeric-only mutation acceptance; no all-strict-packet or C4/PSC conclusion

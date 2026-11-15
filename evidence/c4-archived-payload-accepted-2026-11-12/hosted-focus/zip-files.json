@@ -1,0 +1,122 @@
+{
+  "archive-sha256.txt": {
+    "bytes": 121,
+    "sha256": "7ba4c40d3618a4c582b4c27f6785ad2a047838ad3557df68ac0ef5f73d51819e"
+  },
+  "lean/Audit0.log": {
+    "bytes": 2126253,
+    "sha256": "b1d3a4a9929ed0db7e23cff9ec6b353b6346fb0040724a43a32526f7fdc07181"
+  },
+  "lean/Audit0.lean": {
+    "bytes": 3497,
+    "sha256": "dd5951ce47fe351857784bac13e2ff1093074a0f8a41a2b59f12e888df764165"
+  },
+  "lean/Audit0.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "lean/Audit1.lean": {
+    "bytes": 3497,
+    "sha256": "6fbbc908164621f1b5444e5e7320c210993a8e976b70ad4f7f595d3a3227bcd4"
+  },
+  "lean/Audit1.log": {
+    "bytes": 2110414,
+    "sha256": "d33b20b57051d9b382987837c8f8031ec7d4251f4cf93d2737d57bc7ba60a55a"
+  },
+  "lean/Audit1.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "lean/Source0.compile.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "lean/Source0.exporter.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "lean/Source0.lean": {
+    "bytes": 1663738,
+    "sha256": "c49f74c45bcfac6ef4b29798b5d2825aebcca868359b705c66bc91008a1014b8"
+  },
+  "lean/Source0.olean": {
+    "bytes": 32200064,
+    "sha256": "6bc5752e4151d31e30923d50dae4b1405d42726c9ffa00cb907a886b7c708b50"
+  },
+  "lean/Source1.compile.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "lean/Source1.exporter.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "lean/Source1.lean": {
+    "bytes": 1652412,
+    "sha256": "a2a496783dd875ea76f5bf90998ba469233e1e742cc695417c5f5de51b3ef17d"
+  },
+  "lean/Source1.olean": {
+    "bytes": 31916648,
+    "sha256": "315fbea2a1b7f943271d61d98b4ab9559a23d802b950188ca1a6994f01b7469f"
+  },
+  "lean/lean-emitted-payload.txt": {
+    "bytes": 3908423,
+    "sha256": "447d58d811359235d1f4689433500494ae14724b89b5da91f429e7e7247beaca"
+  },
+  "lean/oracle-receipt.json": {
+    "bytes": 1406,
+    "sha256": "74e8b8c00ff89f9a5ac634e022ab8acdd851ba48ca2f362f6b4d5f795ce24af5"
+  },
+  "lean/receipt.json": {
+    "bytes": 2752,
+    "sha256": "1f33f17457ecbca6ba2e2796ca3fde1cd7bceaf96fab0b8539bb4975ae996753"
+  },
+  "lean/wrong-proof-type-control/Audit0.lean": {
+    "bytes": 3497,
+    "sha256": "dd5951ce47fe351857784bac13e2ff1093074a0f8a41a2b59f12e888df764165"
+  },
+  "lean/wrong-proof-type-control/Source0.olean": {
+    "bytes": 21136,
+    "sha256": "08d0cd597f9abdfcd1687b46dd6131b177494f99660e23a70f87b151c67281ac"
+  },
+  "lean/wrong-proof-type-control/Source0.lean": {
+    "bytes": 856,
+    "sha256": "646e9688690675671a7534c363fff3afca28d0148ee1cb24de781b75e4de5a28"
+  },
+  "lean/wrong-proof-type-control/audit.log": {
+    "bytes": 2399,
+    "sha256": "1b553fcbefd61ec5b2025860e365f81a871ab6b32a69740a6706ef6081572bd3"
+  },
+  "lean/wrong-proof-type-control/compile.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "lean/wrong-proof-type-control/receipt.json": {
+    "bytes": 246,
+    "sha256": "a049bba2157be7fb80ebd1ab28a0b8cf280f419ea25771b26b05c3b6d03199a4"
+  },
+  "lean-audit.log": {
+    "bytes": 995319,
+    "sha256": "79f811d9c62f17fb4b87ffe57123b3e8797c3fd0e709433fdd74d0a1e01dc7ac"
+  },
+  "native-oracle-receipt.json": {
+    "bytes": 5976,
+    "sha256": "53ef2793d4b7cdbb7d011c951f1535c5e9975e63750ab9a0a9322370a2dd1ca0"
+  },
+  "native-packet.txt": {
+    "bytes": 3908423,
+    "sha256": "447d58d811359235d1f4689433500494ae14724b89b5da91f429e7e7247beaca"
+  },
+  "native-tests.log": {
+    "bytes": 1121,
+    "sha256": "0b7b5429a9ac908075162071f7a6cf095476b1794243148b2fe928c1e5ff9308"
+  },
+  "oracle-tests.log": {
+    "bytes": 80,
+    "sha256": "06955fb47f16312e5d13266c774a2aa4648c46e423cbe6564a92e25b68e39131"
+  },
+  "revision.txt": {
+    "bytes": 82,
+    "sha256": "f4102ee8188993e5e2403acf391e7503170e209eef32c5e4399b53d841ed7c34"
+  }
+}

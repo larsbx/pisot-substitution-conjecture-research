@@ -3,18 +3,17 @@
 Q3->X->Q3 is an actual cycle, not an all-edge descent or global closure.
 Exact nine-kind guard proof: docs/class-a-boundary-q3-carrier-2026-10-28.md.
 """
-from finite_exact.checked_int import checked_add
 from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, member_transport, verify_member_edge
 from psc.class_a_boundary_u_children import reverse_label
 from psc.class_a_boundary_p3_children import certify_p3_children, p3_source, in_p3_image
 from psc.class_a_boundary_w_children import certify_w_children, local_source, X, selected_path_label, typed_coincidence
 from psc.class_a_boundary_e_children import _offset
-from psc.class_a_boundary_next_run import _parameters
 from psc.class_a_boundary_next_first import _linear, _cubic, _equal
 from psc.class_a_boundary_occurrences import symbolic_child, _equal3, _prefix, FIRST, RUN, LAST
 from psc.class_a_boundary_signs import chamber_parameters, _cone_positive
 from psc.param_poly import QX, qx_const, qx_add, qx_sub, qx_neg, tp_add, tp_sub, tp_mul, tp_scale, tp_mod_monic
 from psc.overlap_seed_patch import SeedOverlapTables
+from psc.class_a_boundary_family import boundary_dimensions
 
 
 def q3_source(kind: Int) raises -> BoundaryLabel:
@@ -133,12 +132,9 @@ def certify_q3_children(corrupt: Bool=False) raises:
     print("CLASS_A_BOUNDARY_Q3 two_complete_oriented_stars=true", "children_per_orientation=1", "chamber_union_labels=2", "all_direct_Q3_children_typed_tail_at_most_four=true", "Q3_typed_exit_at_most_five=true", "actual_two_cycle=true", "P3_image_not_forward_closed=true", "global_closure=false", "BH=false")
 
 
-def _dimensions(kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int,Int]:
+def _dimensions(kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int,Int,Int]:
     _=q3_source(kind)
-    var p=_parameters(-1,k,t)
-    var A=checked_add(p[0],p[1])
-    _=checked_add(A,2)
-    return(p[0],p[1],A)
+    return boundary_dimensions(k,t,2)
 
 
 def q3_child_allowed(kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:

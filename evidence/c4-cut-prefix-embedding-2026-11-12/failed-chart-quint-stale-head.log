@@ -1,0 +1,14 @@
+C4_NAMED_CHART_QUINT_OK C4NamedChartExhaustive: 5 tests
+C4_NAMED_CHART_QUINT_OK C4NamedChartAlgebra: 4 tests
+C4_NAMED_CHART_QUINT_OK C4NamedChartAdversarial: 13 tests
+C4_NAMED_CHART_QUINT_MUTATION_REJECTED substitute-column-norm
+C4_NAMED_CHART_QUINT_MUTATION_REJECTED substitute-entrywise-norm
+C4_NAMED_CHART_QUINT_MUTATION_REJECTED drop-absolute-values
+C4_NAMED_CHART_QUINT_MUTATION_REJECTED omit-second-row
+C4_NAMED_CHART_QUINT_MUTATION_REJECTED admit-unit-contraction
+C4_NAMED_CHART_QUINT_MUTATION_REJECTED admit-zero-denominator
+C4_NAMED_CHART_QUINT_MUTATION_REJECTED ignore-matrix-identity
+C4_NAMED_CHART_QUINT_MUTATION_REJECTED ignore-block-identity
+C4_NAMED_CHART_QUINT_MUTATION_REJECTED omit-section-authentication
+C4_NAMED_CHART_QUINT_MUTATION_REJECTED omit-incidence-commutation
+C4_NAMED_CHART_QUINT_REFUSED: Git HEAD changed during verification; refusing stale revision binding

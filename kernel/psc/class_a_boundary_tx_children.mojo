@@ -1,17 +1,16 @@
 """Complete T/X/Y0 stars and selected typed exits; retain the real T/X cycle."""
-from finite_exact.checked_int import checked_add
-from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, member_transport, verify_member_edge
+from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, verify_member_edge
 from psc.class_a_boundary_u_children import reverse_label
 from psc.class_a_boundary_p3_children import certify_p3_children, p3_source
 from psc.class_a_boundary_w_children import local_source, local_child_allowed, local_child_star, X, selected_path_label
 from psc.class_a_boundary_p_children import p_source, p_path
 from psc.class_a_boundary_e_children import eh_source, _offset
-from psc.class_a_boundary_next_run import _parameters
 from psc.class_a_boundary_next_first import _linear, _cubic, _equal
 from psc.class_a_boundary_occurrences import symbolic_child, _equal3, _prefix, FIRST, RUN, LAST
 from psc.class_a_boundary_signs import chamber_parameters, _cone_nonnegative
 from psc.param_poly import QX, qx_const, qx_add, qx_sub, qx_neg, tp_add, tp_sub, tp_mul, tp_scale, tp_mod_monic
 from psc.overlap_seed_patch import SeedOverlapTables
+from psc.class_a_boundary_family import BoundaryFamily, boundary_dimensions, append_child, verify_child_packet
 
 
 def tx_source(kind: Int) raises -> BoundaryLabel:
@@ -137,10 +136,7 @@ def certify_tx_children(corrupt: Bool=False) raises:
 
 def _dimensions(kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int,Int,Int]:
     _=tx_source(kind)
-    var p=_parameters(-1,k,t)
-    var A=checked_add(p[0],p[1])
-    _=checked_add(A,12)
-    return(p[0],p[1],A,p[0]-1)
+    return boundary_dimensions(k,t,12)
 
 
 def tx_child_allowed(kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:
@@ -196,14 +192,20 @@ def _orient(i: Int,j: Int,target: BoundaryLabel,flip: Int) raises -> BoundaryEdg
     return BoundaryEdge(j,i,reverse_label(target)) if flip==1 else BoundaryEdge(i,j,target)
 
 
+@fieldwise_init
+struct TXChildren(BoundaryFamily):
+    def name(self) -> String:return "TX"
+    def source(self,kind: Int) raises -> BoundaryLabel:return tx_source(kind)
+    def parameters(self,kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int]:
+        var p=_dimensions(kind,k,t)
+        return (p[0],p[1])
+    def swapped(self,kind: Int) -> Bool:return kind%2==1
+    def allowed(self,kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:return tx_child_allowed(kind,k,t,i,j)
+    def in_image(self,w: BoundaryLabel) raises -> Bool:return in_tx_image(w)
+
+
 def _append(mut out: List[BoundaryEdge],kind: Int,k: Int,t: Int,i: Int,j: Int) raises:
-    var p=_dimensions(kind,k,t)
-    var a=j if kind%2==1 else i
-    var b=i if kind%2==1 else j
-    if not tx_child_allowed(kind,k,t,a,b):raise Error("synthesized T/X/Y0 guard failed")
-    var target=member_transport(-1,k,p[0],p[1],tx_source(kind),a,b)
-    if not in_tx_image(target):raise Error("T/X/Y0 target escaped image")
-    out.append(BoundaryEdge(a,b,target))
+    append_child(TXChildren(),out,kind,k,t,i,j)
 
 
 def tx_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
@@ -227,9 +229,7 @@ def tx_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
 
 
 def verify_tx_packet(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,edge: BoundaryEdge) raises:
-    var p=_dimensions(kind,k,t)
-    if not tx_child_allowed(kind,k,t,edge.i,edge.j) or not in_tx_image(edge.target):raise Error("T/X/Y0 packet refused")
-    verify_member_edge(tables,-1,k,p[0],p[1],tx_source(kind),edge.i,edge.j,edge.target)
+    verify_child_packet(TXChildren(),tables,kind,k,t,edge)
 
 
 def tx_path(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:

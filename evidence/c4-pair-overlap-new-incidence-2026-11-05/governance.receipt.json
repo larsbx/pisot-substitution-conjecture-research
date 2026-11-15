@@ -1,0 +1,24 @@
+{
+  "name": "governance",
+  "started_utc": "2026-11-05T08:48:53.458038+00:00",
+  "duration_seconds": 8.892291,
+  "executed_local_commit": "b863dc5093e55f40fed487455588104abbe04400",
+  "source_tree": "3248cf2d72b2b1be72bf7326d2f95758c470bef2",
+  "cwd": "/workspace/scratch/bb3a4dbb8418/psc-publish",
+  "command": [
+    "/workspace/scratch/bb3a4dbb8418/psc-validation/bin/python",
+    "-m",
+    "claim_governance.cli",
+    "--root",
+    "."
+  ],
+  "explicit_environment": {
+    "MODULAR_HOME": "/workspace/scratch/ff95d1f2448c/mojo-prefix/share/max",
+    "PYTHONPATH": "/workspace/scratch/bb3a4dbb8418/psc-publish/tools"
+  },
+  "exit_code": 0,
+  "stdout": "/workspace/scratch/bb3a4dbb8418/psc-publish/evidence/c4-pair-overlap-new-incidence-2026-11-05/governance.stdout.txt",
+  "stderr": "governance.stderr.txt",
+  "stdout_sha256": "6940a57ab580c143a470ce9dfa57b03fcd085f8b569960cca2350b9ec0dbae49",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

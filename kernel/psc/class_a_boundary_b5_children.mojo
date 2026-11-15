@@ -2,8 +2,6 @@
 
 E7 tails are scoped to n=4, never registered as uniform companion exits.
 """
-from finite_exact.checked_int import checked_add, checked_mul
-from std.collections import Dict
 from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, member_transport, verify_member_edge
 from psc.class_a_boundary_u_children import reverse_label
 from psc.class_a_boundary_y4_children import certify_y4_children, y4_source, y4_child_tail, in_y4_image, y4_star_interface, y4_exit_interface, _reverse_steps
@@ -12,12 +10,12 @@ from psc.class_a_boundary_q3_children import q3_source, q3_path
 from psc.class_a_boundary_r4_children import _image, _transition
 from psc.class_a_boundary_e_children import eh_source, _offset
 from psc.class_a_boundary_p3_children import p3_source
-from psc.class_a_boundary_next_run import _parameters
 from psc.class_a_boundary_next_first import _linear, _cubic, _equal
 from psc.class_a_boundary_occurrences import symbolic_child, _equal3, _prefix, _child, FIRST, RUN, LAST
 from psc.class_a_boundary_signs import chamber_parameters, _cone_nonnegative
 from psc.param_poly import QX, qx_const, qx_add, qx_sub, qx_neg, tp_add, tp_sub, tp_mul, tp_scale, tp_mod_monic
 from psc.overlap_seed_patch import SeedOverlapTables
+from psc.class_a_boundary_family import BoundaryFamily, boundary_dimensions, append_child, verify_child_packet, verify_child_star
 
 
 def b5_source(kind: Int) raises -> BoundaryLabel:
@@ -111,10 +109,7 @@ def certify_b5_children(corrupt: Bool=False) raises:
 
 def _dimensions(kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int,Int,Int]:
     _=b5_source(kind)
-    var p=_parameters(-1,k,t)
-    var A=checked_add(p[0],p[1])
-    _=checked_add(A,12)
-    return(p[0],p[1],A,p[0]-1)
+    return boundary_dimensions(k,t,12)
 
 
 def b5_child_allowed(kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:
@@ -157,14 +152,20 @@ def in_b5_image(w: BoundaryLabel) raises -> Bool:
     return z.top==2 and z.bottom==0 and z.x==-1 and z.y>=-1 and z.y<=2
 
 
+@fieldwise_init
+struct B5Children(BoundaryFamily):
+    def name(self) -> String:return "B5"
+    def source(self,kind: Int) raises -> BoundaryLabel:return b5_source(kind)
+    def parameters(self,kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int]:
+        var p=_dimensions(kind,k,t)
+        return (p[0],p[1])
+    def swapped(self,kind: Int) -> Bool:return kind!=0
+    def allowed(self,kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:return b5_child_allowed(kind,k,t,i,j)
+    def in_image(self,w: BoundaryLabel) raises -> Bool:return in_b5_image(w)
+
+
 def _append(mut out: List[BoundaryEdge],kind: Int,k: Int,t: Int,i: Int,j: Int) raises:
-    var p=_dimensions(kind,k,t)
-    var a=i if kind==0 else j
-    var b=j if kind==0 else i
-    if not b5_child_allowed(kind,k,t,a,b):raise Error("synthesized B5 guard failed")
-    var target=member_transport(-1,k,p[0],p[1],b5_source(kind),a,b)
-    if not in_b5_image(target):raise Error("B5 target escaped image")
-    out.append(BoundaryEdge(a,b,target))
+    append_child(B5Children(),out,kind,k,t,i,j)
 
 
 def b5_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
@@ -183,21 +184,12 @@ def b5_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
 
 
 def verify_b5_packet(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,edge: BoundaryEdge) raises:
-    var p=_dimensions(kind,k,t)
-    if not b5_child_allowed(kind,k,t,edge.i,edge.j) or not in_b5_image(edge.target):raise Error("B5 packet refused")
-    verify_member_edge(tables,-1,k,p[0],p[1],b5_source(kind),edge.i,edge.j,edge.target)
+    verify_child_packet(B5Children(),tables,kind,k,t,edge)
 
 
 def verify_b5_star(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,edges: List[BoundaryEdge]) raises:
     var p=_dimensions(kind,k,t)
-    if len(edges)!=2*p[0]-1:raise Error("incomplete B5 indexed star")
-    var stride=checked_add(p[2] if kind==0 else p[3],2)
-    var seen=Dict[Int,Bool]()
-    for edge in edges:
-        verify_b5_packet(tables,kind,k,t,edge)
-        var key=checked_add(checked_mul(edge.i,stride),edge.j)
-        if key in seen:raise Error("duplicate B5 occurrence")
-        seen[key]=True
+    verify_child_star(B5Children(),tables,kind,k,t,edges,2*p[0]-1)
 
 
 def b5_path(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:

@@ -1,0 +1,19 @@
+{
+  "schema": "psc-hosted-ci-observation-v1",
+  "observed_at_utc": "2026-11-11 23:46:08 UTC",
+  "repo": "larsbx/pisot-substitution-conjecture-research",
+  "head_sha": "6472eab38efa623640f00285954b8525a56f6e8e",
+  "head_tree": "cd20306d416c41aed17bf2cbd88d088e92ce5ec8",
+  "run_id": 43119366484,
+  "job_id": 130855573329,
+  "run_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43119366484",
+  "job_status": "completed",
+  "job_conclusion": "failure",
+  "job_log": "/workspace/scratch/2880dde43f60/old_head_ci_43119366533/packet_bridge_43119366484_job_130855573329.log",
+  "scope": "Historical first published candidate. It does not certify subsequent repaired sources.",
+  "error_summary": "OccurrencePhysicalBudget theorem statements require Decidable membership; later split_ifs and recovery-sorry warnings are consequences.",
+  "additional_source_failures_observed": false,
+  "dependent_named_and_control_modules": "Not accepted; required budget dependency failed.",
+  "log_sha256": "69f1091954964bb430e3418cad3fa80cc14f7b95833e8d4b13a30d074b37e260",
+  "log_bytes": 150429
+}

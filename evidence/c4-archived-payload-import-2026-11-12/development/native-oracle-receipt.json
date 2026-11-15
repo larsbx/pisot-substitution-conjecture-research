@@ -1,0 +1,185 @@
+{
+  "all_two_original_fixtures_verified": true,
+  "fixtures": [
+    {
+      "addressed_packet_sha256": "e960043f7481993fd56d7ac3976f119e132e00d5762bdcb78b8a061557ecfe8c",
+      "fixture": 0,
+      "historical_graph_sha256": "23f85af92c327a64f70983db990753a84cd1489e3c72c3047e51f14e97afce6e",
+      "lookup_nodes": 7150,
+      "maximum_rooted_inverse_depth": 13,
+      "ordered_lift_positions": 69652,
+      "packed_rows": 7150,
+      "positional_edges": 34826,
+      "radii": [
+        16,
+        8
+      ],
+      "rate": "99/20",
+      "sigma": [
+        "1",
+        "021",
+        "001"
+      ],
+      "states": 7150
+    },
+    {
+      "addressed_packet_sha256": "915126ff282c0b1347c4518c57b7b7e350ebaaf1c6838c56776e6a12bdc61bc9",
+      "fixture": 1,
+      "historical_graph_sha256": "a63d544b25b5f7146abbd25f1960fed77f85584a1f20957b5869bea30b389256",
+      "lookup_nodes": 7083,
+      "maximum_rooted_inverse_depth": 13,
+      "ordered_lift_positions": 69706,
+      "packed_rows": 7083,
+      "positional_edges": 34853,
+      "radii": [
+        16,
+        8
+      ],
+      "rate": "101/20",
+      "sigma": [
+        "1",
+        "012",
+        "001"
+      ],
+      "states": 7083
+    }
+  ],
+  "kernel_acceptance_supplied_by_this_oracle": false,
+  "observed_negative_controls": {
+    "0": {
+      "different_original_substitution": {
+        "reason": "original substitution identity mismatch",
+        "rejected": true
+      },
+      "flipped_track_swap": {
+        "reason": "missing or changed literal row refinement",
+        "rejected": true
+      },
+      "graph_domain_mismatch": {
+        "reason": "duplicate packet or graph/root domain mismatch",
+        "rejected": true
+      },
+      "hidden_high_payload": {
+        "reason": "hidden payload after final positional edge",
+        "rejected": true
+      },
+      "incomplete_inverse_ancestry": {
+        "reason": "incomplete inverse ancestry or inconsistent discovery witness",
+        "rejected": true
+      },
+      "missing_lookup_node": {
+        "reason": "lookup shape, orientation key or original state identity mismatch",
+        "rejected": true
+      },
+      "missing_packed_leaf": {
+        "reason": "missing packed table leaf",
+        "rejected": true
+      },
+      "omitted_repeated_positional_edge": {
+        "reason": "missing or changed literal row refinement",
+        "rejected": true
+      },
+      "packed_orientation_mismatch": {
+        "reason": "raw packed fields disagree with original source row 0",
+        "rejected": true
+      },
+      "packed_weight_mismatch": {
+        "reason": "raw packed fields disagree with original source row 0",
+        "rejected": true
+      },
+      "removed_ancestor_and_all_stored_edges": {
+        "reason": "admitted integral inverse ancestor missing from domain",
+        "rejected": true
+      },
+      "swapped_graph_direction": {
+        "reason": "wrong block, sharp box or incoming direction",
+        "rejected": true
+      },
+      "wrong_24_12_box": {
+        "reason": "wrong block, sharp box or incoming direction",
+        "rejected": true
+      },
+      "wrong_lookup_identity": {
+        "reason": "lookup shape, orientation key or original state identity mismatch",
+        "rejected": true
+      },
+      "wrong_lookup_shape": {
+        "reason": "lookup shape, orientation key or original state identity mismatch",
+        "rejected": true
+      },
+      "wrong_nested_local_address": {
+        "reason": "complete literal parent/local addresses mismatch",
+        "rejected": true
+      }
+    },
+    "1": {
+      "different_original_substitution": {
+        "reason": "original substitution identity mismatch",
+        "rejected": true
+      },
+      "flipped_track_swap": {
+        "reason": "missing or changed literal row refinement",
+        "rejected": true
+      },
+      "graph_domain_mismatch": {
+        "reason": "duplicate packet or graph/root domain mismatch",
+        "rejected": true
+      },
+      "hidden_high_payload": {
+        "reason": "hidden payload after final positional edge",
+        "rejected": true
+      },
+      "incomplete_inverse_ancestry": {
+        "reason": "incomplete inverse ancestry or inconsistent discovery witness",
+        "rejected": true
+      },
+      "missing_lookup_node": {
+        "reason": "lookup shape, orientation key or original state identity mismatch",
+        "rejected": true
+      },
+      "missing_packed_leaf": {
+        "reason": "missing packed table leaf",
+        "rejected": true
+      },
+      "omitted_repeated_positional_edge": {
+        "reason": "missing or changed literal row refinement",
+        "rejected": true
+      },
+      "packed_orientation_mismatch": {
+        "reason": "raw packed fields disagree with original source row 0",
+        "rejected": true
+      },
+      "packed_weight_mismatch": {
+        "reason": "raw packed fields disagree with original source row 0",
+        "rejected": true
+      },
+      "removed_ancestor_and_all_stored_edges": {
+        "reason": "admitted integral inverse ancestor missing from domain",
+        "rejected": true
+      },
+      "swapped_graph_direction": {
+        "reason": "wrong block, sharp box or incoming direction",
+        "rejected": true
+      },
+      "wrong_24_12_box": {
+        "reason": "wrong block, sharp box or incoming direction",
+        "rejected": true
+      },
+      "wrong_lookup_identity": {
+        "reason": "lookup shape, orientation key or original state identity mismatch",
+        "rejected": true
+      },
+      "wrong_lookup_shape": {
+        "reason": "lookup shape, orientation key or original state identity mismatch",
+        "rejected": true
+      },
+      "wrong_nested_local_address": {
+        "reason": "complete literal parent/local addresses mismatch",
+        "rejected": true
+      }
+    }
+  },
+  "payload_bytes": 3908423,
+  "payload_sha256": "447d58d811359235d1f4689433500494ae14724b89b5da91f429e7e7247beaca",
+  "schema": "c4-archived-payload-v1"
+}

@@ -1,0 +1,22 @@
+Waiting for the single Lean development compiler lock.
+Acquired the single Lean development compiler lock.
+[1/21] current development object PscVerif.PhysicalMass
+[2/21] current development object PscVerif.OccurrenceMassCounts
+[3/21] current development object PscVerif.Binomial
+[4/21] current development object PscVerif.Incidence
+[5/21] current development object PscVerif.PerronCore
+[6/21] current development object PscVerif.ConcentrationAlgebra
+[7/21] current development object PscVerif.ParikhIntertwiner
+[8/21] current development object PscVerif.SignedCocycle
+[9/21] current development object PscVerif.FixedPointLimit
+[10/21] current development object PscVerif.Reduction
+[11/21] current development object PscVerif.Descendants
+[12/21] current development object PscVerif.Cyclicity
+[13/21] current development object PscVerif.OccurrenceNewborn
+[14/21] current development object PscVerif.OccurrenceAddress
+[15/21] current development object PscVerif.OccurrenceTransport
+[16/21] current development object PscVerif.OccurrenceFinite
+[17/21] current development object PscVerif.OccurrenceSuccessor
+[18/21] current development object PscVerif.OccurrenceMass
+[19/21] current development object PscVerif.OccurrenceInverse
+[20/21] compiling actual source PscVerif.OccurrencePhysicalBudget

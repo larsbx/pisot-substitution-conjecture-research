@@ -1,0 +1,37 @@
+
+  C4InverseOccurrence
+    1) incomingMarkGuardsTest failed after 1 test(s)
+
+  1 failed
+
+  1) incomingMarkGuardsTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-c4-inverse-occurrence-d4m1ygpc/incoming-selected-letter-ignored.qnt:116:32
+        116:   run incomingMarkGuardsTest = init.expect({
+                                            ^^^^^^^^^^^^^
+        117:     val p = (0, 1, (1, -1, 0))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        118:     val q = child(strictSigma, p, 0, 1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        119:     all {
+             ^^^^^^^^^
+        120:       q == (1, 1, (-2, 0, -1)), incoming(strictSigma, p, q, 0, 1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        121:       not(incoming(strictSigma, p, (0, q._2, q._3), 0, 1)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        122:       not(incoming(strictSigma, p, q, -1, 1)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        123:       not(incoming(strictSigma, p, q, 0, 3)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        124:       not(incoming(strictSigma, p, q, 0, 0)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        125:     }
+             ^^^^^
+        126:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f6 --match=incomingMarkGuardsTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-c4-inverse-occurrence-d4m1ygpc/incoming-selected-letter-ignored.qnt
+error: Tests failed

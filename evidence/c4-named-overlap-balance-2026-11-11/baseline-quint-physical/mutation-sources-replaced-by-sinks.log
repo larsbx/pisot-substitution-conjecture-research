@@ -1,0 +1,39 @@
+
+  PhysicalMassAdversarial
+    1) losingSinkIsNotLosingSourceTest failed after 1 test(s)
+
+  1 failed
+
+  1) losingSinkIsNotLosingSourceTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-physical-mass-snapshot-rntrpznc/sources-replaced-by-sinks.qnt:241:41
+        241:   run losingSinkIsNotLosingSourceTest = init.expect({
+                                                     ^^^^^^^^^^^^^
+        242:     val t = List(List(2, 1), List(0, 0))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        243:     val h = List(1, 1)
+             ^^^^^^^^^^^^^^^^^^^^^^
+        244:     val v = List(1, 0)
+             ^^^^^^^^^^^^^^^^^^^^^^
+        245:     val e = deficit(t, h, 2)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        246:     all {
+             ^^^^^^^^^
+        247:       premises(t, h, v, 2), e == List(0, 1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        248:       source(t, 0), not(source(t, 1)), sink(t, 1), sinkLoss(t, e),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        249:       not(sourceLoss(t, e)), not(allZero(v)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        250:       closure(t, losing(t, e)) == Set(1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        251:     }
+             ^^^^^
+        252:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f4 --match=losingSinkIsNotLosingSourceTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-physical-mass-snapshot-rntrpznc/sources-replaced-by-sinks.qnt
+error: Tests failed

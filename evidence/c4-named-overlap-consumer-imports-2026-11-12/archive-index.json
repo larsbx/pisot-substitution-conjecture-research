@@ -1,0 +1,15 @@
+{
+  "head_sha": "ed8251b95a770476fdb96248e42ef10ac54d0c93",
+  "result": "failed",
+  "raw_log": "physical_full_lean_43125122949_job_130875129993.log.gz",
+  "decompressed_sha256": "8fea1ae11ffc74443f3d5e9c8d15c48d224859d795257520dc14525ce566eb58",
+  "raw_bytes": 76411,
+  "scope": "Historical full-bank failure; the new modules compiled but full build and axiom acceptance failed.",
+  "second_failed_audit": {
+    "raw_log": "dedicated_full_lean_43125122828_job_130875128361.log.gz",
+    "decompressed_sha256": "9cc003c146807d2921c45074ab128908ab451ce99cea0852b265d747db5b7999",
+    "raw_bytes": 69126,
+    "result": "failed",
+    "same_two_missing_imports": true
+  }
+}

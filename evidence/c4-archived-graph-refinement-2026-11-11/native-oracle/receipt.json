@@ -1,0 +1,238 @@
+{
+  "fixtures": [
+    {
+      "addressed_packet_sha256": "e960043f7481993fd56d7ac3976f119e132e00d5762bdcb78b8a061557ecfe8c",
+      "fixture": 0,
+      "historical_graph_sha256": "23f85af92c327a64f70983db990753a84cd1489e3c72c3047e51f14e97afce6e",
+      "literal_block_positions": 15,
+      "maximum_rooted_inverse_depth": 13,
+      "minimum_integer_gap": 99,
+      "ordered_lift_positions": 69652,
+      "period": 2,
+      "positional_edges": 34826,
+      "radii": [
+        16,
+        8
+      ],
+      "rate": "99/20",
+      "repeated_endpoint_slots": 1648,
+      "residue_rejections": 138071,
+      "root_weights": [
+        38500,
+        1,
+        1
+      ],
+      "sigma": [
+        "1",
+        "021",
+        "001"
+      ],
+      "states": 7150,
+      "strict_box_rejections": 11239,
+      "swapped_slots": 17313,
+      "weight_iterations": 856
+    },
+    {
+      "addressed_packet_sha256": "915126ff282c0b1347c4518c57b7b7e350ebaaf1c6838c56776e6a12bdc61bc9",
+      "fixture": 1,
+      "historical_graph_sha256": "a63d544b25b5f7146abbd25f1960fed77f85584a1f20957b5869bea30b389256",
+      "literal_block_positions": 15,
+      "maximum_rooted_inverse_depth": 13,
+      "minimum_integer_gap": 101,
+      "ordered_lift_positions": 69706,
+      "period": 2,
+      "positional_edges": 34853,
+      "radii": [
+        16,
+        8
+      ],
+      "rate": "101/20",
+      "repeated_endpoint_slots": 1650,
+      "residue_rejections": 137076,
+      "root_weights": [
+        82573,
+        12935,
+        44045
+      ],
+      "sigma": [
+        "1",
+        "012",
+        "001"
+      ],
+      "states": 7083,
+      "strict_box_rejections": 10838,
+      "swapped_slots": 17279,
+      "weight_iterations": 1695
+    }
+  ],
+  "historical_snapshot_revision": "765bb39c83035b5ccacbc8115ecc26acc4111865",
+  "observed_negative_controls": {
+    "0": {
+      "boolean_address_alias": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "malformed literal address",
+        "rejected": true
+      },
+      "different_original_substitution": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "original substitution identity mismatch",
+        "rejected": true
+      },
+      "direct_forward_inverse_disagreement": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "ordered forward/inverse direction, address or multiplicity mismatch",
+        "rejected": true
+      },
+      "flipped_track_swap": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "missing or changed literal row refinement",
+        "rejected": true
+      },
+      "graph_domain_mismatch": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "duplicate packet or graph/root domain mismatch",
+        "rejected": true
+      },
+      "incomplete_inverse_ancestry": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "incomplete inverse ancestry or inconsistent discovery witness",
+        "rejected": true
+      },
+      "omitted_repeated_positional_edge": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "missing or changed literal row refinement",
+        "rejected": true
+      },
+      "swapped_graph_direction": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "wrong block, sharp box or incoming direction",
+        "rejected": true
+      },
+      "transposed_actual_rows": {
+        "reason": "missing or changed literal row refinement",
+        "rejected": true
+      },
+      "unjustified_box_exclusion": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "unjustified residue/box exclusions",
+        "rejected": true
+      },
+      "unjustified_residue_exclusion": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "unjustified residue/box exclusions",
+        "rejected": true
+      },
+      "wrong_24_12_box": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "wrong block, sharp box or incoming direction",
+        "rejected": true
+      },
+      "wrong_block_power": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "wrong block, sharp box or incoming direction",
+        "rejected": true
+      },
+      "wrong_nested_local_address": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "complete literal parent/local addresses mismatch",
+        "rejected": true
+      },
+      "wrong_parent_address": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "complete literal parent/local addresses mismatch",
+        "rejected": true
+      }
+    },
+    "1": {
+      "boolean_address_alias": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "malformed literal address",
+        "rejected": true
+      },
+      "different_original_substitution": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "original substitution identity mismatch",
+        "rejected": true
+      },
+      "direct_forward_inverse_disagreement": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "ordered forward/inverse direction, address or multiplicity mismatch",
+        "rejected": true
+      },
+      "flipped_track_swap": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "missing or changed literal row refinement",
+        "rejected": true
+      },
+      "graph_domain_mismatch": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "duplicate packet or graph/root domain mismatch",
+        "rejected": true
+      },
+      "incomplete_inverse_ancestry": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "incomplete inverse ancestry or inconsistent discovery witness",
+        "rejected": true
+      },
+      "omitted_repeated_positional_edge": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "missing or changed literal row refinement",
+        "rejected": true
+      },
+      "swapped_graph_direction": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "wrong block, sharp box or incoming direction",
+        "rejected": true
+      },
+      "transposed_actual_rows": {
+        "reason": "missing or changed literal row refinement",
+        "rejected": true
+      },
+      "unjustified_box_exclusion": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "unjustified residue/box exclusions",
+        "rejected": true
+      },
+      "unjustified_residue_exclusion": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "unjustified residue/box exclusions",
+        "rejected": true
+      },
+      "wrong_24_12_box": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "wrong block, sharp box or incoming direction",
+        "rejected": true
+      },
+      "wrong_block_power": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "wrong block, sharp box or incoming direction",
+        "rejected": true
+      },
+      "wrong_nested_local_address": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "complete literal parent/local addresses mismatch",
+        "rejected": true
+      },
+      "wrong_parent_address": {
+        "numeric_subinvariance_still_valid": true,
+        "reason": "complete literal parent/local addresses mismatch",
+        "rejected": true
+      }
+    }
+  },
+  "schema": "c4-archived-graph-refinement-v1",
+  "scope": "source-bound finite rooted inverse rows; sharp-box geometry and arbitrary strict-packet representation are separate obligations",
+  "source_sha256": {
+    "evidence/c4-pair-overlap-graph-2026-11-05/receipt.json": "6c33772304f677a1d90e1674e6064dfb6b055fcdd370557350426162f6785dda",
+    "kernel/c4_archived_graph_refinement.mojo": "cea15cbab4da15697f0c42cf2e388e7fd26b55bfdb5a0726759d2c0e5eaa8784",
+    "kernel/psc/c4_archived_graph_refinement.mojo": "183d620d3b0fe535ff8c67d54d7a63ba47637a37d5348d6a9ca6485f1a1b5086",
+    "kernel/psc/c4_finite_cylinder_overlap.mojo": "0e79ddb1d9733ad2172b87820a1801621a73a3cec4db7d0aab111fe645547111",
+    "kernel/psc/c4_literal_inverse_binding.mojo": "90a8e73235947cd64e0e4d22e53cdbfe26f88aae5285d8075ed74a813fae336c",
+    "kernel/psc/c4_nonunit_residue_occupancy.mojo": "377d38872de1655569fda73d7817cc1586ad9a421c3198e85de1918d492ed05c",
+    "kernel/psc/c4_pair_overlap_graph.mojo": "58db23df354aa0cbe3d23533aa0b226367854ec5c468ec3c6e2cc23598149feb",
+    "kernel/tests/test_c4_archived_graph_refinement.mojo": "ad81f5193d7e1ca4726d0a2160e21588a29481c59d294ac0db1ed07fadcd06a1",
+    "oracles/python/c4_archived_graph_refinement.py": "221b14e443af240171d4c57ed0e836e7e234ab82dd17550d3dcf5981e1958e00",
+    "oracles/python/c4_pair_overlap_graph.py": "118297f5549b603a48100828f24e24b51e7d561a93df3283b010a213b338ee2f",
+    "tests/test_c4_archived_graph_refinement_oracle.py": "1631098cb0242a4c8b5abc388f31b41064380a732bda23930d6dca474577877e"
+  }
+}

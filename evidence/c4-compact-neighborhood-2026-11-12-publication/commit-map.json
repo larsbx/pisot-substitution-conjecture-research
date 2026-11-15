@@ -1,0 +1,173 @@
+{
+  "base_commit": "bdf033f647f73f911a47260e8bdad5f2e96f3c7a",
+  "base_tree": "73201424138427d63ddf05c9c1102f424af5b1af",
+  "bundle": {
+    "bytes": 295890,
+    "original_commits": [
+      "571c8df9b5223aeef6b7f137c49b4495590d090e",
+      "6915e8d592b7ea5cb7c6950249811e354dc6c3e7",
+      "f9bcf72ebcbf6d51795beb0d1971596922ceedd5"
+    ],
+    "path": "compact-original-commits.bundle",
+    "prerequisite_commit": "bdf033f647f73f911a47260e8bdad5f2e96f3c7a",
+    "recorded_changed_blobs_checked": 64,
+    "recorded_restore_scope": "Exact depth-one base snapshot plus three incremental original commits; no full-history validation claimed.",
+    "restoration_record": "bundle-restore-verification.json",
+    "sha256": "9d910c2bc22ad7c5c4bb810e9c51aadaf278ffa2ff36cd2ab559650e217c64ee",
+    "tip": "f9bcf72ebcbf6d51795beb0d1971596922ceedd5",
+    "tip_tree": "6fd49792046948eeb78ab063212fcbb164bd9513"
+  },
+  "commits": [
+    {
+      "api_message_terminal_lf_normalized": true,
+      "message": "docs(c4): gate compact neighborhood transfer for actual cuts\n",
+      "original": "571c8df9b5223aeef6b7f137c49b4495590d090e",
+      "original_parent": "bdf033f647f73f911a47260e8bdad5f2e96f3c7a",
+      "published": "d6ac60d44eaee938e06bff1b973fc3d0a775570f",
+      "published_parent": "bdf033f647f73f911a47260e8bdad5f2e96f3c7a",
+      "raw_git_message_byte_equal": true,
+      "read_back_verified": true,
+      "tree": "9bdb1e1a896f4f29b570d843693d8672de29d06b"
+    },
+    {
+      "api_message_terminal_lf_normalized": true,
+      "message": "feat(proof): capture actual strict cuts in compact open covers\n",
+      "original": "6915e8d592b7ea5cb7c6950249811e354dc6c3e7",
+      "original_parent": "571c8df9b5223aeef6b7f137c49b4495590d090e",
+      "published": "630415d2a90dac8e8e1de6625bed13edcc9a5523",
+      "published_parent": "d6ac60d44eaee938e06bff1b973fc3d0a775570f",
+      "raw_git_message_byte_equal": true,
+      "read_back_verified": true,
+      "tree": "c79e97bdae1224068895afa9dcf6cca6d7fe9fbb"
+    },
+    {
+      "api_message_terminal_lf_normalized": true,
+      "message": "docs(c4): archive complete compact neighborhood proof audit\n",
+      "original": "f9bcf72ebcbf6d51795beb0d1971596922ceedd5",
+      "original_parent": "6915e8d592b7ea5cb7c6950249811e354dc6c3e7",
+      "published": "67932724c0fb9899fec37ddd6a05de13a16327cf",
+      "published_parent": "630415d2a90dac8e8e1de6625bed13edcc9a5523",
+      "raw_git_message_byte_equal": true,
+      "read_back_verified": true,
+      "tree": "6fd49792046948eeb78ab063212fcbb164bd9513"
+    }
+  ],
+  "copied_records": [
+    {
+      "bytes": 3085,
+      "path": "bundle-restore-verification.json",
+      "sha256": "d4a77336f820e93bb17ddbb40ddf9ca26485cb1622fde0e12580ad3ec5be009c"
+    },
+    {
+      "bytes": 524,
+      "path": "checks/compact-evidence-integrity-attempt-02.json",
+      "sha256": "e8cf6e485ca5536953524be88776df2e3d8f3c4c6e2585a88c2299870811db1b"
+    },
+    {
+      "bytes": 965,
+      "path": "checks/compact-evidence-integrity-attempt-02.log",
+      "sha256": "d19b71acec91575b936d4156e800e15925179d57bc0630c7fc4a30a2af7a59d2"
+    },
+    {
+      "bytes": 295890,
+      "path": "compact-original-commits.bundle",
+      "sha256": "9d910c2bc22ad7c5c4bb810e9c51aadaf278ffa2ff36cd2ab559650e217c64ee"
+    },
+    {
+      "bytes": 389,
+      "path": "history/compact-evidence-integrity.json",
+      "sha256": "cd3db58f28d86940313dd50b7658221347f3bb60a842127b1771fa012e09dc17"
+    },
+    {
+      "bytes": 97,
+      "path": "history/compact-evidence-integrity.log",
+      "sha256": "51f5550d86043279227c92b72199d4ee1f66d30623405f70c98442058ffe76c7"
+    },
+    {
+      "bytes": 720,
+      "path": "metadata-repair/installation.json",
+      "sha256": "2e07b997fdd48049e9608e080013c38c9a219c6d437fa16039a4572ad2e5b0d7"
+    },
+    {
+      "bytes": 22712,
+      "path": "metadata-repair/plan.json",
+      "sha256": "4a85c0eeda4671cce147238ebe50fb15bbfc75cb992817f31a31338111dd3ed8"
+    }
+  ],
+  "evidence_archive": {
+    "installed_packet_files": 56,
+    "original_commit": "f9bcf72ebcbf6d51795beb0d1971596922ceedd5",
+    "published_mirror": "67932724c0fb9899fec37ddd6a05de13a16327cf",
+    "tree": "6fd49792046948eeb78ab063212fcbb164bd9513"
+  },
+  "historical_checksum_metadata_repair": {
+    "installation_receipt": "metadata-repair/installation.json",
+    "packets": [
+      {
+        "new_checksum_sha256": "5d7c3efd402a17b38172276c3203bd786882222c1a08def39a8381d78f08d9ca",
+        "original_files_preserved": 74,
+        "packet": "c4-cut-prefix-embedding-2026-11-12"
+      },
+      {
+        "new_checksum_sha256": "907a31f7a38f00c2a6b1ee29b5a1507edfe4633e4b0054b799e42914932f4461",
+        "original_files_preserved": 4,
+        "packet": "c4-cut-prefix-embedding-2026-11-12-publication"
+      }
+    ],
+    "plan": "metadata-repair/plan.json",
+    "scope": "Only two new SHA256SUMS metadata files; every original historical record and manifest retained."
+  },
+  "hosted_success_claimed": false,
+  "independent_human_review_claimed": false,
+  "initial_integrity_history": {
+    "cause": "No module named pytest",
+    "credited_as_success": false,
+    "exit_code": 1,
+    "log": "history/compact-evidence-integrity.log",
+    "receipt": "history/compact-evidence-integrity.json"
+  },
+  "input_record_sha256": {
+    "publication-manifest.json": "6a4735de212dc9cf10cc6c516b2400ea1cfa3090cbb43dcbef50d7bc9c1b417d",
+    "remote-source-and-evidence-commits-verified.json": "8317989d2bfc0da320928fadab3081d33eb31d08facc13d12619c4cd9c169991"
+  },
+  "local_proof_acceptance": {
+    "attempt": 3,
+    "completed_at_utc": "2026-11-12T19:37:14.200269+00:00",
+    "exit_code": 0,
+    "full_log_sha256": "f09119a393d64203a795c68f8540e4bcd1a2fc53444d18f2616dee864fa292f7",
+    "global_compiled_constants": 6628,
+    "global_compiled_theorem_constants": 4850,
+    "new_explicit_definitions": 8,
+    "new_explicit_theorems": 23,
+    "new_owned_constants": 39,
+    "new_owned_theorem_constants": 31,
+    "original_revision": "6915e8d592b7ea5cb7c6950249811e354dc6c3e7",
+    "original_tree": "c79e97bdae1224068895afa9dcf6cca6d7fe9fbb",
+    "receipt_path_in_repository": "evidence/c4-compact-neighborhood-2026-11-12/receipt.json",
+    "scope": "Recorded original local isolated source build and compiled axiom audit; not relabelled as execution at a mirror or provenance commit."
+  },
+  "planned_provenance_publication": {
+    "own_commit_or_tree_identity_embedded": false,
+    "parent": "67932724c0fb9899fec37ddd6a05de13a16327cf",
+    "scope": "Add only this dedicated provenance packet; no proof-source change."
+  },
+  "preparation_scope": "Scratch packet assembly and structural/hash consistency review only. No tests, builds, restoration rerun, repository mutation or remote operation.",
+  "prepared_at_utc": "2026-11-12T19:44:15.890715+00:00",
+  "recorded_data_integrity": {
+    "binding_basis": "Root recorded that the tested staged evidence content was committed unchanged as f9bcf72/tree6fd497. The original test receipt identifies staged content, not a commit SHA.",
+    "committed_tree": "6fd49792046948eeb78ab063212fcbb164bd9513",
+    "committed_unchanged_as": "f9bcf72ebcbf6d51795beb0d1971596922ceedd5",
+    "elapsed_seconds": 1.17,
+    "exit_code": 0,
+    "log": "checks/compact-evidence-integrity-attempt-02.log",
+    "observed_at_utc": "2026-11-12T19:38:48.899745+00:00",
+    "passed": 160,
+    "provenance_packet_or_future_final_tree_tested": false,
+    "receipt": "checks/compact-evidence-integrity-attempt-02.json",
+    "tested_subject": "Staged original evidence content above6915, before publication-provenance packet.",
+    "warnings": 1
+  },
+  "recorded_verification_basis": "Previously recorded connector readback plus raw Git commit-message/tree/parent verification. Packet preparation did not repeat remote or Git verification.",
+  "repository": "larsbx/pisot-substitution-conjecture-research",
+  "schema": "c4-compact-neighborhood-publication-provenance-v1"
+}

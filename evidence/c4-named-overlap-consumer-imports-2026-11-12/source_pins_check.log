@@ -1,0 +1,274 @@
+[
+  {
+    "manifest": "evidence/class-a-boundary-b3-2026-10-28/source-sha256.txt",
+    "revision": "995331ff2ac8803480923003a8f8ce108434bc87",
+    "pins": 33,
+    "drift": [
+      ".github/workflows/class-a-boundary-b3.yml",
+      ".github/workflows/class-a-boundary-r3.yml",
+      "kernel/pixi.toml",
+      "kernel/psc/class_a_boundary_b3_children.mojo",
+      "kernel/psc/class_a_boundary_e_children.mojo",
+      "kernel/psc/class_a_boundary_h3_children.mojo",
+      "kernel/psc/class_a_boundary_p3_children.mojo",
+      "kernel/psc/class_a_boundary_p_children.mojo",
+      "kernel/psc/class_a_boundary_q3_children.mojo",
+      "kernel/psc/class_a_boundary_r3_children.mojo"
+    ]
+  },
+  {
+    "manifest": "evidence/class-a-boundary-b4-2026-10-28/source-sha256.txt",
+    "revision": "318a866ad5e40dfe1ac841ad060f68438bc40c8a",
+    "pins": 43,
+    "drift": [
+      ".github/workflows/class-a-boundary-b3.yml",
+      ".github/workflows/class-a-boundary-b4.yml",
+      ".github/workflows/class-a-boundary-r3.yml",
+      "kernel/pixi.toml",
+      "kernel/psc/class_a_boundary_b3_children.mojo",
+      "kernel/psc/class_a_boundary_b4_children.mojo",
+      "kernel/psc/class_a_boundary_e2_children.mojo",
+      "kernel/psc/class_a_boundary_e_children.mojo",
+      "kernel/psc/class_a_boundary_h3_children.mojo",
+      "kernel/psc/class_a_boundary_p3_children.mojo",
+      "kernel/psc/class_a_boundary_p_children.mojo",
+      "kernel/psc/class_a_boundary_q3_children.mojo",
+      "kernel/psc/class_a_boundary_r3_children.mojo"
+    ]
+  },
+  {
+    "manifest": "evidence/class-a-boundary-b5-2026-10-28/source-sha256.txt",
+    "revision": "0dde1a00e182023891bab697e5e8156e6f3577e3",
+    "pins": 8,
+    "drift": [
+      ".github/workflows/class-a-boundary-b5.yml",
+      "kernel/psc/class_a_boundary_b5_children.mojo"
+    ]
+  },
+  {
+    "manifest": "evidence/class-a-boundary-d0-2026-10-28/source-sha256.txt",
+    "revision": "ed9da154adcc7f05a2ca5bc496debb5db9a5fa53",
+    "pins": 8,
+    "drift": [
+      ".github/workflows/class-a-boundary-d0.yml",
+      "kernel/psc/class_a_boundary_d0_children.mojo"
+    ]
+  },
+  {
+    "manifest": "evidence/class-a-boundary-d5-2026-10-28/source-sha256.txt",
+    "revision": "d08738a3cb269b0b41d42ee2d6fbce7cb6995ff4",
+    "pins": 84,
+    "drift": [
+      ".github/workflows/class-a-boundary-b3.yml",
+      ".github/workflows/class-a-boundary-b4.yml",
+      ".github/workflows/class-a-boundary-b5.yml",
+      ".github/workflows/class-a-boundary-d5.yml",
+      ".github/workflows/class-a-boundary-r3.yml",
+      ".github/workflows/class-a-boundary-r4.yml",
+      ".github/workflows/class-a-boundary-r5.yml",
+      ".github/workflows/class-a-boundary-y4.yml",
+      "kernel/pixi.toml",
+      "kernel/psc/class_a_boundary_b3_children.mojo",
+      "kernel/psc/class_a_boundary_b4_children.mojo",
+      "kernel/psc/class_a_boundary_b5_children.mojo",
+      "kernel/psc/class_a_boundary_d5_children.mojo",
+      "kernel/psc/class_a_boundary_e2_children.mojo",
+      "kernel/psc/class_a_boundary_e_children.mojo",
+      "kernel/psc/class_a_boundary_h3_children.mojo",
+      "kernel/psc/class_a_boundary_p3_children.mojo",
+      "kernel/psc/class_a_boundary_p_children.mojo",
+      "kernel/psc/class_a_boundary_q3_children.mojo",
+      "kernel/psc/class_a_boundary_r3_children.mojo",
+      "kernel/psc/class_a_boundary_r4_children.mojo",
+      "kernel/psc/class_a_boundary_r5_children.mojo",
+      "kernel/psc/class_a_boundary_y4_children.mojo"
+    ]
+  },
+  {
+    "manifest": "evidence/class-a-boundary-e6-2026-10-28/source-sha256.txt",
+    "revision": "6bef25b0a24820996989f652d53f1ae5d24039c2",
+    "pins": 8,
+    "drift": [
+      ".github/workflows/class-a-boundary-e6.yml",
+      "kernel/psc/class_a_boundary_e6_children.mojo"
+    ]
+  },
+  {
+    "manifest": "evidence/class-a-boundary-e7-2026-10-28/source-sha256.txt",
+    "revision": "3f9d816ab7835f4be6c159453481d0d1d1eabd4d",
+    "pins": 8,
+    "drift": [
+      ".github/workflows/class-a-boundary-e7.yml",
+      "kernel/psc/class_a_boundary_e7_children.mojo"
+    ]
+  },
+  {
+    "manifest": "evidence/class-a-boundary-h9-2026-10-29/source-sha256.txt",
+    "revision": "324c167a4f19e7e4b1ec174ee4ef27229654a831",
+    "pins": 8,
+    "drift": [
+      ".github/workflows/class-a-boundary-h9.yml",
+      "kernel/psc/class_a_boundary_h9_children.mojo"
+    ]
+  },
+  {
+    "manifest": "evidence/class-a-boundary-j8-2026-10-29/source-sha256.txt",
+    "revision": "ed9da154adcc7f05a2ca5bc496debb5db9a5fa53",
+    "pins": 8,
+    "drift": [
+      ".github/workflows/class-a-boundary-j8.yml",
+      "kernel/psc/class_a_boundary_j8_children.mojo"
+    ]
+  },
+  {
+    "manifest": "evidence/class-a-boundary-j9-2026-10-29/source-sha256.txt",
+    "revision": "92e34bea5bffee8a8523eeda40096b453a435377",
+    "pins": 8,
+    "drift": [
+      ".github/workflows/class-a-boundary-j9.yml",
+      "kernel/psc/class_a_boundary_j9_children.mojo"
+    ]
+  },
+  {
+    "manifest": "evidence/class-a-boundary-p3-2026-10-28/source-sha256.txt",
+    "revision": "8e97ad5035072951259b0301e7387f8baf25d148",
+    "pins": 8,
+    "drift": [
+      ".github/workflows/class-a-boundary-p3.yml",
+      "kernel/psc/class_a_boundary_p3_children.mojo"
+    ]
+  },
+  {
+    "manifest": "evidence/class-a-boundary-p9-2026-10-29/source-sha256.txt",
+    "revision": "be3d1988443f312e62e3d89225b9e920e9fd34c6",
+    "pins": 8,
+    "drift": [
+      ".github/workflows/class-a-boundary-p9.yml",
+      "kernel/psc/class_a_boundary_p9_children.mojo"
+    ]
+  },
+  {
+    "manifest": "evidence/class-a-boundary-q3-2026-10-28/source-sha256.txt",
+    "revision": "2fc615cb923a6152cf390ef92ef9788a346af544",
+    "pins": 14,
+    "drift": [
+      ".github/workflows/class-a-boundary-q3.yml",
+      "kernel/pixi.toml",
+      "kernel/psc/class_a_boundary_p3_children.mojo",
+      "kernel/psc/class_a_boundary_q3_children.mojo"
+    ]
+  },
+  {
+    "manifest": "evidence/class-a-boundary-r3-2026-10-28/source-sha256.txt",
+    "revision": "5143d72eaaf0b79e58b978dcd34e5a2080984c3c",
+    "pins": 23,
+    "drift": [
+      ".github/workflows/class-a-boundary-r3.yml",
+      "kernel/pixi.toml",
+      "kernel/psc/class_a_boundary_e_children.mojo",
+      "kernel/psc/class_a_boundary_h3_children.mojo",
+      "kernel/psc/class_a_boundary_p3_children.mojo",
+      "kernel/psc/class_a_boundary_p_children.mojo",
+      "kernel/psc/class_a_boundary_q3_children.mojo",
+      "kernel/psc/class_a_boundary_r3_children.mojo"
+    ]
+  },
+  {
+    "manifest": "evidence/class-a-boundary-r4-2026-10-28/source-sha256.txt",
+    "revision": "4bdacc0dd5618e895351dcf372b071c9560cc582",
+    "pins": 51,
+    "drift": [
+      ".github/workflows/class-a-boundary-b3.yml",
+      ".github/workflows/class-a-boundary-b4.yml",
+      ".github/workflows/class-a-boundary-r3.yml",
+      ".github/workflows/class-a-boundary-r4.yml",
+      "kernel/pixi.toml",
+      "kernel/psc/class_a_boundary_b3_children.mojo",
+      "kernel/psc/class_a_boundary_b4_children.mojo",
+      "kernel/psc/class_a_boundary_e2_children.mojo",
+      "kernel/psc/class_a_boundary_e_children.mojo",
+      "kernel/psc/class_a_boundary_h3_children.mojo",
+      "kernel/psc/class_a_boundary_p3_children.mojo",
+      "kernel/psc/class_a_boundary_p_children.mojo",
+      "kernel/psc/class_a_boundary_q3_children.mojo",
+      "kernel/psc/class_a_boundary_r3_children.mojo",
+      "kernel/psc/class_a_boundary_r4_children.mojo"
+    ]
+  },
+  {
+    "manifest": "evidence/class-a-boundary-r5-2026-10-28/source-sha256.txt",
+    "revision": "fbf2fcdad44a3315ce7d16cfe28198ae34582948",
+    "pins": 68,
+    "drift": [
+      ".github/workflows/class-a-boundary-b3.yml",
+      ".github/workflows/class-a-boundary-b4.yml",
+      ".github/workflows/class-a-boundary-r3.yml",
+      ".github/workflows/class-a-boundary-r4.yml",
+      ".github/workflows/class-a-boundary-r5.yml",
+      ".github/workflows/class-a-boundary-y4.yml",
+      "kernel/pixi.toml",
+      "kernel/psc/class_a_boundary_b3_children.mojo",
+      "kernel/psc/class_a_boundary_b4_children.mojo",
+      "kernel/psc/class_a_boundary_e2_children.mojo",
+      "kernel/psc/class_a_boundary_e_children.mojo",
+      "kernel/psc/class_a_boundary_h3_children.mojo",
+      "kernel/psc/class_a_boundary_p3_children.mojo",
+      "kernel/psc/class_a_boundary_p_children.mojo",
+      "kernel/psc/class_a_boundary_q3_children.mojo",
+      "kernel/psc/class_a_boundary_r3_children.mojo",
+      "kernel/psc/class_a_boundary_r4_children.mojo",
+      "kernel/psc/class_a_boundary_r5_children.mojo",
+      "kernel/psc/class_a_boundary_y4_children.mojo"
+    ]
+  },
+  {
+    "manifest": "evidence/class-a-boundary-w9-2026-10-29/source-sha256.txt",
+    "revision": "05011ab3fbf430e3a7ade96558b56fb1ca211892",
+    "pins": 8,
+    "drift": [
+      ".github/workflows/class-a-boundary-w9.yml",
+      "kernel/psc/class_a_boundary_w9_children.mojo"
+    ]
+  },
+  {
+    "manifest": "evidence/class-a-boundary-y4-2026-10-28/source-sha256.txt",
+    "revision": "7eb395cce20973c2c36bef09c97b3d6ae8e57067",
+    "pins": 60,
+    "drift": [
+      ".github/workflows/class-a-boundary-b3.yml",
+      ".github/workflows/class-a-boundary-b4.yml",
+      ".github/workflows/class-a-boundary-r3.yml",
+      ".github/workflows/class-a-boundary-r4.yml",
+      ".github/workflows/class-a-boundary-y4.yml",
+      "kernel/pixi.toml",
+      "kernel/psc/class_a_boundary_b3_children.mojo",
+      "kernel/psc/class_a_boundary_b4_children.mojo",
+      "kernel/psc/class_a_boundary_e2_children.mojo",
+      "kernel/psc/class_a_boundary_e_children.mojo",
+      "kernel/psc/class_a_boundary_h3_children.mojo",
+      "kernel/psc/class_a_boundary_p3_children.mojo",
+      "kernel/psc/class_a_boundary_p_children.mojo",
+      "kernel/psc/class_a_boundary_q3_children.mojo",
+      "kernel/psc/class_a_boundary_r3_children.mojo",
+      "kernel/psc/class_a_boundary_r4_children.mojo",
+      "kernel/psc/class_a_boundary_y4_children.mojo"
+    ]
+  },
+  {
+    "manifest": "evidence/class-a-gap-independent-audit-2026-10-23/source-sha256.txt",
+    "revision": "0acfa0e6f371ad7752c06d2db1e4399b46eb25e6",
+    "pins": 12,
+    "drift": [
+      "kernel/tests/test_class_a_gap_theorem.mojo"
+    ]
+  },
+  {
+    "manifest": "evidence/class-b-step2c-2026-10-27/SOURCE_SHA256SUMS",
+    "revision": "669e4630805f43c24b1506f1755dcf8f59baa64d",
+    "pins": 60,
+    "drift": [
+      ".github/workflows/class-b-ray-certificate.yml",
+      "kernel/pixi.toml"
+    ]
+  }
+]

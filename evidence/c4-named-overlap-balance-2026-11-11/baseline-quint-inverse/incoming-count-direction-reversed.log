@@ -1,0 +1,37 @@
+
+  C4InverseOccurrence
+    1) actualMixedOrbitWeightsTest failed after 1 test(s)
+
+  1 failed
+
+  1) actualMixedOrbitWeightsTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-c4-inverse-occurrence-d4m1ygpc/incoming-count-direction-reversed.qnt:238:37
+        238:   run actualMixedOrbitWeightsTest = init.expect({
+                                                 ^^^^^^^^^^^^^
+        239:     val es = actualEdges(mixedSigma, mixedStates)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        240:     val free = mixedStates[0]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        241:     val fixed = mixedStates[2]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        242:     all {
+             ^^^^^^^^^
+        243:       es.length() == 6, swapClosed(mixedStates), edgeSwapClosed(es), uniform(es, mixedStates),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        244:       weight(mixedStates, free) == 2, weight(mixedStates, fixed) == 1,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        245:       outgoing(es, free, fixed) == 2, incomingCount(es, fixed, free) == 4,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        246:       weightedTransport(es, mixedStates), not(transpose(es, mixedStates)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        247:     }
+             ^^^^^
+        248:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f6 --match=actualMixedOrbitWeightsTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-c4-inverse-occurrence-d4m1ygpc/incoming-count-direction-reversed.qnt
+error: Tests failed

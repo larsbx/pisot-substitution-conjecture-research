@@ -1,0 +1,73 @@
+{
+  "scope": "Local development verification history; not canonical clean acceptance",
+  "baseline_commit": "765bb39c83035b5ccacbc8115ecc26acc4111865",
+  "events": [
+    {
+      "stage": "many-worker fresh MadicResidue probe",
+      "result": "interrupted",
+      "reason": "No diagnostics/progress while inspecting existing single-worker guidance; no acceptance credited"
+    },
+    {
+      "stage": "single-worker actual MadicResidue compile",
+      "result": "passed",
+      "seconds": 64.4
+    },
+    {
+      "stage": "single-worker actual MadicActionRange compile under concurrent Lean and Quint work",
+      "result": "signal-killed",
+      "returncode": -9,
+      "seconds": 52.5,
+      "diagnostics": "none",
+      "cause": "Resource contention suspected, not independently established"
+    },
+    {
+      "stage": "separate actual Binomial compile",
+      "result": "signal-killed",
+      "returncode": -9,
+      "seconds": 30.9,
+      "reported_by": "proof_frontier",
+      "diagnostics": "none"
+    },
+    {
+      "stage": "first overlap Quint replay",
+      "result": "failed",
+      "tests_reached": 0,
+      "failure": "failed or missing executed tests: []",
+      "receipt": "baseline_quint/overlap/quint-receipt.json"
+    },
+    {
+      "stage": "later actual MadicActionRange compile",
+      "result": "passed",
+      "seconds": 18.1,
+      "reported_by": "measure_bridge"
+    },
+    {
+      "stage": "serialized overlap Quint retry",
+      "result": "passed",
+      "tests": 16,
+      "mutations_rejected": 9,
+      "receipt": "baseline_quint/overlap_retry/quint-receipt.json"
+    },
+    {
+      "stage": "physical Quint replay",
+      "result": "passed",
+      "tests": 20,
+      "mutations_rejected": 6,
+      "receipt": "baseline_quint/physical/quint-receipt.json"
+    },
+    {
+      "stage": "inverse Quint replay",
+      "result": "passed",
+      "tests": 18,
+      "mutations_rejected": 13,
+      "receipt": "baseline_quint/inverse/quint-receipt.json"
+    },
+    {
+      "stage": "cached development imports",
+      "result": "source-matched",
+      "modules": 28,
+      "receipt": "psc_dev_lean/development-seed-provenance.json",
+      "limit": "Pinned packages and transitive source byte equality checked; cached compilation is not canonical acceptance"
+    }
+  ]
+}

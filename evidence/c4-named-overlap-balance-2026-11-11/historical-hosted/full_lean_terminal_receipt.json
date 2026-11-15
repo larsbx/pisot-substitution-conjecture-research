@@ -1,0 +1,115 @@
+{
+  "schema": "psc-hosted-ci-terminal-receipt-v1",
+  "observed_at_utc": "2026-11-11 23:49:37 UTC",
+  "repo": "larsbx/pisot-substitution-conjecture-research",
+  "run_id": 43119366533,
+  "run_attempt": 1,
+  "head_sha": "6472eab38efa623640f00285954b8525a56f6e8e",
+  "head_tree": "cd20306d416c41aed17bf2cbd88d088e92ce5ec8",
+  "run_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43119366533",
+  "run_status": "completed",
+  "run_conclusion": "failure",
+  "created_at": "2026-11-11T23:22:49Z",
+  "updated_at": "2026-11-11T23:47:49Z",
+  "jobs": [
+    {
+      "id": 130855574394,
+      "name": "overlap-proof-bank",
+      "head_sha": "6472eab38efa623640f00285954b8525a56f6e8e",
+      "status": "completed",
+      "conclusion": "failure",
+      "started_at": "2026-11-11T23:35:36Z",
+      "completed_at": "2026-11-11T23:47:49Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-11T23:35:38Z",
+          "completed_at": "2026-11-11T23:35:38Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-11T23:35:38Z",
+          "completed_at": "2026-11-11T23:35:41Z"
+        },
+        {
+          "name": "Verify exact revision",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-11T23:35:41Z",
+          "completed_at": "2026-11-11T23:35:42Z"
+        },
+        {
+          "name": "Provision the pinned Lean release and dependency sources",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-11T23:35:42Z",
+          "completed_at": "2026-11-11T23:37:25Z"
+        },
+        {
+          "name": "Compile from isolated sources and audit every local declaration",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 5,
+          "started_at": "2026-11-11T23:37:25Z",
+          "completed_at": "2026-11-11T23:47:44Z"
+        },
+        {
+          "name": "Retain the exact-head audit receipt",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-11T23:47:44Z",
+          "completed_at": "2026-11-11T23:47:46Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-11T23:47:46Z",
+          "completed_at": "2026-11-11T23:47:46Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-11T23:47:46Z",
+          "completed_at": "2026-11-11T23:47:46Z"
+        }
+      ]
+    }
+  ],
+  "failed_target": "PscVerif.OccurrencePhysicalBudget",
+  "error_summary": "Known statement-level Decidable membership instance errors at first published source lines 107 and 151; consequent unsolved-goal, split_ifs and elaborator recovery-sorry warnings. No other source error observed.",
+  "source_repairs": "The later development repair is outside this audited revision and must obtain a new canonical hosted receipt.",
+  "compiled_axiom_audit": "Not reached after build failure.",
+  "additional_source_failures_observed": false,
+  "dependent_named_and_control_modules": "Not accepted; required budget dependency failed.",
+  "scope": "Historical first published candidate. This failed receipt cannot certify subsequent repaired sources.",
+  "files": [
+    {
+      "path": "full_lean_43119366533_job_130855574394.log",
+      "bytes": 76182,
+      "sha256": "4ed8975a040e1fcbe12ccc7c0b32c93bb5451bf481a12690c08d3e73c93cf3ac"
+    },
+    {
+      "path": "workflow_run_terminal.raw.json",
+      "bytes": 14936,
+      "sha256": "1aac1398ab0a9adc8752c49ebcacb1655cf44db414467a5acd918c06528870a6"
+    },
+    {
+      "path": "workflow_jobs_terminal.raw.json",
+      "bytes": 2460,
+      "sha256": "6528c9dc29950d25c200895355793f9137e0529ada83c2c926c7c5de6617af51"
+    }
+  ]
+}

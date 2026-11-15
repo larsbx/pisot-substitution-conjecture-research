@@ -1,0 +1,32 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+  C4StablePrefixAdversarial
+    1) wrongBlockRefusedTest failed after 1 test(s)
+
+  1 failed
+
+  1) wrongBlockRefusedTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-c4-stable-prefix-snapshot-rwn27f30/ignore-block-exponent.qnt:196:31
+        196:   run wrongBlockRefusedTest = init.expect({
+                                           ^^^^^^^^^^^^^
+        197:     val digits = List((0, 0, 0), (0, 1, 1))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        198:     all {
+             ^^^^^^^^^
+        199:       digitsBounded(digits, 1), not(sameBlock(12, 2)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        200:       not(digitAdmission(digits, digits, 12, 2, 1)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        201:       digitAdmission(digits, digits, 12, 12, 1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        202:     }
+             ^^^^^
+        203:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f7 --match=wrongBlockRefusedTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-c4-stable-prefix-snapshot-rwn27f30/ignore-block-exponent.qnt
+error: Tests failed

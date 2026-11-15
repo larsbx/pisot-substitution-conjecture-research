@@ -1,0 +1,17 @@
+{
+  "merge_commit": "d841d572d34a9ca10e4a88e3fbce33ed01a76b32",
+  "tree": "97b54a6fdccb9a1828be815c2718fbcc5bc67960",
+  "parents": [
+    "06dac7ea4e83a6b5a2c7c36bfe84cfec75da3903",
+    "249a71b0330401ada5adbff7d9cd280bf0d7530f"
+  ],
+  "candidate_commit": "249a71b0330401ada5adbff7d9cd280bf0d7530f",
+  "candidate_tree_identical": true,
+  "job": 131038173569,
+  "run": 43175356353,
+  "declarations_audited": 6537,
+  "theorem_declarations": 4774,
+  "named_lean_proofs": 2633,
+  "forbidden_axioms": [],
+  "scope": "complete hosted source build and compiled bank audit on the synthetic merge with identical candidate tree; focused exact-head concrete acceptance remains separate"
+}

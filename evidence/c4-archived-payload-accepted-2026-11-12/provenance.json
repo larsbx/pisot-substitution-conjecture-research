@@ -1,0 +1,164 @@
+{
+  "C4_or_general_PSC_promotion": false,
+  "acceptance_scope": "successful focused exact-head hosted workflow plus complete artifact inspection",
+  "accepted_code_revision": "249a71b0330401ada5adbff7d9cd280bf0d7530f",
+  "accepted_code_tree": "97b54a6fdccb9a1828be815c2718fbcc5bc67960",
+  "all_strict_packet_identification": false,
+  "allowed_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "ancestor_nullity": "every sigma-squared rooted ancestor, including geometrically empty ancestors omitted from the finite table; stated probability additive Haar assumptions retained",
+  "artifact": {
+    "all_noncompiled_original_entries_retained_or_byte_aliased": true,
+    "compiled_objects_omitted": 3,
+    "full_zip_retained_in_reduced_archive": false,
+    "id": 13929993392,
+    "name": "original-c4-payload-249a71b0330401ada5adbff7d9cd280bf0d7530f",
+    "original_entries": 30,
+    "provider_digest": "sha256:e4e8ed4e5ed77385dbfce4a6b770c4b070fd4e1b2312ef2fa20102b4dfd317d1",
+    "provider_digest_verified": true,
+    "provider_expires_at": "2026-12-12T09:20:45Z",
+    "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43175356240/artifacts/13929993392",
+    "zip_bytes": 19222973,
+    "zip_sha256": "e4e8ed4e5ed77385dbfce4a6b770c4b070fd4e1b2312ef2fa20102b4dfd317d1"
+  },
+  "complete_payload_sha256": "447d58d811359235d1f4689433500494ae14724b89b5da91f429e7e7247beaca",
+  "concrete_sources": [
+    {
+      "audit_sha256": "b1d3a4a9929ed0db7e23cff9ec6b353b6346fb0040724a43a32526f7fdc07181",
+      "declarations": 1799,
+      "fixture": 0,
+      "lean_sha256": "c49f74c45bcfac6ef4b29798b5d2825aebcca868359b705c66bc91008a1014b8",
+      "seconds": 1025.68,
+      "theorem_declarations": 776
+    },
+    {
+      "audit_sha256": "d33b20b57051d9b382987837c8f8031ec7d4251f4cf93d2737d57bc7ba60a55a",
+      "declarations": 1799,
+      "fixture": 1,
+      "lean_sha256": "a2a496783dd875ea76f5bf90998ba469233e1e742cc695417c5f5de51b3ef17d",
+      "seconds": 940.468,
+      "theorem_declarations": 776
+    }
+  ],
+  "fixture_scope": [
+    {
+      "addressed_packet_sha256": "e960043f7481993fd56d7ac3976f119e132e00d5762bdcb78b8a061557ecfe8c",
+      "digests_recomputed_from_emitted_data": true,
+      "fixture": 0,
+      "historical_graph_sha256": "23f85af92c327a64f70983db990753a84cd1489e3c72c3047e51f14e97afce6e",
+      "lookup_nodes": 7150,
+      "maximum_rooted_inverse_depth": 13,
+      "ordered_lift_positions": 69652,
+      "packed_rows": 7150,
+      "positional_edges": 34826,
+      "radii": [
+        16,
+        8
+      ],
+      "rate": "99/20",
+      "sigma": [
+        "1",
+        "021",
+        "001"
+      ],
+      "states": 7150
+    },
+    {
+      "addressed_packet_sha256": "915126ff282c0b1347c4518c57b7b7e350ebaaf1c6838c56776e6a12bdc61bc9",
+      "digests_recomputed_from_emitted_data": true,
+      "fixture": 1,
+      "historical_graph_sha256": "a63d544b25b5f7146abbd25f1960fed77f85584a1f20957b5869bea30b389256",
+      "lookup_nodes": 7083,
+      "maximum_rooted_inverse_depth": 13,
+      "ordered_lift_positions": 69706,
+      "packed_rows": 7083,
+      "positional_edges": 34853,
+      "radii": [
+        16,
+        8
+      ],
+      "rate": "101/20",
+      "sigma": [
+        "1",
+        "012",
+        "001"
+      ],
+      "states": 7083
+    }
+  ],
+  "focused_run": {
+    "actual_checkout": "249a71b0330401ada5adbff7d9cd280bf0d7530f",
+    "conclusion": "success",
+    "id": 43175356240,
+    "job_completed_at": "2026-11-12T09:20:54Z",
+    "job_id": 131038172377,
+    "job_started_at": "2026-11-12T08:36:13Z",
+    "job_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43175356240/job/131038172377",
+    "run_attempt": 1,
+    "status": "completed",
+    "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43175356240"
+  },
+  "full_bank": {
+    "audit_log_sha256": "79f811d9c62f17fb4b87ffe57123b3e8797c3fd0e709433fdd74d0a1e01dc7ac",
+    "declarations": 6537,
+    "expected_named_proofs_reached": 2633,
+    "theorems": 4774,
+    "validator": "249a71b0330401ada5adbff7d9cd280bf0d7530f:tools/make_proof_bank.py:check_audit"
+  },
+  "independent_human_review": "not established by mechanical acceptance",
+  "inspection": {
+    "fresh_Lean_or_Mojo_execution": false,
+    "helper_sha256": "274f99662e31c0fc93f674a226dd7034a06a6cf25777c678b4654306cf65a8ab",
+    "initial_incomplete_inspection_preserved": true,
+    "receipt": "inspection/success.json",
+    "receipt_sha256": "e2e68de9b359f00c9a653f1d34ecfbd883820b27aa0cff5190d75956ab33ba20",
+    "scope": "artifact inspection, not fresh kernel acceptance",
+    "status": "passed"
+  },
+  "later_archive_commit": {
+    "equivalence_status": "pending root's eventual archive commit",
+    "hosted_acceptance_of_archive_revision_claimed": false,
+    "own_hash_not_self_recorded": true,
+    "published": false,
+    "required_source_equivalence": "complete tracked diff restricted to the new evidence packet and agreed documentation annotations"
+  },
+  "mathematical_scope": "original sharp-box rooted inverse ancestry; no all-strict-packet or positivity claim",
+  "positive_strict_root_measure": false,
+  "remaining_assumptions": "probability additive Haar measure hypotheses of the named consumer remain explicit",
+  "representation_equivalence": "ordered finite lift membership and nonempty original overlap iff sigma-squared rooted inverse ancestry and the same nonempty original overlap",
+  "schema": "c4-archived-payload-accepted-code-evidence-v1",
+  "separate_synthetic_merge_results": {
+    "checkout": "d841d572d34a9ca10e4a88e3fbce33ed01a76b32",
+    "evidence": [
+      "hosted-generic-bank",
+      "hosted-python-tests"
+    ],
+    "exact_candidate_commit_checkout": false,
+    "generic_lean_job": 131038173569,
+    "python_job": 131038173413,
+    "run": 43175356353,
+    "tree": "97b54a6fdccb9a1828be815c2718fbcc5bc67960"
+  },
+  "source_sha256": {
+    "evidence/c4-archived-graph-refinement-2026-11-11/native-oracle/receipt.json": "387a52096b0f33b8dde0a72ffdd2f71f2b7e01b1f4fbad0b4fa7a76a4033bca3",
+    "evidence/c4-pair-overlap-graph-2026-11-05/receipt.json": "6c33772304f677a1d90e1674e6064dfb6b055fcdd370557350426162f6785dda",
+    "kernel/c4_archived_lean_export.mojo": "94ff2d5f27d023290378f86ea343875d242b6cea5b96b6d0bb719a90e33bb87a",
+    "kernel/psc/c4_archived_payload.mojo": "1e9eb8f5b4178f6bd228d6dc72ea0eebafbf1483f0e94d9be5dd26ce65738318",
+    "oracles/python/c4_archived_payload.py": "b61b9564b1d783c1f4fc739cd19fa65c104e17857fa64c4de5ce4252758aaced",
+    "proof/PscVerif/PscVerif/ArchivedPayload.lean": "38d3b2270c15baae23f36be3a7c369dcaab4255b26d5db6a00ed32ef084afe8d",
+    "proof/PscVerif/PscVerif/ArchivedPayloadConsumer.lean": "39768a54a2c022ef460e08dbd1879177fdf598bb8645702233264738ddf43e49",
+    "proof/PscVerif/PscVerif/ArchivedPayloadEmit.lean": "3d56413774e33215a1fb507ca418f08b4d048b3986c2c309a9cc9d626a15a6e3",
+    "proof/PscVerif/PscVerif/NamedArchivedDigits.lean": "12059a52f4598c316a42f64cadf269cdd716853a785bc1189023207689124775",
+    "tools/check_lean.sh": "eb63ce6fb0b837eee1208b3d47e759bcf8b3617b1374685a8850e48f283cba8d",
+    "tools/replay_archived_payload_lean.py": "76bdcb833a3c91204c614ebf56b30c05e72e855f0cea5871d1c207242ac5c08a"
+  },
+  "typed_negative_fixture": {
+    "fixture_compiles": true,
+    "fixture_sha256": "646e9688690675671a7534c363fff3afca28d0148ee1cb24de781b75e4de5a28",
+    "reason": "right-name declarations prove True instead of the required checked propositions",
+    "typed_import_refuses": true
+  }
+}

@@ -13,6 +13,7 @@ from psc.class_a_boundary_occurrences import symbolic_child, _equal3, FIRST, RUN
 from psc.class_a_boundary_signs import chamber_parameters, _same, _cone_nonnegative
 from psc.param_poly import QX, qx_const, qx_add, qx_sub, qx_neg
 from psc.overlap_seed_patch import SeedOverlapTables
+from psc.class_a_boundary_family import BoundaryFamily, append_child
 
 # Even kind is the displayed base packet; odd kind is its actual reversal.
 # 0/1: E+ / E-, 2/3: H1 / R(H1), 4/5: H2 / R(H2).
@@ -195,17 +196,20 @@ def eh_image() raises -> List[BoundaryLabel]:
     return out^
 
 
-def _append(mut out: List[BoundaryEdge], kind: Int, k: Int, t: Int,
-            i: Int, j: Int) raises:
-    var p=_dimensions(kind,k,t)
-    var a=j if kind%2==1 else i
-    var b=i if kind%2==1 else j
-    if not eh_child_allowed(kind,k,t,a,b):
-        raise Error("synthesized E/H occurrence failed its strict guard")
-    var target=member_transport(-1,k,p[0],p[1],eh_source(kind),a,b)
-    if not in_eh_image(target):
-        raise Error("E/H child escaped the uniform 29-label target packet")
-    out.append(BoundaryEdge(a,b,target))
+@fieldwise_init
+struct EChildren(BoundaryFamily):
+    def name(self) -> String:return "E"
+    def source(self,kind: Int) raises -> BoundaryLabel:return eh_source(kind)
+    def parameters(self,kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int]:
+        var p=_dimensions(kind,k,t)
+        return (p[0],p[1])
+    def swapped(self,kind: Int) -> Bool:return kind%2==1
+    def allowed(self,kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:return eh_child_allowed(kind,k,t,i,j)
+    def in_image(self,w: BoundaryLabel) raises -> Bool:return in_eh_image(w)
+
+
+def _append(mut out: List[BoundaryEdge],kind: Int,k: Int,t: Int,i: Int,j: Int) raises:
+    append_child(EChildren(),out,kind,k,t,i,j)
 
 
 def eh_child_star(kind: Int, k: Int, t: Int) raises -> List[BoundaryEdge]:

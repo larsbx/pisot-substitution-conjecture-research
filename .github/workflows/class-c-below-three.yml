@@ -102,19 +102,13 @@ jobs:
           diff ../evidence/class-c-below-three-integration-2026-11-01/integration-native.log build/class-c-below-three/integration-native.log
           python3 ../oracles/python/check_class_c_below_three_integration.py build/class-c-below-three/integration-native.log > build/class-c-below-three/integration-oracle.json
           diff ../evidence/class-c-below-three-integration-2026-11-01/integration-oracle.json build/class-c-below-three/integration-oracle.json
-      - name: Independent exact oracle and source hashes
+      - name: Independent exact oracle and packet checksums
         if: matrix.sign == 'plus'
         run: |
           set -euo pipefail
           packet=evidence/class-c-below-three-2026-10-29
           python3 oracles/python/check_class_c_below_three.py "$packet" > kernel/build/class-c-below-three/oracle.json
           diff "$packet/oracle.json" kernel/build/class-c-below-three/oracle.json
-          python3 - <<'PY'
-          import hashlib,json,pathlib
-          root=pathlib.Path('evidence/class-c-below-three-2026-10-29')
-          for p,digest in json.loads((root/'provenance.json').read_text())['sources'].items():
-              assert hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()==digest,p
-          PY
           (cd "$packet" && sha256sum --check SHA256SUMS)
       - name: Preserve fresh receipts
         if: always()

@@ -1,0 +1,37 @@
+
+  C4OverlapMass
+    1) literalMixedOrbitCountsTest failed after 1 test(s)
+
+  1 failed
+
+  1) literalMixedOrbitCountsTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-c4-overlap-mass-w2dcqveq/incoming-count-direction-reversed.qnt:192:37
+        192:   run literalMixedOrbitCountsTest = init.expect({
+                                                 ^^^^^^^^^^^^^
+        193:     val labels = List(0, 0, 1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        194:     val representatives = List(0, 2)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        195:     val es = List((0, 2), (1, 2), (2, 2))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        196:     all {
+             ^^^^^^^^^
+        197:       uniformCounts(es, labels, representatives), fiberWeights(labels, representatives) == List(2, 1),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        198:       forward(es, labels, representatives) == List(List(0, 1), List(0, 1)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        199:       inverse(es, labels, representatives) == List(List(0, 0), List(2, 1)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        200:       countCorrespondence(forward(es, labels, representatives), inverse(es, labels, representatives), fiberWeights(labels, representatives)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        201:     }
+             ^^^^^
+        202:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f6 --match=literalMixedOrbitCountsTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-c4-overlap-mass-w2dcqveq/incoming-count-direction-reversed.qnt
+error: Tests failed

@@ -1,0 +1,37 @@
+{
+  "attempt": 2,
+  "code_revision": "6915e8d592b7ea5cb7c6950249811e354dc6c3e7",
+  "code_tree": "c79e97bdae1224068895afa9dcf6cca6d7fe9fbb",
+  "excludes": [
+    "artifact-manifest.json",
+    "files.sha256"
+  ],
+  "files": [
+    {
+      "bytes": 1031,
+      "path": "README.md",
+      "sha256": "2a7d099b9602cf863b9f596973dcb55a74f9f5499004d9dc9bed0c3bcce1743d"
+    },
+    {
+      "bytes": 89241,
+      "path": "isolated-lean.log.gz",
+      "sha256": "b1bf86ea5a35ce709a83c13e7976a2bab315841376b37ac60619c2e89f932747"
+    },
+    {
+      "bytes": 1442,
+      "path": "observation.json",
+      "sha256": "01168a8f34a21540eee6a33a2024c48dd735781d2660e9db5d0a194e9bb6b564"
+    },
+    {
+      "bytes": 15914,
+      "path": "process-terminal.json",
+      "sha256": "5171bc7b85c2af2cf6fdf35811db97a778a46468c679b85674d3f90b5877cc1e"
+    },
+    {
+      "bytes": 4061,
+      "path": "runner.py",
+      "sha256": "3dbc6b343a1d0607503ad064fd3fe19ad2e0979e3648db63da78e4c3b9cd2ac4"
+    }
+  ],
+  "schema": "c4-compact-failed-attempt-artifacts-v1"
+}

@@ -151,7 +151,7 @@ import PscVerif.OccurrenceGraph
 namespace Psc.PacketCertificate
 
 open Psc.Binomial Psc.Reduction Psc.Descendants Psc.Incidence
-open Psc.QuantifierInterface Psc.QuantifierBinding Psc.OccurrenceGraph Psc.OccurrenceAddress
+open Psc.QuantifierInterface Psc.QuantifierBinding Psc.OccurrenceGraph Psc.CutAddress
 
 variable {α : Type} [DecidableEq α]
 

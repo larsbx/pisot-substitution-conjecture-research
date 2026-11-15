@@ -1,0 +1,14 @@
+[
+  {
+    "original_log": "named_balance_controls_compile_retry.log",
+    "archive": "named_balance_controls_compile_retry.log.gz",
+    "decompressed_sha256": "5e60b2e5e67fa443a97c54d0446f095a912b14ac502a1c70470be3ce07f7a77b",
+    "reason": "Preserve original diagnostic whitespace byte-for-byte in a lossless archive."
+  },
+  {
+    "original_log": "named_overlap_recurrence_compile_actual.log",
+    "archive": "named_overlap_recurrence_compile_actual.log.gz",
+    "decompressed_sha256": "14c66425fa4e7d36ba93b8df7fe3f46fc40ea5391c38ceedd168ad5f9c2e655b",
+    "reason": "Preserve original diagnostic whitespace byte-for-byte in a lossless archive."
+  }
+]

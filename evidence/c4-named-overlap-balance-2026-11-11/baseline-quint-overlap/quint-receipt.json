@@ -1,0 +1,90 @@
+{
+  "backend": "typescript",
+  "binary_words_length_0_through_2": 7,
+  "constant_length_two_binary_substitutions": 16,
+  "directed_three_state_graphs_with_loops": 512,
+  "executed_tests": [
+    "domainCountTest",
+    "finiteIntervalPartitionTest",
+    "finiteScaledSubdivisionTest",
+    "affineTranslationTest",
+    "strictCompleteCarrierConservativeTest",
+    "occurrenceMultiplicityTest",
+    "boundaryAndDegenerateTest",
+    "positiveWrongRowTest",
+    "omittedOccurrenceBudgetTest",
+    "literalMixedOrbitCountsTest",
+    "finiteQuotientCountsTest",
+    "uniformityIsNecessaryTest",
+    "allFixedAndFreeOrbitsTest",
+    "transposeOrientationTest",
+    "mixedConservativeWeightedTest",
+    "mixedStrictWeightedTest"
+  ],
+  "four_digit_occurrence_retention_masks": 16,
+  "git_head": "765bb39c83035b5ccacbc8115ecc26acc4111865",
+  "git_tree": "0040694a6c7f5e1df6dc9a9ad59581314226f138",
+  "integer_displacements_minus_2_through_2": 5,
+  "interval_partition_inputs": 2205,
+  "model_sha256": "cf223ede47c1c38c40cff953b26f7bb9271015d451d3c300fe6cca6ad7683c14",
+  "nonnegative_binary_length_rows_0_through_2": 9,
+  "note": "Every finite forall is exhausted; no random samples, Pisot census, geometric loss or C4 conclusion.",
+  "quint_version": "0.33.1",
+  "rejected_mutations": [
+    {
+      "name": "equal-packet-occurrences-deduplicated",
+      "sha256": "3b973565ca9298da51bf54a3d07bce9d50e7cdb48af7cdaaa293fc6f1e935f52",
+      "test": "occurrenceMultiplicityTest"
+    },
+    {
+      "name": "boundary-contact-counted-positive",
+      "sha256": "7e0d5e5f51b93208029923ed0d48a12e68c1e423c612cb862e227428d85ca82b",
+      "test": "boundaryAndDegenerateTest"
+    },
+    {
+      "name": "incidence-scaling-omitted",
+      "sha256": "a6d2c22e4eb6c1be7def2fbe12520a5ec74f7a4503c601640ed253a1f3d7995c",
+      "test": "affineTranslationTest"
+    },
+    {
+      "name": "image-length-equations-ignored",
+      "sha256": "a626c348c9581795a9cc71c12d06b9a0569e848e1f1ac481a237a325513554d1",
+      "test": "positiveWrongRowTest"
+    },
+    {
+      "name": "omitted-positive-mass-erased",
+      "sha256": "7b78a32e76ce7503b4619deb330ac9ab015f5ad4132ab46ad7151f1f4fe999f5",
+      "test": "omittedOccurrenceBudgetTest"
+    },
+    {
+      "name": "orbit-size-weights-ignored",
+      "sha256": "f03d4113dc08c8b1662bbcbbac62c17a5599c7eca374791054f5d741cee01b43",
+      "test": "mixedConservativeWeightedTest"
+    },
+    {
+      "name": "transpose-indices-reversed",
+      "sha256": "eae4f6afebbc4bef7116775344b25dd44e45a24de1edac06c23fdaac4c6ffbee",
+      "test": "transposeOrientationTest"
+    },
+    {
+      "name": "incoming-count-direction-reversed",
+      "sha256": "a030583fe2476eebbd248be80f2318ee43f31dc8dcffcbfe57c7d082c8b23a91",
+      "test": "literalMixedOrbitCountsTest"
+    },
+    {
+      "name": "fiber-uniformity-ignored",
+      "sha256": "0122f92245f8a9a225a0bc98f6e449f1b8370bbcbeb026011644a1769d8cd90b",
+      "test": "uniformityIsNecessaryTest"
+    }
+  ],
+  "runner_sha256": "a6024a83c1d7c5423e2842173932b1da22e6a61edb3365c5c8e38e0ac64e968c",
+  "scaled_source_type_residual_inputs": 1600,
+  "schema": "psc-c4-overlap-mass-quint-v1",
+  "scope": "exhaustive bounded interval, actual digit and literal quotient-count controls",
+  "seed": "20261110",
+  "source_and_revision_recheck": "unchanged",
+  "status": "passed",
+  "strict_nonpip_actual_marks": 16,
+  "strict_nonpip_positive_packet_labels": 12,
+  "worktree_dirty": false
+}

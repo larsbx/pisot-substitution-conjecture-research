@@ -1,0 +1,19 @@
+{
+  "command": [
+    "python",
+    "-m",
+    "pytest",
+    "-o",
+    "addopts=",
+    "-q",
+    "tests/test_recorded_data_integrity.py"
+  ],
+  "environment": {
+    "PYTHONPATH": "/workspace/scratch/f96c28a561ad/cut-pytest-runtime"
+  },
+  "pytest_version": "9.2.0",
+  "exit_code": 0,
+  "observed_at_utc": "2026-11-12T19:38:48.899745+00:00",
+  "subject": "staged original evidence commit above6915; prior to publication-provenance packet",
+  "log": "/workspace/scratch/f96c28a561ad/compact-evidence-integrity-attempt-02.log"
+}

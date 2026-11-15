@@ -93,7 +93,7 @@ the packet abstraction is `SoundEvery` with the absolute pairs as the actual sid
 | --- | --- | --- |
 | obligations, transfers, countermodels | `Complete`, `SoundSome`, `SoundEvery`, `TargetDown`, `TargetUp`, `LiftsPaths`, `SoundEvery.liftsPaths`, `quotientDistance_iff` | `PscVerif.GraphRefinement` |
 | bundles and the transfers added for the square | `Refines`, `Embeds`, `embeds_iff_refines`, `Refines.productive_iff` / `hereditarilyProductive_iff` / `inevitable_iff` / `inevMax_iff`, `Refines.cyclicProductive_of_quotient`, `Embeds.cyclicProductive_iff`, `brokenLoop_no_lift`, `broken_liftsPaths_vacuous`, `unroll_embeds` | `PscVerif.GraphEmbedding` |
-| addresses and the transport law at a cut | `cutAddr`, `cutAddr_spec`, `blockStart`, `getElem_red`, `residual_transport`, `cut_residual_zero` | `PscVerif.OccurrenceAddress` |
+| addresses and the transport law at a cut | `cutAddr`, `cutAddr_spec`, `blockStart`, `getElem_red`, `residual_transport`, `cut_residual_zero`, `locate_eq_cutAddr` | `PscVerif.CutAddress` (committed as `PscVerif.OccurrenceAddress`; renamed 2026-11-15) |
 | **O**, the literal occurrence graph | `Occ`, `occStep`, `occStar`, `mem_occStar`, `occStep_child_iff`, `occStep_split_iff`, `length_occStar`, `occGraph`, `occGraphFor`, `occChild.childNC`, `residual_step` | `PscVerif.OccurrenceGraph` |
 | **A**, ρ and β | `AbsOcc`, `absStep`, `Anchor`, `Anchored`, `anchoredGraph`, `reading`, `Universe`, `universeGraph`, `universeGraphFor`, `universe_refines`, `universe_readings`, `universe_reading_unique`, `anchored_cover_universe`, `absLineage_anchor`, `block_complete`, `block_soundSome_at`, `fib_block_readings` | `PscVerif.OccurrenceRealisation` |
 | **P**, the record and its checker | `Table`, `Table.check`, `Table.clauses`, `Table.check_sound`, `Table.iso`, `Table.range_eq_reach`, `Table.graph`, `Table.graphSuccess` | `PscVerif.PacketCertificate` |
@@ -204,7 +204,7 @@ their packet. This is a composition of those statements, not a named theorem.
 The packet update `r' = M r + λ` (`docs/c4-ordered-word-completion-interface-2026-11-02.md` §1)
 is derived in Lean from literal prefixes. It is not assumed by the export.
 
-1. `Psc.OccurrenceAddress.residual_transport`: select letters `u[i]`, `v[j]` and digits `d`, `e`
+1. `Psc.CutAddress.residual_transport`: select letters `u[i]`, `v[j]` and digits `d`, `e`
    of their images, and take a balanced cut `lo` of `(σ u, σ v)` at or before both inflated
    positions. Measured from `lo`, the Parikh difference of the two prefixes is
    `M · (u.take i − v.take j) + ((σ u[i]).take d − (σ v[j]).take e)`. No hypothesis says that the

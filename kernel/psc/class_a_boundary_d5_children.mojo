@@ -2,9 +2,7 @@
 
 Composes R5/B5 registries; x/x zero is a typed terminal, not a new full star.
 """
-from finite_exact.checked_int import checked_add, checked_mul
-from std.collections import Dict
-from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, member_transport, verify_member_edge
+from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, member_transport
 from psc.class_a_boundary_u_children import reverse_label
 from psc.class_a_boundary_r3_children import enlarged_candidate
 from psc.class_a_boundary_r5_children import certify_r5_children, r5_star_interface, r5_exit_interface
@@ -12,12 +10,12 @@ from psc.class_a_boundary_b5_children import certify_b5_children, b5_star_interf
 from psc.class_a_boundary_y4_children import y4_source, y4_path, _seed_suffix, _reverse_steps, _verify_steps
 from psc.class_a_boundary_r4_children import _image, _transition
 from psc.class_a_boundary_e_children import _offset
-from psc.class_a_boundary_next_run import _parameters
 from psc.class_a_boundary_next_first import _linear, _cubic, _equal
 from psc.class_a_boundary_occurrences import symbolic_child, _equal3, _prefix, _child, FIRST, RUN, LAST
 from psc.class_a_boundary_signs import chamber_parameters, _cone_nonnegative
 from psc.param_poly import QX, qx_const, qx_add, qx_sub, qx_neg, tp_add, tp_sub, tp_mul, tp_scale, tp_mod_monic
 from psc.overlap_seed_patch import SeedOverlapTables
+from psc.class_a_boundary_family import BoundaryFamily, boundary_dimensions, append_child, verify_child_packet, verify_child_star
 
 
 def d5_source(kind: Int) raises -> BoundaryLabel:
@@ -122,12 +120,9 @@ def certify_d5_children(corrupt: Bool=False) raises:
     print("CLASS_A_BOUNDARY_D5 two_complete_oriented_stars=true", "count=n+3", "union_labels=6", "source_exit_one=true", "all_first_choice_walks_at_most_seven=true", "two_typed_terminals=true", "Y4_image_all_stars_registered=true", "closed_carrier=false", "global_BH=false")
 
 
-def _dimensions(kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int,Int]:
+def _dimensions(kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int,Int,Int]:
     _=d5_source(kind)
-    var p=_parameters(-1,k,t)
-    var A=checked_add(p[0],p[1])
-    _=checked_add(A,12)
-    return(p[0],p[1],A)
+    return boundary_dimensions(k,t,12)
 
 
 def d5_child_allowed(kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:
@@ -154,14 +149,20 @@ def in_d5_image(w: BoundaryLabel) raises -> Bool:
     return z.top==2 and z.bottom==1 and z.x==0 and z.c==-1 and (z.y==1 or z.y==2)
 
 
+@fieldwise_init
+struct D5Children(BoundaryFamily):
+    def name(self) -> String:return "D5"
+    def source(self,kind: Int) raises -> BoundaryLabel:return d5_source(kind)
+    def parameters(self,kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int]:
+        var p=_dimensions(kind,k,t)
+        return (p[0],p[1])
+    def swapped(self,kind: Int) -> Bool:return kind!=0
+    def allowed(self,kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:return d5_child_allowed(kind,k,t,i,j)
+    def in_image(self,w: BoundaryLabel) raises -> Bool:return in_d5_image(w)
+
+
 def _append(mut out: List[BoundaryEdge],kind: Int,k: Int,t: Int,i: Int,j: Int) raises:
-    var p=_dimensions(kind,k,t)
-    var a=i if kind==0 else j
-    var b=j if kind==0 else i
-    if not d5_child_allowed(kind,k,t,a,b):raise Error("synthesized D5 guard failed")
-    var target=member_transport(-1,k,p[0],p[1],d5_source(kind),a,b)
-    if not in_d5_image(target):raise Error("D5 target escaped exact image")
-    out.append(BoundaryEdge(a,b,target))
+    append_child(D5Children(),out,kind,k,t,i,j)
 
 
 def d5_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
@@ -175,21 +176,13 @@ def d5_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
 
 
 def verify_d5_packet(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,edge: BoundaryEdge) raises:
-    var p=_dimensions(kind,k,t)
-    if not d5_child_allowed(kind,k,t,edge.i,edge.j) or not in_d5_image(edge.target):raise Error("D5 packet refused")
-    verify_member_edge(tables,-1,k,p[0],p[1],d5_source(kind),edge.i,edge.j,edge.target)
+    verify_child_packet(D5Children(),tables,kind,k,t,edge)
 
 
 def verify_d5_star(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,edges: List[BoundaryEdge]) raises:
     var p=_dimensions(kind,k,t)
-    if kind>=2 or len(edges)!=p[0]+3:raise Error("incomplete or unsupported D5 star")
-    var stride=checked_add(p[0] if kind==0 else p[2],2)
-    var seen=Dict[Int,Bool]()
-    for edge in edges:
-        verify_d5_packet(tables,kind,k,t,edge)
-        var key=checked_add(checked_mul(edge.i,stride),edge.j)
-        if key in seen:raise Error("duplicate D5 occurrence")
-        seen[key]=True
+    if kind>=2:raise Error("unsupported D5 companion star")
+    verify_child_star(D5Children(),tables,kind,k,t,edges,p[0]+3)
 
 
 def d5_path(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:

@@ -1,0 +1,28 @@
+{
+  "name": "inventory-tests",
+  "started_utc": "2026-11-05T10:44:08.413877+00:00",
+  "duration_seconds": 8.651741,
+  "executed_local_commit": "d3d506526ca2468679b99856cd8511affa839ab8",
+  "source_tree": "4b57fc3ed8e0c98c808a905879da579e200929db",
+  "cwd": "/workspace/scratch/bb3a4dbb8418/psc-critical",
+  "command": [
+    "/workspace/scratch/bb3a4dbb8418/psc-validation/bin/python",
+    "-m",
+    "pytest",
+    "--assert=plain",
+    "-o",
+    "addopts=",
+    "-q",
+    "tests/test_markdown_links.py",
+    "tests/test_proof_bank.py"
+  ],
+  "explicit_environment": {
+    "MODULAR_HOME": "/workspace/scratch/bb3a4dbb8418/mojo-prefix/share/max",
+    "PYTHONPATH": "/workspace/scratch/bb3a4dbb8418/psc-critical/tools"
+  },
+  "exit_code": 0,
+  "stdout": "/workspace/scratch/bb3a4dbb8418/psc-critical/evidence/c4-critical-overlap-components-2026-11-05/inventory-tests.stdout.txt",
+  "stderr": "inventory-tests.stderr.txt",
+  "stdout_sha256": "b19da9238c9e719ce00d197cada5766cb05f5990f6cf508b2c00d25ac0c55973",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

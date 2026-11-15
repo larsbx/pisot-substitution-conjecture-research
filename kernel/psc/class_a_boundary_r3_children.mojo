@@ -3,8 +3,7 @@
 Selected typed exits only; both the 39- and 41-label candidates escape.
 Full guard derivation: docs/class-a-boundary-r3-carrier-2026-10-28.md.
 """
-from finite_exact.checked_int import checked_add
-from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, member_transport, verify_member_edge
+from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, verify_member_edge
 from psc.class_a_boundary_u_children import reverse_label
 from psc.class_a_boundary_q3_children import certify_q3_children, q3_source, q3_target
 from psc.class_a_boundary_p3_children import p3_source, p3_image
@@ -12,12 +11,12 @@ from psc.class_a_boundary_p_children import p_source, p_path, certify_p_children
 from psc.class_a_boundary_h3_children import chain_source
 from psc.class_a_boundary_e_children import eh_source, _offset
 from psc.class_a_boundary_tm_children import certify_tm_children
-from psc.class_a_boundary_next_run import _parameters
 from psc.class_a_boundary_next_first import _linear, _cubic, _equal
 from psc.class_a_boundary_occurrences import symbolic_child, _equal3, _prefix, _child, FIRST, RUN, LAST
 from psc.class_a_boundary_signs import chamber_parameters, _cone_positive, _cone_nonnegative
 from psc.param_poly import QX, qx_const, qx_add, qx_sub, qx_neg, tp_add, tp_sub, tp_mul, tp_scale, tp_mod_monic
 from psc.overlap_seed_patch import SeedOverlapTables
+from psc.class_a_boundary_family import BoundaryFamily, boundary_dimensions, append_child, verify_child_packet
 
 
 def r3_source(kind: Int) raises -> BoundaryLabel:
@@ -207,10 +206,7 @@ def certify_r3_children(corrupt: Bool=False) raises:
 
 def _dimensions(kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int,Int,Int]:
     _=r3_source(kind)
-    var p=_parameters(-1,k,t)
-    var A=checked_add(p[0],p[1])
-    _=checked_add(A,8)
-    return(p[0],p[1],A,p[0]-1)
+    return boundary_dimensions(k,t,8)
 
 
 def r3_child_allowed(kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:
@@ -276,16 +272,20 @@ def in_r3_image(w: BoundaryLabel) raises -> Bool:
     return False
 
 
+@fieldwise_init
+struct R3Children(BoundaryFamily):
+    def name(self) -> String:return "R3"
+    def source(self,kind: Int) raises -> BoundaryLabel:return r3_source(kind)
+    def parameters(self,kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int]:
+        var p=_dimensions(kind,k,t)
+        return (p[0],p[1])
+    def swapped(self,kind: Int) -> Bool:return kind%2==1
+    def allowed(self,kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:return r3_child_allowed(kind,k,t,i,j)
+    def in_image(self,w: BoundaryLabel) raises -> Bool:return in_r3_image(w)
+
+
 def _append(mut out: List[BoundaryEdge],kind: Int,k: Int,t: Int,i: Int,j: Int) raises:
-    var p=_dimensions(kind,k,t)
-    var a=j if kind%2==1 else i
-    var b=i if kind%2==1 else j
-    if not r3_child_allowed(kind,k,t,a,b):
-        raise Error("synthesized R3/D3 guard failed")
-    var target=member_transport(-1,k,p[0],p[1],r3_source(kind),a,b)
-    if not in_r3_image(target):
-        raise Error("R3/D3 target escaped exact image")
-    out.append(BoundaryEdge(a,b,target))
+    append_child(R3Children(),out,kind,k,t,i,j)
 
 
 def r3_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
@@ -318,10 +318,7 @@ def r3_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
 
 
 def verify_r3_packet(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,edge: BoundaryEdge) raises:
-    var p=_dimensions(kind,k,t)
-    if not r3_child_allowed(kind,k,t,edge.i,edge.j) or not in_r3_image(edge.target):
-        raise Error("R3/D3 packet refused")
-    verify_member_edge(tables,-1,k,p[0],p[1],r3_source(kind),edge.i,edge.j,edge.target)
+    verify_child_packet(R3Children(),tables,kind,k,t,edge)
 
 
 def r3_path(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:

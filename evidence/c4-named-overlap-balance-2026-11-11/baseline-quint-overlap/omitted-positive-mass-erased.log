@@ -1,0 +1,35 @@
+
+  C4OverlapMass
+    1) omittedOccurrenceBudgetTest failed after 1 test(s)
+
+  1 failed
+
+  1) omittedOccurrenceBudgetTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-c4-overlap-mass-w2dcqveq/omitted-positive-mass-erased.qnt:180:37
+        180:   run omittedOccurrenceBudgetTest = init.expect({
+                                                 ^^^^^^^^^^^^^
+        181:     val s = List(List(0, 0), List(0, 0), List(0, 0))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        182:     val ls = List(1, 1, 1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        183:     val cs = children(s, (0, 1, (0, 0, 0)))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        184:     all {
+             ^^^^^^^^^
+        185:       0.to(15).forall(mask => 2 - retainedMass(cs, ls, mask) == omittedMass(cs, ls, mask)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        186:       retainedMass(cs, ls, 9) == 2, omittedMass(cs, ls, 9) == 0,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        187:       retainedMass(cs, ls, 1) == 1, omittedMass(cs, ls, 1) == 1,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        188:     }
+             ^^^^^
+        189:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f6 --match=omittedOccurrenceBudgetTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-c4-overlap-mass-w2dcqveq/omitted-positive-mass-erased.qnt
+error: Tests failed

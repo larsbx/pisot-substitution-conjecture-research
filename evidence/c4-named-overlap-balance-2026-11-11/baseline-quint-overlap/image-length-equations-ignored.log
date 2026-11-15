@@ -1,0 +1,33 @@
+
+  C4OverlapMass
+    1) positiveWrongRowTest failed after 1 test(s)
+
+  1 failed
+
+  1) positiveWrongRowTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-c4-overlap-mass-w2dcqveq/image-length-equations-ignored.qnt:171:30
+        171:   run positiveWrongRowTest = init.expect({
+                                          ^^^^^^^^^^^^^
+        172:     val ls = List(2, 1, 1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        173:     val p = (0, 0, (0, -1, 0))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        174:     all {
+             ^^^^^^^^^
+        175:       ls.indices().forall(a => ls[a] > 0), not(scaledImages(strictSigma, ls, 2)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        176:       packetMass(p, ls) == 1, sumMass(children(strictSigma, p), ls) == 0,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        177:       sumMass(children(strictSigma, p), ls) != 2 * packetMass(p, ls),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        178:     }
+             ^^^^^
+        179:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f6 --match=positiveWrongRowTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-c4-overlap-mass-w2dcqveq/image-length-equations-ignored.qnt
+error: Tests failed

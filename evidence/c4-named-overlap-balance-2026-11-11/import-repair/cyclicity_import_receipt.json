@@ -1,0 +1,20 @@
+{
+  "scope": "Import-only production repair; theorem statements and proof bytes unchanged",
+  "baseline": "765bb39c83035b5ccacbc8115ecc26acc4111865",
+  "file": "proof/PscVerif/PscVerif/Cyclicity.lean",
+  "old_source_sha256": "22076d9fcce5ac3dde6cbebdea2d7ee46fe7aa064920385792fd1ca922747b3d",
+  "new_source_sha256": "a31b77d0fcb06d1dcb582156679c7316d2847fab2ff9b06db2b998ca6effa770",
+  "exact_replacement_verified": true,
+  "replacement_imports": [
+    "import Mathlib.Algebra.Polynomial.SpecificDegree",
+    "import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas",
+    "import Mathlib.LinearAlgebra.Matrix.Charpoly.Coeff",
+    "import Mathlib.Tactic.ComputeDegree",
+    "import Mathlib.Tactic.FinCases",
+    "import Mathlib.Tactic.NormNum",
+    "import Mathlib.Tactic.Ring"
+  ],
+  "development_acceptance": "passed with pinned Lean4.34.0-rc2, -j1, actual unchanged proofs; not canonical full clean audit",
+  "compile_seconds": 30.5,
+  "compile_log": "cyclicity_narrow_compile_retry.log"
+}

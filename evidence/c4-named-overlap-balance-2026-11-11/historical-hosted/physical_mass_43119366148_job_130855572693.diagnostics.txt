@@ -1,0 +1,25 @@
+2026-11-11T23:36:36.3006686Z   [DecidableEq α]
+2026-11-11T23:36:36.3066697Z   omit [DecidableEq α] in theorem ...
+2026-11-11T23:36:36.3098676Z   [DecidableEq α]
+2026-11-11T23:36:36.3099912Z   omit [DecidableEq α] in theorem ...
+2026-11-11T23:38:45.8180707Z ✖ [8967/9005] Building PscVerif.OccurrencePhysicalBudget (8.4s)
+2026-11-11T23:38:45.8566679Z trace: .> LEAN_PATH=/tmp/tmp.hcKmPP3yQL/proof/PscVerif/.lake/packages/Cli/.lake/build/lib/lean:/tmp/tmp.hcKmPP3yQL/proof/PscVerif/.lake/packages/batteries/.lake/build/lib/lean:/tmp/tmp.hcKmPP3yQL/proof/PscVerif/.lake/packages/Qq/.lake/build/lib/lean:/tmp/tmp.hcKmPP3yQL/proof/PscVerif/.lake/packages/aesop/.lake/build/lib/lean:/tmp/tmp.hcKmPP3yQL/proof/PscVerif/.lake/packages/proofwidgets/.lake/build/lib/lean:/tmp/tmp.hcKmPP3yQL/proof/PscVerif/.lake/packages/importGraph/.lake/build/lib/lean:/tmp/tmp.hcKmPP3yQL/proof/PscVerif/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/tmp/tmp.hcKmPP3yQL/proof/PscVerif/.lake/packages/plausible/.lake/build/lib/lean:/tmp/tmp.hcKmPP3yQL/proof/PscVerif/.lake/packages/mathlib/.lake/build/lib/lean:/tmp/tmp.hcKmPP3yQL/proof/PscVerif/.lake/build/lib/lean /home/runner/work/_temp/physical-mass-lean-tools/lean-4.34.0-rc2-linux/bin/lean /tmp/tmp.hcKmPP3yQL/proof/PscVerif/PscVerif/OccurrencePhysicalBudget.lean -o /tmp/tmp.hcKmPP3yQL/proof/PscVerif/.lake/build/lib/lean/PscVerif/OccurrencePhysicalBudget.olean -i /tmp/tmp.hcKmPP3yQL/proof/PscVerif/.lake/build/lib/lean/PscVerif/OccurrencePhysicalBudget.ilean -c /tmp/tmp.hcKmPP3yQL/proof/PscVerif/.lake/build/ir/PscVerif/OccurrencePhysicalBudget.c --setup /tmp/tmp.hcKmPP3yQL/proof/PscVerif/.lake/build/ir/PscVerif/OccurrencePhysicalBudget.setup.json --json
+2026-11-11T23:38:46.0033414Z error: PscVerif/OccurrencePhysicalBudget.lean:107:8: failed to synthesize instance of type class
+2026-11-11T23:38:46.0034398Z   Decidable (digitPacket s (↑u) ij.1 ij.2 ∈ S)
+2026-11-11T23:38:46.0262734Z error: PscVerif/OccurrencePhysicalBudget.lean:108:54: unsolved goals
+2026-11-11T23:38:46.0317676Z error: PscVerif/OccurrencePhysicalBudget.lean:136:6: Tactic `split_ifs` failed: no if-then-else conditions to split
+2026-11-11T23:38:46.0329034Z error: PscVerif/OccurrencePhysicalBudget.lean:151:8: failed to synthesize instance of type class
+2026-11-11T23:38:46.0335118Z   Decidable (digitPacket s (↑u) ij.1 ij.2 ∈ S)
+2026-11-11T23:38:46.0388912Z error: PscVerif/OccurrencePhysicalBudget.lean:164:2: Tactic `split_ifs` failed: no if-then-else conditions to split
+2026-11-11T23:38:46.0607694Z warning: PscVerif/OccurrencePhysicalBudget.lean:168:8: declaration uses `sorry`
+2026-11-11T23:38:46.0608668Z warning: PscVerif/OccurrencePhysicalBudget.lean:185:2: Unused tactic linter: `rw [Finset.sum_pos_iff_of_nonneg (fun ij _ => nonnegative ij)]` does nothing
+2026-11-11T23:38:46.0610308Z warning: PscVerif/OccurrencePhysicalBudget.lean:186:2: Unused tactic linter: `constructor` does nothing
+2026-11-11T23:38:46.0611738Z warning: PscVerif/OccurrencePhysicalBudget.lean:187:2: Unused tactic linter: `·
+2026-11-11T23:38:46.1774128Z warning: PscVerif/OccurrencePhysicalBudget.lean:191:2: Unused tactic linter: `·
+2026-11-11T23:38:46.1777217Z warning: PscVerif/OccurrencePhysicalBudget.lean:186:2: this tactic is never executed
+2026-11-11T23:38:46.1778524Z warning: PscVerif/OccurrencePhysicalBudget.lean:187:2: this tactic is never executed
+2026-11-11T23:38:46.1779870Z warning: PscVerif/OccurrencePhysicalBudget.lean:191:2: this tactic is never executed
+2026-11-11T23:41:23.8874736Z Some required targets logged failures:
+2026-11-11T23:41:23.8877074Z - PscVerif.OccurrencePhysicalBudget
+2026-11-11T23:41:23.9007223Z error: build failed
+2026-11-11T23:41:53.5692616Z ##[error]Process completed with exit code 1.

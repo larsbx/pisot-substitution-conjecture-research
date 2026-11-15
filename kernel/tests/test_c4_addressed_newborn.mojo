@@ -41,6 +41,25 @@ def test_exterior_diagonal_still_has_an_interior_cut() raises:
     assert_equal(top[a.cut - 1], bottom[a.cut - 1])
     assert_true(a.cut in newborn_sync_positions(left, t))
 
+    # A first-diagonal receipt is not permission to ignore the remaining
+    # supplied address. The next selected source is 0, whose image has size 2.
+    var rejected_suffix = False
+    try:
+        _ = addressed_newborn(left, t, 0, 0, [0, 2], [0, 1])
+    except:
+        rejected_suffix = True
+    assert_true(rejected_suffix)
+
+    # Every digit is valid here, but the suffix selects different singleton
+    # occurrences after the first diagonal. A prior successful prefix cannot
+    # justify accepting this complete witness.
+    rejected_suffix = False
+    try:
+        _ = addressed_newborn(left, t, 0, 0, [0, 0], [0, 1])
+    except:
+        rejected_suffix = True
+    assert_true(rejected_suffix)
+
     var right: List[List[Int]] = [[1, 0], [0], [2]]
     var b = addressed_newborn(right, t, 1, 1, [0], [1])
     assert_equal(b.ordinals, [1])

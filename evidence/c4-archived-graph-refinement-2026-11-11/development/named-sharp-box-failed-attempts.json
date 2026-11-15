@@ -1,0 +1,32 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "elapsed_seconds": 112.7,
+      "exit_code": 1,
+      "log": "named-sharp-box-attempt-1.log.gz",
+      "log_compressed_sha256": "dda39b55a418847f116f10bf909cdd1e78594a770d21816117e94d1330596926",
+      "log_uncompressed_sha256": "11b3f4d6a044118447fcd8f286dad45a68dd4d53b3dfd9103938ace9d69d1eee",
+      "outcome": "failed development-only Lean elaboration; no acceptance credit",
+      "source_sha256": null,
+      "source_snapshot": null,
+      "source_snapshot_scope": "source was not preserved before repairs; no exact failed-source hash can be claimed or inferred"
+    },
+    {
+      "attempt": 2,
+      "elapsed_seconds": 108.6,
+      "exit_code": 1,
+      "log": "named-sharp-box-attempt-2.log.gz",
+      "log_compressed_sha256": "2825ddd22b120a786f70ebd71d7d0b439231d492cbcb1149d7af1e77e96c8518",
+      "log_uncompressed_sha256": "891edfb51e62341ec0d47084a0267a60488309e86deb7e405e331e6b069a067d",
+      "outcome": "failed development-only Lean elaboration; no acceptance credit",
+      "source_sha256": "97b0e3f0c1b2fad61d18e12544e3324330b667f16beabc5c36686ee16ff46ca8",
+      "source_snapshot": "named-sharp-box-attempt-2.lean.gz",
+      "source_snapshot_scope": "exact failed source preserved by root before repairs"
+    }
+  ],
+  "module": "PscVerif.NamedSharpBox",
+  "recorded_at_utc": "2026-11-12T01:48:09.235732+00:00",
+  "schema": "c4-lean-development-failures-v1",
+  "scope": "historical development failures retained; neither failed log certifies repaired or published source"
+}

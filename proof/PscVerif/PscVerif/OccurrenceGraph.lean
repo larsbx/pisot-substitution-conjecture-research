@@ -25,7 +25,7 @@ parent block and the ordinal of the block among the children
   decidable, `Occ.atStart_iff`) and the target (`Occ.Coincident`,
   `Occ.SuccessFor`);
 * `residual_step`: along every literal edge `r' = M r + λ`, derived from the
-  committed `Psc.OccurrenceAddress.residual_transport` with the balanced cut at
+  committed `Psc.CutAddress.residual_transport` with the balanced cut at
   the start of the child block; `residual_step_vec`, `residual_atStart`
   (`M r + λ = 0` at a child start) and `residual_iterate_lt` (along the first
   `n` steps of a path, which may end there, for instance at a dead end or at a
@@ -59,7 +59,7 @@ parent block and the ordinal of the block among the children
 The definitions and most lemmas were first checked in the scratch files of the
 packet-square design pass; `cutAddr`, `blockStart`, `getElem_red`,
 `take_subst_digit` and `residual_transport` are imported from
-`Psc.OccurrenceAddress`, not redefined.
+`Psc.CutAddress`, not redefined.
 
 Not proved here: that any packet table or Mojo packet graph is sound or complete
 with respect to this graph (no packet row is read by a theorem of this module);
@@ -77,13 +77,13 @@ check of the archive.
 -/
 import PscVerif.QuantifierBinding
 import PscVerif.Incidence
-import PscVerif.OccurrenceAddress
+import PscVerif.CutAddress
 
 namespace Psc.OccurrenceGraph
 
 open Psc.Binomial Psc.Reduction Psc.Descendants Psc.Incidence
 open Psc.QuantifierInterface Psc.QuantifierBinding
-open Psc.OccurrenceAddress
+open Psc.CutAddress
 
 variable {α : Type*} [DecidableEq α]
 

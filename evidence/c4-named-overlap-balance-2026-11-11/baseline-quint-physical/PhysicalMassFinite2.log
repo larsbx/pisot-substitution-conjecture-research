@@ -1,0 +1,8 @@
+
+  PhysicalMassFinite2
+    ok directMatrixEntryCalibrationTest passed 1 test(s)
+    ok domainCountTest passed 1 test(s)
+    ok exhaustiveNumericalImplicationTest passed 1 test(s)
+    ok acceptedAndConservativeInputsTest passed 1 test(s)
+
+  4 passing (2129ms)

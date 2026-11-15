@@ -1,0 +1,19 @@
+{
+  "actual_checkout_commit": "d841d572d34a9ca10e4a88e3fbce33ed01a76b32",
+  "actual_checkout_tree": "97b54a6fdccb9a1828be815c2718fbcc5bc67960",
+  "exact_candidate_commit_checkout": false,
+  "focused_exact_head_concrete_replay_supplied": false,
+  "job": 131038173413,
+  "provider_metadata_head_sha": "249a71b0330401ada5adbff7d9cd280bf0d7530f",
+  "raw_log_bytes": 95728,
+  "raw_log_sha256": "fa17480795d504065319242cabd11799d3e063a59338aa2369c307d7d81c3f56",
+  "reported_test_seconds": 2041.88,
+  "run": 43175356353,
+  "scope": "hosted Python regression result on synthetic merge with identical candidate tree",
+  "subtests_passed": 28,
+  "tests_passed": 2110,
+  "tests_skipped": 12,
+  "tree_equivalence_source": "../hosted-generic-bank/original-receipt.json",
+  "verbatim_summary_line": "2026-11-12T09:20:06.3543575Z 2110 passed, 12 skipped, 1 warning, 28 subtests passed in 2041.88s (0:34:01)",
+  "warnings": 1
+}

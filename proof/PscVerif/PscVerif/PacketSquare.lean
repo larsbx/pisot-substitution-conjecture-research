@@ -209,7 +209,7 @@ namespace Psc.PacketSquare
 
 open Psc.Binomial Psc.Reduction Psc.Descendants
 open Psc.QuantifierInterface Psc.QuantifierBinding
-open Psc.OccurrenceAddress Psc.OccurrenceGraph Psc.OccurrenceRealisation Psc.GraphRefinement
+open Psc.CutAddress Psc.OccurrenceGraph Psc.OccurrenceRealisation Psc.GraphRefinement
 open Psc.PacketCertificate
 
 /-! ### Graph logic: factoring through an injective embedding, changing the source -/

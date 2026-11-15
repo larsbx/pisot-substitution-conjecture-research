@@ -59,7 +59,7 @@ def seed_length7() -> Pair:
     return normalised_pair(u, v)
 
 
-def commutes_with_theta(m: Mat3, state: Pair) -> Bool:
+def commutes_with_theta(m: Mat3, state: Pair) raises -> Bool:
     """`M Theta(K3) == Theta(K3) M`: the centralizer test of the catalogue."""
     var a = theta(k3(state))
     return m * a == a * m
@@ -117,7 +117,7 @@ struct Degree3Summary(Copyable, Movable):
     var length19_five_child_one_coincidence: Int
     var productive_within_two: Int
 
-    def __init__(out self, rows: List[Degree3Row]):
+    def __init__(out self, rows: List[Degree3Row]) raises:
         var state_keys = Set[String]()
         var sigma_keys = Set[String]()
         var lengths = Set[Int]()

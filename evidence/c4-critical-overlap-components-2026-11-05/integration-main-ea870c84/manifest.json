@@ -1,0 +1,182 @@
+{
+  "format": "psc-exact-replay-v1",
+  "created_utc": "2026-11-05T10:52:26.627915+00:00",
+  "scope": "exact SCC replay after merging updated main and regenerating the combined proof inventory",
+  "published_source_commit": "647cd56e8bb79ca3de50c66906cec5fef3ee264b",
+  "executed_local_commit": "dcfdded757b12e8fa9c630820e6d59a2ec7e0fd5",
+  "source_tree": "bfd53bd5575aaaa0ab677eb6af755fb3794e8195",
+  "published_tree_exactly_matches_executed_tree": true,
+  "publication_base": "11ca54a5b4ec827271f190e973b2564c00df31f5",
+  "publication_note": "GitHub assigns a distinct commit identity. Its entire Git tree was checked equal to the locally executed source tree. The following archival commit adds only evidence records and summaries.",
+  "mojo_version": "1.1.0.dev2026090805 (34562fa1)",
+  "python_version": "Python 3.12.14",
+  "local_runtime_note": "Restored minimal compiler from both exact package SHA256 pins in kernel/pixi.lock, with declared text prefix relocations and MODULAR_HOME. Not a fresh full locked Pixi installation. Existing Crashpad warning retained; native exits0.",
+  "runtime_install_record": "../runtime-install.json",
+  "checks": [
+    {
+      "name": "native-test",
+      "receipt": "native-test.receipt.json",
+      "exit_code": 0,
+      "duration_seconds": 7.86444
+    },
+    {
+      "name": "native-driver",
+      "receipt": "native-driver.receipt.json",
+      "exit_code": 0,
+      "duration_seconds": 5.177135
+    },
+    {
+      "name": "oracle-tests",
+      "receipt": "oracle-tests.receipt.json",
+      "exit_code": 0,
+      "duration_seconds": 28.511735
+    },
+    {
+      "name": "native-parity",
+      "receipt": "native-parity.receipt.json",
+      "exit_code": 0,
+      "duration_seconds": 21.917428
+    },
+    {
+      "name": "governance",
+      "receipt": "governance.receipt.json",
+      "exit_code": 0,
+      "duration_seconds": 6.875391
+    },
+    {
+      "name": "proof-bank",
+      "receipt": "proof-bank.receipt.json",
+      "exit_code": 0,
+      "duration_seconds": 0.483637
+    },
+    {
+      "name": "markdown",
+      "receipt": "markdown.receipt.json",
+      "exit_code": 0,
+      "duration_seconds": 0.165327
+    },
+    {
+      "name": "vendor-pins",
+      "receipt": "vendor-pins.receipt.json",
+      "exit_code": 0,
+      "duration_seconds": 0.117363
+    },
+    {
+      "name": "inventory-tests",
+      "receipt": "inventory-tests.receipt.json",
+      "exit_code": 0,
+      "duration_seconds": 9.513436
+    }
+  ],
+  "test_counts": {
+    "scc_oracle": 29,
+    "proof_bank_and_markdown_links": 61
+  },
+  "native_packet_sha256": "3d3681a85a5b4f1bc4cca5839c5fe2ac37a91ab50b9014e947b984d020a4037d",
+  "native_packet_bytes": 6346587,
+  "native_packet_records": 210252,
+  "source_hashes": {
+    ".github/workflows/c4-overlap-scc-obstruction.yml": "531e97422ffbf0c2ab34f0b13024f89b28cf4ae1f197508e45440ff360cd723b",
+    "AGENTS.md": "46f8d84936c01ae3fd8f0cb84b5dd77c77998c23b94202655958f9bacd5dc9cd",
+    "README.md": "3c7d15aa8c9542ce1afc89c067ef757cebb95e284703a1b4c61c202fc9cdf44b",
+    "docs/c4-critical-overlap-components-2026-11-05.md": "c71b32d537e4a951d0f358e0d5f7a1df07037b1922f17122f2a39375e9084623",
+    "docs/c4-critical-overlap-components-literature-gate-2026-11-05.md": "cbf13a304b58d3844be2740c87c7f1916eb6ae689aeb3b89a403453e7ee3cbda",
+    "docs/c4-finite-overlap-carrier-2026-11-05.md": "ec074e560cb9be8fade3af956767f48f7c397314ba99ff6430d46c5fefd3b586",
+    "docs/c4-nonunit-madic-counting-bridge-2026-11-04.md": "c06f2dd82233b7ebf0948e91ce17eae9a7dfcf1e28d58682eaae50f3ce72530d",
+    "docs/proof-bank.md": "f33926d188ec1c87c7d4a8b00c5298e6f04c5595bb4de2e44d1f9f02eb4860f0",
+    "docs/side-notes-ledger.md": "6265c4aae85805dbdb275f6987e3f6b879ed7648d95242a46e80d50cd83f3b30",
+    "evidence/c4-critical-overlap-components-2026-11-05/README.md": "caa5f175f1a2c759c564e4aed301525b604e7bf199db607231d2a6390287f65e",
+    "evidence/c4-critical-overlap-components-2026-11-05/native-packet.txt.gz": "0d7b45d608547d455885e855594c7f738f0e3c4bee20e0ea40b0981fcf9e9e2a",
+    "evidence/c4-critical-overlap-components-2026-11-05/receipt.json": "a4e2e730de2a3ce8eb5dc7c3cd8a925542275713b0201f195d4587b2ad560c68",
+    "evidence/c4-critical-overlap-components-2026-11-05/review.md": "396a63295aff1dd6d2213b37a3149ee909204735cadeb851e11540a8abb1cd11",
+    "evidence/c4-critical-overlap-components-2026-11-05/runtime-install.json": "09c551c5ff701fa66331b2a662d1384d76631d04aa71a7055192dffa2d93c044",
+    "kernel/c4_overlap_scc_obstruction.mojo": "32ac16a7c415cf25e52e928f65df183834398148efa0720dad4b564c2115b961",
+    "kernel/pixi.lock": "1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8",
+    "kernel/pixi.toml": "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee",
+    "kernel/psc/c4_finite_cylinder_overlap.mojo": "0e79ddb1d9733ad2172b87820a1801621a73a3cec4db7d0aab111fe645547111",
+    "kernel/psc/c4_nonunit_residue_occupancy.mojo": "377d38872de1655569fda73d7817cc1586ad9a421c3198e85de1918d492ed05c",
+    "kernel/psc/c4_overlap_scc_obstruction.mojo": "916f969629bab10750a281d510e886bf7c7b16cee4122d85085b2e6c9a3c4763",
+    "kernel/psc/c4_pair_overlap_carrier.mojo": "29b433f446bfd10f13295cbdc2a9269626154c3fe4de058aa9bc012f52a5e7b0",
+    "kernel/psc/c4_pair_overlap_new_incidence.mojo": "e6ff7afa54643e993dc25791575e426ba8f41e582223d0354b59f521d241208a",
+    "kernel/psc/exact.mojo": "ebe211c9c29d6d943ae58fe8594eacac629af2ccf232197d59b22ad0d7896cc3",
+    "kernel/psc/pisot.mojo": "01258d6ede4145e1d311cebaa3f2558d07ce06ff9240bb7dddf176b0b94c42bc",
+    "kernel/psc/real_root_sign.mojo": "0882ff1ab7afd799531c0bf664ab00381ec9c4f5e5dcefc8ae2af2f10e4ae06f",
+    "kernel/tests/test_c4_overlap_scc_obstruction.mojo": "71c66bd02568aa2cf577de07b1a0347a66dc5f11055277f807566326f199ef00",
+    "oracles/python/c4_overlap_scc_obstruction.py": "b65cf4af819faaf80230c7439b712b304bdf980edda241e6a169fb010261a82a",
+    "oracles/python/c4_pair_overlap_new_incidence.py": "3d0fe0e101e46abf2d36c46c945ab5b4f2f77055e7fe12b41739ea112cb567eb",
+    "proof/proof-bank.json": "fb8f727657ff439fab13bdbcaca80f00dc42e153126abe8e526da584d58e6584",
+    "tests/test_c4_overlap_scc_obstruction_oracle.py": "dfee6a58e9aaf4d1f1f9b3ff8a4116549de127869bed562c57f17069c0c4fdee",
+    "vendored.toml": "7c52f1b1755fb33a7a1cf967fc69c0eb4a8877c90f9b5a708b58b4e404472a77"
+  },
+  "hosted_ci": "No result inferred from local replay. Exact-head locked-Pixi workflow configured; live status recorded in the PR after final publication.",
+  "review": {
+    "independent_ai_source_review": "GO at recorded scope, with cache authentication repair; see review.md",
+    "independent_human_review": "pending",
+    "lean_formalization": "not supplied"
+  },
+  "claim_status_changes": [],
+  "repaired_review_defect": {
+    "component": "independent Python source authentication",
+    "defect": "mutable returned cache could poison the expected source graph",
+    "repair": "immutable source snapshots and serialized analysis, defensive returns",
+    "retained_regression": "deleting all source0 edges and mutating returned reports must not alter the reference"
+  },
+  "preserved_inconclusive_controls": [
+    {
+      "source": 0,
+      "matrix_budget": 4,
+      "unresolved_block_sizes": [
+        5,
+        143
+      ],
+      "layer": "native regression"
+    },
+    {
+      "source": 3,
+      "matrix_budget": 512,
+      "unresolved_block_sizes": [
+        622
+      ],
+      "layer": "independent oracle"
+    },
+    {
+      "matrix": [
+        [
+          1
+        ]
+      ],
+      "polynomial": [
+        -4,
+        5,
+        -7,
+        1
+      ],
+      "prime": 5,
+      "status": "singular modulo5, not a criticality conclusion"
+    }
+  ],
+  "previous_positive_weights_consumed": false,
+  "additional_physical_mass_premise_consumed": false,
+  "additional_main_parent": "ea870c846f6575e51aaa78ef4659e533da636b0a",
+  "previous_replay_manifest": "../manifest.json",
+  "native_packet_archive": "../native-packet.txt.gz",
+  "integration_resolution": {
+    "conflicts": [
+      "docs/side-notes-ledger.md",
+      "docs/proof-bank.md"
+    ],
+    "generated_files": [
+      "docs/proof-bank.md",
+      "proof/proof-bank.json"
+    ],
+    "ledger": "preserved incoming main ledger exactly, then appended all original PR497 and SCC entries",
+    "other_incoming_files": "all match main blobs exactly",
+    "target_algorithms_proofs_and_tests": "unchanged from previous accepted replay"
+  },
+  "inventory_after_integration": {
+    "claims": 124,
+    "named_lean_proofs": 68,
+    "source_openings": 376,
+    "markdown_files_checked": 407
+  }
+}

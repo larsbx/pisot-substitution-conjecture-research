@@ -1,0 +1,21 @@
+{
+  "name": "markdown",
+  "started_utc": "2026-11-05T10:44:08.401360+00:00",
+  "duration_seconds": 0.245243,
+  "executed_local_commit": "d3d506526ca2468679b99856cd8511affa839ab8",
+  "source_tree": "4b57fc3ed8e0c98c808a905879da579e200929db",
+  "cwd": "/workspace/scratch/bb3a4dbb8418/psc-critical",
+  "command": [
+    "/workspace/scratch/bb3a4dbb8418/psc-validation/bin/python",
+    "tools/check_markdown_source.py"
+  ],
+  "explicit_environment": {
+    "MODULAR_HOME": "/workspace/scratch/bb3a4dbb8418/mojo-prefix/share/max",
+    "PYTHONPATH": "/workspace/scratch/bb3a4dbb8418/psc-critical/tools"
+  },
+  "exit_code": 0,
+  "stdout": "/workspace/scratch/bb3a4dbb8418/psc-critical/evidence/c4-critical-overlap-components-2026-11-05/markdown.stdout.txt",
+  "stderr": "markdown.stderr.txt",
+  "stdout_sha256": "fc1133bf7b33bd400fed5e2d985d44df896117665578b05e5dee011001da8c5d",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

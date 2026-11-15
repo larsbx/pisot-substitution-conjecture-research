@@ -1,0 +1,27 @@
+{
+  "schema": "c4-compact-final-named-source-scope-addendum-v1",
+  "reviewed_at_utc": "2026-11-12 17:36:03 UTC",
+  "code_revision": "6915e8d592b7ea5cb7c6950249811e354dc6c3e7",
+  "code_tree": "c79e97bdae1224068895afa9dcf6cca6d7fe9fbb",
+  "source_path": "proof/PscVerif/PscVerif/NamedCutNeighborhood.lean",
+  "source_sha256": "e9d6a9e1b05721fa3cc8b634d3ecd6cdb604d8b63277d42b5ba34d70327bc57e",
+  "review_type": "read-only semantic inspection, no compilation or new test",
+  "historical_review_note": "The initial review snapshot predates carrierOverlap and the three carrier-specific theorems. Its original source hash and observation times are preserved.",
+  "scope": [
+    "carrierOverlap",
+    "carrierOverlap_compact",
+    "eventually_carrierOverlap_strict_cuts_mem",
+    "finite_carrierOverlap_cover_captures_strict_cuts"
+  ],
+  "conclusion": "No semantic scope defect found in the added carrier-specific adapter.",
+  "checks": [
+    "The covered set uses exactly the actual CutPair C relation, so unrepresented distinct-letter intersections need not be included.",
+    "The actual balanced-cut label is authenticated by strict_cut_labels.1 from the supplied StrictSystem, source membership, inflation exponent and complete marks.",
+    "The carrier and label sets are fixed and finite before eventual quantification; one N precedes every n, T in C and marked cut.",
+    "The original common cut point remains ambientStar of the exact common prefix Parikh vector.",
+    "Compactness selects the finite subcover J before the containment theorem selects N.",
+    "No cardinality or injectivity claim for ambientStar images or reference ordinals is added, and no count, Haar normalization, density or positive-measure conclusion is inferred."
+  ],
+  "full_isolated_acceptance": "pending root-owned gate",
+  "source_edits": 0
+}

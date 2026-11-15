@@ -225,3 +225,78 @@ def test_hub_prefix_crossing_controls_and_actual_offset_cancellation():
     assert (len(prefixes[0]), len(prefixes[1]) + 7) == (28, 28)
     assert p(top[:28]) == p(bottom[:28]) == (7, 12, 9)
     assert factor(top[28:29], bottom[28:29]) == [("0", "0")]
+
+
+def power_word(sigma, word, depth):
+    for _ in range(depth):
+        word = inflate(sigma, word)
+    return word
+
+
+def physical_hub_events(sigma, pair, weights):
+    from itertools import product
+
+    top, bottom = pair
+    endpoints = [[power_word(sigma, word[:i], 2) for i in range(len(word) + 1)]
+                 for word in pair]
+    assert tuple(len(power_word(sigma, a, 2)) for a in "012") == weights
+    for left, right in product(*endpoints):
+        difference = tuple(a - b for a, b in zip(p(left), p(right)))
+        assert min(difference) >= 0 or max(difference) <= 0
+
+    a, b = (list(map(len, prefixes)) for prefixes in endpoints)
+    events = [(i, j) for i, x in enumerate(top) for j, y in enumerate(bottom)
+              if x != "1" and y == "1"
+              and max(a[i], b[j]) < min(a[i + 1], b[j + 1])
+              and top[:i].count("1") == bottom[:j].count("1")]
+    top_completions = [a[i + 1] for i, x in enumerate(top) if x == "1"]
+    bottom_completions = [b[j + 1] for j, y in enumerate(bottom) if y == "1"]
+    end = next(t for t in bottom_completions
+               if sum(x <= t for x in top_completions) < bottom_completions.index(t) + 1)
+    j = b.index(end) - 1
+    i = next(i for i in range(len(top)) if a[i] < b[j] < a[i + 1])
+    defect = tuple(x - y for x, y in zip(p(top[:i]), p(bottom[:j])))
+    assert (top[i], bottom[j], defect) == ("2", "1", (-1, 0, 0))
+    return events, (i, j)
+
+
+def check_physical_diagonal(sigma, pair, sources, digits, cut, mass, common):
+    for word, source, path in zip(pair, sources, digits):
+        cells = [(word[source], ())]
+        for _ in range(len(path)):
+            cells = [(b, address + (i,)) for a, address in cells
+                     for i, b in enumerate(sigma[int(a)])]
+        local = cells.index((common, path))
+        assert len(power_word(sigma, word[:source], len(path))) + local == cut
+        inflated = power_word(sigma, word, len(path))
+        assert p(inflated[:cut]) == mass and inflated[cut] == common
+
+
+def test_separated_symbolic_crossing_and_genuine_physical_crossings():
+    from test_c4_two_generation_rank_oracle import matrix
+
+    pair = ("01", "10")
+    for _ in range(4):
+        pair = children(pair)[0]
+    pair = pair[::-1]
+    assert pair == ("12202202201", "02220220112")
+    legal = power_word(SIGMA, "2", 6)
+    assert tuple(legal.index(word) for word in pair) == (32, 153)
+    top, bottom = pair
+    assert hub_profile(pair, "1") == (7, 9)
+    assert (top[9], bottom[9]) == ("0", "1")
+    assert tuple(a - b for a, b in zip(p(top[:9]), p(bottom[:9]))) == (-1, 0, 1)
+    gap = tuple(a - b for a, b in zip(p(top[:9]), p(bottom[:10])))
+    assert gap == (-1, -1, 1)
+    assert matvec(matrix(SIGMA), gap) == (0, -1, 1)
+    assert matvec(matrix(SIGMA), matvec(matrix(SIGMA), gap)) == (0, 0, 1)
+    assert children(pair)[-1] == ("02", "20")
+    assert physical_hub_events(SIGMA, pair, (2, 4, 7)) == ([(8, 9)], (8, 9))
+    check_physical_diagonal(SIGMA, pair, (8, 9), ((1, 0, 0), (1, 0, 1)),
+                            104, (32, 14, 58), "2")
+
+    sigma = ("01", "12", "021")
+    pair = ("1201", "0112")
+    assert physical_hub_events(sigma, pair, (4, 5, 7)) == ([(1, 2), (2, 2)], (1, 2))
+    check_physical_diagonal(sigma, pair, (1, 2), ((2, 1, 2), (1, 0, 1)),
+                            27, (7, 11, 9), "1")

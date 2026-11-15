@@ -1,0 +1,11 @@
+{
+  "schema": "c4-archived-payload-artifact-inspection-v1",
+  "status": "incomplete",
+  "scope": "artifact inspection, not fresh kernel acceptance",
+  "fresh_lean_or_mojo_execution": false,
+  "immutable_revision": "249a71b0330401ada5adbff7d9cd280bf0d7530f",
+  "immutable_tree": "97b54a6fdccb9a1828be815c2718fbcc5bc67960",
+  "error_type": "InspectionIncomplete",
+  "error": "eight oracle tests did not finish",
+  "inspection_helper_sha256": "a703eada32fc28a6bb61cbeab3d609f7b4d6cb889b73645c644870c853dd2d97"
+}

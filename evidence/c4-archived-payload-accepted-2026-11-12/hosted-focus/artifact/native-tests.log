@@ -1,0 +1,21 @@
+rejected omitted_repeated_edge_despite_valid_numeric_bound
+rejected swapped_graph_direction
+rejected wrong_original_box
+rejected incomplete_inverse_ancestry
+rejected graph_domain_mismatch
+rejected flipped_packed_track_swap
+rejected changed_nested_local_address
+rejected different_literal_substitution
+rejected removed_ancestor_and_all_stored_graph_edges
+rejected omitted_repeated_edge_despite_valid_numeric_bound
+rejected swapped_graph_direction
+rejected wrong_original_box
+rejected incomplete_inverse_ancestry
+rejected graph_domain_mismatch
+rejected flipped_packed_track_swap
+rejected changed_nested_local_address
+rejected different_literal_substitution
+rejected removed_ancestor_and_all_stored_graph_edges
+archived payload full roundtrip 14233 69679
+archived payload field and semantic refusals 9 18
+contract-receipt: original two-source archived Lean payload preserves all 14233 states and 69679 positional slots, literal addresses, swap normalization, weights and rooted ancestry; exact bounded serialization and orbit-key lookup refuse corruption; native checks do not supply Lean proof terms or a C4/PSC conclusion

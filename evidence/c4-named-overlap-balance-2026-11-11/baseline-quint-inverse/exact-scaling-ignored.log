@@ -1,0 +1,37 @@
+
+  C4InverseOccurrence
+    1) wrongScalingPullbackCountercontrolTest failed after 1 test(s)
+
+  1 failed
+
+  1) wrongScalingPullbackCountercontrolTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-c4-inverse-occurrence-d4m1ygpc/exact-scaling-ignored.qnt:170:48
+        170:   run wrongScalingPullbackCountercontrolTest = init.expect({
+                                                            ^^^^^^^^^^^^^
+        171:     val wrong = List(2, 1, 1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        172:     val p = (0, 0, (2, 0, -2))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        173:     val q = child(strictSigma, p, 0, 0)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        174:     all {
+             ^^^^^^^^^
+        175:       not(scaled(strictSigma, wrong, 2)), scaled(strictSigma, strictLengths, 2),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        176:       incoming(strictSigma, p, q, 0, 0),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        177:       mass(p, wrong) == 0, mass(q, wrong) == 1,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        178:       mass(p, strictLengths) == 1, mass(q, strictLengths) == 2,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        179:     }
+             ^^^^^
+        180:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f6 --match=wrongScalingPullbackCountercontrolTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-c4-inverse-occurrence-d4m1ygpc/exact-scaling-ignored.qnt
+error: Tests failed

@@ -1,0 +1,534 @@
+{
+  "kind": "development-only-lean-compilation",
+  "recorded_at_utc": "2026-11-12T00:04:14.525953+00:00",
+  "target": "PscVerif.NamedOverlapRecurrence",
+  "source_path": "proof/PscVerif/PscVerif/NamedOverlapRecurrence.lean",
+  "source_sha256": "fd2f332087db1b010a7f2d7d8094a993c020e0228b56036d861b017d69057f30",
+  "lean_toolchain_pin": "leanprover/lean4:v4.34.0-rc2",
+  "lean_executable": "/home/agent/.elan/toolchains/leanprover--lean4---v4.34.0-rc2/bin/lean",
+  "lean_version_output": "Lean (version 4.34.0-rc2, x86_64-unknown-linux-gnu, commit 6a10ac8c22beadecabdbb0919c2b50214762f91d, Release)",
+  "compiler_options": [
+    "-j1",
+    "-DautoImplicit=false"
+  ],
+  "helper": "/workspace/scratch/2880dde43f60/psc_dev_compile.py",
+  "helper_sha256": "8145824d9a1bd555a90d7f056bf1b080385afff6c4e623bc168c1a6e337a5ba6",
+  "accepted_exit_code": 0,
+  "accepted_target_elapsed_seconds": 119.3,
+  "theorem_count": 22,
+  "theorems": [
+    "overlapMass_nonneg",
+    "overlapMass_eq_zero_iff",
+    "measure_rowPiece",
+    "scaled_measure_rowPiece",
+    "overlap_eq_iUnion_rowPiece",
+    "subinvariance",
+    "physicalMass_pos",
+    "physical_budget",
+    "balance",
+    "deficit_product_zero",
+    "packets_subinvariance",
+    "strictPackets_subinvariance",
+    "packets_balance",
+    "strictPackets_balance",
+    "packets_deficit_product_zero",
+    "strictPackets_deficit_product_zero",
+    "null_at_loss",
+    "null_of_loss_reaches",
+    "null_of_source_loss",
+    "conservative_source_ancestor",
+    "strictPackets_null_of_source_loss",
+    "strictPackets_conservative_source_ancestor"
+  ],
+  "log_filename": "named_overlap_recurrence_compile_actual.log",
+  "log_path": "/workspace/scratch/2880dde43f60/named_overlap_recurrence_compile_actual.log",
+  "log_sha256": "14c66425fa4e7d36ba93b8df7fe3f46fc40ea5391c38ceedd168ad5f9c2e655b",
+  "all_local_module_count": 42,
+  "actual_source_modules_compiled_in_accepted_attempt": 20,
+  "current_development_objects_reused_in_accepted_attempt": 22,
+  "sum_of_recorded_module_compile_seconds_in_accepted_attempt": 1160.2,
+  "transitive_local_source_and_object_fingerprints": [
+    {
+      "module": "PscVerif.MadicResidue",
+      "source": "PscVerif/MadicResidue.lean",
+      "source_sha256": "c7ff8430cb77c335f11478861584baea4129658b35f4fc67bf0c2b8509d50f6d",
+      "local_imports": [],
+      "transitive_fingerprint_sha256": "c7ff8430cb77c335f11478861584baea4129658b35f4fc67bf0c2b8509d50f6d",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "2454fd8278efb6bb537c43db596e198773d69e6814ecbb61c1210756eae2e97f"
+    },
+    {
+      "module": "PscVerif.MadicActionRange",
+      "source": "PscVerif/MadicActionRange.lean",
+      "source_sha256": "297a4102a077a50b42a955c5afee83f9d5bd6a47e2175c4c4c9d0300005de37d",
+      "local_imports": [
+        "PscVerif.MadicResidue"
+      ],
+      "transitive_fingerprint_sha256": "808a168a01feebf01bbebc12b8b996b1cf9b6e716b0fca21b7963f13321c14a9",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "207940ed643024681f7615714c35d147edff5092690ef74aeaa8ef70b0e401e5"
+    },
+    {
+      "module": "PscVerif.MadicHaar",
+      "source": "PscVerif/MadicHaar.lean",
+      "source_sha256": "a116c88bb856771b74ff7d5111e797c58216ce49057c99096ed5ddac3c2019a5",
+      "local_imports": [
+        "PscVerif.MadicActionRange"
+      ],
+      "transitive_fingerprint_sha256": "b844408ba0d5fcda72be8ee2a58a0d99220b8a07b7d26570318ebdee617a98ad",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "58625b09d93992b1a7c23b128ec84ac2e1c56864853195c4463613aa7f07479f"
+    },
+    {
+      "module": "PscVerif.NamedStableChart",
+      "source": "PscVerif/NamedStableChart.lean",
+      "source_sha256": "772d6dc46898bc22471db53283dc0404445f1dd28ac0b99ed16232c394336f9b",
+      "local_imports": [],
+      "transitive_fingerprint_sha256": "772d6dc46898bc22471db53283dc0404445f1dd28ac0b99ed16232c394336f9b",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "737cb1a0f9302694755347bfce71fbb7a37fc3f3076b37f5a7a3e990062b3e78"
+    },
+    {
+      "module": "PscVerif.Binomial",
+      "source": "PscVerif/Binomial.lean",
+      "source_sha256": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
+      "local_imports": [],
+      "transitive_fingerprint_sha256": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "273d5129cfd23c70dbc398ab6efb74d180a7199212cc3c786738c82fff1d37be"
+    },
+    {
+      "module": "PscVerif.Incidence",
+      "source": "PscVerif/Incidence.lean",
+      "source_sha256": "b0c865d4177dac9485a2ddbd35201143ee3d263ad735af05785b077e1f6bd6ff",
+      "local_imports": [
+        "PscVerif.Binomial"
+      ],
+      "transitive_fingerprint_sha256": "f9797b22ff3952a49899188bbd70d545d4af18b749296b4b116be13a63c28c8d",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "ea87aedd8b415ed8224dff217cf5dbb6ba5b7018b3b1f39016481765e1a5db18"
+    },
+    {
+      "module": "PscVerif.PerronCore",
+      "source": "PscVerif/PerronCore.lean",
+      "source_sha256": "1f06da1e0b57e74b31fc03d753bd314f25561a37e512b3a8f7f05fda0d75458c",
+      "local_imports": [],
+      "transitive_fingerprint_sha256": "1f06da1e0b57e74b31fc03d753bd314f25561a37e512b3a8f7f05fda0d75458c",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "f2c8265f8b42bf0871fb9119c6df53413d6fbf3af677469eb2f7f50b3d43ac23"
+    },
+    {
+      "module": "PscVerif.ConcentrationAlgebra",
+      "source": "PscVerif/ConcentrationAlgebra.lean",
+      "source_sha256": "301a1a13eca8a554d1313afc96e0a374dfc0774dfa8d2a2e8e60b97345c921b2",
+      "local_imports": [],
+      "transitive_fingerprint_sha256": "301a1a13eca8a554d1313afc96e0a374dfc0774dfa8d2a2e8e60b97345c921b2",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "2931e399735343ca88aee5b8bc06294232c119af6b8a2513505679947a9bc75e"
+    },
+    {
+      "module": "PscVerif.ParikhIntertwiner",
+      "source": "PscVerif/ParikhIntertwiner.lean",
+      "source_sha256": "bc7120433f0c103c966fc6faf41407b969537fd0881971a5d36b98169b220d96",
+      "local_imports": [
+        "PscVerif.Incidence",
+        "PscVerif.PerronCore",
+        "PscVerif.ConcentrationAlgebra"
+      ],
+      "transitive_fingerprint_sha256": "42240630a2c2d5f5eb36854dccab82bbb5f7f2ab6d1ed33440fccd7ab11a4d92",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "93492da0888eb8f238abc0350dd2389274b62a2c74a3450cc7da1bfdf9d041e7"
+    },
+    {
+      "module": "PscVerif.SignedCocycle",
+      "source": "PscVerif/SignedCocycle.lean",
+      "source_sha256": "eccc753e1656cc949db13d50ff8d97883f084fe18ab32ef70226cded35237e7e",
+      "local_imports": [
+        "PscVerif.ParikhIntertwiner"
+      ],
+      "transitive_fingerprint_sha256": "a8bb8d8e7f792980a3baf7f700acb7f87386bdbabe2f05d87e9427a5cb206fd0",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "b9fa7e44aa13f2637594d3589885e2d6856c70b87a8461063638ed90e76f763e"
+    },
+    {
+      "module": "PscVerif.FixedPointLimit",
+      "source": "PscVerif/FixedPointLimit.lean",
+      "source_sha256": "cd4a824f288d4c1072fd375e0e7b9014f56028e23e00cb4336fd678a210b7bbe",
+      "local_imports": [
+        "PscVerif.Binomial"
+      ],
+      "transitive_fingerprint_sha256": "c4a964face63c362960218dfe5801511e95cb57140b8cda43f219697ca08b498",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "388bb3d1d376a221306d95daf3a70aa2d348cd9f6465fd745ae395f7e39b9313"
+    },
+    {
+      "module": "PscVerif.Reduction",
+      "source": "PscVerif/Reduction.lean",
+      "source_sha256": "357fa49ab6991513e07f249b8a4d74caabad75f68db76ce501395b3a0af87d2d",
+      "local_imports": [
+        "PscVerif.SignedCocycle",
+        "PscVerif.FixedPointLimit"
+      ],
+      "transitive_fingerprint_sha256": "500c4a826010059e66dcddfe0b6b987bf7698cea98c71f9ff20ad1b7bbbe20ac",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "1825ad5c6eb0e7f379b93932b81d8fc3858a752a8091e47d9b833c1a2f1923ee"
+    },
+    {
+      "module": "PscVerif.Descendants",
+      "source": "PscVerif/Descendants.lean",
+      "source_sha256": "6641b65d81d90be34c13937b6ab8ebc029fcce91babd7c2ce398738dac783a40",
+      "local_imports": [
+        "PscVerif.Reduction"
+      ],
+      "transitive_fingerprint_sha256": "eeff77a7995a43b0855f154516420d7eee76f22c2860e493117ac6b7c86070e8",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "d09ddf7d9a327aba07c1a34c4897024261902435c1167dfb7020d56a160fe0e1"
+    },
+    {
+      "module": "PscVerif.Cyclicity",
+      "source": "PscVerif/Cyclicity.lean",
+      "source_sha256": "a31b77d0fcb06d1dcb582156679c7316d2847fab2ff9b06db2b998ca6effa770",
+      "local_imports": [
+        "PscVerif.ConcentrationAlgebra"
+      ],
+      "transitive_fingerprint_sha256": "f2df3d1d6a05a9d5135947a78d58c1fc89011271db3b8c648392bf41a9f601ce",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "331daa591fbc502e7b83ab91c556b2a472cabe2619c8b5e3e3028f81a65a5363"
+    },
+    {
+      "module": "PscVerif.OccurrenceNewborn",
+      "source": "PscVerif/OccurrenceNewborn.lean",
+      "source_sha256": "7afaf823023d45cc6d1d4d9b6d08e2b3d6e74dce165d77174de86d7cd23dd1d0",
+      "local_imports": [
+        "PscVerif.Descendants",
+        "PscVerif.Cyclicity"
+      ],
+      "transitive_fingerprint_sha256": "73160b2319d1dc3ac3f4f88efd5a3d93b62bfa3c31d55755082bdcb1d82c3e12",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "b6508dbd918452f9735a1860dc9531fdfd5459d44bb7e0ff00b24027e6e5ae83"
+    },
+    {
+      "module": "PscVerif.OccurrenceAddress",
+      "source": "PscVerif/OccurrenceAddress.lean",
+      "source_sha256": "fd8d4020fc3f720c8a81d23c9811056802c901eec35a48efcbb40954c5a375ad",
+      "local_imports": [
+        "PscVerif.OccurrenceNewborn"
+      ],
+      "transitive_fingerprint_sha256": "c4acca192f2c2162fd3eb614e71e8f8fabed63667ec4bcae79a290b5b3c93c30",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "d5cf22cdf0eb1e2ce717938c6dd594bef033be075537618fe0f10fba82e7f1d8"
+    },
+    {
+      "module": "PscVerif.OccurrenceTransport",
+      "source": "PscVerif/OccurrenceTransport.lean",
+      "source_sha256": "3ef9fcb7df8c395c36879b63933eb626f57437f1b813e03ad429148b47d09fe0",
+      "local_imports": [
+        "PscVerif.OccurrenceAddress"
+      ],
+      "transitive_fingerprint_sha256": "c8aca6cec611c8602182e2b8e3490805e1245bf5dc00e7aa5cc140fd5c68cb78",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "97fe8840ceaa9ea5a1a8d77d5f98fd4581fe8530cf306605e4e224accfbe0b96"
+    },
+    {
+      "module": "PscVerif.OccurrenceFinite",
+      "source": "PscVerif/OccurrenceFinite.lean",
+      "source_sha256": "65ef11444d2f03c9a49febf9a859eb8d48bd8dd0e1a37fd972c47935526b48a0",
+      "local_imports": [
+        "PscVerif.OccurrenceTransport"
+      ],
+      "transitive_fingerprint_sha256": "40961445a1dd5b40259b99e20853d67c5895daec85862cff5d0b9bfc07247485",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "ae0a397b2bce562a09308cf6e86737a00b984f6c317c08647f672db795ea1aa9"
+    },
+    {
+      "module": "PscVerif.OccurrenceSuccessor",
+      "source": "PscVerif/OccurrenceSuccessor.lean",
+      "source_sha256": "103e3cb42b93b234c593f46bf2d53426b198248e33408461e9c05fd3ce8c6f33",
+      "local_imports": [
+        "PscVerif.OccurrenceTransport"
+      ],
+      "transitive_fingerprint_sha256": "17c9be500b688a43501be51d49a06b381f4efd48595606a647c781150f6bd233",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "5d64dab0a92a7f868ffae0c1d7173b0ee4bc1e58ce9fd45f1f16196acd041f73"
+    },
+    {
+      "module": "PscVerif.OccurrenceMass",
+      "source": "PscVerif/OccurrenceMass.lean",
+      "source_sha256": "dd68bb8c196a146aab302cbd7e86a3ea40ed3d6980fa77ab740c5a0e94c57d13",
+      "local_imports": [
+        "PscVerif.OccurrenceFinite",
+        "PscVerif.OccurrenceSuccessor"
+      ],
+      "transitive_fingerprint_sha256": "b21a31bd3646070b6cab5f4145a97ac0a159bab58984c9d6464981f947459c6c",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "da73ba6f180ca77ee3a70964778db950476390a6e7c79420298a64d0f1b85cd6"
+    },
+    {
+      "module": "PscVerif.PhysicalMass",
+      "source": "PscVerif/PhysicalMass.lean",
+      "source_sha256": "6578043c87ca7da4be96673630ae5d2d2e2356a681b1b2401c39bd9e9b036a36",
+      "local_imports": [],
+      "transitive_fingerprint_sha256": "6578043c87ca7da4be96673630ae5d2d2e2356a681b1b2401c39bd9e9b036a36",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "3a48d753bb0c36ca757c8f7fda29be17e7e7deddf27df9a4eb489009772b7fb5"
+    },
+    {
+      "module": "PscVerif.OccurrenceMassCounts",
+      "source": "PscVerif/OccurrenceMassCounts.lean",
+      "source_sha256": "319649463bbf764279bfbeccaa2bae869325aa0afce9d58fdfa7e2dce3ba99d2",
+      "local_imports": [
+        "PscVerif.PhysicalMass"
+      ],
+      "transitive_fingerprint_sha256": "b08a7a6f477ba576eb332a410edfcc45d76e46714f67825b6dd97542b4bf9197",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "b48a31e5dfa3f06679f881029e7cf7764d9797cd81f85057924d1f6158a299bb"
+    },
+    {
+      "module": "PscVerif.OccurrenceInverse",
+      "source": "PscVerif/OccurrenceInverse.lean",
+      "source_sha256": "f31fded6a56a9e7c9b67050319d766e5967ed431716ebb89f192caead73d5605",
+      "local_imports": [
+        "PscVerif.OccurrenceMass"
+      ],
+      "transitive_fingerprint_sha256": "09d1edf827b1b5f80fcb86f3d8a97513efb110ad199c6dfde8883d21de840f78",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "038f4aa87498a156ec7fba4ea89d348446000b410d9f1c107902c2d7d3025e2e"
+    },
+    {
+      "module": "PscVerif.OccurrenceSwapCounts",
+      "source": "PscVerif/OccurrenceSwapCounts.lean",
+      "source_sha256": "fdd8b6fff230eaf6d977ae724fe674be02ca37d2549b168f12c522f54668c382",
+      "local_imports": [
+        "PscVerif.OccurrenceMass",
+        "PscVerif.OccurrenceMassCounts",
+        "PscVerif.OccurrenceInverse"
+      ],
+      "transitive_fingerprint_sha256": "d840f4c97fa5ff2ec266f6afb02237bb8e8528e50d922343d81506dda4fad410",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "01835f6f01c61d0926c44f8071a10fe225f07c0da94525e7554a03d92b498a93"
+    },
+    {
+      "module": "PscVerif.OccurrenceGraphBinding",
+      "source": "PscVerif/OccurrenceGraphBinding.lean",
+      "source_sha256": "31b2d7827438cd77c0e2f7fb72d4dc7791d016cd635952630220faf667e2084f",
+      "local_imports": [
+        "PscVerif.OccurrenceSwapCounts"
+      ],
+      "transitive_fingerprint_sha256": "5d5c76ebc308fdf1f089125180f8b314cbfb0cdb57eb89208cb83d59b86d867a",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "d76b8c037c681dc2ecb3effa08f1e02644551b279f20949997bd2bd42a3aee8b"
+    },
+    {
+      "module": "PscVerif.OccurrencePiece",
+      "source": "PscVerif/OccurrencePiece.lean",
+      "source_sha256": "304a9f42f3fea45cac2c752ef0b61cfd6894e78967d191803c723233d63e9ec0",
+      "local_imports": [
+        "PscVerif.OccurrenceGraphBinding"
+      ],
+      "transitive_fingerprint_sha256": "2035628704d85f08cf3b17ae160035447375dc2290b60a66cd280d9c8aea7d19",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "b230eba3a1e94e29a55cd6aae00e1516238f5cccce55bc8b1d1ae0207b51cd37"
+    },
+    {
+      "module": "PscVerif.OccurrenceCover",
+      "source": "PscVerif/OccurrenceCover.lean",
+      "source_sha256": "c66e2937532b2b289351b9ab10a18a1485b73434e362fd1e88edbfd3b6479cb6",
+      "local_imports": [
+        "PscVerif.OccurrencePiece"
+      ],
+      "transitive_fingerprint_sha256": "7ffe952377f1706a73a7123e5d2d424793c22ff18e837555afd8a5de67f397b9",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "81666696de392d6ecdfb7f76598979e2550362401fb184648d099b03ce423b75"
+    },
+    {
+      "module": "PscVerif.OccurrenceResidue",
+      "source": "PscVerif/OccurrenceResidue.lean",
+      "source_sha256": "8552eb3d7584b6b467ae6f990a8204490ae9b543b38cecb243cd8576c58dd248",
+      "local_imports": [
+        "PscVerif.OccurrenceCover",
+        "PscVerif.MadicResidue"
+      ],
+      "transitive_fingerprint_sha256": "20b97bebd20ca2150ff739e2743b87f79ae3ae8e4da295693f21194b019d7645",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "1c5e9ad3bd0d351871518a650379daadb36be078f32427873f3c4b80689214c3"
+    },
+    {
+      "module": "PscVerif.NamedProductHaar",
+      "source": "PscVerif/NamedProductHaar.lean",
+      "source_sha256": "e398c9b19b65cb794034138490453d35bfdc4dab256473318daca75528b9ac14",
+      "local_imports": [
+        "PscVerif.MadicHaar",
+        "PscVerif.NamedStableChart",
+        "PscVerif.OccurrenceResidue"
+      ],
+      "transitive_fingerprint_sha256": "5d88e56ddae06552f02e09fd713399face006cc529eef256572f8e31cd0a3f06",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "b3363e01b07aef9fb48476e0411433a2671ba7739d751f9414a395814721d918"
+    },
+    {
+      "module": "PscVerif.NamedStableContraction",
+      "source": "PscVerif/NamedStableContraction.lean",
+      "source_sha256": "13381d9619cd2c574e15614ce0e00609d17e1b153b359ca788ebe73d45bde8fd",
+      "local_imports": [
+        "PscVerif.NamedStableChart"
+      ],
+      "transitive_fingerprint_sha256": "a47a37b228e1a180d25b09391acceefbce3fe0ba78e75e6e0d64dbf73e677e8f",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "7f68d05e03a1ce0f8617379b286b4bd51460e8d2837e85cd7b01e8287531acf8"
+    },
+    {
+      "module": "PscVerif.PrefixAddress",
+      "source": "PscVerif/PrefixAddress.lean",
+      "source_sha256": "57261314c2c473fdf76e9815ad80f30ac46f0fe42e1a7ec7c3ad15524afe848d",
+      "local_imports": [
+        "PscVerif.OccurrenceFinite",
+        "PscVerif.FixedPointLimit"
+      ],
+      "transitive_fingerprint_sha256": "5b77d7edcbb9a02ce8774ebca3440693525f247ec7f927c0314874c87f7fdab9",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "f4bae6cbbc8172cdb9012f87aab1d7763fef8f05a4479709d9033b80314a6f54"
+    },
+    {
+      "module": "PscVerif.PrefixClosure",
+      "source": "PscVerif/PrefixClosure.lean",
+      "source_sha256": "c9df601e2d5601af2b3ebeb05e75d43fd5600999bcba187af04e76b51e520006",
+      "local_imports": [
+        "PscVerif.PrefixAddress",
+        "PscVerif.OccurrenceResidue"
+      ],
+      "transitive_fingerprint_sha256": "9c0fad253210d0525e510cdd37d44c7385bc0437316e565b04c972fdc8010b92",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "5d5a1580e4bef5581f020dc98309cd5ad8fb7efe7a94bc8911f395b11ed6e842"
+    },
+    {
+      "module": "PscVerif.StablePrefixWindow",
+      "source": "PscVerif/StablePrefixWindow.lean",
+      "source_sha256": "f92a5899a583689f5bcab503b3e632641f7dc8a48492d573f4c87093c684f1ef",
+      "local_imports": [
+        "PscVerif.PrefixClosure"
+      ],
+      "transitive_fingerprint_sha256": "c47e66d6c5111bd92f28f3965d967f7f8532f10d252c867971ad701252ad177e",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "4b70840f3c9e4999e3c20e89cc921eef3ac8d2fe33cbe6cdf6a68c658e3a0252"
+    },
+    {
+      "module": "PscVerif.NamedPrefixCompact",
+      "source": "PscVerif/NamedPrefixCompact.lean",
+      "source_sha256": "e6cbff61401e8f5109bc0c8654e77eca155e1186286703e76f4d55044ebd220e",
+      "local_imports": [
+        "PscVerif.NamedStableContraction",
+        "PscVerif.StablePrefixWindow"
+      ],
+      "transitive_fingerprint_sha256": "c9c3399ce2a16faba4e394243eba4c6baae07aee383c28723ac0d0ccc70d1c66",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "48c1730db0ef51ef3b24873cb4fa51593be742fc6f20836b4dcd55036a78dd6a"
+    },
+    {
+      "module": "PscVerif.OccurrenceAdmissibility",
+      "source": "PscVerif/OccurrenceAdmissibility.lean",
+      "source_sha256": "0843e0a255a2a13675132264eb1385d9a155b7122138359b02158916541e2b4e",
+      "local_imports": [
+        "PscVerif.OccurrenceCover"
+      ],
+      "transitive_fingerprint_sha256": "d657dfad114ef1e575740eb6382c10623e00041d6c51274bb15d0b18e9c4ca98",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "0fa6d0a0c127386ad72f4ec88ad26a2831e204396613f9f6dbe6e6555927d33b"
+    },
+    {
+      "module": "PscVerif.GeometricPacketCarrier",
+      "source": "PscVerif/GeometricPacketCarrier.lean",
+      "source_sha256": "c3b266fc203b69f632063b38d044c0f76e7ec50825a16c6c04949fa696e275ec",
+      "local_imports": [
+        "PscVerif.OccurrenceAdmissibility"
+      ],
+      "transitive_fingerprint_sha256": "87feaa68b6ca1de9f2a7fcf575eeb2d39a167d99c2dedde1c034969053021547",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "8c2029fcdd8810b5570025c9d30993a8de54aee9806674a77024d09dc4b421dc"
+    },
+    {
+      "module": "PscVerif.NamedGeometricEnclosure",
+      "source": "PscVerif/NamedGeometricEnclosure.lean",
+      "source_sha256": "e91dfcffed8884f99863591d57d892933fbc7ce0a5de2899955a4a69a99233e6",
+      "local_imports": [
+        "PscVerif.NamedPrefixCompact",
+        "PscVerif.GeometricPacketCarrier"
+      ],
+      "transitive_fingerprint_sha256": "1f594a68bc22840fa66917b204c3f9439585b35a6ed5b760480154641223aa1a",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "daecc0148df434fdfe2496246b35af11cfb9660620b043fa443b245d9a7a1be5"
+    },
+    {
+      "module": "PscVerif.NamedFiniteCarrier",
+      "source": "PscVerif/NamedFiniteCarrier.lean",
+      "source_sha256": "13ef34fb3eb6b9ede477c4de920af612010aa280409049c185b1afb35a34a585",
+      "local_imports": [
+        "PscVerif.NamedGeometricEnclosure",
+        "PscVerif.GeometricPacketCarrier"
+      ],
+      "transitive_fingerprint_sha256": "2511400cf4034ba72be17688423b3782e32111a1627a5c68e17adba06d99cad7",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "a3b320908c98a7603d0a5a6a6eb72b3561bf0301cc66a0fc17edd14239d6c06d"
+    },
+    {
+      "module": "PscVerif.NamedOverlapHaar",
+      "source": "PscVerif/NamedOverlapHaar.lean",
+      "source_sha256": "248fa98da0eaa0cb895530cf7ff55e43f7030e07ddfcd2f92714300b36db4002",
+      "local_imports": [
+        "PscVerif.NamedProductHaar",
+        "PscVerif.NamedFiniteCarrier"
+      ],
+      "transitive_fingerprint_sha256": "5dbef6b5254f79417e2a018abf4eff206a5004c3228d952c67e0bbbbaf241380",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "b1bcbd406391d5e8d2d166a76fb1c7d0a1fc0e63b6bd4a8cfccb04233c38892f"
+    },
+    {
+      "module": "PscVerif.OccurrencePhysicalBudget",
+      "source": "PscVerif/OccurrencePhysicalBudget.lean",
+      "source_sha256": "2b1ab3d3ac6477c4bd0c81ff00445934944c05958428dd6748e89dbe0ce5d21c",
+      "local_imports": [
+        "PscVerif.OccurrenceMassCounts",
+        "PscVerif.OccurrenceInverse"
+      ],
+      "transitive_fingerprint_sha256": "567af32d94a785e64fa589ef542d10183e40f7da4f7d08fdd86d1aaa9f550e61",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "0ea1d564af66feca2a07bf700872024781dc57af89626152308c95837f3c4400"
+    },
+    {
+      "module": "PscVerif.OverlapContraction",
+      "source": "PscVerif/OverlapContraction.lean",
+      "source_sha256": "09dd1ccc90a7245211336996f7da8b1276e86cab60dd1cc0b5471e3d7f6a2a30",
+      "local_imports": [],
+      "transitive_fingerprint_sha256": "09dd1ccc90a7245211336996f7da8b1276e86cab60dd1cc0b5471e3d7f6a2a30",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "d43f9dffd4c56f05a2c30aa65eac3c4205ede335f1a43e9eca4b3dc57d40089c"
+    },
+    {
+      "module": "PscVerif.NamedOverlapRecurrence",
+      "source": "PscVerif/NamedOverlapRecurrence.lean",
+      "source_sha256": "fd2f332087db1b010a7f2d7d8094a993c020e0228b56036d861b017d69057f30",
+      "local_imports": [
+        "PscVerif.NamedOverlapHaar",
+        "PscVerif.OccurrencePhysicalBudget",
+        "PscVerif.OverlapContraction"
+      ],
+      "transitive_fingerprint_sha256": "75135acb1c3e3ce7e2ce90b3221ecbe9b9fe82f703dd7d7deae739f06bb26515",
+      "recorded_development_pin_matches": true,
+      "olean_sha256": "55f3edd8cfcb0f7bd0f8cd1f30a365c1667772ca9659650d05de41565857fda2"
+    }
+  ],
+  "failed_actual_named_module_attempts": [],
+  "earlier_interrupted_log_preserved": "/workspace/scratch/2880dde43f60/named_overlap_recurrence_compile.log",
+  "warnings_in_new_module": [
+    "Unused section variables [ν.IsAddHaarMeasure] and [IsProbabilityMeasure ν] in overlapMass_nonneg."
+  ],
+  "scope_boundary": {
+    "canonical_acceptance": false,
+    "development_cache": "Genuine pinned mathlib plus current local PSC objects; root-authorized earlier seeding was limited to byte-for-byte source and transitive-source-identical PSC modules. No stubs or replacement assumptions.",
+    "required_remaining_gate": "Fresh hosted clean full Lean build and allowed-axiom audit at the final published head.",
+    "mathematical_nonclaims": [
+      "No positive strict-root overlap measure is proved.",
+      "No actual strict-domain source-loss certificate is supplied.",
+      "No claim-status promotion or PSC closure is inferred."
+    ]
+  }
+}

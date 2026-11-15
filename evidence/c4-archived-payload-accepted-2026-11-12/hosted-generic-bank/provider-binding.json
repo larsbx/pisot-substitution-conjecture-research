@@ -1,0 +1,15 @@
+{
+  "actual_checkout_commit": "d841d572d34a9ca10e4a88e3fbce33ed01a76b32",
+  "actual_checkout_tree": "97b54a6fdccb9a1828be815c2718fbcc5bc67960",
+  "conclusion": "success",
+  "exact_candidate_commit_checkout": false,
+  "focused_exact_head_concrete_replay_supplied": false,
+  "initial_log_inspection_preserved": true,
+  "job": 131038173569,
+  "provider_metadata_head_sha": "249a71b0330401ada5adbff7d9cd280bf0d7530f",
+  "raw_job_metadata": "job-metadata.json",
+  "run": 43175356353,
+  "scope": "provider completion metadata added after the initial bank-log inspection",
+  "status": "completed",
+  "tree_equivalence_source": "original-receipt.json"
+}

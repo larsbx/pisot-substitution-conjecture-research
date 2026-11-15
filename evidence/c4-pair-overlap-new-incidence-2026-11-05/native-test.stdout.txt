@@ -1,0 +1,2 @@
+[PASS] finite typed carriers, twelve new incidence graphs, exact positive weights and refusal controls
+contract-receipt: Complete twelve-source x^3-x^2-3x-2 paired-occurrence graphs with authenticated chart and box, proved finite typed carriers, strict rational subinvariance, preserved multiplicities and bounded refusal

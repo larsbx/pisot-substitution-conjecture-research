@@ -1,0 +1,164 @@
+{
+  "backend": "typescript",
+  "domain_note": "These are exact forall-domain sizes, not accepted-premise or random sample counts. Consequences are conditional on the recorded antecedents. This scalar/address abstraction proves no Pisot realization, infinite-word identity, compactness, geometric digit bound or native-certificate decoding. The forward-parent countercontrol has an exposed endpoint, not a closed finite recurrence.",
+  "executed_test_count": 19,
+  "executed_tests": [
+    {
+      "count": 5,
+      "log_sha256": "711fbfc4e28e30005ff1e09b830b4c22fc992f5011fefcb160a76d478ca338d1",
+      "module": "C4StablePrefixScalar",
+      "names": [
+        "scalarDomainCountTest",
+        "exhaustiveParentStepTest",
+        "exhaustiveSelfParentTest",
+        "acceptedBoundaryAndZeroTest",
+        "existingRadiusArithmeticTest"
+      ]
+    },
+    {
+      "count": 4,
+      "log_sha256": "e93c9f76445e9f38378e651f02c3583e044f14085138d707e1b806f6b23b35c1",
+      "module": "C4StablePrefixArrays",
+      "names": [
+        "arrayDomainCountTest",
+        "exhaustiveWholeArrayTest",
+        "selfLoopsAndEarlierParentsTest",
+        "incompleteArrayRefusedTest"
+      ]
+    },
+    {
+      "count": 10,
+      "log_sha256": "74bf7e4ba85f7664ae2ab09f9828e9ce885fa4b3e4434661b679470089057b18",
+      "module": "C4StablePrefixAdversarial",
+      "names": [
+        "strictContractionRefusedTest",
+        "invariantRadiusRefusedTest",
+        "negativeNumeratorRefusedTest",
+        "invalidSignsRefusedTest",
+        "laterParentRefusedTest",
+        "selfParentMustRemainAdmittedTest",
+        "omittedDigitRefusedTest",
+        "wrongBlockRefusedTest",
+        "underestimatedDigitRefusedTest",
+        "repeatedPositionIdentityTest"
+      ]
+    }
+  ],
+  "finite_domain_cardinalities": {
+    "array_parameter_configurations": 4,
+    "nonincreasing_three_index_parent_arrays": 6,
+    "rational_cleared_parent_step_tuples": 39312,
+    "rational_cleared_self_parent_tuples": 4368,
+    "three_index_norm_arrays": 125,
+    "three_index_parent_arrays": 27,
+    "three_index_parent_norm_configuration_tuples": 13500
+  },
+  "git_head": "73a0b6a95539beb1b6712afec0f8412571b41cd3",
+  "git_tree": "8233701f593a8ba680356a88c2c6fc8e4cf01df5",
+  "model": "proof/quint/C4StablePrefixWindow.qnt",
+  "model_sha256": "7ecf5e4ad3077ffd5d0ba669f90d9b82734198f0823b5a66eb026d6bef9f7395",
+  "quint_version": "0.33.1",
+  "rejected_mutation_count": 9,
+  "rejected_mutations": [
+    {
+      "log_sha256": "5eef2f982ae90864d30db4fcb9fca06a47bbd1a400fb69e534a2af9128a0eceb",
+      "mutant_sha256": "3957245f46bf618b56f61842d2517a0590c4d56c6184907e231fc34cae4b8a11",
+      "name": "admit-unit-contraction",
+      "replace_once": {
+        "after": "    den > 0, num >= 0, num <= den, digit >= 0, radius >= 0,",
+        "before": "    den > 0, num >= 0, num < den, digit >= 0, radius >= 0,"
+      },
+      "test": "strictContractionRefusedTest"
+    },
+    {
+      "log_sha256": "c4ae97285e63f5c99772062899161e4126016380fd77372c6cf7e8dbddf7a428",
+      "mutant_sha256": "92810af7c44fb891c6363b7eabc9b4e9bed709a35ea7e7548cc16344f862e198",
+      "name": "skip-invariant-radius",
+      "replace_once": {
+        "after": "    true,",
+        "before": "    radiusSafe(den, num, digit, radius),"
+      },
+      "test": "invariantRadiusRefusedTest"
+    },
+    {
+      "log_sha256": "ff8cf9a3947fc2ca392c01fa0b6841ab6a1d23ec72b96e5cf8be1d8c81958258",
+      "mutant_sha256": "6e4aaa7e606da00985e89c50d6c2f3dbf892a4dd33e2c4128143968a46b32bef",
+      "name": "admit-negative-numerator",
+      "replace_once": {
+        "after": "    den > 0, true, num < den, digit >= 0, radius >= 0,",
+        "before": "    den > 0, num >= 0, num < den, digit >= 0, radius >= 0,"
+      },
+      "test": "negativeNumeratorRefusedTest"
+    },
+    {
+      "log_sha256": "200f6c6088671e566606b011b6eb55ff31a35145ca575999e082c20a92fb0308",
+      "mutant_sha256": "e58b42bdc93a9d502f0b78dc519148d08836570479d8ab5fd615f9b5d680d149",
+      "name": "permit-later-parent",
+      "replace_once": {
+        "after": "    parents[i] >= 0 and parents[i] <= i + 1)",
+        "before": "    parents[i] >= 0 and parents[i] <= i)"
+      },
+      "test": "laterParentRefusedTest"
+    },
+    {
+      "log_sha256": "97d8a2025c2be7e9bf6a3bcd082ba96795d6472312af05f779fbf0e28300e7f1",
+      "mutant_sha256": "6a3da9ae5228c4cd5bae829a817d1800ab0b15d81ecc97daf6ab2000c7b49a70",
+      "name": "discard-equal-parent-case",
+      "replace_once": {
+        "after": "    parents[i] >= 0 and parents[i] < i)",
+        "before": "    parents[i] >= 0 and parents[i] <= i)"
+      },
+      "test": "selfParentMustRemainAdmittedTest"
+    },
+    {
+      "log_sha256": "996cd1f5dd090bb829438a07967f9d4efdc52d7adedffadf7266473ff135216e",
+      "mutant_sha256": "9611824f67b0c9221a12a651d1393bde2d90f4d7fecc31590a47862dc689ac4c",
+      "name": "accept-partial-digit-inventory",
+      "replace_once": {
+        "after": "  pure def sameDigits(expected, supplied) = positions(supplied).forall(i => positions(expected).exists(j => supplied[i] == expected[j]))",
+        "before": "  pure def sameDigits(expected, supplied) = expected == supplied"
+      },
+      "test": "omittedDigitRefusedTest"
+    },
+    {
+      "log_sha256": "3e707d4ee4364e1efd9c09597bd54b900c9291833367173a6afd7284f44db8ee",
+      "mutant_sha256": "7aaec96b01a7657718e35ee4f0ce7b8fe61198f6e9adfdc86e3fe1c201d8973f",
+      "name": "ignore-block-exponent",
+      "replace_once": {
+        "after": "  pure def sameBlock(expected, supplied) = expected > 0 and supplied > 0",
+        "before": "  pure def sameBlock(expected, supplied) = expected == supplied"
+      },
+      "test": "wrongBlockRefusedTest"
+    },
+    {
+      "log_sha256": "ef11941943a4d4a5ab59a6b3f5dd16bf04390aa9e1c221f1f72d91dca00124a8",
+      "mutant_sha256": "45d511e007d51a92f48a7c7d38a03e1c790683d172cba69d52b470e803267f1a",
+      "name": "omit-digit-norm-bound",
+      "replace_once": {
+        "after": "    true,",
+        "before": "    digitsBounded(supplied, bound),"
+      },
+      "test": "underestimatedDigitRefusedTest"
+    },
+    {
+      "log_sha256": "ea0e599d036931abb075227f53c0fdfa2fa562356fb57cc8ee893566b150e792",
+      "mutant_sha256": "812463db6b59bf3b14678be9b5a743cfc539eb7424ab93216d8e0a5ad13aa767",
+      "name": "replace-occurrence-identity-by-count",
+      "replace_once": {
+        "after": "  pure def sameDigits(expected, supplied) = expected.length() == supplied.length()",
+        "before": "  pure def sameDigits(expected, supplied) = expected == supplied"
+      },
+      "test": "repeatedPositionIdentityTest"
+    }
+  ],
+  "runner_sha256": "c4f7bf6e9f187f86704cbb292c8e10ba8b4a6f808142082a25564a410601611e",
+  "schema": "psc-c4-stable-prefix-window-quint-receipt-v1",
+  "scope": "bounded exhaustive scalar/address implications and deterministic adversarial controls",
+  "seed": "20261111",
+  "source_and_revision_recheck": "unchanged",
+  "source_snapshot_used": true,
+  "status": "passed",
+  "worktree_dirty": false,
+  "worktree_status_for_model_and_runner": "",
+  "worktree_status_for_model_and_runner_at_completion": ""
+}

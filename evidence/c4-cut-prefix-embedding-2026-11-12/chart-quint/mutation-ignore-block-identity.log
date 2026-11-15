@@ -1,0 +1,26 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+  C4NamedChartAdversarial
+    1) wrongBlockRefusedTest failed after 1 test(s)
+
+  1 failed
+
+  1) wrongBlockRefusedTest:
+       Error [QNT508]: Expect condition does not hold true
+        at /tmp/psc-c4-named-chart-snapshot-o7_kg_g4/ignore-block-identity.qnt:190:31
+        190:   run wrongBlockRefusedTest = init.expect(all {
+                                           ^^^^^^^^^^^^^^^^^
+        191:     admitted(matrix(1, 1, 0, 1), 4, 1, 2),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        192:     not(certificate(matrix(1, 1, 0, 1), matrix(1, 1, 0, 1), 12, 2, 4, 1, 2)),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        193:     certificate(matrix(1, 1, 0, 1), matrix(1, 1, 0, 1), 12, 12, 4, 1, 2),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        194:   })
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Use --seed=0x13528f7 --match=wrongBlockRefusedTest to repeat.
+
+
+  Use --verbosity=3 to show executions.
+  Further debug with: quint test --verbosity=3 /tmp/psc-c4-named-chart-snapshot-o7_kg_g4/ignore-block-identity.qnt
+error: Tests failed

@@ -1,0 +1,15 @@
+{
+  "accepted": false,
+  "elapsed_seconds": 144.3,
+  "exit_code": 1,
+  "log": "named-archived-refinement-initial-failure.log.gz",
+  "log_uncompressed_sha256": "3c4f8d2cef0ba7a9bff4f74a918e35144af6e103a6c74ab2c38121d62d1bbaff",
+  "module": "PscVerif.NamedArchivedGraphRefinement",
+  "reason": "Unrestricted simplification of the even tile equation produced an elaboration mismatch at the two period2 applications. No named-module acceptance is credited.",
+  "recorded_at_utc": "2026-11-12T01:45:50.199175+00:00",
+  "repair": "Normalize only Nat.mul_one, preserving all other action/star/tile structure.",
+  "schema": "c4-lean-development-failure-v1",
+  "scope": "Development failure; subsequent source requires its own successful compilation and canonical acceptance.",
+  "source_sha256": "0ce8111b5643207a4ad51aae833a1554962740f49f9ead42118883e7d900acb3",
+  "source_snapshot": "named-archived-refinement-initial-source.lean.txt.gz"
+}

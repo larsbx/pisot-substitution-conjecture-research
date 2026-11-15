@@ -1,7 +1,6 @@
 """J9 complete stars and uniform selected exits, without an all-child claim."""
 from finite_exact.checked_int import checked_add, checked_mul
-from std.collections import Dict
-from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, member_transport, verify_member_edge
+from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge
 from psc.class_a_boundary_u_children import reverse_label
 from psc.class_a_boundary_j8_children import certify_j8_children, j8_star_interface, j8_exit_interface
 from psc.class_a_boundary_e7_children import e7_source, verify_e7_steps
@@ -14,6 +13,7 @@ from psc.class_a_boundary_occurrences import symbolic_child, _equal3, _prefix, _
 from psc.class_a_boundary_signs import chamber_parameters
 from psc.param_poly import QX, qx_const, qx_add, qx_sub, qx_neg, tp_add, tp_sub, tp_mul, tp_scale, tp_mod_monic
 from psc.overlap_seed_patch import SeedOverlapTables
+from psc.class_a_boundary_family import BoundaryFamily, append_child, verify_child_packet, verify_child_star
 
 
 def j9_source(kind: Int) raises -> BoundaryLabel:
@@ -194,14 +194,20 @@ def in_j9_image(w: BoundaryLabel) raises -> Bool:
     return z.top==1 and z.bottom==0 and z.y>=7 and z.y<=10
 
 
+@fieldwise_init
+struct J9Children(BoundaryFamily):
+    def name(self) -> String:return "J9"
+    def source(self,kind: Int) raises -> BoundaryLabel:return j9_source(kind)
+    def parameters(self,kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int]:
+        var p=_dimensions(kind,k,t)
+        return (p[0],p[1])
+    def swapped(self,kind: Int) -> Bool:return kind!=0
+    def allowed(self,kind: Int,k: Int,t: Int,i: Int,j: Int) raises -> Bool:return j9_child_allowed(kind,k,t,i,j)
+    def in_image(self,w: BoundaryLabel) raises -> Bool:return in_j9_image(w)
+
+
 def _append(mut out: List[BoundaryEdge],kind: Int,k: Int,t: Int,i: Int,j: Int) raises:
-    var p=_dimensions(kind,k,t)
-    var a=i if kind==0 else j
-    var b=j if kind==0 else i
-    if not j9_child_allowed(kind,k,t,a,b):raise Error("synthesized J9 guard failed")
-    var target=member_transport(-1,k,p[0],p[1],j9_source(kind),a,b)
-    if not in_j9_image(target):raise Error("J9 target escaped image")
-    out.append(BoundaryEdge(a,b,target))
+    append_child(J9Children(),out,kind,k,t,i,j)
 
 
 def j9_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
@@ -221,21 +227,11 @@ def j9_child_star(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:
 
 
 def verify_j9_packet(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,edge: BoundaryEdge) raises:
-    var p=_dimensions(kind,k,t)
-    if not j9_child_allowed(kind,k,t,edge.i,edge.j) or not in_j9_image(edge.target):raise Error("J9 packet refused")
-    verify_member_edge(tables,-1,k,p[0],p[1],j9_source(kind),edge.i,edge.j,edge.target)
+    verify_child_packet(J9Children(),tables,kind,k,t,edge)
 
 
 def verify_j9_star(tables: SeedOverlapTables,kind: Int,k: Int,t: Int,edges: List[BoundaryEdge]) raises:
-    var p=_dimensions(kind,k,t)
-    if len(edges)!=j9_count(k,t):raise Error("incomplete J9 indexed star")
-    var stride=checked_add(p[2] if kind==0 else p[3],2)
-    var seen=Dict[Int,Bool]()
-    for edge in edges:
-        verify_j9_packet(tables,kind,k,t,edge)
-        var key=checked_add(checked_mul(edge.i,stride),edge.j)
-        if key in seen:raise Error("duplicate J9 occurrence")
-        seen[key]=True
+    verify_child_star(J9Children(),tables,kind,k,t,edges,j9_count(k,t))
 
 
 def j9_path(kind: Int,k: Int,t: Int) raises -> List[BoundaryEdge]:

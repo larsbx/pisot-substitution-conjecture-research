@@ -150,6 +150,48 @@ def added_sympy_test_dependency_only(accepted: bytes, current: bytes) -> bool:
             and 'sympy==1.14.0' not in old_dev and exact(before) == exact(after))
 
 
+def updated_pypdf_test_dependency_only(accepted: bytes, current: bytes) -> bool:
+    """Admit PR #305's exact PDF test dependency update, with the prior SymPy addition.
+
+    The archived acceptance still authenticates its original Git bytes and
+    logs. This narrowly classifies today's development-only dependency edit;
+    it does not reuse historical CI as acceptance of the updated PDF reader.
+    Runtime dependencies, build/Python settings, other requirements and the
+    existing mathematical sources remain under their original checks.
+    """
+    before = tomllib.loads(accepted.decode())
+    after = tomllib.loads(current.decode())
+    try:
+        old_dev = before['project']['optional-dependencies'].pop('dev')
+        new_dev = after['project']['optional-dependencies'].pop('dev')
+    except (KeyError, TypeError):
+        return False
+    if not isinstance(old_dev, list) or old_dev.count('pypdf==6.19.0') != 1:
+        return False
+    updated = ['pypdf==6.21.4' if dep == 'pypdf==6.19.0' else dep for dep in old_dev]
+    permitted = [updated]
+    if 'sympy==1.14.0' not in old_dev:
+        permitted.append(updated + ['sympy==1.14.0'])
+    exact = lambda value: json.dumps(value, sort_keys=True, separators=(',', ':'))
+    return new_dev in permitted and exact(before) == exact(after)
+
+
+def updated_pypdf_ci_dependency_only(accepted: bytes, current: bytes) -> bool:
+    """Classify the same exact PDF update in its dedicated provenance job.
+
+    Restore just the literal install line before comparing with the archived
+    workflow. Only the separately classified concurrency metadata may compose
+    with it. This does not accept a changed command, test, trigger or other pin,
+    and the updated parser needs a fresh current-revision provenance run.
+    """
+    old = b'        run: python -m pip install "pypdf==6.19.0"\n'
+    new = b'        run: python -m pip install "pypdf==6.21.4"\n'
+    if accepted.count(old) != 1 or current.count(new) != 1:
+        return False
+    restored = current.replace(new, old, 1)
+    return restored == accepted or added_concurrency_block_only(accepted, restored)
+
+
 def validate(manifest: dict, checks: dict, jobs: list[dict]) -> dict:
     expected = dict(format='class-d-integration-ci-v1', accepted_head=HEAD,
                     tested_merge=TESTED, main_merge=MERGED, accepted_tree=TREE,
@@ -219,9 +261,12 @@ def validate(manifest: dict, checks: dict, jobs: list[dict]) -> dict:
             raise ValueError('accepted mathematical source, lock or workflow changed: '+path)
         current = (ROOT/path).read_bytes()
         if hashlib.sha256(current).hexdigest() != digest:
-            if path == 'pyproject.toml' and added_sympy_test_dependency_only(historical, current):
+            if path == 'pyproject.toml' and (added_sympy_test_dependency_only(historical, current)
+                                            or updated_pypdf_test_dependency_only(historical, current)):
                 continue
             if path == 'kernel/pixi.toml' and additive_pixi_tasks_only(historical, current):
+                continue
+            if path == '.github/workflows/ci.yml' and updated_pypdf_ci_dependency_only(historical, current):
                 continue
             if path.startswith('.github/workflows/') and (added_concurrency_block_only(historical, current)
                                                           or added_trigger_paths_only(historical, current)

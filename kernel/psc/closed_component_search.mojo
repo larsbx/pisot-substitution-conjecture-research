@@ -749,7 +749,7 @@ def last_pair_mask_of(states: List[Pair]) raises -> Int:
     return mask
 
 
-def least_defect_degree(states: List[Pair]) -> Int:
+def least_defect_degree(states: List[Pair]) raises -> Int:
     """`r(C)`: the least first defect degree over the states (`2`, `3`, `4`,
     or `DEGREE_FIVE_PLUS` for `r >= 5`, undetermined beyond four)."""
     var r = DEGREE_FIVE_PLUS

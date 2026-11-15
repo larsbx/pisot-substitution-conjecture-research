@@ -1,0 +1,44 @@
+name: Checked word-counter source model
+on:
+  pull_request:
+    paths:
+      - 'proof/WordCounters/**'
+      - 'proof/PscVerif/lean-toolchain'
+      - 'kernel/psc/defect_degree.mojo'
+      - 'kernel/psc/words.mojo'
+      - 'kernel/finite_exact/checked_int.mojo'
+      - 'kernel/substitution_dynamics/words.mojo'
+      - 'kernel/tests/test_word_counter_overflow.mojo'
+      - '.github/workflows/word-counter-refinement.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  model-and-native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Compile the source model and audit its axioms
+        run: |
+          set -euo pipefail
+          work=$(mktemp -d)
+          curl --retry 5 --retry-all-errors -fsSL https://github.com/leanprover/elan/releases/download/v4.2.4/elan-x86_64-unknown-linux-gnu.tar.gz -o "$work/elan.tar.gz"
+          printf '%s  %s\n' 42b94d4244e8353142c456ec0e4ca6528fd898a6c604d4059f494e706e431f63 "$work/elan.tar.gz" | sha256sum --check
+          tar -xzf "$work/elan.tar.gz" -C "$work"
+          "$work/elan-init" -y --no-modify-path --default-toolchain none
+          toolchain=$(cat proof/PscVerif/lean-toolchain)
+          "$HOME/.elan/bin/elan" toolchain install "$toolchain"
+          "$HOME/.elan/bin/elan" run "$toolchain" lean proof/WordCounters/Refinement.lean | tee "$work/axioms.log"
+          "$HOME/.elan/bin/elan" run "$toolchain" lean proof/WordCounters/N2MachineSlice.lean | tee -a "$work/axioms.log"
+          if grep -Fq sorryAx "$work/axioms.log"; then exit 1; fi
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          manifest-path: kernel/pixi.toml
+      - name: Compare native counters with position subsets and exercise overflow
+        working-directory: kernel
+        run: pixi run --locked mojo run -I . tests/test_word_counter_overflow.mojo

@@ -1,0 +1,40 @@
+{
+  "schema": "c4-hosted-integrity-failure-v1",
+  "scope": "Failed exact-published-head historical-sources job; no mathematical acceptance",
+  "repository": "larsbx/pisot-substitution-conjecture-research",
+  "pull_request": 550,
+  "head_sha": "e1646baa5fdedd2bc937b7e2f7788f8e55d268c2",
+  "baseline_sha": "99748ca29ee4bc3daf259da1fdabaffa3d5d4793",
+  "workflow": "Research branch integration conformance",
+  "run_id": 43139692291,
+  "job_id": 130923404285,
+  "job_name": "historical-sources",
+  "job_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43139692291/job/130923404285",
+  "conclusion": "failure",
+  "exit_code": 1,
+  "log_retrieved_at_utc": "2026-11-12T02:19:45.502087+00:00",
+  "log_retrieval": "GitHub connector fetch_workflow_job_logs; UTF-8 encoding of the complete decoded response, including initial BOM",
+  "log_file": "historical-hosted/e1646baa-historical-sources.log.gz",
+  "log_bytes": 109166,
+  "log_lines": 870,
+  "log_sha256": "f4f7c4cbcdd71ca560ddb71ecfd65ee5961b5a8c99804a49f53823d6921d86d3",
+  "gzip_sha256": "69033f2754dd66dfce21466d176bcd078d7ea2e258f55a96bd22cb78e4fc6edb",
+  "failed_tests": [
+    "tests/test_recorded_data_integrity.py::test_every_evidence_packet_is_pinned",
+    "tests/test_recorded_data_integrity.py::test_checksums_verify[evidence/c4-named-overlap-balance-2026-11-11/SHA256SUMS]",
+    "tests/test_recorded_data_integrity.py::test_pinned_records_are_tracked_for_clean_checkout"
+  ],
+  "new_packet_failure": "The new c4-archived-graph-refinement-2026-11-11 packet did not yet contain SHA256SUMS.",
+  "historical_packet_failure": "The unchanged #549 manifest uses nested paths relative to its packet; the common reader interpreted them at repository root.",
+  "historical_manifest": "evidence/c4-named-overlap-balance-2026-11-11/SHA256SUMS",
+  "historical_manifest_sha256": "05c3cf7a6e7daa15d64fe7aa0e553cb4f654f834c2af4d75b6ab3fc213ae405a",
+  "historical_manifest_matches_baseline": true,
+  "bounded_repair": "Add new packet SHA256SUMS with ./-prefixed relative paths; add only the unchanged #549 packet to the existing explicit packet-relative reader exceptions. Preserve all historical bytes and all digest, existence, exact-file-set and Git-tracking checks.",
+  "not_reached": [
+    "python tools/source_pins.py",
+    "python tools/check_class_c_below_three_integration.py",
+    "python tools/make_proof_bank.py --check",
+    "PYTHONPATH=tools python -m claim_governance.cli --root ."
+  ],
+  "acceptance_credit": false
+}
