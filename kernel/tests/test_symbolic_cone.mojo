@@ -35,7 +35,7 @@ from class_b_cone_certificate import (
     Aff,
     CoverTally,
     Family,
-    class_b_cone,
+    family_cone,
     cover,
     contains,
     coverage_gaps,
@@ -66,7 +66,7 @@ def test_signs_at_beta_agree_with_concrete_signs() raises:
     """Sector A+: q + 2 < beta < q + 4 on the region, and the parametric signs equal
     the exact signs at a member."""
     var f = Family("A+", Aff(11, 2, 1), Aff(6, 1, 1), Aff(7, 1, 1), 0, 0)
-    var cone = class_b_cone(f)
+    var cone = family_cone(f)
     var region = Region(2, 2)
     var cert = certify_cone(cone, region)
     assert_true(cert.holds)
@@ -97,7 +97,7 @@ def test_asymmetric_corners_and_family_axes() raises:
         assert_true(qx_at(aff.fix1(2).poly(), pt[1], 0).eq(q_int(aff.at(2, pt[1]))))
         assert_true(qx_at(aff.fix2(5).poly(), 0, pt[0]).eq(q_int(aff.at(pt[0], 5))))
     var f = Family("A+", Aff(11, 2, 1), Aff(6, 1, 1), Aff(7, 1, 1), 0, 0)
-    var cone = class_b_cone(f)
+    var cone = family_cone(f)
     for pt in [(2, 5), (5, 2), (9, 4)]:
         var coeff = Mat3(substitution_incidence(f.sigma(pt[0], pt[1]))).charpoly()
         for k in range(4):
@@ -110,7 +110,7 @@ def test_rouche_puts_two_roots_in_the_disc() raises:
     two non-Perron roots in the open disc with plain region signs. With
     `c2 = -s1`, `c1 = s2`, `c0 = -2` the margin `s1 - s2 - 3` changes sign on
     every region, so Rouche declines and the caller falls back to Jury."""
-    var cone = class_b_cone(Family("A+", Aff(11, 2, 1), Aff(6, 1, 1), Aff(7, 1, 1), 0, 0))
+    var cone = family_cone(Family("A+", Aff(11, 2, 1), Aff(6, 1, 1), Aff(7, 1, 1), 0, 0))
     var region = Region(2, 2)
     assert_true(rouche_disc(cone.chi, region))
     var mixed = tp_norm([qx_const(-2), qx_affine2(0, 1, 0), qx_affine2(0, 0, -1), qx_const(1)])
@@ -124,7 +124,7 @@ def test_a_family_off_the_class_is_refused() raises:
     var region = Region(4, 0)
     var refused: Bool
     try:
-        refused = not certify_cone(class_b_cone(f), region).holds
+        refused = not certify_cone(family_cone(f), region).holds
     except:
         refused = True
     assert_true(refused)

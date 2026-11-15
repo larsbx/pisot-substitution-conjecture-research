@@ -30232,6 +30232,31 @@
       "statement_heading": "**Corollary C (class-A line boundary hitting).** For every integer `n >= 4`,"
     },
     {
+      "source": "docs/class-a-chamber-entry-stopgo-2026-11-15.md",
+      "line": 136,
+      "statement_heading": "## 3. Lemma TW (the twin geometry)"
+    },
+    {
+      "source": "docs/class-a-chamber-entry-stopgo-2026-11-15.md",
+      "line": 142,
+      "statement_heading": "**Lemma TW** [D]. For all `k,t ≥ 0`, with `K = k+1`:"
+    },
+    {
+      "source": "docs/class-a-chamber-entry-stopgo-2026-11-15.md",
+      "line": 222,
+      "statement_heading": "**Lemma S″ (the Bernstein rule).** Let `[L, U]` be a certified bracket of β"
+    },
+    {
+      "source": "docs/class-a-chamber-entry-stopgo-2026-11-15.md",
+      "line": 309,
+      "statement_heading": "**Lemma 0** [D]. For every `k ≥ 0` and `t ∈ {0,1}`, T1 and T1-H hold."
+    },
+    {
+      "source": "docs/class-a-chamber-entry-stopgo-2026-11-15.md",
+      "line": 361,
+      "statement_heading": "## 6. Theorem CA: the class-A cone theorem on 𝒯_CA"
+    },
+    {
       "source": "docs/class-a-cover-obstruction-2026-10-21.md",
       "line": 56,
       "statement_heading": "**Proposition (repository-proved, scoped written argument with coefficient-checked"

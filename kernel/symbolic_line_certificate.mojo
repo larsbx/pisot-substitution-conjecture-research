@@ -123,6 +123,8 @@ def exact_hits(sigma: List[List[Int]]) raises -> Int:
 def exact_vertex_keys(sigma: List[List[Int]]) raises -> List[String]:
     var tables = build_seed_overlap_tables_screened(sigma)
     var g = build_seed_overlap_graph_from_tables(tables, 200000)
+    if g.capped:
+        raise Error("exact seed graph capped: an exhausted budget, not a verdict")
     var lm = length_matrix(tables)
     var out = List[String]()
     for i in range(g.size()):

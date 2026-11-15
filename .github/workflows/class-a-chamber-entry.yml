@@ -1,0 +1,135 @@
+name: PSC Class-A chamber entry (Theorem CA cones)
+
+# Paths: the drivers' and tests' full Mojo import closure, the vendored packages
+# it reaches, the pixi pins, the note and this file.
+on:
+  pull_request:
+    paths:
+      - 'kernel/a1_normal_form_census.mojo'
+      - 'kernel/class_a_chamber_cone_certificate.mojo'
+      - 'kernel/class_b_cone_certificate.mojo'
+      - 'kernel/symbolic_line_certificate.mojo'
+      - 'kernel/psc/bpa.mojo'
+      - 'kernel/psc/class_a_boundary_children.mojo'
+      - 'kernel/psc/class_a_boundary_occurrences.mojo'
+      - 'kernel/psc/class_a_boundary_run_pairs.mojo'
+      - 'kernel/psc/class_a_boundary_signs.mojo'
+      - 'kernel/psc/class_a_x_ladder.mojo'
+      - 'kernel/psc/class_a_x_productivity.mojo'
+      - 'kernel/psc/coincidence_formula.mojo'
+      - 'kernel/psc/dumont_thomas.mojo'
+      - 'kernel/psc/exact.mojo'
+      - 'kernel/psc/field3.mojo'
+      - 'kernel/psc/histogram.mojo'
+      - 'kernel/psc/linear_numeration.mojo'
+      - 'kernel/psc/numeration_addition.mojo'
+      - 'kernel/psc/overlap_contracting.mojo'
+      - 'kernel/psc/overlap_obstruction.mojo'
+      - 'kernel/psc/overlap_seed_patch.mojo'
+      - 'kernel/psc/param_poly.mojo'
+      - 'kernel/psc/perron_field3.mojo'
+      - 'kernel/psc/perron_root_sign.mojo'
+      - 'kernel/psc/pisot.mojo'
+      - 'kernel/psc/pisot_screen.mojo'
+      - 'kernel/psc/pisot_state.mojo'
+      - 'kernel/psc/real_root_sign.mojo'
+      - 'kernel/psc/symbolic_cone.mojo'
+      - 'kernel/psc/symbolic_line.mojo'
+      - 'kernel/psc/vertex_coincidence.mojo'
+      - 'kernel/psc/words.mojo'
+      - 'kernel/tests/test_class_a_chamber_entry.mojo'
+      - 'kernel/tests/test_symbolic_cone.mojo'
+      - 'kernel/finite_automata/**'
+      - 'kernel/finite_exact/**'
+      - 'kernel/finite_graph/**'
+      - 'kernel/finite_linear_algebra/**'
+      - 'kernel/mojo_smoke/**'
+      - 'kernel/substitution_dynamics/**'
+      - 'kernel/pixi.toml'
+      - 'kernel/pixi.lock'
+      - 'docs/class-a-chamber-entry-stopgo-2026-11-15.md'
+      - '.github/workflows/class-a-chamber-entry.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'kernel/a1_normal_form_census.mojo'
+      - 'kernel/class_a_chamber_cone_certificate.mojo'
+      - 'kernel/class_b_cone_certificate.mojo'
+      - 'kernel/symbolic_line_certificate.mojo'
+      - 'kernel/psc/bpa.mojo'
+      - 'kernel/psc/class_a_boundary_children.mojo'
+      - 'kernel/psc/class_a_boundary_occurrences.mojo'
+      - 'kernel/psc/class_a_boundary_run_pairs.mojo'
+      - 'kernel/psc/class_a_boundary_signs.mojo'
+      - 'kernel/psc/class_a_x_ladder.mojo'
+      - 'kernel/psc/class_a_x_productivity.mojo'
+      - 'kernel/psc/coincidence_formula.mojo'
+      - 'kernel/psc/dumont_thomas.mojo'
+      - 'kernel/psc/exact.mojo'
+      - 'kernel/psc/field3.mojo'
+      - 'kernel/psc/histogram.mojo'
+      - 'kernel/psc/linear_numeration.mojo'
+      - 'kernel/psc/numeration_addition.mojo'
+      - 'kernel/psc/overlap_contracting.mojo'
+      - 'kernel/psc/overlap_obstruction.mojo'
+      - 'kernel/psc/overlap_seed_patch.mojo'
+      - 'kernel/psc/param_poly.mojo'
+      - 'kernel/psc/perron_field3.mojo'
+      - 'kernel/psc/perron_root_sign.mojo'
+      - 'kernel/psc/pisot.mojo'
+      - 'kernel/psc/pisot_screen.mojo'
+      - 'kernel/psc/pisot_state.mojo'
+      - 'kernel/psc/real_root_sign.mojo'
+      - 'kernel/psc/symbolic_cone.mojo'
+      - 'kernel/psc/symbolic_line.mojo'
+      - 'kernel/psc/vertex_coincidence.mojo'
+      - 'kernel/psc/words.mojo'
+      - 'kernel/tests/test_class_a_chamber_entry.mojo'
+      - 'kernel/tests/test_symbolic_cone.mojo'
+      - 'kernel/finite_automata/**'
+      - 'kernel/finite_exact/**'
+      - 'kernel/finite_graph/**'
+      - 'kernel/finite_linear_algebra/**'
+      - 'kernel/mojo_smoke/**'
+      - 'kernel/substitution_dynamics/**'
+      - 'kernel/pixi.toml'
+      - 'kernel/pixi.lock'
+      - 'docs/class-a-chamber-entry-stopgo-2026-11-15.md'
+      - '.github/workflows/class-a-chamber-entry.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install locked Mojo environment
+        run: |
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Class-A chamber entry regression (Bernstein rule, Lemma TW, decomposition, transfer link, line t = 0)
+        working-directory: kernel
+        run: pixi run --locked mojo run -I . tests/test_class_a_chamber_entry.mojo
+      - name: Class-B cone regression (the Bernstein rule is off for class B)
+        working-directory: kernel
+        run: pixi run --locked mojo run -I . tests/test_symbolic_cone.mojo
+
+  certificate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install locked Mojo environment
+        run: |
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Exact coverage of t <= 5 or t <= k - 1 by the twelve families
+        working-directory: kernel
+        run: pixi run --locked mojo run -I . class_a_chamber_cone_certificate.mojo coverage
+      - name: Theorem CA cone certificate, every family
+        working-directory: kernel
+        run: pixi run --locked mojo run -I . class_a_chamber_cone_certificate.mojo all
