@@ -1,0 +1,15 @@
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_recurrence.mojo:10:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_recurrence.mojo:340:12: error: value of type 'CentralEscape' cannot be implicitly copied, it does not conform to 'ImplicitlyCopyable'
+    return cert
+           ^~~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_recurrence.mojo:10:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_recurrence.mojo:340:12: note: consider transferring the value with '^'
+    return cert
+           ^
+               ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_recurrence.mojo:10:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_recurrence.mojo:340:12: note: you can copy it explicitly with '.copy()'
+    return cert
+           ^
+               .copy()
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/.pixi/envs/default/bin/mojo: error: failed to parse the provided Mojo source module

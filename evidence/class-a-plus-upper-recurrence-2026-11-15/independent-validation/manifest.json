@@ -1,0 +1,12 @@
+{
+  "files": {
+    "focused-tests.receipt.json": "1938f761dafde5f47fd3bf3122bc6dac310016e534e0ee311bf7d71adc8b2baf",
+    "focused-tests.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "focused-tests.stdout": "08ed5e99dccef220b4d6a333af2e8a5df692dd2d61155d9feca55e205ee16ebf",
+    "focused-tests.xml": "f57ea255378f0f2339a45f9a4f4e07b5b090bf068dc3b2c95d60949e5517b2e7",
+    "independent.receipt.json": "8ca593097d4a7f50fde08a234f56d4b8040e6a5afa7f50e774840399503e20d5",
+    "independent.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "independent.stdout": "f7c9b6df5f7c16bad75938f774fbcb4a8e8b926dbc424375ee3b7b816af111b3",
+    "test_class_a_plus_upper_recurrence_independent.d8de4b447dc7352299a20a3074d48cbf0e131228dac32d7654cbf12f86cff6e7.py": "d8de4b447dc7352299a20a3074d48cbf0e131228dac32d7654cbf12f86cff6e7"
+  }
+}
