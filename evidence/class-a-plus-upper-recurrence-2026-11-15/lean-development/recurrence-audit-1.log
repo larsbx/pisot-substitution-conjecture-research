@@ -1,0 +1,36 @@
+ClassAPlusUpperRecurrenceAudit.lean:100:4: error(lean.unknownIdentifier): Unknown identifier `IndexedDigitStep`
+ClassAPlusUpperRecurrenceAudit.lean:121:25: error: Type mismatch
+  ClassAPlusUpperRecurrence.run_gap_digit_step
+has type
+  ∀ (n d : ℕ) (p q r e : ℤ),
+    -↑n ≤ e →
+      e ≤ ↑n →
+        ClassAZeroDefectEscape.IndexedDigitStep (ClassAPlusConstantRecurrence.sigma n d)
+          (ClassAZeroDefectEscape.packet 2 2 p q r) (e.toNat + 1) ((-e).toNat + 1)
+          (ClassAZeroDefectEscape.packet 2 2 (2 * p + q + r) (q + r) (↑(n + d) * p + ↑n * q + ↑(n + 1) * r - e))
+but is expected to have type
+  RunStepType
+ClassAPlusUpperRecurrenceAudit.lean:136:54: error: Type mismatch
+  ClassAPlusUpperRecurrence.run_gap_digit_step
+has type
+  ∀ (n d : ℕ) (p q r e : ℤ),
+    -↑n ≤ e →
+      e ≤ ↑n →
+        ClassAZeroDefectEscape.IndexedDigitStep (ClassAPlusConstantRecurrence.sigma n d)
+          (ClassAZeroDefectEscape.packet 2 2 p q r) (e.toNat + 1) ((-e).toNat + 1)
+          (ClassAZeroDefectEscape.packet 2 2 (2 * p + q + r) (q + r) (↑(n + d) * p + ↑n * q + ↑(n + 1) * r - e))
+but is expected to have type
+  RunStepType
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_MODULE	PscVerif.ClassAPlusUpperRecurrence	96	80
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_DECLARATIONS	1	96	80
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_ENDPOINT	Psc.ClassAPlusUpperRecurrence.family_coefficients
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_ENDPOINT	Psc.ClassAPlusUpperRecurrence.forward_integer_bound
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_ENDPOINT	Psc.ClassAPlusUpperRecurrence.eventual_constant_tail
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_ENDPOINT	Psc.ClassAPlusUpperRecurrence.eventual_alternating_tail
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_ENDPOINT	Psc.ClassAPlusUpperRecurrence.energy_periodic_constant
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_ENDPOINT	Psc.ClassAPlusUpperRecurrence.shear_bound
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_ENDPOINT	Psc.ClassAPlusUpperRecurrence.twist_recurrence
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_ENDPOINT	Psc.ClassAPlusUpperRecurrence.reconstruction_delay
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_ENDPOINT	Psc.ClassAPlusUpperRecurrence.central_coordinate_recurrence
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_ENDPOINT	Psc.ClassAPlusUpperRecurrence.central_gap_in_run
+ClassAPlusUpperRecurrenceAudit.lean:141:0: error: Missing or wrong-typed upper-recurrence endpoint: Psc.ClassAPlusUpperRecurrence.run_gap_digit_step

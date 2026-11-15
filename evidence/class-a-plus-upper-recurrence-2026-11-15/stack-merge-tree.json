@@ -1,0 +1,34 @@
+{
+  "base_main": "febe7535afd59cbe56d9ae0bbc541b1bb8b57995",
+  "bundle_sha256": "9f97d0fb1cbab5a8cf2f02abd0c7d0ed9ec4e9aa38867513ef2ee5ec75d09009",
+  "bundle_verify_exit_code": 0,
+  "candidate_commit": "b1f597fe18415eef826516e3f82d9a29397602f3",
+  "candidate_ref_in_bundle": "refs/psc-review/upper-recurrence-stack-snapshot",
+  "candidate_tree": "175f2f3233d067ca0284900034ce9b2bcf0b6358",
+  "claim_promotion": false,
+  "command": [
+    "git",
+    "merge-tree",
+    "--write-tree",
+    "--name-only",
+    "--no-messages",
+    "b1f597fe18415eef826516e3f82d9a29397602f3",
+    "729bbc33e9306d170eaa0d93bcf269aca6aeeece"
+  ],
+  "compared_stack": "729bbc33e9306d170eaa0d93bcf269aca6aeeece",
+  "conflict_paths": [
+    "docs/class-a-plus-constant-entry-2026-11-14.md",
+    "docs/class-a-zero-defect-escape-2026-11-14.md",
+    "docs/proof-bank.md",
+    "docs/side-notes-ledger.md",
+    "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean",
+    "proof/proof-bank.json"
+  ],
+  "conflict_tree": "cca4cbd70188c03168d99c1e9d7de32a4bb6f409",
+  "exit_code": 1,
+  "log_sha256": "73961aa523b570406f7641a1077d6219662b1cd3f0d64e3225ba628f25e0fba8",
+  "observed_at": "2026-11-15T19:09:24.407384+00:00",
+  "purpose": "read-only broader-stack compatibility inventory, not a merge or acceptance of integrated theorem sources",
+  "snapshot_scope": "complete staged implementation, proof, tests, workflow and documentation before completion of the fresh-build evidence packet; final publication adds acceptance/provenance records",
+  "worktree_or_index_modified_by_merge_tree": false
+}

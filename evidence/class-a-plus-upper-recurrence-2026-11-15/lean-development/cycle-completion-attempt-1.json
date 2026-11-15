@@ -1,0 +1,15 @@
+{
+  "command": [
+    "lake",
+    "--no-cache",
+    "build",
+    "PscVerif.ClassAPlusUpperCycleCompletion"
+  ],
+  "exit_code": 1,
+  "kind": "development-build",
+  "seconds": 14.066,
+  "sha256": "de76447459d84c0b48a8dcdd246c5616176f378ea477b2d496b02d3ff7839d76",
+  "source": "PscVerif/ClassAPlusUpperCycleCompletion.lean",
+  "started_at": "2026-11-15T18:43:56.065085+00:00",
+  "working_directory": "/workspace/scratch/7b7b91dcb7fe/upper-recurrence-lean-dev/proof/PscVerif"
+}

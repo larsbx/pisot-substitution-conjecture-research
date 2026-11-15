@@ -109,3 +109,5 @@ import PscVerif.ArchivedPayloadConsumer
 import PscVerif.ArchivedPayloadEmit
 import PscVerif.ArchivedPayloadControls
 import PscVerif.ClassAPlusUpperCycles
+import PscVerif.ClassAPlusUpperRecurrence
+import PscVerif.ClassAPlusUpperCycleCompletion

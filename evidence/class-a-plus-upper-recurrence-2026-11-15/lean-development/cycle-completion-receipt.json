@@ -1,0 +1,66 @@
+{
+  "accepted_eight_case_sources_unchanged": true,
+  "allowed_transitive_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "artifacts": {
+    "cycle-completion-attempt-1.json": "c5ee1837cb5e46690af5b20ddef612fba3ab34f6f556e621126ae48255181609",
+    "cycle-completion-attempt-1.log": "430b8073bfc5c750576390fcb30494ccfc5b3e919fc6fae72c851fb1c9b68ce0",
+    "cycle-completion-attempt-2.json": "3bd19b072086020f28f16c9202888b19d91f1991ee0b275c120df03a29ba040b",
+    "cycle-completion-attempt-2.log": "97971af485f3b9a4ffdc7a37b80a2372ed4635b3f97cdea6c6bfd35cf31498e4",
+    "cycle-completion-attempt-3.json": "aeedfeeebf7ef6dee3d80a3477d0f916d5130c1de1a6926bbb137819826f4b52",
+    "cycle-completion-attempt-3.log": "224bbe57863fd8d21ca87aeda6aa1131104a86de36f38c8b83d0bb8ce4b61613",
+    "cycle-completion-audit-attempt-1.json": "3a0848fc1231fc1191379fa74dfe53b77e1a533354eb68bf9946c2064599ed5f",
+    "cycle-completion-audit-attempt-1.log": "b809504cae673d9b0b9b2ae58024533150e89383d1ebafbfff7178f0ad0dff6f",
+    "cycle-completion-audit-attempt-2.json": "c053aa4365a2699186a5734fc20d80d27a1b0b3f9d372944e5db0bf37dde7c53",
+    "cycle-completion-audit-attempt-2.log": "afcc2e1c256bdb9fe6d8c293d97610ceb8476f791a720c481e3fe2bab4f14555"
+  },
+  "endpoint_checks": 4,
+  "endpoints": [
+    "decrement_path",
+    "all_ordered_paths",
+    "all_signed_ordered_paths",
+    "all_traced_strict_prefixes"
+  ],
+  "module_declarations": 20,
+  "module_theorem_declarations": 18,
+  "negative_controls": 12,
+  "nonclaims": [
+    "This is development evidence in the coordinated pinned workspace, not the final isolated acceptance run.",
+    "No Perron identification, nearest recurrence or arbitrary-source central-entry theorem is assumed or proved by this module.",
+    "No universal BH or PSC claim is promoted."
+  ],
+  "owned_declarations_exhaustively_audited": true,
+  "preserved_failures": [
+    {
+      "log": "cycle-completion-attempt-1.log",
+      "reason": "An unrestricted simp normalized the base-case guard before using its branch hypothesis; repaired with simp only."
+    },
+    {
+      "log": "cycle-completion-audit-attempt-1.log",
+      "reason": "Separate equation-compiled recursive tables were not definitionally equal at symbolic height. Both independently specified tables now use explicit Nat.rec; the exact-type audit was not weakened."
+    }
+  ],
+  "schema": "psc-upper-cycle-completion-development-v1",
+  "source_hashes": {
+    "proof/PscVerif/ClassAPlusUpperCycleCompletionAudit.lean": "6ac8660fe4babef37c7e6fd191507bb1898852837b63d622e465762d881dd040",
+    "proof/PscVerif/ClassAPlusUpperCyclesAudit.lean": "f1674a21d8c96382b5c3ea009525c43baf210a2a6db427dd3bbb60923b087c6e",
+    "proof/PscVerif/PscVerif/ClassAPlusUpperCycleCompletion.lean": "d80243eca779241325231f64b5472c197c8f81b3919309d1c2e97512579f3a58",
+    "proof/PscVerif/PscVerif/ClassAPlusUpperCycles.lean": "5d3cf8f6ce61e49f654710965d03761de7c046e931498bbc2aa09b872471384b"
+  },
+  "source_scope": {
+    "H": "natural height, including zero",
+    "J": "1 <= J <= n+7",
+    "decrement_range": "H >= 1 and 3 <= J*H <= n-1",
+    "n": "n >= 7",
+    "prefix_strictness_premises": [
+      "positive tile lengths",
+      "positive inflation beta",
+      "exact literal substitution-length scaling"
+    ],
+    "range": "J*H <= n-1"
+  },
+  "status": "development-build-and-audit-passed"
+}
