@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Fresh-source gate for the explicitly scoped Class-A occurrence theorems.
-# The full thirteen-case written/native theorem is not a Lean endpoint here.
+# The written higher- and lower-chamber proofs have separate acceptance scopes.
 set -euo pipefail
 PSC_ESCAPE_ROOT=$(cd "$(dirname "$0")/.." && pwd -P)
 PSC_ESCAPE_TMP=$(mktemp -d)
@@ -38,7 +38,7 @@ PY
 elan run "$PSC_ESCAPE_PIN" lake --no-cache env true
 psc_escape_check_pins
 elan run "$PSC_ESCAPE_PIN" lake --no-cache exe cache get
-elan run "$PSC_ESCAPE_PIN" lake --no-cache build PscVerif.ClassAZeroDefectEscape
+elan run "$PSC_ESCAPE_PIN" lake --no-cache build PscVerif.ClassABoundaryEscape
 psc_escape_check_pins
 elan run "$PSC_ESCAPE_PIN" lake --no-cache env lean ClassAZeroDefectEscapeAudit.lean \
     | tee "$PSC_ESCAPE_TMP/audit.log"
@@ -49,12 +49,13 @@ prefix = "PSC_CLASS_A_ESCAPE"
 rows = [line.split("\t") for line in Path(sys.argv[1]).read_text().splitlines()]
 expected = {"Psc.ClassAZeroDefectEscape." + name for name in (
     "overrun_four_digit_steps", "overrun_four_steps", "overrun_composable_path",
-    "run_slice_two_digit_steps", "run_slice_two_steps")}
+    "run_slice_two_digit_steps", "run_slice_two_steps",
+    "run_slice_first_interior_step", "run_slice_overrun_path")}
 found = [row[1] for row in rows if row[0] == prefix + "_ENDPOINT"]
 if len(found) != len(expected) or set(found) != expected:
     raise SystemExit("missing, duplicate or unexpected exact-type Lean endpoint")
 complete = [row for row in rows if row[0] == prefix + "_AUDIT_COMPLETE"]
-if complete != [[prefix + "_AUDIT_COMPLETE", "5", "15"]]:
+if complete != [[prefix + "_AUDIT_COMPLETE", "7", "21"]]:
     raise SystemExit("missing endpoint negative-control completion receipt")
 modules = [row for row in rows if row[0] == prefix + "_MODULE"]
 if len(modules) != 1 or modules[0][1] != "PscVerif.ClassAZeroDefectEscape":
@@ -63,4 +64,6 @@ declarations = [row for row in rows if row[0] == prefix + "_DECLARATIONS"]
 if len(declarations) != 1 or declarations[0][1] != "1":
     raise SystemExit("missing owned-declaration audit completion")
 PY
+elan run "$PSC_ESCAPE_PIN" lake --no-cache env lean ClassARunDescentAudit.lean
+elan run "$PSC_ESCAPE_PIN" lake --no-cache env lean ClassABoundaryEscapeAudit.lean
 psc_escape_check_pins

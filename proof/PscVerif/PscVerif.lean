@@ -11,6 +11,8 @@ import PscVerif.QuotientDistance
 import PscVerif.ClassAZeroDefectEscape
 import PscVerif.ClassACentralRecurrence
 import PscVerif.ClassAMinusConstantRecurrence
+import PscVerif.ClassARunDescent
+import PscVerif.ClassABoundaryEscape
 
 import PscVerif.ClassBRegime
 import PscVerif.Binomial
@@ -65,6 +67,7 @@ import PscVerif.OccurrenceFinite
 import PscVerif.OccurrenceSuccessor
 import PscVerif.OccurrenceRecurrence
 import PscVerif.OccurrenceMass
+import PscVerif.OccurrenceWidth
 import PscVerif.OccurrenceMassCounts
 import PscVerif.OccurrenceMassStrict
 import PscVerif.OccurrenceInverse
