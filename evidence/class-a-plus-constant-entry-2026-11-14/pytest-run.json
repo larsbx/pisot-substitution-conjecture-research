@@ -1,0 +1,37 @@
+{
+  "command": [
+    "/workspace/scratch/f53f64a9a0d0/checks-venv/bin/python",
+    "-m",
+    "pytest",
+    "-o",
+    "addopts=",
+    "-q",
+    "--junitxml=/workspace/scratch/f53f64a9a0d0/psc/evidence/class-a-plus-constant-entry-2026-11-14/pytest.xml",
+    "tests/test_class_a_plus_constant_entry.py",
+    "tests/test_class_a_plus_constant_symbolic.py",
+    "tests/test_class_a_plus_small_certificate.py"
+  ],
+  "cwd": "/workspace/scratch/f53f64a9a0d0/psc",
+  "source_before": {
+    "tests/test_class_a_plus_constant_entry.py": "a172fe73183140726bab104831a836c294c7f24033420a5e679c0a95291c2187",
+    "tests/test_class_a_plus_constant_symbolic.py": "9172c474684cf76f59686e59324640db21129440cb2beee87dfe4880a28fdbbe",
+    "tests/test_class_a_plus_small_certificate.py": "abf8031bec359daea330a4ce0ea8b8dced18c058c0b688b73c4fadca7bedfba7",
+    "oracles/python/class_a_plus_constant_entry.py": "803618345a6cd9ce4615dd6ee8d99e885607ca32a3fc0043181cbc21caba988e",
+    "oracles/python/class_a_plus_constant_symbolic.py": "ad7f58c75337d7d3c6e63fb5c89cb77e9171fb3fb54ba402c27dafd18f302398",
+    "oracles/python/class_a_plus_small_certificate.py": "28787c8e8ec82fea7e1b07ac5f9a1ec092d6729f9619dec4235de926037166ed"
+  },
+  "started_utc": "2026-11-15T00:22:43.154646+00:00",
+  "exit_code": 0,
+  "ended_utc": "2026-11-15T00:22:56.827693+00:00",
+  "elapsed_seconds": 13.673,
+  "source_after": {
+    "tests/test_class_a_plus_constant_entry.py": "a172fe73183140726bab104831a836c294c7f24033420a5e679c0a95291c2187",
+    "tests/test_class_a_plus_constant_symbolic.py": "9172c474684cf76f59686e59324640db21129440cb2beee87dfe4880a28fdbbe",
+    "tests/test_class_a_plus_small_certificate.py": "abf8031bec359daea330a4ce0ea8b8dced18c058c0b688b73c4fadca7bedfba7",
+    "oracles/python/class_a_plus_constant_entry.py": "803618345a6cd9ce4615dd6ee8d99e885607ca32a3fc0043181cbc21caba988e",
+    "oracles/python/class_a_plus_constant_symbolic.py": "ad7f58c75337d7d3c6e63fb5c89cb77e9171fb3fb54ba402c27dafd18f302398",
+    "oracles/python/class_a_plus_small_certificate.py": "28787c8e8ec82fea7e1b07ac5f9a1ec092d6729f9619dec4235de926037166ed"
+  },
+  "source_unchanged": true,
+  "stdout_sha256": "e5d193dab8c619ac0997ca345180bcfce737a42175b7fdbc6b3a456e6778311d"
+}

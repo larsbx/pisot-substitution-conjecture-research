@@ -1,0 +1,51 @@
+{
+  "scope": "cached development compile and exact endpoint/axiom audit; not fresh-source or whole-library acceptance",
+  "source_before": {
+    "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean": "c6dbd0f1065e698ee58a04c1781d63692129f2b5c17c97d0a74cc832fd25f79a",
+    "proof/PscVerif/ClassAPlusConstantRecurrenceAudit.lean": "abdabdd452dedc3de239263c8c2f052b84216552baf205106606a45635b1b631"
+  },
+  "commands": [
+    {
+      "label": "module",
+      "command": [
+        "python",
+        "/workspace/scratch/f53f64a9a0d0/run_central_lean.py",
+        "PscVerif/ClassAPlusConstantRecurrence.lean",
+        "-o",
+        "/workspace/scratch/f53f64a9a0d0/central-lean-build/PscVerif/ClassAPlusConstantRecurrence.olean"
+      ],
+      "cwd": "/workspace/scratch/f53f64a9a0d0/psc",
+      "started_utc": "2026-11-15T00:11:58.141055+00:00",
+      "ended_utc": "2026-11-15T00:12:02.413645+00:00",
+      "elapsed_seconds": 4.273,
+      "exit_code": 0,
+      "log": "/workspace/scratch/f53f64a9a0d0/plus-constant-lean-development/module.log",
+      "log_sha256": "8654e15176d97b899a2869e3e46957b37f059ca0b38f39478c5cf868188146c9"
+    },
+    {
+      "label": "audit",
+      "command": [
+        "python",
+        "/workspace/scratch/f53f64a9a0d0/run_central_lean.py",
+        "ClassAPlusConstantRecurrenceAudit.lean"
+      ],
+      "cwd": "/workspace/scratch/f53f64a9a0d0/psc",
+      "started_utc": "2026-11-15T00:12:02.413890+00:00",
+      "ended_utc": "2026-11-15T00:12:04.844791+00:00",
+      "elapsed_seconds": 2.431,
+      "exit_code": 0,
+      "log": "/workspace/scratch/f53f64a9a0d0/plus-constant-lean-development/audit.log",
+      "log_sha256": "3a6e0ac2e59e2de458cc9dbc7ace5c48e231d0e8896376f83e4acde024a8afd8"
+    }
+  ],
+  "source_after": {
+    "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean": "c6dbd0f1065e698ee58a04c1781d63692129f2b5c17c97d0a74cc832fd25f79a",
+    "proof/PscVerif/ClassAPlusConstantRecurrenceAudit.lean": "abdabdd452dedc3de239263c8c2f052b84216552baf205106606a45635b1b631"
+  },
+  "source_unchanged": true,
+  "accepted": true,
+  "toolchain": "leanprover/lean4:v4.34.0-rc2",
+  "lean_binary": "/home/agent/.elan/bin/lean",
+  "lean_cwd": "/workspace/scratch/f53f64a9a0d0/psc/proof/PscVerif",
+  "LEAN_PATH": "/workspace/scratch/f53f64a9a0d0/central-lean-build:/workspace/scratch/f53f64a9a0d0/class-a-lean-build:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/proofwidgets/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/Qq/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/batteries/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/Cli/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/mathlib/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/plausible/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/aesop/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/importGraph/.lake/build/lib/lean"
+}

@@ -1,0 +1,32 @@
+{
+  "scope": "independent complete literal graph and every original-prefix path replay",
+  "source_before": {
+    "oracles/python/class_a_plus_small_certificate.py": "28787c8e8ec82fea7e1b07ac5f9a1ec092d6729f9619dec4235de926037166ed",
+    "oracles/python/class_a_plus_constant_entry.py": "803618345a6cd9ce4615dd6ee8d99e885607ca32a3fc0043181cbc21caba988e",
+    "oracles/python/class_a_x_productivity.py": "6fe0e748299fa569f6b248979add7724da9a23423748d0d10aa6e9e304bbafde",
+    "oracles/python/class_a_central_entry.py": "b598118137e5d5f98d19b52e1c8a69e1bf4bf5a608f8b3b534bff2d0684c44a0",
+    "oracles/python/class_a_zero_defect_escape.py": "a618e547fc3acbe0278f3c3ac3b46e9dcfbc55f481bcd17ec811d03995927842",
+    "oracles/python/class_a_boundary_children.py": "31ecaf4087aec22e8e433eeecaa70c17db53fa8a5a701c63c4b0231d3c03429a"
+  },
+  "command": [
+    "/workspace/scratch/f53f64a9a0d0/checks-venv/bin/python",
+    "oracles/python/class_a_plus_small_certificate.py",
+    "--native-log",
+    "/workspace/scratch/f53f64a9a0d0/plus-small/native.log"
+  ],
+  "native_log_sha256": "5df0c5055d18542a6d01dd8ef7400987c2f039ed4ad5264a29d3694116f50ad0",
+  "started_at_utc": "2026-11-15T00:17:53.157443+00:00",
+  "exit_code": 0,
+  "elapsed_seconds": 1.439,
+  "finished_at_utc": "2026-11-15T00:17:54.596484+00:00",
+  "source_after": {
+    "oracles/python/class_a_plus_small_certificate.py": "28787c8e8ec82fea7e1b07ac5f9a1ec092d6729f9619dec4235de926037166ed",
+    "oracles/python/class_a_plus_constant_entry.py": "803618345a6cd9ce4615dd6ee8d99e885607ca32a3fc0043181cbc21caba988e",
+    "oracles/python/class_a_x_productivity.py": "6fe0e748299fa569f6b248979add7724da9a23423748d0d10aa6e9e304bbafde",
+    "oracles/python/class_a_central_entry.py": "b598118137e5d5f98d19b52e1c8a69e1bf4bf5a608f8b3b534bff2d0684c44a0",
+    "oracles/python/class_a_zero_defect_escape.py": "a618e547fc3acbe0278f3c3ac3b46e9dcfbc55f481bcd17ec811d03995927842",
+    "oracles/python/class_a_boundary_children.py": "31ecaf4087aec22e8e433eeecaa70c17db53fa8a5a701c63c4b0231d3c03429a"
+  },
+  "log_sha256": "87eb32c5f487fae6dc096d2368c6d74c2e7102961b287c42a9cc786eae07006b",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}
