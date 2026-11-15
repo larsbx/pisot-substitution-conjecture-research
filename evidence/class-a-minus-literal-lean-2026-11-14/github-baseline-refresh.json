@@ -1,0 +1,577 @@
+{
+  "recorded_utc": "2026-11-15 00:27:26 UTC",
+  "main_and_stack_refs": {
+    "chunk_id": "204779",
+    "wall_time_seconds": 4.763812631,
+    "exit_code": 0,
+    "original_token_count": 79,
+    "output": "a19670c521927a8f6ac7e08f26cd3d563eafdce3\trefs/heads/main\n34ff471c24960729527ae5f090e96c7c16ae4584\trefs/heads/research/bh-class-a-central-entry\n01c4e376a652fd93e981e7b302e989c65774a0de\trefs/heads/research/bh-class-a-entry\n110e7e9ef8243bc24adf80d6e8a375add586d850\trefs/heads/research/bh-class-a-minus-constant-entry\n"
+  },
+  "prs": [
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "Action completed."
+        }
+      ],
+      "structuredContent": {
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/577",
+        "number": 577,
+        "state": "open",
+        "merged": false,
+        "mergeable": true,
+        "draft": true,
+        "body": "## Summary\n\nThe one-step Class-A target requires two affine equations **and** a legal prefix-gap interval. An actual recurrent, seed-reachable state has both affine defects zero while missing that interval, so the previously proposed one-/two-step rank base case fails.\n\nThis PR proves the complete replacement base case: **for every minus-Class-A parameter pair `k,t >= 0`, every strict overlap with `p = delta(a,b)` and `p+q+r = 0` reaches full integral offset zero in at most ten actual child-occurrence steps.** It retains the original ordered prefix addresses throughout.\n\nThe PR targets current `main` at `a19670c521927a8f6ac7e08f26cd3d563eafdce3`, preserving #575's roadmap. It is independent of #574 and the family PR stack.\n\nRefs #452 and #139. **Neither issue is closed by this increment.**\n\n## Work shown\n\n### Assumptions and hypotheses\n\nFor `k,t >= 0`, put `n=k+t+3`, `d=k+2t+5`, `A=n+d`, with the literal words\n\n```text\nx -> x y^A x\nc -> c y^n x\ny -> x y^(n-1) c.\n```\n\nOffsets are integral bottom-minus-top Parikh vectors. The source is a strict overlap satisfying the two stated affine equations. The full theorem does not assume or conclude that all cyclic seed descendants satisfy those equations. Integral offset zero allows unequal final tile letters.\n\nThe pre-code literature/hypothesis review is in [the stop/go note](https://github.com/larsbx/pisot-substitution-conjecture-research/blob/01c4e376a652fd93e981e7b302e989c65774a0de/docs/bh-class-a-entry-stop-go-2026-11-14.md). Nonunit realization and all-alphabet extension remain separate obligations.\n\n### Derivation / reduction\n\n[The complete proof](https://github.com/larsbx/pisot-substitution-conjecture-research/blob/01c4e376a652fd93e981e7b302e989c65774a0de/docs/class-a-zero-defect-escape-2026-11-14.md) writes every such source as\n\n```text\nW_ab(m) = (a,b,delta,m-(d+1)delta,-m+d delta).\n```\n\nThe exact strictness interval is\n`-R_b-F_a-E_b < m < R_a+F_b+E_a`. Inside the old legal-gap interval, use the existing one-step edge. Outside it, an actual LAST/FIRST edge, with genuine reversal when needed, reduces the source to one of thirteen endpoint families.\n\nThe exhaustive guarded table sends each endpoint to integral zero in at most nine further edges. The fifth x/x endpoint exists exactly when `t >= k+3`, or `t=k+2` and `k>=2`; all exceptional LAST letters are retained. Positive common final intervals pull back through the actual occurrences to prove strictness at every stage. The original prefix recurrence telescopes to `M^m w = P-Q` for actual prefixes in the two depth-`m` images.\n\nThis enlarges the one-step target by exactly `60+8*1_(rho>1/2)` strict nonzero states. In a supplied actual strict child-closed graph, zero hitting can now be reduced to entry into this entire zero-defect slice. Production paths may stop at their first zero hit.\n\n### Evidence and replay\n\nThe [evidence packet](https://github.com/larsbx/pisot-substitution-conjecture-research/blob/01c4e376a652fd93e981e7b302e989c65774a0de/evidence/class-a-zero-defect-2026-11-14/README.md) retains exact source hashes, commands, successful receipts and failed development receipts.\n\n- Canonical Mojo: 14 boundary specimens, 176 endpoint paths, 904 overrun/reversal paths, 4,145 checked edges, maximum selected length ten.\n- Native/oracle differential: all 1,332 emitted paths and 4,145 edges agree, including every original index, intermediate letter and full offset. Exact source-set coverage is checked.\n- Independent complete strict-slice replay: 3,970 source states and 6,512 edges at the fourteen named parameters; all exact slice cardinalities match.\n- Universal symbolic guard/transport check: 199 endpoint/chamber paths, 398 directed paths including reversals, 1,096 edges, sixteen ordinary chambers and seven strict fifth-endpoint chambers. Every FIRST/LAST equality and RUN bound is checked coefficientwise; this is not finite-parameter extrapolation.\n- Python: 23 tests passed, including the existing one-step oracle.\n- Scoped Lean compile/audit: 71 owned declarations, 53 theorem declarations, five exact endpoint types and fifteen missing/wrong-type/extra-premise controls. Only the repository's three allowed standard axioms occur.\n- Full claim governance, generated proof bank, vendored pins and source-integrity checks pass locally. All 126 governed claim statuses are unchanged.\n\n**Lean scope:** the new module proves the four-step `(y,y,0,n+1,-n-1)` family, a separate explicit two-step RUN slice, literal indexed occurrence transport, and backward strictness. **The full thirteen-case ten-step theorem is not claimed as a Lean endpoint.**\n\nLocal Lean development reused byte-matched transitive objects. The dedicated workflow separately builds from isolated sources with fresh pinned dependencies and audits the five exact endpoints; the existing whole-library workflow audits the root import. Hosted acceptance is pending at PR creation.\n\nKey replay:\n\n```bash\npython -m pytest -o addopts='' -q tests/test_class_a_zero_defect_escape.py tests/test_class_a_zero_return_oracle.py\npython oracles/python/class_a_zero_defect_symbolic.py\ncd kernel\npixi run --locked mojo run -I . tests/test_class_a_entry_defect.mojo\npixi run --locked mojo run -I . tests/test_class_a_zero_defect_escape.mojo --emit > /tmp/class-a-zero-defect-native.log\ncd ..\npython oracles/python/class_a_zero_defect_escape.py --native-log /tmp/class-a-zero-defect-native.log\n./tools/check_class_a_zero_defect.sh\n./tools/check_lean.sh\n```\n\n### Negative controls\n\nAt `k=t=0`, the actual recurrent X-descendant `(y,y,0,-4,4)` has both defects zero but no old-target or integral-zero descendant within two steps. The complete two-level enumeration checks 106 literal pairs, two first-level and thirteen second-level occurrences. Its first old-target hit takes three edges and zero takes four. The source, cycle and productive exit are retained.\n\nOther controls reject non-strict fifth-endpoint walls, wrong source equations, nonexistent original indices, changed integral targets, incorrect symbolic ordinals, negative parameters, three overflow cases, duplicate native source records and a truncated log that still contains all fourteen parameter pairs. The separate RUN controls include genuine unequal-letter zero endpoints.\n\n### Non-claims / remaining gaps\n\nUniform entry into the zero-defect slice from **every required cyclic seed-reachable strict zipper** remains open. The new theorem supplies the zero-defect base case; a selected decrease or a closed-component forcing argument is still needed outside that slice.\n\nNo full child-closed source cover, universal BH, residual A1′, C4, G1, PDS or PSC result is asserted. No finite census is promoted to a universal source-coverage theorem. A finite maximum over an actual complete carrier requires its own complete hitting premise. Broader hosted CI and independent human review remain separately recorded validation gates.\n\n## Producing revision\n\nHead: `01c4e376a652fd93e981e7b302e989c65774a0de`. Tree: `58e230410a68d43732e88a037cdff09fdc947c37`.\nEvery published file blob and the resulting complete tree were checked against the locally verified source before the branch was created.\n\nThe [dedicated native/oracle and fresh-source Lean workflow](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43641862129) and the [whole-library Lean audit](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861830) are running or queued; no hosted pass is inferred from the local receipts.\n",
+        "title": "Prove ten-step escape from the Class-A zero-defect slice",
+        "base": "main",
+        "base_sha": "a19670c521927a8f6ac7e08f26cd3d563eafdce3",
+        "head": "research/bh-class-a-entry",
+        "head_sha": "01c4e376a652fd93e981e7b302e989c65774a0de",
+        "head_repo_id": 1361945122,
+        "head_repo_full_name": "larsbx/pisot-substitution-conjecture-research",
+        "merge_commit_sha": "e62c55467b96503285d50ad36202156df97d30b1",
+        "user": {
+          "login": "larsbx",
+          "name": "larsbx",
+          "email": null,
+          "avatar_url": "https://avatars.githubusercontent.com/u/1158952?v=4",
+          "id": 1158952
+        },
+        "requested_reviewers": null,
+        "requested_team_reviewers": null,
+        "diff": null,
+        "comments": null,
+        "created_at": "2026-11-14T21:15:37Z",
+        "updated_at": "2026-11-14T21:16:17Z",
+        "closed_at": null,
+        "merged_at": null,
+        "commits": 1,
+        "changed_files": 33,
+        "additions": 5782,
+        "deletions": 4,
+        "display_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/577",
+        "display_title": "Prove ten-step escape from the Class-A zero-defect slice"
+      },
+      "isError": false
+    },
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "Action completed."
+        }
+      ],
+      "structuredContent": {
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/578",
+        "number": 578,
+        "state": "open",
+        "merged": false,
+        "mergeable": true,
+        "draft": true,
+        "body": "## Result and scope\n\nStacked on #577 (`01c4e376a652fd93e981e7b302e989c65774a0de`). This supplies a written proof of the **mathematical uniform-entry target of #452 throughout its declared minus-Class-A chamber**, with actual original occurrence witnesses. Exact-head hosted acceptance and independent human review remain pending.\n\nFor `k,t>=0`, put `n=k+t+3`, `d=k+2t+5`, `K=k+1`, and `A=n+d`. The literal substitution is\n`x -> x y^A x; c -> c y^n x; y -> x y^(n-1) c`.\nThe chamber is equivalently **`n+2<=d<=2n-1`**.\n\n| Domain | Proven mathematical source scope |\n| --- | --- |\n| `n>=6` | Every strict integral overlap has a composable actual occurrence path to typed coincidence, without cyclicity, seed-reachability or finite-carrier assumptions. |\n| `n<6` | Every vertex of the six complete S18 graphs has an actual typed-coincidence path. These finite certificates do not assert the all-strict-source theorem on the six small parameters. |\n\nThe proof identifies S18 with the manuscript's swap-seed domain. Together the two parts cover every required cyclic seed-reachable strict zipper, including transient seed descendants. For a nonzero source, its last predecessor before the first integral-zero hit lies in the existing nine affine target segments. The stronger typed construction also gives aligned letter-pair coincidence within this chamber.\n\n- [Complete proof, original-address argument and S18 adapter](https://github.com/larsbx/pisot-substitution-conjecture-research/blob/34ff471c24960729527ae5f090e96c7c16ae4584/docs/class-a-central-entry-2026-11-14.md)\n- [Exact-source evidence and replay](https://github.com/larsbx/pisot-substitution-conjecture-research/blob/34ff471c24960729527ae5f090e96c7c16ae4584/evidence/class-a-central-entry-2026-11-14/README.md)\n- [Pre-code primary-source review](https://github.com/larsbx/pisot-substitution-conjecture-research/blob/34ff471c24960729527ae5f090e96c7c16ae4584/docs/bh-class-a-central-entry-stop-go-2026-11-14.md)\n- [Canonical central constructor](https://github.com/larsbx/pisot-substitution-conjecture-research/blob/34ff471c24960729527ae5f090e96c7c16ae4584/kernel/psc/class_a_central_entry.mojo), [actual entry search](https://github.com/larsbx/pisot-substitution-conjecture-research/blob/34ff471c24960729527ae5f090e96c7c16ae4584/kernel/psc/class_a_entry_search.mojo)\n- [Lean recurrence module](https://github.com/larsbx/pisot-substitution-conjecture-research/blob/34ff471c24960729527ae5f090e96c7c16ae4584/proof/PscVerif/PscVerif/ClassACentralRecurrence.lean), [independent exact-type audit](https://github.com/larsbx/pisot-substitution-conjecture-research/blob/34ff471c24960729527ae5f090e96c7c16ae4584/proof/PscVerif/ClassACentralRecurrenceAudit.lean)\n\n## Work shown\n\n### Assumptions and hypotheses\n\nThe words, sign convention, integral coordinates and original zero-based FIRST/RUN/LAST ordinals are explicit. Offsets are bottom minus top, and every edge obeys\n`w' = M*w + bottomPrefix - topPrefix`.\nFor the large domain the inherited exact Perron facts give `beta>8`, `h=1/beta<1/8`, `alpha=beta-(n+2)>0` and `alpha+2h<1`. The written cubic irreducibility argument excludes half-unit ties and specializes the strict-error Lean recurrence. No inverse-integrality or unimodularity assumption is used.\n\nSmall-case coverage retains the complete eighteen swap roots, full actual-child closure, exact root reachability, faithful integral/physical encoding and typed terminal convention. Arbitrary infinite-tiling/fibre realization is a separate scope, not an unstated premise of this seed-domain result.\n\n### Derivation / reduction\n\n1. Finite **two-level literal word counts** give the quantitative density gap `(beta-5)/beta^2>0`. Center packing on the growing common open interval forces an actual central `y/y` descendant; only two partial image blocks and two boundary tiles contribute fixed error. No frequency, ergodic or spectral theorem supplies this step.\n2. The nearest RUN child is a genuine original occurrence and yields a bounded two-coordinate integer recurrence. Its nonzero periodic possibilities are exactly the alternating full states `+/- yy(H,3H,-6H)`. The Lean endpoint derives eventual alternation from the forward recurrence, without assuming boundedness, a finite carrier or periodicity.\n3. Every alternating cycle has an explicit actual exit. Six small-`KH` chambers include the genuine LAST-`x` exception at `K=1,H=3,n=6`; four unbounded general chambers splice into the existing guarded reversed `Q_H` suffix.\n4. Nested original prefixes satisfy `P_(r+1)=M*P_r+p_r`, `Q_(r+1)=M*Q_r+q_r`, hence `M^m w=P-Q`. The positive final interval lies in all selected ancestor supertiles, proving strict composability. BH stops at first integral zero; typed mode continues mixed-letter zero and stops at first typed coincidence.\n\n### Evidence and replay\n\nAll local receipts bind the final mathematical source bytes:\n\n- **665 original path records / 6,699 checked edges**, maximum selected depth 73: 315 central paths, 124 cycle/reversal paths, 172 entry paths, and 54 typed aligned-source paths. Independent replay requires the exact source set, every original ordinal and intermediate full offset, and every composed proper-prefix identity.\n- **Six complete small graphs:** 4,470 original states, 2,241 reversal orbits, 35,688 original indexed edges and 351,816 Cartesian occurrence pairs. Every canonical record matches the unchanged archived certificate. Maximum coincidence distance is eight.\n- **Universal symbolic support:** 20 directed paths, 58 edges, four exact splices, and 36 strict density certificates across exhaustive unbounded parameter chambers. The general exits reuse their stated existing suffix theorem.\n- **39 targeted tests passed**, including complete-graph omission/cap controls. **163 recorded-data integrity tests passed.**\n- **Fresh source-isolated Lean gate passed on attempt 1**, exit zero, at `2026-11-14T22:00:24Z`: 125 source/configuration files bound before and after compilation; 77 owned declarations, 70 theorems, **seven exact endpoint types and 21 rejection controls**. Only the fixed upstream source-hash Mathlib cache was used after cloning pinned dependencies. Raw log and source manifest are archived.\n- Governance, vendored pins and generated inventories pass. The bank lists 2,732 named Lean proofs; all **126 governed claim statuses are unchanged**. The inventory count is not a new whole-library compilation receipt.\n\nThe dedicated workflow checks out this exact head for native/oracle and source-isolated Lean jobs. The separate repository-wide Lean workflow covers the root import. Their hosted outcomes are pending and are not replaced by local receipts.\n\nThis branch also appends the missing README digest to #577's evidence manifest. Every prior manifest byte and evidence payload is preserved; the failed integrity receipt is archived.\n\n### Negative controls\n\nPreserved controls cover productive nonzero nearest two-cycles, the failed old defect-rank shortcut, noncentral and short-word inputs, altered words/offsets, wrong original indices, genuine RUN/LAST boundaries, true reversal, checked-integer overflow, search caps, and premature terminalization.\n\nIndependent acceptance rejects missing symmetric child pairs, missing roots, fake terminals, fabricated paths, invalid empty prefix sources, altered full prefix identities, incomplete/duplicate source sets, truncated contract strings and duplicate/malformed completion counters. Seven symbolic mutations and the 21 Lean endpoint controls fail as intended. The original cap-fixture failure and documentation/integrity gate refusals remain archived separately from later passing receipts.\n\n### Non-claims / remaining gaps\n\nThis is a **family theorem for the displayed chamber**, not universal BH #139, all Class-A parameter regions, arbitrary-ternary A1′, C4, G1, PDS, PSC or an all-alphabet theorem. The finite maximum depth 73 is an implementation regression result, not a uniform bound across parameters or sources.\n\nThe full center-count entry theorem, Perron/nontie specialization, explicit cycle-exit assembly and family typed-coincidence theorem are **not yet end-to-end Lean formalized**. The seven audited formal endpoints have the narrower exact statements linked above. Published spectral consumers and arbitrary infinite-tiling realization retain their separate hypotheses.\n\nNo issue is automatically closed, and no merge is requested by this draft. Exact-head hosted acceptance and independent review remain visible validation work.\n",
+        "title": "Prove uniform minus-Class-A entry with original prefix witnesses",
+        "base": "research/bh-class-a-entry",
+        "base_sha": "01c4e376a652fd93e981e7b302e989c65774a0de",
+        "head": "research/bh-class-a-central-entry",
+        "head_sha": "34ff471c24960729527ae5f090e96c7c16ae4584",
+        "head_repo_id": 1361945122,
+        "head_repo_full_name": "larsbx/pisot-substitution-conjecture-research",
+        "merge_commit_sha": "442bf51fc49f2fb6500985efdbfd2c48dc0ef4c9",
+        "user": {
+          "login": "larsbx",
+          "name": "larsbx",
+          "email": null,
+          "avatar_url": "https://avatars.githubusercontent.com/u/1158952?v=4",
+          "id": 1158952
+        },
+        "requested_reviewers": null,
+        "requested_team_reviewers": null,
+        "diff": null,
+        "comments": null,
+        "created_at": "2026-11-14T22:13:47Z",
+        "updated_at": "2026-11-14T22:13:47Z",
+        "closed_at": null,
+        "merged_at": null,
+        "commits": 1,
+        "changed_files": 51,
+        "additions": 8370,
+        "deletions": 2,
+        "display_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/578",
+        "display_title": "Prove uniform minus-Class-A entry with original prefix witnesses"
+      },
+      "isError": false
+    },
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "Action completed."
+        }
+      ],
+      "structuredContent": {
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/579",
+        "number": 579,
+        "state": "open",
+        "merged": false,
+        "mergeable": true,
+        "draft": true,
+        "body": "## Result and acceptance\n\nStacked on #578 at `34ff471c24960729527ae5f090e96c7c16ae4584`.\n\nThis supplies a written proof that **every strict integral overlap** reaches typed coincidence for the literal minus-Class-A family\n`x -> x y^(n+d) x; c -> c y^n x; y -> x y^(n-1) c`,\nthroughout **`d>=5, n>=d+1`**. It includes the former residual strip `d+1<=n<5d`, and retains every original occurrence and the complete prefix identity `M^m w=P-Q`.\n\nTogether with #578 and the separately authenticated low-gap and seam-line certificates, this completes the **mathematical minus-Class-A canonical swap-seed parameter cover** `n>=1, 1<=d<=2n-1`. The inherited seed certificates are not promoted to all-strict-source theorems.\n\n**Acceptance remains incomplete:** the canonical checks, independent full-prefix replay and cached Lean development audit passed. The separate fresh source-isolated gate failed at the fixed upstream Mathlib download with HTTP 403, before compiling the new local theorem. That failed receipt is preserved. Exact-head hosted/whole-library acceptance and independent human review remain pending.\n\n- [Complete proof, source quantifiers and parameter-cover table](https://github.com/larsbx/pisot-substitution-conjecture-research/blob/110e7e9ef8243bc24adf80d6e8a375add586d850/docs/class-a-minus-constant-entry-2026-11-14.md)\n- [Exact-source evidence, successful replay and preserved refusals](https://github.com/larsbx/pisot-substitution-conjecture-research/blob/110e7e9ef8243bc24adf80d6e8a375add586d850/evidence/class-a-minus-constant-entry-2026-11-14/README.md)\n- [Pre-code four-source review](https://github.com/larsbx/pisot-substitution-conjecture-research/blob/110e7e9ef8243bc24adf80d6e8a375add586d850/docs/bh-class-a-minus-constant-stop-go-2026-11-14.md)\n- [Canonical constant constructor](https://github.com/larsbx/pisot-substitution-conjecture-research/blob/110e7e9ef8243bc24adf80d6e8a375add586d850/kernel/psc/class_a_minus_constant_entry.mojo) and [actual entry search](https://github.com/larsbx/pisot-substitution-conjecture-research/blob/110e7e9ef8243bc24adf80d6e8a375add586d850/kernel/psc/class_a_minus_entry_search.mojo)\n- [Lean recurrence and signed occurrence descent](https://github.com/larsbx/pisot-substitution-conjecture-research/blob/110e7e9ef8243bc24adf80d6e8a375add586d850/proof/PscVerif/PscVerif/ClassAMinusConstantRecurrence.lean) and [independent exact-type audit](https://github.com/larsbx/pisot-substitution-conjecture-research/blob/110e7e9ef8243bc24adf80d6e8a375add586d850/proof/PscVerif/ClassAMinusConstantRecurrenceAudit.lean)\n\n## Work shown\n\n### Assumptions and hypotheses\n\nThe literal words, original zero-based FIRST/RUN/LAST ordinals and bottom-minus-top integral offsets are explicit. The new chamber has `n+1<beta<n+2`, determinant `-2`, irreducible cubic and normalized lengths `Ly=1<Lc<Lx<2`. Every edge obeys `w'=M*w+bottomPrefix-topPrefix`.\n\nThe all-strict theorem assumes neither cyclicity, seed reachability nor a finite carrier. The existing upper-chamber binder is unchanged; a separate `n,d` binder checks the complete words, cubic, positive scaling and every original prefix-cache entry, even before an empty zero-source return.\n\n### Derivation / reduction\n\n1. One-level literal word counts give `Y0=(n-1)/beta`, `X0=2/(beta*Lx)`, `C0=1/beta`, and `Y0-2X0-2C0>1/12`. Actual center counting forces central `y/y` entry at every depth with `beta^m*ell0>=240(n+1)`. Two partial image blocks and two boundary tiles account for the fixed error. No frequency or spectral theorem supplies this step.\n2. The genuine nearest RUN child yields the positive-coefficient integer recurrence `c=nearest(2a/beta-(beta-n-2)b)`. Its finite integer-pair bound is derived. A maximum-predecessor argument forces every periodic tail to be constant, hence every forward orbit eventually represents `U_H=yy(H,-H,0)` with `2d|H|<=n`.\n3. For every positive admissible height, the original index pairs\n   `(dH+2,1)`,\n   `(1,n+2-dH)`,\n   `(1+max(d(H-1)-2,0),1+max(2-d(H-1),0))`\n   give full offsets\n   `(H,-H,0) -> (H,-H,-1) -> (H-1,-H-1,2) -> (H-1,-H+1,0)`.\n   All six positions are genuine RUN occurrences and all intermediate overlaps are strict. Repetition takes exactly `3|H|` edges; track reversal handles negative heights.\n4. Actual ancestors preserve strict composability, and nested original prefixes telescope to `M^m w=P-Q`. BH mode stops at the first integral zero; typed mode continues mixed-letter zero and stops at typed coincidence.\n\nThe assembled cover retains these distinct contracts:\n\n| Region | Mathematical source scope |\n| --- | --- |\n| `d<=4` | Inherited complete canonical swap-seed certificates, with every admissible finite prefix below each symbolic floor |\n| `5<=d<=n-1` | New theorem: every strict integral source |\n| `d=n,n+1` | Separate Class-A seam certificates: floors 39 and 87, with complete admissible prefixes below them |\n| `n+2<=d<=2n-1` | #578: all strict sources for `n>=6`, and six complete S18 certificates below that |\n\n### Evidence and replay\n\n- **1,830 complete original path records, 12,363 checked edges, maximum depth 37:** 945 central paths, 156 signed constant paths, 567 entry paths and 162 typed aligned-source paths. Independent literal-word replay passed every record, original ordinal, full offset and composed proper-prefix identity.\n- **270 exact member density inequalities** and unbounded symbolic support across two exhaustive height chambers: four directed paths, 12 edges, 24 RUN occurrences and eight mutation controls. These symbolic chambers cover arbitrary admissible heights, not only the finite fixtures through height 12.\n- **39 targeted Python tests and 164 recorded-data integrity tests passed.** Final source and exact packet file-set digests were verified after adding the integrity receipt.\n- **Cached Lean development passed:** 75 owned declarations, including 68 theorem declarations; seven independently specified exact endpoint types and 21 rejection controls. The formal results include eventual constancy without supplied boundedness/periodicity and a signed composable strict path from every guarded constant packet to typed zero.\n- **Fresh source-isolated attempt 1 did not pass:** 127 source/configuration files were bound and pinned dependencies cloned; all 8,890 fixed-upstream Mathlib downloads returned HTTP 403. The run exited 1 before local theorem compilation. Input hashes were unchanged. No local-artifact fallback was introduced.\n- **1,210 source/dependency inputs are hashed**, and 757 inherited native source/pin files are exactly unchanged from the parent. This source comparison is not a fresh execution of the old certificates.\n- Governance, vendored pins and generated inventories pass. The bank lists 2,758 named Lean proofs; all 126 governed claim statuses are unchanged. This inventory is not a whole-library compilation receipt.\n\nThe dedicated workflow checks out this exact head for canonical/oracle and isolated-Lean jobs. The repository-wide Lean workflow covers the new root import. Their producing-head results must be inspected separately.\n\n### Negative controls\n\nThe nearest selector has genuine nonzero fixed points; its constancy alone is explicitly not credited as hitting zero. The tests require the alternative three-RUN exit.\n\nControls reject foreign words, cubic coefficients and prefix caches at zero sources; noncentral/nonintegral inputs; altered legal ordinals and full vectors; nonexistent RUN indices; invalid heights; premature or continued terminal paths; exhausted caps and checked overflow. Independent acceptance requires the exact complete source set, contract strings and counter dictionaries.\n\nThe first native entry compile used an invalid new-Mojo List constructor spelling; its refusal is retained. An interrupted emission stopped at 1,074 records without completion receipts and is retained separately. The replacement completed all 1,101 central/cycle records at unchanged source hashes. Neither partial run nor the refused fresh Lean fetch is relabelled as accepted.\n\n### Non-claims / remaining gaps\n\nThis completes the stated **minus-Class-A seed-domain mathematical cover**, not universal BH #139, plus Class A, arbitrary-ternary A1′ #138, C4, G1, PDS, PSC or an all-alphabet theorem. The finite maximum depth 37 is not a uniform bound across parameters or sources.\n\nThe full family theorem is not end-to-end Lean formalized. Perron identification, the family recurrence specialization, arbitrary-overlap density entry and complete nested-prefix assembly remain written interfaces beyond the seven exact audited endpoints.\n\nInherited acceptance, new local replay, the blocked fresh-source gate, hosted acceptance and human review remain distinct. No issue is automatically closed and no merge is performed by this draft.\n",
+        "title": "Prove lower minus-Class-A entry and complete seed-domain coverage",
+        "base": "research/bh-class-a-central-entry",
+        "base_sha": "34ff471c24960729527ae5f090e96c7c16ae4584",
+        "head": "research/bh-class-a-minus-constant-entry",
+        "head_sha": "110e7e9ef8243bc24adf80d6e8a375add586d850",
+        "head_repo_id": 1361945122,
+        "head_repo_full_name": "larsbx/pisot-substitution-conjecture-research",
+        "merge_commit_sha": "4519e1dd65ffd3ffef39542eabea0b44cbd33692",
+        "user": {
+          "login": "larsbx",
+          "name": "larsbx",
+          "email": null,
+          "avatar_url": "https://avatars.githubusercontent.com/u/1158952?v=4",
+          "id": 1158952
+        },
+        "requested_reviewers": null,
+        "requested_team_reviewers": null,
+        "diff": null,
+        "comments": null,
+        "created_at": "2026-11-14T23:23:48Z",
+        "updated_at": "2026-11-14T23:23:48Z",
+        "closed_at": null,
+        "merged_at": null,
+        "commits": 1,
+        "changed_files": 54,
+        "additions": 10263,
+        "deletions": 5,
+        "display_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/579",
+        "display_title": "Prove lower minus-Class-A entry and complete seed-domain coverage"
+      },
+      "isError": false
+    }
+  ],
+  "parent_workflow_first_page": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "workflow_runs": [
+        {
+          "id": 43653036290,
+          "name": "C4 named stable chart",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 58,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036290/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036290/logs",
+          "workflow_id": 414967962
+        },
+        {
+          "id": 43653036285,
+          "name": "Class-D minus recurrent reduction",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 570,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036285/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036285/logs",
+          "workflow_id": 389742893
+        },
+        {
+          "id": 43653036284,
+          "name": "Class-A uniform gap theorem",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 565,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036284/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036284/logs",
+          "workflow_id": 394533630
+        },
+        {
+          "id": 43653036303,
+          "name": "Proof bank generated-source consistency",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 174,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036303/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036303/logs",
+          "workflow_id": 405027193
+        },
+        {
+          "id": 43653036318,
+          "name": "Minus-Class-A constant entry and original RUN descent",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 1,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036318/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036318/logs",
+          "workflow_id": 418718254
+        },
+        {
+          "id": 43653036298,
+          "name": "Show your work policy",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 1310,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036298/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036298/logs",
+          "workflow_id": 389589665
+        },
+        {
+          "id": 43653036295,
+          "name": "C4 cut-pair combinatorics and source audit",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 156,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036295/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036295/logs",
+          "workflow_id": 406932731
+        },
+        {
+          "id": 43653036287,
+          "name": "Research branch integration conformance",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 300,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036287/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036287/logs",
+          "workflow_id": 403591247
+        },
+        {
+          "id": 43653036257,
+          "name": "Gap-five A/C evidence",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 503,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036257/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036257/logs",
+          "workflow_id": 393948330
+        },
+        {
+          "id": 43653036282,
+          "name": "C4 periodic Parikh phase rigidity",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 299,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036282/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036282/logs",
+          "workflow_id": 406995272
+        },
+        {
+          "id": 43653036269,
+          "name": "C4 return induction and prefix-satellite obstruction",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 73,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036269/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036269/logs",
+          "workflow_id": 407092428
+        },
+        {
+          "id": 43653036238,
+          "name": "Class-D complete residual certificates",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 694,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036238/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036238/logs",
+          "workflow_id": 389504350
+        },
+        {
+          "id": 43653036133,
+          "name": "PSC research checks",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 5230,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036133/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036133/logs",
+          "workflow_id": 353526446
+        },
+        {
+          "id": 43653036187,
+          "name": "C4 defect-degree census",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 5067,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036187/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036187/logs",
+          "workflow_id": 354460282
+        },
+        {
+          "id": 43653036231,
+          "name": "C4 concrete overlap Lean packets",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 110,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036231/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036231/logs",
+          "workflow_id": 408645746
+        },
+        {
+          "id": 43653036253,
+          "name": "Target-aware BPA diagnostic",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 1213,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036253/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036253/logs",
+          "workflow_id": 373275169
+        },
+        {
+          "id": 43653036185,
+          "name": "Scoped class-D assembly",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 563,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036185/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036185/logs",
+          "workflow_id": 391303683
+        },
+        {
+          "id": 43653036232,
+          "name": "Physical mass Lean Quint refinement",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 123,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036232/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036232/logs",
+          "workflow_id": 411019785
+        },
+        {
+          "id": 43653036214,
+          "name": "Class-A run-index investigation",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 557,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036214/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036214/logs",
+          "workflow_id": 391441935
+        },
+        {
+          "id": 43653036235,
+          "name": "C4 phase lattice index conservation",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 297,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036235/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036235/logs",
+          "workflow_id": 407011900
+        },
+        {
+          "id": 43653036249,
+          "name": "Class-A zero-defect escape and occurrence proofs",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 3,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036249/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036249/logs",
+          "workflow_id": 418643091
+        },
+        {
+          "id": 43653036241,
+          "name": "Class-A central entry and alternating-cycle proofs",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 2,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036241/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036241/logs",
+          "workflow_id": 418677588
+        },
+        {
+          "id": 43653036226,
+          "name": "Class-D plus positive-b chambers",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 467,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036226/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036226/logs",
+          "workflow_id": 389663784
+        },
+        {
+          "id": 43653036243,
+          "name": "Archived C4 graph source refinement",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 52,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036243/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036243/logs",
+          "workflow_id": 415390669
+        },
+        {
+          "id": 43653036126,
+          "name": "C4 degree2 three-state census",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 5010,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036126/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036126/logs",
+          "workflow_id": 354598308
+        },
+        {
+          "id": 43653036130,
+          "name": "Class-A cover obstruction",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 555,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036130/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036130/logs",
+          "workflow_id": 391878312
+        },
+        {
+          "id": 43653036213,
+          "name": "C4 pairwise strict cut frequency",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 321,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036213/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036213/logs",
+          "workflow_id": 406965435
+        },
+        {
+          "id": 43653036135,
+          "name": "C4 overlap Lean verification",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 104,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036135/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036135/logs",
+          "workflow_id": 408437354
+        },
+        {
+          "id": 43653036173,
+          "name": "Canonical Pisot polynomial kernels",
+          "status": "in_progress",
+          "conclusion": null,
+          "run_number": 3459,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036173/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036173/logs",
+          "workflow_id": 372303541
+        },
+        {
+          "id": 43653036166,
+          "name": "Original C4 archived payload Lean import",
+          "status": "in_progress",
+          "conclusion": null,
+          "run_number": 51,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036166/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036166/logs",
+          "workflow_id": 415687755
+        },
+        {
+          "id": 43653036240,
+          "name": "PSC class-A complete boundary seed children",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 115,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036240/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036240/logs",
+          "workflow_id": 397664820
+        },
+        {
+          "id": 43653036202,
+          "name": "Boundary synchronization layer",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 3623,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036202/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036202/logs",
+          "workflow_id": 365028591
+        },
+        {
+          "id": 43653036142,
+          "name": "C4 stable prefix window",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 76,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036142/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036142/logs",
+          "workflow_id": 414879997
+        },
+        {
+          "id": 43653036245,
+          "name": "PR487 return-family native acceptance",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 88,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036245/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036245/logs",
+          "workflow_id": 407885090
+        }
+      ]
+    },
+    "isError": false
+  },
+  "parent_whole_library_jobs": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "jobs": [
+        {
+          "id": 132625460812,
+          "name": "overlap-proof-bank",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 43653036135,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Verify exact revision",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Provision the pinned Lean release and dependency sources",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Compile from isolated sources and audit every local declaration",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Retain the exact-head audit receipt",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            }
+          ]
+        }
+      ]
+    },
+    "isError": false
+  }
+}

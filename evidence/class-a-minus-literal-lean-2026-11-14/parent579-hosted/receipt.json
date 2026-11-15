@@ -1,0 +1,70 @@
+{
+  "scope": "Parent PR #579 only; not acceptance of the new literal-entry branch",
+  "repository": "larsbx/pisot-substitution-conjecture-research",
+  "pr_number": 579,
+  "source_sha": "110e7e9ef8243bc24adf80d6e8a375add586d850",
+  "observed_utc": "2026-11-15 00:24:29 UTC",
+  "run_id": 43653036135,
+  "run_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036135",
+  "job_id": 132625460812,
+  "job_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036135/job/132625460812",
+  "job_name": "overlap-proof-bank",
+  "status": "completed",
+  "conclusion": "success",
+  "raw_log": "pr579-job-132625460812.log",
+  "raw_log_bytes": 1301621,
+  "raw_log_sha256": "d65389aef24382f495fb9feb8f99ba6cf0b030fa91ffab4d9570709c2fa09752",
+  "raw_log_origin": "Exact decoded UTF-8 content from GitHub fetch_workflow_job_logs; BOM and original line/control characters retained",
+  "gzip_log": "pr579-job-132625460812.log.gz",
+  "gzip_bytes": 114438,
+  "gzip_sha256": "2096c0a0a437e087eeb328bbd126c97643a5e204b9237c8683f46ae927dadc49",
+  "exact_head_verified": true,
+  "source_isolated_marker_verified": true,
+  "compile_jobs": 9026,
+  "owned_declaration_rows": 6851,
+  "theorem_rows": 5041,
+  "allowed_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "all_axiom_rows_allowed": true,
+  "audit_completion_markers": 1,
+  "proof_bank": {
+    "claims": 126,
+    "named_lean_proofs": 2758,
+    "source_openings": 413
+  },
+  "constant_recurrence_module": {
+    "declarations": 75,
+    "theorems": 68,
+    "eventual_constant_tail_audited": true,
+    "constant_composable_path_audited": true
+  },
+  "dedicated_run_id": 43653036318,
+  "dedicated_jobs": [
+    {
+      "id": 132625461586,
+      "name": "native-and-independent",
+      "status": "queued",
+      "conclusion": null,
+      "run_id": 43653036318,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 132625461713,
+      "name": "scoped-lean-from-sources",
+      "status": "queued",
+      "conclusion": null,
+      "run_id": 43653036318,
+      "logs_url": null,
+      "steps": null
+    }
+  ],
+  "limits": [
+    "The dedicated native/oracle and scoped expected-type audit jobs remain queued at this observation.",
+    "The historical HTTP 403 remains a failed infrastructure receipt; this later parent whole-library isolated success supersedes a blanket claim that the parent source has no fresh compilation.",
+    "No new-branch hosted acceptance or all-source central-entry theorem is implied."
+  ]
+}

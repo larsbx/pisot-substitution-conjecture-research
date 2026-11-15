@@ -1,0 +1,55 @@
+{
+  "gate_sha256": "ca8eea0986fd81d890185726a2ad84f1eca0b41fc60c8e1835f3262f428a42bf",
+  "positive_log_sha256": "1988fff09f065a81a3fa357ed6f8badebdaf1288ff63dc304925d7b777cd447c",
+  "results": [
+    {
+      "control": "positive",
+      "expected_exit_zero": true,
+      "exit_code": 0,
+      "correct": true,
+      "diagnostic": ""
+    },
+    {
+      "control": "missing_endpoint",
+      "expected_exit_zero": false,
+      "exit_code": 1,
+      "correct": true,
+      "diagnostic": "missing, duplicate, unexpected or reordered literal-entry receipt\n"
+    },
+    {
+      "control": "duplicate_endpoint",
+      "expected_exit_zero": false,
+      "exit_code": 1,
+      "correct": true,
+      "diagnostic": "missing, duplicate, unexpected or reordered literal-entry receipt\n"
+    },
+    {
+      "control": "wrong_module_count",
+      "expected_exit_zero": false,
+      "exit_code": 1,
+      "correct": true,
+      "diagnostic": "missing, extra or wrong-count compiled owned module\n"
+    },
+    {
+      "control": "missing_completion",
+      "expected_exit_zero": false,
+      "exit_code": 1,
+      "correct": true,
+      "diagnostic": "missing, duplicate, unexpected or reordered literal-entry receipt\n"
+    },
+    {
+      "control": "reordered_receipts",
+      "expected_exit_zero": false,
+      "exit_code": 1,
+      "correct": true,
+      "diagnostic": "missing, duplicate, unexpected or reordered literal-entry receipt\n"
+    },
+    {
+      "control": "extra_success",
+      "expected_exit_zero": false,
+      "exit_code": 1,
+      "correct": true,
+      "diagnostic": "missing, duplicate, unexpected or reordered literal-entry receipt\n"
+    }
+  ]
+}

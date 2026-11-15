@@ -1,0 +1,12 @@
+{
+  "command": [
+    "git",
+    "diff",
+    "--cached",
+    "--check"
+  ],
+  "exit_code": 2,
+  "stdout": "evidence/class-a-minus-literal-lean-2026-11-14/local-history-bundle-verify.log:5: trailing whitespace.\n+110e7e9ef8243bc24adf80d6e8a375add586d850 \n",
+  "stderr": "",
+  "resolution": "Preserve the raw git bundle verification output with lossless deterministic gzip; change no raw output bytes or proof source."
+}

@@ -11,6 +11,12 @@ import PscVerif.QuotientDistance
 import PscVerif.ClassAZeroDefectEscape
 import PscVerif.ClassACentralRecurrence
 import PscVerif.ClassAMinusConstantRecurrence
+import PscVerif.ClassAMinusLiteralArithmetic
+import PscVerif.ClassAMinusNoHalfUnit
+import PscVerif.ClassAMinusRootSpectrum
+import PscVerif.ClassAMinusDensity
+import PscVerif.ClassAMinusPrefixAssembly
+import PscVerif.ClassAMinusCentralBridge
 
 import PscVerif.ClassBRegime
 import PscVerif.Binomial

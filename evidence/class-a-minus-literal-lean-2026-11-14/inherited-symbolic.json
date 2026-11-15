@@ -1,0 +1,288 @@
+{
+  "all_height_decrement": true,
+  "checked_edges": 12,
+  "directed_paths": 4,
+  "geometry": {
+    "constant_central_interval": "2*d*abs(H)<=n",
+    "density_gap": "eta>=(1/12), in fact eta>1/12",
+    "density_gap_guards": {
+      "gap_at_least_one_twelfth": "11*u**2 + 22*u*v + 112*u + 11*v**2 + 112*v",
+      "positive_denominator": "u**2 + 2*u*v + 20*u + v**2 + 20*v + 96",
+      "positive_lower_numerator": "u**2 + 2*u*v + 11*u + v**2 + 11*v + 8"
+    },
+    "literal_density_margins": [
+      [
+        "(-beta**2*n + beta**2 + beta*d + beta*n**2 + n - 1)/beta",
+        "0",
+        "(beta**2 - beta*n - 1)/beta"
+      ],
+      [
+        "(beta - n + 1)/beta",
+        "(-beta**2 + beta*n + 2*beta + 3)/beta",
+        "1/beta"
+      ],
+      [
+        "0",
+        "(-beta**2 + beta*n + 2*beta + 1)/beta",
+        "0"
+      ]
+    ],
+    "parameter_chamber": "d=5+u, n=6+u+v; u,v>=0",
+    "recurrence": "c=nearest(2*a/beta-(beta-n-2)*b)",
+    "root_guards": {
+      "n_at_least_six": "u + v",
+      "negative_at_n_plus_1": "u**2 + u*v + 14*u + 7*v + 47",
+      "positive_at_n_plus_2": "u*v + v**2 + 8*v + 2",
+      "word_length_at_most_2n_plus_1": "v"
+    },
+    "strictness_hypotheses": [
+      "0<h<1/7",
+      "0<delta",
+      "delta*H<1/2"
+    ],
+    "sufficient_actual_entry": "beta^m*ell0>=240*(n+1), m>=1"
+  },
+  "literal_RUN_occurrences": 24,
+  "negative_controls": {
+    "H1_requires_negative_gap_branch": true,
+    "closed_face_is_not_strict": true,
+    "foreign_variable": true,
+    "legal_but_wrong_ordinal": true,
+    "missing_required_edge": true,
+    "negative_guard": true,
+    "nonzero_endpoint_is_not_zero": true,
+    "wrong_recurrence_sign": true
+  },
+  "parameter_chambers": 2,
+  "paths": [
+    {
+      "chamber": "H1",
+      "edges": 3,
+      "final_bottom_prefix": [
+        "2*s + 4*u + 28",
+        "2*s + 4*u + 21",
+        "2*s**2 + 8*s*u + 42*s + 8*u**2 + 87*u + 236"
+      ],
+      "final_top_prefix": [
+        "s*u + 7*s + 2*u**2 + 27*u + 94",
+        "s*u + 7*s + 2*u**2 + 25*u + 75",
+        "s**2*u + 7*s**2 + 4*s*u**2 + 49*s*u + 147*s + 4*u**3 + 71*u**2 + 418*u + 816"
+      ],
+      "full_original_prefix_identity": true,
+      "records": [
+        {
+          "indices": [
+            "u + 7",
+            "1"
+          ],
+          "target": [
+            "2",
+            "2",
+            "1",
+            "-1",
+            "-1"
+          ]
+        },
+        {
+          "indices": [
+            "1",
+            "s + u + 7"
+          ],
+          "target": [
+            "2",
+            "2",
+            "0",
+            "-2",
+            "2"
+          ]
+        },
+        {
+          "indices": [
+            "1",
+            "3"
+          ],
+          "target": [
+            "2",
+            "2",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      ],
+      "reversed": false
+    },
+    {
+      "chamber": "H1",
+      "edges": 3,
+      "final_bottom_prefix": [
+        "s*u + 7*s + 2*u**2 + 27*u + 94",
+        "s*u + 7*s + 2*u**2 + 25*u + 75",
+        "s**2*u + 7*s**2 + 4*s*u**2 + 49*s*u + 147*s + 4*u**3 + 71*u**2 + 418*u + 816"
+      ],
+      "final_top_prefix": [
+        "2*s + 4*u + 28",
+        "2*s + 4*u + 21",
+        "2*s**2 + 8*s*u + 42*s + 8*u**2 + 87*u + 236"
+      ],
+      "full_original_prefix_identity": true,
+      "records": [
+        {
+          "indices": [
+            "1",
+            "u + 7"
+          ],
+          "target": [
+            "2",
+            "2",
+            "-1",
+            "1",
+            "1"
+          ]
+        },
+        {
+          "indices": [
+            "s + u + 7",
+            "1"
+          ],
+          "target": [
+            "2",
+            "2",
+            "0",
+            "2",
+            "-2"
+          ]
+        },
+        {
+          "indices": [
+            "3",
+            "1"
+          ],
+          "target": [
+            "2",
+            "2",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      ],
+      "reversed": true
+    },
+    {
+      "chamber": "Hge2",
+      "edges": 3,
+      "final_bottom_prefix": [
+        "2*s + 3*u*v + 7*u + 15*v + 43",
+        "2*s + 3*u*v + 7*u + 15*v + 36",
+        "2*s**2 + 7*s*u*v + 15*s*u + 35*s*v + 77*s + 6*u**2*v**2 + 26*u**2*v + 28*u**2 + 60*u*v**2 + 265*u*v + 292*u + 150*v**2 + 675*v + 759"
+      ],
+      "final_top_prefix": [
+        "s*u*v + 2*s*u + 5*s*v + 12*s + 2*u**2*v**2 + 8*u**2*v + 8*u**2 + 20*u*v**2 + 86*u*v + 93*u + 50*v**2 + 230*v + 274",
+        "s*u*v + 2*s*u + 5*s*v + 12*s + 2*u**2*v**2 + 8*u**2*v + 8*u**2 + 20*u*v**2 + 84*u*v + 89*u + 50*v**2 + 220*v + 245",
+        "s**2*u*v + 2*s**2*u + 5*s**2*v + 12*s**2 + 4*s*u**2*v**2 + 16*s*u**2*v + 16*s*u**2 + 40*s*u*v**2 + 168*s*u*v + 177*s*u + 100*s*v**2 + 440*s*v + 487*s + 4*u**3*v**3 + 24*u**3*v**2 + 48*u**3*v + 32*u**3 + 60*u**2*v**3 + 368*u**2*v**2 + 755*u**2*v + 518*u**2 + 300*u*v**3 + 1880*u*v**2 + 3956*u*v + 2794*u + 500*v**3 + 3200*v**2 + 6905*v + 5019"
+      ],
+      "full_original_prefix_identity": true,
+      "records": [
+        {
+          "indices": [
+            "u*v + 2*u + 5*v + 12",
+            "1"
+          ],
+          "target": [
+            "2",
+            "2",
+            "v + 2",
+            "-v - 2",
+            "-1"
+          ]
+        },
+        {
+          "indices": [
+            "1",
+            "s + u*v + 2*u + 5*v + 12"
+          ],
+          "target": [
+            "2",
+            "2",
+            "v + 1",
+            "-v - 3",
+            "2"
+          ]
+        },
+        {
+          "indices": [
+            "u*v + u + 5*v + 4",
+            "1"
+          ],
+          "target": [
+            "2",
+            "2",
+            "v + 1",
+            "-v - 1",
+            "0"
+          ]
+        }
+      ],
+      "reversed": false
+    },
+    {
+      "chamber": "Hge2",
+      "edges": 3,
+      "final_bottom_prefix": [
+        "s*u*v + 2*s*u + 5*s*v + 12*s + 2*u**2*v**2 + 8*u**2*v + 8*u**2 + 20*u*v**2 + 86*u*v + 93*u + 50*v**2 + 230*v + 274",
+        "s*u*v + 2*s*u + 5*s*v + 12*s + 2*u**2*v**2 + 8*u**2*v + 8*u**2 + 20*u*v**2 + 84*u*v + 89*u + 50*v**2 + 220*v + 245",
+        "s**2*u*v + 2*s**2*u + 5*s**2*v + 12*s**2 + 4*s*u**2*v**2 + 16*s*u**2*v + 16*s*u**2 + 40*s*u*v**2 + 168*s*u*v + 177*s*u + 100*s*v**2 + 440*s*v + 487*s + 4*u**3*v**3 + 24*u**3*v**2 + 48*u**3*v + 32*u**3 + 60*u**2*v**3 + 368*u**2*v**2 + 755*u**2*v + 518*u**2 + 300*u*v**3 + 1880*u*v**2 + 3956*u*v + 2794*u + 500*v**3 + 3200*v**2 + 6905*v + 5019"
+      ],
+      "final_top_prefix": [
+        "2*s + 3*u*v + 7*u + 15*v + 43",
+        "2*s + 3*u*v + 7*u + 15*v + 36",
+        "2*s**2 + 7*s*u*v + 15*s*u + 35*s*v + 77*s + 6*u**2*v**2 + 26*u**2*v + 28*u**2 + 60*u*v**2 + 265*u*v + 292*u + 150*v**2 + 675*v + 759"
+      ],
+      "full_original_prefix_identity": true,
+      "records": [
+        {
+          "indices": [
+            "1",
+            "u*v + 2*u + 5*v + 12"
+          ],
+          "target": [
+            "2",
+            "2",
+            "-v - 2",
+            "v + 2",
+            "1"
+          ]
+        },
+        {
+          "indices": [
+            "s + u*v + 2*u + 5*v + 12",
+            "1"
+          ],
+          "target": [
+            "2",
+            "2",
+            "-v - 1",
+            "v + 3",
+            "-2"
+          ]
+        },
+        {
+          "indices": [
+            "1",
+            "u*v + u + 5*v + 4"
+          ],
+          "target": [
+            "2",
+            "2",
+            "-v - 1",
+            "v + 1",
+            "0"
+          ]
+        }
+      ],
+      "reversed": true
+    }
+  ],
+  "scope": "unbounded symbolic full-Parikh and original-RUN proof support"
+}

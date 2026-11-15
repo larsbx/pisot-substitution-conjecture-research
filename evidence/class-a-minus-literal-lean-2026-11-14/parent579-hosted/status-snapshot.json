@@ -1,0 +1,87 @@
+{
+  "observed_utc": "2026-11-15 00:24:29 UTC",
+  "whole_library": {
+    "jobs": [
+      {
+        "id": 132625460812,
+        "name": "overlap-proof-bank",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 43653036135,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Verify exact revision",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Provision the pinned Lean release and dependency sources",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Compile from isolated sources and audit every local declaration",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Retain the exact-head audit receipt",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13
+          }
+        ]
+      }
+    ]
+  },
+  "dedicated": {
+    "jobs": [
+      {
+        "id": 132625461586,
+        "name": "native-and-independent",
+        "status": "queued",
+        "conclusion": null,
+        "run_id": 43653036318,
+        "logs_url": null,
+        "steps": null
+      },
+      {
+        "id": 132625461713,
+        "name": "scoped-lean-from-sources",
+        "status": "queued",
+        "conclusion": null,
+        "run_id": 43653036318,
+        "logs_url": null,
+        "steps": null
+      }
+    ]
+  }
+}

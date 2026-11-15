@@ -3063,6 +3063,158 @@
       "declaration": "theorem eventual_alternating_tail (h α : ℝ) (hpos : 0 < h) (hsmall : h < 1/8)"
     },
     {
+      "name": "Psc.ClassAMinusCentralBridge.advance_physical",
+      "module": "PscVerif.ClassAMinusCentralBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusCentralBridge.lean",
+      "line": 44,
+      "declaration": "theorem advance_physical (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusCentralBridge.nearestGap_error",
+      "module": "PscVerif.ClassAMinusCentralBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusCentralBridge.lean",
+      "line": 56,
+      "declaration": "theorem nearestGap_error (n : ℕ) (β : ℝ) (s : IntegralState) :"
+    },
+    {
+      "name": "Psc.ClassAMinusCentralBridge.advance_central",
+      "module": "PscVerif.ClassAMinusCentralBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusCentralBridge.lean",
+      "line": 65,
+      "declaration": "theorem advance_central (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusCentralBridge.central_indexed_step",
+      "module": "PscVerif.ClassAMinusCentralBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusCentralBridge.lean",
+      "line": 76,
+      "declaration": "theorem central_indexed_step (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusCentralBridge.orbit_central",
+      "module": "PscVerif.ClassAMinusCentralBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusCentralBridge.lean",
+      "line": 94,
+      "declaration": "theorem orbit_central (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusCentralBridge.orbit_digit_path",
+      "module": "PscVerif.ClassAMinusCentralBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusCentralBridge.lean",
+      "line": 103,
+      "declaration": "theorem orbit_digit_path (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusCentralBridge.advance_recurrence_identity",
+      "module": "PscVerif.ClassAMinusCentralBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusCentralBridge.lean",
+      "line": 116,
+      "declaration": "theorem advance_recurrence_identity (n d : ℕ) (β : ℝ) (g : ℤ) (s : IntegralState) :"
+    },
+    {
+      "name": "Psc.ClassAMinusCentralBridge.orbit_recurrence",
+      "module": "PscVerif.ClassAMinusCentralBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusCentralBridge.lean",
+      "line": 126,
+      "declaration": "theorem orbit_recurrence (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusCentralBridge.orbit_second",
+      "module": "PscVerif.ClassAMinusCentralBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusCentralBridge.lean",
+      "line": 136,
+      "declaration": "theorem orbit_second (n d : ℕ) (β : ℝ) (s : IntegralState) (k : ℕ) :"
+    },
+    {
+      "name": "Psc.ClassAMinusCentralBridge.orbit_reaches_constant",
+      "module": "PscVerif.ClassAMinusCentralBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusCentralBridge.lean",
+      "line": 143,
+      "declaration": "theorem orbit_reaches_constant (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusCentralBridge.central_digit_path",
+      "module": "PscVerif.ClassAMinusCentralBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusCentralBridge.lean",
+      "line": 166,
+      "declaration": "theorem central_digit_path (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusCentralBridge.central_composable_path",
+      "module": "PscVerif.ClassAMinusCentralBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusCentralBridge.lean",
+      "line": 175,
+      "declaration": "theorem central_composable_path (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusCentralBridge.literal_no_half_unit",
+      "module": "PscVerif.ClassAMinusCentralBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusCentralBridge.lean",
+      "line": 188,
+      "declaration": "theorem literal_no_half_unit (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusCentralBridge.literal_central_composable_path",
+      "module": "PscVerif.ClassAMinusCentralBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusCentralBridge.lean",
+      "line": 195,
+      "declaration": "theorem literal_central_composable_path (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusCentralBridge.literal_central_original_prefixes",
+      "module": "PscVerif.ClassAMinusCentralBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusCentralBridge.lean",
+      "line": 209,
+      "declaration": "theorem literal_central_original_prefixes (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusCentralBridge.source_with_central_descendant",
+      "module": "PscVerif.ClassAMinusCentralBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusCentralBridge.lean",
+      "line": 242,
+      "declaration": "theorem source_with_central_descendant (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusCentralBridge.literal_central_traced_prefixes",
+      "module": "PscVerif.ClassAMinusCentralBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusCentralBridge.lean",
+      "line": 269,
+      "declaration": "theorem literal_central_traced_prefixes (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusCentralBridge.source_with_traced_central_descendant",
+      "module": "PscVerif.ClassAMinusCentralBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusCentralBridge.lean",
+      "line": 299,
+      "declaration": "theorem source_with_traced_central_descendant (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusCentralBridge.invalid_parameters_control",
+      "module": "PscVerif.ClassAMinusCentralBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusCentralBridge.lean",
+      "line": 327,
+      "declaration": "theorem invalid_parameters_control :"
+    },
+    {
       "name": "Psc.ClassAMinusConstantRecurrence.nearest_central_iff",
       "module": "PscVerif.ClassAMinusConstantRecurrence",
       "private": false,
@@ -3269,6 +3421,654 @@
       "source": "proof/PscVerif/PscVerif/ClassAMinusConstantRecurrence.lean",
       "line": 482,
       "declaration": "theorem constant_composable_path (n d : ℕ) (hd : 5 ≤ d) (H : ℤ)"
+    },
+    {
+      "name": "Psc.ClassAMinusDensity.literal_counts",
+      "module": "PscVerif.ClassAMinusDensity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusDensity.lean",
+      "line": 21,
+      "declaration": "theorem literal_counts (n d : ℕ) :"
+    },
+    {
+      "name": "Psc.ClassAMinusDensity.literal_lengths",
+      "module": "PscVerif.ClassAMinusDensity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusDensity.lean",
+      "line": 34,
+      "declaration": "theorem literal_lengths (n d : ℕ) :"
+    },
+    {
+      "name": "Psc.ClassAMinusDensity.literal_block_size_bound",
+      "module": "PscVerif.ClassAMinusDensity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusDensity.lean",
+      "line": 40,
+      "declaration": "theorem literal_block_size_bound (n d : ℕ) (hd : d+1 ≤ n) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.ClassAMinusDensity.literal_physical_lengths",
+      "module": "PscVerif.ClassAMinusDensity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusDensity.lean",
+      "line": 46,
+      "declaration": "theorem literal_physical_lengths (n d : ℕ) (ℓ : Fin 3 → ℝ) (hy : ℓ 2 = 1) :"
+    },
+    {
+      "name": "Psc.ClassAMinusDensity.one_level_density",
+      "module": "PscVerif.ClassAMinusDensity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusDensity.lean",
+      "line": 58,
+      "declaration": "theorem one_level_density (n d : ℕ) (hn : 1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusDensity.density_flatMap",
+      "module": "PscVerif.ClassAMinusDensity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusDensity.lean",
+      "line": 125,
+      "declaration": "theorem density_flatMap (n d : ℕ) (ℓ : Fin 3 → ℝ) (Y X C : ℝ)"
+    },
+    {
+      "name": "Psc.ClassAMinusDensity.density_reserve",
+      "module": "PscVerif.ClassAMinusDensity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusDensity.lean",
+      "line": 147,
+      "declaration": "theorem density_reserve (n : ℕ) (hn : 6 ≤ n) (β Lx : ℝ)"
+    },
+    {
+      "name": "Psc.ClassAMinusDensity.boundary_count_bounds",
+      "module": "PscVerif.ClassAMinusDensity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusDensity.lean",
+      "line": 176,
+      "declaration": "theorem boundary_count_bounds (Y X C J L B W : ℝ)"
+    },
+    {
+      "name": "Psc.ClassAMinusDensity.short_interval_packing",
+      "module": "PscVerif.ClassAMinusDensity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusDensity.lean",
+      "line": 193,
+      "declaration": "theorem short_interval_packing {α : Type*} (s : Finset α) (pos : α → ℝ)"
+    },
+    {
+      "name": "Psc.ClassAMinusDensity.finite_center_packing",
+      "module": "PscVerif.ClassAMinusDensity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusDensity.lean",
+      "line": 210,
+      "declaration": "theorem finite_center_packing {α κ : Type*} [DecidableEq κ]"
+    },
+    {
+      "name": "Psc.ClassAMinusDensity.center_packing_with_boundaries",
+      "module": "PscVerif.ClassAMinusDensity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusDensity.lean",
+      "line": 236,
+      "declaration": "theorem center_packing_with_boundaries {α κ : Type*} [DecidableEq κ]"
+    },
+    {
+      "name": "Psc.ClassAMinusDensity.center_count_contradiction",
+      "module": "PscVerif.ClassAMinusDensity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusDensity.lean",
+      "line": 253,
+      "declaration": "theorem center_count_contradiction (n : ℕ) (Y X C J B W : ℝ)"
+    },
+    {
+      "name": "Psc.ClassAMinusDensity.literal_one_level_density",
+      "module": "PscVerif.ClassAMinusDensity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusDensity.lean",
+      "line": 270,
+      "declaration": "theorem literal_one_level_density (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusDensity.literal_density_reserve",
+      "module": "PscVerif.ClassAMinusDensity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusDensity.lean",
+      "line": 285,
+      "declaration": "theorem literal_density_reserve (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusDensity.literal_center_count_contradiction",
+      "module": "PscVerif.ClassAMinusDensity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusDensity.lean",
+      "line": 301,
+      "declaration": "theorem literal_center_count_contradiction (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusDensity.density_threshold_exists",
+      "module": "PscVerif.ClassAMinusDensity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusDensity.lean",
+      "line": 322,
+      "declaration": "theorem density_threshold_exists (n : ℕ) (β ell : ℝ)"
+    },
+    {
+      "name": "Psc.ClassAMinusDensity.length_two_packing_control",
+      "module": "PscVerif.ClassAMinusDensity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusDensity.lean",
+      "line": 334,
+      "declaration": "theorem length_two_packing_control :"
+    },
+    {
+      "name": "Psc.ClassAMinusLiteralArithmetic.lower_chamber_n",
+      "module": "PscVerif.ClassAMinusLiteralArithmetic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusLiteralArithmetic.lean",
+      "line": 32,
+      "declaration": "theorem lower_chamber_n (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n) : 6 ≤ n := by"
+    },
+    {
+      "name": "Psc.ClassAMinusLiteralArithmetic.root_pos",
+      "module": "PscVerif.ClassAMinusLiteralArithmetic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusLiteralArithmetic.lean",
+      "line": 35,
+      "declaration": "theorem root_pos {n d : ℕ} {β : ℝ} (hroot : RootData n d β) : 0 < β := by"
+    },
+    {
+      "name": "Psc.ClassAMinusLiteralArithmetic.root_sub_one_pos",
+      "module": "PscVerif.ClassAMinusLiteralArithmetic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusLiteralArithmetic.lean",
+      "line": 39,
+      "declaration": "theorem root_sub_one_pos {n d : ℕ} {β : ℝ} (hroot : RootData n d β) : 0 < β-1 := by"
+    },
+    {
+      "name": "Psc.ClassAMinusLiteralArithmetic.root_delta_identity",
+      "module": "PscVerif.ClassAMinusLiteralArithmetic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusLiteralArithmetic.lean",
+      "line": 44,
+      "declaration": "theorem root_delta_identity {n d : ℕ} {β : ℝ} (hroot : RootData n d β) :"
+    },
+    {
+      "name": "Psc.ClassAMinusLiteralArithmetic.lengths_difference",
+      "module": "PscVerif.ClassAMinusLiteralArithmetic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusLiteralArithmetic.lean",
+      "line": 54,
+      "declaration": "theorem lengths_difference {n d : ℕ} {β : ℝ} (hroot : RootData n d β) :"
+    },
+    {
+      "name": "Psc.ClassAMinusLiteralArithmetic.root_coefficient_parameters",
+      "module": "PscVerif.ClassAMinusLiteralArithmetic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusLiteralArithmetic.lean",
+      "line": 63,
+      "declaration": "theorem root_coefficient_parameters (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusLiteralArithmetic.literal_lengths_bounds",
+      "module": "PscVerif.ClassAMinusLiteralArithmetic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusLiteralArithmetic.lean",
+      "line": 78,
+      "declaration": "theorem literal_lengths_bounds (n d : ℕ) (hd : 5 ≤ d) (_hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusLiteralArithmetic.literal_lengths_pos",
+      "module": "PscVerif.ClassAMinusLiteralArithmetic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusLiteralArithmetic.lean",
+      "line": 100,
+      "declaration": "theorem literal_lengths_pos (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusLiteralArithmetic.literal_x_length_lower",
+      "module": "PscVerif.ClassAMinusLiteralArithmetic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusLiteralArithmetic.lean",
+      "line": 107,
+      "declaration": "theorem literal_x_length_lower (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusLiteralArithmetic.physicalLength_replicate",
+      "module": "PscVerif.ClassAMinusLiteralArithmetic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusLiteralArithmetic.lean",
+      "line": 119,
+      "declaration": "theorem physicalLength_replicate (ℓ : Fin 3 → ℝ) (a : Fin 3) (k : ℕ) :"
+    },
+    {
+      "name": "Psc.ClassAMinusLiteralArithmetic.literal_length_scaling",
+      "module": "PscVerif.ClassAMinusLiteralArithmetic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusLiteralArithmetic.lean",
+      "line": 127,
+      "declaration": "theorem literal_length_scaling (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusLiteralArithmetic.root_exists",
+      "module": "PscVerif.ClassAMinusLiteralArithmetic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusLiteralArithmetic.lean",
+      "line": 146,
+      "declaration": "theorem root_exists (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n) :"
+    },
+    {
+      "name": "Psc.ClassAMinusLiteralArithmetic.constant_amplitude_run_bound",
+      "module": "PscVerif.ClassAMinusLiteralArithmetic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusLiteralArithmetic.lean",
+      "line": 174,
+      "declaration": "theorem constant_amplitude_run_bound (n d : ℕ) (hd : 5 ≤ d) (_hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusLiteralArithmetic.literal_eventual_constant_tail",
+      "module": "PscVerif.ClassAMinusLiteralArithmetic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusLiteralArithmetic.lean",
+      "line": 192,
+      "declaration": "theorem literal_eventual_constant_tail (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusLiteralArithmetic.literal_constant_composable_path",
+      "module": "PscVerif.ClassAMinusLiteralArithmetic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusLiteralArithmetic.lean",
+      "line": 204,
+      "declaration": "theorem literal_constant_composable_path (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusNoHalfUnit.polyZ_monic",
+      "module": "PscVerif.ClassAMinusNoHalfUnit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusNoHalfUnit.lean",
+      "line": 26,
+      "declaration": "theorem polyZ_monic (n d : ℕ) : (polyZ n d).Monic := by"
+    },
+    {
+      "name": "Psc.ClassAMinusNoHalfUnit.polyQ_monic",
+      "module": "PscVerif.ClassAMinusNoHalfUnit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusNoHalfUnit.lean",
+      "line": 30,
+      "declaration": "theorem polyQ_monic (n d : ℕ) : (polyQ n d).Monic := by"
+    },
+    {
+      "name": "Psc.ClassAMinusNoHalfUnit.polyQ_degree",
+      "module": "PscVerif.ClassAMinusNoHalfUnit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusNoHalfUnit.lean",
+      "line": 34,
+      "declaration": "theorem polyQ_degree (n d : ℕ) : (polyQ n d).natDegree = 3 := by"
+    },
+    {
+      "name": "Psc.ClassAMinusNoHalfUnit.polyQ_irreducible",
+      "module": "PscVerif.ClassAMinusNoHalfUnit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusNoHalfUnit.lean",
+      "line": 38,
+      "declaration": "theorem polyQ_irreducible (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n) :"
+    },
+    {
+      "name": "Psc.ClassAMinusNoHalfUnit.polyQ_aeval_root",
+      "module": "PscVerif.ClassAMinusNoHalfUnit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusNoHalfUnit.lean",
+      "line": 62,
+      "declaration": "theorem polyQ_aeval_root {n d : ℕ} {β : ℝ} (hroot : RootData n d β) :"
+    },
+    {
+      "name": "Psc.ClassAMinusNoHalfUnit.rational_quadratic_zero",
+      "module": "PscVerif.ClassAMinusNoHalfUnit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusNoHalfUnit.lean",
+      "line": 67,
+      "declaration": "theorem rational_quadratic_zero (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusNoHalfUnit.integral_quadratic_zero",
+      "module": "PscVerif.ClassAMinusNoHalfUnit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusNoHalfUnit.lean",
+      "line": 87,
+      "declaration": "theorem integral_quadratic_zero (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusNoHalfUnit.physical_shift_ne_half_integer",
+      "module": "PscVerif.ClassAMinusNoHalfUnit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusNoHalfUnit.lean",
+      "line": 96,
+      "declaration": "theorem physical_shift_ne_half_integer (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusNoHalfUnit.physical_abs_ne_half",
+      "module": "PscVerif.ClassAMinusNoHalfUnit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusNoHalfUnit.lean",
+      "line": 111,
+      "declaration": "theorem physical_abs_ne_half (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.image_eq_iterate",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 22,
+      "declaration": "theorem image_eq_iterate (s : Fin 3 → Word) (k : ℕ) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.image_succ",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 25,
+      "declaration": "theorem image_succ (s : Fin 3 → Word) (k : ℕ) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.inflateImageMark_index",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 38,
+      "declaration": "theorem inflateImageMark_index (s : Fin 3 → Word) {k : ℕ} {a : Fin 3}"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.OrderedInteriorPath.orderedPath",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 72,
+      "declaration": "theorem OrderedInteriorPath.orderedPath {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ}"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.OrderedInteriorPath.source_interior",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 79,
+      "declaration": "theorem OrderedInteriorPath.source_interior {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ}"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.OrderedInteriorPath.interiorPath",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 86,
+      "declaration": "theorem OrderedInteriorPath.interiorPath {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ}"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.OrderedPath.digitPath",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 93,
+      "declaration": "theorem OrderedPath.digitPath {s : Fin 3 → Word} {p q : Packet}"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.OrderedPath.trans",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 102,
+      "declaration": "theorem OrderedPath.trans {s : Fin 3 → Word} {p q r : Packet}"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.digit_path_has_ordered_path",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 111,
+      "declaration": "theorem digit_path_has_ordered_path {s : Fin 3 → Word} {p q : Packet}"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.ordered_path_traced_affine",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 142,
+      "declaration": "theorem ordered_path_traced_affine {s : Fin 3 → Word} {p q : Packet}"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.ordered_path_affine",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 181,
+      "declaration": "theorem ordered_path_affine {s : Fin 3 → Word} {p q : Packet}"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.ordered_path_traced_original_prefixes",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 192,
+      "declaration": "theorem ordered_path_traced_original_prefixes {s : Fin 3 → Word} {p q : Packet}"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.ordered_path_traced_zero_original_prefixes",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 208,
+      "declaration": "theorem ordered_path_traced_zero_original_prefixes {s : Fin 3 → Word} {p q : Packet}"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.ordered_path_original_prefixes",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 226,
+      "declaration": "theorem ordered_path_original_prefixes {s : Fin 3 → Word} {p q : Packet}"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.ordered_path_zero_original_prefixes",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 246,
+      "declaration": "theorem ordered_path_zero_original_prefixes {s : Fin 3 → Word} {p q : Packet}"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.digit_path_original_prefixes",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 261,
+      "declaration": "theorem digit_path_original_prefixes {s : Fin 3 → Word} {p q : Packet}"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.constant_original_prefixes",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 274,
+      "declaration": "theorem constant_original_prefixes (n d : ℕ) (hd : 5 ≤ d) (H : ℤ)"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.ordered_path_interior",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 297,
+      "declaration": "theorem ordered_path_interior (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.ordered_path_indexed_interior",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 309,
+      "declaration": "theorem ordered_path_indexed_interior (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.incomplete_prefix_control",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 327,
+      "declaration": "theorem incomplete_prefix_control :"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.singleton_mark",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 338,
+      "declaration": "theorem singleton_mark (a : Fin 3) (m : Mark [a]) :"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.identity_mark_trace_indices",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 350,
+      "declaration": "theorem identity_mark_trace_indices {a b : Fin 3} {xs : List ℕ} {pre post : Word}"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.identity_incidence",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 363,
+      "declaration": "theorem identity_incidence : incidenceZ identitySubstitution = 1 := by"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.identity_digit_step_eq",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 368,
+      "declaration": "theorem identity_digit_step_eq {p q : Packet}"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.identity_ordered_path_eq",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 375,
+      "declaration": "theorem identity_ordered_path_eq {p q : Packet} {xs : List (ℕ × ℕ)}"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.identity_indexed_step",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 381,
+      "declaration": "theorem identity_indexed_step (p : Packet) :"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.wrong_transcript_control",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 389,
+      "declaration": "theorem wrong_transcript_control :"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.noncomposable_paths_control",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 405,
+      "declaration": "theorem noncomposable_paths_control :"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.empty_transcript_control",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 419,
+      "declaration": "theorem empty_transcript_control (s : Fin 3 → Word) :"
+    },
+    {
+      "name": "Psc.ClassAMinusPrefixAssembly.mixed_letter_zero_control",
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "line": 428,
+      "declaration": "theorem mixed_letter_zero_control :"
+    },
+    {
+      "name": "Psc.ClassAMinusRootSpectrum.literal_matrix_entries",
+      "module": "PscVerif.ClassAMinusRootSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusRootSpectrum.lean",
+      "line": 24,
+      "declaration": "theorem literal_matrix_entries (n d : ℕ) (hn : 1 ≤ n) :"
+    },
+    {
+      "name": "Psc.ClassAMinusRootSpectrum.literal_charpoly",
+      "module": "PscVerif.ClassAMinusRootSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusRootSpectrum.lean",
+      "line": 32,
+      "declaration": "theorem literal_charpoly (n d : ℕ) (hn : 1 ≤ n) :"
+    },
+    {
+      "name": "Psc.ClassAMinusRootSpectrum.literal_positive_eigenrow",
+      "module": "PscVerif.ClassAMinusRootSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusRootSpectrum.lean",
+      "line": 40,
+      "declaration": "theorem literal_positive_eigenrow (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusRootSpectrum.cubic_continuous",
+      "module": "PscVerif.ClassAMinusRootSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusRootSpectrum.lean",
+      "line": 50,
+      "declaration": "theorem cubic_continuous (n d : ℕ) : Continuous (cubic n d) := by"
+    },
+    {
+      "name": "Psc.ClassAMinusRootSpectrum.negative_root_exists",
+      "module": "PscVerif.ClassAMinusRootSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusRootSpectrum.lean",
+      "line": 54,
+      "declaration": "theorem negative_root_exists (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n) :"
+    },
+    {
+      "name": "Psc.ClassAMinusRootSpectrum.small_positive_root_exists",
+      "module": "PscVerif.ClassAMinusRootSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusRootSpectrum.lean",
+      "line": 65,
+      "declaration": "theorem small_positive_root_exists (n d : ℕ) (hd : 5 ≤ d) :"
+    },
+    {
+      "name": "Psc.ClassAMinusRootSpectrum.sum_of_distinct_roots",
+      "module": "PscVerif.ClassAMinusRootSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusRootSpectrum.lean",
+      "line": 76,
+      "declaration": "theorem sum_of_distinct_roots {K : Type*} [Field K] (n d : ℕ) {a b c : K}"
+    },
+    {
+      "name": "Psc.ClassAMinusRootSpectrum.aeval_polyQ",
+      "module": "PscVerif.ClassAMinusRootSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusRootSpectrum.lean",
+      "line": 93,
+      "declaration": "theorem aeval_polyQ {K : Type*} [CommRing K] [Algebra ℚ K]"
+    },
+    {
+      "name": "Psc.ClassAMinusRootSpectrum.literal_other_roots",
+      "module": "PscVerif.ClassAMinusRootSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusRootSpectrum.lean",
+      "line": 99,
+      "declaration": "theorem literal_other_roots (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusRootSpectrum.literal_pisot_root_exists",
+      "module": "PscVerif.ClassAMinusRootSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusRootSpectrum.lean",
+      "line": 143,
+      "declaration": "theorem literal_pisot_root_exists (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n) :"
     },
     {
       "name": "Psc.ClassAZeroDefectEscape.runMark_index",
@@ -24570,7 +25370,7 @@
     },
     {
       "source": "docs/class-a-minus-constant-entry-2026-11-14.md",
-      "line": 11,
+      "line": 19,
       "statement_heading": "**Theorem (repository-proved).** Let `d,n` be integers with `d>=5` and `n>=d+1`, and use the"
     },
     {
@@ -26038,6 +26838,7 @@
     "claim_governance.toml": "5642e664f9a79064ffbaf770719cf0acba52accc75fca568711d4b554a08803e",
     "proof/PscVerif/ClassACentralRecurrenceAudit.lean": "c312940fe33a565e0031cf0c87e303a291755da0db9080f65222b1ffa6a4519b",
     "proof/PscVerif/ClassAMinusConstantRecurrenceAudit.lean": "6e90eee52630956763ce1bca0525ecc0fd20b02b956ac09a5007863e8c930ecc",
+    "proof/PscVerif/ClassAMinusLiteralEntryAudit.lean": "118ac35be0083152782fda109158afaebdf6f8a1cad899d315eac573528904b4",
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "8a4fda395ae5e20a25f52a2525702f82c08f4e75b4160006604a562a4c92de48",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean": "87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025",
@@ -26052,7 +26853,13 @@
     "proof/PscVerif/PscVerif/BoundarySeedPath.lean": "bea69cb93d5bcd15b1b88c48062b4404a721908092af1b5f5b42e6184f7abae3",
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
     "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean": "f7e27955fe4238bf0a74bf31f6afe618c6d4769f047ad8ce5ffbdb4d39484a5b",
+    "proof/PscVerif/PscVerif/ClassAMinusCentralBridge.lean": "bed7f4d4b05a4df2e9ed8cf10d141312b9303b6bedf215e512a375021e232011",
     "proof/PscVerif/PscVerif/ClassAMinusConstantRecurrence.lean": "748b13de20f335033940b3cdddf2d648d10365c23080301b66dfd8db8a498e04",
+    "proof/PscVerif/PscVerif/ClassAMinusDensity.lean": "934587e3b2a3b3f2e73b321954b332d75189368ef746f40b467dcc5f01188d74",
+    "proof/PscVerif/PscVerif/ClassAMinusLiteralArithmetic.lean": "22de2fa5335423dc5401f01b2cacf277a5697ddc5e88a69123d9920737c24d9d",
+    "proof/PscVerif/PscVerif/ClassAMinusNoHalfUnit.lean": "8ca8c01d24b989976c629ab4909fff049bd3ff01797ec408cc43998909731ffb",
+    "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean": "a2d6944184b75c47c6d307cee5cf5f6db78de4768f0b09b3d3218861665aaa7d",
+    "proof/PscVerif/PscVerif/ClassAMinusRootSpectrum.lean": "e93ebfbf01b50b749a5165c2b2c9b2db27a6bd283fdd18d16bcf3398b279e4eb",
     "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean": "a50672744789443300b5c7c4b6c0467c941fec5b1d833d7544e62440c729fa58",
     "proof/PscVerif/PscVerif/ClassBRegime.lean": "1c873d0aea0201c3a60486dc90bce00e9f9612019ad72c5344cfa927d93a23e6",
     "proof/PscVerif/PscVerif/CocycleSpectrum.lean": "5937db527975a492a4c45f3bdbc7550b0a1d202dd4e71634d8b35ebcfcc24ed4",
@@ -26159,7 +26966,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "8c55fded8b2404213593be64ce4ceabce7432449c39a40745195dec6eec7c8f4",
+    "proof/PscVerif/PscVerif.lean": "bcdf6e6c4840b0310cb4224e919014bb66376c75bc425a6e5fef95b517036536",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

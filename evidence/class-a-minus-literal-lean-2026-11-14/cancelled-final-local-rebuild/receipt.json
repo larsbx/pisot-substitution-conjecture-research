@@ -1,0 +1,71 @@
+{
+  "scope": "all transitive local modules rebuilt from copied source with autoImplicit=false; cached pinned upstream dependency objects; not fresh-dependency acceptance",
+  "source_revision": "b0d499b333f012dc927e5f27782add14803ef3dd",
+  "source_manifest_sha256": "e167c140fc9de1c6cc28934841bb0a6e4842a208753dd1117ea8e1a784b10b2f",
+  "source_count": 134,
+  "started_utc": "2026-11-15T00:21:16.089938+00:00",
+  "lean_version": "Lean (version 4.34.0-rc2, x86_64-unknown-linux-gnu, commit 6a10ac8c22beadecabdbb0919c2b50214762f91d, Release)",
+  "LEAN_PATH": "/workspace/scratch/7dc9ab659e7f/final-local-source-rebuild/build:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/Cli/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/Qq/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/aesop/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/batteries/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/importGraph/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/mathlib/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/plausible/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/proofwidgets/.lake/build/lib/lean",
+  "commands": [
+    {
+      "module": "PscVerif.Binomial",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "-DautoImplicit=false",
+        "PscVerif/Binomial.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/final-local-source-rebuild/build/PscVerif/Binomial.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/final-local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:21:16.172838+00:00",
+      "ended_utc": "2026-11-15T00:21:50.185762+00:00",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PscVerif.Incidence",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "-DautoImplicit=false",
+        "PscVerif/Incidence.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/final-local-source-rebuild/build/PscVerif/Incidence.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/final-local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:21:50.186703+00:00",
+      "ended_utc": "2026-11-15T00:25:11.297845+00:00",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PscVerif.PerronCore",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "-DautoImplicit=false",
+        "PscVerif/PerronCore.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/final-local-source-rebuild/build/PscVerif/PerronCore.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/final-local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:25:11.299199+00:00",
+      "ended_utc": "2026-11-15T00:29:49.602543+00:00",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PscVerif.ConcentrationAlgebra",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "-DautoImplicit=false",
+        "PscVerif/ConcentrationAlgebra.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/final-local-source-rebuild/build/PscVerif/ConcentrationAlgebra.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/final-local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:29:49.602999+00:00",
+      "ended_utc": "2026-11-15T00:31:45.057341+00:00",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}
