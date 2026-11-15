@@ -1,0 +1,136 @@
+{
+  "audit": {
+    "declarations": 116,
+    "endpoints": 17,
+    "modules": 2,
+    "negative_controls": 51,
+    "theorems": 98
+  },
+  "audit_log_is_exact_contiguous_bytes_of_producing_log": true,
+  "audit_sha256": "aab6234765efe221fc7bdc2b1d2f91539a94bd864ca6fd548194a526de9807cc",
+  "completed_at": "2026-11-15T19:11:21.397464+00:00",
+  "notes": [
+    "Development artifacts are preserved separately and receive no fresh-acceptance credit.",
+    "Fresh attempt 1 completed every local build, both independent endpoint/axiom audits, the strict receipt parser and all four source rechecks.",
+    "Only propext, Classical.choice and Quot.sound are allowed in audited transitive axiom closures.",
+    "The extracted audit log is the exact contiguous producing output, not a synthetic test fixture."
+  ],
+  "process": {
+    "base_revision": "febe7535afd59cbe56d9ae0bbc541b1bb8b57995",
+    "command": [
+      "timeout",
+      "2100",
+      "bash",
+      "tools/check_class_a_plus_upper_recurrence.sh"
+    ],
+    "ended_at": "2026-11-15T19:11:21.397464+00:00",
+    "exit_code": 0,
+    "helper_sources_after": {
+      "docs/proof-bank.md": "bb5771ceff2d95011dc279802c17404bf2953cfdce9f157a639af45b6315497e",
+      "proof/proof-bank.json": "461c96f049b8995c774d367638e88a048c49d4b6d330b8a3357212ecaf0e742c",
+      "tests/test_class_a_plus_upper_recurrence_audit.py": "ead6ad33eba34a1c7b752b230515ed484211084b60a648d88c2bf5bf7268c895",
+      "tools/check_class_a_plus_upper_recurrence.sh": "3200b195b131e54a116644682806fb1f99e2e8beda0ceba00f4b51653a3240fb",
+      "tools/check_class_a_plus_upper_recurrence_audit.py": "381d9efd3953548874015504facd83255206f93e68c429b0b25caa8f59b476eb",
+      "tools/make_proof_bank.py": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8"
+    },
+    "helper_sources_before": {
+      "docs/proof-bank.md": "bb5771ceff2d95011dc279802c17404bf2953cfdce9f157a639af45b6315497e",
+      "proof/proof-bank.json": "461c96f049b8995c774d367638e88a048c49d4b6d330b8a3357212ecaf0e742c",
+      "tests/test_class_a_plus_upper_recurrence_audit.py": "ead6ad33eba34a1c7b752b230515ed484211084b60a648d88c2bf5bf7268c895",
+      "tools/check_class_a_plus_upper_recurrence.sh": "3200b195b131e54a116644682806fb1f99e2e8beda0ceba00f4b51653a3240fb",
+      "tools/check_class_a_plus_upper_recurrence_audit.py": "381d9efd3953548874015504facd83255206f93e68c429b0b25caa8f59b476eb",
+      "tools/make_proof_bank.py": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8"
+    },
+    "log_sha256": "07e08678622a6e74d145721204ab5e6b23d3484fa3a1e7b0a67173f5f9343ac5",
+    "seconds": 1012.433,
+    "source_files": 132,
+    "source_isolated_success": true,
+    "source_set_sha256": "8fd66b738fe7bc3ca4b2235ffa38585fcbfa3c05fc1ee27f417d27a400763872",
+    "sources_unchanged": true,
+    "started_at": "2026-11-15T18:54:29.045743+00:00",
+    "tmpdir": "/workspace/scratch/7b7b91dcb7fe/upper-recurrence-fresh-temporary"
+  },
+  "schema": "psc-class-a-plus-upper-recurrence-fresh-lean-v1",
+  "scope": {
+    "arbitrary_source_entry": false,
+    "cycle_endpoint": "all heights H>=0 with J*H<=n-1; genuine signed ordered paths, complete original MarkTrace witnesses, typed zero, full integral prefix identity",
+    "end_to_end_central_source_lean_assembly": false,
+    "family": "n>=7, 1<=J<=n+7, d=2*n+12-J",
+    "scalar_endpoint": "explicit actual cubic/root chamber and entire strict recurrence imply a bound from both initial coordinates and an eventually alternating tail with v*H<1/2",
+    "strict_prefix_hypotheses": "positive lengths, positive inflation, exact literal substitution scaling",
+    "universal_BH": false,
+    "written_quantitative_bound_formalized": false
+  },
+  "source_isolation": {
+    "fresh_local_library_modules": 22,
+    "fresh_pinned_dependency_checkouts": true,
+    "fresh_standalone_audits": 2,
+    "local_source_closure": [
+      "ClassAPlusUpperCycleCompletionAudit",
+      "ClassAPlusUpperRecurrenceAudit",
+      "PscVerif.Binomial",
+      "PscVerif.ClassACentralRecurrence",
+      "PscVerif.ClassAMinusConstantRecurrence",
+      "PscVerif.ClassAMinusPrefixAssembly",
+      "PscVerif.ClassAPlusConstantRecurrence",
+      "PscVerif.ClassAPlusUpperCycleCompletion",
+      "PscVerif.ClassAPlusUpperCycles",
+      "PscVerif.ClassAPlusUpperRecurrence",
+      "PscVerif.ClassAZeroDefectEscape",
+      "PscVerif.ConcentrationAlgebra",
+      "PscVerif.Cyclicity",
+      "PscVerif.Descendants",
+      "PscVerif.FixedPointLimit",
+      "PscVerif.Incidence",
+      "PscVerif.OccurrenceAddress",
+      "PscVerif.OccurrenceNewborn",
+      "PscVerif.OccurrenceSuccessor",
+      "PscVerif.OccurrenceTransport",
+      "PscVerif.ParikhIntertwiner",
+      "PscVerif.PerronCore",
+      "PscVerif.Reduction",
+      "PscVerif.SignedCocycle"
+    ],
+    "project_artifacts_reused": false,
+    "selected_upstream_artifacts": 2165,
+    "upstream_roots": [
+      "Mathlib.Algebra.BigOperators.Ring.Finset",
+      "Mathlib.Algebra.Polynomial.AlgebraMap",
+      "Mathlib.Algebra.Polynomial.SpecificDegree",
+      "Mathlib.Analysis.Complex.Basic",
+      "Mathlib.Data.Finset.Lattice.Fold",
+      "Mathlib.Data.Fintype.Card",
+      "Mathlib.Data.Fintype.Pigeonhole",
+      "Mathlib.Data.Int.LeastGreatest",
+      "Mathlib.Data.List.Basic",
+      "Mathlib.Data.Matrix.Mul",
+      "Mathlib.Data.Nat.Choose.Basic",
+      "Mathlib.Data.Nat.Periodic",
+      "Mathlib.LinearAlgebra.FiniteDimensional.Lemmas",
+      "Mathlib.LinearAlgebra.Matrix.Charpoly.Basic",
+      "Mathlib.LinearAlgebra.Matrix.Charpoly.Coeff",
+      "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+      "Mathlib.LinearAlgebra.Matrix.ToLin",
+      "Mathlib.LinearAlgebra.Matrix.ToLinearEquiv",
+      "Mathlib.LinearAlgebra.Quotient.Basic",
+      "Mathlib.Logic.Function.Iterate",
+      "Mathlib.Tactic.ComputeDegree",
+      "Mathlib.Tactic.FinCases",
+      "Mathlib.Tactic.Linarith",
+      "Mathlib.Tactic.NormNum",
+      "Mathlib.Tactic.Ring"
+    ]
+  },
+  "source_snapshot": {
+    "files": 132,
+    "path": "source-bindings.json",
+    "sha256": "8fd66b738fe7bc3ca4b2235ffa38585fcbfa3c05fc1ee27f417d27a400763872",
+    "successful_rechecks": [
+      "after-clone",
+      "after-upstream-cache",
+      "after-build",
+      "after-audit"
+    ]
+  },
+  "status": "passed"
+}

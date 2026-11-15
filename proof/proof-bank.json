@@ -5515,6 +5515,38 @@
       "declaration": "theorem constant_composable_path (n d : ℕ) (hd : 5 ≤ d) (H : ℤ)"
     },
     {
+      "name": "Psc.ClassAPlusUpperCycleCompletion.decrement_path",
+      "module": "PscVerif.ClassAPlusUpperCycleCompletion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCycleCompletion.lean",
+      "line": 24,
+      "declaration": "theorem decrement_path (n J H : ℕ) (hn : 7 ≤ n) (hJ : 1 ≤ J)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCycleCompletion.all_ordered_paths",
+      "module": "PscVerif.ClassAPlusUpperCycleCompletion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCycleCompletion.lean",
+      "line": 66,
+      "declaration": "theorem all_ordered_paths (n J H : ℕ) (hn : 7 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCycleCompletion.all_signed_ordered_paths",
+      "module": "PscVerif.ClassAPlusUpperCycleCompletion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCycleCompletion.lean",
+      "line": 102,
+      "declaration": "theorem all_signed_ordered_paths (n J H : ℕ) (hn : 7 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCycleCompletion.all_traced_strict_prefixes",
+      "module": "PscVerif.ClassAPlusUpperCycleCompletion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCycleCompletion.lean",
+      "line": 116,
+      "declaration": "theorem all_traced_strict_prefixes (n J H : ℕ) (hn : 7 ≤ n)"
+    },
+    {
       "name": "Psc.ClassAPlusUpperCycles.run_run_step",
       "module": "PscVerif.ClassAPlusUpperCycles",
       "private": false,
@@ -5617,6 +5649,318 @@
       "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCycles.lean",
       "line": 321,
       "declaration": "theorem disputed_last_is_c (n d : ℕ) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.Family.beta_gt_eleven",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 31,
+      "declaration": "theorem Family.beta_gt_eleven {n J : ℕ} {β : ℝ} (hp : Family n J β) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.Family.beta_pos",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 36,
+      "declaration": "theorem Family.beta_pos {n J : ℕ} {β : ℝ} (hp : Family n J β) : 0 < β :="
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.Family.A_pos",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 39,
+      "declaration": "theorem Family.A_pos {n J : ℕ} {β : ℝ} (hp : Family n J β) : 0 < A β :="
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.Family.A_lt_quarter",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 42,
+      "declaration": "theorem Family.A_lt_quarter {n J : ℕ} {β : ℝ} (hp : Family n J β) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.Family.A_mul_beta",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 48,
+      "declaration": "theorem Family.A_mul_beta {n J : ℕ} {β : ℝ} (hp : Family n J β) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.Family.C_pos",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 52,
+      "declaration": "theorem Family.C_pos {n J : ℕ} {β : ℝ} (hp : Family n J β) : 0 < C n β := by"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.Family.reserve_identity",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 58,
+      "declaration": "theorem Family.reserve_identity {n J : ℕ} {β : ℝ} (hp : Family n J β) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.Family.V_pos",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 66,
+      "declaration": "theorem Family.V_pos {n J : ℕ} {β : ℝ} (hp : Family n J β) : 0 < V n β := by"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.Family.reserve_scale",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 71,
+      "declaration": "theorem Family.reserve_scale {n J : ℕ} {β : ℝ} (hp : Family n J β) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.Family.high_contraction",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 81,
+      "declaration": "theorem Family.high_contraction {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.Family.low_shear",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 106,
+      "declaration": "theorem Family.low_shear {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.initial_bound_covers",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 132,
+      "declaration": "theorem initial_bound_covers (n : ℕ) (hn : 7 ≤ n) (a b : ℤ) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.shear_bound",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 153,
+      "declaration": "theorem shear_bound (A C B : ℝ) (hA : 0 ≤ A)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.family_forward_bound",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 186,
+      "declaration": "theorem family_forward_bound (n J : ℕ) (β : ℝ) (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.family_eventually_periodic",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 217,
+      "declaration": "theorem family_eventually_periodic (n J : ℕ) (β : ℝ) (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.periodic_sum_shift",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 246,
+      "declaration": "theorem periodic_sum_shift (f : ℕ → ℝ) (T : ℕ) (hf : Function.Periodic f T) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.sum_half",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 253,
+      "declaration": "theorem sum_half (f : ℕ → ℝ) (T : ℕ) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.periodic_difference",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 261,
+      "declaration": "theorem periodic_difference (u : ℕ → ℤ) (T : ℕ) (hp : Function.Periodic u T) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.integer_rounding_product_lt",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 269,
+      "declaration": "theorem integer_rounding_product_lt (ε : ℝ) (he : |ε| < 1/2)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.integer_rounding_product_le",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 282,
+      "declaration": "theorem integer_rounding_product_le (ε : ℝ) (he : |ε| < 1/2)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.energy_periodic_constant",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 291,
+      "declaration": "theorem energy_periodic_constant (A C : ℝ) (hA : 0 ≤ A) (hC : 3*A ≤ C)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.family_eventual_constant",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 420,
+      "declaration": "theorem family_eventual_constant (n J : ℕ) (β : ℝ) (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.twist_abs",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 445,
+      "declaration": "theorem twist_abs (u : ℕ → ℤ) (k : ℕ) : |twist u k| = |u k| := by"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.original_nearest_iff",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 448,
+      "declaration": "theorem original_nearest_iff (A C : ℝ) (a b c : ℤ) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.twist_recurrence",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 458,
+      "declaration": "theorem twist_recurrence (A C : ℝ) (u : ℕ → ℤ)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.twist_next_eq_iff",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 467,
+      "declaration": "theorem twist_next_eq_iff (u : ℕ → ℤ) (k : ℕ) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.family_original_bound",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 472,
+      "declaration": "theorem family_original_bound (n J : ℕ) (β : ℝ) (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.family_eventual_alternating",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 483,
+      "declaration": "theorem family_eventual_alternating (n J : ℕ) (β : ℝ) (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.eventual_alternating_tail",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 501,
+      "declaration": "theorem eventual_alternating_tail (n J : ℕ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.forward_integer_bound",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 514,
+      "declaration": "theorem forward_integer_bound (n J : ℕ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.family_coefficients",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 526,
+      "declaration": "theorem family_coefficients (n J : ℕ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.eventual_constant_tail",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 543,
+      "declaration": "theorem eventual_constant_tail (n J : ℕ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.alternating_packet_shape",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 562,
+      "declaration": "theorem alternating_packet_shape (a b c : ℤ) (hab : b = -a) (hbc : c = -b) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.reconstruction_delay",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 570,
+      "declaration": "theorem reconstruction_delay (u : ℕ → ℤ) (w : ℕ → Packet) (N : ℕ)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.central_coordinate_recurrence",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 582,
+      "declaration": "theorem central_coordinate_recurrence (A C : ℝ) (a b r : ℤ)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.central_gap_in_run",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 592,
+      "declaration": "theorem central_gap_in_run (n : ℕ) (hn : 7 ≤ n) (β θ : ℝ)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.run_gap_digit_step",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 607,
+      "declaration": "theorem run_gap_digit_step (n d : ℕ) (p q r e : ℤ)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.nonzero_upper_cycle_control",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 622,
+      "declaration": "theorem nonzero_upper_cycle_control :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperRecurrence.half_tie_control",
+      "module": "PscVerif.ClassAPlusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "line": 627,
+      "declaration": "theorem half_tie_control : ¬Nearest (1/8) 1 4 0 0 := by"
     },
     {
       "name": "Psc.ClassAZeroDefectEscape.runMark_index",
@@ -32895,7 +33239,9 @@
   ],
   "input_digests": {
     "claim_governance.toml": "00ff62cd0169bebce67ca874588d4a89aca2e81b0ca954af4d05f41adc748cbd",
+    "proof/PscVerif/ClassAPlusUpperCycleCompletionAudit.lean": "6ac8660fe4babef37c7e6fd191507bb1898852837b63d622e465762d881dd040",
     "proof/PscVerif/ClassAPlusUpperCyclesAudit.lean": "f1674a21d8c96382b5c3ea009525c43baf210a2a6db427dd3bbb60923b087c6e",
+    "proof/PscVerif/ClassAPlusUpperRecurrenceAudit.lean": "ef12f802e6eb10dbf2b02ce84cccbcdf9164aed9356f4fe2917ee513923824aa",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean": "87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean": "e18e726b6bd1c431f9e28500504edd6ffba157415af20069715b9c8f208f3f9b",
@@ -32915,7 +33261,9 @@
     "proof/PscVerif/PscVerif/ClassAMinusConstantRecurrence.lean": "748b13de20f335033940b3cdddf2d648d10365c23080301b66dfd8db8a498e04",
     "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean": "a2d6944184b75c47c6d307cee5cf5f6db78de4768f0b09b3d3218861665aaa7d",
     "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean": "c6dbd0f1065e698ee58a04c1781d63692129f2b5c17c97d0a74cc832fd25f79a",
+    "proof/PscVerif/PscVerif/ClassAPlusUpperCycleCompletion.lean": "d80243eca779241325231f64b5472c197c8f81b3919309d1c2e97512579f3a58",
     "proof/PscVerif/PscVerif/ClassAPlusUpperCycles.lean": "5d3cf8f6ce61e49f654710965d03761de7c046e931498bbc2aa09b872471384b",
+    "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean": "a220ded84ea5545cc405f4533959fa15e7dc181637e959bbcf012ac31ff29173",
     "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean": "a50672744789443300b5c7c4b6c0467c941fec5b1d833d7544e62440c729fa58",
     "proof/PscVerif/PscVerif/ClassBRegime.lean": "1c873d0aea0201c3a60486dc90bce00e9f9612019ad72c5344cfa927d93a23e6",
     "proof/PscVerif/PscVerif/CocycleSpectrum.lean": "5937db527975a492a4c45f3bdbc7550b0a1d202dd4e71634d8b35ebcfcc24ed4",
@@ -33036,7 +33384,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "01f99792d2097f3366c408c6657989f152f07a18469a4664029f68f5bd9615d2",
+    "proof/PscVerif/PscVerif.lean": "7fc882043cc48960d428516095684375016d2d99b36b91bdd203311203961c0f",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

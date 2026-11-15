@@ -1,0 +1,9 @@
+{
+  "correction": "Preserve the exact log bytes in a deterministic gzip container, then rerun the unchanged source/receipt sealing checks.",
+  "exit_code": 1,
+  "native_or_lean_source_changed": false,
+  "reason": "Raw Git bundle-verification output contained trailing whitespace. The seal preflight refused it. A later command in that shell cell then refused the missing SHA256SUMS; no test command ran.",
+  "recorded_at": "2026-11-15T19:14:03.776563+00:00",
+  "status": "refused_before_manifest_or_checks",
+  "theorem_acceptance_changed": false
+}

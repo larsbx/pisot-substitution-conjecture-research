@@ -1,0 +1,18 @@
+{
+  "command": [
+    "lake",
+    "--no-cache",
+    "env",
+    "lean",
+    "ClassAPlusUpperCycleCompletionAudit.lean"
+  ],
+  "exit_code": 0,
+  "kind": "development-build-or-audit",
+  "seconds": 24.694,
+  "sources": {
+    "ClassAPlusUpperCycleCompletionAudit.lean": "6ac8660fe4babef37c7e6fd191507bb1898852837b63d622e465762d881dd040",
+    "PscVerif/ClassAPlusUpperCycleCompletion.lean": "d80243eca779241325231f64b5472c197c8f81b3919309d1c2e97512579f3a58"
+  },
+  "started_at": "2026-11-15T18:47:45.022520+00:00",
+  "working_directory": "/workspace/scratch/7b7b91dcb7fe/upper-recurrence-lean-dev/proof/PscVerif"
+}

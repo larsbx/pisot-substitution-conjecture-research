@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+    "-m",
+    "pytest",
+    "-o",
+    "addopts=",
+    "-q",
+    "tests/test_class_a_plus_upper_recurrence.py",
+    "tests/test_class_a_plus_upper_recurrence_independent.py",
+    "--junitxml=/workspace/scratch/7b7b91dcb7fe/psc-upper/evidence/class-a-plus-upper-recurrence-2026-11-15/parser-tests-attempt-1.xml"
+  ],
+  "exit_code": 0,
+  "seconds": 8.61375295399921,
+  "sources": {
+    "oracles/python/class_a_plus_upper_recurrence.py": "6f1d5b341eca97c3fc8c46c107edd6bbe30cc999c6ceebbe6d18111b076e8494",
+    "oracles/python/class_a_plus_upper_recurrence_independent.py": "cc97a3f956ab3fd8d8cf22e61e090664d4a3f614112a03c6068e85adb8dc152c",
+    "tests/test_class_a_plus_upper_recurrence.py": "94ab0e2fd7df147da2e6567a631df801f4c8427c2da9aa6238217a247380004c",
+    "tests/test_class_a_plus_upper_recurrence_independent.py": "d8de4b447dc7352299a20a3074d48cbf0e131228dac32d7654cbf12f86cff6e7",
+    "evidence/class-a-plus-upper-recurrence-2026-11-15/native-attempt-2.log": "65acc78ac1e03747c254a2feb86fd1915d6941a67b99beffff7018130af2c3a6"
+  },
+  "sources_unchanged": true,
+  "log_sha256": "4fb6c63b2234aae86820be9a234550752c0f254f45f656620cc9fb38129c6e1c"
+}
