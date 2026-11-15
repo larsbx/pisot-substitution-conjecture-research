@@ -1,0 +1,13 @@
+{
+  "command": [
+    "timeout",
+    "3600",
+    "bash",
+    "tools/check_class_a_plus_upper_cycles.sh"
+  ],
+  "started_at": "2026-11-15T14:54:36.005389+00:00",
+  "ended_at": "2026-11-15T14:54:38.383673+00:00",
+  "seconds": 2.378,
+  "exit_code": 1,
+  "source_isolated_success": false
+}

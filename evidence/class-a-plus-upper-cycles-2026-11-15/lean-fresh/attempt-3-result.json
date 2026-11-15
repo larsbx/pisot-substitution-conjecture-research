@@ -1,0 +1,14 @@
+{
+  "command": [
+    "timeout",
+    "3600",
+    "bash",
+    "tools/check_class_a_plus_upper_cycles.sh"
+  ],
+  "tmpdir": "/workspace/scratch/7b7b91dcb7fe/upper-lean-temporary",
+  "started_at": "2026-11-15T14:55:10.928155+00:00",
+  "ended_at": "2026-11-15T14:58:36.806319+00:00",
+  "seconds": 205.878,
+  "exit_code": 0,
+  "source_isolated_success": true
+}
