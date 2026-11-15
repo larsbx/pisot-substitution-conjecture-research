@@ -1,0 +1,2 @@
+COMMAND ['/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean', 'PscVerif/ClassAMinusCentralBridge.lean', '-o', '/workspace/scratch/7dc9ab659e7f/literal-lean-build/PscVerif/ClassAMinusCentralBridge.olean']
+PscVerif/ClassAMinusCentralBridge.lean:160:10: error(lean.unknownIdentifier): Unknown constant `Psc.ClassAMinusCentralBridge.IntegralState.ext`

@@ -1,0 +1,347 @@
+{
+  "scope": "all transitive local modules rebuilt from copied sources; cached pinned upstream dependency objects, not the fresh-dependency isolated gate",
+  "source_manifest_sha256": "907ad12d7461885da2fcc6f44a308f17dbd4780f407e10c8798eb4a4604bcb01",
+  "source_count": 134,
+  "started_utc": "2026-11-15T00:05:04.682341+00:00",
+  "lean_version": "Lean (version 4.34.0-rc2, x86_64-unknown-linux-gnu, commit 6a10ac8c22beadecabdbb0919c2b50214762f91d, Release)",
+  "LEAN_PATH": "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/build:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/proofwidgets/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/Qq/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/batteries/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/Cli/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/mathlib/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/plausible/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/aesop/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/importGraph/.lake/build/lib/lean",
+  "commands": [
+    {
+      "module": "PscVerif.Binomial",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "PscVerif/Binomial.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/build/PscVerif/Binomial.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:05:04.718689+00:00",
+      "ended_utc": "2026-11-15T00:05:06.949645+00:00",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PscVerif.Incidence",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "PscVerif/Incidence.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/build/PscVerif/Incidence.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:05:06.949868+00:00",
+      "ended_utc": "2026-11-15T00:05:08.892833+00:00",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PscVerif.PerronCore",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "PscVerif/PerronCore.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/build/PscVerif/PerronCore.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:05:08.893075+00:00",
+      "ended_utc": "2026-11-15T00:05:10.835377+00:00",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PscVerif.ConcentrationAlgebra",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "PscVerif/ConcentrationAlgebra.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/build/PscVerif/ConcentrationAlgebra.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:05:10.835623+00:00",
+      "ended_utc": "2026-11-15T00:05:12.862827+00:00",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PscVerif.ParikhIntertwiner",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "PscVerif/ParikhIntertwiner.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/build/PscVerif/ParikhIntertwiner.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:05:12.863049+00:00",
+      "ended_utc": "2026-11-15T00:05:14.949597+00:00",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PscVerif.SignedCocycle",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "PscVerif/SignedCocycle.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/build/PscVerif/SignedCocycle.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:05:14.949825+00:00",
+      "ended_utc": "2026-11-15T00:05:17.390398+00:00",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PscVerif.FixedPointLimit",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "PscVerif/FixedPointLimit.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/build/PscVerif/FixedPointLimit.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:05:17.390665+00:00",
+      "ended_utc": "2026-11-15T00:05:18.768402+00:00",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PscVerif.Reduction",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "PscVerif/Reduction.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/build/PscVerif/Reduction.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:05:18.768630+00:00",
+      "ended_utc": "2026-11-15T00:05:20.996360+00:00",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PscVerif.Descendants",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "PscVerif/Descendants.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/build/PscVerif/Descendants.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:05:20.996595+00:00",
+      "ended_utc": "2026-11-15T00:05:24.123998+00:00",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PscVerif.Cyclicity",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "PscVerif/Cyclicity.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/build/PscVerif/Cyclicity.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:05:24.124199+00:00",
+      "ended_utc": "2026-11-15T00:05:27.302661+00:00",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PscVerif.OccurrenceNewborn",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "PscVerif/OccurrenceNewborn.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/build/PscVerif/OccurrenceNewborn.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:05:27.302880+00:00",
+      "ended_utc": "2026-11-15T00:05:29.456236+00:00",
+      "exit_code": 0,
+      "log_sha256": "f1296f97f4d997d4df01b6be4125867b04cf5d24724fb47e8111625d33327b76"
+    },
+    {
+      "module": "PscVerif.OccurrenceAddress",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "PscVerif/OccurrenceAddress.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/build/PscVerif/OccurrenceAddress.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:05:29.456449+00:00",
+      "ended_utc": "2026-11-15T00:05:31.600976+00:00",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PscVerif.OccurrenceTransport",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "PscVerif/OccurrenceTransport.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/build/PscVerif/OccurrenceTransport.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:05:31.601181+00:00",
+      "ended_utc": "2026-11-15T00:05:34.195127+00:00",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PscVerif.OccurrenceSuccessor",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "PscVerif/OccurrenceSuccessor.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/build/PscVerif/OccurrenceSuccessor.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:05:34.195329+00:00",
+      "ended_utc": "2026-11-15T00:05:36.323302+00:00",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PscVerif.ClassAZeroDefectEscape",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "PscVerif/ClassAZeroDefectEscape.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/build/PscVerif/ClassAZeroDefectEscape.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:05:36.323514+00:00",
+      "ended_utc": "2026-11-15T00:05:48.028006+00:00",
+      "exit_code": 0,
+      "log_sha256": "e54ae5d2a6c61c92dcfcb790dc361d38730519cbd015b13b27dcc2f4b1776958"
+    },
+    {
+      "module": "PscVerif.ClassACentralRecurrence",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "PscVerif/ClassACentralRecurrence.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/build/PscVerif/ClassACentralRecurrence.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:05:48.028227+00:00",
+      "ended_utc": "2026-11-15T00:05:51.824599+00:00",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PscVerif.ClassAMinusConstantRecurrence",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "PscVerif/ClassAMinusConstantRecurrence.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/build/PscVerif/ClassAMinusConstantRecurrence.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:05:51.824807+00:00",
+      "ended_utc": "2026-11-15T00:05:55.584071+00:00",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PscVerif.ClassAMinusLiteralArithmetic",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "PscVerif/ClassAMinusLiteralArithmetic.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/build/PscVerif/ClassAMinusLiteralArithmetic.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:05:55.584296+00:00",
+      "ended_utc": "2026-11-15T00:05:58.127957+00:00",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PscVerif.ClassAMinusNoHalfUnit",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "PscVerif/ClassAMinusNoHalfUnit.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/build/PscVerif/ClassAMinusNoHalfUnit.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:05:58.128168+00:00",
+      "ended_utc": "2026-11-15T00:06:01.045600+00:00",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PscVerif.ClassAMinusPrefixAssembly",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "PscVerif/ClassAMinusPrefixAssembly.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/build/PscVerif/ClassAMinusPrefixAssembly.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:06:01.045836+00:00",
+      "ended_utc": "2026-11-15T00:06:03.273632+00:00",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PscVerif.ClassAMinusCentralBridge",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "PscVerif/ClassAMinusCentralBridge.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/build/PscVerif/ClassAMinusCentralBridge.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:06:03.273840+00:00",
+      "ended_utc": "2026-11-15T00:06:05.754937+00:00",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PscVerif.ClassAMinusDensity",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "PscVerif/ClassAMinusDensity.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/build/PscVerif/ClassAMinusDensity.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:06:05.755175+00:00",
+      "ended_utc": "2026-11-15T00:06:09.847837+00:00",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PscVerif.ClassAMinusRootSpectrum",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "PscVerif/ClassAMinusRootSpectrum.lean",
+        "-o",
+        "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/build/PscVerif/ClassAMinusRootSpectrum.olean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:06:09.852044+00:00",
+      "ended_utc": "2026-11-15T00:06:12.974172+00:00",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "ClassAMinusLiteralEntryAudit",
+      "command": [
+        "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+        "ClassAMinusLiteralEntryAudit.lean"
+      ],
+      "cwd": "/workspace/scratch/7dc9ab659e7f/local-source-rebuild/proof/PscVerif",
+      "started_utc": "2026-11-15T00:06:12.974428+00:00",
+      "ended_utc": "2026-11-15T00:06:15.794219+00:00",
+      "exit_code": 0,
+      "log_sha256": "1988fff09f065a81a3fa357ed6f8badebdaf1288ff63dc304925d7b777cd447c"
+    }
+  ],
+  "source_unchanged": true,
+  "accepted": true,
+  "ended_utc": "2026-11-15T00:06:15.809332+00:00"
+}
