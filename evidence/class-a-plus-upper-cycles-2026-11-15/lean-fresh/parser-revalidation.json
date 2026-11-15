@@ -1,0 +1,24 @@
+{
+  "audit": {
+    "declarations": 167,
+    "endpoints": 8,
+    "modules": 2,
+    "negative_controls": 24,
+    "theorems": 114
+  },
+  "audit_is_exact_contiguous_bytes_of_fresh_producing_log": true,
+  "audit_sha256": "fe7bbb6913e0ea492844c77f939a5d7af3fb050647e2af7712ab14b0689376bd",
+  "checked_at": "2026-11-15T15:02:20.752637+00:00",
+  "command": [
+    "python3",
+    "tools/check_class_a_plus_upper_audit.py",
+    "evidence/class-a-plus-upper-cycles-2026-11-15/lean-fresh/audit.log"
+  ],
+  "current_parser_sha256": "9ed25a914955be981ed86e5fdad7cf5c3ac00783ee06ae30f7e0bdfe47dcbdc0",
+  "exit_code": 0,
+  "fresh_lean_recompiled": false,
+  "old_parser_preserved_as": "audit-parser-at-build.py",
+  "old_parser_sha256": "f69c0a31e30e7159152bddc5618709be8d5519eec998ddd63fe9ae9534acf272",
+  "parser_contract": "LF-only complete lines with required final LF; additional empty ASCII LF lines allowed",
+  "unchanged_kernel_run": "attempt-3.log"
+}

@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+    "-m",
+    "pytest",
+    "-o",
+    "addopts=",
+    "-q",
+    "tests/test_class_a_plus_upper_audit.py"
+  ],
+  "ended_at": "2026-11-15T15:02:40.434156+00:00",
+  "exit_code": 0,
+  "sources": {
+    "tests/test_class_a_plus_upper_audit.py": "ea886819eaf0228fcf4d6a32bc46e1d92db164994806da57cc06b1818b958162",
+    "tools/check_class_a_plus_upper_audit.py": "9ed25a914955be981ed86e5fdad7cf5c3ac00783ee06ae30f7e0bdfe47dcbdc0"
+  },
+  "started_at": "2026-11-15T15:02:40.026663+00:00",
+  "tests_passed": 51
+}

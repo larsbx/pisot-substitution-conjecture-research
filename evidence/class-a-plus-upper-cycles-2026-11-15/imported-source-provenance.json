@@ -1,0 +1,72 @@
+{
+  "base_commit": "a19670c521927a8f6ac7e08f26cd3d563eafdce3",
+  "policy": "Minimal exact dependency source import; upstream all-source claims and workflows are not promoted",
+  "files": [
+    {
+      "path": "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean",
+      "source_commit": "9f0138d213357b866e7ceef0dcbfab96a667526d",
+      "sha256": "a50672744789443300b5c7c4b6c0467c941fec5b1d833d7544e62440c729fa58",
+      "source_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/9f0138d213357b866e7ceef0dcbfab96a667526d/proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean"
+    },
+    {
+      "path": "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean",
+      "source_commit": "9f0138d213357b866e7ceef0dcbfab96a667526d",
+      "sha256": "f7e27955fe4238bf0a74bf31f6afe618c6d4769f047ad8ce5ffbdb4d39484a5b",
+      "source_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/9f0138d213357b866e7ceef0dcbfab96a667526d/proof/PscVerif/PscVerif/ClassACentralRecurrence.lean"
+    },
+    {
+      "path": "proof/PscVerif/PscVerif/ClassAMinusConstantRecurrence.lean",
+      "source_commit": "9f0138d213357b866e7ceef0dcbfab96a667526d",
+      "sha256": "748b13de20f335033940b3cdddf2d648d10365c23080301b66dfd8db8a498e04",
+      "source_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/9f0138d213357b866e7ceef0dcbfab96a667526d/proof/PscVerif/PscVerif/ClassAMinusConstantRecurrence.lean"
+    },
+    {
+      "path": "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean",
+      "source_commit": "9f0138d213357b866e7ceef0dcbfab96a667526d",
+      "sha256": "c6dbd0f1065e698ee58a04c1781d63692129f2b5c17c97d0a74cc832fd25f79a",
+      "source_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/9f0138d213357b866e7ceef0dcbfab96a667526d/proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean"
+    },
+    {
+      "path": "docs/bh-class-a-entry-stop-go-2026-11-14.md",
+      "source_commit": "9f0138d213357b866e7ceef0dcbfab96a667526d",
+      "sha256": "9f28f6ec43b3d1bb54fc9c9f5d7916cc4d884b7b8602cf49de34082bce0a7a25",
+      "source_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/9f0138d213357b866e7ceef0dcbfab96a667526d/docs/bh-class-a-entry-stop-go-2026-11-14.md"
+    },
+    {
+      "path": "docs/bh-class-a-central-entry-stop-go-2026-11-14.md",
+      "source_commit": "9f0138d213357b866e7ceef0dcbfab96a667526d",
+      "sha256": "36466a0e1f0549bfb9b29a7ab025c75258def762feef67bddfa564a6cc881e9c",
+      "source_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/9f0138d213357b866e7ceef0dcbfab96a667526d/docs/bh-class-a-central-entry-stop-go-2026-11-14.md"
+    },
+    {
+      "path": "docs/bh-class-a-minus-constant-stop-go-2026-11-14.md",
+      "source_commit": "9f0138d213357b866e7ceef0dcbfab96a667526d",
+      "sha256": "26a5e3e1306ce322bc02e29bfb7ccc2f77b98856d7fcc2d4b63dfac99c3b3669",
+      "source_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/9f0138d213357b866e7ceef0dcbfab96a667526d/docs/bh-class-a-minus-constant-stop-go-2026-11-14.md"
+    },
+    {
+      "path": "docs/bh-class-a-plus-constant-stop-go-2026-11-14.md",
+      "source_commit": "9f0138d213357b866e7ceef0dcbfab96a667526d",
+      "sha256": "23b611a7e8f34cdd5fb19b01fb4ad0d86e8459f3d34f470d3d9571efb90cec2f",
+      "source_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/9f0138d213357b866e7ceef0dcbfab96a667526d/docs/bh-class-a-plus-constant-stop-go-2026-11-14.md"
+    },
+    {
+      "path": "docs/class-a-plus-upper-entry-target-2026-11-14.md",
+      "source_commit": "9f0138d213357b866e7ceef0dcbfab96a667526d",
+      "sha256": "594346352edc631297c2e0a2e99154957bc29423db7d4b79bf8a186584ecb89a",
+      "source_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/9f0138d213357b866e7ceef0dcbfab96a667526d/docs/class-a-plus-upper-entry-target-2026-11-14.md"
+    },
+    {
+      "path": "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean",
+      "source_commit": "3091554246ffd673eb7148d00221631f878dfa42",
+      "sha256": "a2d6944184b75c47c6d307cee5cf5f6db78de4768f0b09b3d3218861665aaa7d",
+      "source_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/3091554246ffd673eb7148d00221631f878dfa42/proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean"
+    },
+    {
+      "path": "docs/bh-class-a-literal-lean-stop-go-2026-11-14.md",
+      "source_commit": "3091554246ffd673eb7148d00221631f878dfa42",
+      "sha256": "fc06c42481371a87615517a9642293b78bb662cfa14df36748ba6a0b853caa1b",
+      "source_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/3091554246ffd673eb7148d00221631f878dfa42/docs/bh-class-a-literal-lean-stop-go-2026-11-14.md"
+    }
+  ]
+}

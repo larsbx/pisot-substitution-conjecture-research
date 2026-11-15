@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 # Provision the checked-in Lean/Lake project without updating its pins.
 set -euo pipefail
+PSC_SETUP_MODE=${1:-full}
+if [[ $# -gt 1 || ( "$PSC_SETUP_MODE" != full && "$PSC_SETUP_MODE" != --toolchain-only ) ]]; then
+    echo "Usage: tools/setup_lean.sh [--toolchain-only]" >&2
+    exit 2
+fi
 PSC_ROOT=$(cd "$(dirname "$0")/.." && pwd -P)
 PSC_ELAN_BIN="${ELAN_HOME:-$HOME/.elan}/bin"
 ELAN_VERSION=4.2.4
@@ -55,6 +60,12 @@ if [[ "$PSC_LEAN_VERSION" != "Lean (version $PSC_RELEASE,"* ]] \
     exit 1
 fi
 printf '%s\n%s\n' "$PSC_LEAN_VERSION" "$PSC_LAKE_VERSION"
+
+# Focused isolated gates select their own fresh upstream import closure.
+# The default command retains its historical complete-cache behavior.
+if [[ "$PSC_SETUP_MODE" == --toolchain-only ]]; then
+    exit 0
+fi
 
 PSC_PIN_TMP=$(mktemp -d)
 trap 'rm -rf "${PSC_ELAN_TMP:-}" "$PSC_PIN_TMP"' EXIT
