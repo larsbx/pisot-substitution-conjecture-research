@@ -1,0 +1,733 @@
+{
+  "repository": "larsbx/pisot-substitution-conjecture-research",
+  "main_sha": "a19670c521927a8f6ac7e08f26cd3d563eafdce3",
+  "observation": "2026-11-15 00:12:50 UTC",
+  "pull_requests": [
+    {
+      "number": 577,
+      "state": "open",
+      "draft": true,
+      "base": "main",
+      "base_sha": "a19670c521927a8f6ac7e08f26cd3d563eafdce3",
+      "head": "research/bh-class-a-entry",
+      "head_sha": "01c4e376a652fd93e981e7b302e989c65774a0de",
+      "mergeable": true
+    },
+    {
+      "number": 578,
+      "state": "open",
+      "draft": true,
+      "base": "research/bh-class-a-entry",
+      "base_sha": "01c4e376a652fd93e981e7b302e989c65774a0de",
+      "head": "research/bh-class-a-central-entry",
+      "head_sha": "34ff471c24960729527ae5f090e96c7c16ae4584",
+      "mergeable": true
+    },
+    {
+      "number": 579,
+      "state": "open",
+      "draft": true,
+      "base": "research/bh-class-a-central-entry",
+      "base_sha": "34ff471c24960729527ae5f090e96c7c16ae4584",
+      "head": "research/bh-class-a-minus-constant-entry",
+      "head_sha": "110e7e9ef8243bc24adf80d6e8a375add586d850",
+      "mergeable": true
+    }
+  ],
+  "workflow_observations": [
+    {
+      "sha": "01c4e376a652fd93e981e7b302e989c65774a0de",
+      "first_page_only": true,
+      "workflow_runs": [
+        {
+          "id": 43641917642,
+          "name": "Show your work policy",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 1302,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641917642/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641917642/logs",
+          "workflow_id": 389589665
+        },
+        {
+          "id": 43641861934,
+          "name": "Class-D plus positive-b chambers",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 462,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861934/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861934/logs",
+          "workflow_id": 389663784
+        },
+        {
+          "id": 43641861927,
+          "name": "C4 defect-degree census",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 5057,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861927/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861927/logs",
+          "workflow_id": 354460282
+        },
+        {
+          "id": 43641862129,
+          "name": "Class-A zero-defect escape and occurrence proofs",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 1,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641862129/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641862129/logs",
+          "workflow_id": 418643091
+        },
+        {
+          "id": 43641861960,
+          "name": "Gap-five A/C evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 498,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861960/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861960/logs",
+          "workflow_id": 393948330
+        },
+        {
+          "id": 43641862027,
+          "name": "PSC class-A complete boundary seed children",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 113,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641862027/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641862027/logs",
+          "workflow_id": 397664820
+        },
+        {
+          "id": 43641862085,
+          "name": "C4 periodic Parikh phase rigidity",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 294,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641862085/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641862085/logs",
+          "workflow_id": 406995272
+        },
+        {
+          "id": 43641862045,
+          "name": "Physical mass Lean Quint refinement",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 118,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641862045/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641862045/logs",
+          "workflow_id": 411019785
+        },
+        {
+          "id": 43641861895,
+          "name": "C4 stable prefix window",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 71,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861895/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861895/logs",
+          "workflow_id": 414879997
+        },
+        {
+          "id": 43641861978,
+          "name": "C4 pairwise strict cut frequency",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 316,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861978/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861978/logs",
+          "workflow_id": 406965435
+        },
+        {
+          "id": 43641861970,
+          "name": "Class-D minus recurrent reduction",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 565,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861970/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861970/logs",
+          "workflow_id": 389742893
+        },
+        {
+          "id": 43641861996,
+          "name": "C4 named stable chart",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 56,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861996/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861996/logs",
+          "workflow_id": 414967962
+        },
+        {
+          "id": 43641861830,
+          "name": "C4 overlap Lean verification",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 99,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861830/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861830/logs",
+          "workflow_id": 408437354
+        },
+        {
+          "id": 43641861867,
+          "name": "C4 cut-pair combinatorics and source audit",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 151,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861867/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861867/logs",
+          "workflow_id": 406932731
+        },
+        {
+          "id": 43641861981,
+          "name": "Archived C4 graph source refinement",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 50,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861981/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861981/logs",
+          "workflow_id": 415390669
+        },
+        {
+          "id": 43641862032,
+          "name": "C4 degree2 three-state census",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 5000,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641862032/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641862032/logs",
+          "workflow_id": 354598308
+        },
+        {
+          "id": 43641861994,
+          "name": "Class-A run-index investigation",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 552,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861994/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861994/logs",
+          "workflow_id": 391441935
+        },
+        {
+          "id": 43641861842,
+          "name": "Research branch integration conformance",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_number": 295,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861842/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861842/logs",
+          "workflow_id": 403591247
+        },
+        {
+          "id": 43641861882,
+          "name": "C4 concrete overlap Lean packets",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 105,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861882/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861882/logs",
+          "workflow_id": 408645746
+        },
+        {
+          "id": 43641861983,
+          "name": "Class-D complete residual certificates",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 689,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861983/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861983/logs",
+          "workflow_id": 389504350
+        },
+        {
+          "id": 43641862000,
+          "name": "PSC research checks",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 5220,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641862000/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641862000/logs",
+          "workflow_id": 353526446
+        },
+        {
+          "id": 43641861951,
+          "name": "Show your work policy",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_number": 1301,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861951/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861951/logs",
+          "workflow_id": 389589665
+        },
+        {
+          "id": 43641861946,
+          "name": "PR487 return-family native acceptance",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 83,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861946/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861946/logs",
+          "workflow_id": 407885090
+        },
+        {
+          "id": 43641861838,
+          "name": "Class-A uniform gap theorem",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_number": 560,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861838/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861838/logs",
+          "workflow_id": 394533630
+        },
+        {
+          "id": 43641861874,
+          "name": "C4 phase lattice index conservation",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 292,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861874/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861874/logs",
+          "workflow_id": 407011900
+        },
+        {
+          "id": 43641861998,
+          "name": "Canonical Pisot polynomial kernels",
+          "status": "in_progress",
+          "conclusion": null,
+          "run_number": 3449,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861998/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861998/logs",
+          "workflow_id": 372303541
+        },
+        {
+          "id": 43641861930,
+          "name": "Scoped class-D assembly",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 558,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861930/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861930/logs",
+          "workflow_id": 391303683
+        },
+        {
+          "id": 43641861836,
+          "name": "Class-A cover obstruction",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 550,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861836/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861836/logs",
+          "workflow_id": 391878312
+        },
+        {
+          "id": 43641862040,
+          "name": "Boundary synchronization layer",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 3613,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641862040/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641862040/logs",
+          "workflow_id": 365028591
+        },
+        {
+          "id": 43641861984,
+          "name": "C4 return induction and prefix-satellite obstruction",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 68,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861984/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861984/logs",
+          "workflow_id": 407092428
+        },
+        {
+          "id": 43641861961,
+          "name": "Target-aware BPA diagnostic",
+          "status": "in_progress",
+          "conclusion": null,
+          "run_number": 1208,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861961/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861961/logs",
+          "workflow_id": 373275169
+        },
+        {
+          "id": 43641861907,
+          "name": "Proof bank generated-source consistency",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 169,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861907/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641861907/logs",
+          "workflow_id": 405027193
+        },
+        {
+          "id": 43641862073,
+          "name": "Original C4 archived payload Lean import",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 46,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641862073/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43641862073/logs",
+          "workflow_id": 415687755
+        }
+      ]
+    },
+    {
+      "sha": "34ff471c24960729527ae5f090e96c7c16ae4584",
+      "first_page_only": true,
+      "workflow_runs": [
+        {
+          "id": 43646986359,
+          "name": "C4 cut-pair combinatorics and source audit",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 153,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986359/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986359/logs",
+          "workflow_id": 406932731
+        },
+        {
+          "id": 43646986363,
+          "name": "Canonical Pisot polynomial kernels",
+          "status": "in_progress",
+          "conclusion": null,
+          "run_number": 3453,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986363/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986363/logs",
+          "workflow_id": 372303541
+        },
+        {
+          "id": 43646986335,
+          "name": "C4 degree2 three-state census",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 5004,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986335/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986335/logs",
+          "workflow_id": 354598308
+        },
+        {
+          "id": 43646986342,
+          "name": "C4 phase lattice index conservation",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 294,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986342/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986342/logs",
+          "workflow_id": 407011900
+        },
+        {
+          "id": 43646986465,
+          "name": "PR487 return-family native acceptance",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 85,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986465/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986465/logs",
+          "workflow_id": 407885090
+        },
+        {
+          "id": 43646986333,
+          "name": "Class-A zero-defect escape and occurrence proofs",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 2,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986333/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986333/logs",
+          "workflow_id": 418643091
+        },
+        {
+          "id": 43646986390,
+          "name": "C4 named stable chart",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 57,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986390/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986390/logs",
+          "workflow_id": 414967962
+        },
+        {
+          "id": 43646986351,
+          "name": "Archived C4 graph source refinement",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 51,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986351/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986351/logs",
+          "workflow_id": 415390669
+        },
+        {
+          "id": 43646986522,
+          "name": "Scoped class-D assembly",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 560,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986522/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986522/logs",
+          "workflow_id": 391303683
+        },
+        {
+          "id": 43646986502,
+          "name": "C4 concrete overlap Lean packets",
+          "status": "in_progress",
+          "conclusion": null,
+          "run_number": 107,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986502/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986502/logs",
+          "workflow_id": 408645746
+        },
+        {
+          "id": 43646986471,
+          "name": "C4 overlap Lean verification",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 101,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986471/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986471/logs",
+          "workflow_id": 408437354
+        },
+        {
+          "id": 43646986424,
+          "name": "Physical mass Lean Quint refinement",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 120,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986424/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986424/logs",
+          "workflow_id": 411019785
+        },
+        {
+          "id": 43646986560,
+          "name": "C4 pairwise strict cut frequency",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 318,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986560/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986560/logs",
+          "workflow_id": 406965435
+        },
+        {
+          "id": 43646986472,
+          "name": "C4 defect-degree census",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 5061,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986472/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986472/logs",
+          "workflow_id": 354460282
+        },
+        {
+          "id": 43646986575,
+          "name": "Gap-five A/C evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 500,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986575/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986575/logs",
+          "workflow_id": 393948330
+        },
+        {
+          "id": 43646986570,
+          "name": "Proof bank generated-source consistency",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 171,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986570/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986570/logs",
+          "workflow_id": 405027193
+        },
+        {
+          "id": 43646986454,
+          "name": "Class-D plus positive-b chambers",
+          "status": "in_progress",
+          "conclusion": null,
+          "run_number": 464,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986454/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986454/logs",
+          "workflow_id": 389663784
+        },
+        {
+          "id": 43646986505,
+          "name": "Class-A uniform gap theorem",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 562,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986505/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986505/logs",
+          "workflow_id": 394533630
+        },
+        {
+          "id": 43646986500,
+          "name": "Show your work policy",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 1305,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986500/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986500/logs",
+          "workflow_id": 389589665
+        },
+        {
+          "id": 43646986559,
+          "name": "Target-aware BPA diagnostic",
+          "status": "in_progress",
+          "conclusion": null,
+          "run_number": 1210,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986559/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986559/logs",
+          "workflow_id": 373275169
+        },
+        {
+          "id": 43646986571,
+          "name": "Boundary synchronization layer",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 3617,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986571/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986571/logs",
+          "workflow_id": 365028591
+        },
+        {
+          "id": 43646986437,
+          "name": "Class-A run-index investigation",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 554,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986437/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986437/logs",
+          "workflow_id": 391441935
+        },
+        {
+          "id": 43646986455,
+          "name": "Class-A cover obstruction",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 552,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986455/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986455/logs",
+          "workflow_id": 391878312
+        },
+        {
+          "id": 43646986477,
+          "name": "C4 return induction and prefix-satellite obstruction",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 70,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986477/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986477/logs",
+          "workflow_id": 407092428
+        },
+        {
+          "id": 43646986596,
+          "name": "Original C4 archived payload Lean import",
+          "status": "in_progress",
+          "conclusion": null,
+          "run_number": 48,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986596/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986596/logs",
+          "workflow_id": 415687755
+        },
+        {
+          "id": 43646986444,
+          "name": "Research branch integration conformance",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 297,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986444/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986444/logs",
+          "workflow_id": 403591247
+        },
+        {
+          "id": 43646986738,
+          "name": "Class-A central entry and alternating-cycle proofs",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 1,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986738/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986738/logs",
+          "workflow_id": 418677588
+        },
+        {
+          "id": 43646986488,
+          "name": "C4 periodic Parikh phase rigidity",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 296,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986488/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986488/logs",
+          "workflow_id": 406995272
+        },
+        {
+          "id": 43646986506,
+          "name": "PSC research checks",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 5224,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986506/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986506/logs",
+          "workflow_id": 353526446
+        },
+        {
+          "id": 43646986568,
+          "name": "PSC class-A complete boundary seed children",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 114,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986568/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986568/logs",
+          "workflow_id": 397664820
+        },
+        {
+          "id": 43646986393,
+          "name": "C4 stable prefix window",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 73,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986393/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986393/logs",
+          "workflow_id": 414879997
+        },
+        {
+          "id": 43646986483,
+          "name": "Class-D complete residual certificates",
+          "status": "queued",
+          "conclusion": null,
+          "run_number": 691,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986483/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986483/logs",
+          "workflow_id": 389504350
+        },
+        {
+          "id": 43646986504,
+          "name": "Class-D minus recurrent reduction",
+          "status": "in_progress",
+          "conclusion": null,
+          "run_number": 567,
+          "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986504/jobs",
+          "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986504/logs",
+          "workflow_id": 389742893
+        }
+      ]
+    }
+  ],
+  "pr579_dedicated_jobs": {
+    "jobs": [
+      {
+        "id": 132625461586,
+        "name": "native-and-independent",
+        "status": "queued",
+        "conclusion": null,
+        "run_id": 43653036318,
+        "logs_url": null,
+        "steps": null
+      },
+      {
+        "id": 132625461713,
+        "name": "scoped-lean-from-sources",
+        "status": "queued",
+        "conclusion": null,
+        "run_id": 43653036318,
+        "logs_url": null,
+        "steps": null
+      }
+    ]
+  }
+}

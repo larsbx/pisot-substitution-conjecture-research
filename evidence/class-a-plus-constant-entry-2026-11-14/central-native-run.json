@@ -1,0 +1,44 @@
+{
+  "central_paths": 875,
+  "checked_edges": 8214,
+  "command": [
+    "/workspace/scratch/de1b765a2576/mojo-env/bin/mojo",
+    "run",
+    "-j",
+    "1",
+    "-I",
+    "kernel",
+    "kernel/tests/test_class_a_plus_constant_entry.mojo",
+    "--emit"
+  ],
+  "completion_observed_at_utc": "2026-11-15T00:15:02.455924+00:00",
+  "constant_paths": 132,
+  "exit_code": 0,
+  "max_path": 37,
+  "members": 25,
+  "prior_attempt": {
+    "command": [
+      "/workspace/scratch/de1b765a2576/mojo-env/bin/mojo",
+      "run",
+      "-I",
+      "kernel",
+      "kernel/tests/test_class_a_plus_constant_entry.mojo"
+    ],
+    "exit_code": 137,
+    "note": "Process was killed before a test receipt. No mathematical verdict; source summary-count assertions were corrected before the successful single-thread run.",
+    "stderr_file": "plus-central-attempt1.stderr",
+    "stdout_file": "plus-central-attempt1.log"
+  },
+  "source_sha256": {
+    "kernel/psc/class_a_plus_constant_entry.mojo": "546fd1f47d162052e055bd64a53f1c1f2c889f5e355e0ea6f6c96be2b73cb605",
+    "kernel/tests/test_class_a_plus_constant_entry.mojo": "6c2245b1a2c00786107b0f77fab1ba97806dbe317983d10fa54ffca5442b68f1"
+  },
+  "started_at_utc": null,
+  "stderr_file": "plus-central-native.stderr",
+  "stderr_sha256": "8b33180b5dd484cbaa302cc68b3794e69204fc8de4d0b692cbb1332a95aa44d0",
+  "stdout_file": "plus-central-native.log",
+  "stdout_sha256": "202dcb85a5f798c37b4b3dd52a3e5e1c2c2d83bf6a1f4dc169125e730e897041",
+  "timing_note": "The tool-managed run was not wrapped with an exact wall-clock start timestamp; no runtime claim is made.",
+  "total_paths": 1007,
+  "working_directory": "/workspace/scratch/f53f64a9a0d0/psc"
+}

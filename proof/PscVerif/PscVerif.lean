@@ -10,6 +10,16 @@ import PscVerif.SelectedRank
 import PscVerif.QuotientDistance
 import PscVerif.ClassAZeroDefectEscape
 import PscVerif.ClassACentralRecurrence
+import PscVerif.ClassAMinusConstantRecurrence
+import PscVerif.ClassAMinusLiteralArithmetic
+import PscVerif.ClassAMinusNoHalfUnit
+import PscVerif.ClassAMinusRootSpectrum
+import PscVerif.ClassAMinusDensity
+import PscVerif.ClassAMinusPrefixAssembly
+import PscVerif.ClassAMinusCentralBridge
+import PscVerif.ClassAPlusConstantRecurrence
+import PscVerif.ClassARunDescent
+import PscVerif.ClassABoundaryEscape
 
 import PscVerif.ClassBRegime
 import PscVerif.Binomial
@@ -64,6 +74,7 @@ import PscVerif.OccurrenceFinite
 import PscVerif.OccurrenceSuccessor
 import PscVerif.OccurrenceRecurrence
 import PscVerif.OccurrenceMass
+import PscVerif.OccurrenceWidth
 import PscVerif.OccurrenceMassCounts
 import PscVerif.OccurrenceMassStrict
 import PscVerif.OccurrenceInverse

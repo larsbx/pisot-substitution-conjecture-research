@@ -1,0 +1,141 @@
+{
+  "accepted": true,
+  "audit_log": "/workspace/scratch/7dc9ab659e7f/literal-audit-trace-final.log",
+  "audit_log_sha256": "aaa6b26f8cc442ad9d5244727f362c0a93173850126c288c1584c56b0534bdc5",
+  "controls": [
+    {
+      "exit_code": 1,
+      "input_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "name": "empty_log",
+      "refusal": "missing, duplicate, unexpected or reordered literal-entry receipt"
+    },
+    {
+      "exit_code": 1,
+      "input_sha256": "02f8803717829156a3b55ba4f589d0cc90c95d008d187bc9406ebf37db91bfdc",
+      "name": "completion_without_proofs",
+      "refusal": "missing, duplicate, unexpected or reordered literal-entry receipt"
+    },
+    {
+      "exit_code": 1,
+      "input_sha256": "129a59e95ef585e090cd3a2797f641e521c6ad06ba6aa33aa6e326ee93f85853",
+      "name": "omitted_module",
+      "refusal": "missing, duplicate, unexpected or reordered literal-entry receipt"
+    },
+    {
+      "exit_code": 1,
+      "input_sha256": "a719ea11e0b8c2792370449fdf8a788d630bed85e6b6c30e2fadf138a2627830",
+      "name": "duplicated_module",
+      "refusal": "missing, duplicate, unexpected or reordered literal-entry receipt"
+    },
+    {
+      "exit_code": 1,
+      "input_sha256": "85d70c18b94c25045b80c310f4761361b6eb31ecfca3395ce631267d881464c7",
+      "name": "wrong_module_identity",
+      "refusal": "missing, extra or wrong-count compiled owned module"
+    },
+    {
+      "exit_code": 1,
+      "input_sha256": "05426db10ff539e705fdf594db5492e27129a3eb0452d4f5f2612f6b0da3b7ad",
+      "name": "wrong_module_count",
+      "refusal": "missing, extra or wrong-count compiled owned module"
+    },
+    {
+      "exit_code": 1,
+      "input_sha256": "23f9b01b28da5ba36f1349adc7f0e52b1bd9c54412cfdae8e01ed38645f5335f",
+      "name": "zero_module_count",
+      "refusal": "empty or malformed owned-declaration counts"
+    },
+    {
+      "exit_code": 1,
+      "input_sha256": "f25901d998daeac58438c4e953f2fb19068d568fa4df4a1a2783c549642dc245",
+      "name": "extra_module_field",
+      "refusal": "malformed or duplicate owned-module receipt"
+    },
+    {
+      "exit_code": 1,
+      "input_sha256": "3f8d34e8ef5ac97b04b3545d10f4e6d8215bf252667d5e27f2023d4f059d29fc",
+      "name": "omitted_traced_endpoint",
+      "refusal": "missing, duplicate, unexpected or reordered literal-entry receipt"
+    },
+    {
+      "exit_code": 1,
+      "input_sha256": "79e02516b5fa631111472ded45e328b8ed961ab35e678bd13205b2a6f07d5099",
+      "name": "duplicated_endpoint",
+      "refusal": "missing, duplicate or unexpected exact-type Lean endpoint"
+    },
+    {
+      "exit_code": 1,
+      "input_sha256": "d4b079af0dbaf0efd305b589b0cb7d6c750be9437c54411266ee775a04f6dfae",
+      "name": "foreign_endpoint",
+      "refusal": "missing, duplicate or unexpected exact-type Lean endpoint"
+    },
+    {
+      "exit_code": 1,
+      "input_sha256": "905782a00fb32229af6a1cdbc32c03c635cfd9493dedf6e3e4046101fba8126c",
+      "name": "extra_endpoint_field",
+      "refusal": "malformed exact-type endpoint receipt"
+    },
+    {
+      "exit_code": 1,
+      "input_sha256": "f92579d7003e2d3c3a1b520c117ca86dcf71225acf27b8da5f3cd047c569886c",
+      "name": "missing_completion",
+      "refusal": "missing, duplicate, unexpected or reordered literal-entry receipt"
+    },
+    {
+      "exit_code": 1,
+      "input_sha256": "269f8ff063b9d1ca0be721f5438f93c32dcb5b5332be0e0c79001f96994d7de6",
+      "name": "duplicated_completion",
+      "refusal": "missing, duplicate, unexpected or reordered literal-entry receipt"
+    },
+    {
+      "exit_code": 1,
+      "input_sha256": "c8e3d3b9d2ab5da00c6ded0b39c89352767988976529cd836964e18264b53ab0",
+      "name": "incomplete_negative_controls",
+      "refusal": "missing or incorrect three-controls-per-endpoint completion receipt"
+    },
+    {
+      "exit_code": 1,
+      "input_sha256": "b2ccc3fa77f84133fd44e6aea0ab7943216d215446017d5b03ba2c19bcddc083",
+      "name": "malformed_negative_count",
+      "refusal": "missing or incorrect three-controls-per-endpoint completion receipt"
+    },
+    {
+      "exit_code": 1,
+      "input_sha256": "774a81ed9b28a5fe1492e138a61720578e130b746fc72d1730422bbe1fe717f7",
+      "name": "inconsistent_declaration_total",
+      "refusal": "inconsistent owned-declaration completion receipt"
+    },
+    {
+      "exit_code": 1,
+      "input_sha256": "cbcf99dddfa28fc35ae6159ea6b83e5bfcbd6edc3fe7c49c78a51754a6b33931",
+      "name": "reordered_success",
+      "refusal": "missing, duplicate, unexpected or reordered literal-entry receipt"
+    },
+    {
+      "exit_code": 1,
+      "input_sha256": "d7494a04670f861049cd3110dbdbc997d924e95289a881b41a435846f135c164",
+      "name": "indented_duplicate_success",
+      "refusal": "missing, duplicate, unexpected or reordered literal-entry receipt"
+    },
+    {
+      "exit_code": 1,
+      "input_sha256": "3494cb9098de0745109ef5fd4d9f00f2e4bcbcd5dd2a9058e6e9c9d949356d16",
+      "name": "unexpected_success_tag",
+      "refusal": "missing, duplicate, unexpected or reordered literal-entry receipt"
+    },
+    {
+      "exit_code": 1,
+      "input_sha256": "d7e447aba00cf508812bdb17a33f6c20e462f83004674ff44b1ecd9bace40617",
+      "name": "prior_weaker_audit",
+      "refusal": "missing, duplicate, unexpected or reordered literal-entry receipt"
+    }
+  ],
+  "ended_utc": "2026-11-15T00:20:39.142632+00:00",
+  "gate": "tools/check_class_a_literal_entry.sh",
+  "gate_sha256": "b860f084ed6f2e3ce5c1d0564216e85c6eb71509a96fa4aecb413f22774aefcc",
+  "parser_sha256": "b19ad1b44f91c698edbf1b929e5ab5b044728e09ba74b8eb8d27be24e85994b7",
+  "positive_baseline_exit": 0,
+  "rejected_mutations": 21,
+  "scope": "receipt-parser controls only; not isolated Lean or hosted acceptance",
+  "started_utc": "2026-11-15T00:20:38.612054+00:00"
+}

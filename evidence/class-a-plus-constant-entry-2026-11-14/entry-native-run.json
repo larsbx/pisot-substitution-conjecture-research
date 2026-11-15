@@ -1,0 +1,33 @@
+{
+  "scope": "canonical plus actual-entry witness test",
+  "source_before": {
+    "kernel/psc/class_a_plus_constant_entry.mojo": "546fd1f47d162052e055bd64a53f1c1f2c889f5e355e0ea6f6c96be2b73cb605",
+    "kernel/psc/class_a_plus_sources.mojo": "af4f10d109e5534132c1b7062d5894bf8d3052bc6183e5eb224cdeb5d7a1da03",
+    "kernel/psc/class_a_plus_entry_search.mojo": "b30a90424779ea1a6eb8cb1803d5e4e4179ca143b360f50241641c6e8c69726d",
+    "kernel/tests/test_class_a_plus_entry_search.mojo": "50663fc4b4ab41d809e9922027a4cae16088e7cd7452282fced8bc971086d360"
+  },
+  "started_utc": "2026-11-15T00:14:31.377971+00:00",
+  "command": [
+    "/workspace/scratch/de1b765a2576/mojo-env/bin/mojo",
+    "run",
+    "-j",
+    "1",
+    "-I",
+    ".",
+    "tests/test_class_a_plus_entry_search.mojo",
+    "--emit"
+  ],
+  "cwd": "/workspace/scratch/f53f64a9a0d0/psc/kernel",
+  "exit_code": 0,
+  "ended_utc": "2026-11-15T00:15:20.334624+00:00",
+  "elapsed_seconds": 48.957,
+  "source_after": {
+    "kernel/psc/class_a_plus_constant_entry.mojo": "546fd1f47d162052e055bd64a53f1c1f2c889f5e355e0ea6f6c96be2b73cb605",
+    "kernel/psc/class_a_plus_sources.mojo": "af4f10d109e5534132c1b7062d5894bf8d3052bc6183e5eb224cdeb5d7a1da03",
+    "kernel/psc/class_a_plus_entry_search.mojo": "b30a90424779ea1a6eb8cb1803d5e4e4179ca143b360f50241641c6e8c69726d",
+    "kernel/tests/test_class_a_plus_entry_search.mojo": "50663fc4b4ab41d809e9922027a4cae16088e7cd7452282fced8bc971086d360"
+  },
+  "source_unchanged": true,
+  "stdout_sha256": "faf74fe26f0dbc7662b7c76c88d1db3a72302c080fbee0d1a9cb0921f96e0a70",
+  "stderr_sha256": "8b33180b5dd484cbaa302cc68b3794e69204fc8de4d0b692cbb1332a95aa44d0"
+}
