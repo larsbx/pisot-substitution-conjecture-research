@@ -17,6 +17,7 @@ import PscVerif.ClassAMinusRootSpectrum
 import PscVerif.ClassAMinusDensity
 import PscVerif.ClassAMinusPrefixAssembly
 import PscVerif.ClassAMinusCentralBridge
+import PscVerif.ClassAPlusConstantRecurrence
 
 import PscVerif.ClassBRegime
 import PscVerif.Binomial

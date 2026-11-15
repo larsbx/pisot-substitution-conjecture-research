@@ -1,0 +1,37 @@
+{
+  "scope": "final source-bound targeted small-certificate tests",
+  "source_before": {
+    "kernel/psc/class_a_plus_small_certificate.mojo": "4062c4fd2d9dd35d440fa21cd85a51db18392694cbd00521bf4268721d782a5e",
+    "kernel/tests/test_class_a_plus_small_entry.mojo": "7df5eaa60f9ff66abb2f2c805e939987b32b15a98ed7b6b2eb131efbc8812170",
+    "oracles/python/class_a_plus_small_certificate.py": "28787c8e8ec82fea7e1b07ac5f9a1ec092d6729f9619dec4235de926037166ed",
+    "tests/test_class_a_plus_small_certificate.py": "abf8031bec359daea330a4ce0ea8b8dced18c058c0b688b73c4fadca7bedfba7",
+    "kernel/psc/class_a_plus_sources.mojo": "af4f10d109e5534132c1b7062d5894bf8d3052bc6183e5eb224cdeb5d7a1da03",
+    "oracles/python/class_a_plus_constant_entry.py": "803618345a6cd9ce4615dd6ee8d99e885607ca32a3fc0043181cbc21caba988e"
+  },
+  "started_at_utc": "2026-11-15T00:20:24.884309+00:00",
+  "command": [
+    "/workspace/scratch/f53f64a9a0d0/checks-venv/bin/python",
+    "-m",
+    "pytest",
+    "-o",
+    "addopts=",
+    "-q",
+    "--junitxml=/workspace/scratch/f53f64a9a0d0/plus-small/pytest.xml",
+    "tests/test_class_a_plus_small_certificate.py"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 3.668,
+  "finished_at_utc": "2026-11-15T00:20:28.552756+00:00",
+  "source_after": {
+    "kernel/psc/class_a_plus_small_certificate.mojo": "4062c4fd2d9dd35d440fa21cd85a51db18392694cbd00521bf4268721d782a5e",
+    "kernel/tests/test_class_a_plus_small_entry.mojo": "7df5eaa60f9ff66abb2f2c805e939987b32b15a98ed7b6b2eb131efbc8812170",
+    "oracles/python/class_a_plus_small_certificate.py": "28787c8e8ec82fea7e1b07ac5f9a1ec092d6729f9619dec4235de926037166ed",
+    "tests/test_class_a_plus_small_certificate.py": "abf8031bec359daea330a4ce0ea8b8dced18c058c0b688b73c4fadca7bedfba7",
+    "kernel/psc/class_a_plus_sources.mojo": "af4f10d109e5534132c1b7062d5894bf8d3052bc6183e5eb224cdeb5d7a1da03",
+    "oracles/python/class_a_plus_constant_entry.py": "803618345a6cd9ce4615dd6ee8d99e885607ca32a3fc0043181cbc21caba988e"
+  },
+  "log_sha256": "ceedafa0b049dc5d938067f588bcc193795a9708d9a19e86a2d70453c7619dc2",
+  "xml_sha256": "57a4650d5f6c0048be113739099847e28f0050494aa274b7ac12e0403ff1fd1b",
+  "tests": 39,
+  "all_passed": true
+}
