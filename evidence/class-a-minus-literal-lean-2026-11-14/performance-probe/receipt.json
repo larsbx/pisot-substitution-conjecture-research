@@ -1,0 +1,345 @@
+{
+  "scope": "single performance diagnostic; cached upstream dependencies; separate output; not acceptance",
+  "command": [
+    "/workspace/scratch/f53f64a9a0d0/runtime-cache/lean-4.34.0-rc2/bin/lean",
+    "-j1",
+    "-DautoImplicit=false",
+    "PscVerif/PerronCore.lean",
+    "-o",
+    "/workspace/scratch/7dc9ab659e7f/perron-j1-probe/PerronCore.olean"
+  ],
+  "cwd": "/workspace/scratch/7dc9ab659e7f/final-local-source-rebuild/proof/PscVerif",
+  "LEAN_PATH": "/workspace/scratch/7dc9ab659e7f/final-local-source-rebuild/build:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/Cli/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/Qq/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/aesop/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/batteries/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/importGraph/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/mathlib/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/plausible/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/proofwidgets/.lake/build/lib/lean",
+  "source_sha256_before": "1f06da1e0b57e74b31fc03d753bd314f25561a37e512b3a8f7f05fda0d75458c",
+  "source_sha256_after": "1f06da1e0b57e74b31fc03d753bd314f25561a37e512b3a8f7f05fda0d75458c",
+  "source_unchanged": true,
+  "started_utc": "2026-11-15T00:27:48.942991+00:00",
+  "ended_utc": "2026-11-15T00:28:34.046632+00:00",
+  "elapsed_seconds": 45.104,
+  "exit_code": -15,
+  "timed_out": true,
+  "timeout_seconds": 45,
+  "user_cpu_seconds": 1.37351,
+  "system_cpu_seconds": 8.53176,
+  "max_rss_kb": 464244,
+  "host_cpu_count": 9,
+  "affinity_count": 9,
+  "process_samples": [
+    {
+      "elapsed_seconds": 0.002,
+      "State": "R (running)",
+      "VmRSS": "28 kB",
+      "VmPeak": "408 kB",
+      "Threads": "1"
+    },
+    {
+      "elapsed_seconds": 1.003,
+      "State": "S (sleeping)",
+      "VmRSS": "166556 kB",
+      "VmPeak": "4942160 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 2.003,
+      "State": "S (sleeping)",
+      "VmRSS": "193492 kB",
+      "VmPeak": "5434312 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 3.003,
+      "State": "S (sleeping)",
+      "VmRSS": "83348 kB",
+      "VmPeak": "5701924 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 4.004,
+      "State": "S (sleeping)",
+      "VmRSS": "79800 kB",
+      "VmPeak": "5955728 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 5.004,
+      "State": "S (sleeping)",
+      "VmRSS": "83176 kB",
+      "VmPeak": "6237068 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 6.004,
+      "State": "S (sleeping)",
+      "VmRSS": "102420 kB",
+      "VmPeak": "6456776 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 7.005,
+      "State": "S (sleeping)",
+      "VmRSS": "123528 kB",
+      "VmPeak": "6575976 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 8.006,
+      "State": "S (sleeping)",
+      "VmRSS": "124964 kB",
+      "VmPeak": "6769264 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 9.007,
+      "State": "S (sleeping)",
+      "VmRSS": "99296 kB",
+      "VmPeak": "6934804 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 10.008,
+      "State": "S (sleeping)",
+      "VmRSS": "100988 kB",
+      "VmPeak": "7069888 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 11.009,
+      "State": "S (sleeping)",
+      "VmRSS": "110252 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 12.009,
+      "State": "S (sleeping)",
+      "VmRSS": "145360 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 13.009,
+      "State": "S (sleeping)",
+      "VmRSS": "145080 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 14.01,
+      "State": "S (sleeping)",
+      "VmRSS": "146260 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 15.012,
+      "State": "S (sleeping)",
+      "VmRSS": "99244 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 16.012,
+      "State": "S (sleeping)",
+      "VmRSS": "79032 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 17.014,
+      "State": "S (sleeping)",
+      "VmRSS": "86440 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 18.023,
+      "State": "S (sleeping)",
+      "VmRSS": "89052 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 19.023,
+      "State": "S (sleeping)",
+      "VmRSS": "92912 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 20.024,
+      "State": "S (sleeping)",
+      "VmRSS": "124212 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 21.024,
+      "State": "S (sleeping)",
+      "VmRSS": "110460 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 22.024,
+      "State": "S (sleeping)",
+      "VmRSS": "107484 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 23.025,
+      "State": "S (sleeping)",
+      "VmRSS": "95296 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 24.025,
+      "State": "S (sleeping)",
+      "VmRSS": "350880 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 25.026,
+      "State": "S (sleeping)",
+      "VmRSS": "462156 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 26.026,
+      "State": "S (sleeping)",
+      "VmRSS": "355300 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 27.027,
+      "State": "S (sleeping)",
+      "VmRSS": "185216 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 28.027,
+      "State": "S (sleeping)",
+      "VmRSS": "172176 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 29.028,
+      "State": "S (sleeping)",
+      "VmRSS": "168428 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 30.028,
+      "State": "S (sleeping)",
+      "VmRSS": "236140 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 31.029,
+      "State": "S (sleeping)",
+      "VmRSS": "320188 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 32.029,
+      "State": "S (sleeping)",
+      "VmRSS": "353056 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 33.029,
+      "State": "S (sleeping)",
+      "VmRSS": "268516 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 34.03,
+      "State": "S (sleeping)",
+      "VmRSS": "198688 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 35.03,
+      "State": "S (sleeping)",
+      "VmRSS": "209848 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 36.031,
+      "State": "S (sleeping)",
+      "VmRSS": "223916 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 37.032,
+      "State": "S (sleeping)",
+      "VmRSS": "243820 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 38.032,
+      "State": "S (sleeping)",
+      "VmRSS": "256468 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 39.032,
+      "State": "S (sleeping)",
+      "VmRSS": "226668 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 40.033,
+      "State": "S (sleeping)",
+      "VmRSS": "171576 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 41.035,
+      "State": "S (sleeping)",
+      "VmRSS": "183308 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 42.035,
+      "State": "S (sleeping)",
+      "VmRSS": "218032 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 43.036,
+      "State": "S (sleeping)",
+      "VmRSS": "230752 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    },
+    {
+      "elapsed_seconds": 44.036,
+      "State": "S (sleeping)",
+      "VmRSS": "232844 kB",
+      "VmPeak": "7207168 kB",
+      "Threads": "4"
+    }
+  ],
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

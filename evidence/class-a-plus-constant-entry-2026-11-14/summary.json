@@ -1,0 +1,64 @@
+{
+  "cached_lean": {
+    "accepted": true,
+    "exact_endpoints": 7,
+    "negative_controls": 21,
+    "owned_declarations": 68,
+    "theorem_declarations": 63
+  },
+  "central_and_entry": {
+    "BH_entry_paths": 475,
+    "central_paths": 875,
+    "checked_edges": 9786,
+    "constant_paths": 132,
+    "density_inequalities": 300,
+    "maximum_depth": 37,
+    "members": 25,
+    "paths": 1632,
+    "typed_aligned_paths": 150
+  },
+  "combined_original_prefix_replay": {
+    "checked_path_edges": 13138,
+    "maximum_depth": 37,
+    "paths": 3060
+  },
+  "five_small_graphs": {
+    "indexed_edges": 10232,
+    "max_distance": 4,
+    "native_refusals": 12,
+    "occurrence_pairs": 97808,
+    "path_edges": 3352,
+    "paths": 1428,
+    "terminal_policy": "typed full integral zero; complete original nonterminal rows, empty terminal rows",
+    "vertices": 1428
+  },
+  "fresh_isolated_lean": {
+    "accepted": false,
+    "attempted_locally": false,
+    "status": "pending; current plus source has no local fresh-source attempt"
+  },
+  "governed_status_changes": 0,
+  "hosted_acceptance": "pending at the publishing head",
+  "human_review": "pending",
+  "inherited_native_inputs_unchanged": 761,
+  "mathematical_scope": "Every strict integral plus-Class-A source for n>=6,5<=d<=n+4; assembled canonical swap-seed coverage n>=0,1<=d<=n+4 uses five complete stopped S18 graphs and inherited scoped certificates.",
+  "parent_commit": "110e7e9ef8243bc24adf80d6e8a375add586d850",
+  "pytest": {
+    "passed": 78,
+    "skipped": 0
+  },
+  "recorded_data_integrity": {
+    "passed": 165,
+    "skipped": 0
+  },
+  "source_inputs": 1230,
+  "symbolic": {
+    "RUN_occurrences": 24,
+    "checked_edges": 12,
+    "directed_paths": 4,
+    "negative_controls": 8,
+    "parameter_chambers": 6,
+    "positive_height_chambers": 2
+  },
+  "whole_library_acceptance": "pending at the publishing head"
+}

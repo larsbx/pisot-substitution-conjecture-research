@@ -1,0 +1,11 @@
+COMMAND ["/workspace/scratch/f53f64a9a0d0/checks-venv/bin/python", "--version"]
+Python 3.12.14
+
+COMMAND ["/workspace/scratch/de1b765a2576/mojo-env/bin/mojo", "--version"]
+Mojo 1.1.0.dev2026090805 (34562fa1)
+
+COMMAND ["/home/agent/.elan/bin/lean", "--version"]
+Lean (version 4.34.0-rc2, x86_64-unknown-linux-gnu, commit 6a10ac8c22beadecabdbb0919c2b50214762f91d, Release)
+
+COMMAND ["/home/agent/.elan/bin/lake", "--version"]
+Lake version 5.0.0-src+6a10ac8 (Lean version 4.34.0-rc2)

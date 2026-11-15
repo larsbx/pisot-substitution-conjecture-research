@@ -1,0 +1,22 @@
+{
+  "archive_encoding": "gzip with mtime=0; exact uncompressed stdout retained",
+  "command": [
+    "/workspace/scratch/f53f64a9a0d0/checks-venv/bin/python",
+    "oracles/python/class_a_minus_constant_entry.py",
+    "--native-log",
+    "/workspace/scratch/f53f64a9a0d0/psc/evidence/class-a-minus-constant-entry-2026-11-14/paths-native.log"
+  ],
+  "elapsed_seconds": 119.303,
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-14T23:14:49.869941+00:00",
+  "native_log_sha256": "64f02b340c0f42715e77e352cd68961fe896def18b07c95b04fa305d2a309c4d",
+  "oracle_sha256": "0a5c2ad5491a341ff3f834d1c2492eb87cf6e65474ba036101132904b86ac9cd",
+  "started_at_utc": "2026-11-14T23:12:50.565616+00:00",
+  "stdout_archive": "literal-and-differential.json.gz",
+  "stdout_sha256": "51752bbeeb72d7d52c939dc49a9a6012ef73ed74921841d005b2551d1c501ae8",
+  "summary": {
+    "checked_edges": 12363,
+    "maximum_depth": 37,
+    "paths": 1830
+  }
+}

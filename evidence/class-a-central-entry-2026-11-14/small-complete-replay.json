@@ -1,0 +1,83 @@
+{
+  "all_original_records_equal": true,
+  "indexed_edges": 35688,
+  "literal_pairs": 351816,
+  "members": [
+    {
+      "all_edge_orientation_lifts": 4788,
+      "certificate_sha256": "cac12dccc9d301534309200bb1581cdcfa239b2f319d019364673fc22475b0f6",
+      "indexed_edges": 4788,
+      "k": 0,
+      "literal_pairs": 34778,
+      "max_terminal_distance": 7,
+      "quotient_orbits": 393,
+      "selected_path_steps": 3280,
+      "t": 0,
+      "vertices": 784
+    },
+    {
+      "all_edge_orientation_lifts": 7752,
+      "certificate_sha256": "2818cc7d6522e8898284d920991e34700347e3a87c337481faf09e1b900776f0",
+      "indexed_edges": 7752,
+      "k": 0,
+      "literal_pairs": 71696,
+      "max_terminal_distance": 8,
+      "quotient_orbits": 506,
+      "selected_path_steps": 4170,
+      "t": 1,
+      "vertices": 1010
+    },
+    {
+      "all_edge_orientation_lifts": 11226,
+      "certificate_sha256": "5e73a9177b98c5ef272b7a2027580f1d97651bdf03efc0bd56a59efec87f8fc9",
+      "indexed_edges": 11226,
+      "k": 0,
+      "literal_pairs": 124730,
+      "max_terminal_distance": 8,
+      "quotient_orbits": 611,
+      "selected_path_steps": 5600,
+      "t": 2,
+      "vertices": 1220
+    },
+    {
+      "all_edge_orientation_lifts": 3142,
+      "certificate_sha256": "dba3bf80b5068defeaf3b771300ecec93e1dfdd795309ea8a46a1c1d8f72c5f7",
+      "indexed_edges": 3142,
+      "k": 1,
+      "literal_pairs": 27300,
+      "max_terminal_distance": 4,
+      "quotient_orbits": 219,
+      "selected_path_steps": 1180,
+      "t": 0,
+      "vertices": 436
+    },
+    {
+      "all_edge_orientation_lifts": 5636,
+      "certificate_sha256": "ee3183c3714099f0cfebe9c558f9eb87b159e1f918a8f4871daba0408aa7dc7f",
+      "indexed_edges": 5636,
+      "k": 1,
+      "literal_pairs": 60544,
+      "max_terminal_distance": 6,
+      "quotient_orbits": 322,
+      "selected_path_steps": 2002,
+      "t": 1,
+      "vertices": 642
+    },
+    {
+      "all_edge_orientation_lifts": 3144,
+      "certificate_sha256": "fbf29728b27494abb0b97ec1eeb1055aba21cf3249f85245891861ceb8679f82",
+      "indexed_edges": 3144,
+      "k": 2,
+      "literal_pairs": 32768,
+      "max_terminal_distance": 5,
+      "quotient_orbits": 190,
+      "selected_path_steps": 954,
+      "t": 0,
+      "vertices": 378
+    }
+  ],
+  "native_log_sha256": "a8445ebce6216ca80dcdd8cbe3ef7d7f202f08200b411ddbc8da762ea7122f08",
+  "original_archive_sha256": "412ad3d3cb2529e074b71e8a59567622705a437656348d0047eb65e9f3152141",
+  "scope": "six original complete S18 graphs, independently rebuilt from literal words",
+  "states": 4470
+}

@@ -1,0 +1,17 @@
+2026-11-15T00:02:26.8081655Z   ref: 110e7e9ef8243bc24adf80d6e8a375add586d850
+2026-11-15T00:02:27.2613408Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 110e7e9ef8243bc24adf80d6e8a375add586d850
+2026-11-15T00:02:28.7442854Z  * branch            110e7e9ef8243bc24adf80d6e8a375add586d850 -> FETCH_HEAD
+2026-11-15T00:02:28.7552982Z [command]/usr/bin/git checkout --progress --force 110e7e9ef8243bc24adf80d6e8a375add586d850
+2026-11-15T00:02:29.2548302Z Note: switching to '110e7e9ef8243bc24adf80d6e8a375add586d850'.
+2026-11-15T00:02:29.2664193Z 110e7e9ef8243bc24adf80d6e8a375add586d850
+2026-11-15T00:02:29.2960620Z   EXPECTED_HEAD: 110e7e9ef8243bc24adf80d6e8a375add586d850
+2026-11-15T00:04:05.4696614Z Prepared isolated Lean workspace from source/configuration only
+2026-11-15T00:04:05.4697298Z Proof bank: 126 claims, 2758 named Lean proofs, 413 source openings
+2026-11-15T00:10:29.6843927Z ✔ [8972/9026] Built PscVerif.ClassAMinusConstantRecurrence (10s)
+2026-11-15T00:14:20.1464927Z Build completed successfully (9026 jobs).
+2026-11-15T00:14:30.3284367Z PSC_AUDIT_COMPLETE	6851	5041
+2026-11-15T00:14:35.6330802Z Lean axiom audit: 6851 declarations, 5041 theorems; all named proofs reached
+2026-11-15T00:14:35.6331585Z Proof bank: 126 claims, 2758 named Lean proofs, 413 source openings
+2026-11-15T00:14:48.8829640Z   name: c4-overlap-lean-110e7e9ef8243bc24adf80d6e8a375add586d850
+2026-11-15T00:14:49.8629895Z Artifact c4-overlap-lean-110e7e9ef8243bc24adf80d6e8a375add586d850.zip successfully finalized. Artifact ID 14139130461
+2026-11-15T00:14:49.8631838Z Artifact c4-overlap-lean-110e7e9ef8243bc24adf80d6e8a375add586d850 has been successfully uploaded! Final size is 72547 bytes. Artifact ID is 14139130461

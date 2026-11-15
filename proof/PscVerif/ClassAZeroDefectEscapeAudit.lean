@@ -107,6 +107,50 @@ example : OverrunPathType := ClassAZeroDefectEscape.overrun_composable_path
 example : RunDigitsType := ClassAZeroDefectEscape.run_slice_two_digit_steps
 example : RunStepsType := ClassAZeroDefectEscape.run_slice_two_steps
 
+def RunEntryType : Prop :=
+  ∀ n d : ℕ, 2 ≤ n → ∀ (a b : Fin 3) (S h : ℤ),
+    1 - (literalRunLength n d b : ℤ) ≤ h →
+    h ≤ (literalRunLength n d a : ℤ) - 1 →
+    ∀ (ℓ : Fin 3 → ℝ) (β : ℝ),
+    (∀ c, 0 < ℓ c) → 0 < β →
+    (∀ c, physicalLength ℓ (literalSigma n d c) = β * ℓ c) →
+    (LiteralInteriorStep (literalSigma n d) ℓ (literalSlice n d a b S h)
+      (h.toNat+1) ((-h).toNat+1) (literalPacket 2 2 0 (2*S) (-2*S)) ↔
+      |((2*S : ℤ) : ℝ)| < β)
+
+def PrecededOverrunPathType : Prop :=
+  ∀ n d : ℕ, 2 ≤ n → ∀ (a b : Fin 3) (S h : ℤ),
+    1 - (literalRunLength n d b : ℤ) ≤ h →
+    h ≤ (literalRunLength n d a : ℤ) - 1 → 2*S = (n : ℤ)+1 →
+    ∀ (ℓ : Fin 3 → ℝ) (β : ℝ),
+    (∀ c, 0 < ℓ c) → 0 < β →
+    (∀ c, physicalLength ℓ (literalSigma n d c) = β * ℓ c) →
+    Relation.ReflTransGen (InteriorStep (literalSigma n d) ℓ)
+      (literalSlice n d a b S h) (literalPacket 2 2 0 0 0)
+
+example : RunEntryType := ClassAZeroDefectEscape.run_slice_first_interior_step
+example : PrecededOverrunPathType := ClassAZeroDefectEscape.run_slice_overrun_path
+
+/-- Equality in the geometric cutoff gives contact and no strict edge. -/
+example (ℓ : Fin 3 → ℝ) (β : ℝ) (hpos : ∀ c, 0 < ℓ c) (hβ : 0 < β)
+    (hscale : ∀ c, physicalLength ℓ (literalSigma 3 5 c) = β * ℓ c)
+    (S : ℤ) (hcontact : |((2*S : ℤ) : ℝ)| = β) :
+    ¬ LiteralInteriorStep (literalSigma 3 5) ℓ (literalSlice 3 5 0 0 S 0)
+      1 1 (literalPacket 2 2 0 (2*S) (-2*S)) := by
+  intro he
+  have he := (ClassAZeroDefectEscape.run_slice_first_interior_step 3 5 (by decide)
+    0 0 S 0 (by decide) (by decide) ℓ β hpos hβ hscale).mp he
+  exact (ne_of_lt he) hcontact
+
+/-- This strict source has a certified exit beyond the old direct-return guard. -/
+example (ℓ : Fin 3 → ℝ) (β : ℝ) (hpos : ∀ c, 0 < ℓ c) (hβ : 0 < β)
+    (hscale : ∀ c, physicalLength ℓ (literalSigma 3 5 c) = β * ℓ c) :
+    ¬ ((2 : ℤ)*2 ≤ 3-1) ∧
+    Relation.ReflTransGen (InteriorStep (literalSigma 3 5) ℓ)
+      (literalPacket 0 0 (-2) 4 0) (literalPacket 2 2 0 0 0) :=
+  ⟨by decide, ClassAZeroDefectEscape.run_slice_overrun_path 3 5 (by decide)
+    0 0 2 0 (by decide) (by decide) (by decide) ℓ β hpos hβ hscale⟩
+
 theorem wrongTypeControl : True := True.intro
 
 theorem extraOverrunDigits : True → OverrunDigitsType :=
@@ -119,6 +163,10 @@ theorem extraRunDigits : True → RunDigitsType :=
   fun _ => ClassAZeroDefectEscape.run_slice_two_digit_steps
 theorem extraRunSteps : True → RunStepsType :=
   fun _ => ClassAZeroDefectEscape.run_slice_two_steps
+theorem extraRunEntry : True → RunEntryType :=
+  fun _ => ClassAZeroDefectEscape.run_slice_first_interior_step
+theorem extraPrecededOverrunPath : True → PrecededOverrunPathType :=
+  fun _ => ClassAZeroDefectEscape.run_slice_overrun_path
 
 open Lean Elab Command Meta in
 run_cmd do
@@ -129,7 +177,10 @@ run_cmd do
       (``ClassAZeroDefectEscape.overrun_four_steps, ``OverrunStepsType, ``extraOverrunSteps),
       (``ClassAZeroDefectEscape.overrun_composable_path, ``OverrunPathType, ``extraOverrunPath),
       (``ClassAZeroDefectEscape.run_slice_two_digit_steps, ``RunDigitsType, ``extraRunDigits),
-      (``ClassAZeroDefectEscape.run_slice_two_steps, ``RunStepsType, ``extraRunSteps)]
+      (``ClassAZeroDefectEscape.run_slice_two_steps, ``RunStepsType, ``extraRunSteps),
+      (``ClassAZeroDefectEscape.run_slice_first_interior_step, ``RunEntryType, ``extraRunEntry),
+      (``ClassAZeroDefectEscape.run_slice_overrun_path, ``PrecededOverrunPathType,
+        ``extraPrecededOverrunPath)]
     let env ← getEnv
     let matchesType (name expected : Name) : Term.TermElabM Bool := do
       let some info := env.find? name | return false
@@ -180,6 +231,7 @@ run_cmd do
         throwError "Class-A escape audit accepted a missing declaration"
       if ← matchesType extra expected then
         throwError "Class-A escape audit accepted an extra premise"
-    Lean.Core.liftIOCore <| IO.println "PSC_CLASS_A_ESCAPE_AUDIT_COMPLETE\t5\t15"
+    Lean.Core.liftIOCore <| IO.println
+      s!"PSC_CLASS_A_ESCAPE_AUDIT_COMPLETE\t{endpoints.size}\t{3 * endpoints.size}"
 
 end Psc.ClassAZeroDefectEscapeAudit

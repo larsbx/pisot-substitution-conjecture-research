@@ -1,0 +1,140 @@
+name: Minus-Class-A literal entry Lean interfaces
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/class-a-literal-entry.yml'
+      - 'proof/PscVerif/PscVerif/ClassAMinus*.lean'
+      - 'proof/PscVerif/PscVerif/ClassACentralRecurrence.lean'
+      - 'proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean'
+      - 'proof/PscVerif/PscVerif/Occurrence*.lean'
+      - 'proof/PscVerif/ClassAMinusLiteralEntryAudit.lean'
+      - 'proof/PscVerif/PscVerif.lean'
+      - 'proof/PscVerif/lean-toolchain'
+      - 'proof/PscVerif/lakefile.toml'
+      - 'proof/PscVerif/lake-manifest.json'
+      - 'tools/check_class_a_literal_entry.sh'
+      - 'tools/make_proof_bank.py'
+      - 'tools/setup_lean.sh'
+      - 'oracles/python/class_a_*.py'
+      - 'tests/test_class_a_minus_constant_entry.py'
+      - 'tests/test_class_a_minus_constant_symbolic.py'
+      - 'evidence/class-a-minus-constant-entry-2026-11-14/**'
+      - 'docs/bh-class-a-literal-lean-stop-go-2026-11-14.md'
+      - 'docs/class-a-minus-literal-lean-2026-11-14.md'
+      - 'evidence/class-a-minus-literal-lean-2026-11-14/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  independent-inherited-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Bind the exact checked-out source
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          mkdir -p /tmp/psc-class-a-literal-entry-replay
+          git rev-parse HEAD > /tmp/psc-class-a-literal-entry-replay/head.txt
+          git rev-parse HEAD^{tree} > /tmp/psc-class-a-literal-entry-replay/tree.txt
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run the inherited 39 independent refusal and geometry cases
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install pytest==8.4.2 sympy==1.14.0
+          python -m pytest -o addopts='' -q --junitxml=/tmp/psc-class-a-literal-entry-replay/pytest.xml tests/test_class_a_minus_constant_entry.py tests/test_class_a_minus_constant_symbolic.py 2>&1 | tee /tmp/psc-class-a-literal-entry-replay/pytest.log
+          python - <<'PY'
+          import xml.etree.ElementTree as E
+          cases = E.parse('/tmp/psc-class-a-literal-entry-replay/pytest.xml').getroot().findall('.//testcase')
+          names = {(case.get('classname'), case.get('name')) for case in cases}
+          if len(cases) != 39 or len(names) != 39 or any(case.find(tag) is not None for case in cases for tag in ('failure', 'error', 'skipped')):
+              raise SystemExit('the 39 distinct required independent cases did not all pass')
+          print('PSC_CLASS_A_LITERAL_ENTRY_INHERITED_PYTEST\t39\t0')
+          PY
+      - name: Recheck the inherited unbounded symbolic identities
+        shell: bash
+        run: |
+          set -euo pipefail
+          python oracles/python/class_a_minus_constant_symbolic.py > /tmp/psc-class-a-literal-entry-replay/symbolic.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          result = json.loads(Path('/tmp/psc-class-a-literal-entry-replay/symbolic.json').read_text())
+          expected = dict(parameter_chambers=2, directed_paths=4, checked_edges=12, literal_RUN_occurrences=24)
+          if any(result.get(key) != value for key, value in expected.items()):
+              raise SystemExit('incomplete inherited symbolic path coverage')
+          controls = {'legal_but_wrong_ordinal', 'H1_requires_negative_gap_branch', 'nonzero_endpoint_is_not_zero', 'missing_required_edge', 'wrong_recurrence_sign', 'closed_face_is_not_strict', 'negative_guard', 'foreign_variable'}
+          if result.get('negative_controls') != {name: True for name in controls}:
+              raise SystemExit('missing or failed inherited symbolic refusal control')
+          print('PSC_CLASS_A_LITERAL_ENTRY_INHERITED_SYMBOLIC\t2\t4\t12\t24\t8')
+          PY
+      - name: Replay the complete archived original occurrence and prefix certificates
+        shell: bash
+        run: |
+          set -euo pipefail
+          sha256sum -c evidence/class-a-minus-constant-entry-2026-11-14/SHA256SUMS > /tmp/psc-class-a-literal-entry-replay/archived-evidence-digests.log
+          python oracles/python/class_a_minus_constant_entry.py --native-log evidence/class-a-minus-constant-entry-2026-11-14/paths-native.log > /tmp/psc-class-a-literal-entry-replay/archived-original-prefix-replay.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          result = json.loads(Path('/tmp/psc-class-a-literal-entry-replay/archived-original-prefix-replay.json').read_text())
+          if result.get('paths') != 1830 or result.get('checked_edges') != 12363 or result.get('maximum_depth') != 37:
+              raise SystemExit('incomplete archived original-prefix replay')
+          if len(result.get('members', [])) != 27 or len(result.get('original_prefix_certificates', [])) != 1830:
+              raise SystemExit('missing archived source or original-prefix certificates')
+          print('PSC_CLASS_A_LITERAL_ENTRY_ARCHIVED_PREFIX_REPLAY\t27\t1830\t12363')
+          PY
+          python tools/make_proof_bank.py --check | tee /tmp/psc-class-a-literal-entry-replay/proof-bank.log
+      - name: Retain exact-source independent and archived replay receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-a-literal-entry-independent-${{ github.event.pull_request.head.sha || github.sha }}
+          path: /tmp/psc-class-a-literal-entry-replay/
+          if-no-files-found: error
+          retention-days: 30
+
+  scoped-lean-from-sources:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Bind the exact checked-out source
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          mkdir -p /tmp/psc-class-a-literal-entry-lean
+          git rev-parse HEAD > /tmp/psc-class-a-literal-entry-lean/head.txt
+          git rev-parse HEAD^{tree} > /tmp/psc-class-a-literal-entry-lean/tree.txt
+      - name: Provision pinned Lean release
+        run: |
+          ./tools/setup_lean.sh
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Compile six modules and audit 33 endpoints with ordered traces from isolated sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./tools/check_class_a_literal_entry.sh 2>&1 | tee /tmp/psc-class-a-literal-entry-lean/audit.log
+      - name: Retain exact-source Lean and source-binding receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-a-literal-entry-lean-${{ github.event.pull_request.head.sha || github.sha }}
+          path: /tmp/psc-class-a-literal-entry-lean/
+          if-no-files-found: error
+          retention-days: 30

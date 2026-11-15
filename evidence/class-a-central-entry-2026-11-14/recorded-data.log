@@ -1,0 +1,8 @@
+COMMAND ["/workspace/scratch/f53f64a9a0d0/checks-venv/bin/python", "-m", "pytest", "-o", "addopts=", "-q", "tests/test_recorded_data_integrity.py"]
+........................................................................ [ 44%]
+........................................................................ [ 88%]
+...................                                                      [100%]
+163 passed in 0.46s
+EXIT 0
+COMMAND ["git", "diff", "--cached", "--check"]
+EXIT 0

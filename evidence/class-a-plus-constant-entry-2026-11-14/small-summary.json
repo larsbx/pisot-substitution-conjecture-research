@@ -1,0 +1,171 @@
+{
+  "members": [
+    {
+      "complete": true,
+      "d": 5,
+      "graph_sha256": "7bb566babc9a9a642963488ce5511803da2fae6b683558ddd2d59d867991fede",
+      "indexed_edges": 1466,
+      "max_distance": 4,
+      "n": 1,
+      "occurrence_pairs": 9084,
+      "path_edges": 764,
+      "paths": 306,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 306
+    },
+    {
+      "complete": true,
+      "d": 6,
+      "graph_sha256": "a84a961b9ca1999811a739397956eccfa7f2c58fe906b220173268022e9b78c3",
+      "indexed_edges": 1744,
+      "max_distance": 4,
+      "n": 2,
+      "occurrence_pairs": 13396,
+      "path_edges": 680,
+      "paths": 288,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 288
+    },
+    {
+      "complete": true,
+      "d": 7,
+      "graph_sha256": "a809580e13b0e062e2ef1d560c479c481ef9d0e32d667a848506d7e89b303972",
+      "indexed_edges": 2008,
+      "max_distance": 4,
+      "n": 3,
+      "occurrence_pairs": 18366,
+      "path_edges": 642,
+      "paths": 280,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 280
+    },
+    {
+      "complete": true,
+      "d": 8,
+      "graph_sha256": "5e6ec18f6f017f5ed2058b361d3fe1b14a9b07ac4e53d0ed6bd315301715f154",
+      "indexed_edges": 2338,
+      "max_distance": 4,
+      "n": 4,
+      "occurrence_pairs": 24828,
+      "path_edges": 636,
+      "paths": 278,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 278
+    },
+    {
+      "complete": true,
+      "d": 9,
+      "graph_sha256": "25b16f24685d0dcdc959dcefc628061f3e5233b038db9a60b5597d99d6c21f8b",
+      "indexed_edges": 2676,
+      "max_distance": 4,
+      "n": 5,
+      "occurrence_pairs": 32134,
+      "path_edges": 630,
+      "paths": 276,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 276
+    }
+  ],
+  "total": {
+    "indexed_edges": 10232,
+    "max_distance": 4,
+    "native_refusals": 12,
+    "occurrence_pairs": 97808,
+    "path_edges": 3352,
+    "paths": 1428,
+    "vertices": 1428
+  },
+  "source_sha256": {
+    "kernel/psc/class_a_plus_small_certificate.mojo": "4062c4fd2d9dd35d440fa21cd85a51db18392694cbd00521bf4268721d782a5e",
+    "kernel/tests/test_class_a_plus_small_entry.mojo": "7df5eaa60f9ff66abb2f2c805e939987b32b15a98ed7b6b2eb131efbc8812170",
+    "oracles/python/class_a_plus_small_certificate.py": "28787c8e8ec82fea7e1b07ac5f9a1ec092d6729f9619dec4235de926037166ed",
+    "tests/test_class_a_plus_small_certificate.py": "abf8031bec359daea330a4ce0ea8b8dced18c058c0b688b73c4fadca7bedfba7",
+    "kernel/psc/class_a_plus_sources.mojo": "af4f10d109e5534132c1b7062d5894bf8d3052bc6183e5eb224cdeb5d7a1da03",
+    "oracles/python/class_a_plus_constant_entry.py": "803618345a6cd9ce4615dd6ee8d99e885607ca32a3fc0043181cbc21caba988e"
+  }
+}

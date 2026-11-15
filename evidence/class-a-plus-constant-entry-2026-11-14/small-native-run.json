@@ -1,0 +1,23 @@
+{
+  "scope": "five complete finite original S18 closures only",
+  "source_before": {
+    "kernel/psc/class_a_plus_small_certificate.mojo": "4062c4fd2d9dd35d440fa21cd85a51db18392694cbd00521bf4268721d782a5e",
+    "kernel/tests/test_class_a_plus_small_entry.mojo": "7df5eaa60f9ff66abb2f2c805e939987b32b15a98ed7b6b2eb131efbc8812170",
+    "kernel/psc/class_a_plus_sources.mojo": "af4f10d109e5534132c1b7062d5894bf8d3052bc6183e5eb224cdeb5d7a1da03"
+  },
+  "command": [
+    "/workspace/scratch/f53f64a9a0d0/plus-small/native",
+    "--emit-certificates"
+  ],
+  "started_at_utc": "2026-11-15T00:17:33.442093+00:00",
+  "exit_code": 0,
+  "elapsed_seconds": 0.079,
+  "finished_at_utc": "2026-11-15T00:17:33.521094+00:00",
+  "source_after": {
+    "kernel/psc/class_a_plus_small_certificate.mojo": "4062c4fd2d9dd35d440fa21cd85a51db18392694cbd00521bf4268721d782a5e",
+    "kernel/tests/test_class_a_plus_small_entry.mojo": "7df5eaa60f9ff66abb2f2c805e939987b32b15a98ed7b6b2eb131efbc8812170",
+    "kernel/psc/class_a_plus_sources.mojo": "af4f10d109e5534132c1b7062d5894bf8d3052bc6183e5eb224cdeb5d7a1da03"
+  },
+  "log_sha256": "5df0c5055d18542a6d01dd8ef7400987c2f039ed4ad5264a29d3694116f50ad0",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}
