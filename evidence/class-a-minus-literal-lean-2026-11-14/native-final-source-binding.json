@@ -1,0 +1,17 @@
+{
+  "source_revision": "b0d499b333f012dc927e5f27782add14803ef3dd",
+  "checks": [
+    {
+      "receipt": "native-central-receipt.json",
+      "source_count": 276,
+      "same_sources_at_final_revision": true,
+      "exit_code": 0
+    },
+    {
+      "receipt": "native-entry-receipt.json",
+      "source_count": 276,
+      "same_sources_at_final_revision": true,
+      "exit_code": 0
+    }
+  ]
+}
