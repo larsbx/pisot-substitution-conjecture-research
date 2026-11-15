@@ -243,7 +243,7 @@ a symbolic vertex `(e,e,w(s))` with `w ≢ 0` and `w(s0) = 0` is harmless. ∎
 
 **Lemma S″ (the Bernstein rule).** Let `[L, U]` be a certified bracket of β
 on a region (denominators certified positive, `L < U`, `L > |det M|`,
-`χ(L) < 0 < χ(U)`; `kernel/psc/symbolic_cone.mojo:432-441`), so that β lies in
+`χ(L) < 0 < χ(U)`; `kernel/psc/symbolic_cone.mojo:433-445`), so that β lies in
 `(L, U)` at every point once the other two roots are certified in the disc,
 and let `G` be a quadratic in `t`. Write `G = b0 (1−x)² + 2 b1 x(1−x) + b2 x²` with `x = (t−L)/(U−L)`, so
 `b0 = G(L)`, `b2 = G(U)` and `b1 = G(L) + (U−L) G′(L)/2`. If the region signs of
@@ -253,16 +253,19 @@ and let `G` be a quadratic in `t`. Write `G = b0 (1−x)² + 2 b1 x(1−x) + b2 
 basis functions are nonnegative and `(1−x)²` or `x²` is positive, so `G(β)` is
 a combination with sign `σ`. The code reads `b1` through
 `2 dL² dU b1 = 2 dU · dL² G(L) + (nU dL − nL dU) · dL G′(L)`
-(`bernstein_middle`, `kernel/psc/symbolic_cone.mojo:265-270`), which has the
+(`bernstein_middle`, `kernel/psc/symbolic_cone.mojo:266-271`), which has the
 sign of `b1` because `dL, dU > 0`. ∎
 **Bracket order, a hardening.** Before this note `certify_cone` did not certify
 `L < U`, which Lemma S′'s own rules (two end reads, monotone, bending away)
 already need: a proposal `U = 0` passes `χ(U) > 0`, since `χ(0) = 2`, and
 would put β outside the bracket. The order is now certified
-(`bracket_width`, `:260-262`, read at `:434-435`); a disorder refuses. On the
+(`bracket_width`, `:261-263`, read at `:437-439`); a disorder refuses. The order read runs on a
+scratch region, so the closure statistics that archived class-C logs record
+(`queries`, `polya`) are unchanged: a first version counted it and changed
+`queries 5266` to `5268` in a pinned class-C log, with the same verdict. On the
 logged class-A run every bracket was already ordered, and the class-B replay is
 in §6.2.
-The rule is opt-in (`Cone.hull`, `:284`, read at `:372`). The cover turns it on
+The rule is opt-in (`Cone.hull`, `:285`, read at `:373`). The cover turns it on
 for class A only (`kernel/class_b_cone_certificate.mojo:152`); with it off, the
 class-B and class-C decision sets are unchanged by code reading (identical
 endings, no extra read). The class-B regression `kernel/tests/test_symbolic_cone.mojo`
@@ -427,7 +430,7 @@ and the points below those by the exact kernel.
 Totals: 16 symbolic regions and 116 exact verdicts over 86 distinct members
 (the 30 overlap points are decided twice, with equal counts); no member is
 non-PIP (the driver refuses otherwise); no cap was reached. Every symbolic vertex has an
-offset-zero descendant (`cone_offset_zero_reachable`, `kernel/psc/symbolic_cone.mojo:687`)
+offset-zero descendant (`cone_offset_zero_reachable`, `kernel/psc/symbolic_cone.mojo:691`)
 and every exact vertex has one (`exact_hits`, `kernel/symbolic_line_certificate.mojo:110-120`);
 either failure raises. Each certified region agrees vertex for vertex with the
 exact graph at one integer point, as a cross-check that is not part of the

@@ -3910,8 +3910,8 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/class-a-chamber-entry-stopgo-2026-11-15.md:158](../docs/class-a-chamber-entry-stopgo-2026-11-15.md#L158) | ## 3. Lemma TW (the twin geometry) |
 | [docs/class-a-chamber-entry-stopgo-2026-11-15.md:164](../docs/class-a-chamber-entry-stopgo-2026-11-15.md#L164) | **Lemma TW** [D]. For all k,t ≥ 0, with K = k+1: |
 | [docs/class-a-chamber-entry-stopgo-2026-11-15.md:244](../docs/class-a-chamber-entry-stopgo-2026-11-15.md#L244) | **Lemma S″ (the Bernstein rule).** Let [L, U] be a certified bracket of β |
-| [docs/class-a-chamber-entry-stopgo-2026-11-15.md:331](../docs/class-a-chamber-entry-stopgo-2026-11-15.md#L331) | **Lemma 0** [D]. For every k ≥ 0 and t ∈ {0,1}, T1 and T1-H hold. |
-| [docs/class-a-chamber-entry-stopgo-2026-11-15.md:383](../docs/class-a-chamber-entry-stopgo-2026-11-15.md#L383) | ## 6. Theorem CA: the class-A cone theorem on 𝒯_CA |
+| [docs/class-a-chamber-entry-stopgo-2026-11-15.md:334](../docs/class-a-chamber-entry-stopgo-2026-11-15.md#L334) | **Lemma 0** [D]. For every k ≥ 0 and t ∈ {0,1}, T1 and T1-H hold. |
+| [docs/class-a-chamber-entry-stopgo-2026-11-15.md:386](../docs/class-a-chamber-entry-stopgo-2026-11-15.md#L386) | ## 6. Theorem CA: the class-A cone theorem on 𝒯_CA |
 | [docs/class-a-cover-obstruction-2026-10-21.md:56](../docs/class-a-cover-obstruction-2026-10-21.md#L56) | **Proposition (repository-proved, scoped written argument with coefficient-checked |
 | [docs/class-a-d2-plus-rays-2026-10-22.md:87](../docs/class-a-d2-plus-rays-2026-10-22.md#L87) | **Theorem (d=2 plus line).** For every integer n>=1, every vertex of the |
 | [docs/class-a-d4-rays-2026-10-23.md:75](../docs/class-a-d4-rays-2026-10-23.md#L75) | **Theorem (gap four).** For every n>=0 on (n+4,n,n+1), and every n>=3 |

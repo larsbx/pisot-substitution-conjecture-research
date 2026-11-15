@@ -21,8 +21,9 @@ guessed at one point of the region and then certified; an uncertified sign is
 Signs at beta. In two parameters the Sturm--Tarski sequence of the line engine
 has entries whose signs need not be constant on the region, so this module does
 not use it. Instead the Perron root is **bracketed**: the caller supplies
-rational functions `L(s) < U(s)` and the module certifies `L < U`, `chi(L) < 0 < chi(U)`
-and `L > |det M|`. Together with the Jury conditions on the quotient
+rational functions `L(s) < U(s)` and the module certifies `L < U` (on a scratch
+region, so the recorded `queries` and `polya` statistics are those of the reads
+below), `chi(L) < 0 < chi(U)` and `L > |det M|`. Together with the Jury conditions on the quotient
 `chi(t) / (t - beta)` this proves that the family is PIP on the region and that
 `beta` is the root of `chi` in `(L, U)`; where Rouche's dominant-coefficient
 condition is certified on the region it replaces the Jury reads (`rouche_disc`).
@@ -431,7 +432,10 @@ def certify_cone(cone: Cone, mut region: Region) raises -> ConeCertificate:
         ref br = cone.brackets[i]
         if region.sign(br.lo.den) <= 0 or region.sign(br.hi.den) <= 0:
             return ConeCertificate(False, 0, "a bracket denominator is not positive")
-        if region.sign(bracket_width(br)) <= 0:
+        # The order read runs on its own region, so the recorded closure statistics
+        # (queries, polya) are exactly those of runs made before this check existed.
+        var order = Region(region.n1, region.n2)
+        if order.sign(bracket_width(br)) <= 0:
             return ConeCertificate(False, 0, "a bracket is not ordered L < U")
         if region.sign(qx_sub(br.lo.num, qx_scale(br.lo.den, dabs))) <= 0:
             return ConeCertificate(False, 0, "a bracket does not lie above |det M|")
