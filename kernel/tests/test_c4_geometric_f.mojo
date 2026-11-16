@@ -31,6 +31,21 @@ overlap graph contains every vertex of every terminal leftmost cycle
 Run time: about two minutes on one core, of which the census is twenty
 seconds and the leftmost cross-check the rest.
 
+Round 2 (docs/c4-rank-two-wall-2026-11-16.md): the arithmetic profile also
+carries `d_2 = 3 - ord_t(chi_M mod 2)`, the clause `dim H^1 = 3` for every
+determinant (Theorem H3; with (F), Theorem FC3+) and the dimension bound of
+Theorem P+ (`dim H^1 >= 3 + |d_2 - 1|` is necessary for coincidence rank 2).
+The tables of (parity of `det M`, `d_2`, `dim H^1`) over the corpus and over
+the 510 (F) specimens with two periodic letters on both sides are pinned,
+and recomputed specimen by specimen with `d_2` as the rank over `F_2` of
+`(M mod 2)^3`, `chi_M mod 2` from `Mat3.charpoly`, and periodic letters as
+the fixed letters of the sixth power of an endpoint map, none of which the
+module uses; `dim H^1` is `psc.h1_census.h1_profile` on both sides, and (F)
+is the module's verdict. These are class counts under recorded conditional
+theorems, not certificates of a coincidence rank. The divisor condition of
+Theorem P+ and the refinement of Remark (3) after Theorem P of the class
+note (Lemma S at the admissible `n < 6`) are not implemented.
+
 Nothing here certifies a coincidence rank, strong coincidence or pure
 discrete spectrum, and no claim status changes: the census counts classes.
 """
@@ -43,8 +58,10 @@ from psc.c4_geometric_f import (
     CELL_DET_ODD,
     CELL_F,
     CELL_H1_AT_MOST_4,
+    CELL_H1_THREE,
     CELL_LEFT_TRIVIAL,
     CELL_PARITY,
+    CELL_RANK_BOUND,
     CELL_RIGHT_TRIVIAL,
     GEOMETRIC_F_STATE_CAP,
     GeometricFCensus,
@@ -54,7 +71,9 @@ from psc.c4_geometric_f import (
     StableRadiiCache,
     decide_geometric_f,
     decide_geometric_f_with,
+    chi_mod2_code,
     fc3_profile,
+    fc3_profile_of,
     fixed_ray_overlaps,
     fixed_ray_relative_states,
     geometric_f_census,
@@ -62,6 +81,7 @@ from psc.c4_geometric_f import (
     interior_cycles_in_box,
     joint_period,
     matrix_digits,
+    nonzero_roots_mod2,
     pair_transient,
     periodic_first_letter_pairs,
     predicted_leftmost_cycles,
@@ -69,9 +89,11 @@ from psc.c4_geometric_f import (
     stable_radii,
 )
 from psc.corpus import STATE_CAP, pip_corpus
-from psc.endpoint_core import prefix_endpoint_map
+from psc.degree2_sieve import mod2
+from psc.endpoint_core import prefix_endpoint_map, suffix_endpoint_map
 from psc.field3 import discriminant
 from psc.h1_census import h1_profile
+from psc.histogram import Histogram
 from psc.leftmost_chain import leftmost_step, terminal_leftmost_cycles
 from psc.overlap_seed_patch import OverlapState, SeedOverlapAutomaton, SeedOverlapTables
 from psc.periodic_pair import centre_offset, interior_occurrences
@@ -599,6 +621,79 @@ def leftmost_closure(tables: SeedOverlapTables, radii: List[Int]) raises -> Seed
     return SeedOverlapAutomaton(states, adj, False)
 
 
+def rank_mod2(m: Mat3) -> Int:
+    """Rank over `F_2` of a 3x3 integer matrix, by elimination on its rows
+    packed as three bits."""
+    var rows = List[Int]()
+    for i in range(3):
+        var bits = 0
+        for j in range(3):
+            bits = 2 * bits + mod2(m.at(i, j))
+        rows.append(bits)
+    var rank = 0
+    for bit in range(2, -1, -1):
+        var pivot = -1
+        for i in range(rank, 3):
+            if (rows[i] >> bit) & 1 == 1:
+                pivot = i
+                break
+        if pivot < 0:
+            continue
+        var swap = rows[rank]
+        rows[rank] = rows[pivot]
+        rows[pivot] = swap
+        for i in range(3):
+            if i != rank and (rows[i] >> bit) & 1 == 1:
+                rows[i] = rows[i] ^ rows[rank]
+        rank += 1
+    return rank
+
+
+def periodic_letters(h: List[Int]) -> Int:
+    """Letters on a cycle of a self-map of three letters: the fixed letters
+    of `h^6` (cycle lengths 1, 2, 3 divide 6, and a letter off every cycle is
+    not fixed by any power)."""
+    var n = 0
+    for a in range(3):
+        var x = a
+        for _ in range(6):
+            x = h[x]
+        if x == a:
+            n += 1
+    return n
+
+
+def test_d2_is_the_number_of_nonzero_roots_mod_2() raises:
+    """All eight classes of `chi_M mod 2 = t^3 + a t^2 + b t + c`, code
+    `4a + 2b + c`, factored by hand over `F_2`.
+
+    0: t^3                    d_2 = 0      4: t^2 (t + 1)          d_2 = 1
+    2: t (t + 1)^2            d_2 = 2      6: t (t^2 + t + 1)      d_2 = 2
+    1: (t + 1)(t^2 + t + 1)   d_2 = 3      3: t^3 + t + 1          d_2 = 3
+    5: t^3 + t^2 + 1          d_2 = 3      7: (t + 1)^3            d_2 = 3
+
+    `d_2` is the degree of the part prime to `t`, and the same number is the
+    rank over `F_2` of the cube of the companion matrix of the class."""
+    var expected: List[Int] = [0, 3, 2, 3, 1, 3, 2, 3]
+    for code in range(8):
+        assert_equal(nonzero_roots_mod2(code), expected[code])
+        var a = (code >> 2) & 1
+        var b = (code >> 1) & 1
+        var c = code & 1
+        # companion matrix of t^3 + a t^2 + b t + c over F_2 (signs vanish)
+        var companion = Mat3([0, 0, c, 1, 0, b, 0, 1, a])
+        assert_equal(rank_mod2(companion * companion * companion), expected[code])
+        # det, tr, e_2 of the companion matrix have the parities c, a, b
+        assert_equal(chi_mod2_code(companion.det(), companion.trace(), principal_minor_sum(companion)), code)
+        assert_equal(chi_mod2_code(-c, a + 2, b - 4), code)
+    var outside = False
+    try:
+        _ = nonzero_roots_mod2(8)
+    except e:
+        outside = "outside 0..7" in String(e)
+    assert_true(outside)
+
+
 def test_corpus() raises -> GeometricFCensus:
     var corpus = pip_corpus()
     assert_equal(len(corpus), 4554)
@@ -694,8 +789,47 @@ def test_corpus() raises -> GeometricFCensus:
     var radius_sum = 0
     var halved_cycles = 0
     var halved_empty = 0
+    # Round 2: the class tables recomputed specimen by specimen, key
+    # 10 d_2 + dim H^1, from quantities the module does not use.
+    var all_classes = Histogram(40)
+    var open_classes = Histogram(40)
+    var excluded_odd = 0
+    var excluded_even = 0
+    var open_excluded = 0
     for s in range(len(corpus)):
         var m = PrototileMap(corpus[s].sigma)
+        var profile = fc3_profile_of(m)
+        var incidence = corpus[s].incidence.copy()
+        var d2 = rank_mod2(incidence * incidence * incidence)
+        assert_equal(profile.d2(), d2)
+        var chi = incidence.charpoly()
+        assert_equal(profile.chi_mod2(), 4 * mod2(chi[2]) + 2 * mod2(chi[1]) + mod2(chi[0]))
+        assert_equal(nonzero_roots_mod2(profile.chi_mod2()), d2)
+        var dimension = h1_profile(corpus[s].sigma).dimension
+        assert_equal(profile.h1_dimension, dimension)
+        assert_equal(profile.rank_two_dimension_bound(), 3 + abs(d2 - 1))
+        assert_equal(profile.dimension_clause(), dimension < 3 + abs(d2 - 1))
+        assert_equal(profile.h1_three(), dimension == 3)
+        var det_is_odd = mod2(incidence.det()) == 1
+        assert_equal(d2 == 3, det_is_odd)
+        var excluded = dimension == 3
+        if det_is_odd:
+            excluded = dimension <= 4 or mod2(incidence.trace()) != mod2(chi[1])
+        assert_equal(profile.rank_two_excluded(), excluded)
+        all_classes.record(10 * d2 + dimension)
+        if excluded:
+            if det_is_odd:
+                excluded_odd += 1
+            else:
+                excluded_even += 1
+        var two_sided = (
+            periodic_letters(prefix_endpoint_map(corpus[s].sigma)) >= 2
+            and periodic_letters(suffix_endpoint_map(corpus[s].sigma)) >= 2
+        )
+        if census.holds[s] and two_sided:
+            open_classes.record(10 * d2 + dimension)
+            if excluded:
+                open_excluded += 1
         var radii = census.radii[s].copy()
         assert_equal(len(radii), 3)
         radius_sum += radii[0] + radii[1] + radii[2]
@@ -734,7 +868,137 @@ def test_corpus() raises -> GeometricFCensus:
     # radii (the five fixtures, 8,562 and 99,078).
     assert_true(halved_cycles < census.interior_cycle_total)
     assert_true(halved_empty > 1794)
+
+    # Round 2. The census tables equal the independent recomputation above.
+    for key in range(40):
+        assert_equal(census.classes.d2_dimension.count(key), all_classes.count(key))
+        assert_equal(census.open_classes.d2_dimension.count(key), open_classes.count(key))
+    assert_equal(census.classes.total(), 4554)
+    assert_equal(census.open_classes.total(), 510)
+    assert_equal(census.rank_two_excluded, excluded_odd + excluded_even)
+    assert_equal(census.open_rank_two_excluded, open_excluded)
+    check_round_two_classes(census, excluded_odd, excluded_even, open_excluded)
     return census^
+
+
+def check_round_two_classes(
+    census: GeometricFCensus, excluded_odd: Int, excluded_even: Int, open_excluded: Int
+) raises:
+    """The pins of round 2: class counts under Theorems H3, FC3+ and P+ of
+    docs/c4-rank-two-wall-2026-11-16.md, not certificates of a coincidence
+    rank."""
+    var odd = CELL_DET_ODD
+    var open_ends = CELL_F | CELL_LEFT_TRIVIAL | CELL_RIGHT_TRIVIAL
+    var dimensions: List[Int] = [3, 4, 5, 7]
+
+    # (d_2, dim H^1) over the corpus; d_2 = 3 exactly for odd determinant.
+    var table: List[List[Int]] = [
+        [0, 336, 36, 48, 12], [1, 456, 48, 144, 36], [2, 570, 72, 120, 48], [3, 1740, 396, 408, 84],
+    ]
+    var total = 0
+    for row in table:
+        for k in range(4):
+            assert_equal(census.classes.d2_count(row[0], dimensions[k]), row[k + 1])
+            total += row[k + 1]
+        assert_equal(census.classes.d2_count(row[0], 6), 0)
+    assert_equal(total, 4554)
+    assert_equal(census.classes.d2_dimension.total(), 4554)
+    for k in range(4):
+        assert_equal(census.classes.parity_count(True, dimensions[k]), table[3][k + 1])
+        assert_equal(
+            census.classes.parity_count(False, dimensions[k]), table[0][k + 1] + table[1][k + 1] + table[2][k + 1]
+        )
+    # The same table by the class of chi_M mod 2 (code 4 tr + 2 e_2 + det).
+    var fine: List[List[Int]] = [
+        [0, 336, 36, 48, 12], [2, 342, 48, 96, 36], [6, 228, 24, 24, 12], [4, 456, 48, 144, 36],
+        [1, 396, 96, 108, 12], [3, 372, 132, 96, 12], [5, 528, 96, 96, 12], [7, 444, 72, 108, 48],
+    ]
+    var fine_total = 0
+    for row in fine:
+        for k in range(4):
+            assert_equal(census.classes.count(row[0], dimensions[k]), row[k + 1])
+            fine_total += row[k + 1]
+    assert_equal(fine_total, 4554)
+    assert_equal(census.classes.chi_dimension.total(), 4554)
+    # Round-1 pin, from the table: chi_M mod 2 irreducible (codes 3 and 5).
+    assert_equal(372 + 132 + 96 + 12 + 528 + 96 + 96 + 12, 1344)
+
+    # dim H^1 = 3, every determinant (Theorem H3).
+    assert_equal(census.count_where(CELL_H1_THREE, CELL_H1_THREE), 3102)
+    assert_equal(census.count_where(odd | CELL_H1_THREE, odd | CELL_H1_THREE), 1740)
+    assert_equal(census.count_where(odd | CELL_H1_THREE, CELL_H1_THREE), 1362)
+    assert_equal(336 + 456 + 570, 1362)
+    # The 1,362 by (F): 1,128 fail (F); of the 234 with (F), 192 have an
+    # endpoint map with fewer than two periodic letters (clause (a')) and 42
+    # have two periodic letters on both sides (pinned below).
+    assert_equal(census.count_where(odd | CELL_H1_THREE | CELL_F, CELL_H1_THREE), 1128)
+    assert_equal(census.count_where(odd | CELL_H1_THREE | CELL_F, CELL_H1_THREE | CELL_F), 234)
+    assert_equal(1128 + 192 + 42, 1362)
+    # (F) and dim H^1 = 3, every determinant: the hypotheses of Theorem FC3+.
+    assert_equal(census.count_where(CELL_H1_THREE | CELL_F, CELL_H1_THREE | CELL_F), 1350)
+    assert_equal(census.count_where(odd | CELL_H1_THREE | CELL_F, odd | CELL_H1_THREE | CELL_F), 1116)
+    assert_equal(1116 + 234, 1350)
+    # The dimension bound of Theorem P+: dim H^1 < 3 + |d_2 - 1|.
+    assert_equal(census.count_where(CELL_RANK_BOUND, CELL_RANK_BOUND), 3042)
+    assert_equal(census.count_where(odd | CELL_RANK_BOUND, odd | CELL_RANK_BOUND), 2136)
+    assert_equal(census.count_where(odd | CELL_RANK_BOUND, CELL_RANK_BOUND), 906)
+    assert_equal(336 + 570, 906)
+    # For odd determinant it is clause (b); for even determinant it is
+    # contained in dim H^1 = 3, and silent on d_2 = 1.
+    assert_equal(census.count_where(odd | CELL_RANK_BOUND | CELL_H1_AT_MOST_4, odd | CELL_RANK_BOUND), 0)
+    assert_equal(census.count_where(odd | CELL_RANK_BOUND | CELL_H1_AT_MOST_4, odd | CELL_H1_AT_MOST_4), 0)
+    assert_equal(census.count_where(odd | CELL_RANK_BOUND | CELL_H1_THREE, CELL_RANK_BOUND), 0)
+    assert_equal(census.count_where(odd | CELL_RANK_BOUND | CELL_H1_THREE, CELL_H1_THREE), 456)
+    # The hypotheses of "coincidence rank != 2" without the divisor
+    # condition: odd, dim H^1 <= 4 or tr != e_2; even, dim H^1 = 3.
+    assert_equal(excluded_odd, 2352)
+    assert_equal(excluded_even, 1362)
+    assert_equal(census.rank_two_excluded, 3714)
+    assert_equal(4554 - 3714, 276 + 564)
+
+    # The 510 (F) specimens with two periodic letters on both sides.
+    var open_table: List[List[Int]] = [
+        [0, 30, 0, 0, 0], [1, 0, 0, 48, 24], [2, 12, 0, 60, 0], [3, 24, 60, 204, 48],
+    ]
+    var open_total = 0
+    for row in open_table:
+        for k in range(4):
+            assert_equal(census.open_classes.d2_count(row[0], dimensions[k]), row[k + 1])
+            open_total += row[k + 1]
+    assert_equal(open_total, 510)
+    var open_fine: List[List[Int]] = [
+        [0, 30, 0, 0, 0], [2, 0, 0, 48, 0], [6, 12, 0, 12, 0], [4, 0, 0, 48, 24],
+        [1, 0, 24, 96, 0], [3, 0, 0, 48, 0], [5, 24, 24, 12, 12], [7, 0, 12, 48, 36],
+    ]
+    var open_fine_total = 0
+    for row in open_fine:
+        for k in range(4):
+            assert_equal(census.open_classes.count(row[0], dimensions[k]), row[k + 1])
+            open_fine_total += row[k + 1]
+    assert_equal(open_fine_total, 510)
+    # Even determinant (174, all with det 2): 42 with dim H^1 = 3, of which
+    # 30 with chi_M = t^3 and 12 with chi_M = t (t^2 + t + 1) mod 2; 132
+    # remain, 72 with d_2 = 1 and 60 with d_2 = 2 and dim H^1 = 5.
+    assert_equal(census.count_where(open_ends | odd, CELL_F), 174)
+    assert_equal(census.residual_determinant.count(2 + 8), 174)
+    assert_equal(census.count_where(open_ends | odd | CELL_H1_THREE, CELL_F | CELL_H1_THREE), 42)
+    assert_equal(234 - 42, 192)
+    assert_equal(census.open_classes.count(0, 3), 30)
+    assert_equal(census.open_classes.count(6, 3), 12)
+    assert_equal(census.open_classes.count(2, 3) + census.open_classes.count(4, 3), 0)
+    assert_equal(census.count_where(open_ends | odd | CELL_H1_THREE, CELL_F), 132)
+    assert_equal(census.open_classes.d2_count(1, 5) + census.open_classes.d2_count(1, 7), 72)
+    assert_equal(census.open_classes.d2_count(2, 5), 60)
+    assert_equal(census.open_classes.d2_count(0, 4) + census.open_classes.d2_count(0, 5) + census.open_classes.d2_count(0, 7), 0)
+    # On this class the dimension bound of P+ and dim H^1 = 3 select the
+    # same even specimens (none has d_2 = 1 and dim H^1 = 3).
+    assert_equal(census.count_where(open_ends | odd | CELL_RANK_BOUND, CELL_F | CELL_RANK_BOUND), 42)
+    # With the 156 odd ones of round 1: 198 of the 510 meet the hypotheses,
+    # 312 = 180 + 132 do not.
+    assert_equal(open_excluded, 198)
+    assert_equal(census.open_rank_two_excluded, 198)
+    assert_equal(156 + 42, 198)
+    assert_equal(510 - 198, 180 + 132)
 
 
 def test_arithmetic_profile_fixtures() raises:
@@ -777,6 +1041,95 @@ def test_arithmetic_profile_fixtures() raises:
     except e:
         refused = "primitive irreducible Pisot" in String(e)
     assert_true(refused)
+    # Round 2. Tribonacci: chi_M = (t + 1)^3 mod 2, d_2 = 3, and dim H^1 = 3
+    # is below the bound 5.
+    assert_equal(t.chi_mod2(), 7)
+    assert_equal(t.d2(), 3)
+    assert_equal(t.rank_two_dimension_bound(), 5)
+    assert_true(t.dimension_clause())
+    assert_true(t.h1_three())
+    assert_true(t.rank_two_excluded())
+    # 01/12/021: chi_M = t^3 + t^2 + 1 mod 2, irreducible; dim H^1 = 4 < 5.
+    assert_equal(c.chi_mod2(), 5)
+    assert_equal(c.d2(), 3)
+    assert_equal(c.rank_two_dimension_bound(), 5)
+    assert_true(c.dimension_clause())
+    assert_false(c.h1_three())
+    assert_true(c.rank_two_excluded())
+
+
+def check_profile(
+    sigma: List[List[Int]],
+    matrix: List[Int],
+    determinant: Int,
+    trace: Int,
+    e2: Int,
+    code: Int,
+    d2: Int,
+    dimension: Int,
+    bound: Int,
+    excluded: Bool,
+) raises:
+    assert_equal(substitution_incidence(sigma), matrix)
+    var p = fc3_profile(sigma)
+    assert_equal(p.determinant, determinant)
+    assert_equal(p.trace, trace)
+    assert_equal(p.e2, e2)
+    assert_equal(p.chi_mod2(), code)
+    assert_equal(p.d2(), d2)
+    assert_equal(p.h1_dimension, dimension)
+    assert_equal(p.rank_two_dimension_bound(), bound)
+    assert_equal(p.dimension_clause(), dimension < bound)
+    assert_equal(p.h1_three(), dimension == 3)
+    assert_equal(p.rank_two_excluded(), excluded)
+
+
+def test_round_two_profile_fixtures() raises:
+    """One specimen per value of `d_2` of the even-determinant table, and one
+    odd-determinant specimen reached by no clause, by hand. The incidence
+    matrix is written out (rows; column `a` is the Parikh vector of
+    `sigma(a)`), and `chi_M = t^3 - tr t^2 + e_2 t - det`."""
+    # 01/121/012: rows (1,0,1), (1,2,1), (0,1,1); tr 4, e_2 = 2 + 1 + 1 = 4,
+    # det = 1 + 1 = 2; chi = t^3 mod 2, d_2 = 0, bound 4; dim H^1 = 3.
+    var zero: List[List[Int]] = [[0, 1], [1, 2, 1], [0, 1, 2]]
+    check_profile(zero, [1, 0, 1, 1, 2, 1, 0, 1, 1], 2, 4, 4, 0, 0, 3, 4, True)
+    var pz = fc3_profile(zero)
+    assert_equal(pz.left_periodic, 2)
+    assert_equal(pz.right_periodic, 2)
+    assert_true(decide_geometric_f(zero).holds)
+    # 01/220/100: rows (1,1,2), (1,0,1), (0,2,0); tr 1, e_2 = -1 + 0 - 2 = -3,
+    # det = -2 + 4 = 2; chi = t (t^2 + t + 1) mod 2, d_2 = 2, bound 4;
+    # dim H^1 = 3.
+    var two_low: List[List[Int]] = [[0, 1], [2, 2, 0], [1, 0, 0]]
+    check_profile(two_low, [1, 1, 2, 1, 0, 1, 0, 2, 0], 2, 1, -3, 6, 2, 3, 4, True)
+    assert_false(fc3_profile(two_low).endpoint_trivial())
+    assert_true(decide_geometric_f(two_low).holds)
+    # 1/212/021: rows (0,0,1), (1,1,1), (0,2,1); tr 2, e_2 = 0 + 0 - 1 = -1,
+    # det 2; chi = t (t + 1)^2 mod 2, d_2 = 2, bound 4; dim H^1 = 5 passes it.
+    var two_high: List[List[Int]] = [[1], [2, 1, 2], [0, 2, 1]]
+    check_profile(two_high, [0, 0, 1, 1, 1, 1, 0, 2, 1], 2, 2, -1, 2, 2, 5, 4, False)
+    assert_false(fc3_profile(two_high).endpoint_trivial())
+    assert_true(decide_geometric_f(two_high).holds)
+    # 1/22/021 and 1/22/012 share the matrix with rows (0,0,1), (1,0,1),
+    # (0,2,1); tr 1, e_2 = -2, det 2; chi = t^2 (t + 1) mod 2, d_2 = 1, bound 3:
+    # Theorem P+ gives no dimension bound. 1/22/021 has dim H^1 = 5 and is
+    # reached by no clause; 1/22/012 has dim H^1 = 3 and is reached by the
+    # clause dim H^1 = 3 only (it fails (F): the period-5 interior cycle
+    # pinned above).
+    var one_high: List[List[Int]] = [[1], [2, 2], [0, 2, 1]]
+    check_profile(one_high, [0, 0, 1, 1, 0, 1, 0, 2, 1], 2, 1, -2, 4, 1, 5, 3, False)
+    assert_false(fc3_profile(one_high).endpoint_trivial())
+    assert_true(decide_geometric_f(one_high).holds)
+    var one_low: List[List[Int]] = [[1], [2, 2], [0, 1, 2]]
+    check_profile(one_low, [0, 0, 1, 1, 0, 1, 0, 2, 1], 2, 1, -2, 4, 1, 3, 3, True)
+    assert_false(fc3_profile(one_low).dimension_clause())
+    assert_false(decide_geometric_f(one_low).holds)
+    # Odd determinant, reached by no clause: 1/2/021 has the Tribonacci
+    # polynomial (tr 1, e_2 -1, det 1; chi = (t + 1)^3 mod 2, tr = e_2) and
+    # dim H^1 = 5, the bound.
+    var odd_open: List[List[Int]] = [[1], [2], [0, 2, 1]]
+    check_profile(odd_open, [0, 0, 1, 1, 0, 1, 0, 1, 1], 1, 1, -1, 7, 3, 5, 5, False)
+    assert_false(fc3_profile(odd_open).arithmetic_clause())
 
 
 def main() raises:
@@ -789,6 +1142,8 @@ def main() raises:
     test_the_certified_radii()
     test_fc1_inclusion_on_words()
     test_arithmetic_profile_fixtures()
+    test_d2_is_the_number_of_nonzero_roots_mod_2()
+    test_round_two_profile_fixtures()
     var census = test_corpus()
     var odd = CELL_DET_ODD
     var open_ends = CELL_F | CELL_LEFT_TRIVIAL | CELL_RIGHT_TRIVIAL
@@ -805,7 +1160,13 @@ def main() raises:
         census.count_where(odd, odd) - census.count_where(odd | CELL_H1_AT_MOST_4 | CELL_PARITY, odd),
         "; (F) with two periodic letters on both sides:", census.count_where(open_ends, CELL_F),
         ", reached by none of (a'), (b), (c):", census.residual_determinant.total(),
+        "; round 2 class counts, key 10 d_2 + dim H^1:", census.classes.d2_dimension.line("corpus"), ";",
+        census.open_classes.d2_dimension.line("(F) with two periodic letters on both sides"),
+        "; dim H^1 = 3:", census.count_where(CELL_H1_THREE, CELL_H1_THREE), ", of them even det:",
+        census.count_where(odd | CELL_H1_THREE, CELL_H1_THREE),
+        "; hypotheses of cr != 2 without the divisor condition:", census.rank_two_excluded, "of", census.total,
+        "and", census.open_rank_two_excluded, "of", census.open_classes.total(),
         "; peak candidates / visited states / closure nodes:",
         census.peak_candidates, census.peak_visited, census.peak_nodes,
     )
-    require_contract("Geometric property (F) of ternary irreducible Pisot substitutions (psc.c4_geometric_f), exact integer and Z[beta] arithmetic: the prototile state map f(j, v) = (j', M v - p(P)); (F) decided by walking every state with v != 0 inside the box of stable_radii (Lemma B: per incidence matrix, outward-rounded rational intervals; the radii are pinned on the five fixtures, [2,3,4], [4,3,3], [4,5,3], [26,15,16], [18,15,17], and by their sum, 8,562 over the 348 matrices and 99,078 over the specimens; a search in any other box returns no verdict), every interior f-cycle replaying (M^k - I) v = p(P) at an interior occurrence. Fixtures: Tribonacci 01/02/0 has (F); 01/12/021 has the f-fixed state (2, (-1, 0, 1)) with (M - I) v = e_0 = p(P) for P = 0 in sigma(2) = 0.2.1, re-derived from the word, and 4 terminal leftmost cycles; 1/12/022, 1/012/010 and 1/22/012 have one interior cycle of period 1, 3, 5 and recover the leftmost-chain pins (2 cycles of length 1, 6, 15); 1/2/02 has 11 relative states per pair, equal to the set read off 3,000-letter ray prefixes, transient 7, and M^9 sends the first 60 vertices of each ray to common vertices while M^6 does not; 1/012/100 pair (0, 1) has 240 relative states and transient 51 where a 3,000-letter prefix shows 60 states and transient 36. Refusals: the reducible 10/102/211 and 011/120/2012, the singular 1/012/1, the non-Pisot 1/2/001, an image of length 7, Thue-Morse, 012/120/201, non-primitive and malformed input raise, each matched on its refusal message; fc3_profile refuses 011/120/2012; state and overlap caps raise; a point outside its tile has no image; an orbit closing on an uncertified cycle raises. Corpus, 4,554 specimens on 348 incidence matrices: (F) on 1,794, invariant under image reversal on all 4,554; 3,756 interior cycles with 12,828 states, longest period 13, 0/1/2/3 cycles on 1794/1860/804/96 specimens; least interior period over the other 2,760: 1:816 2:252 3:744 4:228 5:492 6:12 7:24 8:72 10:84 11:12 13:24; terminal leftmost cycles (psc.leftmost_chain on the leftmost closure of the box start states) = 2 sum gcd(|C|, |G|) on every specimen, 10,584 in all, longest 39, none exactly on the 1,794 (F) specimens, replayed on the literal box graph for every 97th specimen (47); half the certified radii miss cycles (a calibration of that box only; the pinned radii guard the bound); Theorem FC1: 1,956 pairs of periodic first letters on (F) specimens, each of their 97,992 relative states reaches a vertex state, maximal transient 51 f-steps (24 pairs; the scratch value 38 was a 3,000-letter prefix scan), and 2,790 pairs on the other specimens, each with a relative state absorbed by an interior cycle; arithmetic classes: 2,628 odd determinants, of them 2,136 with dim H^1 <= 4, 1,344 with tr != e_2 (mod 2), 2,352 with either; of the 1,794 (F) specimens 1,284 have an endpoint map with fewer than two periodic letters, and of the other 510, 84 have odd det and dim H^1 <= 4, 120 odd det and tr != e_2, 156 either, 354 neither (174 with det 2, 180 odd). Class counts only: no coincidence rank, strong coincidence or pure discrete spectrum is certified, and no claim status changes")
+    require_contract("Geometric property (F) of ternary irreducible Pisot substitutions (psc.c4_geometric_f), exact integer and Z[beta] arithmetic: the prototile state map f(j, v) = (j', M v - p(P)); (F) decided by walking every state with v != 0 inside the box of stable_radii (Lemma B: per incidence matrix, outward-rounded rational intervals; the radii are pinned on the five fixtures, [2,3,4], [4,3,3], [4,5,3], [26,15,16], [18,15,17], and by their sum, 8,562 over the 348 matrices and 99,078 over the specimens; a search in any other box returns no verdict), every interior f-cycle replaying (M^k - I) v = p(P) at an interior occurrence. Fixtures: Tribonacci 01/02/0 has (F); 01/12/021 has the f-fixed state (2, (-1, 0, 1)) with (M - I) v = e_0 = p(P) for P = 0 in sigma(2) = 0.2.1, re-derived from the word, and 4 terminal leftmost cycles; 1/12/022, 1/012/010 and 1/22/012 have one interior cycle of period 1, 3, 5 and recover the leftmost-chain pins (2 cycles of length 1, 6, 15); 1/2/02 has 11 relative states per pair, equal to the set read off 3,000-letter ray prefixes, transient 7, and M^9 sends the first 60 vertices of each ray to common vertices while M^6 does not; 1/012/100 pair (0, 1) has 240 relative states and transient 51 where a 3,000-letter prefix shows 60 states and transient 36. Refusals: the reducible 10/102/211 and 011/120/2012, the singular 1/012/1, the non-Pisot 1/2/001, an image of length 7, Thue-Morse, 012/120/201, non-primitive and malformed input raise, each matched on its refusal message; fc3_profile refuses 011/120/2012; state and overlap caps raise; a point outside its tile has no image; an orbit closing on an uncertified cycle raises. Corpus, 4,554 specimens on 348 incidence matrices: (F) on 1,794, invariant under image reversal on all 4,554; 3,756 interior cycles with 12,828 states, longest period 13, 0/1/2/3 cycles on 1794/1860/804/96 specimens; least interior period over the other 2,760: 1:816 2:252 3:744 4:228 5:492 6:12 7:24 8:72 10:84 11:12 13:24; terminal leftmost cycles (psc.leftmost_chain on the leftmost closure of the box start states) = 2 sum gcd(|C|, |G|) on every specimen, 10,584 in all, longest 39, none exactly on the 1,794 (F) specimens, replayed on the literal box graph for every 97th specimen (47); half the certified radii miss cycles (a calibration of that box only; the pinned radii guard the bound); Theorem FC1: 1,956 pairs of periodic first letters on (F) specimens, each of their 97,992 relative states reaches a vertex state, maximal transient 51 f-steps (24 pairs; the scratch value 38 was a 3,000-letter prefix scan), and 2,790 pairs on the other specimens, each with a relative state absorbed by an interior cycle; arithmetic classes: 2,628 odd determinants, of them 2,136 with dim H^1 <= 4, 1,344 with tr != e_2 (mod 2), 2,352 with either; of the 1,794 (F) specimens 1,284 have an endpoint map with fewer than two periodic letters, and of the other 510, 84 have odd det and dim H^1 <= 4, 120 odd det and tr != e_2, 156 either, 354 neither (174 with det 2, 180 odd). Round 2 (docs/c4-rank-two-wall-2026-11-16.md, Theorems H3, FC3+ and P+: class counts under recorded conditional theorems, not certificates of a coincidence rank): d_2 = 3 - ord_t(chi_M mod 2), the number of nonzero roots of chi_M over an algebraic closure of F_2, read from the parities of det M, e_2(M), tr M (the eight classes factored by hand) and equal to the rank over F_2 of (M mod 2)^3 on all 4,554 specimens; fixtures by hand: 01/121/012 (chi_M = t^3 mod 2, d_2 = 0, dim H^1 = 3), 01/220/100 (t(t^2 + t + 1), d_2 = 2, dim 3), 1/212/021 (t(t + 1)^2, d_2 = 2, dim 5), 1/22/021 and 1/22/012 (t^2 (t + 1), d_2 = 1, dim 5 and 3), 1/2/021 (odd, tr = e_2, dim 5); corpus counts by (d_2, dim H^1 = 3/4/5/7), d_2 = 3 exactly for odd determinant: d_2 = 0: 336/36/48/12; d_2 = 1: 456/48/144/36; d_2 = 2: 570/72/120/48; d_2 = 3: 1740/396/408/84, also pinned by the class of chi_M mod 2; dim H^1 = 3 (Theorem H3, every determinant) on 3,102 specimens, 1,362 of them with even determinant, of which 1,128 fail (F), 192 have (F) and an endpoint map with fewer than two periodic letters, and 42 have (F) and two periodic letters on both sides; (F) and dim H^1 = 3 (the hypotheses of Theorem FC3+) on 1,350 = 1,116 odd + 234 even; dim H^1 < 3 + |d_2 - 1| (the dimension bound of Theorem P+ fails) on 3,042 = 2,136 odd + 906 even, contained in dim H^1 = 3 for even determinant and silent on the 456 specimens with d_2 = 1 and dim H^1 = 3; the hypotheses of 'coincidence rank != 2' without the divisor condition (odd determinant: dim H^1 <= 4 or tr != e_2; even determinant: dim H^1 = 3) hold on 3,714 = 2,352 + 1,362 specimens; over the 510 (F) specimens with two periodic letters on both sides: d_2 = 0: 30 at dim H^1 = 3; d_2 = 1: 48 at dim 5 and 24 at dim 7; d_2 = 2: 12 at dim 3 and 60 at dim 5; d_2 = 3: 24/60/204/48; of the 174 with det 2, 42 have dim H^1 = 3 (30 with chi_M = t^3 and 12 with chi_M = t(t^2 + t + 1) mod 2) and 132 remain (72 with d_2 = 1, 60 with d_2 = 2 and dim H^1 = 5); with the 156 odd ones, 198 of the 510 meet the hypotheses and 312 = 180 + 132 do not; the (d_2, dim H^1) tables and the hypothesis counts are recomputed specimen by specimen in the test with d_2 from that rank; the divisor condition of Theorem P+ and the refinement of Remark (3) after Theorem P (Lemma S at the admissible n < 6) are not implemented. Class counts only: no coincidence rank, strong coincidence or pure discrete spectrum is certified, and no claim status changes")

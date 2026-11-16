@@ -1,7 +1,9 @@
 """The geometric property (F) of a ternary irreducible Pisot substitution,
-decided exactly, and the corpus content of Theorems FC1, P and FC3.
+decided exactly, and the corpus content of Theorems FC1, P and FC3, and of
+Theorems H3, FC3+ and P+ of round 2.
 
-docs/c4-geometric-f-class-2026-11-16.md. Standing class PIP3: a primitive
+docs/c4-geometric-f-class-2026-11-16.md; for round 2,
+docs/c4-rank-two-wall-2026-11-16.md. Standing class PIP3: a primitive
 substitution `sigma` on `{0,1,2}` whose incidence matrix `M` has an irreducible
 characteristic polynomial with a Pisot Perron root `beta` (nonunit allowed).
 `ell` is the positive left Perron vector (tile lengths), `p(.)` the Parikh
@@ -206,6 +208,59 @@ that is not PIP3: outside PIP3 the clauses mean nothing.
 tables. The census counts classes; it certifies no coincidence rank, no pure
 discrete spectrum and no strong coincidence, and changes no claim status.
 
+Round 2: every determinant (Theorems H3, FC3+ and P+)
+------------------------------------------------------
+docs/c4-rank-two-wall-2026-11-16.md. With
+`chi_M = t^3 - (tr M) t^2 + e_2(M) t - det M`,
+
+    chi_M mod 2 = t^3 + a t^2 + b t + c,    a, b, c the parities of
+                                            tr M, e_2(M), det M,
+
+and `FC3Profile.chi_mod2` is the code `4a + 2b + c` of that class.
+
+    d_2(sigma) := 3 - ord_t(chi_M mod 2)
+
+is the number of nonzero roots of `chi_M` over an algebraic closure of
+`F_2`, with multiplicity: `3` when `det M` is odd, else `2` when `e_2(M)` is
+odd, else `1` when `tr M` is odd, else `0` (`nonzero_roots_mod2`). It is
+also the rank over `F_2` of `(M mod 2)^3`; the regression recomputes it that
+way on every corpus specimen. Two further clauses are evaluated, beside
+(a'), (b), (c) above; the letters (d) and (e) are this module's:
+
+(d) `dim H^1 = 3`, for every determinant (`FC3Profile.h1_three`). Theorem H3
+    of the note: a PIP3 substitution with `dim H^1(Omega; Q) = 3` does not
+    have coincidence rank 2. For odd determinant that is Barge 2015 Theorem
+    22 and lies inside clause (b); the even determinants are what the note
+    adds. With (F) it is Theorem FC3+.
+(e) `dim H^1 < 3 + |d_2 - 1|` (`FC3Profile.dimension_clause`): the dimension
+    bound of Theorem P+ fails. Theorem P+: coincidence rank 2 needs
+    `dim H^1 >= 3 + |d_2 - 1|`, that is `>= 5` for `d_2 = 3` (Barge's bound,
+    clause (b)), `>= 4` for `d_2 = 2` and for `d_2 = 0`, and nothing for
+    `d_2 = 1`. For even determinant (e) is contained in (d). The note
+    attributes the mechanism of P+ to the parity argument of
+    Barge--Bruin--Jones--Sadun for degree one; Barge 2015 Theorem 22 is the
+    odd-norm case.
+
+`FC3Profile.rank_two_excluded` is the union with the round-1 clauses: odd
+determinant and (`dim H^1 <= 4` or `tr M != e_2(M) (mod 2)`), or even
+determinant and `dim H^1 = 3`. `ClassTable` tabulates
+(`chi_M mod 2`, `dim H^1`) and (`d_2`, `dim H^1`); the census keeps one table
+for the corpus and one for the (F) specimens with at least two periodic
+letters on both sides.
+
+These are class counts under recorded conditional theorems (the note labels
+H3, FC3+ and P+: recorded proof, conditional on the listed imports, single
+prover plus independent adversarial re-derivation within the session, not
+machine-checked, independent human review pending). A flag says that the
+hypotheses of a clause hold. It is not a certificate of a coincidence rank:
+no coincidence rank is computed anywhere in this module.
+
+Not implemented: the divisor condition of Theorem P+ (at every admissible
+`n`, factors `r`, `q_1` of `c_n` with `h_n r = (t + 1) q_1` over `F_2`), and
+the refinement of Remark (3) after Theorem P of the class note (Lemma S at
+the admissible `n < 6`). What the record says those two add on the corpus is
+an exploratory scratch observation, not replayable from the repository.
+
 Fail closed
 -----------
 A substitution that is not PIP3 raises in `build_seed_overlap_tables` (no
@@ -290,7 +345,15 @@ comptime CELL_H1_AT_MOST_4 = 4
 comptime CELL_PARITY = 8
 comptime CELL_LEFT_TRIVIAL = 16
 comptime CELL_RIGHT_TRIVIAL = 32
-comptime CELL_COUNT = 64
+# Round 2: dim H^1 = 3, and dim H^1 below the bound 3 + |d_2 - 1| of Theorem P+.
+comptime CELL_H1_THREE = 64
+comptime CELL_RANK_BOUND = 128
+comptime CELL_COUNT = 256
+
+# Classes of chi_M mod 2 (three coefficient parities), and the largest
+# dim H^1 a class table holds (on three letters dim H^1 <= 7).
+comptime CHI_MOD2_CLASSES = 8
+comptime MAX_H1_DIMENSION = 9
 
 comptime MAX_PERIOD = 64
 comptime MAX_TRANSIENT = 128
@@ -1306,8 +1369,32 @@ def periodic_letter_count(h: List[Int]) -> Int:
     return n
 
 
+def chi_mod2_code(determinant: Int, trace: Int, e2: Int) -> Int:
+    """The class of `chi_M mod 2 = t^3 + a t^2 + b t + c` as `4a + 2b + c`,
+    with `a, b, c` the parities of `tr M`, `e_2(M)`, `det M`."""
+    return 4 * mod2(trace) + 2 * mod2(e2) + mod2(determinant)
+
+
+def nonzero_roots_mod2(code: Int) raises -> Int:
+    """`d_2 = 3 - ord_t(t^3 + a t^2 + b t + c)` for the class `4a + 2b + c`:
+    the number of nonzero roots over an algebraic closure of `F_2`, with
+    multiplicity. Raises on a code outside `0..7`."""
+    if code < 0 or code >= CHI_MOD2_CLASSES:
+        raise Error("chi_M mod 2: class code outside 0..7")
+    if code & 1 == 1:
+        return 3
+    if code & 2 == 2:
+        return 2
+    if code & 4 == 4:
+        return 1
+    return 0
+
+
 struct FC3Profile(ImplicitlyCopyable, Copyable, Movable):
-    """The arithmetic facts Theorems P and FC3 read off one substitution."""
+    """The arithmetic facts Theorems P and FC3, and Theorems H3, FC3+ and P+
+    of round 2, read off one substitution. The clause methods say that the
+    hypotheses of a clause hold; none of them is a certificate of a
+    coincidence rank."""
 
     var determinant: Int
     var trace: Int
@@ -1361,6 +1448,45 @@ struct FC3Profile(ImplicitlyCopyable, Copyable, Movable):
         as excluding coincidence rank 2; nothing of the kind is decided here."""
         return self.det_odd() and (self.cohomology_clause() or self.parity_clause())
 
+    def chi_mod2(self) -> Int:
+        """The class of `chi_M mod 2`: `4 (tr M) + 2 e_2(M) + det M` on parities."""
+        return chi_mod2_code(self.determinant, self.trace, self.e2)
+
+    def d2(self) -> Int:
+        """`d_2 = 3 - ord_t(chi_M mod 2)`: `3` for odd `det M`, else `2` for
+        odd `e_2(M)`, else `1` for odd `tr M`, else `0`."""
+        if mod2(self.determinant) == 1:
+            return 3
+        if mod2(self.e2) == 1:
+            return 2
+        if mod2(self.trace) == 1:
+            return 1
+        return 0
+
+    def h1_three(self) -> Bool:
+        """Clause (d): `dim H^1 = 3`, for every determinant (Theorem H3)."""
+        return self.h1_dimension == 3
+
+    def rank_two_dimension_bound(self) -> Int:
+        """`3 + |d_2 - 1|`: by Theorem P+ coincidence rank 2 needs
+        `dim H^1` at least this."""
+        var d = self.d2()
+        return 3 + (d - 1 if d >= 1 else 1 - d)
+
+    def dimension_clause(self) -> Bool:
+        """Clause (e): `dim H^1 < 3 + |d_2 - 1|`, the dimension bound of
+        Theorem P+ fails. For odd determinant this is `dim H^1 <= 4`."""
+        return self.h1_dimension < self.rank_two_dimension_bound()
+
+    def rank_two_excluded(self) -> Bool:
+        """The hypotheses under which the recorded theorems exclude
+        coincidence rank 2 without the divisor condition of Theorem P+: (d),
+        (e), or odd determinant with the parity clause (c). That is: odd
+        determinant and (`dim H^1 <= 4` or `tr M != e_2(M)`), or even
+        determinant and `dim H^1 = 3`. Membership in a class; no coincidence
+        rank is computed."""
+        return self.h1_three() or self.dimension_clause() or (self.det_odd() and self.parity_clause())
+
     def cell(self, holds: Bool) -> Int:
         var key = 0
         if holds:
@@ -1375,6 +1501,10 @@ struct FC3Profile(ImplicitlyCopyable, Copyable, Movable):
             key |= CELL_LEFT_TRIVIAL
         if self.right_trivial():
             key |= CELL_RIGHT_TRIVIAL
+        if self.h1_three():
+            key |= CELL_H1_THREE
+        if self.dimension_clause():
+            key |= CELL_RANK_BOUND
         return key
 
 
@@ -1403,6 +1533,51 @@ def fc3_profile(sigma: List[List[Int]]) raises -> FC3Profile:
     return fc3_profile_of(m)
 
 
+struct ClassTable(Copyable, Movable):
+    """Specimens by arithmetic class and `dim H^1`, two ways:
+    `chi_dimension`, key `10 * chi_mod2 + dim H^1`, and `d2_dimension`, key
+    `10 * d_2 + dim H^1`. `dim H^1` must lie in `3..MAX_H1_DIMENSION`; anything
+    else raises. Counts of classes, nothing more."""
+
+    var chi_dimension: Histogram
+    var d2_dimension: Histogram
+
+    def __init__(out self):
+        self.chi_dimension = Histogram(10 * CHI_MOD2_CLASSES)
+        self.d2_dimension = Histogram(40)
+
+    def record(mut self, profile: FC3Profile) raises:
+        var dimension = profile.h1_dimension
+        if dimension < 3 or dimension > MAX_H1_DIMENSION:
+            raise Error("dim H^1 outside the class table")
+        self.chi_dimension.record(10 * profile.chi_mod2() + dimension)
+        self.d2_dimension.record(10 * profile.d2() + dimension)
+
+    def count(self, code: Int, dimension: Int) -> Int:
+        """Specimens with `chi_M mod 2` of class `code` and that `dim H^1`."""
+        if code < 0 or code >= CHI_MOD2_CLASSES or dimension < 3 or dimension > MAX_H1_DIMENSION:
+            return 0
+        return self.chi_dimension.count(10 * code + dimension)
+
+    def d2_count(self, d2: Int, dimension: Int) -> Int:
+        """Specimens with that `d_2` and that `dim H^1`."""
+        if d2 < 0 or d2 > 3 or dimension < 3 or dimension > MAX_H1_DIMENSION:
+            return 0
+        return self.d2_dimension.count(10 * d2 + dimension)
+
+    def parity_count(self, odd: Bool, dimension: Int) -> Int:
+        """Specimens with `det M` of that parity and that `dim H^1`, summed
+        over the classes of `chi_M mod 2` (odd constant term or not)."""
+        var n = 0
+        for code in range(CHI_MOD2_CLASSES):
+            if (code & 1 == 1) == odd:
+                n += self.count(code, dimension)
+        return n
+
+    def total(self) -> Int:
+        return self.chi_dimension.total()
+
+
 struct GeometricFCensus(Copyable, Movable):
     """Per-specimen facts over a corpus, folded into order-independent tables.
 
@@ -1423,7 +1598,13 @@ struct GeometricFCensus(Copyable, Movable):
     it was decided in, the number of interior f-cycles and the predicted
     number of terminal leftmost cycles of `corpus[s]`. `matrices` is the
     number of distinct incidence matrices and `matrix_radius_sum` the sum of
-    the three radii over them."""
+    the three radii over them.
+
+    Round 2: `classes` tabulates every specimen by (`chi_M mod 2`, `dim H^1`)
+    and (`d_2`, `dim H^1`); `open_classes` the (F) specimens with at least two
+    periodic letters on both sides (clause (a') fails). `rank_two_excluded`
+    and `open_rank_two_excluded` count `FC3Profile.rank_two_excluded` on the
+    same two sets: specimens that meet the hypotheses, not certificates."""
 
     var total: Int
     var cells: Histogram
@@ -1431,6 +1612,10 @@ struct GeometricFCensus(Copyable, Movable):
     var interior_cycles: Histogram
     var residual_determinant: Histogram
     var transients: Histogram
+    var classes: ClassTable
+    var open_classes: ClassTable
+    var rank_two_excluded: Int
+    var open_rank_two_excluded: Int
     var holds: List[Bool]
     var radii: List[List[Int]]
     var cycle_counts: List[Int]
@@ -1462,6 +1647,10 @@ struct GeometricFCensus(Copyable, Movable):
         self.interior_cycles = Histogram(MAX_PERIOD)
         self.residual_determinant = Histogram(16)
         self.transients = Histogram(MAX_TRANSIENT)
+        self.classes = ClassTable()
+        self.open_classes = ClassTable()
+        self.rank_two_excluded = 0
+        self.open_rank_two_excluded = 0
         self.holds = List[Bool]()
         self.radii = List[List[Int]]()
         self.cycle_counts = List[Int]()
@@ -1498,8 +1687,8 @@ struct GeometricFCensus(Copyable, Movable):
 def geometric_f_census(corpus: List[Specimen]) raises -> GeometricFCensus:
     """One pass over `corpus`: (F) with every interior cycle and its replayed
     address, the leftmost-cycle prediction, Theorem FC1 on every pair of
-    periodic first letters, and the arithmetic cells; then reversal
-    invariance of (F) inside the corpus."""
+    periodic first letters, the arithmetic cells and the round-2 class
+    tables; then reversal invariance of (F) inside the corpus."""
     var out = GeometricFCensus()
     var index = Dict[String, Int]()
     var boxes = StableRadiiCache()
@@ -1541,6 +1730,13 @@ def geometric_f_census(corpus: List[Specimen]) raises -> GeometricFCensus:
             if profile.determinant < -8 or profile.determinant > 7:
                 raise Error("determinant outside the census table")
             out.residual_determinant.record(profile.determinant + 8)
+        out.classes.record(profile)
+        if profile.rank_two_excluded():
+            out.rank_two_excluded += 1
+        if verdict.holds and not profile.endpoint_trivial():
+            out.open_classes.record(profile)
+            if profile.rank_two_excluded():
+                out.open_rank_two_excluded += 1
 
         var memo = OrbitMemo(verdict)
         var pairs = periodic_first_letter_pairs(sigma)
