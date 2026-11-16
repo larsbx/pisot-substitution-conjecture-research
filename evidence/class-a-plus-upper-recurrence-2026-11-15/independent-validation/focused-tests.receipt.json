@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+    "-m",
+    "pytest",
+    "-o",
+    "addopts=",
+    "-q",
+    "/workspace/scratch/7b7b91dcb7fe/psc-upper/tests/test_class_a_plus_upper_recurrence_independent.py",
+    "--junitxml=/workspace/scratch/7b7b91dcb7fe/psc-upper/evidence/class-a-plus-upper-recurrence-2026-11-15/independent-validation/focused-tests.xml"
+  ],
+  "elapsed_seconds": 2.4758706092834473,
+  "exit_code": 0,
+  "source_sha256": "cc97a3f956ab3fd8d8cf22e61e090664d4a3f614112a03c6068e85adb8dc152c",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "08ed5e99dccef220b4d6a333af2e8a5df692dd2d61155d9feca55e205ee16ebf",
+  "test_source_sha256": "d8de4b447dc7352299a20a3074d48cbf0e131228dac32d7654cbf12f86cff6e7"
+}

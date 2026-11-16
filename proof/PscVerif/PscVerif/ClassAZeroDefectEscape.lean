@@ -293,6 +293,33 @@ theorem runLength_pos (n d : ℕ) (hn : 2 ≤ n) (a : Fin 3) :
     0 < runLength n d a := by
   fin_cases a <;> simp [runLength] <;> omega
 
+/-- The first RUN/RUN edge needs only its own ordinal guards. -/
+theorem run_slice_first_digit_step (n d : ℕ) (hn : 2 ≤ n)
+    (a b : Fin 3) (S h : ℤ)
+    (hlo : 1 - (runLength n d b : ℤ) ≤ h)
+    (hhi : h ≤ (runLength n d a : ℤ) - 1) :
+    IndexedDigitStep (sigma n d) (runSlice n d a b S h)
+      (h.toNat + 1) ((-h).toNat + 1) (packet 2 2 0 (2*S) (-2*S)) := by
+  have hn1 : 1 ≤ n := by omega
+  have ha := runLength_pos n d hn a
+  have hb := runLength_pos n d hn b
+  have hi : h.toNat < runLength n d a := by omega
+  have hj : (-h).toNat < runLength n d b := by omega
+  have hh : ((h.toNat : ℕ) : ℤ) - ((-h).toNat : ℤ) = h := by omega
+  let q := h - ((d : ℤ) + 1) * delta a b + ((d : ℤ) - n) * S
+  have e1 := positive_step n d hn1 a b h.toNat (-h).toNat hi.le hj.le
+    (delta a b - S) q (2*S-delta a b-q)
+  have hP : 2*(delta a b-S)+q+(2*S-delta a b-q)-delta a b = 0 := by ring
+  have hQ : q+(2*S-delta a b-q)+delta a b = 2*S := by ring
+  have hR : ((n+d : ℕ) : ℤ)*(delta a b-S)+(n : ℤ)*q+
+      ((n-1 : ℕ) : ℤ)*(2*S-delta a b-q)+((-h).toNat : ℤ)-h.toNat = -2*S := by
+    dsimp [q]
+    simp only [Nat.cast_sub hn1, Nat.cast_one]
+    linear_combination -hh
+  simpa only [positiveMark_letter_of_lt n d a h.toNat hi,
+    positiveMark_letter_of_lt n d b (-h).toNat hj, hP, hQ, hR,
+    runSlice] using e1
+
 /-- The complete clipped two-step construction.  `h.toNat` and
 `(-h).toNat` are zero-based positions inside the two first runs; the second
 pair may select the actual LAST letter at the boundary `|2S| = n - 1`.
@@ -310,32 +337,13 @@ theorem run_slice_two_digit_steps (n d : ℕ) (hn : 2 ≤ n)
         ((2*S).toNat + 1) ((-(2*S)).toNat + 1) goal ∧
       goal.delta = 0 := by
   have hn1 : 1 ≤ n := by omega
-  have ha := runLength_pos n d hn a
-  have hb := runLength_pos n d hn b
-  have hi : h.toNat < runLength n d a := by omega
-  have hj : (-h).toNat < runLength n d b := by omega
+  have e1 := run_slice_first_digit_step n d hn a b S h hlo hhi
   have hu : (2*S).toNat ≤ runLength n d 2 := by simp [runLength]; omega
   have hv : (-(2*S)).toNat ≤ runLength n d 2 := by simp [runLength]; omega
-  have hh : ((h.toNat : ℕ) : ℤ) - ((-h).toNat : ℤ) = h := by omega
   have hSS : (((2*S).toNat : ℕ) : ℤ) - ((-(2*S)).toNat : ℤ) = 2*S := by omega
-  let q := h - ((d : ℤ) + 1) * delta a b + ((d : ℤ) - n) * S
   let u := positiveMark n d 2 (2*S).toNat hu
   let v := positiveMark n d 2 (-(2*S)).toNat hv
   let goal := packet u.letter v.letter 0 0 0
-  have e1 := positive_step n d hn1 a b h.toNat (-h).toNat hi.le hj.le
-    (delta a b - S) q (2*S-delta a b-q)
-  have hP : 2*(delta a b-S)+q+(2*S-delta a b-q)-delta a b = 0 := by ring
-  have hQ : q+(2*S-delta a b-q)+delta a b = 2*S := by ring
-  have hR : ((n+d : ℕ) : ℤ)*(delta a b-S)+(n : ℤ)*q+
-      ((n-1 : ℕ) : ℤ)*(2*S-delta a b-q)+((-h).toNat : ℤ)-h.toNat = -2*S := by
-    dsimp [q]
-    simp only [Nat.cast_sub hn1, Nat.cast_one]
-    linear_combination -hh
-  have e1' : IndexedDigitStep (sigma n d) (runSlice n d a b S h)
-      (h.toNat+1) ((-h).toNat+1) (packet 2 2 0 (2*S) (-2*S)) := by
-    simpa only [positiveMark_letter_of_lt n d a h.toNat hi,
-      positiveMark_letter_of_lt n d b (-h).toNat hj, hP, hQ, hR,
-      runSlice] using e1
   have e2 := positive_step n d hn1 2 2 (2*S).toNat (-(2*S)).toNat hu hv
     0 (2*S) (-2*S)
   have hR2 : ((n+d : ℕ) : ℤ)*0+(n : ℤ)*(2*S)+
@@ -347,7 +355,7 @@ theorem run_slice_two_digit_steps (n d : ℕ) (hn : 2 ≤ n)
       ((2*S).toNat+1) ((-(2*S)).toNat+1) goal := by
     rw [hR2] at e2
     simpa [goal, u, v, delta] using e2
-  refine ⟨goal, e1', e2', ?_⟩
+  refine ⟨goal, e1, e2', ?_⟩
   funext c
   fin_cases c <;> rfl
 
@@ -378,5 +386,84 @@ theorem run_slice_two_steps (n d : ℕ) (hn : 2 ≤ n)
   have hm := interior_source_of_digitStep (sigma n d) ℓ β hpos hβ hscale e2.digitStep hg
   have hs := interior_source_of_digitStep (sigma n d) ℓ β hpos hβ hscale e1.digitStep hm
   exact ⟨goal, ⟨e1, hm⟩, ⟨e2, hg⟩, hs, hzero⟩
+
+/-- Exact physical clipping on the `y/y` zero-defect line under any positive
+exact length scaling. A contact at the boundary has no common interior. -/
+theorem zero_defect_y_y_interior_iff (n d : ℕ) (hn : 1 ≤ n)
+    (ℓ : Fin 3 → ℝ) (β : ℝ) (hpos : ∀ a, 0 < ℓ a) (hβ : 0 < β)
+    (hscale : ∀ a, physicalLength ℓ (sigma n d a) = β * ℓ a) (z : ℤ) :
+    (packet 2 2 0 z (-z)).Interior ℓ ↔ |(z : ℝ)| < β := by
+  have hrun (m : ℕ) : physicalLength ℓ (List.replicate m 2) = (m : ℝ) * ℓ 2 := by
+    simp [physicalLength, dotProduct, List.count_replicate, mul_comm]
+  have hc := hscale 1
+  have hy := hscale 2
+  simp [sigma, first, last, runLength, hrun, Nat.cast_sub hn] at hc hy
+  have hd : β * (ℓ 1 - ℓ 2) = ℓ 2 := by linarith
+  have ho : offset ℓ (packet 2 2 0 z (-z)).delta = -(z : ℝ) * (ℓ 1 - ℓ 2) := by
+    simp [offset, dotProduct, Fin.sum_univ_three, packet]
+    ring
+  have hmul : β * offset ℓ (packet 2 2 0 z (-z)).delta = -(z : ℝ) * ℓ 2 := by
+    rw [ho, ← mul_assoc, mul_comm β, mul_assoc, hd]
+  rw [Packet.interior_iff_bounds ℓ hpos, abs_lt]
+  change (-ℓ 2 < offset ℓ (packet 2 2 0 z (-z)).delta ∧
+    offset ℓ (packet 2 2 0 z (-z)).delta < ℓ 2) ↔ -β < (z : ℝ) ∧ (z : ℝ) < β
+  constructor
+  · rintro ⟨hlo, hhi⟩
+    have hlo' := mul_lt_mul_of_pos_left hlo hβ
+    have hhi' := mul_lt_mul_of_pos_left hhi hβ
+    rw [hmul] at hlo' hhi'
+    constructor
+    · apply (mul_lt_mul_iff_right₀ (hpos 2)).mp
+      linarith
+    · apply (mul_lt_mul_iff_right₀ (hpos 2)).mp
+      linarith
+  · rintro ⟨hlo, hhi⟩
+    have hlo' := mul_lt_mul_of_pos_right hlo (hpos 2)
+    have hhi' := mul_lt_mul_of_pos_right hhi (hpos 2)
+    constructor
+    · apply (mul_lt_mul_iff_right₀ hβ).mp
+      rw [hmul]
+      linarith
+    · apply (mul_lt_mul_iff_right₀ hβ).mp
+      rw [hmul]
+      linarith
+
+/-- The literal first RUN/RUN edge enters the strict zero-defect slice with
+only the guard on its own ordinal gap and the exact geometric clip. -/
+theorem run_slice_first_interior_step (n d : ℕ) (hn : 2 ≤ n)
+    (a b : Fin 3) (S h : ℤ)
+    (hlo : 1 - (runLength n d b : ℤ) ≤ h)
+    (hhi : h ≤ (runLength n d a : ℤ) - 1)
+    (ℓ : Fin 3 → ℝ) (β : ℝ) (hpos : ∀ c, 0 < ℓ c) (hβ : 0 < β)
+    (hscale : ∀ c, physicalLength ℓ (sigma n d c) = β * ℓ c) :
+    IndexedInteriorStep (sigma n d) ℓ (runSlice n d a b S h)
+      (h.toNat + 1) ((-h).toNat + 1) (packet 2 2 0 (2*S) (-2*S)) ↔
+      |((2*S : ℤ) : ℝ)| < β := by
+  have hneg : -2*S = -(2*S) := by ring
+  have hd := run_slice_first_digit_step n d hn a b S h hlo hhi
+  have hclip := zero_defect_y_y_interior_iff n d (by omega) ℓ β hpos hβ hscale (2*S)
+  rw [← hneg] at hclip
+  exact ⟨fun he => hclip.mp he.2, fun hb => ⟨hd, hclip.mpr hb⟩⟩
+
+/-- A boundary beyond the old direct-return guard uses the checked four-edge
+suffix, giving an actual strict zero path from the preceding RUN/RUN source. -/
+theorem run_slice_overrun_path (n d : ℕ) (hn : 2 ≤ n) (a b : Fin 3) (S h : ℤ)
+    (hlo : 1 - (runLength n d b : ℤ) ≤ h)
+    (hhi : h ≤ (runLength n d a : ℤ) - 1)
+    (hS : 2*S = (n : ℤ) + 1)
+    (ℓ : Fin 3 → ℝ) (β : ℝ) (hpos : ∀ c, 0 < ℓ c) (hβ : 0 < β)
+    (hscale : ∀ c, physicalLength ℓ (sigma n d c) = β * ℓ c) :
+    Relation.ReflTransGen (InteriorStep (sigma n d) ℓ) (runSlice n d a b S h) zeroYy := by
+  obtain ⟨e1, _, _, _, _, _⟩ := overrun_four_steps n d hn ℓ β hpos hβ hscale
+  have he := run_slice_first_digit_step n d hn a b S h hlo hhi
+  have hneg : -2*S = -(n : ℤ) - 1 := by linarith
+  rw [hS, hneg] at he
+  have he' : IndexedDigitStep (sigma n d) (runSlice n d a b S h)
+      (h.toNat + 1) ((-h).toNat + 1) (overrunSource n) := by
+    exact he
+  have hi := interior_source_of_digitStep (sigma n d) ℓ β hpos hβ hscale
+    e1.1.digitStep e1.2
+  exact (Relation.ReflTransGen.single (show InteriorStep (sigma n d) ℓ _ _ from
+    ⟨he'.digitStep, hi⟩)).trans (overrun_composable_path n d hn ℓ β hpos hβ hscale)
 
 end Psc.ClassAZeroDefectEscape

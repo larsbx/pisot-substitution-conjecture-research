@@ -1,0 +1,40 @@
+{
+  "checks": [
+    "actual-family root hypotheses and low-J coefficient bounds",
+    "both initial coordinates retained in finite shear reserve",
+    "cyclic wraparound and strict integer summand in the energy proof",
+    "finite-pair periodicity derived, not supplied",
+    "full W packet reconstruction at N+1",
+    "general-height FIRST/RUN indices and natural subtraction guards",
+    "actual track reversal and matching original MarkTrace witnesses",
+    "native full-prefix BigZ transport and source-bound zero acceptance",
+    "independent exact source set, first-W cutoff, all offset and prefix coordinates",
+    "fresh gate isolation, pin checks, strict complete LF audit receipt",
+    "workflow actual-head binding, dependency triggers, syntax and artifact retention"
+  ],
+  "explicit_limits": [
+    "recurrence endpoints assume the strict recurrence and root hypotheses",
+    "root existence/no-half-tie/actual-trajectory/central-source assembly not yet combined in one Lean endpoint",
+    "written time bound is not a formal quantitative endpoint",
+    "all-source central entry and n<=6 upper members remain open",
+    "BigZ stored-coordinate limb cap is not a hard temporary-allocation limit"
+  ],
+  "human_review": "pending",
+  "review_kind": "independent assistant-agent review, not independent human mathematical review",
+  "reviewed_at": "2026-11-15T18:58:56.539759+00:00",
+  "source_files": {
+    ".github/workflows/class-a-plus-upper-recurrence.yml": "0f3876f9fa8863b72f87988103e1a5e25749476c0bf6ea4c225a0d5f75ea21b7",
+    "docs/class-a-plus-upper-central-recurrence-2026-11-15.md": "99f89e8fb9808cbad928ee9c6e284ca2b580e8bf3a8846b1225f1f3c7f9367e0",
+    "kernel/psc/class_a_plus_upper_recurrence.mojo": "7e9f3d65b51f6fe0680b3eb6e341125f8eed8e0b92578d2b93ba8d4231e5bd2b",
+    "kernel/tests/test_class_a_plus_upper_recurrence.mojo": "7ac30c2a44c1b3722c33f7ef5598d27f1c13b9d4f8b32491ca54e4b94c678d68",
+    "oracles/python/class_a_plus_upper_recurrence.py": "6f1d5b341eca97c3fc8c46c107edd6bbe30cc999c6ceebbe6d18111b076e8494",
+    "oracles/python/class_a_plus_upper_recurrence_independent.py": "cc97a3f956ab3fd8d8cf22e61e090664d4a3f614112a03c6068e85adb8dc152c",
+    "proof/PscVerif/ClassAPlusUpperCycleCompletionAudit.lean": "6ac8660fe4babef37c7e6fd191507bb1898852837b63d622e465762d881dd040",
+    "proof/PscVerif/ClassAPlusUpperRecurrenceAudit.lean": "ef12f802e6eb10dbf2b02ce84cccbcdf9164aed9356f4fe2917ee513923824aa",
+    "proof/PscVerif/PscVerif/ClassAPlusUpperCycleCompletion.lean": "d80243eca779241325231f64b5472c197c8f81b3919309d1c2e97512579f3a58",
+    "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean": "a220ded84ea5545cc405f4533959fa15e7dc181637e959bbcf012ac31ff29173",
+    "tools/check_class_a_plus_upper_recurrence.sh": "3200b195b131e54a116644682806fb1f99e2e8beda0ceba00f4b51653a3240fb",
+    "tools/check_class_a_plus_upper_recurrence_audit.py": "381d9efd3953548874015504facd83255206f93e68c429b0b25caa8f59b476eb"
+  },
+  "status": "no_material_defect_found"
+}

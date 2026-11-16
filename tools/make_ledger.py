@@ -51,6 +51,10 @@ BOX_LC_REVIEWED = frozenset({
     "LeftmostChainCycleStructure", "LeftmostChainG1Certificate",
 })
 
+BPRIME_SRC = ("docs/c4-bprime-lean-2026-11-09.md; Lean {decls} in proof/PscVerif/PscVerif/BPrime.lean over BPrimeCore and BPrimeBinding, "
+              "standard axioms only (ProofBankAudit); hosted ci.yml lean-proofs job 132870714519 of run 43733407182 at 71afd61 and job 129725849872 "
+              "of run 42785583506 at 0baaf07, the three modules byte-identical through the merge into main; {extra}Lean-checked, human review pending, novelty not asserted")
+
 # name -> (kind, statement, source or reason, dependencies, tags)
 # Dependencies are one-way proof sufficiency, never a converse implication
 # (proof/tla/ProofArchitecture.tla). A proved node whose dependencies are open is a
@@ -160,6 +164,13 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
     "ClassCBoundaryHittingLowGaps": (T, "boundary hitting holds for every PIP member of the determinant-two class-C lines (n+d,n,n-d+eps), eps in {-1,+1}, with gap 1 <= d <= 5, each line on its whole PIP domain",
                                      f"gaps 1-3: the six class-C lines of Theorem L'' ({BOUNDARY_PROGRESS}); gap 4: docs/issue139-ac-gap4-2026-10-22.md; gap 5: docs/issue139-gap5-2026-10-23.md; computer-assisted, human review pending; merged PRs #246, #326, #328",
                                      ("DetTwoBoundaryHittingLines",), ()),
+    "ClassBSectorBoundaryHitting": (T, "boundary hitting (every overlap reachable from any of the three swap-seed patches has an offset-zero descendant, not necessarily an equal-letter coincidence) holds for every PIP member of the determinant-two class-B normal form x->x y^p x, c->c y^q x, y->c y^r x with q<p and either r=q+1 and p<=max(2q+13,(5q+10)/2), or r=q-1 and p<=max(2q+7,(5q-5)/2); the top layer above these bounds is not asserted",
+                                    "docs/p1b-symbolic-cone-2026-10-08.md, Theorem C, Lemma S' and the coverage of section 3; certificate of record: kernel/class_b_cone_certificate.mojo plus and minus on the merged sources with the bracket-order check, hosted theorem-c-replay jobs 132993441198 (plus) and 132993441219 (minus) of class-a-chamber-entry run 43773184319 at 5ff3f9a5 (merged PR #585), 77 certified regions and 490 exact verdicts over 423 members, identical to archive/2026-10-08/class-b-cone-run/ in the certified regions with their shifts and in the totals, and on the minus branch in the exact members, which the archived plus log does not record (provenance; that run predates the bracket-order certification); evidence/class-a-chamber-cone-hosted-2026-11-16/; regression kernel/tests/test_symbolic_cone.mojo; computer-assisted, human review pending", (), ()),
+    "MinusClassAChamberConeBoundaryHitting": (T, "boundary hitting (every overlap reachable from any of the nine strict swap seeds, the strict contacts of the patches ab/ba, has an offset-zero descendant) holds for every member (n+d,n,n-1) of the minus class-A normal form x->x y^(n+d) x, c->c y^n x, y->x y^(n-1) c with n=k+t+3, d=k+2t+5, k,t>=0 (so n+2<=d<=2n-1; every such member is PIP) and t<=5 or t<=k-1; the remainder t>=6, t>=k is not asserted",
+                                              "docs/class-a-chamber-entry-stopgo-2026-11-15.md, Theorem CA (sections 6.1-6.3) with Lemma S' and the Bernstein Lemma S'' (section 4.1); kernel/class_a_chamber_cone_certificate.mojo, twelve families, 16 symbolic regions, 116 exact verdicts over 86 members; hosted certificate job 132993441031 and regressions job 132993441284 of class-a-chamber-entry run 43773184319 at 5ff3f9a5 (merged PR #585); evidence/class-a-chamber-cone-hosted-2026-11-16/ (receipts of record) and evidence/class-a-chamber-cone-2026-11-15/ (first runs on the 2026-11-15 working sources, provenance); computer-assisted, human review pending", (), ()),
+    "MinusClassAChamberConeEntry": (T, "for every k,t>=0 with t<=5 or t<=k-1, n=k+t+3, d=k+2t+5 (the members of MinusClassAChamberConeBoundaryHitting): every vertex v of the oriented indexed overlap graph Gamma_(k,t) (the forward closure of the eighteen oriented swap sources S9 and R(S9) under actual strict indexed child edges, typed coincidences (e,e,0) terminal), transient vertices included, has a first-hit path of actual strict indexed child edges to integral offset zero (w=0, letters arbitrary); if w(v)!=0 the vertex just before the first hit lies on one of the nine segments W_(a,b)(m)=(a,b,delta,m-(d+1)delta,-m+d delta), -R_b<=m<=R_a, where delta=[f(a)=x]-[f(b)=x] with f(x)=f(y)=x, f(c)=c, and (R_x,R_c,R_y)=(n+d,n,n-1) are the literal y-run lengths; the converse of the zero-return reduction T0, the remainder t>=6, t>=k, A1-prime, G1, PDS and universal #139 are not asserted",
+                                    "docs/class-a-chamber-entry-stopgo-2026-11-15.md, Corollary CA-1 (section 6.4) from Theorem CA and the written Transfer Lemma (I2 identity of relations, I3 and Lemma R reversal, forward half of T0; sections 4.2-4.4) with Lemma TW (section 3); regression kernel/tests/test_class_a_chamber_entry.mojo (test_transfer_link) in hosted regressions job 132993441284 at 5ff3f9a5; issue #452 on this domain only; computer-assisted through Theorem CA, human review pending",
+                                    ("MinusClassAChamberConeBoundaryHitting",), ()),
     "MinusHighSumFormalCycleRay": (T, "for every integer k>=2 the minus class-D member a=2k-1,b=1 has the real-interior formal occurrence two-cycle U_k=(y,c,-2k,4k,-3k) and its mirror, with absolute sum k; seed reachability is not asserted",
                                  "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 13; kernel/psc/class_d_minus_high_sum_cycles.mojo exact symbolic occurrence and Perron-sign certificate; human review pending", (), ()),
     "MinusSixEdgeFamilyExclusion": (T, "for every integer k>=2 and every a>=2,b>=1 the six-state minus class-D itinerary in section 12 with sums (-k,k-1,-k,k-1,-k,k) cannot be realized with one shared parameter pair; occurrence guard rows 0 and 5 sum identically to -7-u",
@@ -218,10 +229,25 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
            "docs/c4-finite-domain-closure-2026-11-05.md; the implication is the cut-pair reduction, the premise is UniversalAlignedCoincidence (issue #138); general C4 is equivalent to bounded-gap A1-prime (docs/c4-cut-attractor-window-2026-11-05.md, Proposition 3)",
            ("C4FromStrongCoincidence", "UniversalAlignedCoincidence"), ()),
     "C3Local": (T, "C4 gives C3-local", "docs/c3-locality-reduction.md", ("C4", "C3Locality"), ()),
+    # --- off the Pisot cone: prefix-seeded balanced pairs (Lean) ---------------------
+    # Not restricted to PIP (see SCOPES); vacuous on the standing regime, so no
+    # PIP node depends on them and they discharge nothing of C4, G1 or PSC.
+    "PrefixBPATerminationPisotOrSalem": (T, "for every primitive substitution on a finite alphabet whose incidence characteristic polynomial chi_M is irreducible over Q, with beta the eigenvalue of a positive left eigenvector, every one-sided fixed point u (Lean IsFixed) and every nonempty prefix W of u: if the Sirvent-Solomyak prefix-seeded set I(W) (Lean BPrimeBinding.IW: all levels, coincidence blocks retained; termination means finiteness, not coincidence) is finite, then every root z != beta of chi_M has |z| <= 1; on two or more letters beta is then Pisot or Salem (beta > 1 and an algebraic integer whose minimal polynomial is chi_M), and when chi_M has degree three beta is Pisot; the strict disc is not asserted in degree two or in degree >= 4, and no termination, coincidence or PDS fact for a Pisot substitution follows",
+                                         BPRIME_SRC.format(decls="Psc.BPrime.bprime, bprime_ss (the literal recursion (3.1)), bprime_isPisotOrSalem, bprime_cubic, bprime_cubic_isPisot",
+                                                           extra="corrected statement of docs/c4-bprime-independent-proof-audit-2026-11-07.md, formalized by frequency-free averaging and cyclicity rather than the Galois-conjugate argument of docs/c4-general-structure-2026-11-06.md section 3; "),
+                                         (), ()),
+    "NonPisotPrefixBPANontermination": (T, "for every primitive substitution on a finite alphabet whose chi_M is irreducible over Q and has a root z != beta with |z| > 1, beta the eigenvalue of a positive left eigenvector (on two or more letters: beta is neither Pisot nor Salem; on three letters, natDegree chi_M = 3: beta is not Pisot), the prefix-seeded set I(W) is infinite for every one-sided fixed point u and every nonempty prefix W of u, also for the literal recursion (3.1); Corollary B (ii)-(iii), seeds that are not prefixes of a fixed point and periodic points that are not fixed are not asserted",
+                                        BPRIME_SRC.format(decls="Psc.BPrime.corB_infinite, corB_infinite_of_not_isPisotOrSalem, corB_infinite_cubic, corB_infinite_ss, corB_infinite_cubic_ss (contrapositive of Proposition B'), specimen 0->01, 1->2, 2->00 in zetaU_IW_infinite,",
+                                                          extra=""),
+                                        ("PrefixBPATerminationPisotOrSalem",), ()),
     "C2": (T, "C3-local gives C2", f"{MANUSCRIPT}, boundary route", ("C3Local",), ()),
     "SCCProducer": (T, "SCC Producer / C1 follows from G1, the sink-SCC reduction, and C2", f"{LEDGER_DOC}; manuscript unresolved statements",
                     ("G1", "SinkSCCReduction", "C2"), ("status:open",)),
-    "PDS": (T, "pure discrete spectrum follows from G1 and SCC Producer", f"{MANUSCRIPT}, boundary route", ("G1", "SCCProducer"), ()),
+    # The manuscript proof (thm:main-conditional) shows termination with
+    # coincidence from one swap seed and then applies the imported spectral
+    # bridge (thm:bridge), so the node names that import as a dependency.
+    "PDS": (T, "pure discrete spectrum follows from G1 and SCC Producer through the imported balanced-pair criterion",
+            f"{MANUSCRIPT}, boundary route (Theorem thm:main-conditional with Imported Theorem thm:bridge)", ("G1", "SCCProducer", "StandardBPAEquivalence"), ()),
     # --- literature / repository BPA bridge ---------------------------------------
     "StandardBPAEquivalence": (I, "the standard balanced-pair algorithm criterion for pure discrete spectrum", "docs/bpa-literature-bridge.md and the literature cited there", (), ()),
     "RepoSeedUnionBridge": (T, "the repository seed-union graph is the union of the literature seed graphs", "docs/bpa-literature-bridge.md", (), ()),
@@ -301,6 +327,8 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
                                     f"{LEFTMOST}, Lemma S, Proposition LC and Corollary LC4; 10,584 sign/shape checks, 10,128 integral replays and 456 uncomputed offsets on the standing corpus; {REVIEWED}", (), ()),
     "LeftmostChainG1Certificate": (T, "a PIP substitution whose box graph has no terminal leftmost cycle satisfies all-seed strict-zipper exclusion, hence finite BPA",
                                    f"{LEFTMOST}, Corollary LC5, with {MANUSCRIPT}, Proposition 5.47; {REVIEWED}", ("BoxCycleContainment",), ()),
+    "MinusClassAWholeChamberEntry": (P, "for every k,t>=0 with n=k+t+3 and d=k+2t+5 (equivalently n+2<=d<=2n-1), the minus class-A substitution x->x y^(n+d) x, c->c y^n x, y->x y^(n-1) c has a finite path of actual ordered strict child occurrences to typed coincidence from every strict integral overlap when n>=6 and from every S18 seed-reachable vertex in the six complete graphs when n<6; original occurrence indices and the full integral prefix identity M^m w=P-Q are retained",
+        "written proof on unmerged PR #577 as of 210354853ba816a3d2d5639319cf1982fd4e4b06, from PR #578; https://github.com/larsbx/pisot-substitution-conjecture-research/blob/210354853ba816a3d2d5639319cf1982fd4e4b06/docs/class-a-central-entry-2026-11-14.md sections 2-7; central-entry and scoped Lean runs 43749570859 and 43749570601 passed at f8fab40de91c407e6ee57651ad3e03d598c94459; stack integration run 43749586092 failed Python tests; current-main reconciliation and acceptance pending; the open ledger status tracks integration acceptance; Lean coverage is partial and independent human review is pending", (), ()),
     # --- retracted ------------------------------------------------------------------------
     "V5Thm51": (P, "v5 Theorem 5.1", "retired: the v5 Theorem 5.1 argument is withdrawn", (), (gl.WITHDRAWN_TAG,)),
 }
@@ -315,9 +343,9 @@ ASSUMPTION_SETS = {
     "ClassDIntegrationAssumed": ["ClassDIntegrationAcceptance"],
     "TwoObstructionsAssumed": ["UniversalAlignedCoincidence", "UniversalBoundaryHitting", "DensityToPDSBridge"],
     "MinusCycleSumAssumed": ["MinusClassDPositiveBCycleSum"],
-    "G1AndProducer": ["G1", "SCCProducer"],
+    "G1AndProducer": ["G1", "SCCProducer", "StandardBPAEquivalence"],
     "G1Only": ["G1"],
-    "G1AndC4": ["G1", "C4"],
+    "G1AndC4": ["G1", "C4", "StandardBPAEquivalence"],
     "RenewalGateAssumed": ["G1b1BoundedDiscrepancy", "G1b2RenewalFiniteness"],
     "SpectralGateAssumed": ["G1", "ConcentrationAuxB", "SpanRichProductivity", "SpectralSCCProducer"],
     # Imported theorems are established only by assumption (ImportedDef, never
@@ -362,10 +390,15 @@ ALIASES = {
     "BoxAutomatonSymbolicPDSCertificate": ["per-specimen box symbolic PDS certificate"],
     "BrunCompositeSymbolicPDS": ["Corollary B″", "Brun composites have symbolic PDS"],
     "DetTwoBoundaryHittingLines": ["Theorems L/L′/L″", "47 determinant-two lines"],
+    "PrefixBPATerminationPisotOrSalem": ["Proposition B′", "terminating prefix-seeded BPA forces Pisot or Salem (two or more letters)"],
+    "NonPisotPrefixBPANontermination": ["Corollary B (i)", "prefix-seeded BPA off the Pisot cone"],
     "ClassDWedgeBoundaryHitting": ["Theorem W", "class-D wedge boundary hitting"],
     "ClassABoundaryHittingLowGaps": ["class-A gaps d <= 4"],
     "ClassABoundaryHittingHighGaps": ["class-A gaps d >= 5, n >= 5d"],
     "ClassCBoundaryHittingLowGaps": ["class-C gaps d <= 5"],
+    "ClassBSectorBoundaryHitting": ["class-B sectors below slope 5/2"],
+    "MinusClassAChamberConeBoundaryHitting": ["Theorem CA", "class-A chamber cones t <= 5 or t <= k - 1"],
+    "MinusClassAChamberConeEntry": ["Corollary CA-1"],
 }
 
 
@@ -421,10 +454,16 @@ SURFACES = {  # prose surfaces on which each claim's status is spelled out (labe
     "AlignedOverlapsAreStrongCoincidence": [surface(MAP, "| Endpoint-aligned overlaps = strong-coincidence boundary cases |")],
     "BoundaryCoincidenceCriterion": [surface(MAP, "| Boundary-hitting criterion |")],
     "DetTwoBoundaryHittingLines": [surface(MAP, "| Determinant-two boundary hitting on 47 lines |")],
+    "PrefixBPATerminationPisotOrSalem": [surface(MAP, "| Proposition B′: terminating prefix-seeded BPA forces Pisot or Salem (two or more letters) |")],
+    "NonPisotPrefixBPANontermination": [surface(MAP, "| Corollary B (i): prefix-seeded BPA off the Pisot cone |")],
     "ClassDWedgeBoundaryHitting": [surface(MAP, "| Class-D wedge boundary hitting |")],
     "ClassABoundaryHittingLowGaps": [surface(MAP, "| Class-A boundary hitting, gaps `d <= 4` |")],
     "ClassABoundaryHittingHighGaps": [surface(MAP, "| Class-A boundary hitting, gaps `d >= 5`, `n >= 5d` |")],
     "ClassCBoundaryHittingLowGaps": [surface(MAP, "| Class-C boundary hitting, gaps `d <= 5` |")],
+    "ClassBSectorBoundaryHitting": [surface(MAP, "| Class-B boundary hitting below slope `5/2` |")],
+    "MinusClassAChamberConeBoundaryHitting": [surface(MAP, "| Minus class-A chamber boundary hitting, `t <= 5` or `t <= k - 1` |")],
+    "MinusClassAChamberConeEntry": [surface(MAP, "| Minus class-A chamber entry into integral zero, `t <= 5` or `t <= k - 1` |")],
+    "MinusClassAWholeChamberEntry": [surface(MAP, "| Minus Class-A whole-chamber entry |")],
     "OverlapProductivity": [surface(MAP, "| Seedwise overlap productivity / Open Problem 5.35 |"), surface(LEDGER_DOC, "### Overlap productivity / Open Problem 5.35", 2),
                             surface(LADDER, "=> one swap seed has only productive reachable overlaps"), surface("README.md", "=> one swap seed has only productive reachable overlaps"),
                             surface(ROADMAP, "| **P1** | Seedwise overlap productivity (#84) |")],
@@ -463,6 +502,14 @@ SURFACES = {  # prose surfaces on which each claim's status is spelled out (labe
 }
 
 
+# Records whose statement is not confined to the standing regime carry their own scope.
+SCOPES = {
+    "PrefixBPATerminationPisotOrSalem": "primitive substitutions on a finite alphabet with irreducible incidence characteristic polynomial (not restricted to PIP; vacuous on it)",
+    "NonPisotPrefixBPANontermination": "primitive substitutions on a finite alphabet with irreducible incidence characteristic polynomial (not restricted to PIP; vacuous on it)",
+}
+LEAN_CHECKED = frozenset({"PrefixBPATerminationPisotOrSalem", "NonPisotPrefixBPANontermination"})
+
+
 def records() -> dict[str, Record]:
     built: dict[str, Record] = {}
 
@@ -485,16 +532,19 @@ def records() -> dict[str, Record]:
                          ("reconciled_source_revision", BOX_LC_RECONCILED_BASELINE),
                          ("reconciliation_source", RECONCILIATION),
                          ("human_review_pending", "true"))
-        if name in {"ClassDFiniteBPA", "ClassDBoundaryHitting", "PlusClassDBoundaryHitting", "PlusClassDBoundaryLine", "PlusClassDPositiveBBoundaryHitting", "DetTwoBoundaryHittingLines", "ClassDWedgeBoundaryHitting", "ClassABoundaryHittingLowGaps", "ClassABoundaryHittingHighGaps", "ClassCBoundaryHittingLowGaps", "MinusClassDPositiveBBoundaryHitting", "MinusClassDSeedCarrierClosure", "MinusClassDPositiveBCycleSum", "MinusClassDBoundaryLine", "MinusClassDBoundaryStrips", "MinusClassDResidualBoundaryHitting", "MinusClassDBoundaryHitting"}:
+        if name in {"ClassDFiniteBPA", "ClassDBoundaryHitting", "PlusClassDBoundaryHitting", "PlusClassDBoundaryLine", "PlusClassDPositiveBBoundaryHitting", "DetTwoBoundaryHittingLines", "ClassDWedgeBoundaryHitting", "ClassABoundaryHittingLowGaps", "ClassABoundaryHittingHighGaps", "ClassCBoundaryHittingLowGaps", "ClassBSectorBoundaryHitting", "MinusClassAChamberConeBoundaryHitting", "MinusClassAChamberConeEntry", "MinusClassDPositiveBBoundaryHitting", "MinusClassDSeedCarrierClosure", "MinusClassDPositiveBCycleSum", "MinusClassDBoundaryLine", "MinusClassDBoundaryStrips", "MinusClassDResidualBoundaryHitting", "MinusClassDBoundaryHitting"}:
             evidence += (("human_review_pending", "true"),
                          ("computer_assisted", "true"))
+        if name in LEAN_CHECKED:
+            evidence += (("human_review_pending", "true"),
+                         ("lean_checked", "true"))
         if name == "G1":
             evidence += (("dependency_alternatives", json.dumps(
                 [[build(r).id] for r in ("G1FromRenewal", "G1OverlapRoute", "G1HalfCoincidenceRoute", "G1FormalProductivityRoute")],
                 separators=(",", ":"))),)
         if name in STATUS_NOTES:
             evidence += (("status_note", STATUS_NOTES[name]),)
-        built[name] = identified(Record("", kind, statement, SCOPE, edges, evidence, frozenset(tags)))
+        built[name] = identified(Record("", kind, statement, SCOPES.get(name, SCOPE), edges, evidence, frozenset(tags)))
         return built[name]
 
     return {name: build(name) for name in TABLE}

@@ -1,8 +1,12 @@
 import Mathlib
 
 /-! A small, standalone Lean 4/Mathlib interface for the shift/count identity
-used in Proposition B′. This does not yet formalize block bounds, frequencies,
-cyclic vectors or the spectral theorem. Do not count as a proof of B′. -/
+used in Proposition B′. The `PscVerif` library restates it as
+`Psc.BPrimeCore.shift_factor_identity` (`proof/PscVerif/PscVerif/BPrimeCore.lean`),
+where the block bounds, the frequency-free averaging, cyclic vectors and the
+spectral step are formalized; `Psc.BPrime` composes them with the
+Sirvent–Solomyak binding into Proposition B′. This standalone file proves only
+the identity below. Do not count it as a proof of B′. -/
 
 namespace PscVerif.BpaPrefixBridge
 

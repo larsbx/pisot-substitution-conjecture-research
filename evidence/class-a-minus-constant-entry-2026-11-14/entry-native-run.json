@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/workspace/scratch/de1b765a2576/mojo-env/bin/mojo",
+    "run",
+    "-I",
+    ".",
+    "tests/test_class_a_minus_entry_search.mojo",
+    "--emit"
+  ],
+  "cwd": "kernel",
+  "exit_code": 0,
+  "observation": "Observed exec session82080 completed with exit0; direct stdout/stderr retained. No source edits occurred between corrected invocation and receipt. Timing was not wrapped.",
+  "source_sha256": {
+    "kernel/psc/class_a_minus_constant_entry.mojo": "528ebd56efe49b7626378cc3cbcba10c12448e8097fc264db54be8ddd52a9c23",
+    "kernel/psc/class_a_minus_entry_search.mojo": "190c4240879761f242f97967c47c06421b29aadaad9a33981f0cc63214bb4a49",
+    "kernel/tests/test_class_a_minus_entry_search.mojo": "5f1bf16c00c2d077e68330dab778179909815da6405e1906533469171cab4636"
+  },
+  "stdout_sha256": "4d2221c3d26f1dde259ba884e51dacb6f3f445e2b18410b7e21c7068635b547c"
+}

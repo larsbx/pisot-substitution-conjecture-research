@@ -1,0 +1,14 @@
+{
+  "kernel/psc/class_a_plus_upper_recurrence.mojo": {
+    "snapshot": "evidence/class-a-plus-upper-recurrence-2026-11-15/failed-native-sources/class_a_plus_upper_recurrence.mojo.attempt-1.txt",
+    "sha256": "73eae57dd0003d4b34ee7e34172c24e2c0aec6d8929bed2f269a5f9c04af9dbf"
+  },
+  "kernel/tests/test_class_a_plus_upper_recurrence.mojo": {
+    "snapshot": "evidence/class-a-plus-upper-recurrence-2026-11-15/failed-native-sources/test_class_a_plus_upper_recurrence.mojo.attempt-1.txt",
+    "sha256": "7ac30c2a44c1b3722c33f7ef5598d27f1c13b9d4f8b32491ca54e4b94c678d68"
+  },
+  "tools/run_class_a_plus_upper_recurrence_native.py": {
+    "snapshot": "evidence/class-a-plus-upper-recurrence-2026-11-15/failed-native-sources/run_class_a_plus_upper_recurrence_native.py.attempt-1.txt",
+    "sha256": "1d6c009b568a7c4e40403f4b746afe4dae8e660dafb8a486c83f385ce515f20f"
+  }
+}

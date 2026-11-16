@@ -1,0 +1,70 @@
+# Hosted receipts for Theorem CA, Corollary CA-1 and Theorem C at `5ff3f9a5`
+
+This packet holds the receipts on which three claims were registered:
+
+- `MinusClassAChamberConeBoundaryHitting` (Theorem CA);
+- `MinusClassAChamberConeEntry` (Corollary CA-1);
+- `ClassBSectorBoundaryHitting` (Theorem C).
+
+The mathematics, hypotheses and non-claims are in
+`docs/class-a-chamber-entry-stopgo-2026-11-15.md` and
+`docs/p1b-symbolic-cone-2026-10-08.md`. Status: computer-assisted, human
+review pending. The earlier packet `evidence/class-a-chamber-cone-2026-11-15/`
+is unchanged; it records the first runs, made before the bracket-order read
+moved to a scratch region and before the capped-graph refusal was withdrawn.
+Neither change alters any certified region, exact member or total.
+
+## Hosted, head `5ff3f9a5cae45234884bea46779d7e4f9e3d851c` (PR #585, merged as `2de8b7aa`)
+
+Workflow `.github/workflows/class-a-chamber-entry.yml`, pull-request run
+43773184319, all four jobs `success`. Each job checked out GitHub's PR merge
+ref `refs/pull/585/merge`, commit `8e7a7955e6de9222cd52267a255146835ac48498`
+(parents `58379fa7`, `5ff3f9a5`). Its tree is `fe866779`, the tree of
+`5ff3f9a5` and of `main` at `2de8b7aa`: `58379fa7` is an ancestor of
+`5ff3f9a5`. The jobs therefore ran exactly the sources of `5ff3f9a5`. Raw job
+logs:
+
+| File | Job | Content |
+| --- | --- | --- |
+| `hosted-certificate-132993441031.log` | `certificate` | exact coverage of `t <= 5` or `t <= k - 1` up to 200, then all twelve families: `regions 16 finite 116 non-PIP 0 largest 325` |
+| `hosted-regressions-132993441284.log` | `regressions` | `test_class_a_chamber_entry.mojo` 7/7 and `test_symbolic_cone.mojo` 9/9, with their contract receipts |
+| `hosted-theorem-c-replay-plus-132993441198.log` | `theorem-c-replay (plus)` | `regions 32 finite 198 non-PIP 4 largest 297`; certified-region lines and totals diffed equal to `archive/2026-10-08/class-b-cone-run/plus.out` |
+| `hosted-theorem-c-replay-minus-132993441219.log` | `theorem-c-replay (minus)` | `regions 45 finite 292 non-PIP 34 largest 274`; certified-region, exact-member and totals lines diffed equal to the archived `minus.out` |
+
+## Local, the same sources
+
+Mojo 1.1.0.dev2026090805, locked pixi environment. `source-digests-5ff3f9a5.txt`
+pins, at that head, the PSC-side Mojo import closure of the two drivers and the
+two tests (34 files, recomputed from their imports) together with
+`kernel/pixi.toml` and `kernel/pixi.lock`. The vendored packages are pinned by
+`vendored.toml`. The file list is that of the 2026-11-15 packet. Two of its
+digests differ there: `kernel/psc/symbolic_cone.mojo` (the bracket-order read
+on a scratch region) and `kernel/symbolic_line_certificate.mojo` (the
+capped-graph refusal withdrawn).
+
+- `local-coverage.log`: `class_a_chamber_cone_certificate.mojo coverage`, missed 0, stray 0.
+- `local-test-chamber-entry.log`, `local-test-symbolic-cone.log`: 7/7 and 9/9.
+- `local-class-b-replay-plus.log`: the plus cover. It is identical to the
+  2026-11-15 replay, timing aside.
+
+The local re-runs of the full class-A cover, the Theorem C minus cover and the
+class-C below-three minus replay were interrupted by a container restart and
+are not archived. The hosted `certificate` and `theorem-c-replay (minus)` jobs
+above, and job `cover (minus)` 132993439959 of the `Class-C below-three cover`
+run 43773184602 at the same head (`success`), ran them to completion. That
+workflow runs its audit and oracle steps on the plus leg only, so they are
+skipped in the minus job by design. Its log is not archived here; it supports
+none of the three registered claims.
+
+## Replay
+
+```sh
+git checkout 5ff3f9a5cae45234884bea46779d7e4f9e3d851c
+cd kernel
+pixi run --locked mojo run -I . class_a_chamber_cone_certificate.mojo coverage
+pixi run --locked mojo run -I . class_a_chamber_cone_certificate.mojo all
+pixi run --locked mojo run -I . tests/test_class_a_chamber_entry.mojo
+pixi run --locked mojo run -I . tests/test_symbolic_cone.mojo
+pixi run --locked mojo run -I . class_b_cone_certificate.mojo plus
+pixi run --locked mojo run -I . class_b_cone_certificate.mojo minus
+```

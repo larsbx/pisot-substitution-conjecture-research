@@ -1,0 +1,83 @@
+{
+  "observed_at": "2026-11-15 18:55:07 UTC",
+  "base_main": "febe7535afd59cbe56d9ae0bbc541b1bb8b57995",
+  "pull_requests": [
+    {
+      "number": 579,
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/579",
+      "title": "Prove lower minus-Class-A entry and complete seed-domain coverage",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "base": "research/bh-class-a-central-entry",
+      "base_sha": "34ff471c24960729527ae5f090e96c7c16ae4584",
+      "head": "research/bh-class-a-minus-constant-entry",
+      "head_sha": "729bbc33e9306d170eaa0d93bcf269aca6aeeece",
+      "merge_commit_sha": "233cea58bd77504acb4723cf9903e254c22a7370",
+      "merged_at": null,
+      "updated_at": "2026-11-15T09:20:19Z"
+    },
+    {
+      "number": 580,
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/580",
+      "title": "Formalize minus-Class-A boundary escape and residual reduction",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "base": "research/bh-class-a-minus-constant-entry",
+      "base_sha": "32524dc441073c2764a77ac35bfb833ceab3c0a0",
+      "head": "research/bh-class-a-boundary-escape",
+      "head_sha": "3faf3cb4f4c4a39bdbedbb8fd58cb59a1ae17500",
+      "merge_commit_sha": "729bbc33e9306d170eaa0d93bcf269aca6aeeece",
+      "merged_at": "2026-11-15T09:20:17Z",
+      "updated_at": "2026-11-15T09:20:17Z"
+    },
+    {
+      "number": 581,
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/581",
+      "title": "Prove plus-Class-A constant entry and lower seed-domain coverage",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "base": "research/bh-class-a-minus-constant-entry",
+      "base_sha": "64c70311fe6ef69378f7bd308c034bb4193daa63",
+      "head": "research/bh-class-a-plus-constant-entry",
+      "head_sha": "c972c4598cf0ddadb30ea6d8f205e1dec5bbafd2",
+      "merge_commit_sha": "32524dc441073c2764a77ac35bfb833ceab3c0a0",
+      "merged_at": "2026-11-15T08:39:01Z",
+      "updated_at": "2026-11-15T08:39:51Z"
+    },
+    {
+      "number": 582,
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/582",
+      "title": "Formalize minus-Class-A central escape with complete ordered prefixes",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "base": "research/bh-class-a-minus-constant-entry",
+      "base_sha": "110e7e9ef8243bc24adf80d6e8a375add586d850",
+      "head": "research/bh-class-a-literal-entry-lean",
+      "head_sha": "3091554246ffd673eb7148d00221631f878dfa42",
+      "merge_commit_sha": "64c70311fe6ef69378f7bd308c034bb4193daa63",
+      "merged_at": "2026-11-15T03:20:32Z",
+      "updated_at": "2026-11-15T03:21:37Z"
+    },
+    {
+      "number": 583,
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/583",
+      "title": "Prove eight plus-Class-A upper-cycle exits with original prefixes",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "base": "main",
+      "base_sha": "a19670c521927a8f6ac7e08f26cd3d563eafdce3",
+      "head": "research/bh-class-a-plus-upper-cycles-main",
+      "head_sha": "4aa257950d81c81506a9cdebe740e18e66a9eda2",
+      "merge_commit_sha": "febe7535afd59cbe56d9ae0bbc541b1bb8b57995",
+      "merged_at": "2026-11-15T15:37:55Z",
+      "updated_at": "2026-11-15T15:37:55Z"
+    }
+  ],
+  "interpretation": "580, 581 and 582 were merged into the research stack; 579 remains an open draft. 583 is merged into main. This increment adds no stack import and leaves all 11 pinned imported source files unchanged.",
+  "claim_promotion": false
+}

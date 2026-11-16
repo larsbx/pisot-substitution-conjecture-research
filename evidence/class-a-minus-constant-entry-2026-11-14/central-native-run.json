@@ -1,0 +1,23 @@
+{
+  "command": [
+    "/workspace/scratch/de1b765a2576/mojo-env/bin/mojo",
+    "run",
+    "-I",
+    ".",
+    "tests/test_class_a_minus_constant_entry.mojo",
+    "--emit"
+  ],
+  "cwd": "/workspace/scratch/f53f64a9a0d0/psc/kernel",
+  "started_utc": "2026-11-14T23:07:39.470292+00:00",
+  "source_sha256_before": {
+    "kernel/psc/class_a_minus_constant_entry.mojo": "528ebd56efe49b7626378cc3cbcba10c12448e8097fc264db54be8ddd52a9c23",
+    "kernel/tests/test_class_a_minus_constant_entry.mojo": "192d023af9385faeae67877d67e5c926965723953b58af38ca03e0587e154925"
+  },
+  "status": "finished",
+  "exit_code": 0,
+  "ended_utc": "2026-11-14T23:11:56.455221+00:00",
+  "source_sha256_after": {
+    "kernel/psc/class_a_minus_constant_entry.mojo": "528ebd56efe49b7626378cc3cbcba10c12448e8097fc264db54be8ddd52a9c23",
+    "kernel/tests/test_class_a_minus_constant_entry.mojo": "192d023af9385faeae67877d67e5c926965723953b58af38ca03e0587e154925"
+  }
+}

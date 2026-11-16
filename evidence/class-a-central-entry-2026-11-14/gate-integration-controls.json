@@ -1,0 +1,42 @@
+{
+  "gate_sha256": "443d2b227c85b0d9a8fc25dd9db9e6d1aa5d9a25264f62e56c5c10e2694221a5",
+  "workflow_sha256": "3121ae03bf029329a058e60be31d55b25daa4024155d3f882767372a0ba9c289",
+  "yaml_and_shell_blocks_checked": 7,
+  "parser_cases": [
+    {
+      "case": "valid",
+      "exit_code": 0,
+      "message": ""
+    },
+    {
+      "case": "missing_endpoint",
+      "exit_code": 1,
+      "message": "missing, duplicate or unexpected exact-type Lean endpoint\n"
+    },
+    {
+      "case": "duplicate_endpoint",
+      "exit_code": 1,
+      "message": "missing, duplicate or unexpected exact-type Lean endpoint\n"
+    },
+    {
+      "case": "missing_complete",
+      "exit_code": 1,
+      "message": "missing endpoint negative-control completion receipt\n"
+    },
+    {
+      "case": "wrong_controls",
+      "exit_code": 1,
+      "message": "missing endpoint negative-control completion receipt\n"
+    },
+    {
+      "case": "wrong_module",
+      "exit_code": 1,
+      "message": "new module was not exhaustively audited\n"
+    },
+    {
+      "case": "wrong_declaration_counts",
+      "exit_code": 1,
+      "message": "missing or inconsistent owned-declaration audit completion\n"
+    }
+  ]
+}

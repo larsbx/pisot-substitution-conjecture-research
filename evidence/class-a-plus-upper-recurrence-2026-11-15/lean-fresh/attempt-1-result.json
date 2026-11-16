@@ -1,0 +1,35 @@
+{
+  "base_revision": "febe7535afd59cbe56d9ae0bbc541b1bb8b57995",
+  "command": [
+    "timeout",
+    "2100",
+    "bash",
+    "tools/check_class_a_plus_upper_recurrence.sh"
+  ],
+  "ended_at": "2026-11-15T19:11:21.397464+00:00",
+  "exit_code": 0,
+  "helper_sources_after": {
+    "docs/proof-bank.md": "bb5771ceff2d95011dc279802c17404bf2953cfdce9f157a639af45b6315497e",
+    "proof/proof-bank.json": "461c96f049b8995c774d367638e88a048c49d4b6d330b8a3357212ecaf0e742c",
+    "tests/test_class_a_plus_upper_recurrence_audit.py": "ead6ad33eba34a1c7b752b230515ed484211084b60a648d88c2bf5bf7268c895",
+    "tools/check_class_a_plus_upper_recurrence.sh": "3200b195b131e54a116644682806fb1f99e2e8beda0ceba00f4b51653a3240fb",
+    "tools/check_class_a_plus_upper_recurrence_audit.py": "381d9efd3953548874015504facd83255206f93e68c429b0b25caa8f59b476eb",
+    "tools/make_proof_bank.py": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8"
+  },
+  "helper_sources_before": {
+    "docs/proof-bank.md": "bb5771ceff2d95011dc279802c17404bf2953cfdce9f157a639af45b6315497e",
+    "proof/proof-bank.json": "461c96f049b8995c774d367638e88a048c49d4b6d330b8a3357212ecaf0e742c",
+    "tests/test_class_a_plus_upper_recurrence_audit.py": "ead6ad33eba34a1c7b752b230515ed484211084b60a648d88c2bf5bf7268c895",
+    "tools/check_class_a_plus_upper_recurrence.sh": "3200b195b131e54a116644682806fb1f99e2e8beda0ceba00f4b51653a3240fb",
+    "tools/check_class_a_plus_upper_recurrence_audit.py": "381d9efd3953548874015504facd83255206f93e68c429b0b25caa8f59b476eb",
+    "tools/make_proof_bank.py": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8"
+  },
+  "log_sha256": "07e08678622a6e74d145721204ab5e6b23d3484fa3a1e7b0a67173f5f9343ac5",
+  "seconds": 1012.433,
+  "source_files": 132,
+  "source_isolated_success": true,
+  "source_set_sha256": "8fd66b738fe7bc3ca4b2235ffa38585fcbfa3c05fc1ee27f417d27a400763872",
+  "sources_unchanged": true,
+  "started_at": "2026-11-15T18:54:29.045743+00:00",
+  "tmpdir": "/workspace/scratch/7b7b91dcb7fe/upper-recurrence-fresh-temporary"
+}

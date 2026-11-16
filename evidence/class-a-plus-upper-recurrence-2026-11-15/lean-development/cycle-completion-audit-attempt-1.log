@@ -1,0 +1,119 @@
+ClassAPlusUpperCycleCompletionAudit.lean:66:26: error: Type mismatch
+  ClassAPlusUpperCycleCompletion.all_ordered_paths
+has type
+  ∀ (n J H : ℕ),
+    7 ≤ n →
+      1 ≤ J →
+        J ≤ n + 7 →
+          J * H ≤ n - 1 →
+            OrderedPath (ClassAPlusUpperCycles.upperSigma n J) (ClassAPlusUpperCycles.cyclePacket H)
+              (ClassAPlusUpperCycleCompletion.allIndices n J H) ClassAPlusUpperCycles.zeroPacket
+but is expected to have type
+  AllPathsType
+ClassAPlusUpperCycleCompletionAudit.lean:67:29: error: Type mismatch
+  ClassAPlusUpperCycleCompletion.all_signed_ordered_paths
+has type
+  ∀ (n J H : ℕ),
+    7 ≤ n →
+      1 ≤ J →
+        J ≤ n + 7 →
+          J * H ≤ n - 1 →
+            ∀ (reversed : Bool),
+              OrderedPath (ClassAPlusUpperCycles.upperSigma n J) (ClassAPlusUpperCycles.signedSource reversed H)
+                (ClassAPlusUpperCycleCompletion.allSignedIndices reversed n J H) ClassAPlusUpperCycles.zeroPacket
+but is expected to have type
+  SignedPathsType
+ClassAPlusUpperCycleCompletionAudit.lean:68:30: error: Type mismatch
+  ClassAPlusUpperCycleCompletion.all_traced_strict_prefixes
+has type
+  ∀ (n J H : ℕ),
+    7 ≤ n →
+      1 ≤ J →
+        J ≤ n + 7 →
+          J * H ≤ n - 1 →
+            ∀ (reversed : Bool) (ℓ : Fin 3 → ℝ) (β : ℝ),
+              (∀ (a : Fin 3), 0 < ℓ a) →
+                0 < β →
+                  (∀ (a : Fin 3), physicalLength ℓ (ClassAPlusUpperCycles.upperSigma n J a) = β * ℓ a) →
+                    OrderedInteriorPath (ClassAPlusUpperCycles.upperSigma n J) ℓ
+                        (ClassAPlusUpperCycles.signedSource reversed H)
+                        (ClassAPlusUpperCycleCompletion.allSignedIndices reversed n J H)
+                        ClassAPlusUpperCycles.zeroPacket ∧
+                      ∃ top bottom,
+                        MarkTrace (ClassAPlusUpperCycles.upperSigma n J)
+                            (ClassAPlusUpperCycles.signedSource reversed H).top
+                            (List.map Prod.fst (ClassAPlusUpperCycleCompletion.allSignedIndices reversed n J H))
+                            top.before top.letter top.after ∧
+                          MarkTrace (ClassAPlusUpperCycles.upperSigma n J)
+                              (ClassAPlusUpperCycles.signedSource reversed H).bottom
+                              (List.map Prod.snd (ClassAPlusUpperCycleCompletion.allSignedIndices reversed n J H))
+                              bottom.before bottom.letter bottom.after ∧
+                            top.letter = 2 ∧
+                              bottom.letter = 2 ∧
+                                incidenceZ (ClassAPlusUpperCycles.upperSigma n J) ^
+                                      (ClassAPlusUpperCycleCompletion.allSignedIndices reversed n J H).length *ᵥ
+                                    -(ClassAPlusUpperCycles.signedSource reversed H).delta =
+                                  parikhZ top.before - parikhZ bottom.before
+but is expected to have type
+  TracedStrictType
+ClassAPlusUpperCycleCompletionAudit.lean:74:11: error: Type mismatch
+  ClassAPlusUpperCycleCompletion.all_ordered_paths
+has type
+  ∀ (n J H : ℕ),
+    7 ≤ n →
+      1 ≤ J →
+        J ≤ n + 7 →
+          J * H ≤ n - 1 →
+            OrderedPath (ClassAPlusUpperCycles.upperSigma n J) (ClassAPlusUpperCycles.cyclePacket H)
+              (ClassAPlusUpperCycleCompletion.allIndices n J H) ClassAPlusUpperCycles.zeroPacket
+but is expected to have type
+  AllPathsType
+ClassAPlusUpperCycleCompletionAudit.lean:76:11: error: Type mismatch
+  ClassAPlusUpperCycleCompletion.all_signed_ordered_paths
+has type
+  ∀ (n J H : ℕ),
+    7 ≤ n →
+      1 ≤ J →
+        J ≤ n + 7 →
+          J * H ≤ n - 1 →
+            ∀ (reversed : Bool),
+              OrderedPath (ClassAPlusUpperCycles.upperSigma n J) (ClassAPlusUpperCycles.signedSource reversed H)
+                (ClassAPlusUpperCycleCompletion.allSignedIndices reversed n J H) ClassAPlusUpperCycles.zeroPacket
+but is expected to have type
+  SignedPathsType
+ClassAPlusUpperCycleCompletionAudit.lean:78:11: error: Type mismatch
+  ClassAPlusUpperCycleCompletion.all_traced_strict_prefixes
+has type
+  ∀ (n J H : ℕ),
+    7 ≤ n →
+      1 ≤ J →
+        J ≤ n + 7 →
+          J * H ≤ n - 1 →
+            ∀ (reversed : Bool) (ℓ : Fin 3 → ℝ) (β : ℝ),
+              (∀ (a : Fin 3), 0 < ℓ a) →
+                0 < β →
+                  (∀ (a : Fin 3), physicalLength ℓ (ClassAPlusUpperCycles.upperSigma n J a) = β * ℓ a) →
+                    OrderedInteriorPath (ClassAPlusUpperCycles.upperSigma n J) ℓ
+                        (ClassAPlusUpperCycles.signedSource reversed H)
+                        (ClassAPlusUpperCycleCompletion.allSignedIndices reversed n J H)
+                        ClassAPlusUpperCycles.zeroPacket ∧
+                      ∃ top bottom,
+                        MarkTrace (ClassAPlusUpperCycles.upperSigma n J)
+                            (ClassAPlusUpperCycles.signedSource reversed H).top
+                            (List.map Prod.fst (ClassAPlusUpperCycleCompletion.allSignedIndices reversed n J H))
+                            top.before top.letter top.after ∧
+                          MarkTrace (ClassAPlusUpperCycles.upperSigma n J)
+                              (ClassAPlusUpperCycles.signedSource reversed H).bottom
+                              (List.map Prod.snd (ClassAPlusUpperCycleCompletion.allSignedIndices reversed n J H))
+                              bottom.before bottom.letter bottom.after ∧
+                            top.letter = 2 ∧
+                              bottom.letter = 2 ∧
+                                incidenceZ (ClassAPlusUpperCycles.upperSigma n J) ^
+                                      (ClassAPlusUpperCycleCompletion.allSignedIndices reversed n J H).length *ᵥ
+                                    -(ClassAPlusUpperCycles.signedSource reversed H).delta =
+                                  parikhZ top.before - parikhZ bottom.before
+but is expected to have type
+  TracedStrictType
+PSC_CLASS_A_PLUS_UPPER_COMPLETION_MODULE	PscVerif.ClassAPlusUpperCycleCompletion	29	22
+PSC_CLASS_A_PLUS_UPPER_COMPLETION_ENDPOINT	Psc.ClassAPlusUpperCycleCompletion.decrement_path
+ClassAPlusUpperCycleCompletionAudit.lean:81:0: error: Missing or wrong-typed upper-cycle completion endpoint: Psc.ClassAPlusUpperCycleCompletion.all_ordered_paths

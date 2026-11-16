@@ -1,0 +1,2044 @@
+{
+  "checked_directed_edges": 58,
+  "coefficient_ring": "Z[u,v,s]; chamber variables are nonnegative integers",
+  "controls": {
+    "LAST_relabelled_RUN": true,
+    "changed_density_count": true,
+    "closed_face_is_not_positive": true,
+    "finite_fit_is_not_identity": true,
+    "legal_but_wrong_ordinal": true,
+    "negative_guard_coefficient": true,
+    "nonexistent_original_ordinal": true
+  },
+  "density": {
+    "density_gap": "Y0-3*X0-2*C0=(beta-5)/beta^2>0",
+    "exact_scaling_identities": 3,
+    "inherited_hypotheses": [
+      "n>=6",
+      "0<h<1/8",
+      "rho>h",
+      "n+2<beta<n+3",
+      "the literal incidence cubic"
+    ],
+    "literal_two_level_count_entries": 9,
+    "parameter_chambers": 4,
+    "positive_certificates": [
+      {
+        "chamber": "K1",
+        "margins": {
+          "c": {
+            "coefficient_terms": 4,
+            "denominator": "8*z + 8",
+            "numerator": "8*w*z + 8*w + 17*z + 16"
+          },
+          "x": {
+            "coefficient_terms": 3,
+            "denominator": "4*z + 4",
+            "numerator": "8*w*z + 8*w + z"
+          },
+          "y": {
+            "coefficient_terms": 18,
+            "denominator": "32*z**2 + 64*z + 32",
+            "numerator": "96*s**2*z**2 + 192*s**2*z + 96*s**2 + 32*s*w*z**2 + 64*s*w*z + 32*s*w + 612*s*z**2 + 1220*s*z + 608*s + 32*w**2*z**2 + 64*w**2*z + 32*w**2 + 108*w*z**2 + 204*w*z + 96*w + 85*z**2 + 148*z + 64"
+          }
+        },
+        "parameters": {
+          "K": "1",
+          "n": "s + 6"
+        },
+        "parent": 0
+      },
+      {
+        "chamber": "K1",
+        "margins": {
+          "c": {
+            "coefficient_terms": 4,
+            "denominator": "8*z + 8",
+            "numerator": "8*w*z + 8*w + 9*z + 8"
+          },
+          "x": {
+            "coefficient_terms": 3,
+            "denominator": "4*z + 4",
+            "numerator": "4*w*z + 4*w + z"
+          },
+          "y": {
+            "coefficient_terms": 12,
+            "denominator": "8*z + 8",
+            "numerator": "8*s**2*z + 8*s**2 + 8*s*w*z + 8*s*w + 64*s*z + 64*s + 8*w**2*z + 8*w**2 + 18*w*z + 16*w + 13*z + 16"
+          }
+        },
+        "parameters": {
+          "K": "1",
+          "n": "s + 6"
+        },
+        "parent": 1
+      },
+      {
+        "chamber": "K1",
+        "margins": {
+          "c": {
+            "coefficient_terms": 4,
+            "denominator": "4*z + 4",
+            "numerator": "4*w*z + 4*w + 5*z + 4"
+          },
+          "x": {
+            "coefficient_terms": 3,
+            "denominator": "4*z + 4",
+            "numerator": "4*w*z + 4*w + z"
+          },
+          "y": {
+            "coefficient_terms": 18,
+            "denominator": "32*z**2 + 64*z + 32",
+            "numerator": "32*s**2*z**2 + 64*s**2*z + 32*s**2 + 32*s*w*z**2 + 64*s*w*z + 32*s*w + 228*s*z**2 + 452*s*z + 224*s + 32*w**2*z**2 + 64*w**2*z + 32*w**2 + 76*w*z**2 + 140*w*z + 64*w + 57*z**2 + 120*z + 64"
+          }
+        },
+        "parameters": {
+          "K": "1",
+          "n": "s + 6"
+        },
+        "parent": 2
+      },
+      {
+        "chamber": "K2",
+        "margins": {
+          "c": {
+            "coefficient_terms": 4,
+            "denominator": "8*z + 8",
+            "numerator": "8*w*z + 8*w + 17*z + 16"
+          },
+          "x": {
+            "coefficient_terms": 3,
+            "denominator": "4*z + 4",
+            "numerator": "8*w*z + 8*w + z"
+          },
+          "y": {
+            "coefficient_terms": 18,
+            "denominator": "32*z**2 + 64*z + 32",
+            "numerator": "96*s**2*z**2 + 192*s**2*z + 96*s**2 + 32*s*w*z**2 + 64*s*w*z + 32*s*w + 580*s*z**2 + 1156*s*z + 576*s + 32*w**2*z**2 + 64*w**2*z + 32*w**2 + 108*w*z**2 + 204*w*z + 96*w + 85*z**2 + 148*z + 64"
+          }
+        },
+        "parameters": {
+          "K": "2",
+          "n": "s + 6"
+        },
+        "parent": 0
+      },
+      {
+        "chamber": "K2",
+        "margins": {
+          "c": {
+            "coefficient_terms": 4,
+            "denominator": "8*z + 8",
+            "numerator": "8*w*z + 8*w + 9*z + 8"
+          },
+          "x": {
+            "coefficient_terms": 3,
+            "denominator": "4*z + 4",
+            "numerator": "4*w*z + 4*w + z"
+          },
+          "y": {
+            "coefficient_terms": 12,
+            "denominator": "8*z + 8",
+            "numerator": "8*s**2*z + 8*s**2 + 8*s*w*z + 8*s*w + 64*s*z + 64*s + 8*w**2*z + 8*w**2 + 18*w*z + 16*w + 13*z + 16"
+          }
+        },
+        "parameters": {
+          "K": "2",
+          "n": "s + 6"
+        },
+        "parent": 1
+      },
+      {
+        "chamber": "K2",
+        "margins": {
+          "c": {
+            "coefficient_terms": 4,
+            "denominator": "4*z + 4",
+            "numerator": "4*w*z + 4*w + 5*z + 4"
+          },
+          "x": {
+            "coefficient_terms": 3,
+            "denominator": "4*z + 4",
+            "numerator": "4*w*z + 4*w + z"
+          },
+          "y": {
+            "coefficient_terms": 18,
+            "denominator": "32*z**2 + 64*z + 32",
+            "numerator": "32*s**2*z**2 + 64*s**2*z + 32*s**2 + 32*s*w*z**2 + 64*s*w*z + 32*s*w + 228*s*z**2 + 452*s*z + 224*s + 32*w**2*z**2 + 64*w**2*z + 32*w**2 + 76*w*z**2 + 140*w*z + 64*w + 57*z**2 + 120*z + 64"
+          }
+        },
+        "parameters": {
+          "K": "2",
+          "n": "s + 6"
+        },
+        "parent": 2
+      },
+      {
+        "chamber": "K3",
+        "margins": {
+          "c": {
+            "coefficient_terms": 4,
+            "denominator": "8*z + 8",
+            "numerator": "8*w*z + 8*w + 17*z + 16"
+          },
+          "x": {
+            "coefficient_terms": 3,
+            "denominator": "4*z + 4",
+            "numerator": "8*w*z + 8*w + z"
+          },
+          "y": {
+            "coefficient_terms": 18,
+            "denominator": "32*z**2 + 64*z + 32",
+            "numerator": "96*s**2*z**2 + 192*s**2*z + 96*s**2 + 32*s*w*z**2 + 64*s*w*z + 32*s*w + 548*s*z**2 + 1092*s*z + 544*s + 32*w**2*z**2 + 64*w**2*z + 32*w**2 + 108*w*z**2 + 204*w*z + 96*w + 85*z**2 + 148*z + 64"
+          }
+        },
+        "parameters": {
+          "K": "3",
+          "n": "s + 6"
+        },
+        "parent": 0
+      },
+      {
+        "chamber": "K3",
+        "margins": {
+          "c": {
+            "coefficient_terms": 4,
+            "denominator": "8*z + 8",
+            "numerator": "8*w*z + 8*w + 9*z + 8"
+          },
+          "x": {
+            "coefficient_terms": 3,
+            "denominator": "4*z + 4",
+            "numerator": "4*w*z + 4*w + z"
+          },
+          "y": {
+            "coefficient_terms": 12,
+            "denominator": "8*z + 8",
+            "numerator": "8*s**2*z + 8*s**2 + 8*s*w*z + 8*s*w + 64*s*z + 64*s + 8*w**2*z + 8*w**2 + 18*w*z + 16*w + 13*z + 16"
+          }
+        },
+        "parameters": {
+          "K": "3",
+          "n": "s + 6"
+        },
+        "parent": 1
+      },
+      {
+        "chamber": "K3",
+        "margins": {
+          "c": {
+            "coefficient_terms": 4,
+            "denominator": "4*z + 4",
+            "numerator": "4*w*z + 4*w + 5*z + 4"
+          },
+          "x": {
+            "coefficient_terms": 3,
+            "denominator": "4*z + 4",
+            "numerator": "4*w*z + 4*w + z"
+          },
+          "y": {
+            "coefficient_terms": 18,
+            "denominator": "32*z**2 + 64*z + 32",
+            "numerator": "32*s**2*z**2 + 64*s**2*z + 32*s**2 + 32*s*w*z**2 + 64*s*w*z + 32*s*w + 228*s*z**2 + 452*s*z + 224*s + 32*w**2*z**2 + 64*w**2*z + 32*w**2 + 76*w*z**2 + 140*w*z + 64*w + 57*z**2 + 120*z + 64"
+          }
+        },
+        "parameters": {
+          "K": "3",
+          "n": "s + 6"
+        },
+        "parent": 2
+      },
+      {
+        "chamber": "Kge4",
+        "margins": {
+          "c": {
+            "coefficient_terms": 4,
+            "denominator": "8*z + 8",
+            "numerator": "8*w*z + 8*w + 17*z + 16"
+          },
+          "x": {
+            "coefficient_terms": 3,
+            "denominator": "4*z + 4",
+            "numerator": "8*w*z + 8*w + z"
+          },
+          "y": {
+            "coefficient_terms": 30,
+            "denominator": "32*z**2 + 64*z + 32",
+            "numerator": "64*u**2*z**2 + 128*u**2*z + 64*u**2 + 160*u*v*z**2 + 320*u*v*z + 160*u*v + 32*u*w*z**2 + 64*u*w*z + 32*u*w + 516*u*z**2 + 1028*u*z + 512*u + 96*v**2*z**2 + 192*v**2*z + 96*v**2 + 32*v*w*z**2 + 64*v*w*z + 32*v*w + 516*v*z**2 + 1028*v*z + 512*v + 32*w**2*z**2 + 64*w**2*z + 32*w**2 + 108*w*z**2 + 204*w*z + 96*w + 85*z**2 + 148*z + 64"
+          }
+        },
+        "parameters": {
+          "K": "u + 4",
+          "n": "u + v + 6"
+        },
+        "parent": 0
+      },
+      {
+        "chamber": "Kge4",
+        "margins": {
+          "c": {
+            "coefficient_terms": 4,
+            "denominator": "8*z + 8",
+            "numerator": "8*w*z + 8*w + 9*z + 8"
+          },
+          "x": {
+            "coefficient_terms": 3,
+            "denominator": "4*z + 4",
+            "numerator": "4*w*z + 4*w + z"
+          },
+          "y": {
+            "coefficient_terms": 20,
+            "denominator": "8*z + 8",
+            "numerator": "8*u**2*z + 8*u**2 + 16*u*v*z + 16*u*v + 8*u*w*z + 8*u*w + 64*u*z + 64*u + 8*v**2*z + 8*v**2 + 8*v*w*z + 8*v*w + 64*v*z + 64*v + 8*w**2*z + 8*w**2 + 18*w*z + 16*w + 13*z + 16"
+          }
+        },
+        "parameters": {
+          "K": "u + 4",
+          "n": "u + v + 6"
+        },
+        "parent": 1
+      },
+      {
+        "chamber": "Kge4",
+        "margins": {
+          "c": {
+            "coefficient_terms": 4,
+            "denominator": "4*z + 4",
+            "numerator": "4*w*z + 4*w + 5*z + 4"
+          },
+          "x": {
+            "coefficient_terms": 3,
+            "denominator": "4*z + 4",
+            "numerator": "4*w*z + 4*w + z"
+          },
+          "y": {
+            "coefficient_terms": 30,
+            "denominator": "32*z**2 + 64*z + 32",
+            "numerator": "32*u**2*z**2 + 64*u**2*z + 32*u**2 + 64*u*v*z**2 + 128*u*v*z + 64*u*v + 32*u*w*z**2 + 64*u*w*z + 32*u*w + 228*u*z**2 + 452*u*z + 224*u + 32*v**2*z**2 + 64*v**2*z + 32*v**2 + 32*v*w*z**2 + 64*v*w*z + 32*v*w + 228*v*z**2 + 452*v*z + 224*v + 32*w**2*z**2 + 64*w**2*z + 32*w**2 + 76*w*z**2 + 140*w*z + 64*w + 57*z**2 + 120*z + 64"
+          }
+        },
+        "parameters": {
+          "K": "u + 4",
+          "n": "u + v + 6"
+        },
+        "parent": 2
+      }
+    ],
+    "root_field_margin_identities": 9,
+    "strict_density_margin_certificates": 36
+  },
+  "directed_paths_including_reversal": 20,
+  "exact_reversed_QH_splices": 4,
+  "general_KH_chambers": 4,
+  "occurrence_kinds": {
+    "FIRST": 36,
+    "LAST": 2,
+    "RUN": 78
+  },
+  "paths": [
+    {
+      "edges": 3,
+      "final_bottom_prefix": [
+        "s + 11",
+        "s + 8",
+        "s**2 + 16*s + 57"
+      ],
+      "final_top_prefix": [
+        "3",
+        "0",
+        "3*s + 19"
+      ],
+      "full_original_prefix_identity": true,
+      "name": "K1_H1",
+      "occurrence_kinds": {
+        "FIRST": 2,
+        "LAST": 0,
+        "RUN": 4
+      },
+      "parameters": {
+        "H": "1",
+        "K": "1",
+        "n": "s + 6"
+      },
+      "records": [
+        {
+          "indices": [
+            "0",
+            "0"
+          ],
+          "kinds": [
+            "FIRST",
+            "FIRST"
+          ],
+          "target": [
+            "0",
+            "0",
+            "-1",
+            "-3",
+            "5"
+          ]
+        },
+        {
+          "indices": [
+            "1",
+            "s + 9"
+          ],
+          "kinds": [
+            "RUN",
+            "RUN"
+          ],
+          "target": [
+            "2",
+            "2",
+            "0",
+            "2",
+            "-2"
+          ]
+        },
+        {
+          "indices": [
+            "3",
+            "1"
+          ],
+          "kinds": [
+            "RUN",
+            "RUN"
+          ],
+          "target": [
+            "2",
+            "2",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      ],
+      "reversed": false
+    },
+    {
+      "edges": 3,
+      "final_bottom_prefix": [
+        "3",
+        "0",
+        "3*s + 19"
+      ],
+      "final_top_prefix": [
+        "s + 11",
+        "s + 8",
+        "s**2 + 16*s + 57"
+      ],
+      "full_original_prefix_identity": true,
+      "name": "K1_H1",
+      "occurrence_kinds": {
+        "FIRST": 2,
+        "LAST": 0,
+        "RUN": 4
+      },
+      "parameters": {
+        "H": "1",
+        "K": "1",
+        "n": "s + 6"
+      },
+      "records": [
+        {
+          "indices": [
+            "0",
+            "0"
+          ],
+          "kinds": [
+            "FIRST",
+            "FIRST"
+          ],
+          "target": [
+            "0",
+            "0",
+            "1",
+            "3",
+            "-5"
+          ]
+        },
+        {
+          "indices": [
+            "s + 9",
+            "1"
+          ],
+          "kinds": [
+            "RUN",
+            "RUN"
+          ],
+          "target": [
+            "2",
+            "2",
+            "0",
+            "-2",
+            "2"
+          ]
+        },
+        {
+          "indices": [
+            "1",
+            "3"
+          ],
+          "kinds": [
+            "RUN",
+            "RUN"
+          ],
+          "target": [
+            "2",
+            "2",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      ],
+      "reversed": true
+    },
+    {
+      "edges": 3,
+      "final_bottom_prefix": [
+        "2*s + 19",
+        "2*s + 16",
+        "2*s**2 + 29*s + 97"
+      ],
+      "final_top_prefix": [
+        "3",
+        "0",
+        "3*s + 21"
+      ],
+      "full_original_prefix_identity": true,
+      "name": "K1_H2",
+      "occurrence_kinds": {
+        "FIRST": 2,
+        "LAST": 0,
+        "RUN": 4
+      },
+      "parameters": {
+        "H": "2",
+        "K": "1",
+        "n": "s + 6"
+      },
+      "records": [
+        {
+          "indices": [
+            "0",
+            "0"
+          ],
+          "kinds": [
+            "FIRST",
+            "FIRST"
+          ],
+          "target": [
+            "0",
+            "0",
+            "-2",
+            "-6",
+            "10"
+          ]
+        },
+        {
+          "indices": [
+            "1",
+            "2*s + 17"
+          ],
+          "kinds": [
+            "RUN",
+            "RUN"
+          ],
+          "target": [
+            "2",
+            "2",
+            "0",
+            "4",
+            "-4"
+          ]
+        },
+        {
+          "indices": [
+            "5",
+            "1"
+          ],
+          "kinds": [
+            "RUN",
+            "RUN"
+          ],
+          "target": [
+            "2",
+            "2",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      ],
+      "reversed": false
+    },
+    {
+      "edges": 3,
+      "final_bottom_prefix": [
+        "3",
+        "0",
+        "3*s + 21"
+      ],
+      "final_top_prefix": [
+        "2*s + 19",
+        "2*s + 16",
+        "2*s**2 + 29*s + 97"
+      ],
+      "full_original_prefix_identity": true,
+      "name": "K1_H2",
+      "occurrence_kinds": {
+        "FIRST": 2,
+        "LAST": 0,
+        "RUN": 4
+      },
+      "parameters": {
+        "H": "2",
+        "K": "1",
+        "n": "s + 6"
+      },
+      "records": [
+        {
+          "indices": [
+            "0",
+            "0"
+          ],
+          "kinds": [
+            "FIRST",
+            "FIRST"
+          ],
+          "target": [
+            "0",
+            "0",
+            "2",
+            "6",
+            "-10"
+          ]
+        },
+        {
+          "indices": [
+            "2*s + 17",
+            "1"
+          ],
+          "kinds": [
+            "RUN",
+            "RUN"
+          ],
+          "target": [
+            "2",
+            "2",
+            "0",
+            "-4",
+            "4"
+          ]
+        },
+        {
+          "indices": [
+            "1",
+            "5"
+          ],
+          "kinds": [
+            "RUN",
+            "RUN"
+          ],
+          "target": [
+            "2",
+            "2",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      ],
+      "reversed": true
+    },
+    {
+      "edges": 3,
+      "final_bottom_prefix": [
+        "2*s + 16",
+        "2*s + 13",
+        "2*s**2 + 26*s + 81"
+      ],
+      "final_top_prefix": [
+        "1",
+        "0",
+        "1"
+      ],
+      "full_original_prefix_identity": true,
+      "name": "K2_H1",
+      "occurrence_kinds": {
+        "FIRST": 3,
+        "LAST": 0,
+        "RUN": 3
+      },
+      "parameters": {
+        "H": "1",
+        "K": "2",
+        "n": "s + 6"
+      },
+      "records": [
+        {
+          "indices": [
+            "0",
+            "0"
+          ],
+          "kinds": [
+            "FIRST",
+            "FIRST"
+          ],
+          "target": [
+            "0",
+            "0",
+            "-1",
+            "-3",
+            "4"
+          ]
+        },
+        {
+          "indices": [
+            "0",
+            "2*s + 14"
+          ],
+          "kinds": [
+            "FIRST",
+            "RUN"
+          ],
+          "target": [
+            "0",
+            "2",
+            "0",
+            "1",
+            "-1"
+          ]
+        },
+        {
+          "indices": [
+            "2",
+            "1"
+          ],
+          "kinds": [
+            "RUN",
+            "RUN"
+          ],
+          "target": [
+            "2",
+            "2",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      ],
+      "reversed": false
+    },
+    {
+      "edges": 3,
+      "final_bottom_prefix": [
+        "1",
+        "0",
+        "1"
+      ],
+      "final_top_prefix": [
+        "2*s + 16",
+        "2*s + 13",
+        "2*s**2 + 26*s + 81"
+      ],
+      "full_original_prefix_identity": true,
+      "name": "K2_H1",
+      "occurrence_kinds": {
+        "FIRST": 3,
+        "LAST": 0,
+        "RUN": 3
+      },
+      "parameters": {
+        "H": "1",
+        "K": "2",
+        "n": "s + 6"
+      },
+      "records": [
+        {
+          "indices": [
+            "0",
+            "0"
+          ],
+          "kinds": [
+            "FIRST",
+            "FIRST"
+          ],
+          "target": [
+            "0",
+            "0",
+            "1",
+            "3",
+            "-4"
+          ]
+        },
+        {
+          "indices": [
+            "2*s + 14",
+            "0"
+          ],
+          "kinds": [
+            "RUN",
+            "FIRST"
+          ],
+          "target": [
+            "2",
+            "0",
+            "0",
+            "-1",
+            "1"
+          ]
+        },
+        {
+          "indices": [
+            "1",
+            "2"
+          ],
+          "kinds": [
+            "RUN",
+            "RUN"
+          ],
+          "target": [
+            "2",
+            "2",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      ],
+      "reversed": true
+    },
+    {
+      "edges": 2,
+      "final_bottom_prefix": [
+        "3",
+        "0",
+        "3*s + 18"
+      ],
+      "final_top_prefix": [
+        "1",
+        "0",
+        "0"
+      ],
+      "full_original_prefix_identity": true,
+      "name": "K3_H1",
+      "occurrence_kinds": {
+        "FIRST": 1,
+        "LAST": 0,
+        "RUN": 3
+      },
+      "parameters": {
+        "H": "1",
+        "K": "3",
+        "n": "s + 6"
+      },
+      "records": [
+        {
+          "indices": [
+            "0",
+            "1"
+          ],
+          "kinds": [
+            "FIRST",
+            "RUN"
+          ],
+          "target": [
+            "0",
+            "2",
+            "0",
+            "-3",
+            "3"
+          ]
+        },
+        {
+          "indices": [
+            "1",
+            "4"
+          ],
+          "kinds": [
+            "RUN",
+            "RUN"
+          ],
+          "target": [
+            "2",
+            "2",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      ],
+      "reversed": false
+    },
+    {
+      "edges": 2,
+      "final_bottom_prefix": [
+        "1",
+        "0",
+        "0"
+      ],
+      "final_top_prefix": [
+        "3",
+        "0",
+        "3*s + 18"
+      ],
+      "full_original_prefix_identity": true,
+      "name": "K3_H1",
+      "occurrence_kinds": {
+        "FIRST": 1,
+        "LAST": 0,
+        "RUN": 3
+      },
+      "parameters": {
+        "H": "1",
+        "K": "3",
+        "n": "s + 6"
+      },
+      "records": [
+        {
+          "indices": [
+            "1",
+            "0"
+          ],
+          "kinds": [
+            "RUN",
+            "FIRST"
+          ],
+          "target": [
+            "2",
+            "0",
+            "0",
+            "3",
+            "-3"
+          ]
+        },
+        {
+          "indices": [
+            "4",
+            "1"
+          ],
+          "kinds": [
+            "RUN",
+            "RUN"
+          ],
+          "target": [
+            "2",
+            "2",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      ],
+      "reversed": true
+    },
+    {
+      "edges": 5,
+      "final_bottom_prefix": [
+        "1744",
+        "1343",
+        "10268"
+      ],
+      "final_top_prefix": [
+        "112",
+        "83",
+        "668"
+      ],
+      "full_original_prefix_identity": true,
+      "name": "K1_H3_n6_LAST",
+      "occurrence_kinds": {
+        "FIRST": 3,
+        "LAST": 1,
+        "RUN": 6
+      },
+      "parameters": {
+        "H": "3",
+        "K": "1",
+        "n": "6"
+      },
+      "records": [
+        {
+          "indices": [
+            "0",
+            "1"
+          ],
+          "kinds": [
+            "FIRST",
+            "RUN"
+          ],
+          "target": [
+            "0",
+            "2",
+            "-2",
+            "-9",
+            "15"
+          ]
+        },
+        {
+          "indices": [
+            "0",
+            "1"
+          ],
+          "kinds": [
+            "FIRST",
+            "RUN"
+          ],
+          "target": [
+            "0",
+            "2",
+            "3",
+            "6",
+            "-13"
+          ]
+        },
+        {
+          "indices": [
+            "12",
+            "0"
+          ],
+          "kinds": [
+            "RUN",
+            "FIRST"
+          ],
+          "target": [
+            "2",
+            "0",
+            "-2",
+            "-7",
+            "11"
+          ]
+        },
+        {
+          "indices": [
+            "1",
+            "18"
+          ],
+          "kinds": [
+            "RUN",
+            "LAST"
+          ],
+          "target": [
+            "2",
+            "0",
+            "0",
+            "4",
+            "-4"
+          ]
+        },
+        {
+          "indices": [
+            "5",
+            "1"
+          ],
+          "kinds": [
+            "RUN",
+            "RUN"
+          ],
+          "target": [
+            "2",
+            "2",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      ],
+      "reversed": false
+    },
+    {
+      "edges": 5,
+      "final_bottom_prefix": [
+        "112",
+        "83",
+        "668"
+      ],
+      "final_top_prefix": [
+        "1744",
+        "1343",
+        "10268"
+      ],
+      "full_original_prefix_identity": true,
+      "name": "K1_H3_n6_LAST",
+      "occurrence_kinds": {
+        "FIRST": 3,
+        "LAST": 1,
+        "RUN": 6
+      },
+      "parameters": {
+        "H": "3",
+        "K": "1",
+        "n": "6"
+      },
+      "records": [
+        {
+          "indices": [
+            "1",
+            "0"
+          ],
+          "kinds": [
+            "RUN",
+            "FIRST"
+          ],
+          "target": [
+            "2",
+            "0",
+            "2",
+            "9",
+            "-15"
+          ]
+        },
+        {
+          "indices": [
+            "1",
+            "0"
+          ],
+          "kinds": [
+            "RUN",
+            "FIRST"
+          ],
+          "target": [
+            "2",
+            "0",
+            "-3",
+            "-6",
+            "13"
+          ]
+        },
+        {
+          "indices": [
+            "0",
+            "12"
+          ],
+          "kinds": [
+            "FIRST",
+            "RUN"
+          ],
+          "target": [
+            "0",
+            "2",
+            "2",
+            "7",
+            "-11"
+          ]
+        },
+        {
+          "indices": [
+            "18",
+            "1"
+          ],
+          "kinds": [
+            "LAST",
+            "RUN"
+          ],
+          "target": [
+            "0",
+            "2",
+            "0",
+            "-4",
+            "4"
+          ]
+        },
+        {
+          "indices": [
+            "1",
+            "5"
+          ],
+          "kinds": [
+            "RUN",
+            "RUN"
+          ],
+          "target": [
+            "2",
+            "2",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      ],
+      "reversed": true
+    },
+    {
+      "edges": 5,
+      "final_bottom_prefix": [
+        "3*s**3 + 86*s**2 + 805*s + 2466",
+        "3*s**3 + 80*s**2 + 693*s + 1959",
+        "3*s**4 + 107*s**3 + 1404*s**2 + 8046*s + 17014"
+      ],
+      "final_top_prefix": [
+        "2*s**2 + 34*s + 144",
+        "2*s**2 + 30*s + 111",
+        "2*s**3 + 48*s**2 + 381*s + 1003"
+      ],
+      "full_original_prefix_identity": true,
+      "name": "K1_H3_nge7_RUN",
+      "occurrence_kinds": {
+        "FIRST": 3,
+        "LAST": 0,
+        "RUN": 7
+      },
+      "parameters": {
+        "H": "3",
+        "K": "1",
+        "n": "s + 7"
+      },
+      "records": [
+        {
+          "indices": [
+            "0",
+            "1"
+          ],
+          "kinds": [
+            "FIRST",
+            "RUN"
+          ],
+          "target": [
+            "0",
+            "2",
+            "-2",
+            "-9",
+            "15"
+          ]
+        },
+        {
+          "indices": [
+            "0",
+            "1"
+          ],
+          "kinds": [
+            "FIRST",
+            "RUN"
+          ],
+          "target": [
+            "0",
+            "2",
+            "3",
+            "6",
+            "-13"
+          ]
+        },
+        {
+          "indices": [
+            "2*s + 14",
+            "0"
+          ],
+          "kinds": [
+            "RUN",
+            "FIRST"
+          ],
+          "target": [
+            "2",
+            "0",
+            "-2",
+            "-7",
+            "11"
+          ]
+        },
+        {
+          "indices": [
+            "1",
+            "2*s + 20"
+          ],
+          "kinds": [
+            "RUN",
+            "RUN"
+          ],
+          "target": [
+            "2",
+            "2",
+            "0",
+            "4",
+            "-4"
+          ]
+        },
+        {
+          "indices": [
+            "5",
+            "1"
+          ],
+          "kinds": [
+            "RUN",
+            "RUN"
+          ],
+          "target": [
+            "2",
+            "2",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      ],
+      "reversed": false
+    },
+    {
+      "edges": 5,
+      "final_bottom_prefix": [
+        "2*s**2 + 34*s + 144",
+        "2*s**2 + 30*s + 111",
+        "2*s**3 + 48*s**2 + 381*s + 1003"
+      ],
+      "final_top_prefix": [
+        "3*s**3 + 86*s**2 + 805*s + 2466",
+        "3*s**3 + 80*s**2 + 693*s + 1959",
+        "3*s**4 + 107*s**3 + 1404*s**2 + 8046*s + 17014"
+      ],
+      "full_original_prefix_identity": true,
+      "name": "K1_H3_nge7_RUN",
+      "occurrence_kinds": {
+        "FIRST": 3,
+        "LAST": 0,
+        "RUN": 7
+      },
+      "parameters": {
+        "H": "3",
+        "K": "1",
+        "n": "s + 7"
+      },
+      "records": [
+        {
+          "indices": [
+            "1",
+            "0"
+          ],
+          "kinds": [
+            "RUN",
+            "FIRST"
+          ],
+          "target": [
+            "2",
+            "0",
+            "2",
+            "9",
+            "-15"
+          ]
+        },
+        {
+          "indices": [
+            "1",
+            "0"
+          ],
+          "kinds": [
+            "RUN",
+            "FIRST"
+          ],
+          "target": [
+            "2",
+            "0",
+            "-3",
+            "-6",
+            "13"
+          ]
+        },
+        {
+          "indices": [
+            "0",
+            "2*s + 14"
+          ],
+          "kinds": [
+            "FIRST",
+            "RUN"
+          ],
+          "target": [
+            "0",
+            "2",
+            "2",
+            "7",
+            "-11"
+          ]
+        },
+        {
+          "indices": [
+            "2*s + 20",
+            "1"
+          ],
+          "kinds": [
+            "RUN",
+            "RUN"
+          ],
+          "target": [
+            "2",
+            "2",
+            "0",
+            "-4",
+            "4"
+          ]
+        },
+        {
+          "indices": [
+            "1",
+            "5"
+          ],
+          "kinds": [
+            "RUN",
+            "RUN"
+          ],
+          "target": [
+            "2",
+            "2",
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      ],
+      "reversed": true
+    },
+    {
+      "edges": 2,
+      "final_bottom_prefix": [
+        "u + 6",
+        "u + 3",
+        "s*u + 7*s + u**2 + 11*u + 36"
+      ],
+      "final_top_prefix": [
+        "2",
+        "0",
+        "3*s + 3*u + 17"
+      ],
+      "full_original_prefix_identity": true,
+      "name": "K1_Hge4",
+      "occurrence_kinds": {
+        "FIRST": 1,
+        "LAST": 0,
+        "RUN": 3
+      },
+      "parameters": {
+        "H": "u + 4",
+        "K": "1",
+        "n": "s + u + 6"
+      },
+      "records": [
+        {
+          "indices": [
+            "1",
+            "u + 4"
+          ],
+          "kinds": [
+            "RUN",
+            "RUN"
+          ],
+          "target": [
+            "2",
+            "2",
+            "-u - 4",
+            "-3*u - 12",
+            "6*u + 23"
+          ]
+        },
+        {
+          "indices": [
+            "0",
+            "s + 5"
+          ],
+          "kinds": [
+            "FIRST",
+            "RUN"
+          ],
+          "target": [
+            "0",
+            "2",
+            "u + 4",
+            "3*u + 11",
+            "-6*u - 21"
+          ]
+        }
+      ],
+      "reversed": false
+    },
+    {
+      "edges": 2,
+      "final_bottom_prefix": [
+        "2",
+        "0",
+        "3*s + 3*u + 17"
+      ],
+      "final_top_prefix": [
+        "u + 6",
+        "u + 3",
+        "s*u + 7*s + u**2 + 11*u + 36"
+      ],
+      "full_original_prefix_identity": true,
+      "name": "K1_Hge4",
+      "occurrence_kinds": {
+        "FIRST": 1,
+        "LAST": 0,
+        "RUN": 3
+      },
+      "parameters": {
+        "H": "u + 4",
+        "K": "1",
+        "n": "s + u + 6"
+      },
+      "records": [
+        {
+          "indices": [
+            "u + 4",
+            "1"
+          ],
+          "kinds": [
+            "RUN",
+            "RUN"
+          ],
+          "target": [
+            "2",
+            "2",
+            "u + 4",
+            "3*u + 12",
+            "-6*u - 23"
+          ]
+        },
+        {
+          "indices": [
+            "s + 5",
+            "0"
+          ],
+          "kinds": [
+            "RUN",
+            "FIRST"
+          ],
+          "target": [
+            "2",
+            "0",
+            "-u - 4",
+            "-3*u - 11",
+            "6*u + 21"
+          ]
+        }
+      ],
+      "reversed": true
+    },
+    {
+      "edges": 2,
+      "final_bottom_prefix": [
+        "2*u + 6",
+        "2*u + 3",
+        "2*s*u + 7*s + 4*u**2 + 22*u + 35"
+      ],
+      "final_top_prefix": [
+        "2",
+        "0",
+        "3*s + 6*u + 16"
+      ],
+      "full_original_prefix_identity": true,
+      "name": "K2_Hge2",
+      "occurrence_kinds": {
+        "FIRST": 1,
+        "LAST": 0,
+        "RUN": 3
+      },
+      "parameters": {
+        "H": "u + 2",
+        "K": "2",
+        "n": "s + 2*u + 6"
+      },
+      "records": [
+        {
+          "indices": [
+            "1",
+            "2*u + 4"
+          ],
+          "kinds": [
+            "RUN",
+            "RUN"
+          ],
+          "target": [
+            "2",
+            "2",
+            "-u - 2",
+            "-3*u - 6",
+            "6*u + 11"
+          ]
+        },
+        {
+          "indices": [
+            "0",
+            "s + 5"
+          ],
+          "kinds": [
+            "FIRST",
+            "RUN"
+          ],
+          "target": [
+            "0",
+            "2",
+            "u + 2",
+            "3*u + 5",
+            "-6*u - 9"
+          ]
+        }
+      ],
+      "reversed": false
+    },
+    {
+      "edges": 2,
+      "final_bottom_prefix": [
+        "2",
+        "0",
+        "3*s + 6*u + 16"
+      ],
+      "final_top_prefix": [
+        "2*u + 6",
+        "2*u + 3",
+        "2*s*u + 7*s + 4*u**2 + 22*u + 35"
+      ],
+      "full_original_prefix_identity": true,
+      "name": "K2_Hge2",
+      "occurrence_kinds": {
+        "FIRST": 1,
+        "LAST": 0,
+        "RUN": 3
+      },
+      "parameters": {
+        "H": "u + 2",
+        "K": "2",
+        "n": "s + 2*u + 6"
+      },
+      "records": [
+        {
+          "indices": [
+            "2*u + 4",
+            "1"
+          ],
+          "kinds": [
+            "RUN",
+            "RUN"
+          ],
+          "target": [
+            "2",
+            "2",
+            "u + 2",
+            "3*u + 6",
+            "-6*u - 11"
+          ]
+        },
+        {
+          "indices": [
+            "s + 5",
+            "0"
+          ],
+          "kinds": [
+            "RUN",
+            "FIRST"
+          ],
+          "target": [
+            "2",
+            "0",
+            "-u - 2",
+            "-3*u - 5",
+            "6*u + 9"
+          ]
+        }
+      ],
+      "reversed": true
+    },
+    {
+      "edges": 2,
+      "final_bottom_prefix": [
+        "3*u + 8",
+        "3*u + 5",
+        "3*s*u + 9*s + 9*u**2 + 45*u + 60"
+      ],
+      "final_top_prefix": [
+        "2",
+        "0",
+        "3*s + 9*u + 21"
+      ],
+      "full_original_prefix_identity": true,
+      "name": "K3_Hge2",
+      "occurrence_kinds": {
+        "FIRST": 1,
+        "LAST": 0,
+        "RUN": 3
+      },
+      "parameters": {
+        "H": "u + 2",
+        "K": "3",
+        "n": "s + 3*u + 8"
+      },
+      "records": [
+        {
+          "indices": [
+            "1",
+            "3*u + 6"
+          ],
+          "kinds": [
+            "RUN",
+            "RUN"
+          ],
+          "target": [
+            "2",
+            "2",
+            "-u - 2",
+            "-3*u - 6",
+            "6*u + 11"
+          ]
+        },
+        {
+          "indices": [
+            "0",
+            "s + 5"
+          ],
+          "kinds": [
+            "FIRST",
+            "RUN"
+          ],
+          "target": [
+            "0",
+            "2",
+            "u + 2",
+            "3*u + 5",
+            "-6*u - 9"
+          ]
+        }
+      ],
+      "reversed": false
+    },
+    {
+      "edges": 2,
+      "final_bottom_prefix": [
+        "2",
+        "0",
+        "3*s + 9*u + 21"
+      ],
+      "final_top_prefix": [
+        "3*u + 8",
+        "3*u + 5",
+        "3*s*u + 9*s + 9*u**2 + 45*u + 60"
+      ],
+      "full_original_prefix_identity": true,
+      "name": "K3_Hge2",
+      "occurrence_kinds": {
+        "FIRST": 1,
+        "LAST": 0,
+        "RUN": 3
+      },
+      "parameters": {
+        "H": "u + 2",
+        "K": "3",
+        "n": "s + 3*u + 8"
+      },
+      "records": [
+        {
+          "indices": [
+            "3*u + 6",
+            "1"
+          ],
+          "kinds": [
+            "RUN",
+            "RUN"
+          ],
+          "target": [
+            "2",
+            "2",
+            "u + 2",
+            "3*u + 6",
+            "-6*u - 11"
+          ]
+        },
+        {
+          "indices": [
+            "s + 5",
+            "0"
+          ],
+          "kinds": [
+            "RUN",
+            "FIRST"
+          ],
+          "target": [
+            "2",
+            "0",
+            "-u - 2",
+            "-3*u - 5",
+            "6*u + 9"
+          ]
+        }
+      ],
+      "reversed": true
+    },
+    {
+      "edges": 2,
+      "final_bottom_prefix": [
+        "u*v + u + 4*v + 6",
+        "u*v + u + 4*v + 3",
+        "s*u*v + s*u + 4*s*v + 7*s + u**2*v**2 + 2*u**2*v + u**2 + 8*u*v**2 + 19*u*v + 10*u + 16*v**2 + 44*v + 33"
+      ],
+      "final_top_prefix": [
+        "2",
+        "0",
+        "3*s + 3*u*v + 2*u + 12*v + 14"
+      ],
+      "full_original_prefix_identity": true,
+      "name": "Kge4_Hge1",
+      "occurrence_kinds": {
+        "FIRST": 1,
+        "LAST": 0,
+        "RUN": 3
+      },
+      "parameters": {
+        "H": "v + 1",
+        "K": "u + 4",
+        "n": "s + (u + 4)*(v + 1) + 2"
+      },
+      "records": [
+        {
+          "indices": [
+            "1",
+            "u*v + u + 4*v + 4"
+          ],
+          "kinds": [
+            "RUN",
+            "RUN"
+          ],
+          "target": [
+            "2",
+            "2",
+            "-v - 1",
+            "-3*v - 3",
+            "6*v + 5"
+          ]
+        },
+        {
+          "indices": [
+            "0",
+            "s + 5"
+          ],
+          "kinds": [
+            "FIRST",
+            "RUN"
+          ],
+          "target": [
+            "0",
+            "2",
+            "v + 1",
+            "3*v + 2",
+            "-6*v - 3"
+          ]
+        }
+      ],
+      "reversed": false
+    },
+    {
+      "edges": 2,
+      "final_bottom_prefix": [
+        "2",
+        "0",
+        "3*s + 3*u*v + 2*u + 12*v + 14"
+      ],
+      "final_top_prefix": [
+        "u*v + u + 4*v + 6",
+        "u*v + u + 4*v + 3",
+        "s*u*v + s*u + 4*s*v + 7*s + u**2*v**2 + 2*u**2*v + u**2 + 8*u*v**2 + 19*u*v + 10*u + 16*v**2 + 44*v + 33"
+      ],
+      "full_original_prefix_identity": true,
+      "name": "Kge4_Hge1",
+      "occurrence_kinds": {
+        "FIRST": 1,
+        "LAST": 0,
+        "RUN": 3
+      },
+      "parameters": {
+        "H": "v + 1",
+        "K": "u + 4",
+        "n": "s + (u + 4)*(v + 1) + 2"
+      },
+      "records": [
+        {
+          "indices": [
+            "u*v + u + 4*v + 4",
+            "1"
+          ],
+          "kinds": [
+            "RUN",
+            "RUN"
+          ],
+          "target": [
+            "2",
+            "2",
+            "v + 1",
+            "3*v + 3",
+            "-6*v - 5"
+          ]
+        },
+        {
+          "indices": [
+            "s + 5",
+            "0"
+          ],
+          "kinds": [
+            "RUN",
+            "FIRST"
+          ],
+          "target": [
+            "2",
+            "0",
+            "-v - 1",
+            "-3*v - 2",
+            "6*v + 3"
+          ]
+        }
+      ],
+      "reversed": true
+    }
+  ],
+  "reused_tail": "existing unit_descent_path theorem, first reversed edge omitted",
+  "small_KH_chambers": 6,
+  "small_cycle_zero_length_bound": 5,
+  "splices": [
+    {
+      "edges": 1,
+      "final_bottom_prefix": [
+        "1",
+        "0",
+        "s + 5"
+      ],
+      "final_top_prefix": [
+        "0",
+        "0",
+        "0"
+      ],
+      "full_original_prefix_identity": true,
+      "occurrence_kinds": {
+        "FIRST": 1,
+        "LAST": 0,
+        "RUN": 1
+      },
+      "records": [
+        {
+          "indices": [
+            "0",
+            "s + 6"
+          ],
+          "kinds": [
+            "FIRST",
+            "RUN"
+          ],
+          "target": [
+            "0",
+            "2",
+            "u + 4",
+            "3*u + 11",
+            "-6*u - 21"
+          ]
+        }
+      ]
+    },
+    {
+      "edges": 1,
+      "final_bottom_prefix": [
+        "1",
+        "0",
+        "s + 5"
+      ],
+      "final_top_prefix": [
+        "0",
+        "0",
+        "0"
+      ],
+      "full_original_prefix_identity": true,
+      "occurrence_kinds": {
+        "FIRST": 1,
+        "LAST": 0,
+        "RUN": 1
+      },
+      "records": [
+        {
+          "indices": [
+            "0",
+            "s + 6"
+          ],
+          "kinds": [
+            "FIRST",
+            "RUN"
+          ],
+          "target": [
+            "0",
+            "2",
+            "u + 2",
+            "3*u + 5",
+            "-6*u - 9"
+          ]
+        }
+      ]
+    },
+    {
+      "edges": 1,
+      "final_bottom_prefix": [
+        "1",
+        "0",
+        "s + 5"
+      ],
+      "final_top_prefix": [
+        "0",
+        "0",
+        "0"
+      ],
+      "full_original_prefix_identity": true,
+      "occurrence_kinds": {
+        "FIRST": 1,
+        "LAST": 0,
+        "RUN": 1
+      },
+      "records": [
+        {
+          "indices": [
+            "0",
+            "s + 6"
+          ],
+          "kinds": [
+            "FIRST",
+            "RUN"
+          ],
+          "target": [
+            "0",
+            "2",
+            "u + 2",
+            "3*u + 5",
+            "-6*u - 9"
+          ]
+        }
+      ]
+    },
+    {
+      "edges": 1,
+      "final_bottom_prefix": [
+        "1",
+        "0",
+        "s + 5"
+      ],
+      "final_top_prefix": [
+        "0",
+        "0",
+        "0"
+      ],
+      "full_original_prefix_identity": true,
+      "occurrence_kinds": {
+        "FIRST": 1,
+        "LAST": 0,
+        "RUN": 1
+      },
+      "records": [
+        {
+          "indices": [
+            "0",
+            "s + 6"
+          ],
+          "kinds": [
+            "FIRST",
+            "RUN"
+          ],
+          "target": [
+            "0",
+            "2",
+            "v + 1",
+            "3*v + 2",
+            "-6*v - 3"
+          ]
+        }
+      ]
+    }
+  ],
+  "whole_theorem_formalized_in_Lean": false
+}

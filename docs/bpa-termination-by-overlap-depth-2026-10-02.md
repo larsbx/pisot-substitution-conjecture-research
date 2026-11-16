@@ -223,6 +223,8 @@ every child again has no offset-zero descendant. Lemma Ω1 gives finite
 descent, so an infinite child path repeats a vertex. That cycle vertex
 has no offset-zero descendant, contradicting (3).
 
+*Clarification, 2026-11-09.* "BH" in item 3 is the potential-overlap form; the governed `UniversalBoundaryHitting` is the seed-graph form. The first implies the second; the converse is known only through PDS. See the [quantifier audit](quantifier-transfer-audit-2026-11-09.md), §11 (row C12).
+
 Thus the kernel's **uncapped** `holds` verdict itself suffices for finite
 BPA from every swap seed, by Proposition 4. It is unnecessary to establish
 SC_all, to eliminate terminal leftmost cycles, or to invoke Theorem B,

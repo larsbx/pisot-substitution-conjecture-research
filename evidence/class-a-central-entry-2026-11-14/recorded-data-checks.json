@@ -1,0 +1,27 @@
+[
+  {
+    "command": [
+      "/workspace/scratch/f53f64a9a0d0/checks-venv/bin/python",
+      "-m",
+      "pytest",
+      "-o",
+      "addopts=",
+      "-q",
+      "tests/test_recorded_data_integrity.py"
+    ],
+    "cwd": "/workspace/scratch/f53f64a9a0d0/psc",
+    "exit_code": 0,
+    "seconds": 0.922
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "cwd": "/workspace/scratch/f53f64a9a0d0/psc",
+    "exit_code": 0,
+    "seconds": 0.017
+  }
+]

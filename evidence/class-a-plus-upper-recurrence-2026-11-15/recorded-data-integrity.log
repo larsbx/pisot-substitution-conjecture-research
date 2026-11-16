@@ -1,0 +1,13 @@
+{"command": ["/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python", "-m", "pytest", "-o", "addopts=", "-q", "tests/test_recorded_data_integrity.py", "tests/test_markdown_links.py", "--junitxml=/workspace/scratch/7b7b91dcb7fe/upper-recurrence-seal-attempt-2/pytest.xml"]}
+........................................................................ [ 43%]
+........................................................................ [ 86%]
+.......................                                                  [100%]
+- generated xml file: /workspace/scratch/7b7b91dcb7fe/upper-recurrence-seal-attempt-2/pytest.xml -
+167 passed in 1.62s
+{"command": ["/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python", "tools/check_markdown_source.py"]}
+OK Markdown source integrity: 531 file(s) checked
+{"command": ["/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python", "tools/make_proof_bank.py", "--check"]}
+Proof bank: 126 claims, 2867 named Lean proofs, 411 source openings
+{"command": ["/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python", "-m", "claim_governance.cli", "--root", "."]}
+OK: claim governance audit of larsbx/pisot-substitution-conjecture-research passed [terminology, claims, coverage, promotion, numerics, consistency]
+{"command": ["git", "diff", "--cached", "--check"]}

@@ -46,6 +46,16 @@ claim = "PSC"
 source = "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, abstract and unresolved statements; open"
 
 [[lean_support]]
+claim = "PrefixBPATerminationPisotOrSalem"
+coverage = "full"
+declarations = ["Psc.BPrime.bprime", "Psc.BPrime.bprime_ss", "Psc.BPrime.bprime_isPisotOrSalem", "Psc.BPrime.bprime_cubic", "Psc.BPrime.bprime_cubic_isPisot", "Psc.BPrime.minpoly_eq_charpoly", "Psc.BPrimeBinding.IW_eq_iUnion_ssLevel"]
+note = "Proposition B′ as registered: the root bound for every primitive substitution with irreducible chi_M under a finite prefix-seeded I(W) (Lean IW, coincidence blocks retained), its literal-(3.1) form, the Pisot-or-Salem reading on two or more letters and the strict disc in degree three. The Galois-conjugate argument of the general-structure note is not the formalized route, and no refinement to kernel/psc/bpa.mojo is proved."
+[[lean_support]]
+claim = "NonPisotPrefixBPANontermination"
+coverage = "full"
+declarations = ["Psc.BPrime.corB_infinite", "Psc.BPrime.corB_infinite_of_not_isPisotOrSalem", "Psc.BPrime.corB_infinite_cubic", "Psc.BPrime.corB_infinite_ss", "Psc.BPrime.corB_infinite_cubic_ss", "Psc.BPrime.zetaU_IW_infinite"]
+note = "Corollary B (i) as registered, each form the contrapositive of a Proposition B′ endpoint, with the audit specimen 0->01, 1->2, 2->00 discharged in zetaU_IW_infinite. Corollary B (ii)-(iii) are not formalized and not registered."
+[[lean_support]]
 claim = "SeedCentralizer"
 coverage = "partial"
 declarations = ["Psc.no_commuting_of_no_eigenvalue", "Psc.Aq_mulVec_ones", "Psc.Aq_eigenspace"]
@@ -128,3 +138,9 @@ claim = "BoundedDegree3Exclusion"
 coverage = "partial"
 declarations = ["Psc.Degree3Catalogue.catalogue_spec", "Psc.Degree3Catalogue.catalogue_complete", "Psc.Degree3Catalogue.catalogue_exact", "Psc.Degree3Catalogue.catalogue_card", "Psc.Degree3Catalogue.no_closed_equiv2", "Psc.Degree3Sector.census_not_mem"]
 note = "Lean checks, by kernel evaluation, the 24 degree-three occurrences transcribed from kernel/degree3_catalog.mojo over their 12 substitutions: each is a reachable, recurrent, 2-binomially equivalent vertex of B_sigma with K_3 != 0 that leaks to a coincidence within two inflations and lies in no normalised 2-binomially equivalent child system over its substitution; each of the 12 automata has exactly 226 vertices, and no nonempty child-closed coincidence-free 2-binomially equivalent set of vertices exists. Not formalized: that these 24 are all the degree-three states of the 4,554-member corpus, i.e. the census itself (Mojo)."
+
+[[lean_support]]
+claim = "MinusClassAWholeChamberEntry"
+coverage = "partial"
+declarations = ["Psc.ClassACentralRecurrence.central_gap_in_run", "Psc.ClassACentralRecurrence.run_gap_digit_step", "Psc.ClassACentralRecurrence.eventual_alternating_tail"]
+note = "Lean checks RUN index legality, the literal RUN digit step and eventual alternation under the strict-error recurrence. The all-source central entrance, literal specialization and complete cycle escapes are supplied by the branch proof evidence."

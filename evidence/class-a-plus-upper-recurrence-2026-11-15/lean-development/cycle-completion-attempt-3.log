@@ -1,0 +1,136 @@
+⚠ [2191/2201] Replayed PscVerif.OccurrenceNewborn
+warning: PscVerif/OccurrenceNewborn.lean:53:0: automatically included section variable(s) unused in theorem `Psc.OccurrenceNewborn.SyncPlus.eventual`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: PscVerif/OccurrenceNewborn.lean:61:0: automatically included section variable(s) unused in theorem `Psc.OccurrenceNewborn.SyncMinus.eventual`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [2195/2201] Replayed PscVerif.ClassAZeroDefectEscape
+warning: PscVerif/ClassAZeroDefectEscape.lean:233:37: Unused tactic linter: `omega` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PscVerif/ClassAZeroDefectEscape.lean:252:54: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PscVerif/ClassAZeroDefectEscape.lean:233:37: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PscVerif/ClassAZeroDefectEscape.lean:252:54: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PscVerif/ClassAZeroDefectEscape.lean:231:50: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAZeroDefectEscape.lean:241:50: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [2200/2201] Replayed PscVerif.ClassAPlusUpperCycles
+warning: PscVerif/ClassAPlusUpperCycles.lean:55:8: This simp argument is unused:
+  plusRunLength
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [packet, incidenceZ, inc, plusSigma, ClassAPlusConstantRecurrence.sigma,
+    ClassAPlusConstantRecurrence.runLength, first, last, OccurrenceTransport.residual, parikhZ, plusRunMark,
+    ClassAPlusConstantRecurrence.runMark, Matrix.mulVec, dotProduct, Fin.sum_univ_three, delta, List.count_replicate,
+    Nat.cast_sub hi0, Nat.cast_sub hj0]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:93:36: This simp argument is unused:
+  parikhZ
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [packet, incidenceZ, inc, plusSigma, ClassAPlusConstantRecurrence.sigma, plusRunLength,
+    ClassAPlusConstantRecurrence.runLength, first, last, OccurrenceTransport.residual, firstMark, Matrix.mulVec,
+    dotProduct, Fin.sum_univ_three, List.count_replicate]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:125:74: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:136:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:151:44: This simp argument is unused:
+  Nat.cast_sub (show 1 ≤ 2 * n + 12 by omega)
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [upperSigma, cyclePacket, first, Nat.cast_add, Nat.cast_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:163:31: This simp argument is unused:
+  Nat.cast_sub (show 1 ≤ 2 * n + 12 by omega)
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [upperSigma, delta, Nat.cast_add, Nat.cast_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:152:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:164:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:172:71: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:173:14: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:187:44: This simp argument is unused:
+  Nat.cast_sub (show 2 ≤ 2 * n + 12 by omega)
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [upperSigma, cyclePacket, first, Nat.cast_add, Nat.cast_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:195:31: This simp argument is unused:
+  Nat.cast_sub (show 2 ≤ 2 * n + 12 by omega)
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [upperSigma, first, Nat.cast_add, Nat.cast_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:204:61: Unused tactic linter: `congr 1` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:204:73: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:204:61: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:204:73: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:188:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:188:48: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:196:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:196:48: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [2201/2201] Built PscVerif.ClassAPlusUpperCycleCompletion (18s)
+warning: PscVerif/ClassAPlusUpperCycleCompletion.lean:24:49: Variable name `hJ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hJ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: PscVerif/ClassAPlusUpperCycleCompletion.lean:43:74: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycleCompletion.lean:54:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully (2201 jobs).

@@ -1,0 +1,127 @@
+name: Plus-Class-A upper central recurrence and cycle exits
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/class-a-plus-upper-recurrence.yml'
+      - 'kernel/**'
+      - 'oracles/python/class_a_plus_upper*.py'
+      - 'tests/test_class_a_plus_upper*.py'
+      - 'tools/run_class_a_plus_upper_recurrence_native.py'
+      - 'tools/check_class_a_plus_upper*'
+      - 'tools/setup_lean.sh'
+      - 'tools/make_proof_bank.py'
+      - 'proof/PscVerif/**'
+      - 'proof/proof-bank.json'
+      - 'docs/proof-bank.md'
+      - 'docs/class-a-plus-upper*.md'
+      - 'docs/bh-class-a-plus-upper*.md'
+      - 'evidence/class-a-plus-upper-recurrence-2026-11-15/**'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/class-a-plus-upper-recurrence.yml'
+      - 'kernel/**'
+      - 'oracles/python/class_a_plus_upper*.py'
+      - 'tests/test_class_a_plus_upper*.py'
+      - 'tools/run_class_a_plus_upper_recurrence_native.py'
+      - 'tools/check_class_a_plus_upper*'
+      - 'tools/setup_lean.sh'
+      - 'tools/make_proof_bank.py'
+      - 'proof/PscVerif/**'
+      - 'proof/proof-bank.json'
+      - 'docs/proof-bank.md'
+      - 'docs/class-a-plus-upper*.md'
+      - 'docs/bh-class-a-plus-upper*.md'
+      - 'evidence/class-a-plus-upper-recurrence-2026-11-15/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  literal-replay:
+    name: Finite central paths and independent exact replay
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Bind producing revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test -z "$(git status --porcelain)"
+          mkdir -p "$RUNNER_TEMP/upper-recurrence-native"
+          git rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/upper-recurrence-native/revision.txt"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install 'pytest==8.4.2' 'sympy==1.14.0'
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          pixi-version: v0.84.2
+          manifest-path: kernel/pixi.toml
+          locked: true
+      - name: Canonical bounded Mojo recurrence and complete paths
+        run: python tools/run_class_a_plus_upper_recurrence_native.py --output-prefix "$RUNNER_TEMP/upper-recurrence-native/native"
+      - name: Independent exact replay and refusal checks
+        shell: bash
+        env:
+          PSC_UPPER_CENTRAL_NATIVE: ${{ runner.temp }}/upper-recurrence-native/native.log
+        run: |
+          set -euo pipefail
+          python oracles/python/class_a_plus_upper_recurrence.py --native "$PSC_UPPER_CENTRAL_NATIVE" > "$RUNNER_TEMP/upper-recurrence-native/native-replay.json" 2> "$RUNNER_TEMP/upper-recurrence-native/native-replay.stderr"
+          python oracles/python/class_a_plus_upper_recurrence_independent.py --output-dir "$RUNNER_TEMP/upper-recurrence-native/independent" > "$RUNNER_TEMP/upper-recurrence-native/independent-summary.json" 2> "$RUNNER_TEMP/upper-recurrence-native/independent.stderr"
+          python -m pytest -o addopts='' -q tests/test_class_a_plus_upper_recurrence.py tests/test_class_a_plus_upper_recurrence_independent.py tests/test_class_a_plus_upper_recurrence_audit.py --junitxml="$RUNNER_TEMP/upper-recurrence-native/pytest.xml" 2>&1 | tee "$RUNNER_TEMP/upper-recurrence-native/pytest.log"
+          python tools/make_proof_bank.py --check
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: upper-recurrence-native-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/upper-recurrence-native
+          if-no-files-found: error
+          retention-days: 30
+
+  isolated-lean:
+    name: Fresh recurrence and cycle Lean endpoints
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Bind producing revision and provision pinned Lean
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test -z "$(git status --porcelain)"
+          mkdir -p "$RUNNER_TEMP/upper-recurrence-lean"
+          git rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/upper-recurrence-lean/revision.txt"
+          ./tools/setup_lean.sh --toolchain-only
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fresh source build and exact endpoint and axiom audits
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./tools/check_class_a_plus_upper_recurrence.sh 2>&1 | tee "$RUNNER_TEMP/upper-recurrence-lean/fresh-gate.log"
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: upper-recurrence-lean-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/upper-recurrence-lean
+          if-no-files-found: error
+          retention-days: 30
