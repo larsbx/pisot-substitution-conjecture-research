@@ -111,6 +111,7 @@ import PscVerif.ArchivedPayloadControls
 import PscVerif.ClassAPlusUpperCycles
 import PscVerif.ClassAPlusUpperRecurrence
 import PscVerif.ClassAPlusUpperCycleCompletion
+import PscVerif.ClassAPlusUpperEntry
 import PscVerif.BPrimeCore
 import PscVerif.BPrimeBinding
 import PscVerif.BPrime
