@@ -11,7 +11,7 @@ from std.testing import assert_equal, assert_false, assert_true
 from finite_linear_algebra.scalar import q_int
 from finite_linear_algebra.mat3 import Mat3
 from psc.bpa import substitution_incidence
-from mojo_smoke.claims import require_contract
+from mojo_smoke.claims import require_claim, require_contract
 from psc.symbolic_cone import (
     rouche_disc,
     Region,
@@ -185,3 +185,4 @@ def main() raises:
     test_sector_a_plus()
     print("[PASS] test_sector_a_plus")
     require_contract("Symbolic cone certificate (class B sectors): region signs certified by shifted coefficients with Polya's multiplier, a sign-changing polynomial left undecided; parametric signs at beta on certified brackets agree with exact signs at a member; Rouche (|c2| > 1 + |c1| + |c0|) certifies the disc on sector A+ and declines a sign-changing margin; a p = q family is refused; the cone engine reproduces Theorem L's 119-vertex line from q >= 6; the two branch decompositions leave no gap up to q = 200, family membership solved exactly; sector A+ (q + 5 <= p <= 2q - 1, r = q + 1) is covered by 5 symbolic regions of 74 vertices and 4 exact members, every vertex hitting")
+    require_claim("ClassBSectorBoundaryHitting")

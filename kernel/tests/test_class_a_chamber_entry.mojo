@@ -25,7 +25,7 @@ docs/class-a-chamber-entry-stopgo-2026-11-15.md. Pinned here:
 
 from std.collections import Dict
 from std.testing import assert_equal, assert_false, assert_true
-from mojo_smoke.claims import require_contract
+from mojo_smoke.claims import require_claim, require_contract
 from psc.param_poly import QX, TPoly, qx_affine2, qx_const, qx_key, tp_add, tp_at_q, tp_const, tp_deriv, tp_homog_at, tp_key, tp_mod_monic, tp_mul, tp_norm, tp_scale, tp_sub, tp_t
 from psc.symbolic_cone import Bracket, Cone, Frac2, Region, bernstein_middle, certify_cone, r2_const
 from psc.symbolic_line import Eventual, LineField
@@ -279,3 +279,5 @@ def main() raises:
     test_line_t0_end_to_end()
     print("[PASS] test_line_t0_end_to_end")
     require_contract("class-A chamber entry: the cone engine's opt-in Bernstein rule reads 2 dL^2 dU b1 exactly (non-unit brackets included), decides a quadratic whose leading coefficient changes sign on the region, and refuses through the engine a dip around beta with positive ends; Lemma TW over Q[k, t] (one incidence matrix, chi = l^3 - (n + 2) l^2 - (t + 3) l + 2 and left eigenvector ell (M - t I) = 0 mod chi for the class-A chamber member and its class-B twin, M g = -g - K e_y and (beta + 1) <ell, g> = -K ell_y for g = (1, 3, -6)), the twins' seed graphs differing; the twelve families cover exactly t <= 5 or t <= k - 1 on 0 <= k, t <= 60; at six members the exact seed-patch graph and the nine-seed closure in the oriented indexed graph have one label set, the graph is that closure with its reversal (both inclusions), the apex's one extra vertex is R(E6), and every vertex reaches integral offset zero; the line t = 0 covered by the cone engine with one 325-vertex region and 8 exact members")
+    require_claim("MinusClassAChamberConeBoundaryHitting")
+    require_claim("MinusClassAChamberConeEntry")

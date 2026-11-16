@@ -11,6 +11,32 @@ stop/go decision of §2 and §5. Corollary CA-1 (§6.4) gives #452's entry into 
 open theorem target; a written proof covering the whole chamber exists on the
 unmerged #577 stack (§2, "Parallel route"), and Theorem CA is independent of it.
 
+*Status update, 2026-11-16.* Theorem CA and Corollary CA-1 are registered in
+the claim ledger as `MinusClassAChamberConeBoundaryHitting` and
+`MinusClassAChamberConeEntry` (computer-assisted, human review pending), and
+Theorem C as `ClassBSectorBoundaryHitting`. This supersedes three groups of
+statements in this note:
+- the statements that these results are not registered (the Status paragraph
+  above, §8);
+- §8's absence of a governed record reaching the chamber;
+- §8's "Hosted acceptance … is pending".
+
+The registration rests on the hosted receipts of class-a-chamber-entry run
+43773184319 at `5ff3f9a5` (PR #585, merged as `2de8b7aa`): the certificate,
+regressions and both Theorem C replays passed. Their logs are archived in
+`evidence/class-a-chamber-cone-hosted-2026-11-16/` and are the receipts of
+record. The packet also holds local re-runs of the coverage check, the two
+regressions and the Theorem C plus replay on those sources.
+
+The "final sources" of §6.2 are the 2026-11-15 working sources. They differ
+from `5ff3f9a5` in two files:
+- `kernel/psc/symbolic_cone.mojo`: the bracket-order read moved to a scratch
+  region;
+- `kernel/symbolic_line_certificate.mojo`: the capped-graph refusal withdrawn.
+
+Their certified-region, exact-member and totals lines equal those of the hosted
+jobs. The scope and the other non-claims are unchanged.
+
 Canonical implementation: `kernel/psc/symbolic_cone.mojo` (with an opt-in
 Bernstein sign rule), `kernel/class_b_cone_certificate.mojo` (the cover, now
 generic in the class), driver `kernel/class_a_chamber_cone_certificate.mojo`
@@ -332,7 +358,7 @@ child `(i,j)` in Z, so `Mw = P_a(i) − P_b(j)`:
   so `u ∈ W_(a,b)(m)`. ∎
 
 **Lemma 0** [D]. For every `k ≥ 0` and `t ∈ {0,1}`, T1 and T1-H hold.
-`DetTwoBoundaryHittingLines` (`claim_governance.toml:937-939`,
+`DetTwoBoundaryHittingLines` (its record in `claim_governance.toml`,
 `status = "proved"`; "boundary hitting holds for every PIP member of the 47
 one-parameter catch-up-free determinant-two lines declared by Theorems L, L'
 and L''", "computer-assisted, human review pending; merged through PR #246",
@@ -439,8 +465,8 @@ proof (`kernel/class_b_cone_certificate.mojo:194-216`).
 bracket-order check), `class_b_cone_certificate.mojo plus` and `minus`
 reproduce the archived Theorem C run (`archive/2026-10-08/class-b-cone-run/`):
 the same certified regions at the same shifts, the same exact members on the
-minus branch, and the same totals, 32 regions and 198 exact members on `+1`,
-45 and 292 on `−1` (`class-b-replay-plus.log` and `class-b-replay-minus.log` in
+minus branch, and the same totals: 32 regions and 198 exact verdicts on `+1`, 45 and 292 on
+`−1` (184 and 239 distinct members) (`class-b-replay-plus.log` and `class-b-replay-minus.log` in
 the evidence packet).
 
 **6.3 Theorem CA.** Let `(k,t)` satisfy `t ≤ 5` or `t ≤ k−1`. Then every

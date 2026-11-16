@@ -402,6 +402,18 @@
       }
     },
     {
+      "name": "ClassBSectorBoundaryHitting",
+      "status": "proved",
+      "source": "docs/p1b-symbolic-cone-2026-10-08.md, Theorem C, Lemma S' and the coverage of section 3; certificate of record: kernel/class_b_cone_certificate.mojo plus and minus on the merged sources with the bracket-order check, hosted theorem-c-replay jobs 132993441198 (plus) and 132993441219 (minus) of class-a-chamber-entry run 43773184319 at 5ff3f9a5 (merged PR #585), 77 certified regions and 490 exact verdicts over 423 members, identical to archive/2026-10-08/class-b-cone-run/ in the certified regions with their shifts and in the totals, and on the minus branch in the exact members, which the archived plus log does not record (provenance; that run predates the bracket-order certification); evidence/class-a-chamber-cone-hosted-2026-11-16/; regression kernel/tests/test_symbolic_cone.mojo; computer-assisted, human review pending",
+      "dependencies": [],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
       "name": "ClassBTopLayerLabelRays",
       "status": "evidence",
       "source": "docs/class-b-label-rays-2026-10-23.md, finite label-ray evidence on 289 complete graphs; no infinite top-layer certificate",
@@ -977,6 +989,32 @@
       "status": "proved",
       "source": "docs/c4-degree2-midarea-factorization.md",
       "dependencies": [],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "MinusClassAChamberConeBoundaryHitting",
+      "status": "proved",
+      "source": "docs/class-a-chamber-entry-stopgo-2026-11-15.md, Theorem CA (sections 6.1-6.3) with Lemma S' and the Bernstein Lemma S'' (section 4.1); kernel/class_a_chamber_cone_certificate.mojo, twelve families, 16 symbolic regions, 116 exact verdicts over 86 members; hosted certificate job 132993441031 and regressions job 132993441284 of class-a-chamber-entry run 43773184319 at 5ff3f9a5 (merged PR #585); evidence/class-a-chamber-cone-hosted-2026-11-16/ (receipts of record) and evidence/class-a-chamber-cone-2026-11-15/ (first runs on the 2026-11-15 working sources, provenance); computer-assisted, human review pending",
+      "dependencies": [],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "MinusClassAChamberConeEntry",
+      "status": "proved",
+      "source": "docs/class-a-chamber-entry-stopgo-2026-11-15.md, Corollary CA-1 (section 6.4) from Theorem CA and the written Transfer Lemma (I2 identity of relations, I3 and Lemma R reversal, forward half of T0; sections 4.2-4.4) with Lemma TW (section 3); regression kernel/tests/test_class_a_chamber_entry.mojo (test_transfer_link) in hosted regressions job 132993441284 at 5ff3f9a5; issue #452 on this domain only; computer-assisted through Theorem CA, human review pending",
+      "dependencies": [
+        "MinusClassAChamberConeBoundaryHitting"
+      ],
       "ledger_node": true,
       "lean_support": {
         "coverage": "none",
@@ -31668,27 +31706,27 @@
     },
     {
       "source": "docs/class-a-chamber-entry-stopgo-2026-11-15.md",
-      "line": 158,
+      "line": 184,
       "statement_heading": "## 3. Lemma TW (the twin geometry)"
     },
     {
       "source": "docs/class-a-chamber-entry-stopgo-2026-11-15.md",
-      "line": 164,
+      "line": 190,
       "statement_heading": "**Lemma TW** [D]. For all `k,t ≥ 0`, with `K = k+1`:"
     },
     {
       "source": "docs/class-a-chamber-entry-stopgo-2026-11-15.md",
-      "line": 244,
+      "line": 270,
       "statement_heading": "**Lemma S″ (the Bernstein rule).** Let `[L, U]` be a certified bracket of β"
     },
     {
       "source": "docs/class-a-chamber-entry-stopgo-2026-11-15.md",
-      "line": 334,
+      "line": 360,
       "statement_heading": "**Lemma 0** [D]. For every `k ≥ 0` and `t ∈ {0,1}`, T1 and T1-H hold."
     },
     {
       "source": "docs/class-a-chamber-entry-stopgo-2026-11-15.md",
-      "line": 386,
+      "line": 412,
       "statement_heading": "## 6. Theorem CA: the class-A cone theorem on 𝒯_CA"
     },
     {
@@ -33238,7 +33276,7 @@
     }
   ],
   "input_digests": {
-    "claim_governance.toml": "00ff62cd0169bebce67ca874588d4a89aca2e81b0ca954af4d05f41adc748cbd",
+    "claim_governance.toml": "361df0632322eee2f7f5ec26303744a16fc066a604896734c19705d9f331ddc3",
     "proof/PscVerif/ClassAPlusUpperCycleCompletionAudit.lean": "6ac8660fe4babef37c7e6fd191507bb1898852837b63d622e465762d881dd040",
     "proof/PscVerif/ClassAPlusUpperCyclesAudit.lean": "f1674a21d8c96382b5c3ea009525c43baf210a2a6db427dd3bbb60923b087c6e",
     "proof/PscVerif/ClassAPlusUpperRecurrenceAudit.lean": "ef12f802e6eb10dbf2b02ce84cccbcdf9164aed9356f4fe2917ee513923824aa",
@@ -33390,7 +33428,7 @@
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
     "proof/proof-bank.toml": "d0e15b7dcd7a7b493d432bf2b03eeafd3550f1697b3b3629ea490b9af06247fa",
     "tools/check_lean.sh": "eb63ce6fb0b837eee1208b3d47e759bcf8b3617b1374685a8850e48f283cba8d",
-    "tools/make_ledger.py": "23693890114bbc88bf709c7c416b01d14bd8674a766f34aced9db7c037a00745",
+    "tools/make_ledger.py": "3b9df7443fc1d5b07fa88e53088bcfd9b03b936ae7f4664086783c109543f947",
     "tools/make_proof_bank.py": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8",
     "tools/setup_lean.sh": "8c4e5f4a35c6daf437c612bb868410ac2ecad68984154d50493fd7f42d86a824"
   }

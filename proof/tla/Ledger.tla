@@ -28,6 +28,7 @@ ResultSet == {
     "C4FromStrongCoincidence",
     "ClassABoundaryHittingHighGaps",
     "ClassABoundaryHittingLowGaps",
+    "ClassBSectorBoundaryHitting",
     "ClassCBoundaryHittingLowGaps",
     "ClassDBoundaryHitting",
     "ClassDFiniteBPA",
@@ -63,6 +64,8 @@ ResultSet == {
     "MassBalanceK2Obstruction",
     "MeanAreaLift",
     "MidArea",
+    "MinusClassAChamberConeBoundaryHitting",
+    "MinusClassAChamberConeEntry",
     "MinusClassDBoundaryHitting",
     "MinusClassDBoundaryLine",
     "MinusClassDBoundaryStrips",
@@ -144,6 +147,7 @@ RequiresDef == [r \in ResultSet |->
       [] r = "C4FromStrongCoincidence" -> {{}}
       [] r = "ClassABoundaryHittingHighGaps" -> {{}}
       [] r = "ClassABoundaryHittingLowGaps" -> {{}}
+      [] r = "ClassBSectorBoundaryHitting" -> {{}}
       [] r = "ClassCBoundaryHittingLowGaps" -> {{"DetTwoBoundaryHittingLines"}}
       [] r = "ClassDBoundaryHitting" -> {{"PlusClassDBoundaryHitting", "MinusClassDBoundaryHitting"}}
       [] r = "ClassDFiniteBPA" -> {{"ClassDBoundaryHitting", "SwapOverlapFiniteness"}}
@@ -179,6 +183,8 @@ RequiresDef == [r \in ResultSet |->
       [] r = "MassBalanceK2Obstruction" -> {{}}
       [] r = "MeanAreaLift" -> {{"MidArea", "ParikhIntertwiner"}}
       [] r = "MidArea" -> {{}}
+      [] r = "MinusClassAChamberConeBoundaryHitting" -> {{}}
+      [] r = "MinusClassAChamberConeEntry" -> {{"MinusClassAChamberConeBoundaryHitting"}}
       [] r = "MinusClassDBoundaryHitting" -> {{"MinusClassDResidualBoundaryHitting", "ClassDWedgeBoundaryHitting"}}
       [] r = "MinusClassDBoundaryLine" -> {{}}
       [] r = "MinusClassDBoundaryStrips" -> {{}}
@@ -255,6 +261,7 @@ ProvedDef == {
     "C4FromStrongCoincidence",
     "ClassABoundaryHittingHighGaps",
     "ClassABoundaryHittingLowGaps",
+    "ClassBSectorBoundaryHitting",
     "ClassCBoundaryHittingLowGaps",
     "ClassDBoundaryHitting",
     "ClassDFiniteBPA",
@@ -285,6 +292,8 @@ ProvedDef == {
     "MassBalanceK2Obstruction",
     "MeanAreaLift",
     "MidArea",
+    "MinusClassAChamberConeBoundaryHitting",
+    "MinusClassAChamberConeEntry",
     "MinusClassDBoundaryHitting",
     "MinusClassDBoundaryLine",
     "MinusClassDBoundaryStrips",
@@ -427,6 +436,7 @@ C4NotEstablished == "C4" \notin established
 C4FromStrongCoincidenceNotEstablished == "C4FromStrongCoincidence" \notin established
 ClassABoundaryHittingHighGapsNotEstablished == "ClassABoundaryHittingHighGaps" \notin established
 ClassABoundaryHittingLowGapsNotEstablished == "ClassABoundaryHittingLowGaps" \notin established
+ClassBSectorBoundaryHittingNotEstablished == "ClassBSectorBoundaryHitting" \notin established
 ClassCBoundaryHittingLowGapsNotEstablished == "ClassCBoundaryHittingLowGaps" \notin established
 ClassDBoundaryHittingNotEstablished == "ClassDBoundaryHitting" \notin established
 ClassDFiniteBPANotEstablished == "ClassDFiniteBPA" \notin established
@@ -462,6 +472,8 @@ LocalWitnessInjectivityNotEstablished == "LocalWitnessInjectivity" \notin establ
 MassBalanceK2ObstructionNotEstablished == "MassBalanceK2Obstruction" \notin established
 MeanAreaLiftNotEstablished == "MeanAreaLift" \notin established
 MidAreaNotEstablished == "MidArea" \notin established
+MinusClassAChamberConeBoundaryHittingNotEstablished == "MinusClassAChamberConeBoundaryHitting" \notin established
+MinusClassAChamberConeEntryNotEstablished == "MinusClassAChamberConeEntry" \notin established
 MinusClassDBoundaryHittingNotEstablished == "MinusClassDBoundaryHitting" \notin established
 MinusClassDBoundaryLineNotEstablished == "MinusClassDBoundaryLine" \notin established
 MinusClassDBoundaryStripsNotEstablished == "MinusClassDBoundaryStrips" \notin established
