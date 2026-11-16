@@ -1,0 +1,534 @@
+﻿2026-11-15T23:26:42.0819711Z Current runner version: '2.338.2'
+2026-11-15T23:26:42.0837085Z ##[group]Runner Image Provisioner
+2026-11-15T23:26:42.0837707Z Hosted Compute Agent
+2026-11-15T23:26:42.0838096Z Version: 20261103.629
+2026-11-15T23:26:42.0838471Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-15T23:26:42.0838962Z Build Date: 2026-11-03T17:26:59Z
+2026-11-15T23:26:42.0839373Z Worker ID: {01c4fa2b-9b86-42e6-9973-ed350c663cde}
+2026-11-15T23:26:42.0839812Z Region: centralus
+2026-11-15T23:26:42.0840193Z Cloud: Azure
+2026-11-15T23:26:42.0840525Z ##[endgroup]
+2026-11-15T23:26:42.0841318Z ##[group]Operating System
+2026-11-15T23:26:42.0841705Z Ubuntu
+2026-11-15T23:26:42.0842054Z 26.04.1
+2026-11-15T23:26:42.0842532Z LTS
+2026-11-15T23:26:42.0842878Z ##[endgroup]
+2026-11-15T23:26:42.0843306Z ##[group]Runner Image
+2026-11-15T23:26:42.0843708Z Image: ubuntu-26.04
+2026-11-15T23:26:42.0844049Z Version: 20261111.196.1
+2026-11-15T23:26:42.0845033Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261111.196/images/ubuntu/Ubuntu2604-Readme.md
+2026-11-15T23:26:42.0845943Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261111.196
+2026-11-15T23:26:42.0846503Z ##[endgroup]
+2026-11-15T23:26:42.0847234Z ##[group]GITHUB_TOKEN Permissions
+2026-11-15T23:26:42.0848423Z Contents: read
+2026-11-15T23:26:42.0848766Z Metadata: read
+2026-11-15T23:26:42.0849173Z ##[endgroup]
+2026-11-15T23:26:42.0850480Z Secret source: Actions
+2026-11-15T23:26:42.0851123Z Cache mode: write
+2026-11-15T23:26:42.0851573Z Prepare workflow directory
+2026-11-15T23:26:42.1078561Z Prepare all required actions
+2026-11-15T23:26:42.1120654Z Getting action download info
+2026-11-15T23:26:42.3268678Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-15T23:26:42.4891010Z Complete job name: theorem-c-replay (plus)
+2026-11-15T23:26:42.5407236Z ##[group]Run actions/checkout@v4
+2026-11-15T23:26:42.5407669Z with:
+2026-11-15T23:26:42.5407997Z   repository: larsbx/pisot-substitution-conjecture-research
+2026-11-15T23:26:42.5410277Z   token: ***
+2026-11-15T23:26:42.5410524Z   ssh-strict: true
+2026-11-15T23:26:42.5410848Z   ssh-user: git
+2026-11-15T23:26:42.5411107Z   persist-credentials: true
+2026-11-15T23:26:42.5411398Z   clean: true
+2026-11-15T23:26:42.5411659Z   sparse-checkout-cone-mode: true
+2026-11-15T23:26:42.5411956Z   fetch-depth: 1
+2026-11-15T23:26:42.5412206Z   fetch-tags: false
+2026-11-15T23:26:42.5412465Z   show-progress: true
+2026-11-15T23:26:42.5412729Z   lfs: false
+2026-11-15T23:26:42.5412971Z   submodules: false
+2026-11-15T23:26:42.5413230Z   set-safe-directory: true
+2026-11-15T23:26:42.5413521Z   allow-unsafe-pr-checkout: false
+2026-11-15T23:26:42.5413887Z ##[endgroup]
+2026-11-15T23:26:42.7745222Z Syncing repository: larsbx/pisot-substitution-conjecture-research
+2026-11-15T23:26:42.7747439Z ##[group]Getting Git version info
+2026-11-15T23:26:42.7748458Z Working directory is '/home/runner/work/pisot-substitution-conjecture-research/pisot-substitution-conjecture-research'
+2026-11-15T23:26:42.7749744Z [command]/usr/bin/git version
+2026-11-15T23:26:42.7751168Z git version 2.56.1
+2026-11-15T23:26:42.7764969Z ##[endgroup]
+2026-11-15T23:26:42.7776867Z Temporarily overriding HOME='/home/runner/work/_temp/38a8f97b-3390-41dc-86f6-d54c4978dffb' before making global git config changes
+2026-11-15T23:26:42.7778136Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-15T23:26:42.7781599Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/pisot-substitution-conjecture-research/pisot-substitution-conjecture-research
+2026-11-15T23:26:42.7849063Z Deleting the contents of '/home/runner/work/pisot-substitution-conjecture-research/pisot-substitution-conjecture-research'
+2026-11-15T23:26:42.7852748Z ##[group]Initializing the repository
+2026-11-15T23:26:42.7857614Z [command]/usr/bin/git init /home/runner/work/pisot-substitution-conjecture-research/pisot-substitution-conjecture-research
+2026-11-15T23:26:42.7974114Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-15T23:26:42.7975765Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-15T23:26:42.7976574Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-15T23:26:42.7976997Z hint: call:
+2026-11-15T23:26:42.7977232Z hint:
+2026-11-15T23:26:42.7977566Z hint: 	git config --global init.defaultBranch <name>
+2026-11-15T23:26:42.7977922Z hint:
+2026-11-15T23:26:42.7978249Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-15T23:26:42.7978780Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-15T23:26:42.7979217Z hint:
+2026-11-15T23:26:42.7979467Z hint: 	git branch -m <name>
+2026-11-15T23:26:42.7979739Z hint:
+2026-11-15T23:26:42.7980109Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-15T23:26:42.7984197Z Initialized empty Git repository in /home/runner/work/pisot-substitution-conjecture-research/pisot-substitution-conjecture-research/.git/
+2026-11-15T23:26:42.7995152Z [command]/usr/bin/git remote add origin https://github.com/larsbx/pisot-substitution-conjecture-research
+2026-11-15T23:26:42.8047576Z ##[endgroup]
+2026-11-15T23:26:42.8048376Z ##[group]Disabling automatic garbage collection
+2026-11-15T23:26:42.8050946Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-15T23:26:42.8083211Z ##[endgroup]
+2026-11-15T23:26:42.8083899Z ##[group]Setting up auth
+2026-11-15T23:26:42.8089154Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-15T23:26:42.8120686Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-15T23:26:42.8550496Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-15T23:26:42.8580972Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-15T23:26:42.8813930Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-15T23:26:42.8846448Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-15T23:26:42.9079173Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-15T23:26:42.9198122Z ##[endgroup]
+2026-11-15T23:26:42.9198955Z ##[group]Fetching the repository
+2026-11-15T23:26:42.9206242Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +8e7a7955e6de9222cd52267a255146835ac48498:refs/remotes/pull/585/merge
+2026-11-15T23:26:44.6708541Z From https://github.com/larsbx/pisot-substitution-conjecture-research
+2026-11-15T23:26:44.6709077Z  * [new ref]         8e7a7955e6de9222cd52267a255146835ac48498 -> pull/585/merge
+2026-11-15T23:26:44.6711180Z ##[endgroup]
+2026-11-15T23:26:44.6711462Z ##[group]Determining the checkout info
+2026-11-15T23:26:44.6713024Z ##[endgroup]
+2026-11-15T23:26:44.6725297Z [command]/usr/bin/git sparse-checkout disable
+2026-11-15T23:26:44.6772409Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-15T23:26:44.6797731Z ##[group]Checking out the ref
+2026-11-15T23:26:44.6800371Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/585/merge
+2026-11-15T23:26:45.0394615Z Note: switching to 'refs/remotes/pull/585/merge'.
+2026-11-15T23:26:45.0395136Z 
+2026-11-15T23:26:45.0395367Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-15T23:26:45.0396004Z changes and commit them, and you can discard any commits you make in this
+2026-11-15T23:26:45.0396468Z state without impacting any branches by switching back to a branch.
+2026-11-15T23:26:45.0396745Z 
+2026-11-15T23:26:45.0396957Z If you want to create a new branch to retain commits you create, you may
+2026-11-15T23:26:45.0397694Z do so (now or later) by using -c with the switch command. Example:
+2026-11-15T23:26:45.0397926Z 
+2026-11-15T23:26:45.0398046Z   git switch -c <new-branch-name>
+2026-11-15T23:26:45.0398237Z 
+2026-11-15T23:26:45.0398403Z Or undo this operation with:
+2026-11-15T23:26:45.0398568Z 
+2026-11-15T23:26:45.0398665Z   git switch -
+2026-11-15T23:26:45.0398875Z 
+2026-11-15T23:26:45.0399154Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-15T23:26:45.0399459Z 
+2026-11-15T23:26:45.0399798Z HEAD is now at 8e7a795 Merge 5ff3f9a5cae45234884bea46779d7e4f9e3d851c into 58379fa726eadf51e32f9f76f6f3970bf0e55cd5
+2026-11-15T23:26:45.0425962Z ##[endgroup]
+2026-11-15T23:26:45.0471982Z [command]/usr/bin/git log -1 --format=%H
+2026-11-15T23:26:45.0495041Z 8e7a7955e6de9222cd52267a255146835ac48498
+2026-11-15T23:26:45.0683635Z ##[group]Run curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+2026-11-15T23:26:45.0684216Z [36;1mcurl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash[0m
+2026-11-15T23:26:45.0684686Z [36;1mecho "$HOME/.pixi/bin" >> "$GITHUB_PATH"[0m
+2026-11-15T23:26:45.0730277Z shell: /usr/bin/bash -e {0}
+2026-11-15T23:26:45.0730471Z ##[endgroup]
+2026-11-15T23:26:45.2639484Z This script will automatically download and install Pixi (latest) for you.
+2026-11-15T23:26:45.2640618Z Getting it from this url: https://github.com/prefix-dev/pixi/releases/latest/download/pixi-x86_64-unknown-linux-musl.tar.gz
+2026-11-15T23:26:46.2440266Z The 'pixi' binary is installed into '/home/runner/.pixi/bin'
+2026-11-15T23:26:46.6146724Z Sending an anonymous installation ping to prefix.dev (version, OS, arch). Set PIXI_NO_TELEMETRY=1 or DO_NOT_TRACK=1 to opt out. See https://pixi.sh/latest/reference/telemetry/
+2026-11-15T23:26:46.6189799Z Updating '/home/runner/.bashrc'
+2026-11-15T23:26:46.6190248Z Please restart or source your shell.
+2026-11-15T23:26:46.6283082Z ##[group]Run pixi run --locked mojo run -I . class_b_cone_certificate.mojo plus | tee "$RUNNER_TEMP/replay.log"
+2026-11-15T23:26:46.6283549Z [36;1mpixi run --locked mojo run -I . class_b_cone_certificate.mojo plus | tee "$RUNNER_TEMP/replay.log"[0m
+2026-11-15T23:26:46.6327526Z shell: /usr/bin/bash -e {0}
+2026-11-15T23:26:46.6327688Z ##[endgroup]
+2026-11-15T23:26:54.4930264Z  WARN Skipped running the post-link scripts because `run-post-link-scripts` = `false`
+2026-11-15T23:26:54.4930720Z 	- bin/.gdk-pixbuf-post-link.sh
+2026-11-15T23:26:54.4930934Z 	- bin/.librsvg-post-link.sh
+2026-11-15T23:26:54.4931084Z 
+2026-11-15T23:26:54.4931381Z To enable them, run:
+2026-11-15T23:26:54.4931630Z 	pixi config set --local run-post-link-scripts insecure
+2026-11-15T23:26:54.4931846Z 
+2026-11-15T23:26:54.4931931Z More info:
+2026-11-15T23:26:54.4932243Z 	https://pixi.sh/latest/reference/pixi_configuration/#run-post-link-scripts
+2026-11-15T23:26:54.4932514Z 
+2026-11-15T23:27:02.4201042Z J+1: s >= (0, 0) undecided: a sign is not certified on the region (0, 0): {}{1,}
+2026-11-15T23:27:02.4999133Z J+1: s >= (1, 0) undecided: a sign at beta is not decided on any bracket: [{-3,}{-1,}][{4,}{1,}][{-1,}]
+2026-11-15T23:27:02.6462929Z J+1: s >= (2, 0) undecided: a sign at beta is not decided on any bracket: [{-2,}{2,}][{5,}{-3,}][{-2,}{1,}]
+2026-11-15T23:27:03.5502367Z J+1: s >= (3, 0) undecided: a sign at beta is not decided on any bracket: [{-4,}{2,}][{8,}{-3,}][{-3,}{1,}]
+2026-11-15T23:27:07.1936425Z J+1: s >= (4, 0) undecided: a sign at beta is not decided on any bracket: [{6,}{-2,}][{-11,}{3,}][{4,}{-1,}]
+2026-11-15T23:27:13.1681246Z J+1: s >= (6, 0), 121 vertices
+2026-11-15T23:27:13.1688158Z J+1: exact (1,0,1), 113 vertices
+2026-11-15T23:27:13.1696764Z J+1: exact (2,1,2), 139 vertices
+2026-11-15T23:27:13.1706552Z J+1: exact (3,2,3), 127 vertices
+2026-11-15T23:27:13.1715228Z J+1: exact (4,3,4), 121 vertices
+2026-11-15T23:27:13.1723281Z J+1: exact (5,4,5), 121 vertices
+2026-11-15T23:27:13.1734856Z J+1: exact (6,5,6), 121 vertices
+2026-11-15T23:27:13.1777077Z J+2: s >= (0, 0) undecided: a sign is not certified on the region (0, 0): {}{1,}
+2026-11-15T23:27:13.2805207Z J+2: s >= (1, 0) undecided: a sign at beta is not decided on any bracket: [{}{-1,}][{3,}{1,}][{-1,}]
+2026-11-15T23:27:13.4023328Z J+2: s >= (2, 0) undecided: a sign at beta is not decided on any bracket: [{}{2,}][{4,}{-3,}][{-2,}{1,}]
+2026-11-15T23:27:14.0648722Z J+2: s >= (3, 0) undecided: a sign at beta is not decided on any bracket: [{-2,}{2,}][{7,}{-3,}][{-3,}{1,}]
+2026-11-15T23:27:15.5810585Z J+2: s >= (4, 0) undecided: a sign at beta is not decided on any bracket: [{-4,}{2,}][{10,}{-3,}][{-4,}{1,}]
+2026-11-15T23:27:19.2544947Z J+2: s >= (6, 0), 77 vertices
+2026-11-15T23:27:19.2551078Z J+2: exact (2,0,1), 141 vertices
+2026-11-15T23:27:19.2556919Z J+2: exact (3,1,2), 97 vertices
+2026-11-15T23:27:19.2561527Z J+2: exact (4,2,3), 79 vertices
+2026-11-15T23:27:19.2566574Z J+2: exact (5,3,4), 77 vertices
+2026-11-15T23:27:19.2571598Z J+2: exact (6,4,5), 77 vertices
+2026-11-15T23:27:19.2577299Z J+2: exact (7,5,6), 77 vertices
+2026-11-15T23:27:19.2618152Z J+3: s >= (0, 0) undecided: a sign is not certified on the region (0, 0): {}{1,}
+2026-11-15T23:27:19.3747669Z J+3: s >= (1, 0) undecided: a sign at beta is not decided on any bracket: [{1,}{-1,}][{3,}{1,}][{-1,}]
+2026-11-15T23:27:19.4955397Z J+3: s >= (2, 0) undecided: a sign at beta is not decided on any bracket: [{2,}{2,}][{3,}{-3,}][{-2,}{1,}]
+2026-11-15T23:27:20.2331466Z J+3: s >= (3, 0) undecided: a sign at beta is not decided on any bracket: [{3,}{1,}][{6,}{-2,}][{-3,}{1,}]
+2026-11-15T23:27:21.0223480Z J+3: s >= (4, 0) undecided: a sign at beta is not decided on any bracket: [{-2,}{2,}][{9,}{-3,}][{-4,}{1,}]
+2026-11-15T23:27:25.6058360Z J+3: s >= (6, 0), 79 vertices
+2026-11-15T23:27:25.6065320Z J+3: exact (3,0,1), 148 vertices
+2026-11-15T23:27:25.6072386Z J+3: exact (4,1,2), 130 vertices
+2026-11-15T23:27:25.6078477Z J+3: exact (5,2,3), 91 vertices
+2026-11-15T23:27:25.6084608Z J+3: exact (6,3,4), 81 vertices
+2026-11-15T23:27:25.6090365Z J+3: exact (7,4,5), 79 vertices
+2026-11-15T23:27:25.6096507Z J+3: exact (8,5,6), 79 vertices
+2026-11-15T23:27:25.6136749Z J+4: s >= (0, 0) undecided: a sign is not certified on the region (0, 0): {}{1,}
+2026-11-15T23:27:25.7269242Z J+4: s >= (1, 0) undecided: a sign at beta is not decided on any bracket: [{2,}{-1,}][{3,}{1,}][{-1,}]
+2026-11-15T23:27:25.8491101Z J+4: s >= (2, 0) undecided: a sign at beta is not decided on any bracket: [{4,}{2,}][{2,}{-3,}][{-2,}{1,}]
+2026-11-15T23:27:26.6658691Z J+4: s >= (3, 0) undecided: a sign at beta is not decided on any bracket: [{4,}{1,}][{8,}{-2,}][{-4,}{1,}]
+2026-11-15T23:27:27.5264870Z J+4: s >= (4, 0) undecided: a sign at beta is not decided on any bracket: [{4,}{1,}][{8,}{-2,}][{-4,}{1,}]
+2026-11-15T23:27:29.7881507Z J+4: s >= (6, 0) undecided: a sign at beta is not decided on any bracket: [{-4,}{2,}][{14,}{-3,}][{-6,}{1,}]
+2026-11-15T23:27:35.1781362Z J+4: s >= (8, 0), 76 vertices
+2026-11-15T23:27:35.1788518Z J+4: exact (4,0,1), 142 vertices
+2026-11-15T23:27:35.1795936Z J+4: exact (5,1,2), 136 vertices
+2026-11-15T23:27:35.1802570Z J+4: exact (6,2,3), 121 vertices
+2026-11-15T23:27:35.1809017Z J+4: exact (7,3,4), 86 vertices
+2026-11-15T23:27:35.1815075Z J+4: exact (8,4,5), 78 vertices
+2026-11-15T23:27:35.1820992Z J+4: exact (9,5,6), 76 vertices
+2026-11-15T23:27:35.1827569Z J+4: exact (10,6,7), 76 vertices
+2026-11-15T23:27:35.1834380Z J+4: exact (11,7,8), 76 vertices
+2026-11-15T23:27:39.1122039Z A+: s >= (0, 0) undecided: a sign at beta is not decided on any bracket: [{-16,-2,}{-4,}][{23,2,}{6,}][{-2,}{-1,}]
+2026-11-15T23:27:48.6488377Z A+: s >= (1, 1) undecided: a sign at beta is not decided on any bracket: [{14,2,}{4,}][{-20,-2,}{-6,}][{1,}{1,}]
+2026-11-15T23:28:10.0417390Z A+: s >= (2, 2), 74 vertices
+2026-11-15T23:28:10.9248696Z A+ s1=0: s >= (0, 0) undecided: a sign at beta is not decided on any bracket: [{10,2,}][{-5,-3,}][{0,1,}]
+2026-11-15T23:28:13.3139468Z A+ s1=0: s >= (0, 1) undecided: a sign at beta is not decided on any bracket: [{8,2,}][{-2,-3,}][{-1,1,}]
+2026-11-15T23:28:19.0125413Z A+ s1=0: s >= (0, 2), 74 vertices
+2026-11-15T23:28:19.0131763Z A+ s1=0: exact (11,6,7), 74 vertices
+2026-11-15T23:28:19.0138957Z A+ s1=0: exact (12,7,8), 74 vertices
+2026-11-15T23:28:26.0913488Z A+ s2=0: s >= (2, 0), 74 vertices
+2026-11-15T23:28:27.0151429Z A+ s1=1: s >= (0, 0) undecided: a sign at beta is not decided on any bracket: [{12,2,}][{-6,-3,}][{0,1,}]
+2026-11-15T23:28:29.5308989Z A+ s1=1: s >= (0, 1) undecided: a sign at beta is not decided on any bracket: [{10,2,}][{-3,-3,}][{-1,1,}]
+2026-11-15T23:28:35.6727105Z A+ s1=1: s >= (0, 2), 74 vertices
+2026-11-15T23:28:35.6734472Z A+ s1=1: exact (13,7,8), 74 vertices
+2026-11-15T23:28:35.6741622Z A+ s1=1: exact (14,8,9), 74 vertices
+2026-11-15T23:28:43.0190080Z A+ s2=1: s >= (2, 0), 74 vertices
+2026-11-15T23:28:43.0225164Z C+0: s >= (0, 0) undecided: a sign is not certified on the region (0, 0): {}{2,}
+2026-11-15T23:28:43.0925616Z C+0: s >= (1, 0) undecided: a sign at beta is not decided on any bracket: [{-2,}{-2,}][{3,}{2,}][{-1,}]
+2026-11-15T23:28:43.1925663Z C+0: s >= (2, 0) undecided: a sign at beta is not decided on any bracket: [{-4,}{4,}][{6,}{-4,}][{-2,}{1,}]
+2026-11-15T23:28:43.3727307Z C+0: s >= (3, 0) undecided: a sign at beta is not decided on any bracket: [{2,}{-4,}][{-3,}{6,}][{1,}{-1,}]
+2026-11-15T23:28:43.6135155Z C+0: s >= (4, 0) undecided: a sign at beta is not decided on any bracket: [{4,}{-4,}][{-6,}{6,}][{2,}{-1,}]
+2026-11-15T23:28:45.5734693Z C+0: s >= (6, 0) undecided: a sign at beta is not decided on any bracket: [{-8,}{4,}][{12,}{-6,}][{-4,}{1,}]
+2026-11-15T23:28:52.0686101Z C+0: s >= (8, 0), 76 vertices
+2026-11-15T23:28:52.0692184Z C+0: exact (2,1,2), 139 vertices
+2026-11-15T23:28:52.0697089Z C+0: exact (4,2,3), 79 vertices
+2026-11-15T23:28:52.0701892Z C+0: exact (6,3,4), 81 vertices
+2026-11-15T23:28:52.0707434Z C+0: exact (8,4,5), 78 vertices
+2026-11-15T23:28:52.0713912Z C+0: exact (10,5,6), 76 vertices
+2026-11-15T23:28:52.0721003Z C+0: exact (12,6,7), 76 vertices
+2026-11-15T23:28:52.0728991Z C+0: exact (14,7,8), 76 vertices
+2026-11-15T23:28:52.0770497Z C+1: s >= (0, 0) undecided: a sign is not certified on the region (0, 0): {}{1,}
+2026-11-15T23:28:52.1915111Z C+1: s >= (1, 0) undecided: a sign at beta is not decided on any bracket: [{-1,}][{3,}{1,}][{-1,}]
+2026-11-15T23:28:52.3153347Z C+1: s >= (2, 0) undecided: a sign at beta is not decided on any bracket: [{-2,}{4,}][{5,}{-4,}][{-2,}{1,}]
+2026-11-15T23:28:52.6375237Z C+1: s >= (3, 0) undecided: a sign at beta is not decided on any bracket: [{2,}{-4,}][{-2,}{6,}][{1,}{-1,}]
+2026-11-15T23:28:53.2824014Z C+1: s >= (4, 0) undecided: a sign at beta is not decided on any bracket: [{4,}{-4,}][{-5,}{6,}][{2,}{-1,}]
+2026-11-15T23:28:59.9688672Z C+1: s >= (6, 0), 84 vertices
+2026-11-15T23:28:59.9692845Z C+1: exact (1,0,1), 113 vertices
+2026-11-15T23:28:59.9697852Z C+1: exact (3,1,2), 97 vertices
+2026-11-15T23:28:59.9702676Z C+1: exact (5,2,3), 91 vertices
+2026-11-15T23:28:59.9708588Z C+1: exact (7,3,4), 86 vertices
+2026-11-15T23:28:59.9715163Z C+1: exact (9,4,5), 84 vertices
+2026-11-15T23:28:59.9721772Z C+1: exact (11,5,6), 84 vertices
+2026-11-15T23:28:59.9761761Z C+2: s >= (0, 0) undecided: a sign is not certified on the region (0, 0): {}{1,}
+2026-11-15T23:29:00.0915464Z C+2: s >= (1, 0) undecided: a sign at beta is not decided on any bracket: [][{3,}{1,}][{-1,}]
+2026-11-15T23:29:00.2147930Z C+2: s >= (2, 0) undecided: a sign at beta is not decided on any bracket: [{}{4,}][{4,}{-4,}][{-2,}{1,}]
+2026-11-15T23:29:00.8556991Z C+2: s >= (3, 0) undecided: a sign at beta is not decided on any bracket: [{2,}{-4,}][{-1,}{6,}][{1,}{-1,}]
+2026-11-15T23:29:02.6899490Z C+2: s >= (4, 0) undecided: a sign at beta is not decided on any bracket: [{-4,}{4,}][{4,}{-6,}][{-2,}{1,}]
+2026-11-15T23:29:10.7548436Z C+2: s >= (6, 0), 119 vertices
+2026-11-15T23:29:10.7553593Z C+2: exact (2,0,1), 141 vertices
+2026-11-15T23:29:10.7559786Z C+2: exact (4,1,2), 130 vertices
+2026-11-15T23:29:10.7565628Z C+2: exact (6,2,3), 121 vertices
+2026-11-15T23:29:10.7573065Z C+2: exact (8,3,4), 119 vertices
+2026-11-15T23:29:10.7581221Z C+2: exact (10,4,5), 119 vertices
+2026-11-15T23:29:10.7589677Z C+2: exact (12,5,6), 119 vertices
+2026-11-15T23:29:10.7629175Z C+3: s >= (0, 0) undecided: a sign is not certified on the region (0, 0): {}{1,}
+2026-11-15T23:29:10.8786887Z C+3: s >= (1, 0) undecided: a sign at beta is not decided on any bracket: [{1,}][{3,}{1,}][{-1,}]
+2026-11-15T23:29:10.9611809Z C+3: s >= (2, 0) undecided: a sign at beta is not decided on any bracket: [{4,}{4,}][{}{-4,}][{-1,}{1,}]
+2026-11-15T23:29:11.0916904Z C+3: s >= (3, 0) undecided: a sign at beta is not decided on any bracket: [{2,}{4,}][{3,}{-4,}][{-2,}{1,}]
+2026-11-15T23:29:13.6914999Z C+3: s >= (4, 0) undecided: a sign at beta is not decided on any bracket: [{-8,}{2,}][{12,}{-3,}][{-4,}{1,}]
+2026-11-15T23:29:22.5876897Z C+3: s >= (6, 0), 123 vertices
+2026-11-15T23:29:22.5882140Z C+3: exact (3,0,1), 148 vertices
+2026-11-15T23:29:22.5888337Z C+3: exact (5,1,2), 136 vertices
+2026-11-15T23:29:22.5895847Z C+3: exact (7,2,3), 127 vertices
+2026-11-15T23:29:22.5903582Z C+3: exact (9,3,4), 123 vertices
+2026-11-15T23:29:22.5912027Z C+3: exact (11,4,5), 123 vertices
+2026-11-15T23:29:22.5920841Z C+3: exact (13,5,6), 123 vertices
+2026-11-15T23:29:22.5960262Z C+4: s >= (0, 0) undecided: a sign is not certified on the region (0, 0): {}{1,}
+2026-11-15T23:29:22.6923854Z C+4: s >= (1, 0) undecided: a sign at beta is not decided on any bracket: [{2,}][{3,}{1,}][{-1,}]
+2026-11-15T23:29:22.7640129Z C+4: s >= (2, 0) undecided: a sign at beta is not decided on any bracket: [{2,}][{3,}{1,}][{-1,}]
+2026-11-15T23:29:22.8985687Z C+4: s >= (3, 0) undecided: a sign at beta is not decided on any bracket: [{4,}{4,}][{2,}{-4,}][{-2,}{1,}]
+2026-11-15T23:29:23.1357516Z C+4: s >= (4, 0) undecided: a sign at beta is not decided on any bracket: [{-6,}{-2,}][{13,}{3,}][{-3,}]
+2026-11-15T23:29:31.4494389Z C+4: s >= (6, 0), 123 vertices
+2026-11-15T23:29:31.4499622Z C+4: exact (4,0,1), 142 vertices
+2026-11-15T23:29:31.4507241Z C+4: exact (6,1,2), 132 vertices
+2026-11-15T23:29:31.4513960Z C+4: exact (8,2,3), 125 vertices
+2026-11-15T23:29:31.4522075Z C+4: exact (10,3,4), 123 vertices
+2026-11-15T23:29:31.4530679Z C+4: exact (12,4,5), 123 vertices
+2026-11-15T23:29:31.4539885Z C+4: exact (14,5,6), 123 vertices
+2026-11-15T23:29:31.4581389Z C+5: s >= (0, 0) undecided: a sign is not certified on the region (0, 0): {}{1,}
+2026-11-15T23:29:31.5529765Z C+5: s >= (1, 0) undecided: a sign at beta is not decided on any bracket: [{3,}][{3,}{1,}][{-1,}]
+2026-11-15T23:29:31.6234750Z C+5: s >= (2, 0) undecided: a sign at beta is not decided on any bracket: [{3,}][{3,}{1,}][{-1,}]
+2026-11-15T23:29:31.7438604Z C+5: s >= (3, 0) undecided: a sign at beta is not decided on any bracket: [{6,}{4,}][{1,}{-4,}][{-2,}{1,}]
+2026-11-15T23:29:31.9853114Z C+5: s >= (4, 0) undecided: a sign at beta is not decided on any bracket: [{-6,}{-2,}][{14,}{3,}][{-3,}]
+2026-11-15T23:29:33.0418564Z C+5: s >= (6, 0) undecided: a sign at beta is not decided on any bracket: [{-3,}{-2,}][{17,}{4,}][{-4,}]
+2026-11-15T23:29:42.4965440Z C+5: s >= (8, 0), 149 vertices
+2026-11-15T23:29:42.4977478Z C+5: exact (5,0,1), 324 vertices
+2026-11-15T23:29:42.4985465Z C+5: exact (7,1,2), 162 vertices
+2026-11-15T23:29:42.4993392Z C+5: exact (9,2,3), 153 vertices
+2026-11-15T23:29:42.5002059Z C+5: exact (11,3,4), 149 vertices
+2026-11-15T23:29:42.5011335Z C+5: exact (13,4,5), 149 vertices
+2026-11-15T23:29:42.5021133Z C+5: exact (15,5,6), 149 vertices
+2026-11-15T23:29:42.5031870Z C+5: exact (17,6,7), 149 vertices
+2026-11-15T23:29:42.5043175Z C+5: exact (19,7,8), 149 vertices
+2026-11-15T23:29:42.5083017Z C+6: s >= (0, 0) undecided: a sign is not certified on the region (0, 0): {}{1,}
+2026-11-15T23:29:42.6048439Z C+6: s >= (1, 0) undecided: a sign at beta is not decided on any bracket: [{4,}][{3,}{1,}][{-1,}]
+2026-11-15T23:29:42.6770661Z C+6: s >= (2, 0) undecided: a sign at beta is not decided on any bracket: [{4,}][{3,}{1,}][{-1,}]
+2026-11-15T23:29:42.7984512Z C+6: s >= (3, 0) undecided: a sign at beta is not decided on any bracket: [{8,}{4,}][{}{-4,}][{-2,}{1,}]
+2026-11-15T23:29:43.8934096Z C+6: s >= (4, 0) undecided: a sign at beta is not decided on any bracket: [{-2,}{-2,}][{18,}{4,}][{-4,}]
+2026-11-15T23:29:44.9940165Z C+6: s >= (6, 0) undecided: a sign at beta is not decided on any bracket: [{-2,}{-2,}][{18,}{4,}][{-4,}]
+2026-11-15T23:30:06.4906719Z C+6: s >= (8, 0), 287 vertices
+2026-11-15T23:30:06.4920570Z C+6: exact (6,0,1), 403 vertices
+2026-11-15T23:30:06.4934689Z C+6: exact (8,1,2), 338 vertices
+2026-11-15T23:30:06.4949045Z C+6: exact (10,2,3), 308 vertices
+2026-11-15T23:30:06.4964186Z C+6: exact (12,3,4), 299 vertices
+2026-11-15T23:30:06.4979961Z C+6: exact (14,4,5), 289 vertices
+2026-11-15T23:30:06.4997240Z C+6: exact (16,5,6), 287 vertices
+2026-11-15T23:30:06.5015554Z C+6: exact (18,6,7), 287 vertices
+2026-11-15T23:30:06.5035270Z C+6: exact (20,7,8), 287 vertices
+2026-11-15T23:30:06.5074734Z C+7: s >= (0, 0) undecided: a sign is not certified on the region (0, 0): {}{1,}
+2026-11-15T23:30:06.5661779Z C+7: s >= (1, 0) undecided: a sign at beta is not decided on any bracket: [{2,}][{5,}{1,}][{-1,}]
+2026-11-15T23:30:06.6372340Z C+7: s >= (2, 0) undecided: a sign at beta is not decided on any bracket: [{5,}][{3,}{1,}][{-1,}]
+2026-11-15T23:30:06.7086728Z C+7: s >= (3, 0) undecided: a sign at beta is not decided on any bracket: [{5,}][{3,}{1,}][{-1,}]
+2026-11-15T23:30:07.9116275Z C+7: s >= (4, 0) undecided: a sign at beta is not decided on any bracket: [{4,}{-2,}][{22,}{5,}][{-5,}]
+2026-11-15T23:30:09.1016858Z C+7: s >= (6, 0) undecided: a sign at beta is not decided on any bracket: [{4,}{-2,}][{22,}{5,}][{-5,}]
+2026-11-15T23:30:10.2987088Z C+7: s >= (8, 0) undecided: a sign at beta is not decided on any bracket: [{4,}{-2,}][{22,}{5,}][{-5,}]
+2026-11-15T23:30:33.8880432Z C+7: s >= (12, 0), 297 vertices
+2026-11-15T23:30:33.8896427Z C+7: exact (7,0,1), 432 vertices
+2026-11-15T23:30:33.8911859Z C+7: exact (9,1,2), 362 vertices
+2026-11-15T23:30:33.8928407Z C+7: exact (11,2,3), 354 vertices
+2026-11-15T23:30:33.8944868Z C+7: exact (13,3,4), 313 vertices
+2026-11-15T23:30:33.8961461Z C+7: exact (15,4,5), 301 vertices
+2026-11-15T23:30:33.8979646Z C+7: exact (17,5,6), 299 vertices
+2026-11-15T23:30:33.8999357Z C+7: exact (19,6,7), 297 vertices
+2026-11-15T23:30:33.9020160Z C+7: exact (21,7,8), 297 vertices
+2026-11-15T23:30:33.9042448Z C+7: exact (23,8,9), 297 vertices
+2026-11-15T23:30:33.9066108Z C+7: exact (25,9,10), 297 vertices
+2026-11-15T23:30:33.9090729Z C+7: exact (27,10,11), 297 vertices
+2026-11-15T23:30:33.9116994Z C+7: exact (29,11,12), 297 vertices
+2026-11-15T23:30:33.9158092Z C+8: s >= (0, 0) undecided: a sign is not certified on the region (0, 0): {}{1,}
+2026-11-15T23:30:33.9761271Z C+8: s >= (1, 0) undecided: a sign at beta is not decided on any bracket: [{2,}][{5,}{1,}][{-1,}]
+2026-11-15T23:30:34.0356102Z C+8: s >= (2, 0) undecided: a sign at beta is not decided on any bracket: [{2,}][{5,}{1,}][{-1,}]
+2026-11-15T23:30:34.1080077Z C+8: s >= (3, 0) undecided: a sign at beta is not decided on any bracket: [{6,}][{3,}{1,}][{-1,}]
+2026-11-15T23:30:35.3855423Z C+8: s >= (4, 0) undecided: a sign at beta is not decided on any bracket: [{6,}{-2,}][{23,}{5,}][{-5,}]
+2026-11-15T23:30:36.7608979Z C+8: s >= (6, 0) undecided: a sign at beta is not decided on any bracket: [{2,}{2,}][{21,}{-1,}][{-7,}{1,}]
+2026-11-15T23:30:40.9875769Z C+8: s >= (8, 0) undecided: a sign at beta is not decided on any bracket: [{-12,}{2,}][{-26,}{-6,}][{6,}]
+2026-11-15T23:31:04.5019180Z C+8: s >= (12, 0), 277 vertices
+2026-11-15T23:31:04.5035927Z C+8: exact (8,0,1), 436 vertices
+2026-11-15T23:31:04.5052153Z C+8: exact (10,1,2), 378 vertices
+2026-11-15T23:31:04.5069667Z C+8: exact (12,2,3), 376 vertices
+2026-11-15T23:31:04.5085954Z C+8: exact (14,3,4), 303 vertices
+2026-11-15T23:31:04.5103952Z C+8: exact (16,4,5), 309 vertices
+2026-11-15T23:31:04.5121462Z C+8: exact (18,5,6), 283 vertices
+2026-11-15T23:31:04.5140118Z C+8: exact (20,6,7), 279 vertices
+2026-11-15T23:31:04.5159873Z C+8: exact (22,7,8), 277 vertices
+2026-11-15T23:31:04.5180665Z C+8: exact (24,8,9), 277 vertices
+2026-11-15T23:31:04.5202674Z C+8: exact (26,9,10), 277 vertices
+2026-11-15T23:31:04.5226124Z C+8: exact (28,10,11), 277 vertices
+2026-11-15T23:31:04.5250200Z C+8: exact (30,11,12), 277 vertices
+2026-11-15T23:31:04.5291413Z C+9: s >= (0, 0) undecided: a sign is not certified on the region (0, 0): {}{1,}
+2026-11-15T23:31:04.5894109Z C+9: s >= (1, 0) undecided: a sign at beta is not decided on any bracket: [{2,}][{5,}{1,}][{-1,}]
+2026-11-15T23:31:04.6510096Z C+9: s >= (2, 0) undecided: a sign at beta is not decided on any bracket: [{2,}][{5,}{1,}][{-1,}]
+2026-11-15T23:31:04.7443724Z C+9: s >= (3, 0) undecided: a sign at beta is not decided on any bracket: [{7,}][{3,}{1,}][{-1,}]
+2026-11-15T23:31:06.0842495Z C+9: s >= (4, 0) undecided: a sign at beta is not decided on any bracket: [{4,}][{30,}{2,}][{-7,}{1,}]
+2026-11-15T23:31:07.4355510Z C+9: s >= (6, 0) undecided: a sign at beta is not decided on any bracket: [{11,}{2,}][{24,}][{-8,}{1,}]
+2026-11-15T23:31:08.8785957Z C+9: s >= (8, 0) undecided: a sign at beta is not decided on any bracket: [{}{2,}][{27,}{-1,}][{-9,}{1,}]
+2026-11-15T23:31:33.1275034Z C+9: s >= (12, 0), 267 vertices
+2026-11-15T23:31:33.1292924Z C+9: exact (9,0,1), 490 vertices
+2026-11-15T23:31:33.1311387Z C+9: exact (11,1,2), 428 vertices
+2026-11-15T23:31:33.1329048Z C+9: exact (13,2,3), 360 vertices
+2026-11-15T23:31:33.1346490Z C+9: exact (15,3,4), 331 vertices
+2026-11-15T23:31:33.1365044Z C+9: exact (17,4,5), 321 vertices
+2026-11-15T23:31:33.1382427Z C+9: exact (19,5,6), 279 vertices
+2026-11-15T23:31:33.1401686Z C+9: exact (21,6,7), 289 vertices
+2026-11-15T23:31:33.1420764Z C+9: exact (23,7,8), 271 vertices
+2026-11-15T23:31:33.1440664Z C+9: exact (25,8,9), 267 vertices
+2026-11-15T23:31:33.1461776Z C+9: exact (27,9,10), 267 vertices
+2026-11-15T23:31:33.1484039Z C+9: exact (29,10,11), 267 vertices
+2026-11-15T23:31:33.1507356Z C+9: exact (31,11,12), 267 vertices
+2026-11-15T23:31:33.1548446Z C+10: s >= (0, 0) undecided: a sign is not certified on the region (0, 0): {}{1,}
+2026-11-15T23:31:33.2151107Z C+10: s >= (1, 0) undecided: a sign at beta is not decided on any bracket: [{2,}][{5,}{1,}][{-1,}]
+2026-11-15T23:31:33.2756215Z C+10: s >= (2, 0) undecided: a sign at beta is not decided on any bracket: [{2,}][{5,}{1,}][{-1,}]
+2026-11-15T23:31:33.3693104Z C+10: s >= (3, 0) undecided: a sign at beta is not decided on any bracket: [{8,}][{3,}{1,}][{-1,}]
+2026-11-15T23:31:34.7517383Z C+10: s >= (4, 0) undecided: a sign at beta is not decided on any bracket: [{4,}][{34,}{2,}][{-8,}{1,}]
+2026-11-15T23:31:36.1172447Z C+10: s >= (6, 0) undecided: a sign at beta is not decided on any bracket: [{12,}{2,}][{27,}][{-9,}{1,}]
+2026-11-15T23:31:37.5127710Z C+10: s >= (8, 0) undecided: a sign at beta is not decided on any bracket: [{2,}{2,}][{27,}{-1,}][{-9,}{1,}]
+2026-11-15T23:31:43.1757846Z C+10: s >= (12, 0) undecided: a sign at beta is not decided on any bracket: [{-12,}{-2,}][{-42,}{-1,}][{14,}{-1,}]
+2026-11-15T23:32:08.8023702Z C+10: s >= (16, 0), 254 vertices
+2026-11-15T23:32:08.8055070Z C+10: exact (10,0,1), 826 vertices
+2026-11-15T23:32:08.8084677Z C+10: exact (12,1,2), 700 vertices
+2026-11-15T23:32:08.8112779Z C+10: exact (14,2,3), 598 vertices
+2026-11-15T23:32:08.8133006Z C+10: exact (16,3,4), 365 vertices
+2026-11-15T23:32:08.8152667Z C+10: exact (18,4,5), 333 vertices
+2026-11-15T23:32:08.8171614Z C+10: exact (20,5,6), 295 vertices
+2026-11-15T23:32:08.8192407Z C+10: exact (22,6,7), 298 vertices
+2026-11-15T23:32:08.8211955Z C+10: exact (24,7,8), 262 vertices
+2026-11-15T23:32:08.8232981Z C+10: exact (26,8,9), 272 vertices
+2026-11-15T23:32:08.8253943Z C+10: exact (28,9,10), 256 vertices
+2026-11-15T23:32:08.8276034Z C+10: exact (30,10,11), 254 vertices
+2026-11-15T23:32:08.8298826Z C+10: exact (32,11,12), 254 vertices
+2026-11-15T23:32:08.8322876Z C+10: exact (34,12,13), 254 vertices
+2026-11-15T23:32:08.8348319Z C+10: exact (36,13,14), 254 vertices
+2026-11-15T23:32:08.8374499Z C+10: exact (38,14,15), 254 vertices
+2026-11-15T23:32:08.8402040Z C+10: exact (40,15,16), 254 vertices
+2026-11-15T23:32:08.8443032Z C+11: s >= (0, 0) undecided: a sign is not certified on the region (0, 0): {}{1,}
+2026-11-15T23:32:08.9041547Z C+11: s >= (1, 0) undecided: a sign at beta is not decided on any bracket: [{2,}][{5,}{1,}][{-1,}]
+2026-11-15T23:32:08.9640744Z C+11: s >= (2, 0) undecided: a sign at beta is not decided on any bracket: [{2,}][{5,}{1,}][{-1,}]
+2026-11-15T23:32:09.0243542Z C+11: s >= (3, 0) undecided: a sign at beta is not decided on any bracket: [{2,}][{5,}{1,}][{-1,}]
+2026-11-15T23:32:09.1437069Z C+11: s >= (4, 0) undecided: a sign at beta is not decided on any bracket: [{26,}{2,}][{-17,}{-1,}][{2,}]
+2026-11-15T23:32:10.4847271Z C+11: s >= (6, 0) undecided: a sign at beta is not decided on any bracket: [{4,}][{38,}{2,}][{-9,}{1,}]
+2026-11-15T23:32:11.8481198Z C+11: s >= (8, 0) undecided: a sign at beta is not decided on any bracket: [{13,}{2,}][{30,}][{-10,}{1,}]
+2026-11-15T23:32:17.2344059Z C+11: s >= (12, 0) undecided: a sign at beta is not decided on any bracket: [{-23,}{-2,}][{-48,}{-2,}][{16,}{-1,}]
+2026-11-15T23:32:42.1293654Z C+11: s >= (16, 0), 238 vertices
+2026-11-15T23:32:42.1355334Z C+11: exact (11,0,1), 1586 vertices
+2026-11-15T23:32:42.1394141Z C+11: exact (13,1,2), 920 vertices
+2026-11-15T23:32:42.1425026Z C+11: exact (15,2,3), 636 vertices
+2026-11-15T23:32:42.1455968Z C+11: exact (17,3,4), 583 vertices
+2026-11-15T23:32:42.1486179Z C+11: exact (19,4,5), 517 vertices
+2026-11-15T23:32:42.1508136Z C+11: exact (21,5,6), 337 vertices
+2026-11-15T23:32:42.1529142Z C+11: exact (23,6,7), 300 vertices
+2026-11-15T23:32:42.1550281Z C+11: exact (25,7,8), 276 vertices
+2026-11-15T23:32:42.1573145Z C+11: exact (27,8,9), 286 vertices
+2026-11-15T23:32:42.1593572Z C+11: exact (29,9,10), 244 vertices
+2026-11-15T23:32:42.1616017Z C+11: exact (31,10,11), 254 vertices
+2026-11-15T23:32:42.1637333Z C+11: exact (33,11,12), 240 vertices
+2026-11-15T23:32:42.1660016Z C+11: exact (35,12,13), 238 vertices
+2026-11-15T23:32:42.1683841Z C+11: exact (37,13,14), 238 vertices
+2026-11-15T23:32:42.1708602Z C+11: exact (39,14,15), 238 vertices
+2026-11-15T23:32:42.1734923Z C+11: exact (41,15,16), 238 vertices
+2026-11-15T23:32:42.1775737Z C+12: s >= (0, 0) undecided: a sign is not certified on the region (0, 0): {}{1,}
+2026-11-15T23:32:42.2382113Z C+12: s >= (1, 0) undecided: a sign at beta is not decided on any bracket: [{2,}][{5,}{1,}][{-1,}]
+2026-11-15T23:32:42.2988745Z C+12: s >= (2, 0) undecided: a sign at beta is not decided on any bracket: [{2,}][{5,}{1,}][{-1,}]
+2026-11-15T23:32:42.3592917Z C+12: s >= (3, 0) undecided: a sign at beta is not decided on any bracket: [{2,}][{5,}{1,}][{-1,}]
+2026-11-15T23:32:42.4523640Z C+12: s >= (4, 0) undecided: a sign at beta is not decided on any bracket: [{10,}][{3,}{1,}][{-1,}]
+2026-11-15T23:32:43.8238739Z C+12: s >= (6, 0) undecided: a sign at beta is not decided on any bracket: [{4,}][{42,}{2,}][{-10,}{1,}]
+2026-11-15T23:32:45.1622673Z C+12: s >= (8, 0) undecided: a sign at beta is not decided on any bracket: [{14,}{2,}][{33,}][{-11,}{1,}]
+2026-11-15T23:32:50.6754797Z C+12: s >= (12, 0) undecided: a sign at beta is not decided on any bracket: [{-14,}][{-63,}{-4,}][{17,}{-1,}]
+2026-11-15T23:32:56.6728668Z C+12: s >= (16, 0) undecided: a sign at beta is not decided on any bracket: [{-12,}{-2,}][{-54,}{-1,}][{18,}{-1,}]
+2026-11-15T23:33:23.2551706Z C+12: s >= (24, 0), 240 vertices
+2026-11-15T23:33:23.2627613Z C+12: exact (14,1,2), 1724 vertices
+2026-11-15T23:33:23.2674860Z C+12: exact (16,2,3), 974 vertices
+2026-11-15T23:33:23.2711605Z C+12: exact (18,3,4), 675 vertices
+2026-11-15T23:33:23.2748179Z C+12: exact (20,4,5), 581 vertices
+2026-11-15T23:33:23.2781173Z C+12: exact (22,5,6), 510 vertices
+2026-11-15T23:33:23.2814650Z C+12: exact (24,6,7), 487 vertices
+2026-11-15T23:33:23.2838304Z C+12: exact (26,7,8), 308 vertices
+2026-11-15T23:33:23.2861222Z C+12: exact (28,8,9), 286 vertices
+2026-11-15T23:33:23.2883955Z C+12: exact (30,9,10), 264 vertices
+2026-11-15T23:33:23.2909318Z C+12: exact (32,10,11), 276 vertices
+2026-11-15T23:33:23.2932493Z C+12: exact (34,11,12), 244 vertices
+2026-11-15T23:33:23.2958143Z C+12: exact (36,12,13), 256 vertices
+2026-11-15T23:33:23.2982937Z C+12: exact (38,13,14), 242 vertices
+2026-11-15T23:33:23.3008312Z C+12: exact (40,14,15), 240 vertices
+2026-11-15T23:33:23.3034828Z C+12: exact (42,15,16), 240 vertices
+2026-11-15T23:33:23.3186708Z C+12: exact (44,16,17), 240 vertices
+2026-11-15T23:33:23.3780964Z C+12: exact (46,17,18), 240 vertices
+2026-11-15T23:33:23.4988595Z C+12: exact (48,18,19), 240 vertices
+2026-11-15T23:33:23.6811079Z C+12: exact (50,19,20), 240 vertices
+2026-11-15T23:33:23.9209765Z C+12: exact (52,20,21), 240 vertices
+2026-11-15T23:33:24.2219866Z C+12: exact (54,21,22), 240 vertices
+2026-11-15T23:33:24.6143298Z C+12: exact (56,22,23), 240 vertices
+2026-11-15T23:33:25.0404033Z C+12: exact (58,23,24), 240 vertices
+2026-11-15T23:33:25.0445028Z C+13: s >= (0, 0) undecided: a sign is not certified on the region (0, 0): {}{1,}
+2026-11-15T23:33:25.0488297Z C+13: s >= (1, 0) undecided: a sign is not certified on the region (1, 0): {1,}{-1,}
+2026-11-15T23:33:25.1093979Z C+13: s >= (2, 0) undecided: a sign at beta is not decided on any bracket: [{2,}][{5,}{1,}][{-1,}]
+2026-11-15T23:33:25.1702690Z C+13: s >= (3, 0) undecided: a sign at beta is not decided on any bracket: [{2,}][{5,}{1,}][{-1,}]
+2026-11-15T23:33:25.2308903Z C+13: s >= (4, 0) undecided: a sign at beta is not decided on any bracket: [{2,}][{5,}{1,}][{-1,}]
+2026-11-15T23:33:25.3447664Z C+13: s >= (6, 0) undecided: a sign at beta is not decided on any bracket: [{30,}{2,}][{-19,}{-1,}][{2,}]
+2026-11-15T23:33:26.6665174Z C+13: s >= (8, 0) undecided: a sign at beta is not decided on any bracket: [{4,}][{46,}{2,}][{-11,}{1,}]
+2026-11-15T23:33:28.1063578Z C+13: s >= (12, 0) undecided: a sign at beta is not decided on any bracket: [{}{2,}][{39,}{-1,}][{-13,}{1,}]
+2026-11-15T23:33:33.6783373Z C+13: s >= (16, 0) undecided: a sign at beta is not decided on any bracket: [{-25,}{-2,}][{-60,}{-2,}][{20,}{-1,}]
+2026-11-15T23:33:59.7748533Z C+13: s >= (24, 0), 228 vertices
+2026-11-15T23:33:59.7847644Z C+13: exact (17,2,3), 1848 vertices
+2026-11-15T23:33:59.7903934Z C+13: exact (19,3,4), 1047 vertices
+2026-11-15T23:33:59.7947045Z C+13: exact (21,4,5), 759 vertices
+2026-11-15T23:33:59.7981368Z C+13: exact (23,5,6), 559 vertices
+2026-11-15T23:33:59.8015443Z C+13: exact (25,6,7), 510 vertices
+2026-11-15T23:33:59.8049698Z C+13: exact (27,7,8), 485 vertices
+2026-11-15T23:33:59.8083751Z C+13: exact (29,8,9), 452 vertices
+2026-11-15T23:33:59.8108313Z C+13: exact (31,9,10), 294 vertices
+2026-11-15T23:33:59.8132312Z C+13: exact (33,10,11), 276 vertices
+2026-11-15T23:33:59.8155914Z C+13: exact (35,11,12), 256 vertices
+2026-11-15T23:33:59.8181215Z C+13: exact (37,12,13), 260 vertices
+2026-11-15T23:33:59.8204729Z C+13: exact (39,13,14), 232 vertices
+2026-11-15T23:33:59.8230337Z C+13: exact (41,14,15), 244 vertices
+2026-11-15T23:33:59.8255449Z C+13: exact (43,15,16), 230 vertices
+2026-11-15T23:33:59.8469367Z C+13: exact (45,16,17), 228 vertices
+2026-11-15T23:33:59.9245397Z C+13: exact (47,17,18), 228 vertices
+2026-11-15T23:34:00.0645224Z C+13: exact (49,18,19), 228 vertices
+2026-11-15T23:34:00.2693288Z C+13: exact (51,19,20), 228 vertices
+2026-11-15T23:34:00.5237389Z C+13: exact (53,20,21), 228 vertices
+2026-11-15T23:34:00.8606140Z C+13: exact (55,21,22), 228 vertices
+2026-11-15T23:34:01.2573511Z C+13: exact (57,22,23), 228 vertices
+2026-11-15T23:34:01.7285720Z C+13: exact (59,23,24), 228 vertices
+2026-11-15T23:34:22.5048924Z B+: s >= (0, 0) undecided: a sign at beta is not decided on any bracket: [{-62,-5,}{-2,}][{-102,-10,}{-2,}][{4,}{-1,}]
+2026-11-15T23:34:44.3861330Z B+: s >= (1, 1) undecided: a sign at beta is not decided on any bracket: [{-62,-5,}{-2,}][{-102,-10,}{-2,}][{4,}{-1,}]
+2026-11-15T23:35:08.1993502Z B+: s >= (2, 2) undecided: a sign at beta is not decided on any bracket: [{-48,-4,}{-2,}][{-84,-8,}{-1,}][{4,}{-1,}]
+2026-11-15T23:35:32.6042802Z B+: s >= (3, 3) undecided: a sign at beta is not decided on any bracket: [{-46,-4,}{-2,}][{-87,-8,}{-1,}][{5,}{-1,}]
+2026-11-15T23:36:51.2773298Z B+: s >= (4, 4), 226 vertices
+2026-11-15T23:37:07.0380157Z B+ s1=0: s >= (0, 0) undecided: a sign at beta is not decided on any bracket: [{-18,-4,}][{119,14,}][{-5,-1,}]
+2026-11-15T23:37:23.9640448Z B+ s1=0: s >= (0, 1) undecided: a sign at beta is not decided on any bracket: [{-82,-10,}][{151,17,}][{-5,-1,}]
+2026-11-15T23:37:55.6401677Z B+ s1=0: s >= (0, 2), 226 vertices
+2026-11-15T23:37:55.7951034Z B+ s1=0: exact (50,18,19), 226 vertices
+2026-11-15T23:37:56.1191116Z B+ s1=0: exact (55,20,21), 226 vertices
+2026-11-15T23:38:22.2969814Z B+ s2=0: s >= (4, 0), 226 vertices
+2026-11-15T23:38:37.8045016Z B+ s1=1: s >= (0, 0) undecided: a sign at beta is not decided on any bracket: [{-20,-4,}][{124,14,}][{-5,-1,}]
+2026-11-15T23:38:54.2900389Z B+ s1=1: s >= (0, 1) undecided: a sign at beta is not decided on any bracket: [{-86,-10,}][{157,17,}][{-5,-1,}]
+2026-11-15T23:39:25.8275286Z B+ s1=1: s >= (0, 2), 226 vertices
+2026-11-15T23:39:26.0499481Z B+ s1=1: exact (52,19,20), 226 vertices
+2026-11-15T23:39:26.4261791Z B+ s1=1: exact (57,21,22), 226 vertices
+2026-11-15T23:39:53.3345091Z B+ s2=1: s >= (4, 0), 226 vertices
+2026-11-15T23:40:08.9685029Z B+ s1=2: s >= (0, 0) undecided: a sign at beta is not decided on any bracket: [{-22,-4,}][{129,14,}][{-5,-1,}]
+2026-11-15T23:40:25.8322823Z B+ s1=2: s >= (0, 1) undecided: a sign at beta is not decided on any bracket: [{-90,-10,}][{163,17,}][{-5,-1,}]
+2026-11-15T23:40:57.8569114Z B+ s1=2: s >= (0, 2), 226 vertices
+2026-11-15T23:40:58.1566778Z B+ s1=2: exact (54,20,21), 226 vertices
+2026-11-15T23:40:58.6376855Z B+ s1=2: exact (59,22,23), 226 vertices
+2026-11-15T23:41:26.0928423Z B+ s2=2: s >= (4, 0), 226 vertices
+2026-11-15T23:41:41.9006637Z B+ s1=3: s >= (0, 0) undecided: a sign at beta is not decided on any bracket: [{-24,-4,}][{134,14,}][{-5,-1,}]
+2026-11-15T23:41:58.8287492Z B+ s1=3: s >= (0, 1) undecided: a sign at beta is not decided on any bracket: [{-94,-10,}][{169,17,}][{-5,-1,}]
+2026-11-15T23:42:30.9052972Z B+ s1=3: s >= (0, 2), 226 vertices
+2026-11-15T23:42:31.2556022Z B+ s1=3: exact (56,21,22), 226 vertices
+2026-11-15T23:42:31.7787848Z B+ s1=3: exact (61,23,24), 226 vertices
+2026-11-15T23:42:59.0966870Z B+ s2=3: s >= (4, 0), 226 vertices
+2026-11-15T23:42:59.0967120Z regions 32 finite 198 non-PIP 4 largest 297
+2026-11-15T23:42:59.1388957Z ##[group]Run archive="archive/2026-10-08/class-b-cone-run/plus.out"
+2026-11-15T23:42:59.1389248Z [36;1marchive="archive/2026-10-08/class-b-cone-run/plus.out"[0m
+2026-11-15T23:42:59.1389574Z [36;1mdiff <(grep -E 'vertices$' "$archive" | grep -v exact) <(grep -E 'vertices$' "$RUNNER_TEMP/replay.log" | grep -v exact)[0m
+2026-11-15T23:42:59.1389920Z [36;1mdiff <(grep '^regions' "$archive") <(grep '^regions' "$RUNNER_TEMP/replay.log")[0m
+2026-11-15T23:42:59.1390146Z [36;1mif [ "plus" = minus ]; then[0m
+2026-11-15T23:42:59.1390352Z [36;1m  diff <(grep exact "$archive") <(grep exact "$RUNNER_TEMP/replay.log")[0m
+2026-11-15T23:42:59.1390560Z [36;1mfi[0m
+2026-11-15T23:42:59.1431093Z shell: /usr/bin/bash -e {0}
+2026-11-15T23:42:59.1431244Z ##[endgroup]
+2026-11-15T23:42:59.1604044Z Post job cleanup.
+2026-11-15T23:42:59.2143081Z [command]/usr/bin/git version
+2026-11-15T23:42:59.2177799Z git version 2.56.1
+2026-11-15T23:42:59.2202262Z Temporarily overriding HOME='/home/runner/work/_temp/e0c01ad0-c173-4e55-be8e-68a8a513cb0e' before making global git config changes
+2026-11-15T23:42:59.2206082Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-15T23:42:59.2206734Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/pisot-substitution-conjecture-research/pisot-substitution-conjecture-research
+2026-11-15T23:42:59.2239316Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-15T23:42:59.2266735Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-15T23:42:59.2505514Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-15T23:42:59.2530480Z http.https://github.com/.extraheader
+2026-11-15T23:42:59.2538359Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-15T23:42:59.2579317Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-15T23:42:59.2822264Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-15T23:42:59.2857111Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-15T23:42:59.3201258Z Cleaning up orphan processes
+2026-11-15T23:42:59.3456855Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

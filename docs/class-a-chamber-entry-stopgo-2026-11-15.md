@@ -11,6 +11,18 @@ stop/go decision of §2 and §5. Corollary CA-1 (§6.4) gives #452's entry into 
 open theorem target; a written proof covering the whole chamber exists on the
 unmerged #577 stack (§2, "Parallel route"), and Theorem CA is independent of it.
 
+*Status update, 2026-11-16.* Theorem CA and Corollary CA-1 are registered in
+the claim ledger as `MinusClassAChamberConeBoundaryHitting` and
+`MinusClassAChamberConeEntry` (computer-assisted, human review pending), and
+Theorem C as `ClassBSectorBoundaryHitting`. This supersedes the statements
+below that they are not registered. The registration rests on the hosted
+receipts of class-a-chamber-entry run 43773184319 at `5ff3f9a5` (merged PR
+#585): the certificate, regressions and both Theorem C replays passed. Their
+logs, with local re-runs of the coverage check, the two regressions and the
+Theorem C plus replay on those sources, are archived in
+`evidence/class-a-chamber-cone-hosted-2026-11-16/`. The scope and non-claims
+are unchanged.
+
 Canonical implementation: `kernel/psc/symbolic_cone.mojo` (with an opt-in
 Bernstein sign rule), `kernel/class_b_cone_certificate.mojo` (the cover, now
 generic in the class), driver `kernel/class_a_chamber_cone_certificate.mojo`
