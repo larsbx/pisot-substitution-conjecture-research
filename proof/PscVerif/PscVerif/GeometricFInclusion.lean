@@ -71,12 +71,14 @@ and, with `PropertyF`, gives "every state reaches a vertex state".
 * the gap bound is stated for all positions `t ≥ 0`, which contains "consecutive common
   vertices are at `ℓ`-distance at most `β^{mN} ℓ_max`".
 
-**Not proved here.**  That `ContractionData` holds on PIP3 (Lemma 1 (2) and the Pisot bound:
-the eigen-decomposition of an irreducible Pisot incidence matrix is not formalised), so no
-PIP3 specimen is shown to satisfy the hypotheses (`PscVerif.GeometricFStrict` shows them
-jointly satisfiable on the Thue–Morse control); the explicit bound "`N₀` is less than the
-number of states of the box"; Lemma 1, Lemma 4 (interior periodic addresses, powers,
-reversal) and Lemma 5; anything about Theorems FC2, P, FC3, N, Fork.  Universal C4 is open.
+**Not proved here.**  That `ContractionData` holds on PIP3 (Lemma 1 (2) and the Pisot bound):
+it is a hypothesis in this module; `PscVerif.GeometricFPisot` proves it, with `β > 1`, from
+the standing spectral hypotheses.  No PIP3 specimen is shown to satisfy `PropertyF`: all the
+hypotheses hold jointly on Thue–Morse (`PscVerif.GeometricFStrict`) and on Fibonacci
+(`PscVerif.GeometricFPisot`), neither of which is PIP3.  The explicit bound "`N₀` is less than
+the number of states of the box"; Lemma 1 (1), (3), Lemma 4 (interior periodic addresses,
+powers, reversal) and Lemma 5; anything about Theorems FC2, P, FC3, N, Fork.  Universal C4 is
+open.
 -/
 import PscVerif.BPrimeBinding
 import Mathlib.Algebra.Order.Archimedean.Real.Basic
@@ -758,8 +760,8 @@ variable [Fintype α]
 
 /-- **Contraction data** (the Pisot bound): a "stable size" `ν` on integer vectors that is
 subadditive, even, contracted by `M` with ratio `ρ < 1`, and proper together with `L`.  For
-`σ ∈ PIP3` take `ν v = max (|η₂·v|, |η₃·v|)` and `ρ = max (|λ₂|, |λ₃|)`; properness is
-Lemma 1 (2) of the note, the place where irreducibility of `χ_M` enters. -/
+`σ ∈ PIP3` take `ν v = |η₂·v| + |η₃·v|` (or the max) and `ρ = max (|λ₂|, |λ₃|)`; properness
+is Lemma 1 (2) of the note, where irreducibility of `χ_M` enters (`PscVerif.GeometricFPisot`). -/
 structure ContractionData (s : α → List α) (L : (α → ℤ) →+ ℝ) (ν : (α → ℤ) → ℝ) (ρ : ℝ) :
     Prop where
   rho_nonneg : 0 ≤ ρ

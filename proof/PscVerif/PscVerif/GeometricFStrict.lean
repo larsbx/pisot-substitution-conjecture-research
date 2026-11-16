@@ -61,9 +61,9 @@ Nonerasure (from `LengthData`): Powers.  (Fin), (F): only through
 `Psc.GeometricF.inclusion`.  The implication "strict system ⟹ left strong coincidence
 fails" is Theorem A (1), (4) of the cut-pair note and uses no hypothesis.
 
-**Not proved here.**  That any PIP3 substitution satisfies `ContractionData` (see
-`PscVerif.GeometricFInclusion`), hence no instance of the equivalence on the standing class;
-`β > 1` from primitivity; the equivalence of (F) for `σ` and `σ^m` or `σ^R` (Lemma 4); the
+**Not proved here.**  That a PIP3 substitution satisfies `ContractionData` and `β > 1`: both
+are hypotheses here; `PscVerif.GeometricFPisot` proves them and states the equivalence on the
+standing class; the equivalence of (F) for `σ` and `σ^m` or `σ^R` (Lemma 4); the
 converse direction of the Powers paragraph; Theorem FC2 and everything after it; the strict
 systems of the four controls defined here (pinned in Mojo only); the singular controls other
 than Thue–Morse and the control `a → aaaab, b → abbbb` are not treated.  Thue–Morse
