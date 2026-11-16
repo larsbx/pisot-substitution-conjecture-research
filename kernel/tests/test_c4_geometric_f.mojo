@@ -70,6 +70,7 @@ from psc.c4_geometric_f import (
 )
 from psc.corpus import STATE_CAP, pip_corpus
 from psc.endpoint_core import prefix_endpoint_map
+from psc.field3 import discriminant
 from psc.h1_census import h1_profile
 from psc.leftmost_chain import leftmost_step, terminal_leftmost_cycles
 from psc.overlap_seed_patch import OverlapState, SeedOverlapAutomaton, SeedOverlapTables
@@ -473,8 +474,10 @@ def test_the_certified_radii() raises:
     # D_M for Tribonacci: the proper nonzero sub-vectors of (1, 1, 0) and
     # (1, 0, 1), i.e. e_0, e_1, e_2: three positions.
     assert_equal(len(matrix_digits(t.tables)), 3)
-    # The two bounds use different increment sets and are not comparable
-    # coordinate by coordinate: smaller in one coordinate, larger in another.
+    # The two functions use different increment sets and different rounding
+    # (`stable_radii` takes the floor of its bound, `box_radii` rounds up), so
+    # the returned radii are not comparable coordinate by coordinate: smaller
+    # in one coordinate, larger in another.
     assert_equal(stable_radii(t.tables), List[Int]([2, 3, 4]))
     assert_equal(box_radii(t.tables), List[Int]([3, 3, 3]))
     var fixtures: List[List[List[Int]]] = [
@@ -511,6 +514,16 @@ def test_the_certified_radii() raises:
             assert_equal(independent.cycles[c].states[0], v.cycles[c].states[0])
             assert_equal(independent.cycles[c].period(), v.cycles[c].period())
     assert_equal(boxes.distinct_matrices(), 5)
+    # The five fixtures all have a complex conjugate pair (negative
+    # discriminant). 1/02/202 has discriminant 49: both conjugates are real,
+    # the other branch of `stable_radii`.
+    for i in range(len(fixtures)):
+        assert_true(discriminant(PrototileMap(fixtures[i]).tables.field) < 0)
+    var totally_real: List[List[Int]] = [[1], [0, 2], [2, 0, 2]]
+    var real_map = PrototileMap(totally_real)
+    assert_equal(discriminant(real_map.tables.field), 49)
+    assert_equal(stable_radii(real_map.tables), List[Int]([4, 5, 3]))
+    assert_equal(decide_geometric_f(totally_real).radii, List[Int]([4, 5, 3]))
 
 
 def vertex_set(w: List[Int]) -> Dict[PrototileState, Bool]:

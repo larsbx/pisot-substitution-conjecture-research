@@ -82,8 +82,9 @@ incidence matrix alone, by outward-rounded rational interval arithmetic
 (`finite_exact` `IQ`): the radii `R_a` are certified upper bounds and are
 shared by every substitution with that matrix (348 matrices on the corpus,
 about 6 s in all; the whole (F) decision of the corpus takes about 15 s).
-They are not comparable coordinate-wise with `box_radii`, whose increments
-are the offset increments of the overlap graph of the one substitution
+The returned integers are not comparable coordinate-wise with those of
+`box_radii`, which uses the offset increments of the overlap graph of the
+one substitution and rounds its bound up where `stable_radii` takes the floor
 (Tribonacci: `[2, 3, 4]` against `[3, 3, 3]`, both pinned in the regression).
 
 - *trace-dual basis.* `chi(t) / (t - beta) = b_0 + b_1 t + b_2 t^2` with
@@ -810,9 +811,11 @@ struct GeometricFVerdict(Copyable, Movable):
     property (F). `radii`, `candidates` and `visited` are the size of the
     search that Lemma B and Lemma W make exhaustive.
 
-    Built by `decide_geometric_f` and `decide_geometric_f_with` only, from
-    the search in the box of `stable_radii`. A search in any other box stays
-    a `BoxSearch`: `holds` is never computed from an uncertified box."""
+    The constructor runs the search itself, in the box of `stable_radii`
+    (through a `StableRadiiCache`), and accepts no box and no `BoxSearch`
+    from the caller: a search in any other box stays a `BoxSearch`. Mojo has
+    no private fields, so a field overwritten by hand, or a cache filled by
+    hand, is outside this guarantee."""
 
     var holds: Bool
     var radii: List[Int]
@@ -820,9 +823,16 @@ struct GeometricFVerdict(Copyable, Movable):
     var visited: Int
     var cycles: List[InteriorCycle]
 
-    def __init__(out self, search: BoxSearch):
-        """`search` must be the search in the certified box of `stable_radii`;
-        the two `decide_geometric_f*` functions are the only callers."""
+    def __init__(
+        out self, mut m: PrototileMap, mut boxes: StableRadiiCache, max_states: Int = GEOMETRIC_F_STATE_CAP
+    ) raises:
+        """Runs the search itself, in the box `boxes.radii_for(m.tables)`:
+        `stable_radii`, once per incidence matrix. No box and no `BoxSearch`
+        is accepted from the caller, so a verdict cannot be built from a
+        search in a box the caller named. What Mojo cannot prevent, a field
+        overwritten by hand or a `StableRadiiCache` filled by hand, is outside
+        the contract."""
+        var search = interior_cycles_in_box(m, boxes.radii_for(m.tables), max_states)
         self.holds = len(search.cycles) == 0
         self.radii = search.radii.copy()
         self.candidates = search.candidates
@@ -961,8 +971,7 @@ def decide_geometric_f_with(
     f-cycle, in the certified box `boxes.radii_for(m.tables)`: `stable_radii`,
     computed once per incidence matrix. Raises when a radius cannot be
     certified and when the state cap is reached."""
-    var radii = boxes.radii_for(m.tables)
-    return GeometricFVerdict(interior_cycles_in_box(m, radii, max_states))
+    return GeometricFVerdict(m, boxes, max_states)
 
 
 def decide_geometric_f(
@@ -972,8 +981,8 @@ def decide_geometric_f(
     certified box of `stable_radii`. Raises unless `sigma` is PIP3, when a
     radius cannot be certified, and when the state cap is reached."""
     var m = PrototileMap(sigma)
-    var radii = stable_radii(m.tables)
-    return GeometricFVerdict(interior_cycles_in_box(m, radii, max_states))
+    var boxes = StableRadiiCache()
+    return GeometricFVerdict(m, boxes, max_states)
 
 
 def interior_address(m: PrototileMap, cycle: InteriorCycle, start: Int = 0) raises -> InteriorAddress:

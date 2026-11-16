@@ -25,9 +25,9 @@ equal-Parikh cuts of the two rays have bounded gaps. Is that hypothesis ever
 automatic? **Yes, on the whole geometric property (F) class** (Theorem FC1;
 1,794 of the 4,554 corpus specimens). On that class C4 is therefore
 equivalent to left strong coincidence of all pairs (Theorem FC1) and,
-conditionally on the imports of Theorem FC2, to strong coincidence on both
+conditionally on the imports of Theorem FC2 and (for the spectrum) on BBK Cor. 5.2, to strong coincidence on both
 sides and to pure discrete spectrum (Corollary E). Within this note that is
-settled only where an endpoint map is eventually constant (prior art) and on
+settled only where an endpoint map is eventually constant (prior art in part, §8) and, conditionally on its imports, on
 an arithmetic subclass (Theorem FC3). The sections are: §2 the state map and
 (F); §3 Theorem FC1;
 §4 the coincidence rank on (F); §5 the parity refinement; §6 the class
@@ -96,7 +96,7 @@ eigenfunctions are the `χ_u ∘ h_φ`; they separate exactly the fibres of
 `h_φ`, so on the minimal set `Ω_σ` of BBK's strand space `h_φ` is `g_max`
 **[Std]**. (BBK's strand space may contain finitely many non-recurrent
 orbits besides `Ω_σ`, their footnote 5; they lie over a set of measure zero
-and do not change the almost-everywhere fibre cardinality.) B15 §2 compares
+and do not change the almost-everywhere fibre cardinality; by B15 Thm 4(1) the almost-everywhere fibre cardinality of `g_max` is its minimum, so the minimum is `cr_φ`.) B15 §2 compares
 its rank only with the minimal rank of Barge–Kellendonk and with the
 coincidence rank of Barge–Kwapisz 2006, and does not cite BBK. The
 identification is stated, without proof and with reference to BBK, in
@@ -480,7 +480,7 @@ Three consequences, stated without more than they contain.
   that the self-replicating multiple tiling is a tiling, is obtained only
   with strong coincidence as a hypothesis (Minervino–Thuswaldner Thm 9.9),
   and pure discrete spectrum is obtained on special classes (for instance
-  Barge 2016 Thm 3.13). By Corollary H, conditional on the imports of
+  Barge 2016 Thm 3.13). By Corollary H, conditional on BBK Cor. 5.2 and on the imports of
   Theorem FC2, universal C4 is at least as strong as "pure discrete spectrum
   for every ternary irreducible Pisot substitution with (F)".
 - Any leverage from bounded gaps can only come from substitutions with an
@@ -587,7 +587,7 @@ Lemma 7(1). The following are B15 as printed, for such an `n`.
   in a suitable order the incidence matrix of `ψ` is `[[X, Y], [Y, X]]`,
   conjugate over `ℤ` to the block-triangular matrix
   `[[X + Y, Y], [0, X − Y]]` (B15, proof of Lemma 20; over `ℚ`, not over
-  `ℤ`, it is conjugate to `diag(X + Y, X − Y)`). So its characteristic
+  `ℤ` in general, it is conjugate to `diag(X + Y, X − Y)`). So its characteristic
   polynomial is `χ_{X+Y} · χ_{X−Y}`. `X + Y` is the incidence matrix of the
   substitution on unordered pairs, a tile substitution with dilation `βⁿ`.
 - (B6) *Components* (proof of Thm 22). `ψ` has exactly two allowed bi-infinite
@@ -822,7 +822,7 @@ reducible strict control: for Thue–Morse the two tracks of the strict system
 letters, and by B15 Example 16 a tiling and its letter-exchanged copy are
 regionally proximal, hence in one fibre of the maximal equicontinuous factor
 map. The argument for Theorem Fork stops there at its hypotheses instead
-(`det M = 0` and `l = 1`, so Lemma 9 is not available). Alignment was not
+(`det M = 0` and `l = 1`, the Morse–Thue example of BD08, so Lemma 9 is not available). Alignment was not
 checked on the other controls of §9.
 
 **Lemma 9 (classes are eigenfunction classes).** Let `Ω_s = Ω_σ/≈_s` be
@@ -974,7 +974,7 @@ disjoint cut sets, and (3) with the interior strand realised as a partner.
 | The (F) class | Minervino–Thuswaldner Def. 9.3 / Prop. 9.4; on main it is the "no terminal leftmost cycle" class of Corollary LC5 (ledger 2026-10-05). The corpus count 1,794 and the cycle count 10,584 are the LC census. |
 | Theorem FC1 | A short corollary of the catch-up mechanism of LC5 together with Propositions 2 and 3 of the cut-attractor note. It is stated nowhere on main, and no C4 note cites LC5; the use on prefix-aligned roots, which yields the strict system itself, is what is recorded here. |
 | Lemma 6 | Theorem R on main. For unimodular Pisot substitutions it is Barge–Kwapisz 2006 Thm 12.1 (with Fact 12.2), proved there by a frequency argument of the same kind (their Lemma 12.4; Fact 12.2(ii) uses unimodularity); BBK p. 2220 assert it for irreducible Pisot matrices "by the argument in" that paper, without a locator. The Barge–Kwapisz text was read only during the audit of this note, after the proof of Lemma 6 was written. |
-| "On (F), strong coincidence ⟺ pure discrete spectrum" | ⟸ needs no (F): on main it is Akiyama–Lee 2014 Cor. 4.5 (PDS/strong-coincidence gate; not re-read); here it is BBK Cor. 5.2 with Theorem FC2(1). ⟹: Minervino–Thuswaldner Thm 9.9 gives, from (F) and strong coincidence, that the self-replicating multiple tiling is a tiling; the passage from that tiling to pure discrete spectrum of the tiling flow is not in the parts read and was not checked for nonunit `σ`. In this note ⟹ is Corollary E (FC2 with BBK Cor. 5.2). Akiyama 2016 (Thm 3.2, Cor. 3.3: for the suspension tiling of a Pisot substitution, *multiple* strong coincidence of some level `n` is equivalent to overlap coincidence) is the closest published statement of "strong coincidence ⟹ pure discrete spectrum"; it was read only during the audit of this note and **not compared** with Corollary E: whether on (F) its hypothesis reduces to ordinary strong coincidence was not checked. |
+| "On (F), strong coincidence ⟺ pure discrete spectrum" | ⟸ needs no (F): on main it is Akiyama–Lee 2014 Cor. 4.5 (PDS/strong-coincidence gate; not re-read); here it is BBK Cor. 5.2 with Theorem FC2(1). ⟹: Minervino–Thuswaldner Thm 9.9 gives, from (F) and strong coincidence, that the self-replicating multiple tiling is a tiling; the passage from that tiling to pure discrete spectrum of the tiling flow is not in the parts read and was not checked for nonunit `σ`. In this note ⟹ is Corollary E (FC2 with BBK Cor. 5.2). Akiyama 2016 (Thm 3.2, Cor. 3.3: for the suspension tiling of a Pisot substitution, *multiple* strong coincidence of some level `n` is equivalent to overlap coincidence) is the closest statement of "strong coincidence ⟹ pure discrete spectrum" among the sources read; it was read only during the audit of this note and **not compared** with Corollary E: whether on (F) its hypothesis reduces to ordinary strong coincidence was not checked. |
 | Theorem FC2, `cr = ν_L = ν_R ≤ 2` on (F) | Not found in the sources read, nor on main (Akiyama 2016 not compared, previous row). It replaces the strong-coincidence hypothesis of Minervino–Thuswaldner Thm 9.9, the one (F) criterion read, by a count. |
 | The zero fibre as the set of periodic integer strands; interior members ⟺ interior periodic addresses | The correction in §6 of the cut-attractor note; Lemma F there is Sirvent–Solomyak 2002. |
 | FC3(a) | Prior art in part. No strict system: Theorem A(4) for `ν_L = 1` and its mirror image for `ν_R = 1`; in sub-case (a′) already Theorem A(3), the endpoint-collapse stratum (3,012 corpus specimens, pinned in `test_c4_cut_attractor.mojo`; 1,284 of them with (F), §9). Spectrum: the tiling of Minervino–Thuswaldner Thm 9.9 (the step from that tiling to pure discrete spectrum was not checked for nonunit `σ`), and Barge 2016 Thm 3.13 for injective-initial / constant-final substitutions. |
@@ -1054,7 +1054,7 @@ asserted by that test, in exact integer and `ℤ[β]` arithmetic, over the
   `2 Σ gcd(|C|, |G|)` on every specimen; 10,584 in all, on 2,760 specimens,
   longest 39, none exactly on the 1,794 (F) specimens. The comparison runs
   `psc.leftmost_chain` on the leftmost closure of the box start states, and
-  on the literal box graph for every 97th specimen (47) and the fixtures.
+  on the literal box graph for every 97th specimen (47) and the four fixtures that fail (F).
 - Counter-calibration: with half the certified radii strictly fewer cycles
   are found and more than 1,794 of the halved boxes hold no cycle. Such a
   search returns no verdict: `interior_cycles_in_box` returns a `BoxSearch`
@@ -1063,7 +1063,8 @@ asserted by that test, in exact integer and `ℤ[β]` arithmetic, over the
   (F). This calibrates the halved box only.
 - The certified radii are pinned: `[2,3,4]`, `[4,3,3]`, `[4,5,3]`,
   `[26,15,16]`, `[18,15,17]` on Tribonacci, `01/12/021`, `1/12/022`,
-  `1/012/010`, `1/22/012`; the sum of the three radii is 8,562 over the 348
+  `1/012/010`, `1/22/012` (each with a complex conjugate pair) and `[4,5,3]`
+  on the totally real `1/02/202`; the sum of the three radii is 8,562 over the 348
   incidence matrices and 99,078 over the 4,554 specimens. These pins, not
   the cycle pins, guard the bound of Lemma B.
 
@@ -1114,7 +1115,7 @@ be used as a uniform `N₀`.
   were named by the verifiers: `102/20/1200`, `20/001/0201`, `2120/0/012`,
   `0210/2021/210`, `200120/2/0201`, `01/1210/02101`. One scratch run of the
   canonical module on 2026-11-16 reproduced for each: PIP3, (F), odd
-  determinant, `dim H¹ ≤ 4`, two periodic letters on both sides. They are
+  determinant, `dim H¹ ≤ 4`, at least two periodic letters on both sides. They are
   not pinned by a regression. Whether the non-trivial part of the class is
   infinite, beyond powers and reversals, is open.
 - Scratch Python (verifiers): seeded samples of PIP3 substitutions with
@@ -1151,8 +1152,8 @@ Python.
 | `1/012/101` | `χ = (x + 1)(x² − 2x − 1)`, `det M = 1`; 3 states under `σ²`, 6 under `σ` (pinned in `test_c4_reducible_pisot_controls.mojo`) | Reducible: Lemma 1 fails and the eigenvalue `−1` is not contracted. It is unit with odd determinant and (scratch) `dim H¹ = 2`, the degree of its inflation, so the arithmetic hypotheses of FC3(b) and Theorem N(2) are met, and so is the analogue of the cohomological hypothesis of Theorem Fork (not `dim H¹ = 3` itself). What fails is irreducibility: in Lemma 6 and (Z4), and in Lemma 7(2) (scratch, recomputed for the audit: `ER = {e_10, e_21}` has two components exchanged by `g_K`, so `G_0 ≠ 0`; this removes the eigenvalue `−1` of `Mᵗ`, and `Φ*` acts on `H¹` with characteristic polynomial `x² − 2x − 1`, so no root of unity occurs in `H¹`). Lemma S is not tested by this control: with the scratch value `dim H¹ = 2 < 3`, B15 Thm 22 (degree 2, norm `−1`) gives `cr ≠ 2`. Scratch: the return lengths have index 2 and the letters `0`, `1` lie in different cosets, so the strict pair is not in one fibre and its strict system does not give `cr ≥ 2`. This is the control showing that "a strict system gives two non-coincident strands in one fibre" (Theorem N(1)) needs irreducibility. |
 | `012/120/201` | `χ = x²(x − 3)`; strict system (pinned in `test_c4_cut_attractor.mojo`) | Refused (pinned). Dilation of degree one; no pair is strongly coincident (the three images differ at every position), so `ν = 3` and BD02's conclusion fails; singular. |
 | `01/2/120` | `χ = x²(x − 2)`; 20-state strict system (pinned in `test_c4_quotient_spectrum.mojo`; ledger 2026-11-06) | Singular, dilation `2` of degree one; outside every hypothesis. |
-| C-D1 `011/120/2012` | `χ = (x − 1)(x² − 3x − 1)`, `det M = −1`; one closed 18-state system for `(X₀, X₁)` and `(X₀, X₂)` (pinned in `test_c4_reducible_pisot_controls.mojo`) | Reducible with eigenvalue `1`: Lemma 1 fails, the eigenvalue-one direction is not contracted (Lemma 3), the frequencies are ℚ-dependent (Lemma 6), and the hypothesis of BD02 fails. Unit with odd determinant; `tr M ≡ e₂(M)`, as for every cubic with a rational root and odd constant term (Remark (2) after Theorem P). Its `dim H¹` was not computed. |
-| C-D2 `010/1222/2012` | `χ = (x − 1)(x² − 4x + 1)`, `det M = 1`; 21 states for `(X₀, X₁)` and 23 for `(X₁, X₂)` (pinned, same test) | As C-D1. |
+| C-D1 `011/120/2012` | `χ = (x − 1)(x² − 3x − 1)`, `det M = −1`; one closed 18-state system for `(X₀, X₁)` and `(X₀, X₂)` (pinned in `test_c4_reducible_pisot_controls.mojo`) | Reducible with eigenvalue `1`: Lemma 1 fails, the eigenvalue-one direction is not contracted (Lemma 3), the frequencies are ℚ-dependent (Lemma 6), and the hypothesis of BD02 fails. Unit with odd determinant; `tr M ≡ e₂(M)`, as for every cubic with a rational root and odd constant term (Remark (2) after Theorem P). Its `dim H¹` is 3 (`h1_profile`, pinned in `test_arithmetic_profile_fixtures` of `test_c4_geometric_f.mojo`), so with `det M = −1` the arithmetic hypotheses of FC3(b), Theorem N(2) and Theorem Fork (unit, `dim H¹ = 3`) are met literally; what fails is irreducibility, and `fc3_profile` refuses it (pinned). |
+| C-D2 `010/1222/2012` | `χ = (x − 1)(x² − 4x + 1)`, `det M = 1`; 21 states for `(X₀, X₁)` and 23 for `(X₁, X₂)` (pinned, same test) | As C-D1, except that its `dim H¹` is not computed in the repository. |
 
 Controls without a strict system, bounding the statements from the other
 side:
@@ -1177,8 +1178,8 @@ that is not a state has no image. `fc3_profile` raises on non-PIP3 input
 (pinned on `011/120/2012`). The PIP3 gate is exercised arm by arm, each
 refusal matched on its message: singular `1/012/1`, primitive irreducible
 non-Pisot `1/2/001`, primitive reducible `011/120/2012`, and an image of
-length 7. All but the radius refusals are
-exercised in `test_refusals`; the radius refusals of `stable_radii` (an
+length 7 (not an arm of PIP3 membership: `0⁵1/120⁵/0⁶` is PIP3, and the module is certified only for image lengths at most six, so it is refused, not decided). All but the radius refusals are
+exercised, in `test_refusals` and, for `fc3_profile`, in `test_arithmetic_profile_fixtures`; the radius refusals of `stable_radii` (an
 enclosure not separated from zero, a contraction not certified below 1, a
 radius beyond `RADIUS_CAP`) are reached by no test.
 
@@ -1194,11 +1195,11 @@ of them are clause (a′), prior art; the other 156 are already in
 
 ### Non-claims / remaining gaps
 
-- **Universal C4.** Open. By Corollary H, conditional on the imports of
+- **Universal C4.** Open. By Corollary H, conditional on BBK Cor. 5.2 and on the imports of
   Theorem FC2, it is at least as strong as pure discrete spectrum on the (F)
   class.
 - **Strong coincidence or pure discrete spectrum on (F) outside Theorem
-  FC3.** Open: `det M` even (174 corpus specimens of the 510 with two
+  FC3.** Open: `det M` even (174 corpus specimens of the 510 with at least two
   periodic letters on both sides), and `det M` odd with `tr M ≡ e₂(M)` and
   `dim H¹ ≥ 5` (180).
 - **`cr ≤ 2` off (F).** Not asserted; nothing is known here about the

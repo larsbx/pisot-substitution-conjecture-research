@@ -522,7 +522,7 @@ it collapses under `g_R`. No admissible staggered seam remains. ∎
 row and in the list of next-`0` occurrences of residue `c−1`; in `F3_c` in
 the `{1,2}` residue row and in the `{0,2}` row, where it keeps
 `(σ(0), r=c)` and `(σ(2), r=1)` from matching `(σ(1), r=1)`. (ii) `0^{c−2}`
-is nonempty: in `F1_c` the letter before `(σ(1), r=c)` is `0`, not `2`. At
+is nonempty: in `F1_c` the letter before `(σ(1), r=c)` is `0`, not `2`. (iii) Outside the seam tables, the PIP3 paragraph for `F3_c` uses `c > 2` in `χ′(c) = c(c−2) > 0`; this use is not essential (at `c = 2`, `χ′(2) = 0`, `χ′ > 0` on `(2, ∞)`, and `χ(2) = −2 < 0 < 1 = χ(3)`). At
 `c = 2` both families are in PIP3 with `det M = 2` and keep legal types
 (pinned, §14): `(0,1,1,1)`, `(0,1,1,2)` and their swaps for `F1_2`, where
 (i) fails in the `{1,2}` row and (i), (ii) fail together in the first
@@ -684,7 +684,7 @@ coincident configuration. In Case 1 of Theorem GBD the exchanged letters
 must be `a` and `b`, so two maximum configurations share a common part of
 size `K−1`; an overlap of the two branches near the vertex that were not
 eventually coincident would complete a configuration of size `K+1`. ∎
-Corrections: density is proved only near the common vertex unless both
+Corrections: density is derived (proof outline only) only near the common vertex unless both
 letters are `g`-periodic; the record's phrase "`X_a` and `X_b` coincide on
 a dense open set" is wrong (the rays never share a tile on
 `(0, min(ℓ_a, ℓ_b))`); in PIP3 the hypothesis "exactly one strongly
@@ -1374,7 +1374,7 @@ claim.
   by the corpus screen and the Routh screen; on-main `L_σ` empty for
   `F1_c`; exactly the types `(1,2,2,0)`, `(2,0,1,2)` for `F3_c`, both
   removed by the legal-predecessor rule; legal bigrams of `F3_c` exactly
-  `00, 01, 02, 10, 20, 21`; no hub-based phase-zero birth seam at any of
+  `00, 01, 02, 10, 20, 21`; for `F3_c`, no hub-based phase-zero birth seam at any of
   the 18 hub and track choices.
 - Controls against a vacuous pass: at `c = 2` both families are in PIP3
   with `det M = 2` and keep legal types (4 of 4 for `F1_2`, 2 of 4 for

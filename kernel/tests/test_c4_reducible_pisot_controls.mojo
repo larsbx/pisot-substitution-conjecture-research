@@ -597,8 +597,8 @@ def test_the_filter_is_not_vacuous() raises:
     var caught = False
     try:
         _ = legal_local_birth_types(singular)
-    except:
-        caught = True
+    except e:
+        caught = "refuses singular incidence" in String(e)
     assert_true(caught)
 
 
