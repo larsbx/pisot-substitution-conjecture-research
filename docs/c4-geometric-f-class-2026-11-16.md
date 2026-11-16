@@ -1,13 +1,14 @@
 # C4 on the geometric property (F) class: automatic bounded gaps, coincidence rank, and a parity refinement of Barge's bound — 2026-11-16
 
 **Status:** recorded proofs with an exact corpus replay. Theorem FC1 is
-elementary and uses no literature import. Theorems FC2, P, FC3, N and Fork
-are conditional on the imports listed in §1; they were verified by
-independent adversarial re-derivation within the session of 2026-11-15/16
-(Theorem Fork from a sketch, written out here for the first time), are not
-machine-checked, and independent human review is pending. Universal C4
-remains open; nothing here changes a governed claim status (C4, #138, #139,
-#84, G1 and PSC are unchanged).
+elementary and uses no literature import; it uses Theorem A and the "Powers"
+paragraph of the cut-pair note, which are on main (§1). Theorems FC2, P,
+FC3, N and Fork are conditional on the imports listed in §1. All six were
+verified by independent adversarial re-derivation within the session of
+2026-11-15/16 (Theorem Fork from a sketch, written out here for the first
+time); none is machine-checked, and independent human review is pending for
+all of them, FC1 included. Universal C4 remains open; nothing here changes a
+governed claim status (C4, #138, #139, #84, G1 and PSC are unchanged).
 [Issue #461](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/461).
 Baseline `main@febe7535`.
 
@@ -23,9 +24,12 @@ hypothesis beyond "some letter pair is not strongly coincident" is that the
 equal-Parikh cuts of the two rays have bounded gaps. Is that hypothesis ever
 automatic? **Yes, on the whole geometric property (F) class** (Theorem FC1;
 1,794 of the 4,554 corpus specimens). On that class C4 is therefore
-equivalent to all-pairs strong coincidence and to pure discrete spectrum
-(Corollary E), which is settled by theorem only on an arithmetic subclass
-(Theorem FC3). The sections are: §2 the state map and (F); §3 Theorem FC1;
+equivalent to left strong coincidence of all pairs (Theorem FC1) and,
+conditionally on the imports of Theorem FC2, to strong coincidence on both
+sides and to pure discrete spectrum (Corollary E). Within this note that is
+settled only where an endpoint map is eventually constant (prior art) and on
+an arithmetic subclass (Theorem FC3). The sections are: §2 the state map and
+(F); §3 Theorem FC1;
 §4 the coincidence rank on (F); §5 the parity refinement; §6 the class
 theorem and the necessary conditions; §7 Theorem Fork; §8 prior art; §9 the
 five "work shown" headings, with replay, controls and non-claims.
@@ -36,7 +40,10 @@ five "work shown" headings, with replay, controls and non-claims.
 `M` (`M[a][b] = |σ(b)|_a`, so `p(σ(w)) = M p(w)` for the Parikh vector `p`),
 whose characteristic polynomial `χ_M` is irreducible over `ℚ` with roots
 `β > 1 > |λ₂|, |λ₃|`. Put `ρ = max(|λ₂|, |λ₃|) < 1`. `|det M| = 1` is not
-assumed.
+assumed. Every `σ ∈ PIP3` is translation-aperiodic, as BBK, B15 and BD08
+require: a periodic subshift has rational letter frequencies, whereas the
+entries of `r` below are ℚ-independent (proof of Lemma 6). BBK, footnote 4,
+notes this for Pisot substitutions with `dim V ≥ 2`.
 
 - `ℓ > 0` is a left Perron row, `ℓ M = β ℓ` (tile lengths); `η₂, η₃ ∈ ℂ³` are
   left eigenvectors for `λ₂, λ₃`; `r > 0` is the right Perron column with
@@ -67,19 +74,34 @@ assumed.
 
 | Tag | Source and statement | Hypotheses | Read | Used in |
 | --- | --- | --- | --- | --- |
-| BBK | Baker–Barge–Kwapisz, Ann. Inst. Fourier 56 (2006) 2213–2248: Def. 4.1 (coincidence rank `cr_φ`: the maximal number of strands over one point of `V/Σ` no two of which are coincident); Remark 4.3 (for every `q ∈ V/Σ`, `cr_φ` is the largest size of a pairwise non-coincident family of states over `q`); Thm 4.2 (the geometric realization `h_φ` is uniformly finite-to-one, a.e. `cr_φ`-to-one, with minimal fibre cardinality `cr_φ`); Thm 5.1 (the eigenfunctions are `χ_u ∘ h_φ`); Cor. 5.2 (pure discrete spectrum iff `cr_φ = 1`) | primitive, translation-aperiodic, `λ` a Pisot number (their Def. 2.1); reducible and non-unimodular allowed | full text | FC2 (Def. 4.1, Remark 4.3); Corollary E (Cor. 5.2); §5–§7 (Thm 4.2, Thm 5.1) |
+| BBK | Baker–Barge–Kwapisz, Ann. Inst. Fourier 56 (2006) 2213–2248: Def. 3.1 (the geometric realization `h_φ`); Def. 4.1 (coincidence rank `cr_φ`: the maximal number of strands over one point of `V/Σ` no two of which are coincident); Remark 4.3 (for every `q ∈ V/Σ`, `cr_φ` is the largest size of a pairwise non-coincident family of states over `q`); Thm 4.2 (the geometric realization `h_φ` is uniformly finite-to-one, a.e. `cr_φ`-to-one, with minimal fibre cardinality `cr_φ`); Thm 5.1 (the eigenfunctions are `χ_u ∘ h_φ`); Cor. 5.2 (pure discrete spectrum iff `cr_φ = 1`) | primitive, translation-aperiodic, `λ` a Pisot number (their Def. 2.1); reducible and non-unimodular allowed | full text | FC2 (Def. 4.1, Remark 4.3); Corollary E (Cor. 5.2); §5–§7 (Thm 4.2, Thm 5.1; Def. 3.1 in §7) |
 | BD02 | Barge–Diamond, Bull. Soc. Math. France 130 (2002) 619–626, Theorem 1: some pair of distinct letters is left strongly coincident | Pisot type: all non-Perron eigenvalues of modulus strictly between 0 and 1 | in full | FC2, Theorem N (remark), Theorem Fork |
-| B15 | Barge, Bull. Soc. Math. France 143 (2015), arXiv:1301.7094: Thm 4(1)–(4); Thm 5; Thm 12; Lemmas 13, 14; Prop. 19; Lemma 20; exact sequence (4.1); Thm 22 (`λ` of degree `d` and odd norm, `cr = 2 ⇒ dim H¹ ≥ 2d − 1`) | primitive, non-periodic, Pisot dilation; Thm 12 also border forcing and no pure discrete spectrum; Thm 22 odd norm | full text; the proofs of Thm 4 are deferred there to other papers and were not followed | Lemma S, Theorem P, FC3(b), Theorem N, Theorem Fork |
-| BD08 | Barge–Diamond, Proc. Amer. Math. Soc. 136 (2008) 2183–2191, arXiv:math/0702669, Theorem 4 and its proof | primitive, aperiodic | TeX source | Lemma 7, Theorem P, Theorem Fork |
-| Repo | Theorem A and the "Powers" paragraph of the [cut-pair note](c4-cut-pair-productivity-2026-11-04.md) §§2–3 (Lean: `proof/PscVerif/PscVerif/StrictSystem.lean`); Lemma F(c) of the [cut-attractor note](c4-cut-attractor-window-2026-11-05.md) | nonerasing `σ`; primitive for F(c) | on main | FC1, Theorem N, Theorem Fork |
-| Std | Standard facts with no locator on disk: `Ȟ¹(X; ℤ) = [X, S¹]` for compact metric `X`; the winding number of a circle-valued map along a uniquely ergodic flow; the Gottschalk–Hedlund theorem; vanishing of `Ȟ²` in covering dimension at most one and the classification of line bundles; the maximal equicontinuous factor of a minimal flow is determined by its continuous eigenfunctions | — | **not read; marked where used** | Theorem Fork only, and the identification of the two coincidence ranks |
+| B15 | Barge, Bull. Soc. Math. France 143 (2015), arXiv:1301.7094: Thm 4(1)–(5); Thm 5; Thm 12; Lemmas 13, 14; Example 16 (Thue–Morse); Prop. 19; Lemma 20; exact sequence (4.1); Thm 22 (`λ` of degree `d` and odd norm, `cr = 2 ⇒ dim H¹ ≥ 2d − 1`); the proper version of a substitution (§4) | primitive, non-periodic, Pisot dilation; Thm 12 also border forcing and no pure discrete spectrum; Thm 22 odd norm | full text; the proofs of Thm 4 are deferred there to other papers and were not followed; the references for the proper version (Durand; Barge–Diamond 2001) were not read | Lemma S, Theorem P, FC3(b), Theorem N, Theorem Fork; Example 16 only in the remark after Lemma 8 |
+| BD08 | Barge–Diamond, Proc. Amer. Math. Soc. 136 (2008) 2183–2191, arXiv:math/0702669: Lemma 2, Corollary 3, Theorem 4 and its proof | primitive, aperiodic | TeX source | §5.1, Lemma 7, Theorem P, Theorem Fork |
+| Repo | Theorem A of the [cut-pair note](c4-cut-pair-productivity-2026-11-04.md) §2 (formalised in Lean, `proof/PscVerif/PscVerif/StrictSystem.lean`) and the "Powers" paragraph of its §3 (prose only, not formalised; the direction used is re-proved in step (S) of §3 below); Lemma F(c) of the [cut-attractor note](c4-cut-attractor-window-2026-11-05.md) | nonerasing `σ` for Theorem A; the Powers paragraph is stated there for primitive `σ` with irreducible Pisot incidence, and the direction used needs only nonerasure; primitive for F(c) | on main | FC1, FC3, Theorem N, Theorem Fork |
+| Std | Standard facts with no locator on disk: `Ȟ¹(X; ℤ) = [X, S¹]` for compact metric `X`; the winding number of a circle-valued map along a uniquely ergodic flow; the Gottschalk–Hedlund theorem; vanishing of `Ȟ²` in covering dimension at most one and the classification of line bundles; the maximal equicontinuous factor of a minimal flow is determined by its continuous eigenfunctions | — | **not read; marked where used** | Theorem Fork; and the identification of the two coincidence ranks (next paragraph), on which Theorems P, FC3(b),(c), N(2) and Fork rest |
 
-Barge–Kwapisz, Amer. J. Math. 128 (2006), could not be obtained and is cited
-for nothing. The identification of the BBK coincidence rank with the minimal
-fibre cardinality of the maximal equicontinuous factor map `g` of B15 is
-BBK Thm 4.2 together with BBK Thm 5.1 (the eigenfunctions separate exactly
-the fibres of `h_φ`, so `h_φ` is `g`); B15 §2 states the agreement. It is
-used in §5–§7, not in Theorems FC1 and FC2.
+Barge–Kwapisz, Amer. J. Math. 128 (2006), was not obtained during the proof
+attempts or when the proofs below were written, and no proof uses it. It was
+obtained on 2026-11-16, during the audit of this note, from the
+author-hosted PDF that repository gates of 2026-11-11 already cite, and read
+in part; what was read is recorded in the literature gate and in §8.
+
+*The two coincidence ranks.* The maximal equicontinuous factor map of B15
+is written `g_max` below (B15 writes `g`). The identification of the BBK
+coincidence rank with the minimal fibre cardinality of `g_max` is a
+derivation of this note, not a printed statement of B15. BBK Thm 4.2 gives
+the minimal fibre cardinality of `h_φ` as `cr_φ`. By BBK Thm 5.1 the
+eigenfunctions are the `χ_u ∘ h_φ`; they separate exactly the fibres of
+`h_φ`, so on the minimal set `Ω_σ` of BBK's strand space `h_φ` is `g_max`
+**[Std]**. (BBK's strand space may contain finitely many non-recurrent
+orbits besides `Ω_σ`, their footnote 5; they lie over a set of measure zero
+and do not change the almost-everywhere fibre cardinality.) B15 §2 compares
+its rank only with the minimal rank of Barge–Kellendonk and with the
+coincidence rank of Barge–Kwapisz 2006, and does not cite BBK. The
+identification is stated, without proof and with reference to BBK, in
+Barge–Bruin–Jones–Sadun §1 and in Barge, arXiv:1505.04408, §1, items
+(1)–(3). It is used in §5–§7, not in Theorems FC1 and FC2.
 
 ## 2. The prototile state map and property (F)
 
@@ -335,9 +357,10 @@ the vectors `p(w)`, `w` a nonempty legal word such that `w w₁` is legal
 
 *Proof.* This is Theorem R of the
 [fibre gate](p1b-periodic-pair-fibre-literature-gate-2026-10-02.md), whose
-proof is repeated because BBK defer the statement to a paper that was not
-obtained. Let `χ: ℤ³ → ℚ/ℤ` be a homomorphism vanishing on `Λ_ret`, and `x` a
-two-sided sequence of the subshift. Put `G(n) = χ(p(x_{[0,n)}))` for `n ≥ 0`
+proof is repeated because BBK defer the statement to a paper that had not
+been obtained when this was written (Barge–Kwapisz 2006, which proves the
+unimodular case; §8). Let `χ: ℤ³ → ℚ/ℤ` be a homomorphism vanishing on
+`Λ_ret`, and `x` a two-sided sequence of the subshift. Put `G(n) = χ(p(x_{[0,n)}))` for `n ≥ 0`
 and `G(n) = −χ(p(x_{[n,0)}))` for `n < 0`. If `n < m` and `x_n = x_m` then
 `p(x_{[n,m)}) ∈ Λ_ret`, so `G(m) = G(n)`: `G(n) = H(x_n)` for a function `H`
 on letters. Then `χ(e_a) = H(c) − H(a)` for every legal word `ac`, i.e. every
@@ -363,7 +386,7 @@ the edge of the strand `Φ(x, i)` that is again a state is the one with state
 `f(i, v)`:
 
 ```text
-(4.1)        state(Φ(I))  =  f(state(I)).
+(St)         state(Φ(I))  =  f(state(I)).
 ```
 
 The edge `(0, c)` has the vertex state `(c, 0)`, and two edges `(0, c)`,
@@ -384,7 +407,7 @@ non-coincident; Remark 4.3 at `q = 0` gives `cr ≥ ν`.
 
 (b) Under (F), `cr ≤ ν_L`. By Remark 4.3 at `q = 0` there are `cr` states
 `I₁, …, I_cr` over `0`, pairwise non-coincident. Let `I_i^{(k)}` be the edge
-of `Φ^k(I_i)` whose state is `f^k(state(I_i))` (by (4.1)). The edges
+of `Φ^k(I_i)` whose state is `f^k(state(I_i))` (by (St)). The edges
 `I_i^{(k)}` are pairwise non-coincident: `Φⁿ(I_i^{(k)})` is part of
 `Φ^{n+k}(I_i)`, so a shared edge would make `I_i` and `I_j` coincident. By
 Lemma 3(4) and (F), for `k` large every `I_i^{(k)}` has a vertex state,
@@ -396,9 +419,11 @@ the labelled edge `(−x − e_i, i)` and strands to strands, with the order
 reversed. It conjugates `Φ_σ` to `Φ_{σ^R}`: `Φ_σ(x, i)` runs from `Mx` to
 `M(x + e_i)` with labels `σ(i)`, and `Φ_{σ^R}(−x − e_i, i)` runs from
 `−M(x + e_i)` to `−Mx` with labels `σ(i)` reversed. It preserves shared
-labelled edges and integer strands (and `Σ = ℤ³` for both substitutions). So
-a pairwise non-coincident family of strands over `0` for `σ` is one for
-`σ^R` and conversely: `cr(σ^R) = cr(σ)` by Def. 4.1. Moreover
+labelled edges, and since `Σ = ℤ³` for both substitutions it maps the
+strands over a point `q ∈ V/Σ` to the strands over `−q`. So `ϱ` maps a
+pairwise non-coincident family of strands over `q` for `σ` to such a family
+over `−q` for `σ^R`, and conversely; the maximum in Def. 4.1 is over all
+points, hence `cr(σ^R) = cr(σ)`. Moreover
 `ν_L(σ^R) = ν_R(σ)`, since `(σ^R)ⁿ(a)` is `σⁿ(a)` reversed, and (F) is
 reversal-invariant (Lemma 4(3)). Applying (a) to `σ^R` gives `cr ≥ ν_R`;
 applying (b) to `σ^R` gives `cr ≤ ν_R` under (F).
@@ -450,11 +475,14 @@ C4 restricted to (F) *is* strong coincidence restricted to (F).
 Three consequences, stated without more than they contain.
 
 - A uniform proof of C4 must, on (F), derive strong coincidence of all pairs
-  with no help from bounded gaps. In the literature that conclusion is
-  available on (F) only together with strong coincidence as a hypothesis
-  (Minervino–Thuswaldner Thm 9.9) or on special classes. So universal C4 is
-  at least as strong as "pure discrete spectrum for every ternary irreducible
-  Pisot substitution with (F)".
+  with no help from bounded gaps, and with it pure discrete spectrum
+  (Corollary E). In the sources read, the corresponding conclusion on (F),
+  that the self-replicating multiple tiling is a tiling, is obtained only
+  with strong coincidence as a hypothesis (Minervino–Thuswaldner Thm 9.9),
+  and pure discrete spectrum is obtained on special classes (for instance
+  Barge 2016 Thm 3.13). By Corollary H, conditional on the imports of
+  Theorem FC2, universal C4 is at least as strong as "pure discrete spectrum
+  for every ternary irreducible Pisot substitution with (F)".
 - Any leverage from bounded gaps can only come from substitutions with an
   interior periodic address. On the corpus every pair of periodic first
   letters of every non-(F) specimen has a relative state absorbed by an
@@ -474,51 +502,54 @@ odd determinant under one of two arithmetic conditions; it is open for
 
 BD08 attach to a primitive aperiodic substitution a complex `K` with one edge
 `e_a` per letter and one transition edge `e_{ab}` per legal two-letter word
-`ab`, the subcomplex `S` of transition edges, and a map `g: (K, S) → (K, S)`
-homotopic to the map `f_K` induced by `Φ`, with
-`g(e_{ab}) = e_{g_R(a) g(b)}`. They show `Ω_σ ≅ lim←(K, f_K)` (their
-Lemma 2) and `Ȟ¹(Ω_σ) ≅ lim→(H¹(K), g*)` (their Corollary 3). The
+`ab`, the subcomplex `S` of transition edges, and a map
+`g_K: (K, S) → (K, S)` (their `g`; the subscript keeps it apart from the
+first-letter map `g`) homotopic to the map `f_K` induced by `Φ`, with
+`g_K(e_{ab}) = e_{g_R(a) g(b)}`. They show `Ω_σ ≅ lim←(K, f_K)` (their
+Lemma 2) and `Ȟ¹(Ω_σ) ≅ lim→(H¹(K), g_K*)` (their Corollary 3). The
 homeomorphism conjugates `Φ` with the shift (from `f_K ∘ p = p ∘ Φ`, with
 `p: Ω_σ → K` their projection), so `Φ*` corresponds to the map
-induced by `g*` on the direct limit; the source states the isomorphism and
+induced by `g_K*` on the direct limit; the source states the isomorphism and
 not this equivariance, which is immediate. The morphism of the exact sequence
-of the pair `(K, S)` induced by `g` gives, in the limit, an exact sequence
+of the pair `(K, S)` induced by `g_K` gives, in the limit, an exact sequence
 commuting with the induced maps,
 
 ```text
 0 → G_0 → G_1 → G_2 → G_3 → 0,
-G_1 = lim→(H¹(K,S), g*) ≅ lim→ Mᵗ,   G_2 = Ȟ¹(Ω_σ),
-G_3 = lim→(H¹(S), g*) ≅ ℤ^l,         G_0 = lim→(H̃⁰(S), g*) ≅ ℤ^{k−1},
+G_1 = lim→(H¹(K,S), g_K*) ≅ lim→ Mᵗ,   G_2 = Ȟ¹(Ω_σ),
+G_3 = lim→(H¹(S), g_K*) ≅ ℤ^l,         G_0 = lim→(H̃⁰(S), g_K*) ≅ ℤ^{k−1},
 ```
 
-with `ER = ⋂ gⁿ(S)` the eventual range, `k` its number of components and `l`
-its number of independent cycles (B15 writes the same sequence as (4.1), with
-`k + 1` components).
+with `ER = ⋂ g_Kⁿ(S)` the eventual range, `k` its number of components and
+`l` its number of independent cycles (B15 writes the same sequence as its
+(4.1), with `k + 1` components).
 
 **Lemma 7 (the substitution action).** Let `σ ∈ PIP3`.
 
 1. `ER` consists of the edges `e_{ab}` with `ab` legal, `a` `g_R`-periodic
-   and `b` `g`-periodic. `g` permutes them, and `g⁶` is the identity on `ER`.
+   and `b` `g`-periodic. `g_K` permutes them, and `g_K⁶` is the identity on
+   `ER`.
 2. `G_0 = 0`, i.e. `ER` is connected.
 3. For every `n ≥ 1`,
    `charpoly(Φⁿ* | H¹(Ω_σ; ℚ)) = χ_{Mⁿ}(t) · c_n(t)`, where `c_n` is the
-   characteristic polynomial of `(gⁿ)*` on `H¹(ER; ℚ)`. It has degree `l`,
+   characteristic polynomial of `(g_Kⁿ)*` on `H¹(ER; ℚ)`. It has degree `l`,
    its roots are roots of unity, and `c₆(t) = (t − 1)^l`. In particular
    `dim H¹(Ω_σ; ℚ) = 3 + l`.
 
-*Proof.* (1) An edge of `gⁿ(S)` has the form `e_{g_Rⁿ(a′) gⁿ(b′)}`, so edges of
-`ER` have periodic end letters; conversely an edge with periodic end letters
-is fixed by a power of `g`. On three letters the periodic parts of `g_R` and
-`g` are permuted with orders in `{1, 2, 3}`, so `g⁶` fixes every vertex of
-`ER`, hence every edge (an edge is determined by its ends). (2) The generators
-of `G_0` are fixed by a power of the induced map (BD08, proof of Theorem 4),
-`G_0 → G_1` is injective and equivariant, and on `G_1 ⊗ ℚ = ℚ³` the induced
+*Proof.* (1) An edge of `g_Kⁿ(S)` has the form `e_{g_Rⁿ(a′) gⁿ(b′)}`, so edges
+of `ER` have periodic end letters; conversely an edge with periodic end
+letters is fixed by a power of `g_K`. On three letters the periodic parts of
+`g_R` and `g` are permuted with orders in `{1, 2, 3}`, so `g_K⁶` fixes every
+vertex of `ER`, hence every edge (an edge is determined by its ends). (2) The
+generators of `G_0` are fixed by a power of the induced map (BD08, proof of
+Theorem 4), `G_0 → G_1` is injective and equivariant, and on `G_1 ⊗ ℚ = ℚ³` the induced
 map is `Mᵗ`, no power of which has the eigenvalue `1` (Lemma 1(3)). (3) With
 `G_0 = 0` the sequence `0 → G_1 → G_2 → G_3 → 0` is exact and equivariant, so
 the characteristic polynomial on `G_2 ⊗ ℚ` is the product of those on
-`G_1 ⊗ ℚ` (namely `χ_M`) and on `G_3 ⊗ ℚ`. Since a power of `g` maps `S` into
-`ER` and `g` is invertible on `ER`, `G_3 ⊗ ℚ ≅ H¹(ER; ℚ)` with the action of
-`(g|ER)*`. Take `n`-th powers of the eigenvalues; use (1) for `n = 6`. ∎
+`G_1 ⊗ ℚ` (namely `χ_M`) and on `G_3 ⊗ ℚ`. Since a power of `g_K` maps `S`
+into `ER` and `g_K` is invertible on `ER`, `G_3 ⊗ ℚ ≅ H¹(ER; ℚ)` with the
+action of `(g_K|ER)*`. Take `n`-th powers of the eigenvalues; use (1) for
+`n = 6`. ∎
 
 The formula `dim H¹ = 3 + l` is the one of the
 [`dim H¹` census](c4-h1-census-2026-11-05.md).
@@ -537,14 +568,14 @@ Lemma 7(1). The following are B15 as printed, for such an `n`.
   cites Durand and Barge–Diamond 2001 for the rewriting, which were not
   read.)
 - (B2) *Stack substitution* (Thm 12, applicable because a proper substitution
-  forces its border and `cr = 2` excludes pure discrete spectrum). There are a
-  proper substitution `φ′_s` and a factor map `q: Ω_{Φ′} → Ω_{Φ′_s}` (B15's
-  `Σ`) that semi-conjugates the flows and `Φ′` with `Φ′_s`; `Ω_{Φ′_s}` is
-  `Ω_{Φ′}/≈_s`, and `≈_s` is trivial on it.
+  forces its border and `cr = 2` excludes pure discrete spectrum, B15
+  Thm 4(5)). There are a proper substitution `φ′_s` and a factor map
+  `q: Ω_{Φ′} → Ω_{Φ′_s}` (B15's `Σ`) that semi-conjugates the flows and `Φ′`
+  with `Φ′_s`; `Ω_{Φ′_s}` is `Ω_{Φ′}/≈_s`, and `≈_s` is trivial on it.
 - (B3) *Injectivity* (Prop. 19). `q*: H¹(Ω_{Φ′_s}; ℚ) → H¹(Ω_{Φ′}; ℚ)` is
   injective.
 - (B4) *Ordered pairs* (Lemmas 13–14). `cr(Φ′_s) = 2` (used without comment in
-  the proof of Thm 22; it follows from `g = g_s ∘ q` and Thm 5, since
+  the proof of Thm 22; it follows from `g_max = g_s ∘ q` and Thm 5, since
   `cr(Φ′_s) = 1` with `≈_s` trivial would make `g_s` injective and `Ω/≈_s`
   the maximal equicontinuous factor of `Ω`). So every tiling of `Ω_{Φ′_s}`
   has a unique regionally proximal partner disjoint from it, and the
@@ -554,9 +585,11 @@ Lemma 7(1). The following are B15 as printed, for such an `n`.
 - (B5) *The involution* (Lemma 20). Exchanging the two entries is a
   fixed-point-free involution of the alphabet of `ψ` commuting with `ψ`, so
   in a suitable order the incidence matrix of `ψ` is `[[X, Y], [Y, X]]`,
-  conjugate over `ℤ` to `diag(X + Y, X − Y)`, and `X + Y` is the incidence
-  matrix of the substitution on unordered pairs, a tile substitution with
-  dilation `βⁿ`.
+  conjugate over `ℤ` to the block-triangular matrix
+  `[[X + Y, Y], [0, X − Y]]` (B15, proof of Lemma 20; over `ℚ`, not over
+  `ℤ`, it is conjugate to `diag(X + Y, X − Y)`). So its characteristic
+  polynomial is `χ_{X+Y} · χ_{X−Y}`. `X + Y` is the incidence matrix of the
+  substitution on unordered pairs, a tile substitution with dilation `βⁿ`.
 - (B6) *Components* (proof of Thm 22). `ψ` has exactly two allowed bi-infinite
   periodic words, so the eventual range for `ψ` has at most two components:
   `G_0(ψ)` has dimension `ε ∈ {0, 1}`, and the induced map acts on it by `±1`.
@@ -607,11 +640,12 @@ substitution the other factors of `χ_M` leave room for `X − Y`.
 **Theorem P (parity).** Let `σ ∈ PIP3` with `det M` odd. If `cr(σ) = 2`, then
 `tr M ≡ e₂(M) (mod 2)` and `dim H¹(Ω_σ; ℚ) ≥ 5`.
 
-Imports: B15 (Thm 12, Lemmas 13–14, Prop. 19, Lemma 20, sequence (4.1) and
-the count of periodic words in the proof of Thm 22), BD08 Theorem 4, and the
-identification of the two coincidence ranks (§1). Label: derived from B15 as
-printed; re-derived by three verifiers and once more for this note; not
-machine-checked.
+Imports: B15 (the proper version of §4, whose rewriting references were not
+read; Thm 4(5); Thm 5; Thm 12; Lemmas 13–14; Prop. 19; Lemma 20; sequence
+(4.1) and the count of periodic words in the proof of Thm 22), BD08 Lemma 2,
+Corollary 3 and Theorem 4, and the identification of the two coincidence
+ranks (§1, **[Std]**). Label: derived from B15 as printed; re-derived by
+three verifiers and once more for this note; not machine-checked.
 
 *Proof.* Take `n = 6` in Lemma S: `c₆ = (t − 1)^l`. Write
 `χ_{X+Y} = t^i χ_{M⁶} r` and `χ_{X−Y} = t^j q` with `q = nz χ_{X−Y}`. Since
@@ -676,9 +710,14 @@ is `det M`). In case (c), `cr = 2` contradicts Theorem P. So `cr = 1`. Then
 `ν_L = ν_R = 1` by Theorem FC2(1), the spectrum is pure discrete by BBK
 Cor. 5.2, and there is no strict system by Theorem A(4). ∎
 
-Case (a) is prior art (§8). In case (a′) every pair has a witness with empty
-prefixes (resp. suffixes) and Theorem A(3) alone excludes a strict system,
-with or without (F). Clause (b) was reached by two of the six routes
+Imports: those of Theorem FC2; BBK Cor. 5.2; repository Theorem A(4); for
+(b) B15 Thm 22 and for (c) Theorem P, both with the identification of the
+two coincidence ranks (§1, **[Std]**).
+
+Case (a) is prior art in part (§8). In case (a′) every pair has a witness
+with empty prefixes (resp. suffixes) and Theorem A(3) alone excludes a
+strict system, with or without (F). Clause (b) was reached by two of the six
+routes
 independently, by the zero fibre and by cohomology, where it was stated for
 unit `σ` in the form "no interior periodic address and `dim H¹ ≤ 4`"; it is
 stated once here, for odd determinant.
@@ -700,8 +739,13 @@ strongly coincident, so `ν_L ≥ 2`, and `cr ≥ ν_L` by Theorem FC2(1). (2)
 strands `Φ^{kn}(−v, e)` is a bi-infinite `Φ^k`-fixed integer strand with the
 origin inside the edge `(−v, e)`. ∎
 
+Imports: for (1), repository Theorem A(4) and BBK Def. 4.1, Remark 4.3 with
+Lemma 6 (through Theorem FC2(1)); for (2) additionally the other imports of
+Theorem FC2, and B15 Thm 22, resp. Theorem P, with the identification of the
+two coincidence ranks (§1, **[Std]**).
+
 *Remark (sharper form, extra import B15 Thm 4(2)).* With `cr ≥ 3`, the fibre
-of `g` over the image of the origin contains three tilings pairwise
+of `g_max` over the image of the origin contains three tilings pairwise
 tile-disjoint at every level. That fibre is finite and `Φ`-invariant, so its
 members are `Φ`-periodic integer strands. If all three had a vertex at the
 origin, the three letters to its right would be distinct and two of them left
@@ -712,13 +756,16 @@ the three is of interior type.
 
 Throughout this section `σ ∈ PIP3` is **unit** (`|det M| = 1`) with
 **`dim H¹(Ω_σ; ℚ) = 3`**, i.e. `l = 0`. The maximal equicontinuous factor
-is the torus `𝕋³ = ℝ³/ℤ³` and `g = h_φ: Ω_σ → 𝕋³` sends a tiling to the
+is the torus `𝕋³ = ℝ³/ℤ³` and `g_max = h_φ: Ω_σ → 𝕋³` sends a tiling to the
 class of a vertex of its strand (BBK Def. 3.1 with `Σ = ℤ³`, Lemma 6; for
-unit `M` the inverse limit `𝕋_A` is the torus). `g(T − t) = g(T) + t r`
-up to the sign convention of the flow, and `g ∘ Φ = M ∘ g`. The proof was
-left as a sketch by its route and reconstructed by three verifiers; it is
-written out here. Steps resting on a standard fact that was not checked
-against a source on disk are marked **[Std]**.
+unit `M` the inverse limit `𝕋_A` is the torus; that `h_φ` is the maximal
+equicontinuous factor map is BBK Thm 5.1 with the **[Std]** fact of §1 that
+this factor is determined by the continuous eigenfunctions).
+`g_max(T − t) = g_max(T) + t r` up to the sign convention of the flow, and
+`g_max ∘ Φ = M ∘ g_max`. The first-letter map `g` of §1 does not occur in
+this section. The proof was left as a sketch by its route and reconstructed
+by three verifiers; it is written out here. Steps resting on a standard fact
+that was not checked against a source on disk are marked **[Std]**.
 
 **Lemma 8 (strict components).** Suppose `σ` has a strict system. Then
 there are `P ≥ 1` and a nonempty compact set `Z ⊆ Ω_σ × Ω_σ` such that:
@@ -729,7 +776,7 @@ there are `P ≥ 1` and a nonempty compact set `Z ⊆ Ω_σ × Ω_σ` such that:
   dense, and `Φⁿ(T)`, `Φⁿ(T′)` share no tile for any `n ≥ 0`;
 - (Z3) `Z` contains a pair `(T₀, T₀′)` fixed by a power of `Φ^P × Φ^P` with a
   common vertex at the origin;
-- (Z4) `g(T) = g(T′)` for every `(T, T′) ∈ Z`.
+- (Z4) `g_max(T) = g_max(T′)` for every `(T, T′) ∈ Z`.
 
 Such a `Z` is called a **strict component**.
 
@@ -762,19 +809,27 @@ vertex at the origin. The strand through the origin of `ℤ³` that carries the
 letters of `T₀` is fixed by a power of `Φ` and has bounded `η_i`-coordinates
 (the estimate of step (Fin) in §3, on both sides of the origin), so it
 belongs to BBK's strand space and is the strand of `T₀`; likewise for
-`T₀′`. Both are integer strands, so `g(T₀) = 0 = g(T₀′)`; then
-`g(T₀ − t) = g(T₀′ − t)` for all `t`, and the flow orbit of `(T₀, T₀′)` is
-dense in `Z`. ∎
+`T₀′`. Both are integer strands, so `g_max(T₀) = 0 = g_max(T₀′)`; then
+`g_max(T₀ − t) = g_max(T₀′ − t)` for all `t`, and the flow orbit of
+`(T₀, T₀′)` is dense in `Z`. ∎
 
 (Z4) is the *alignment* of the two tracks. It rests on `Σ = ℤ³`, i.e. on
-irreducibility, and it is the step that fails on every reducible strict
-control (§9).
+irreducibility (Lemma 6). It fails on the reducible strict controls
+`10/102/211`, its reversal and `1/012/101` (scratch, §9: the two tracks lie
+in different cosets of the return lattice). It does not fail on every
+reducible strict control: for Thue–Morse the two tracks of the strict system
+`{(01,10), (10,01)}` are obtained from each other by exchanging the two
+letters, and by B15 Example 16 a tiling and its letter-exchanged copy are
+regionally proximal, hence in one fibre of the maximal equicontinuous factor
+map. The argument for Theorem Fork stops there at its hypotheses instead
+(`det M = 0` and `l = 1`, so Lemma 9 is not available). Alignment was not
+checked on the other controls of §9.
 
 **Lemma 9 (classes are eigenfunction classes).** Let `Ω_s = Ω_σ/≈_s` be
-Barge's quotient, `q: Ω_σ → Ω_s` the quotient map and `g = g_s ∘ q`. Then
-`g*: H¹(𝕋³; ℤ) → Ȟ¹(Ω_σ; ℤ)` and `g_s*: H¹(𝕋³; ℤ) → Ȟ¹(Ω_s; ℤ)` are
+Barge's quotient, `q: Ω_σ → Ω_s` the quotient map and `g_max = g_s ∘ q`. Then
+`g_max*: H¹(𝕋³; ℤ) → Ȟ¹(Ω_σ; ℤ)` and `g_s*: H¹(𝕋³; ℤ) → Ȟ¹(Ω_s; ℤ)` are
 isomorphisms: every map `Ω_s → S¹` is homotopic to `χ_u ∘ g_s` for a
-character `χ_u` of `𝕋³`.
+character `χ_u` of `𝕋³` (by `Ȟ¹(X; ℤ) = [X, S¹]` **[Std]**).
 
 *Proof.* (i) `G_0 = 0` (Lemma 7(2)) and `G_3 = 0` (`l = 0`), so
 `Ȟ¹(Ω_σ; ℤ) ≅ G_1 = lim→(ℤ³, Mᵗ)`, and since `Mᵗ` is invertible over `ℤ`
@@ -785,16 +840,16 @@ passes through a tile of type `a` (BD08, Theorem 4, with the definition of
 **[Std]** The winding number of a circle-valued map along the flow is a
 homomorphism `W: Ȟ¹(Ω_σ; ℤ) → ℝ`; `W(w_a) = r_a`, the frequency of `a` per
 unit length. The `r_a` are ℚ-independent, so `W` is injective. (iii) By BBK
-Thm 5.1 the eigenfunction `χ_u ∘ g`, `u ∈ ℤ³`, has eigenvalue `u·r`, so
-`W(g*χ_u) = u·r = W(Σ u_a w_a)` and `g*χ_u = Σ u_a w_a`: `g*` is an
-isomorphism. (iv) **[Std]** (Gottschalk–Hedlund) For a factor map
+Thm 5.1 the eigenfunction `χ_u ∘ g_max`, `u ∈ ℤ³`, has eigenvalue `u·r`, so
+`W(g_max*χ_u) = u·r = W(Σ u_a w_a)` and `g_max*χ_u = Σ u_a w_a`: `g_max*` is
+an isomorphism. (iv) **[Std]** (Gottschalk–Hedlund) For a factor map
 `q: X → Y` of minimal flows on compact metric spaces, `q*` is injective on
 `Ȟ¹(·; ℤ)`: if `h: Y → S¹` and `h ∘ q = exp(2πi φ)` with `φ` continuous,
 then the additive cocycle `c(y, t)` lifting `h(y − t)/h(y)` equals
 `φ(x − t) − φ(x)` for `q(x) = y`, so it is bounded, hence a coboundary
 `ψ(y − t) − ψ(y)`, and `h · exp(−2πi ψ)` is flow-invariant, hence constant.
-(v) `g* = q* ∘ g_s*` is bijective and `q*` is injective, so `q*` and `g_s*`
-are bijective. ∎
+(v) `g_max* = q* ∘ g_s*` is bijective and `q*` is injective, so `q*` and
+`g_s*` are bijective. ∎
 
 **Lemma 10 (no free symmetry of prime order over the factor).** Assume
 `cr(σ) ≥ 2` (true when `σ` has a strict system, by Theorem N(1)). There is
@@ -804,14 +859,17 @@ with `g_s ∘ ρ′ = g_s`.
 *Proof.* `Ω_s` is compact, connected, and of covering dimension at most
 one: the flow does not have pure discrete spectrum, so by B15 Thm 12,
 applied to the proper version of a power, `Ω_s` is homeomorphic to a
-one-dimensional substitution tiling space. (Reconstructed, not checked
-against the source: that `≈_s` is the same relation for `Φ` and for the
-proper version of `Φⁿ`. It is defined from `g` and from stable equivalence,
-and by B15 Thm 4(3) tilings stably equivalent along the multiples of `n` are
-stably equivalent.) **[Std]** The quotient of `Ω_s` by the free action of
+one-dimensional substitution tiling space, which is locally the product of a
+Cantor set and an interval (B15 §2) and so has covering dimension one
+**[Std]**. (Reconstructed, not checked against the source: that `≈_s` is the
+same relation for `Φ` and for the proper version of `Φⁿ`. It is defined from
+`g_max` and from stable equivalence, and by B15 Thm 4(3) tilings stably
+equivalent along the multiples of `n` are stably equivalent.) **[Std]** The
+quotient of `Ω_s` by the free action of
 `ℤ/p` has dimension at most one, so its `Ȟ²(·; ℤ)` vanishes and
 the complex line bundle associated with the character `ρ′ ↦ e^{2πi/p}` is
-trivial: there is `z: Ω_s → S¹` with `z ∘ ρ′ = e^{2πi/p} z`. By Lemma 9,
+trivial: there is `z: Ω_s → S¹` with `z ∘ ρ′ = e^{2πi/p} z`. By Lemma 9
+(with `Ȟ¹(X; ℤ) = [X, S¹]` **[Std]**),
 `z = (χ_u ∘ g_s) · exp(2πi φ)` with `φ` continuous. Since `χ_u ∘ g_s` is
 `ρ′`-invariant, `φ ∘ ρ′ − φ` takes values in `1/p + ℤ`, so it is a constant
 `1/p + k` (`Ω_s` is connected). Summing over a `ρ′`-orbit gives
@@ -819,7 +877,8 @@ trivial: there is `z: Ω_s → S¹` with `z ∘ ρ′ = e^{2πi/p} z`. By Lemma 
 
 The argument needs the index of the eigenfunction classes in
 `Ȟ¹(Ω_s; ℤ)` to be prime to `p`; Lemma 9 gives index one, and that is where
-unimodularity and `l = 0` are indispensable.
+this argument uses unimodularity and `l = 0`. Whether the conclusion of
+Theorem Fork holds without them is not known here.
 
 **Theorem Fork.** Let `σ ∈ PIP3` be unit with `dim H¹(Ω_σ; ℚ) = 3`, and let
 `Z` be a strict component. Then for every `(T, T′) ∈ Z` there is `T″` with
@@ -831,8 +890,11 @@ unimodularity and `l = 0` are indispensable.
    `V(T) ∩ V(T′)` and `V(T) ∩ V(T″)` are disjoint;
 3. `σ` has an interior periodic address, i.e. (F) fails.
 
-Imports: B15 Thm 4(1),(3), Thm 12; BBK Def. 3.1, Thm 4.2, Thm 5.1; BD08
-Theorem 4; BD02 Theorem 1; the **[Std]** facts of Lemmas 9 and 10.
+Imports: B15 Thm 4(1),(3),(4),(5), Thm 12; BBK Def. 3.1, Thm 4.2, Thm 5.1,
+Cor. 5.2, and Def. 4.1, Remark 4.3 through Theorem N(1); BD08 Theorem 4;
+BD02 Theorem 1; repository Theorem A(4) (through Theorem N(1)) and
+Lemma F(c); Lemma 6; the identification of the two coincidence ranks (§1);
+the **[Std]** facts of this section (its first paragraph, Lemmas 9 and 10).
 
 *Proof.* *Step 1 (the quotient pair space).* `Z_s := (q × q)(Z)` is compact,
 flow-invariant and minimal. It does not meet the diagonal: `T ≈_s T′` would
@@ -854,7 +916,7 @@ has order `p`, and none of its nontrivial powers has a fixed point. This
 contradicts Lemma 10.
 
 *Step 3 (lifting).* So there are `(T₁, T₁′), (T₂, T₂″) ∈ Z` with
-`T₁ ≈_s T₂` and `T₁′ ≉_s T₂″`; all four lie in one fibre of `g`. The set
+`T₁ ≈_s T₂` and `T₁′ ≉_s T₂″`; all four lie in one fibre of `g_max`. The set
 of `v` with `T₁′ − v ∼_s T₂″ − v` is open (B15 §3) and not dense, so there
 is an open interval `J` on which `Φ^k(T₁′ − v)` and `Φ^k(T₂″ − v)` never
 have the same tiles at the origin; the set of `v` with
@@ -872,7 +934,7 @@ contains the origin in the interior of its support, and its inflations
 exhaust the line, so `S₂ = S`. By (Z1), `(S, S′) ∈ Z` and `(S, S″) ∈ Z`.
 For every `n ≥ 0`, `Φⁿ(S′)` and `Φⁿ(S″)` share no tile: they are the limits
 of `Φ^{k_i+n}(T₁′ − v₀)` and `Φ^{k_i+n}(T₂″ − v₀)`, which share no tile
-inside `β^{k_i+n}(J − v₀)`; and two tilings of one fibre of `g` whose
+inside `β^{k_i+n}(J − v₀)`; and two tilings of one fibre of `g_max` whose
 vertices are close have them equal (their strands have vertices differing
 by elements of `ℤ³` in a bounded region; equivalently B15 Thm 4(4)), so a
 shared tile of the limits would be a shared tile of the approximants.
@@ -881,18 +943,18 @@ shared tile of the limits would be a shared tile of the approximants.
 as in the statement exists. It is nonempty (Step 3), invariant under the
 flow, and a closed subset of `Z` (pass to a convergent subsequence of the
 `T″`; tile-disjointness at each level survives the limit for the reason
-just given, all the tilings involved lying in one fibre of `g`). By (Z1),
+just given, all the tilings involved lying in one fibre of `g_max`). By (Z1),
 `𝔉 = Z`.
 
 *Consequences.* (1) `T′ ≠ T″`. (2) At a common vertex of `T, T′, T″` the
 three letters to the right would be pairwise distinct (two equal ones give
 a shared tile), and by BD02 two of them are left strongly coincident, which
 gives a shared tile at some level, against (Z2) or the fork. (3) Apply the
-theorem to `(T₀, T₀′)` of (Z3). `g(T₀″) = g(T₀) = 0`, the fibre over `0` is
-finite and `Φ`-invariant (`g ∘ Φ = M ∘ g`), so `T₀″` is `Φ`-periodic with
-an integer strand. By (2) the origin, a common vertex of `T₀` and `T₀′`, is
-not a vertex of `T₀″`. The edge of the strand of `T₀″` over the origin is
-then a periodic state with `v ≠ 0` by (4.1). ∎
+theorem to `(T₀, T₀′)` of (Z3). `g_max(T₀″) = g_max(T₀) = 0`, the fibre over
+`0` is finite and `Φ`-invariant (`g_max ∘ Φ = M ∘ g_max`), so `T₀″` is
+`Φ`-periodic with an integer strand. By (2) the origin, a common vertex of
+`T₀` and `T₀′`, is not a vertex of `T₀″`. The edge of the strand of `T₀″` over the origin is
+then a periodic state with `v ≠ 0` by (St). ∎
 
 *What the theorem does and does not say.* It is a necessary condition on
 strict components, and it is vacuous on every computed domain, since no
@@ -901,7 +963,7 @@ the unique-partner premise of the retired derived-substitution route
 (cut-attractor note §7) is false, not merely unproved. The correct reading
 is "for unit PIP3 with `dim H¹ = 3`, `π₁` is not injective"; whether `π₁`
 is a covering map is open, and nothing is shown for `dim H¹ ≥ 4` or for
-`det M = 2`. The clause `cr ≥ 3` that the route also drew is not new: it is
+nonunit `σ`. The clause `cr ≥ 3` that the route also drew is not new: it is
 Theorem N(2). The new content is the second partner inside `Z`, the
 disjoint cut sets, and (3) with the interior strand realised as a partner.
 
@@ -911,11 +973,11 @@ disjoint cut sets, and (3) with the interior strand realised as a partner.
 | --- | --- |
 | The (F) class | Minervino–Thuswaldner Def. 9.3 / Prop. 9.4; on main it is the "no terminal leftmost cycle" class of Corollary LC5 (ledger 2026-10-05). The corpus count 1,794 and the cycle count 10,584 are the LC census. |
 | Theorem FC1 | A short corollary of the catch-up mechanism of LC5 together with Propositions 2 and 3 of the cut-attractor note. It is stated nowhere on main, and no C4 note cites LC5; the use on prefix-aligned roots, which yields the strict system itself, is what is recorded here. |
-| Lemma 6 | Theorem R on main. |
-| "On (F), strong coincidence ⟺ pure discrete spectrum" | ⟸ is BBK Remark 4.3; ⟹ is Minervino–Thuswaldner Thm 9.9 (in its tiling form). |
-| Theorem FC2, `cr = ν_L = ν_R ≤ 2` on (F) | Not found in the sources read, nor on main. It replaces the strong-coincidence hypothesis of the published (F) criteria by a count. |
+| Lemma 6 | Theorem R on main. For unimodular Pisot substitutions it is Barge–Kwapisz 2006 Thm 12.1 (with Fact 12.2), proved there by a frequency argument of the same kind (their Lemma 12.4; Fact 12.2(ii) uses unimodularity); BBK p. 2220 assert it for irreducible Pisot matrices "by the argument in" that paper, without a locator. The Barge–Kwapisz text was read only during the audit of this note, after the proof of Lemma 6 was written. |
+| "On (F), strong coincidence ⟺ pure discrete spectrum" | ⟸ needs no (F): on main it is Akiyama–Lee 2014 Cor. 4.5 (PDS/strong-coincidence gate; not re-read); here it is BBK Cor. 5.2 with Theorem FC2(1). ⟹: Minervino–Thuswaldner Thm 9.9 gives, from (F) and strong coincidence, that the self-replicating multiple tiling is a tiling; the passage from that tiling to pure discrete spectrum of the tiling flow is not in the parts read and was not checked for nonunit `σ`. In this note ⟹ is Corollary E (FC2 with BBK Cor. 5.2). Akiyama 2016 (Thm 3.2, Cor. 3.3: for the suspension tiling of a Pisot substitution, *multiple* strong coincidence of some level `n` is equivalent to overlap coincidence) is the closest published statement of "strong coincidence ⟹ pure discrete spectrum"; it was read only during the audit of this note and **not compared** with Corollary E: whether on (F) its hypothesis reduces to ordinary strong coincidence was not checked. |
+| Theorem FC2, `cr = ν_L = ν_R ≤ 2` on (F) | Not found in the sources read, nor on main (Akiyama 2016 not compared, previous row). It replaces the strong-coincidence hypothesis of Minervino–Thuswaldner Thm 9.9, the one (F) criterion read, by a count. |
 | The zero fibre as the set of periodic integer strands; interior members ⟺ interior periodic addresses | The correction in §6 of the cut-attractor note; Lemma F there is Sirvent–Solomyak 2002. |
-| FC3(a) | Prior art both ways: for "no strict system" it is the endpoint-collapse stratum of Theorem A(3) (3,012 corpus specimens); for the spectrum it is Minervino–Thuswaldner Thm 9.9, and Barge 2016 for injective-initial / constant-final substitutions. |
+| FC3(a) | Prior art in part. No strict system: Theorem A(4) for `ν_L = 1` and its mirror image for `ν_R = 1`; in sub-case (a′) already Theorem A(3), the endpoint-collapse stratum (3,012 corpus specimens, pinned in `test_c4_cut_attractor.mojo`; 1,284 of them with (F), §9). Spectrum: the tiling of Minervino–Thuswaldner Thm 9.9 (the step from that tiling to pure discrete spectrum was not checked for nonunit `σ`), and Barge 2016 Thm 3.13 for injective-initial / constant-final substitutions. |
 | FC3(b), the exclusion of `cr = 2` for `dim H¹ ≤ 4` | B15 Thm 22; on main in the `dim H¹` census (2,136 specimens). New only in combination with FC2. |
 | Theorem P | The parity statement is not in B15; it is a re-derivation of the proof of Thm 22 with the substitution action kept. The parity class itself is the one of the degree-2 parity sieve on main. |
 | Theorem N | Part (1) is immediate from Theorem A and BBK. Part (2) with `dim H¹ ≤ 4` is implicit in the ledger entry of 2026-11-05 for unit specimens; the parity clause and "(F) fails" are new. |
@@ -933,11 +995,11 @@ covered by the finite-domain theorem `C4StandingCorpus`.
 | --- | --- | --- |
 | `χ_M` irreducible | Lemma 1 (`ℓ` injective on `ℤ³`, the eigen-coordinates determine a lattice point, no root of unity); Lemma 6 (`Σ = Γ = ℤ³`, so the fibre over `0` is the set of integer strands and two tracks through one lattice point are aligned); BD02 needs nonzero eigenvalues; Lemma 7 (`G_0 = 0`); Lemma S (`χ_{Mⁿ}` minimal for `βⁿ`) | every reducible control of the table below |
 | Pisot | `ρ < 1`: finiteness of states and of relative states (Lemma 3, FC1); BBK, BD02, B15 | the binary `00001/011` (conjugate `3 − √2 > 1`): there is no contraction, and Lemma 3 gives no finiteness |
-| primitive, aperiodic | existence of the rays and of `Ω_σ`; all imports | `1/012/1` is periodic |
+| primitive (aperiodicity is automatic on PIP3, §1) | existence of the rays and of `Ω_σ`; all imports | the reducible control `1/012/1` is periodic |
 | (F) | step (N) of FC1; step (b) of FC2 | 2,760 corpus specimens; `01/12/021` |
 | `det M` odd | the reduction mod 2 in Theorem P; B15 Lemma 20 and Thm 22; FC3(b),(c); Theorem N(2) | the 1,926 corpus specimens with `det M = 2` |
-| `det M = ±1` and `dim H¹ = 3` | Lemma 9 (integral cohomology `ℤ³`, eigenfunction classes of index one), hence Theorem Fork | nonunit substitutions; the examples of Barge–Bruin–Jones–Sadun (`cr = 3` with minimal cohomology, norm divisible by 3) |
-| three letters | `ν ≤ d − 1 = 2`; `g⁶ = id` on `ER` and the list of cubics over `𝔽₂` in Theorem P | — |
+| `det M = ±1` and `dim H¹ = 3` | Lemma 9 (integral cohomology `ℤ³`, eigenfunction classes of index one), hence Theorem Fork | the proof: Lemma 9 needs `Ȟ¹(Ω_σ; ℤ) = ℤ³` and index one. No member of PIP3 for which the conclusion fails is known here. The examples of Barge–Bruin–Jones–Sadun (`cr = 3` with minimal cohomology, norm divisible by 3) are reducible; they bound only what cohomology alone can give |
+| three letters | `ν ≤ d − 1 = 2`; `g_K⁶ = id` on `ER` and the list of cubics over `𝔽₂` in Theorem P | — |
 
 ### Derivation / reduction
 
@@ -956,9 +1018,11 @@ Fork  =  Lemma 8 (alignment) + Lemma 9 (H¹ = eigenfunction classes)
 
 Every arrow is written out in §§2–7. The finite objects certified by the
 regression are: the set of interior `f`-cycles of each corpus specimen
-(complete by the box bound of Lemma 3(3), made explicit and certified in the
-module's Lemma B, and by its Lemma W); the set `R` of relative states of each
-pair of periodic first letters; and five integers per specimen (`det M`,
+(complete by the box bound of Lemma 3(3), made explicit in the module's
+Lemma B, with radii computed by outward rounding and pinned in the
+regression, and by its Lemma W; both are recorded proofs in the module
+docstring, not machine-checked); the set `R` of relative states of each
+pair of periodic first letters; and six integers per specimen (`det M`,
 `tr M`, `e₂(M)`, `dim H¹`, the numbers of periodic letters of `g`, `g_R`).
 
 ### Evidence and replay
@@ -972,8 +1036,9 @@ python3 tools/check_markdown_source.py
 The regression takes about two minutes on one core (re-run for this note on
 2026-11-16: exit 0). It ends with `require_contract`, not `require_claim`: no
 ledger claim is registered. Workflow `.github/workflows/c4-geometric-f.yml`
-(not yet run on GitHub). Everything below is pinned by that test, in exact
-integer and `ℤ[β]` arithmetic, over the 4,554 specimens of `pip_corpus()`.
+(not yet run on GitHub). The numbers under the next three headings are
+asserted by that test, in exact integer and `ℤ[β]` arithmetic, over the
+4,554 specimens of `pip_corpus()`.
 
 *(F) and interior cycles.*
 
@@ -991,16 +1056,26 @@ integer and `ℤ[β]` arithmetic, over the 4,554 specimens of `pip_corpus()`.
   `psc.leftmost_chain` on the leftmost closure of the box start states, and
   on the literal box graph for every 97th specimen (47) and the fixtures.
 - Counter-calibration: with half the certified radii strictly fewer cycles
-  are found and more than 1,794 specimens would be reported as (F).
+  are found and more than 1,794 of the halved boxes hold no cycle. Such a
+  search returns no verdict: `interior_cycles_in_box` returns a `BoxSearch`
+  without `holds`, and only `decide_geometric_f` and
+  `decide_geometric_f_with`, which take the box from `stable_radii`, return
+  (F). This calibrates the halved box only.
+- The certified radii are pinned: `[2,3,4]`, `[4,3,3]`, `[4,5,3]`,
+  `[26,15,16]`, `[18,15,17]` on Tribonacci, `01/12/021`, `1/12/022`,
+  `1/012/010`, `1/22/012`; the sum of the three radii is 8,562 over the 348
+  incidence matrices and 99,078 over the 4,554 specimens. These pins, not
+  the cycle pins, guard the bound of Lemma B.
 
 *Relative states (the content of Theorem FC1).*
 
 - On the (F) specimens there are 1,956 pairs of distinct periodic first
   letters with 97,992 relative states in all; **every one reaches a vertex
-  state** (0 absorbed). The transients `N₀` are distributed
+  state** (0 absorbed). The maximal transient `N₀` is 51 `f`-steps, on 24
+  pairs, and no pair has transient 38. The full distribution of `N₀` is
   `2:36 3:252 4:300 5:342 6:54 7:174 8:126 9:12 10:48 11:96 12:6 13:24 15:66
-  16:102 18:30 19:24 20:24 21:54 22:18 31:72 35:72 51:24`; the maximum is 51
-  `f`-steps, on 24 pairs.
+  16:102 18:30 19:24 20:24 21:54 22:18 31:72 35:72 51:24`; all 22 bins are
+  asserted.
 - On the other specimens there are 2,790 such pairs, and each of them has a
   relative state absorbed by an interior cycle.
 - Fixtures: `1/2/02` (three pairs of period 3, 11 relative states each, equal
@@ -1047,8 +1122,12 @@ be used as a uniform `N₀`.
   strong-coincidence witness; an overlap search gave coincidence rank 1 on
   every corpus specimen; the refinement of Remark (3) after Theorem P
   excluded `cr = 2` on a few more odd-determinant corpus specimens than the
-  2,352 above; BBK Example 5.3 has `χ_{X−Y} = (t − 1)(t² − 4t + 1)`, a
-  reducible instance where Lemma S fails. None of this is evidence of record.
+  2,352 above; for BBK Example 5.3 (reducible, `cr = 2`) the six-letter
+  substitution has, with respect to its sheet-exchange involution,
+  `χ_{X−Y} = (t − 1)(t² − 4t + 1)`, so the conclusion of Lemma S fails for
+  these matrices (B15's ordered-pair substitution was not constructed, and
+  the hypotheses of Lemma S are not met). None of this is evidence of
+  record.
 - While this note was written, steps (E), (C) and (N) of Theorem FC1 were
   re-checked by a separate scratch script working on words alone with exact
   integer arithmetic: on `1/2/02` (two pairs) and `1/012/100` the
@@ -1069,7 +1148,7 @@ Python.
 | Thue–Morse `01/10` | two letters, `χ = x(x − 2)`; strict `{(01,10), (10,01)}` | Not PIP3 (`decide_geometric_f` raises, pinned). `ℓ = (1, 1)` is not injective on `ℤ²`; the eigenvalue `0` is outside Pisot type and no pair is strongly coincident, so `ν_L = 2 = d` and FC2 stops at BD02; `det M = 0` is even (Theorem P); `l = 1` (Theorem Fork). FC1's mechanism is not contradicted: every even index is an equal-Parikh cut, and FC1 *predicts* a strict system when a periodic pair is not coincident. |
 | `10/102/211` and reversal `01/201/112` | `χ = (x − 1)(x² − 2x − 2)`, `det M = −2`; 4-state strict system (pinned in `test_c4_cut_attractor.mojo`) | Refused as non-PIP3 (pinned). `ℓ·(2, 0, −1) = 0` (cut-attractor note): Lemma 1 fails, and the eigenvalue `1` is not contracted, so Lemma 3 fails. Lemma 6 fails (ℚ-dependent frequencies); scratch: the return lengths have index 3 and the two tracks of the strict pair lie in different cosets, so (Z4) fails. Even determinant (Theorem P); nonunit (Theorem Fork). Scratch: its common-vertex gaps are bounded although interior cycles exist in the position module, so the *conclusion* of FC1 can hold where its hypotheses do not. |
 | `1/012/1` | `χ = x(x − 2)(x + 1)`, `det M = 0`; 4-state strict system (pinned in `test_c4_quotient_spectrum.mojo`) | Translation-periodic (the `σ²`-fixed word is `(1012)^∞`), so outside every import; singular and reducible. Scratch annotation, corrected: periodic, tile/return quotient `ℤ/3` (an earlier "`ℤ/2`" was wrong). |
-| `1/012/101` | `χ = (x + 1)(x² − 2x − 1)`, `det M = 1`; 3 states under `σ²`, 6 under `σ` (pinned in `test_c4_reducible_pisot_controls.mojo`) | Reducible: Lemma 1 fails and the eigenvalue `−1` is not contracted. It is unit with odd determinant, so the arithmetic hypotheses of FC3(b), Theorem N(2) and Theorem Fork can be met; what fails is irreducibility, in Lemma 6 and (Z4) and in Lemma S (the root `−1` of `χ_M` contributes a root of unity to `H¹`). Scratch: `dim H¹ = 2`; the return lengths have index 2 and the letters `0`, `1` lie in different cosets, so the strict pair is not in one fibre and its strict system does not give `cr ≥ 2`. This is the control showing that "a strict system gives two non-coincident strands in one fibre" (Theorem N(1)) needs irreducibility. |
+| `1/012/101` | `χ = (x + 1)(x² − 2x − 1)`, `det M = 1`; 3 states under `σ²`, 6 under `σ` (pinned in `test_c4_reducible_pisot_controls.mojo`) | Reducible: Lemma 1 fails and the eigenvalue `−1` is not contracted. It is unit with odd determinant and (scratch) `dim H¹ = 2`, the degree of its inflation, so the arithmetic hypotheses of FC3(b) and Theorem N(2) are met, and so is the analogue of the cohomological hypothesis of Theorem Fork (not `dim H¹ = 3` itself). What fails is irreducibility: in Lemma 6 and (Z4), and in Lemma 7(2) (scratch, recomputed for the audit: `ER = {e_10, e_21}` has two components exchanged by `g_K`, so `G_0 ≠ 0`; this removes the eigenvalue `−1` of `Mᵗ`, and `Φ*` acts on `H¹` with characteristic polynomial `x² − 2x − 1`, so no root of unity occurs in `H¹`). Lemma S is not tested by this control: with the scratch value `dim H¹ = 2 < 3`, B15 Thm 22 (degree 2, norm `−1`) gives `cr ≠ 2`. Scratch: the return lengths have index 2 and the letters `0`, `1` lie in different cosets, so the strict pair is not in one fibre and its strict system does not give `cr ≥ 2`. This is the control showing that "a strict system gives two non-coincident strands in one fibre" (Theorem N(1)) needs irreducibility. |
 | `012/120/201` | `χ = x²(x − 3)`; strict system (pinned in `test_c4_cut_attractor.mojo`) | Refused (pinned). Dilation of degree one; no pair is strongly coincident (the three images differ at every position), so `ν = 3` and BD02's conclusion fails; singular. |
 | `01/2/120` | `χ = x²(x − 2)`; 20-state strict system (pinned in `test_c4_quotient_spectrum.mojo`; ledger 2026-11-06) | Singular, dilation `2` of degree one; outside every hypothesis. |
 | C-D1 `011/120/2012` | `χ = (x − 1)(x² − 3x − 1)`, `det M = −1`; one closed 18-state system for `(X₀, X₁)` and `(X₀, X₂)` (pinned in `test_c4_reducible_pisot_controls.mojo`) | Reducible with eigenvalue `1`: Lemma 1 fails, the eigenvalue-one direction is not contracted (Lemma 3), the frequencies are ℚ-dependent (Lemma 6), and the hypothesis of BD02 fails. Unit with odd determinant; `tr M ≡ e₂(M)`, as for every cubic with a rational root and odd constant term (Remark (2) after Theorem P). Its `dim H¹` was not computed. |
@@ -1094,7 +1173,14 @@ side:
 *Refusals (fail closed, refuse to conclude).* `decide_geometric_f` raises on
 non-PIP3 input, on an uncertifiable radius and on a state cap; `OrbitMemo`
 raises if an orbit closes on a cycle the verdict did not certify; a point
-that is not a state has no image. All are exercised in `test_refusals`.
+that is not a state has no image. `fc3_profile` raises on non-PIP3 input
+(pinned on `011/120/2012`). The PIP3 gate is exercised arm by arm, each
+refusal matched on its message: singular `1/012/1`, primitive irreducible
+non-Pisot `1/2/001`, primitive reducible `011/120/2012`, and an image of
+length 7. All but the radius refusals are
+exercised in `test_refusals`; the radius refusals of `stable_radii` (an
+enclosure not separated from zero, a contraction not certified below 1, a
+radius beyond `RADIUS_CAP`) are reached by no test.
 
 *Stronger variants that failed, kept on record.* "Maximal transient 38"
 (withdrawn above). "`cr ≥ ν_R` is BBK Remark 4.3" (false as a literal
@@ -1108,8 +1194,9 @@ of them are clause (a′), prior art; the other 156 are already in
 
 ### Non-claims / remaining gaps
 
-- **Universal C4.** Open. By Corollary H it is at least as strong as pure
-  discrete spectrum on the (F) class.
+- **Universal C4.** Open. By Corollary H, conditional on the imports of
+  Theorem FC2, it is at least as strong as pure discrete spectrum on the (F)
+  class.
 - **Strong coincidence or pure discrete spectrum on (F) outside Theorem
   FC3.** Open: `det M` even (174 corpus specimens of the 510 with two
   periodic letters on both sides), and `det M` odd with `tr M ≡ e₂(M)` and
@@ -1124,12 +1211,19 @@ of them are clause (a′), prior art; the other 156 are already in
 - **Larger alphabets.** FC1 and the equality `cr = ν_L = ν_R` do not use
   `d = 3` in their proofs, but no statement is recorded or replayed for
   `d > 3`.
-- **Status of the proofs.** FC1 is elementary. FC2, P, FC3, N and Fork are
-  conditional on the imports of §1 as printed; the proofs of B15 Thm 4 were
-  not followed into the papers it cites; the equivariance used in Lemma S is
-  read off B15 and BD08 and not machine-checked; Theorem Fork additionally
-  uses the **[Std]** facts, none of which was checked against a source on
-  disk. Barge–Kwapisz 2006 was not obtained.
+- **Status of the proofs.** FC1 is elementary; like the others it is not
+  machine-checked and awaits independent human review. FC2, P, FC3, N and
+  Fork are conditional on the imports of §1 as printed; the proofs of B15
+  Thm 4 were not followed into the papers it cites; the equivariance used in
+  Lemma S is read off B15 and BD08 and not machine-checked, and the
+  rewriting to a proper version rests on references of B15 that were not
+  read; Theorems P, FC3(b),(c) and N(2) use the identification of the two
+  coincidence ranks, which rests on one **[Std]** fact; Theorem Fork
+  additionally uses the other **[Std]** facts; none of them was checked
+  against a source on disk. Barge–Kwapisz 2006 was not obtained when the
+  proofs were written and no proof uses it; the parts read during the audit
+  are listed in the literature gate. Akiyama 2016 was not compared with
+  Corollary E (§8).
 - **No certification.** The regression counts classes; it decides no
   coincidence rank and no spectrum. C4, #138, #139, #84, G1 and PSC are
   unchanged, and no ledger claim is registered.

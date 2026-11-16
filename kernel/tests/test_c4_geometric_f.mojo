@@ -1,9 +1,20 @@
 """Exact regression for the geometric property (F) class (psc.c4_geometric_f).
 
 docs/c4-geometric-f-class-2026-11-16.md. Named fixtures by hand, refusals,
+the certified radii pinned (five fixtures, and their sums over the corpus),
 the literal fixed-ray definition against the overlap-closure one, and the
 corpus content of Theorems FC1, P and FC3 on all 4,554 standing specimens,
 with (F) cross-checked against `psc.leftmost_chain` (Corollary LC5).
+
+What guards the completeness of the (F) decision. The decision is exhaustive
+because every f-periodic state lies in the box of `stable_radii` (Lemma B of
+the module, a recorded proof, not machine-checked). The cycle pins below
+cannot see a bound that is too small but still holds every interior cycle of
+the corpus, and the leftmost cross-check on all specimens uses the same
+radii. So the radii themselves are pinned, and the independent bound is
+replayed: the box of `box_radii` on the fixtures, and the literal box graph,
+which is built on `box_radii`, on the fixtures that fail (F) and on every
+`STRIDE`-th specimen.
 
 How (F) is tied to Corollary LC5 on every specimen. `psc.c4_geometric_f`
 predicts the number of terminal leftmost cycles from its interior f-cycles
@@ -42,12 +53,13 @@ from psc.c4_geometric_f import (
     PrototileState,
     StableRadiiCache,
     decide_geometric_f,
-    decide_geometric_f_from,
+    decide_geometric_f_with,
     fc3_profile,
     fixed_ray_overlaps,
     fixed_ray_relative_states,
     geometric_f_census,
     interior_address,
+    interior_cycles_in_box,
     joint_period,
     matrix_digits,
     pair_transient,
@@ -58,15 +70,17 @@ from psc.c4_geometric_f import (
 )
 from psc.corpus import STATE_CAP, pip_corpus
 from psc.endpoint_core import prefix_endpoint_map
+from psc.h1_census import h1_profile
 from psc.leftmost_chain import leftmost_step, terminal_leftmost_cycles
 from psc.overlap_seed_patch import OverlapState, SeedOverlapAutomaton, SeedOverlapTables
 from psc.periodic_pair import centre_offset, interior_occurrences
 from psc.perron_field3 import CubicElt
+from psc.pisot import is_irreducible_cubic, is_pisot_charpoly, is_primitive
 from psc.vertex_coincidence import box_radii, box_start_states, build_box_graph
 
 # Every STRIDE-th corpus specimen replays the leftmost cross-check on the
-# literal box graph of Corollary LC5, and the (F) decision in a box of twice
-# the certified radii.
+# literal box graph of Corollary LC5, and the search for interior cycles in a
+# box of twice the certified radii.
 comptime STRIDE = 97
 
 
@@ -326,40 +340,68 @@ def test_a_ray_prefix_is_not_the_set_of_relative_states() raises:
     assert_equal(seen_longest, 36)
 
 
-def raises_on(sigma: List[List[Int]]) -> Bool:
+def raises_on(sigma: List[List[Int]], expected: String) -> Bool:
+    """`decide_geometric_f` refuses `sigma` with a message that contains
+    `expected`. Any other failure is not the refusal under test."""
     try:
         _ = decide_geometric_f(sigma)
         return False
-    except:
-        return True
+    except e:
+        return expected in String(e)
 
 
 def test_refusals() raises:
+    var gate = "primitive irreducible Pisot"
     # Reducible: chi = (x - 1)(x^2 - 2x - 2). Primitive, with a strict system.
-    assert_true(raises_on([[1, 0], [1, 0, 2], [2, 1, 1]]))
+    assert_true(raises_on([[1, 0], [1, 0, 2], [2, 1, 1]], gate))
     # Thue-Morse: two letters.
-    assert_true(raises_on([[0, 1], [1, 0]]))
+    assert_true(raises_on([[0, 1], [1, 0]], "three substitution images"))
     # Thue-Morse-like on three letters: constant length, chi = x^2 (x - 3).
-    assert_true(raises_on([[0, 1, 2], [1, 2, 0], [2, 0, 1]]))
+    assert_true(raises_on([[0, 1, 2], [1, 2, 0], [2, 0, 1]], gate))
     # Not primitive.
-    assert_true(raises_on([[0, 0], [1, 1], [2, 2]]))
+    assert_true(raises_on([[0, 0], [1, 1], [2, 2]], gate))
     # A letter outside the alphabet and an empty image.
-    assert_true(raises_on([[0, 3], [0, 2], [0]]))
-    assert_true(raises_on([[0, 1], List[Int](), [0]]))
+    assert_true(raises_on([[0, 3], [0, 2], [0]], "outside 0..2"))
+    assert_true(raises_on([[0, 1], List[Int](), [0]], "non-erasing"))
+
+    # The arms of the PIP3 gate, one at a time.
+    # Singular: 1/012/1.
+    var singular: List[List[Int]] = [[1], [0, 1, 2], [1]]
+    assert_equal(Mat3(substitution_incidence(singular)).det(), 0)
+    assert_true(raises_on(singular, gate))
+    # Primitive and irreducible, not Pisot: 1/2/001, chi = x^3 - x - 2.
+    var not_pisot: List[List[Int]] = [[1], [2], [0, 0, 1]]
+    var np = Mat3(substitution_incidence(not_pisot))
+    assert_equal(np.charpoly(), List[Int]([-2, -1, 0, 1]))
+    assert_true(is_primitive(np))
+    assert_true(is_irreducible_cubic(np.charpoly()))
+    assert_false(is_pisot_charpoly(np.charpoly()))
+    assert_true(raises_on(not_pisot, gate))
+    # Primitive and reducible, with an irrational Pisot inflation and a strict
+    # system (test_c4_reducible_pisot_controls): 011/120/2012.
+    var reducible: List[List[Int]] = [[0, 1, 1], [1, 2, 0], [2, 0, 1, 2]]
+    var rm = Mat3(substitution_incidence(reducible))
+    assert_true(is_primitive(rm))
+    assert_false(is_irreducible_cubic(rm.charpoly()))
+    assert_true(raises_on(reducible, gate))
+    # An image of length 7 is outside the audited image-length domain:
+    # (0^5 1, 1 2 0^5, 0^6) is refused, not decided.
+    var long_image: List[List[Int]] = [[0, 0, 0, 0, 0, 1], [1, 2, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+    assert_true(raises_on(long_image, "certified only for"))
 
     # A state cap is an exhausted budget, never a verdict.
     var capped = False
     try:
         _ = decide_geometric_f(interior_control(), 1)
-    except:
-        capped = True
+    except e:
+        capped = "state cap reached" in String(e)
     assert_true(capped)
     var m = PrototileMap(interior_control())
     var ray_capped = False
     try:
         _ = fixed_ray_overlaps(m, 0, 1, 1)
-    except:
-        ray_capped = True
+    except e:
+        ray_capped = "overlap cap reached" in String(e)
     assert_true(ray_capped)
     assert_equal(len(fixed_ray_overlaps(m, 0, 1, STATE_CAP).overlaps), 69)
 
@@ -368,23 +410,23 @@ def test_refusals() raises:
     var stepped = False
     try:
         _ = m.step(PrototileState(2, 1, 0, -1))
-    except:
-        stepped = True
+    except e:
+        stepped = "not a state" in String(e)
     assert_true(stepped)
     assert_false(m.is_state(PrototileState(0, 5, 5, 5)))
     var beyond = False
     try:
         _ = m.step(PrototileState(0, 5, 5, 5))
-    except:
-        beyond = True
+    except e:
+        beyond = "not a state" in String(e)
     assert_true(beyond)
 
     # Letter 2 is not periodic under the first-letter map 0 -> 0, 1 -> 1, 2 -> 0.
     var not_periodic = False
     try:
         _ = joint_period([0, 1, 0], 0, 2)
-    except:
-        not_periodic = True
+    except e:
+        not_periodic = "not periodic under the first-letter map" in String(e)
     assert_true(not_periodic)
     assert_equal(joint_period([0, 1, 0], 0, 1), 1)
     assert_equal(joint_period([1, 2, 0], 0, 2), 3)
@@ -398,42 +440,69 @@ def test_refusals() raises:
     var uncertified = False
     try:
         _ = memo.transient(m, PrototileState(2, -1, 0, 1))
-    except:
-        uncertified = True
+    except e:
+        uncertified = "outside the certified box" in String(e)
     assert_true(uncertified)
 
-    # A box that is too small is a different question, not a verdict on (F):
-    # radius 0 holds no state with v != 0, so nothing is found.
+    # A search in a box that is not certified is a different question and
+    # returns no verdict on (F). Radius 0 holds no state with v != 0, so the
+    # search of 01/12/021 finds nothing, although 01/12/021 fails (F): a
+    # `BoxSearch` has no `holds`, and only `decide_geometric_f` and
+    # `decide_geometric_f_with`, which take the box from `stable_radii`,
+    # return a verdict.
     var zero_box: List[Int] = [0, 0, 0]
-    assert_equal(len(decide_geometric_f_from(m, zero_box).cycles), 0)
+    var nothing = interior_cycles_in_box(m, zero_box)
+    assert_equal(nothing.candidates, 0)
+    assert_equal(len(nothing.cycles), 0)
+    assert_false(decide_geometric_f(interior_control()).holds)
 
 
 def test_the_certified_radii() raises:
-    """`stable_radii` on the fixtures: the box contains the interior states
-    found, and neither twice the radii nor the independent Sturm--Tarski radii
-    of the box graph (valid for every overlap cycle, hence for every f-cycle)
-    find anything else."""
+    """`stable_radii` on the fixtures, pinned: the box contains the interior
+    states found, and neither twice the radii nor the independent
+    Sturm--Tarski radii of the box graph (valid for every overlap cycle, hence
+    for every f-cycle) find anything else.
+
+    The pins are what guards `stable_radii`. A bound that is too small but
+    still holds every interior cycle of the corpus would pass every cycle pin
+    of this file. The pinned values are what the module returns; they were
+    compared with a high-precision evaluation of the right-hand side of Lemma
+    B, step 3 (its floor, coordinate by coordinate) in the audit of
+    2026-11-16, which is scratch and is not replayed here."""
     var t = PrototileMap(tribonacci())
     # D_M for Tribonacci: the proper nonzero sub-vectors of (1, 1, 0) and
     # (1, 0, 1), i.e. e_0, e_1, e_2: three positions.
     assert_equal(len(matrix_digits(t.tables)), 3)
+    # The two bounds use different increment sets and are not comparable
+    # coordinate by coordinate: smaller in one coordinate, larger in another.
+    assert_equal(stable_radii(t.tables), List[Int]([2, 3, 4]))
+    assert_equal(box_radii(t.tables), List[Int]([3, 3, 3]))
     var fixtures: List[List[List[Int]]] = [
         tribonacci(), interior_control(), [[1], [1, 2], [0, 2, 2]], [[1], [0, 1, 2], [0, 1, 0]], [[1], [2, 2], [0, 1, 2]],
     ]
+    var pinned: List[List[Int]] = [[2, 3, 4], [4, 3, 3], [4, 5, 3], [26, 15, 16], [18, 15, 17]]
+    var boxes = StableRadiiCache()
     for i in range(len(fixtures)):
         var m = PrototileMap(fixtures[i])
         var radii = stable_radii(m.tables)
+        assert_equal(radii, pinned[i])
         var reference = box_radii(m.tables)
-        assert_equal(len(radii), 3)
-        var v = decide_geometric_f_from(m, radii)
+        # Both verdict entry points decide in that box and agree.
+        var v = decide_geometric_f(fixtures[i])
+        assert_equal(v.radii, pinned[i])
+        var cached = decide_geometric_f_with(m, boxes)
+        assert_equal(cached.radii, pinned[i])
+        assert_equal(cached.holds, v.holds)
+        assert_equal(cached.candidates, v.candidates)
+        assert_equal(len(cached.cycles), len(v.cycles))
         for c in range(len(v.cycles)):
             for k in range(v.cycles[c].period()):
                 var w = v.cycles[c].states[k].vector()
                 for a in range(3):
                     assert_true(w[a] >= -radii[a] and w[a] <= radii[a])
         var doubled: List[Int] = [2 * radii[0], 2 * radii[1], 2 * radii[2]]
-        var wide = decide_geometric_f_from(m, doubled)
-        var independent = decide_geometric_f_from(m, reference)
+        var wide = interior_cycles_in_box(m, doubled)
+        var independent = interior_cycles_in_box(m, reference)
         assert_equal(len(wide.cycles), len(v.cycles))
         assert_equal(len(independent.cycles), len(v.cycles))
         for c in range(len(v.cycles)):
@@ -441,6 +510,7 @@ def test_the_certified_radii() raises:
             assert_equal(wide.cycles[c].period(), v.cycles[c].period())
             assert_equal(independent.cycles[c].states[0], v.cycles[c].states[0])
             assert_equal(independent.cycles[c].period(), v.cycles[c].period())
+    assert_equal(boxes.distinct_matrices(), 5)
 
 
 def vertex_set(w: List[Int]) -> Dict[PrototileState, Bool]:
@@ -554,12 +624,23 @@ def test_corpus() raises -> GeometricFCensus:
 
     # Theorem FC1.
     assert_equal(census.f_pairs, 1956)
+    # Cannot be nonzero: on an (F) specimen an absorbed orbit raises in
+    # `OrbitMemo.transient` before it is counted. The raise is the guard.
     assert_equal(census.f_pairs_absorbed, 0)
     assert_equal(census.f_relative_states, 97992)
     assert_equal(census.transients.total(), 1956)
     assert_equal(census.transients.maximum(), 51)
     assert_equal(census.transients.count(51), 24)
     assert_equal(census.transients.count(38), 0)
+    var transient_rows: List[List[Int]] = [
+        [2, 36], [3, 252], [4, 300], [5, 342], [6, 54], [7, 174], [8, 126], [9, 12], [10, 48], [11, 96], [12, 6],
+        [13, 24], [15, 66], [16, 102], [18, 30], [19, 24], [20, 24], [21, 54], [22, 18], [31, 72], [35, 72], [51, 24],
+    ]
+    var transient_total = 0
+    for row in transient_rows:
+        assert_equal(census.transients.count(row[0]), row[1])
+        transient_total += row[1]
+    assert_equal(transient_total, 1956)
     assert_equal(census.nonf_pairs, 2790)
     assert_equal(census.nonf_pairs_absorbed, 2790)
 
@@ -585,17 +666,26 @@ def test_corpus() raises -> GeometricFCensus:
     assert_equal(census.residual_determinant.count(2 + 8), 174)
     assert_equal(census.residual_determinant.count(1 + 8) + census.residual_determinant.count(-1 + 8), 180)
 
+    # The certified radii the census decided in: 348 incidence matrices, and
+    # the sum of the three radii over the matrices and over the specimens.
+    # These pins and those of `test_the_certified_radii` guard `stable_radii`.
+    assert_equal(census.matrices, 348)
+    assert_equal(census.matrix_radius_sum, 8562)
+    assert_equal(len(census.radii), 4554)
+
     # (F) <=> no terminal leftmost cycle, specimen by specimen, with the count.
-    var boxes = StableRadiiCache()
     var literal = 0
     var leftmost_total = 0
     var leftmost_longest = 0
     var cycle_free = 0
-    var undersized_cycles = 0
-    var undersized_f = 0
+    var radius_sum = 0
+    var halved_cycles = 0
+    var halved_empty = 0
     for s in range(len(corpus)):
         var m = PrototileMap(corpus[s].sigma)
-        var radii = boxes.radii_for(m.tables)
+        var radii = census.radii[s].copy()
+        assert_equal(len(radii), 3)
+        radius_sum += radii[0] + radii[1] + radii[2]
         var cycles = terminal_leftmost_cycles(m.tables, leftmost_closure(m.tables, radii), 0)
         assert_equal(len(cycles), census.leftmost_predicted[s])
         assert_equal(len(cycles) == 0, census.holds[s])
@@ -606,26 +696,31 @@ def test_corpus() raises -> GeometricFCensus:
             if cycles[k].r > leftmost_longest:
                 leftmost_longest = cycles[k].r
         # Counter-calibration: half the certified radii is not a certificate.
+        # The search is a `BoxSearch`; it has no verdict to misreport.
         var halved: List[Int] = [max(1, radii[0] // 2), max(1, radii[1] // 2), max(1, radii[2] // 2)]
-        var undersized = decide_geometric_f_from(m, halved)
+        var undersized = interior_cycles_in_box(m, halved)
         assert_true(len(undersized.cycles) <= census.cycle_counts[s])
-        undersized_cycles += len(undersized.cycles)
-        if undersized.holds:
-            undersized_f += 1
+        halved_cycles += len(undersized.cycles)
+        if len(undersized.cycles) == 0:
+            halved_empty += 1
         if s % STRIDE == 0:
             literal += 1
             assert_equal(len(terminal_leftmost_cycles(m.tables, build_box_graph(m.tables), 0)), census.leftmost_predicted[s])
             var doubled: List[Int] = [2 * radii[0], 2 * radii[1], 2 * radii[2]]
-            assert_equal(len(decide_geometric_f_from(m, doubled).cycles), census.cycle_counts[s])
-    assert_equal(boxes.distinct_matrices(), 348)
+            assert_equal(len(interior_cycles_in_box(m, doubled).cycles), census.cycle_counts[s])
+    assert_equal(radius_sum, 99078)
     assert_equal(leftmost_total, 10584)
     assert_equal(leftmost_longest, 39)
     assert_equal(cycle_free, 1794)
     assert_equal(literal, 47)
-    # The halved box misses interior cycles and so over-reports (F): the pins
-    # above would not survive an undersized bound.
-    assert_true(undersized_cycles < census.interior_cycle_total)
-    assert_true(undersized_f > 1794)
+    # The halved box misses interior cycles: fewer cycles are found, and more
+    # than 1,794 halved boxes hold none, so reading an empty halved box as (F)
+    # would over-report. This calibrates that one box only. A bound that is
+    # too small but still holds every interior cycle of the corpus passes
+    # every cycle pin of this test; what guards `stable_radii` is the pinned
+    # radii (the five fixtures, 8,562 and 99,078).
+    assert_true(halved_cycles < census.interior_cycle_total)
+    assert_true(halved_empty > 1794)
     return census^
 
 
@@ -656,6 +751,19 @@ def test_arithmetic_profile_fixtures() raises:
     # e_2 is the linear coefficient of the characteristic polynomial.
     var m = Mat3(substitution_incidence(interior_control()))
     assert_equal(principal_minor_sum(m), m.charpoly()[1])
+    # Outside PIP3 the clauses mean nothing, and the profile is refused. The
+    # reducible strict control 011/120/2012 has det -1 and dim H^1 = 3, so it
+    # would satisfy clause (b); it has a strict system
+    # (test_c4_reducible_pisot_controls).
+    var reducible: List[List[Int]] = [[0, 1, 1], [1, 2, 0], [2, 0, 1, 2]]
+    assert_equal(Mat3(substitution_incidence(reducible)).det(), -1)
+    assert_equal(h1_profile(reducible).dimension, 3)
+    var refused = False
+    try:
+        _ = fc3_profile(reducible)
+    except e:
+        refused = "primitive irreducible Pisot" in String(e)
+    assert_true(refused)
 
 
 def main() raises:
@@ -683,8 +791,8 @@ def main() raises:
         census.count_where(odd | CELL_H1_AT_MOST_4, odd | CELL_H1_AT_MOST_4), ", or tr != e_2:",
         census.count_where(odd, odd) - census.count_where(odd | CELL_H1_AT_MOST_4 | CELL_PARITY, odd),
         "; (F) with two periodic letters on both sides:", census.count_where(open_ends, CELL_F),
-        ", not reached by FC3:", census.residual_determinant.total(),
+        ", reached by none of (a'), (b), (c):", census.residual_determinant.total(),
         "; peak candidates / visited states / closure nodes:",
         census.peak_candidates, census.peak_visited, census.peak_nodes,
     )
-    require_contract("Geometric property (F) of ternary irreducible Pisot substitutions (psc.c4_geometric_f), exact integer and Z[beta] arithmetic: the prototile state map f(j, v) = (j', M v - p(P)); (F) decided by walking every state with v != 0 inside the box of stable_radii (Lemma B: per incidence matrix, outward-rounded rational intervals), every interior f-cycle replaying (M^k - I) v = p(P) at an interior occurrence. Fixtures: Tribonacci 01/02/0 has (F); 01/12/021 has the f-fixed state (2, (-1, 0, 1)) with (M - I) v = e_0 = p(P) for P = 0 in sigma(2) = 0.2.1, re-derived from the word, and 4 terminal leftmost cycles; 1/12/022, 1/012/010 and 1/22/012 have one interior cycle of period 1, 3, 5 and recover the leftmost-chain pins (2 cycles of length 1, 6, 15); 1/2/02 has 11 relative states per pair, equal to the set read off 3,000-letter ray prefixes, transient 7, and M^9 sends the first 60 vertices of each ray to common vertices while M^6 does not; 1/012/100 pair (0, 1) has 240 relative states and transient 51 where a 3,000-letter prefix shows 60 states and transient 36. Refusals: the reducible 10/102/211, Thue-Morse, 012/120/201, non-primitive and malformed input raise; state and overlap caps raise; a point outside its tile has no image; an orbit closing on an uncertified cycle raises. Corpus, 4,554 specimens on 348 incidence matrices: (F) on 1,794, invariant under image reversal on all 4,554; 3,756 interior cycles with 12,828 states, longest period 13, 0/1/2/3 cycles on 1794/1860/804/96 specimens; least interior period over the other 2,760: 1:816 2:252 3:744 4:228 5:492 6:12 7:24 8:72 10:84 11:12 13:24; terminal leftmost cycles (psc.leftmost_chain on the leftmost closure of the box start states) = 2 sum gcd(|C|, |G|) on every specimen, 10,584 in all, longest 39, none exactly on the 1,794 (F) specimens, replayed on the literal box graph for every 97th specimen (47); half the certified radii miss cycles; Theorem FC1: 1,956 pairs of periodic first letters on (F) specimens, each of their 97,992 relative states reaches a vertex state, maximal transient 51 f-steps (24 pairs; the scratch value 38 was a 3,000-letter prefix scan), and 2,790 pairs on the other specimens, each with a relative state absorbed by an interior cycle; arithmetic classes: 2,628 odd determinants, of them 2,136 with dim H^1 <= 4, 1,344 with tr != e_2 (mod 2), 2,352 with either; of the 1,794 (F) specimens 1,284 have an endpoint map with fewer than two periodic letters, and of the other 510, 84 have odd det and dim H^1 <= 4, 120 odd det and tr != e_2, 156 either, 354 neither (174 with det 2, 180 odd). Class counts only: no coincidence rank, strong coincidence or pure discrete spectrum is certified, and no claim status changes")
+    require_contract("Geometric property (F) of ternary irreducible Pisot substitutions (psc.c4_geometric_f), exact integer and Z[beta] arithmetic: the prototile state map f(j, v) = (j', M v - p(P)); (F) decided by walking every state with v != 0 inside the box of stable_radii (Lemma B: per incidence matrix, outward-rounded rational intervals; the radii are pinned on the five fixtures, [2,3,4], [4,3,3], [4,5,3], [26,15,16], [18,15,17], and by their sum, 8,562 over the 348 matrices and 99,078 over the specimens; a search in any other box returns no verdict), every interior f-cycle replaying (M^k - I) v = p(P) at an interior occurrence. Fixtures: Tribonacci 01/02/0 has (F); 01/12/021 has the f-fixed state (2, (-1, 0, 1)) with (M - I) v = e_0 = p(P) for P = 0 in sigma(2) = 0.2.1, re-derived from the word, and 4 terminal leftmost cycles; 1/12/022, 1/012/010 and 1/22/012 have one interior cycle of period 1, 3, 5 and recover the leftmost-chain pins (2 cycles of length 1, 6, 15); 1/2/02 has 11 relative states per pair, equal to the set read off 3,000-letter ray prefixes, transient 7, and M^9 sends the first 60 vertices of each ray to common vertices while M^6 does not; 1/012/100 pair (0, 1) has 240 relative states and transient 51 where a 3,000-letter prefix shows 60 states and transient 36. Refusals: the reducible 10/102/211 and 011/120/2012, the singular 1/012/1, the non-Pisot 1/2/001, an image of length 7, Thue-Morse, 012/120/201, non-primitive and malformed input raise, each matched on its refusal message; fc3_profile refuses 011/120/2012; state and overlap caps raise; a point outside its tile has no image; an orbit closing on an uncertified cycle raises. Corpus, 4,554 specimens on 348 incidence matrices: (F) on 1,794, invariant under image reversal on all 4,554; 3,756 interior cycles with 12,828 states, longest period 13, 0/1/2/3 cycles on 1794/1860/804/96 specimens; least interior period over the other 2,760: 1:816 2:252 3:744 4:228 5:492 6:12 7:24 8:72 10:84 11:12 13:24; terminal leftmost cycles (psc.leftmost_chain on the leftmost closure of the box start states) = 2 sum gcd(|C|, |G|) on every specimen, 10,584 in all, longest 39, none exactly on the 1,794 (F) specimens, replayed on the literal box graph for every 97th specimen (47); half the certified radii miss cycles (a calibration of that box only; the pinned radii guard the bound); Theorem FC1: 1,956 pairs of periodic first letters on (F) specimens, each of their 97,992 relative states reaches a vertex state, maximal transient 51 f-steps (24 pairs; the scratch value 38 was a 3,000-letter prefix scan), and 2,790 pairs on the other specimens, each with a relative state absorbed by an interior cycle; arithmetic classes: 2,628 odd determinants, of them 2,136 with dim H^1 <= 4, 1,344 with tr != e_2 (mod 2), 2,352 with either; of the 1,794 (F) specimens 1,284 have an endpoint map with fewer than two periodic letters, and of the other 510, 84 have odd det and dim H^1 <= 4, 120 odd det and tr != e_2, 156 either, 354 neither (174 with det 2, 180 odd). Class counts only: no coincidence rank, strong coincidence or pure discrete spectrum is certified, and no claim status changes")

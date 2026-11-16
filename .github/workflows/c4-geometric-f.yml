@@ -1,15 +1,43 @@
 name: C4 geometric property (F) class regression
 
+# Path filter: the two modules, their two regressions, the notes that state
+# their pins, and every `psc` module that one of those four files imports
+# directly. Vendored packages are covered by the whole-suite job of ci.yml.
 on:
   pull_request:
     paths:
       - '.github/workflows/c4-geometric-f.yml'
       - 'kernel/psc/c4_geometric_f.mojo'
       - 'kernel/tests/test_c4_geometric_f.mojo'
+      - 'kernel/psc/c4_seam_families.mojo'
+      - 'kernel/tests/test_c4_reducible_pisot_controls.mojo'
       - 'docs/c4-geometric-f-class*.md'
-      - 'kernel/psc/leftmost_chain.mojo'
-      - 'kernel/tests/test_leftmost_chain.mojo'
+      - 'docs/c4-closure-attempt-2026-11-16.md'
+      - 'kernel/psc/bpa.mojo'
+      - 'kernel/psc/c4_cut_alignment.mojo'
+      - 'kernel/psc/c4_cut_attractor.mojo'
+      - 'kernel/psc/c4_legal_seams.mojo'
+      - 'kernel/psc/c4_quotient_spectrum.mojo'
+      - 'kernel/psc/closed_component_search.mojo'
+      - 'kernel/psc/corpus.mojo'
+      - 'kernel/psc/degree2_sieve.mojo'
+      - 'kernel/psc/endpoint_core.mojo'
+      - 'kernel/psc/exact.mojo'
+      - 'kernel/psc/field3.mojo'
       - 'kernel/psc/h1_census.mojo'
+      - 'kernel/psc/histogram.mojo'
+      - 'kernel/psc/leftmost_chain.mojo'
+      - 'kernel/psc/overlap_seed_patch.mojo'
+      - 'kernel/psc/periodic_pair.mojo'
+      - 'kernel/psc/perron_field3.mojo'
+      - 'kernel/psc/perron_root_sign.mojo'
+      - 'kernel/psc/pisot.mojo'
+      - 'kernel/psc/pisot_screen.mojo'
+      - 'kernel/psc/real_root_sign.mojo'
+      - 'kernel/psc/symmetry.mojo'
+      - 'kernel/psc/vertex_coincidence.mojo'
+      - 'kernel/psc/words.mojo'
+      - 'kernel/tests/test_leftmost_chain.mojo'
       - 'kernel/tests/test_h1_census.mojo'
       - 'kernel/pixi.lock'
   workflow_dispatch:
@@ -38,6 +66,10 @@ jobs:
         working-directory: kernel
         run: |
           pixi run --locked mojo run -I . -I tests tests/test_c4_geometric_f.mojo
+      - name: Reducible strict controls and seam families
+        working-directory: kernel
+        run: |
+          pixi run --locked mojo run -I . -I tests tests/test_c4_reducible_pisot_controls.mojo
       - name: Unchanged leftmost-chain pins and cohomology census tables
         working-directory: kernel
         run: |

@@ -2,8 +2,12 @@
 as a list of types with the on-main legal-predecessor rule applied to it.
 
 Sources on main. The sieve `L_sigma` and its *uniform zero-candidate
-eliminator* (`L_sigma` empty and `det M != 0` exclude every finite strict
-child-closed system of that one substitution):
+eliminator* (for a primitive substitution with `det M != 0`, an empty
+`L_sigma` excludes every finite strict child-closed system of that one
+substitution; the on-main statement says "primitive expanding". Without
+primitivity this is false: `1/0/22` has an empty `L_sigma`, `det M = -2`
+and the strict system `{(01,10), (10,01)}`, pinned in
+`kernel/tests/test_c4_reducible_pisot_controls.mojo`):
 `docs/c4-bilateral-birth-rigidity-2026-11-02.md` §9, implemented as
 `psc.c4_cut_alignment.unresolved_local_birth_types`, which returns the
 *number* of types. Legal bigrams and the rule that a cut at an image boundary
@@ -29,12 +33,15 @@ the loop order `a, r, b, s` of the on-main function.
 * `local_birth_types`: the members of `L_sigma`, enumerated with the on-main
   predicates of `psc.c4_cut_alignment` under the four conditions of §9. It
   raises unless their number is the on-main count, so it cannot drift from
-  `unresolved_local_birth_types`.
+  `unresolved_local_birth_types`. Like that count it checks the determinant
+  and not primitivity.
 * `legal_local_birth_types`: the members of `L_sigma` that keep a
   non-collapsing left pair when condition 4 of §9 is read with
   `_preceding_matches` (at digit zero only last letters of images of *legal*
   predecessors) instead of all three preceding source letters. It is a subset
-  of `L_sigma` by construction. No hub, track or phase is chosen.
+  of `L_sigma` by construction. No hub, track or phase is chosen. It raises on
+  a substitution that is not primitive: its empty list is the one the notes
+  read as an exclusion, and without primitivity it would not be one.
 
 **What the on-main functions express without this module.** The count
 `|L_sigma|`, and the hub-based seam lists `phase_zero_legal_seams` /
@@ -47,15 +54,19 @@ composition is the only thing added here.
 words; no theorem is proved by enumeration. That an empty
 `legal_local_birth_types` excludes a strict system rests on written proofs:
 the eliminator of §9, and legality of the words of a strict system rooted at
-periodic rays (the nonunit route's Lemma R in the closure-attempt note, a
-recorded proof that is not machine-checked; on main the legality lemma is
-stated for a phase-zero strongly connected carrier and for the carrier modulo
-track swap). A nonempty list is an over-approximation and never evidence of a
-strict system. Singular incidence, malformed images and images longer than
-64 letters are refused by the on-main functions this module calls (refuse to
-conclude). No C4, BH, G1 or PSC inference is made.
+periodic rays (Lemma RL, section 5.2 of
+`docs/c4-closure-attempt-2026-11-16.md`, used through Proposition C2,
+section 5.4, for primitive substitutions with `det M != 0`; recorded proofs,
+not machine-checked; on main the legality lemma is stated for a phase-zero
+strongly connected carrier and for the carrier modulo track swap). A nonempty
+list is an over-approximation and never evidence of a strict system. Singular
+incidence, malformed images and images longer than 64 letters are refused by
+the on-main functions this module calls, and a substitution that is not
+primitive by `legal_local_birth_types` itself (refuse to conclude). No C4,
+BH, G1 or PSC inference is made.
 """
 
+from finite_linear_algebra.mat3 import Mat3
 from psc.bpa import prefix_endpoint_map, substitution_incidence, suffix_endpoint_map
 from psc.c4_cut_alignment import (
     _det3,
@@ -65,6 +76,7 @@ from psc.c4_cut_alignment import (
     unresolved_local_birth_types,
 )
 from psc.c4_legal_seams import _preceding_matches, legal_bigrams
+from psc.pisot import is_primitive
 from psc.words import ALPHABET
 
 # Smallest parameter the constructors accept. The families are stated for
@@ -115,7 +127,11 @@ def local_birth_types(sigma: List[List[Int]]) raises -> List[Int]:
 
     The on-main count is taken first, so its refusals (singular incidence,
     malformed images, an image longer than 64 letters) are this function's
-    refusals; a disagreement between the list and that count raises."""
+    refusals; a disagreement between the list and that count raises.
+
+    No primitivity check is made here, as none is made by the on-main count.
+    An empty list is an exclusion only under the hypotheses of the eliminator
+    (primitive, `det M != 0`); `legal_local_birth_types` checks both."""
     var expected = unresolved_local_birth_types(sigma)
     var m = substitution_incidence(sigma)
     var det = _det3(m)
@@ -179,8 +195,19 @@ def legal_local_birth_types(sigma: List[List[Int]]) raises -> List[Int]:
     """The members of `local_birth_types(sigma)` for which
     `legal_left_pair_exists`, flat, in the same order. Empty means: no local
     birth type of `sigma` survives the lattice, endpoint and legal-predecessor
-    conditions together."""
+    conditions together.
+
+    Raises when `sigma` is not primitive. Proposition C2 of the
+    closure-attempt note (primitive, `det M != 0`) is what turns an empty
+    list into "no strict system"; for the non-primitive `1/0/22` the list
+    would be empty although `{(01,10), (10,01)}` is a strict system. The
+    determinant is checked by the on-main count."""
     var types = local_birth_types(sigma)  # refuses first, as the on-main count does
+    if not is_primitive(Mat3(substitution_incidence(sigma))):
+        raise Error(
+            "legal local birth types: the substitution is not primitive; Proposition C2 does not apply"
+            + " and an empty list would not be an exclusion"
+        )
     var legal = legal_bigrams(sigma)
     var last = suffix_endpoint_map(sigma)
     var out = List[Int]()

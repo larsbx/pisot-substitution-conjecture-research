@@ -5,8 +5,10 @@ remains open.** Nothing here changes a governed claim status: C4, A1′ (#138),
 BH (#139), #84, G1 and PSC stay as they were, and no ledger claim is
 registered or promoted. The statements recorded below are written proofs or
 proof outlines, conditional on the imports listed with each, verified by
-independent adversarial re-derivation within the session that produced them,
-not machine-checked; independent human review pending.
+independent adversarial re-derivation within the session that produced them
+except where §4 and §11 say otherwise (those sections record, per statement,
+who checked it and whether the repository holds a proof, an outline or no
+proof text), not machine-checked; independent human review pending.
 [Issue #461](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/461).
 Baseline `main@febe7535`.
 
@@ -64,8 +66,10 @@ is the factorisation with `ℓ·p(P) ≤ ℓ·Mv < ℓ·p(P) + ℓ_{j′}`. Vert
 class of Corollary LC5
 ([leftmost-chain note](p1b-leftmost-chain-periodic-pair-2026-10-05.md)).
 `ν_L` (`ν_R`) is the maximal number of pairwise not left (right) strongly
-coincident letters; `cr` is the coincidence rank of Baker–Barge–Kwapisz
-(Def. 4.1); `e₂(M)` is the sum of the principal `2×2` minors.
+coincident letters; `SC_all(σ)` means that every pair of distinct letters is
+left strongly coincident, i.e. `ν_L = 1` (`SC_L` in the (F)-class note);
+`cr` is the coincidence rank of Baker–Barge–Kwapisz (Def. 4.1); `e₂(M)` is
+the sum of the principal `2×2` minors.
 
 ## 2. Method
 
@@ -133,7 +137,7 @@ structured summaries), so the proofs below are the first written versions.
 | two-ray-words | Word combinatorics of two fixed rays: third ray, recognizability, numeration | obstruction | V1, V4–V6, W5, W6 at landing |
 
 The first failed premise of each route is quoted verbatim from its record
-(ASCII as recorded), followed by the corrections that bind it.
+(as recorded), followed by the corrections that bind it.
 
 **bd-extension.**
 
@@ -184,6 +188,14 @@ nothing here touches.
 > This is FALSE. It is realised in full by the new control
 > C-D1 = 011/120/2012
 
+Binding precision (V4, W6): "in full" is the route's wording. Pinned on
+C-D1 (§7.1) are the two strict hub pairs with their closed system, the
+coincident good pair, the identity first-letter map (three fixed rays) and
+the legality of every literal birth type; the recognizability identity is
+Lemma RI (`det M ≠ 0`). The cut-level density relations and the
+Dumont–Thomas recurrent zero-shift component were checked by no one but the
+route (single-pass, §11).
+
 **zero-fibre-rank.**
 
 > OBSTRUCTION for the universal targets: on the (F) class bounded gaps are
@@ -199,7 +211,8 @@ Corrections (logic lens): "`cr ≤ 2` is provable only on (F)" overstates;
 what is shown is that *this* proof covers only (F). `cr ≥ ν_R` is not
 literally Baker–Barge–Kwapisz Remark 4.3 (half-open state convention), and
 `Σ = Γ = ℤ³` rests in that paper on a one-line deferral to a source that
-was not obtained; both repairs are written out in the (F)-class note.
+was not obtained during the attempts (§12); both repairs are written out in
+the (F)-class note.
 
 **nonunit.**
 
@@ -225,31 +238,37 @@ exploratory scratch observation under search caps.
 Correction (all three lenses): only non-injectivity is proved, and only
 for unit `σ` with `dim H¹ = 3` (Theorem Fork). Read: "for unit PIP3 with
 `dim H¹ = 3`, `π₁` is never injective; whether it is a covering is open,
-and nothing is known for `dim H¹ ≥ 4` or `det M = 2`."
+and nothing is known for `dim H¹ ≥ 4` or for nonunit `σ`."
 
 ## 4. What survived: index of results
 
-Classes: **E** proved, elementary (no literature import); **C** proved,
-conditional on the listed imports; **M** replayed by a Mojo regression;
-**S** exploratory scratch observation, not replayable from the repository;
-**1** single-pass, not independently verified. "Proved" always means: a
-recorded proof, not machine-checked, independent human review pending.
+Classes: **E** elementary (no literature import); **C** conditional on the
+listed imports; **M** replayed by a Mojo regression; **S** exploratory
+scratch observation, not replayable from the repository; **1** single-pass,
+not independently verified. For E and C a second mark says what the
+repository records: **p** a written proof (here or in the (F)-class note);
+**o** a proof outline only; **n** no proof text (the statement was confirmed
+by a landing verifier whose derivation exists only in session scratch).
+Nothing is machine-checked, and independent human review is pending for
+every row. "Endpoint class" below means the class of the first-letter map
+`g`, not a class of this legend.
 
 | Label | Statement (all hypotheses in the cited place) | Class | Verified by | Where |
 | --- | --- | --- | --- | --- |
-| Theorem FC1 | `σ ∈ PIP3` with (F): any two `τ`-fixed rays have bounded-gap equal-Parikh cuts; a strict system exists iff some pair of distinct `g`-periodic letters is not left strongly coincident | E; M on the corpus | three lenses | (F)-class note |
-| Theorem FC2 | `σ ∈ PIP3` with (F): `cr = ν_L = ν_R ≤ 2`; so `C4(σ) ⟺ SC_all(σ) ⟺ cr = 1 ⟺` pure discrete spectrum | C | three lenses | (F)-class note |
-| Corollary H | Universal C4 implies pure discrete spectrum for every `σ ∈ PIP3` with (F) | C | three lenses | (F)-class note; §8 |
-| Theorem P | `σ ∈ PIP3`, `det M` odd, `cr = 2` ⟹ `tr M ≡ e₂(M) (mod 2)` and `dim H¹ ≥ 5` | C | three lenses | (F)-class note |
-| Theorem FC3 | (F) and one of: `ν_L = 1` or `ν_R = 1` (prior art); `det M` odd and `dim H¹ ≤ 4`; `det M` odd and `tr M ≢ e₂(M)` ⟹ `cr = 1`, no strict system | C; class counts M | three lenses | (F)-class note |
-| Theorem N | A strict system forces `cr ≥ 2`; with `det M` odd and (`dim H¹ ≤ 4` or `tr ≢ e₂`) it forces `cr ≥ 3` and failure of (F) | C | three lenses | (F)-class note |
-| Theorem Fork | Unit `σ ∈ PIP3`, `dim H¹ = 3`, strict component `Z`: every `(T,T′) ∈ Z` has a second partner `T″` never coincident with `T′` | C | three lenses (proof reconstructed) | (F)-class note |
-| Lemma RL, Theorem T1, Proposition C2 | staggered-seam descent and the seam criterion; restates results on main | E | three lenses | §5 |
-| Theorem T3 | `F1_c`, `F3_c` (`c ≥ 3`) are in PIP3 with `det M = c` and have no strict system | E; M for `3 ≤ c ≤ 63` | three lenses | §5 |
-| Theorem GBD, Corollary SBD, Proposition DC | Barge–Diamond's mechanism for any Pisot inflation of degree `≥ 2`, irreducibility not needed | E (GBD reproduces the Barge–Diamond proof) | W1, W3, W4 | §6.1 |
-| Theorem FL | flat ordered system ⟹ `cr ≥ 3` | C | V1 | §6.2 |
-| Proposition PD, Lemma OC | flat phase one ⟹ (F) fails; overlap-carrier orientation | E, with Barge–Diamond in class E | V2, V3 | §6.2 |
-| Lemma RI, Lemma PO, Corollary ST | recognizability identity; partner orientation; slice classes | E; C; C | V4, V5, V6 | §6.3 |
+| Theorem FC1 | `σ ∈ PIP3` with (F): any two `τ`-fixed rays have bounded-gap equal-Parikh cuts; a strict system exists iff some pair of distinct `g`-periodic letters is not left strongly coincident | E·p; M on the corpus | three lenses | (F)-class note |
+| Theorem FC2 | `σ ∈ PIP3` with (F): `cr = ν_L = ν_R ≤ 2`; so `C4(σ) ⟺ SC_all(σ) ⟺ cr = 1 ⟺` pure discrete spectrum | C·p | three lenses | (F)-class note |
+| Corollary H | Universal C4 implies pure discrete spectrum for every `σ ∈ PIP3` with (F) | C·p | three lenses | (F)-class note; §8 |
+| Theorem P | `σ ∈ PIP3`, `det M` odd, `cr = 2` ⟹ `tr M ≡ e₂(M) (mod 2)` and `dim H¹ ≥ 5` | C·p | three lenses | (F)-class note |
+| Theorem FC3 | (F) and one of: `ν_L = 1` or `ν_R = 1` (prior art); `det M` odd and `dim H¹ ≤ 4`; `det M` odd and `tr M ≢ e₂(M)` ⟹ `cr = 1`, no strict system | C·p; class counts M | three lenses | (F)-class note |
+| Theorem N | A strict system forces `cr ≥ 2`; with `det M` odd and (`dim H¹ ≤ 4` or `tr ≢ e₂`) it forces `cr ≥ 3` and failure of (F) | C·p | three lenses | (F)-class note |
+| Theorem Fork | Unit `σ ∈ PIP3`, `dim H¹ = 3`, strict component `Z`: every `(T,T′) ∈ Z` has a second partner `T″` never coincident with `T′` | C·p | three lenses (proof reconstructed) | (F)-class note |
+| Lemma RL, Theorem T1, Proposition C2 | staggered-seam descent and the seam criterion; restates results on main | E·p | three lenses | §5 |
+| Proposition PW | for primitive `σ` with `det M ≠ 0`, passing to a power adds no exclusion to the seam criterion | E·p | not re-derived by a verifier before the audit of this note | §5.4 |
+| Theorem T3 | `F1_c`, `F3_c` (`c ≥ 3`) are in PIP3 with `det M = c` and have no strict system | E·p. M for `3 ≤ c ≤ 63`: the hypotheses of C2 (PIP3, `det M = c`, empty legal birth-type list). The exclusion itself is replayed only for `3 ≤ c ≤ 8`, through pinned left strong-coincidence witnesses and Theorem A(4) | three lenses | §5 |
+| Theorem GBD, Corollary SBD, Proposition DC | Barge–Diamond's mechanism for any Pisot inflation of degree `≥ 2`, irreducibility not needed | GBD: o, and not import-free as recorded (the outline defers to the proof of Barge–Diamond Theorem 1, read in the length lattice and not reproduced here); SBD: E·p given GBD; DC: E·o given GBD | W1, W3, W4 | §6.1 |
+| Theorem FL | flat ordered system ⟹ `cr ≥ 3` | C·p | V1 | §6.2 |
+| Proposition PD, Lemma OC | flat phase one ⟹ (F) fails; overlap-carrier orientation | PD: o (Barge–Diamond Theorem 1 is used in endpoint class E, nothing else is imported); OC: E·o | V2, V3 | §6.2 |
+| Lemma RI, Lemma PO, Corollary ST | recognizability identity; partner orientation; slice classes | RI: E·p. PO: (i) E·p; (ii) C·p, the proof written at the audit of this note; (iii) E·p. ST: elementary part E·p; conditional part C·n | V4, V5, V6 | §6.3 |
 | Controls C-D1, C-D2, `1/012/101` | reducible, irrational Pisot inflation, strict system present | M | W2, W6 | §7 |
 
 ## 5. The nonunit route: staggered seams and two families
@@ -381,17 +400,35 @@ a ray, so `ec ∈ L₂`. The seam is admissible. ∎
 `(c, |P|, c′, |Q|)` of the list returned by
 `psc.c4_seam_families.legal_local_birth_types`, which is the on-main sieve
 `L_σ` filtered by the on-main legal-predecessor rule. An empty list
-therefore puts `σ` under Proposition C2. The list also keeps types with
-`p(P) = p(Q)`, which Theorem T1 shows are not needed.
+therefore puts a primitive `σ` with `det M ≠ 0` under Proposition C2. The
+list also keeps types with `p(P) = p(Q)`, which Theorem T1 shows are not
+needed. Primitivity cannot be dropped: `1/0/22` is not primitive, has
+`det M = −2` and an empty `L_σ` (the only digit `r > 0` is in `σ(2) = 22`;
+against a digit zero its residue `(0,0,1)` is not in `M ℤ³`, and against
+itself the next letters are equal), and `{(01,10), (10,01)}` is a strict
+system of it.
 
-**Proposition PW (powers add nothing).** If `σ` has an admissible staggered
-seam, so does `σ^q` for every `q ≥ 1`, with residues taken modulo
-`M^q ℤ^d`.
+**Proposition PW (powers add nothing).** Let `σ` be primitive with
+`det M ≠ 0`. If `σ` has an admissible staggered seam, so does `σ^q` for
+every `q ≥ 1`, with residues taken modulo `M^q ℤ^d`.
 
-*Proof.* Replace `P, Q` by `σ^{q−1}(P), σ^{q−1}(Q)`: the difference of
-Parikh vectors is `M^{q−1}·M w = M^q w ≠ 0`, the next letters are
-`g^{q−1}(x), g^{q−1}(y)`, the before-letters are
-`g_R^{q−1}(x⁻), g_R^{q−1}(y⁻)`, and none of these pairs collapses. ∎
+*Proof.* Write `p(P) − p(Q) = M w`, `w ≠ 0`. Replace `P, Q` by
+`σ^{q−1}(P), σ^{q−1}(Q)`, proper prefixes of `σ^q(c)`, `σ^q(c′)`: the
+difference of Parikh vectors is `M^{q−1}·M w = M^q w ≠ 0` (`M` is
+injective), the next letters are `g^{q−1}(x), g^{q−1}(y)`, the
+before-letters are `g_R^{q−1}(x⁻), g_R^{q−1}(y⁻)`, and none of these pairs
+collapses under the endpoint maps `g^q`, `g_R^q` of `σ^q`. If `P` is empty,
+the before-letter `g_R^{q−1}(x⁻) = g_R^q(e)` is the last letter of
+`σ^q(e)`, and `ec ∈ L₂(σ) = L₂(σ^q)`: for primitive `σ` both are the set of
+bigrams of the language of `σ` (a bigram of `σⁿ(a)` is internal to the
+image of a letter or is `g_R(x) g(y)` for a bigram `xy` of `σ^{n−1}(a)`;
+conversely every letter occurs in the language and the language is closed
+under `σ`). ∎
+
+*Status.* Asserted by the route; one of the three lenses listed it as
+holding, without a derivation. The proof was written at landing and was
+re-derived only at the audit of this note, where the two hypotheses and the
+sentence on the empty prefix were added.
 
 ### 5.5 Two families
 
@@ -441,7 +478,7 @@ Residue-matched pairs with distinct next letters, and what removes each
 | --- | --- | --- |
 | `{1,2}` | none: `2` follows only residue 1, `1` follows residues `c−1` and `0` | residue, because `c−1 ≢ 1 (mod c)` for `c ≥ 3` |
 | `{0,2}` | `(σ(1), r=1)` against the three next-`0` occurrences of residue 1 | (3): `g(0) = g(2)` |
-| `{0,1}` | `(σ(0), r=c−1)` against `(σ(1), r=c)`: vectors differ by `(1,−1,−1)` | (4): both before-letters are `0` |
+| `{0,1}` | `(σ(0), r=c−1)` against `(σ(1), r=c)`: vectors differ by `(1,−1,−1)`. The next-`0` occurrences of residue `c−1` are `(σ(1), r=c)` and `(σ(2), r=c−1)` (`(σ(1), r=2)` has residue `1 ≢ c−1`), and the letter before `(σ(1), r=c)` is `0` because `0^{c−2}` is nonempty for `c ≥ 3` | (4): both before-letters are `0` |
 | `{0,1}` | `(σ(0), r=c−1)` against `(σ(2), r=c−1)`: equal vectors | (4): both before-letters are `0`; not staggered |
 | `{0,1}` | `(σ(1), r=0)` against `(σ(0), r=0)` and `(σ(2), r=0)` | (1): both digits zero |
 
@@ -468,7 +505,7 @@ bigram `12` is illegal.
 | Next letters | Matched occurrences | Removed by |
 | --- | --- | --- |
 | `{0,1}` | any | (3): `g(0) = g(1)` |
-| `{0,2}` | `(σ(1), r=1)` against `(σ(0), r=1)`: equal vectors `(1,0,0)` | (4): both before-letters are `0`; not staggered |
+| `{0,2}` | `(σ(1), r=1)` (residue 1) against `(σ(0), r=1)`, its only match for `c ≥ 3`: the other next-`0` occurrences have residue `r ≠ 1` (`σ(0)`, `r ≤ c−2`), `0` (`(σ(1), r=0)`) or `c−1` (`(σ(0), r=c)` and `(σ(2), r=1)`), and `c−1 ≢ 1 (mod c)` for `c ≥ 3`; equal vectors `(1,0,0)` | (4): both before-letters are `0`; not staggered |
 | `{0,2}` | `(σ(2), r=0)` against `(σ(0), r=0)` and `(σ(1), r=0)` | (1): both digits zero |
 | `{1,2}` | `(σ(0), r=c−1)`: residue `c−1`, while `2` follows residues 1 and 0 | residue, because `c−1 ∉ {0,1} (mod c)` for `c ≥ 3` |
 | `{1,2}` | `(σ(1), r=2)` (residue 0) against `(σ(2), r=0)`, its only match: vectors differ by `(1,0,1) = M e₂` | legal predecessor only, see below |
@@ -481,18 +518,26 @@ collapses), so on main `L_σ = {(1,2,2,0), (2,0,1,2)}`. The only legal
 bigram ending in `2` is `02`, so `e = 0`, the before-pair is `(2,0)`, and
 it collapses under `g_R`. No admissible staggered seam remains. ∎
 
-*Where `c ≥ 3` is used.* Exactly at the two residue rows. At `c = 2` both
-families are in PIP3 with `det M = 2` and keep legal types (pinned, §14):
-the residue test has no bite there.
+*Where `c ≥ 3` is used.* (i) `c−1 ≢ 1 (mod c)`: in `F1_c` in the `{1,2}`
+row and in the list of next-`0` occurrences of residue `c−1`; in `F3_c` in
+the `{1,2}` residue row and in the `{0,2}` row, where it keeps
+`(σ(0), r=c)` and `(σ(2), r=1)` from matching `(σ(1), r=1)`. (ii) `0^{c−2}`
+is nonempty: in `F1_c` the letter before `(σ(1), r=c)` is `0`, not `2`. At
+`c = 2` both families are in PIP3 with `det M = 2` and keep legal types
+(pinned, §14): `(0,1,1,1)`, `(0,1,1,2)` and their swaps for `F1_2`, where
+(i) fails in the `{1,2}` row and (i), (ii) fail together in the first
+`{0,1}` row; `(0,2,1,1)` and its swap for `F3_2`, where (i) fails in the
+`{0,2}` row.
 
 ### 5.6 Prior art (binding)
 
 - **Proposition C2 is not new.** It restates the *uniform zero-candidate
   eliminator* of the
   [bilateral-birth note](c4-bilateral-birth-rigidity-2026-11-02.md) §9
-  (`L_σ = ∅` and `det M ≠ 0` exclude a strict system; conditions (1) both
-  digits not zero, (2) `c ∈ M ℤ³`, (3) next letters not eventually equal
-  under `g`, (4) before-letters not eventually equal under `g_R`;
+  (for primitive `σ`, `L_σ = ∅` and `det M ≠ 0` exclude a strict system;
+  conditions (1) not both digits zero, (2) `p(P) − p(Q) ∈ M ℤ³` (the
+  vector called `c` on main), (3) next letters not eventually equal under
+  `g`, (4) before-letters not eventually equal under `g_R`;
   `unresolved_local_birth_types` in `kernel/psc/c4_cut_alignment.mojo`)
   with the legal-predecessor refinement of the
   [legal-seams](c4-legal-seams-2026-11-04.md) and
@@ -533,26 +578,38 @@ the residue test has no bite there.
   of the other 606, none is in the class of Proposition C2; for
   `det M = 3` and images of length at most 4, 132 of 6,960 non-trivial
   members are, and no incidence matrix is covered for all its word orders.
-- For a nonunit `σ ∈ PIP3`, `D = |det M| = β|α|² < β ≤` the longest image
-  length, so the longest image has two distinct proper prefixes with equal
-  residue. Residues alone cannot separate all cut positions; only the
-  letter filters exclude. (This is a counting heuristic, not a statement
-  about `L_σ`: Theorem T3 itself uses residue separation.)
+- For a nonunit `σ ∈ PIP3`, `D = |det M| = β·|α₂α₃| < β ≤` the longest
+  image length (`α₂, α₃` the other two roots), so the longest image has two
+  distinct proper prefixes with equal residue. Residues alone cannot
+  separate all cut positions; only the letter filters exclude. (This is a
+  counting heuristic, not a statement about `L_σ`: Theorem T3 itself uses
+  residue separation.)
 - Proposition PW: passing to powers adds no exclusion.
 - *Exploratory scratch observation:* among primitive nonsingular ternary
   substitutions with images of length at most 3, 54 nonunit ones (all
   `det M = −2`, all reducible) have strict systems found within search
   caps, and each satisfies every statement of Theorem T1 with all its
-  actual seams admissible. So `M`-adic residue data, child closure and the
-  letter filters are jointly satisfiable. The residue carrier depends only
-  on the `ℤ_p[M]`-module structure for `p | det M` and cannot see
-  irreducibility over `ℚ`.
+  actual seams admissible. So on reducible sources the residue conditions,
+  child closure and the letter filters of this criterion are jointly
+  satisfiable (scratch, within caps).
+- *Route remark, not proved and not checked by a verifier:* the seam
+  criterion reads only residues modulo `M ℤ^d` and letter data, and on the
+  tested sets with `|det M| = 2` it excluded neither a PIP3 corpus member
+  beyond the endpoint filters nor, as it must not, a reducible source
+  carrying a strict system. Nothing is claimed about residue data in
+  general. The route's sentence "the carrier depends only on the
+  `ℤ_p[M]`-modules for `p | det M` and cannot see irreducibility over `ℚ`"
+  is not adopted: it was not proved, and read literally it is false, since
+  the `ℤ_p[M]`-module `ℤ_p³` determines `χ_M`. Nothing here bears on the
+  matrix-adic carrier route on main
+  ([matrix-adic continuation](c4-madic-residue-2026-11-11.md)).
 
 ## 6. Statements from the three obstruction routes (verified forms)
 
 These are necessary conditions or mechanism statements. None excludes a
 strict system for PIP3. Each is given in the form the landing verifier
-confirmed; the corrections are part of the statement.
+confirmed; the corrections are part of the statement. Proof text added at
+the audit of this note is marked as such.
 
 ### 6.1 The Barge–Diamond mechanism in the length lattice
 
@@ -656,13 +713,22 @@ nonempty flat set of ordered irreducible noncoincident balanced pairs of
 legal words, closed under `τ`-children. Then `cr(σ) ≥ 3`.
 
 Instances: a flat rooted system of either phase; any ordered `τ`-sink `S`
-of a strict system with `S ≠ swap(S)` (two sinks are equal or disjoint).
+of a strict system with `S ≠ swap(S)` (two sinks are equal or disjoint; the
+words of a sink are legal, because by the proof of Lemma RL applied to the
+sink its states are blocks of pairs of periodic rays).
 Contrapositive: **if `cr(σ) ≤ 2`, every strongly connected child-closed
 ordered component of a strict system is swap-symmetric.**
 
-*Proof.* (1) By compactness there is a minimal closed translation-invariant
-set `Z` of bi-infinite pairs tiled by bigons of `B`; both projections are
-the whole hull (legal words, minimality). (2) A pair of `Z` shares no tile:
+*Proof.* (1) Fix `(u₀,v₀) ∈ B`. By (E2) each patch
+`(τⁿ(u₀), τⁿ(v₀))` is a concatenation of members of `B`, and its words are
+legal. The bi-infinite pairs all of whose finite windows occur in these
+patches form a nonempty closed translation-invariant set (compactness; the
+patches grow by primitivity); let `Z` be a minimal closed invariant subset.
+Every member of `Z` is tiled by bigons of `B`, and each projection of `Z`
+is a nonempty closed invariant subset of the hull, which is minimal, so
+both projections are the whole hull. (An arbitrary bi-infinite
+concatenation of bigons of `B` need not be legal at its junctions, which is
+why `Z` is taken inside these patches.) (2) A pair of `Z` shares no tile:
 a shared tile is an equal-Parikh cut followed by equal letters (`ℓ` is
 injective on `ℤ³`), a coincident factor. (3) If `(S⁻,S)` and `(S,S⁺)` are
 in `Z`, then `Φ^k S⁻` and `Φ^k S⁺` share no tile for any `k ≥ 0`: inside a
@@ -690,30 +756,43 @@ testable outside PIP; *exploratory scratch observation:* it holds on all
 
 *Consequence on (F), conditional on the imports of FC2.* `cr ≤ 2` on (F),
 so a strict system of a `σ ∈ PIP3` with (F) has only swap-symmetric ordered
-sinks. The verifier also gave a direct derivation from FC1: under (F) the
-root's bottom letter occurs as a top first letter at a cut, and with
-Theorem A(4) and Barge–Diamond Theorem 1 this produces the swap of the root
-bigon. The verifier described it as needing no import; the derivation as
-reconstructed for this note uses Barge–Diamond to exclude a cyclic
-orientation of three cut pairs, so that wording is not adopted.
+sinks. The same conclusion has a derivation that avoids the coincidence
+rank and uses only FC1, Theorem A(4) and Barge–Diamond Theorem 1 (written
+out at the audit of this note). By the proof of Lemma RL applied to a sink
+`S`, `S` contains the blocks of a ray pair `(X_a, X_b)` with `a ≠ b` fixed
+by a power of `g`. By FC1 the inflations of an occurrence of `b` in `X_a`
+and of an occurrence of `a` in `X_b` start at cuts, with first pairs
+`(b,z)` and `(z′,a)`. If `z = a` or `z′ = b`, a block of `S` has first pair
+`(b,a)`; its inflations begin with ever longer prefixes of `(X_b, X_a)`,
+whose first block is the swap of the first block of `(X_a, X_b)`, so `S`
+meets `swap(S)` and equals it. Otherwise `z = z′` is the third letter, and `{a,b}`, `{b,z}`,
+`{z,a}` are all first-letter pairs of states, so none is left strongly
+coincident (Theorem A(4)), against Barge–Diamond Theorem 1. The verifier
+(V1(f)) described this derivation as needing no import; that wording is not
+adopted, because the cyclic case is excluded only through Barge–Diamond:
+`012/120/201`, where Barge–Diamond's conclusion fails, has the flat system
+`(012,120)`, `(120,201)`, `(201,012)` with cyclic first pairs. For flat
+phase one, Proposition PD below gives failure of (F) directly.
 
 **Proposition PD (flat phase one ⟹ (F) fails; route label "Theorem D").**
 Let `σ ∈ PIP3` with `g(a) = b`, `g(b) = a`, `T = X_a = lim σ^{2k}(a)`,
 `T′ = σ(T)`, and suppose `(T,T′)` is strict and flat. Then `f` has a
 periodic state `(j,u)` with `u ∈ ℤ³`, `0 < ℓ·u < ℓ_j`; so (F) fails. If `g`
-fixes the third letter (class E), the cycle reached from any tile of that
-letter has even length.
+fixes the third letter (endpoint class E; if `g` maps it to `a` or `b`,
+endpoint class F), the cycle reached from any tile of that letter has even
+length.
 
 *Proof outline.* A tile whose letter never starts a common vertex along
-its inflation orbit (the fixed letter in class E; a suitable tile on `T` or
-`T′` in the two sub-cases of class F) stays strictly inside a tile of the
-other tiling at an integral offset; the offsets follow `f` and are finitely
-many by the Pisot property. ∎ Irreducibility gives "common vertex = cut",
-Barge–Diamond is used only in class E. Corrections: "even period" means
-even cycle length; in class E flatness is needed only for evenness (a
-transposed pair that is not left strongly coincident already keeps the
-fixed letter off every common vertex); the record treated only one of the
-two sub-cases of class F, the other is its mirror.
+its inflation orbit (the fixed letter in endpoint class E; a suitable tile
+on `T` or `T′` in the two sub-cases of endpoint class F) stays strictly
+inside a tile of the other tiling at an integral offset; the offsets follow
+`f` and are finitely many by the Pisot property. ∎ Irreducibility gives
+"common vertex = cut", Barge–Diamond is used only in endpoint class E.
+Corrections: "even period" means even cycle length; in endpoint class E
+flatness is needed only for evenness (a transposed pair that is not left
+strongly coincident already keeps the fixed letter off every common
+vertex); the record treated only one of the two sub-cases of endpoint class
+F, the other is its mirror.
 
 **Lemma OC (overlap carrier; route label "Lemma B").** Let `σ` be
 nonerasing with a positive length eigenvector, `(T,T′)` a strict ray pair
@@ -724,7 +803,10 @@ prefix Parikh vector `Q`, a `T′`-tile `j` at `Q′`, open intervals meeting,
 `swap(i,j,E) = (j,i,−E)`; (b) if `(x,j,E)` and `(j,y,−E)` are in `O₀` with
 `0 ≤ ℓ·E < ℓ_j`, then for no admissible depth `n` do `σⁿ(x)` and `σⁿ(y)`
 have a coincidence after an equal-Parikh prefix `ρ` with
-`ℓ·ρ < βⁿ(ℓ_j − ℓ·E)`.
+`ℓ·ρ < βⁿ(ℓ_j − ℓ·E)`. Here `n` is *admissible* if `σⁿ` maps the pair
+`(T,T′)` to itself or to `(T′,T)`: `n` a multiple of `m` in the `τ`-fixed
+case, every `n ≥ 1` in the exchanged case. (The record uses the word
+without defining it; this is the reading the proof outline needs.)
 
 *Proof outline.* (a) Two occurrences with exchanged tracks inflate to the
 same pair of supertiles with the same relative shift; a long overlap
@@ -749,26 +831,100 @@ holds on every strict control with `det ≠ 0`, so it carries no
 obstruction. The density consequences the route drew from it were not
 checked.
 
-**Lemma PO (partner orientation; route label "Lemma O").** Let `Z` be a
-minimal shift-invariant closed set of bi-infinite index-aligned marked
-pairs whose windows all occur in a strict ray pair `(X_h, X_a)` of `τ`
-arbitrarily far out, `B` its ordered bigon set. (i) For primitive `τ` both
-projections of `Z` are the whole subshift. (ii) For `τ` a power of a
-`σ ∈ PIP3`: the Parikh offset of a pair of `Z` is determined by the
-unmarked pair; if `B` is flat, the upper and lower partners of every point
-are distinct and their cut sets with it are disjoint. (iii) If no cut of
-`(X_h, X_a)` has the letter `a` as top first letter, then every occurrence
-of a long prefix of `X_a` in the top ray starts at a non-cut.
+**Lemma PO (partner orientation; route label "Lemma O").** Let
+`(X_h, X_a)` be a strict ray pair of `τ` and `B` the ordered bigon set of
+`(X_h, X_a)`. A *marked pair* is a pair `(x, y)` of bi-infinite words, read
+index by index, with a vector `δ ∈ ℤ³`, its Parikh offset (top minus
+bottom) at index 0; its *cuts* are the indices at which the running offset
+vanishes. The window of `(X_h, X_a)` at index `k` carries
+`δ = p(X_h[0:k)) − p(X_a[0:k))`. Let `Z` be a minimal shift-invariant
+closed set of marked pairs all of whose windows occur in `(X_h, X_a)`
+arbitrarily far out. (i) For primitive `τ` both projections of `Z` are the
+whole subshift. (ii) For `τ` a power of a `σ ∈ PIP3`: the Parikh offset of
+a pair of `Z` is determined by the unmarked pair; if `B` is flat, the upper
+and lower partners of every point are distinct and their cut sets with it
+are disjoint (if `(y⁻, x)` and `(x, y⁺)` are in `Z`, then `y⁻ ≠ y⁺` and no
+index is a cut of both). (iii) For primitive `τ`: if no cut of `(X_h, X_a)`
+has the letter `a` as top first letter, then no occurrence of a prefix of
+`X_a` in the top ray starts at a cut (immediate), so by compactness `X_a`
+is the top word of a one-sided marked pair `(X_a, W)`, all of whose windows
+occur in `(X_h, X_a)`, with nonzero Parikh offset at its origin.
 
-Status of each clause: (i) elementary. (ii) the record contains **no
-proof**; the verifier supplied one, conditional on Baker–Barge–Kwapisz
-Prop. 2.3 (recognizability) for the offset, and on three letters,
-Barge–Diamond Theorem 1, Theorem A and flatness for the cut sets.
-(iii) as first stated, "for any primitive `τ`" with flat meaning
+Status of each clause. (i) elementary: a projection of `Z` is a nonempty
+closed shift-invariant subset of a minimal subshift. (ii) the route's
+record contains **no proof**. The proof below was written at the audit of
+this note from the landing verifier's argument (V5) and re-derived there.
+It is conditional on Baker–Barge–Kwapisz Prop. 2.3 (which rests on
+recognizability) for the offset and for the distinctness of the partners,
+and it uses three letters, Barge–Diamond Theorem 1, Theorem A(4) and
+flatness for the cut sets. In the first version of this note `B` was "its
+ordered bigon set", which could be read as the bigon set of `Z`; the proof
+needs a set closed under `τ`-children, so `B` is the bigon set of the ray
+pair. (iii) as first stated, "for any primitive `τ`" with flat meaning
 `B ∩ swap(B) = ∅`, it is **false**: `012/120/201` with root `(0,1)` is a
 counterexample (exploratory scratch observation: all 2,848 occurrences sit
-at cuts). The hypothesis above repairs it; it is automatic for a flat
-phase-zero system in PIP3.
+at cuts). The hypothesis above repairs it, and the conclusion is then a
+compactness statement: the offsets of the occurrences are nonzero and take
+finitely many values. The hypothesis holds for a flat phase-zero system in
+PIP3, by Barge–Diamond Theorem 1, Theorem A(4) and flatness (the cut-set
+argument below, applied to `(X_h, X_a)` and a cut with first pair `(a, z)`).
+
+*Proof of (ii) (written at the audit of this note).* Apply
+Baker–Barge–Kwapisz §2 to `τ`, which is primitive, translation-aperiodic
+and Pisot; here `V = ℝ³`, and `E^u ∩ ℤ³ = {0}` because `β` is irrational.
+
+(∗) If a bi-infinite strand `γ` and its translate `γ + w` are both 0-th
+terms of elements of the strand space `F_τ^←`, then `w ∈ E^u`. Indeed,
+write `w = w_u + w_s` in `E^u ⊕ E^s`. Translating an orbit `(γ_k)` by
+`(M_τ^k w_u)` gives an orbit in the same cylinder, so `γ + w_u` is such a
+0-th term too. It agrees with `γ + w` modulo `E^s`, so the two are equal by
+the injectivity in Prop. 2.3; a strand is not invariant under a nonzero
+translation along `E^s`, so `w_s = 0`.
+
+*Offset.* Let `(x, y; δ) ∈ Z`. Its windows occur in `(X_h, X_a)` at indices
+`k_n → ∞`. The strands of `X_h` and `X_a` from `0 ∈ ℤ³` are fixed by
+`Φ_τ` and lie in the cylinder `C^{R₀}`. Translate both by `−t_n`, where
+`t_n` is the `E^u`-component of `p(X_h[0:k_n))`. Along a subsequence these
+translates, and for every `j ≥ 0` their `Φ_τ^j`-preimages (the same two
+strands translated by `−M_τ^{−j} t_n`), converge (compactness and a
+diagonal argument). The limits at `j = 0` are the strand of `x` with
+index-0 vertex at some `v ∈ E^s` and the strand of `y` with index-0 vertex
+`v − δ`, and both are 0-th terms of elements of `F_τ^←`. If
+`(x, y; δ′) ∈ Z` as well, it gives in the same way the strand of `x` with
+index-0 vertex `v′ ∈ E^s` and the strand of `y` with index-0 vertex
+`v′ − δ′`. By (∗) for `x`, `v′ − v ∈ E^u ∩ E^s = {0}`; by (∗) for `y`,
+`δ − δ′ ∈ E^u ∩ ℤ³ = {0}`.
+
+*Distinct partners.* Let `(y, x; δ₁)` and `(x, y; δ₂)` be in `Z`. The same
+construction gives strands of `y` and `x` with index-0 vertices `v` and
+`v − δ₁`, and strands of `x` and `y` with index-0 vertices `v′` and
+`v′ − δ₂`. By (∗) for `x` and for `y`, both `v′ − v + δ₁` and
+`v′ − v − δ₂` lie in `E^u`, so `δ₁ + δ₂ ∈ E^u ∩ ℤ³ = {0}`. Then the two
+marked pairs have the same cuts, and each bigon `(p, q)` of the first gives
+the bigon `(q, p)` of the second. Both are in `B`, against flatness.
+
+*Cut sets.* Let `(y⁻, x)` and `(x, y⁺)` be in `Z` and suppose index `k` is
+a cut of both, with letters `p₁, c, p₂` of `y⁻, x, y⁺` after it. The blocks
+starting at `k` are in `B`, with first pairs `(p₁, c)` and `(c, p₂)`.
+Replace `τ` by a power `τ′` such that the first letters `p₁′, c′, p₂′` of
+`τ′(p₁), τ′(c), τ′(p₂)` are fixed by the first-letter map of `τ′`.
+Inflating the two blocks by powers of `τ′`, as in the proof of Lemma RL,
+gives `τ′`-fixed rays for which `(X_{p₁′}, X_{c′})` and `(X_{c′}, X_{p₂′})`
+are concatenations of members of `B`, and `p₁′ ≠ c′ ≠ p₂′` by (E3). If
+`p₁′ = p₂′`, the first block `(P, Q)` of the first pair and the first block
+`(Q, P)` of the second are both in `B`. Otherwise the three letters are
+distinct. `{p₁′, c′}` and `{c′, p₂′}` are first-letter pairs of states of
+the strict system `B`, so they are not left strongly coincident (Theorem
+A(4)), hence `{p₁′, p₂′}` is (Barge–Diamond Theorem 1; three letters). So
+`X_{p₁′}` and `X_{p₂′}` share a tile after equal Parikh prefixes, and with
+it all its inflations. Inside a long shared stretch two consecutive cuts of
+`(X_{p₁′}, X_{c′})` cut out some `(w, q) ∈ B`. The same two Parikh vertices
+are cuts of `(X_{c′}, X_{p₂′})`, consecutive because a cut between them
+would be a cut of the first pair, and they cut out `(q, w) ∈ B`. Both cases
+contradict flatness. ∎
+
+Not machine-checked. The clause is vacuous on every computed domain: no
+strict system with irreducible `χ_M` is known.
 
 **Corollary ST (slice classes; route label "Cor. T").** Let `σ ∈ PIP3` with
 letters `{h,a,b}`, `{h,a}` not left strongly coincident,
@@ -779,6 +935,18 @@ is also a tile of `σ^k(y)`. Then `C_ha = ∅` and `C_ab ∩ C_hb = ∅`
 rests on their Thm 4.2 and Remark 4.3) and return module `= ℤ³`: positive
 measure of `(0,m) ∖ (C_ab ∪ C_hb)` forces `cr ≥ 3`; if `cr = 2` the union
 is conull.
+
+*Proof of the elementary part (written at the audit of this note).* A tile
+of `σ^k(h)` that is also a tile of `σ^k(a)` is a left strong coincidence of
+`{h,a}`, since `ℓ` is injective on `ℤ³` and equal positions are therefore
+equal Parikh prefixes; so `C_ha = ∅`. If `s ∈ C_ab ∩ C_hb`, witnessed at
+levels `k₁` and `k₂`, put `k = max(k₁, k₂)`. A shared tile inflates to a
+shared patch, and `β^k s < β^k m` lies in all three words, so the tile of
+`σ^k(b)` containing `β^k s` is a tile of `σ^k(a)` and of `σ^k(h)`. Hence
+`s ∈ C_ha`, a contradiction. ∎ The conditional part has no proof text in
+the repository: it was confirmed by one landing verifier (V6) against the
+text of Baker–Barge–Kwapisz §6, and that derivation exists only in session
+scratch.
 
 Correction: the statement uses neither the strict system nor bounded gaps.
 Its only hypothesis beyond PIP3 is that `{h,a}` is not left strongly
@@ -798,12 +966,17 @@ quadratic has no root of modulus 0 or 1, so `χ_M` is of Pisot type, and
 Barge–Diamond with `d = 2` finishes). It is the `d = 2` instance of R2's
 argument.
 
-## 7. New negative controls and what each refutes
+## 7. Negative controls: two new, one standing, and what each refutes
 
 ### 7.1 Pinned by `kernel/tests/test_c4_reducible_pisot_controls.mojo`
 
-All three are primitive; each has a rational eigenvalue `+1` or `−1` and
-an irreducible Pisot quadratic cofactor, so the inflation factor is an
+C-D1 and C-D2 are new. `1/012/101` is a standing control: it is one of the
+28 strict carriers already pinned on main
+(`kernel/tests/test_c4_quotient_spectrum.mojo`: 6 ordered states under
+`σ`, Parikh rank 2, quotient root `−1`); new here are its 3-state `σ²`
+system, the factorisation of `χ_M` and the behaviour of the screens. All
+three are primitive; each has a rational eigenvalue `+1` or `−1` and an
+irreducible Pisot quadratic cofactor, so the inflation factor is an
 irrational Pisot number and only irreducibility of `χ_M` is missing.
 
 | Control | `det M`, `χ_M` | Strict pairs of fixed rays | Coincident pair | Refutes |
@@ -834,6 +1007,13 @@ not unsound on them.
 
 ### 7.2 Exploratory scratch observations (not replayable from the repository)
 
+The strict-system landscape for images of length at most 3 is already on
+the ledger (entry of 2026-11-06: 276 primitive substitutions carrying 294
+strict systems in 28 classes, scratch; the class representatives are pinned
+natively, among them `1/012/101`, `1/012/121` and `01/201/112`). The
+observations below restrict it to irrational Pisot inflation and add the
+geometric reading.
+
 - **(BG) is false** (W2, confirmed by an independent scratch verifier). For
   `1/012/101`, `1/021/202`, `10/102/211`, `01/201/112` and `1/012/121` the
   ordered overlap closure of a stated ray pair from the common vertex is
@@ -849,9 +1029,10 @@ not unsound on them.
 - **Two senses of "strict" on reducible controls.** For `10/102/211`,
   `01/201/112`, `1/012/121` and C-D1 every geometric common vertex is an
   equal-Parikh cut (exact lifted closures); for `1/012/101`, `1/021/202`
-  and C-D2 about half are not. The first statement replaces the ledger's
-  "no non-cut common vertex to depth 5 (budget)" for `10/102/211`, still
-  as a scratch observation.
+  and C-D2 about half are not. The first statement would sharpen the
+  ledger's "no non-cut common vertex to depth 5 (budget)" for `10/102/211`
+  (entry of 2026-11-05, which stands); it is a scratch observation and
+  corrects nothing.
 - **Class D** (W6): 90 class-D substitutions with images of length 2 to 4
   have two strict ray pairs and one coincident pair, within search budgets
   and unchanged at five times the budget. Only 36 of them have irrational
@@ -872,9 +1053,9 @@ not unsound on them.
 | `01/2/120` | singular; inflation 2 | mixed (20 states with all six ordered first pairs, scratch); GBD hypothesis fails. |
 | `012/120/201` | `χ = x²(x−3)` | no strongly coincident pair at all; flat with three sheets closing cyclically, so the *conclusion* of FL holds and nothing is contradicted; refutes Lemma PO(iii) for arbitrary primitive `τ`. |
 | `1/012/1` | `χ = x(x−2)(x+1)`; periodic | the model flat phase-one system; height `φ = (1,−1,1)`, `φM = −φ`; outside C2 (`det M = 0`). |
-| `10/102/211`, `01/201/112` | `χ = (x−1)(x²−2x−2)`, `det M = −2` | `ℓ·(2,0,−1) = 0`: `ℓ` is not injective on `ℤ³`, so the hypotheses of FC1 are not met; FL steps (1)–(3) hold, step (4) fails (return lengths of index 3); Theorem P stops at even norm; C2: admissible staggered seams exist; GBD, SBD, DC, OC, RI all **hold**. |
-| `1/012/101` | `χ = (x+1)(x²−2x−1)` | unit, odd determinant, and `dim H¹ = 2`, the degree of its inflation (scratch): the arithmetic hypotheses of FC3(b) hold, and so does the analogue of Fork's cohomological hypothesis. Both arguments stop at alignment: the return lengths have index 2 and the two tracks lie in different cosets, so the strict pair is not in one fibre. `ker(M+I) ≠ 0`, so the mean offset is not forced to vanish. |
-| C-D1, C-D2 | `χ = (x−1)·`(Pisot quadratic) | the complete three-ray configuration holds; FL steps (1)–(3) hold, step (4) fails (index 3, resp. 2); C2: the legal filter keeps every birth type; GBD and SBD hold. |
+| `10/102/211`, `01/201/112` | `χ = (x−1)(x²−2x−2)`, `det M = −2` | `ℓ·(2,0,−1) = 0`: `ℓ` is not injective on `ℤ³`, so the hypotheses of FC1 are not met; FL steps (1)–(3) hold, step (4) fails (return lengths of index 3; both scratch); Theorem P stops at even norm; C2: admissible staggered seams exist; GBD, SBD, DC, OC, RI all **hold**. |
+| `1/012/101` | `χ = (x+1)(x²−2x−1)` | unit, odd determinant, and `dim H¹ = 2`, the degree of its inflation (scratch): the arithmetic hypotheses of FC3(b) hold, and so does the analogue of Fork's cohomological hypothesis. Both arguments stop at alignment: the return lengths have index 2 and the two tracks lie in different cosets (scratch), so the strict pair is not in one fibre. `ker(M+I) ≠ 0`, so the mean offset is not forced to vanish. |
+| C-D1, C-D2 | `χ = (x−1)·`(Pisot quadratic) | the three-ray configuration of §7.1 holds (pinned); FL steps (1)–(3) hold, step (4) fails (return lengths of index 3, resp. 2; both scratch); C2: the legal filter keeps every birth type; GBD and SBD hold. |
 
 Productive PIP3 controls (no strict system) bound the theorems from the
 other side: `01/12/021` fails (F) through the fixed state `(2; (−1,0,1))`
@@ -882,8 +1063,11 @@ with `(M − I)v = e₀` (pinned by `kernel/tests/test_c4_geometric_f.mojo`),
 and `1/02/002`, `01/20/200` fail (F) as well (scratch). So "interior
 periodic address ⟹ strict system" is false, and the (F)-class theorems
 are sufficient conditions only. The non-Pisot binary `00001/011` is outside
-every statement here (no finiteness of relative states), and the abstract
-plastic-cubic degree-five survivor is not a word object.
+the (F)-class statements, Theorem GBD, Theorem FL and Proposition PD (no
+Pisot property, hence no finiteness of relative states or offsets); the
+statements that do not assume the Pisot property (§5, Lemma OC, Lemma RI)
+apply to it. The abstract plastic-cubic degree-five survivor is not a word
+object.
 
 ## 8. Why this route to C4 is now known to be circular on the (F) class
 
@@ -902,13 +1086,20 @@ automatic. So there:
 ```text
 σ has a strict system  ⟺  some pair of distinct g-periodic letters is not left SC
                        ⟺  ¬ SC_all(σ)                       [FC1; elementary]
-                       ⟺  cr(σ) = 2  ⟺  not pure discrete   [FC2; conditional]
+                       ⟺  cr(σ) = 2  ⟺  not pure discrete   [FC2 and Baker–Barge–Kwapisz Cor. 5.2; conditional]
 ```
 
-**Corollary H.** A proof of universal C4 contains a proof of pure discrete
-spectrum for every ternary irreducible Pisot substitution with (F), unit
-or not: Minervino–Thuswaldner Thm 9.9 without its strong-coincidence
-hypothesis.
+*Corollary H of the (F)-class note, restated* (conditional on the imports
+of Theorem FC2 and on Baker–Barge–Kwapisz Cor. 5.2). If no `σ ∈ PIP3` has a
+strict system, then every `σ ∈ PIP3` with (F), unit or not, has `cr = 1`:
+all letter pairs are strongly coincident on both sides and the tiling flow
+has pure discrete spectrum. So a proof of universal C4 contains a proof of
+pure discrete spectrum for every ternary irreducible Pisot substitution
+with (F). The one criterion for the (F) class in the sources read,
+Minervino–Thuswaldner Thm 9.9, has strong coincidence as a hypothesis and
+is stated as a tiling property of the self-replicating multiple tiling; its
+identification with pure discrete spectrum of the tiling flow for nonunit
+`σ` was not checked against a source.
 
 Consequences for the programme:
 
@@ -935,32 +1126,42 @@ Consequences for the programme:
 1. **Irreducibility, beyond ℚ-independence of the tile lengths.** Every
    fact derived at the level of letters, windows, seams, recognizability
    and numeration uses only primitivity, `det M ≠ 0` and bounded
-   discrepancy, and is realised in full by C-D1 and C-D2. The one thing
-   those controls lack at the level of lengths, injectivity of `ℓ` on
-   `ℤ³`, is exactly what FC1 uses, and FC1 *produces* strict systems
+   discrepancy, and is realised by C-D1 and C-D2 (pinned as far as §7.1
+   goes; the density and numeration parts are single-pass, §11). The one
+   thing those controls lack at the level of lengths, injectivity of `ℓ`
+   on `ℤ³`, is exactly what FC1 uses, and FC1 *produces* strict systems
    instead of excluding them. What separates PIP3 from the reducible
-   controls in every checked case is of higher rank: the return module is
-   all of `ℤ³`, so there is no integer height `φ` with `φM = ±φ` along
-   which partners stack, and the partners of a tiling must close up inside
-   one finite fibre. A proof has to draw its contradiction from that
-   closing-up, that is, from the fibre structure (return module `= ℤ³`) or
-   from the Galois structure of the spectrum (the mechanism behind Theorem
-   P), both of which are statements about the tiling space of `σ`.
+   controls in every checked case (scratch) is of higher rank: the return
+   module is all of `ℤ³`, so there is no integer height `φ` with
+   `φM = ±φ` along which partners stack, and the partners of a tiling must
+   close up inside one finite fibre. A proof must use irreducibility in a
+   step that fails on C-D1 and C-D2. In this attempt irreducibility
+   entered, beyond ℚ-independence of the tile lengths, only through the
+   fibre structure (return module `= ℤ³`) and through the Galois structure
+   of the spectrum (the mechanism behind Theorem P), both of which are
+   statements about the tiling space of `σ`. These are the candidates
+   found, not an exhaustive list.
 2. **The Barge–Diamond mechanism is not enough.** By Theorem GBD it needs
    only a Pisot inflation of degree at least 2, and the reducible
    Pisot-inflation controls satisfy all of its hypotheses and conclusions
    while carrying strict pairs. It delivers the good pair and never a cut
    pair (§6.1).
-3. **`M`-adic residues cannot see irreducibility** (§5.7). They have no
-   bite at `det M = 2`, which is every nonunit corpus member, and passing
-   to powers adds nothing.
+3. **The seam criterion's residue test did not separate PIP3 from
+   reducible sources** (§5.7; exploratory scratch observation, not a
+   theorem). It excluded no nonunit corpus member beyond the endpoint
+   filters (all of them have `det M = 2`), reducible `det M = −2` strict
+   systems satisfy every condition it uses, and passing to powers adds
+   nothing (Proposition PW).
 4. **Off (F), the obstruction is interior-type periodic strands.** The
    proof of `cr ≤ 2` covers exactly the case where every member of the
    zero fibre has the origin as a vertex. Off (F), three pairwise
    non-coincident strands must include an interior-type one, which avoids
    every cut of a strict pair; deciding whether it is coincident with the
    pair is an overlap-coincidence question.
-5. **Bounded gaps must be used, and on (F) they cannot be** (§8).
+5. **On (F) bounded gaps give no leverage** (§8). An argument for C4 that
+   is to be weaker than #138 must use the bounded-gap hypothesis; on (F)
+   that hypothesis is automatic, so there any proof of C4 is a proof of
+   all-pairs left strong coincidence.
 
 Where each standing hypothesis enters the statements of this increment:
 
@@ -979,11 +1180,14 @@ Where each standing hypothesis enters the statements of this increment:
 
 1. **On (F): exclude `ν_L = 2`.** For `σ ∈ PIP3` with (F), every pair of
    distinct `g`-periodic letters is left strongly coincident. Equivalent
-   there to C4, to `cr = 1` and to pure discrete spectrum. Recorded as
-   proved under the hypotheses of FC3. Open: `det M` even; `det M` odd
-   with `tr M ≡ e₂(M)` and `dim H¹ ≥ 5`. On the corpus those are 354 of
-   the 510 (F) specimens with two periodic letters on both sides: 174 with
-   `det M = 2`, 180 odd (pinned).
+   there to C4 (FC1, elementary) and, conditional on the imports of FC2
+   and on Baker–Barge–Kwapisz Cor. 5.2, to `cr = 1` and to pure discrete
+   spectrum. Recorded as proved under the hypotheses of FC3. Open: `det M`
+   even; `det M` odd with `tr M ≡ e₂(M)` and `dim H¹ ≥ 5`. That open
+   arithmetic class contains 354 of the 510 corpus (F) specimens with two
+   periodic letters on both sides: 174 with `det M = 2`, 180 odd (pinned).
+   These are class counts, not open cases: on the corpus the statement
+   holds (`C4StandingCorpus` with FC1).
 2. **Off (F): the zero-fibre form of C4.** No two non-coincident members
    of the zero fibre (the `Φ`-periodic integer strands) have relatively
    dense common vertices; for a given pair, common vertices are relatively
@@ -994,10 +1198,13 @@ Where each standing hypothesis enters the statements of this increment:
    interior-type periodic strand is coincident with one of two
    non-coincident vertex-type strands.
 3. **The `cr = 2` wall.** If `cr(σ) ≤ 2`, every ordered sink of a strict
-   system is swap-symmetric (Theorem FL). With Proposition R of the
-   cut-attractor note, at `cr = 2` C4 is equivalent to
-   `int(R_h ∩ R_a) = int(R_h ∩ R_b) = ∅`. Theorem P confines `cr = 2` with
-   odd determinant to `tr M ≡ e₂(M)` and `dim H¹ ≥ 5`.
+   system is swap-symmetric (Theorem FL). For unit `σ`, with Proposition R
+   and Lemma G of the cut-attractor note (conditional on that note's
+   imports (I1), (I2); (I2) is Barge–Kwapisz 2006, not re-read there and
+   not obtained during this attempt), at `cr = 2` C4 is equivalent to
+   `int(R_h ∩ R_a) = int(R_h ∩ R_b) = ∅`; no such form is recorded for
+   nonunit `σ`. Theorem P confines `cr = 2` with odd determinant to
+   `tr M ≡ e₂(M)` and `dim H¹ ≥ 5`.
 4. **Phase one, statement (N).** For `σ ∈ PIP3` and a pair `{a,b}`
    transposed by `g`, the rays `X_a` and `X_b` cannot simultaneously share
    no tile, have common vertices at bounded gaps, and have ordered bigon
@@ -1008,18 +1215,28 @@ Where each standing hypothesis enters the statements of this increment:
 5. **Unit, `dim H¹ = 3`.** By Theorem Fork every strict component has
    forked partners with disjoint cut sets, and (F) fails. Open: exclude
    the fork. Whether `π₁` is a covering is open; nothing is known for
-   `dim H¹ ≥ 4` or `det M = 2`.
+   `dim H¹ ≥ 4` or for nonunit `σ`.
 6. **Nonunit.** C4 for nonunit PIP3 has no uniform mechanism on the
-   residue route (§5.7).
-7. **Subtile form** (already the open quantifier on main): for a hub pair
-   `{h,x}` with no left strong-coincidence witness,
-   `int(R_h ∩ R_x) = ∅`.
+   seam-criterion route of §5 (§5.7). The matrix-adic carrier route on main
+   is a separate programme and is not assessed here.
+7. **Subtile form** (the open quantifier on main, cut-attractor note §7;
+   unit `σ` only, conditional on the imports of Proposition R): for every
+   unit `σ ∈ PIP3` with `cr(σ) = 2` and every pair `{c,c′}` without a left
+   strong-coincidence witness, `int(R_c ∩ R_c′) = ∅`. On that class it is
+   equivalent to C4 (item 3). Without the restriction to `cr = 2` only the
+   direction of Lemma G is available: the statement is sufficient for C4
+   and not known to be equivalent to it. The two-ray-words record describes
+   it as of strong-coincidence strength, and that route ends there.
 
 Do not re-run the six routes as posed. A new attempt should start from one
 of the statements above, and should say in advance which step fails on
 C-D1, C-D2 and `1/012/101`.
 
 ## 11. Obstruction-route facts and their verification status
+
+The last two rows concern the nonunit route, a partial verdict; they are
+listed here because no verifier re-derived them before the audit of this
+note.
 
 | Fact | Route | Status |
 | --- | --- | --- |
@@ -1037,16 +1254,18 @@ C-D1, C-D2 and `1/012/101`.
 | "Every nonsingular flat phase-one system found has eigenvalue `−1`" | phase-one | single-pass scratch observation on instances that closed within caps |
 | Transposed pairs are left strongly coincident for all PIP3 with images `≤ 5` | phase-one | single-pass scratch scan |
 | Lemma RI | two-ray-words | confirmed (V4); its density consequences unchecked |
-| Lemma PO | two-ray-words | confirmed with corrections (V5); clause (iii) **false as first stated**; clause (ii) had no recorded proof |
+| Lemma PO | two-ray-words | confirmed with corrections (V5); clause (iii) **false as first stated**; clause (ii) had no recorded proof, and one was written at the audit of this note (§6.3) |
 | Corollary ST | two-ray-words | confirmed with corrections (V6) |
 | Degree-two identity and consequences | two-ray-words | confirmed with corrections (W5): **not new**, see §6.3 |
 | C-D1, C-D2 | two-ray-words | confirmed with corrections (W6); pinned by a Mojo regression |
-| "90 such class-D substitutions" | two-ray-words | **corrected**: 36 with irrational Pisot inflation, 54 singular |
+| "90 such class-D substitutions" | two-ray-words | **corrected** (W6; exploratory scratch observation, counts under search budgets): 36 with irrational Pisot inflation, 54 singular |
 | Periodic strict pairs over rational torus points; numeration dictionary | two-ray-words | single-pass |
 | Every `g`-cyclic root reaches a diagonal on the corpus, on the shell of maximal image length 4, and on a seeded sample with images `≤ 6`; pre-diagonal runs of 47, 429, 693 bigons | two-ray-words | single-pass scratch scans; budgets not exhausted |
 | FC1 "maximal transient 38" | zero-fibre-rank | **withdrawn**: a 3,000-letter prefix scan; the exact value over the complete relative-state closure is 51 (pinned) |
 | "`π₁` is not a covering map"; "`ℤ/2` for `1/012/1`" | cohomology | **corrected**: not injective; periodic, quotient `ℤ/3` |
 | Covering-degree parity (that route's own "Theorem P", unrelated to Theorem P of §4), cross-seam lemma, ERP proposition | cohomology | not verified; not used |
+| Proposition PW (powers add nothing) | nonunit | asserted by the route; proof written at landing; re-derived only at the audit of this note (§5.4) |
+| "The carrier cannot see irreducibility over `ℚ`" | nonunit | route remark; not proved, not verified, **not adopted** (§5.7) |
 
 Nothing above was refuted outright. The entries marked wrong, false,
 corrected or withdrawn are kept here so that the earlier wording is not
@@ -1059,14 +1278,14 @@ before any repository code or proof text of this increment was written.
 
 | Source | Statement | Hypotheses | Used in this note for | Read? |
 | --- | --- | --- | --- | --- |
-| Barge–Diamond, *Coincidence for substitutions of Pisot type*, Bull. Soc. Math. France 130 (2002) 619–626 | Theorem 1: distinct letters `j, r` and `n, k` with `φⁿ(j)`, `φⁿ(r)` having the same `k`-th letter after prefixes with equal abelianisation | substitution of Pisot type: all non-Perron eigenvalues of modulus strictly between 0 and 1; no unimodularity | hub structure; GBD (proof reproduced); PD in class E; PO(ii) | in full by three routes and reproduced line by line; taken from the repository gate by two others |
-| Baker–Barge–Kwapisz, *Geometric realization and coincidence for reducible non-unimodular Pisot tiling spaces with an application to β-shifts*, Ann. Inst. Fourier 56 (2006) 2213–2248 | Def. 4.1; Thm 4.2; Remark 4.3; Prop. 2.3; Lemma 6.2(i) | primitive, translation-aperiodic, Pisot inflation; reducible and non-unimodular allowed | FL (Def. 4.1); PO(ii) (Prop. 2.3); ST (Lemma 6.2(i)) | yes. Its sentence "`Σ = Γ` for irreducible Pisot" defers to a source not obtained and is replaced by Theorem R on main |
-| Barge, *Factors of Pisot tiling spaces and the Coincidence Rank Conjecture*, Bull. Soc. Math. France 143 (2015), arXiv:1301.7094 | Thm 4; Thm 12; Lemmas 13, 14; Prop. 19; Lemmas 20, 21; sequence (4.1); Thm 22 | primitive, non-periodic Pisot substitution; Thm 22: inflation of degree `d`, odd norm, `cr = 2` ⟹ `dim H¹ ≥ 2d−1` | the (F)-class theorems only | yes (in full by one route) |
-| Barge–Diamond, *Cohomology in one-dimensional substitution tiling spaces*, Proc. Amer. Math. Soc. 136 (2008), arXiv:math/0702669 | Theorem 4, Corollary 5 | primitive aperiodic | the (F)-class theorems only | yes, by one route |
+| Barge–Diamond, *Coincidence for substitutions of Pisot type*, Bull. Soc. Math. France 130 (2002) 619–626 | Theorem 1: distinct letters `j, r` and `n, k` with `φⁿ(j)`, `φⁿ(r)` having the same `k`-th letter after prefixes with equal abelianisation | substitution of Pisot type: all non-Perron eigenvalues of modulus strictly between 0 and 1; no unimodularity | hub structure; GBD (its proof, read in the length lattice); PD in endpoint class E; PO(ii) and the remark on PO(iii); the FC1 derivation of §6.2 | in full by three routes and reproduced line by line; taken from the repository gate by two others |
+| Baker–Barge–Kwapisz, *Geometric realization and coincidence for reducible non-unimodular Pisot tiling spaces with an application to β-shifts*, Ann. Inst. Fourier 56 (2006) 2213–2248 | Def. 4.1; Thm 4.2; Remark 4.3; Prop. 2.3; Lemma 6.2(i); Thm 5.1; Cor. 5.2 | primitive, translation-aperiodic, Pisot inflation; reducible and non-unimodular allowed | FL (Def. 4.1); PO(ii) (§2 and Prop. 2.3); ST (Lemma 6.2(i)); §8 and Corollary H (Thm 5.1, Cor. 5.2, through the (F)-class note) | yes. Its sentence "`Σ = Γ` for irreducible Pisot" defers to Barge–Kwapisz 2006, which was not obtained during the attempt, and is replaced by Theorem R on main |
+| Barge, *Factors of Pisot tiling spaces and the Coincidence Rank Conjecture*, Bull. Soc. Math. France 143 (2015), arXiv:1301.7094 | as tabulated in the (F)-class note §1: Thm 4(1)–(5); Thm 5; Thm 12; Lemmas 13, 14; Prop. 19; Lemma 20; sequence (4.1); Thm 22 and the count of periodic words in its proof; the proper version of its §4 | primitive, non-periodic Pisot substitution; Thm 22: inflation of degree `d`, odd norm, `cr = 2` ⟹ `dim H¹ ≥ 2d−1` | the (F)-class theorems only | yes (in full by one route); the proofs of Thm 4 and the references for the proper version were not followed |
+| Barge–Diamond, *Cohomology in one-dimensional substitution tiling spaces*, Proc. Amer. Math. Soc. 136 (2008), arXiv:math/0702669 | as tabulated in the (F)-class note §1: Lemma 2, Corollary 3, Theorem 4 and its proof | primitive aperiodic | the (F)-class theorems only | yes, by one route |
 | Barge, *Pure discrete spectrum for a class of one-dimensional substitution tiling systems*, Discrete Contin. Dyn. Syst. 36 (2016), arXiv:1403.7826 | Lemma 3.11 and Thm 3.13 | primitive Pisot, injective on initial letters, constant on final letters | description only: that hypothesis makes the vertex sets of fibre-mates disjoint, the reverse of what C4 needs | yes |
-| Minervino–Thuswaldner, *The geometry of non-unit Pisot substitutions*, arXiv:1402.2002 | Def. 9.3, Prop. 9.4, Thm 9.9 | irreducible Pisot, non-unit allowed | naming (F); stating Corollary H; in no proof | yes (those parts) |
+| Minervino–Thuswaldner, *The geometry of non-unit Pisot substitutions*, arXiv:1402.2002 | Def. 9.3, Prop. 9.4, Thm 9.9 | irreducible Pisot, non-unit allowed | naming (F); the remark after Corollary H in §8; in no proof | yes (those parts) |
 | Barge, *The Pisot conjecture for β-substitutions*, arXiv:1505.04408 | §1 items (2)–(3); §3 (Property (W)); Cor. 17 | Pisot β-substitutions | description only: Property (W) concerns the tiling space of the β-substitution itself and does not transfer; the phase-one route's use of §1 is dropped (V1) | abstract, §3 and Cor. 17 only |
-| Barge–Kwapisz, *Geometric theory of unimodular Pisot substitutions*, Amer. J. Math. 128 (2006) | — | — | **not obtained; cited for nothing** | no |
+| Barge–Kwapisz, *Geometric theory of unimodular Pisot substitutions*, Amer. J. Math. 128 (2006) | — | unimodular | **not obtained during the attempt; no statement of this note imports it.** It is import (I2) of Proposition R on main, which §10 items 3 and 7 quote as conditional | not during the attempt; what was read of it at the audit of the (F)-class notes is recorded in the (F)-class literature note |
 | Repository | Theorem A (Lean `StrictSystem.lean`); Propositions 2, 3 and Lemma F (cut-attractor note); Theorem R (periodic-pair fibre gate); §9 eliminator; legal-seams and seam-birth notes | as stated there | throughout | — |
 
 The remaining sources of the (F)-class theorems (Barge–Kellendonk
@@ -1091,9 +1310,9 @@ note.
   unimodularity hypothesis and applies to nonunit PIP3. Barge 2015 Thm 22
   needs odd norm, not unit. **Do not transfer:** anything in
   Baker–Barge–Kwapisz that rests on `Σ = Γ` to the reducible controls
-  (return module of index 2 or 3); Barge 2016 beyond its final-letter
-  class; the equal-Parikh form of Barge–Diamond's conclusion outside
-  Pisot type.
+  (return module of index 2 or 3, scratch); Barge 2016 beyond its
+  final-letter class; the equal-Parikh form of Barge–Diamond's conclusion
+  outside Pisot type.
 - **Negative controls.** §7.
 - **Decision.** Redirect. (i) is recorded as two instances of the on-main
   eliminator, with no novelty claim for the criterion. (ii) proceeds to a
@@ -1117,10 +1336,10 @@ statements are about the 4,554-member corpus or about the parameter range
 ### Derivation / reduction
 
 §5 (proofs of Lemma RL, Theorem T1, Propositions C2 and PW, Theorem T3
-with both seam tables); §6 (statements and proof outlines of the
-obstruction-route results in their verified forms); §8 (the reduction of
-C4 to all-pairs strong coincidence on (F), from Theorem FC1 of the
-(F)-class note). The finite objects certified by the two regressions are:
+with both seam tables); §6 (statements of the obstruction-route results in
+their verified forms, each with a proof, a proof outline or neither, as
+marked in §4); §8 (the reduction of C4 to all-pairs left strong coincidence
+on (F), from Theorem FC1 of the (F)-class note). The finite objects certified by the two regressions are:
 for each stated pair of fixed rays of a control, the ordered child closure
 of its first balanced block, validated against every literal factor
 occurrence; for each family member, the complete list of local birth
@@ -1160,7 +1379,11 @@ claim.
 - Controls against a vacuous pass: at `c = 2` both families are in PIP3
   with `det M = 2` and keep legal types (4 of 4 for `F1_2`, 2 of 4 for
   `F3_2`); `c = 64` exceeds the 64-letter image budget of the on-main
-  sieve and is refused, not decided; singular incidence is refused.
+  sieve and is refused, not decided; singular incidence is refused. The
+  non-primitive `1/0/22` (`det M = −2`, empty on-main `L_σ`, strict system
+  `(01,10)`, `(10,01)`) is refused by the legal list, whose emptiness is an
+  exclusion only for primitive input (added to the regression at the audit
+  of the code).
 - Left strong-coincidence levels `(4,1,5)` and `(1,4,2)` for
   `3 ≤ c ≤ 8`.
 - Caps: a state cap one below a system reports capped; an exhausted level
@@ -1187,18 +1410,25 @@ claim.
   letters; of the other 510, 84 have odd determinant and `dim H¹ ≤ 4`, 120
   odd determinant and `tr M ≢ e₂(M)`, 156 either, 354 neither (174 with
   `det M = 2`, 180 odd).
-- Fail-closed behaviour: non-PIP3 input, an uncertifiable radius, a state
-  or overlap cap, and an orbit closing on an uncertified cycle all raise.
-  The census counts classes; it certifies no coincidence rank, no strong
-  coincidence and no spectrum.
+- The certified radii: pinned on five fixtures and by their sums (8,562
+  over the 348 incidence matrices, 99,078 over the specimens); a search in
+  any other box returns no verdict.
+- Fail-closed behaviour: non-PIP3 and malformed input, a state or overlap
+  cap, a point that is not a state, letters that are not periodic, and an
+  orbit closing on an uncertified cycle all raise (`test_refusals`);
+  `fc3_profile` refuses non-PIP3 input. The
+  module also raises when a radius cannot be certified or exceeds its cap;
+  that path is not exercised by the regression. The census counts classes;
+  it certifies no coincidence rank, no strong coincidence and no spectrum.
 
 Everything else quoted in this note with a number is an exploratory
 scratch observation from session scratch that is not in the repository.
 
 ### Negative controls
 
-§7: three new reducible strict controls with irrational Pisot inflation
-(pinned), the five geometric counter-models to (BG) and the two censuses
+§7: two new reducible strict controls with irrational Pisot inflation and
+the standing control `1/012/101` (pinned), the five geometric
+counter-models to (BG) and the two censuses
 (scratch), and the table of where each argument stops. Rejected stronger
 variants kept on record: (BG); "Barge–Diamond's conclusion holds in the
 equal-Parikh sense for reducible Pisot inflation"; "phase one cannot occur

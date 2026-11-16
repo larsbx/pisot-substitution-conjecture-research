@@ -10,14 +10,24 @@ remains open; nothing here changes a governed claim status (C4, #138, #139,
 
 ## Timing, stated plainly
 
-The sources below were read on 2026-11-15 and 2026-11-16, in the course of
-six proof attempts on universal C4, before any repository code or proof text
-of this increment was written. The text of this note was written on
-2026-11-16, after that reading and together with the proof note; statement
-numbers were re-checked against the downloaded texts while writing. So the
-order "sources first, then proof text and kernel code" was kept, but the gate
-is recorded at the end of the attempts, not before them. None of the six
-attempts proved universal C4
+The sources marked as read in the table below, with three exceptions, were
+read on 2026-11-15 and 2026-11-16, in the course of six proof attempts on
+universal C4, before any repository code or proof text of this increment was
+written. The text of this note was written on 2026-11-16, after that reading
+and together with the proof note; statement numbers were re-checked against
+the downloaded texts while writing. So the order "sources first, then proof
+text and kernel code" was kept for the reading, not for the gate: the Mojo module
+`kernel/psc/c4_geometric_f.mojo` and its regression were written on
+2026-11-16 before the text of this note (file times about 01:10–02:00 UTC
+against 03:05–03:35 UTC), so the decision below was recorded after the
+executable part existed, and at the end of the attempts, not before them.
+
+The three exceptions: Barge–Kwapisz 2006, Akiyama 2016 and the cited passage
+of Barge's arXiv:1505.04408 were read on 2026-11-16 during the audit of the
+two notes, after the proofs were written. They are marked in the source
+table and enter no proof.
+
+None of the six attempts proved universal C4
 ([closure-attempt record](c4-closure-attempt-2026-11-16.md)).
 
 ## Proposed claims
@@ -59,8 +69,9 @@ The claims proposed for a written proof and an exact corpus replay:
    component `Z ⊆ Ω_σ × Ω_σ`: every `(T, T′) ∈ Z` has a second partner `T″`,
    `(T, T″) ∈ Z`, with `Φⁿ(T′)` and `Φⁿ(T″)` tile-disjoint for all `n`.
 
-Exact statements, hypotheses and proofs are in the proof note. The planned
-executable part is the exact decision of (F), the relative states of
+Exact statements, hypotheses and proofs are in the proof note. The
+executable part, written before the text of this note (see Timing), is the
+exact decision of (F), the relative states of
 Theorem FC1 and the class counts of Theorems P and FC3 over the 4,554-member
 corpus (`kernel/psc/c4_geometric_f.mojo`).
 
@@ -80,12 +91,21 @@ corpus (`kernel/psc/c4_geometric_f.mojo`).
   ([leftmost-chain note](p1b-leftmost-chain-periodic-pair-2026-10-05.md)),
   whose own gate cites Siegel–Thuswaldner's zero-expansion graph for unit
   substitutions.
-- **Coincidence rank.** Three definitions are in use and agree for Pisot
+- **Coincidence rank.** Three definitions are in use for Pisot
   substitutions: Baker–Barge–Kwapisz Def. 4.1 (maximal number of pairwise
   non-coincident strands over one point of `V/Σ`), Barge–Kellendonk Def. 2.9
   (a limit of separated fibre families) and Barge 2015 §2 (minimal fibre
   cardinality of the maximal equicontinuous factor map). Barge 2015 §2 states
-  the agreement; Baker–Barge–Kwapisz Thm 4.2 gives it for their definition.
+  the agreement of its rank with the minimal rank of Barge–Kellendonk and
+  with the coincidence rank of Barge–Kwapisz 2006 (the unimodular paper),
+  through its Thm 4(2); it does not cite Baker–Barge–Kwapisz. That Def. 4.1
+  gives the same number is derived in the proof note, §1: by
+  Baker–Barge–Kwapisz Thm 4.2 the minimal fibre cardinality of `h_φ` is
+  `cr_φ`, and by their Thm 5.1 with a standard duality fact that was not
+  read, `h_φ` is the maximal equicontinuous factor map. The identification
+  is stated, without proof and with reference to Baker–Barge–Kwapisz, in
+  Barge–Bruin–Jones–Sadun §1 and in Barge, arXiv:1505.04408, §1, items
+  (1)–(3).
 - **Strong coincidence.** Barge–Diamond 2002 use the prefix form (equal
   abelianised prefixes followed by the same letter). Minervino–Thuswaldner
   Def. 2.1 asks, per pair, for the prefix form *or* the suffix form. The
@@ -113,14 +133,16 @@ corpus (`kernel/psc/c4_geometric_f.mojo`).
 | --- | --- | --- | --- |
 | Baker–Barge–Kwapisz, *Geometric realization and coincidence for reducible non-unimodular Pisot tiling spaces with an application to β-shifts*, Ann. Inst. Fourier 56 (2006) 2213–2248 | Def. 3.1 (geometric realization `h_φ`); Def. 4.1 (`cr_φ`); Thm 4.2 (`h_φ` uniformly finite-to-one, a.e. `cr_φ`-to-one, minimal fibre cardinality `cr_φ`); Remark 4.3 (for every `q`, `cr_φ` is the largest pairwise non-coincident family of states over `q`); Thm 5.1 (eigenfunctions `χ_u ∘ h_φ`); Cor. 5.2 (pure discrete spectrum iff `cr_φ = 1`); Example 5.3 (six letters, reducible, `λ` a Pisot unit, `cr = 2`) | Standing hypotheses (§2, Def. 2.1): primitive, translation-aperiodic, `λ` a Pisot number; reducible and non-unimodular allowed. All hold on PIP3. Two points do **not** transfer literally: (i) p. 2220, "if `A` is irreducible Pisot then `Σ = Γ` by the argument in [5]" defers to Barge–Kwapisz 2006; (ii) the states of Remark 4.3 exclude the terminal end point of an edge, so the remark yields `cr ≥ ν_L` but not `cr ≥ ν_R` | full text, 2026-11-15; numbers re-checked 2026-11-16 |
 | Barge–Diamond, *Coincidence for substitutions of Pisot type*, Bull. Soc. Math. France 130 (2002) 619–626 | Theorem 1: there are distinct letters `i, j` and `k, n` such that `φⁿ(i)`, `φⁿ(j)` have the same `k`-th letter and prefixes of length `k − 1` with equal abelianisation | "Pisot type": every eigenvalue other than the Perron one has modulus strictly between 0 and 1. Holds on PIP3, nonunit included. One pair only, prefix form; the suffix form follows by reversal. Unavailable for the reducible controls with eigenvalue `0`, `1` or `−1` | in full, 2026-11-15 |
-| Barge, *Factors of Pisot tiling spaces and the Coincidence Rank Conjecture*, Bull. Soc. Math. France 143 (2015); arXiv:1301.7094 | Thm 4 (1)–(5) (fibres of the maximal equicontinuous factor map `g`); Thm 5; Thm 12 (the quotient `Ω/≈_s` is the tiling space of the stack substitution `Φ_s`, on which `≈_s` is trivial); Lemmas 13–14 (`cr = 2`: unique regionally proximal distal partner, `Σ_op` an isomorphism); Prop. 19 (`Σ*` injective on `H¹`); Lemma 20 (`evrank ≥ 2d` for odd norm, matrix `[[X,Y],[Y,X]]`); exact sequence (4.1) and Lemma 21; Thm 22 (odd norm, `cr = 2 ⇒ dim H¹ ≥ 2d − 1`); Cor. 23–25 | §2: primitive, non-periodic, FLC, Pisot dilation; no irreducibility, no unimodularity. Thm 22 needs odd norm (`det M` odd on PIP3), so nothing transfers to `det M = 2`. Proofs of Thm 4 are deferred there to Barge–Kellendonk and Barge–Olimb. The parity statement of Theorem P is not in the paper; it is derived in the proof note from the printed equivariance | full text, 2026-11-15 (two routes); re-checked 2026-11-16 |
+| Barge, *Factors of Pisot tiling spaces and the Coincidence Rank Conjecture*, Bull. Soc. Math. France 143 (2015); arXiv:1301.7094 | Thm 4 (1)–(5) (fibres of the maximal equicontinuous factor map `g`); Thm 5; Thm 12 (the quotient `Ω/≈_s` is the tiling space of the stack substitution `Φ_s`, on which `≈_s` is trivial); Lemmas 13–14 (`cr = 2`: unique regionally proximal distal partner, `Σ_op` an isomorphism); Example 16 (Thue–Morse: the regionally proximal distal partner of a tiling is the letter-exchanged tiling); Prop. 19 (`Σ*` injective on `H¹`); Lemma 20 (`evrank ≥ 2d` for odd norm, matrix `[[X,Y],[Y,X]]`); exact sequence (4.1) and Lemma 21; Thm 22 (odd norm, `cr = 2 ⇒ dim H¹ ≥ 2d − 1`); Cor. 23–25 | §2: primitive, non-periodic, FLC, Pisot dilation; no irreducibility, no unimodularity. Thm 22 needs odd norm (`det M` odd on PIP3), so nothing transfers to `det M = 2`. Proofs of Thm 4 are deferred there to Barge–Kellendonk, Barge–Olimb and Kwapisz 2013, and were not followed. The parity statement of Theorem P is not in the paper; it is derived in the proof note from the printed equivariance | full text, 2026-11-15 (two routes); re-checked 2026-11-16 |
 | Barge–Diamond, *Cohomology in one-dimensional substitution tiling spaces*, Proc. Amer. Math. Soc. 136 (2008) 2183–2191; arXiv:math/0702669 | Theorem 4: `Ȟ¹(T_φ) ≅ ℤ^l ⊕ lim Aᵗ / G`, `G ≅ ℤ^{k−1}`; its proof (a power of `g` is homotopic to the identity on `ER`; the generators of `G_0` are fixed by a power of `g*`; the exact sequence `0 → G_0 → G_1 → G_2 → G_3 → 0`) | primitive, aperiodic. Holds on PIP3 | TeX source, 2026-11-15 (cohomology route); re-read 2026-11-16. The zero-fibre route used it through Barge 2015 (4.1) and the repository census |
 | Barge–Kellendonk, *Proximality and pure point spectrum for tiling dynamical systems*, arXiv:1108.4065 (Michigan Math. J. 62, 2013) | Def. 2.9, Lemmas 2.10 and 2.14 (coincidence rank equals minimal rank), Thms 5.3–5.4, Cor. 5.8, Lemma 5.12 | Used only for the identification of the coincidence ranks. Statements read, proofs not | statements only, 2026-11-15 |
 | Barge, *Pure discrete spectrum for a class of one-dimensional substitution tiling systems*, Discrete Contin. Dyn. Syst. 36 (2016); arXiv:1403.7826 | Thm 3.13: primitive, Pisot inflation, injective on initial letters, constant on final letters ⇒ pure discrete spectrum; Remark 3.14 (eventually constant suffices); Lemma 3.11, Cor. 3.12 | "Constant on final letters" is the repository's right endpoint collapse, where Theorem A(3) already excludes a strict system. Its Lemma 3.11 uses that the fixed disjoint tilings have disjoint vertex sets; on (F) two periodic rays always share vertices (Theorem FC1), so the mechanism does not extend | in full, 2026-11-15; used in no proof |
 | Minervino–Thuswaldner, *The geometry of non-unit Pisot substitutions*, Ann. Inst. Fourier 64 (2014); arXiv:1402.2002 | Def. 2.1 (strong coincidence, prefix or suffix); the map `T_σ` of §4.1; Def. 9.3, Prop. 9.4 (geometric property (F)); Def. 9.5–9.6, Prop. 9.7 (exclusive inner point, zero-expansion graph); Lemma 9.8; Thm 9.9 ((F) and strong coincidence ⇒ the self-replicating multiple tiling is a tiling) | irreducible Pisot, unit not required. Identifies (F). Thm 9.9 has strong coincidence as a hypothesis, which is the conclusion wanted here | §§2–4 definitions and §9, 2026-11-15; used in no proof |
-| Barge–Bruin–Jones–Sadun, *Homological Pisot substitutions and exact regularity*, Israel J. Math. 188 (2012); arXiv:1001.2027 | homological Pisot substitutions (`dim H¹` equal to the degree); the exact regularity property; examples of every degree with coincidence rank 3 and norm divisible by 3; the Coincidence Rank Conjecture, true in degree one | Calibration and negative control only: with minimal cohomology three pairwise non-coincident tilings can share a fibre when the norm is not `±1`, so unimodularity is a real hypothesis of Theorem Fork | TeX source, 2026-11-15 (cohomology route) |
+| Barge–Bruin–Jones–Sadun, *Homological Pisot substitutions and exact regularity*, Israel J. Math. 188 (2012); arXiv:1001.2027 | homological Pisot substitutions (`dim H¹` equal to the degree); the exact regularity property; examples of every degree with coincidence rank 3 and norm divisible by 3; the Coincidence Rank Conjecture, true in degree one | Calibration and negative control for cohomology only: minimal cohomology does not bound the coincidence rank when the norm is not `±1`. The examples are reducible (six letters for degree 1 and 2, nine for degree 3), hence outside PIP3 for a second reason, and as triple covers they have three pairwise tile-disjoint tilings over each tiling of the base, which is the kind of configuration Theorem Fork produces and not a counterexample to it. They do not show that unimodularity is necessary in Theorem Fork: the hypothesis is used in its proof (Lemma 9), and whether the conclusion fails for a nonunit member of PIP3 is not known here. §1 ("The Coincidence Rank Conjecture") also states that geometric realization is the map onto the maximal equicontinuous factor and is almost everywhere `cr`-to-one, citing Barge–Kwapisz and Baker–Barge–Kwapisz | TeX source, 2026-11-15 (cohomology route) |
 | Akiyama–Lee, *Overlap coincidence to strong coincidence in substitution tiling dynamics*, European J. Combin. 39 (2014) 233–243 | Cor. 4.5: for an irreducible Pisot substitution with overlap coincidence all letters are prefix-coincident simultaneously | **Not re-read in this increment**; taken from the repository gate [`pds-strong-coincidence-literature-gate-2026-10-04.md`](pds-strong-coincidence-literature-gate-2026-10-04.md). Not needed: "`cr = 1` ⇒ strong coincidence of all pairs, both sides" follows from Remark 4.3 of Baker–Barge–Kwapisz (Theorem FC2(1)) | no |
-| Barge–Kwapisz, *Geometric theory of unimodular Pisot substitutions*, Amer. J. Math. 128 (2006) | — | **Could not be obtained. Cited for nothing.** Where Baker–Barge–Kwapisz defer to it (`Σ = Γ`) the proof note gives a direct argument (Lemma 6, which is the repository's Theorem R); where Barge 2015 Thm 4 rests on it through Barge–Kellendonk, the later statement is imported as printed | no |
+| Barge–Kwapisz, *Geometric theory of unimodular Pisot substitutions*, Amer. J. Math. 128 (2006) 1219–1282 | Def. 7.1 with (7.2) (coincidence rank: the maximal cardinality of a noncoincident family of states over one point); Fact 7.2; Thm 7.3 (the minimal degree of the canonical torus map equals `cr_φ`); §12: Thm 12.1 (`H_φ = ℤ^d`), Fact 12.2 (`H_φ` is generated by the return vectors of any one letter; part (ii) uses unimodularity), Lemma 12.4 (a frequency argument) | Unimodular Pisot substitutions only. **Not obtained during the proof attempts; used in no proof.** It is the paper to which Baker–Barge–Kwapisz p. 2220 defer for `Σ = Γ` ("by the argument in" it, without a locator); its §12 proves the statement for unimodular Pisot substitutions, and Lemma 6 of the proof note (Theorem R on main) is a frequency argument of the same kind that does not use unimodularity. Def. 7.1 / Thm 7.3 is the coincidence rank that Barge 2015 §2 compares with. The repository already cites the author-hosted PDF (gates of 2026-11-11, for its §5) and its Prop. 18.1 and Thm 12.1 (cut-attractor note; PDS/strong-coincidence gate), so the paper was obtainable, and "could not be obtained", as the pre-audit text of this row said, was wrong | the parts listed, on 2026-11-16, during the audit of this note, after the proofs were written |
+| Akiyama, *Strong coincidence and overlap coincidence*, Discrete Contin. Dyn. Syst. 36 (2016) 5223–5230; arXiv:1509.04471 | Thm 3.2, Cor. 3.3: for the suspension tiling of a Pisot substitution there is `n` such that multiple strong coincidence of level `n` (strong coincidence for every family of admissible control points of `Ωⁿ` with `Λ − Λ ⊆ ⟨G⟩`) is equivalent to overlap coincidence; Remark 3.4 (this asks for much more than a single strong coincidence; whether `n = 1` suffices is asked there) | Pisot inflation; no irreducibility or unimodularity. The closest published statement of "strong coincidence ⟹ pure discrete spectrum"; on main it is the negative control of the p1a swap-family gate (ordinary strong coincidence is the weaker statement). **Not compared with Theorem FC2 / Corollary E**: whether on (F) its hypothesis reduces to ordinary strong coincidence was not checked | arXiv v1, abstract and §3 up to Remark 3.4, on 2026-11-16, during the audit of this note, after the proofs were written; the journal reference is taken from the repository |
+| Barge, *The Pisot conjecture for β-substitutions*, arXiv:1505.04408 | §1, items (1)–(3): an almost everywhere `cr`-to-one map `π_max` onto a Kronecker action on a torus or solenoid, `cr` the coincidence rank; pure discrete spectrum iff `cr = 1`; "for (1)–(3) see" Barge–Kwapisz, Baker–Barge–Kwapisz, Barge–Kellendonk and Barge 2015 | Stated there for a primitive non-periodic substitution with Pisot inflation, without proof. Used only as a printed statement that the Baker–Barge–Kwapisz rank is the fibre cardinality of the maximal equicontinuous factor map | §1 only; downloaded 2026-11-15, the passage checked on 2026-11-16 during the audit |
 
 Repository sources relied on: Theorem A of the
 [cut-pair note](c4-cut-pair-productivity-2026-11-04.md) (Lean,
@@ -147,11 +169,11 @@ Hypotheses that do not transfer, and what replaces them:
 
 | Needed | Source hypothesis | Replacement or restriction |
 | --- | --- | --- |
-| `Σ = Γ = ℤ³` (the fibre over `0` is the set of integer strands) | deferred to a unimodular paper not obtained | direct proof on every alphabet with ℚ-independent letter frequencies (Lemma 6; Theorem R on main) |
+| `Σ = Γ = ℤ³` (the fibre over `0` is the set of integer strands) | deferred to a unimodular paper (Barge–Kwapisz 2006, Thm 12.1) that had not been obtained when the proof was written | direct proof on every alphabet with ℚ-independent letter frequencies (Lemma 6; Theorem R on main) |
 | `cr ≥ ν_R` | Remark 4.3 has half-open states | reflection `x ↦ −x` conjugates `σ` to its reversal and preserves Def. 4.1; (F) is reversal-invariant |
 | exclusion of `cr = 2` | Thm 22: odd norm | Theorems P, FC3(b),(c), N are stated for odd `det M` only; nothing is claimed for `det M = 2` |
 | every class of `H¹(Ω; ℤ)` is an eigenfunction class | none in print | unit and `dim H¹ = 3` (Theorem Fork only) |
-| strong coincidence | hypothesis of Minervino–Thuswaldner Thm 9.9 and of the published (F) criteria | not assumed; replaced by `cr ≤ 2` on (F) plus an arithmetic exclusion of `cr = 2` |
+| strong coincidence | hypothesis of Minervino–Thuswaldner Thm 9.9, the one (F) criterion read | not assumed; replaced by `cr ≤ 2` on (F) plus an arithmetic exclusion of `cr = 2` |
 
 ### Derivation / reduction
 
@@ -164,10 +186,14 @@ substitution action, the Barge–Diamond exact sequence, and a computation in
 `𝔽₂[t]`. Theorems FC3 and N are compositions. Theorem Fork adds an
 equivariant-circle-map argument on Barge's quotient `Ω/≈_s`. What is prior
 art and what is new is itemised in §8 of the proof note; in short: the (F)
-class, case (a) of FC3, the `dim H¹ ≤ 4` exclusion and the parity class are
-known objects; the links "(F) ⇒ bounded gaps for every pair of periodic
-rays", "(F) ⇒ `cr = ν_L = ν_R ≤ 2` on three letters" and the parity
-exclusion of `cr = 2` were found in no source read.
+class, case (a) of FC3 (its spectrum half only in the tiling form of
+Minervino–Thuswaldner Thm 9.9), the `dim H¹ ≤ 4` exclusion and the parity
+class are known objects; the links "(F) ⇒ bounded gaps for every pair of
+periodic rays", "(F) ⇒ `cr = ν_L = ν_R ≤ 2` on three letters" and the parity
+exclusion of `cr = 2` were found in no source read. Relative to main,
+Theorem FC1 is a short corollary of the catch-up mechanism of Corollary LC5
+together with Propositions 2 and 3 of the cut-attractor note; it is stated
+nowhere on main. Akiyama 2016 was not compared with these links.
 
 ### Evidence and replay
 
@@ -186,8 +212,9 @@ coincidence and no spectrum. Numbers are quoted in the proof note, §9.
 From the literature: the Morse substitution (`λ = 2`; Baker–Barge–Kwapisz
 §5: `h_φ` a.e. two-to-one) and their Example 5.3 (reducible, `λ` a Pisot
 unit, `cr = 2`) show that irreducibility is needed for any `cr = 1`
-statement; the Barge–Bruin–Jones–Sadun examples (`cr = 3`, minimal
-cohomology, norm divisible by 3) bound what cohomology alone can give;
+statement; the Barge–Bruin–Jones–Sadun examples (reducible, `cr = 3`,
+minimal cohomology, norm divisible by 3) bound what cohomology alone can
+give;
 Akiyama–Lee Examples 4.6–4.7 (reported from the repository gate) are
 reducible extensions failing strong coincidence; Fibonacci has `l = 0` and an
 asymptotic pair, so "`l = 0`" is not "no asymptotic cycle" (census note).
@@ -203,9 +230,16 @@ Universal C4; strong coincidence or pure discrete spectrum on the (F) class
 outside Theorem FC3; `cr ≤ 2` off (F); any statement for even determinant;
 infinitude of the non-trivial part of the FC3 class; novelty relative to the
 literature beyond "not found in the sources read". Barge–Kwapisz 2006 was not
-obtained and Akiyama–Lee 2014 was not re-read. The proofs of Barge 2015 Thm 4
-were not followed into Barge–Kellendonk. Theorem P and Theorem Fork are
-re-derivations from printed statements and are not machine-checked.
+obtained during the proof attempts and was read only in part, during the
+audit;
+Akiyama 2016 was read only then and was not compared with Theorem FC2 or
+Corollary E; Akiyama–Lee 2014 was not re-read. The passage from the tiling
+of Minervino–Thuswaldner Thm 9.9 to pure discrete spectrum was not checked
+for nonunit substitutions. The proofs of Barge 2015 Thm 4 were not followed
+into Barge–Kellendonk. The identification of the Baker–Barge–Kwapisz rank
+with Barge's rank rests on a standard fact that was not read. Theorem P and
+Theorem Fork are re-derivations from printed statements and are not
+machine-checked.
 
 ## Decision
 
@@ -214,9 +248,13 @@ Theorems FC2, P, FC3, N and Fork as proofs conditional on the imports above,
 and the exact (F) decision with its corpus class counts as a canonical Mojo
 module with a regression. Do not claim universal C4, and do not present the
 class theorem as a route to it: by Theorem FC1 the bounded-gap hypothesis of
-C4 is automatic on the (F) class, so there C4 is equivalent to strong
-coincidence of all pairs and to pure discrete spectrum, and a proof of
-universal C4 would in particular give the conclusion of the published (F)
-criterion without its strong-coincidence hypothesis for every ternary
-irreducible Pisot substitution with (F). The means inspected here do not
-reach that.
+C4 is automatic on the (F) class, so there C4 is equivalent to left strong
+coincidence of all pairs (Theorem FC1, no import) and, conditionally on the
+imports of Theorem FC2 and on Baker–Barge–Kwapisz Cor. 5.2, to strong
+coincidence on both sides and to pure discrete spectrum (Corollary E). A
+proof of universal C4 would therefore give, for every ternary irreducible
+Pisot substitution with (F), left strong coincidence of all pairs, and with
+it the tiling of Minervino–Thuswaldner Thm 9.9 without that theorem's
+strong-coincidence hypothesis; under the imports of Theorem FC2 it would
+also give pure discrete spectrum. The means inspected here do not reach
+that.

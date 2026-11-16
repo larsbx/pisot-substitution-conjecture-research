@@ -1,8 +1,8 @@
 """Reducible strict controls with irrational Pisot inflation, and two nonunit
 seam families read through the on-main local birth sieve.
 
-Contract: `docs/c4-closure-attempt-2026-11-16.md` (new negative controls;
-nonunit route). Sieve and eliminator:
+Contract: `docs/c4-closure-attempt-2026-11-16.md` (negative controls, §7;
+nonunit route, §5). Sieve and eliminator:
 `docs/c4-bilateral-birth-rigidity-2026-11-02.md` §9. Legal-predecessor rule:
 `docs/c4-legal-seams-2026-11-04.md`, `docs/c4-seam-birth-orbits-2026-11-04.md`.
 
@@ -47,6 +47,12 @@ strict system rests on written proofs, not on this test.
 types, and `F3_2` keeps hub-based birth seams. On every strict control here
 and on `10/102/211` the legal filter keeps every literal birth type of the
 actual strict system.
+
+**The primitivity hypothesis.** The eliminator of §9 is stated for a
+primitive expanding substitution with `det M != 0`. `1/0/22` is not
+primitive, has `det M = -2` and an empty on-main `L_sigma`, and has the
+strict system `{(01,10), (10,01)}`: without primitivity an empty sieve
+excludes nothing. `legal_local_birth_types` refuses that input.
 
 **Not pinned here.** No statement about C4, #138, #139, #84, G1 or PSC; no
 census of reducible substitutions; the 8-state overlap closure of
@@ -596,6 +602,31 @@ def test_the_filter_is_not_vacuous() raises:
     assert_true(caught)
 
 
+def test_the_eliminator_needs_primitivity() raises:
+    """`0 -> 1, 1 -> 0, 2 -> 22`: not primitive, `det M = -2`, the on-main
+    sieve is empty, and `(01, 10) -> (10, 01) -> (01, 10)` is a strict system.
+    So an empty `L_sigma` with `det M != 0` is not an exclusion without
+    primitivity, and the legal list refuses instead of returning empty."""
+    var swap: List[List[Int]] = [[1], [0], [2, 2]]
+    var m = Mat3(substitution_incidence(swap))
+    assert_equal(m.e, [0, 1, 0, 1, 0, 0, 0, 0, 2])
+    assert_equal(m.det(), -2)
+    assert_false(is_primitive(m))
+    assert_equal(unresolved_local_birth_types(swap), 0)
+    assert_equal(len(local_birth_types(swap)), 0)
+    var system = strict_closure(swap, _pair("01", "10"), 16)
+    validate_strict_closure(swap, system)
+    assert_equal(system.size(), 2)
+    assert_equal(system.states[0], _pair("01", "10"))
+    assert_equal(system.states[1], _pair("10", "01"))
+    var refused = False
+    try:
+        _ = legal_local_birth_types(swap)
+    except e:
+        refused = "not primitive" in String(e)
+    assert_true(refused)
+
+
 def test_legal_filter_keeps_every_birth_of_the_strict_controls() raises:
     # [interior cuts, distinct literal types, types missing from the legal list]
     # 10/102/211, the on-main reducible strict control: |L| = 8 on main.
@@ -646,7 +677,8 @@ def main() raises:
     test_family_shapes()
     test_families_have_no_legal_birth_type()
     test_the_filter_is_not_vacuous()
+    test_the_eliminator_needs_primitivity()
     test_legal_filter_keeps_every_birth_of_the_strict_controls()
     test_family_members_are_also_strongly_coincident()
     print("C4 reducible Pisot controls: C-D1 one 18-state system (longest 13), (X_1,X_2) coincident at [2,3,2]; C-D2 21 and 23 states (longest 56), (X_0,X_2) coincident at [3,14,2]; 1/012/101 3 states under sigma^2, 6 under sigma; all three reducible with a root +1 or -1; F1_c and F3_c for 3 <= c <= 63: PIP with det c, |L| = 0 resp. 2, no legal birth type; c = 2 and the strict controls keep legal types.")
-    require_contract("reducible strict controls with irrational Pisot inflation, by the bounded ordered child closure seeded at the first balanced block of each fixed-ray pair and validated against every literal factor occurrence: C-D1 011/120/2012 (det -1, chi (x-1)(x^2-3x-1)) has one closed 18-state system for (X_0,X_1) and (X_0,X_2), ordered first pairs (0,1),(0,2), longest state 13, and (X_1,X_2) coincides at level 2, letter index 3; C-D2 010/1222/2012 (det 1, chi (x-1)(x^2-4x+1)) has 21 states for (X_0,X_1) with first pair (0,1) and 23 for (X_1,X_2) with first pairs (1,0),(1,2), longest state 56, and (X_0,X_2) coincides at level 3, letter index 14; 1/012/101 (det 1, chi (x+1)(x^2-2x-1)) has 3 states under sigma^2 from (X_0,X_1), first pairs (0,1),(2,1), longest state 4, and 6 under sigma; each is primitive and rejected by the PIP screen through its rational root, with an irreducible Pisot quadratic cofactor; an exhausted state cap, level budget or word budget is reported as capped and never as a verdict; F1_c = (0^(c-1)1, 120^(c-1), 0^c) and F3_c = (0^(c-1)10, 021, 20) for 3 <= c <= 63 are primitive with det c and chi x^3-cx^2-c resp. x^3-(c+2)x^2+2cx-c, irreducible Pisot by the corpus screen and the Routh screen; F1_c has empty on-main L_sigma; F3_c has exactly the on-main types (1,2,2,0) and (2,0,1,2), both removed by the on-main legal-predecessor rule because the bigram 12 is illegal, and no hub-based phase-zero birth seam; c = 2 keeps legal types and c = 64 is refused; the legal filter keeps every literal birth type of the strict controls and of 10/102/211; left strong-coincidence levels (4,1,5) and (1,4,2) for 3 <= c <= 8; no C4 inference")
+    require_contract("reducible strict controls with irrational Pisot inflation, by the bounded ordered child closure seeded at the first balanced block of each fixed-ray pair and validated against every literal factor occurrence: C-D1 011/120/2012 (det -1, chi (x-1)(x^2-3x-1)) has one closed 18-state system for (X_0,X_1) and (X_0,X_2), ordered first pairs (0,1),(0,2), longest state 13, and (X_1,X_2) coincides at level 2, letter index 3; C-D2 010/1222/2012 (det 1, chi (x-1)(x^2-4x+1)) has 21 states for (X_0,X_1) with first pair (0,1) and 23 for (X_1,X_2) with first pairs (1,0),(1,2), longest state 56, and (X_0,X_2) coincides at level 3, letter index 14; 1/012/101 (det 1, chi (x+1)(x^2-2x-1)) has 3 states under sigma^2 from (X_0,X_1), first pairs (0,1),(2,1), longest state 4, and 6 under sigma; each is primitive and rejected by the PIP screen through its rational root, with an irreducible Pisot quadratic cofactor; an exhausted state cap is reported as capped, an exhausted level budget as no witness within the budget ([-1,-1,-1]), and an exhausted word budget raises; none is a verdict; F1_c = (0^(c-1)1, 120^(c-1), 0^c) and F3_c = (0^(c-1)10, 021, 20) for 3 <= c <= 63 are primitive with det c and chi x^3-cx^2-c resp. x^3-(c+2)x^2+2cx-c, irreducible Pisot by the corpus screen and the Routh screen; F1_c has empty on-main L_sigma; F3_c has exactly the on-main types (1,2,2,0) and (2,0,1,2), both removed by the on-main legal-predecessor rule because the bigram 12 is illegal, and no hub-based phase-zero birth seam; c = 2 keeps legal types and c = 64 is refused; the non-primitive 1/0/22 (det -2, empty on-main L_sigma, strict system (01,10),(10,01)) is refused by the legal list, whose emptiness is read as an exclusion only for primitive input; the legal filter keeps every literal birth type of the strict controls and of 10/102/211; left strong-coincidence levels (4,1,5) and (1,4,2) for 3 <= c <= 8; no C4 inference")

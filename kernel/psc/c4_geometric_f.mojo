@@ -76,12 +76,15 @@ implementation `psc.vertex_coincidence.box_radii` decides every bound by
 Sturm--Tarski queries over unbounded rationals, at about 0.2 s per
 substitution (measured 2026-11-16: 45 s on every 23rd corpus specimen, so
 about 17 CPU-minutes on the corpus; `leftmost_chain_census.mojo` took 22),
-which a corpus regression cannot afford 4,554 times. `stable_radii` bounds the same
-right-hand side from above, from the incidence matrix alone, by
-outward-rounded rational interval arithmetic (`finite_exact` `IQ`): the radii
-`R_a` are certified and are shared by every substitution with that matrix
-(348 matrices on the corpus, about 6 s in all; the whole (F) decision of the
-corpus takes about 15 s).
+which a corpus regression cannot afford 4,554 times. `stable_radii`
+evaluates the right-hand side of step 3 with the digit set `D_M`, from the
+incidence matrix alone, by outward-rounded rational interval arithmetic
+(`finite_exact` `IQ`): the radii `R_a` are certified upper bounds and are
+shared by every substitution with that matrix (348 matrices on the corpus,
+about 6 s in all; the whole (F) decision of the corpus takes about 15 s).
+They are not comparable coordinate-wise with `box_radii`, whose increments
+are the offset increments of the overlap graph of the one substitution
+(Tribonacci: `[2, 3, 4]` against `[3, 3, 3]`, both pinned in the regression).
 
 - *trace-dual basis.* `chi(t) / (t - beta) = b_0 + b_1 t + b_2 t^2` with
   `b_2 = 1`, `b_1 = beta + chi_2`, `b_0 = beta^2 + chi_2 beta + chi_1`, and
@@ -107,7 +110,7 @@ corpus takes about 15 s).
 A radius that cannot be certified (an enclosure that does not separate from
 zero, a contraction not below `1`, a radius beyond `RADIUS_CAP`) raises. A
 loose radius is harmless: a superset of the periodic states changes no
-verdict. `square`
+verdict.
 
 The same radii bound the offset vector of every vertex of a terminal
 leftmost cycle: by Lemma S of the LC note one of the two indices is `0` at
@@ -124,10 +127,22 @@ cycle never meets a vertex state (vertex states are forward invariant), so
 the first walk to enter a cycle goes once around it and closes on its entry
 state: every f-cycle with `v != 0` is recorded exactly once. The orbit of a
 candidate may leave the box; that is allowed, `f` is defined on all states.
-`square`
 
 So `decide_geometric_f` returns *all* interior f-cycles, and `(F)` holds
-exactly when it returns none.
+exactly when it returns none. Only `decide_geometric_f` and
+`decide_geometric_f_with` return a `GeometricFVerdict`, and both take the box
+from `stable_radii`. `interior_cycles_in_box` walks a box the caller names
+and returns a `BoxSearch`, which carries no verdict: an empty search in a box
+that is not certified says nothing about (F).
+
+Status: Lemma B and Lemma W are recorded proofs in this docstring, not
+machine-checked, independent human review pending. The regression checks
+their consequences, not the lemmas: the radii are pinned (the five fixtures,
+and their sum over the corpus); the doubled box holds no further cycle on
+the fixtures and on every 97th corpus specimen; on the fixtures the box of
+the independent `box_radii` holds none either; and the leftmost-cycle count
+of the literal box graph, whose radii are the independent ones, agrees on
+the fixtures that fail (F) and on every 97th specimen.
 
 The bridge to the leftmost chain (Corollary LC5)
 ------------------------------------------------
@@ -179,9 +194,13 @@ Arithmetic classes (Theorems P and FC3)
 ---------------------------------------
 `fc3_profile` records `det M`, `tr M`, `e_2(M)` (the sum of the principal
 2x2 minors, `tr Lambda^2 M`), `dim H^1` (`psc.h1_census.h1_profile`) and the
-number of periodic letters of `g` and `g_R`. The clauses are those of the
-note: (a) an endpoint map with fewer than two periodic letters; (b) `det M`
-odd and `dim H^1 <= 4`; (c) `det M` odd and `tr M != e_2(M) (mod 2)`.
+number of periodic letters of `g` and `g_R`. The clauses evaluated are
+three of the note's: (a') an endpoint map with fewer than two periodic
+letters, i.e. `g` or `g_R` eventually constant (the sub-case of clause (a)
+that needs no coincidence search; clause (a) itself, `nu_L = 1` or
+`nu_R = 1`, is not evaluated here); (b) `det M` odd and `dim H^1 <= 4`;
+(c) `det M` odd and `tr M != e_2(M) (mod 2)`. `fc3_profile` raises on input
+that is not PIP3: outside PIP3 the clauses mean nothing.
 `geometric_f_census` folds the per-specimen facts into `psc.histogram`
 tables. The census counts classes; it certifies no coincidence rank, no pure
 discrete spectrum and no strong coincidence, and changes no claim status.
@@ -192,12 +211,25 @@ A substitution that is not PIP3 raises in `build_seed_overlap_tables` (no
 field, no verdict). A state cap raises (`refuse to conclude`: an exhausted
 budget is not a verdict). A point that is not a state, a cycle whose address
 equation fails its replay, an occurrence that is not interior, and an orbit
-that closes outside the certified cycles all raise. All integer arithmetic is
-checked. No floating point is used anywhere.
+that closes outside the certified cycles all raise. A search in a box that
+is not certified returns a `BoxSearch`, never a verdict. No floating point
+is used anywhere.
+
+All `Z[beta]` and state arithmetic is checked (`finite_exact.checked_int` and
+the checked cubic operations of `psc.perron_field3`). Determinants, adjugates
+and traces of 3x3 integer matrices come from the vendored `Mat3`, which is
+unchecked machine-integer arithmetic. For the tile-length matrix its results
+are replayed exactly: by the trace-dual check in `stable_radii`, and by the
+position of every relative state, which must equal the offset it was solved
+from. For the incidence matrix in `fc3_profile` (`det M`, `tr M`) they are
+not replayed; its entries are at most the longest image, which is 6 in the
+audited image-length domain. Counters and loop indices are plain machine
+integers.
 """
 
 from finite_exact.checked_int import checked_abs, checked_add, checked_mul, checked_sub
 from finite_exact.closed_interval import IQ
+from finite_exact.integer_gcd import gcd_int
 from finite_exact.rat_q import Q, q_abs, q_max
 from finite_linear_algebra.mat3 import Mat3
 from psc.bpa import substitution_incidence
@@ -753,10 +785,34 @@ struct InteriorAddress(Copyable, Movable):
         self.image_length = image_length
 
 
+struct BoxSearch(Copyable, Movable):
+    """What walking the candidates of one box found: the interior f-cycles
+    their orbits enter, and the size of the search. It is not a verdict and
+    has no `holds`. An empty `cycles` says that no orbit from the box of
+    `radii` enters an interior cycle; that is property (F) only when the box
+    is certified to hold every f-periodic state (Lemma B), and a box named by
+    a caller is not."""
+
+    var radii: List[Int]
+    var candidates: Int
+    var visited: Int
+    var cycles: List[InteriorCycle]
+
+    def __init__(out self, radii: List[Int], candidates: Int, visited: Int, cycles: List[InteriorCycle]):
+        self.radii = radii.copy()
+        self.candidates = candidates
+        self.visited = visited
+        self.cycles = cycles.copy()
+
+
 struct GeometricFVerdict(Copyable, Movable):
     """The complete list of interior f-cycles of one substitution. `holds` is
     property (F). `radii`, `candidates` and `visited` are the size of the
-    search that Lemma B and Lemma W make exhaustive."""
+    search that Lemma B and Lemma W make exhaustive.
+
+    Built by `decide_geometric_f` and `decide_geometric_f_with` only, from
+    the search in the box of `stable_radii`. A search in any other box stays
+    a `BoxSearch`: `holds` is never computed from an uncertified box."""
 
     var holds: Bool
     var radii: List[Int]
@@ -764,12 +820,14 @@ struct GeometricFVerdict(Copyable, Movable):
     var visited: Int
     var cycles: List[InteriorCycle]
 
-    def __init__(out self, radii: List[Int], candidates: Int, visited: Int, cycles: List[InteriorCycle]):
-        self.holds = len(cycles) == 0
-        self.radii = radii.copy()
-        self.candidates = candidates
-        self.visited = visited
-        self.cycles = cycles.copy()
+    def __init__(out self, search: BoxSearch):
+        """`search` must be the search in the certified box of `stable_radii`;
+        the two `decide_geometric_f*` functions are the only callers."""
+        self.holds = len(search.cycles) == 0
+        self.radii = search.radii.copy()
+        self.candidates = search.candidates
+        self.visited = search.visited
+        self.cycles = search.cycles.copy()
 
     def first_period(self) -> Int:
         """The least interior period; `0` when (F) holds."""
@@ -854,14 +912,16 @@ def _based_cycle(states: List[PrototileState], indices: List[Int], first: Int) -
     return InteriorCycle(rotated, rotated_indices)
 
 
-def decide_geometric_f_from(
+def interior_cycles_in_box(
     mut m: PrototileMap, radii: List[Int], max_states: Int = GEOMETRIC_F_STATE_CAP
-) raises -> GeometricFVerdict:
-    """Every interior f-cycle of the substitution behind `m` that meets the
-    box of the given radii; with `stable_radii(m.tables)`, every interior
-    f-cycle (Lemmas B and W of the module docstring). Raises when the
-    walk visits more than `max_states` states: a capped search is not a
-    verdict."""
+) raises -> BoxSearch:
+    """Every interior f-cycle of the substitution behind `m` that the orbit of
+    a candidate of the box of the given radii enters, in particular every one
+    that meets the box. A search, not a verdict on (F): only for the certified
+    radii of `stable_radii` is this every interior f-cycle (Lemmas B and W of
+    the module docstring), and only `decide_geometric_f` and
+    `decide_geometric_f_with` say so. Raises when the walk visits more than
+    `max_states` states: a capped search is not a verdict."""
     if max_states <= 0:
         raise Error("geometric (F): the state cap must be positive")
     var candidates = box_candidates(m, radii)
@@ -891,17 +951,29 @@ def decide_geometric_f_from(
             s = step.child
         for k in range(len(path)):
             mark[path[k]] = 0
-    return GeometricFVerdict(radii, len(candidates), len(mark), cycles)
+    return BoxSearch(radii, len(candidates), len(mark), cycles)
+
+
+def decide_geometric_f_with(
+    mut m: PrototileMap, mut boxes: StableRadiiCache, max_states: Int = GEOMETRIC_F_STATE_CAP
+) raises -> GeometricFVerdict:
+    """Property (F) for the substitution behind `m`, with every interior
+    f-cycle, in the certified box `boxes.radii_for(m.tables)`: `stable_radii`,
+    computed once per incidence matrix. Raises when a radius cannot be
+    certified and when the state cap is reached."""
+    var radii = boxes.radii_for(m.tables)
+    return GeometricFVerdict(interior_cycles_in_box(m, radii, max_states))
 
 
 def decide_geometric_f(
     sigma: List[List[Int]], max_states: Int = GEOMETRIC_F_STATE_CAP
 ) raises -> GeometricFVerdict:
-    """Property (F) for one substitution, with every interior f-cycle. Raises
-    unless `sigma` is PIP3, when a radius cannot be certified, and when the
-    state cap is reached."""
+    """Property (F) for one substitution, with every interior f-cycle, in the
+    certified box of `stable_radii`. Raises unless `sigma` is PIP3, when a
+    radius cannot be certified, and when the state cap is reached."""
     var m = PrototileMap(sigma)
-    return decide_geometric_f_from(m, stable_radii(m.tables), max_states)
+    var radii = stable_radii(m.tables)
+    return GeometricFVerdict(interior_cycles_in_box(m, radii, max_states))
 
 
 def interior_address(m: PrototileMap, cycle: InteriorCycle, start: Int = 0) raises -> InteriorAddress:
@@ -944,16 +1016,6 @@ def interior_address(m: PrototileMap, cycle: InteriorCycle, start: Int = 0) rais
     return InteriorAddress(base.letter, v, k, parikh, length, total)
 
 
-def _gcd(a: Int, b: Int) -> Int:
-    var x = a
-    var y = b
-    while y != 0:
-        var r = x % y
-        x = y
-        y = r
-    return x
-
-
 struct LeftmostPrediction(ImplicitlyCopyable, Copyable, Movable):
     """What the interior f-cycles say about `psc.leftmost_chain`."""
 
@@ -965,7 +1027,7 @@ struct LeftmostPrediction(ImplicitlyCopyable, Copyable, Movable):
         self.longest = longest
 
 
-def predicted_leftmost_cycles(sigma: List[List[Int]], verdict: GeometricFVerdict) -> LeftmostPrediction:
+def predicted_leftmost_cycles(sigma: List[List[Int]], verdict: GeometricFVerdict) raises -> LeftmostPrediction:
     """`2 * sum gcd(|C|, |G|)` terminal leftmost cycles, the longest of length
     `max lcm(|C|, |G|)`, over interior f-cycles `C` and cycles `G` of the
     first-letter map (the bridge of the module docstring)."""
@@ -975,7 +1037,7 @@ def predicted_leftmost_cycles(sigma: List[List[Int]], verdict: GeometricFVerdict
     for c in range(len(verdict.cycles)):
         var k = verdict.cycles[c].period()
         for i in range(len(g_cycles)):
-            var d = _gcd(k, g_cycles[i])
+            var d = gcd_int(k, g_cycles[i])
             count += 2 * d
             var l = k // d * g_cycles[i]
             if l > longest:
@@ -1112,8 +1174,13 @@ def fixed_ray_overlaps(
 
 
 def _relative_state(mut m: PrototileMap, letter: Int, t: CubicElt) raises -> PrototileState:
+    """The state `(letter, v)` with `<ell, v> = t`. `offset_vector` solves for
+    `v` with the unchecked `Mat3` determinant and adjugate, so the position of
+    the result is replayed in checked `Z[beta]` arithmetic before it is used."""
     var v = offset_vector(m.lengths, t)
     var s = PrototileState(letter, v[0], v[1], v[2])
+    if m.position(s) != t:
+        raise Error("fixed rays: the offset vector does not replay its position")
     if not m.is_state(s):
         raise Error("fixed rays: a relative state is not a state")
     return s
@@ -1207,7 +1274,10 @@ def pair_transient(
 
 
 def principal_minor_sum(m: Mat3) raises -> Int:
-    """`e_2(M)`: the sum of the three principal 2x2 minors, `tr Lambda^2 M`."""
+    """`e_2(M)`: the sum of the three principal 2x2 minors, `tr Lambda^2 M`.
+    It equals `m.charpoly()[1]`; it is computed here in checked arithmetic,
+    which the vendored `Mat3.charpoly` is not, and the regression asserts the
+    agreement."""
     var total = 0
     for i in range(3):
         for j in range(i + 1, 3):
@@ -1271,8 +1341,9 @@ struct FC3Profile(ImplicitlyCopyable, Copyable, Movable):
         return self.right_periodic < 2
 
     def endpoint_trivial(self) -> Bool:
-        """Clause (a): an endpoint map with fewer than two periodic letters,
-        i.e. eventually constant."""
+        """Clause (a'): an endpoint map with fewer than two periodic letters,
+        i.e. eventually constant. Clause (a) of Theorem FC3 (`nu_L = 1` or
+        `nu_R = 1`) is wider and is not evaluated in this module."""
         return self.left_trivial() or self.right_trivial()
 
     def arithmetic_clause(self) -> Bool:
@@ -1298,16 +1369,29 @@ struct FC3Profile(ImplicitlyCopyable, Copyable, Movable):
         return key
 
 
-def fc3_profile(sigma: List[List[Int]]) raises -> FC3Profile:
-    var m = Mat3(substitution_incidence(sigma))
+def fc3_profile_of(m: PrototileMap) raises -> FC3Profile:
+    """The profile of the substitution behind `m`. A `PrototileMap` exists
+    only for PIP3 input inside the audited image-length domain, so the PIP3
+    gate has been passed."""
+    var sigma = m.tables.sigma.copy()
     return FC3Profile(
-        m.det(),
-        m.trace(),
-        principal_minor_sum(m),
+        m.incidence.det(),
+        m.incidence.trace(),
+        principal_minor_sum(m.incidence),
         h1_profile(sigma).dimension,
         periodic_letter_count(prefix_endpoint_map(sigma)),
         periodic_letter_count(suffix_endpoint_map(sigma)),
     )
+
+
+def fc3_profile(sigma: List[List[Int]]) raises -> FC3Profile:
+    """The profile of `sigma`. Raises unless `sigma` is PIP3 (the gate of
+    `PrototileMap`). Theorems P and FC3 are statements about PIP3, and FC3
+    needs (F) as well; outside PIP3 the clauses mean nothing: the reducible
+    strict control 011/120/2012 has odd determinant and `dim H^1 = 3`, so it
+    would satisfy clause (b), and it has a strict system."""
+    var m = PrototileMap(sigma)
+    return fc3_profile_of(m)
 
 
 struct GeometricFCensus(Copyable, Movable):
@@ -1315,14 +1399,22 @@ struct GeometricFCensus(Copyable, Movable):
 
     `cells` is keyed by the `CELL_*` bits. `first_period` is the least interior
     period over the specimens where (F) fails. `residual_determinant` (key
-    `det + 8`) covers the (F) specimens that no clause of Theorem FC3 reaches.
+    `det + 8`) covers the (F) specimens reached by none of the clauses (a'),
+    (b), (c) evaluated here; clause (a) of Theorem FC3 is not evaluated, so
+    this is not "reached by no clause of FC3".
     `transients` is the pair transient `N` over the pairs of periodic first
     letters of (F) specimens; `nonf_pairs_absorbed` counts the pairs of the
     other specimens with a relative state absorbed by an interior cycle.
+    `f_pairs_absorbed` is kept for the report line and cannot be nonzero: on
+    an (F) specimen the certificate is empty, so an absorbed orbit raises in
+    `OrbitMemo.transient` before it is counted. The raise is the guard.
     `peak_candidates`, `peak_visited` and `peak_nodes` are the largest searches
-    met, to be read against the caps. `holds[s]`, `cycle_counts[s]` and `leftmost_predicted[s]` are (F), the
-    number of interior f-cycles and the predicted number of terminal leftmost
-    cycles of `corpus[s]`."""
+    met, to be read against the caps. `holds[s]`, `radii[s]`,
+    `cycle_counts[s]` and `leftmost_predicted[s]` are (F), the certified box
+    it was decided in, the number of interior f-cycles and the predicted
+    number of terminal leftmost cycles of `corpus[s]`. `matrices` is the
+    number of distinct incidence matrices and `matrix_radius_sum` the sum of
+    the three radii over them."""
 
     var total: Int
     var cells: Histogram
@@ -1331,8 +1423,11 @@ struct GeometricFCensus(Copyable, Movable):
     var residual_determinant: Histogram
     var transients: Histogram
     var holds: List[Bool]
+    var radii: List[List[Int]]
     var cycle_counts: List[Int]
     var leftmost_predicted: List[Int]
+    var matrices: Int
+    var matrix_radius_sum: Int
     var reversal_mismatches: Int
     var reversal_missing: Int
     var interior_cycle_total: Int
@@ -1359,8 +1454,11 @@ struct GeometricFCensus(Copyable, Movable):
         self.residual_determinant = Histogram(16)
         self.transients = Histogram(MAX_TRANSIENT)
         self.holds = List[Bool]()
+        self.radii = List[List[Int]]()
         self.cycle_counts = List[Int]()
         self.leftmost_predicted = List[Int]()
+        self.matrices = 0
+        self.matrix_radius_sum = 0
         self.reversal_mismatches = 0
         self.reversal_missing = 0
         self.interior_cycle_total = 0
@@ -1400,9 +1498,10 @@ def geometric_f_census(corpus: List[Specimen]) raises -> GeometricFCensus:
         var sigma = corpus[s].sigma.copy()
         index[substitution_key(sigma)] = s
         var m = PrototileMap(sigma)
-        var verdict = decide_geometric_f_from(m, boxes.radii_for(m.tables))
+        var verdict = decide_geometric_f_with(m, boxes)
         out.total += 1
         out.holds.append(verdict.holds)
+        out.radii.append(verdict.radii.copy())
         out.cycle_counts.append(len(verdict.cycles))
         if verdict.candidates > out.peak_candidates:
             out.peak_candidates = verdict.candidates
@@ -1427,7 +1526,7 @@ def geometric_f_census(corpus: List[Specimen]) raises -> GeometricFCensus:
         if prediction.longest > out.leftmost_longest:
             out.leftmost_longest = prediction.longest
 
-        var profile = fc3_profile(sigma)
+        var profile = fc3_profile_of(m)
         out.cells.record(profile.cell(verdict.holds))
         if verdict.holds and not profile.endpoint_trivial() and not profile.arithmetic_clause():
             if profile.determinant < -8 or profile.determinant > 7:
@@ -1451,6 +1550,10 @@ def geometric_f_census(corpus: List[Specimen]) raises -> GeometricFCensus:
                 out.nonf_relative_states += t.relative_states
                 if t.absorbed > 0:
                     out.nonf_pairs_absorbed += 1
+
+    out.matrices = boxes.distinct_matrices()
+    for k in range(len(boxes.radii)):
+        out.matrix_radius_sum += boxes.radii[k][0] + boxes.radii[k][1] + boxes.radii[k][2]
 
     for s in range(len(corpus)):
         var key = substitution_key(reversed_substitution(corpus[s].sigma))
