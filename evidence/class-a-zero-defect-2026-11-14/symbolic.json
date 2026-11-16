@@ -1,0 +1,18 @@
+{
+  "checked_directed_edges": 1096,
+  "coefficient_ring": "Z[u,v,s], u,v nonnegative integers",
+  "directed_paths_including_reversal": 398,
+  "endpoint_chamber_paths": 199,
+  "endpoint_length_bound": 9,
+  "occurrence_kinds": {
+    "FIRST": 466,
+    "LAST": 204,
+    "RUN": 1522
+  },
+  "ordinary_parameter_chambers": 16,
+  "source_reduction_orientations": 9,
+  "strict_fifth_endpoint_chambers": 7,
+  "strict_zero_defect_length_bound": 10,
+  "universal_seed_entry": false,
+  "wrong_ordinal_control_rejected": true
+}

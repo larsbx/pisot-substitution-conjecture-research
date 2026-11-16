@@ -253,7 +253,8 @@ def test_private_proofs_reconcile_by_source_name_and_module_without_collapsing_c
             "private lemma helper_lemma : True := trivial\nend PrivateBank\n")
     pb.check_imports(tmp_path)
     inventory = pb.lean_declarations(tmp_path)
-    private = [d for d in inventory if d["private"]]
+    fixture_modules = {f"PscVerif.{module}" for module in modules}
+    private = [d for d in inventory if d["private"] and d["module"] in fixture_modules]
     assert len(private) == 2 * len(modules)
     expected = {(d["module"], d["name"]) for d in inventory}
 

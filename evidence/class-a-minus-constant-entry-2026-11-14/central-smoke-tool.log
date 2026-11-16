@@ -1,0 +1,3 @@
+Failed to initialize Crashpad.  Crash reporting will not be available.  Cause: while locating crashpad handler: unable to locate crashpad handler executable
+CLASS_A_MINUS_CONSTANT_ENTRY_PASS members= 27 central_paths= 945 cycle_paths= 156 checked_edges= 10606 max_path= 37
+contract-receipt: minus-Class-A d>=5,n>=d+1 exact central nearest RUN selector and three-RUN constant-height descent; original ordinal and full Parikh replay, first integral-zero typed endpoint, checked pair/path bounds; word/field/prefix-cache mismatch, noncentral, altered-edge, cap and overflow refusals; finite fixtures do not supply the written all-strict-source density or recurrence proof

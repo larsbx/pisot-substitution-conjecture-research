@@ -1,0 +1,30 @@
+{
+  "command": [
+    "/workspace/scratch/f53f64a9a0d0/checks-venv/bin/python",
+    "oracles/python/class_a_plus_constant_entry.py",
+    "--native-log",
+    "/workspace/scratch/f53f64a9a0d0/psc/evidence/class-a-plus-constant-entry-2026-11-14/paths-native.log"
+  ],
+  "cwd": "/workspace/scratch/f53f64a9a0d0/psc",
+  "source_before": {
+    "oracles/python/class_a_plus_constant_entry.py": "803618345a6cd9ce4615dd6ee8d99e885607ca32a3fc0043181cbc21caba988e",
+    "oracles/python/class_a_central_entry.py": "b598118137e5d5f98d19b52e1c8a69e1bf4bf5a608f8b3b534bff2d0684c44a0",
+    "oracles/python/class_a_zero_defect_escape.py": "a618e547fc3acbe0278f3c3ac3b46e9dcfbc55f481bcd17ec811d03995927842",
+    "oracles/python/class_a_boundary_children.py": "31ecaf4087aec22e8e433eeecaa70c17db53fa8a5a701c63c4b0231d3c03429a",
+    "oracles/python/class_a_x_productivity.py": "6fe0e748299fa569f6b248979add7724da9a23423748d0d10aa6e9e304bbafde"
+  },
+  "started_utc": "2026-11-15T00:15:52.569819+00:00",
+  "exit_code": 0,
+  "ended_utc": "2026-11-15T00:17:57.048011+00:00",
+  "elapsed_seconds": 124.478,
+  "source_after": {
+    "oracles/python/class_a_plus_constant_entry.py": "803618345a6cd9ce4615dd6ee8d99e885607ca32a3fc0043181cbc21caba988e",
+    "oracles/python/class_a_central_entry.py": "b598118137e5d5f98d19b52e1c8a69e1bf4bf5a608f8b3b534bff2d0684c44a0",
+    "oracles/python/class_a_zero_defect_escape.py": "a618e547fc3acbe0278f3c3ac3b46e9dcfbc55f481bcd17ec811d03995927842",
+    "oracles/python/class_a_boundary_children.py": "31ecaf4087aec22e8e433eeecaa70c17db53fa8a5a701c63c4b0231d3c03429a",
+    "oracles/python/class_a_x_productivity.py": "6fe0e748299fa569f6b248979add7724da9a23423748d0d10aa6e9e304bbafde"
+  },
+  "source_unchanged": true,
+  "stdout_sha256": "a4a4e13a75121d8447076e65b4d22d965bdbff36cb14cd06c64ae4a61f62ec82",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

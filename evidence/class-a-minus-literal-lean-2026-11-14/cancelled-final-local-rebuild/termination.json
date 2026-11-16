@@ -1,0 +1,13 @@
+{
+  "source_revision": "b0d499b333f012dc927e5f27782add14803ef3dd",
+  "recorded_utc": "2026-11-15T00:34:18.012162+00:00",
+  "action": "intentional Ctrl-C through the execution session",
+  "execution_session": 32494,
+  "execution_exit_code": 130,
+  "reason": "avoid redundant concurrent cached-dependency compilation while final fresh-dependency isolated acceptance proceeds",
+  "completed_module_commands": 4,
+  "completed_commands_all_exit_zero": true,
+  "source_unchanged": true,
+  "acceptance": false,
+  "scope": "incomplete local copied-source rebuild; not theorem rejection or final-source acceptance"
+}
