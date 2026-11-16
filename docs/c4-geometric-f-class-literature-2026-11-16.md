@@ -8,6 +8,12 @@ remains open; nothing here changes a governed claim status (C4, #138, #139,
 #84, G1 and PSC are unchanged); independent human review pending.
 [Issue #461](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/461).
 
+The [FC2 rank-transfer review](c4-fc2-rank-transfer-review-2026-11-16.md)
+checks Barge–Kellendonk §2.2 and Theorem 2.21 for the eigenfunction argument,
+and proves that removing BBK's extra strand orbits preserves the Haar-typical
+fibre degree. It records both the arXiv v1 and journal numbering of the
+Minervino–Thuswaldner property (F) results.
+
 ## Timing, stated plainly
 
 The sources marked as read in the table below, with three exceptions, were

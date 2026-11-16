@@ -22,6 +22,10 @@ changes.
 
 Literature gate:
 [`c4-geometric-f-class-literature-2026-11-16.md`](c4-geometric-f-class-literature-2026-11-16.md).
+The [FC2 rank-transfer review](c4-fc2-rank-transfer-review-2026-11-16.md)
+checks the half-open endpoint convention in §4 and supplies the cited
+continuous-eigenfunction argument for the rank comparison in §1. It also
+records the range of the proof in arbitrary degree and its Lean interface.
 Record of the attempt that produced these statements, with the routes that
 failed: [`c4-closure-attempt-2026-11-16.md`](c4-closure-attempt-2026-11-16.md).
 Canonical implementation `kernel/psc/c4_geometric_f.mojo`, regression

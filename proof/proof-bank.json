@@ -14010,6 +14010,198 @@
       "declaration": "theorem incZ_eq_degree2Sector (S : Psc.Binomial.ChildSystem (Fin 3)) :"
     },
     {
+      "name": "Psc.GeometricF.reverseSubstitution_reverse",
+      "module": "PscVerif.GeometricFRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFRank.lean",
+      "line": 23,
+      "declaration": "@[simp] theorem reverseSubstitution_reverse (s : α → List α) :"
+    },
+    {
+      "name": "Psc.GeometricF.subst_reverse",
+      "module": "PscVerif.GeometricFRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFRank.lean",
+      "line": 29,
+      "declaration": "theorem subst_reverse (s : α → List α) (w : List α) :"
+    },
+    {
+      "name": "Psc.GeometricF.power_reverseSubstitution",
+      "module": "PscVerif.GeometricFRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFRank.lean",
+      "line": 38,
+      "declaration": "theorem power_reverseSubstitution (s : α → List α) (n : ℕ) (a : α) :"
+    },
+    {
+      "name": "Psc.GeometricF.pvec_reverse",
+      "module": "PscVerif.GeometricFRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFRank.lean",
+      "line": 48,
+      "declaration": "@[simp] theorem pvec_reverse (w : List α) : pvec w.reverse = pvec w := by"
+    },
+    {
+      "name": "Psc.GeometricF.incZ_reverseSubstitution",
+      "module": "PscVerif.GeometricFRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFRank.lean",
+      "line": 53,
+      "declaration": "@[simp] theorem incZ_reverseSubstitution (s : α → List α) :"
+    },
+    {
+      "name": "Psc.GeometricF.reflectEdge_reflectEdge",
+      "module": "PscVerif.GeometricFRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFRank.lean",
+      "line": 82,
+      "declaration": "@[simp] theorem reflectEdge_reflectEdge (x : IntegralEdge α) : reflectEdge (reflectEdge x) = x := by"
+    },
+    {
+      "name": "Psc.GeometricF.edgeDescendant_reflect",
+      "module": "PscVerif.GeometricFRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFRank.lean",
+      "line": 88,
+      "declaration": "theorem edgeDescendant_reflect {s : α → List α} {n : ℕ} {x y : IntegralEdge α}"
+    },
+    {
+      "name": "Psc.GeometricF.edgeCoincident_reflect_iff",
+      "module": "PscVerif.GeometricFRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFRank.lean",
+      "line": 102,
+      "declaration": "theorem edgeCoincident_reflect_iff {s : α → List α} {x y : IntegralEdge α} :"
+    },
+    {
+      "name": "Psc.GeometricF.edgeDescendant_comp",
+      "module": "PscVerif.GeometricFRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFRank.lean",
+      "line": 110,
+      "declaration": "theorem edgeDescendant_comp {s : α → List α} {m n : ℕ} {x y z : IntegralEdge α}"
+    },
+    {
+      "name": "Psc.GeometricF.edgeCoincident_zero_iff",
+      "module": "PscVerif.GeometricFRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFRank.lean",
+      "line": 127,
+      "declaration": "theorem edgeCoincident_zero_iff {s : α → List α} {a b : α} :"
+    },
+    {
+      "name": "Psc.GeometricF.vertexCoincident_reverse_iff",
+      "module": "PscVerif.GeometricFRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFRank.lean",
+      "line": 139,
+      "declaration": "theorem vertexCoincident_reverse_iff {s : α → List α} {a b : α} :"
+    },
+    {
+      "name": "Psc.GeometricF.stepN_iff_edgeDescendant",
+      "module": "PscVerif.GeometricFRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFRank.lean",
+      "line": 157,
+      "declaration": "theorem stepN_iff_edgeDescendant {s : α → List α} {L : (α → ℤ) →+ ℝ} {β : ℝ}"
+    },
+    {
+      "name": "Psc.GeometricF.reflect_left_vertex_not_state",
+      "module": "PscVerif.GeometricFRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFRank.lean",
+      "line": 181,
+      "declaration": "theorem reflect_left_vertex_not_state (L : (α → ℤ) →+ ℝ) (a : α) :"
+    },
+    {
+      "name": "Psc.GeometricF.edgeOfState_reflectState",
+      "module": "PscVerif.GeometricFRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFRank.lean",
+      "line": 187,
+      "declaration": "theorem edgeOfState_reflectState (x : IntegralEdge α) :"
+    },
+    {
+      "name": "Psc.GeometricF.LengthData.reverseSubstitution",
+      "module": "PscVerif.GeometricFRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFRank.lean",
+      "line": 194,
+      "declaration": "theorem LengthData.reverseSubstitution {s : α → List α} {L : (α → ℤ) →+ ℝ} {β : ℝ}"
+    },
+    {
+      "name": "Psc.GeometricF.ContractionData.reverseSubstitution",
+      "module": "PscVerif.GeometricFRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFRank.lean",
+      "line": 198,
+      "declaration": "theorem ContractionData.reverseSubstitution {s : α → List α} {L : (α → ℤ) →+ ℝ}"
+    },
+    {
+      "name": "Psc.GeometricF.propertyF_reverse_of_propertyF",
+      "module": "PscVerif.GeometricFRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFRank.lean",
+      "line": 205,
+      "declaration": "theorem propertyF_reverse_of_propertyF {s : α → List α} {L : (α → ℤ) →+ ℝ} {β : ℝ}"
+    },
+    {
+      "name": "Psc.GeometricF.propertyF_reverse_iff",
+      "module": "PscVerif.GeometricFRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFRank.lean",
+      "line": 223,
+      "declaration": "theorem propertyF_reverse_iff {s : α → List α} {L : (α → ℤ) →+ ℝ} {β : ℝ}"
+    },
+    {
+      "name": "Psc.GeometricF.stateFamily_of_leftLetterFamily",
+      "module": "PscVerif.GeometricFRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFRank.lean",
+      "line": 242,
+      "declaration": "theorem stateFamily_of_leftLetterFamily {s : α → List α} {L : (α → ℤ) →+ ℝ} {n : ℕ}"
+    },
+    {
+      "name": "Psc.GeometricF.leftLetterFamily_of_stateFamily",
+      "module": "PscVerif.GeometricFRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFRank.lean",
+      "line": 250,
+      "declaration": "theorem leftLetterFamily_of_stateFamily {s : α → List α} {L : (α → ℤ) →+ ℝ} {β : ℝ}"
+    },
+    {
+      "name": "Psc.GeometricF.leftRank_of_stateRank",
+      "module": "PscVerif.GeometricFRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFRank.lean",
+      "line": 269,
+      "declaration": "theorem leftRank_of_stateRank {s : α → List α} {L : (α → ℤ) →+ ℝ} {β : ℝ}"
+    },
+    {
+      "name": "Psc.GeometricF.rightLetterFamily_iff_reverse",
+      "module": "PscVerif.GeometricFRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFRank.lean",
+      "line": 278,
+      "declaration": "theorem rightLetterFamily_iff_reverse {s : α → List α} {n : ℕ} :"
+    },
+    {
+      "name": "Psc.GeometricF.fc2_rank_lower_bounds",
+      "module": "PscVerif.GeometricFRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFRank.lean",
+      "line": 284,
+      "declaration": "theorem fc2_rank_lower_bounds {s : α → List α} {L : (α → ℤ) →+ ℝ}"
+    },
+    {
+      "name": "Psc.GeometricF.fc2_rank_transfer",
+      "module": "PscVerif.GeometricFRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFRank.lean",
+      "line": 295,
+      "declaration": "theorem fc2_rank_transfer {s : α → List α} {L : (α → ℤ) →+ ℝ} {β : ℝ}"
+    },
+    {
       "name": "Psc.GeometricF.win_split",
       "module": "PscVerif.GeometricFStrict",
       "private": false,
@@ -34235,97 +34427,97 @@
     },
     {
       "source": "docs/c4-geometric-f-class-2026-11-16.md",
-      "line": 116,
+      "line": 120,
       "statement_heading": "**Lemma 1 (arithmetic of `ℓ`).** Let `σ ∈ PIP3`."
     },
     {
       "source": "docs/c4-geometric-f-class-2026-11-16.md",
-      "line": 147,
+      "line": 151,
       "statement_heading": "**Lemma 2 (powers).** `f_{σ^m} = f^m` for every `m ≥ 1`."
     },
     {
       "source": "docs/c4-geometric-f-class-2026-11-16.md",
-      "line": 155,
+      "line": 159,
       "statement_heading": "**Lemma 3 (finiteness; the Pisot bound).** Let"
     },
     {
       "source": "docs/c4-geometric-f-class-2026-11-16.md",
-      "line": 176,
+      "line": 180,
       "statement_heading": "**Lemma 4 (interior periodic addresses, powers, reversal).** Let `σ ∈ PIP3`."
     },
     {
       "source": "docs/c4-geometric-f-class-2026-11-16.md",
-      "line": 203,
+      "line": 207,
       "statement_heading": "**Lemma 5 (identifications; used in no proof below).**"
     },
     {
       "source": "docs/c4-geometric-f-class-2026-11-16.md",
-      "line": 226,
+      "line": 230,
       "statement_heading": "**Theorem FC1.** Let `σ ∈ PIP3` satisfy (F). Let `m ≥ 1`, `τ = σ^m`, and let"
     },
     {
       "source": "docs/c4-geometric-f-class-2026-11-16.md",
-      "line": 362,
+      "line": 366,
       "statement_heading": "**Lemma 6 (return lattice).** For `σ ∈ PIP3` the group `Λ_ret` generated by"
     },
     {
       "source": "docs/c4-geometric-f-class-2026-11-16.md",
-      "line": 405,
+      "line": 409,
       "statement_heading": "**Theorem FC2.** Let `σ ∈ PIP3`."
     },
     {
       "source": "docs/c4-geometric-f-class-2026-11-16.md",
-      "line": 453,
+      "line": 457,
       "statement_heading": "**Corollary E (equivalences on (F)).** For `σ ∈ PIP3` with (F) the following"
     },
     {
       "source": "docs/c4-geometric-f-class-2026-11-16.md",
-      "line": 466,
+      "line": 470,
       "statement_heading": "**Corollary H (hardness on the (F) class).** If no `σ ∈ PIP3` has a strict"
     },
     {
       "source": "docs/c4-geometric-f-class-2026-11-16.md",
-      "line": 535,
+      "line": 539,
       "statement_heading": "**Lemma 7 (the substitution action).** Let `σ ∈ PIP3`."
     },
     {
       "source": "docs/c4-geometric-f-class-2026-11-16.md",
-      "line": 607,
+      "line": 611,
       "statement_heading": "**Lemma S (signed overlap matrix).** Let `σ ∈ PIP3` with `cr(σ) = 2`, `n`"
     },
     {
       "source": "docs/c4-geometric-f-class-2026-11-16.md",
-      "line": 648,
+      "line": 652,
       "statement_heading": "**Theorem P (parity).** Let `σ ∈ PIP3` with `det M` odd. If `cr(σ) = 2`, then"
     },
     {
       "source": "docs/c4-geometric-f-class-2026-11-16.md",
-      "line": 705,
+      "line": 709,
       "statement_heading": "**Theorem FC3 (class theorem).** Let `σ ∈ PIP3` satisfy (F) and one of:"
     },
     {
       "source": "docs/c4-geometric-f-class-2026-11-16.md",
-      "line": 733,
+      "line": 737,
       "statement_heading": "**Theorem N (necessary conditions).** Let `σ ∈ PIP3` have a strict system."
     },
     {
       "source": "docs/c4-geometric-f-class-2026-11-16.md",
-      "line": 778,
+      "line": 782,
       "statement_heading": "**Lemma 8 (strict components).** Suppose `σ` has a strict system. Then"
     },
     {
       "source": "docs/c4-geometric-f-class-2026-11-16.md",
-      "line": 836,
+      "line": 840,
       "statement_heading": "**Lemma 9 (classes are eigenfunction classes).** Let `Ω_s = Ω_σ/≈_s` be"
     },
     {
       "source": "docs/c4-geometric-f-class-2026-11-16.md",
-      "line": 862,
+      "line": 866,
       "statement_heading": "**Lemma 10 (no free symmetry of prime order over the factor).** Assume"
     },
     {
       "source": "docs/c4-geometric-f-class-2026-11-16.md",
-      "line": 899,
+      "line": 903,
       "statement_heading": "**Theorem Fork.** Let `σ ∈ PIP3` be unit with `dim H¹(Ω_σ; ℚ) = 3`, and let"
     },
     {
@@ -36226,6 +36418,7 @@
     "proof/PscVerif/PscVerif/GaloisOrbit.lean": "4d3b5474dbd14205f4bf2d33e98149ebbdd6d7e0fb8fd3a33787b878bcad5f07",
     "proof/PscVerif/PscVerif/GeometricFInclusion.lean": "4b96ca14c725dbcfd473ba1af7b2f9c93489a1fae2e6af7fe285008ca0685c54",
     "proof/PscVerif/PscVerif/GeometricFPisot.lean": "12fdb75b8b9e9a465337abc62f4229bd83cff00a9395b1ad2213b01f693e2747",
+    "proof/PscVerif/PscVerif/GeometricFRank.lean": "2f2cfca2ad6e05ce8347e97b1968c09b7bbb671f4e0d8f0a366966c0503d47b9",
     "proof/PscVerif/PscVerif/GeometricFStrict.lean": "d21956f722083b84473d633854cd43173ebe99c1cde99e7292c57cd046221abb",
     "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean": "c3b266fc203b69f632063b38d044c0f76e7ec50825a16c6c04949fa696e275ec",
     "proof/PscVerif/PscVerif/GraphEmbedding.lean": "ab4f4774921dbf755b0c93c1f7c1180d076194c4906f7d4ea96210635d37caee",
@@ -36315,7 +36508,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "42797988ebb0bcae4f5db4384205b736fd292129868646b0e421a640ed9eabf5",
+    "proof/PscVerif/PscVerif.lean": "a6e431d4f169d5d1eda006aff14446fd9f9340ac79ae61382feb3411ea9f84fa",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
