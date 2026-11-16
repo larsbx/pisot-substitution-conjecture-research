@@ -221,8 +221,10 @@ condition of Theorem P+ are scratch and are labelled there.
 ### Negative controls
 
 From the literature: Thue–Morse has coincidence rank 2 (Barge Example 16)
-and `dim H¹ = 2`, one more than the degree of its dilation, so the
-hypothesis `l = 0` of Lemma 9′ and Theorem H3 cannot be dropped;
+and `dim H¹ = 2`, one more than the degree of its dilation: in the
+degree-one analogue the hypothesis `dim H¹ = d` of Lemma 9′ and Theorem H3
+cannot be dropped (Thue–Morse is not in PIP3, and no PIP3 substitution with
+`cr = 2` is known, so the necessity of `l = 0` is not shown on PIP3);
 Baker–Barge–Kwapisz Example 5.3 (reducible, unit, `cr = 2`) shows that
 irreducibility is needed; the Barge–Bruin–Jones–Sadun examples with
 `cr = 3` and minimal cohomology bound what the argument of Lemma 10 can give
@@ -233,11 +235,16 @@ Obstruction T. From the repository: the strict controls Thue–Morse,
 `01/2/120`, `012/120/201`, `1/012/1`, `1/012/101`, `10/102/211` and its
 reversal, C-D1 `011/120/2012`, C-D2 `010/1222/2012`, `1/0/22`, and the
 productive PIP3 controls. The proof note states where each argument stops
-on each of them. Two of them matter for the decision: on `10/102/211` the
-conclusion of Theorem NI (a non-injective top track) is realised by an
-actual strict system, so non-injectivity alone is no contradiction; on
-`1/012/101` and C-D2 the top track is not injective although the cofactor
-is neutral, so Theorem TT has no converse.
+on each of them. Two of them matter for the decision (exploratory scratch
+observations in exact arithmetic, reproduced by both verifiers; not
+replayable from the repository except for the pinned numbers of fixed
+tilings of `10/102/211` and `1/012/101`): on `10/102/211` the conclusion of
+Theorem NI (a non-injective top track) is realised by an actual strict
+system, so non-injectivity alone is no contradiction; on `1/012/101` and
+C-D2 the top track is not injective although the cofactor is neutral, so
+the general form of Theorem TT has no converse (both controls are
+reducible; on PIP3 the converse is untested on strict systems, none being
+known).
 
 ### Non-claims / remaining gaps
 
@@ -285,3 +292,19 @@ is not implemented.
   at coincidence rank two is stated in §10 of the proof note; the cells with
   `dim H¹ ≥ 4` are untouched for even determinant, and the unit case with
   first-defect weights `(m, m, m)` is untouched by every tool of the round.
+
+## Corrections of 2026-11-16 to the merged text
+
+This note was merged with PR #590 (snapshot `abcc8f4a`) before a
+report-only audit of it was applied. Two sentences of "Negative controls"
+were corrected afterwards; the decision is unchanged. As merged they read:
+
+- "Thue–Morse has coincidence rank 2 (Barge Example 16) and `dim H¹ = 2`,
+  one more than the degree of its dilation, so the hypothesis `l = 0` of
+  Lemma 9′ and Theorem H3 cannot be dropped". Thue–Morse is not in PIP3; it
+  shows this for the degree-one analogue only.
+- "Two of them matter for the decision: […] on `1/012/101` and C-D2 the
+  top track is not injective although the cofactor is neutral, so Theorem
+  TT has no converse." The two facts are scratch observations and were not
+  labelled; both controls are reducible, so only the general form of
+  Theorem TT is shown to have no converse.

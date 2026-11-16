@@ -19,14 +19,17 @@ The statements for *all* parameters are the recorded proofs of the note
 (single prover plus independent adversarial re-derivation, not
 machine-checked, independent human review pending): PIP3 for `n >= r+s+1`
 and for every `tau_n`; property (F) for `n >= 3r+s` and for `tau_n`,
-`n >= 5`; the endpoint maps and `dim H^1`; the strong-coincidence witnesses
-at levels at most 3. Nothing in this module proves any of them. It builds a
-member, asks the canonical kernel about that one substitution, and returns
-what the kernel said, so that a regression can pin the statements on a
-finite grid of parameters (`kernel/tests/test_c4_fc3_family.mojo`). A grid
-is finite evidence: it is not the statement for all parameters, and it
-changes no claim status. Universal C4 is open; the witnesses make C4
-elementary on these families, which are therefore not new C4 cases.
+`n >= 5`; the endpoint maps and `dim H^1`; explicit left strong-coincidence
+witnesses at levels at most 3 for `n >= r+1` and for `tau_n`, `n >= 2`, and
+explicit right ones at levels at most 3 for `s >= 1`, `n >= s` only (none
+is stated for `s = 0` or for `tau_n`). Nothing in this module proves any of
+them. It builds a member, asks the canonical kernel about that one
+substitution, and returns what the kernel said, so that a regression can pin
+the statements on a finite grid of parameters
+(`kernel/tests/test_c4_fc3_family.mojo`). A grid is finite evidence: it is
+not the statement for all parameters, and it changes no claim status.
+Universal C4 is open; the left witnesses make C4 elementary on the members
+they cover, which are therefore not new C4 cases.
 
 Which kernel entry points accept these images
 ---------------------------------------------
@@ -102,7 +105,16 @@ screened walk is:
 - on six long-image members the literal box graph of Corollary LC5
   (`psc.vertex_coincidence.build_box_graph`, whose radii are the independent
   Sturm-Tarski ones) has no terminal cycle of `psc.leftmost_chain`: the same
-  verdict without `stable_radii` and without this module's walk.
+  verdict without `stable_radii` and without this module's walk;
+- every grid member that fails (F) has images of at most six letters, so the
+  items above do not show that the walk finds an interior cycle on a long
+  image. Five negative controls off the grid do: `decide_f_screened` finds
+  the interior cycles of `sigma_{6,1,5}` (periods 8, 11, 14) and of
+  `sigma_{7,0,6}` (period 32), both with `n <= r+s-1`, and of
+  `1/0 1^k 2/001` for `k = 5, 12, 23` (period 3; images of 7, 14 and 25
+  letters, the last as long as the longest image on the grid); at `k = 5`
+  the literal box graph has the two terminal leftmost cycles the bridge
+  predicts.
 
 `interior_periods_in_box` is the walk in a box the caller names. Like
 `psc.c4_geometric_f.interior_cycles_in_box` it returns a search and no

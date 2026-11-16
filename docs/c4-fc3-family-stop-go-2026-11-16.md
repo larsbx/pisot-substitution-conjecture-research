@@ -73,9 +73,10 @@ grid:
    the class is infinite, with nonunit members of every odd determinant
    `r ≥ 3`. The conclusion `cr = 1` is conditional on the imports of
    Theorem FC3.
-5. **Proposition FM5.** Explicit left and right strong-coincidence
-   witnesses at levels at most 3. So "no strict system" is elementary on
-   the families.
+5. **Proposition FM5.** Explicit left strong-coincidence witnesses at
+   levels at most 3 for `σ_{r,s,n}`, `n ≥ r + 1`, and for `τ_n`, `n ≥ 2`;
+   explicit right witnesses at levels at most 3 for `s ≥ 1`, `n ≥ s`. So
+   "no strict system" is elementary on the families.
 
 The executable part is `kernel/psc/c4_fc3_family.mojo` with
 `kernel/tests/test_c4_fc3_family.mojo`: the statements on the grid
@@ -184,7 +185,8 @@ of `1` exactly when `n ≥ r + s` (`χ(β) = 0` reads
 from a text on disk). So that letter order falls under the
 β-numeration literature: property (F) by Frougny–Solomyak, pure discrete
 spectrum by Barge's theorem for the β-substitution. Its first-letter map is
-constant, so it is in the endpoint-collapse stratum of the repository
+eventually constant (constant, equal to `1`, for `s ≥ 1`; `(1, 1, 0)` for
+`s = 0`), so it is in the endpoint-collapse stratum of the repository
 (Theorem A(3)) and has `dim H¹ = 3`. The families of the proof note move the
 letter `0` to the front of two images. Their tiling spaces have
 `dim H¹ = 4` or `5`, so they are not homeomorphic to that of `σ′`, and
@@ -222,9 +224,10 @@ re-derived at landing:
   Jacobi–Perron substitutions with all `b_k ≥ 1` (in particular of an
   admissible product) is eventually constant. For `b = 0` it is not:
   `σ_{a,0}`, `a ≥ 1`, has last-letter map `1 → 3, 2 → 3, 3 → 2`.
-- Hence: **`σ_{1,s,n}` with `s ≥ 1` is not a product of Brun or
-  Jacobi–Perron substitutions, in either orientation and up to relabelling**
-  (`g = (1,0,0)` and `g_R = (1,2,1)` are not bijective).
+- Hence: **`σ_{1,s,n}` with `s ≥ 1` is not a product of Brun substitutions
+  (printed letter orderings) or of Jacobi–Perron substitutions, in either
+  orientation and up to relabelling** (`g = (1,0,0)` and `g_R = (1,2,1)`
+  are not bijective).
   **`σ_{1,0,n}`, `τ_n` and their reversals are not Brun products with the
   printed letter orderings and not Jacobi–Perron-admissible products**
   (where the first-letter map is bijective, the last-letter map has a
@@ -240,7 +243,20 @@ re-derived at landing:
   Remark 2.4); those need not have bijective first-letter maps. Only an
   exploratory matrix-level computation of the prover speaks to that (the
   matrix of `σ_{1,1,n}` is a product of Brun matrices only for `n = 1`,
-  `n ≤ 14`; scratch).
+  `n ≤ 14`; scratch). The repository already has a record on this point,
+  which was not confronted when this gate was written (found at the audit
+  of this note): the side-notes ledger entry of 2026-10-11 on Brun
+  composites and the
+  [S-adic transfer gate](sadic-transfer-literature-gate-2026-10-11.md)
+  (claim (B″); its source row quotes Theorem B of the S-adic programme:
+  final-letter map the identity, initial-letter map constant when every
+  letter occurs) record that primitive composites of admissible unordered
+  Brun words with irreducible Pisot characteristic polynomial lie in the
+  mirror of Barge's class. No member and no power of one is in Barge's class
+  or its mirror (table above); so, if that record applies as worded, no
+  member is such a composite. The source note of that programme is not in
+  this repository, and its letter convention and its definition of
+  "unordered" were not checked here; so this is not claimed.
 - **Not examined:** the Jacobi–Perron literature beyond admissible
   products, including the modified Jacobi–Perron substitutions that the
   paper cites. Whether pure discrete spectrum is in print for the
@@ -366,3 +382,23 @@ reading Frougny–Solomyak 1992 and the two papers behind Theorems 1 and 4 of
 the survey in the primary text: the threshold `n ≥ r + s` is exactly their
 non-increasing-digit condition, and the question is whether their rewriting
 argument extends to the three-branch map.
+
+## Corrections of 2026-11-16 to the merged text
+
+This note was merged with PR #590 (snapshot `abcc8f4a`) before a
+report-only audit of it was applied. The decision is unchanged. The text
+above now corrects the following wordings; as merged they read:
+
+- Proposed claims, item 5: "Explicit left and right strong-coincidence
+  witnesses at levels at most 3." Proposition FM5 gives right witnesses only
+  for `s ≥ 1`, `n ≥ s`; for `s = 0` the least right levels pinned on the
+  grid are `(3, 4, 4)`, so two pairs have no right witness at level 3 or
+  below.
+- "The same matrix in another letter order": "Its first-letter map is
+  constant". For `s = 0` it is `(1, 1, 0)`: eventually constant.
+- "Products of Brun and Jacobi–Perron substitutions": "`σ_{1,s,n}` with
+  `s ≥ 1` is not a product of Brun or Jacobi–Perron substitutions, in
+  either orientation and up to relabelling". For Brun substitutions the
+  argument covers the printed letter orderings only.
+- The bullet "Not excluded" did not cite the repository's own record of
+  2026-10-11 on Brun composites.

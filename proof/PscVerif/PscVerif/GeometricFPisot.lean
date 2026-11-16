@@ -631,11 +631,11 @@ theorem fc1_inclusion_gap_of_primitive_pisot [Nontrivial α]
 
 end Instance
 
-/-- **Theorem FC1 on PIP3** (three letters): `σ` primitive, `χ_M` irreducible over `ℚ`,
-Perron row `ℓ > 0` with `ℓ M = β ℓ`, every complex root of `χ_M` other than `β` in the open
-unit disc, and property (F) for the tile lengths `ℓ`.  Then `σ` has a strict system iff some
-pair of distinct `g`-periodic letters has no left strong-coincidence witness iff left strong
-coincidence fails for some pair of distinct letters. -/
+/-- **Theorem FC1 (the equivalences) on PIP3** (three letters): `σ` primitive, `χ_M` irreducible
+over `ℚ`, `ℓ > 0` with `ℓ M = β ℓ`, every complex root of `χ_M` other than `β` in the open unit
+disc, and (F) for the lengths `ℓ`.  Then `σ` has a strict system iff some two distinct
+`g`-periodic letters have no left strong-coincidence witness iff some two distinct letters have
+none.  Items (1), (2): `fc1_inclusion_gap_of_primitive_pisot`; (3): `fc1_strictSystem_of_pisot`. -/
 theorem fc1_pip3 {s : Fin 3 → List (Fin 3)} {β : ℝ} {ℓ : Fin 3 → ℝ}
     (hprim : ∃ k ≥ 1, ∀ a c, 0 < (inc s ^ k) a c)
     (hirr : Irreducible ((inc s).map (Nat.cast : ℕ → ℚ)).charpoly)

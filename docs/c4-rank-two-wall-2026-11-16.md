@@ -6,10 +6,11 @@ strict system at coincidence rank two when `dim H¹ ≥ 4`. Label for every
 statement of this note: recorded proof, conditional on the listed imports,
 single prover plus independent adversarial re-derivation within the session
 of 2026-11-16 (two verifiers; re-derived once more while this note was
-written), not machine-checked, independent human review pending. Theorem FP,
-Lemma K and Lemma U are elementary and use no import. Nothing here changes a
-governed claim status (C4, #138, #139, #84, G1 and PSC are unchanged), and no
-ledger claim is registered.
+written), not machine-checked, independent human review pending. Theorem FP
+and Lemma U are elementary and use no import; Lemma K is elementary except
+for its last sentence, which is Kronecker's theorem (import Kron, not
+read). Nothing here changes a governed claim status (C4, #138, #139, #84, G1
+and PSC are unchanged), and no ledger claim is registered.
 [Issue #461](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/461).
 
 Literature gate:
@@ -47,11 +48,11 @@ established about coincidence rank two, in three parts.
   two at `dim H¹ = 3` for every determinant (Theorem H3). Corollaries FC3+
   and N+ extend clause (b) of Theorem FC3 and Theorem N(2) to even
   determinant.
-- **An obstruction (§9).** The first-defect class of a strict component is
-  not pulled back from `Ω_σ` unless its eigenvalue is a root of unity, so it
-  cannot be transported to Barge's quotient and Lemma S says nothing about
-  it (Obstruction T). The route "defect eigenvalue against Lemma S" fails at
-  its first premise.
+- **An obstruction (§9).** At coincidence rank two, a first-defect class of
+  the strict component whose eigenvalue is not a root of unity is not pulled
+  back from `Ω_σ`; so it cannot be transported to Barge's quotient, and
+  Lemma S says nothing about it (Obstruction T). The route "defect
+  eigenvalue against Lemma S" fails at its first premise.
 
 §10 states what is still open at coincidence rank two; §11 separates what is
 new from what is on main or in the literature; §12 has the five "work shown"
@@ -144,11 +145,11 @@ arXiv source fetched while this note was written.
 | Tag | Source and statement | Hypotheses | Read | Used in |
 | --- | --- | --- | --- | --- |
 | BBK | Baker–Barge–Kwapisz, Ann. Inst. Fourier 56 (2006) 2213–2248: Def. 2.2, Prop. 2.3 (strand space and tiling space; their space may contain finitely many non-recurrent orbits besides `Ω_σ`, footnote 5); (3.8)–(3.12) and Def. 3.1 (`h_φ` into `𝕋_A`); Def. 4.1; Thm 4.2 (`h_φ` uniformly finite-to-one; a full-measure set of points whose fibre has exactly `cr_φ` elements, the minimum); (5.1)–(5.3) with the first step of the proof of Thm 5.1 (for `u` in the dual of `𝕋_A`, `χ_u ∘ h_φ` is a continuous eigenfunction with eigenvalue `u·r`); Cor. 5.2 | primitive, translation-aperiodic, Pisot; reducible and non-unimodular allowed | the prover and the logic verifier (passages); the passages listed re-read in the on-disk text while writing | W1, W2, W4; Lemma 9′; H3; FC3+ |
-| B15 | Barge, Bull. Soc. Math. France 143 (2015), arXiv:1301.7094, numbering of the arXiv text: §2 (maximality of the factor map `g`; the equicontinuous structure relation is regional proximality); Thm 4(1)–(5); §3 (the relation `≈_s`); Thm 12; Lemma 13 with its proof; Lemma 14; Lemma 15 (`Ω_{Ψ_p} ≅ Ω_Ψ/∼_rpd`); Thm 17 (the 2-to-1 covering); the proper version (§4); Prop. 19; Lemma 20; sequence (4.1), Lemma 21; Thm 22 with the count of periodic words in its proof | primitive, non-periodic, Pisot dilation; Thm 12: border forcing and no pure discrete spectrum; Lemmas 13–15, Thm 17: `cr = 2` and `≈_s` trivial (Lemma 15, Thm 17 also border forcing); Prop. 19: proper; Thm 22: odd norm | TeX source of §§2–4 line by line (prover); statements and the proofs of Lemma 13, Thm 17, Thm 22 by both verifiers and again, in the PDF text, while writing. The proofs of Thm 4 are deferred there to other papers and were not followed; the rewriting references (Durand; Barge–Diamond 2001) were not read | S+, P+, Lemma 9′(b), H3; W4 (wording only); T |
+| B15 | Barge, Bull. Soc. Math. France 143 (2015), arXiv:1301.7094, numbering of the arXiv text: §2 (maximality of the factor map `g`; the equicontinuous structure relation is regional proximality); Thm 4(1)–(5); Thm 5 (`Ω/≈_s` is the maximal equicontinuous factor iff the spectrum is pure discrete; used through (B4) of the (F)-class note for `cr(Φ′_s) = 2`); §3 (the relation `≈_s`); Thm 12; Lemma 13 with its proof; Lemma 14; Lemma 15 (`Ω_{Ψ_p} ≅ Ω_Ψ/∼_rpd`); Thm 17 (the 2-to-1 covering); the proper version (§4); Prop. 19; Lemma 20; sequence (4.1), Lemma 21; Thm 22 with the count of periodic words in its proof | primitive, non-periodic, Pisot dilation; Thm 12: border forcing and no pure discrete spectrum; Lemmas 13–15, Thm 17: `cr = 2` and `≈_s` trivial (Lemma 15, Thm 17 also border forcing); Prop. 19: proper; Thm 22: odd norm | TeX source of §§2–4 line by line (prover); statements and the proofs of Lemma 13, Thm 17, Thm 22 by both verifiers and again, in the PDF text, while writing. The proofs of Thm 4 are deferred there to other papers and were not followed; the rewriting references (Durand; Barge–Diamond 2001) were not read | S+, P+, Lemma 9′(b), H3; W4 (wording only); T |
 | BD08 | Barge–Diamond, Proc. Amer. Math. Soc. 136 (2008) 2183–2191, arXiv:math/0702669: the complex `K ⊇ S`, the map `g` and `ER`; Theorem 4 with its proof (the elements `v_C`, fixed by a power; the exact sequence `0 → G_0 → G_1 → G_2 → G_3 → 0`, over `ℤ`); Theorem 4′ (the vectors `w_i`: the coboundary of the dual generator of a component of `S`) | primitive, aperiodic | TeX source (prover, logic verifier); §3 re-read while writing | S+, Lemma 9′ (second proof), T |
 | BKS | Barge–Kellendonk–Schmieding, Fund. Math. 218 (2012) 243–267, arXiv:1204.1432, numbering of the arXiv source: §3.2 (`[X, S¹] ≅ H¹(X)`; `H¹` of the maximal equicontinuous factor is the group `E` of eigenvalues; the Schwartzman winding number `τ`); Lemma 2 (`τ ∘ θ` is the inclusion); Corollary 3 (`π*` is injective in degree one); Lemma 4; Theorem 5 (the cokernel of `π*: H¹(Ê) → H¹(Ω)` is torsion free) | a tiling space of finite local complexity with minimal `ℝⁿ`-action and an ergodic invariant measure; their substitutions are primitive, non-periodic, FLC | the prior-art verifier, in a fetched HTML rendering (statements; proofs paraphrased). **Read in the arXiv TeX source while this note was written**: statements and proofs of Theorem 1, Lemma 2, Corollary 3, Lemma 4, Theorem 5, Corollary 6 | Lemma 9′ (first proof), H3 |
 | Repo | Lemma 0 / `thm:defect-intertwiner` (identity (L0)); `thm:parikh` and R0; R1(b) (`rank D₂ = 3`); Proposition Q of the general-structure note; the shape list of manuscript `thm:sieve` ([multidegree sieve](c4-multidegree-spectral-sieve.md) §§2–5); Proposition 1 and §3 of the [orientation-spectrum note](c4-orientation-spectrum.md) | nonerasing `σ`; `χ_M` irreducible for R1 and the sieve; primitive for Proposition Q | on main; Lean through `r = 5` as listed above, prose beyond | TT (general form), NI, W3, T |
-| RepoF | (F)-class note: Lemma 1, Lemma 6, Lemma 7, Lemma 8, Lemma 10, Lemma S, Theorem FC2, Theorem N(1); Theorem A(4) of the [cut-pair note](c4-cut-pair-productivity-2026-11-04.md); Theorem FL of the closure-attempt note | as stated there; recorded proofs, not machine-checked (Theorem A is in Lean) | in full | W, S+, P+, H3, FC3+, N+ |
+| RepoF | (F)-class note: Lemma 1, Lemma 4(1), Lemma 6, Lemma 7, Lemma 8, Lemma 10, Lemma S, Theorem FC2, Theorem N(1); Theorem A(4) of the [cut-pair note](c4-cut-pair-productivity-2026-11-04.md); Theorem FL of the closure-attempt note | as stated there; recorded proofs, not machine-checked (Theorem A is in Lean) | in full | W, S+, P+, H3, FC3+, N+ |
 | Kron | Kronecker's theorem: a monic integer polynomial all of whose roots lie in the closed unit disc is neutral | — | **not read**; used on main in Proposition Q(b) | TT, NI |
 | Std | Standard facts with no locator on disk: `Ȟ¹(X; ℤ) = [X, S¹]` for compact metric `X`, and a null-homotopic map to `S¹` has a continuous logarithm; a one-dimensional substitution tiling space has covering dimension one; a complex line bundle over a compact space of covering dimension at most one is trivial; the identification of the two coincidence ranks ((F)-class note, §1). For the second proof of Lemma 9′ only: the winding number of a circle-valued map along a uniquely ergodic flow; Gottschalk–Hedlund | — | **not read; marked where used** | H3, S+, P+; W4 (wording in Barge's terms only) |
 
@@ -202,12 +203,12 @@ patches `Φ^{nk}(t)` increase, and their supports
 patches lie in the legal words `s^{nk}(a)`; it is fixed by `Φⁿ`, and it is
 the only fixed tiling that contains `t`. Different pairs `(a, P)` give
 different pairs `(a, x)`. So the fixed tilings of interior type correspond
-to the occurrences of `a` in `sⁿ(a)` that are neither first nor last, `a`
-running over the letters. Their number is
-`Σ_a (|sⁿ(a)|_a − [sⁿ(a) begins with a] − [sⁿ(a) ends with a])`: the first
-and the last occurrence are different occurrences because `sⁿ(a) ≠ a` (a
-primitive substitution on at least two letters has no letter that is its
-own image under a power).
+to the occurrences of `a` in `sⁿ(a)` that are neither the first letter nor
+the last letter of `sⁿ(a)`, `a` running over the letters. Their number is
+`Σ_a (|sⁿ(a)|_a − [sⁿ(a) begins with a] − [sⁿ(a) ends with a])`: an
+occurrence at the first position and one at the last position are different
+occurrences because `sⁿ(a) ≠ a` (a primitive substitution on at least two
+letters has no letter that is its own image under a power).
 
 *Vertex type.* Let `0` be a vertex of `T`, with a tile of type `b` on its
 left and of type `a` on its right. Then `ba` is legal, and in
@@ -299,7 +300,14 @@ least two members. If `p₁ = π₁ ∘ R` is injective on the `Φ_Σ`-periodic
 points of `Ω_Σ`, then the characteristic polynomial of `N` on `ker Pk` is
 neutral.
 
-The converse is false (§12, controls `1/012/101` and C-D2).
+The converse of the general form is false on the reducible controls
+`1/012/101` (under `σ²`) and C-D2 (§12): there the characteristic polynomial
+of `N` on `ker Pk` is neutral and `p₁` is not injective on fixed points.
+This is an exploratory scratch observation in exact arithmetic (not
+replayable from the repository), reproduced by both verifiers; of the
+numbers behind it only the fixed tilings of `1/012/101` are pinned. For
+`σ ∈ PIP3` the converse is untested on strict systems: no strict bigon
+system is known there.
 
 *Proof.* (a) For `σ ∈ PIP3`, `R` is a homeomorphism of `Ω_Σ` onto `Z`. The
 tile boundaries of a tiling of `Ω_Σ` are common vertices of the two entries
@@ -485,8 +493,10 @@ strict system.
   holds with `P = 1`.
 
 Imports: Lemma 8, Lemma 6, Lemma 1 (RepoF); BBK Prop. 2.3, Def. 3.1,
-Def. 4.1, Thm 4.2; for (W3) identity (L0) and R0; for the wording of (W4)
-in Barge's terms B15 §3 and one **[Std]** fact.
+Def. 4.1, Thm 4.2; for (W3) identity (L0), R0 and Theorem NI(1); for the
+last sentence of (W4) Theorem NI(2), hence Theorem TT, Lemma U, identity
+(L0) and **[Kron]**; for the wording of (W4) in Barge's terms B15 §3,
+Thm 4(3) and one **[Std]** fact.
 
 ### 6.3 Proof
 
@@ -800,10 +810,10 @@ is new only for even determinant. B15 Cor. 25 must not be cited for it: that
 corollary is about asymptotic cycles, and `dim H¹ = 3` is not "no asymptotic
 cycle" ([`dim H¹` census note](c4-h1-census-2026-11-05.md) §6).
 
-Imports: B15 (the proper version, §4; Thm 4(5); Thm 12; Lemmas 13–15;
+Imports: B15 (the proper version, §4; Thm 4(5); Thm 5; Thm 12; Lemmas 13–15;
 Thm 17; Prop. 19); Lemma 9′(b) (BKS Corollary 3 and Theorem 5; BBK (5.3));
-the **[Std]** facts on line bundles and dimension, `Ȟ¹ = [X, S¹]` and the
-identification of the two ranks.
+the **[Std]** facts on line bundles and dimension, `Ȟ¹ = [X, S¹]` with the
+continuous logarithm, and the identification of the two ranks.
 
 *Proof.* Suppose `cr(σ) = 2`. Then the flow does not have pure discrete
 spectrum, `Ω_s` is defined, `cr(Φ′_s) = 2` and `≈_s` is trivial on `Ω_s`
@@ -818,8 +828,9 @@ Thm 17), of covering dimension one **[Std]**, so the complex line bundle
 `(Ω_s × ℂ)/((T, c) ∼ (ι T, −c))` over it is trivial **[Std]**: there is a
 continuous `z: Ω_s → S¹` with `z ∘ ι = −z`.
 
-By Lemma 9′(b), `z = f · exp(2πi φ)` with `f` an eigenfunction that is
-constant on the fibres of `g_s` and `φ: Ω_s → ℝ` continuous. Then
+By Lemma 9′(b), `z` is homotopic to an eigenfunction `f` that is constant on
+the fibres of `g_s`; so `z = f · exp(2πi φ)` with `φ: Ω_s → ℝ` continuous
+(**[Std]**: a null-homotopic map to `S¹` has a continuous logarithm). Then
 `f ∘ ι = f`, so `exp(2πi (φ ∘ ι − φ)) = −1`: the continuous function
 `φ ∘ ι − φ` takes values in `1/2 + ℤ` and is a constant `c` on the
 connected space `Ω_s`. Applying `ι` once more, `φ − φ ∘ ι = c`, so
@@ -941,11 +952,14 @@ Lemma 13). ∎
 
 *What this is and is not.* It is an obstruction to a method: the transport
 of the first-defect eigenvalue of `N_−` into Barge's `X − Y` is impossible
-whenever that eigenvalue is not a root of unity, and in the remaining case
-(unit `σ`, weights `(m, m, m)`, eigenvalue `±1`) Lemma S+ allows it. It is
-**not** shown that Lemma S and the defect intertwiner are jointly
-consistent: no model exists, and the route's sentence to that effect is
-withdrawn (§12). The mechanism has a concrete precedent outside PIP3: the
+whenever that eigenvalue is not a root of unity. In the remaining case
+(unit `σ`, weights `(m, m, m)`, eigenvalue `±1`) the argument gives nothing:
+a transported eigenvalue `±1` would be a root of unity, as Lemma S requires,
+and whether the transport exists or is compatible with Lemma S+(4), (5) was
+not examined. It is **not** shown that Lemma S and the defect intertwiner
+are jointly consistent: no model exists, and the route's sentence to that
+effect is withdrawn (§12). The mechanism has a concrete precedent outside
+PIP3: the
 substitution `a → aaaab, b → abbbb` has a coincidence at position 0, hence
 (Dekking's criterion for substitutions of constant length; standard, not
 read) pure discrete spectrum, so it is an almost everywhere one-to-one
@@ -1007,7 +1021,7 @@ Do not re-run the transport route of §9 as posed.
 | Lemma U | The cubic case of Mignotte 1984 (secondary source only). The remark "a monomial is a root of unity only for equal exponents and unit `σ`" was an unproved seed of the round. |
 | Theorem TT | Not found on main or in the sources read. The technique (bounded power sums, Kronecker) is that of Proposition Q(b) and of Adamczewski as cited there. |
 | Theorem NI(1) | On main: Proposition 1 and §3 of the orientation-spectrum note, the signed lowest-defect intertwiner, manuscript `thm:parikh`. |
-| Theorem NI(2)–(4) | Not found on main or in the sources read. It extends the non-injectivity half of Theorem Fork to every determinant and every `dim H¹`, with a weaker conclusion. It also shows that the unique-partner premise of the retired derived-substitution route ([cut-attractor note](c4-cut-attractor-window-2026-11-05.md) §7) fails beyond the class of Theorem Fork, while holding almost everywhere at rank two (W2). |
+| Theorem NI(2)–(4) | Not found on main or in the sources read. Unlike Theorem Fork it has no hypothesis on the determinant or on `dim H¹`, and its conclusion is weaker (the second partner may be eventually coincident with the first). It gives non-injectivity on periodic points for a swap-symmetric strict primitive component unless `σ` is unit and every first-defect weight is `(r/3, r/3, r/3)` (for a flat component: item 4, with further exceptions); in that exceptional case it gives nothing, so it does not contain the non-injectivity half of Theorem Fork. Outside these exceptions the unique-partner premise of the retired derived-substitution route ([cut-attractor note](c4-cut-attractor-window-2026-11-05.md) §7) fails for that component, while at rank two it holds almost everywhere (W2). |
 | Theorem W(1), (2) | Not found on main or in the sources read. |
 | Theorem W(3) | The spectral bound, the trichotomy and the shape list are on main (see the remark after the proof); new is the link to coincidence rank two. |
 | Theorem W(4) | B15 Lemma 13, first half of the proof. |
@@ -1200,10 +1214,10 @@ unless noted).
 | `01/2/120` | 20-state strict system (`test_c4_quotient_spectrum.mojo`) | Singular, dilation 2. Lemma U and NI stop at `det M = 0` (the defect action is nilpotent). The general form of TT applies: `χ_{N_−}` has the factor `t³ + t² − 2t − 4` (root 1.659), and the top track is not injective on fixed points (`n = 3`: 6 fixed pairs over 4 tops). So `N_−` can carry an expanding eigenvalue that is not a defect monomial. Its coincidence rank was not determined (the route's reading "4" is unverified), so Theorem W is not tested. |
 | `012/120/201` | strict system (`test_c4_cut_attractor.mojo`) | `χ = t²(t − 3)`; the system is flat with three states. `χ_N = χ_M`, cofactor neutral, the top track injective on fixed points (0, 6, 30 on both sides): the conclusion of TT holds. Everything else stops at degree one and `det M = 0`. |
 | `1/012/1` | 4-state strict system (`test_c4_quotient_spectrum.mojo`); `Fix(Φⁿ) = 2ⁿ − 1` | Periodic and singular. Theorem FP applies (pinned). Outside every import. |
-| `1/012/101` | 3 states under `σ²`, 6 under `σ` (`test_c4_reducible_pisot_controls.mojo`); `Fix(Φⁿ)` as above | Reducible, unit. Under `σ` the 6-state sink is swap-symmetric of period 2 and `J` exchanges the two cyclic classes: `χ_{N_+} = (t − 1)(t² − 2t − 1)`, `χ_{N_−} = (t + 1)(t² + 2t − 1)`, so `ρ(N_−) = β`, the Perron-extremal case that (W3) excludes under its hypotheses. On a class under `σ²`: `χ_N = χ_{M²}`, the cofactor is trivial, and the top track is still not injective (6, 34, 198 fixed pairs over 5, 33, 197 fixed tops; the tops are the pinned `Fix(Φ²)`, `Fix(Φ⁴)`, `Fix(Φ⁶)`): **the converse of Theorem TT is false**. NI stops: the defect eigenvalues `1, β², β′²` are a root of unity or eigenvalues of `M²` (reducible: Lemma U is not available). W stops at alignment (round 1: return lengths of index 2). |
+| `1/012/101` | 3 states under `σ²`, 6 under `σ` (`test_c4_reducible_pisot_controls.mojo`); `Fix(Φⁿ)` as above | Reducible, unit. Under `σ` the 6-state sink is swap-symmetric of period 2 and `J` exchanges the two cyclic classes: `χ_{N_+} = (t − 1)(t² − 2t − 1)`, `χ_{N_−} = (t + 1)(t² + 2t − 1)`, so `ρ(N_−) = β`, the Perron-extremal case that (W3) excludes under its hypotheses. On a class under `σ²`: `χ_N = χ_{M²}`, the cofactor is trivial, and the top track is still not injective (6, 34, 198 fixed pairs over 5, 33, 197 fixed tops; the tops are the pinned `Fix(Φ²)`, `Fix(Φ⁴)`, `Fix(Φ⁶)`): **the converse of the general form of Theorem TT is false** (scratch). NI stops: the defect eigenvalues `1, β², β′²` are a root of unity or eigenvalues of `M²` (reducible: Lemma U is not available). W stops at alignment (round 1: return lengths of index 2). |
 | `10/102/211`, `01/201/112` | 4-state flat system (`test_c4_cut_attractor.mojo`); Lean `Psc.StrictSystem.carrier_strictSystem`; `Fix(Φⁿ)` as above | Reducible, `det M = −2`. `χ_N = (t − 1)(t + 2)(t² − 2t − 2)`: the defect eigenvalue `β β′ = −2` is an integer, not a root of unity and not an eigenvalue of `M`. The general form of TT applies in full and the top track is not injective (`n = 2`: 12 fixed pairs over the 7 pinned fixed tops). **So the conclusion of Theorem NI is realised by an actual strict system: non-injectivity alone is not a contradiction.** Lemma U stops (reducible). W stops at alignment (index 3) and at `cr`; P+ and H3 at irreducibility. |
 | C-D1 `011/120/2012` | 18-state system (`test_c4_reducible_pisot_controls.mojo`); `dim H¹ = 3` (`test_c4_geometric_f.mojo`); `Fix(Φⁿ)` as above | Reducible, unit. `χ_N = (t − 1)(t + 1)² t^{10} (t² − 3t − 1)(t³ − t − 1)`: the defect action `(t + 1)(t² − 3t − 1)` is a root of unity or in the spectrum of `M`, so NI's eigenvalue step gives nothing; the plastic factor makes the cofactor non-neutral, and the top track is not injective (`n = 2`: 16 fixed pairs over 9 tops; 11 fixed tilings, pinned). W stops at alignment (index 3). H3: `dim H¹ = 3` and unit hold literally; the proof stops at irreducibility: the eigenvalue group has rank 2 (the dilation is quadratic; BBK Thm 5.1), so not every class is an eigenfunction class. |
-| C-D2 `010/1222/2012` | 21 and 23 states (same test) | Reducible, unit. `χ_N/χ_M = (t − 1)(t + 1)³ t^{12} (t² + 1)` is neutral, so TT gives nothing, and the top track is not injective anyway (`n = 2`: 16 fixed pairs over 11 tops): the converse of TT fails again. |
+| C-D2 `010/1222/2012` | 21 and 23 states (same test) | Reducible, unit. `χ_N/χ_M = (t − 1)(t + 1)³ t^{12} (t² + 1)` is neutral, so TT gives nothing, and the top track is not injective anyway (`n = 2`: 16 fixed pairs over 11 tops): the converse of the general form fails again (scratch). |
 | `1/0/22` | strict system (`test_c4_reducible_pisot_controls.mojo`) | Not primitive: `psc.fixed_point_count` refuses it (pinned), and no statement applies. |
 
 Controls without a strict system:
@@ -1249,6 +1263,43 @@ the imported structure (Lemma S+).
 - "930 even specimens by Theorem P+": includes the unimplemented divisor
   condition; the replayable figure for the dimension bound is 906.
 
+*Corrections of 2026-11-16 to the merged text.* This note was merged with
+PR #590 (snapshot `abcc8f4a`) before a report-only audit of it was
+applied. The audit reported no error in a proof; it reported the following
+wordings, which the text above now corrects. They are kept here as they
+were merged.
+
+- Status paragraph: "Theorem FP, Lemma K and Lemma U are elementary and use
+  no import." The last sentence of Lemma K is Kronecker's theorem (import
+  Kron, not read).
+- Introduction, third bullet: "The first-defect class of a strict component
+  is not pulled back from `Ω_σ` unless its eigenvalue is a root of unity".
+  Obstruction T is proved at coincidence rank two only; its proof uses
+  (W3).
+- §4: "The converse is false (§12, controls `1/012/101` and C-D2)"; in the
+  control table, "the converse of Theorem TT is false" and "the converse of
+  TT fails again". Both controls are reducible, so only the converse of the
+  general form is shown false, and by scratch counts; on PIP3 the converse
+  is untested on strict systems.
+- §9: "in the remaining case (unit `σ`, weights `(m, m, m)`, eigenvalue
+  `±1`) Lemma S+ allows it". Nothing of the kind was shown; the case was
+  not examined.
+- §11, row of Theorem NI(2)–(4): "It extends the non-injectivity half of
+  Theorem Fork to every determinant and every `dim H¹`, with a weaker
+  conclusion. It also shows that the unique-partner premise of the retired
+  derived-substitution route […] fails beyond the class of Theorem Fork".
+  Theorem NI gives nothing when `σ` is unit and every first-defect weight
+  is `(r/3, r/3, r/3)`.
+- Import lines that were incomplete: B15 Thm 5 was missing from the import
+  table and from the imports of Theorem H3 (it enters through (B4));
+  Lemma 4(1) from the RepoF row (Corollary N+); Theorem NI, hence Theorem
+  TT, Lemma U and **[Kron]**, and B15 Thm 4(3) from the imports of Theorem
+  W; the **[Std]** mark from the continuous logarithm in the proof of
+  Theorem H3.
+- Proof of Theorem FP: "occurrences of `a` in `sⁿ(a)` that are neither
+  first nor last" meant the first and the last position of the word
+  `sⁿ(a)`, and now says so.
+
 ### Non-claims / remaining gaps
 
 - **Universal C4.** Open. Nothing here excludes a strict system at
@@ -1273,7 +1324,10 @@ the imported structure (Lemma S+).
   proper version, whose rewriting references were not read; on the
   assertion, in the proof of Thm 22, that the ordered-pair substitution has
   exactly two periodic words; and on the identification of the two
-  coincidence ranks. Theorem H3 uses the **[Std]** facts of §1, none of
+  coincidence ranks (for this class that comparison is now documented on
+  main, from Barge–Kellendonk §2.2 and Barge–Kwapisz 2006, in the
+  [FC2 rank-transfer review](c4-fc2-rank-transfer-review-2026-11-16.md);
+  this note was not re-derived against it). Theorem H3 uses the **[Std]** facts of §1, none of
   which was checked against a source on disk; the explicit sheet function
   of §8 was added while writing and was not seen by the verifiers.
   Anderson–Putnam 1998 and Mignotte 1984 were not read.
