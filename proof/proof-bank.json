@@ -33885,72 +33885,72 @@
     },
     {
       "source": "docs/c4-closure-attempt-2026-11-16.md",
-      "line": 302,
+      "line": 307,
       "statement_heading": "**Lemma RL (ray legality; the nonunit route's \"Lemma R\").** Let `σ` be"
     },
     {
       "source": "docs/c4-closure-attempt-2026-11-16.md",
-      "line": 335,
+      "line": 340,
       "statement_heading": "**Theorem T1 (staggered-seam descent; not claimed as new).** Let `σ` be"
     },
     {
       "source": "docs/c4-closure-attempt-2026-11-16.md",
-      "line": 388,
+      "line": 393,
       "statement_heading": "**Proposition C2 (seam criterion; restates results on main).** Let `σ` be"
     },
     {
       "source": "docs/c4-closure-attempt-2026-11-16.md",
-      "line": 411,
+      "line": 416,
       "statement_heading": "**Proposition PW (powers add nothing).** Let `σ` be primitive with"
     },
     {
       "source": "docs/c4-closure-attempt-2026-11-16.md",
-      "line": 435,
+      "line": 440,
       "statement_heading": "**Theorem T3 (two nonunit families).** For every integer `c ≥ 3`,"
     },
     {
       "source": "docs/c4-closure-attempt-2026-11-16.md",
-      "line": 616,
+      "line": 621,
       "statement_heading": "**Theorem GBD (route label G-BD).** Let `σ: A → A⁺` be a nonerasing"
     },
     {
       "source": "docs/c4-closure-attempt-2026-11-16.md",
-      "line": 655,
+      "line": 660,
       "statement_heading": "**Corollary SBD (route label S-BD).** Let `τ` be a substitution with a"
     },
     {
       "source": "docs/c4-closure-attempt-2026-11-16.md",
-      "line": 674,
+      "line": 679,
       "statement_heading": "**Proposition DC (dense coincidence of the good pair).** Under the"
     },
     {
       "source": "docs/c4-closure-attempt-2026-11-16.md",
-      "line": 710,
+      "line": 715,
       "statement_heading": "**Theorem FL (flat ⟹ `cr ≥ 3`; route labels: phase-one \"Theorem C\","
     },
     {
       "source": "docs/c4-closure-attempt-2026-11-16.md",
-      "line": 777,
+      "line": 782,
       "statement_heading": "**Proposition PD (flat phase one ⟹ (F) fails; route label \"Theorem D\").**"
     },
     {
       "source": "docs/c4-closure-attempt-2026-11-16.md",
-      "line": 797,
+      "line": 802,
       "statement_heading": "**Lemma OC (overlap carrier; route label \"Lemma B\").** Let `σ` be"
     },
     {
       "source": "docs/c4-closure-attempt-2026-11-16.md",
-      "line": 822,
+      "line": 827,
       "statement_heading": "**Lemma RI (recognizability identity; route label \"Lemma R\").** Let `τ` be"
     },
     {
       "source": "docs/c4-closure-attempt-2026-11-16.md",
-      "line": 834,
+      "line": 839,
       "statement_heading": "**Lemma PO (partner orientation; route label \"Lemma O\").** Let"
     },
     {
       "source": "docs/c4-closure-attempt-2026-11-16.md",
-      "line": 929,
+      "line": 934,
       "statement_heading": "**Corollary ST (slice classes; route label \"Cor. T\").** Let `σ ∈ PIP3` with"
     },
     {
@@ -34130,17 +34130,17 @@
     },
     {
       "source": "docs/c4-fc3-family-2026-11-16.md",
-      "line": 529,
+      "line": 530,
       "statement_heading": "**Corollary FM4.**"
     },
     {
       "source": "docs/c4-fc3-family-2026-11-16.md",
-      "line": 567,
+      "line": 568,
       "statement_heading": "**Proposition FM6 (the members are pairwise unrelated).** For a primitive"
     },
     {
       "source": "docs/c4-fc3-family-2026-11-16.md",
-      "line": 622,
+      "line": 624,
       "statement_heading": "**Proposition FM5.** Put `A := σ(1) = 0 1^n 2` for `σ = σ_{r,s,n}`, so that"
     },
     {
@@ -34465,7 +34465,7 @@
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 1077,
+      "line": 1079,
       "statement_heading": "*Theorem FP (`test_fixed_point_count.mojo`).* The formula"
     },
     {

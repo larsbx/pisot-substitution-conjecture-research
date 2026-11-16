@@ -25,6 +25,11 @@ they are indexed here, not re-proved.
 Reading guide: §3 for the outcome, §8–§10 for what it means, §14 for the
 five "work shown" headings.
 
+*Update 2026-11-16 (round 2).* The text of §§1–14 is that of round 1. A
+second round (three routes) is recorded in §15: universal C4 is still open;
+§15.3 restates the open statements of §10 as they now stand, and §15.5
+lists the round-1 sentences of this note that round 2 supersedes.
+
 ## 1. The target and its equivalent forms
 
 **Standing class PIP3.** A substitution `σ` on `{0,1,2}`, nonerasing and
@@ -1232,6 +1237,11 @@ Do not re-run the six routes as posed. A new attempt should start from one
 of the statements above, and should say in advance which step fails on
 C-D1, C-D2 and `1/012/101`.
 
+*Update 2026-11-16 (round 2).* The seven statements as they stand after
+round 2 are in §15.3 (items 1, 3 and 5 changed; items 2 and 6 have
+additions; items 4 and 7 did not change), and §15.4 adds to the list of
+routes not to be re-run.
+
 ## 11. Obstruction-route facts and their verification status
 
 The last two rows concern the nonunit route, a partial verdict; they are
@@ -1459,3 +1469,284 @@ budgets, not verdicts.
 - The scratch censuses and scans are not evidence of record; a capped or
   cut-free search is not a mathematical verdict.
 - The next unresolved quantifiers are those of §10.
+
+## 15. Update 2026-11-16 (round 2)
+
+Added on 2026-11-16, after a second round of the attempt. Nothing in §§1–14
+was edited; where round 2 supersedes a sentence of those sections, §15.5
+quotes it. **Universal C4 is still not proved and remains open.** Nothing
+here changes a governed claim status (C4, #138, #139, #84, G1 and PSC are
+unchanged), no ledger claim is registered or promoted, and independent human
+review is pending for every statement. The records of round 2 are the
+[rank-two note](c4-rank-two-wall-2026-11-16.md) (gate:
+[rank-two stop/go note](c4-rank-two-wall-stop-go-2026-11-16.md)) and the
+[family note](c4-fc3-family-2026-11-16.md) (gate:
+[family stop/go note](c4-fc3-family-stop-go-2026-11-16.md)); the (F)-class
+note and its literature gate carry their own dated round-2 updates. This
+section indexes them and restates §10. Statements about the rank-two route
+are taken from its verified record; their proofs are in the rank-two note,
+not here.
+
+### 15.1 What round 2 did
+
+Round 2 took the open statements of §10 in the order "(F) and the `cr = 2`
+wall first", one recorded non-claim (infinitude of the non-trivial part of
+the FC3 class) and one formal debt (Theorem FC1 was not machine-checked).
+Three routes ran. The two mathematical routes were read-only in the
+repository; the Lean route wrote two modules. Each result was attacked by
+independent verifiers; a build stage then wrote the Mojo regressions and the
+Lean binding.
+
+| Route | Aim | Verdict | Verification |
+| --- | --- | --- | --- |
+| cr2-wall | exclude a strict system at coincidence rank 2: count inflation-fixed points, split the child matrix by the swap, read Barge's ordered-pair substitution with its substitution action | partial: Theorems FP, TT, NI, W, P+, H3 with Lemmas U, S+ and Corollaries FC3+, N+; and Obstruction T | two verifiers (logic and counterexample; prior art and scope): **no refutation**, corrections binding |
+| fc3-family | discharge the non-claim on infinitude | partial: Theorems FM1–FM3, Corollary FM4, Proposition FM5 | two verifiers: every theorem re-derived and **confirmed by both**; **one clause of the prior-art comparison refuted and dropped**; corrections binding |
+| lean-fc1 | machine-check Theorem FC1 | partial: FC1 in abstract form; the binding to the standing class was added at the build stage | one audit: **no gap inside the machine-checked statements**; recording-gate items listed and applied |
+
+Binding corrections, applied in the notes:
+
+- *cr2-wall.* Attributions: Theorem FP is standard (the Anderson–Putnam zeta
+  function) and is restated, not claimed; Lemma U is a special case of a
+  theorem of Mignotte (1984; secondary sources only), with its proof kept;
+  the statements "`N₋` is the signed matrix, the Parikh quotient is
+  deck-even, the signed lowest-defect intertwiner" are Proposition 1 and §3
+  of the [orientation-spectrum note](c4-orientation-spectrum.md); the sieve
+  "strict odd contraction forces first defect degree `r ≡ 0, 2 (mod 3)`" is
+  on main ([multidegree sieve note](c4-multidegree-spectral-sieve.md) §8,
+  [degree-4 note](c4-degree4-free-lie.md) Corollary B, Lean
+  `no_strictComponent_deg4_of_hasBothSigns`); Lean covers the defect
+  intertwiner through `r ≤ 5` only; W4 is the first half of the proof of
+  Barge 2015 Lemma 13; Theorem H3 is new only for even determinant (for odd
+  determinant it is Barge 2015 Thm 22, and Cor. 25 must not be cited for
+  it); "every integral class of `H¹` is an eigenfunction class, unit or
+  not" is not new (Barge–Kellendonk–Schmieding 2012). Obstruction T was
+  reworded (§15.4). "Theorem Fork for nonunit `σ` with `dim H¹ = 3`" is
+  recorded as expected, not proved. The class counts were scratch until a
+  regression pinned them; those quoted below are pinned, and the figures
+  that depend on the divisor condition of Theorem P+ remain scratch.
+- *fc3-family.* The clause "`σ_{1,s,n}` and `τ_n` are not products of Brun
+  or of Jacobi–Perron substitutions" is false (`τ_n` and the relabelled
+  reversal of `σ_{1,0,n}` are products of non-admissible Jacobi–Perron
+  substitutions) and is replaced by the corrected clause of the family
+  stop/go note. The method is attributed to the shift-radix and
+  β-numeration finiteness theory; the argument that the members are
+  unrelated by powers, relabelling and reversal was missing and is written
+  out (Proposition FM6, added at landing); the individual machine decisions
+  and all grid results were scratch until pinned.
+- *lean-fc1.* Word it as "machine-checked in abstract form" unless the
+  binding is cited; the isolated checker `tools/check_lean.sh` has not been
+  run on the new modules (incremental builds and module-restricted axiom
+  audits only), so that receipt must come from CI.
+
+### 15.2 Index of round-2 results
+
+Classes as in §4, with **L** for "machine-checked in Lean, in the form
+stated". All E and C rows are written proofs (single prover plus independent
+adversarial re-derivation within the session), not machine-checked,
+independent human review pending.
+
+| Label | Statement (all hypotheses in the cited place) | Class | Where |
+| --- | --- | --- | --- |
+| Theorem FP | primitive substitution on at least two letters: the number of tilings fixed by `Φⁿ` is `tr(Aⁿ) − #Fix(gⁿ) − #Fix(g_Rⁿ) + #{ba legal : g_Rⁿ(b) = b, gⁿ(a) = a}` | E, standard; M on 11 substitutions, `n ≤ 6` | rank-two note; `kernel/psc/fixed_point_count.mojo` |
+| Lemma U | irreducible Pisot cubic: `β^a α₂^b α₃^c` with `a + b + c ≠ 0` is a root of unity iff `a = b = c` and `abs(det M) = 1` | E | rank-two note |
+| Theorem TT | `σ ∈ PIP3`, `τ = σ^P`, `B` a finite `τ`-child-closed set of ordered irreducible balanced pairs of legal words with primitive child substitution, matrix `N`: if the top-track map `π₁` is injective on the inflation-periodic points of the pair space, `χ_N/χ_{M^P}` is a product of powers of `x` and cyclotomic polynomials; the converse is false | C | rank-two note |
+| Theorem NI | `σ ∈ PIP3`, a swap-symmetric primitive component of a strict system for `σ^P`, first defect degree `r`: `π₁` injective on periodic points forces `abs(det M) = 1`, `3 ∣ r` and weights `(r/3, r/3, r/3)`; otherwise an exponential lower bound on the inflation-fixed tilings with at least two fixed partners | C (Lemma 0 beyond `r = 5` is prose on main) | rank-two note |
+| Theorem W | `σ ∈ PIP3` with `cr = 2` and a strict system: (W1) exactly one strict component, swap- and `Φ×Φ`-invariant, whose bigon alphabet is a strict system for `σ` itself with primitive child substitution and the only sink of every strict system of every power; (W2) `π₁` injective over two-point fibres; (W3) `ρ(N₋) < β`, so `r ≢ 1 (mod 3)` with the stated weights; (W4) two partners of one tiling are `≈_s`-equivalent | C; W1, W2 new; W3 new only in its link to `cr = 2` and its nonunit side conditions; W4 is Barge's | rank-two note |
+| Lemma S+, Theorem P+ | `σ ∈ PIP3` with `cr = 2`: `dim H¹ ≥ 3 + abs(d₂ − 1)`, `d₂ = 3 − ord_t(χ_M mod 2)`, and a divisor condition at every admissible `n` | C; counts for the dimension bound M; the divisor condition is not implemented | rank-two note; `kernel/tests/test_c4_geometric_f.mojo` |
+| Theorem H3, Corollaries FC3+, N+ | `σ ∈ PIP3` with `dim H¹ = 3` has `cr ≠ 2`, for every determinant; with (F), `cr = 1`; a strict system with `dim H¹ = 3` forces `cr ≥ 3` and failure of (F) | C; new only for even determinant; class counts M | rank-two note; `kernel/tests/test_c4_geometric_f.mojo` |
+| Obstruction T | §15.4 | C; an obstruction to a method | rank-two note |
+| Theorems FM1, FM2, Propositions FM5, FM6 | `σ_{r,s,n} = (1^r, 0 1^n 2, 0 1^s)` is in PIP3 for `n ≥ r + s + 1` and satisfies (F) for `n ≥ 3r + s`; `τ_n = (1, 2 1^n 0, 01)` is in PIP3 and satisfies (F) for `n ≥ 5`; explicit witnesses; the members are pairwise unrelated | E·p; M on a grid of 240 + 16 members | family note; `kernel/psc/c4_fc3_family.mojo` |
+| Theorem FM3, Corollary FM4 | endpoint maps, `dim H¹ ∈ {4, 5}`; the non-trivial part of the FC3 class is infinite modulo powers, relabelling and reversal, with nonunit members of every odd determinant `r ≥ 3` | FM3: C (Barge–Diamond 2008 through Lemma 7); FM4: membership E given FM1–FM3, conclusion `cr = 1` C | family note |
+| Theorem FC1 in Lean | abstract form under `LengthData`, `β > 1`, `ContractionData`, `PropertyF`; and for a primitive substitution on a finite alphabet with at least two letters, irreducible `χ_M`, a positive left eigen-row, the Pisot hypothesis in root form and `PropertyF`: a strict system exists iff some pair of distinct `g`-periodic letters has no left strong-coincidence witness iff not every pair has one | L (`Psc.GeometricF.fc1_equivalence_of_contraction`, `Psc.GeometricFPisot.fc1_equivalence_of_primitive_pisot`, `fc1_pip3`); the "Powers" direction L (`strictSystem_of_power`) | `proof/PscVerif/PscVerif/GeometricFInclusion.lean`, `GeometricFStrict.lean`, `GeometricFPisot.lean` |
+
+What is **not** machine-checked: property (F) for any substitution on three
+letters (Tribonacci satisfies every hypothesis of `fc1_pip3` except that
+(F) is not shown; the one complete instance is Fibonacci, on two letters,
+where all three statements of the equivalence are false); Lemmas 1(1),
+1(3), 4 and 5 of the (F)-class note; Theorems FC2, P, FC3, N, Fork; every
+statement of the rank-two and family notes.
+
+### 15.3 The open statements of §10 as they now stand
+
+Numbers are class counts pinned by `kernel/tests/test_c4_geometric_f.mojo`
+over the 4,554 corpus specimens; they are not open cases, since no strict
+system exists on the corpus (`C4StandingCorpus`).
+
+1. **On (F): exclude `ν_L = 2`.** *Changed.* Besides Theorem FC3, it is now
+   recorded as proved (conditionally) for (F) with `dim H¹ = 3` **at every
+   determinant** (Corollary FC3+). Pinned: `dim H¹ = 3` on 3,102 specimens,
+   1,362 of them with even determinant (1,128 fail (F); 192 have (F) and an
+   endpoint map with fewer than two periodic letters; 42 have (F) and two
+   periodic letters on both sides); (F) and `dim H¹ = 3` on
+   1,350 = 1,116 odd + 234 even. Of the 510 (F) specimens with two periodic
+   letters on both sides, 198 now meet the hypotheses of FC3 or FC3+ (the
+   156 odd ones of round 1 and 42 with `det M = 2`: 30 with `χ_M ≡ t³` and
+   12 with `χ_M ≡ t(t² + t + 1)` modulo 2), and 312 = 180 + 132 do not.
+   **Still open, in its sharpest form:** `det M` even with `dim H¹ ≥ 4`;
+   `det M` odd with `tr M ≡ e₂(M)` and `dim H¹ ≥ 5`. On the corpus the
+   even-determinant remainder is 132 specimens, 72 with `d₂ = 1` and 60
+   with `d₂ = 2` and `dim H¹ = 5`. For even determinant the dimension bound
+   of Theorem P+ adds nothing to H3; P+ adds only its divisor condition,
+   which is not implemented, so nothing is counted for it. The recorded
+   non-claim "infinitude of the non-trivial part of the FC3 class" is
+   **discharged** by the family note; the families also contain infinitely
+   many (F) members inside each of the two open classes, all with explicit
+   witnesses, so they give no counterexample and no new case. Theorem FC1,
+   on which the equivalence with C4 rests, is machine-checked with (F) as a
+   hypothesis.
+2. **Off (F): the zero-fibre form of C4.** *Unchanged.* Added by round 2:
+   a strict system with `dim H¹ = 3` forces `cr ≥ 3` and failure of (F) for
+   every determinant (Corollary N+), so on `dim H¹ = 3` the whole question
+   lies off (F).
+3. **The `cr = 2` wall.** *Changed.* A strict system at `cr = 2` has the
+   structure of Theorem W: one strict component, swap-symmetric, primitive
+   already for `σ` itself; `π₁` injective over two-point fibres; first
+   defect degree `r ≢ 1 (mod 3)`. By Theorem NI, `π₁` is not injective on
+   periodic points unless `σ` is unit, `3 ∣ r` and all first-defect weights
+   are `(r/3, r/3, r/3)`. By Theorems P+ and H3, `cr = 2` forces
+   `dim H¹ ≥ 3 + abs(d₂ − 1)` and `dim H¹ ≥ 4`, for every determinant.
+   **Still open:** the exclusion of `cr = 2` when `dim H¹ ≥ 4` (even
+   determinant, with the divisor condition of P+ satisfied) and when
+   `det M` is odd, `tr M ≡ e₂(M)` and `dim H¹ ≥ 5`; and the unit case with
+   first-defect weights `(m, m, m)`, where every tool of round 2 is silent.
+   Not proved, and not to be written: "at `cr = 2`, `σ` is unit and
+   `3 ∣ r`"; "no strict system for nonunit `σ` at `cr = 2`". The subtile
+   form for unit `σ` (Proposition R, Lemma G) is unchanged.
+4. **Phase one, statement (N).** *Unchanged.* Theorem W is consistent with
+   it: at `cr = 2` the sink is swap-symmetric, i.e. mixed, and mixed phase
+   one is untouched.
+5. **Unit, `dim H¹ = 3`.** *Changed in scope.* `dim H¹ = 3` now excludes
+   `cr = 2` for every determinant (H3), so a strict system there has
+   `cr ≥ 3` and (F) fails, unit or not (N+). Theorem Fork itself stays as
+   printed, for unit `σ`: its extension to nonunit `σ` with `dim H¹ = 3` is
+   **expected, not proved** (Lemmas 9 and 10 were freed from unimodularity;
+   Steps 1–4 were not rewritten for the solenoid). For every determinant
+   and every `dim H¹`, Theorem NI gives the weaker non-injectivity of `π₁`
+   (the second partner may be eventually coincident with the first). Still
+   open: exclude the fork; whether `π₁` is a covering.
+6. **Nonunit.** *Unchanged for the seam route.* Round 2 adds, for nonunit
+   `σ`: H3, FC3+ and N+ at `dim H¹ = 3`; Theorem NI, by which the top-track
+   map of a swap-symmetric primitive component is never injective on
+   periodic points when `σ` is nonunit; the nonunit side conditions of W3.
+   The family note exhibits nonunit members of the FC3 class of every odd
+   determinant `r ≥ 3` (the corpus has only `det M = 2`); they are not new
+   C4 cases.
+7. **Subtile form.** *Unchanged.*
+
+Formal debt of round 1, "FC1 is a recorded proof, not machine-checked":
+discharged in the form of §15.2, with the isolated-checker receipt still to
+come from CI.
+
+### 15.4 Obstruction T, and what not to re-run
+
+**Obstruction T (binding wording).** For a hypothetical strict system at
+`cr = 2` whose first-defect eigenvalue `λ` is not a root of unity, the
+`λ`-part of `H¹(Z)` (`Z` the pair space of the strict component) meets
+`π₁* H¹(Ω)` only in `0`. So the defect class does not descend to Barge's
+quotient, and Lemma S cannot be applied to it. This is an obstruction to
+the method. It is **not** a statement that Lemma S and the defect
+intertwiner are jointly consistent: no model exists in PIP3, and "jointly
+consistent in every case" is not proved and must not be written.
+
+Do not re-run, as posed:
+
+- the six routes of §3;
+- **the transport route**: carrying the first-defect eigenvalue of `N₋`
+  into Barge's signed matrix `X − Y` in order to contradict Lemma S. Its
+  first premise fails by Obstruction T whenever `λ` is not a root of unity
+  (always for nonunit `σ` or `3 ∤ r`, by Lemma U), and in the remaining
+  case `λ = ±1` Lemma S is not contradicted;
+- a growth comparison between the multi-partner count of Theorem NI and a
+  boundary growth rate, without a new input: the heuristics of that route
+  leave room and were not verified, and they are not recorded as
+  statements;
+- the claim that the families of the family note, or any family with
+  explicit witnesses, narrows C4.
+
+A new attempt should start from one of the statements of §15.3 and say in
+advance which step fails on C-D1, C-D2 and `1/012/101`, as before. For
+"(F) for `σ_{r,s,n}` whenever `n ≥ r + s`", read the finiteness literature
+named in the family stop/go note first.
+
+### 15.5 Round-1 sentences of this note that round 2 supersedes
+
+The earlier text is kept; these are the dated corrections.
+
+- §3, cohomology route, and §10 item 5: "nothing is known for
+  `dim H¹ ≥ 4` or for nonunit `σ`". Superseded by Theorem NI (weaker
+  non-injectivity, every determinant and every `dim H¹`) and by Theorem H3
+  with Corollary N+.
+- §4, legend: "Nothing is machine-checked". Superseded for Theorem FC1
+  (§15.2). Still true of every other row.
+- §9, table row "`det M = ±1`: Theorem Fork (integral cohomology `ℤ³`,
+  torus classes of index one)". The statement that every integral class is
+  an eigenfunction class holds for `dim H¹ = 3` at every determinant (the
+  hypothesis that matters is `l = 0`); the row remains correct for Theorem
+  Fork as printed.
+- §9, table row "`det M` odd", §10 item 3 ("Theorem P confines `cr = 2`
+  with odd determinant …") and §14 ("nothing is asserted for even
+  determinant beyond FC1, FC2 and the seam criterion"). Superseded by H3,
+  FC3+, N+ and P+, which are stated for every determinant.
+- §10 item 1: "Open: `det M` even; …" and the count "354 of the 510".
+  Superseded by §15.3 item 1 (312 of the 510).
+- §14: "No strong coincidence or pure discrete spectrum is asserted on (F)
+  outside FC3". Now also under FC3+.
+
+### 15.6 Evidence and replay (round 2)
+
+```sh
+(cd kernel && pixi run --locked mojo run -I . -I tests tests/test_c4_geometric_f.mojo)
+(cd kernel && pixi run --locked mojo run -I . -I tests tests/test_fixed_point_count.mojo)
+(cd kernel && pixi run --locked mojo run -I . -I tests tests/test_c4_fc3_family.mojo)
+(cd proof/PscVerif && lake build PscVerif.GeometricFPisot)
+PYTHONPATH=tools python3 -m claim_governance.cli --root .
+```
+
+Each Mojo regression ends with one `require_contract` and declares no
+ledger claim. As reported by the build stage: the first takes about two
+minutes, the second about ten seconds, the third about a minute and a
+quarter; the third was re-run while this section was written (exit 0).
+
+- `test_c4_geometric_f.mojo` keeps every round-1 pin and adds the class
+  counts of §15.3, the tables by `d₂` and by the class of `χ_M` modulo 2
+  (with `d₂` recomputed as the rank of `(M mod 2)³`), and the figures
+  3,042 = 2,136 odd + 906 even (the dimension bound of P+ fails) and
+  3,714 = 2,352 + 1,362 (the hypotheses of "`cr ≠ 2`" without the divisor
+  condition). These are counts of classes under recorded conditional
+  theorems, not certificates of a coincidence rank.
+- `test_fixed_point_count.mojo` compares the formula of Theorem FP with a
+  literal count of reproduced pointed windows, part by part, for
+  `n = 1, …, 6` on 11 substitutions (five corpus specimens, the reducible
+  controls `011/120/2012`, `1/012/101`, `10/102/211`, the periodic
+  `1/012/1`, Fibonacci and Thue–Morse).
+- `test_c4_fc3_family.mojo`: the family note, §6 and §12.
+- Lean: the three modules build incrementally, and the build-stage axiom
+  audit of the binding module lists 32 declarations, each depending on
+  `propext`, `Classical.choice`, `Quot.sound` only. The isolated checker
+  was not run.
+
+Not replayable from the repository, hence exploratory scratch observations
+wherever they are quoted in the round-2 notes: the figures that depend on
+the divisor condition of P+ or on the refinement at admissible `n < 6`
+(the route's "24 further specimens", "930", "1,386", "2,364"); every
+spectrum of a child matrix on a control; the fixed-point counts on bigon
+systems; the trigon system of C-D1; the provers' and verifiers' Python.
+
+### 15.7 Non-claims (round 2)
+
+- Universal C4, A1′ (#138), BH (#139), #84, G1 and PSC are open; no
+  governed claim changes status and no ledger claim is added.
+- No strict system is excluded for any `σ ∈ PIP3` outside the hypotheses of
+  Theorem FC3, Corollary FC3+ and Proposition C2, and every corpus specimen
+  those reach was already covered by `C4StandingCorpus`. Theorems W, NI,
+  P+ and H3 are necessary conditions and are vacuous on every computed PIP3
+  domain: no PIP3 substitution with coincidence rank 2 or with a strict
+  system is known.
+- `cr ≠ 2` is not asserted for `dim H¹ ≥ 4` beyond Theorem P and the
+  dimension bound of P+; `cr ≤ 2` is still not asserted off (F).
+- The families of the family note are not new C4 cases.
+- Theorem FC1 in Lean is an equivalence under (F); it excludes no strict
+  system, and (F) is not machine-checked for any three-letter substitution.
+- No novelty relative to the literature is claimed beyond "not found in the
+  sources read", and several sources named in the two gates were not read
+  in the primary text.

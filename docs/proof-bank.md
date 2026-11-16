@@ -4149,20 +4149,20 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/c4-closed-component-search-2026-11-07.md:166](../docs/c4-closed-component-search-2026-11-07.md#L166) | **Lemma 2 (the window; gate §4.3 item 4).** Let F(X) = {T ∈ X : every |
 | [docs/c4-closed-component-search-2026-11-07.md:179](../docs/c4-closed-component-search-2026-11-07.md#L179) | **Lemma 3 (carriers of a nonempty limit).** A nonempty X* has a sink SCC |
 | [docs/c4-closed-component-search-2026-11-07.md:188](../docs/c4-closed-component-search-2026-11-07.md#L188) | **Lemma 4 (reversal).** Let σ̃(a) be σ(a) reversed. For a balanced |
-| [docs/c4-closure-attempt-2026-11-16.md:302](../docs/c4-closure-attempt-2026-11-16.md#L302) | **Lemma RL (ray legality; the nonunit route's "Lemma R").** Let σ be |
-| [docs/c4-closure-attempt-2026-11-16.md:335](../docs/c4-closure-attempt-2026-11-16.md#L335) | **Theorem T1 (staggered-seam descent; not claimed as new).** Let σ be |
-| [docs/c4-closure-attempt-2026-11-16.md:388](../docs/c4-closure-attempt-2026-11-16.md#L388) | **Proposition C2 (seam criterion; restates results on main).** Let σ be |
-| [docs/c4-closure-attempt-2026-11-16.md:411](../docs/c4-closure-attempt-2026-11-16.md#L411) | **Proposition PW (powers add nothing).** Let σ be primitive with |
-| [docs/c4-closure-attempt-2026-11-16.md:435](../docs/c4-closure-attempt-2026-11-16.md#L435) | **Theorem T3 (two nonunit families).** For every integer c ≥ 3, |
-| [docs/c4-closure-attempt-2026-11-16.md:616](../docs/c4-closure-attempt-2026-11-16.md#L616) | **Theorem GBD (route label G-BD).** Let σ: A → A⁺ be a nonerasing |
-| [docs/c4-closure-attempt-2026-11-16.md:655](../docs/c4-closure-attempt-2026-11-16.md#L655) | **Corollary SBD (route label S-BD).** Let τ be a substitution with a |
-| [docs/c4-closure-attempt-2026-11-16.md:674](../docs/c4-closure-attempt-2026-11-16.md#L674) | **Proposition DC (dense coincidence of the good pair).** Under the |
-| [docs/c4-closure-attempt-2026-11-16.md:710](../docs/c4-closure-attempt-2026-11-16.md#L710) | **Theorem FL (flat ⟹ cr ≥ 3; route labels: phase-one "Theorem C", |
-| [docs/c4-closure-attempt-2026-11-16.md:777](../docs/c4-closure-attempt-2026-11-16.md#L777) | **Proposition PD (flat phase one ⟹ (F) fails; route label "Theorem D").** |
-| [docs/c4-closure-attempt-2026-11-16.md:797](../docs/c4-closure-attempt-2026-11-16.md#L797) | **Lemma OC (overlap carrier; route label "Lemma B").** Let σ be |
-| [docs/c4-closure-attempt-2026-11-16.md:822](../docs/c4-closure-attempt-2026-11-16.md#L822) | **Lemma RI (recognizability identity; route label "Lemma R").** Let τ be |
-| [docs/c4-closure-attempt-2026-11-16.md:834](../docs/c4-closure-attempt-2026-11-16.md#L834) | **Lemma PO (partner orientation; route label "Lemma O").** Let |
-| [docs/c4-closure-attempt-2026-11-16.md:929](../docs/c4-closure-attempt-2026-11-16.md#L929) | **Corollary ST (slice classes; route label "Cor. T").** Let σ ∈ PIP3 with |
+| [docs/c4-closure-attempt-2026-11-16.md:307](../docs/c4-closure-attempt-2026-11-16.md#L307) | **Lemma RL (ray legality; the nonunit route's "Lemma R").** Let σ be |
+| [docs/c4-closure-attempt-2026-11-16.md:340](../docs/c4-closure-attempt-2026-11-16.md#L340) | **Theorem T1 (staggered-seam descent; not claimed as new).** Let σ be |
+| [docs/c4-closure-attempt-2026-11-16.md:393](../docs/c4-closure-attempt-2026-11-16.md#L393) | **Proposition C2 (seam criterion; restates results on main).** Let σ be |
+| [docs/c4-closure-attempt-2026-11-16.md:416](../docs/c4-closure-attempt-2026-11-16.md#L416) | **Proposition PW (powers add nothing).** Let σ be primitive with |
+| [docs/c4-closure-attempt-2026-11-16.md:440](../docs/c4-closure-attempt-2026-11-16.md#L440) | **Theorem T3 (two nonunit families).** For every integer c ≥ 3, |
+| [docs/c4-closure-attempt-2026-11-16.md:621](../docs/c4-closure-attempt-2026-11-16.md#L621) | **Theorem GBD (route label G-BD).** Let σ: A → A⁺ be a nonerasing |
+| [docs/c4-closure-attempt-2026-11-16.md:660](../docs/c4-closure-attempt-2026-11-16.md#L660) | **Corollary SBD (route label S-BD).** Let τ be a substitution with a |
+| [docs/c4-closure-attempt-2026-11-16.md:679](../docs/c4-closure-attempt-2026-11-16.md#L679) | **Proposition DC (dense coincidence of the good pair).** Under the |
+| [docs/c4-closure-attempt-2026-11-16.md:715](../docs/c4-closure-attempt-2026-11-16.md#L715) | **Theorem FL (flat ⟹ cr ≥ 3; route labels: phase-one "Theorem C", |
+| [docs/c4-closure-attempt-2026-11-16.md:782](../docs/c4-closure-attempt-2026-11-16.md#L782) | **Proposition PD (flat phase one ⟹ (F) fails; route label "Theorem D").** |
+| [docs/c4-closure-attempt-2026-11-16.md:802](../docs/c4-closure-attempt-2026-11-16.md#L802) | **Lemma OC (overlap carrier; route label "Lemma B").** Let σ be |
+| [docs/c4-closure-attempt-2026-11-16.md:827](../docs/c4-closure-attempt-2026-11-16.md#L827) | **Lemma RI (recognizability identity; route label "Lemma R").** Let τ be |
+| [docs/c4-closure-attempt-2026-11-16.md:839](../docs/c4-closure-attempt-2026-11-16.md#L839) | **Lemma PO (partner orientation; route label "Lemma O").** Let |
+| [docs/c4-closure-attempt-2026-11-16.md:934](../docs/c4-closure-attempt-2026-11-16.md#L934) | **Corollary ST (slice classes; route label "Cor. T").** Let σ ∈ PIP3 with |
 | [docs/c4-concentration-attack-2026-11-06.md:51](../docs/c4-concentration-attack-2026-11-06.md#L51) | ## 2. Theorem A: first defect degree four |
 | [docs/c4-concentration-attack-2026-11-06.md:53](../docs/c4-concentration-attack-2026-11-06.md#L53) | **Theorem A.** Let σ be PIP on {0,1,2}, with roots β, α, γ and |
 | [docs/c4-concentration-attack-2026-11-06.md:113](../docs/c4-concentration-attack-2026-11-06.md#L113) | **Lemma.** Let σ be primitive with Perron root > 1, and let C be a |
@@ -4198,9 +4198,9 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/c4-fc3-family-2026-11-16.md:91](../docs/c4-fc3-family-2026-11-16.md#L91) | **Theorem FM1 (PIP3).** |
 | [docs/c4-fc3-family-2026-11-16.md:239](../docs/c4-fc3-family-2026-11-16.md#L239) | **Theorem FM2.** |
 | [docs/c4-fc3-family-2026-11-16.md:489](../docs/c4-fc3-family-2026-11-16.md#L489) | **Theorem FM3.** Let σ = σ_{r,s,n} ∈ PIP3. Then g = (1, 0, 0), with |
-| [docs/c4-fc3-family-2026-11-16.md:529](../docs/c4-fc3-family-2026-11-16.md#L529) | **Corollary FM4.** |
-| [docs/c4-fc3-family-2026-11-16.md:567](../docs/c4-fc3-family-2026-11-16.md#L567) | **Proposition FM6 (the members are pairwise unrelated).** For a primitive |
-| [docs/c4-fc3-family-2026-11-16.md:622](../docs/c4-fc3-family-2026-11-16.md#L622) | **Proposition FM5.** Put A := σ(1) = 0 1^n 2 for σ = σ_{r,s,n}, so that |
+| [docs/c4-fc3-family-2026-11-16.md:530](../docs/c4-fc3-family-2026-11-16.md#L530) | **Corollary FM4.** |
+| [docs/c4-fc3-family-2026-11-16.md:568](../docs/c4-fc3-family-2026-11-16.md#L568) | **Proposition FM6 (the members are pairwise unrelated).** For a primitive |
+| [docs/c4-fc3-family-2026-11-16.md:624](../docs/c4-fc3-family-2026-11-16.md#L624) | **Proposition FM5.** Put A := σ(1) = 0 1^n 2 for σ = σ_{r,s,n}, so that |
 | [docs/c4-finite-domain-closure-2026-11-05.md:42](../docs/c4-finite-domain-closure-2026-11-05.md#L42) | **Theorem A(4)** of the cut-pair note: every first-letter pair of a strict |
 | [docs/c4-finite-overlap-carrier-2026-11-05.md:64](../docs/c4-finite-overlap-carrier-2026-11-05.md#L64) | **Lemma F0 (common compact attractor).** The actual compact prefix sets |
 | [docs/c4-finite-overlap-carrier-2026-11-05.md:136](../docs/c4-finite-overlap-carrier-2026-11-05.md#L136) | **Lemma F1 (typed physical strip).** Every state (c,c',z) generated by |
@@ -4265,7 +4265,7 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/c4-rank-two-wall-2026-11-16.md:747](../docs/c4-rank-two-wall-2026-11-16.md#L747) | **Lemma 9′ (classes are eigenfunction classes; every determinant).** Let |
 | [docs/c4-rank-two-wall-2026-11-16.md:795](../docs/c4-rank-two-wall-2026-11-16.md#L795) | **Theorem H3.** Let σ ∈ PIP3 with dim H¹(Ω_σ; ℚ) = 3. Then |
 | [docs/c4-rank-two-wall-2026-11-16.md:851](../docs/c4-rank-two-wall-2026-11-16.md#L851) | **Corollary (dimension).** For σ ∈ PIP3, cr(σ) = 2 forces |
-| [docs/c4-rank-two-wall-2026-11-16.md:1077](../docs/c4-rank-two-wall-2026-11-16.md#L1077) | *Theorem FP (test_fixed_point_count.mojo).* The formula |
+| [docs/c4-rank-two-wall-2026-11-16.md:1079](../docs/c4-rank-two-wall-2026-11-16.md#L1079) | *Theorem FP (test_fixed_point_count.mojo).* The formula |
 | [docs/c4-recurrent-flat-exits-2026-11-04.md:40](../docs/c4-recurrent-flat-exits-2026-11-04.md#L40) | **Lemma (exit mass).** For any supplied nonempty finite set of actual |
 | [docs/c4-return-induction-prefix-satellite-counterexample-2026-11-04.md:120](../docs/c4-return-induction-prefix-satellite-counterexample-2026-11-04.md#L120) | **Proposition (exact all-powers loss of literal prefix satellites).** |
 | [docs/c4-return-induction-prefix-satellite-counterexample-2026-11-04.md:141](../docs/c4-return-induction-prefix-satellite-counterexample-2026-11-04.md#L141) | **Corollary (one expanding residual suffix).** The four true physical return words satisfy the two **literal** identities |

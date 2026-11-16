@@ -1072,7 +1072,9 @@ Both regressions were re-run for this note on 2026-11-16 (exit 0; about
 8 seconds and about 90 seconds on one core). Each ends with one
 `require_contract`: no ledger claim is registered. They count classes and
 periodic points; they certify no coincidence rank, no strong coincidence
-and no spectrum.
+and no spectrum. `kernel/run_tests.sh` picks up both; the workflow
+`.github/workflows/c4-geometric-f.yml` names the second only, and neither
+has run on GitHub for this increment.
 
 *Theorem FP (`test_fixed_point_count.mojo`).* The formula
 (`fixed_point_formula`: checked powers of the incidence matrix, the
