@@ -327,11 +327,14 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
                                     f"{LEFTMOST}, Lemma S, Proposition LC and Corollary LC4; 10,584 sign/shape checks, 10,128 integral replays and 456 uncomputed offsets on the standing corpus; {REVIEWED}", (), ()),
     "LeftmostChainG1Certificate": (T, "a PIP substitution whose box graph has no terminal leftmost cycle satisfies all-seed strict-zipper exclusion, hence finite BPA",
                                    f"{LEFTMOST}, Corollary LC5, with {MANUSCRIPT}, Proposition 5.47; {REVIEWED}", ("BoxCycleContainment",), ()),
+    "MinusClassAWholeChamberEntry": (P, "for every k,t>=0 with n=k+t+3 and d=k+2t+5 (equivalently n+2<=d<=2n-1), the minus class-A substitution x->x y^(n+d) x, c->c y^n x, y->x y^(n-1) c has a finite path of actual ordered strict child occurrences to typed coincidence from every strict integral overlap when n>=6 and from every S18 seed-reachable vertex in the six complete graphs when n<6; original occurrence indices and the full integral prefix identity M^m w=P-Q are retained",
+        "written proof on unmerged PR #577 as of 210354853ba816a3d2d5639319cf1982fd4e4b06, from PR #578; https://github.com/larsbx/pisot-substitution-conjecture-research/blob/210354853ba816a3d2d5639319cf1982fd4e4b06/docs/class-a-central-entry-2026-11-14.md sections 2-7; central-entry and scoped Lean runs 43749570859 and 43749570601 passed at f8fab40de91c407e6ee57651ad3e03d598c94459; stack integration run 43749586092 failed Python tests; current-main reconciliation and acceptance pending", (), ()),
     # --- retracted ------------------------------------------------------------------------
     "V5Thm51": (P, "v5 Theorem 5.1", "retired: the v5 Theorem 5.1 argument is withdrawn", (), (gl.WITHDRAWN_TAG,)),
 }
 
 STATUS_NOTES = {
+    "MinusClassAWholeChamberEntry": "Written proof and six complete seed-graph replays are recorded on the branch. The open ledger status tracks integration acceptance. Lean coverage is partial and independent human review is pending.",
     "G1": "the renewal, all-seed overlap, strict-zipper-exclusion and formal-productivity implications are proved alternative establishments of canonical G1; their open premises are not discharged, so G1 itself remains an open conjectural gate",
     "SCCProducer": "the implication from G1, the sink-SCC reduction, and C2 is proved; SCC Producer / C1 is an open theorem target",
     "CoincidenceDensityOne": "the equivalence of Lemma 5.36 is repository-proved; the ledger node is its conclusion, which needs overlap productivity",
@@ -461,6 +464,7 @@ SURFACES = {  # prose surfaces on which each claim's status is spelled out (labe
     "ClassBSectorBoundaryHitting": [surface(MAP, "| Class-B boundary hitting below slope `5/2` |")],
     "MinusClassAChamberConeBoundaryHitting": [surface(MAP, "| Minus class-A chamber boundary hitting, `t <= 5` or `t <= k - 1` |")],
     "MinusClassAChamberConeEntry": [surface(MAP, "| Minus class-A chamber entry into integral zero, `t <= 5` or `t <= k - 1` |")],
+    "MinusClassAWholeChamberEntry": [surface(MAP, "| Minus Class-A whole-chamber entry |")],
     "OverlapProductivity": [surface(MAP, "| Seedwise overlap productivity / Open Problem 5.35 |"), surface(LEDGER_DOC, "### Overlap productivity / Open Problem 5.35", 2),
                             surface(LADDER, "=> one swap seed has only productive reachable overlaps"), surface("README.md", "=> one swap seed has only productive reachable overlaps"),
                             surface(ROADMAP, "| **P1** | Seedwise overlap productivity (#84) |")],

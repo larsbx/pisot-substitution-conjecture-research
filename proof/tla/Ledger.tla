@@ -66,6 +66,7 @@ ResultSet == {
     "MidArea",
     "MinusClassAChamberConeBoundaryHitting",
     "MinusClassAChamberConeEntry",
+    "MinusClassAWholeChamberEntry",
     "MinusClassDBoundaryHitting",
     "MinusClassDBoundaryLine",
     "MinusClassDBoundaryStrips",
@@ -185,6 +186,7 @@ RequiresDef == [r \in ResultSet |->
       [] r = "MidArea" -> {{}}
       [] r = "MinusClassAChamberConeBoundaryHitting" -> {{}}
       [] r = "MinusClassAChamberConeEntry" -> {{"MinusClassAChamberConeBoundaryHitting"}}
+      [] r = "MinusClassAWholeChamberEntry" -> {{}}
       [] r = "MinusClassDBoundaryHitting" -> {{"MinusClassDResidualBoundaryHitting", "ClassDWedgeBoundaryHitting"}}
       [] r = "MinusClassDBoundaryLine" -> {{}}
       [] r = "MinusClassDBoundaryStrips" -> {{}}
@@ -474,6 +476,7 @@ MeanAreaLiftNotEstablished == "MeanAreaLift" \notin established
 MidAreaNotEstablished == "MidArea" \notin established
 MinusClassAChamberConeBoundaryHittingNotEstablished == "MinusClassAChamberConeBoundaryHitting" \notin established
 MinusClassAChamberConeEntryNotEstablished == "MinusClassAChamberConeEntry" \notin established
+MinusClassAWholeChamberEntryNotEstablished == "MinusClassAWholeChamberEntry" \notin established
 MinusClassDBoundaryHittingNotEstablished == "MinusClassDBoundaryHitting" \notin established
 MinusClassDBoundaryLineNotEstablished == "MinusClassDBoundaryLine" \notin established
 MinusClassDBoundaryStripsNotEstablished == "MinusClassDBoundaryStrips" \notin established

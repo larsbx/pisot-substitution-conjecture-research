@@ -1412,6 +1412,24 @@ anchor = "| Minus class-A chamber entry into integral zero, `t <= 5` or `t <= k 
 window_lines = 0
 
 [[claim]]
+name = "MinusClassAWholeChamberEntry"
+status = "open"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"MinusClassAWholeChamberEntry"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "absent"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| MinusClassAWholeChamberEntry |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Minus Class-A whole-chamber entry |"
+window_lines = 0
+
+[[claim]]
 name = "MinusClassDBoundaryHitting"
 status = "proved"
 [[claim.surfaces]]

@@ -1023,6 +1023,23 @@
       }
     },
     {
+      "name": "MinusClassAWholeChamberEntry",
+      "status": "open",
+      "source": "written proof on unmerged PR #577 as of 210354853ba816a3d2d5639319cf1982fd4e4b06, from PR #578; https://github.com/larsbx/pisot-substitution-conjecture-research/blob/210354853ba816a3d2d5639319cf1982fd4e4b06/docs/class-a-central-entry-2026-11-14.md sections 2-7; central-entry and scoped Lean runs 43749570859 and 43749570601 passed at f8fab40de91c407e6ee57651ad3e03d598c94459; stack integration run 43749586092 failed Python tests; current-main reconciliation and acceptance pending",
+      "dependencies": [],
+      "ledger_node": true,
+      "lean_support": {
+        "claim": "MinusClassAWholeChamberEntry",
+        "coverage": "partial",
+        "declarations": [
+          "Psc.ClassACentralRecurrence.central_gap_in_run",
+          "Psc.ClassACentralRecurrence.run_gap_digit_step",
+          "Psc.ClassACentralRecurrence.eventual_alternating_tail"
+        ],
+        "note": "Lean checks RUN index legality, the literal RUN digit step and eventual alternation under the strict-error recurrence. The all-source central entrance, literal specialization and complete cycle escapes are supplied by the branch proof evidence."
+      }
+    },
+    {
       "name": "MinusClassDBoundaryHitting",
       "status": "proved",
       "source": "docs/p1b-minus-boundary-strips-2026-10-20.md; exact case split r>=q-1 versus d=q-r>=2 with a=d-2,b=3r-2q>=0; human review pending",
@@ -33276,7 +33293,7 @@
     }
   ],
   "input_digests": {
-    "claim_governance.toml": "361df0632322eee2f7f5ec26303744a16fc066a604896734c19705d9f331ddc3",
+    "claim_governance.toml": "1657e24d565d09fab739cea484c400a0fc15e26a28abec623bf2626facc5cc72",
     "proof/PscVerif/ClassAPlusUpperCycleCompletionAudit.lean": "6ac8660fe4babef37c7e6fd191507bb1898852837b63d622e465762d881dd040",
     "proof/PscVerif/ClassAPlusUpperCyclesAudit.lean": "f1674a21d8c96382b5c3ea009525c43baf210a2a6db427dd3bbb60923b087c6e",
     "proof/PscVerif/ClassAPlusUpperRecurrenceAudit.lean": "ef12f802e6eb10dbf2b02ce84cccbcdf9164aed9356f4fe2917ee513923824aa",
@@ -33426,9 +33443,9 @@
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
-    "proof/proof-bank.toml": "d0e15b7dcd7a7b493d432bf2b03eeafd3550f1697b3b3629ea490b9af06247fa",
+    "proof/proof-bank.toml": "60ab9f9c41bb962b17d827e9e746a2428453361cf98a8b5c690c99a712d31880",
     "tools/check_lean.sh": "eb63ce6fb0b837eee1208b3d47e759bcf8b3617b1374685a8850e48f283cba8d",
-    "tools/make_ledger.py": "3b9df7443fc1d5b07fa88e53088bcfd9b03b936ae7f4664086783c109543f947",
+    "tools/make_ledger.py": "471a7a57fb33636ea62b881968ff67c0af1cd5d51dda6ddc1b55e7242cc09b0a",
     "tools/make_proof_bank.py": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8",
     "tools/setup_lean.sh": "8c4e5f4a35c6daf437c612bb868410ac2ecad68984154d50493fd7f42d86a824"
   }
