@@ -5706,6 +5706,70 @@
       "declaration": "theorem disputed_last_is_c (n d : ℕ) :"
     },
     {
+      "name": "Psc.ClassAPlusUpperEntry.threshold_lt",
+      "module": "PscVerif.ClassAPlusUpperEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntry.lean",
+      "line": 26,
+      "declaration": "theorem threshold_lt (β X K : ℝ) (hβ : 11 < β) (hX : X < 10/3) (hK : K < 1)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntry.y_threshold_lt",
+      "module": "PscVerif.ClassAPlusUpperEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntry.lean",
+      "line": 38,
+      "declaration": "theorem y_threshold_lt (β X K : ℝ) (hβ : 11 < β) (hX : X < 10/3) (hK : K < 1)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntry.threshold_sum",
+      "module": "PscVerif.ClassAPlusUpperEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntry.lean",
+      "line": 48,
+      "declaration": "theorem threshold_sum (β X K : ℝ)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntry.direct_gap_window",
+      "module": "PscVerif.ClassAPlusUpperEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntry.lean",
+      "line": 68,
+      "declaration": "theorem direct_gap_window {β u Ftop Fbottom G D : ℝ} {Rtop Rbottom : ℕ}"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntry.ordered_run_indices",
+      "module": "PscVerif.ClassAPlusUpperEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntry.lean",
+      "line": 80,
+      "declaration": "theorem ordered_run_indices (s : ℝ) (Rtop Rbottom : ℕ)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntry.boundary_cases",
+      "module": "PscVerif.ClassAPlusUpperEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntry.lean",
+      "line": 115,
+      "declaration": "theorem boundary_cases (β X K D : ℝ)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntry.bounded_entry_of_growth",
+      "module": "PscVerif.ClassAPlusUpperEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntry.lean",
+      "line": 161,
+      "declaration": "theorem bounded_entry_of_growth {α : Type} (edge : α → α → Prop)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntry.exists_entry_power",
+      "module": "PscVerif.ClassAPlusUpperEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntry.lean",
+      "line": 182,
+      "declaration": "theorem exists_entry_power (β m : ℝ) (hβ : 1 < β) (hm : 0 < m) :"
+    },
+    {
       "name": "Psc.ClassAPlusUpperRecurrence.Family.beta_gt_eleven",
       "module": "PscVerif.ClassAPlusUpperRecurrence",
       "private": false,
@@ -33296,6 +33360,7 @@
     "claim_governance.toml": "1657e24d565d09fab739cea484c400a0fc15e26a28abec623bf2626facc5cc72",
     "proof/PscVerif/ClassAPlusUpperCycleCompletionAudit.lean": "6ac8660fe4babef37c7e6fd191507bb1898852837b63d622e465762d881dd040",
     "proof/PscVerif/ClassAPlusUpperCyclesAudit.lean": "f1674a21d8c96382b5c3ea009525c43baf210a2a6db427dd3bbb60923b087c6e",
+    "proof/PscVerif/ClassAPlusUpperEntryAudit.lean": "9912e29a73985c09d655922df3adc7eb6afafe5b1ee8c75dd66408c0068203c5",
     "proof/PscVerif/ClassAPlusUpperRecurrenceAudit.lean": "ef12f802e6eb10dbf2b02ce84cccbcdf9164aed9356f4fe2917ee513923824aa",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean": "87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025",
@@ -33318,6 +33383,7 @@
     "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean": "c6dbd0f1065e698ee58a04c1781d63692129f2b5c17c97d0a74cc832fd25f79a",
     "proof/PscVerif/PscVerif/ClassAPlusUpperCycleCompletion.lean": "d80243eca779241325231f64b5472c197c8f81b3919309d1c2e97512579f3a58",
     "proof/PscVerif/PscVerif/ClassAPlusUpperCycles.lean": "5d3cf8f6ce61e49f654710965d03761de7c046e931498bbc2aa09b872471384b",
+    "proof/PscVerif/PscVerif/ClassAPlusUpperEntry.lean": "35e27f3fc973e5668e883f8e3df312920ff1abd945a52a98c4ee133e7bd5f204",
     "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean": "a220ded84ea5545cc405f4533959fa15e7dc181637e959bbcf012ac31ff29173",
     "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean": "a50672744789443300b5c7c4b6c0467c941fec5b1d833d7544e62440c729fa58",
     "proof/PscVerif/PscVerif/ClassBRegime.lean": "1c873d0aea0201c3a60486dc90bce00e9f9612019ad72c5344cfa927d93a23e6",
@@ -33439,7 +33505,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "7fc882043cc48960d428516095684375016d2d99b36b91bdd203311203961c0f",
+    "proof/PscVerif/PscVerif.lean": "9bf207757e75565f6f625bf09af8fc14593dd08b129ddf2d1a737722e96507c2",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
