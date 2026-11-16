@@ -12,6 +12,14 @@ governed claim status (C4, #138, #139, #84, G1 and PSC are unchanged).
 [Issue #461](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/461).
 Baseline `main@febe7535`.
 
+*Update 2026-11-16 (round 2).* The text of this note is that of round 1.
+Three of its statements are corrected or extended by dated additions that
+leave the round-1 sentences in place: Theorem FC1 is now machine-checked
+(§10(a)); Theorem FC3 extends to "(F) and `dim H¹ = 3`" for every
+determinant (§10(b)); and two sentences of §7 on unimodularity are
+superseded (§10(c)). Universal C4 remains open and no governed claim status
+changes.
+
 Literature gate:
 [`c4-geometric-f-class-literature-2026-11-16.md`](c4-geometric-f-class-literature-2026-11-16.md).
 Record of the attempt that produced these statements, with the routes that
@@ -879,6 +887,14 @@ The argument needs the index of the eigenfunction classes in
 `Ȟ¹(Ω_s; ℤ)` to be prime to `p`; Lemma 9 gives index one, and that is where
 this argument uses unimodularity and `l = 0`. Whether the conclusion of
 Theorem Fork holds without them is not known here.
+
+*Update 2026-11-16 (round 2).* The two sentences above are superseded; the
+exact status is in §10(c). In short: for `dim H¹ = 3` the eigenfunction
+classes have index one for every determinant (Lemma 9′ of the
+[rank-two note](c4-rank-two-wall-2026-11-16.md), which is
+Barge–Kellendonk–Schmieding 2012), so Lemma 10 needs `l = 0` and not
+unimodularity; the extension of Theorem Fork itself to nonunit `σ` is
+expected and not proved.
 
 **Theorem Fork.** Let `σ ∈ PIP3` be unit with `dim H¹(Ω_σ; ℚ) = 3`, and let
 `Z` be a strict component. Then for every `(T, T′) ∈ Z` there is `T″` with
