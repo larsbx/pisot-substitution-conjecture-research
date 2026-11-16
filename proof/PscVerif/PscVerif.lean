@@ -143,3 +143,7 @@ import PscVerif.PacketSquareData.RealSecondary
 import PscVerif.PacketSquareData.NonPisot
 import PscVerif.PacketSquareData.GfActual
 import PscVerif.PacketSquareControls
+import PscVerif.GeometricFInclusion
+import PscVerif.GeometricFStrict
+import PscVerif.GeometricFPisot
+import PscVerif.GeometricFRank
