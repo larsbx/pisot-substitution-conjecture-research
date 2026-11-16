@@ -13658,6 +13658,174 @@
       "declaration": "theorem exists_eigenfunctionals_of_separable (s : α → List α)"
     },
     {
+      "name": "Psc.GeometricFPisot.exists_contractionData_of_separable",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 253,
+      "declaration": "theorem exists_contractionData_of_separable (s : α → List α)"
+    },
+    {
+      "name": "Psc.GeometricFPisot.exists_contractionData_of_pisot",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 268,
+      "declaration": "theorem exists_contractionData_of_pisot (s : α → List α)"
+    },
+    {
+      "name": "Psc.GeometricFPisot.pisot_roots_of_isPisot",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 284,
+      "declaration": "theorem pisot_roots_of_isPisot (s : α → List α)"
+    },
+    {
+      "name": "Psc.GeometricFPisot.perron_eq_pisot_root",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 302,
+      "declaration": "theorem perron_eq_pisot_root (s : α → List α) {r : ℝ} {ℓ : α → ℝ} (hℓ : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.GeometricFPisot.pisot_roots_of_pisot_root",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 332,
+      "declaration": "theorem pisot_roots_of_pisot_root (s : α → List α) {r : ℝ} {ℓ : α → ℝ} (hℓ : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.GeometricFPisot.fc1_hypotheses_of_primitive_pisot",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 355,
+      "declaration": "theorem fc1_hypotheses_of_primitive_pisot [Nontrivial α]"
+    },
+    {
+      "name": "Psc.GeometricFPisot.exists_fc1_data_of_primitive_pisot",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 374,
+      "declaration": "theorem exists_fc1_data_of_primitive_pisot"
+    },
+    {
+      "name": "Psc.GeometricFPisot.fc1_equivalence_of_pisot",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 394,
+      "declaration": "theorem fc1_equivalence_of_pisot"
+    },
+    {
+      "name": "Psc.GeometricFPisot.fc1_equivalence_of_primitive_pisot",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 414,
+      "declaration": "theorem fc1_equivalence_of_primitive_pisot [Nontrivial α]"
+    },
+    {
+      "name": "Psc.GeometricFPisot.fc1_equivalence_of_isPisot",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 431,
+      "declaration": "theorem fc1_equivalence_of_isPisot"
+    },
+    {
+      "name": "Psc.GeometricFPisot.fc1_equivalence_of_pisot_root",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 447,
+      "declaration": "theorem fc1_equivalence_of_pisot_root"
+    },
+    {
+      "name": "Psc.GeometricFPisot.fc1_inclusion_gap_of_pisot",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 467,
+      "declaration": "theorem fc1_inclusion_gap_of_pisot"
+    },
+    {
+      "name": "Psc.GeometricFPisot.fc1_strictSystem_of_pisot",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 489,
+      "declaration": "theorem fc1_strictSystem_of_pisot"
+    },
+    {
+      "name": "Psc.GeometricFPisot.fc1_inclusion_gap_of_primitive_pisot",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 507,
+      "declaration": "theorem fc1_inclusion_gap_of_primitive_pisot [Nontrivial α]"
+    },
+    {
+      "name": "Psc.GeometricFPisot.fc1_pip3",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 530,
+      "declaration": "theorem fc1_pip3 {s : Fin 3 → List (Fin 3)} {β : ℝ} {ℓ : Fin 3 → ℝ}"
+    },
+    {
+      "name": "Psc.GeometricFPisot.trib_fc1_hypotheses",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 554,
+      "declaration": "theorem trib_fc1_hypotheses : ∃ (β : ℝ) (ℓ : Fin 3 → ℝ) (ν : (Fin 3 → ℤ) → ℝ) (ρ : ℝ),"
+    },
+    {
+      "name": "Psc.GeometricFPisot.trib_fc1_of_propertyF",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 570,
+      "declaration": "theorem trib_fc1_of_propertyF {β : ℝ} {ℓ : Fin 3 → ℝ} (hℓ : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.GeometricFPisot.trib_fc1_statements",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 586,
+      "declaration": "theorem trib_fc1_statements :"
+    },
+    {
+      "name": "Psc.GeometricFPisot.carrier_not_pisot_roots",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 605,
+      "declaration": "theorem carrier_not_pisot_roots {β : ℝ} {ℓ : Fin 3 → ℝ} (hℓ : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.GeometricFPisot.pvec_eq_parikhCast",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 622,
+      "declaration": "theorem pvec_eq_parikhCast (w : List α) :"
+    },
+    {
+      "name": "Psc.GeometricFPisot.incZ_eq_degree2Sector",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 627,
+      "declaration": "theorem incZ_eq_degree2Sector (S : Psc.Binomial.ChildSystem (Fin 3)) :"
+    },
+    {
       "name": "Psc.GeometricF.win_split",
       "module": "PscVerif.GeometricFStrict",
       "private": false,
@@ -35793,7 +35961,7 @@
     "proof/PscVerif/PscVerif/FixedPointLimit.lean": "cd4a824f288d4c1072fd375e0e7b9014f56028e23e00cb4336fd678a210b7bbe",
     "proof/PscVerif/PscVerif/GaloisOrbit.lean": "4d3b5474dbd14205f4bf2d33e98149ebbdd6d7e0fb8fd3a33787b878bcad5f07",
     "proof/PscVerif/PscVerif/GeometricFInclusion.lean": "b5545867e28d3c9eed4e473704dfa32ae73650f20ea6fe8f23c6f4ef319892fe",
-    "proof/PscVerif/PscVerif/GeometricFPisot.lean": "ab2036d075b460d8cc84e3cae4dc26f3264613a4374f83b1aeb1f0480ab72ff7",
+    "proof/PscVerif/PscVerif/GeometricFPisot.lean": "2b20a4659fa2b48877fefbf44dac44b3c7a7c154e99fa12ca2c4f7d247a38a35",
     "proof/PscVerif/PscVerif/GeometricFStrict.lean": "22fc549a3b1d061fb79794177aa8fa7ecaddcf8498d6441d356a029ad3495df2",
     "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean": "c3b266fc203b69f632063b38d044c0f76e7ec50825a16c6c04949fa696e275ec",
     "proof/PscVerif/PscVerif/GraphEmbedding.lean": "ab4f4774921dbf755b0c93c1f7c1180d076194c4906f7d4ea96210635d37caee",
