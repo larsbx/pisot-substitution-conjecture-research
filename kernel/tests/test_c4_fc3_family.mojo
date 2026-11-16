@@ -24,9 +24,9 @@ Asserted from the note (closed forms and its lists), member by member:
       numbers of periodic letters;
 (iii) `dim H^1 = 4` (`s >= 1`), `5` (`s = 0`, `tau_n`);
 (iv)  (F) at every grid member with `n >= 3r+s` and at every `tau_n`; (F)
-      at the small members the note decides one by one; the six members it
-      lists as failing (F), with the number and periods of their interior
-      cycles;
+      at the small members the note decides one by one; the six members the
+      route record lists as failing (F), with the number and periods of
+      their interior cycles;
 (v)   clauses (b), (c) and membership in the non-trivial part of the FC3
       class, as the note states them;
 (vi)  the least strong-coincidence levels on the ranges the note states,
@@ -35,9 +35,14 @@ Asserted from the note (closed forms and its lists), member by member:
 Pinned from the exact computation here, where the note gives no value: what
 the screens say below `n = r+s+1` (20 members rejected); the members where
 the Routh screen refuses; the complete list of grid members failing (F) (ten,
-four beyond the six of the note); the base states and address data of their
-interior cycles; the certified radii; the transients of the trapped states;
-the witness levels off the stated ranges.
+four beyond the six of the route record; the note's table of ten is this
+list); the base states and address data of their interior cycles; the
+certified radii; the transients of the trapped states; the witness levels off
+the stated ranges; the five negative controls off the grid.
+
+Numbering. Theorems 1, 2, 3 and Proposition 5 in the comments below are those
+of the route record: FM1, FM2, FM3 and FM5 of the note. Lemma Q, Lemma R and
+the trapping lemma are its FM-Q, FM-R and FM-T.
 
 Which decision is which. `psc.c4_geometric_f.decide_geometric_f` and
 `fc3_profile` are certified for images of at most six letters and refuse the
@@ -58,9 +63,17 @@ What guards that decision:
   no further cycle on any of them;
 - on six long-image members the literal box graph of Corollary LC5
   (`build_box_graph`, independent radii, no code of `psc.c4_fc3_family`) has
-  no terminal leftmost cycle.
+  no terminal leftmost cycle;
+- no long-image grid member fails (F), so nothing above shows that the walk
+  finds an interior cycle beyond six letters. Five negative controls off the
+  grid do: it finds the interior cycles of `sigma_{6,1,5}` (periods 8, 11,
+  14, the same three in twice the radii), of `sigma_{7,0,6}` (period 32; odd
+  determinant and clause (c), so only the failure of (F) keeps it from being
+  reported) and of `1/0 1^k 2/001` for `k = 5, 12, 23` (period 3, images of
+  7, 14 and 25 letters; at `k = 5` the literal LC5 box graph has two
+  terminal leftmost cycles).
 
-Not pinned and not claimed: anything for parameters off the grid; the
+Not pinned and not claimed: anything else for parameters off the grid; the
 trapping lemma of the written proof; the conclusion `cr = 1` of Theorem FC3
 (conditional on its imports); pure discrete spectrum; any new C4 case (the
 witnesses of (vi) make C4 elementary on the families); relations between
@@ -955,9 +968,10 @@ def _expect_cycles(r: Int, s: Int, n: Int, expected: List[String]) raises -> Int
 
 
 def test_members_failing_f() raises -> Int:
-    """The six members the note lists as failing (F), and the four further
-    ones on the grid. All have `n <= r + s - 1`: the hypothesis `n >= 3r + s`
-    of the theorem is not decorative."""
+    """The six members the route record lists as failing (F), and the four
+    further ones on the grid (the note tabulates all ten). All have
+    `n <= r + s - 1`: the hypothesis `n >= 3r + s` of the theorem is not
+    decorative."""
     var states = 0
     states += _expect_cycles(2, 1, 1, ["(0;0,0,1):5:23,41,16"])
     states += _expect_cycles(3, 0, 2, ["(0;-2,2,1):14:1525760,3749736,1164264"])
@@ -973,7 +987,8 @@ def test_members_failing_f() raises -> Int:
         ],
     )
     states += _expect_cycles(5, 0, 4, ["(0;-4,4,1):23:1384666273029884,5981553401658307,1159789589428833"])
-    # Not in the note's list; decided here by the canonical module.
+    # Not in the route record's list; found when the grid was pinned and
+    # decided here by the canonical module.
     states += _expect_cycles(3, 2, 2, ["(0;0,0,1):5:113,319,88"])
     states += _expect_cycles(
         4, 1, 3,
@@ -1055,6 +1070,165 @@ def test_named_members() raises:
     assert_equal(decide_f_screened(tau_family(16)).radii, List[Int]([5, 1, 1]))
     assert_equal(decide_f_screened(sigma_family(5, 2, 23)).radii, List[Int]([4, 1, 1]))
     assert_equal(decide_f_screened(sigma_family(5, 0, 15)).radii, List[Int]([4, 2, 2]))
+    # Counter-calibration of the class predicate: a specimen with an
+    # eventually constant endpoint map is not reported, whatever its other
+    # clauses. Tribonacci 01/02/0 has (F), odd determinant and dim H^1 = 3
+    # (clause (b)), and its first-letter map is constant; its reversal
+    # 10/20/0 has the same with the last-letter map constant.
+    var trib: List[List[Int]] = [[0, 1], [0, 2], [0]]
+    var pt = fc3_profile(trib)
+    assert_true(decide_geometric_f(trib).holds)
+    assert_equal(pt.left_periodic, 1)
+    assert_equal(pt.right_periodic, 3)
+    assert_true(pt.endpoint_trivial())
+    assert_true(clause_b(pt))
+    assert_false(nontrivial_fc3_member(pt, True))
+    var mirror = reversed_substitution(trib)
+    assert_equal(substitution_key(mirror), "10/20/0")
+    var pm = fc3_profile(mirror)
+    assert_true(decide_geometric_f(mirror).holds)
+    assert_equal(pm.left_periodic, 3)
+    assert_equal(pm.right_periodic, 1)
+    assert_true(pm.endpoint_trivial())
+    assert_true(clause_b(pm))
+    assert_false(nontrivial_fc3_member(pm, True))
+
+
+def _neighbour_shape(k: Int) -> List[List[Int]]:
+    """`(1, 0 1^k 2, 0 0 1)`: the shape `(1, 0 1^k 2, 0^q 1)` at `q = 2`. Not a
+    member of either family; incidence rows `(0,1,2)`, `(1,k,1)`, `(0,1,0)`."""
+    var image1: List[Int] = [0]
+    image1 += List[Int](length=k, fill=1)
+    image1.append(2)
+    var out = List[List[Int]]()
+    out.append([1])
+    out.append(image1^)
+    out.append([0, 0, 1])
+    return out^
+
+
+def test_long_image_members_failing_f() raises -> Int:
+    """Negative controls for the screened decision beyond six letters. Every
+    grid member that fails (F) has images of at most six letters and is
+    decided by the canonical module, so the grid does not show that the walk
+    of `decide_f_screened` finds an interior cycle on a long image: a walk
+    blind to cycles there passes every grid assertion. Here are five
+    substitutions off the grid on which it has to find them, with images of
+    7, 8, 14 and 25 letters (25 is the longest image on the grid). Two are
+    family members with `n <= r + s - 1`, outside both hypotheses of the
+    written proof; three have the neighbouring shape `(1, 0 1^k 2, 0 0 1)`
+    and are in neither family. Nothing is claimed for them beyond these
+    decisions. Returns the number of interior periodic states."""
+    # sigma_{6,1,5}, n = 5 <= r + s - 1: three interior cycles, and the same
+    # three in twice the radii. Even determinant: neither clause applies.
+    var first = sigma_family(6, 1, 5)
+    assert_equal(substitution_key(first), "111111/0111112/01")
+    assert_false(within_audited_domain(first))
+    assert_true(_audited_refuses(first, "certified only for"))
+    var d = decide_f_screened(first)
+    assert_false(d.holds)
+    assert_false(d.audited)
+    assert_equal(d.periods, List[Int]([8, 11, 14]))
+    assert_equal(d.radii, List[Int]([47, 55, 55]))
+    var wide = interior_periods_in_box(build_seed_overlap_tables_screened(first), [94, 110, 110])
+    assert_equal(_sorted(wide.periods), d.periods)
+    assert_true(sigma_trapping_sign(6, 1, 5) > 0)
+    assert_true(sigma_kappa_sign(6, 1, 5) > 0)
+    var p = family_fc3_profile(first)
+    assert_equal(p.determinant, 6)
+    assert_false(clause_b(p))
+    assert_false(clause_c(p))
+    assert_false(nontrivial_fc3_member(p, d.holds))
+
+    # sigma_{7,0,6}, n = 6 <= r + s - 1: one interior 32-cycle. Odd
+    # determinant, clause (c), two and three periodic letters: only the
+    # failure of (F) keeps it out of the class, so a walk that missed the
+    # cycle would report a member that is none.
+    var second = sigma_family(7, 0, 6)
+    assert_equal(substitution_key(second), "1111111/01111112/0")
+    assert_false(within_audited_domain(second))
+    assert_true(_audited_refuses(second, "certified only for"))
+    var e = decide_f_screened(second)
+    assert_false(e.holds)
+    assert_false(e.audited)
+    assert_equal(e.periods, List[Int]([32]))
+    assert_equal(e.radii, List[Int]([128, 137, 137]))
+    assert_true(sigma_trapping_sign(7, 0, 6) > 0)
+    assert_true(sigma_kappa_sign(7, 0, 6) > 0)
+    var q = family_fc3_profile(second)
+    assert_equal(q.determinant, 7)
+    assert_false(q.endpoint_trivial())
+    assert_false(clause_b(q))
+    assert_true(clause_c(q))
+    assert_true(nontrivial_fc3_member(q, True))
+    assert_false(nontrivial_fc3_member(q, e.holds))
+
+    # 1/0111112/001: the neighbouring shape (1, 0 1^k 2, 0^q 1) at k = 5,
+    # q = 2, in neither family (incidence rows (0,1,2), (1,5,1), (0,1,0)). One
+    # interior 3-cycle, the same in twice the radii. The literal box graph of
+    # Corollary LC5, which runs no code of psc.c4_fc3_family, has
+    # 2 = 2 gcd(3, 2) terminal leftmost cycles of length lcm(3, 2): the
+    # first-letter map (1,0,0) has the one cycle 0 -> 1 -> 0.
+    var neighbour: List[List[Int]] = [[1], [0, 1, 1, 1, 1, 1, 2], [0, 0, 1]]
+    assert_equal(_neighbour_shape(5), neighbour)
+    assert_equal(substitution_incidence(neighbour), List[Int]([0, 1, 2, 1, 5, 1, 0, 1, 0]))
+    var facts = family_facts(neighbour)
+    assert_true(facts.pip3())
+    assert_equal(facts.charpoly, List[Int]([-2, -2, -5, 1]))
+    assert_equal(facts.first_letters, List[Int]([1, 0, 0]))
+    assert_false(within_audited_domain(neighbour))
+    assert_true(_audited_refuses(neighbour, "certified only for"))
+    var f = decide_f_screened(neighbour)
+    assert_false(f.holds)
+    assert_false(f.audited)
+    assert_equal(f.periods, List[Int]([3]))
+    assert_equal(f.radii, List[Int]([7, 2, 2]))
+    assert_equal(f.candidates, 192)
+    var pn = family_fc3_profile(neighbour)
+    assert_equal(pn.determinant, 2)
+    assert_false(nontrivial_fc3_member(pn, f.holds))
+    var tables = build_seed_overlap_tables_screened(neighbour)
+    assert_equal(interior_periods_in_box(tables, [14, 4, 4]).periods, List[Int]([3]))
+    var graph = build_box_graph(tables)
+    assert_false(graph.capped)
+    var cycles = terminal_leftmost_cycles(tables, graph, 0)
+    assert_equal(len(cycles), 2)
+    for k in range(len(cycles)):
+        assert_equal(cycles[k].r, 6)
+
+    var states = 0
+    for k in range(len(d.periods)):
+        states += d.periods[k]
+    for k in range(len(e.periods)):
+        states += e.periods[k]
+    for k in range(len(f.periods)):
+        states += f.periods[k]
+
+    # The same shape at k = 12 and k = 23, images of 14 and 25 letters: the
+    # walk finds the interior 3-cycle there too, and twice the radii hold
+    # nothing else. So the controls reach the longest image on the grid.
+    var long_k: List[Int] = [12, 23]
+    var long_radii: List[List[Int]] = [[8, 1, 1], [9, 1, 1]]
+    for i in range(len(long_k)):
+        var longer = _neighbour_shape(long_k[i])
+        assert_equal(longest_image(longer), long_k[i] + 2)
+        var long_facts = family_facts(longer)
+        assert_true(long_facts.pip3())
+        assert_equal(long_facts.charpoly, List[Int]([-2, -2, -long_k[i], 1]))
+        assert_true(_audited_refuses(longer, "certified only for"))
+        var g = decide_f_screened(longer)
+        assert_false(g.holds)
+        assert_false(g.audited)
+        assert_equal(g.periods, List[Int]([3]))
+        assert_equal(g.radii, long_radii[i])
+        var pg = family_fc3_profile(longer)
+        assert_equal(pg.determinant, 2)
+        assert_false(nontrivial_fc3_member(pg, g.holds))
+        var doubled: List[Int] = [2 * g.radii[0], 2 * g.radii[1], 2 * g.radii[2]]
+        var twice = interior_periods_in_box(build_seed_overlap_tables_screened(longer), doubled)
+        assert_equal(twice.periods, List[Int]([3]))
+        states += 3
+    return states
 
 
 def test_literal_box_graph() raises -> Int:
@@ -1162,6 +1336,7 @@ def main() raises:
     var tau = test_tau()
     var interior_states = test_members_failing_f()
     test_named_members()
+    var off_grid_states = test_long_image_members_failing_f()
     var literal_states = test_literal_box_graph()
     var corpus = test_screened_walk_on_the_corpus()
     var keys = test_no_two_members_are_conjugate_or_mirror()
@@ -1198,6 +1373,9 @@ def main() raises:
     # `stable_radii` is the one these decisions exercise.
     assert_equal(grid.complex_pairs, 180)
     assert_equal(literal_states, 9074)
+    # The five negative controls off the grid: 8 + 11 + 14, 32 and three
+    # times 3 interior periodic states.
+    assert_equal(off_grid_states, 74)
     # The screened walk on the standing corpus: 4,554 specimens, 1,794 with
     # (F), 3,756 interior cycles with 12,828 states (the pins of
     # test_c4_geometric_f), 648 specimens with three real roots.
@@ -1249,6 +1427,7 @@ def main() raises:
         "; interior states of the ten failing members", interior_states, "; normal forms", keys,
         "; screened walk against the canonical decision on the corpus:", corpus[0], "specimens,", corpus[2],
         "interior cycles, all reproduced; literal LC5 box graphs on six long-image members:", literal_states,
-        "states, no terminal leftmost cycle",
+        "states, no terminal leftmost cycle; five long-image negative controls off the grid fail (F):",
+        off_grid_states, "interior periodic states found",
     )
-    require_contract("FC3 families (psc.c4_fc3_family): sigma_{r,s,n} = (1^r, 0 1^n 2, 0 1^s) and tau_n = (1, 2 1^n 0, 0 1), pinned on a finite grid; the statement for all parameters is the recorded proof (docs/c4-fc3-family-2026-11-16.md: not machine-checked, independent human review pending), which this test does not replace. Grid: 1 <= r <= 5, 0 <= s <= 2, 1 <= n <= 3r+s+6 (240 members) and tau_n for 1 <= n <= 16; exact integer, rational and Z[beta] arithmetic. (i) The image words; incidence rows (0,1,1), (r,n,s), (0,1,0), tau_n that of sigma_{1,1,n}; det M = r, tr M = n, e_2(M) = -(r+s), chi = t^3 - n t^2 - (r+s) t - r in checked arithmetic; every member primitive; psc.pisot accepts all 180 members with n >= r+s+1, with chi(n) < 0 < chi(n+1), and every tau_n; below that threshold it accepts 40 members and rejects 20: the five (r,2,1) are reducible (chi(-1) = s - 1 - n = 0) and 15 are irreducible and not Pisot, (3,0,1) (3,1,1) (4,0,1) (4,0,2) (4,1,1) (4,1,2) (4,2,2) (5,0,1) (5,0,2) (5,0,3) (5,1,1) (5,1,2) (5,1,3) (5,2,2) (5,2,3); the Routh screen psc.pisot_screen.screen agrees with psc.pisot wherever it answers and refuses exactly the nine PIP3 members with n = 2r - s - 3, two of them above the threshold, (4,0,5) and (5,0,7): a refusal, not a verdict. (ii) g = (1,0,0), two periodic letters; g_R = (1,2,1), two, for s >= 1 and (1,2,0), three, for s = 0; tau_n: g = (1,2,0), three, g_R = (1,0,1), two. (iii) dim H^1 = 4 for s >= 1, 5 for s = 0 and for tau_n (psc.h1_census). (iv) Property (F). decide_geometric_f and fc3_profile are certified for images of at most six letters and refuse every longer one (asserted on each of the 192 long-image PIP3 members): of the 105 grid members with n >= 3r+s they accept sigma_{1,0,3}, sigma_{1,0,4}, sigma_{1,1,4}, and they accept no tau_n with n >= 5. On the 44 members they accept, (F) holds at 34, among them sigma_{1,1,n} and tau_n for n = 1..4 and the nonunit 111/01112/01, 111/011112/01, 111/011112/011, 111/011112/0, and fails at ten, each interior cycle state replaying (M^k - I) v = p(P) at an interior occurrence and each cycle leaving b, c in {0,1}: periods 5 for sigma_{2,1,1} (its 5-cycle through (0;0,0,1) re-derived by hand), 14 for sigma_{3,0,2}, 8 for sigma_{3,1,2}, 5 for sigma_{3,2,3}, 8, 8, 8, 14 for sigma_{5,1,4}, 23 for sigma_{5,0,4} (the six of the note), and 5 for sigma_{3,2,2}, 8, 8, 8, 8 for sigma_{4,1,3}, 5 for sigma_{4,2,3}, 8 for sigma_{5,2,4}; 143 interior states; all ten have n <= r+s-1 and fail both hypotheses of the written proof. Beyond six letters (F) is decided by decide_f_screened: the box of stable_radii (Lemma B) on the coefficient-screened tables, the prototile states among its box start states, psc.leftmost_chain.leftmost_step as the state map, the walk of Lemma W. Calibration: on all 4,554 standing corpus specimens the screened tables are the audited ones and the walk in the canonical box returns the canonical cycle periods (1,794 specimens with none, 3,756 cycles, 12,828 states, 648 specimens with three real roots), decide_f_screened end to end agrees on every 23rd (198), and on the 44 grid members above, the ten failures included. Result: no interior cycle at any of the 192 long-image members, so (F) holds at every grid member with n >= 3r+s (105) and at tau_n for n <= 16; radii pinned (sum 1,552 over the 180 sigma members, largest 13, sum 76 over the 12 tau members, (4,2,2) for 111/0 1^10 2/01, the first nonunit member of the regime), all 180 with a complex conjugate pair; twice the radii hold no cycle on any of them, and on six members the literal box graph of Corollary LC5 (build_box_graph on the independent box_radii, 9,074 states) has no terminal leftmost cycle. A box named by a caller gives a search and no verdict: radii (0,0,0) find nothing on sigma_{3,0,2}, which fails (F). Finite parts of the written proof: eps + 2 r theta < 1 exactly when n >= 3r+s on the 180 members with n >= r+s+1, and 5 theta + 2 theta^2 < 1 exactly when n >= 5 for tau_n (exact signs at the Perron root); every state with b, c in {0,1} reaches a vertex state within four steps on the 150 members with kappa < 1, the longest taking exactly four on each of the 105 regime members (2,490 states), and every state of tau_n, n >= 5, with b in {0,1}, c in {-1,0,1} within six (912 states, the longest exactly six); on the 44 short-image members the same counts come out of the canonical OrbitMemo, where 58 such states of the ten failing members are absorbed by an interior cycle; the trapping lemma is an argument and is not replayed. (v) FC3Profile (fc3_profile on its domain, screened_fc3_profile beyond, equal on the domain): clause (b) exactly for r odd and s >= 1, clause (c) exactly for r odd and n + r + s odd; of the 105 regime members 42 meet the hypotheses of the non-trivial part of the FC3 class by clause (b) (r odd, s >= 1), 9 by clause (c) only (r odd, s = 0, n even), and 54 are not reported (r even, or s = 0 with n odd); tau_n never has (b) and is reported exactly for n odd (8 of 16); 103 of the 220 PIP3 grid members have (F), two periodic letters on both sides and (b) or (c). (vi) Strong coincidence on literal words (coincidence_profile): least levels left (2,2,1), right (3,1,2) for s >= 1 and n >= max(r+1, s); left (2,3,1), right (3,4,4) for s = 0 and n >= r+1 (195 members in all), with the explicit witnesses of the note replayed (prefixes of Parikh vector (1,r,0), suffixes of Parikh vector (s,sn,s)); tau_n, n >= 2: left (3,2,3), right (2,1,2), with its explicit left witnesses; tau_1: (3,4,5), (5,1,4); the other 25 PIP3 members have witnesses for all pairs on both sides too (levels at most 5 left, 7 right); the coincidence automaton agrees on the 154 sigma and 12 tau members with images of at most 14 letters. No grid member is a relabelling of another or of the reversal of one (512 normal forms). Hypotheses and finite facts only: the families are not new C4 cases (the witnesses make C4 elementary on them), no coincidence rank, pure discrete spectrum or conclusion of Theorem FC3 is certified, and no claim status changes")
+    require_contract("FC3 families (psc.c4_fc3_family): sigma_{r,s,n} = (1^r, 0 1^n 2, 0 1^s) and tau_n = (1, 2 1^n 0, 0 1), pinned on a finite grid; the statement for all parameters is the recorded proof (docs/c4-fc3-family-2026-11-16.md: not machine-checked, independent human review pending), which this test does not replace. Grid: 1 <= r <= 5, 0 <= s <= 2, 1 <= n <= 3r+s+6 (240 members) and tau_n for 1 <= n <= 16; exact integer, rational and Z[beta] arithmetic. (i) The image words; incidence rows (0,1,1), (r,n,s), (0,1,0), tau_n that of sigma_{1,1,n}; det M = r, tr M = n, e_2(M) = -(r+s), chi = t^3 - n t^2 - (r+s) t - r in checked arithmetic; every member primitive; psc.pisot accepts all 180 members with n >= r+s+1, with chi(n) < 0 < chi(n+1), and every tau_n; below that threshold it accepts 40 members and rejects 20: the five (r,2,1) are reducible (chi(-1) = s - 1 - n = 0) and 15 are irreducible and not Pisot, (3,0,1) (3,1,1) (4,0,1) (4,0,2) (4,1,1) (4,1,2) (4,2,2) (5,0,1) (5,0,2) (5,0,3) (5,1,1) (5,1,2) (5,1,3) (5,2,2) (5,2,3); the Routh screen psc.pisot_screen.screen agrees with psc.pisot wherever it answers and refuses exactly the nine PIP3 members with n = 2r - s - 3, two of them above the threshold, (4,0,5) and (5,0,7): a refusal, not a verdict. (ii) g = (1,0,0), two periodic letters; g_R = (1,2,1), two, for s >= 1 and (1,2,0), three, for s = 0; tau_n: g = (1,2,0), three, g_R = (1,0,1), two. (iii) dim H^1 = 4 for s >= 1, 5 for s = 0 and for tau_n (psc.h1_census). (iv) Property (F). decide_geometric_f and fc3_profile are certified for images of at most six letters and refuse every longer one (asserted on each of the 192 long-image PIP3 members): of the 105 grid members with n >= 3r+s they accept sigma_{1,0,3}, sigma_{1,0,4}, sigma_{1,1,4}, and they accept no tau_n with n >= 5. On the 44 members they accept, (F) holds at 34, among them sigma_{1,1,n} and tau_n for n = 1..4 and the nonunit 111/01112/01, 111/011112/01, 111/011112/011, 111/011112/0, and fails at ten, each interior cycle state replaying (M^k - I) v = p(P) at an interior occurrence and each cycle leaving b, c in {0,1}: periods 5 for sigma_{2,1,1} (its 5-cycle through (0;0,0,1) re-derived by hand), 14 for sigma_{3,0,2}, 8 for sigma_{3,1,2}, 5 for sigma_{3,2,3}, 8, 8, 8, 14 for sigma_{5,1,4}, 23 for sigma_{5,0,4} (the six of the route record), and 5 for sigma_{3,2,2}, 8, 8, 8, 8 for sigma_{4,1,3}, 5 for sigma_{4,2,3}, 8 for sigma_{5,2,4}; 143 interior states; all ten have n <= r+s-1 and fail both hypotheses of the written proof. Beyond six letters (F) is decided by decide_f_screened: the box of stable_radii (Lemma B) on the coefficient-screened tables, the prototile states among its box start states, psc.leftmost_chain.leftmost_step as the state map, the walk of Lemma W. Calibration: on all 4,554 standing corpus specimens the screened tables are the audited ones and the walk in the canonical box returns the canonical cycle periods (1,794 specimens with none, 3,756 cycles, 12,828 states, 648 specimens with three real roots), decide_f_screened end to end agrees on every 23rd (198), and on the 44 grid members above, the ten failures included. Result: no interior cycle at any of the 192 long-image members, so (F) holds at every grid member with n >= 3r+s (105) and at tau_n for n <= 16; radii pinned (sum 1,552 over the 180 sigma members, largest 13, sum 76 over the 12 tau members, (4,2,2) for 111/0 1^10 2/01, the first nonunit member of the regime), all 180 with a complex conjugate pair; twice the radii hold no cycle on any of them, and on six members the literal box graph of Corollary LC5 (build_box_graph on the independent box_radii, 9,074 states) has no terminal leftmost cycle. A box named by a caller gives a search and no verdict: radii (0,0,0) find nothing on sigma_{3,0,2}, which fails (F). Negative controls beyond six letters, off the grid (no long-image grid member fails (F), so the grid does not show that the walk finds a cycle there): decide_f_screened finds the three interior cycles of sigma_{6,1,5} = 111111/0111112/01 (periods 8, 11, 14, radii (47,55,55), the same three in twice the radii; even determinant) and the interior 32-cycle of sigma_{7,0,6} = 1111111/01111112/0 (radii (128,137,137); odd determinant and clause (c), so only the failure of (F) keeps it from being reported), both with n <= r+s-1 and failing both hypotheses of the written proof, and the interior 3-cycle of 1/0 1^k 2/001 for k = 5, 12, 23 (PIP3 with chi = t^3 - k t^2 - 2t - 2, in neither family, images of 7, 14 and 25 letters, the longest on the grid; radii (7,2,2), (8,1,1), (9,1,1), 192 candidates at k = 5, the same cycle in twice the radii), where at k = 5 the literal LC5 box graph has 2 terminal leftmost cycles of length 6; 74 interior periodic states in all, and none of the five is reported as a class member. Finite parts of the written proof: eps + 2 r theta < 1 exactly when n >= 3r+s on the 180 members with n >= r+s+1, and 5 theta + 2 theta^2 < 1 exactly when n >= 5 for tau_n (exact signs at the Perron root); every state with b, c in {0,1} reaches a vertex state within four steps on the 150 members with kappa < 1, the longest taking exactly four on each of the 105 regime members (2,490 states), and every state of tau_n, n >= 5, with b in {0,1}, c in {-1,0,1} within six (912 states, the longest exactly six); on the 44 short-image members the same counts come out of the canonical OrbitMemo, where 58 such states of the ten failing members are absorbed by an interior cycle; the trapping lemma is an argument and is not replayed. (v) FC3Profile (fc3_profile on its domain, screened_fc3_profile beyond, equal on the domain): clause (b) exactly for r odd and s >= 1, clause (c) exactly for r odd and n + r + s odd; of the 105 regime members 42 meet the hypotheses of the non-trivial part of the FC3 class by clause (b) (r odd, s >= 1), 9 by clause (c) only (r odd, s = 0, n even), and 54 are not reported (r even, or s = 0 with n odd); tau_n never has (b) and is reported exactly for n odd (8 of 16); 103 of the 220 PIP3 grid members have (F), two periodic letters on both sides and (b) or (c); Tribonacci 01/02/0 and its reversal 10/20/0 ((F), clause (b), first- resp. last-letter map constant) are not reported. (vi) Strong coincidence on literal words (coincidence_profile): least levels left (2,2,1), right (3,1,2) for s >= 1 and n >= max(r+1, s); left (2,3,1), right (3,4,4) for s = 0 and n >= r+1 (195 members in all), with the explicit witnesses of the note replayed (prefixes of Parikh vector (1,r,0), suffixes of Parikh vector (s,sn,s)); tau_n, n >= 2: left (3,2,3), right (2,1,2), with its explicit left witnesses; tau_1: (3,4,5), (5,1,4); the other 25 PIP3 members have witnesses for all pairs on both sides too (levels at most 5 left, 7 right); the coincidence automaton agrees on the 154 sigma and 12 tau members with images of at most 14 letters. No grid member is a relabelling of another or of the reversal of one (512 normal forms). Hypotheses and finite facts only: the families are not new C4 cases (the witnesses make C4 elementary on them), no coincidence rank, pure discrete spectrum or conclusion of Theorem FC3 is certified, and no claim status changes")

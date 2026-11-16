@@ -241,12 +241,13 @@ way on every corpus specimen. Two further clauses are evaluated, beside
     Barge--Bruin--Jones--Sadun for degree one; Barge 2015 Theorem 22 is the
     odd-norm case.
 
-`FC3Profile.rank_two_excluded` is the union with the round-1 clauses: odd
-determinant and (`dim H^1 <= 4` or `tr M != e_2(M) (mod 2)`), or even
-determinant and `dim H^1 = 3`. `ClassTable` tabulates
-(`chi_M mod 2`, `dim H^1`) and (`d_2`, `dim H^1`); the census keeps one table
-for the corpus and one for the (F) specimens with at least two periodic
-letters on both sides.
+`FC3Profile.rank_two_hypotheses_hold` is the union with the round-1
+clauses: odd determinant and (`dim H^1 <= 4` or `tr M != e_2(M) (mod 2)`), or
+even determinant and `dim H^1 = 3`. The name says what it is: the hypotheses
+of recorded conditional theorems hold, which is not a verdict on the
+coincidence rank. `ClassTable` tabulates (`chi_M mod 2`, `dim H^1`) and
+(`d_2`, `dim H^1`); the census keeps one table for the corpus and one for the
+(F) specimens with at least two periodic letters on both sides.
 
 These are class counts under recorded conditional theorems (the note labels
 H3, FC3+ and P+: recorded proof, conditional on the listed imports, single
@@ -255,11 +256,12 @@ machine-checked, independent human review pending). A flag says that the
 hypotheses of a clause hold. It is not a certificate of a coincidence rank:
 no coincidence rank is computed anywhere in this module.
 
-Not implemented: the divisor condition of Theorem P+ (at every admissible
-`n`, factors `r`, `q_1` of `c_n` with `h_n r = (t + 1) q_1` over `F_2`), and
-the refinement of Remark (3) after Theorem P of the class note (Lemma S at
-the admissible `n < 6`). What the record says those two add on the corpus is
-an exploratory scratch observation, not replayable from the repository.
+Not implemented: the divisor condition of Theorem P+ (for every admissible
+`n`, monic `r`, `q_1` in `Z[t]` with `r q_1 | c_n` and `h_n r = (t + 1) q_1`
+over `F_2`, where `deg h_n = d_2`), and the refinement of Remark (3) after
+Theorem P of the class note (Lemma S at the admissible `n < 6`). What the
+record says those two add on the corpus is an exploratory scratch
+observation, not replayable from the repository.
 
 Fail closed
 -----------
@@ -268,8 +270,11 @@ field, no verdict). A state cap raises (`refuse to conclude`: an exhausted
 budget is not a verdict). A point that is not a state, a cycle whose address
 equation fails its replay, an occurrence that is not interior, and an orbit
 that closes outside the certified cycles all raise. A search in a box that
-is not certified returns a `BoxSearch`, never a verdict. No floating point
-is used anywhere.
+is not certified returns a `BoxSearch`, never a verdict. In the round-2
+class tables a `dim H^1` outside `3..MAX_H1_DIMENSION` raises in
+`ClassTable.record`, and a class code outside `0..7` raises in
+`nonzero_roots_mod2` (both `refuse to conclude`). No floating point is used
+anywhere.
 
 All `Z[beta]` and state arithmetic is checked (`finite_exact.checked_int` and
 the checked cubic operations of `psc.perron_field3`). Determinants, adjugates
@@ -1478,13 +1483,13 @@ struct FC3Profile(ImplicitlyCopyable, Copyable, Movable):
         Theorem P+ fails. For odd determinant this is `dim H^1 <= 4`."""
         return self.h1_dimension < self.rank_two_dimension_bound()
 
-    def rank_two_excluded(self) -> Bool:
-        """The hypotheses under which the recorded theorems exclude
-        coincidence rank 2 without the divisor condition of Theorem P+: (d),
-        (e), or odd determinant with the parity clause (c). That is: odd
-        determinant and (`dim H^1 <= 4` or `tr M != e_2(M)`), or even
-        determinant and `dim H^1 = 3`. Membership in a class; no coincidence
-        rank is computed."""
+    def rank_two_hypotheses_hold(self) -> Bool:
+        """Whether the hypotheses hold under which the recorded conditional
+        theorems exclude coincidence rank 2 without the divisor condition of
+        Theorem P+: (d), (e), or odd determinant with the parity clause (c).
+        That is: odd determinant and (`dim H^1 <= 4` or `tr M != e_2(M)`), or
+        even determinant and `dim H^1 = 3`. Membership in a class, not a
+        verdict: no coincidence rank is computed."""
         return self.h1_three() or self.dimension_clause() or (self.det_odd() and self.parity_clause())
 
     def cell(self, holds: Bool) -> Int:
@@ -1602,9 +1607,10 @@ struct GeometricFCensus(Copyable, Movable):
 
     Round 2: `classes` tabulates every specimen by (`chi_M mod 2`, `dim H^1`)
     and (`d_2`, `dim H^1`); `open_classes` the (F) specimens with at least two
-    periodic letters on both sides (clause (a') fails). `rank_two_excluded`
-    and `open_rank_two_excluded` count `FC3Profile.rank_two_excluded` on the
-    same two sets: specimens that meet the hypotheses, not certificates."""
+    periodic letters on both sides (clause (a') fails). `rank_two_hypotheses`
+    and `open_rank_two_hypotheses` count
+    `FC3Profile.rank_two_hypotheses_hold` on the same two sets: specimens
+    that meet the hypotheses, not certificates."""
 
     var total: Int
     var cells: Histogram
@@ -1614,8 +1620,8 @@ struct GeometricFCensus(Copyable, Movable):
     var transients: Histogram
     var classes: ClassTable
     var open_classes: ClassTable
-    var rank_two_excluded: Int
-    var open_rank_two_excluded: Int
+    var rank_two_hypotheses: Int
+    var open_rank_two_hypotheses: Int
     var holds: List[Bool]
     var radii: List[List[Int]]
     var cycle_counts: List[Int]
@@ -1649,8 +1655,8 @@ struct GeometricFCensus(Copyable, Movable):
         self.transients = Histogram(MAX_TRANSIENT)
         self.classes = ClassTable()
         self.open_classes = ClassTable()
-        self.rank_two_excluded = 0
-        self.open_rank_two_excluded = 0
+        self.rank_two_hypotheses = 0
+        self.open_rank_two_hypotheses = 0
         self.holds = List[Bool]()
         self.radii = List[List[Int]]()
         self.cycle_counts = List[Int]()
@@ -1731,12 +1737,12 @@ def geometric_f_census(corpus: List[Specimen]) raises -> GeometricFCensus:
                 raise Error("determinant outside the census table")
             out.residual_determinant.record(profile.determinant + 8)
         out.classes.record(profile)
-        if profile.rank_two_excluded():
-            out.rank_two_excluded += 1
+        if profile.rank_two_hypotheses_hold():
+            out.rank_two_hypotheses += 1
         if verdict.holds and not profile.endpoint_trivial():
             out.open_classes.record(profile)
-            if profile.rank_two_excluded():
-                out.open_rank_two_excluded += 1
+            if profile.rank_two_hypotheses_hold():
+                out.open_rank_two_hypotheses += 1
 
         var memo = OrbitMemo(verdict)
         var pairs = periodic_first_letter_pairs(sigma)

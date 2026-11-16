@@ -34307,32 +34307,32 @@
     },
     {
       "source": "docs/c4-fc3-family-2026-11-16.md",
-      "line": 91,
+      "line": 93,
       "statement_heading": "**Theorem FM1 (PIP3).**"
     },
     {
       "source": "docs/c4-fc3-family-2026-11-16.md",
-      "line": 239,
+      "line": 241,
       "statement_heading": "**Theorem FM2.**"
     },
     {
       "source": "docs/c4-fc3-family-2026-11-16.md",
-      "line": 489,
+      "line": 492,
       "statement_heading": "**Theorem FM3.** Let `σ = σ_{r,s,n} ∈ PIP3`. Then `g = (1, 0, 0)`, with"
     },
     {
       "source": "docs/c4-fc3-family-2026-11-16.md",
-      "line": 530,
+      "line": 533,
       "statement_heading": "**Corollary FM4.**"
     },
     {
       "source": "docs/c4-fc3-family-2026-11-16.md",
-      "line": 568,
+      "line": 571,
       "statement_heading": "**Proposition FM6 (the members are pairwise unrelated).** For a primitive"
     },
     {
       "source": "docs/c4-fc3-family-2026-11-16.md",
-      "line": 624,
+      "line": 627,
       "statement_heading": "**Proposition FM5.** Put `A := σ(1) = 0 1^n 2` for `σ = σ_{r,s,n}`, so that"
     },
     {
@@ -34612,52 +34612,52 @@
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 173,
+      "line": 174,
       "statement_heading": "**Theorem FP (exact count).** Let `s` be a primitive substitution on an"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 245,
+      "line": 246,
       "statement_heading": "**Lemma K (power sums bounded above).** Let `f` be a monic complex"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 262,
+      "line": 263,
       "statement_heading": "**Lemma U (monomials that are roots of unity).** Let `χ ∈ ℤ[t]` be a monic"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 290,
+      "line": 291,
       "statement_heading": "**Theorem TT.** Let `σ ∈ PIP3`, `P ≥ 1`, `τ = σ^P`, and let `B` be a"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 354,
+      "line": 362,
       "statement_heading": "**Theorem NI.** Let `σ ∈ PIP3`, `τ = σ^P`, and let `B` be a strict"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 460,
+      "line": 468,
       "statement_heading": "**Theorem W (the rank-two wall).** Let `σ ∈ PIP3` with `cr(σ) = 2` have a"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 747,
+      "line": 757,
       "statement_heading": "**Lemma 9′ (classes are eigenfunction classes; every determinant).** Let"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 795,
+      "line": 805,
       "statement_heading": "**Theorem H3.** Let `σ ∈ PIP3` with `dim H¹(Ω_σ; ℚ) = 3`. Then"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 851,
+      "line": 862,
       "statement_heading": "**Corollary (dimension).** For `σ ∈ PIP3`, `cr(σ) = 2` forces"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 1079,
+      "line": 1093,
       "statement_heading": "*Theorem FP (`test_fixed_point_count.mojo`).* The formula"
     },
     {
@@ -36417,7 +36417,7 @@
     "proof/PscVerif/PscVerif/FixedPointLimit.lean": "cd4a824f288d4c1072fd375e0e7b9014f56028e23e00cb4336fd678a210b7bbe",
     "proof/PscVerif/PscVerif/GaloisOrbit.lean": "4d3b5474dbd14205f4bf2d33e98149ebbdd6d7e0fb8fd3a33787b878bcad5f07",
     "proof/PscVerif/PscVerif/GeometricFInclusion.lean": "4b96ca14c725dbcfd473ba1af7b2f9c93489a1fae2e6af7fe285008ca0685c54",
-    "proof/PscVerif/PscVerif/GeometricFPisot.lean": "12fdb75b8b9e9a465337abc62f4229bd83cff00a9395b1ad2213b01f693e2747",
+    "proof/PscVerif/PscVerif/GeometricFPisot.lean": "bf0a0f22acc5f1217d6340b2f5acf5302e4bf9753ef35106d1d790aef5d73bcc",
     "proof/PscVerif/PscVerif/GeometricFRank.lean": "2f2cfca2ad6e05ce8347e97b1968c09b7bbb671f4e0d8f0a366966c0503d47b9",
     "proof/PscVerif/PscVerif/GeometricFStrict.lean": "d21956f722083b84473d633854cd43173ebe99c1cde99e7292c57cd046221abb",
     "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean": "c3b266fc203b69f632063b38d044c0f76e7ec50825a16c6c04949fa696e275ec",

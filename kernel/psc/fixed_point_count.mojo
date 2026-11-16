@@ -107,8 +107,8 @@ change no claim status. The use the record makes of them (Theorems TT and NI
 of the rank-two note compare `tr N^n` with `tr M^{Pn}` through this count)
 is a written proof, not this module.
 
-Fail closed
------------
+Fail closed (all in the "refuse to conclude" column)
+----------------------------------------------------
 An erasing image, a letter outside the alphabet, fewer than two or more than
 `MAX_LETTERS` letters and a non-primitive incidence matrix raise: outside
 primitivity the language of the formula and the hull of the tilings are not
@@ -117,7 +117,11 @@ of the formula is checked (`finite_exact.checked_int`, and the checked
 `matmul`): an unrepresentable trace raises instead of wrapping. The literal
 count raises when an image `sigma^n(a)` is longer than its word cap (an
 exhausted budget is not a count), when a letter is its own `n`-th image, and
-when the left and right seam lists differ.
+when the left and right seam lists differ. It also raises on a window radius
+outside `1..MAX_RADIUS`, on a word cap below one, and on two impossible
+states: an image whose length is not the one its incidence matrix gives, and
+a window that leaves its patch. Nothing here deletes or overwrites anything,
+so every refusal is a refusal to proceed.
 """
 
 from finite_exact.checked_int import checked_add, checked_mul, checked_sub

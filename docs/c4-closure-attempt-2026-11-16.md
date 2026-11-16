@@ -1549,13 +1549,13 @@ independent human review pending.
 | --- | --- | --- | --- |
 | Theorem FP | primitive substitution on at least two letters: the number of tilings fixed by `Φⁿ` is `tr(Aⁿ) − #Fix(gⁿ) − #Fix(g_Rⁿ) + #{ba legal : g_Rⁿ(b) = b, gⁿ(a) = a}` | E, standard; M on 11 substitutions, `n ≤ 6` | rank-two note; `kernel/psc/fixed_point_count.mojo` |
 | Lemma U | irreducible Pisot cubic: `β^a α₂^b α₃^c` with `a + b + c ≠ 0` is a root of unity iff `a = b = c` and `abs(det M) = 1` | E | rank-two note |
-| Theorem TT | `σ ∈ PIP3`, `τ = σ^P`, `B` a finite `τ`-child-closed set of ordered irreducible balanced pairs of legal words with primitive child substitution, matrix `N`: if the top-track map `π₁` is injective on the inflation-periodic points of the pair space, `χ_N/χ_{M^P}` is a product of powers of `x` and cyclotomic polynomials; the converse is false | C | rank-two note |
+| Theorem TT | `σ ∈ PIP3`, `τ = σ^P`, `B` a finite `τ`-child-closed set of ordered irreducible balanced pairs of legal words with primitive child substitution, matrix `N`: if the top-track map `π₁` is injective on the inflation-periodic points of the pair space, `χ_N/χ_{M^P}` is a product of powers of `x` and cyclotomic polynomials; the converse of its general form (any primitive `σ`) is false on the reducible controls `1/012/101` and C-D2 (scratch), and on PIP3 the converse is untested on strict systems | C | rank-two note |
 | Theorem NI | `σ ∈ PIP3`, a swap-symmetric primitive component of a strict system for `σ^P`, first defect degree `r`: `π₁` injective on periodic points forces `abs(det M) = 1`, `3 ∣ r` and weights `(r/3, r/3, r/3)`; otherwise an exponential lower bound on the inflation-fixed tilings with at least two fixed partners | C (Lemma 0 beyond `r = 5` is prose on main) | rank-two note |
 | Theorem W | `σ ∈ PIP3` with `cr = 2` and a strict system: (W1) exactly one strict component, swap- and `Φ×Φ`-invariant, whose bigon alphabet is a strict system for `σ` itself with primitive child substitution and the only sink of every strict system of every power; (W2) `π₁` injective over two-point fibres; (W3) `ρ(N₋) < β`, so `r ≢ 1 (mod 3)` with the stated weights; (W4) two partners of one tiling are `≈_s`-equivalent | C; W1, W2 new; W3 new only in its link to `cr = 2` and its nonunit side conditions; W4 is Barge's | rank-two note |
 | Lemma S+, Theorem P+ | `σ ∈ PIP3` with `cr = 2`: `dim H¹ ≥ 3 + abs(d₂ − 1)`, `d₂ = 3 − ord_t(χ_M mod 2)`, and a divisor condition at every admissible `n` | C; counts for the dimension bound M; the divisor condition is not implemented | rank-two note; `kernel/tests/test_c4_geometric_f.mojo` |
 | Theorem H3, Corollaries FC3+, N+ | `σ ∈ PIP3` with `dim H¹ = 3` has `cr ≠ 2`, for every determinant; with (F), `cr = 1`; a strict system with `dim H¹ = 3` forces `cr ≥ 3` and failure of (F) | C; new only for even determinant; class counts M | rank-two note; `kernel/tests/test_c4_geometric_f.mojo` |
 | Obstruction T | §15.4 | C; an obstruction to a method | rank-two note |
-| Theorems FM1, FM2, Propositions FM5, FM6 | `σ_{r,s,n} = (1^r, 0 1^n 2, 0 1^s)` is in PIP3 for `n ≥ r + s + 1` and satisfies (F) for `n ≥ 3r + s`; `τ_n = (1, 2 1^n 0, 01)` is in PIP3 and satisfies (F) for `n ≥ 5`; explicit witnesses; the members are pairwise unrelated | E·p; M on a grid of 240 + 16 members | family note; `kernel/psc/c4_fc3_family.mojo` |
+| Theorems FM1, FM2, Propositions FM5, FM6 | `σ_{r,s,n} = (1^r, 0 1^n 2, 0 1^s)` is in PIP3 for `n ≥ r + s + 1` and satisfies (F) for `n ≥ 3r + s`; `τ_n = (1, 2 1^n 0, 01)` is in PIP3 and satisfies (F) for `n ≥ 5`; explicit witnesses; the members are pairwise unrelated | E·p (FM6 was written at landing and was seen by neither verifier of the round); M on a grid of 240 + 16 members (for FM6: relabelling and reversal only, 512 normal forms; nothing on powers) | family note; `kernel/psc/c4_fc3_family.mojo` |
 | Theorem FM3, Corollary FM4 | endpoint maps, `dim H¹ ∈ {4, 5}`; the non-trivial part of the FC3 class is infinite modulo powers, relabelling and reversal, with nonunit members of every odd determinant `r ≥ 3` | FM3: C (Barge–Diamond 2008 through Lemma 7); FM4: membership E given FM1–FM3, conclusion `cr = 1` C | family note |
 | Theorem FC1 in Lean | abstract form under `LengthData`, `β > 1`, `ContractionData`, `PropertyF`; and for a primitive substitution on a finite alphabet with at least two letters, irreducible `χ_M`, a positive left eigen-row, the Pisot hypothesis in root form and `PropertyF`: a strict system exists iff some pair of distinct `g`-periodic letters has no left strong-coincidence witness iff not every pair has one | L (`Psc.GeometricF.fc1_equivalence_of_contraction`, `Psc.GeometricFPisot.fc1_equivalence_of_primitive_pisot`, `fc1_pip3`); the "Powers" direction L (`strictSystem_of_power`) | `proof/PscVerif/PscVerif/GeometricFInclusion.lean`, `GeometricFStrict.lean`, `GeometricFPisot.lean` |
 
@@ -1620,9 +1620,11 @@ system exists on the corpus (`C4StandingCorpus`).
    `cr ≥ 3` and (F) fails, unit or not (N+). Theorem Fork itself stays as
    printed, for unit `σ`: its extension to nonunit `σ` with `dim H¹ = 3` is
    **expected, not proved** (Lemmas 9 and 10 were freed from unimodularity;
-   Steps 1–4 were not rewritten for the solenoid). For every determinant
-   and every `dim H¹`, Theorem NI gives the weaker non-injectivity of `π₁`
-   (the second partner may be eventually coincident with the first). Still
+   Steps 1–4 were not rewritten for the solenoid). Without a hypothesis on
+   the determinant or on `dim H¹`, Theorem NI gives the weaker
+   non-injectivity of `π₁` (the second partner may be eventually coincident
+   with the first), except in the unit case of item 3 (`3 ∣ r`, all
+   first-defect weights `(r/3, r/3, r/3)`), where it gives nothing. Still
    open: exclude the fork; whether `π₁` is a covering.
 6. **Nonunit.** *Unchanged for the seam route.* Round 2 adds, for nonunit
    `σ`: H3, FC3+ and N+ at `dim H¹ = 3`; Theorem NI, by which the top-track
@@ -1674,8 +1676,9 @@ The earlier text is kept; these are the dated corrections.
 
 - §3, cohomology route, and §10 item 5: "nothing is known for
   `dim H¹ ≥ 4` or for nonunit `σ`". Superseded by Theorem NI (weaker
-  non-injectivity, every determinant and every `dim H¹`) and by Theorem H3
-  with Corollary N+.
+  non-injectivity, with no hypothesis on the determinant or on `dim H¹`,
+  outside the unit case of §15.3 item 3) and by Theorem H3 with
+  Corollary N+.
 - §4, legend: "Nothing is machine-checked". Superseded for Theorem FC1
   (§15.2). Still true of every other row.
 - §9, table row "`det M = ±1`: Theorem Fork (integral cohomology `ℤ³`,
@@ -1750,3 +1753,26 @@ systems; the trigon system of C-D1; the provers' and verifiers' Python.
 - No novelty relative to the literature is claimed beyond "not found in the
   sources read", and several sources named in the two gates were not read
   in the primary text.
+
+### 15.8 Corrections of 2026-11-16 to the merged text of §15
+
+§15 was merged with PR #590 (snapshot `abcc8f4a`) before a report-only
+audit of the round-2 notes was applied. Four places of §15 were corrected
+afterwards; no open statement of §15.3 changes. As merged they read:
+
+- §15.2, row of Theorem TT: "the converse is false". Only the converse of
+  the general form is shown false, on two reducible controls, by scratch
+  counts.
+- §15.2, row of Theorems FM1, FM2 and Propositions FM5, FM6, class cell:
+  "E·p; M on a grid of 240 + 16 members". Proposition FM6 was written at
+  landing and was seen by neither verifier, and the grid pins only
+  relabelling and reversal for it.
+- §15.3, item 5: "For every determinant and every `dim H¹`, Theorem NI
+  gives the weaker non-injectivity of `π₁`"; §15.5, first item: "(weaker
+  non-injectivity, every determinant and every `dim H¹`)". Theorem NI gives
+  nothing for unit `σ` with all first-defect weights `(r/3, r/3, r/3)`, as
+  item 3 of §15.3 says.
+
+The corrections to the rank-two and family notes and to their gates are
+listed in those notes; those to the side-notes ledger are a dated entry
+there.
