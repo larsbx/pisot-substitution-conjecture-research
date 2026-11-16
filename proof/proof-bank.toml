@@ -138,3 +138,9 @@ claim = "BoundedDegree3Exclusion"
 coverage = "partial"
 declarations = ["Psc.Degree3Catalogue.catalogue_spec", "Psc.Degree3Catalogue.catalogue_complete", "Psc.Degree3Catalogue.catalogue_exact", "Psc.Degree3Catalogue.catalogue_card", "Psc.Degree3Catalogue.no_closed_equiv2", "Psc.Degree3Sector.census_not_mem"]
 note = "Lean checks, by kernel evaluation, the 24 degree-three occurrences transcribed from kernel/degree3_catalog.mojo over their 12 substitutions: each is a reachable, recurrent, 2-binomially equivalent vertex of B_sigma with K_3 != 0 that leaks to a coincidence within two inflations and lies in no normalised 2-binomially equivalent child system over its substitution; each of the 12 automata has exactly 226 vertices, and no nonempty child-closed coincidence-free 2-binomially equivalent set of vertices exists. Not formalized: that these 24 are all the degree-three states of the 4,554-member corpus, i.e. the census itself (Mojo)."
+
+[[lean_support]]
+claim = "MinusClassAWholeChamberEntry"
+coverage = "partial"
+declarations = ["Psc.ClassACentralRecurrence.central_gap_in_run", "Psc.ClassACentralRecurrence.run_gap_digit_step", "Psc.ClassACentralRecurrence.eventual_alternating_tail"]
+note = "Lean checks RUN index legality, the literal RUN digit step and eventual alternation under the strict-error recurrence. The all-source central entrance, literal specialization and complete cycle escapes are supplied by the branch proof evidence."
