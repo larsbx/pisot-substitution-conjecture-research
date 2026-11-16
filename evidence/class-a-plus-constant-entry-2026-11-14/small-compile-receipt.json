@@ -1,0 +1,23 @@
+{
+  "scope": "observed successful first native build, metadata recorded after execution; no inferred build timestamps",
+  "command": [
+    "/workspace/scratch/de1b765a2576/mojo-env/bin/mojo",
+    "build",
+    "-j",
+    "1",
+    "-I",
+    ".",
+    "tests/test_class_a_plus_small_entry.mojo",
+    "-o",
+    "/workspace/scratch/f53f64a9a0d0/plus-small/native"
+  ],
+  "cwd": "/workspace/scratch/f53f64a9a0d0/psc/kernel",
+  "exit_code": 0,
+  "compiler_version": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+  "native_sources_sha256": {
+    "kernel/psc/class_a_plus_small_certificate.mojo": "4062c4fd2d9dd35d440fa21cd85a51db18392694cbd00521bf4268721d782a5e",
+    "kernel/tests/test_class_a_plus_small_entry.mojo": "7df5eaa60f9ff66abb2f2c805e939987b32b15a98ed7b6b2eb131efbc8812170"
+  },
+  "compiler_log_sha256": "8b33180b5dd484cbaa302cc68b3794e69204fc8de4d0b692cbb1332a95aa44d0",
+  "binary_sha256": "6b1760f9fe6077f685305e49419dd82420a56e025a3834260ca4a5073b7085a5"
+}

@@ -1,0 +1,132 @@
+name: Class-A central entry and alternating-cycle proofs
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/class-a-central-entry.yml'
+      - 'kernel/psc/class_a_*.mojo'
+      - 'kernel/psc/overlap_seed_patch.mojo'
+      - 'kernel/psc/overlap_seed_graph.mojo'
+      - 'kernel/tests/test_class_a_central_entry.mojo'
+      - 'kernel/tests/test_class_a_entry_search.mojo'
+      - 'kernel/tests/test_class_a_small_entry.mojo'
+      - 'kernel/pixi.toml'
+      - 'kernel/pixi.lock'
+      - 'oracles/python/class_a_*.py'
+      - 'tests/test_class_a_central_entry.py'
+      - 'tests/test_class_a_central_entry_symbolic.py'
+      - 'tests/test_class_a_finite_certificates.py'
+      - 'proof/PscVerif/PscVerif/ClassACentralRecurrence.lean'
+      - 'proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean'
+      - 'proof/PscVerif/PscVerif/Occurrence*.lean'
+      - 'proof/PscVerif/ClassACentralRecurrenceAudit.lean'
+      - 'proof/PscVerif/PscVerif.lean'
+      - 'proof/PscVerif/lean-toolchain'
+      - 'proof/PscVerif/lakefile.toml'
+      - 'proof/PscVerif/lake-manifest.json'
+      - 'tools/check_class_a_central_entry.sh'
+      - 'tools/make_proof_bank.py'
+      - 'docs/bh-class-a-central-entry-stop-go-2026-11-14.md'
+      - 'docs/class-a-central-entry-2026-11-14.md'
+      - 'evidence/class-a-central-entry-2026-11-14/**'
+      - 'evidence/class-a-finite-certificates-2026-11-02/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native-and-independent:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Bind the exact checked-out source
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          mkdir -p /tmp/psc-class-a-central-entry
+          git rev-parse HEAD > /tmp/psc-class-a-central-entry/head.txt
+          git rev-parse HEAD^{tree} > /tmp/psc-class-a-central-entry/tree.txt
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Independent symbolic and refusal checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install pytest==8.4.2 sympy==1.14.0
+          python -m pytest -o addopts='' -q --junitxml=/tmp/psc-class-a-central-entry/pytest.xml tests/test_class_a_central_entry.py tests/test_class_a_central_entry_symbolic.py tests/test_class_a_finite_certificates.py | tee /tmp/psc-class-a-central-entry/pytest.log
+          python - <<'PY'
+          import xml.etree.ElementTree as E
+          cases = E.parse('/tmp/psc-class-a-central-entry/pytest.xml').getroot().findall('.//testcase')
+          if len(cases) != 39 or any(case.find(tag) is not None for case in cases for tag in ('failure', 'error', 'skipped')):
+              raise SystemExit('the 39 required independent cases did not all pass')
+          PY
+          python oracles/python/class_a_central_entry_symbolic.py | tee /tmp/psc-class-a-central-entry/symbolic.json
+          python tools/make_proof_bank.py --check | tee /tmp/psc-class-a-central-entry/proof-bank.log
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          pixi-version: v0.81.0
+          manifest-path: kernel/pixi.toml
+          locked: true
+      - name: Canonical central paths, full entry paths and six complete graphs
+        working-directory: kernel
+        shell: bash
+        run: |
+          set -euo pipefail
+          pixi run --locked mojo --version > /tmp/psc-class-a-central-entry/mojo-version.txt
+          pixi run --locked mojo run -I . tests/test_class_a_central_entry.mojo --emit | tee /tmp/psc-class-a-central-entry/central-native.log
+          pixi run --locked mojo run -I . tests/test_class_a_entry_search.mojo --emit | tee /tmp/psc-class-a-central-entry/entry-native.log
+          pixi run --locked mojo run -I . tests/test_class_a_small_entry.mojo --emit-certificates | tee /tmp/psc-class-a-central-entry/small-native.log
+      - name: Replay every original path and every small-case graph record
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat /tmp/psc-class-a-central-entry/central-native.log /tmp/psc-class-a-central-entry/entry-native.log > /tmp/psc-class-a-central-entry/paths-native.log
+          python oracles/python/class_a_central_entry.py --native-log /tmp/psc-class-a-central-entry/paths-native.log | tee /tmp/psc-class-a-central-entry/literal-and-differential.json
+          python oracles/python/class_a_central_entry.py --small-native-log /tmp/psc-class-a-central-entry/small-native.log | tee /tmp/psc-class-a-central-entry/small-complete-replay.json
+      - name: Retain exact-source native and independent receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-a-central-entry-native-${{ github.event.pull_request.head.sha || github.sha }}
+          path: /tmp/psc-class-a-central-entry/
+          if-no-files-found: error
+          retention-days: 30
+
+  scoped-lean-from-sources:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Bind the exact checked-out source
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          mkdir -p /tmp/psc-class-a-central-entry-lean
+          git rev-parse HEAD > /tmp/psc-class-a-central-entry-lean/head.txt
+          git rev-parse HEAD^{tree} > /tmp/psc-class-a-central-entry-lean/tree.txt
+      - name: Provision pinned Lean release
+        run: |
+          ./tools/setup_lean.sh
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Compile and audit all seven endpoints from isolated sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./tools/check_class_a_central_entry.sh | tee /tmp/psc-class-a-central-entry-lean/audit.log
+      - name: Retain exact-source Lean and source-binding receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-a-central-entry-lean-${{ github.event.pull_request.head.sha || github.sha }}
+          path: /tmp/psc-class-a-central-entry-lean/
+          if-no-files-found: error
+          retention-days: 30

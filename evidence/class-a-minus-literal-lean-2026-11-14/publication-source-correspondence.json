@@ -1,0 +1,8 @@
+{
+  "local_audited_revision": "b0d499b333f012dc927e5f27782add14803ef3dd",
+  "published_source_revision": "be62f8e26c1954e122b5a6848e0dd38d2d32d289",
+  "tree_sha": "eb306b9467c407d3a215c98d9ce465f2dd28c947",
+  "complete_source_trees_identical": true,
+  "checked_source_bindings": 140,
+  "note": "Native git push lacked credentials; the authenticated GitHub connector created an identical tree and a commit with different metadata. No proof or configuration bytes changed."
+}

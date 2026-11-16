@@ -1,0 +1,52 @@
+[
+  {
+    "command": [
+      "/workspace/scratch/f53f64a9a0d0/checks-venv/bin/python",
+      "tools/make_proof_bank.py",
+      "--check"
+    ],
+    "cwd": "/workspace/scratch/f53f64a9a0d0/psc",
+    "exit_code": 0,
+    "seconds": 2.01
+  },
+  {
+    "command": [
+      "/workspace/scratch/f53f64a9a0d0/checks-venv/bin/python",
+      "tools/vendoring/check_vendored_sync.py"
+    ],
+    "cwd": "/workspace/scratch/f53f64a9a0d0/psc",
+    "exit_code": 0,
+    "seconds": 0.048
+  },
+  {
+    "command": [
+      "/workspace/scratch/f53f64a9a0d0/checks-venv/bin/python",
+      "tools/check_markdown_source.py"
+    ],
+    "cwd": "/workspace/scratch/f53f64a9a0d0/psc",
+    "exit_code": 0,
+    "seconds": 0.201
+  },
+  {
+    "command": [
+      "/workspace/scratch/f53f64a9a0d0/checks-venv/bin/python",
+      "tools/make_ledger.py",
+      "--check"
+    ],
+    "cwd": "/workspace/scratch/f53f64a9a0d0/psc",
+    "exit_code": 0,
+    "seconds": 0.116
+  },
+  {
+    "command": [
+      "/workspace/scratch/f53f64a9a0d0/checks-venv/bin/python",
+      "-m",
+      "claim_governance.cli",
+      "--root",
+      "."
+    ],
+    "cwd": "/workspace/scratch/f53f64a9a0d0/psc",
+    "exit_code": 0,
+    "seconds": 7.941
+  }
+]

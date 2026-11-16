@@ -1,0 +1,169 @@
+[
+  {
+    "command": [
+      "/workspace/scratch/de1b765a2576/mojo-env/bin/mojo",
+      "run",
+      "-I",
+      ".",
+      "tests/test_class_a_central_entry.mojo",
+      "--emit"
+    ],
+    "cwd": "/workspace/scratch/f53f64a9a0d0/psc/kernel",
+    "started_utc": "2026-11-14T21:57:25.352521+00:00",
+    "exit_code": 0,
+    "seconds": 103.44,
+    "stdout": "central-native-final.log",
+    "stderr": "central-native-final-stderr.log",
+    "archived_stdout": {
+      "path": "native-central.log.gz",
+      "stored_sha256": "6406678fb570abf12e3a6ac52dede369f4bc829c50079bb95f63356811ca6785",
+      "uncompressed_sha256": "d600520f17beb6cf3f0490b6fbc4ab148ac31e9ec279ceed7547dc328a1e43dc",
+      "uncompressed_bytes": 124594
+    },
+    "archived_stderr": {
+      "path": "native-central-stderr.log",
+      "stored_sha256": "02f5dc095d0e3bbb280263f80e343cbc0bb1631989fe3848eaf3f54f868f843f",
+      "uncompressed_sha256": "02f5dc095d0e3bbb280263f80e343cbc0bb1631989fe3848eaf3f54f868f843f",
+      "uncompressed_bytes": 446
+    }
+  },
+  {
+    "command": [
+      "/workspace/scratch/de1b765a2576/mojo-env/bin/mojo",
+      "run",
+      "-I",
+      ".",
+      "tests/test_class_a_entry_search.mojo",
+      "--emit"
+    ],
+    "cwd": "/workspace/scratch/f53f64a9a0d0/psc/kernel",
+    "started_utc": "2026-11-14T21:59:08.793176+00:00",
+    "exit_code": 0,
+    "seconds": 20.237,
+    "stdout": "entry-native-final.log",
+    "stderr": "entry-native-final-stderr.log",
+    "archived_stdout": {
+      "path": "native-entry.log.gz",
+      "stored_sha256": "5c6b59740ab36fb948e0a36f3e200c9700c36e0abe86ab6b66d63bbaab24acce",
+      "uncompressed_sha256": "61d60a1f6e629b2eec58973061256c445f76c8d461315a0cb1754c6f4506d5fd",
+      "uncompressed_bytes": 15455
+    },
+    "archived_stderr": {
+      "path": "native-entry-stderr.log",
+      "stored_sha256": "1f4a3230a04394deb6389c9c719a6146fdb87d1d9a3efd07b0082ff0193861d5",
+      "uncompressed_sha256": "1f4a3230a04394deb6389c9c719a6146fdb87d1d9a3efd07b0082ff0193861d5",
+      "uncompressed_bytes": 494
+    }
+  },
+  {
+    "command": [
+      "/workspace/scratch/de1b765a2576/mojo-env/bin/mojo",
+      "run",
+      "-I",
+      ".",
+      "tests/test_class_a_small_entry.mojo",
+      "--emit-certificates"
+    ],
+    "cwd": "/workspace/scratch/f53f64a9a0d0/psc/kernel",
+    "started_utc": "2026-11-14T21:59:29.030753+00:00",
+    "exit_code": 0,
+    "seconds": 3.218,
+    "stdout": "small-native-final.log",
+    "stderr": "small-native-final-stderr.log",
+    "archived_stdout": {
+      "path": "native-small.log.gz",
+      "stored_sha256": "e1be0c863177992e8020ba14a5fef39b2c89469ca8a561d990af267a860549f7",
+      "uncompressed_sha256": "a8445ebce6216ca80dcdd8cbe3ef7d7f202f08200b411ddbc8da762ea7122f08",
+      "uncompressed_bytes": 1210311
+    },
+    "archived_stderr": {
+      "path": "native-small-stderr.log",
+      "stored_sha256": "8b33180b5dd484cbaa302cc68b3794e69204fc8de4d0b692cbb1332a95aa44d0",
+      "uncompressed_sha256": "8b33180b5dd484cbaa302cc68b3794e69204fc8de4d0b692cbb1332a95aa44d0",
+      "uncompressed_bytes": 157
+    }
+  },
+  {
+    "command": [
+      "/workspace/scratch/f53f64a9a0d0/checks-venv/bin/python",
+      "-m",
+      "pytest",
+      "-o",
+      "addopts=",
+      "-q",
+      "tests/test_class_a_central_entry.py",
+      "tests/test_class_a_central_entry_symbolic.py",
+      "tests/test_class_a_finite_certificates.py"
+    ],
+    "cwd": "/workspace/scratch/f53f64a9a0d0/psc",
+    "started_utc": "2026-11-14T21:59:32.249589+00:00",
+    "exit_code": 0,
+    "seconds": 13.349,
+    "stdout": "pytest-hardened-final.log",
+    "stderr": null,
+    "archived_stdout": {
+      "path": "pytest.log",
+      "stored_sha256": "4e5118946882bf60eb899e302be1dd710166d51feba0fb7b546d41160fc5ffe1",
+      "uncompressed_sha256": "4e5118946882bf60eb899e302be1dd710166d51feba0fb7b546d41160fc5ffe1",
+      "uncompressed_bytes": 100
+    }
+  },
+  {
+    "command": [
+      "/workspace/scratch/f53f64a9a0d0/checks-venv/bin/python",
+      "oracles/python/class_a_central_entry.py",
+      "--native-log",
+      "/workspace/scratch/f53f64a9a0d0/central-entry-final-native.log"
+    ],
+    "cwd": "/workspace/scratch/f53f64a9a0d0/psc",
+    "started_utc": "2026-11-14T21:59:45.600865+00:00",
+    "exit_code": 0,
+    "seconds": 19.932,
+    "stdout": "central-entry-final-differential.json",
+    "stderr": null,
+    "archived_stdout": {
+      "path": "literal-and-differential.json.gz",
+      "stored_sha256": "3abccf65068e4d4c3e230461397fe5b692a6d488c7b1bdbf94c346b744db3383",
+      "uncompressed_sha256": "12b0823d9722531728f40d8fc0caa1c1d57085ab3aa162360d18a6703a55e777",
+      "uncompressed_bytes": 515791
+    }
+  },
+  {
+    "command": [
+      "/workspace/scratch/f53f64a9a0d0/checks-venv/bin/python",
+      "oracles/python/class_a_central_entry.py",
+      "--small-native-log",
+      "/workspace/scratch/f53f64a9a0d0/small-native-final.log"
+    ],
+    "cwd": "/workspace/scratch/f53f64a9a0d0/psc",
+    "started_utc": "2026-11-14T22:00:05.533628+00:00",
+    "exit_code": 0,
+    "seconds": 9.842,
+    "stdout": "small-native-final-differential.json",
+    "stderr": null,
+    "archived_stdout": {
+      "path": "small-complete-replay.json",
+      "stored_sha256": "daafcc1c9459d74b3502c3412fe26da3f785d7d8fdefd85283f1460318606f64",
+      "uncompressed_sha256": "daafcc1c9459d74b3502c3412fe26da3f785d7d8fdefd85283f1460318606f64",
+      "uncompressed_bytes": 2566
+    }
+  },
+  {
+    "command": [
+      "/workspace/scratch/f53f64a9a0d0/checks-venv/bin/python",
+      "oracles/python/class_a_central_entry_symbolic.py"
+    ],
+    "cwd": "/workspace/scratch/f53f64a9a0d0/psc",
+    "started_utc": "2026-11-14T22:00:15.376599+00:00",
+    "exit_code": 0,
+    "seconds": 0.833,
+    "stdout": "central-symbolic-complete.json",
+    "stderr": null,
+    "archived_stdout": {
+      "path": "symbolic.json",
+      "stored_sha256": "010dd0d06c9eff48cc6a931fae90fab2e6cbed16ceeee977a1bdadc5a8c90c74",
+      "uncompressed_sha256": "010dd0d06c9eff48cc6a931fae90fab2e6cbed16ceeee977a1bdadc5a8c90c74",
+      "uncompressed_bytes": 41336
+    }
+  }
+]

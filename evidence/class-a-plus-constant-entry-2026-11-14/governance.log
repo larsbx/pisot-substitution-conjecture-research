@@ -1,0 +1,29 @@
+$ PYTHONPATH=tools python3 -m claim_governance.cli --root .
+OK: claim governance audit of larsbx/pisot-substitution-conjecture-research passed [terminology, claims, coverage, promotion, numerics, consistency]
+[exit 0]
+
+$ python3 tools/vendoring/check_vendored_sync.py
+OK: vendored packages match their pins (finite_exact, substitution_dynamics, finite_linear_algebra, claim_governance, proof_records, oracle_refinement, parallel_fold, proof_architecture, finite_graph, finite_automata, mojo_smoke, vendoring, polyglot_envelope).
+[exit 0]
+
+$ python3 tools/make_ledger.py --check
+OK: 32 generated surfaces are current.
+[exit 0]
+
+$ python3 tools/make_math_catalogue.py --check
+[exit 0]
+
+$ python3 tools/make_proof_bank.py --check
+Proof bank: 126 claims, 2781 named Lean proofs, 414 source openings
+[exit 0]
+
+$ python3 tools/check_markdown_source.py
+OK Markdown source integrity: 526 file(s) checked
+[exit 0]
+
+$ python3 tools/check_manuscript_source.py
+OK manuscript sources: 6 required files present, 3 .tex/.pdf checked
+[exit 0]
+
+$ bash -n tools/check_class_a_plus_constant_entry.sh
+[exit 0]

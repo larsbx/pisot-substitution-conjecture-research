@@ -1,0 +1,44 @@
+{
+  "cached_lean": {
+    "accepted": true,
+    "exact_endpoints": 7,
+    "negative_controls": 21,
+    "owned_declarations": 75,
+    "theorem_declarations": 68
+  },
+  "fresh_isolated_lean": {
+    "accepted": false,
+    "attempt": 1,
+    "copied_source_files": 127,
+    "exit_code": 1,
+    "reason": "fixed upstream Mathlib cache CONNECT tunnel HTTP403; no local theorem compile"
+  },
+  "governed_status_changes": 0,
+  "hosted_acceptance": "pending at the new publishing head",
+  "human_review": "pending",
+  "mathematical_scope": "all strict integral sources for minus Class A, d>=5,n>=d+1; assembled minus seed-domain cover uses inherited scoped certificates",
+  "native_and_independent": {
+    "central_paths": 945,
+    "checked_edges": 12363,
+    "constant_paths": 156,
+    "density_inequalities": 270,
+    "entry_paths": 567,
+    "maximum_depth": 37,
+    "members": 27,
+    "paths": 1830,
+    "typed_aligned_paths": 162
+  },
+  "parent_commit": "34ff471c24960729527ae5f090e96c7c16ae4584",
+  "pytest": {
+    "passed": 39,
+    "skipped": 0
+  },
+  "symbolic": {
+    "RUN_occurrences": 24,
+    "directed_paths": 4,
+    "edges": 12,
+    "negative_controls": 8,
+    "parameter_chambers": 2
+  },
+  "whole_library_acceptance": "pending at the new publishing head"
+}

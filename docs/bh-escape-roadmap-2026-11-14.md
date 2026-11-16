@@ -2,6 +2,91 @@
 
 **Status:** planning and source reconciliation; universal BH and A1′ remain open.
 
+**November 16, integration update.** Main now has the [upper plus all-source
+entry theorem](class-a-plus-upper-all-source-entry-2026-11-16.md) for
+`n>=7,n+5<=d<=2n+11`. It enters the
+[central-source escape](class-a-plus-upper-central-recurrence-2026-11-15.md),
+including all eight alternating-cycle exits. The smaller upper plus members and
+the end-to-end Lean binding remain separate obligations. The [whole minus-chamber
+registry record](ledger-index.md) tracks the written proof and its integration
+acceptance. The dated November 14 notes below retain their original scopes.
+
+**November 14, plus-Class-A continuation.** The new
+[constant-entry theorem](class-a-plus-constant-entry-2026-11-14.md) proves
+typed coincidence from every strict integral overlap for
+`n>=6,5<=d<=n+4` in the literal plus family
+`x -> x y^(n+d) x`, `c -> c y^n x`, `y -> x y^(n+1) c`.
+One-level density forces central entry, the signed nearest recurrence
+has a constant tail, and three genuine RUN edges decrease its height.
+The composed original prefixes satisfy `M^m w=P-Q`.
+Five complete small S18 certificates, together with the inherited
+low-gap and four Class-A seam-line results, complete the mathematical
+canonical swap-seed cover `n>=0,1<=d<=n+4`. Only the new chamber has
+the all-strict-source quantifier; inherited and finite cases retain
+their seed scopes. The [evidence packet](../evidence/class-a-plus-constant-entry-2026-11-14/README.md)
+records passing canonical, independent and cached formal checks;
+fresh-source, full-library and exact-head hosted acceptance remain
+pending for the plus source.
+
+The next uniform Class-A target is the upper plus strip
+`n+5<=d<=2n+11`. The [upper-target memo](class-a-plus-upper-entry-target-2026-11-14.md)
+records a proposed parity-transformed recurrence, a three-RUN exit
+when `JH>=5`, and the eight low-product cases still needing actual
+occurrence exits. This proposal is unexecuted, unformalized and
+unpromoted; all-source entry and small parameter members remain
+separate obligations. Arbitrary-ternary BH, residual A1′ and the
+all-alphabet extension remain open.
+
+**Acceptance update, November 14 at 19:20 EST.** At `110e7e9e`,
+[#579's whole-library source-isolated Lean run](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036135)
+has passed with `PSC_AUDIT_COMPLETE 6851 5041`.
+Its [dedicated constant-entry workflow](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43653036318)
+was still queued. At `34ff471c`, #578's
+[dedicated native and seven-endpoint gate](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986738)
+and [whole-library audit](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43646986471)
+have passed. These receipts belong to those exact sources; they do
+not accept the new plus module. Earlier pending and failed records
+below and in their original packets are retained as history.
+
+**November 14, lower-chamber continuation.** The
+[constant-entry theorem](class-a-minus-constant-entry-2026-11-14.md) proves
+typed coincidence from every strict integral overlap for `d>=5,n>=d+1`,
+including the former residual strip `d+1<=n<5d`. One-level word counts
+force central entry; a positive-coefficient recurrence is eventually
+constant; three actual RUN edges lower any nonzero constant height.
+Every original prefix address is retained through `M^m w=P-Q`.
+Together with the preceding upper chamber and the inherited `d<=4` and
+`d=n,n+1` certificates, the source-scoped mathematical parameter cover
+now spans the complete **minus-Class-A swap-seed domain**
+`n>=1,1<=d<=2n-1`. The inherited certificates retain their seed scopes
+and their original validation records. The new
+[evidence packet](../evidence/class-a-minus-constant-entry-2026-11-14/README.md)
+separates passing canonical and cached formal checks from the local
+source-isolated gate blocked by upstream Mathlib HTTP 403, and from
+pending exact-head hosted acceptance. The next mathematical extension
+is to the unresolved plus-Class-A and other BH domains. Universal BH,
+arbitrary-ternary A1′ and the all-alphabet extension remain open.
+
+**November 14 continuation.** The [central-entry proof](class-a-central-entry-2026-11-14.md)
+now supplies a written solution of the mathematical entry target of #452
+for its stated minus-Class-A chamber `n+2<=d<=2n-1`. For `n>=6`, it
+constructs typed coincidence from every strict integral source; complete
+S18 certificates cover the six remaining parameters. Its original-address
+and seed-domain arguments are part of the proof, and its
+[evidence packet](../evidence/class-a-central-entry-2026-11-14/README.md)
+separates exact replay, the formal recurrence subset, and pending hosted
+acceptance. The earlier planning snapshot below is retained as history.
+The next mathematical extension is beyond this chamber: establish the
+corresponding actual-entry and cycle-exit mechanisms on the remaining BH
+domains. The arbitrary-ternary A1′ problem remains separate; the stronger
+construction supplies aligned coincidence within this chamber itself.
+
+**Earlier planning snapshot, retained below.** The following priority
+and Sections 1–3 describe the target before the three Class-A entry
+developments above. Their universal BH and A1′ obligations remain
+current; the minus-Class-A entry question is now mathematically
+discharged at the stated scopes and acceptance boundaries.
+
 **Priority: prove that every required BH source has a successful escape.**
 The most concrete next theorem is uniform entry into the minus Class-A
 zero-return predecessor set, [issue #452](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/452).
