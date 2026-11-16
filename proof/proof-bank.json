@@ -6066,6 +6066,262 @@
       "declaration": "theorem literal_pisot_root_exists (n d : ℕ) (hd : 5 ≤ d) (hn : d+1 ≤ n) :"
     },
     {
+      "name": "Psc.ClassAMinusUpperEntry.complement_parameters",
+      "module": "PscVerif.ClassAMinusUpperEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperEntry.lean",
+      "line": 22,
+      "declaration": "theorem complement_parameters (k t : ℕ) (ht : 6 ≤ t) :"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperEntry.upper_root_exists",
+      "module": "PscVerif.ClassAMinusUpperEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperEntry.lean",
+      "line": 25,
+      "declaration": "theorem upper_root_exists (n d : ℕ) (hd : n+8 ≤ d) (hnd : d < 2*n) :"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperEntry.lengths_upper",
+      "module": "PscVerif.ClassAMinusUpperEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperEntry.lean",
+      "line": 46,
+      "declaration": "theorem lengths_upper (n d : ℕ) (hd : n+8 ≤ d) (hnd : d < 2*n)"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperEntry.scaling_upper",
+      "module": "PscVerif.ClassAMinusUpperEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperEntry.lean",
+      "line": 61,
+      "declaration": "theorem scaling_upper (n d : ℕ) (hn : 1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperEntry.lengths_agree",
+      "module": "PscVerif.ClassAMinusUpperEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperEntry.lean",
+      "line": 75,
+      "declaration": "theorem lengths_agree (n : ℕ) (β : ℝ) :"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperEntry.upper_central_entry",
+      "module": "PscVerif.ClassAMinusUpperEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperEntry.lean",
+      "line": 80,
+      "declaration": "theorem upper_central_entry (k t : ℕ) (ht : 6 ≤ t)"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperEntry.complement_central_entry",
+      "module": "PscVerif.ClassAMinusUpperEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperEntry.lean",
+      "line": 125,
+      "declaration": "theorem complement_central_entry (k t : ℕ) (ht : 6 ≤ t) :"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperEscape.first_first",
+      "module": "PscVerif.ClassAMinusUpperEscape",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperEscape.lean",
+      "line": 20,
+      "declaration": "private theorem first_first (n d : ℕ) (a b : Fin 3) (p q r : ℤ) :"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperEscape.first_run",
+      "module": "PscVerif.ClassAMinusUpperEscape",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperEscape.lean",
+      "line": 31,
+      "declaration": "private theorem first_run (n d : ℕ) (a b : Fin 3) (j : ℤ)"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperEscape.run_first",
+      "module": "PscVerif.ClassAMinusUpperEscape",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperEscape.lean",
+      "line": 49,
+      "declaration": "private theorem run_first (n d : ℕ) (a b : Fin 3) (i : ℤ)"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperEscape.run_run",
+      "module": "PscVerif.ClassAMinusUpperEscape",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperEscape.lean",
+      "line": 67,
+      "declaration": "private theorem run_run (n d : ℕ) (hn : 1 ≤ n) (a b : Fin 3) (i j : ℤ)"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperEscape.unit_base",
+      "module": "PscVerif.ClassAMinusUpperEscape",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperEscape.lean",
+      "line": 91,
+      "declaration": "private theorem unit_base (n d : ℕ) (hn : 9 ≤ n) (hd : n+8 ≤ d) :"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperEscape.unit_transfers",
+      "module": "PscVerif.ClassAMinusUpperEscape",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperEscape.lean",
+      "line": 104,
+      "declaration": "private theorem unit_transfers (n d : ℕ) (hd : n+8 ≤ d) (hnd : d < 2*n)"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperEscape.unit_path",
+      "module": "PscVerif.ClassAMinusUpperEscape",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperEscape.lean",
+      "line": 121,
+      "declaration": "private theorem unit_path (n d : ℕ) (hd : n+8 ≤ d) (hnd : d < 2*n)"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperEscape.swap_zero",
+      "module": "PscVerif.ClassAMinusUpperEscape",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperEscape.lean",
+      "line": 134,
+      "declaration": "private theorem swap_zero {n d : ℕ} {p : Packet} (hp : Path n d p zeroYy) :"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperEscape.cycle_large",
+      "module": "PscVerif.ClassAMinusUpperEscape",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperEscape.lean",
+      "line": 139,
+      "declaration": "private theorem cycle_large (n d : ℕ) (hd : n+8 ≤ d) (hnd : d < 2*n)"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperEscape.cycle_one_low",
+      "module": "PscVerif.ClassAMinusUpperEscape",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperEscape.lean",
+      "line": 167,
+      "declaration": "private theorem cycle_one_low (n d : ℕ) (hn : 9 ≤ n) (hk : K n d = 1)"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperEscape.cycle_two",
+      "module": "PscVerif.ClassAMinusUpperEscape",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperEscape.lean",
+      "line": 188,
+      "declaration": "private theorem cycle_two (n d : ℕ) (hn : 9 ≤ n) (hk : K n d = 2) :"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperEscape.cycle_three",
+      "module": "PscVerif.ClassAMinusUpperEscape",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperEscape.lean",
+      "line": 206,
+      "declaration": "private theorem cycle_three (n d : ℕ) (hn : 9 ≤ n) (hk : K n d = 3) :"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperEscape.cycle_one_high",
+      "module": "PscVerif.ClassAMinusUpperEscape",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperEscape.lean",
+      "line": 218,
+      "declaration": "private theorem cycle_one_high (n d : ℕ) (hn : 9 ≤ n) (hk : K n d = 1) :"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperEscape.cycle_nonnegative",
+      "module": "PscVerif.ClassAMinusUpperEscape",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperEscape.lean",
+      "line": 246,
+      "declaration": "private theorem cycle_nonnegative (n d : ℕ) (hd : n+8 ≤ d) (hnd : d < 2*n)"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperEscape.central_to_zero",
+      "module": "PscVerif.ClassAMinusUpperEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperEscape.lean",
+      "line": 281,
+      "declaration": "theorem central_to_zero (n d : ℕ) (hd : n+8 ≤ d) (hnd : d < 2*n)"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperEscape.complement_to_zero",
+      "module": "PscVerif.ClassAMinusUpperEscape",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperEscape.lean",
+      "line": 308,
+      "declaration": "theorem complement_to_zero (k t : ℕ) (ht : 6 ≤ t) :"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperRecurrence.upper_cubic_irreducible",
+      "module": "PscVerif.ClassAMinusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperRecurrence.lean",
+      "line": 19,
+      "declaration": "theorem upper_cubic_irreducible (n d : ℕ) (hd : n+8 ≤ d) (hnd : d < 2*n) :"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperRecurrence.quadratic_zero",
+      "module": "PscVerif.ClassAMinusUpperRecurrence",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperRecurrence.lean",
+      "line": 43,
+      "declaration": "private theorem quadratic_zero (n d : ℕ) (hd : n+8 ≤ d) (hnd : d < 2*n)"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperRecurrence.no_half_unit",
+      "module": "PscVerif.ClassAMinusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperRecurrence.lean",
+      "line": 63,
+      "declaration": "theorem no_half_unit (n d : ℕ) (hd : n+8 ≤ d) (hnd : d < 2*n)"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperRecurrence.advance_physical_upper",
+      "module": "PscVerif.ClassAMinusUpperRecurrence",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperRecurrence.lean",
+      "line": 88,
+      "declaration": "private theorem advance_physical_upper (n d : ℕ) (hn : 1 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperRecurrence.advance_central_upper",
+      "module": "PscVerif.ClassAMinusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperRecurrence.lean",
+      "line": 99,
+      "declaration": "theorem advance_central_upper (n d : ℕ) (hd : n+8 ≤ d) (hnd : d < 2*n)"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperRecurrence.upper_run_step",
+      "module": "PscVerif.ClassAMinusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperRecurrence.lean",
+      "line": 107,
+      "declaration": "theorem upper_run_step (n d : ℕ) (hd : n+8 ≤ d) (hnd : d < 2*n)"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperRecurrence.selected_path",
+      "module": "PscVerif.ClassAMinusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperRecurrence.lean",
+      "line": 121,
+      "declaration": "theorem selected_path (n d : ℕ) (hd : n+8 ≤ d) (hnd : d < 2*n)"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperRecurrence.reserve",
+      "module": "PscVerif.ClassAMinusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperRecurrence.lean",
+      "line": 136,
+      "declaration": "theorem reserve {n d : ℕ} {β : ℝ} (hroot : UpperRoot n d β) :"
+    },
+    {
+      "name": "Psc.ClassAMinusUpperRecurrence.reaches_alternating",
+      "module": "PscVerif.ClassAMinusUpperRecurrence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAMinusUpperRecurrence.lean",
+      "line": 147,
+      "declaration": "theorem reaches_alternating (n d : ℕ) (hd : n+8 ≤ d) (hnd : d < 2*n)"
+    },
+    {
       "name": "Psc.ClassAPlusConstantRecurrence.nearest_central_iff",
       "module": "PscVerif.ClassAPlusConstantRecurrence",
       "private": false,
@@ -34273,6 +34529,7 @@
     "proof/PscVerif/ClassACentralRecurrenceAudit.lean": "c312940fe33a565e0031cf0c87e303a291755da0db9080f65222b1ffa6a4519b",
     "proof/PscVerif/ClassAMinusConstantRecurrenceAudit.lean": "6e90eee52630956763ce1bca0525ecc0fd20b02b956ac09a5007863e8c930ecc",
     "proof/PscVerif/ClassAMinusLiteralEntryAudit.lean": "118ac35be0083152782fda109158afaebdf6f8a1cad899d315eac573528904b4",
+    "proof/PscVerif/ClassAMinusUpperEscapeAudit.lean": "97ca05c3631797ebc4c0ec6553a91fd008f0caf64021778d9ed49163f993f000",
     "proof/PscVerif/ClassAPlusConstantRecurrenceAudit.lean": "abdabdd452dedc3de239263c8c2f052b84216552baf205106606a45635b1b631",
     "proof/PscVerif/ClassAPlusUpperCycleCompletionAudit.lean": "6ac8660fe4babef37c7e6fd191507bb1898852837b63d622e465762d881dd040",
     "proof/PscVerif/ClassAPlusUpperCyclesAudit.lean": "f1674a21d8c96382b5c3ea009525c43baf210a2a6db427dd3bbb60923b087c6e",
@@ -34304,6 +34561,9 @@
     "proof/PscVerif/PscVerif/ClassAMinusNoHalfUnit.lean": "8ca8c01d24b989976c629ab4909fff049bd3ff01797ec408cc43998909731ffb",
     "proof/PscVerif/PscVerif/ClassAMinusPrefixAssembly.lean": "a2d6944184b75c47c6d307cee5cf5f6db78de4768f0b09b3d3218861665aaa7d",
     "proof/PscVerif/PscVerif/ClassAMinusRootSpectrum.lean": "e93ebfbf01b50b749a5165c2b2c9b2db27a6bd283fdd18d16bcf3398b279e4eb",
+    "proof/PscVerif/PscVerif/ClassAMinusUpperEntry.lean": "cbe5b921ec273e5164d399bbfa8810e3da56a89f11da50b4835b6ebc15755a55",
+    "proof/PscVerif/PscVerif/ClassAMinusUpperEscape.lean": "042b605b23945e03b9775ccdf2bba05a244c355bf39dee7e1bf2cdd76d66a345",
+    "proof/PscVerif/PscVerif/ClassAMinusUpperRecurrence.lean": "416f11852f85023271a5ee66d809b0732e42a96a03cae0d8cecf81dacf044c76",
     "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean": "c6dbd0f1065e698ee58a04c1781d63692129f2b5c17c97d0a74cc832fd25f79a",
     "proof/PscVerif/PscVerif/ClassAPlusUpperCycleCompletion.lean": "d80243eca779241325231f64b5472c197c8f81b3919309d1c2e97512579f3a58",
     "proof/PscVerif/PscVerif/ClassAPlusUpperCycles.lean": "5d3cf8f6ce61e49f654710965d03761de7c046e931498bbc2aa09b872471384b",
@@ -34431,7 +34691,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "60eae1d9e47c0c5f11773ec82563c5ee6673b39b563896f5ba600206d83f84c4",
+    "proof/PscVerif/PscVerif.lean": "74fe7587cd57e779399997a2b3c4ac9c6cd96f3e79452577c8737d7b3b1c6280",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
