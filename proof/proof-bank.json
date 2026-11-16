@@ -34955,6 +34955,36 @@
       "statement_heading": "**Lemma.** Supply a finite strict child-closed balanced SCC with"
     },
     {
+      "source": "docs/c4-round3-2026-11-16.md",
+      "line": 447,
+      "statement_heading": "**Theorem Fork (every determinant).** Let `σ ∈ PIP3` (primitive on"
+    },
+    {
+      "source": "docs/c4-round3-2026-11-16.md",
+      "line": 559,
+      "statement_heading": "**Lemma I (`≈_s` does not depend on the power).** B15 §2 defines"
+    },
+    {
+      "source": "docs/c4-round3-2026-11-16.md",
+      "line": 586,
+      "statement_heading": "**Lemma 9″ (Lemma 9′ of the rank-two note in solenoid form; not new: BKS"
+    },
+    {
+      "source": "docs/c4-round3-2026-11-16.md",
+      "line": 610,
+      "statement_heading": "**Lemma 10 (every determinant; rank-two note §8, not new).** If"
+    },
+    {
+      "source": "docs/c4-round3-2026-11-16.md",
+      "line": 847,
+      "statement_heading": "**Proposition E (draft; the `ε`-defect cocycle; setting of §5.1).** Let"
+    },
+    {
+      "source": "docs/c4-round3-2026-11-16.md",
+      "line": 894,
+      "statement_heading": "**Proposition R3 (draft; degree three, no rank-two hypothesis).** Let"
+    },
+    {
       "source": "docs/c4-seam-birth-orbits-2026-11-04.md",
       "line": 10,
       "statement_heading": "**Lemma.** In a supplied finite strict child-closed phase-zero balanced"
