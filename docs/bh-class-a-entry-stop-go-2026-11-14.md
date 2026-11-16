@@ -123,7 +123,7 @@ legal-gap overruns to thirteen explicitly typed endpoint families, then
 gives exhaustive parameter cases and original occurrence ordinals for
 their exits. Every path has a final full Parikh zero, so literal ancestry
 supplies strict geometry. The proof and exact scope are in
-[the zero-defect escape note](class-a-zero-defect-escape-2026-11-14.md).
+[the zero-defect escape note](https://github.com/larsbx/pisot-substitution-conjecture-research/blob/research/bh-class-a-entry/docs/class-a-zero-defect-escape-2026-11-14.md) (on the unmerged #577 branch).
 
 This proves the candidate's zero-rank base case. For a supplied actual
 child-closed strict graph, reaching the one-step target is now equivalent

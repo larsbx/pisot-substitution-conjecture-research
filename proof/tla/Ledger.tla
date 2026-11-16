@@ -73,6 +73,7 @@ ResultSet == {
     "MinusHighSumFormalCycleRay",
     "MinusSixEdgeFamilyExclusion",
     "Mod3Sieve",
+    "NonPisotPrefixBPANontermination",
     "OrientationMonodromy",
     "OrientationSpectrum",
     "OverlapBadSCCNormalForm",
@@ -95,6 +96,7 @@ ResultSet == {
     "PlusClassDBoundaryHitting",
     "PlusClassDBoundaryLine",
     "PlusClassDPositiveBBoundaryHitting",
+    "PrefixBPATerminationPisotOrSalem",
     "RepoSeedUnionBridge",
     "ReturnModuleFullRank",
     "SCCProducer",
@@ -187,6 +189,7 @@ RequiresDef == [r \in ResultSet |->
       [] r = "MinusHighSumFormalCycleRay" -> {{}}
       [] r = "MinusSixEdgeFamilyExclusion" -> {{}}
       [] r = "Mod3Sieve" -> {{"DefectIntertwiner"}}
+      [] r = "NonPisotPrefixBPANontermination" -> {{"PrefixBPATerminationPisotOrSalem"}}
       [] r = "OrientationMonodromy" -> {{}}
       [] r = "OrientationSpectrum" -> {{"OrientationMonodromy", "ParikhIntertwiner"}}
       [] r = "OverlapBadSCCNormalForm" -> {{"SwapOverlapFiniteness", "OverlapFullRank"}}
@@ -194,7 +197,7 @@ RequiresDef == [r \in ResultSet |->
       [] r = "OverlapCoincidenceCriterion" -> {{}}
       [] r = "OverlapFullRank" -> {{}}
       [] r = "OverlapProductivity" -> {{}}
-      [] r = "PDS" -> {{"G1", "SCCProducer"}}
+      [] r = "PDS" -> {{"G1", "SCCProducer", "StandardBPAEquivalence"}}
       [] r = "PDSFormalProductivityRoute" -> {{"FormalProductivity", "BoxAutomatonPDSCertificate"}}
       [] r = "PDSFormalProductivitySeedRoute" -> {{"FormalProductivity", "SwapOverlapFiniteness", "DensityToPDSBridge"}}
       [] r = "PDSImpliesRepoG1" -> {{"CoincidenceRankFibreTheorems", "PeriodicPairOneFibre", "StrictZipperPeriodicPairForm"}}
@@ -209,6 +212,7 @@ RequiresDef == [r \in ResultSet |->
       [] r = "PlusClassDBoundaryHitting" -> {{"PlusClassDBoundaryLine", "PlusClassDPositiveBBoundaryHitting", "ClassDWedgeBoundaryHitting"}}
       [] r = "PlusClassDBoundaryLine" -> {{}}
       [] r = "PlusClassDPositiveBBoundaryHitting" -> {{"ClassDIntegrationAcceptance"}}
+      [] r = "PrefixBPATerminationPisotOrSalem" -> {{}}
       [] r = "RepoSeedUnionBridge" -> {{}}
       [] r = "ReturnModuleFullRank" -> {{}}
       [] r = "SCCProducer" -> {{"G1", "SinkSCCReduction", "C2"}}
@@ -291,6 +295,7 @@ ProvedDef == {
     "MinusHighSumFormalCycleRay",
     "MinusSixEdgeFamilyExclusion",
     "Mod3Sieve",
+    "NonPisotPrefixBPANontermination",
     "OrientationMonodromy",
     "OrientationSpectrum",
     "OverlapBadSCCNormalForm",
@@ -310,6 +315,7 @@ ProvedDef == {
     "PlusClassDBoundaryHitting",
     "PlusClassDBoundaryLine",
     "PlusClassDPositiveBBoundaryHitting",
+    "PrefixBPATerminationPisotOrSalem",
     "RepoSeedUnionBridge",
     "ReturnModuleFullRank",
     "SCCProducer",
@@ -365,11 +371,13 @@ FormalProductivityGateAssumed == {
 }
 G1AndC4 == {
     "G1",
-    "C4"
+    "C4",
+    "StandardBPAEquivalence"
 }
 G1AndProducer == {
     "G1",
-    "SCCProducer"
+    "SCCProducer",
+    "StandardBPAEquivalence"
 }
 G1Only == {
     "G1"
@@ -464,6 +472,7 @@ MinusClassDSeedCarrierClosureNotEstablished == "MinusClassDSeedCarrierClosure" \
 MinusHighSumFormalCycleRayNotEstablished == "MinusHighSumFormalCycleRay" \notin established
 MinusSixEdgeFamilyExclusionNotEstablished == "MinusSixEdgeFamilyExclusion" \notin established
 Mod3SieveNotEstablished == "Mod3Sieve" \notin established
+NonPisotPrefixBPANonterminationNotEstablished == "NonPisotPrefixBPANontermination" \notin established
 OrientationMonodromyNotEstablished == "OrientationMonodromy" \notin established
 OrientationSpectrumNotEstablished == "OrientationSpectrum" \notin established
 OverlapBadSCCNormalFormNotEstablished == "OverlapBadSCCNormalForm" \notin established
@@ -486,6 +495,7 @@ PisotMeyerPropertyNotEstablished == "PisotMeyerProperty" \notin established
 PlusClassDBoundaryHittingNotEstablished == "PlusClassDBoundaryHitting" \notin established
 PlusClassDBoundaryLineNotEstablished == "PlusClassDBoundaryLine" \notin established
 PlusClassDPositiveBBoundaryHittingNotEstablished == "PlusClassDPositiveBBoundaryHitting" \notin established
+PrefixBPATerminationPisotOrSalemNotEstablished == "PrefixBPATerminationPisotOrSalem" \notin established
 RepoSeedUnionBridgeNotEstablished == "RepoSeedUnionBridge" \notin established
 ReturnModuleFullRankNotEstablished == "ReturnModuleFullRank" \notin established
 SCCProducerNotEstablished == "SCCProducer" \notin established

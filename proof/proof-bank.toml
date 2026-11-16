@@ -46,6 +46,16 @@ claim = "PSC"
 source = "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, abstract and unresolved statements; open"
 
 [[lean_support]]
+claim = "PrefixBPATerminationPisotOrSalem"
+coverage = "full"
+declarations = ["Psc.BPrime.bprime", "Psc.BPrime.bprime_ss", "Psc.BPrime.bprime_isPisotOrSalem", "Psc.BPrime.bprime_cubic", "Psc.BPrime.bprime_cubic_isPisot", "Psc.BPrime.minpoly_eq_charpoly", "Psc.BPrimeBinding.IW_eq_iUnion_ssLevel"]
+note = "Proposition B′ as registered: the root bound for every primitive substitution with irreducible chi_M under a finite prefix-seeded I(W) (Lean IW, coincidence blocks retained), its literal-(3.1) form, the Pisot-or-Salem reading on two or more letters and the strict disc in degree three. The Galois-conjugate argument of the general-structure note is not the formalized route, and no refinement to kernel/psc/bpa.mojo is proved."
+[[lean_support]]
+claim = "NonPisotPrefixBPANontermination"
+coverage = "full"
+declarations = ["Psc.BPrime.corB_infinite", "Psc.BPrime.corB_infinite_of_not_isPisotOrSalem", "Psc.BPrime.corB_infinite_cubic", "Psc.BPrime.corB_infinite_ss", "Psc.BPrime.corB_infinite_cubic_ss", "Psc.BPrime.zetaU_IW_infinite"]
+note = "Corollary B (i) as registered, each form the contrapositive of a Proposition B′ endpoint, with the audit specimen 0->01, 1->2, 2->00 discharged in zetaU_IW_infinite. Corollary B (ii)-(iii) are not formalized and not registered."
+[[lean_support]]
 claim = "SeedCentralizer"
 coverage = "partial"
 declarations = ["Psc.no_commuting_of_no_eigenvalue", "Psc.Aq_mulVec_ones", "Psc.Aq_eigenspace"]

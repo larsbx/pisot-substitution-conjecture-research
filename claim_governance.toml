@@ -1531,6 +1531,25 @@ anchor = '| Mod3Sieve |'
 window_lines = 0
 
 [[claim]]
+name = "NonPisotPrefixBPANontermination"
+status = "proved"
+aliases = ["Corollary B (i)", "prefix-seeded BPA off the Pisot cone"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"NonPisotPrefixBPANontermination"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| NonPisotPrefixBPANontermination |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Corollary B (i): prefix-seeded BPA off the Pisot cone |"
+window_lines = 0
+
+[[claim]]
 name = "OrientationMonodromy"
 status = "proved"
 [[claim.surfaces]]
@@ -1948,6 +1967,25 @@ window_lines = 0
 [[claim.surfaces]]
 path = "docs/class-d-assembly-audit-2026-10-21.md"
 anchor = "| Plus positive-b residual |"
+window_lines = 0
+
+[[claim]]
+name = "PrefixBPATerminationPisotOrSalem"
+status = "proved"
+aliases = ["Proposition B′", "terminating prefix-seeded BPA forces Pisot or Salem (two or more letters)"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"PrefixBPATerminationPisotOrSalem"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| PrefixBPATerminationPisotOrSalem |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Proposition B′: terminating prefix-seeded BPA forces Pisot or Salem (two or more letters) |"
 window_lines = 0
 
 [[claim]]

@@ -694,6 +694,16 @@
       "source": "source: docs/c4-multidegree-spectral-sieve.md"
     },
     {
+      "id": "NonPisotPrefixBPANontermination",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "for every primitive substitution on a finite alphabet whose chi_M is irreducible over Q and has a root z != beta with |z| > 1, beta the eigenvalue of a positive left eigenvector (on two or more letters: beta is neither Pisot nor Salem; on three letters, natDegree chi_M = 3: beta is not Pisot), the prefix-seeded set I(W) is infinite for every one-sided fixed point u and every nonempty prefix W of u, also for the literal recursion (3.1); Corollary B (ii)-(iii), seeds that are not prefixes of a fixed point and periodic points that are not fixed are not asserted",
+      "scope": "primitive substitutions on a finite alphabet with irreducible incidence characteristic polynomial (not restricted to PIP; vacuous on it)",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/c4-bprime-lean-2026-11-09.md; Lean Psc.BPrime.corB_infinite, corB_infinite_of_not_isPisotOrSalem, corB_infinite_cubic, corB_infinite_ss, corB_infinite_cubic_ss (contrapositive of Proposition B'), specimen 0->01, 1->2, 2->00 in zetaU_IW_infinite, in proof/PscVerif/PscVerif/BPrime.lean over BPrimeCore and BPrimeBinding, standard axioms only (ProofBankAudit); hosted ci.yml lean-proofs job 132870714519 of run 43733407182 at 71afd61 and job 129725849872 of run 42785583506 at 0baaf07, the three modules byte-identical through the merge into main; Lean-checked, human review pending, novelty not asserted"
+    },
+    {
       "id": "OrientationMonodromy",
       "kind": "claim",
       "label": "Repository-proved",
@@ -769,11 +779,11 @@
       "kind": "claim",
       "label": "Conditional theorem",
       "provenance": "conditional",
-      "statement": "pure discrete spectrum follows from G1 and SCC Producer",
+      "statement": "pure discrete spectrum follows from G1 and SCC Producer through the imported balanced-pair criterion",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, boundary route",
-      "leaks": "premises not established: G1, SCCProducer"
+      "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, boundary route (Theorem thm:main-conditional with Imported Theorem thm:bridge)",
+      "leaks": "premises not established: G1, SCCProducer, StandardBPAEquivalence"
     },
     {
       "id": "PDSFormalProductivityRoute",
@@ -920,6 +930,16 @@
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
       "source": "source: docs/class-d-assembly-audit-2026-10-21.md; PR293 immutable native aggregate with six cores, 73 strips, six interfaces, 952 finite-prefix obligations and unchanged entire import closure; fresh complete locked CI at accepted tree c325aa5, integration gate discharged by separate receipts; human review pending"
+    },
+    {
+      "id": "PrefixBPATerminationPisotOrSalem",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "for every primitive substitution on a finite alphabet whose incidence characteristic polynomial chi_M is irreducible over Q, with beta the eigenvalue of a positive left eigenvector, every one-sided fixed point u (Lean IsFixed) and every nonempty prefix W of u: if the Sirvent-Solomyak prefix-seeded set I(W) (Lean BPrimeBinding.IW: all levels, coincidence blocks retained; termination means finiteness, not coincidence) is finite, then every root z != beta of chi_M has |z| <= 1; on two or more letters beta is then Pisot or Salem (beta > 1 and an algebraic integer whose minimal polynomial is chi_M), and when chi_M has degree three beta is Pisot; the strict disc is not asserted in degree two or in degree >= 4, and no termination, coincidence or PDS fact for a Pisot substitution follows",
+      "scope": "primitive substitutions on a finite alphabet with irreducible incidence characteristic polynomial (not restricted to PIP; vacuous on it)",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/c4-bprime-lean-2026-11-09.md; Lean Psc.BPrime.bprime, bprime_ss (the literal recursion (3.1)), bprime_isPisotOrSalem, bprime_cubic, bprime_cubic_isPisot in proof/PscVerif/PscVerif/BPrime.lean over BPrimeCore and BPrimeBinding, standard axioms only (ProofBankAudit); hosted ci.yml lean-proofs job 132870714519 of run 43733407182 at 71afd61 and job 129725849872 of run 42785583506 at 0baaf07, the three modules byte-identical through the merge into main; corrected statement of docs/c4-bprime-independent-proof-audit-2026-11-07.md, formalized by frequency-free averaging and cyclicity rather than the Galois-conjugate argument of docs/c4-general-structure-2026-11-06.md section 3; Lean-checked, human review pending, novelty not asserted"
     },
     {
       "id": "RepoSeedUnionBridge",
@@ -1548,6 +1568,24 @@
       ]
     },
     {
+      "id": "Corollary B (i)",
+      "kind": "alias",
+      "label": "Corollary B (i)",
+      "provenance": "declared",
+      "members": [
+        "NonPisotPrefixBPANontermination"
+      ]
+    },
+    {
+      "id": "prefix-seeded BPA off the Pisot cone",
+      "kind": "alias",
+      "label": "prefix-seeded BPA off the Pisot cone",
+      "provenance": "declared",
+      "members": [
+        "NonPisotPrefixBPANontermination"
+      ]
+    },
+    {
       "id": "closed irreducible bad-overlap normal form",
       "kind": "alias",
       "label": "closed irreducible bad-overlap normal form",
@@ -1689,6 +1727,24 @@
       "provenance": "declared",
       "members": [
         "PisotMeyerProperty"
+      ]
+    },
+    {
+      "id": "Proposition B′",
+      "kind": "alias",
+      "label": "Proposition B′",
+      "provenance": "declared",
+      "members": [
+        "PrefixBPATerminationPisotOrSalem"
+      ]
+    },
+    {
+      "id": "terminating prefix-seeded BPA forces Pisot or Salem (two or more letters)",
+      "kind": "alias",
+      "label": "terminating prefix-seeded BPA forces Pisot or Salem (two or more letters)",
+      "provenance": "declared",
+      "members": [
+        "PrefixBPATerminationPisotOrSalem"
       ]
     },
     {
@@ -1854,7 +1910,8 @@
       "provenance": "declared",
       "members": [
         "C4",
-        "G1"
+        "G1",
+        "StandardBPAEquivalence"
       ]
     },
     {
@@ -1864,7 +1921,8 @@
       "provenance": "declared",
       "members": [
         "G1",
-        "SCCProducer"
+        "SCCProducer",
+        "StandardBPAEquivalence"
       ]
     },
     {
@@ -2643,6 +2701,14 @@
     },
     {
       "type": "implicative",
+      "source": "PrefixBPATerminationPisotOrSalem",
+      "target": "NonPisotPrefixBPANontermination",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "NonPisotPrefixBPANontermination/PrefixBPATerminationPisotOrSalem"
+    },
+    {
+      "type": "implicative",
       "source": "ReturnModuleFullRank",
       "target": "PeriodicPairOneFibre",
       "provenance": "theorem-backed",
@@ -2728,6 +2794,15 @@
       "certainty": 1,
       "use_site": "PDSSpectralRoute/SpectralSCCProducer",
       "leaks": "premise is open"
+    },
+    {
+      "type": "implicative",
+      "source": "StandardBPAEquivalence",
+      "target": "PDS",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "PDS/StandardBPAEquivalence",
+      "leaks": "premise is imported-theorem"
     },
     {
       "type": "implicative",
@@ -2927,6 +3002,14 @@
     },
     {
       "type": "synonymous",
+      "source": "Corollary B (i)",
+      "target": "NonPisotPrefixBPANontermination",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
       "source": "Corollary B″",
       "target": "BrunCompositeSymbolicPDS",
       "provenance": "imported-theorem",
@@ -3002,6 +3085,14 @@
       "source": "Pisot Meyer property",
       "target": "PisotMeyerProperty",
       "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "Proposition B′",
+      "target": "PrefixBPATerminationPisotOrSalem",
+      "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "aliases"
     },
@@ -3391,6 +3482,14 @@
     },
     {
       "type": "synonymous",
+      "source": "prefix-seeded BPA off the Pisot cone",
+      "target": "NonPisotPrefixBPANontermination",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
       "source": "renewal finiteness",
       "target": "G1b2RenewalFiniteness",
       "provenance": "open",
@@ -3441,6 +3540,14 @@
       "type": "synonymous",
       "source": "strict zipper dichotomy",
       "target": "OverlapBoundaryZipperDichotomy",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "terminating prefix-seeded BPA forces Pisot or Salem (two or more letters)",
+      "target": "PrefixBPATerminationPisotOrSalem",
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "aliases"
@@ -3626,6 +3733,22 @@
       "source": "SpectralSCCProducer",
       "target": "SpectralGateAssumed",
       "provenance": "open",
+      "certainty": 1,
+      "use_site": "assumption_sets"
+    },
+    {
+      "type": "part-whole",
+      "source": "StandardBPAEquivalence",
+      "target": "G1AndC4",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "assumption_sets"
+    },
+    {
+      "type": "part-whole",
+      "source": "StandardBPAEquivalence",
+      "target": "G1AndProducer",
+      "provenance": "imported-theorem",
       "certainty": 1,
       "use_site": "assumption_sets"
     },

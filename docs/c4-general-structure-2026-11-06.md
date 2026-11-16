@@ -374,6 +374,18 @@ swap pairs are covered by (ii) in the both-outside class only. In the
 one-outside class, a finite child-closed set with a noncoincident pair must
 have `K₂ ≡ 0` and obey R3′; that is the open conjunct of (H).
 
+*Status line, 2026-11-09 (added; no other text of this note is changed).* The audit's
+corrected Proposition B′ and Corollary B (i) have a Lean proof:
+`Psc.BPrime.bprime`, `bprime_cubic_isPisot`, `corB_infinite` and `corB_infinite_cubic`
+(`proof/PscVerif/PscVerif/BPrime.lean`), with literal-(3.1) forms `bprime_ss` and
+`corB_infinite_cubic_ss`. The route is the audit's cyclicity argument with
+frequency-free averaging along `t_m` and strict dominance, not the
+Galois-conjugate argument written above. See
+[the B′ Lean note](c4-bprime-lean-2026-11-09.md). The receipts are local only;
+hosted exact-head CI is pending. Corollary B (ii)–(iii), the Salem case beyond
+three letters and the spectral half of Remark 2 are not formalized. Human review
+is pending, and nothing on the Pisot side changes.
+
 **R3′** (exactly one non-Perron root outside the unit disc). Let
 `|α₂| > 1 > |α₃|`; then both roots are real, since a complex pair has equal
 moduli. Then `r(C) ≢ 2 (mod 3)`. For `r = 3k` every eigenvalue of `M^{⊗r}`
