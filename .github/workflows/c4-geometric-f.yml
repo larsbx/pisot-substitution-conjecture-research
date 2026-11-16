@@ -1,0 +1,45 @@
+name: C4 geometric property (F) class regression
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/c4-geometric-f.yml'
+      - 'kernel/psc/c4_geometric_f.mojo'
+      - 'kernel/tests/test_c4_geometric_f.mojo'
+      - 'docs/c4-geometric-f-class*.md'
+      - 'kernel/psc/leftmost_chain.mojo'
+      - 'kernel/tests/test_leftmost_chain.mojo'
+      - 'kernel/psc/h1_census.mojo'
+      - 'kernel/tests/test_h1_census.mojo'
+      - 'kernel/pixi.lock'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-geometric-f-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Exact-head checkout lease
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          pixi-version: v0.81.0
+          manifest-path: kernel/pixi.toml
+          locked: true
+      - name: Geometric (F) census, Theorem FC1 transients and arithmetic classes
+        working-directory: kernel
+        run: |
+          pixi run --locked mojo run -I . -I tests tests/test_c4_geometric_f.mojo
+      - name: Unchanged leftmost-chain pins and cohomology census tables
+        working-directory: kernel
+        run: |
+          pixi run --locked mojo run -I . -I tests tests/test_leftmost_chain.mojo
+          pixi run --locked mojo run -I . -I tests tests/test_h1_census.mojo
