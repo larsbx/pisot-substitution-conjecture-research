@@ -68,6 +68,8 @@ pairwise statement. That withdrawal was a labelling error.
   unknown at the start of their §6). The implication
   `SC(A(C)) ⇒ disjoint(A(C)) ⇒ no strict C` is therefore no stronger than
   Theorem A(4).
+
+  *Correction, 2026-11-09.* "disjoint" here means measure-disjoint (null intersection), as in the cut-pair note ([quantifier audit](quantifier-transfer-audit-2026-11-09.md), §12).
 - Nakaishi arXiv:1610.03146 is withdrawn. arXiv:2401.07771 was audited in
   `nakaishi-2024-first-entry-audit-2026-10-13.md` and not imported. Neither
   may be cited for unconditional disjointness.

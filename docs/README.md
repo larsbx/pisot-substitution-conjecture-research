@@ -238,6 +238,10 @@ Change the ledger entry and every surface in the same commit.
   analogies concern P2/G1b-2 and P4 realization; the narrower P1b/#139 analogy
   supplies no adelic hitting theorem. Penrose derivations remain in
   `larsbx/tiling-theory-research`.
+- [`bridges/fibonacci-hamiltonian-two-spectra.md`](bridges/fibonacci-hamiltonian-two-spectra.md)
+  — non-load-bearing comparison with the Fibonacci Hamiltonian: the same
+  two-letter hull carries a pure discrete dynamical spectrum and a singular
+  continuous Schrödinger spectrum; only the gap labels are shared.
 - [`post-proof-padovan-plastic-a-conjectures-2026-09-23.md`](post-proof-padovan-plastic-a-conjectures-2026-09-23.md)
   and its [JSON catalogue](post-proof-padovan-plastic-a-conjectures-2026-09-23.json)
   — PR #157's research-only benchmark conjectures. The historical

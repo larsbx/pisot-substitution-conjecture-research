@@ -574,3 +574,7 @@ and vendored-pin checks pass. All 126 governed claims retain their existing
 status. Raw successful and failed development receipts, reproducible
 commands, and source hashes are in
 [the evidence packet](../evidence/class-a-zero-defect-2026-11-14/README.md).
+
+## Mainline provenance
+
+PR #583 retained a [source locator at 9f0138d2](https://github.com/larsbx/pisot-substitution-conjecture-research/blob/9f0138d213357b866e7ceef0dcbfab96a667526d/docs/class-a-zero-defect-escape-2026-11-14.md) for its narrow Lean import. This document gives the full branch proof and carries its separate acceptance scope.

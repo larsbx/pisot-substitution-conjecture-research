@@ -1,0 +1,14 @@
+{
+  "base": "a19670c521927a8f6ac7e08f26cd3d563eafdce3",
+  "formal_sources_changed": false,
+  "historical_raw_files_survived": false,
+  "native_reimplemented": true,
+  "new_evidence": "Fresh replacement-environment executions; lost historical raw files receive no new acceptance credit",
+  "restored_exact_source_sha256": {
+    "oracles/python/class_a_plus_upper_independent.py": "b8b6b93423ac4baf67660ed3d8d3f26c40ca1f1b867afe8e931164fa1aaee579",
+    "oracles/python/class_a_plus_upper_symbolic.py": "791db6f79e236d43328eacede27617c74709eeac2c6d49f28345db7dc89b6582",
+    "proof/PscVerif/ClassAPlusUpperCyclesAudit.lean": "f1674a21d8c96382b5c3ea009525c43baf210a2a6db427dd3bbb60923b087c6e",
+    "proof/PscVerif/PscVerif/ClassAPlusUpperCycles.lean": "5d3cf8f6ce61e49f654710965d03761de7c046e931498bbc2aa09b872471384b",
+    "tests/test_class_a_plus_upper_symbolic.py": "e4a51b16b6bd4a9a608688cd24682f219cbcee7701c3c497e70c7344a576df3c"
+  }
+}

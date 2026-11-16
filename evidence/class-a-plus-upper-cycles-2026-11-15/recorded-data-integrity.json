@@ -1,0 +1,11 @@
+{
+  "counts": {
+    "tests": 162,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "command": "python -m pytest -o addopts= -q tests/test_recorded_data_integrity.py",
+  "git_index_checked": true,
+  "followup": "Final exact-file-set, hashes and tracking rechecked after adding this record"
+}

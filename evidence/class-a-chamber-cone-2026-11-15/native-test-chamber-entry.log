@@ -1,0 +1,12 @@
+[PASS] test_bernstein_rule
+[PASS] test_bernstein_refuses_a_dip_at_beta
+[PASS] test_bernstein_decides_the_sector_sign
+[PASS] test_lemma_tw_over_q_k_t
+[PASS] test_decomposition
+[PASS] test_transfer_link
+[PASS] test_line_t0_end_to_end
+contract-receipt: class-A chamber entry: the cone engine's opt-in Bernstein rule reads 2 dL^2 dU b1 exactly (non-unit brackets included), decides a quadratic whose leading coefficient changes sign on the region, and refuses through the engine a dip around beta with positive ends; Lemma TW over Q[k, t] (one incidence matrix, chi = l^3 - (n + 2) l^2 - (t + 3) l + 2 and left eigenvector ell (M - t I) = 0 mod chi for the class-A chamber member and its class-B twin, M g = -g - K e_y and (beta + 1) <ell, g> = -K ell_y for g = (1, 3, -6)), the twins' seed graphs differing; the twelve families cover exactly t <= 5 or t <= k - 1 on 0 <= k, t <= 60; at six members the exact seed-patch graph and the nine-seed closure in the oriented indexed graph have one label set, the graph is that closure with its reversal (both inclusions), the apex's one extra vertex is R(E6), and every vertex reaches integral offset zero; the line t = 0 covered by the cone engine with one 325-vertex region and 8 exact members
+
+real	2m21.097s
+user	2m28.908s
+sys	0m0.626s

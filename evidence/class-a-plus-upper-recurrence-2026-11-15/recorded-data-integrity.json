@@ -1,0 +1,63 @@
+{
+  "checks": [
+    {
+      "command": [
+        "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+        "-m",
+        "pytest",
+        "-o",
+        "addopts=",
+        "-q",
+        "tests/test_recorded_data_integrity.py",
+        "tests/test_markdown_links.py",
+        "--junitxml=/workspace/scratch/7b7b91dcb7fe/upper-recurrence-seal-attempt-2/pytest.xml"
+      ],
+      "exit_code": 0,
+      "seconds": 1.949
+    },
+    {
+      "command": [
+        "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+        "tools/check_markdown_source.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.382
+    },
+    {
+      "command": [
+        "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+        "tools/make_proof_bank.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 2.026
+    },
+    {
+      "command": [
+        "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+        "-m",
+        "claim_governance.cli",
+        "--root",
+        "."
+      ],
+      "exit_code": 0,
+      "seconds": 7.959
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.033
+    }
+  ],
+  "checks_log_sha256": "f4a9ecd1365a72a7f41a4f082f023da4e6ac17f3980288bbf5484ad1bfcb5198",
+  "junit_sha256": "655fb22e6aa46f1ee1e5e76f9bbbd79c3c755113440a6583aebcfc858be4bcd4",
+  "note": "The test output is archived after the tests; the final expanded packet is separately sealed and checksum-checked.",
+  "recorded_at": "2026-11-15T19:14:48.431110+00:00",
+  "status": "passed",
+  "tested_manifest_sha256": "84d3ae2f26f5a1528593a6a6acc9e08e453070017b69adfa5b73164cf0d107f8"
+}

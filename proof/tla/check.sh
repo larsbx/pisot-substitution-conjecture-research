@@ -25,7 +25,8 @@ MODELS=(
     # leave unreachable and the liveness property that its Reachable set is
     # eventually established, so the positive derivations (PDSOverlapRoute
     # under OverlapProductivity and the imported density bridge, G1OverlapRoute
-    # and canonical G1 under AllSeedOverlapProductivity, PDS under G1 and SCC Producer,
+    # and canonical G1 under AllSeedOverlapProductivity, PDS under G1, SCC Producer
+    # and the imported balanced-pair criterion,
     # LoadBearingSCC under G1, SpectralBlackBox unconditionally) are read off
     # the Reachable sets rather than off expected violations.
     "MCLedgerClassDIntegrationAssumed:HOLD"

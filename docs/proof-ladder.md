@@ -115,6 +115,8 @@ PIP
 => pure discrete spectrum                                       [IMPORTED theorem]
 ```
 
+*Correction, 2026-11-09.* Two lines of this ladder abbreviate. The BH line: its exact forms are "every vertex of the finite seed-patch overlap graph on a directed cycle has an offset-zero descendant" (governed `UniversalBoundaryHitting`) and the exclusion form `AllSeedStrictZipperExclusion`; a strict-zipper vertex has no offset-zero descendant by definition. The tag `[PROVED assembly]` is the status of the implication into its line (`thm:two-obstruction-completion`; governed `TwoObstructionCompletion`: conditional), not of the line itself: both antecedents above remain open, and #84 remains open. See the [quantifier audit](quantifier-transfer-audit-2026-11-09.md), §§10, 14.
+
 The two open lines are the primary proof obligations. The aligned endpoint
 normal form reduces #138 to one-sided A1′ (reversal is not an additional
 premise of this completion theorem), while #139 is the
@@ -499,6 +501,15 @@ C4 => C3-local => C2 => C1
 ```
 
 remains a valid one-way sufficiency route. It is not the headline completion ladder.
+
+*Correction, 2026-11-09.* The last arrow is under G1. `prop:chain` is stated
+for PIP substitutions "with finite `B_σ`", and the step from "no strict
+component" to C1 (SCC Producer, `conj:producer`) is the sink reduction
+`thm:sink`, which needs a finite automaton. Without finiteness, exclusion of
+finite closed strict components does not give C1: the graph `loopRay` of
+`proof/PscVerif/PscVerif/QuantifierInterface.lean` has a recurrent strict
+component and no finite closed one
+([quantifier audit](quantifier-transfer-audit-2026-11-09.md), §3).
 
 # Realization / MEF route
 

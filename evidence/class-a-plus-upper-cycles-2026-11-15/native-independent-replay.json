@@ -1,0 +1,14 @@
+{
+  "adapter_sha256": "3884e545a912096c936d53bc46246a42bfb8a2868338cc6c33a41d8d2bc30af3",
+  "all_source_entry": false,
+  "complete_original_prefixes": true,
+  "edges": 600,
+  "maximum_depth": 7,
+  "native_controls": 23,
+  "oracle_sha256": "b8b6b93423ac4baf67660ed3d8d3f26c40ca1f1b867afe8e931164fa1aaee579",
+  "paths": 160,
+  "recurrence_executed": false,
+  "status": "accepted_finite_native_replay",
+  "transcript_sha256": "08a7ebc8d790bccb814e5bcdc2b7d141b7815f97c690fc7d4af080cfbdcb0708",
+  "universal_BH": false
+}

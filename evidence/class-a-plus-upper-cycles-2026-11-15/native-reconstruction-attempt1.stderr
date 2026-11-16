@@ -1,0 +1,468 @@
+Failed to initialize Crashpad.  Crash reporting will not be available.  Cause: while locating crashpad handler: unable to locate crashpad handler executable
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:1:1: error: unable to locate module 'std'
+"""Canonical complete eight-case paths, original prefixes and typed refusals."""
+^
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:1:1: error: 'std' is required for all normal mojo compiles.
+If you see this either:
+- Your mojo installation is broken and needs to be reinstalled or
+- You are a 'std' developer and are intentionally avoiding a pre-built 'std'
+"""Canonical complete eight-case paths, original prefixes and typed refusals."""
+^
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:2:6: error: unable to locate module 'std'
+from std.testing import assert_equal, assert_true
+     ^
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:3:6: error: unable to locate module 'std'
+from std.sys import argv
+     ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:4:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/mojo_smoke/__init__.mojo:10:1: error: unable to locate module 'std'
+
+^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:4:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/mojo_smoke/claims.mojo:1:1: error: unable to locate module 'std'
+"""What a regression test stands for, declared by the test itself.
+^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:4:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/mojo_smoke/claims.mojo:36:32: error: use of unknown declaration 'String'
+def require_contract(contract: String) raises:
+                               ^~~~~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:4:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/mojo_smoke/claims.mojo:36:22: error: unable to locate module 'std'
+def require_contract(contract: String) raises:
+                     ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:4:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/mojo_smoke/claims.mojo:36:46: error: unable to locate module 'std'
+def require_contract(contract: String) raises:
+                                             ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:5:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/a1_normal_form_census.mojo:1:1: error: unable to locate module 'std'
+"""Exact census of the A1' normal form: does the hard tail scale?
+^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:5:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/a1_normal_form_census.mojo:201:23: error: use of unknown declaration 'Int'
+def class_member(cls: Int, p: Int, q: Int, r: Int) raises -> List[List[Int]]:
+                      ^~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:5:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/a1_normal_form_census.mojo:201:18: error: unable to locate module 'std'
+def class_member(cls: Int, p: Int, q: Int, r: Int) raises -> List[List[Int]]:
+                 ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:5:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/a1_normal_form_census.mojo:201:31: error: use of unknown declaration 'Int'
+def class_member(cls: Int, p: Int, q: Int, r: Int) raises -> List[List[Int]]:
+                              ^~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:5:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/a1_normal_form_census.mojo:201:28: error: unable to locate module 'std'
+def class_member(cls: Int, p: Int, q: Int, r: Int) raises -> List[List[Int]]:
+                           ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:5:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/a1_normal_form_census.mojo:201:39: error: use of unknown declaration 'Int'
+def class_member(cls: Int, p: Int, q: Int, r: Int) raises -> List[List[Int]]:
+                                      ^~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:5:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/a1_normal_form_census.mojo:201:36: error: unable to locate module 'std'
+def class_member(cls: Int, p: Int, q: Int, r: Int) raises -> List[List[Int]]:
+                                   ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:5:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/a1_normal_form_census.mojo:201:47: error: use of unknown declaration 'Int'
+def class_member(cls: Int, p: Int, q: Int, r: Int) raises -> List[List[Int]]:
+                                              ^~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:5:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/a1_normal_form_census.mojo:201:44: error: unable to locate module 'std'
+def class_member(cls: Int, p: Int, q: Int, r: Int) raises -> List[List[Int]]:
+                                           ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:5:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/a1_normal_form_census.mojo:201:62: error: use of unknown declaration 'List'
+def class_member(cls: Int, p: Int, q: Int, r: Int) raises -> List[List[Int]]:
+                                                             ^~~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:5:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/a1_normal_form_census.mojo:201:62: error: unable to locate module 'std'
+def class_member(cls: Int, p: Int, q: Int, r: Int) raises -> List[List[Int]]:
+                                                             ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:5:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/a1_normal_form_census.mojo:183:20: error: unable to locate module 'std'
+comptime CLASS_A = 0  # (x, x, x, c): sigma(y) = x y^r c
+                   ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:6:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/overlap_seed_patch.mojo:1:1: error: unable to locate module 'std'
+"""Exact one-dimensional seed-patch overlap graph for G1b-2 diagnostics.
+^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:6:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/overlap_seed_patch.mojo:120:47: error: use of unknown declaration 'List'
+def build_seed_overlap_tables_screened(sigma: List[List[Int]]) raises -> SeedOverlapTables:
+                                              ^~~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:6:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/overlap_seed_patch.mojo:120:40: error: unable to locate module 'std'
+def build_seed_overlap_tables_screened(sigma: List[List[Int]]) raises -> SeedOverlapTables:
+                                       ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:6:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/overlap_seed_patch.mojo:55:26: error: use of unknown declaration 'Copyable'
+struct SeedOverlapTables(Copyable, Movable):
+                         ^~~~~~~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:6:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/overlap_seed_patch.mojo:120:74: error: unable to locate module 'std'
+def build_seed_overlap_tables_screened(sigma: List[List[Int]]) raises -> SeedOverlapTables:
+                                                                         ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:7:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_boundary_children.mojo:1:1: error: unable to locate module 'std'
+"""Complete outgoing occurrence star of (x,c,0), not a closed BH carrier.
+^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:6:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/overlap_seed_patch.mojo:120:74: error: 'std' is required for all normal mojo compiles.
+If you see this either:
+- Your mojo installation is broken and needs to be reinstalled or
+- You are a 'std' developer and are intentionally avoiding a pre-built 'std'
+def build_seed_overlap_tables_screened(sigma: List[List[Int]]) raises -> SeedOverlapTables:
+                                                                         ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:7:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_boundary_children.mojo:23:22: error: use of unknown declaration 'ImplicitlyCopyable'
+struct BoundaryLabel(ImplicitlyCopyable, Copyable, Movable, Equatable):
+                     ^~~~~~~~~~~~~~~~~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:7:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_boundary_children.mojo:42:21: error: use of unknown declaration 'ImplicitlyCopyable'
+struct BoundaryEdge(ImplicitlyCopyable, Copyable, Movable):
+                    ^~~~~~~~~~~~~~~~~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:1:1: error: unable to locate module 'std'
+"""Eight literal upper plus-Class-A cycle exits, uniformly specified in n.
+^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:42:11: error: unable to locate module 'std'
+def _bind(tables: SeedOverlapTables, n: Int, J: Int) raises:
+          ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:42:41: error: use of unknown declaration 'Int'
+def _bind(tables: SeedOverlapTables, n: Int, J: Int) raises:
+                                        ^~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:42:38: error: unable to locate module 'std'
+def _bind(tables: SeedOverlapTables, n: Int, J: Int) raises:
+                                     ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:42:49: error: use of unknown declaration 'Int'
+def _bind(tables: SeedOverlapTables, n: Int, J: Int) raises:
+                                                ^~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:42:46: error: unable to locate module 'std'
+def _bind(tables: SeedOverlapTables, n: Int, J: Int) raises:
+                                             ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:42:60: error: unable to locate module 'std'
+def _bind(tables: SeedOverlapTables, n: Int, J: Int) raises:
+                                                           ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:35:21: error: use of unknown declaration 'Int'
+def cycle_source(J: Int, H: Int, flip: Bool = False) raises -> BoundaryLabel:
+                    ^~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:35:18: error: unable to locate module 'std'
+def cycle_source(J: Int, H: Int, flip: Bool = False) raises -> BoundaryLabel:
+                 ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:35:29: error: use of unknown declaration 'Int'
+def cycle_source(J: Int, H: Int, flip: Bool = False) raises -> BoundaryLabel:
+                            ^~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:35:26: error: unable to locate module 'std'
+def cycle_source(J: Int, H: Int, flip: Bool = False) raises -> BoundaryLabel:
+                         ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:35:40: error: use of unknown declaration 'Bool'
+def cycle_source(J: Int, H: Int, flip: Bool = False) raises -> BoundaryLabel:
+                                       ^~~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:35:47: error: unable to locate module 'std'
+def cycle_source(J: Int, H: Int, flip: Bool = False) raises -> BoundaryLabel:
+                                              ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:35:34: error: unable to locate module 'std'
+def cycle_source(J: Int, H: Int, flip: Bool = False) raises -> BoundaryLabel:
+                                 ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:35:64: error: unable to locate module 'std'
+def cycle_source(J: Int, H: Int, flip: Bool = False) raises -> BoundaryLabel:
+                                                               ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:167:18: error: unable to locate module 'std'
+def cycle_escape(tables: SeedOverlapTables, n: Int, J: Int, H: Int,
+                 ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:167:48: error: use of unknown declaration 'Int'
+def cycle_escape(tables: SeedOverlapTables, n: Int, J: Int, H: Int,
+                                               ^~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:167:45: error: unable to locate module 'std'
+def cycle_escape(tables: SeedOverlapTables, n: Int, J: Int, H: Int,
+                                            ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:167:56: error: use of unknown declaration 'Int'
+def cycle_escape(tables: SeedOverlapTables, n: Int, J: Int, H: Int,
+                                                       ^~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:167:53: error: unable to locate module 'std'
+def cycle_escape(tables: SeedOverlapTables, n: Int, J: Int, H: Int,
+                                                    ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:167:64: error: use of unknown declaration 'Int'
+def cycle_escape(tables: SeedOverlapTables, n: Int, J: Int, H: Int,
+                                                               ^~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:167:61: error: unable to locate module 'std'
+def cycle_escape(tables: SeedOverlapTables, n: Int, J: Int, H: Int,
+                                                            ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:168:24: error: use of unknown declaration 'Bool'
+                 flip: Bool = False, step_cap: Int = 7) raises -> List[BoundaryEdge]:
+                       ^~~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:168:31: error: unable to locate module 'std'
+                 flip: Bool = False, step_cap: Int = 7) raises -> List[BoundaryEdge]:
+                              ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:168:18: error: unable to locate module 'std'
+                 flip: Bool = False, step_cap: Int = 7) raises -> List[BoundaryEdge]:
+                 ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:168:48: error: use of unknown declaration 'Int'
+                 flip: Bool = False, step_cap: Int = 7) raises -> List[BoundaryEdge]:
+                                               ^~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:168:54: error: unable to locate module 'std'
+                 flip: Bool = False, step_cap: Int = 7) raises -> List[BoundaryEdge]:
+                                                     ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:168:38: error: unable to locate module 'std'
+                 flip: Bool = False, step_cap: Int = 7) raises -> List[BoundaryEdge]:
+                                     ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:168:67: error: use of unknown declaration 'List'
+                 flip: Bool = False, step_cap: Int = 7) raises -> List[BoundaryEdge]:
+                                                                  ^~~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:168:67: error: unable to locate module 'std'
+                 flip: Bool = False, step_cap: Int = 7) raises -> List[BoundaryEdge]:
+                                                                  ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:88:25: error: use of unknown declaration 'Int'
+def member_transport(n: Int, J: Int, parent: BoundaryLabel,
+                        ^~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:88:22: error: unable to locate module 'std'
+def member_transport(n: Int, J: Int, parent: BoundaryLabel,
+                     ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:88:33: error: use of unknown declaration 'Int'
+def member_transport(n: Int, J: Int, parent: BoundaryLabel,
+                                ^~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:88:30: error: unable to locate module 'std'
+def member_transport(n: Int, J: Int, parent: BoundaryLabel,
+                             ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:88:38: error: unable to locate module 'std'
+def member_transport(n: Int, J: Int, parent: BoundaryLabel,
+                                     ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:89:25: error: use of unknown declaration 'Int'
+                     i: Int, j: Int) raises -> BoundaryLabel:
+                        ^~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:89:22: error: unable to locate module 'std'
+                     i: Int, j: Int) raises -> BoundaryLabel:
+                     ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:89:33: error: use of unknown declaration 'Int'
+                     i: Int, j: Int) raises -> BoundaryLabel:
+                                ^~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:89:30: error: unable to locate module 'std'
+                     i: Int, j: Int) raises -> BoundaryLabel:
+                             ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:89:48: error: unable to locate module 'std'
+                     i: Int, j: Int) raises -> BoundaryLabel:
+                                               ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:120:24: error: unable to locate module 'std'
+def verify_member_edge(tables: SeedOverlapTables, n: Int, J: Int,
+                       ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:120:54: error: use of unknown declaration 'Int'
+def verify_member_edge(tables: SeedOverlapTables, n: Int, J: Int,
+                                                     ^~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:120:51: error: unable to locate module 'std'
+def verify_member_edge(tables: SeedOverlapTables, n: Int, J: Int,
+                                                  ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:120:62: error: use of unknown declaration 'Int'
+def verify_member_edge(tables: SeedOverlapTables, n: Int, J: Int,
+                                                             ^~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:120:59: error: unable to locate module 'std'
+def verify_member_edge(tables: SeedOverlapTables, n: Int, J: Int,
+                                                          ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:121:24: error: unable to locate module 'std'
+                       parent: BoundaryLabel, i: Int, j: Int,
+                       ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:121:50: error: use of unknown declaration 'Int'
+                       parent: BoundaryLabel, i: Int, j: Int,
+                                                 ^~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:121:47: error: unable to locate module 'std'
+                       parent: BoundaryLabel, i: Int, j: Int,
+                                              ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:121:58: error: use of unknown declaration 'Int'
+                       parent: BoundaryLabel, i: Int, j: Int,
+                                                         ^~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:121:55: error: unable to locate module 'std'
+                       parent: BoundaryLabel, i: Int, j: Int,
+                                                      ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:122:24: error: unable to locate module 'std'
+                       target: BoundaryLabel) raises:
+                       ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:122:53: error: unable to locate module 'std'
+                       target: BoundaryLabel) raises:
+                                                    ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:127:23: error: unable to locate module 'std'
+def verify_cycle_path(tables: SeedOverlapTables, n: Int, J: Int, H: Int,
+                      ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:127:53: error: use of unknown declaration 'Int'
+def verify_cycle_path(tables: SeedOverlapTables, n: Int, J: Int, H: Int,
+                                                    ^~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:127:50: error: unable to locate module 'std'
+def verify_cycle_path(tables: SeedOverlapTables, n: Int, J: Int, H: Int,
+                                                 ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:127:61: error: use of unknown declaration 'Int'
+def verify_cycle_path(tables: SeedOverlapTables, n: Int, J: Int, H: Int,
+                                                            ^~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:127:58: error: unable to locate module 'std'
+def verify_cycle_path(tables: SeedOverlapTables, n: Int, J: Int, H: Int,
+                                                         ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:127:69: error: use of unknown declaration 'Int'
+def verify_cycle_path(tables: SeedOverlapTables, n: Int, J: Int, H: Int,
+                                                                    ^~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:127:66: error: unable to locate module 'std'
+def verify_cycle_path(tables: SeedOverlapTables, n: Int, J: Int, H: Int,
+                                                                 ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:128:29: error: use of unknown declaration 'Bool'
+                      flip: Bool, source: BoundaryLabel,
+                            ^~~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:128:23: error: unable to locate module 'std'
+                      flip: Bool, source: BoundaryLabel,
+                      ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:128:35: error: unable to locate module 'std'
+                      flip: Bool, source: BoundaryLabel,
+                                  ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:129:29: error: use of unknown declaration 'List'
+                      path: List[BoundaryEdge], step_cap: Int = 7) raises:
+                            ^~~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:129:23: error: unable to locate module 'std'
+                      path: List[BoundaryEdge], step_cap: Int = 7) raises:
+                      ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:129:59: error: use of unknown declaration 'Int'
+                      path: List[BoundaryEdge], step_cap: Int = 7) raises:
+                                                          ^~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:129:65: error: unable to locate module 'std'
+                      path: List[BoundaryEdge], step_cap: Int = 7) raises:
+                                                                ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:129:49: error: unable to locate module 'std'
+                      path: List[BoundaryEdge], step_cap: Int = 7) raises:
+                                                ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:129:74: error: unable to locate module 'std'
+                      path: List[BoundaryEdge], step_cap: Int = 7) raises:
+                                                                         ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:218:26: error: use of unknown declaration 'Int'
+def original_prefixes(n: Int, J: Int, source: BoundaryLabel,
+                         ^~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:218:23: error: unable to locate module 'std'
+def original_prefixes(n: Int, J: Int, source: BoundaryLabel,
+                      ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:218:34: error: use of unknown declaration 'Int'
+def original_prefixes(n: Int, J: Int, source: BoundaryLabel,
+                                 ^~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:218:31: error: unable to locate module 'std'
+def original_prefixes(n: Int, J: Int, source: BoundaryLabel,
+                              ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:218:39: error: unable to locate module 'std'
+def original_prefixes(n: Int, J: Int, source: BoundaryLabel,
+                                      ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:219:29: error: use of unknown declaration 'List'
+                      path: List[BoundaryEdge]) raises -> List[List[Int]]:
+                            ^~~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:219:23: error: unable to locate module 'std'
+                      path: List[BoundaryEdge]) raises -> List[List[Int]]:
+                      ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:219:59: error: use of unknown declaration 'List'
+                      path: List[BoundaryEdge]) raises -> List[List[Int]]:
+                                                          ^~~~
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:219:59: error: unable to locate module 'std'
+                      path: List[BoundaryEdge]) raises -> List[List[Int]]:
+                                                          ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:12:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/perron_field3.mojo:1:1: error: unable to locate module 'std'
+"""Exact cubic Perron-field arithmetic for the standing alphabet-three PIP regime.
+^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:9:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/class_a_plus_upper_cycles.mojo:219:59: error: 'std' is required for all normal mojo compiles.
+If you see this either:
+- Your mojo installation is broken and needs to be reinstalled or
+- You are a 'std' developer and are intentionally avoiding a pre-built 'std'
+                      path: List[BoundaryEdge]) raises -> List[List[Int]]:
+                                                          ^
+Imported from /workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:12:
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/psc/perron_field3.mojo:29:17: error: use of unknown declaration 'ImplicitlyCopyable'
+struct CubicElt(ImplicitlyCopyable, Copyable, Movable, Equatable, Hashable, Writable):
+                ^~~~~~~~~~~~~~~~~~
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:15:18: error: unable to locate module 'std'
+def main() raises:
+                 ^
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:15:5: error: unable to locate module 'std'
+def main() raises:
+    ^
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:15:9: error: 'builtin' does not refer to a nested package
+def main() raises:
+        ^
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:17:16: error: use of unknown declaration 'len'
+    var emit = len(args) == 2 and args[1] == "--emit"
+               ^~~
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:17:29: error: unable to locate module 'std'
+    var emit = len(args) == 2 and args[1] == "--emit"
+                            ^
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:18:8: error: use of unknown declaration 'len'
+    if len(args) > 1 and not emit:
+       ^~~
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/tests/test_class_a_plus_upper_cycles.mojo:18:20: error: unable to locate module 'std'
+    if len(args) > 1 and not emit:
+                   ^
+/workspace/scratch/7b7b91dcb7fe/psc-upper/kernel/.pixi/envs/default/bin/mojo: error: failed to parse the provided Mojo source module

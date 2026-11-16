@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+    "/workspace/scratch/7b7b91dcb7fe/psc-upper/oracles/python/class_a_plus_upper_recurrence_independent.py",
+    "--output-dir",
+    "/workspace/scratch/7b7b91dcb7fe/psc-upper/evidence/class-a-plus-upper-recurrence-2026-11-15/independent-replay"
+  ],
+  "elapsed_seconds": 2.1025116443634033,
+  "exit_code": 0,
+  "source_sha256": "cc97a3f956ab3fd8d8cf22e61e090664d4a3f614112a03c6068e85adb8dc152c",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "f7c9b6df5f7c16bad75938f774fbcb4a8e8b926dbc424375ee3b7b816af111b3",
+  "test_source_sha256": "d8de4b447dc7352299a20a3074d48cbf0e131228dac32d7654cbf12f86cff6e7"
+}

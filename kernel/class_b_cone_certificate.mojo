@@ -22,6 +22,13 @@ A cross-check, not part of the proof: on each certified region the symbolic
 graph at one integer point equals the exact graph there. An undecided region at
 every shift raises; so does a vertex without an offset-zero descendant.
 
+The cover is generic in the class: a `Family` carries Theorem E's class
+(`a1_normal_form_census.CLASS_A` or `CLASS_B`, default `CLASS_B`), which decides
+only the first and last letters of the images. Both classes have the incidence
+matrix of `(p, q, r)`, so the brackets below serve both; class A also turns on
+the cone engine's Bernstein rule (`psc.symbolic_cone`, `Cone.hull`). The class-A
+chamber families are in `class_a_chamber_cone_certificate.mojo`.
+
 Usage: `mojo run -I . class_b_cone_certificate.mojo [all | plus | minus | gaps]`
 (default `all`), or `pixi run class-b-cone-certificate`.
 """
@@ -54,7 +61,7 @@ from psc.param_poly import (
     qx_sub,
 )
 from symbolic_line_certificate import exact_hits, exact_vertex_keys, same_set
-from a1_normal_form_census import CLASS_B, class_member
+from a1_normal_form_census import CLASS_A, CLASS_B, class_ending, class_member
 
 
 
@@ -95,14 +102,16 @@ struct Family(Copyable, Movable):
     var r: Aff
     var l1: Int
     var l2: Int
+    var cls: Int  # Theorem E's class: CLASS_A or CLASS_B
 
-    def __init__(out self, name: String, var p: Aff, var q: Aff, var r: Aff, l1: Int, l2: Int):
+    def __init__(out self, name: String, var p: Aff, var q: Aff, var r: Aff, l1: Int, l2: Int, cls: Int = CLASS_B):
         self.name = name
         self.p = p^
         self.q = q^
         self.r = r^
         self.l1 = l1
         self.l2 = l2
+        self.cls = cls
 
     def uses(self, i: Int) -> Bool:
         if i == 1:
@@ -110,18 +119,22 @@ struct Family(Copyable, Movable):
         return self.p.c2 != 0 or self.q.c2 != 0 or self.r.c2 != 0
 
     def sigma(self, s1: Int, s2: Int) raises -> List[List[Int]]:
-        return class_member(CLASS_B, self.p.at(s1, s2), self.q.at(s1, s2), self.r.at(s1, s2))
+        return class_member(self.cls, self.p.at(s1, s2), self.q.at(s1, s2), self.r.at(s1, s2))
 
     def label(self, s1: Int, s2: Int) -> String:
         return "(" + String(self.p.at(s1, s2)) + "," + String(self.q.at(s1, s2)) + "," + String(self.r.at(s1, s2)) + ")"
 
 
-def class_b_cone(f: Family) raises -> Cone:
+def family_cone(f: Family) raises -> Cone:
     """The cone of a family, with brackets of beta from the fixed-point form
     `beta = r + 1 + (q - r) / beta + p / (beta - 2)` of the eigen-equation
     (`ell_y = 1`, `ell_c = 1 + (q - r) / beta`, `ell_x = p / (beta - 2)`): iterates
     `x0 = r + 1`, `x_{k+1} = g(x_k)`, alternating sides of beta. They are only
-    proposals; `psc.symbolic_cone.certify_cone` certifies each bracket."""
+    proposals; `psc.symbolic_cone.certify_cone` certifies each bracket. The
+    eigen-equation is that of the shared incidence matrix, so the brackets serve
+    classes A and B alike; the class fixes the endings."""
+    if f.cls != CLASS_A and f.cls != CLASS_B:
+        raise Error("the cone cover takes classes A and B only")
     var p = f.p.poly()
     var q = f.q.poly()
     var r = f.r.poly()
@@ -135,7 +148,8 @@ def class_b_cone(f: Family) raises -> Cone:
     var brs = List[Bracket]()
     brs.append(Bracket(xs[2].copy(), xs[1].copy()))
     brs.append(Bracket(xs[2].copy(), xs[3].copy()))
-    return Cone([0, 1, 1], [0, 0, 0], [p.copy(), q.copy(), r.copy()], 2, brs^)
+    var e = class_ending(f.cls)  # (s_x, s_c, t, s_y): sigma(y) = t y^r s_y
+    return Cone([0, 1, e[2]], [e[0], e[1], e[3]], [p.copy(), q.copy(), r.copy()], 2, brs^, hull=f.cls == CLASS_A)
 
 
 def cone_vertex_keys(g: ConeGraph, s1: Int, s2: Int) -> List[String]:
@@ -158,7 +172,7 @@ def _note(mut tally: CoverTally, line: String):
 struct CoverTally(Copyable, Movable):
     var regions: Int  # symbolic regions certified
     var finite: Int  # PIP members decided by the exact kernel
-    var non_pip: Int  # points of a family that are not PIP (outside class B)
+    var non_pip: Int  # points of a family that are not PIP (outside the class's PIP range)
     var largest: Int  # the largest symbolic graph
     var log: List[String]
     var verbose: Bool
@@ -180,7 +194,7 @@ def _clip(s: String) -> String:
 def _try_region(f: Family, n1: Int, n2: Int, mut tally: CoverTally) raises -> Bool:
     var g: ConeGraph
     try:
-        g = symbolic_cone_graph(class_b_cone(f), Region(n1, n2))
+        g = symbolic_cone_graph(family_cone(f), Region(n1, n2))
     except e:
         _note(tally, f.name + ": s >= (" + String(n1) + ", " + String(n2) + ") undecided: " + _clip(String(e)))
         return False
@@ -224,8 +238,8 @@ def cover(f: Family, mut screen: CubicScreen, mut tally: CoverTally) raises:
             var n = shifts()[k]
             if _try_region(f, f.l1 + n, f.l2 + n, tally):
                 for j in range(n):
-                    cover(Family(f.name + " s1=" + String(f.l1 + j), f.p.fix1(f.l1 + j), f.q.fix1(f.l1 + j), f.r.fix1(f.l1 + j), 0, f.l2), screen, tally)
-                    cover(Family(f.name + " s2=" + String(f.l2 + j), f.p.fix2(f.l2 + j), f.q.fix2(f.l2 + j), f.r.fix2(f.l2 + j), f.l1 + n, 0), screen, tally)
+                    cover(Family(f.name + " s1=" + String(f.l1 + j), f.p.fix1(f.l1 + j), f.q.fix1(f.l1 + j), f.r.fix1(f.l1 + j), 0, f.l2, f.cls), screen, tally)
+                    cover(Family(f.name + " s2=" + String(f.l2 + j), f.p.fix2(f.l2 + j), f.q.fix2(f.l2 + j), f.r.fix2(f.l2 + j), f.l1 + n, 0, f.cls), screen, tally)
                 return
         raise Error("no shift certifies the cone ", f.name)
     var lo = f.l1 if u1 else f.l2

@@ -895,3 +895,7 @@ remain necessary. The determinant-two argument introduces no
 unit-only spectral implication. Universal BH, arbitrary-ternary
 A1-prime, C4, G1, PDS, PSC and the all-alphabet extension receive no
 promotion from this scoped family theorem.
+
+## Mainline provenance
+
+PR #583 retained a [source locator at 9f0138d2](https://github.com/larsbx/pisot-substitution-conjecture-research/blob/9f0138d213357b866e7ceef0dcbfab96a667526d/docs/class-a-plus-constant-entry-2026-11-14.md) for its narrow Lean import. This document gives the full branch proof and carries its separate acceptance scope.

@@ -2,6 +2,15 @@
 
 **Status:** planning and source reconciliation; universal BH and A1′ remain open.
 
+**November 16, integration update.** Main now has the [upper plus all-source
+entry theorem](class-a-plus-upper-all-source-entry-2026-11-16.md) for
+`n>=7,n+5<=d<=2n+11`. It enters the
+[central-source escape](class-a-plus-upper-central-recurrence-2026-11-15.md),
+including all eight alternating-cycle exits. The smaller upper plus members and
+the end-to-end Lean binding remain separate obligations. The [whole minus-chamber
+registry record](ledger-index.md) tracks the written proof and its integration
+acceptance. The dated November 14 notes below retain their original scopes.
+
 **November 14, plus-Class-A continuation.** The new
 [constant-entry theorem](class-a-plus-constant-entry-2026-11-14.md) proves
 typed coincidence from every strict integral overlap for
