@@ -72,9 +72,9 @@ roots `β > 1 > |α₂|, |α₃|` (the (F)-class note writes `λ₂, λ₃`), an
 `g` and `g_R` the first- and last-letter maps. A word is *legal* if it is a
 factor of some `σ^k(c)`. `Ω_σ` is the tiling space, `Φ` the inflation,
 `T ↦ T − t` the flow, `dim H¹ = dim H¹(Ω_σ; ℚ) = 3 + l` (Lemma 7), and `c_n`
-is the characteristic polynomial of `Φⁿ*` on the asymptotic-cycle part, so
-that `Φⁿ*` has characteristic polynomial `χ_{Mⁿ} c_n` on `H¹(Ω_σ; ℚ)`
-(Lemma 7(3)); the roots of `c_n` are roots of unity. `n ≥ 1` is *admissible*
+is the characteristic polynomial of `(g_Kⁿ)*` on `H¹(ER; ℚ)`, of degree
+`l`, so that `Φⁿ*` has characteristic polynomial `χ_{Mⁿ} c_n` on
+`H¹(Ω_σ; ℚ)` (Lemma 7(3)); the roots of `c_n` are roots of unity. `n ≥ 1` is *admissible*
 if some legal word `ba` has `g_Rⁿ(b) = b` and `gⁿ(a) = a`.
 
 *Geometric realization.* `h_φ: Ω_σ → 𝕋_A` is the geometric realization of
@@ -230,8 +230,9 @@ the action on the cohomology of the Anderson–Putnam complex) were read for
 the statement. For `σ ∈ PIP3` the formula agrees with that Lefschetz form:
 the map `g_K` of Lemma 7 permutes the cells of the connected graph `ER`,
 whose vertices are the periodic last and first letters and whose edges are
-the periodic legal seams, so `v_n − a_n − b_n = tr(g_Kⁿ* | H¹(ER)) − 1` for
-the three terms of the formula, and
+the periodic legal seams. With `a_n = #Fix(gⁿ)`, `b_n = #Fix(g_Rⁿ)` and
+`v_n` the number of fixed legal seams, the trace formula on the graph gives
+`v_n − a_n − b_n = tr(g_Kⁿ* | H¹(ER)) − 1`, and so
 `|Fix(Φⁿ)| = tr(Φⁿ* | H¹(Ω_σ; ℚ)) − 1` by Lemma 7(3).
 
 *Replay.* `kernel/tests/test_fixed_point_count.mojo` compares the formula
@@ -447,9 +448,12 @@ solenoid `𝕋_A` and `h_φ(T)` records a vertex class of `Φ^k(T)` for every
 common vertex at the origin, every member of the `Φ`-orbit of each strand
 has a vertex at `0 ∈ ℤ³`, so `h_φ(T₀) = h_φ(T₀′)` is the identity of
 `𝕋_A`; equivariance under the flow and density of the orbit of
-`(T₀, T₀′)` in `Z` give (Z4). The construction in the proof of Lemma 8 shows
-more: **the pair space of a strict primitive bigon system is a strict
-component**, and every strict system yields one.
+`(T₀, T₀′)` in `Z` give (Z4). In this note a **strict component** is a set
+with (Z1)–(Z3) and (Z4) in the form `h_φ(T) = h_φ(T′)`; this is the form
+the proof of Lemma 8 establishes, and it needs no identification of `h_φ`
+with `g_max`. The construction in that proof shows more: **the pair space
+of a strict primitive bigon system is a strict component**, and every
+strict system yields one.
 
 ### 6.2 Statement
 
@@ -488,18 +492,18 @@ in Barge's terms B15 §3 and one **[Std]** fact.
 
 *(W1).* By BBK Thm 4.2 there is a point `q ∈ 𝕋_A` whose fibre has exactly
 two elements; since `h_φ(Ω_σ) = 𝕋_A`, one of them, `T`, is in `Ω_σ`. Let
-`Z₁` be a strict component. Its first projection is closed, flow-invariant
-and nonempty, hence all of `Ω_σ`, so `(T, T′) ∈ Z₁` for some `T′`. By (Z4),
-`T′` is in the fibre of `T`, and `T′ ≠ T` by (Z2). So the fibre is
-`{T, T′}`, and every strict component contains the pair `(T, T′)`. Strict
-components are minimal for the diagonal flow, so two of them that share a
-point are equal.
-
-The sets `swap(Z)` and `(Φ × Φ)(Z)` are again compact, invariant and
-minimal for the diagonal flow, their pairs share no tile at any level, have
-relatively dense common vertices and lie in one fibre
-(`h_φ ∘ Φ` is the shift of `h_φ`); they are strict components, hence equal
-to `Z`.
+`W ⊆ Ω_σ × Ω_σ` be any nonempty compact set that is invariant and minimal
+under the diagonal flow and consists of pairs of distinct fibre-mates. Its
+first projection is closed, flow-invariant and nonempty, hence all of
+`Ω_σ`, so `(T, T′) ∈ W` for some `T′`; `T′` is in the fibre of `T` and
+`T′ ≠ T`, so the fibre is `{T, T′}`. Hence every such set contains the pair
+`(T, T′)`, and two minimal sets that share a point are equal: there is at
+most one such set. A strict component is one, by (Z1), (Z2) (a pair of
+`Z` shares no tile, so its entries differ) and (Z4); this is the
+uniqueness. If `Z` is the strict component, `swap(Z)` and `(Φ × Φ)(Z)` are
+again nonempty, compact, invariant and minimal for the diagonal flow (`Φ`
+maps flow orbits to flow orbits), and they consist of pairs of distinct
+fibre-mates (`h_φ ∘ Φ` is the shift of `h_φ`); so they equal `Z`.
 
 By §6.1 and uniqueness, `Z` is the pair space of a strict primitive bigon
 system `C₀` for some `σ^P`, and by step (a) of the proof of Theorem TT the
@@ -522,11 +526,13 @@ and `q′ = 1`: the child graph of `σ` on `B` is strongly connected and
 aperiodic, i.e. the child substitution is primitive.
 
 Finally let `𝒞` be a strict system for `σ^m` and `C′` a sink of its child
-graph. The proof of Lemma 8, started from `C′`, produces a strict primitive
-bigon system `C₀″ ⊆ C′` for a power of `σ^m` whose pair space is a strict
-component; so `C₀″ = B` and `B ⊆ C′`. `B` contains the `σ^m`-children of
-its members (the irreducible factors of `(σ^m(u), σ^m(v))` are iterated
-`σ`-children), and `C′` is strongly connected, so `C′ ⊆ B`.
+graph. The proof of Lemma 8, applied to the substitution `σ^m` (it is in
+PIP3 and has the same tiling space and flow) and started from `C′`,
+produces a strict primitive bigon system `C₀″ ⊆ C′` for a power of `σ^m`
+whose pair space is a strict component; so `C₀″ = B` and `B ⊆ C′`. `B`
+contains the `σ^m`-children of its members (the irreducible factors of
+`(σ^m(u), σ^m(v))` are iterated `σ`-children), and `C′` is strongly
+connected, so `C′ ⊆ B`.
 
 *(W2).* If the fibre of `T` is `{T, T*}`, every partner of `T` is a
 fibre-mate different from `T`, hence `T*`, and `T` has a partner. The set of
@@ -671,8 +677,8 @@ equivariance of the coboundary; directly, for `ψ(c) = d₁ ⋯ d_k`,
 `(w M_ψ)_c = Σ_i w_{d_i}` telescopes by the last statement of (1) to
 `[g_{ψ,R}^m(d_k) = x₁] − [g_ψ^m(d₁) = y₁] = w_c`. `ι` commutes with `ψ` and
 exchanges `x₁` with `ι(x₁)` and `y₁` with `ι(y₁)`, so by the memberships
-of (1) `w_{ι(c)} = (1 − [g_{ψ,R}^m(c) = x₁]) − (1 − [g_ψ^m(c) = y₁])
-= −w_c`. If `w` were zero, every letter would be of one of two types
+of (1), `w_{ι(c)}` is `(1 − [g_{ψ,R}^m(c) = x₁]) − (1 − [g_ψ^m(c) = y₁])`,
+which is `−w_c`. If `w` were zero, every letter would be of one of two types
 (ends in `x₁` and begins in `y₁`; or ends in `ι(x₁)` and begins in
 `ι(y₁)`), a legal word would consist of letters of one type by (1), and
 `ι` exchanges the types; but every tiling of the minimal space `Ω_ψ`
@@ -768,8 +774,8 @@ and Thm 12(4)), hence defines one on `Ω_s` with the same eigenvalue. The
 rank of `[X, S¹] = Ȟ¹(X; ℤ)` (**[Std]**) is at most 3: for `Ω_σ` by
 hypothesis, for `Ω_s` because `q*` is injective on rational `H¹` (B15
 Prop. 19). So the cokernel of `θ` is a torsion group, hence zero: (a), and
-the first statement of (b). An eigenfunction on `Ω_s` factors through `g_s` by
-maximality (B15 §2, Thm 12(4)). ∎
+the first statement of (b). An eigenfunction on `Ω_s` factors through `g_s`
+by maximality (B15 §2, Thm 12(4)). ∎
 
 *Second proof of (a) (the route's own; kept because it identifies the
 classes).* `G_0 = 0` (Lemma 7(2)) and `G_3 = 0` (`l = 0`), so by BD08
@@ -856,8 +862,8 @@ Theorem H3, resp. Theorem P+. Then conclude as in Theorem FC3. ∎
 
 Imports: those of Theorem FC2 and Theorem H3 (resp. P+); BBK Cor. 5.2;
 Theorem A(4). For odd determinant this is clause (b) of Theorem FC3; the
-new case is even determinant. The regression's contract cites it as
-"Theorem FC3+".
+new case is even determinant. The module `psc.c4_geometric_f` and its
+regression cite this corollary as "Theorem FC3+".
 
 **Corollary N+ (necessary conditions, every determinant).** Let
 `σ ∈ PIP3` have a strict system and `dim H¹(Ω_σ; ℚ) = 3` (or violate a
@@ -941,8 +947,10 @@ whenever that eigenvalue is not a root of unity, and in the remaining case
 consistent: no model exists, and the route's sentence to that effect is
 withdrawn (§12). The mechanism has a concrete precedent outside PIP3: the
 substitution `a → aaaab, b → abbbb` has a coincidence at position 0, hence
-is an almost everywhere one-to-one extension of the 5-adic solenoid, and by
-Theorem FP evaluated by hand it has `5ⁿ + 3ⁿ − 1` tilings fixed by `Φⁿ`: an
+(Dekking's criterion for substitutions of constant length; standard, not
+read) pure discrete spectrum, so it is an almost everywhere one-to-one
+extension of the 5-adic solenoid; and by Theorem FP evaluated by hand it
+has `5ⁿ + 3ⁿ − 1` tilings fixed by `Φⁿ`, with the extra eigenvalue 3. An
 almost everywhere injective factor map can add an expanding eigenvalue. At
 coincidence rank two `π₁: Z → Ω_σ` is such a map (W2).
 

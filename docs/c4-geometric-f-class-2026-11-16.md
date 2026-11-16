@@ -1244,3 +1244,214 @@ of them are clause (a′), prior art; the other 156 are already in
 - **No certification.** The regression counts classes; it decides no
   coincidence rank and no spectrum. C4, #138, #139, #84, G1 and PSC are
   unchanged, and no ledger claim is registered.
+
+## 10. Update 2026-11-16 (round 2)
+
+Added on 2026-11-16, after the second round of the attempt. The record of
+that round for coincidence rank two is the
+[rank-two note](c4-rank-two-wall-2026-11-16.md), with its gate
+[`c4-rank-two-wall-stop-go-2026-11-16.md`](c4-rank-two-wall-stop-go-2026-11-16.md).
+Nothing in §§1–9 was edited, except for two dated paragraphs (after the
+status paragraph and in §7) that point here. Each item names the round-1
+sentences it supersedes, verbatim. Status of this section: Universal C4
+remains open; nothing changes a governed claim status (C4, #138, #139, #84,
+G1 and PSC are unchanged); no ledger claim is registered; independent human
+review pending.
+
+### (a) Theorem FC1 is machine-checked
+
+Superseded sentences: in the status paragraph, "none is machine-checked, and
+independent human review is pending for all of them, FC1 included"; in §9,
+"FC1 is elementary; like the others it is not machine-checked and awaits
+independent human review". Human review is still pending. What changed is
+the first half, for Theorem FC1 only.
+
+*Abstract form* (`proof/PscVerif/PscVerif/GeometricFInclusion.lean` and
+`GeometricFStrict.lean`, namespace `Psc.GeometricF`; axioms `propext`,
+`Classical.choice`, `Quot.sound`). For a substitution `s` on a finite
+alphabet and an additive length functional `L` the hypotheses are:
+
+- (H1) `LengthData s L β`: `β > 0`, `L(Mv) = β L(v)`, `L` positive on
+  letters;
+- (H1′) `1 < β`;
+- (H2) `ContractionData s L ν ρ`: a subadditive even `ν` with
+  `ν(Mv) ≤ ρ ν(v)`, `0 ≤ ρ < 1`, and `{v : |L v| ≤ a, ν v ≤ b}` finite for
+  all `a, b` (this is where Lemma 1(2) and the Pisot bound enter);
+- (H3) `PropertyF s L`: no `f`-periodic state has `v ≠ 0`.
+
+Under them: items 1 and 2 of Theorem FC1 are `fc1_inclusion_gap` (from
+(Fin) and (F) on the relative states) and `fc1_inclusion_gap_of_contraction`
+((H1), (H2), (H3)); item 3 is `fc1_strictSystem` ((H1), (H1′), two
+`σ^m`-fixed words, (Fin), (F) on `R`, no witness for the first letters); the
+equivalences are `fc1_equivalence` and `fc1_equivalence_of_contraction`
+((H1), (H1′), (H2), (H3)). The direction of the "Powers" paragraph that the
+proof uses is `strictSystem_of_power` (nonerasing `σ`). Lemma 2 is
+`step_power_iff`; steps (E), (C), (Fin) are `relState_stepN`,
+`relState_vertex_iff`, `relStates_finite_of_contraction`; Lemma 3(1), (4)
+are `stepN_bound`, `reaches_vertex_of_propertyF`,
+`propertyF_of_reaches_vertex`. Non-vacuity: every hypothesis holds on
+Thue–Morse and the three statements of the equivalence are true there
+(`tm_fc1`). Negative controls: the reducible strict controls admit no
+contraction data (`carrier_not_contractionData`,
+`reducible_controls_not_contractionData`).
+
+*On the standing class* (`proof/PscVerif/PscVerif/GeometricFPisot.lean`,
+namespace `Psc.GeometricFPisot`; same axioms). The abstract hypotheses are
+derived from the spectral hypotheses in the forms used on main:
+
+- (P) primitivity, `∃ k ≥ 1, ∀ a c, 0 < (inc s ^ k) a c`;
+- (I) `Irreducible ((inc s).map (Nat.cast : ℕ → ℚ)).charpoly`;
+- (E) a positive left eigen-row, `∀ a, 0 < ℓ a` and
+  `ℓ ᵥ* (inc s).map (Nat.cast : ℕ → ℝ) = β • ℓ`;
+- (R) the Pisot hypothesis in root form: every complex root `z ≠ β` of
+  `χ_M` has `‖z‖ < 1`;
+- (F) `PropertyF s (lenHom ℓ)`.
+
+`exists_contractionData_of_pisot` gives (H2) from (I), (E), (R);
+`Psc.BPrimeCore.one_lt_perron`, already on main, gives (H1′) from (P) on at
+least two letters. Then:
+
+- `fc1_equivalence_of_primitive_pisot` (any finite alphabet with at least
+  two letters) and **`fc1_pip3`** (three letters): under (P), (I), (E), (R)
+  and (F), `σ` has a strict system iff some pair of distinct `g`-periodic
+  letters has no left strong-coincidence witness, iff left strong
+  coincidence fails for some pair of distinct letters;
+- `fc1_inclusion_gap_of_pisot` ((I), (E), `β > 0`, (R), (F)) and
+  `fc1_inclusion_gap_of_primitive_pisot`: items 1 and 2;
+- `fc1_strictSystem_of_pisot` ((I), (E), `β > 1`, (R), (F)): item 3;
+- `fc1_equivalence_of_isPisot` and `fc1_equivalence_of_pisot_root`: the
+  equivalence with the Pisot hypothesis in the two other forms used on main
+  (`Psc.BPrime.IsPisot β`; the form of the sieve theorems);
+- `periodic_bound`, `periodicStates_finite`: Lemma 3(1), (3) in abstract
+  form.
+
+So on the standing class property (F) is the only hypothesis of Theorem FC1
+that is not a hypothesis of the class itself.
+
+*What is not machine-checked.* No three-letter substitution is shown in Lean
+to satisfy `PropertyF`: Tribonacci satisfies every hypothesis except (F)
+there (`trib_fc1_hypotheses`), and the one complete instance is Fibonacci,
+on two letters (`fib_propertyF`, `fib_fc1_hypotheses`, `fib_fc1`), where the
+three statements of the equivalence are all false. The exact decision of
+(F) on the corpus remains the Mojo regression of §9. Not formalised:
+Lemma 1(1), (3); the explicit bound on `N₀`; Lemma 4 ((F) for powers and for
+the reversal; interior periodic addresses); Lemma 5; the converse of the
+"Powers" paragraph; Theorems FC2, P, FC3, N and Fork. The Lean statements
+deviate from the text in presentation only (any finite alphabet; `f` and
+the relative states as relations with proved existence and uniqueness; `ν`
+a sum over the contracted eigen-coordinates; injectivity of `ℓ` is not
+assumed), as their module docstrings list.
+
+*Evidence.* An incremental build and a module-restricted `#print axioms`
+audit on 2026-11-16 (exit 0); the isolated checker `tools/check_lean.sh`
+was not run in this session, and hosted CI has not run. Replay:
+
+```sh
+(cd proof/PscVerif && lake build PscVerif.GeometricFPisot)
+```
+
+Theorem FC1 is an equivalence. Its formalisation excludes no strict system
+and leaves universal C4 where it was.
+
+### (b) Theorem FC3 extends to "(F) and `dim H¹ = 3`", for every determinant
+
+**Corollary FC3+** (rank-two note, §8). If `σ ∈ PIP3` satisfies (F) and
+`dim H¹(Ω_σ; ℚ) = 3`, then `cr(σ) = 1`: pure discrete spectrum, strong
+coincidence of all pairs on both sides, and no strict system. For odd
+determinant this is clause (b) of Theorem FC3; the new case is even
+determinant. It follows from Theorem FC2 and **Theorem H3** of the rank-two
+note (`dim H¹ = 3` excludes `cr = 2` for every determinant). Correspondingly
+**Corollary N+** extends Theorem N(2): a strict system with `dim H¹ = 3`
+forces `cr ≥ 3` and the failure of (F), for every determinant. Both are
+recorded proofs, conditional on the imports listed in the rank-two note
+(Barge 2015 as printed; Barge–Kellendonk–Schmieding 2012, Corollary 3 and
+Theorem 5; Baker–Barge–Kwapisz; standard facts that were not read), not
+machine-checked, independent human review pending.
+
+Also in the rank-two note: **Lemma S+** sharpens Lemma S (in its notation
+`ε = 1`, the sign is `+`, and the factor `t − 1` sits in `X − Y`), and
+**Theorem P+** extends the parity count of Theorem P to every determinant
+(`cr = 2` forces `dim H¹ ≥ 3 + |d₂ − 1|`, `d₂ = 3 − ord_t(χ_M mod 2)`, and
+a divisor condition at every admissible `n`). For even determinant its
+dimension bound is contained in Theorem H3, and its divisor condition is
+not implemented.
+
+Superseded sentences:
+
+- §4.3: "Theorem FC3 gives it for odd determinant under one of two
+  arithmetic conditions; it is open for `det M` even and for `det M` odd
+  with `tr M ≡ e₂(M)` and `dim H¹ ≥ 5`."
+- §5, Remark (1) after Theorem P, as far as it suggests that only odd
+  determinant can be treated: "The hypothesis `det M` odd is used once, to
+  make `χ̄_{M⁶}` prime to `t`; Lemma S itself has no parity hypothesis."
+  The sentence is correct; Theorem P+ is what Lemma S gives without that
+  hypothesis.
+- §9, Non-claims: "Open: `det M` even (174 corpus specimens of the 510 with
+  at least two periodic letters on both sides), and `det M` odd with
+  `tr M ≡ e₂(M)` and `dim H¹ ≥ 5` (180)."
+- §9, Non-claims: "**Even determinant.** Nothing beyond FC1 and FC2.
+  Theorem P, FC3(b),(c) and Theorem N(2) say nothing for `det M = 2`."
+
+As they now stand: on (F), "`ν_L = 2` is impossible" is open for `det M`
+even with `dim H¹ ≥ 4`, and for `det M` odd with `tr M ≡ e₂(M)` and
+`dim H¹ ≥ 5`. Pinned by the extended regression
+`kernel/tests/test_c4_geometric_f.mojo` (class counts, not open cases): of
+the 174 corpus specimens with (F), `det M = 2` and two periodic letters on
+both sides, 42 have `dim H¹ = 3` and 132 do not (72 with `d₂ = 1`; 60 with
+`d₂ = 2` and `dim H¹ = 5`); with the 156 odd ones, 198 of the 510 meet the
+hypotheses of Theorem FC3 or Corollary FC3+ and 312 = 180 + 132 do not.
+Over the corpus, (F) and `dim H¹ = 3` hold on 1,350 = 1,116 + 234
+specimens; of the 234 with even determinant, 192 fall under clause (a′).
+No new corpus fact follows: every corpus specimen is covered by
+`C4StandingCorpus`.
+
+### (c) Lemma 9, Lemma 10 and unimodularity; Theorem Fork without unit
+
+Superseded sentences:
+
+- §7, after Lemma 10: "The argument needs the index of the eigenfunction
+  classes in `Ȟ¹(Ω_s; ℤ)` to be prime to `p`; Lemma 9 gives index one, and
+  that is where this argument uses unimodularity and `l = 0`. Whether the
+  conclusion of Theorem Fork holds without them is not known here."
+- §7, proof of Lemma 9: "Here both the unit hypothesis and `l = 0` are
+  used." This is true of that proof, not of the statement.
+- §7, after Theorem Fork: "nothing is shown for `dim H¹ ≥ 4` or for nonunit
+  `σ`."
+- §9, table of hypotheses, row "`det M = ±1` and `dim H¹ = 3`": "the proof:
+  Lemma 9 needs `Ȟ¹(Ω_σ; ℤ) = ℤ³` and index one."
+
+The exact status, with locators in the rank-two note:
+
+1. **Lemma 9′ (§8).** For `σ ∈ PIP3` with `dim H¹ = 3` and every
+   determinant, every class of `Ȟ¹(Ω_σ; ℤ)` is the class of a continuous
+   eigenfunction, and when `cr ≥ 2` the same holds on Barge's quotient
+   `Ω_s`. The index is one; the hypothesis that matters is `l = 0`, not
+   `|det M| = 1`. This is not new: it follows from
+   Barge–Kellendonk–Schmieding 2012 (Corollary 3: `π*` is injective in
+   degree one; Theorem 5: its cokernel is torsion free) once the ranks
+   agree. That source was not found in round 1.
+2. **Lemma 10** therefore holds for every `σ ∈ PIP3` with `dim H¹ = 3` and
+   `cr ≥ 2`; its proof is unchanged, with Lemma 9′ in place of Lemma 9.
+3. **Theorem H3** is Lemma 10 at `p = 2`, applied to Barge's twin
+   involution.
+4. **Theorem Fork for nonunit `σ` with `dim H¹ = 3`: expected, not
+   proved.** Besides Lemma 9 its proof uses unimodularity in the first
+   paragraph of §7 (the torus as maximal equicontinuous factor; for nonunit
+   `σ` it is a solenoid). Steps 1–4 were not rewritten for the solenoid;
+   one of the two verifiers of round 2 reports having re-derived them, the
+   other did not, and no proof text exists. The statement of Theorem Fork
+   stays as printed above, for unit `σ`.
+5. **For every determinant and every `dim H¹`** the rank-two note has a
+   weaker non-injectivity statement (Theorem NI: the top-track map of a
+   swap-symmetric strict component is injective on periodic points only
+   for unit `σ` with first defect degree divisible by 3; the second partner
+   may be eventually coincident with the first) and, at coincidence rank
+   two, Theorem W.
+
+### (d) Pointer
+
+The non-claim "**Infinitude of the non-trivial part of the FC3 class.** Not
+shown." and the sentence of §9 "Whether the non-trivial part of the class is
+infinite, beyond powers and reversals, is open." are the subject of the
+[family note of round 2](c4-fc3-family-2026-11-16.md), which is the record
+for them. Nothing is asserted about them here.

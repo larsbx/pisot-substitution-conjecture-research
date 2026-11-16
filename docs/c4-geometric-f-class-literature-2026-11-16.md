@@ -176,6 +176,12 @@ Hypotheses that do not transfer, and what replaces them:
 | the chain of Barge 2015 behind Thm 22 (Thm 12, Lemmas 13–14, Prop. 19) | Thm 12: the substitution forces its border and has no almost automorphic sub-action (in dimension one: no pure discrete spectrum); Lemmas 13–14: `cr = 2` and `≈_s` trivial; Prop. 19: a proper substitution. A PIP3 substitution is in general neither proper nor border forcing | applied only to Barge's proper version of a power `σⁿ` (his §4), whose rewriting references (Durand; Barge–Diamond 2001) were not read; `cr = 2` is the hypothesis of Lemma S, and `≈_s` is trivial on the stack quotient by Thm 12 |
 | strong coincidence | hypothesis of Minervino–Thuswaldner Thm 9.9, the one (F) criterion read | not assumed; replaced by `cr ≤ 2` on (F) plus an arithmetic exclusion of `cr = 2` |
 
+*Update 2026-11-16 (round 2).* The fourth row of this table ("every class of
+`H¹(Ω; ℤ)` is an eigenfunction class": "none in print") is superseded by
+Barge–Kellendonk–Schmieding 2012, and its third row ("exclusion of
+`cr = 2`") is extended to even determinant at `dim H¹ = 3`. See the final
+section of this note.
+
 ### Derivation / reduction
 
 Theorem FC1 uses no source: equivariance of relative states under inflation,
@@ -259,3 +265,89 @@ it the tiling of Minervino–Thuswaldner Thm 9.9 without that theorem's
 strong-coincidence hypothesis; under the imports of Theorem FC2 and Baker–Barge–Kwapisz Cor. 5.2 it would
 also give pure discrete spectrum. The means inspected here do not reach
 that.
+
+## Update 2026-11-16 (round 2)
+
+Added on 2026-11-16, after the second round of the attempt and its
+verification. The gate for that round is
+[`c4-rank-two-wall-stop-go-2026-11-16.md`](c4-rank-two-wall-stop-go-2026-11-16.md),
+with the proof note
+[`c4-rank-two-wall-2026-11-16.md`](c4-rank-two-wall-2026-11-16.md). The text
+above is that of round 1 and was not edited, except for one dated paragraph
+beneath the table of hypotheses that do not transfer. Universal C4 remains
+open; nothing here changes a governed claim status; independent human review
+pending.
+
+**The row "none in print" was wrong.** The table of hypotheses that do not
+transfer has the row
+
+```text
+| every class of `H¹(Ω; ℤ)` is an eigenfunction class | none in print | unit and `dim H¹ = 3` (Theorem Fork only) |
+```
+
+The statement is in print, for every determinant, as soon as the ranks
+agree: Barge–Kellendonk–Schmieding, *Maximal equicontinuous factors and
+cohomology for tiling spaces*, Fund. Math. 218 (2012) 243–267,
+arXiv:1204.1432. In the numbering of the arXiv source:
+
+- §3.2: for a compact space `X`, `[X, S¹] ≅ H¹(X)`; for the maximal
+  equicontinuous factor `Ê`, `H¹(Ê)` is the group `E` of eigenvalues, and
+  `π*` corresponds to `θ: E → [Ω, S¹]`, `θ(η) = [f_η]`, the class of a
+  continuous eigenfunction;
+- Lemma 2 and **Corollary 3**: the Schwartzman winding number is a left
+  inverse of `θ`, so `π*` is injective in degree one;
+- Lemma 4 (attributed there to Krasinkiewicz) and **Theorem 5**: the
+  cokernel of `π*: H¹(Ê) → H¹(Ω)` is torsion free;
+- Corollary 6; in §5.1 a theorem quoted from Andress–Robinson: for a
+  one-dimensional irreducible substitution with common prefix and Pisot
+  dilation, `coker θ = 0`.
+
+Hypotheses: a tiling space of finite local complexity with a minimal
+`ℝⁿ`-action and an ergodic invariant measure; their substitutions are
+primitive, non-periodic and FLC. There is no Pisot hypothesis, no
+irreducibility and no unimodularity. For `σ ∈ PIP3` with `dim H¹ = 3` the
+eigenvalue group has rank 3 (Baker–Barge–Kwapisz Thm 5.1: the eigenvalues
+`u·r`, `u ∈ ℤ³`), the rank of `H¹`. So the cokernel of the injective map
+`θ` is a torsion group; being torsion free, it is zero. Hence every class of
+`H¹(Ω_σ; ℤ)` is an eigenfunction class, **unit or not**; the entry of the
+third column should read "`dim H¹ = 3`", without "unit". This is Lemma 9′
+of the rank-two note.
+
+*What was read.* The source was not found by the reading of round 1. The
+prior-art verifier of round 2 found it and read a fetched HTML rendering
+(statements; proofs paraphrased). Its arXiv TeX source was then read on
+2026-11-16, while the round-2 notes were written: the statements and proofs
+of Theorem 1, Lemma 2, Corollary 3, Lemma 4, Theorem 5 and Corollary 6. The
+theorem of Andress–Robinson was read only as quoted there.
+
+**Consequences for other entries of this note.**
+
+- Row "exclusion of `cr = 2`" of the same table ("Theorems P, FC3(b),(c), N
+  are stated for odd `det M` only; nothing is claimed for `det M = 2`"), the
+  sentence "Thm 22 needs odd norm (`det M` odd on PIP3), so nothing
+  transfers to `det M = 2`" in the row of Barge 2015, and the non-claim "any
+  statement for even determinant": Barge's Thm 22 itself still needs odd
+  norm, through his Lemma 20. The chain before it (Thm 12, Lemmas 13–15,
+  Thm 17, Prop. 19, and the count of periodic words in the proof of Thm 22)
+  has no parity hypothesis, and with Lemma 9′ it gives Theorem H3 of the
+  rank-two note: `dim H¹ = 3` excludes `cr = 2` for every determinant. So a
+  statement for `det M = 2` is now recorded (Theorem H3, Corollaries FC3+
+  and N+; Theorem P+), conditional on its imports.
+- Row of Barge–Bruin–Jones–Sadun: "They do not show that unimodularity is
+  necessary in Theorem Fork: the hypothesis is used in its proof (Lemma 9),
+  and whether the conclusion fails for a nonunit member of PIP3 is not known
+  here." Lemma 9 does not need unimodularity (Lemma 9′). Theorem Fork for
+  nonunit `σ` with `dim H¹ = 3` is expected and not proved: the first
+  paragraph of §7 of the proof note and Steps 1–4 were not rewritten for
+  the solenoid. That row also omits the result of the paper closest to the
+  new statements: the theorem labelled `not2` in its arXiv source, "a
+  homological Pisot substitution with `d = 1` does not have coincidence
+  rank 2", regardless of the norm, proved for even norm by a parity count
+  on a matrix `[[A, B], [B, A]]`. It was read in the TeX source in round 2
+  and is the mechanism of Lemma S+ and Theorem P+ of the rank-two note.
+- Row of Barge 2015: the 2-to-1 covering `Σ_p` used by the rank-two note is
+  Theorem 17 of the arXiv text, and Lemma 15 is `Ω_{Ψ_p} ≅ Ω_Ψ/∼_rpd`;
+  neither is listed in that row. Corollary 25 remains the wrong locator for
+  the statement at `l = 0` (census note).
+
+Nothing else in the source table or in the decision of this note changes.

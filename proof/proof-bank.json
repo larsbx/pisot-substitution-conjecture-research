@@ -34140,7 +34140,7 @@
     },
     {
       "source": "docs/c4-fc3-family-2026-11-16.md",
-      "line": 620,
+      "line": 622,
       "statement_heading": "**Proposition FM5.** Put `A := σ(1) = 0 1^n 2` for `σ = σ_{r,s,n}`, so that"
     },
     {
@@ -34425,47 +34425,47 @@
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 244,
+      "line": 245,
       "statement_heading": "**Lemma K (power sums bounded above).** Let `f` be a monic complex"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 261,
+      "line": 262,
       "statement_heading": "**Lemma U (monomials that are roots of unity).** Let `χ ∈ ℤ[t]` be a monic"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 289,
+      "line": 290,
       "statement_heading": "**Theorem TT.** Let `σ ∈ PIP3`, `P ≥ 1`, `τ = σ^P`, and let `B` be a"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 353,
+      "line": 354,
       "statement_heading": "**Theorem NI.** Let `σ ∈ PIP3`, `τ = σ^P`, and let `B` be a strict"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 456,
+      "line": 460,
       "statement_heading": "**Theorem W (the rank-two wall).** Let `σ ∈ PIP3` with `cr(σ) = 2` have a"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 741,
+      "line": 747,
       "statement_heading": "**Lemma 9′ (classes are eigenfunction classes; every determinant).** Let"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 789,
+      "line": 795,
       "statement_heading": "**Theorem H3.** Let `σ ∈ PIP3` with `dim H¹(Ω_σ; ℚ) = 3`. Then"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 845,
+      "line": 851,
       "statement_heading": "**Corollary (dimension).** For `σ ∈ PIP3`, `cr(σ) = 2` forces"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 1069,
+      "line": 1077,
       "statement_heading": "*Theorem FP (`test_fixed_point_count.mojo`).* The formula"
     },
     {
