@@ -21,8 +21,9 @@ guessed at one point of the region and then certified; an uncertified sign is
 Signs at beta. In two parameters the Sturm--Tarski sequence of the line engine
 has entries whose signs need not be constant on the region, so this module does
 not use it. Instead the Perron root is **bracketed**: the caller supplies
-rational functions `L(s) < U(s)` and the module certifies `chi(L) < 0 < chi(U)`
-with `L > |det M|`. Together with the Jury conditions on the quotient
+rational functions `L(s) < U(s)` and the module certifies `L < U` (on a scratch
+region, so the recorded `queries` and `polya` statistics are those of the reads
+below), `chi(L) < 0 < chi(U)` and `L > |det M|`. Together with the Jury conditions on the quotient
 `chi(t) / (t - beta)` this proves that the family is PIP on the region and that
 `beta` is the root of `chi` in `(L, U)`; where Rouche's dominant-coefficient
 condition is certified on the region it replaces the Jury reads (`rouche_disc`).
@@ -31,6 +32,17 @@ reduced to degree at most 2, then has the sign at `beta` of `G(L)` and `G(U)`
 when those agree and `G` is monotone on `[L, U]` (its derivative has one sign at
 both ends) or bends away from zero (`sign(lc G) != sign G(L)`). Several brackets
 may be supplied, tightest last; an undecided sign raises.
+
+The Bernstein rule (opt-in, `Cone.hull`). On `[L, U]` a quadratic `G` is
+`b0 (1 - x)^2 + 2 b1 x (1 - x) + b2 x^2` with `x = (t - L) / (U - L)`,
+`b0 = G(L)`, `b2 = G(U)` and `b1 = G(L) + (U - L) G'(L) / 2`; when all three have
+one sign, `G` has that sign on the whole bracket (convex hull), whatever the sign
+of `lc G`. The read is the region sign of
+`2 dU dL^2 G(L) + (nU dL - nL dU) dL G'(L) = 2 dL^2 dU b1`, with the
+denominators certified positive. It decides signs whose leading coefficient
+changes sign on the region (docs/class-a-chamber-entry-stopgo-2026-11-15.md).
+It is off by default, so the archived class-B and class-C runs replay with
+their original decision set.
 
 Run positions are fitted at three sample points as affine functions of `s` and
 certified by sign queries, exactly as on a line; the concrete samples are
@@ -246,6 +258,19 @@ struct ConeVertex(Copyable, Movable):
         return True
 
 
+def bracket_width(br: Bracket) -> QX:
+    """`nU dL - nL dU = dL dU (U - L)`: the sign of `U - L` when `dL, dU > 0`."""
+    return qx_sub(qx_mul(br.hi.num, br.lo.den), qx_mul(br.lo.num, br.hi.den))
+
+
+def bernstein_middle(g: TPoly, h1: QX, br: Bracket) -> QX:
+    """`2 dL^2 dU b1` for a quadratic `g` on `br = [nL / dL, nU / dU]`, where
+    `b1 = g(L) + (U - L) g'(L) / 2` is its middle Bernstein coefficient and
+    `h1 = dL g'(L)`; the sign of `b1` when `dL, dU > 0`."""
+    var h2 = tp_homog_at(g, br.lo.num, br.lo.den, 2)
+    return qx_add(qx_scale(qx_mul(br.hi.den, h2), q_int(2)), qx_mul(bracket_width(br), h1))
+
+
 struct Cone(Copyable, Movable):
     """Images `first[a] y^(run[a]) last[a]`, `run[a]` affine in `s`, with brackets of `beta`."""
 
@@ -257,8 +282,10 @@ struct Cone(Copyable, Movable):
     var chi: TPoly
     var ell: List[TPoly]
     var brackets: List[Bracket]
+    var hull: Bool  # also try the Bernstein rule on a quadratic (module docstring)
 
-    def __init__(out self, first: List[Int], last: List[Int], run: List[QX], y: Int, var brackets: List[Bracket]) raises:
+    def __init__(out self, first: List[Int], last: List[Int], run: List[QX], y: Int, var brackets: List[Bracket], hull: Bool = False) raises:
+        self.hull = hull
         self.first = first.copy()
         self.last = last.copy()
         self.run = run.copy()
@@ -318,7 +345,9 @@ struct Cone(Copyable, Movable):
         return s^
 
     def sign_at_beta(self, g: TPoly, mut region: Region) raises -> Int:
-        """The sign of `g(beta)` on the region, decided on a bracket; raises when undecided."""
+        """The sign of `g(beta)` on the region, decided on a bracket; raises when undecided.
+        Only after `certify_cone(self, region).holds`: the rules read the brackets'
+        certified facts (`dL, dU > 0`, `L < U`, beta between them)."""
         var r = tp_mod_monic(g, self.chi)
         if len(r) == 0:
             return 0
@@ -337,9 +366,12 @@ struct Cone(Copyable, Movable):
             var lead = region.try_sign(r[2])
             if (lead == 1 or lead == -1) and lead != sl:
                 return sl  # bends away from zero: the minimum of |g| is at an end
-            var dl = region.try_sign(tp_homog_at(dr, br.lo.num, br.lo.den, 1))
+            var h1 = tp_homog_at(dr, br.lo.num, br.lo.den, 1)
+            var dl = region.try_sign(h1)
             if (dl == 1 or dl == -1) and region.try_sign(tp_homog_at(dr, br.hi.num, br.hi.den, 1)) == dl:
                 return sl  # monotone on the bracket
+            if self.hull and region.try_sign(bernstein_middle(r, h1, br)) == sl:
+                return sl  # all three Bernstein coefficients on the bracket have the end sign
         raise Error("a sign at beta is not decided on any bracket: ", tp_key(r))
 
 
@@ -400,6 +432,11 @@ def certify_cone(cone: Cone, mut region: Region) raises -> ConeCertificate:
         ref br = cone.brackets[i]
         if region.sign(br.lo.den) <= 0 or region.sign(br.hi.den) <= 0:
             return ConeCertificate(False, 0, "a bracket denominator is not positive")
+        # The order read runs on its own region, so the recorded closure statistics
+        # (queries, polya) are exactly those of runs made before this check existed.
+        var order = Region(region.n1, region.n2)
+        if order.sign(bracket_width(br)) <= 0:
+            return ConeCertificate(False, 0, "a bracket is not ordered L < U")
         if region.sign(qx_sub(br.lo.num, qx_scale(br.lo.den, dabs))) <= 0:
             return ConeCertificate(False, 0, "a bracket does not lie above |det M|")
         if region.sign(tp_homog_at(chi, br.lo.num, br.lo.den, 3)) >= 0:

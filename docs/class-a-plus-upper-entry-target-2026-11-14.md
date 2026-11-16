@@ -7,7 +7,7 @@ at `110e7e9ef8243bc24adf80d6e8a375add586d850`.
 upper-region mechanism in this note has not been executed, independently
 replayed, or formalized. It is not promoted to a repository theorem or an
 accepted dependency. In particular this note does not broaden the current
-[lower/middle plus-Class-A theorem](class-a-plus-constant-entry-2026-11-14.md),
+[lower/middle plus-Class-A theorem](https://github.com/larsbx/pisot-substitution-conjecture-research/blob/research/bh-class-a-minus-constant-entry/docs/class-a-plus-constant-entry-2026-11-14.md) (on the unmerged #577 stack),
 whose all-source domain is `n>=6,5<=d<=n+4`.
 
 The closest existing [source and hypothesis gate](bh-class-a-plus-constant-stop-go-2026-11-14.md)

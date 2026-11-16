@@ -1,0 +1,147 @@
+⚠ [2191/2201] Replayed PscVerif.OccurrenceNewborn
+warning: PscVerif/OccurrenceNewborn.lean:53:0: automatically included section variable(s) unused in theorem `Psc.OccurrenceNewborn.SyncPlus.eventual`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: PscVerif/OccurrenceNewborn.lean:61:0: automatically included section variable(s) unused in theorem `Psc.OccurrenceNewborn.SyncMinus.eventual`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [2195/2201] Replayed PscVerif.ClassAZeroDefectEscape
+warning: PscVerif/ClassAZeroDefectEscape.lean:233:37: Unused tactic linter: `omega` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PscVerif/ClassAZeroDefectEscape.lean:252:54: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PscVerif/ClassAZeroDefectEscape.lean:233:37: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PscVerif/ClassAZeroDefectEscape.lean:252:54: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PscVerif/ClassAZeroDefectEscape.lean:231:50: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAZeroDefectEscape.lean:241:50: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [2200/2201] Replayed PscVerif.ClassAPlusUpperCycles
+warning: PscVerif/ClassAPlusUpperCycles.lean:55:8: This simp argument is unused:
+  plusRunLength
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [packet, incidenceZ, inc, plusSigma, ClassAPlusConstantRecurrence.sigma,
+    ClassAPlusConstantRecurrence.runLength, first, last, OccurrenceTransport.residual, parikhZ, plusRunMark,
+    ClassAPlusConstantRecurrence.runMark, Matrix.mulVec, dotProduct, Fin.sum_univ_three, delta, List.count_replicate,
+    Nat.cast_sub hi0, Nat.cast_sub hj0]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:93:36: This simp argument is unused:
+  parikhZ
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [packet, incidenceZ, inc, plusSigma, ClassAPlusConstantRecurrence.sigma, plusRunLength,
+    ClassAPlusConstantRecurrence.runLength, first, last, OccurrenceTransport.residual, firstMark, Matrix.mulVec,
+    dotProduct, Fin.sum_univ_three, List.count_replicate]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:125:74: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:136:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:151:44: This simp argument is unused:
+  Nat.cast_sub (show 1 ≤ 2 * n + 12 by omega)
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [upperSigma, cyclePacket, first, Nat.cast_add, Nat.cast_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:163:31: This simp argument is unused:
+  Nat.cast_sub (show 1 ≤ 2 * n + 12 by omega)
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [upperSigma, delta, Nat.cast_add, Nat.cast_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:152:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:164:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:172:71: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:173:14: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:187:44: This simp argument is unused:
+  Nat.cast_sub (show 2 ≤ 2 * n + 12 by omega)
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [upperSigma, cyclePacket, first, Nat.cast_add, Nat.cast_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:195:31: This simp argument is unused:
+  Nat.cast_sub (show 2 ≤ 2 * n + 12 by omega)
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [upperSigma, first, Nat.cast_add, Nat.cast_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:204:61: Unused tactic linter: `congr 1` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:204:73: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:204:61: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:204:73: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:188:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:188:48: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:196:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:196:48: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✖ [2201/2201] Building PscVerif.ClassAPlusUpperCycleCompletion (10s)
+trace: .> LEAN_PATH=/workspace/scratch/7b7b91dcb7fe/upper-recurrence-lean-dev/proof/PscVerif/.lake/packages/Cli/.lake/build/lib/lean:/workspace/scratch/7b7b91dcb7fe/upper-recurrence-lean-dev/proof/PscVerif/.lake/packages/batteries/.lake/build/lib/lean:/workspace/scratch/7b7b91dcb7fe/upper-recurrence-lean-dev/proof/PscVerif/.lake/packages/Qq/.lake/build/lib/lean:/workspace/scratch/7b7b91dcb7fe/upper-recurrence-lean-dev/proof/PscVerif/.lake/packages/aesop/.lake/build/lib/lean:/workspace/scratch/7b7b91dcb7fe/upper-recurrence-lean-dev/proof/PscVerif/.lake/packages/proofwidgets/.lake/build/lib/lean:/workspace/scratch/7b7b91dcb7fe/upper-recurrence-lean-dev/proof/PscVerif/.lake/packages/importGraph/.lake/build/lib/lean:/workspace/scratch/7b7b91dcb7fe/upper-recurrence-lean-dev/proof/PscVerif/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/workspace/scratch/7b7b91dcb7fe/upper-recurrence-lean-dev/proof/PscVerif/.lake/packages/plausible/.lake/build/lib/lean:/workspace/scratch/7b7b91dcb7fe/upper-recurrence-lean-dev/proof/PscVerif/.lake/packages/mathlib/.lake/build/lib/lean:/workspace/scratch/7b7b91dcb7fe/upper-recurrence-lean-dev/proof/PscVerif/.lake/build/lib/lean /workspace/scratch/d2d744c3ade9/toolchain/bin/lean /workspace/scratch/7b7b91dcb7fe/upper-recurrence-lean-dev/proof/PscVerif/PscVerif/ClassAPlusUpperCycleCompletion.lean -o /workspace/scratch/7b7b91dcb7fe/upper-recurrence-lean-dev/proof/PscVerif/.lake/build/lib/lean/PscVerif/ClassAPlusUpperCycleCompletion.olean -i /workspace/scratch/7b7b91dcb7fe/upper-recurrence-lean-dev/proof/PscVerif/.lake/build/lib/lean/PscVerif/ClassAPlusUpperCycleCompletion.ilean -c /workspace/scratch/7b7b91dcb7fe/upper-recurrence-lean-dev/proof/PscVerif/.lake/build/ir/PscVerif/ClassAPlusUpperCycleCompletion.c --setup /workspace/scratch/7b7b91dcb7fe/upper-recurrence-lean-dev/proof/PscVerif/.lake/build/ir/PscVerif/ClassAPlusUpperCycleCompletion.setup.json --json
+warning: PscVerif/ClassAPlusUpperCycleCompletion.lean:24:49: Variable name `hJ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hJ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: PscVerif/ClassAPlusUpperCycleCompletion.lean:43:74: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycleCompletion.lean:54:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycleCompletion.lean:82:30: `if_pos` has been deprecated: Use `ite_eq_left` instead
+error: PscVerif/ClassAPlusUpperCycleCompletion.lean:91:8: Type mismatch: After simplification, term
+  base_one_path n (H + 1) hn (Decidable.byContradiction fun a ↦ all_ordered_paths._proof_1_6 n H hlarge a) hsmall
+ has type
+  OrderedPath (upperSigma n 1) (cyclePacket (H + 1)) (baseOneIndices n (H + 1)) zeroPacket
+but is expected to have type
+  OrderedPath (upperSigma n 1) (cyclePacket (H + 1))
+    (if 2 ≤ H then decrementIndices 1 (H + 1) ++ allIndices n 1 H else baseOneIndices n (H + 1)) zeroPacket
+Some required targets logged failures:
+- PscVerif.ClassAPlusUpperCycleCompletion
+error: build failed

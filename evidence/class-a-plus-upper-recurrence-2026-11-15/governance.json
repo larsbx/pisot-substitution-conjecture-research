@@ -1,0 +1,108 @@
+{
+  "checks": [
+    {
+      "command": [
+        "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+        "tools/vendoring/check_vendored_sync.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.142,
+      "started_at": "2026-11-15T18:58:14.453983+00:00"
+    },
+    {
+      "command": [
+        "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+        "tools/make_ledger.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.203,
+      "started_at": "2026-11-15T18:58:14.596354+00:00"
+    },
+    {
+      "command": [
+        "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+        "tools/make_math_catalogue.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.048,
+      "started_at": "2026-11-15T18:58:14.798998+00:00"
+    },
+    {
+      "command": [
+        "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+        "tools/polyglot_envelope/render.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.06,
+      "started_at": "2026-11-15T18:58:14.847082+00:00"
+    },
+    {
+      "command": [
+        "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+        "tools/make_proof_bank.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 3.775,
+      "started_at": "2026-11-15T18:58:14.906918+00:00"
+    },
+    {
+      "command": [
+        "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+        "tools/check_markdown_source.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.509,
+      "started_at": "2026-11-15T18:58:18.681852+00:00"
+    },
+    {
+      "command": [
+        "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+        "tools/check_manuscript_source.py"
+      ],
+      "exit_code": 0,
+      "seconds": 1.152,
+      "started_at": "2026-11-15T18:58:19.190837+00:00"
+    },
+    {
+      "command": [
+        "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+        "-m",
+        "claim_governance.cli",
+        "--root",
+        "."
+      ],
+      "exit_code": 0,
+      "seconds": 12.589,
+      "started_at": "2026-11-15T18:58:20.342459+00:00"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.113,
+      "started_at": "2026-11-15T18:58:32.931316+00:00"
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "tools/check_class_a_plus_upper_recurrence.sh"
+      ],
+      "exit_code": 0,
+      "seconds": 0.005,
+      "started_at": "2026-11-15T18:58:33.043908+00:00"
+    }
+  ],
+  "claim_governance_sha256": "5642e664f9a79064ffbaf770719cf0acba52accc75fca568711d4b554a08803e",
+  "ledger_sha256": "5eac49bf76cf13c7a76c8997218b7d43ff84e8f7eceb0ac2d5ad712523879968",
+  "log_sha256": "db05a17d8a9c83db2ace276b5bfb383066c8edb6041dd179cd3d5a10dffce057",
+  "status": "passed"
+}

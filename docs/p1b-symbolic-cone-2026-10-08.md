@@ -8,7 +8,7 @@ line to every member of class B below slope `5/2`. The literature gate of
 [`p1b-catch-up-free-ppvc-2026-10-07.md`](p1b-catch-up-free-ppvc-2026-10-07.md)
 §3 governs (its decision names exactly this target: "a parametric certificate
 on the overlap graph" for Theorem E's classes); §6 adds the method's own prior
-art. No ledger node or manuscript statement changes.
+art. No ledger node or manuscript statement changes (for Theorem C superseded on 2026-11-16, §7).
 
 Canonical implementation: `kernel/psc/symbolic_cone.mojo`, driver
 `kernel/class_b_cone_certificate.mojo` (`pixi run class-b-cone-certificate`),
@@ -247,3 +247,28 @@ primitives, and not part of the proof.
   the balanced-pair algorithm uniformly over a one-parameter unimodular
   family; no source in the gate proves pure discrete spectrum for these
   non-unimodular two-parameter families.
+
+## 7. Update 2026-11-16
+
+Theorem C is registered in the claim ledger as
+`ClassBSectorBoundaryHitting` (computer-assisted, human review pending); this
+supersedes "No ledger node … changes" for Theorem C. Four points of record:
+
+- `certify_cone` now also certifies the bracket order `L < U`
+  (`bracket_width`). The 2026-10-08 code did not check it, although Lemma S′
+  and every sign rule need β inside the bracket.
+- The certificate of record is therefore the replay on the merged sources with
+  that check: hosted `theorem-c-replay` jobs 132993441198 (plus) and
+  132993441219 (minus) of run 43773184319 at `5ff3f9a5` (PR #585). Their
+  certified-region and totals lines are identical to
+  `archive/2026-10-08/class-b-cone-run/`, and so are the minus branch's
+  exact-member lines (the archived plus log records none). The archive
+  remains as provenance.
+- The table's "exact members" are exact verdicts. Counted as distinct members
+  they are 184 (`+1`) and 239 (`−1`), 423 in all.
+- The largest exact graph is 1,848 vertices, at `(p,q,r) = (17,2,3)` on
+  `C+13`, not 1,331. That was the `−1` maximum, and the archived plus log did
+  not record exact members.
+
+The PDS and G1 consequences stated in §4 stay ungoverned. Locator:
+[`class-a-chamber-entry-stopgo-2026-11-15.md`](class-a-chamber-entry-stopgo-2026-11-15.md) §6.2.

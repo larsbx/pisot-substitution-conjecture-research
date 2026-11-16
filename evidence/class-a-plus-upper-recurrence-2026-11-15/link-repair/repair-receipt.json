@@ -1,0 +1,86 @@
+{
+  "additional_new_document_link_checks": [
+    {
+      "line": 4,
+      "source": "docs/class-a-zero-defect-escape-2026-11-14.md",
+      "target": "bh-class-a-entry-stop-go-2026-11-14.md"
+    },
+    {
+      "line": 15,
+      "source": "docs/class-a-zero-defect-escape-2026-11-14.md",
+      "target": "class-a-plus-upper-stack-compatibility-2026-11-15.md"
+    },
+    {
+      "line": 4,
+      "source": "docs/class-a-plus-constant-entry-2026-11-14.md",
+      "target": "class-a-plus-upper-entry-target-2026-11-14.md"
+    },
+    {
+      "line": 15,
+      "source": "docs/class-a-plus-constant-entry-2026-11-14.md",
+      "target": "class-a-plus-upper-stack-compatibility-2026-11-15.md"
+    },
+    {
+      "line": 6,
+      "source": "docs/bh-class-a-plus-upper-recurrence-stop-go-2026-11-15.md",
+      "target": "class-a-plus-upper-entry-target-2026-11-14.md"
+    }
+  ],
+  "artifacts": {
+    "README.md": "926a80d39ef9e6cbb0843f4aacc1a9ef5a4e52b6c5726de7e7b0459ae72b8924",
+    "ci-status.json": "af3f30323eae9d55abfc1319130504b193c1486b4eee268f9593dae069c23001",
+    "markdown-link-test.log": "59b9466559aeabf218a54ec041fd83cd357cf9bf1d80a17c47aab62ed0c205bf",
+    "polynomial-verification-failure.log": "b2255bd86c5d2a4f077d2f467e491cf90fd91eb04a9e7898c2f64b214c64fc47",
+    "psc-python-failure.log": "aca0de81f3da335e2639ddc7b1b51440a2766ae15619e2fd9299dca95b54819c"
+  },
+  "checked_at": "2026-11-15T18:37:57.016498+00:00",
+  "command": [
+    "/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python",
+    "-m",
+    "pytest",
+    "-o",
+    "addopts=",
+    "-q",
+    "tests/test_markdown_links.py::test_relative_links_resolve"
+  ],
+  "exit_code": 0,
+  "failure": "PR583 introduced two broken relative links by preserving imported source documents while omitting their historical theorem documents.",
+  "historical_targets": {
+    "docs/class-a-plus-constant-entry-2026-11-14.md": {
+      "absent_at_merge": true,
+      "landing_sha256": "396dbef1367248983a53e6f8a198905d458a7e4bff0b69c71124902592776680",
+      "source_commit": "9f0138d213357b866e7ceef0dcbfab96a667526d",
+      "source_sha256": "2bfde5c66d359db49d592f06b5a0848c898342ff37ddaeb62d6180ad5b7ff9fd"
+    },
+    "docs/class-a-zero-defect-escape-2026-11-14.md": {
+      "absent_at_merge": true,
+      "landing_sha256": "05bc83a26a5b7743bfbccdc90359d619130e73c6ca281a6cb6d6b030cc2cc56a",
+      "source_commit": "9f0138d213357b866e7ceef0dcbfab96a667526d",
+      "source_sha256": "15c385e42b44514bf2788db60b0bebe877070d50c77284795e35480e32131cd8"
+    }
+  },
+  "merged_commit": "febe7535afd59cbe56d9ae0bbc541b1bb8b57995",
+  "merged_tree_equals_producing_tree": true,
+  "new_document_sources": {
+    "docs/bh-class-a-plus-upper-recurrence-stop-go-2026-11-15.md": "036f587fc2a66cd27a53a31e17207ed3a6b7924f8e0d6542bd35ac6cbc844a4d",
+    "docs/class-a-plus-constant-entry-2026-11-14.md": "396dbef1367248983a53e6f8a198905d458a7e4bff0b69c71124902592776680",
+    "docs/class-a-zero-defect-escape-2026-11-14.md": "05bc83a26a5b7743bfbccdc90359d619130e73c6ca281a6cb6d6b030cc2cc56a"
+  },
+  "nonclaims": [
+    "No full Python rerun is represented by this focused test.",
+    "No fresh Lean or Mojo replay is claimed for this documentation repair.",
+    "The preserved late CI failures remain failed historical runs.",
+    "No acceptance is inferred from the empty legacy-status response on the merge commit."
+  ],
+  "producing_head": "4aa257950d81c81506a9cdebe740e18e66a9eda2",
+  "repair": "Add two explicitly scoped provenance landing pages with exact-revision external links; do not alter imported sources or claim acceptance of the old full theorem.",
+  "schema": "psc-pr583-link-repair-v1",
+  "started_at": "2026-11-15T18:37:56.205396+00:00",
+  "status": "focused-regression-passed",
+  "tests_passed": 1,
+  "unchanged_import_manifest": {
+    "path": "evidence/class-a-plus-upper-cycles-2026-11-15/imported-source-provenance.json",
+    "sha256": "beb01a0ef92a0e31f53d81f342e84d0d7c8be1ac0a05d2d83d93729b0f29f2e6",
+    "unchanged_imports_checked": 11
+  }
+}

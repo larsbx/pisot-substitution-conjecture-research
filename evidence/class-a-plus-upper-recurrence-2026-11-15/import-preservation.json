@@ -1,0 +1,9 @@
+{
+  "all_imported_sources_match_original_commit_bytes": true,
+  "all_imported_sources_unchanged_from_base": true,
+  "base_revision": "febe7535afd59cbe56d9ae0bbc541b1bb8b57995",
+  "comparison": "SHA-256 plus byte identity against both original git source commits and current main base",
+  "imported_files": 11,
+  "manifest_sha256": "beb01a0ef92a0e31f53d81f342e84d0d7c8be1ac0a05d2d83d93729b0f29f2e6",
+  "new_stack_imports": 0
+}

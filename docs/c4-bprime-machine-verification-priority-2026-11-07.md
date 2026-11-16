@@ -4,6 +4,12 @@
 
 **Source:** PR #504 at `e9cfafebb0b0c7448757fee6ef53f77d8042e95a`; independent audit PR #505, `docs/c4-bprime-independent-proof-audit-2026-11-07.md`. Source classifications are unchanged.
 
+*Status update, 2026-11-15.* The machine-verification gate of this note is met: the Lean
+proof of the corrected B′ and of Corollary B (i) (`docs/c4-bprime-lean-2026-11-09.md`) passed
+hosted `lean-proofs` at `0baaf07` and `71afd61`. Both are registered in the claim ledger
+(`PrefixBPATerminationPisotOrSalem`, `NonPisotPrefixBPANontermination`), status proved with
+human review pending. The deferral of independent human and novelty review stands unchanged.
+
 ## Work shown
 
 ### Assumptions and hypotheses
@@ -58,3 +64,12 @@ A reducible positive matrix with an expanding non-Perron eigendirection and a se
 ## Automation-first acceptance policy
 
 Do not confuse "no immediate human review" with an instruction to merge failing proof CI. Automatically compile each claimed formal lemma at an exact commit; treat missing jobs, skipped checks, failures and unverifiable receipts as no acceptance. A successful CI build of the present file proves **only** the shift/factor algebra identity. Autonomously pursue the next unformalized lemma and prioritize PSC's existing open universal gates over non-Pisot auxiliary results.
+
+*Status line, 2026-11-09 (appended; the text above is unchanged).* The six automatable
+obligations are discharged in Lean at local receipts: `PscVerif.BPrimeBinding` (item 1),
+`PscVerif.BPrimeCore` (items 2–6, with item 4 replaced by frequency-free averaging along
+`t_m` and strict dominance) and their composition `Psc.BPrime.bprime` / `corB_infinite_cubic`.
+The item-by-item map, receipts and replay are in
+[the B′ Lean note](c4-bprime-lean-2026-11-09.md). Hosted exact-head CI is still required
+before acceptance under the policy above. The refinement of `kernel/psc/bpa.mojo` and the
+Quint adversarial model remain open, and the human-review and novelty deferral is unchanged.
