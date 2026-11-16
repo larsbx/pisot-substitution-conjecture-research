@@ -13554,6 +13554,110 @@
       "declaration": "theorem fc1_inclusion_gap_of_contraction (hL : LengthData s L β)"
     },
     {
+      "name": "Psc.GeometricFPisot.dotHom_apply",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 20,
+      "declaration": "theorem dotHom_apply (w : α → ℂ) (v : α → ℤ) : dotHom w v = ∑ a, w a * (v a : ℂ) := rfl"
+    },
+    {
+      "name": "Psc.GeometricFPisot.dotHom_mulVec",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 24,
+      "declaration": "theorem dotHom_mulVec {s : α → List α} {w : α → ℂ} {z : ℂ}"
+    },
+    {
+      "name": "Psc.GeometricFPisot.ofReal_left_eigen",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 39,
+      "declaration": "theorem ofReal_left_eigen {s : α → List α} {ℓ : α → ℝ} {β : ℝ}"
+    },
+    {
+      "name": "Psc.GeometricFPisot.dotHom_ofReal",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 49,
+      "declaration": "theorem dotHom_ofReal (ℓ : α → ℝ) (v : α → ℤ) :"
+    },
+    {
+      "name": "Psc.GeometricFPisot.finite_of_span_eq_top",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 58,
+      "declaration": "theorem finite_of_span_eq_top {κ : Type*} [Fintype κ] (W : κ → α → ℂ)"
+    },
+    {
+      "name": "Psc.GeometricFPisot.span_eq_top_of_left_eigen",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 102,
+      "declaration": "theorem span_eq_top_of_left_eigen {κ : Type*} [Fintype κ] (A : Matrix α α ℂ) (μ : κ → ℂ)"
+    },
+    {
+      "name": "Psc.GeometricFPisot.card_roots_toFinset",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 112,
+      "declaration": "theorem card_roots_toFinset (A : Matrix α α ℂ) (hsep : A.charpoly.Separable) :"
+    },
+    {
+      "name": "Psc.GeometricFPisot.charpoly_separable_of_irreducible",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 118,
+      "declaration": "theorem charpoly_separable_of_irreducible (s : α → List α)"
+    },
+    {
+      "name": "Psc.GeometricFPisot.nonempty_of_irreducible",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 128,
+      "declaration": "theorem nonempty_of_irreducible (s : α → List α)"
+    },
+    {
+      "name": "Psc.GeometricFPisot.proper_of_span",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 140,
+      "declaration": "theorem proper_of_span {κ : Type*} [Fintype κ] (W : κ → α → ℂ)"
+    },
+    {
+      "name": "Psc.GeometricFPisot.contractionData_of_eigenrows",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 161,
+      "declaration": "theorem contractionData_of_eigenrows {κ : Type*} [Fintype κ] (s : α → List α) (μ : κ → ℂ)"
+    },
+    {
+      "name": "Psc.GeometricFPisot.exists_bound_lt_one",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 173,
+      "declaration": "theorem exists_bound_lt_one {ι : Type*} [Finite ι] (f : ι → ℝ) (hf : ∀ i, f i < 1) :"
+    },
+    {
+      "name": "Psc.GeometricFPisot.exists_eigenfunctionals_of_separable",
+      "module": "PscVerif.GeometricFPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
+      "line": 192,
+      "declaration": "theorem exists_eigenfunctionals_of_separable (s : α → List α)"
+    },
+    {
       "name": "Psc.GeometricF.win_split",
       "module": "PscVerif.GeometricFStrict",
       "private": false,
@@ -35689,6 +35793,7 @@
     "proof/PscVerif/PscVerif/FixedPointLimit.lean": "cd4a824f288d4c1072fd375e0e7b9014f56028e23e00cb4336fd678a210b7bbe",
     "proof/PscVerif/PscVerif/GaloisOrbit.lean": "4d3b5474dbd14205f4bf2d33e98149ebbdd6d7e0fb8fd3a33787b878bcad5f07",
     "proof/PscVerif/PscVerif/GeometricFInclusion.lean": "b5545867e28d3c9eed4e473704dfa32ae73650f20ea6fe8f23c6f4ef319892fe",
+    "proof/PscVerif/PscVerif/GeometricFPisot.lean": "ab2036d075b460d8cc84e3cae4dc26f3264613a4374f83b1aeb1f0480ab72ff7",
     "proof/PscVerif/PscVerif/GeometricFStrict.lean": "22fc549a3b1d061fb79794177aa8fa7ecaddcf8498d6441d356a029ad3495df2",
     "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean": "c3b266fc203b69f632063b38d044c0f76e7ec50825a16c6c04949fa696e275ec",
     "proof/PscVerif/PscVerif/GraphEmbedding.lean": "ab4f4774921dbf755b0c93c1f7c1180d076194c4906f7d4ea96210635d37caee",
@@ -35778,7 +35883,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "6d16d0e013a1c02d0d6dfc6a1f8fbb443aa09bde355ff53d66b23503f42d2c22",
+    "proof/PscVerif/PscVerif.lean": "42797988ebb0bcae4f5db4384205b736fd292129868646b0e421a640ed9eabf5",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
