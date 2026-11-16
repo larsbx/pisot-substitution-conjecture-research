@@ -11858,6 +11858,926 @@
       "declaration": "theorem mono211_ne_pow4 :"
     },
     {
+      "name": "Psc.GeometricF.pvec_nil",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 98,
+      "declaration": "@[simp] theorem pvec_nil : pvec ([] : List α) = 0 := by"
+    },
+    {
+      "name": "Psc.GeometricF.pvec_append",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 101,
+      "declaration": "theorem pvec_append (u v : List α) : pvec (u ++ v) = pvec u + pvec v := by"
+    },
+    {
+      "name": "Psc.GeometricF.pvec_cons",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 104,
+      "declaration": "theorem pvec_cons (a : α) (w : List α) : pvec (a :: w) = pvec [a] + pvec w := by"
+    },
+    {
+      "name": "Psc.GeometricF.pvec_eq_iff",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 108,
+      "declaration": "theorem pvec_eq_iff {u v : List α} : pvec u = pvec v ↔ Equiv1 u v := by"
+    },
+    {
+      "name": "Psc.GeometricF.prefixParikh_eq_pvec",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 119,
+      "declaration": "theorem prefixParikh_eq_pvec (X : ℕ → α) (k : ℕ) : prefixParikh X k = pvec (win X 0 k) := by"
+    },
+    {
+      "name": "Psc.GeometricF.win_zero_add",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 123,
+      "declaration": "theorem win_zero_add (X : ℕ → α) (a d : ℕ) : win X 0 (a + d) = win X 0 a ++ win X a d := by"
+    },
+    {
+      "name": "Psc.GeometricF.prefixParikh_zero",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 126,
+      "declaration": "theorem prefixParikh_zero (X : ℕ → α) : prefixParikh X 0 = 0 := by"
+    },
+    {
+      "name": "Psc.GeometricF.prefixParikh_succ'",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 129,
+      "declaration": "theorem prefixParikh_succ' (X : ℕ → α) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.GeometricF.pvec_subst",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 147,
+      "declaration": "theorem pvec_subst (s : α → List α) (w : List α) : pvec (subst s w) = incZ s *ᵥ pvec w := by"
+    },
+    {
+      "name": "Psc.GeometricF.incZ_pow",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 151,
+      "declaration": "theorem incZ_pow (s : α → List α) (k : ℕ) :"
+    },
+    {
+      "name": "Psc.GeometricF.incZ_power",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 157,
+      "declaration": "theorem incZ_power (s : α → List α) (k : ℕ) : incZ (power s k) = incZ s ^ k := by"
+    },
+    {
+      "name": "Psc.GeometricF.pvec_iterate",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 165,
+      "declaration": "theorem pvec_iterate (s : α → List α) (k : ℕ) (w : List α) :"
+    },
+    {
+      "name": "Psc.GeometricF.LengthData.eigen_pow",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 186,
+      "declaration": "theorem LengthData.eigen_pow (h : LengthData s L β) (k : ℕ) (v : α → ℤ) :"
+    },
+    {
+      "name": "Psc.GeometricF.LengthData.power",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 195,
+      "declaration": "theorem LengthData.power (h : LengthData s L β) (m : ℕ) : LengthData (power s m) L (β ^ m) :="
+    },
+    {
+      "name": "Psc.GeometricF.L_pvec_nonneg",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 199,
+      "declaration": "theorem L_pvec_nonneg (hpos : ∀ a, 0 < L (pvec [a])) (w : List α) : 0 ≤ L (pvec w) := by"
+    },
+    {
+      "name": "Psc.GeometricF.L_pvec_pos",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 205,
+      "declaration": "theorem L_pvec_pos (hpos : ∀ a, 0 < L (pvec [a])) {w : List α} (hw : w ≠ []) :"
+    },
+    {
+      "name": "Psc.GeometricF.L_pvec_le",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 212,
+      "declaration": "theorem L_pvec_le {ℓmax : ℝ} (hmax : ∀ a, L (pvec [a]) ≤ ℓmax) (w : List α) :"
+    },
+    {
+      "name": "Psc.GeometricF.LengthData.nonerasing",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 222,
+      "declaration": "theorem LengthData.nonerasing (hL : LengthData s L β) (a : α) : s a ≠ [] := by"
+    },
+    {
+      "name": "Psc.GeometricF.split_unique",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 260,
+      "declaration": "theorem split_unique (hpos : ∀ a, 0 < L (pvec [a])) {P P' S S' : List α} {a a' : α} {t : ℝ}"
+    },
+    {
+      "name": "Psc.GeometricF.exists_split",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 289,
+      "declaration": "theorem exists_split : ∀ (w : List α) (t : ℝ), 0 ≤ t → t < L (pvec w) →"
+    },
+    {
+      "name": "Psc.GeometricF.step_unique",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 306,
+      "declaration": "theorem step_unique (hpos : ∀ a, 0 < L (pvec [a])) {x y y' : α × (α → ℤ)}"
+    },
+    {
+      "name": "Psc.GeometricF.step_total",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 317,
+      "declaration": "theorem step_total (hL : LengthData s L β) {x : α × (α → ℤ)} (hx : IsState L x) :"
+    },
+    {
+      "name": "Psc.GeometricF.Step.isState",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 332,
+      "declaration": "theorem Step.isState {x y : α × (α → ℤ)} [Fintype α] (h : Step s L x y) : IsState L y := by"
+    },
+    {
+      "name": "Psc.GeometricF.step_vertex",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 337,
+      "declaration": "theorem step_vertex (hpos : ∀ a, 0 < L (pvec [a])) {x y : α × (α → ℤ)} (h : Step s L x y)"
+    },
+    {
+      "name": "Psc.GeometricF.stepN_unique",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 349,
+      "declaration": "theorem stepN_unique (hpos : ∀ a, 0 < L (pvec [a])) :"
+    },
+    {
+      "name": "Psc.GeometricF.stepN_isState",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 357,
+      "declaration": "theorem stepN_isState {x : α × (α → ℤ)} (hx : IsState L x) :"
+    },
+    {
+      "name": "Psc.GeometricF.stepN_total",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 362,
+      "declaration": "theorem stepN_total (hL : LengthData s L β) {x : α × (α → ℤ)} (hx : IsState L x) :"
+    },
+    {
+      "name": "Psc.GeometricF.stepN_add",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 370,
+      "declaration": "theorem stepN_add {a : ℕ} {x z : α × (α → ℤ)} (h1 : StepN s L a x z) :"
+    },
+    {
+      "name": "Psc.GeometricF.stepN_split",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 375,
+      "declaration": "theorem stepN_split {a : ℕ} {x : α × (α → ℤ)} :"
+    },
+    {
+      "name": "Psc.GeometricF.stepN_vertex",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 383,
+      "declaration": "theorem stepN_vertex (hpos : ∀ a, 0 < L (pvec [a])) {x : α × (α → ℤ)} (hx : x.2 = 0) :"
+    },
+    {
+      "name": "Psc.GeometricF.stepN_absorb",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 389,
+      "declaration": "theorem stepN_absorb (hpos : ∀ a, 0 < L (pvec [a])) {n k : ℕ} {x z : α × (α → ℤ)} {a : α}"
+    },
+    {
+      "name": "Psc.GeometricF.step_power_succ",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 400,
+      "declaration": "theorem step_power_succ {m : ℕ} {x z w : α × (α → ℤ)} (h1 : Step (power s m) L x z)"
+    },
+    {
+      "name": "Psc.GeometricF.stepN_to_power",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 415,
+      "declaration": "theorem stepN_to_power {x : α × (α → ℤ)} (hx : IsState L x) :"
+    },
+    {
+      "name": "Psc.GeometricF.power_to_stepN",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 425,
+      "declaration": "theorem power_to_stepN (hL : LengthData s L β) {m : ℕ} {x y : α × (α → ℤ)}"
+    },
+    {
+      "name": "Psc.GeometricF.step_power_iff",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 431,
+      "declaration": "theorem step_power_iff (hL : LengthData s L β) {m : ℕ} {x y : α × (α → ℤ)}"
+    },
+    {
+      "name": "Psc.GeometricF.L_prefixParikh_succ",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 460,
+      "declaration": "theorem L_prefixParikh_succ (X : ℕ → α) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.GeometricF.pos_strictMono",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 466,
+      "declaration": "theorem pos_strictMono (hpos : ∀ a, 0 < L (pvec [a])) (X : ℕ → α) :"
+    },
+    {
+      "name": "Psc.GeometricF.L_prefixParikh_nonneg",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 472,
+      "declaration": "theorem L_prefixParikh_nonneg (hpos : ∀ a, 0 < L (pvec [a])) (X : ℕ → α) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.GeometricF.exists_min_len",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 477,
+      "declaration": "theorem exists_min_len [Nonempty α] (hpos : ∀ a, 0 < L (pvec [a])) :"
+    },
+    {
+      "name": "Psc.GeometricF.pos_ge",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 483,
+      "declaration": "theorem pos_ge {δ : ℝ} (hδ : ∀ a, δ ≤ L (pvec [a])) (X : ℕ → α) (k d : ℕ) :"
+    },
+    {
+      "name": "Psc.GeometricF.exists_tile",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 493,
+      "declaration": "theorem exists_tile (hpos : ∀ a, 0 < L (pvec [a])) (X : ℕ → α) {t : ℝ} (ht : 0 ≤ t) :"
+    },
+    {
+      "name": "Psc.GeometricF.relState_exists",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 514,
+      "declaration": "theorem relState_exists (hpos : ∀ a, 0 < L (pvec [a])) (X' : ℕ → α) {y : α → ℤ}"
+    },
+    {
+      "name": "Psc.GeometricF.relState_vertex_iff",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 525,
+      "declaration": "theorem relState_vertex_iff (hpos : ∀ a, 0 < L (pvec [a])) {X' : ℕ → α} {y : α → ℤ}"
+    },
+    {
+      "name": "Psc.GeometricF.prefixParikh_mem_vertexSet_iff",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 544,
+      "declaration": "theorem prefixParikh_mem_vertexSet_iff {X X' : ℕ → α} {n : ℕ} :"
+    },
+    {
+      "name": "Psc.GeometricF.mulVec_prefixParikh",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 558,
+      "declaration": "theorem mulVec_prefixParikh {t : α → List α} {X : ℕ → α} (hX : IsFixed t X) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.GeometricF.mulVec_mem_vertexSet",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 562,
+      "declaration": "theorem mulVec_mem_vertexSet {t : α → List α} {X : ℕ → α} (hX : IsFixed t X) {y : α → ℤ}"
+    },
+    {
+      "name": "Psc.GeometricF.relState_step",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 569,
+      "declaration": "theorem relState_step {t : α → List α} (hL : LengthData t L β) {X' : ℕ → α}"
+    },
+    {
+      "name": "Psc.GeometricF.relState_stepN",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 604,
+      "declaration": "theorem relState_stepN (hL : LengthData s L β) {m : ℕ} {X' : ℕ → α}"
+    },
+    {
+      "name": "Psc.GeometricF.relState_stepN_mul",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 613,
+      "declaration": "theorem relState_stepN_mul (hL : LengthData s L β) {m : ℕ} {X' : ℕ → α}"
+    },
+    {
+      "name": "Psc.GeometricF.pow_mulVec_mem_vertexSet",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 625,
+      "declaration": "theorem pow_mulVec_mem_vertexSet {m : ℕ} {X : ℕ → α} (hX : IsFixed (power s m) X)"
+    },
+    {
+      "name": "Psc.GeometricF.inclusion_half",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 636,
+      "declaration": "theorem inclusion_half (hL : LengthData s L β) {m : ℕ} {X X' : ℕ → α}"
+    },
+    {
+      "name": "Psc.GeometricF.inclusion_of_bound",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 652,
+      "declaration": "theorem inclusion_of_bound (hL : LengthData s L β) {m : ℕ} {X X' : ℕ → α}"
+    },
+    {
+      "name": "Psc.GeometricF.inclusion",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 666,
+      "declaration": "theorem inclusion (hL : LengthData s L β) {m : ℕ} (hm : 1 ≤ m) {X X' : ℕ → α}"
+    },
+    {
+      "name": "Psc.GeometricF.gap_bound",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 683,
+      "declaration": "theorem gap_bound (hL : LengthData s L β) {m : ℕ} {X X' : ℕ → α}"
+    },
+    {
+      "name": "Psc.GeometricF.cut_gap_bound",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 704,
+      "declaration": "theorem cut_gap_bound (hL : LengthData s L β) {m : ℕ} {X X' : ℕ → α}"
+    },
+    {
+      "name": "Psc.GeometricF.syndetic_cuts",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 719,
+      "declaration": "theorem syndetic_cuts (hL : LengthData s L β) {m : ℕ} {X X' : ℕ → α}"
+    },
+    {
+      "name": "Psc.GeometricF.fc1_inclusion_gap",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 739,
+      "declaration": "theorem fc1_inclusion_gap (hL : LengthData s L β) {m : ℕ} (hm : 1 ≤ m) {X X' : ℕ → α}"
+    },
+    {
+      "name": "Psc.GeometricF.contractionData_of_eigenfunctionals",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 778,
+      "declaration": "theorem contractionData_of_eigenfunctionals {ι : Type*} [Fintype ι]"
+    },
+    {
+      "name": "Psc.GeometricF.ContractionData.contract_pow",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 797,
+      "declaration": "theorem ContractionData.contract_pow (hc : ContractionData s L ν ρ) (k : ℕ) (v : α → ℤ) :"
+    },
+    {
+      "name": "Psc.GeometricF.exists_prefix_bound",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 807,
+      "declaration": "theorem exists_prefix_bound [Finite α] (ν : (α → ℤ) → ℝ) (t : α → List α) :"
+    },
+    {
+      "name": "Psc.GeometricF.phi_succ",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 816,
+      "declaration": "theorem phi_succ (t : α → List α) (X : ℕ → α) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.GeometricF.win_phi",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 825,
+      "declaration": "theorem win_phi {t : α → List α} {X : ℕ → α} (hX : IsFixed t X) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.GeometricF.le_phi",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 834,
+      "declaration": "theorem le_phi {t : α → List α} (ht : ∀ a, t a ≠ []) (X : ℕ → α) (n : ℕ) : n ≤ phi t X n := by"
+    },
+    {
+      "name": "Psc.GeometricF.desubst",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 841,
+      "declaration": "theorem desubst {t : α → List α} (ht : ∀ a, t a ≠ []) {X : ℕ → α} (hX : IsFixed t X) (N : ℕ) :"
+    },
+    {
+      "name": "Psc.GeometricF.power_nonerasing",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 868,
+      "declaration": "theorem power_nonerasing (hs : ∀ a, s a ≠ []) (m : ℕ) (a : α) : power s m a ≠ [] :="
+    },
+    {
+      "name": "Psc.GeometricF.ContractionData.nonneg",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 871,
+      "declaration": "theorem ContractionData.nonneg (hc : ContractionData s L ν ρ) (v : α → ℤ) : 0 ≤ ν v := by"
+    },
+    {
+      "name": "Psc.GeometricF.vertex_bound",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 880,
+      "declaration": "theorem vertex_bound (hc : ContractionData s L ν ρ) (hs : ∀ a, s a ≠ []) {m : ℕ} (hm : 1 ≤ m)"
+    },
+    {
+      "name": "Psc.GeometricF.relState_bound",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 907,
+      "declaration": "theorem relState_bound (hc : ContractionData s L ν ρ) (hs : ∀ a, s a ≠ []) {m : ℕ}"
+    },
+    {
+      "name": "Psc.GeometricF.relStates_finite_of_contraction",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 925,
+      "declaration": "theorem relStates_finite_of_contraction (hL : LengthData s L β)"
+    },
+    {
+      "name": "Psc.GeometricF.relStates_isState",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 939,
+      "declaration": "theorem relStates_isState {X X' : ℕ → α} {x : α × (α → ℤ)} (hx : x ∈ relStates L X X') :"
+    },
+    {
+      "name": "Psc.GeometricF.step_bound",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 946,
+      "declaration": "theorem step_bound (hc : ContractionData s L ν ρ) {D : ℝ}"
+    },
+    {
+      "name": "Psc.GeometricF.stepN_bound",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 956,
+      "declaration": "theorem stepN_bound (hc : ContractionData s L ν ρ) {D : ℝ}"
+    },
+    {
+      "name": "Psc.GeometricF.reaches_vertex_of_propertyF",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 975,
+      "declaration": "theorem reaches_vertex_of_propertyF (hL : LengthData s L β) (hc : ContractionData s L ν ρ)"
+    },
+    {
+      "name": "Psc.GeometricF.propertyF_of_reaches_vertex",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 1005,
+      "declaration": "theorem propertyF_of_reaches_vertex [Fintype α] (hpos : ∀ a, 0 < L (pvec [a]))"
+    },
+    {
+      "name": "Psc.GeometricF.fc1_inclusion_gap_of_contraction",
+      "module": "PscVerif.GeometricFInclusion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "line": 1020,
+      "declaration": "theorem fc1_inclusion_gap_of_contraction (hL : LengthData s L β)"
+    },
+    {
+      "name": "Psc.GeometricF.win_split",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 90,
+      "declaration": "theorem win_split {X : ℕ → α} {b n : ℕ} {p w : List α}"
+    },
+    {
+      "name": "Psc.GeometricF.cutBlocks_closed",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 109,
+      "declaration": "theorem cutBlocks_closed {t : α → List α} {X X' : ℕ → α} (hX : IsFixed t X)"
+    },
+    {
+      "name": "Psc.GeometricF.cutBlocks_length_le",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 155,
+      "declaration": "theorem cutBlocks_length_le {X X' : ℕ → α} {G : ℕ}"
+    },
+    {
+      "name": "Psc.GeometricF.cutBlocks_finite",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 169,
+      "declaration": "theorem cutBlocks_finite [Finite α] {X X' : ℕ → α} {G : ℕ}"
+    },
+    {
+      "name": "Psc.GeometricF.cutBlocks_nonempty",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 177,
+      "declaration": "theorem cutBlocks_nonempty {X X' : ℕ → α} {G : ℕ}"
+    },
+    {
+      "name": "Psc.GeometricF.exists_long",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 204,
+      "declaration": "theorem exists_long (hL : LengthData s L β) (hβ : 1 < β) {m : ℕ} (hm : 1 ≤ m) (a : ℕ) :"
+    },
+    {
+      "name": "Psc.GeometricF.prefixOf_iterate_first",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 226,
+      "declaration": "theorem prefixOf_iterate_first {m : ℕ} {X : ℕ → α} (hX : IsFixed (power s m) X) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.GeometricF.prefix_split",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 234,
+      "declaration": "theorem prefix_split {X : ℕ → α} {W : List α} (hW : PrefixOf X W) {a : ℕ} (ha : a < W.length) :"
+    },
+    {
+      "name": "Psc.GeometricF.witness_of_coincident_cutBlock",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 245,
+      "declaration": "theorem witness_of_coincident_cutBlock (hL : LengthData s L β) (hβ : 1 < β) {m : ℕ}"
+    },
+    {
+      "name": "Psc.GeometricF.strictSystem_power_of_inclusion",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 275,
+      "declaration": "theorem strictSystem_power_of_inclusion (hL : LengthData s L β) (hβ : 1 < β) {m : ℕ}"
+    },
+    {
+      "name": "Psc.GeometricF.mem_powerBlocks",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 307,
+      "declaration": "theorem mem_powerBlocks {m : ℕ} {C : Finset (List α × List α)} {U : List α × List α} :"
+    },
+    {
+      "name": "Psc.GeometricF.strictSystem_of_power",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 315,
+      "declaration": "theorem strictSystem_of_power (hs : ∀ a, s a ≠ []) {m : ℕ} (hm : 1 ≤ m)"
+    },
+    {
+      "name": "Psc.GeometricF.fc1_strictSystem",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 377,
+      "declaration": "theorem fc1_strictSystem (hL : LengthData s L β) (hβ : 1 < β) {m : ℕ} (hm : 1 ≤ m)"
+    },
+    {
+      "name": "Psc.GeometricF.iterate_first",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 404,
+      "declaration": "theorem iterate_first (hs : ∀ a, s a ≠ []) (k : ℕ) (c : α) :"
+    },
+    {
+      "name": "Psc.GeometricF.isPeriodicLetter_iff",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 418,
+      "declaration": "theorem isPeriodicLetter_iff (hs : ∀ a, s a ≠ []) (c : α) :"
+    },
+    {
+      "name": "Psc.GeometricF.prefix_iterate_mul",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 431,
+      "declaration": "theorem prefix_iterate_mul {c : α} {k : ℕ} (h : [c] <+: (subst s)^[k] [c]) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.GeometricF.isFixed_limit",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 438,
+      "declaration": "theorem isFixed_limit {u : List α} {p : ℕ} (hu : u <+: (subst s)^[p] u)"
+    },
+    {
+      "name": "Psc.GeometricF.exists_fixed_ray",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 448,
+      "declaration": "theorem exists_fixed_ray [Fintype α] {L : (α → ℤ) →+ ℝ} {β : ℝ} (hL : LengthData s L β)"
+    },
+    {
+      "name": "Psc.GeometricF.witness_of_iterate_first",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 460,
+      "declaration": "theorem witness_of_iterate_first (hs : ∀ a, s a ≠ []) (n : ℕ) {a b : α}"
+    },
+    {
+      "name": "Psc.GeometricF.witness_of_iterate_first_eq",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 477,
+      "declaration": "theorem witness_of_iterate_first_eq (hs : ∀ a, s a ≠ []) (n : ℕ) {a b : α}"
+    },
+    {
+      "name": "Psc.GeometricF.exists_periodic_pair",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 488,
+      "declaration": "theorem exists_periodic_pair [Finite α] (hs : ∀ a, s a ≠ []) {a b : α}"
+    },
+    {
+      "name": "Psc.GeometricF.strictSystem_of_periodic_pair",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 513,
+      "declaration": "theorem strictSystem_of_periodic_pair (hL : LengthData s L β) (hβ : 1 < β)"
+    },
+    {
+      "name": "Psc.GeometricF.fc1_equivalence",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 538,
+      "declaration": "theorem fc1_equivalence (hL : LengthData s L β) (hβ : 1 < β)"
+    },
+    {
+      "name": "Psc.GeometricF.fc1_equivalence_of_contraction",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 567,
+      "declaration": "theorem fc1_equivalence_of_contraction {ν : (α → ℤ) → ℝ} {ρ : ℝ} (hL : LengthData s L β)"
+    },
+    {
+      "name": "Psc.GeometricF.lenHom_apply",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 593,
+      "declaration": "theorem lenHom_apply (ℓ : α → ℝ) (v : α → ℤ) : lenHom ℓ v = ∑ a, ℓ a * (v a : ℝ) := rfl"
+    },
+    {
+      "name": "Psc.GeometricF.lenHom_single",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 595,
+      "declaration": "theorem lenHom_single (ℓ : α → ℝ) (a : α) : lenHom ℓ (pvec [a]) = ℓ a := by"
+    },
+    {
+      "name": "Psc.GeometricF.lengthData_of_left_eigen",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 602,
+      "declaration": "theorem lengthData_of_left_eigen {s : α → List α} {ℓ : α → ℝ} {β : ℝ} (hβ : 0 < β)"
+    },
+    {
+      "name": "Psc.GeometricF.exists_lengthData_of_primitive",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 621,
+      "declaration": "theorem exists_lengthData_of_primitive (s : α → List α)"
+    },
+    {
+      "name": "Psc.GeometricF.tmL_apply",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 635,
+      "declaration": "theorem tmL_apply (v : Fin 2 → ℤ) : tmL v = ((v 0 + v 1 : ℤ) : ℝ) := by"
+    },
+    {
+      "name": "Psc.GeometricF.tm_mulVec",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 638,
+      "declaration": "theorem tm_mulVec (v : Fin 2 → ℤ) (a : Fin 2) : (incZ thueMorseSubst *ᵥ v) a = v 0 + v 1 := by"
+    },
+    {
+      "name": "Psc.GeometricF.tm_lengthData",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 641,
+      "declaration": "theorem tm_lengthData : LengthData thueMorseSubst tmL 2 := by"
+    },
+    {
+      "name": "Psc.GeometricF.tm_contractionData",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 647,
+      "declaration": "theorem tm_contractionData : ContractionData thueMorseSubst tmL tmNu 0 where"
+    },
+    {
+      "name": "Psc.GeometricF.tm_step_vertex",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 689,
+      "declaration": "theorem tm_step_vertex {x y : Fin 2 × (Fin 2 → ℤ)} (hx : IsState tmL x)"
+    },
+    {
+      "name": "Psc.GeometricF.tm_propertyF",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 712,
+      "declaration": "theorem tm_propertyF : PropertyF thueMorseSubst tmL := by"
+    },
+    {
+      "name": "Psc.GeometricF.tm_fc1",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 723,
+      "declaration": "theorem tm_fc1 :"
+    },
+    {
+      "name": "Psc.GeometricF.tm_periodic_pair",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 734,
+      "declaration": "theorem tm_periodic_pair : ∃ c c' : Fin 2, c ≠ c' ∧ IsPeriodicLetter thueMorseSubst c ∧"
+    },
+    {
+      "name": "Psc.GeometricF.not_contractionData_of_unit_eigenvector",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 751,
+      "declaration": "theorem not_contractionData_of_unit_eigenvector {s : α → List α} {L : (α → ℤ) →+ ℝ} {β : ℝ}"
+    },
+    {
+      "name": "Psc.GeometricF.carrier_not_contractionData",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 807,
+      "declaration": "theorem carrier_not_contractionData {L : (Fin 3 → ℤ) →+ ℝ} {β : ℝ} {ν : (Fin 3 → ℤ) → ℝ}"
+    },
+    {
+      "name": "Psc.GeometricF.carrier_lengthData",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 816,
+      "declaration": "theorem carrier_lengthData : ∃ (β : ℝ) (ℓ : Fin 3 → ℝ), (∀ a, 0 < ℓ a) ∧"
+    },
+    {
+      "name": "Psc.GeometricF.reducible_controls_not_contractionData",
+      "module": "PscVerif.GeometricFStrict",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
+      "line": 837,
+      "declaration": "theorem reducible_controls_not_contractionData {L : (Fin 3 → ℤ) →+ ℝ} {β : ℝ}"
+    },
+    {
       "name": "Psc.GeometricPacketCarrier.stable_difference_bound",
       "module": "PscVerif.GeometricPacketCarrier",
       "private": false,
@@ -33583,6 +34503,8 @@
     "proof/PscVerif/PscVerif/Descendants.lean": "6641b65d81d90be34c13937b6ab8ebc029fcce91babd7c2ce398738dac783a40",
     "proof/PscVerif/PscVerif/FixedPointLimit.lean": "cd4a824f288d4c1072fd375e0e7b9014f56028e23e00cb4336fd678a210b7bbe",
     "proof/PscVerif/PscVerif/GaloisOrbit.lean": "4d3b5474dbd14205f4bf2d33e98149ebbdd6d7e0fb8fd3a33787b878bcad5f07",
+    "proof/PscVerif/PscVerif/GeometricFInclusion.lean": "b5545867e28d3c9eed4e473704dfa32ae73650f20ea6fe8f23c6f4ef319892fe",
+    "proof/PscVerif/PscVerif/GeometricFStrict.lean": "22fc549a3b1d061fb79794177aa8fa7ecaddcf8498d6441d356a029ad3495df2",
     "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean": "c3b266fc203b69f632063b38d044c0f76e7ec50825a16c6c04949fa696e275ec",
     "proof/PscVerif/PscVerif/GraphEmbedding.lean": "ab4f4774921dbf755b0c93c1f7c1180d076194c4906f7d4ea96210635d37caee",
     "proof/PscVerif/PscVerif/GraphRefinement.lean": "23b9d53d396d65a1b38dffffccf0dd49b39e28afba29f18a3c0fe5ec612d1394",
@@ -33670,7 +34592,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "9bf207757e75565f6f625bf09af8fc14593dd08b129ddf2d1a737722e96507c2",
+    "proof/PscVerif/PscVerif.lean": "c16e3bc851483e234d3cda34e35623d3fdfaa7de85c050612cf9bb0bdd8e6ed8",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
