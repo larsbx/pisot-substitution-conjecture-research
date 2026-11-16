@@ -77,7 +77,7 @@ A partial Lean binding proves only the listed algebraic component. A source-only
 | MassBalanceK2Obstruction | proved | none | manuscripts/PSC_balanced_pair_state_2026-09-13.tex, symbolic side |
 | MeanAreaLift | proved | none | docs/c4-degree2-meanarea-integrality.md |
 | MidArea | proved | none | docs/c4-degree2-midarea-factorization.md |
-| MinusClassAChamberConeBoundaryHitting | proved | none | docs/class-a-chamber-entry-stopgo-2026-11-15.md, Theorem CA (sections 6.1-6.3) with Lemma S' and the Bernstein Lemma S'' (section 4.1); kernel/class_a_chamber_cone_certificate.mojo, twelve families, 16 symbolic regions, 116 exact verdicts over 86 members; hosted certificate job 132993441031 and regressions job 132993441284 of class-a-chamber-entry run 43773184319 at 5ff3f9a5 (merged PR #585); evidence/class-a-chamber-cone-2026-11-15/ and evidence/class-a-chamber-cone-hosted-2026-11-16/; computer-assisted, human review pending |
+| MinusClassAChamberConeBoundaryHitting | proved | none | docs/class-a-chamber-entry-stopgo-2026-11-15.md, Theorem CA (sections 6.1-6.3) with Lemma S' and the Bernstein Lemma S'' (section 4.1); kernel/class_a_chamber_cone_certificate.mojo, twelve families, 16 symbolic regions, 116 exact verdicts over 86 members; hosted certificate job 132993441031 and regressions job 132993441284 of class-a-chamber-entry run 43773184319 at 5ff3f9a5 (merged PR #585); evidence/class-a-chamber-cone-hosted-2026-11-16/ (receipts of record) and evidence/class-a-chamber-cone-2026-11-15/ (first runs on the 2026-11-15 working sources, provenance); computer-assisted, human review pending |
 | MinusClassAChamberConeEntry | proved | none | docs/class-a-chamber-entry-stopgo-2026-11-15.md, Corollary CA-1 (section 6.4) from Theorem CA and the written Transfer Lemma (I2 identity of relations, I3 and Lemma R reversal, forward half of T0; sections 4.2-4.4) with Lemma TW (section 3); regression kernel/tests/test_class_a_chamber_entry.mojo (test_transfer_link) in hosted regressions job 132993441284 at 5ff3f9a5; issue #452 on this domain only; computer-assisted through Theorem CA, human review pending |
 | MinusClassDBoundaryHitting | proved | none | docs/p1b-minus-boundary-strips-2026-10-20.md; exact case split r>=q-1 versus d=q-r>=2 with a=d-2,b=3r-2q>=0; human review pending |
 | MinusClassDBoundaryLine | proved | none | merged PR #277; kernel/psc/class_d_boundary_template.mojo; docs/p1b-minus-boundary-strips-2026-10-20.md; complete symbolic tail, finite prefix and support replay with the lock-matched compiler; human review pending |
@@ -3910,11 +3910,11 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/class-a-carrier-closure-2026-10-22.md:210](../docs/class-a-carrier-closure-2026-10-22.md#L210) | **Theorem B (uniform descent).** For every integer n >= 8 and every |
 | [docs/class-a-carrier-closure-2026-10-22.md:246](../docs/class-a-carrier-closure-2026-10-22.md#L246) | ## Corollary C: boundary hitting on the whole line |
 | [docs/class-a-carrier-closure-2026-10-22.md:248](../docs/class-a-carrier-closure-2026-10-22.md#L248) | **Corollary C (class-A line boundary hitting).** For every integer n >= 4, |
-| [docs/class-a-chamber-entry-stopgo-2026-11-15.md:170](../docs/class-a-chamber-entry-stopgo-2026-11-15.md#L170) | ## 3. Lemma TW (the twin geometry) |
-| [docs/class-a-chamber-entry-stopgo-2026-11-15.md:176](../docs/class-a-chamber-entry-stopgo-2026-11-15.md#L176) | **Lemma TW** [D]. For all k,t ≥ 0, with K = k+1: |
-| [docs/class-a-chamber-entry-stopgo-2026-11-15.md:256](../docs/class-a-chamber-entry-stopgo-2026-11-15.md#L256) | **Lemma S″ (the Bernstein rule).** Let [L, U] be a certified bracket of β |
-| [docs/class-a-chamber-entry-stopgo-2026-11-15.md:346](../docs/class-a-chamber-entry-stopgo-2026-11-15.md#L346) | **Lemma 0** [D]. For every k ≥ 0 and t ∈ {0,1}, T1 and T1-H hold. |
-| [docs/class-a-chamber-entry-stopgo-2026-11-15.md:398](../docs/class-a-chamber-entry-stopgo-2026-11-15.md#L398) | ## 6. Theorem CA: the class-A cone theorem on 𝒯_CA |
+| [docs/class-a-chamber-entry-stopgo-2026-11-15.md:184](../docs/class-a-chamber-entry-stopgo-2026-11-15.md#L184) | ## 3. Lemma TW (the twin geometry) |
+| [docs/class-a-chamber-entry-stopgo-2026-11-15.md:190](../docs/class-a-chamber-entry-stopgo-2026-11-15.md#L190) | **Lemma TW** [D]. For all k,t ≥ 0, with K = k+1: |
+| [docs/class-a-chamber-entry-stopgo-2026-11-15.md:270](../docs/class-a-chamber-entry-stopgo-2026-11-15.md#L270) | **Lemma S″ (the Bernstein rule).** Let [L, U] be a certified bracket of β |
+| [docs/class-a-chamber-entry-stopgo-2026-11-15.md:360](../docs/class-a-chamber-entry-stopgo-2026-11-15.md#L360) | **Lemma 0** [D]. For every k ≥ 0 and t ∈ {0,1}, T1 and T1-H hold. |
+| [docs/class-a-chamber-entry-stopgo-2026-11-15.md:412](../docs/class-a-chamber-entry-stopgo-2026-11-15.md#L412) | ## 6. Theorem CA: the class-A cone theorem on 𝒯_CA |
 | [docs/class-a-cover-obstruction-2026-10-21.md:56](../docs/class-a-cover-obstruction-2026-10-21.md#L56) | **Proposition (repository-proved, scoped written argument with coefficient-checked |
 | [docs/class-a-d2-plus-rays-2026-10-22.md:87](../docs/class-a-d2-plus-rays-2026-10-22.md#L87) | **Theorem (d=2 plus line).** For every integer n>=1, every vertex of the |
 | [docs/class-a-d4-rays-2026-10-23.md:75](../docs/class-a-d4-rays-2026-10-23.md#L75) | **Theorem (gap four).** For every n>=0 on (n+4,n,n+1), and every n>=3 |
@@ -4090,9 +4090,9 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/p1b-strict-zipper-periodic-pair-2026-10-02.md:157](../docs/p1b-strict-zipper-periodic-pair-2026-10-02.md#L157) | ## 4. Theorem B (periodic-pair form of a strict zipper) |
 | [docs/p1b-strict-zipper-periodic-pair-2026-10-02.md:173](../docs/p1b-strict-zipper-periodic-pair-2026-10-02.md#L173) | *Theorem B.* Let r, i, j, sigma^r(i) = P i U and |
 | [docs/p1b-strict-zipper-periodic-pair-2026-10-02.md:223](../docs/p1b-strict-zipper-periodic-pair-2026-10-02.md#L223) | *Corollary B′ (reformulation of #139).* Z(s) ≠ ∅ iff some interior |
-| [docs/p1b-symbolic-cone-2026-10-08.md:112](../docs/p1b-symbolic-cone-2026-10-08.md#L112) | *Lemma S′ (soundness).* If the closure finishes on the region R, then at |
-| [docs/p1b-symbolic-cone-2026-10-08.md:160](../docs/p1b-symbolic-cone-2026-10-08.md#L160) | ## 4. Theorem C |
-| [docs/p1b-symbolic-cone-2026-10-08.md:162](../docs/p1b-symbolic-cone-2026-10-08.md#L162) | **Theorem C.** Let sigma be in Theorem E's class B with |
+| [docs/p1b-symbolic-cone-2026-10-08.md:89](../docs/p1b-symbolic-cone-2026-10-08.md#L89) | *Lemma S′ (soundness).* If the closure finishes on the region R, then at |
+| [docs/p1b-symbolic-cone-2026-10-08.md:137](../docs/p1b-symbolic-cone-2026-10-08.md#L137) | ## 4. Theorem C |
+| [docs/p1b-symbolic-cone-2026-10-08.md:139](../docs/p1b-symbolic-cone-2026-10-08.md#L139) | **Theorem C.** Let sigma be in Theorem E's class B with |
 | [docs/p1b-symbolic-line-2026-10-07.md:66](../docs/p1b-symbolic-line-2026-10-07.md#L66) | *Lemma S (soundness).* If the run finishes with threshold T, then for every |
 | [docs/p1b-symbolic-line-2026-10-07.md:83](../docs/p1b-symbolic-line-2026-10-07.md#L83) | ## 3. Theorem L |
 | [docs/p1b-symbolic-line-2026-10-07.md:85](../docs/p1b-symbolic-line-2026-10-07.md#L85) | **Theorem L.** For every q >= 0, the substitution |

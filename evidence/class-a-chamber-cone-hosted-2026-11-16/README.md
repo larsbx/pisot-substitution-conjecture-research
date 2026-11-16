@@ -14,10 +14,15 @@ is unchanged; it records the first runs, made before the bracket-order read
 moved to a scratch region and before the capped-graph refusal was withdrawn.
 Neither change alters any certified region, exact member or total.
 
-## Hosted, exact head `5ff3f9a5cae45234884bea46779d7e4f9e3d851c` (merged as PR #585)
+## Hosted, head `5ff3f9a5cae45234884bea46779d7e4f9e3d851c` (PR #585, merged as `2de8b7aa`)
 
 Workflow `.github/workflows/class-a-chamber-entry.yml`, pull-request run
-43773184319, all four jobs `success`. Raw job logs:
+43773184319, all four jobs `success`. Each job checked out GitHub's PR merge
+ref `refs/pull/585/merge`, commit `8e7a7955e6de9222cd52267a255146835ac48498`
+(parents `58379fa7`, `5ff3f9a5`). Its tree is `fe866779`, the tree of
+`5ff3f9a5` and of `main` at `2de8b7aa`: `58379fa7` is an ancestor of
+`5ff3f9a5`. The jobs therefore ran exactly the sources of `5ff3f9a5`. Raw job
+logs:
 
 | File | Job | Content |
 | --- | --- | --- |
@@ -28,8 +33,14 @@ Workflow `.github/workflows/class-a-chamber-entry.yml`, pull-request run
 
 ## Local, the same sources
 
-Mojo 1.1.0.dev2026090805, locked pixi environment; `source-digests-5ff3f9a5.txt`
-pins the drivers, the engine, the tests and the pixi pins at that head.
+Mojo 1.1.0.dev2026090805, locked pixi environment. `source-digests-5ff3f9a5.txt`
+pins, at that head, the PSC-side Mojo import closure of the two drivers and the
+two tests (34 files, recomputed from their imports) together with
+`kernel/pixi.toml` and `kernel/pixi.lock`. The vendored packages are pinned by
+`vendored.toml`. The file list is that of the 2026-11-15 packet. Two of its
+digests differ there: `kernel/psc/symbolic_cone.mojo` (the bracket-order read
+on a scratch region) and `kernel/symbolic_line_certificate.mojo` (the
+capped-graph refusal withdrawn).
 
 - `local-coverage.log`: `class_a_chamber_cone_certificate.mojo coverage`, missed 0, stray 0.
 - `local-test-chamber-entry.log`, `local-test-symbolic-cone.log`: 7/7 and 9/9.
@@ -40,7 +51,10 @@ The local re-runs of the full class-A cover, the Theorem C minus cover and the
 class-C below-three minus replay were interrupted by a container restart and
 are not archived. The hosted `certificate` and `theorem-c-replay (minus)` jobs
 above, and job `cover (minus)` 132993439959 of the `Class-C below-three cover`
-run 43773184602 at the same head (`success`), ran them to completion.
+run 43773184602 at the same head (`success`), ran them to completion. That
+workflow runs its audit and oracle steps on the plus leg only, so they are
+skipped in the minus job by design. Its log is not archived here; it supports
+none of the three registered claims.
 
 ## Replay
 
