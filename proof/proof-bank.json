@@ -34987,52 +34987,52 @@
     },
     {
       "source": "docs/c4-fc2-orientation-2026-11-17.md",
-      "line": 146,
+      "line": 151,
       "statement_heading": "**Theorem O (orientation transfer).**"
     },
     {
       "source": "docs/c4-fc2-orientation-2026-11-17.md",
-      "line": 170,
+      "line": 175,
       "statement_heading": "**Lemma Z (the ℤ-kernel premise).** If `χ_M` is irreducible over `ℚ`,"
     },
     {
       "source": "docs/c4-fc2-orientation-2026-11-17.md",
-      "line": 183,
+      "line": 188,
       "statement_heading": "**Corollary E′ (elementary part of Corollary E).** For `σ` primitive on at"
     },
     {
       "source": "docs/c4-fc2-orientation-2026-11-17.md",
-      "line": 203,
+      "line": 208,
       "statement_heading": "*Theorem O (1).* The left case is (St) of the class note: the vertex edges"
     },
     {
       "source": "docs/c4-fc2-orientation-2026-11-17.md",
-      "line": 217,
+      "line": 222,
       "statement_heading": "*Theorem O (2)* is `leftLetterFamily_of_stateFamily` of"
     },
     {
       "source": "docs/c4-fc2-orientation-2026-11-17.md",
-      "line": 224,
+      "line": 229,
       "statement_heading": "*Theorem O (3).* A right family of `σ` of size `n` is, by (1), a family of"
     },
     {
       "source": "docs/c4-fc2-orientation-2026-11-17.md",
-      "line": 231,
+      "line": 236,
       "statement_heading": "*Theorem O (4).* Coincidence is reflexive (level `0`), so a family of"
     },
     {
       "source": "docs/c4-fc2-orientation-2026-11-17.md",
-      "line": 240,
+      "line": 245,
       "statement_heading": "*Theorem O (5).* Let `(a_i, v_i)` be pairwise non-coincident states over `0`"
     },
     {
       "source": "docs/c4-fc2-orientation-2026-11-17.md",
-      "line": 259,
+      "line": 264,
       "statement_heading": "*Lemma Z.* First `det M ≠ 0`: otherwise `χ_M(0) = ± det M = 0`, so `X`"
     },
     {
       "source": "docs/c4-fc2-orientation-2026-11-17.md",
-      "line": 280,
+      "line": 285,
       "statement_heading": "*Corollary E′.* (i) ⟺ (ii) is Theorem FC1 (`fc1_equivalence_of_primitive_pisot`)."
     },
     {

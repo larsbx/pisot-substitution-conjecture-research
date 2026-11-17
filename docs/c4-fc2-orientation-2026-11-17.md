@@ -91,10 +91,15 @@ SC of `σ` is suffix SC of `σ^R`). In the **unit** case the rank-one statement
 "on (F), all pairs left strongly coincident ⟺ all pairs right strongly
 coincident" follows by composing printed results: left (or right) SC is
 mixed SC; with (F) it gives a tiling (Siegel–Thuswaldner Thm 4.6;
-Minervino–Thuswaldner Thm 9.9; CANT Thm 5.4.2); tiling ⟺ super-coincidence ⟺
-pure discrete spectrum (Ito–Rao, via CANT; Barge–Kwapisz 2006); pure discrete
-spectrum ⟹ prefix SC (Akiyama–Lee Cor. 4.5), applied to `σ` and to `σ^R`. For
-nonunit `σ` the step "tiling ⟹ pure discrete spectrum" was not found. The
+Minervino–Thuswaldner Thm 9.9; CANT Thm 5.4.2); tiling ⟺ super-coincidence
+(Ito–Rao, seen only through CANT's statement) ⟺ pure discrete spectrum
+(Barge–Kwapisz 2006), where the subshift and the tiling-flow forms of pure
+discrete spectrum are equivalent (as Barge–Kwapisz recall); pure discrete
+spectrum ⟺ overlap coincidence (Solomyak's theorem, not re-read for this
+note); overlap coincidence ⟹ prefix SC (Akiyama–Lee Cor. 4.5, no
+unimodularity), applied to `σ` and, since pure discrete spectrum passes to
+`σ^R` by time reversal, to `σ^R`. The only unit-dependent link is tiling ⟹
+pure discrete spectrum; for nonunit `σ` it was not found. The
 chain says nothing at rank two. The ingredients of the integer argument are
 standard: (T) is Barge–Kwapisz (7.3) and the proof of CANT Thm 5.6.8; the
 small-translation step is in the proofs of BBK Remark 4.3, Barge–Kwapisz
@@ -267,8 +272,8 @@ orbit lies in the finite set `{w : |ℓ·w| ≤ 0, ν(w) ≤ ν(v)}` (properness
 `ν(v) = 0`. Then `ν(0) ≤ ν(v) + ν(−v) = 0` and, by subadditivity, `ν(kv) ≤ 0`
 for every `k ∈ ℕ`, so all multiples `kv` lie in the finite set
 `{|ℓ·w| ≤ 0, ν(w) ≤ 0}`: `iv = jv` for some `i < j`, `(j − i) v = 0`, `v = 0`.
-∎ The class note's §4.1 and the review's §1 prove the same statement by
-rational independence of the Perron coordinates; this route reuses the
+∎ The class note's §2 (Lemma 1 (1), a cyclic-vector argument) and the
+review's §1 prove the same statement from irreducibility directly; this route reuses the
 machine-checked contraction data instead of a Galois argument.
 
 *Corollary FC2-1s.* (1) By Theorem O (1), left and right families are
@@ -331,7 +336,8 @@ So the one geometric input of FC2 is `cr(σ) = S(σ)`: BBK Def. 4.1 with
 Remark 4.3 at the single point `q = 0`, which needs `Σ = ℤ³` (Lemma 6) to
 identify BBK's states over `0` with the integer states. The reflection of
 full strands (class note §4.2 (c)) is no longer used anywhere: a search of
-`docs/` finds `cr(σ^R) = cr(σ)` only in that step, and the adversarial
+`docs/` finds `cr(σ^R) = cr(σ)` only in that step and in its restatement in
+the review's §3, and the adversarial
 verifier of the geometric interface found no other consumer (Theorems P,
 FC3, N, Fork, the rank-two note and round 3 use `cr(σ)` and the conclusions
 of FC2 only). Both halves of Remark 4.3 at `q = 0` are still used for FC2 (2)
@@ -387,9 +393,9 @@ Theorem 1 and BBK Cor. 5.2 are unchanged imports.
   specimen had `ν_L = ν_R = 1`, so the search cannot discriminate there.
 - **Where (F) enters.** Only through absorption (Theorem O (2)); the
   direction left ⟹ right needs (F) for `σ^R`, which is (F) for `σ` only via
-  injectivity of `ℓ`. Lemma Z supplies that on the standing class; on the
-  control `01/12/021` (F) fails (`ctrl_not_propertyF`) and nothing here
-  applies.
+  injectivity of `ℓ`. Lemma Z supplies that on the standing class. On the
+  control `01/12/021` (F) fails (`ctrl_not_propertyF`); it is PIP3 on paper,
+  so only Theorem O (1), (5) and Lemma Z apply there.
 
 ## 7. Work shown
 

@@ -1473,7 +1473,12 @@ by the Parikh vector of a shortest letter, are states over `0`; and on (F)
 alphabet size. Correction (i) after the proof ("Step (c) replaces that
 reading") is superseded in the same sense. Corollary E's (i) ⟺ (ii) ⟺ (iii)
 is machine-checked on the standing class; (iv) and (v) still rest on the
-one-sided input `cr = S(σ)` and on BBK Cor. 5.2. Lemma 1 (1), in its integer
+one-sided input `cr = S(σ)` and on BBK Cor. 5.2. Superseded in the same
+sense, and not edited: in §9, "'`cr ≥ ν_R` is BBK Remark 4.3' (false as a
+literal reading; replaced by reversal)" (it now follows from Remark 4.3 at
+`q = 0` with the shifted right-anchored edges) and the derivation line
+"+ reflection (cr, (F) reversal-invariant)" (the `cr` part is no longer
+used; the (F) part is). Lemma 1 (1), in its integer
 form (equivalent by clearing denominators), and the first clause of
 Lemma 1 (3) (`0` is not an eigenvalue) are machine-checked. Record:
 [FC2 orientation note](c4-fc2-orientation-2026-11-17.md); Lean:
