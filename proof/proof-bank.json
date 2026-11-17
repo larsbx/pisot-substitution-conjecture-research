@@ -35513,6 +35513,71 @@
       "statement_heading": "**Proposition R3 (draft; degree three, no rank-two hypothesis).** Let"
     },
     {
+      "source": "docs/c4-round4-2026-11-17.md",
+      "line": 165,
+      "statement_heading": "**Lemma A (loop area; corrected normalization).**"
+    },
+    {
+      "source": "docs/c4-round4-2026-11-17.md",
+      "line": 198,
+      "statement_heading": "**Lemma B (eigen-relation; no closure or strictness needed).** For every"
+    },
+    {
+      "source": "docs/c4-round4-2026-11-17.md",
+      "line": 210,
+      "statement_heading": "**Lemma C (nonvanishing; this is where irreducibility enters).** Let `χ_M` be"
+    },
+    {
+      "source": "docs/c4-round4-2026-11-17.md",
+      "line": 223,
+      "statement_heading": "**Lemma L2 (length two).** `K₂(ab, ba) = e_a∧e_b`, so"
+    },
+    {
+      "source": "docs/c4-round4-2026-11-17.md",
+      "line": 228,
+      "statement_heading": "**Proposition D (Perron–Frobenius obstruction).** Let `σ` be primitive with"
+    },
+    {
+      "source": "docs/c4-round4-2026-11-17.md",
+      "line": 254,
+      "statement_heading": "**Proposition 2L (two-letter calibration).** On `{0, 1}` let `(u, v)` be"
+    },
+    {
+      "source": "docs/c4-round4-2026-11-17.md",
+      "line": 509,
+      "statement_heading": "*Lemma A.* Let `x* = inf{x : T, S agree on [x, ∞)}`, finite since `T ≠ S`."
+    },
+    {
+      "source": "docs/c4-round4-2026-11-17.md",
+      "line": 518,
+      "statement_heading": "*Lemma C.* (a) *Locally injective ⇒ covering.* `c(T) = |P(T)|` is finite;"
+    },
+    {
+      "source": "docs/c4-round4-2026-11-17.md",
+      "line": 539,
+      "statement_heading": "*Lemma L.* By compactness there are `δ, η > 0` such that distinct points of"
+    },
+    {
+      "source": "docs/c4-round4-2026-11-17.md",
+      "line": 549,
+      "statement_heading": "*Theorem NC′.* Assume `π₁` is a covering and, for a contradiction, that `𝒦`"
+    },
+    {
+      "source": "docs/c4-round4-2026-11-17.md",
+      "line": 574,
+      "statement_heading": "*Corollary NC.* Under (NM_V) the `R`-class of `T_(b,a)` is"
+    },
+    {
+      "source": "docs/c4-round4-2026-11-17.md",
+      "line": 584,
+      "statement_heading": "*Proposition F.* The norm map `N(h)(T) = ∏_{z ∈ π₁⁻¹T} h(z)` is continuous"
+    },
+    {
+      "source": "docs/c4-round4-2026-11-17.md",
+      "line": 592,
+      "statement_heading": "*Corollary P.* Write `x_B = u_B·r` with `u_B ∈ ℚ³`. The letter frequencies of"
+    },
+    {
       "source": "docs/c4-seam-birth-orbits-2026-11-04.md",
       "line": 10,
       "statement_heading": "**Lemma.** In a supplied finite strict child-closed phase-zero balanced"

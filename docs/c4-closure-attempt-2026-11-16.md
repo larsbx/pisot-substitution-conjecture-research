@@ -1966,3 +1966,176 @@ model are exploratory scratch, not replayable from the repository.
   Proposition R3 of the round-3 note are unverified drafts.
 - No novelty relative to the literature is claimed beyond "not found in the
   sources read".
+
+## 17. Update 2026-11-17 (round 4)
+
+Added on 2026-11-17, after a fourth round of the attempt. Nothing in §§1–16
+was edited; where round 4 supersedes a sentence of this note or of another
+note, §17.5 quotes it. **Universal C4 is still not proved and remains
+open.** Nothing here changes a governed claim status (C4, #138, #139, #84,
+G1 and PSC are unchanged), no ledger claim is registered or promoted, and
+independent human review is pending for every statement. The record of
+round 4, with its targeted stop/go section, its proofs, its counterexamples
+and the five "work shown" headings, is the
+[round-4 note](c4-round4-2026-11-17.md); this section indexes it and restates
+§16.3.
+
+### 17.1 What round 4 did
+
+Round 4 took three obligations: one candidate new input named in §16.4 (a
+positivity statement for the first defect on three letters), the open item
+"whether `π₁` is a covering" of §16.3 item 5, and the formal debt "Lemmas
+1(1), 1(3), 4 and 5 of the (F)-class note are not machine-checked" of
+§15.2. The Lean part was committed as `7f2c24f4` on top of `main@3e6995be`;
+the two mathematical tasks were read-only in the repository. No Mojo
+regression was added.
+
+| Obligation | Aim | Outcome | Verification |
+| --- | --- | --- | --- |
+| positivity | a degree-two area functional with a definite sign on every state of a strict system, combined with `Σ_children A = λA` to exclude strict systems | **obstruction**: no sign law on literal pairs in any tested form (exact counterexamples at lengths 2–3); where a sign law holds it excludes nothing without coherence of the orientation along child edges, i.e. literal factorization | single prover, **no verifier**; counterexamples exact but scratch, the cited ones re-checked with exact algebraic numbers by the prover and, in part, again while the round-4 note was written |
+| covering | decide whether `π₁: Z → Ω_σ` can be a finite covering at `dim H¹ = 3`, and of which degree | partial: not a covering, and locally injective at no point, when the component `𝒦` of the zero-fibre class graph is a tree, in particular when `g` and `g_R` are injective; degree constraints for a hypothetical covering | one independent adversarial verifier: **no refutation**; its salvage and corrections are binding and applied in the round-4 note |
+| lean-lemmas | Lemmas 1(1), 1(3), 4 of the (F)-class note in Lean | done: `PscVerif.GeometricFLemmas`; Lemma 5 not formalised | Lean, incremental build and module-restricted axiom audit; the isolated checker was not run |
+
+### 17.2 Index of round-4 results
+
+Classes as in §4, §15.2 and §16.2 (**L** machine-checked in Lean, **C**
+conditional on the listed imports, **p** a written proof in the repository).
+
+| Label | Statement (all hypotheses in the cited place) | Class | Where |
+| --- | --- | --- | --- |
+| Stable area normalization (Lemma A) | the canonical real form of the stable-plane area is `A^s = det(r_β, ·, ·)(K₂) = r_β·⋆K₂`, the left eigen-row of `Λ²M` for `det M/β`; the pairing with `η₂∧η₃` has no canonical sign (imaginary scalar for a complex pair); relabelling multiplies `A^s` by the sign of the permutation | E·p, single prover, no verifier; the loop-area identity is Lévy area, not new | round-4 note §2.1 |
+| Proposition D | on a strongly connected strict system of a primitive `σ`, with `ρ(N) = β`, real `abs(λ) < β` and `A N = λA`, `A ≢ 0`: every orientation `s` with `sA ≥ 0` has both preserving and reversing child edges; so on PIP3 no degree-two area functional has constant sign on a strict system with `K₂ ≢ 0`; at `cr = 2` its conclusion already follows from W3 | E·p (imports R0, R1(b), Lemma 0, Perron–Frobenius), single prover, no verifier | round-4 note §2.2 |
+| Positivity obstruction | every tested sign law (hub, first letter, last letter, (first, last), rational shadow, the `E^u`-plane functionals) fails on literal pairs, minimal lengths 2–3, e.g. Tribonacci `(0201, 1020)` with `A^s = 2 − β²`; where a law holds (`1/012/101`; two letters, `100/01`; the U3 model at degree three) the exclusion stops at child-edge coherence | an obstruction to a method; counterexamples exact, scratch | round-4 note §§2.3–2.5 |
+| Lemmas C, A, L of the covering route | `π₁` is a covering iff locally injective iff no two distinct partners agree on a half-line, and otherwise locally injective nowhere; inflation-fixed asymptotic pairs branch at `0` when `g_R` (resp. `g`) is injective; partners transport along asymptotic pairs under a covering | C·p, single prover plus one verifier | round-4 note §3 |
+| Theorem NC′ | any determinant, any `dim H¹`: if `π₁` is a covering, `𝒦` has a cycle (a Barge 2015 asymptotic cycle among members of the zero fibre, in the component of the seam members) | C·p, single prover plus one verifier; vacuous on every computed domain | round-4 note §3.2 |
+| Corollary NC | `dim H¹ = 3`, every determinant, (NM_V) (in particular `g` and `g_R` injective) or `𝒦` a tree: `π₁` is not a covering, is locally injective at no point, and some tiling has two distinct partners that agree on a half-line | C·p, single prover plus one verifier; its sufficient condition holds on no corpus specimen (scratch: 30/30/30/0) | round-4 note §3.2 |
+| Proposition F, Corollary P | `dim H¹ = 3`, a `k`-fold covering: `k·𝔉(Z) ⊂ E`, `2 ≤ k ≤ cr − 1`, and for swap-closed `Z`, `k` even unless `det M` is even | C·p, single prover plus one verifier; a complete proof of the round-1 parity draft (§11), not a sharpening; unique ergodicity of `Z` is a fixable gap | round-4 note §3.2 |
+| Lemmas 1(1), 1(3), 4 of the (F)-class note | as in the note, on any finite alphabet, with `k ≥ 1` and `hzero` (Lemma 1(1)) explicit in the forward direction of Lemma 4(1) | L (`Psc.GeometricFLemmas.eq_zero_of_dot_eq_zero`, `lenHom_eq_zero_iff`, `eigenvalue_ne_zero_and_pow_ne_one`, `isUnit_incQ_pow_sub_one`, `propertyF_power_iff`, `propertyF_reverse_iff_of_irreducible`, `periodic_iff_isInteriorAddress`, `propertyF_iff_no_interiorAddress`; controls `ctrl_*`, `carrier_*`) | `proof/PscVerif/PscVerif/GeometricFLemmas.lean`; round-4 note §4 |
+
+### 17.3 The open statements of §16.3 as they now stand
+
+Only what changed is stated; items 1, 2, 4 and 7 are unchanged.
+
+3. **The `cr = 2` wall.** *Unchanged as an open statement; one candidate
+   input is gone.* The unit case with first-defect weights `(m, m, m)`
+   (Obstruction U3) stays open. The candidate input of §16.4, "a positivity
+   statement for the first defect on three letters", is now recorded as an
+   obstruction at degree two: no sign law holds on literal pairs, and a sign
+   law would add only the conclusion of Proposition D, which at `cr = 2`
+   already follows from W3; in the U3 model `K₂ ≡ 0`, and the degree-three
+   Perron functional is sign-coherent there (`f(A − C) = f`), so degree-three
+   positivity cannot separate the model either. What is missing is the same
+   input as before: literal factorization, here in the form of coherence of
+   an orientation along child edges.
+5. **Unit, `dim H¹ = 3`.** *Changed.* "Whether `π₁` is a covering" is
+   decided negatively on a class: at `dim H¹ = 3`, for every determinant,
+   `π₁` is not a covering and is locally injective at no point whenever `𝒦`
+   is a tree, in particular when `g` and `g_R` are both injective (Corollary
+   NC; written proof, one verifier, no refutation; not machine-checked);
+   there some tiling has two distinct strict partners that agree on a
+   half-line. If `π₁` were a `k`-fold covering, then `2 ≤ k ≤ cr − 1`,
+   `k·𝔉(Z) ⊂ E`, and `k` is even for swap-closed `Z` of odd determinant.
+   **Still open:** excluding the fork; whether `𝒦` is a tree for every PIP3
+   specimen with `dim H¹ = 3`, i.e. whether `π₁` can be a covering there at
+   all (scratch: a tree on every specimen computed, including all 90 corpus
+   specimens with two periodic letters on both sides; the class with `g`
+   and `g_R` both injective is empty in the corpus).
+6. **Nonunit.** *Changed.* Corollary NC uses no hypothesis on the
+   determinant, so item 5 holds verbatim for nonunit `σ` with
+   `dim H¹ = 3`. The seam route is unchanged.
+
+Formal debt: "Lemmas 1(1), 1(3), 4 and 5 of the (F)-class note are not
+machine-checked" (§15.2) is discharged for Lemmas 1(1), 1(3) and 4 (L);
+Lemma 5 (the identifications) remains unformalised. With Lemma 4, (F) holds
+in Lean for every power of Tribonacci and for its reversal
+(`trib_propertyF_power`, `trib_propertyF_reverse`). The isolated-checker
+receipt for the new module must come from CI, as for the modules of rounds 2
+and 3.
+
+### 17.4 What not to re-run
+
+In addition to §15.4 and §16.4:
+
+- sign laws for degree-two area functionals on single literal pairs (first
+  letter, last letter, hub, (first, last), rational shadow, the
+  `E^u`-plane functionals): refuted at lengths 2–3 (round-4 note §2.3);
+- any positivity-based exclusion that does not supply coherence of the
+  orientation along child edges, and at `cr = 2` any positivity argument
+  whose conclusion is that of Proposition D (W3 gives it);
+- the degree-three Perron functional as a separating input for the U3 model;
+- the selection argument of Theorem NC′ without the tree property of `𝒦` or
+  a new input: it stops at a cycle of `𝒦`; Corollary P as an exclusion on the
+  tree class, where it is vacuous; Lemma L± of the round-3 note as a
+  constraint on the covering degree;
+- the tree test of `𝒦` on the 90 corpus specimens (scratch: all trees);
+  extending it needs an exact enumeration of the interior members of the
+  zero fibre (the scratch used 60-digit comparisons and a box sized with
+  floats);
+- re-proving Lemmas 1(1), 1(3), 4 of the (F)-class note: use
+  `PscVerif.GeometricFLemmas`.
+
+### 17.5 Sentences on main that round 4 supersedes
+
+These sentences were correct when written and are not edited in this
+increment; the dated corrections are this list and the side-notes ledger.
+
+- This note, §15.2, paragraph after the table: "What is **not**
+  machine-checked: …; Lemmas 1(1), 1(3), 4 and 5 of the (F)-class note; …".
+  Now only Lemma 5.
+- This note, §3 (cohomology correction): "whether it is a covering is open";
+  §10 item 5: "Whether `π₁` is a covering is open"; §15.3 item 5 and §16.3
+  item 5: "Still open: exclude the fork; whether `π₁` is a covering"; §16.4,
+  last bullet: "to decide whether `π₁` is a covering";
+  [round-3 note](c4-round3-2026-11-16.md) §7: "Still open: excluding the
+  fork; whether `π₁` is a covering"; [(F)-class note](c4-geometric-f-class-2026-11-16.md)
+  §7: "whether `π₁` is a covering map is open". Now decided negatively on the
+  class of Corollary NC and open outside it. The rejected stronger variant
+  "`π₁` is not a covering map" (§14; (F)-class note §9) stays rejected as a
+  universal statement.
+- This note, §11, row "Covering-degree parity (that route's own 'Theorem P',
+  …) — not verified; not used": now a complete written proof with one
+  verifier (Corollary P of the round-4 note), equivalent to the draft; still
+  used as no dependency.
+- This note, §16.4, first bullet: "or a positivity statement for the first
+  defect on three letters (none is known)"; round-3 note §5.6: "it is a
+  candidate new input"; the side-notes ledger entry of 2026-11-16 on the unit
+  `(m, m, m)` case: "A candidate new input, not a result: a positivity
+  statement for the first defect on three letters". At degree two this input
+  is now an obstruction (round-4 note §2); the remark of round-3 note §5.6
+  that on two letters `K₂` has the sign of the orientation stays true, but
+  positivity with the eigen-relation does not reproduce the two-letter
+  theorem (`100/01`, Proposition 2L).
+- [(F)-class note](c4-geometric-f-class-2026-11-16.md), §2, Lemma 4(1): not
+  superseded but sharpened: its forward direction needs `k ≥ 1`, and its step
+  "`ℓ·p(P) = (β^k − 1)ℓ·v > 0`" uses Lemma 1(1), which cannot be dropped
+  (`carrier_periodic_not_interior` on `10/102/211`).
+
+### 17.6 Evidence and replay (round 4)
+
+```sh
+(cd proof/PscVerif && lake build PscVerif.GeometricFLemmas)
+PYTHONPATH=tools python3 -m claim_governance.cli --root .
+```
+
+The Lean module was rebuilt incrementally while this section was written
+("Build completed successfully (8950 jobs)"); its axiom audit over all 67
+declarations prints `propext`, `Classical.choice`, `Quot.sound` (one
+declaration: `propext`, `Quot.sound`) and no `sorryAx`. The proofs of §§2–3
+of the round-4 note are text, not executable; their computations on the
+controls, the corpus and beyond it are exploratory scratch, not replayable
+from the repository.
+
+### 17.7 Non-claims (round 4)
+
+- Universal C4, A1′ (#138), BH (#139), #84, G1 and PSC are open; no
+  governed claim changes status and no ledger claim is added.
+- The positivity obligation is not discharged; its lemmas are single-prover
+  drafts with no verifier and are not dependencies.
+- Theorem NC′ and Corollary NC are necessary conditions on strict
+  components, vacuous on every computed domain; whether `𝒦` is always a tree
+  at `dim H¹ = 3` is open.
+- Lemma 5 of the (F)-class note is not machine-checked; the Lean lemmas
+  exclude no strict system.
+- No novelty relative to the literature is claimed beyond "not found in the
+  sources read"; the cycle notion of the covering route is Barge 2015's
+  asymptotic cycle.
