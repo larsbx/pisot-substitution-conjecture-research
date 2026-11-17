@@ -35050,6 +35050,21 @@
       "statement_heading": "**Theorem.** There is a finite matrix $L_3$ of literal triple overlap"
     },
     {
+      "source": "docs/c4-periodic-overlap-returns-2026-11-17.md",
+      "line": 91,
+      "statement_heading": "**Proposition (periodic pair membership).** Assume rank two and a"
+    },
+    {
+      "source": "docs/c4-periodic-overlap-returns-2026-11-17.md",
+      "line": 138,
+      "statement_heading": "**Theorem (indexed interior return count).** Let $A$ be the"
+    },
+    {
+      "source": "docs/c4-periodic-overlap-returns-2026-11-17.md",
+      "line": 188,
+      "statement_heading": "**Theorem (signed trace identity for the strict system).** Suppose"
+    },
+    {
       "source": "docs/c4-periodic-parikh-phase-rigidity-2026-11-04.md",
       "line": 21,
       "statement_heading": "**Lemma 1.** For every positive integer h, the minimal polynomial f_h of beta^h over Q has degree three. In fact f_h=chi_(M^h) and is irreducible over Q."
@@ -35078,6 +35093,16 @@
       "source": "docs/c4-phase-lattice-index-conservation-2026-11-04.md",
       "line": 51,
       "statement_heading": "**Proposition 3 (exactly 3h states).** If a supplied strict component has `|C|=3h`, each cyclic phase has exactly three states and its P_k is a 3x3 rationally invertible *integer* matrix. Let"
+    },
+    {
+      "source": "docs/c4-rank-two-periodic-compatibility-2026-11-17.md",
+      "line": 33,
+      "statement_heading": "**Theorem (uniform shared cuts at rank two).** Assume coincidence rank"
+    },
+    {
+      "source": "docs/c4-rank-two-periodic-compatibility-2026-11-17.md",
+      "line": 150,
+      "statement_heading": "**Proposition (full fibre over a nonzero periodic class).** Let"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
