@@ -489,9 +489,11 @@ struct PrototileMap(Copyable, Movable):
             out.append(s)
         return out^
 
-    def step(mut self, s: PrototileState) raises -> PrototileStep:
-        """`f(s)`. Raises when `s` is not a state: a point outside its tile
-        has no sub-tile, and no value is invented for it."""
+    def step(mut self, s: PrototileState, denominator: Int = 1) raises -> PrototileStep:
+        """`f(s)`, with the stored vector interpreted as a numerator over
+        `denominator`. The same scale is kept in the returned state."""
+        if denominator <= 0:
+            raise Error("prototile state map: denominator must be positive")
         var j = s.letter
         if j < 0 or j >= 3:
             raise Error("prototile state map: letter outside 0..2")
@@ -499,7 +501,8 @@ struct PrototileMap(Copyable, Movable):
         var chosen = -1
         var relative = CubicElt()
         for q in range(len(self.tables.sigma[j])):
-            var candidate = cubic_sub_checked(scaled, self.tables.prefix(j, q))
+            var prefix = cubic_scale_checked(self.tables.prefix(j, q), denominator)
+            var candidate = cubic_sub_checked(scaled, prefix)
             if self.sign(candidate) < 0:
                 break
             chosen = q
@@ -507,12 +510,16 @@ struct PrototileMap(Copyable, Movable):
         if chosen < 0:
             raise Error("prototile state map: negative position, not a state")
         var child = self.tables.sigma[j][chosen]
-        if self.sign(cubic_sub_checked(relative, self.tables.lengths.at(child))) >= 0:
+        var length = cubic_scale_checked(self.tables.lengths.at(child), denominator)
+        if self.sign(cubic_sub_checked(relative, length)) >= 0:
             raise Error("prototile state map: position beyond the tile, not a state")
         var mv = self.apply_incidence(s.vector())
-        var d = self.prefix_vector(j, chosen)
+        var p = self.prefix_vector(j, chosen)
         var out = PrototileState(
-            child, checked_sub(mv[0], d[0]), checked_sub(mv[1], d[1]), checked_sub(mv[2], d[2])
+            child,
+            checked_sub(mv[0], checked_mul(denominator, p[0])),
+            checked_sub(mv[1], checked_mul(denominator, p[1])),
+            checked_sub(mv[2], checked_mul(denominator, p[2])),
         )
         if self.position(out) != relative:
             raise Error("prototile state map: integer and Z[beta] steps disagree")
