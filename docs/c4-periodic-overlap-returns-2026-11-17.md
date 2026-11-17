@@ -344,9 +344,10 @@ remains necessary for universal C4. The finite tests contain no
 unit Pisot example with a strict component. The signed and ordinary
 trace comparisons with an actual rank-two bigon system therefore
 remain written conditional results. The verifier counts pair returns
-with two interior tiles. At #598 the finite one-track seam
-calculation above still awaited executable replay.
+with two interior tiles. The finite one-track seam calculation is
+specified above and awaits an executable replay.
 
+**Update 2026-11-17.** Added after #598; the text above is unchanged.
 The [one-track seam spectrum follow-up](c4-one-track-seam-spectrum-2026-11-17.md)
 implements that calculation by cycle counts and gives the resulting
 conditional odd multiplicities at both unit roots.

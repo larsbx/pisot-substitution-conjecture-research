@@ -216,8 +216,11 @@ Jordan controls check double algebraic roots at both signs.
 In the productive `01/12/021` geometry the other track has
 one periodic interior lift, and the legal top seams form a
 square on left letters $\{1,2\}$ and right letters $\{0,1\}$.
-Inflation interchanges the two left endpoints and fixes the
-two right endpoints. The induced sign on the square cycle is
+The last-child map interchanges the two cells left of the
+seam (labels $\{1,2\}$, whose last ends lie on the seam), and
+the first-child map fixes the two cells right of it (labels
+$\{0,1\}$); this is the table's one last cycle of length $2$
+and two first cycles of length $1$. The induced sign on the square cycle is
 $-1$. Its $H_0$ has eigenvalue $+1$. This accounts for the
 positive $-1$ correction and refutes a universal nonpositivity
 claim based only on literal geometry. It has no aligned
