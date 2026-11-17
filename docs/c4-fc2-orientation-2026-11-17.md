@@ -1,8 +1,11 @@
 # FC2 without the reversed rank: the orientation transfer on property (F) — 2026-11-17
 
-**Status:** a written proof with a complete machine-checked counterpart
-(Lean module `PscVerif.GeometricFOrientation`; axioms `propext`,
-`Classical.choice`, `Quot.sound`; no `sorry`, no `native_decide`).
+**Status:** written proofs. Theorem O, Lemma Z and Corollary E′ have a
+complete machine-checked counterpart (Lean module
+`PscVerif.GeometricFOrientation`; axioms a subset of `propext`,
+`Classical.choice`, `Quot.sound`; no `sorry`, no `native_decide`); Corollary
+FC2-1s is machine-checked only in its integer part (`cr(σ) = S(σ)` and
+Barge–Diamond Theorem 1 are imported).
 **Universal C4 is not proved and remains open.** Nothing here changes a
 governed claim status (C4, #138, #139, #84, G1 and PSC are unchanged), no
 ledger claim is registered or promoted, and independent human review is
@@ -193,9 +196,9 @@ converse.
 
 *(D) The shift.* Let `a₀` be a shortest letter and `u = e_{a₀}`. Then
 `0 < ℓ·u ≤ ℓ_c` for every letter `c`, so `(c, e_c − u)` satisfies
-`0 ≤ ℓ·(e_c − u) < ℓ_c`: it is a state over `0` (an interior state unless
-`c = a₀`, when it is the vertex state `(a₀, 0)`). Only the left-closed
-convention is used; no density of `ℓ(ℤ^d)` and no injectivity of `ℓ`.
+`0 ≤ ℓ·(e_c − u) < ℓ_c`: it is a state over `0` (for `c = a₀` the vertex
+state `(a₀, 0)`). Only the left-closed convention is used; no density of
+`ℓ(ℤ^d)` and no injectivity of `ℓ`.
 
 *Theorem O (1).* The left case is (St) of the class note: the vertex edges
 `I(0, c)` are states over `0`, and two of them are coincident iff the letters
@@ -291,19 +294,19 @@ All in `proof/PscVerif/PscVerif/GeometricFOrientation.lean`, namespace
 | reflexivity, symmetry | `edgeCoincident_refl`, `edgeCoincident_symm`, `rightStrongCoincidenceWitness_refl`, `rightStrongCoincidenceWitness_symm` | none |
 | (D) | `exists_letter_shift` | `ℓ > 0` on letters, finite nonempty alphabet |
 | density | `exists_small_length` | `ℓ > 0`, `L` injective, `|α| ≥ 2` |
-| Theorem O (1) | `stateFamily_of_leftLetterFamily` (in `GeometricFRank`), `stateFamily_of_rightLetterFamily`, `stateFamily_reverse_of_leftLetterFamily` | `ℓ > 0` on letters |
+| Theorem O (1) | `stateFamily_of_leftLetterFamily` (in `GeometricFRank`), `stateFamily_of_rightLetterFamily`, `stateFamily_reverse_of_leftLetterFamily`; the vertex states of `σ^R` for a right family: `rightLetterFamily_iff_reverse` with `stateFamily_of_leftLetterFamily` | `ℓ > 0` on letters, nonempty alphabet |
 | Theorem O (2) | `leftLetterFamily_of_stateFamily` (in `GeometricFRank`) | `LengthData`, `ContractionData`, `PropertyF` |
 | Theorem O (3) | `leftLetterFamily_of_rightLetterFamily`, `rightLetterFamily_of_leftLetterFamily` | as (2), with `PropertyF` of `σ`, resp. of `σ^R` |
 | Theorem O (4) | `fc2_integer_rank_of_reverse`; `fc2_integer_rank` | `LengthData`, `ContractionData`, `PropertyF` of `σ` and of `σ^R`; resp. `PropertyF` of `σ` and `L` injective |
 | Theorem O (5) | `stateFamily_reverse_of_stateFamily`, `stateFamily_reverse_iff`, `isMaximumSize_stateFamily_reverse_iff` | `ℓ > 0`, `L` injective, `|α| ≥ 2` |
-| family lemmas | `LetterFamily.le_card`, `exists_isMaximumSize`, `IsMaximumSize.unique`, `isMaximumSize_one_iff` | — |
-| Corollary FC2-1s, integer part | `fc2_rank_transfer_one_sided` (= `fc2_rank_transfer` without `hRankRev`), `fc2_rank_lower_bounds_one_sided` | as Theorem O (4); resp. `ℓ > 0` only |
-| Corollary E (ii) ⟺ (iii) | `leftAll_iff_rightAll` | as Theorem O (4) |
-| Lemma Z | `det_incZ_ne_zero_of_irreducible`, `eq_zero_of_length_eq_zero`, `lenHom_injective_of_pisot` | (I), `d ≥ 2`, (E), (R) |
+| family lemmas | `LetterFamily.le_card`, `exists_isMaximumSize`, `IsMaximumSize.unique`, `isMaximumSize_one_iff` | a reflexive relation (and symmetric, nonempty alphabet, for `isMaximumSize_one_iff`) |
+| Corollary FC2-1s, integer part | `fc2_rank_transfer_one_sided` (`fc2_rank_transfer` without `hRankRev`, plus a nonempty alphabet; it also concludes the `σ^R` realisation), `fc2_rank_lower_bounds_one_sided` | as `fc2_integer_rank`; resp. `ℓ > 0` only |
+| Corollary E (ii) ⟺ (iii) | `leftAll_iff_rightAll` | as `fc2_integer_rank` |
+| Lemma Z | `det_incZ_ne_zero_of_irreducible`, `eq_zero_of_length_eq_zero`, `lenHom_injective_of_pisot` | (I), `d ≥ 2`, (E), `β > 0`, (R) |
 | standing class | `fc2_integer_rank_of_primitive_pisot`, `fc2_integer_rank_pip3`, `fc1_right_of_primitive_pisot` (Corollary E′) | (P), (I), (E), (R), (F) |
 | Tribonacci | `trib_right_all`, `trib_integer_rank_one`; cross-check `trib_right_witness_01`, `_02`, `_12` | none left |
 | Thue–Morse, rank two | `tm_integer_rank_two`; `tm_reverse_propertyF` via `propertyF_of_mulVec_state_eq_zero` | none left; not PIP3 |
-| Barge–Diamond `φ` | `bd_left_two_right_one` (`bd_power`, `bd_not_left`, `bd_right`), `bd_lengthData`, `bd_not_contractionData` | none left; counter-calibration |
+| Barge–Diamond `φ` | `bd_left_two_right_one` (`bd_power`, `bd_not_left`, `bd_right`), `bd_lengthData`, `bd_not_contractionData`, `bd_not_propertyF`, `bd_reverse_not_propertyF` | none left; counter-calibration |
 
 (P), (I), (E), (R), (F) are the hypothesis names of `PscVerif.GeometricFPisot`.
 The Tribonacci cross-check is independent of the transfer: the right
@@ -357,7 +360,8 @@ Theorem 1 and BBK Cor. 5.2 are unchanged imports.
   not excluded by Theorem O: equal ranks do not give equal failing pairs.
   Theorem O equates the two maxima, not the two relations.
 - **Without (F).** Theorem O (1) gives `S(σ) ≥ max(ν_L, ν_R)` whenever `S(σ)`
-  exists, and (5) gives `S(σ) = S(σ^R)`; nothing else. Whether `ν_L = ν_R`
+  exists, and (5) gives `S(σ) = S(σ^R)` when `ℓ` is injective and `d ≥ 2`;
+  nothing else. Whether `ν_L = ν_R`
   off (F) inside the irreducible Pisot class is not decided here, and no
   corpus census of `(ν_L, ν_R)` off (F) is pinned (§7, non-claims).
 - **Barge–Diamond's `φ = 010/110`** (their `(121, 221)`; primitive,
@@ -366,9 +370,21 @@ Theorem 1 and BBK Cor. 5.2 are unchanged imports.
   first letter (`bd_power`), so no prefix witness exists (`bd_not_left`), while
   both images end in `0` (`bd_right`). Length data exist (`bd_lengthData`,
   `ℓ = (1, 1)`, `β = 3`); contraction data do not (`bd_not_contractionData`:
-  `M` fixes `(1, −1)`). So the conclusion of Theorem O (3), (4) fails exactly
-  where the contraction hypothesis does; the stronger "`ν_L = ν_R` for every
-  primitive substitution" is false.
+  `M` fixes `(1, −1)`; stated for `β > 1`, and length data on `φ` force
+  `β = 3`), (F) fails for `φ` and for `φ^R` (`(0; 1, −1)` is `f`-fixed:
+  `bd_not_propertyF`, `bd_reverse_not_propertyF`), and `ℓ` is not injective.
+  So the hypotheses of Theorem O (3), (4) cannot all be dropped, and the
+  stronger "`ν_L = ν_R` for every primitive substitution" is false; the
+  example does not isolate which hypothesis is needed.
+- **Exploratory search (scratch, not replayable from the repository; not
+  evidence for any statement here).** The hypotheses verifier of §1 searched
+  about 4,100 irreducible Pisot substitutions (`d = 2, 3`, seeded; exact
+  coincidence search, (F) by a floating-point Lemma 3 box) and about 5,500
+  contracting substitutions with non-injective `ℓ` outside the class
+  (`χ = X²(X − β)` and `χ = X q(X)`, about 60 with (F) and rank 2 or 3): no
+  violation of "(F) for `σ` ⟹ `ν_L ≥ ν_R`" or "(F) for `σ^R` ⟹ `ν_R ≥ ν_L`",
+  and no substitution with (F) and `ν_L ≠ ν_R`. Inside the class every
+  specimen had `ν_L = ν_R = 1`, so the search cannot discriminate there.
 - **Where (F) enters.** Only through absorption (Theorem O (2)); the
   direction left ⟹ right needs (F) for `σ^R`, which is (F) for `σ` only via
   injectivity of `ℓ`. Lemma Z supplies that on the standing class; on the
@@ -408,9 +424,8 @@ lake env lean <audit file with #print axioms for the declarations of §4>
 ```
 
 The module was built with Lean `4.34.0-rc2` against the Mathlib revision of
-`lake-manifest.json`; `#print axioms` on the named results of §4 gives
-`propext`, `Classical.choice`, `Quot.sound` or a subset of them (35 named
-results audited); the
+`lake-manifest.json`; `#print axioms` on every declaration of the module
+(53) gives a subset of `propext`, `Classical.choice`, `Quot.sound`; the
 file contains no `sorry`
 and no `native_decide`. The full library `PscVerif` was rebuilt with the new
 module imported by the aggregator. The proof bank was regenerated
@@ -419,10 +434,12 @@ module imported by the aggregator. The proof bank was regenerated
 
 ### Negative controls
 
-§6: Thue–Morse (hypotheses fail, conclusion holds), the reflected vertex
+§6: Thue–Morse (injectivity fails; the other hypotheses and the conclusion
+hold), the reflected vertex
 edge (not a state without the shift), the mixed predicate (not excluded),
 the non-(F) case (not decided), `01/12/021` ((F) fails), Barge–Diamond's
-`φ` (`ν_L = 2 ≠ 1 = ν_R`, contraction fails; machine-checked). Thue–Morse is
+`φ` (`ν_L = 2 ≠ 1 = ν_R`; contraction, (F) on both sides and injectivity
+fail; machine-checked). Thue–Morse is
 also the rank-two non-vacuity instance (`tm_integer_rank_two`).
 
 ### Non-claims / remaining gaps
@@ -435,7 +452,9 @@ also the rank-two non-vacuity instance (`tm_integer_rank_two`).
 - Excluding `ν_L = 2` on (F) (the open statement of the class note §4.3 and
   the closure-attempt note §16.3 item 1) is untouched: Theorem O equates the
   two orientations and excludes nothing.
-- (F) is machine-checked for Tribonacci only. On the corpus `ν_L = ν_R = 1`
+- (F) is machine-checked for Tribonacci only among three-letter specimens
+  (also for the two-letter Fibonacci and Thue–Morse `01/10`, `10/01`). On
+  the corpus `ν_L = ν_R = 1`
   on all 4,554 specimens, (F) or not, is already pinned without (F) or FC1:
   `ν_L = 1` by `kernel/tests/test_c4_standing_corpus.mojo` (every one of the
   13,662 pairs left strongly coincident), and `ν_R = 1` because the corpus is

@@ -152,7 +152,8 @@ Added on 2026-11-17; the review above is unchanged. The "next Lean
 obligation" above asked for **two** zero-slice rank realisations with a
 common rank, `IsMaximumSize (StateFamily s L) c` and
 `IsMaximumSize (StateFamily (reverseSubstitution s) L) c`. The second is not
-needed: whenever `ℓ` is injective on `ℤ^d` it follows from the first, since
+needed: whenever `ℓ` is injective on `ℤ^d` and `d ≥ 2` it follows from the
+first, since
 every zero-slice family of `σ` reflects, after a common translation by an
 integer vector of small positive length, to one of `σ^R`
 (`isMaximumSize_stateFamily_reverse_iff`, no (F)). Moreover a common

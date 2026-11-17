@@ -1463,8 +1463,10 @@ for them. Nothing is asserted about them here.
 ## 11. Update 2026-11-17 (FC2 orientation)
 
 Added on 2026-11-17; §§1–10 are unchanged. Theorem FC2 is unchanged as a
-statement; its imports shrink. In the proof of §4.2, step (c) (reflection of
-strands and `cr(σ^R) = cr(σ)`) is no longer needed: `cr ≥ ν_R` follows from
+statement; its imports shrink. In the proof of §4.2, the strand-reflection
+part of step (c) (`cr(σ^R) = cr(σ)`) is no longer needed; its duality
+`ν_L(σ^R) = ν_R(σ)` and the reversal invariance of (F) are still used.
+`cr ≥ ν_R` follows from
 Remark 4.3 at `q = 0` alone, because the right-anchored vertex edges, shifted
 by the Parikh vector of a shortest letter, are states over `0`; and on (F)
 `ν_L = ν_R` holds by an integer argument with no rank input, for every

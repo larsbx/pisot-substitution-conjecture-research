@@ -29,14 +29,16 @@ Symmetrically right families give left families.  (MAX) `EdgeCoincident` is refl
 letter family is injective and has at most `|α|` members; with (LR) and the absorption of
 `PscVerif.GeometricFRank` every family in the four forms has the size of a left letter family.
 
-**Proved here, in full** (`propext`, `Classical.choice`, `Quot.sound` only):
+**Proved here, in full** (axioms: a subset of `propext`, `Classical.choice`, `Quot.sound`):
 * (T) `edgeDescendant_translate`, `edgeCoincident_translate`, **`edgeCoincident_translate_iff`**;
   reflexivity and symmetry: `edgeCoincident_refl`, `edgeCoincident_symm`,
-  `rightStrongCoincidenceWitness_refl`, `rightStrongCoincidenceWitness_symm`;
+  `rightStrongCoincidenceWitness_refl`, `rightStrongCoincidenceWitness_symm`, with
+  `edgeDescendant_zero` and `vertexCoincident_iff_strongCoincidenceWitness`;
 * (D) `exists_letter_shift`; (D′) `exists_small_length` (`L` injective, `|α| ≥ 2`: the length
   group is dense);
-* families: `LetterFamily.le_card`, `exists_isMaximumSize`, `IsMaximumSize.unique`,
-  `isMaximumSize_one_iff` (rank one iff all pairs related);
+* families: `LetterFamily.le_card`, `letterFamily_zero`, `letterFamily_one`,
+  `exists_isMaximumSize`, `IsMaximumSize.unique`, `isMaximumSize_one_iff` (for a reflexive
+  symmetric relation, rank one iff all pairs related);
 * **`stateFamily_reverse_of_leftLetterFamily`**, `stateFamily_of_rightLetterFamily` (right
   families embed in the zero slice of `σ` itself): no (F), no contraction, no injectivity;
 * reflection of arbitrary zero-slice families, no (F): **`stateFamily_reverse_of_stateFamily`**,
@@ -63,20 +65,25 @@ letter family is injective and has at most `|α|` members; with (LR) and the abs
   (`trib_right_witness_01`, `_02`, `_12`, at levels 4, 4, 3), and `trib_integer_rank_one`;
   at rank two, outside PIP3: **`tm_integer_rank_two`** (Thue–Morse `01/10`, where `ℓ = (1, 1)` is
   not injective, through `fc2_integer_rank_of_reverse`; `tm_reverse_propertyF` by
-  `propertyF_of_mulVec_state_eq_zero`).
+  `propertyF_of_mulVec_state_eq_zero` and `tm_mulVec_state`);
 * counter-calibration: **`bd_left_two_right_one`** (Barge–Diamond's `φ = 010/110`: `ν_L = 2`,
-  `ν_R = 1`; `bd_not_left`, `bd_right`), where contraction data fail
-  (`bd_not_contractionData`) although length data exist (`bd_lengthData`).
+  `ν_R = 1`; `bd_power`, `bd_not_left`, `bd_right`).  Length data exist (`bd_lengthData`);
+  contraction data fail for `β > 1` (`bd_not_contractionData`), (F) fails for `φ` and for `φ^R`
+  (`bd_not_propertyF`, `bd_reverse_not_propertyF`), and `ℓ` is not injective: the example shows
+  that the hypotheses of the transfer cannot all be dropped, not which one is needed.
 
-**Hypotheses and where they enter.**  Injectivity of `L` on `ℤ^α` (`hzero`): only to pass (F)
-from `σ` to `σ^R` (`propertyF_reverse_iff`), which the direction left ⟹ right needs; it is not
-necessary for that (Thue–Morse), and on the standing class it follows from contraction data and
-`det M ≠ 0` (`lenHom_injective_of_pisot`).
-(F) and contraction data: only in the absorption step (`leftLetterFamily_of_stateFamily`); the
-embeddings into the zero slice need neither.  Length data: positivity of tile lengths in the
-state inequalities, and through the absorption.  A nonempty alphabet: `r ≥ 1`; at least two
-letters (`Nontrivial α`): only for `det M ≠ 0` (`det_incZ_ne_zero_of_irreducible`).  The Pisot
-hypothesis enters only through contraction data.
+**Hypotheses and where they enter.**  In the transfer (letter families, `fc2_integer_rank*`):
+injectivity of `L` on `ℤ^α` (`hzero`) only passes (F) from `σ` to `σ^R` (`propertyF_reverse_iff`),
+which the direction left ⟹ right needs, and it is not necessary for that (Thue–Morse); (F) and
+contraction data enter only in the absorption step (`leftLetterFamily_of_stateFamily`), and the
+embeddings into the zero slice need neither; length data give the positivity of tile lengths in
+the state inequalities and enter through the absorption; a nonempty alphabet gives `r ≥ 1`.  The
+reflection of arbitrary families (`stateFamily_reverse_of_stateFamily` and its corollaries) uses
+injectivity of `L` and at least two letters, for density (`exists_small_length`).  Lemma Z
+(`eq_zero_of_length_eq_zero`) uses length data, contraction data and `det M ≠ 0`; at least two
+letters enter `det_incZ_ne_zero_of_irreducible`, and on the standing class also `β > 1`
+(`fc1_hypotheses_of_primitive_pisot`).  The Pisot hypothesis enters only through contraction
+data.
 
 **Prior art** (the stop/go record of the note).  (T) is the translation equivariance of
 coincidence (Barge–Kwapisz 2006, (7.3)); (D′) is the density step in the proofs of BBK
@@ -88,7 +95,8 @@ found in the sources read; for unit `σ` its rank-one case follows by composing 
 Remark 4.3 at `q = 0`, the full return lattice: Lemma 6 of the class note); it is the one
 geometric input left, and the consequence `cr = ν_L = ν_R` is conditional on it.  The bound
 `ν_L ≤ |α| − 1` (Barge–Diamond 2002, Theorem 1).  The spectral statements (BBK Cor. 5.2).
-(F) for any specimen other than Tribonacci.  Excluding rank two on (F).  Universal C4 is open.
+(F) for any three-letter specimen other than Tribonacci (it is proved for the two-letter
+Fibonacci and Thue–Morse `01/10`, `10/01`).  Excluding rank two on (F).  Universal C4 is open.
 -/
 import PscVerif.GeometricFRank
 import PscVerif.GeometricFTriple
@@ -681,7 +689,8 @@ theorem trib_right_all : ∀ a b : Fin 3, RightStrongCoincidenceWitness tribSubs
 
 /-- The integer rank of Tribonacci is one, in all four forms. -/
 theorem trib_integer_rank_one :
-    ∃ ℓ : Fin 3 → ℝ, (∀ a, 0 < ℓ a) ∧
+    ∃ (β : ℝ) (ℓ : Fin 3 → ℝ), (∀ a, 0 < ℓ a) ∧
+      ℓ ᵥ* (inc tribSubst).map (Nat.cast : ℕ → ℝ) = β • ℓ ∧
       IsMaximumSize (StateFamily tribSubst (lenHom ℓ)) 1 ∧
       IsMaximumSize (StateFamily (reverseSubstitution tribSubst) (lenHom ℓ)) 1 ∧
       IsMaximumSize (LetterFamily (VertexCoincident tribSubst)) 1 ∧
@@ -693,7 +702,7 @@ theorem trib_integer_rank_one :
   have h1 : r = 1 := hr.unique ((isMaximumSize_one_iff (rightStrongCoincidenceWitness_refl _)
     (fun _ _ => rightStrongCoincidenceWitness_symm)).mpr fun a b _ => trib_right_all a b)
   subst h1
-  exact ⟨ℓ, hℓ, hS, hSrev, hl, hr⟩
+  exact ⟨β, ℓ, hℓ, hℓM, hS, hSrev, hl, hr⟩
 
 /-- Cross-check on words, independent of the transfer: `σ⁴(0) = 01·0·2010010201` and
 `σ⁴(1) = 0·1020100102`; the suffixes after the common `0` have equal Parikh vectors. -/
@@ -837,7 +846,8 @@ theorem bd_not_left : ¬ VertexCoincident bdSubst 0 1 := by
 theorem bd_right : RightStrongCoincidenceWitness bdSubst 0 1 :=
   ⟨1, [0, 1], [], [1, 1], [], 0, by decide, by decide, fun _ => rfl⟩
 
-/-- **The two maxima differ off the hypotheses: `ν_L = 2`, `ν_R = 1`.** -/
+/-- **The two maxima differ off the hypotheses: `ν_L = 2`, `ν_R = 1`.**  `φ` fails contraction
+data, (F) on both sides and injectivity of `ℓ`. -/
 theorem bd_left_two_right_one :
     IsMaximumSize (LetterFamily (VertexCoincident bdSubst)) 2 ∧
       IsMaximumSize (LetterFamily (RightStrongCoincidenceWitness bdSubst)) 1 := by
@@ -859,20 +869,41 @@ theorem bd_left_two_right_one :
     · exact rightStrongCoincidenceWitness_symm bd_right
     · exact absurd rfl hab
 
-/-- Length data exist on `φ` (`ℓ = (1, 1)`, `β = 3`), so the hypothesis that fails is not that one. -/
+/-- Length data exist on `φ` (`ℓ = (1, 1)`, `β = 3`). -/
 theorem bd_lengthData : LengthData bdSubst (lenHom fun _ => 1) 3 := by
   refine lengthData_of_left_eigen (by norm_num) (fun _ => by norm_num) ?_
   funext c
   fin_cases c <;>
     simp [Matrix.vecMul, dotProduct, Fin.sum_univ_two, bdSubst, inc_apply] <;> norm_num
 
-/-- **Where Theorem O stops on `φ`**: `M (1, −1) = (1, −1)`, so no contraction data exist for
-any length data with `β > 1` (`not_contractionData_of_unit_eigenvector`); `ℓ = (1, 1)` is also
-not injective on `ℤ²`. -/
+/-- **One place where Theorem O stops on `φ`**: `M (1, −1) = (1, −1)`, so no contraction data
+exist for any length data with `β > 1` (`not_contractionData_of_unit_eigenvector`).  (F) fails
+too (`bd_not_propertyF`, `bd_reverse_not_propertyF`), and `ℓ = (1, 1)` is not injective. -/
 theorem bd_not_contractionData {L : (Fin 2 → ℤ) →+ ℝ} {β : ℝ} {ν : (Fin 2 → ℤ) → ℝ} {ρ : ℝ}
     (hL : LengthData bdSubst L β) (hβ : 1 < β) : ¬ ContractionData bdSubst L ν ρ :=
   not_contractionData_of_unit_eigenvector hL hβ (w := ![1, -1]) (by decide)
     (Or.inl (by decide))
+
+/-- On `φ` with `ℓ = (1, 1)` the state `(0; 1, −1)` is `f`-fixed: (F) fails. -/
+theorem bd_not_propertyF : ¬ PropertyF bdSubst (lenHom fun _ => 1) := by
+  intro hF
+  have hx : IsState (lenHom fun _ : Fin 2 => (1 : ℝ)) ((0 : Fin 2), ![1, -1]) := by
+    refine ⟨?_, ?_⟩ <;> simp [lenHom_apply, Fin.sum_univ_two, pvec]
+  have hstep : StepN bdSubst (lenHom fun _ => 1) 1 ((0 : Fin 2), ![1, -1])
+      ((0 : Fin 2), ![1, -1]) :=
+    ⟨_, rfl, [], [1, 0], by decide, by rw [pvec_nil, sub_zero]; decide, hx⟩
+  exact absurd (congrFun (hF _ hx 1 le_rfl hstep) 0) (by decide)
+
+/-- The same state is `f`-fixed for the reversal `010/011`: (F) fails for `φ^R` too. -/
+theorem bd_reverse_not_propertyF :
+    ¬ PropertyF (reverseSubstitution bdSubst) (lenHom fun _ => 1) := by
+  intro hF
+  have hx : IsState (lenHom fun _ : Fin 2 => (1 : ℝ)) ((0 : Fin 2), ![1, -1]) := by
+    refine ⟨?_, ?_⟩ <;> simp [lenHom_apply, Fin.sum_univ_two, pvec]
+  have hstep : StepN (reverseSubstitution bdSubst) (lenHom fun _ => 1) 1 ((0 : Fin 2), ![1, -1])
+      ((0 : Fin 2), ![1, -1]) :=
+    ⟨_, rfl, [], [1, 0], by decide, by rw [pvec_nil, sub_zero]; decide, hx⟩
+  exact absurd (congrFun (hF _ hx 1 le_rfl hstep) 0) (by decide)
 
 end BargeDiamond
 
