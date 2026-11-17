@@ -145,3 +145,27 @@ The author recorded a standing-class FC1 build and axiom check in the commit mes
 ### Non-claims / remaining gaps
 
 The transfer identifies the possible ranks on the (F) class. Excluding rank two there remains a separate obligation. Universal C4, PSC, and the proposed downstream cohomological arguments retain their pending review status. The Lean proofs check the integral transfer from stated rank inputs. The full-strand rank realization, its spectral consequence, and the maximal equicontinuous factor comparison above are written proofs using the cited primary results.
+
+## Update 2026-11-17: one rank realisation suffices
+
+Added on 2026-11-17; the review above is unchanged. The "next Lean
+obligation" above asked for **two** zero-slice rank realisations with a
+common rank, `IsMaximumSize (StateFamily s L) c` and
+`IsMaximumSize (StateFamily (reverseSubstitution s) L) c`. The second is not
+needed: whenever `ℓ` is injective on `ℤ^d` and `d ≥ 2` it follows from the
+first, since
+every zero-slice family of `σ` reflects, after a common translation by an
+integer vector of small positive length, to one of `σ^R`
+(`isMaximumSize_stateFamily_reverse_iff`, no (F)). Moreover a common
+integer translation preserves coincidence, and the
+right-anchored edges `I(−e_c, c)` shifted by the Parikh vector of a shortest
+letter are states over `0` in the left-closed convention; with absorption
+under (F) this proves `ν_L = ν_R` on (F) by an integer argument and makes the
+zero-slice maximum one number in four forms. So the remaining geometric input
+of FC2 (2) is one-sided, `cr(σ) = S(σ)` at `q = 0`, and neither the
+reflection of full strands nor Remark 4.3 at a point `q = [t]` of the
+unstable line is used. The "ℤ-kernel premise" is machine-checked from the
+standing hypotheses. Record, proofs and Lean map:
+[FC2 orientation note](c4-fc2-orientation-2026-11-17.md); Lean:
+`PscVerif.GeometricFOrientation` (`fc2_integer_rank`,
+`fc2_rank_transfer_one_sided`, `lenHom_injective_of_pisot`).
