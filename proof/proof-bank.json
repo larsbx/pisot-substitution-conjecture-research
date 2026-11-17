@@ -35080,6 +35080,16 @@
       "statement_heading": "**Proposition 3 (exactly 3h states).** If a supplied strict component has `|C|=3h`, each cyclic phase has exactly three states and its P_k is a 3x3 rationally invertible *integer* matrix. Let"
     },
     {
+      "source": "docs/c4-rank-two-periodic-compatibility-2026-11-17.md",
+      "line": 33,
+      "statement_heading": "**Theorem (uniform shared cuts at rank two).** Assume coincidence rank"
+    },
+    {
+      "source": "docs/c4-rank-two-periodic-compatibility-2026-11-17.md",
+      "line": 150,
+      "statement_heading": "**Proposition (full fibre over a nonzero periodic class).** Let"
+    },
+    {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
       "line": 174,
       "statement_heading": "**Theorem FP (exact count).** Let `s` be a primitive substitution on an"
