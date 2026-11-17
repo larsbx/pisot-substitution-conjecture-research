@@ -1,5 +1,7 @@
 # Displacements in cyclic phases of closed literal overlap graphs
 
+**Status:** Written phase-displacement proof with a Lean-checked seven-offset bound from the stated sign and connectivity hypotheses.
+
 ## Targeted literature check
 
 The proposed constraint is that each cyclic phase of a finite closed
