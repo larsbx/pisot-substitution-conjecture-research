@@ -14522,6 +14522,270 @@
       "declaration": "theorem reducible_controls_not_contractionData {L : (Fin 3 → ℤ) →+ ℝ} {β : ℝ}"
     },
     {
+      "name": "Psc.GeometricFTriple.trib_mulVec",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 115,
+      "declaration": "theorem trib_mulVec (v : Fin 3 → ℤ) :"
+    },
+    {
+      "name": "Psc.GeometricFTriple.trib_data",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 140,
+      "declaration": "theorem trib_data (hℓ : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.GeometricFTriple.trib_lenHom_eq",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 179,
+      "declaration": "theorem trib_lenHom_eq (D : TribData β θ ℓ) (v : Fin 3 → ℤ) :"
+    },
+    {
+      "name": "Psc.GeometricFTriple.trib_le_len_zero",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 185,
+      "declaration": "theorem trib_le_len_zero (D : TribData β θ ℓ) (j : Fin 3) : ℓ j ≤ ℓ 0 := by"
+    },
+    {
+      "name": "Psc.GeometricFTriple.trib_state_Y",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 197,
+      "declaration": "theorem trib_state_Y (D : TribData β θ ℓ) {x : Fin 3 × (Fin 3 → ℤ)}"
+    },
+    {
+      "name": "Psc.GeometricFTriple.trib_step_coords",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 215,
+      "declaration": "theorem trib_step_coords {L : (Fin 3 → ℤ) →+ ℝ} {x y : Fin 3 × (Fin 3 → ℤ)}"
+    },
+    {
+      "name": "Psc.GeometricFTriple.tribH_mul",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 233,
+      "declaration": "theorem tribH_mul (D : TribData β θ ℓ) : tribH β θ * (β + θ) = 1 / 2 := by"
+    },
+    {
+      "name": "Psc.GeometricFTriple.tribH_bounds",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 238,
+      "declaration": "theorem tribH_bounds (D : TribData β θ ℓ) :"
+    },
+    {
+      "name": "Psc.GeometricFTriple.trib_kappa",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 259,
+      "declaration": "theorem trib_kappa (D : TribData β θ ℓ) : 3675 / 10000 < θ - (β - 1) ^ 2 / 4 := by"
+    },
+    {
+      "name": "Psc.GeometricFTriple.trib_lyap_real",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 267,
+      "declaration": "theorem trib_lyap_real {H a b c : ℝ} (hH : H * (β + θ) = 1 / 2) (hκ : 0 < θ - (β - 1) ^ 2 / 4)"
+    },
+    {
+      "name": "Psc.GeometricFTriple.tribQ_step",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 290,
+      "declaration": "theorem tribQ_step (D : TribData β θ ℓ) {x y : Fin 3 × (Fin 3 → ℤ)}"
+    },
+    {
+      "name": "Psc.GeometricFTriple.tribQ_stepN",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 301,
+      "declaration": "theorem tribQ_stepN (D : TribData β θ ℓ) {x : Fin 3 × (Fin 3 → ℤ)}"
+    },
+    {
+      "name": "Psc.GeometricFTriple.tribQ_periodic",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 322,
+      "declaration": "theorem tribQ_periodic (D : TribData β θ ℓ) {x : Fin 3 × (Fin 3 → ℤ)}"
+    },
+    {
+      "name": "Psc.GeometricFTriple.trib_box_real",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 334,
+      "declaration": "theorem trib_box_real (D : TribData β θ ℓ) {b c : ℝ}"
+    },
+    {
+      "name": "Psc.GeometricFTriple.trib_box",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 398,
+      "declaration": "theorem trib_box (D : TribData β θ ℓ) {v : Fin 3 → ℤ}"
+    },
+    {
+      "name": "Psc.GeometricFTriple.trib_forced",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 418,
+      "declaration": "theorem trib_forced (D : TribData β θ ℓ) {x : Fin 3 × (Fin 3 → ℤ)} (hx : IsState (lenHom ℓ) x)"
+    },
+    {
+      "name": "Psc.GeometricFTriple.trib_reach_zero",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 430,
+      "declaration": "theorem trib_reach_zero (D : TribData β θ ℓ) : TribReach (lenHom ℓ) 0 0 := by"
+    },
+    {
+      "name": "Psc.GeometricFTriple.trib_reach_step",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 445,
+      "declaration": "theorem trib_reach_step (D : TribData β θ ℓ) (b c k : ℤ)"
+    },
+    {
+      "name": "Psc.GeometricFTriple.trib_reach_box",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 463,
+      "declaration": "theorem trib_reach_box (D : TribData β θ ℓ) {b c : ℤ} (hb : -2 ≤ b ∧ b ≤ 2)"
+    },
+    {
+      "name": "Psc.GeometricFTriple.trib_propertyF",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 545,
+      "declaration": "theorem trib_propertyF {β : ℝ} {ℓ : Fin 3 → ℝ} (hℓ : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.GeometricFTriple.trib_reaches_vertex",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 562,
+      "declaration": "theorem trib_reaches_vertex {β : ℝ} {ℓ : Fin 3 → ℝ} (hℓ : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.GeometricFTriple.trib_fc1_hypotheses_complete",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 580,
+      "declaration": "theorem trib_fc1_hypotheses_complete : ∃ (β : ℝ) (ℓ : Fin 3 → ℝ),"
+    },
+    {
+      "name": "Psc.GeometricFTriple.trib_fc1",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 597,
+      "declaration": "theorem trib_fc1 :"
+    },
+    {
+      "name": "Psc.GeometricFTriple.trib_witness_01",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 609,
+      "declaration": "theorem trib_witness_01 : StrongCoincidenceWitness tribSubst 0 1 :="
+    },
+    {
+      "name": "Psc.GeometricFTriple.trib_witness_02",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 613,
+      "declaration": "theorem trib_witness_02 : StrongCoincidenceWitness tribSubst 0 2 :="
+    },
+    {
+      "name": "Psc.GeometricFTriple.trib_witness_12",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 617,
+      "declaration": "theorem trib_witness_12 : StrongCoincidenceWitness tribSubst 1 2 :="
+    },
+    {
+      "name": "Psc.GeometricFTriple.trib_isPeriodicLetter_zero",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 621,
+      "declaration": "theorem trib_isPeriodicLetter_zero : IsPeriodicLetter tribSubst 0 :="
+    },
+    {
+      "name": "Psc.GeometricFTriple.trib_not_isPeriodicLetter",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 626,
+      "declaration": "theorem trib_not_isPeriodicLetter {c : Fin 3} (hc : c ≠ 0) : ¬ IsPeriodicLetter tribSubst c := by"
+    },
+    {
+      "name": "Psc.GeometricFTriple.trib_fc1_evaluated",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 644,
+      "declaration": "theorem trib_fc1_evaluated :"
+    },
+    {
+      "name": "Psc.GeometricFTriple.ctrl_not_propertyF",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 671,
+      "declaration": "theorem ctrl_not_propertyF {β : ℝ} {ℓ : Fin 3 → ℝ} (hℓ : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.GeometricFTriple.ctrl_inc",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 707,
+      "declaration": "theorem ctrl_inc : inc ctrlSubst = Matrix.of ![![1, 0, 1], ![1, 1, 1], ![0, 1, 1]] := by"
+    },
+    {
+      "name": "Psc.GeometricFTriple.ctrl_prim",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 711,
+      "declaration": "theorem ctrl_prim : ∃ k ≥ 1, ∀ a c, 0 < (inc ctrlSubst ^ k) a c :="
+    },
+    {
+      "name": "Psc.GeometricFTriple.ctrl_exists_not_propertyF",
+      "module": "PscVerif.GeometricFTriple",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFTriple.lean",
+      "line": 716,
+      "declaration": "theorem ctrl_exists_not_propertyF : ∃ (β : ℝ) (ℓ : Fin 3 → ℝ), (∀ a, 0 < ℓ a) ∧"
+    },
+    {
       "name": "Psc.GeometricPacketCarrier.stable_difference_bound",
       "module": "PscVerif.GeometricPacketCarrier",
       "private": false,
@@ -34691,6 +34955,36 @@
       "statement_heading": "**Lemma.** Supply a finite strict child-closed balanced SCC with"
     },
     {
+      "source": "docs/c4-round3-2026-11-16.md",
+      "line": 447,
+      "statement_heading": "**Theorem Fork (every determinant).** Let `σ ∈ PIP3` (primitive on"
+    },
+    {
+      "source": "docs/c4-round3-2026-11-16.md",
+      "line": 559,
+      "statement_heading": "**Lemma I (`≈_s` does not depend on the power).** B15 §2 defines"
+    },
+    {
+      "source": "docs/c4-round3-2026-11-16.md",
+      "line": 586,
+      "statement_heading": "**Lemma 9″ (Lemma 9′ of the rank-two note in solenoid form; not new: BKS"
+    },
+    {
+      "source": "docs/c4-round3-2026-11-16.md",
+      "line": 610,
+      "statement_heading": "**Lemma 10 (every determinant; rank-two note §8, not new).** If"
+    },
+    {
+      "source": "docs/c4-round3-2026-11-16.md",
+      "line": 847,
+      "statement_heading": "**Proposition E (draft; the `ε`-defect cocycle; setting of §5.1).** Let"
+    },
+    {
+      "source": "docs/c4-round3-2026-11-16.md",
+      "line": 894,
+      "statement_heading": "**Proposition R3 (draft; degree three, no rank-two hypothesis).** Let"
+    },
+    {
       "source": "docs/c4-seam-birth-orbits-2026-11-04.md",
       "line": 10,
       "statement_heading": "**Lemma.** In a supplied finite strict child-closed phase-zero balanced"
@@ -36420,6 +36714,7 @@
     "proof/PscVerif/PscVerif/GeometricFPisot.lean": "bf0a0f22acc5f1217d6340b2f5acf5302e4bf9753ef35106d1d790aef5d73bcc",
     "proof/PscVerif/PscVerif/GeometricFRank.lean": "2f2cfca2ad6e05ce8347e97b1968c09b7bbb671f4e0d8f0a366966c0503d47b9",
     "proof/PscVerif/PscVerif/GeometricFStrict.lean": "d21956f722083b84473d633854cd43173ebe99c1cde99e7292c57cd046221abb",
+    "proof/PscVerif/PscVerif/GeometricFTriple.lean": "2e2b8d5cfb4a7c5ca2925c98c70093f4b5fc55f9a7a440c5e7e4d74dd42b4754",
     "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean": "c3b266fc203b69f632063b38d044c0f76e7ec50825a16c6c04949fa696e275ec",
     "proof/PscVerif/PscVerif/GraphEmbedding.lean": "ab4f4774921dbf755b0c93c1f7c1180d076194c4906f7d4ea96210635d37caee",
     "proof/PscVerif/PscVerif/GraphRefinement.lean": "23b9d53d396d65a1b38dffffccf0dd49b39e28afba29f18a3c0fe5ec612d1394",
@@ -36508,7 +36803,7 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "a6e431d4f169d5d1eda006aff14446fd9f9340ac79ae61382feb3411ea9f84fa",
+    "proof/PscVerif/PscVerif.lean": "a8700a935cee0dc07acb6672939adb581c5de6e00b1f91d5de79e5c3be5a7701",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

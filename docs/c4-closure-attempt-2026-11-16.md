@@ -1776,3 +1776,193 @@ afterwards; no open statement of §15.3 changes. As merged they read:
 The corrections to the rank-two and family notes and to their gates are
 listed in those notes; those to the side-notes ledger are a dated entry
 there.
+
+## 16. Update 2026-11-16 (round 3)
+
+Added on 2026-11-16, after a third round of the attempt. Nothing in §§1–15
+was edited; where round 3 supersedes a sentence of this note or of another
+note, §16.5 quotes it. **Universal C4 is still not proved and remains
+open.** Nothing here changes a governed claim status (C4, #138, #139, #84,
+G1 and PSC are unchanged), no ledger claim is registered or promoted, and
+independent human review is pending for every statement. The record of
+round 3, with its targeted stop/go section, its proofs and the five "work
+shown" headings, is the [round-3 note](c4-round3-2026-11-16.md); this
+section indexes it and restates §15.3.
+
+### 16.1 What round 3 did
+
+Round 3 took four obligations from §15.3: two executable, two
+mathematical. The executable part was committed as `e76941f3` on top of
+`main@0b6bff68`; the mathematical tasks were read-only in the repository.
+
+| Obligation | Aim | Outcome | Verification |
+| --- | --- | --- | --- |
+| mojo-divisor | implement the divisor condition of Theorem P+ and count what it excludes | done: `kernel/psc/rank_two_parity.mojo`, pinned by `kernel/tests/test_rank_two_parity.mojo` | exact regression; 22 scratch mutations all caught; the counts rest on Theorem P+, a recorded conditional proof |
+| lean-f3 | prove property (F) in Lean for one three-letter PIP3 specimen | done for Tribonacci: `PscVerif.GeometricFTriple` | Lean, incremental build and module-restricted axiom audit; the isolated checker was not run |
+| fork-nonunit | Theorem Fork for nonunit `σ` with `dim H¹ = 3` | a written proof for every determinant | one independent adversarial verifier: **no refutation**; its corrections are binding and applied in the round-3 note |
+| unit-rank-two | the rank-two wall for unit `σ` with first-defect weights `(m, m, m)` | **obstruction**: not discharged | single prover, no verifier |
+
+### 16.2 Index of round-3 results
+
+Classes as in §4 and §15.2 (**M** pinned by a Mojo regression, **L**
+machine-checked in Lean, **C** conditional on the listed imports, **p** a
+written proof in the repository).
+
+| Label | Statement (all hypotheses in the cited place) | Class | Where |
+| --- | --- | --- | --- |
+| Divisor condition of Theorem P+ | exact decision of item 2 of Theorem P+ at `n = 1, …, 42`, which decides every admissible `n` (Lemma N of the module); `c_n` from the cycle type of `g_K` on `ER` (Proposition C of the module) | M; Proposition C and Lemma N: E·p in the module docstring, checked on every corpus specimen | round-3 note §2 |
+| Census of the divisor condition | fails on 2,364 odd and 930 even corpus specimens; beyond the earlier hypotheses on 36 (24 even with `d₂ = 2`, `dim H¹ = 4`; 12 odd with `dim H¹ = 5`, `tr ≡ e₂`), all first failing at `n = 2`, none with (F); on none of the open (F) classes (132 even, 180 odd) | M; class counts under P+ (C·p), not certificates | round-3 note §2.2 |
+| Property (F) for Tribonacci | `PropertyF tribSubst (lenHom ℓ)` for every positive left eigen-row; with it `fc1_pip3` holds for Tribonacci with no hypothesis left, and all three statements of the equivalence are false | L (`Psc.GeometricFTriple.trib_propertyF`, `trib_fc1_hypotheses_complete`, `trib_fc1`, `trib_fc1_evaluated`; control `ctrl_not_propertyF` on `01/12/021`) | round-3 note §3 |
+| Theorem Fork, every determinant | `σ ∈ PIP3`, any `det M`, `dim H¹ = 3`, strict component `Z` with (Z4) in the form `h_φ(T) = h_φ(T′)`: every `(T, T′) ∈ Z` has a second partner `T″` never coincident with `T′`; `π₁` injective at no point; disjoint cut sets; the interior periodic address realised as a partner in the fibre over the identity of the solenoid | C·p; single prover plus one verifier; Lemma 9″ is BKS (not new), Lemma 10 and (Z4) at every determinant are the rank-two note, `cr ≥ 3` is Corollary N+ | round-3 note §4 |
+| Obstruction U3 (unit, `(m, m, m)`) | the first failed premise: no available constraint separates a literal strict component from an abstract child system; an explicit abstract model on `1/2/021` meets every round-2 tool and the three new inputs; the missing ingredient is literal factorization | an obstruction to a method; the drafts found on the way (Proposition E, Lemma L±, Proposition R3) are single-prover, unverified, not dependencies | round-3 note §5 |
+
+"Obstruction U3" is a name used only in this section, for §5.2 of the
+round-3 note.
+
+### 16.3 The open statements of §15.3 as they now stand
+
+Only what changed is stated; items 4 and 7 are unchanged. Numbers are class
+counts pinned by `kernel/tests/test_rank_two_parity.mojo` or read off its
+pinned cell table; they are not open cases, since no corpus specimen has a
+strict system (`C4StandingCorpus`).
+
+1. **On (F): exclude `ν_L = 2`.** *Unchanged as an open statement; one
+   count changes.* The divisor condition of Theorem P+ is now implemented.
+   On the (F) class it fails on 1,470 specimens, all inside the hypotheses
+   of the recorded theorems, and on none of the 312 = 132 + 180 specimens of
+   the open classes. The sentence "P+ adds only its divisor condition, which
+   is not implemented, so nothing is counted for it" now reads: implemented,
+   it adds nothing on the (F) class. Still open in the same sharpest form:
+   `det M` even with `dim H¹ ≥ 4`; `det M` odd with `tr M ≡ e₂(M)` and
+   `dim H¹ ≥ 5`. Theorem FC1 now has one complete machine-checked instance
+   on three letters (Tribonacci).
+2. **Off (F): the zero-fibre form of C4.** *Unchanged.* Added by round 3:
+   at `dim H¹ = 3` a strict component carries the fork for every
+   determinant, and the interior periodic address of Corollary N+ is
+   realised as a partner `T₀″` in the fibre of `h_φ` over the identity
+   (written proof, one verifier).
+3. **The `cr = 2` wall.** *Changed.* The divisor condition excludes
+   `cr = 2`, conditionally on the imports of Theorem P+, on 36 corpus
+   specimens beyond the earlier hypotheses (24 even, `d₂ = 2`,
+   `dim H¹ = 4`; 12 odd, `dim H¹ = 5`, `tr ≡ e₂`), none with (F). On the
+   corpus the specimens on which no recorded necessary condition of
+   `cr = 2` fails are 540 with even determinant and 264 with odd (hence
+   unit) determinant (cells of the pinned table; class counts). **Still
+   open:** the exclusion of `cr = 2` when `dim H¹ ≥ 4` (even determinant,
+   divisor condition satisfied) and when `det M` is odd, `tr M ≡ e₂(M)`,
+   `dim H¹ ≥ 5`; and the unit case with first-defect weights `(m, m, m)`,
+   which is now recorded as Obstruction U3 (§16.2) with its first failed
+   premise, and is not excluded. Still not proved, and not to be written:
+   "at `cr = 2`, `σ` is unit and `3 ∣ r`"; "no strict system for nonunit
+   `σ` at `cr = 2`".
+4. **Phase one, statement (N).** *Unchanged.*
+5. **Unit, `dim H¹ = 3`.** *Changed.* Theorem Fork now has a written proof
+   for every determinant (single prover plus one independent adversarial
+   verifier, no refutation; not machine-checked); "expected, not proved" is
+   superseded. Still open: exclude the fork; whether `π₁` is a covering.
+6. **Nonunit.** *Changed.* Added for nonunit `σ` with `dim H¹ = 3`: the
+   fork, `π₁` injective at no point, disjoint cut sets; for such `σ` with a
+   strict component the unique-partner premise of the retired
+   derived-substitution route is false, not merely unproved (conditionally
+   on the imports). The seam route is unchanged.
+7. **Subtile form.** *Unchanged.*
+
+Formal debt: "(F) is not machine-checked for any three-letter substitution"
+is discharged for Tribonacci (L); the isolated-checker receipt for the new
+module must come from CI, as for the modules of round 2.
+
+### 16.4 What not to re-run
+
+In addition to §15.4:
+
+- the three directions of the unit `(m, m, m)` attack, as posed in the
+  round-3 note §5.5 (the `ε`-defect cocycle against Lemma S+; the explicit
+  degree-three structure; the swap with Theorems P+, H3 and FP), and any
+  argument that uses only matrix identities of the child system, σ-side
+  arithmetic and fixed-point counts: the abstract model of the round-3 note
+  §5.4 meets all of them. A new attempt needs an input that sees literal
+  factorization, or a positivity statement for the first defect on three
+  letters (none is known);
+- the divisor condition beyond `n = 42`: Lemma N of the module makes
+  `n = 1, …, 42` exact;
+- the `ℓ¹` trap of Lemma FM-T on Tribonacci, and enumeration of periodic
+  states through `GeometricFPisot.periodic_bound` (its eigenfunctionals are
+  chosen by `Classical.choice`);
+- a re-derivation of Theorem Fork for nonunit `σ`: the next step is to
+  exclude the fork or to decide whether `π₁` is a covering.
+
+### 16.5 Sentences on main that round 3 supersedes
+
+These sentences were correct when written and are not edited in this
+increment (each lies outside the files of this round); the dated
+corrections are this list and the side-notes ledger.
+
+- This note, §15.2, row of Lemma S+ and Theorem P+: "the divisor condition
+  is not implemented"; the paragraph after the table: "What is **not**
+  machine-checked: property (F) for any substitution on three letters
+  (Tribonacci satisfies every hypothesis of `fc1_pip3` except that (F) is not
+  shown; …)"; §15.3 item 1: "P+ adds only its divisor condition, which is not
+  implemented, so nothing is counted for it"; §15.3 item 5: "its extension to
+  nonunit `σ` with `dim H¹ = 3` is **expected, not proved**"; §15.6: the
+  figures "24 further specimens", "930", "1,386", "2,364" listed as not
+  replayable (now replayed: round-3 note §2.5); §15.7: "(F) is not
+  machine-checked for any three-letter substitution".
+- [Rank-two note](c4-rank-two-wall-2026-11-16.md): §7, "which is not
+  implemented in the kernel (§12)"; §8, "*Theorem Fork for nonunit `σ` with
+  `dim H¹ = 3`: expected, not proved.*"; §10 item 1 ("the divisor condition
+  of Theorem P+, which is a necessary condition and is not implemented") and
+  item 5; §12, "*Not implemented, hence not pinned.*", the scratch figures
+  "`cr ≠ 2` on 2,364 odd and 1,386 even corpus specimens (930 by Theorem P+,
+  456 more by Theorem H3)",
+  and the non-claims "the divisor condition of Theorem P+ is not
+  implemented" and "Theorem Fork for nonunit `σ`. Expected, not proved."
+- [(F)-class note](c4-geometric-f-class-2026-11-16.md), §10(a): "No
+  three-letter substitution is shown in Lean to satisfy `PropertyF`"; §10(b):
+  "its divisor condition is not implemented"; §10(c) item 4: "Theorem Fork
+  for nonunit `σ` with `dim H¹ = 3`: expected, not proved."
+- [Family note](c4-fc3-family-2026-11-16.md), §12, *Lean*: "(F) itself is
+  not established in Lean for any three-letter substitution."
+- `kernel/psc/c4_geometric_f.mojo`, module docstring: "Not implemented: the
+  divisor condition of Theorem P+ …" (now `psc.rank_two_parity`).
+- `proof/PscVerif/PscVerif/GeometricFPisot.lean`, "**Not proved here.**
+  Property (F) for any substitution on three letters: no PIP3 specimen is
+  shown to satisfy all hypotheses of `fc1_pip3` at once"; and
+  `proof/PscVerif/PscVerif/GeometricFInclusion.lean`: "No PIP3 specimen is
+  shown to satisfy `PropertyF`" (now `Psc.GeometricFTriple.trib_propertyF`).
+- Side-notes ledger, entries of 2026-11-16 on Lemma S+ and Theorem P+ ("not
+  implemented"), on Theorem H3 and on round 2 ("Theorem Fork for nonunit `σ`
+  … expected, not proved"), on Theorem FC1 in Lean ("(F) itself is not
+  machine-checked for any three-letter substitution"), and item (iv) of the
+  round-2 tooling pitfalls: corrected by the dated entries of round 3 at the
+  end of the ledger.
+
+### 16.6 Evidence and replay (round 3)
+
+```sh
+(cd kernel && pixi run --locked mojo run -I . -I tests tests/test_rank_two_parity.mojo)
+(cd proof/PscVerif && lake build PscVerif.GeometricFTriple)
+PYTHONPATH=tools python3 -m claim_governance.cli --root .
+```
+
+The regression was re-run while this section was written (exit 0, about
+30 s) and ends with one `require_contract`, whose receipt was collected
+locally before the commit; the governance audit, coverage included, passed
+when re-run for this section, and CI must collect the receipt again. The
+Lean module was rebuilt incrementally and its axiom audit re-run (`propext`,
+`Classical.choice`, `Quot.sound`). The proofs of §4 and §5 of the round-3
+note are text, not executable; their computations on the controls and the
+model are exploratory scratch, not replayable from the repository.
+
+### 16.7 Non-claims (round 3)
+
+- Universal C4, A1′ (#138), BH (#139), #84, G1 and PSC are open; no
+  governed claim changes status and no ledger claim is added.
+- The divisor condition is a necessary condition for `cr = 2` under a
+  recorded conditional theorem; its census certifies no coincidence rank.
+  Theorem Fork is a necessary condition, vacuous on every computed domain.
+- (F) is machine-checked for Tribonacci only; the instance of FC1 excludes
+  no strict system on any other specimen.
+- The unit `(m, m, m)` case is not excluded; Proposition E, Lemma L± and
+  Proposition R3 of the round-3 note are unverified drafts.
+- No novelty relative to the literature is claimed beyond "not found in the
+  sources read".
