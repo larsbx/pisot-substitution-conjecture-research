@@ -1459,3 +1459,27 @@ shown." and the sentence of §9 "Whether the non-trivial part of the class is
 infinite, beyond powers and reversals, is open." are the subject of the
 [family note of round 2](c4-fc3-family-2026-11-16.md), which is the record
 for them. Nothing is asserted about them here.
+
+## 11. Update 2026-11-17 (FC2 orientation)
+
+Added on 2026-11-17; §§1–10 are unchanged. Theorem FC2 is unchanged as a
+statement; its imports shrink. In the proof of §4.2, the strand-reflection
+part of step (c) (`cr(σ^R) = cr(σ)`) is no longer needed; its duality
+`ν_L(σ^R) = ν_R(σ)` and the reversal invariance of (F) are still used.
+`cr ≥ ν_R` follows from
+Remark 4.3 at `q = 0` alone, because the right-anchored vertex edges, shifted
+by the Parikh vector of a shortest letter, are states over `0`; and on (F)
+`ν_L = ν_R` holds by an integer argument with no rank input, for every
+alphabet size. Correction (i) after the proof ("Step (c) replaces that
+reading") is superseded in the same sense. Corollary E's (i) ⟺ (ii) ⟺ (iii)
+is machine-checked on the standing class; (iv) and (v) still rest on the
+one-sided input `cr = S(σ)` and on BBK Cor. 5.2. Superseded in the same
+sense, and not edited: in §9, "'`cr ≥ ν_R` is BBK Remark 4.3' (false as a
+literal reading; replaced by reversal)" (it now follows from Remark 4.3 at
+`q = 0` with the shifted right-anchored edges) and the derivation line
+"+ reflection (cr, (F) reversal-invariant)" (the `cr` part is no longer
+used; the (F) part is). Lemma 1 (1), in its integer
+form (equivalent by clearing denominators), and the first clause of
+Lemma 1 (3) (`0` is not an eigenvalue) are machine-checked. Record:
+[FC2 orientation note](c4-fc2-orientation-2026-11-17.md); Lean:
+`PscVerif.GeometricFOrientation`.
