@@ -148,3 +148,4 @@ import PscVerif.GeometricFStrict
 import PscVerif.GeometricFPisot
 import PscVerif.GeometricFRank
 import PscVerif.GeometricFTriple
+import PscVerif.GeometricFLemmas
