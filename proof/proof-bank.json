@@ -35045,6 +35045,11 @@
       "statement_heading": "### Corollary 3.1 — the three-state case is rigid"
     },
     {
+      "source": "docs/c4-periodic-fibre-bound-2026-11-17.md",
+      "line": 43,
+      "statement_heading": "**Theorem.** There is a finite matrix $L_3$ of literal triple overlap"
+    },
+    {
       "source": "docs/c4-periodic-parikh-phase-rigidity-2026-11-04.md",
       "line": 21,
       "statement_heading": "**Lemma 1.** For every positive integer h, the minimal polynomial f_h of beta^h over Q has degree three. In fact f_h=chi_(M^h) and is irreducible over Q."
@@ -35621,7 +35626,7 @@
     },
     {
       "source": "docs/overlap-phase-displacement-2026-11-17.md",
-      "line": 51,
+      "line": 53,
       "statement_heading": "**Theorem.** For every cyclic phase $C_i$ there are real weights"
     },
     {
