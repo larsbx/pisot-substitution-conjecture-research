@@ -106,6 +106,4 @@ def main() raises:
     print("Abstract phases: aligned size 7, unaligned size 8, uncentred size 7 refused.")
     test_productive_periodic_overlap()
     print("AAABCC/AB/A: one-offset recurrent subgraph with a depth-two literal exit.")
-    require_contract(
-        "Phase displacement supports count distinct offsets, check lattice unit steps, and refuse capped graphs. An actual open one-offset cycle remains productive."
-    )
+    require_contract("Phase displacement supports count distinct offsets, check lattice unit steps, and refuse capped graphs. An actual open one-offset cycle remains productive.")
