@@ -1966,3 +1966,17 @@ model are exploratory scratch, not replayable from the repository.
   Proposition R3 of the round-3 note are unverified drafts.
 - No novelty relative to the literature is claimed beyond "not found in the
   sources read".
+
+## 17. Update 2026-11-17 (FC2 orientation)
+
+Added on 2026-11-17; a pointer only, §§1–16 are unchanged. The open
+statements of §16.3 are unchanged, item 1 included: nothing here excludes
+`ν_L = 2` on (F). What changed is the support of Theorem FC2. On (F),
+`ν_L = ν_R` is proved by an integer argument, and the zero-slice maximum is
+one number for `σ` and `σ^R` and for left and right letter families; the
+coincidence-rank identification of FC2 needs one geometric input, `cr(σ) =
+S(σ)` at `q = 0` (BBK Remark 4.3, Lemma 6), instead of two, and the
+reflection of strands is not used. Corollary E (i) ⟺ (ii) ⟺ (iii) and the
+injectivity of `ℓ` on `ℤ³` are machine-checked on the standing class
+(`PscVerif.GeometricFOrientation`; isolated checker not run). Record, with
+its stop/go section: [FC2 orientation note](c4-fc2-orientation-2026-11-17.md).

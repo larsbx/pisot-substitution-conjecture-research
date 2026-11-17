@@ -43,8 +43,9 @@ number in four forms (states of `σ`, states of `σ^R`, left and right letter
 families). FC2 (2) needs one geometric input instead of two, and that one is
 one-sided: `cr(σ)` is the zero-slice maximum of `σ` (BBK Def. 4.1 and
 Remark 4.3 at `q = 0`, with Lemma 6). Off (F), the integer content of the
-dropped step is recovered anyway: with `ℓ` injective, every family of states
-over `0` of `σ` reflects to one of `σ^R`, so `S(σ) = S(σ^R)` for every `σ`
+dropped step is recovered anyway: with `ℓ` injective and `d ≥ 2`, every
+family of states over `0` of `σ` reflects to one of `σ^R`, so
+`S(σ) = S(σ^R)` for every such `σ`
 and the reversed rank realisation is a consequence of the direct one.
 Corollary E's equivalences
 (i) ⟺ (ii) ⟺ (iii) (no strict system; left; right strong coincidence of all
@@ -84,6 +85,7 @@ needs only the one-sided import `cr(σ) = S(σ)`.
 | Sellami–Sirvent, [arXiv:1410.6229v2](https://arxiv.org/pdf/1410.6229v2) | Cor. 2.1; §5 remarks [read] | the trivial duality: prefix SC for `σ` ⟺ suffix SC for `σ^R` | only `vertexCoincident_reverse_iff` |
 | Akiyama–Barge–Berthé–Lee–Siegel, Progr. Math. 309 (2015), [HAL](https://inria.hal.science/hal-01196318/document) | §3.1, §5.1, §5.2 [read] | `cr` through the maximal equicontinuous factor; SC in prefix form; `cr` as pairwise non-coincident segments crossing `E^s` in their interior | no orientation comparison; `cr(σ^R) = cr(σ)` follows quickly from the factor definition but is not stated |
 | Ito–Rao, Israel J. Math. 153 (2006) | via CANT Thm 5.4.14, 5.6.8 and Siegel–Thuswaldner Thm 3.20 [**not reached**; secondary statements only] | unit: tiling ⟺ super-coincidence | used only in the composite chain below, not verified in the original |
+| Solomyak, Ergodic Theory Dynam. Systems 17 (1997) | the overlap-coincidence criterion [**not re-read**; known through its statements in Akiyama–Lee and Barge–Kwapisz] | pure discrete spectrum ⟺ overlap coincidence | a link of the unit composite chain below, not verified in the original |
 
 **What is known.** None of the sources read states `ν_L = ν_R` on (F), or
 any comparison of the two orientations beyond the reversal duality (prefix
@@ -118,8 +120,9 @@ on injectivity of `ℓ`. No measure, no unimodularity, no BBK is used.
 **Negative controls known.** Barge–Diamond's `φ = (121, 221)`: by their final
 paragraph it fails prefix SC; by inspection (here machine-checked) both
 images end in the same letter, so suffix SC holds at level 1 — the two
-orientations differ there, with `ℓ = (1, 1)` not injective and the eigenvalue
-`1` (no contraction data). Thue–Morse fails both orientations. Akiyama–Lee
+orientations differ there, with `ℓ = (1, 1)` not injective, the eigenvalue
+`1` (no contraction data), and (F) failing for `φ` and `φ^R`
+(`bd_not_propertyF`, `bd_reverse_not_propertyF`). Thue–Morse fails both orientations. Akiyama–Lee
 Examples 4.6, 4.7 (reducible) fail both. Failures of (F): Siegel–Thuswaldner
 Example 4.8; CANT `τ = (2, 3, 12)`; 2,760 of the 4,554 corpus specimens. No
 example with `ν_L ≠ ν_R` inside the primitive irreducible Pisot class was
@@ -277,8 +280,8 @@ review's §1 prove the same statement from irreducibility directly; this route r
 machine-checked contraction data instead of a Galois argument.
 
 *Corollary FC2-1s.* (1) By Theorem O (1), left and right families are
-families of states over `0` of `σ`; with `cr(σ) = S(σ)` they have at most
-`cr(σ)` members. (2) Theorem O (4) and the uniqueness of a maximum. The
+families of states over `0` of `σ`; by the hypothesis of (1) (the bound
+half of Remark 4.3 at `q = 0`) they have at most `cr(σ)` members. (2) Theorem O (4) and the uniqueness of a maximum. The
 bound `ν_L ≤ 2` is Barge–Diamond's Theorem 1 as in step (d) of the class
 note. ∎
 
@@ -382,15 +385,10 @@ Theorem 1 and BBK Cor. 5.2 are unchanged imports.
   So the hypotheses of Theorem O (3), (4) cannot all be dropped, and the
   stronger "`ν_L = ν_R` for every primitive substitution" is false; the
   example does not isolate which hypothesis is needed.
-- **Exploratory search (scratch, not replayable from the repository; not
-  evidence for any statement here).** The hypotheses verifier of §1 searched
-  about 4,100 irreducible Pisot substitutions (`d = 2, 3`, seeded; exact
-  coincidence search, (F) by a floating-point Lemma 3 box) and about 5,500
-  contracting substitutions with non-injective `ℓ` outside the class
-  (`χ = X²(X − β)` and `χ = X q(X)`, about 60 with (F) and rank 2 or 3): no
-  violation of "(F) for `σ` ⟹ `ν_L ≥ ν_R`" or "(F) for `σ^R` ⟹ `ν_R ≥ ν_L`",
-  and no substitution with (F) and `ν_L ≠ ν_R`. Inside the class every
-  specimen had `ν_L = ν_R = 1`, so the search cannot discriminate there.
+- **Exploratory search.** A scratch search by the hypotheses verifier of §1
+  found no substitution with (F) and `ν_L ≠ ν_R`. Its seeds, bounds and caps
+  were not recorded, so it is not replayable and is not evidence for
+  anything here; no figures from it are quoted.
 - **Where (F) enters.** Only through absorption (Theorem O (2)); the
   direction left ⟹ right needs (F) for `σ^R`, which is (F) for `σ` only via
   injectivity of `ℓ`. Lemma Z supplies that on the standing class. On the
@@ -403,12 +401,14 @@ Theorem 1 and BBK Cor. 5.2 are unchanged imports.
 
 Theorem O (1): a finite nonempty alphabet and positive tile lengths. Theorem
 O (2), (3): length data (`ℓM = βℓ`, `β > 0`, `ℓ > 0`), contraction data, and
-(F) for `σ`, resp. `σ^R`. Theorem O (4): (F) for both, or (F) for `σ` and
-`ℓ` injective on `ℤ^d`. Theorem O (5): `ℓ > 0`, `ℓ` injective on `ℤ^d`,
-`d ≥ 2`; no (F), no contraction. Lemma Z: `χ_M` irreducible over `ℚ`, `d ≥ 2`, a positive left
-eigen-row, every other complex root of modulus `< 1`. Corollary FC2-1s: the
-one geometric import `cr(σ) = S(σ)` (BBK Def. 4.1, Remark 4.3 at `q = 0`,
-Lemma 6) and Barge–Diamond 2002 Theorem 1. Corollary E′: (P), (I), (E), (R),
+(F) for `σ`, resp. `σ^R`. Theorem O (4): length data, contraction data, and
+(F) for both `σ` and `σ^R`, or (F) for `σ` with `ℓ` injective on `ℤ^d`.
+Theorem O (5): `ℓ > 0`, `ℓ` injective on `ℤ^d`, `d ≥ 2`; no (F), no
+contraction. Lemma Z: `χ_M` irreducible over `ℚ`, `d ≥ 2`, a positive left
+eigen-row for `β > 0`, every other complex root of modulus `< 1`. Corollary
+FC2-1s: for (1) the bound half of Remark 4.3 at `q = 0` (with BBK Def. 4.1
+and Lemma 6), for (2) the identification `cr(σ) = S(σ)` (bound and
+attainment), and Barge–Diamond 2002 Theorem 1. Corollary E′: (P), (I), (E), (R),
 (F). Neither the determinant nor three letters are used outside the
 specialisations `fc2_integer_rank_pip3` and the PIP3 reading of FC2.
 
@@ -417,26 +417,32 @@ specialisations `fc2_integer_rank_pip3` and the PIP3 reading of FC2.
 §3: translation invariance of coincidence, the shift by a shortest letter,
 the embeddings of left and right letter families into the zero slice, the
 absorption under (F), the bookkeeping of maxima, and the reflection of
-arbitrary families with a translation from the dense length group. Lemma Z by the orbit of
-`v` in a finite set and `det M ≠ 0`. §5 lists which step of FC2 each piece
+arbitrary families with a translation from the dense length group. Lemma Z
+by the orbit of `v` in a finite set and `det M ≠ 0`. §5 lists which step of FC2 each piece
 replaces.
 
 ### Evidence and replay
 
 ```sh
 cd proof/PscVerif
-lake build PscVerif.GeometricFOrientation
-lake env lean <audit file with #print axioms for the declarations of §4>
+lake build PscVerif
+{ echo 'import PscVerif.GeometricFOrientation'
+  grep -oP '^(theorem|def) \K\S+' PscVerif/GeometricFOrientation.lean |
+    sed 's/^/#print axioms Psc.GeometricF./'; } > /tmp/FC2OrientationAudit.lean
+lake env lean /tmp/FC2OrientationAudit.lean
+cd ../..
+python3 tools/make_proof_bank.py --check
+python3 tools/make_ledger.py --check
+python3 tools/check_markdown_source.py
+PYTHONPATH=tools python3 -m claim_governance.cli --root .
 ```
 
-The module was built with Lean `4.34.0-rc2` against the Mathlib revision of
-`lake-manifest.json`; `#print axioms` on every declaration of the module
-(53) gives a subset of `propext`, `Classical.choice`, `Quot.sound`; the
-file contains no `sorry`
-and no `native_decide`. The full library `PscVerif` was rebuilt with the new
-module imported by the aggregator. The proof bank was regenerated
-(`python3 tools/make_proof_bank.py`). The isolated checker
-`tools/check_lean.sh` was not run.
+The library was built with Lean `4.34.0-rc2` against the Mathlib revision of
+`lake-manifest.json`, with the new module imported by the aggregator.
+`#print axioms` on every declaration of the module (53) gives a subset of
+`propext`, `Classical.choice`, `Quot.sound`; the file contains no `sorry`
+and no `native_decide`. The proof bank was regenerated; the four checks
+above pass. The isolated checker `tools/check_lean.sh` was not run.
 
 ### Negative controls
 
@@ -474,8 +480,10 @@ also the rank-two non-vacuity instance (`tm_integer_rank_two`).
 - No novelty is claimed beyond "not found in the sources read" (§1); for
   unit `σ` the rank-one case also follows from printed results. Ito–Rao
   2006 was not read in the original.
-- `ν_L = ν_R` off (F) is not claimed; Barge–Diamond's `φ` shows it fails
-  without contraction data, and no example inside the irreducible Pisot class
+- `ν_L = ν_R` off (F) is not claimed. Barge–Diamond's `φ` fails (F) for `φ`
+  and `φ^R`, contraction data and injectivity of `ℓ` together and has
+  `ν_L ≠ ν_R`: the hypotheses cannot all be dropped, and the example does not
+  isolate which one is needed. No example inside the irreducible Pisot class
   is known either way.
 - Universal C4, #138, #139, #84, G1 and PSC are open; no governed status
   changes.

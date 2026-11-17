@@ -4304,16 +4304,16 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/c4-every-cut-pair-positive-density-2026-11-04.md:20](../docs/c4-every-cut-pair-positive-density-2026-11-04.md#L20) | **Theorem A.** For each e there exists a source j in I_e and a residue-zero generation subsequence n=mqh, for any fixed positive q, such that the number b_e(n,j) of *literal factor occurrences* with first pair e in the complete factorisation of sigma^n(T_j) obeys |
 | [docs/c4-every-cut-pair-positive-density-2026-11-04.md:40](../docs/c4-every-cut-pair-positive-density-2026-11-04.md#L40) | ## Corollary B: per-pair subtile overlap (rests on #480 §3 and §8; human review pending) |
 | [docs/c4-every-cut-pair-positive-density-2026-11-04.md:49](../docs/c4-every-cut-pair-positive-density-2026-11-04.md#L49) | **Corollary B (given these geometric inputs, proved in #480 §3 and §8):** every represented pair e={c,c'} individually satisfies |
-| [docs/c4-fc2-orientation-2026-11-17.md:151](../docs/c4-fc2-orientation-2026-11-17.md#L151) | **Theorem O (orientation transfer).** |
-| [docs/c4-fc2-orientation-2026-11-17.md:175](../docs/c4-fc2-orientation-2026-11-17.md#L175) | **Lemma Z (the ℤ-kernel premise).** If χ_M is irreducible over ℚ, |
-| [docs/c4-fc2-orientation-2026-11-17.md:188](../docs/c4-fc2-orientation-2026-11-17.md#L188) | **Corollary E′ (elementary part of Corollary E).** For σ primitive on at |
-| [docs/c4-fc2-orientation-2026-11-17.md:208](../docs/c4-fc2-orientation-2026-11-17.md#L208) | *Theorem O (1).* The left case is (St) of the class note: the vertex edges |
-| [docs/c4-fc2-orientation-2026-11-17.md:222](../docs/c4-fc2-orientation-2026-11-17.md#L222) | *Theorem O (2)* is leftLetterFamily_of_stateFamily of |
-| [docs/c4-fc2-orientation-2026-11-17.md:229](../docs/c4-fc2-orientation-2026-11-17.md#L229) | *Theorem O (3).* A right family of σ of size n is, by (1), a family of |
-| [docs/c4-fc2-orientation-2026-11-17.md:236](../docs/c4-fc2-orientation-2026-11-17.md#L236) | *Theorem O (4).* Coincidence is reflexive (level 0), so a family of |
-| [docs/c4-fc2-orientation-2026-11-17.md:245](../docs/c4-fc2-orientation-2026-11-17.md#L245) | *Theorem O (5).* Let (a_i, v_i) be pairwise non-coincident states over 0 |
-| [docs/c4-fc2-orientation-2026-11-17.md:264](../docs/c4-fc2-orientation-2026-11-17.md#L264) | *Lemma Z.* First det M ≠ 0: otherwise χ_M(0) = ± det M = 0, so X |
-| [docs/c4-fc2-orientation-2026-11-17.md:285](../docs/c4-fc2-orientation-2026-11-17.md#L285) | *Corollary E′.* (i) ⟺ (ii) is Theorem FC1 (fc1_equivalence_of_primitive_pisot). |
+| [docs/c4-fc2-orientation-2026-11-17.md:154](../docs/c4-fc2-orientation-2026-11-17.md#L154) | **Theorem O (orientation transfer).** |
+| [docs/c4-fc2-orientation-2026-11-17.md:178](../docs/c4-fc2-orientation-2026-11-17.md#L178) | **Lemma Z (the ℤ-kernel premise).** If χ_M is irreducible over ℚ, |
+| [docs/c4-fc2-orientation-2026-11-17.md:191](../docs/c4-fc2-orientation-2026-11-17.md#L191) | **Corollary E′ (elementary part of Corollary E).** For σ primitive on at |
+| [docs/c4-fc2-orientation-2026-11-17.md:211](../docs/c4-fc2-orientation-2026-11-17.md#L211) | *Theorem O (1).* The left case is (St) of the class note: the vertex edges |
+| [docs/c4-fc2-orientation-2026-11-17.md:225](../docs/c4-fc2-orientation-2026-11-17.md#L225) | *Theorem O (2)* is leftLetterFamily_of_stateFamily of |
+| [docs/c4-fc2-orientation-2026-11-17.md:232](../docs/c4-fc2-orientation-2026-11-17.md#L232) | *Theorem O (3).* A right family of σ of size n is, by (1), a family of |
+| [docs/c4-fc2-orientation-2026-11-17.md:239](../docs/c4-fc2-orientation-2026-11-17.md#L239) | *Theorem O (4).* Coincidence is reflexive (level 0), so a family of |
+| [docs/c4-fc2-orientation-2026-11-17.md:248](../docs/c4-fc2-orientation-2026-11-17.md#L248) | *Theorem O (5).* Let (a_i, v_i) be pairwise non-coincident states over 0 |
+| [docs/c4-fc2-orientation-2026-11-17.md:267](../docs/c4-fc2-orientation-2026-11-17.md#L267) | *Lemma Z.* First det M ≠ 0: otherwise χ_M(0) = ± det M = 0, so X |
+| [docs/c4-fc2-orientation-2026-11-17.md:288](../docs/c4-fc2-orientation-2026-11-17.md#L288) | *Corollary E′.* (i) ⟺ (ii) is Theorem FC1 (fc1_equivalence_of_primitive_pisot). |
 | [docs/c4-fc3-family-2026-11-16.md:93](../docs/c4-fc3-family-2026-11-16.md#L93) | **Theorem FM1 (PIP3).** |
 | [docs/c4-fc3-family-2026-11-16.md:241](../docs/c4-fc3-family-2026-11-16.md#L241) | **Theorem FM2.** |
 | [docs/c4-fc3-family-2026-11-16.md:492](../docs/c4-fc3-family-2026-11-16.md#L492) | **Theorem FM3.** Let σ = σ_{r,s,n} ∈ PIP3. Then g = (1, 0, 0), with |
