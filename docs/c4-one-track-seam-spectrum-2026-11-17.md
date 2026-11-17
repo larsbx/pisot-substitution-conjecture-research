@@ -143,7 +143,9 @@ both endpoint-letter periods. Equality follows from
 injectivity of the respective encodings. Thus if all periods
 in $I$ are odd and neither source endpoint map has a
 two-cycle, the correction at $-1$ is zero, even with
-periodic interior lifts.
+periodic interior lifts. (On three letters a two-cycle is the
+only even cycle an endpoint map can have; on a larger alphabet
+the condition is that every endpoint cycle has odd length.)
 
 **Corollary (geometric finiteness).** Under property (F) the set
 $I$ is empty. A periodic top-only endpoint would yield a

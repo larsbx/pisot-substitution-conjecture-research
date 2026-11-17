@@ -4458,7 +4458,7 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/c4-nonunit-residue-occupancy-2026-11-04.md:142](../docs/c4-nonunit-residue-occupancy-2026-11-04.md#L142) | ### Corollary R4 (stronger necessary condition for a strict system) |
 | [docs/c4-one-track-seam-spectrum-2026-11-17.md:31](../docs/c4-one-track-seam-spectrum-2026-11-17.md#L31) | **Lemma (complete one-track adjacency set).** In $C$ every adjacent |
 | [docs/c4-one-track-seam-spectrum-2026-11-17.md:55](../docs/c4-one-track-seam-spectrum-2026-11-17.md#L55) | **Theorem (cycle correction).** Let $\mathcal L$, $\mathcal R$, |
-| [docs/c4-one-track-seam-spectrum-2026-11-17.md:148](../docs/c4-one-track-seam-spectrum-2026-11-17.md#L148) | **Corollary (geometric finiteness).** Under property (F) the set |
+| [docs/c4-one-track-seam-spectrum-2026-11-17.md:150](../docs/c4-one-track-seam-spectrum-2026-11-17.md#L150) | **Corollary (geometric finiteness).** Under property (F) the set |
 | [docs/c4-oriented-alignment-2026-11-04.md:18](../docs/c4-oriented-alignment-2026-11-04.md#L18) | **Lemma.** Under the hypotheses of |
 | [docs/c4-overlap-carrier-enclosure-2026-11-04.md:22](../docs/c4-overlap-carrier-enclosure-2026-11-04.md#L22) | **Lemma.** Let a nonerasing substitution have positive letter lengths ell |
 | [docs/c4-parikh-intertwiner.md:90](../docs/c4-parikh-intertwiner.md#L90) | ### Corollary 2.1 — no one- or two-state counterexample SCC |
