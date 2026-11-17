@@ -13554,6 +13554,534 @@
       "declaration": "theorem fc1_inclusion_gap_of_contraction (hL : LengthData s L β)"
     },
     {
+      "name": "Psc.GeometricFLemmas.charpoly_dvd_of_aeval_mulVec_eq_zero",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 144,
+      "declaration": "theorem charpoly_dvd_of_aeval_mulVec_eq_zero (A : Matrix ι ι F) (hA : Irreducible A.charpoly)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.linearIndependent_pow_mulVec",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 157,
+      "declaration": "theorem linearIndependent_pow_mulVec (A : Matrix ι ι F) (hA : Irreducible A.charpoly)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.span_pow_mulVec_eq_top",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 183,
+      "declaration": "theorem span_pow_mulVec_eq_top (A : Matrix ι ι F) (hA : Irreducible A.charpoly) {w : ι → F}"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.eigenrow_eq_zero_of_irreducible",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 192,
+      "declaration": "theorem eigenrow_eq_zero_of_irreducible {K : Type*} [Field K] [Algebra F K]"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.isUnit_aeval_of_root",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 228,
+      "declaration": "theorem isUnit_aeval_of_root {K : Type*} [Field K] [Algebra F K] (A : Matrix ι ι F)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.aeval_eq_zero_of_conj",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 239,
+      "declaration": "theorem aeval_eq_zero_of_conj {K : Type*} [Field K] [Algebra F K] {p q : F[X]}"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.root_ne_zero_and_pow_ne_one",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 251,
+      "declaration": "theorem root_ne_zero_and_pow_ne_one {p : ℚ[X]} (hp : Irreducible p) (hmon : p.Monic) {r : ℂ}"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.incQ_map_real",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 274,
+      "declaration": "theorem incQ_map_real (s : α → List α) :"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.eq_zero_of_dot_eq_zero",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 281,
+      "declaration": "theorem eq_zero_of_dot_eq_zero (s : α → List α)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.lenHom_eq_zero_iff",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 292,
+      "declaration": "theorem lenHom_eq_zero_iff (s : α → List α)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.lenHom_zero_kernel",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 308,
+      "declaration": "theorem lenHom_zero_kernel (s : α → List α)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.lenHom_injective",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 316,
+      "declaration": "theorem lenHom_injective (s : α → List α)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.lenHom_zero_kernel_of_pos",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 323,
+      "declaration": "theorem lenHom_zero_kernel_of_pos (s : α → List α)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.eigenvalue_ne_zero_and_pow_ne_one",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 341,
+      "declaration": "theorem eigenvalue_ne_zero_and_pow_ne_one (s : α → List α)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.isUnit_incQ_pow_sub_one",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 353,
+      "declaration": "theorem isUnit_incQ_pow_sub_one (s : α → List α)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.isUnit_incQ",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 361,
+      "declaration": "theorem isUnit_incQ (s : α → List α)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.map_incZ_pow_sub_one",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 369,
+      "declaration": "theorem map_incZ_pow_sub_one (s : α → List α) (k : ℕ) :"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.mulVec_pow_sub_one_injective",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 379,
+      "declaration": "theorem mulVec_pow_sub_one_injective (s : α → List α)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.aeval_perron",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 400,
+      "declaration": "theorem aeval_perron (s : α → List α) {β : ℝ} {ℓ : α → ℝ} (hℓ0 : ℓ ≠ 0)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.eval_perron_complex",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 407,
+      "declaration": "theorem eval_perron_complex (s : α → List α) {β : ℝ} {ℓ : α → ℝ} (hℓ0 : ℓ ≠ 0)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.isUnit_incQ_pow_sub_one_of_left_eigen",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 418,
+      "declaration": "theorem isUnit_incQ_pow_sub_one_of_left_eigen (s : α → List α)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.mulVec_pow_sub_one_injective_of_left_eigen",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 428,
+      "declaration": "theorem mulVec_pow_sub_one_injective_of_left_eigen (s : α → List α)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.eigenvalue_ne_zero_and_pow_ne_one_of_left_eigen",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 436,
+      "declaration": "theorem eigenvalue_ne_zero_and_pow_ne_one_of_left_eigen (s : α → List α)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.stepN_power_to_stepN",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 453,
+      "declaration": "theorem stepN_power_to_stepN (hL : LengthData s L β) {m : ℕ} {x : α × (α → ℤ)}"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.stepN_to_stepN_power",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 463,
+      "declaration": "theorem stepN_to_stepN_power {m : ℕ} {x : α × (α → ℤ)} (hx : IsState L x) :"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.stepN_mul_self",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 472,
+      "declaration": "theorem stepN_mul_self {k : ℕ} {x : α × (α → ℤ)} (h : StepN s L k x x) :"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.propertyF_power_iff",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 483,
+      "declaration": "theorem propertyF_power_iff (hL : LengthData s L β) {m : ℕ} (hm : 1 ≤ m) :"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.propertyF_power_zero_iff",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 497,
+      "declaration": "theorem propertyF_power_zero_iff :"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.lengthData_power_and_propertyF_iff",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 510,
+      "declaration": "theorem lengthData_power_and_propertyF_iff (hL : LengthData s L β) {m : ℕ} (hm : 1 ≤ m) :"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.propertyF_power_iff_of_left_eigen",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 515,
+      "declaration": "theorem propertyF_power_iff_of_left_eigen {ℓ : α → ℝ} (hβ : 0 < β) (hℓ : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.reflectState_reflectState",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 530,
+      "declaration": "theorem reflectState_reflectState (x : α × (α → ℤ)) : reflectState (reflectState x) = x := by"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.L_reflectState",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 537,
+      "declaration": "theorem L_reflectState (x : α × (α → ℤ)) :"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.isState_reflectState",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 544,
+      "declaration": "theorem isState_reflectState (hzero : ∀ v, L v = 0 → v = 0) {x : α × (α → ℤ)}"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.stepN_reverse_iff",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 563,
+      "declaration": "theorem stepN_reverse_iff (hL : LengthData s L β) {k : ℕ} {x y : α × (α → ℤ)}"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.periodic_reverse_iff",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 583,
+      "declaration": "theorem periodic_reverse_iff (hL : LengthData s L β) (hzero : ∀ v, L v = 0 → v = 0) {k : ℕ}"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.propertyF_reverse_iff_of_irreducible",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 592,
+      "declaration": "theorem propertyF_reverse_iff_of_irreducible (s : α → List α)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.fc2_rank_transfer_of_irreducible",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 601,
+      "declaration": "theorem fc2_rank_transfer_of_irreducible (s : α → List α)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.L_pvec_power",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 627,
+      "declaration": "theorem L_pvec_power (hL : LengthData s L β) (k : ℕ) (e : α) :"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.L_pow_sub_one_mulVec",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 632,
+      "declaration": "theorem L_pow_sub_one_mulVec (hL : LengthData s L β) (k : ℕ) (v : α → ℤ) :"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.one_le_of_isInteriorAddress",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 638,
+      "declaration": "theorem one_le_of_isInteriorAddress {k : ℕ} {e : α} {P Q : List α} {v : α → ℤ}"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.periodic_iff_factorisation",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 655,
+      "declaration": "theorem periodic_iff_factorisation (hL : LengthData s L β) {k : ℕ} {j : α} {v : α → ℤ}"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.nonempty_of_factorisation",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 677,
+      "declaration": "theorem nonempty_of_factorisation (hL : LengthData s L β) (hβ : 1 < β)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.isInteriorAddress_of_periodic",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 701,
+      "declaration": "theorem isInteriorAddress_of_periodic (hL : LengthData s L β) (hβ : 1 < β)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.periodic_of_isInteriorAddress",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 712,
+      "declaration": "theorem periodic_of_isInteriorAddress (hL : LengthData s L β) (hβ : 1 < β) {k : ℕ} {e : α}"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.periodic_iff_isInteriorAddress",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 744,
+      "declaration": "theorem periodic_iff_isInteriorAddress (hL : LengthData s L β) (hβ : 1 < β)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.propertyF_iff_no_interiorAddress",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 752,
+      "declaration": "theorem propertyF_iff_no_interiorAddress (hL : LengthData s L β) (hβ : 1 < β)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.isInteriorAddress_unique",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 767,
+      "declaration": "theorem isInteriorAddress_unique"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.propertyF_iff_no_interiorAddress_of_irreducible",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 779,
+      "declaration": "theorem propertyF_iff_no_interiorAddress_of_irreducible (s : α → List α)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.isInteriorAddress_reverse",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 790,
+      "declaration": "theorem isInteriorAddress_reverse {k : ℕ} {e : α} {P Q : List α} {v : α → ℤ}"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.isInteriorAddress_reverse_iff",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 806,
+      "declaration": "theorem isInteriorAddress_reverse_iff {k : ℕ} {e : α} {P Q : List α} {v : α → ℤ} :"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.noInteriorAddress_reverse_iff",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 816,
+      "declaration": "theorem noInteriorAddress_reverse_iff :"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.propertyF_reverse_iff_of_addresses",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 829,
+      "declaration": "theorem propertyF_reverse_iff_of_addresses (hL : LengthData s L β) (hβ : 1 < β)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.trib_lemma1",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 848,
+      "declaration": "theorem trib_lemma1 {β : ℝ} {ℓ : Fin 3 → ℝ} (hℓ : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.trib_propertyF_power",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 865,
+      "declaration": "theorem trib_propertyF_power {β : ℝ} {ℓ : Fin 3 → ℝ} (hℓ : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.trib_propertyF_reverse",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 873,
+      "declaration": "theorem trib_propertyF_reverse {β : ℝ} {ℓ : Fin 3 → ℝ} (hℓ : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.trib_no_interiorAddress",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 881,
+      "declaration": "theorem trib_no_interiorAddress (k : ℕ) (e : Fin 3) (P Q : List (Fin 3)) (v : Fin 3 → ℤ) :"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.ctrl_isInteriorAddress",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 900,
+      "declaration": "theorem ctrl_isInteriorAddress : IsInteriorAddress ctrlSubst 1 2 [0] [1] ![-1, 0, 1] := by"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.ctrl_not_propertyF'",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 908,
+      "declaration": "theorem ctrl_not_propertyF' {β : ℝ} {ℓ : Fin 3 → ℝ} (hℓ : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.ctrlRev_isInteriorAddress",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 918,
+      "declaration": "theorem ctrlRev_isInteriorAddress :"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.ctrlRev_isInteriorAddress_eq",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 926,
+      "declaration": "theorem ctrlRev_isInteriorAddress_eq :"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.ctrlRev_not_propertyF",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 934,
+      "declaration": "theorem ctrlRev_not_propertyF {β : ℝ} {ℓ : Fin 3 → ℝ} (hℓ : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.ctrl_power_not_propertyF",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 944,
+      "declaration": "theorem ctrl_power_not_propertyF {β : ℝ} {ℓ : Fin 3 → ℝ} (hℓ : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.carrier_lemma1_fails",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 955,
+      "declaration": "theorem carrier_lemma1_fails {L : (Fin 3 → ℤ) →+ ℝ} {β : ℝ}"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.carrier_periodic_not_interior",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 972,
+      "declaration": "theorem carrier_periodic_not_interior {L : (Fin 3 → ℤ) →+ ℝ} {β : ℝ}"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.carrier_not_propertyF",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 1000,
+      "declaration": "theorem carrier_not_propertyF {L : (Fin 3 → ℤ) →+ ℝ} {β : ℝ}"
+    },
+    {
+      "name": "Psc.GeometricFLemmas.carrier_lengthData_gt_one",
+      "module": "PscVerif.GeometricFLemmas",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLemmas.lean",
+      "line": 1010,
+      "declaration": "theorem carrier_lengthData_gt_one : ∃ (β : ℝ) (ℓ : Fin 3 → ℝ), (∀ a, 0 < ℓ a) ∧"
+    },
+    {
       "name": "Psc.GeometricF.edgeDescendant_translate",
       "module": "PscVerif.GeometricFOrientation",
       "private": false,
@@ -35681,6 +36209,71 @@
       "statement_heading": "**Proposition R3 (draft; degree three, no rank-two hypothesis).** Let"
     },
     {
+      "source": "docs/c4-round4-2026-11-17.md",
+      "line": 165,
+      "statement_heading": "**Lemma A (loop area; corrected normalization).**"
+    },
+    {
+      "source": "docs/c4-round4-2026-11-17.md",
+      "line": 198,
+      "statement_heading": "**Lemma B (eigen-relation; no closure or strictness needed).** For every"
+    },
+    {
+      "source": "docs/c4-round4-2026-11-17.md",
+      "line": 210,
+      "statement_heading": "**Lemma C (nonvanishing; this is where irreducibility enters).** Let `χ_M` be"
+    },
+    {
+      "source": "docs/c4-round4-2026-11-17.md",
+      "line": 223,
+      "statement_heading": "**Lemma L2 (length two).** `K₂(ab, ba) = e_a∧e_b`, so"
+    },
+    {
+      "source": "docs/c4-round4-2026-11-17.md",
+      "line": 228,
+      "statement_heading": "**Proposition D (Perron–Frobenius obstruction).** Let `σ` be primitive with"
+    },
+    {
+      "source": "docs/c4-round4-2026-11-17.md",
+      "line": 254,
+      "statement_heading": "**Proposition 2L (two-letter calibration).** On `{0, 1}` let `(u, v)` be"
+    },
+    {
+      "source": "docs/c4-round4-2026-11-17.md",
+      "line": 509,
+      "statement_heading": "*Lemma A.* Let `x* = inf{x : T, S agree on [x, ∞)}`, finite since `T ≠ S`."
+    },
+    {
+      "source": "docs/c4-round4-2026-11-17.md",
+      "line": 518,
+      "statement_heading": "*Lemma C.* (a) *Locally injective ⇒ covering.* `c(T) = |P(T)|` is finite;"
+    },
+    {
+      "source": "docs/c4-round4-2026-11-17.md",
+      "line": 539,
+      "statement_heading": "*Lemma L.* By compactness there are `δ, η > 0` such that distinct points of"
+    },
+    {
+      "source": "docs/c4-round4-2026-11-17.md",
+      "line": 549,
+      "statement_heading": "*Theorem NC′.* Assume `π₁` is a covering and, for a contradiction, that `𝒦`"
+    },
+    {
+      "source": "docs/c4-round4-2026-11-17.md",
+      "line": 574,
+      "statement_heading": "*Corollary NC.* Under (NM_V) the `R`-class of `T_(b,a)` is"
+    },
+    {
+      "source": "docs/c4-round4-2026-11-17.md",
+      "line": 584,
+      "statement_heading": "*Proposition F.* The norm map `N(h)(T) = ∏_{z ∈ π₁⁻¹T} h(z)` is continuous"
+    },
+    {
+      "source": "docs/c4-round4-2026-11-17.md",
+      "line": 592,
+      "statement_heading": "*Corollary P.* Write `x_B = u_B·r` with `u_B ∈ ℚ³`. The letter frequencies of"
+    },
+    {
       "source": "docs/c4-seam-birth-orbits-2026-11-04.md",
       "line": 10,
       "statement_heading": "**Lemma.** In a supplied finite strict child-closed phase-zero balanced"
@@ -37412,6 +38005,7 @@
     "proof/PscVerif/PscVerif/FixedPointLimit.lean": "cd4a824f288d4c1072fd375e0e7b9014f56028e23e00cb4336fd678a210b7bbe",
     "proof/PscVerif/PscVerif/GaloisOrbit.lean": "4d3b5474dbd14205f4bf2d33e98149ebbdd6d7e0fb8fd3a33787b878bcad5f07",
     "proof/PscVerif/PscVerif/GeometricFInclusion.lean": "4b96ca14c725dbcfd473ba1af7b2f9c93489a1fae2e6af7fe285008ca0685c54",
+    "proof/PscVerif/PscVerif/GeometricFLemmas.lean": "60ba09cf00ca5049cc3155361381106844dfc7d26a751c2d289beb3b70aa43a7",
     "proof/PscVerif/PscVerif/GeometricFOrientation.lean": "8605e03fad18d6d502834fdf34c9c6c62c05da2eb699d829fbb2a5e1995e05c4",
     "proof/PscVerif/PscVerif/GeometricFPisot.lean": "bf0a0f22acc5f1217d6340b2f5acf5302e4bf9753ef35106d1d790aef5d73bcc",
     "proof/PscVerif/PscVerif/GeometricFRank.lean": "2f2cfca2ad6e05ce8347e97b1968c09b7bbb671f4e0d8f0a366966c0503d47b9",
@@ -37507,7 +38101,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "92d7925baa6177d57ae8356fcf7903366ab9f85b445f6a9d7ae9630bef42c39e",
+    "proof/PscVerif/PscVerif.lean": "85efd690424e40a718eb92ce3f86fd0f877d9af9978a1d700b7107ee967a1e4f",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
