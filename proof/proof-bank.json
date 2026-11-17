@@ -28506,6 +28506,38 @@
       "declaration": "theorem factor_through_parikh (N : Matrix ι ι ℚ) (hN : ∀ i j, 0 ≤ N i j)"
     },
     {
+      "name": "Psc.PhaseDisplacement.walk_crosses",
+      "module": "PscVerif.PhaseDisplacement",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PhaseDisplacement.lean",
+      "line": 19,
+      "declaration": "private theorem walk_crosses {G : SimpleGraph V} {x y : V} (w : G.Walk x y)"
+    },
+    {
+      "name": "Psc.PhaseDisplacement.threshold_injective",
+      "module": "PscVerif.PhaseDisplacement",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PhaseDisplacement.lean",
+      "line": 32,
+      "declaration": "private theorem threshold_injective : Function.Injective threshold := by"
+    },
+    {
+      "name": "Psc.PhaseDisplacement.cut_signature",
+      "module": "PscVerif.PhaseDisplacement",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PhaseDisplacement.lean",
+      "line": 36,
+      "declaration": "private theorem cut_signature {x y : A → ℤ} (c : A × Bool) (h : UnitStep x y)"
+    },
+    {
+      "name": "Psc.PhaseDisplacement.card_of_both_signs",
+      "module": "PscVerif.PhaseDisplacement",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PhaseDisplacement.lean",
+      "line": 48,
+      "declaration": "theorem card_of_both_signs [Fintype A] [Fintype V] (G : SimpleGraph V) (z : V → A → ℤ)"
+    },
+    {
       "name": "PscVerif.PhysicalMass.pairing",
       "module": "PscVerif.PhysicalMass",
       "private": false,
@@ -34672,6 +34704,174 @@
       "source": "proof/PscVerif/PscVerif/Wielandt.lean",
       "line": 316,
       "declaration": "theorem no_220_eigenvalue (f : Polynomial ℚ) (hf : Irreducible f) (hdeg : f.natDegree = 3)"
+    },
+    {
+      "name": "Psc.GeometricF.edgeDescendant_zero_iff",
+      "module": "PscVerif.ZeroFibreOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean",
+      "line": 22,
+      "declaration": "@[simp] theorem edgeDescendant_zero_iff {x y : IntegralEdge α} :"
+    },
+    {
+      "name": "Psc.GeometricF.edgeDescendant_one_iff",
+      "module": "PscVerif.ZeroFibreOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean",
+      "line": 35,
+      "declaration": "theorem edgeDescendant_one_iff {x y : IntegralEdge α} :"
+    },
+    {
+      "name": "Psc.GeometricF.edgeDescendant_succ_iff",
+      "module": "PscVerif.ZeroFibreOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean",
+      "line": 41,
+      "declaration": "theorem edgeDescendant_succ_iff {n : ℕ} {x z : IntegralEdge α} :"
+    },
+    {
+      "name": "Psc.GeometricF.edgeDescendant_bounds",
+      "module": "PscVerif.ZeroFibreOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean",
+      "line": 73,
+      "declaration": "theorem edgeDescendant_bounds (hL : LengthData s L β) {n : ℕ} {x y : IntegralEdge α}"
+    },
+    {
+      "name": "Psc.GeometricF.overlapOf_diagonal_iff",
+      "module": "PscVerif.ZeroFibreOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean",
+      "line": 100,
+      "declaration": "theorem overlapOf_diagonal_iff {x y : IntegralEdge α} :"
+    },
+    {
+      "name": "Psc.GeometricF.overlapOf_interior_iff",
+      "module": "PscVerif.ZeroFibreOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean",
+      "line": 107,
+      "declaration": "theorem overlapOf_interior_iff {x y : IntegralEdge α} :"
+    },
+    {
+      "name": "Psc.GeometricF.overlapOf_descendant_source",
+      "module": "PscVerif.ZeroFibreOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean",
+      "line": 114,
+      "declaration": "theorem overlapOf_descendant_source (hL : LengthData s L β)"
+    },
+    {
+      "name": "Psc.GeometricF.overlapOf_self_interior",
+      "module": "PscVerif.ZeroFibreOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean",
+      "line": 125,
+      "declaration": "theorem overlapOf_self_interior (hL : LengthData s L β) (x : IntegralEdge α) :"
+    },
+    {
+      "name": "Psc.GeometricF.literalOverlapChild_iff",
+      "module": "PscVerif.ZeroFibreOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean",
+      "line": 136,
+      "declaration": "theorem literalOverlapChild_iff {x y : IntegralEdge α} {v : OverlapCoordinates α} :"
+    },
+    {
+      "name": "Psc.GeometricF.edgeDescendants_of_overlap_reach",
+      "module": "PscVerif.ZeroFibreOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean",
+      "line": 172,
+      "declaration": "theorem edgeDescendants_of_overlap_reach {u v : StrictOverlap L}"
+    },
+    {
+      "name": "Psc.GeometricF.overlap_reach_of_edgeDescendants",
+      "module": "PscVerif.ZeroFibreOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean",
+      "line": 184,
+      "declaration": "theorem overlap_reach_of_edgeDescendants (hL : LengthData s L β) {n : ℕ}"
+    },
+    {
+      "name": "Psc.GeometricF.edgeCoincident_iff_overlap_productive",
+      "module": "PscVerif.ZeroFibreOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean",
+      "line": 200,
+      "declaration": "theorem edgeCoincident_iff_overlap_productive (hL : LengthData s L β) {x y : IntegralEdge α} :"
+    },
+    {
+      "name": "Psc.GeometricF.overlap_productive_iff_terminal_reach",
+      "module": "PscVerif.ZeroFibreOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean",
+      "line": 215,
+      "declaration": "theorem overlap_productive_iff_terminal_reach (u : StrictOverlap L) :"
+    },
+    {
+      "name": "Psc.GeometricF.patchCoincident_iff_overlap_reach",
+      "module": "PscVerif.ZeroFibreOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean",
+      "line": 234,
+      "declaration": "theorem patchCoincident_iff_overlap_reach (hL : LengthData s L β)"
+    },
+    {
+      "name": "Psc.GeometricF.touching_edges_not_coincident",
+      "module": "PscVerif.ZeroFibreOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean",
+      "line": 244,
+      "declaration": "theorem touching_edges_not_coincident (hL : LengthData s L β) {x y : IntegralEdge α}"
+    },
+    {
+      "name": "Psc.GeometricF.strictOverlap_exists_child",
+      "module": "PscVerif.ZeroFibreOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean",
+      "line": 251,
+      "declaration": "theorem strictOverlap_exists_child (hL : LengthData s L β) (u : StrictOverlap L) :"
+    },
+    {
+      "name": "Psc.GeometricF.literalOverlapChild_stable_bound",
+      "module": "PscVerif.ZeroFibreOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean",
+      "line": 282,
+      "declaration": "theorem literalOverlapChild_stable_bound (hc : ContractionData s L ν ρ)"
+    },
+    {
+      "name": "Psc.GeometricF.overlap_reach_stable_bound",
+      "module": "PscVerif.ZeroFibreOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean",
+      "line": 293,
+      "declaration": "theorem overlap_reach_stable_bound (hc : ContractionData s L ν ρ)"
+    },
+    {
+      "name": "Psc.GeometricF.overlap_reach_finite",
+      "module": "PscVerif.ZeroFibreOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean",
+      "line": 304,
+      "declaration": "theorem overlap_reach_finite (hc : ContractionData s L ν ρ) (u : StrictOverlap L) :"
+    },
+    {
+      "name": "Psc.GeometricF.overlap_not_productive_iff_closed",
+      "module": "PscVerif.ZeroFibreOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean",
+      "line": 331,
+      "declaration": "theorem overlap_not_productive_iff_closed (hc : ContractionData s L ν ρ) (u : StrictOverlap L) :"
+    },
+    {
+      "name": "Psc.GeometricF.all_overlaps_productive_iff_no_bounded_closed",
+      "module": "PscVerif.ZeroFibreOverlap",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean",
+      "line": 354,
+      "declaration": "theorem all_overlaps_productive_iff_no_bounded_closed (hL : LengthData s L β)"
     }
   ],
   "source_statements": [
@@ -35311,6 +35511,26 @@
       "statement_heading": "### Corollary 3.1 — the three-state case is rigid"
     },
     {
+      "source": "docs/c4-periodic-fibre-bound-2026-11-17.md",
+      "line": 43,
+      "statement_heading": "**Theorem.** There is a finite matrix $L_3$ of literal triple overlap"
+    },
+    {
+      "source": "docs/c4-periodic-overlap-returns-2026-11-17.md",
+      "line": 91,
+      "statement_heading": "**Proposition (periodic pair membership).** Assume rank two and a"
+    },
+    {
+      "source": "docs/c4-periodic-overlap-returns-2026-11-17.md",
+      "line": 138,
+      "statement_heading": "**Theorem (indexed interior return count).** Let $A$ be the"
+    },
+    {
+      "source": "docs/c4-periodic-overlap-returns-2026-11-17.md",
+      "line": 188,
+      "statement_heading": "**Theorem (signed trace identity for the strict system).** Suppose"
+    },
+    {
       "source": "docs/c4-periodic-parikh-phase-rigidity-2026-11-04.md",
       "line": 21,
       "statement_heading": "**Lemma 1.** For every positive integer h, the minimal polynomial f_h of beta^h over Q has degree three. In fact f_h=chi_(M^h) and is irreducible over Q."
@@ -35339,6 +35559,16 @@
       "source": "docs/c4-phase-lattice-index-conservation-2026-11-04.md",
       "line": 51,
       "statement_heading": "**Proposition 3 (exactly 3h states).** If a supplied strict component has `|C|=3h`, each cyclic phase has exactly three states and its P_k is a 3x3 rationally invertible *integer* matrix. Let"
+    },
+    {
+      "source": "docs/c4-rank-two-periodic-compatibility-2026-11-17.md",
+      "line": 33,
+      "statement_heading": "**Theorem (uniform shared cuts at rank two).** Assume coincidence rank"
+    },
+    {
+      "source": "docs/c4-rank-two-periodic-compatibility-2026-11-17.md",
+      "line": 150,
+      "statement_heading": "**Proposition (full fibre over a nonzero periodic class).** Let"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
@@ -35884,6 +36114,11 @@
       "source": "docs/overlap-finiteness-and-coincidence-density-2026-09-13.md",
       "line": 505,
       "statement_heading": "**Proposition 10.1 (manuscript Proposition 5.42, contracting lower bound).**"
+    },
+    {
+      "source": "docs/overlap-phase-displacement-2026-11-17.md",
+      "line": 53,
+      "statement_heading": "**Theorem.** For every cyclic phase $C_i$ there are real weights"
     },
     {
       "source": "docs/p1-overlap-affine-pump-2026-09-15.md",
@@ -37249,6 +37484,7 @@
     "proof/PscVerif/PscVerif/PerronCore.lean": "1f06da1e0b57e74b31fc03d753bd314f25561a37e512b3a8f7f05fda0d75458c",
     "proof/PscVerif/PscVerif/PerronExistence.lean": "a2ac1801abf2a99a6c312935d101ed4f760ffec0f96586d5f1f43bb176814c73",
     "proof/PscVerif/PscVerif/PerronSimple.lean": "1e4d9aca60b215f17067e39ba38bd8eaec7d9781fb716d8727fa7f9cbbf737a8",
+    "proof/PscVerif/PscVerif/PhaseDisplacement.lean": "fae595f760419074cde1048c5cab4ec10019a1d69386860092268cb8076d2703",
     "proof/PscVerif/PscVerif/PhysicalMass.lean": "6578043c87ca7da4be96673630ae5d2d2e2356a681b1b2401c39bd9e9b036a36",
     "proof/PscVerif/PscVerif/PrefixAddress.lean": "57261314c2c473fdf76e9815ad80f30ac46f0fe42e1a7ec7c3ad15524afe848d",
     "proof/PscVerif/PscVerif/PrefixClosure.lean": "c9df601e2d5601af2b3ebeb05e75d43fd5600999bcba187af04e76b51e520006",
@@ -37270,7 +37506,8 @@
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif.lean": "c5677344a1e417f1594d541c36f705f911303787fab880fd32336e26a5ff638c",
+    "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
+    "proof/PscVerif/PscVerif.lean": "92d7925baa6177d57ae8356fcf7903366ab9f85b445f6a9d7ae9630bef42c39e",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
