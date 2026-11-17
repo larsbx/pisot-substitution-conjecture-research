@@ -150,3 +150,4 @@ import PscVerif.GeometricFRank
 import PscVerif.GeometricFTriple
 import PscVerif.ZeroFibreOverlap
 import PscVerif.PhaseDisplacement
+import PscVerif.GeometricFLemmas
