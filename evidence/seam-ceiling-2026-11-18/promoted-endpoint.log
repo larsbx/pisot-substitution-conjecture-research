@@ -1,0 +1,13 @@
+[[0, 1], [1, 2, 2], [2, 0, 1]] eps 1 columns 5784 promoted seams 4074 failures 0 naive failures 42
+[[0, 1], [1, 2, 2], [2, 0, 1]] eps -1 columns 5784 promoted seams 4074 failures 0 naive failures 42
+[[0, 1], [1, 2], [0, 2, 1]] eps 1 columns 5014 promoted seams 5962 failures 0 naive failures 38
+[[0, 1], [1, 2], [0, 2, 1]] eps -1 columns 5014 promoted seams 5962 failures 0 naive failures 38
+[[1], [0, 2], [2, 0, 2]] eps 1 columns 2832 promoted seams 916 failures 0 naive failures 22
+[[1], [0, 2], [2, 0, 2]] eps -1 columns 2832 promoted seams 916 failures 0 naive failures 22
+[[1], [2], [0, 2, 1]] eps 1 columns 1948 promoted seams 1316 failures 0 naive failures 16
+[[1], [2], [0, 2, 1]] eps -1 columns 1948 promoted seams 1316 failures 0 naive failures 16
+[[0, 1], [0, 2], [0]] eps 1 columns 740 promoted seams 484 failures 0 naive failures 20
+[[0, 1], [0, 2], [0]] eps -1 columns 740 promoted seams 484 failures 0 naive failures 20
+[[1, 2], [0, 2, 1], [1, 2, 2]] eps 1 columns 1876 promoted seams 1652 failures 0 naive failures 40
+[[1, 2], [0, 2, 1], [1, 2, 2]] eps -1 columns 1876 promoted seams 1652 failures 0 naive failures 40
+contract-receipt: On literal full overlap boxes the promotion-weighted endpoint functional telescopes column by column modulo local shared-cut and endpoint-equivariance forms, at both signs; promoted adjacencies are literal saturated shared cuts; the unweighted functional fails.
