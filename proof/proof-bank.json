@@ -21554,6 +21554,182 @@
       "declaration": "theorem not_B_pow_two_contract :"
     },
     {
+      "name": "Psc.NeutralRankSeam.promoted_of_shared",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 63,
+      "declaration": "theorem promoted_of_shared {c : C} (hc : shared c) : promoted g shared P ε c = P c := by"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.promoted_comp",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 70,
+      "declaration": "theorem promoted_comp (hε : ε ≠ 0) (hpers : ∀ c, shared c → shared (g c))"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.promoted_swap",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 97,
+      "declaration": "theorem promoted_swap {J : C → C} (hJg : ∀ c, g (J c) = J (g c)) (hJs : ∀ c, shared (J c) ↔ shared c)"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.adj_iterate",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 127,
+      "declaration": "theorem adj_iterate (hclosed : ∀ s t, Adj s t → Adj (gR s) (gL t)) {s t : C} (h : Adj s t) :"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.promoted_adj",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 137,
+      "declaration": "theorem promoted_adj (hclosed : ∀ s t, Adj s t → Adj (gR s) (gL t))"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.EndpointData.linked_sum",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 196,
+      "declaration": "theorem linked_sum : ∀ (a : C) (t : List C), Linked E.Adj (a :: t) →"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.EndpointData.column_identity",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 206,
+      "declaration": "theorem column_identity (c a : C) (t : List C) (hl : Linked E.Adj (a :: t))"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.EndpointData.bigon_sum",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 214,
+      "declaration": "theorem bigon_sum (a : C) (t : List C) (hl : Linked E.Adj (a :: t)) (hfirst : E.sharedL a)"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.vecMul_occ",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 231,
+      "declaration": "theorem vecMul_occ (x : C → K) (rows : B → List C) (b : B) :"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.vecMul_occ_eq",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 242,
+      "declaration": "theorem vecMul_occ_eq"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.rank_le_finrank_oddEigen",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 274,
+      "declaration": "theorem rank_le_finrank_oddEigen (A : Matrix C C K) (J : C → C) (ε : K)"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.endpoint_rank_bound",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 284,
+      "declaration": "theorem endpoint_rank_bound (E : V → EndpointData C K) (ε : K) (hε : ∀ v, (E v).ε = ε)"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.naive_fails",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 316,
+      "declaration": "theorem naive_fails :"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.seam_det",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 336,
+      "declaration": "theorem seam_det : (incZ seamSubst).det = 1 := by decide"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.seam_endpoint_maps",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 342,
+      "declaration": "theorem seam_endpoint_maps :"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.seam_bigram_legal",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 348,
+      "declaration": "theorem seam_bigram_legal :"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.seam_bigram_cyclic",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 351,
+      "declaration": "theorem seam_bigram_cyclic :"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.seam_isInteriorAddress_1",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 356,
+      "declaration": "theorem seam_isInteriorAddress_1 :"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.seam_isInteriorAddress_2",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 361,
+      "declaration": "theorem seam_isInteriorAddress_2 :"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.seam_isInteriorAddress_3",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 366,
+      "declaration": "theorem seam_isInteriorAddress_3 :"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.seam_isInteriorAddress_4",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 371,
+      "declaration": "theorem seam_isInteriorAddress_4 :"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.seam_trace",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 390,
+      "declaration": "theorem seam_trace :"
+    },
+    {
       "name": "Psc.OccurrenceAddress.locate_sound",
       "module": "PscVerif.OccurrenceAddress",
       "private": false,
@@ -35985,12 +36161,12 @@
     },
     {
       "source": "docs/c4-neutral-rank-seam-ceiling-2026-11-18.md",
-      "line": 54,
+      "line": 56,
       "statement_heading": "### Lemma A (source seam ceiling)"
     },
     {
       "source": "docs/c4-neutral-rank-seam-ceiling-2026-11-18.md",
-      "line": 124,
+      "line": 126,
       "statement_heading": "### Lemma B (the endpoint-coboundary branch carries no seam term)"
     },
     {
@@ -38068,6 +38244,7 @@
     "proof/PscVerif/PscVerif/NamedSharpDigits.lean": "f16257b92c77091e2246cc134734a1216b27a3cff54c3b3f70624135eb6a462e",
     "proof/PscVerif/PscVerif/NamedStableChart.lean": "772d6dc46898bc22471db53283dc0404445f1dd28ac0b99ed16232c394336f9b",
     "proof/PscVerif/PscVerif/NamedStableContraction.lean": "13381d9619cd2c574e15614ce0e00609d17e1b153b359ca788ebe73d45bde8fd",
+    "proof/PscVerif/PscVerif/NeutralRankSeam.lean": "e76be6b3c223941635706690c05f8cfb77e00ba2d57bec6810fa86aaec4a406a",
     "proof/PscVerif/PscVerif/OccurrenceAddress.lean": "fd8d4020fc3f720c8a81d23c9811056802c901eec35a48efcbb40954c5a375ad",
     "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean": "0843e0a255a2a13675132264eb1385d9a155b7122138359b02158916541e2b4e",
     "proof/PscVerif/PscVerif/OccurrenceCover.lean": "c66e2937532b2b289351b9ab10a18a1485b73434e362fd1e88edbfd3b6479cb6",
@@ -38126,7 +38303,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "85efd690424e40a718eb92ce3f86fd0f877d9af9978a1d700b7107ee967a1e4f",
+    "proof/PscVerif/PscVerif.lean": "ee0b06b6d438f8d71b0cc57100a1fcbc3e72a55bad1d386e33b0bc77cb0752f9",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

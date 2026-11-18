@@ -25,6 +25,19 @@ Source digests (sha256):
 | `kernel/tests/test_promoted_endpoint_functional.mojo` | `51a294f9c0d93133f22637424f17c8a94ed9d6d80429c09b3db34b42ba71b3ca` |
 | `kernel/seam_ceiling_census.mojo` | `2594d1640d8a26ac6600e24e4c6f94e6c17744449f9219881e087ff7fa691bdc` |
 
+## Lean
+
+`(cd proof/PscVerif && lake build PscVerif.NeutralRankSeam)` finished with
+exit 0 and no warnings, using the pinned toolchain
+`leanprover/lean4:v4.34.0-rc2` and the Mathlib cache from `lake exe cache get`.
+`#print axioms` on `promoted_comp`, `promoted_adj`, `promoted_swap`,
+`EndpointData.column_identity`, `vecMul_occ_eq`, `endpoint_rank_bound`,
+`naive_fails`, `seam_det`, `seam_isInteriorAddress_1`, `_4`,
+`seam_bigram_legal` and `seam_trace` reports only `propext`,
+`Classical.choice` and `Quot.sound` (`seam_bigram_legal` does not need
+`Classical.choice`). A full `lake build` of the library root with the new
+import also exits 0. The isolated `tools/check_lean.sh` was not run.
+
 ## Cross-check against draft #602
 
 [pr602-literal-01-122-201.log](pr602-literal-01-122-201.log) comes from a

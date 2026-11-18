@@ -1,7 +1,9 @@
 # Corrected neutral rank: seam ceiling, a positive `+1` control, and the endpoint branch
 
 **Status:** Two written lemmas with exact bounded Mojo controls, one new
-literal negative control, and a census of a source-only quantity. Both
+literal negative control, and a census of a source-only quantity. Lemma B's
+algebraic and combinatorial core, and the `01/122/201` witness, are
+machine-checked in Lean (`PscVerif.NeutralRankSeam`). Both
 lemmas are conditional on a strict rank-two component, which no tested
 specimen has. Independent review is pending. Neither lemma excludes the
 neutral weight. Universal C4 and PSC remain open, and this note registers
@@ -206,6 +208,34 @@ An independent scratch Python oracle, not committed, gave the same counts.
 This checks the telescoping algebra on literal rows. It does not produce a
 nonzero admissible $(P,Q)$, which needs a strict carrier.
 
+### Lean layer
+
+[`proof/PscVerif/PscVerif/NeutralRankSeam.lean`](../proof/PscVerif/PscVerif/NeutralRankSeam.lean),
+namespace `Psc.NeutralRankSeam`, has no `sorry`. Its audited theorems
+depend only on `propext`, `Classical.choice` and `Quot.sound`.
+
+| Statement | Lean | Scope |
+| --- | --- | --- |
+| $\kappa_R(g_Rc)=\varepsilon\,\kappa_R(c)$ | `promoted_comp` | from persistence and (EC2), $\varepsilon\ne0$ |
+| adjacent cells: $\kappa_R(s)=\kappa_L(t)$ | `promoted_adj` | from closure under $(g_R,g_L)$, side agreement and (EC1) |
+| $\kappa\circ J=-\kappa$ | `promoted_swap` | swap commuting with $g$, $P\circ J=-P$ |
+| column identity | `EndpointData.column_identity` | a linked row from $g_Lc$ to $g_Rc$ |
+| $\tilde\kappa A=\varepsilon\tilde\kappa$ | `vecMul_occ_eq` | $A$ the occurrence matrix of the rows |
+| bigon sum | `EndpointData.bigon_sum` | a linked block with shared outer ends |
+| $D=\tilde\kappa\Pi$ and $\operatorname{rank}D\le\dim$ odd $\varepsilon$-eigen-rows | `endpoint_rank_bound`, `rank_le_finrank_oddEigen` | Lemma B, abstract form |
+| promotion weights are needed | `naive_fails` | three-cell model |
+| `01/122/201`: $\det M=1$, endpoint maps, six legal bigrams fixed by $(g_R\times g_L)^2$ | `seam_det`, `seam_endpoint_maps`, `seam_bigram_legal`, `seam_bigram_cyclic` | `decide` on words and matrices |
+| four interior addresses of period $4$ | `seam_isInteriorAddress_1`–`_4` | `Psc.GeometricFLemmas.IsInteriorAddress` |
+| $U(n)-L(n)-R(n)=4\cdot[4\mid n]$, $n\le12$ | `seam_trace` | bigrams copied over a $4$-cycle |
+
+Not formalized here:
+- that a strict sink meets the hypotheses of `EndpointData`, which is the
+  written transfer ledger T1–T6;
+- the endpoint-coboundary form itself;
+- the #601 cycle theorem;
+- that the four addresses form one $f$-cycle and exhaust $I$;
+- Lemma A.
+
 ### Consequence for the obligation
 
 Combining T3, T5 and Lemmas A and B:
@@ -271,6 +301,9 @@ has not run.
   [the evidence packet](../evidence/seam-ceiling-2026-11-18/README.md).
 - The #602 constructor on `01/122/201` at powers 1–12 was run from the
   draft PR head, not from `main`.
+- `lake build PscVerif.NeutralRankSeam`: pass, with no warnings. An axiom
+  audit was run on the main theorems. A full `lake build` of the library
+  root also passes. The isolated `tools/check_lean.sh` was not run.
 
 ### Non-claims / remaining gaps
 

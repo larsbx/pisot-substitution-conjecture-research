@@ -152,3 +152,4 @@ import PscVerif.ZeroFibreOverlap
 import PscVerif.PhaseDisplacement
 import PscVerif.GeometricFLemmas
 import PscVerif.GeometricFOrientation
+import PscVerif.NeutralRankSeam
