@@ -175,3 +175,4 @@ import PscVerif.GeometricFOrientation
 import PscVerif.NeutralRankSeam
 import PscVerif.NeutralRankSeamCycle
 import PscVerif.SeamCycleSpectrum
+import PscVerif.UniquePartnerLetters
