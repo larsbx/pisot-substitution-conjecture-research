@@ -1,0 +1,6 @@
+[[1], [0, 1, 2], [2, 1]] members 5 interior 1 L [] R [1.2 ~R (1;-1,0,1), 2.2 ~R (1;-1,0,1)]
+[[0, 1], [1, 2], [0, 2, 1]] members 5 interior 1 L [] R [1.0 ~R (2;-1,0,1), 2.0 ~R (2;-1,0,1)]
+[[2, 2, 0], [0, 1], [0, 2, 1]] members 9 interior 5 L [1.0 ~L (2;0,1,0), 1.2 ~L (2;0,1,0)] R []
+[[0, 1], [1, 2, 2], [2, 0, 1]] members 10 interior 4 L [] R []
+[[0, 1], [0, 2], [0]] members 3 interior 0 L [] R []
+contract-receipt: Zero-fibre asymptotes are decided exactly from left and right branches of the central overlap chain; (NM_V) failures on 1/012/21, 01/12/021 and 220/01/021 are replayed by independent literal word rays, (NM_V) holds on 01/122/201 and Tribonacci, and a decided non-asymptote shows no literal agreement.

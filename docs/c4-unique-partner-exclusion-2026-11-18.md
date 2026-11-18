@@ -196,6 +196,61 @@ component has `π₁` locally injective nowhere (round-4 Lemma C): some tiling
 has two partners that agree on a half-line. For even determinant, the
 covering case is limited to `n_v = 1` with `ER = K_{2,2}`.
 
+### Scope on the corpus: where (NM_V) holds
+
+Theorems UP and UP′ assume (NM_V). This section decides (NM_V) exactly on the
+corpus. Stop/go: no external source is imported. The definitions are those of
+round-4 §3.1, and its Lemma A serves only as a consistency check. **Decision:
+proceed.**
+
+**Exact decision of `∼_L` and `∼_R` on `F₀`.** The procedure is
+`kernel/psc/zero_fibre_asymptotes.mojo`.
+- Every member is fixed by `Φ^Q` for a common `Q`.
+- Every cell of a pair to the left of the origin descends from a left
+  branch of the central chain of cells containing `0⁻`.
+- A descendant of a left branch at depth `k` lies in `β^k` times a fixed
+  negative interval.
+
+Hence two members are left-asymptotic iff no non-coincident overlap state
+reachable from a left branch lies on a cycle of the overlap graph. The right
+side is the mirror. Interior members are the certified `f`-cycle states of
+`decide_geometric_f`. All arithmetic is exact, and every cap raises.
+
+**Census** (`kernel/nmv_census.mojo`, 23 s). It covers the unit corpus
+members with at least two periodic letters for both endpoint maps, which is
+necessary for a strict root pair.
+
+| Count | Value |
+| --- | --- |
+| members of the domain | 936 |
+| (NM_V) holds | 888 |
+| fails on the left | 24 |
+| fails on the right | 24 |
+| `β₁(ER) ≥ 2` | 492 |
+| `β₁(ER) ≥ 2` with (NM_V) | **492** |
+
+Checks run alongside the census:
+- **Lemma A consistency.** A right failure needs `g_R` non-injective and a
+  left failure needs `g_L` non-injective. The census asserts this and it
+  holds throughout.
+- **Literal oracle.** `oracles/python/nmv_literal_rays.py` shares no code
+  with the Mojo module. It rebuilds both rays from the substitution words,
+  using literal interior addresses, and confirms all 96 failing pairs as
+  aligned agreements (`tests/test_nmv_literal_rays_oracle.py`).
+- **Pinned specimens.** The Mojo regression pins three failures: `1/012/21`
+  (right; round 4's certificate), `01/12/021` (right) and `220/01/021`
+  (left). It also pins two passes, `01/122/201` and Tribonacci, and one
+  decided non-asymptote that literal rays also separate.
+
+**Consequence on the corpus.** Take a unit corpus member with odd
+determinant. If it had coincidence rank 2, B15 Theorem 22 would give
+`β₁(ER) ≥ 2`, so (NM_V) holds for it. Theorems UP and UP′ then apply
+without hypothesis: a strict component at rank two could be neither
+unique-partner nor a covering, so `π₁` would be locally injective nowhere.
+The corpus has no strict system, so this maps where the theorems apply and
+excludes nothing new. Every failure of (NM_V) on the corpus has
+`β₁(ER) ≤ 1`.
+
 ### Lean
 
 [`proof/PscVerif/PscVerif/UniquePartnerLetters.lean`](../proof/PscVerif/PscVerif/UniquePartnerLetters.lean)
