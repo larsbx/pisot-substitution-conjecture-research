@@ -134,16 +134,18 @@ case reduces to a regular letter graph.
 
 **Theorem UP′.** Assume (NM_V), and that `π₁` is a covering. Let
 `n_v ≥ 1` be the number of vertex-type partners of a vertex tiling `T_g`,
-`g ∈ ER`; it does not depend on `g`. Exactly one of the following holds:
+`g ∈ ER`; it does not depend on `g`. Then:
 
-1. `n_v = 1` and `|L| = |R| = 2`. Then `β₁(ER) ≤ 1` and `dim H¹ ≤ 4`,
-   which is excluded for odd determinant by B15 Theorem 22.
-2. `n_v = 2` and `|L| = |R| = 3`. Then `g_L` and `g_R` are permutations of
-   the alphabet. The vertex-type partners of `T_{xy}` have the two left
-   letters other than `x` and the two right letters other than `y`.
+1. Either `n_v = 1` and `|L| = |R| = 2`, so `β₁(ER) ≤ 1` and
+   `dim H¹ ≤ 4`. This is excluded for odd determinant by B15 Theorem 22.
+2. Or `n_v = 2` and `|L| = |R| = 3`. This case is **impossible at every
+   determinant**: the two vertex partners of a vertex tiling are partners
+   of each other, which gives three pairwise non-coincident tilings in one
+   fibre, against `cr(σ) = 2`.
 
-Degree one is the unique-partner case, so Theorem UP is the special case
-`k = 1` of case 1.
+So under (NM_V), `π₁` is not a covering when `det M` is odd. When `det M`
+is even, a covering forces `n_v = 1` and `ER = K_{2,2}`. Degree one is the
+unique-partner case, so Theorem UP is the special case `k = 1`.
 
 *Proof.* Let `T, S` be vertex tilings that agree on a half-line.
 
@@ -168,21 +170,37 @@ depends only on `x`, and the multiset of right letters only on `y`.
 
 So `Λ` is an `n_v`-regular simple graph on `L` with `n_v ≥ 1`, and so is
 `P` on `R`. On at most three vertices this forces either `n_v = 1` on two
-vertices or `n_v = 2` on the triangle. ∎
+vertices or `n_v = 2` on the triangle.
 
-**Sharpness of case 2.** Round 4's singular control `012/120/201` (§3.6) has
-`ER = K_{3,3}` and `Z = {(T, ρT)}` with `ρ` the cyclic relabelling. Its
-swap-closure `{(T, ρT), (T, ρ⁻¹T)}` is a degree-two covering with
-`n_v = 2`. That control is not in PIP3, but it shows that the letter count
-alone cannot exclude case 2.
+*Case 2 closes a triangle.* Let `e = xy` have the vertex partners `f` and
+`g`. Their left letters are the two letters other than `x`, and their right
+letters the two other than `y`.
+- `f`'s vertex partners have the left letters other than `f`'s and the
+  right letters other than `f`'s.
+- One of them is `e`, by swap-invariance.
+- The other therefore has the third left letter and the third right letter,
+  so it is `g`.
 
-**What remains for odd determinant under (NM_V).** A rank-two strict
-component is one of the following:
+Then `e`, `f`, `g` are pairwise partners. By (Z2) they share no tile at any
+level, so they are three pairwise non-coincident tilings in the zero fibre.
+BBK Remark 4.3 then gives `cr(σ) ≥ 3`, a contradiction. ∎
 
-- (i) `π₁` is locally injective nowhere: some tiling has two asymptotic
-  partners.
-- (ii) `π₁` is a covering with `n_v = 2`, both endpoint maps are
-  permutations, and `ER ⊆ K_{3,3}`.
+**Correction to the earlier sharpness remark.** Round 4's singular control
+`012/120/201` (§3.6) has `ER = K_{3,3}` and `Z = {(T, ρT)}`, with `ρ` the
+cyclic relabelling. Its swap-closure is a degree-two covering with
+`n_v = 2`, but its partner graph is a union of triangles, so it has
+coincidence rank at least 3. It is not a rank-two example of case 2. A
+scratch exhaustive search (Python, not committed; the proof is
+`partner_triangle` in Lean) over all `ER ⊆ K_{3,3}` found the following:
+- With the triangle-free constraint dropped, seven configurations admit
+  case-2 partner data, including `K_{3,3}`.
+- With the constraint kept, none does. This matches the two-line argument
+  above.
+
+**What remains under (NM_V).** For odd determinant, a rank-two strict
+component has `π₁` locally injective nowhere (round-4 Lemma C): some tiling
+has two partners that agree on a half-line. For even determinant, the
+covering case is limited to `n_v = 1` with `ER = K_{2,2}`.
 
 ### Lean
 
@@ -198,6 +216,9 @@ of Theorem UP′, with no `sorry`:
 - `regular_cases` and `no_matching_on_three`: an `n`-regular simple graph,
   with `n ≥ 1`, on at most three letters has either `n = 1` and two letters
   or `n = 2` and three.
+- `partner_triangle`: in two-partner data on bigrams of `Fin 3 × Fin 3`
+  (symmetric, letters differing from the bigram's own and from each other),
+  the two partners of a bigram are partners of each other.
 
 Steps 1–3 are tiling-space arguments and are written proofs here.
 
@@ -223,11 +244,9 @@ tiling are `≈_s`-equivalent, so Barge's stack relation is nontrivial on
   involution exists for every rank-two `σ` (B15 Lemma 13). The alphabet is
   the stack alphabet of a proper substitution, so the three-letter count in
   step 5 does not apply.
-- The covering case is reduced by Theorem UP′. Two cases remain open under
-  (NM_V) and odd determinant: the nowhere-locally-injective joining (i),
-  and the degree-two covering over a permutation substitution (ii).
-- **Next statements to try:**
-  - In case (ii), combine the cyclic structure of `Λ` and `P` (two
-    triangles) with (W4), which makes the two vertex partners of a tiling
-    coincident, and with `Φ`-equivariance of the matching.
-  - In case (i), use the asymptotic partner pair supplied by Lemma C(c).
+- Theorem UP′ removes the covering case under (NM_V) and odd determinant.
+  What remains is the joining that is locally injective nowhere.
+- **Next statement to try:** take the two partners that agree on a
+  half-line, supplied by round-4 Lemma C(c). Show they can be chosen
+  `Φ`-periodic in the zero fibre, and that with (NM_V) and (W4) they force
+  a third pairwise non-coincident tiling or a letter parity contradiction.

@@ -102,4 +102,48 @@ theorem regular_cases (L : Finset (Fin 3)) (nbr : Fin 3 → Finset (Fin 3)) (n :
       exact no_matching_on_three nbr (hu ▸ h)
     · exact h2
 
+/-! ### Two vertex partners close a triangle (case 2 of Theorem UP′) -/
+
+theorem third_letter : ∀ u v w z : Fin 3, u ≠ v → w ≠ u → w ≠ v → z ≠ u → z ≠ v → z = w := by
+  decide
+
+/-- Vertex-partner data on bigrams: `N e` is the set of vertex-type partners of `T_e`, of size two,
+symmetric, with letters different from those of `e` (no shared tile, (Z2)) and pairwise
+different letters (no asymptotic partners under a covering, round-4 Lemma C(b)). -/
+structure TwoPartners (E : Finset (Fin 3 × Fin 3)) (N : Fin 3 × Fin 3 → Finset (Fin 3 × Fin 3)) :
+    Prop where
+  card : ∀ e ∈ E, (N e).card = 2
+  sub : ∀ e ∈ E, N e ⊆ E
+  left : ∀ e ∈ E, ∀ f ∈ N e, f.1 ≠ e.1
+  right : ∀ e ∈ E, ∀ f ∈ N e, f.2 ≠ e.2
+  symm : ∀ e ∈ E, ∀ f ∈ N e, e ∈ N f
+  distinctL : ∀ e ∈ E, ∀ f ∈ N e, ∀ g ∈ N e, f.1 = g.1 → f = g
+  distinctR : ∀ e ∈ E, ∀ f ∈ N e, ∀ g ∈ N e, f.2 = g.2 → f = g
+
+/-- **The two partners of a bigram are partners of each other**: three pairwise strict partners,
+hence three pairwise non-coincident tilings in one fibre. -/
+theorem partner_triangle {E : Finset (Fin 3 × Fin 3)} {N : Fin 3 × Fin 3 → Finset (Fin 3 × Fin 3)}
+    (h : TwoPartners E N) {e f g : Fin 3 × Fin 3} (he : e ∈ E) (hf : f ∈ N e) (hg : g ∈ N e)
+    (hfg : f ≠ g) : g ∈ N f := by
+  have hfE : f ∈ E := h.sub e he hf
+  have hef : e ∈ N f := h.symm e he f hf
+  obtain ⟨a, b, hab, hN⟩ := Finset.card_eq_two.1 (h.card f hfE)
+  -- the element of `N f` other than `e`
+  obtain ⟨k, hk, hke⟩ : ∃ k ∈ N f, k ≠ e := by
+    rw [hN] at hef ⊢
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hef
+    rcases hef with rfl | rfl
+    · exact ⟨b, by simp, Ne.symm hab⟩
+    · exact ⟨a, by simp, hab⟩
+  have k1 : k.1 = g.1 :=
+    third_letter f.1 e.1 g.1 k.1 (h.left e he f hf)
+      (fun hh => hfg (h.distinctL e he f hf g hg hh.symm)) (h.left e he g hg)
+      (h.left f hfE k hk) (fun hh => hke (h.distinctL f hfE k hk e hef hh))
+  have k2 : k.2 = g.2 :=
+    third_letter f.2 e.2 g.2 k.2 (h.right e he f hf)
+      (fun hh => hfg (h.distinctR e he f hf g hg hh.symm)) (h.right e he g hg)
+      (h.right f hfE k hk) (fun hh => hke (h.distinctR f hfE k hk e hef hh))
+  have : k = g := Prod.ext k1 k2
+  exact this ▸ hk
+
 end Psc.UniquePartnerLetters

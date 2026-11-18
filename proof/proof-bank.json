@@ -42810,6 +42810,22 @@
       "declaration": "theorem regular_cases (L : Finset (Fin 3)) (nbr : Fin 3 → Finset (Fin 3)) (n : ℕ) (hL : L ≠ ∅)"
     },
     {
+      "name": "Psc.UniquePartnerLetters.third_letter",
+      "module": "PscVerif.UniquePartnerLetters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/UniquePartnerLetters.lean",
+      "line": 107,
+      "declaration": "theorem third_letter : ∀ u v w z : Fin 3, u ≠ v → w ≠ u → w ≠ v → z ≠ u → z ≠ v → z = w := by"
+    },
+    {
+      "name": "Psc.UniquePartnerLetters.partner_triangle",
+      "module": "PscVerif.UniquePartnerLetters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/UniquePartnerLetters.lean",
+      "line": 125,
+      "declaration": "theorem partner_triangle {E : Finset (Fin 3 × Fin 3)} {N : Fin 3 × Fin 3 → Finset (Fin 3 × Fin 3)}"
+    },
+    {
       "name": "Psc.WeightModulus.norm_d",
       "module": "PscVerif.WeightModulus",
       "private": false,
@@ -45901,7 +45917,7 @@
     "proof/PscVerif/PscVerif/StrictCutCount.lean": "465d1ad883556eca80db059bde0564a425a6a62407cd307d728347bc558d62b1",
     "proof/PscVerif/PscVerif/StrictSystem.lean": "657d6c9f4041b04a2e478f19dea2ecb813952caf2fe1455789778306ad6c3a48",
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
-    "proof/PscVerif/PscVerif/UniquePartnerLetters.lean": "6e26df6bc9aec73461030202dcd81402cb2028d332444d867b42df384d76537b",
+    "proof/PscVerif/PscVerif/UniquePartnerLetters.lean": "48c3ef59f3a814c3c0fa0993744d0c2440f639e5355debf996c2f4098501b7e4",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
