@@ -189,13 +189,7 @@ BBK Remark 4.3 then gives `cr(σ) ≥ 3`, a contradiction. ∎
 `012/120/201` (§3.6) has `ER = K_{3,3}` and `Z = {(T, ρT)}`, with `ρ` the
 cyclic relabelling. Its swap-closure is a degree-two covering with
 `n_v = 2`, but its partner graph is a union of triangles, so it has
-coincidence rank at least 3. It is not a rank-two example of case 2. A
-scratch exhaustive search (Python, not committed; the proof is
-`partner_triangle` in Lean) over all `ER ⊆ K_{3,3}` found the following:
-- With the triangle-free constraint dropped, seven configurations admit
-  case-2 partner data, including `K_{3,3}`.
-- With the constraint kept, none does. This matches the two-line argument
-  above.
+coincidence rank at least 3. It is not a rank-two example of case 2.
 
 **What remains under (NM_V).** For odd determinant, a rank-two strict
 component has `π₁` locally injective nowhere (round-4 Lemma C): some tiling
