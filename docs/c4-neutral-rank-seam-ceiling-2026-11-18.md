@@ -301,8 +301,10 @@ Combining T3, T5 and Lemmas A and B:
   in particular when the graph is connected. Branch (a) therefore needs
   components exchanged by the swap.
 - **Any other $D_r$:**
-  $\operatorname{rank}D_r\le g_{A_C^-}(\varepsilon)+B_d(\sigma)$, and only
-  here does the seam ceiling enter.
+  $\operatorname{rank}D_r\le g_{N^-}(\varepsilon)\le m_{N^-}(\varepsilon)
+  = m_{A_C^-}(\varepsilon)+b_d\le m_{A_C^-}(\varepsilon)+B_d(\sigma)$. This
+  bound uses algebraic multiplicity, because the trace identity does not
+  control Jordan blocks. Only here does the seam ceiling enter.
 
 ### Evidence and replay
 
@@ -376,7 +378,7 @@ has not run.
    shared-cut germ graph. This is a statement about shared cuts only. The
    positive seam controls do not bear on it.
 2. *(Cohomological branch.)* Exclude a swap-odd $\varepsilon$-class in
-   $H^1(Z;\mathbb Q)$, or bound $g_{A_C^-}(\varepsilon)+B_d(\sigma)$ below
+   $H^1(Z;\mathbb Q)$, or bound $m_{A_C^-}(\varepsilon)+B_d(\sigma)$ (algebraic multiplicity) below
    the rank. A possible route is to identify $H^1(Z)$ with $H^1(\Omega_\sigma)$
    when the first projection $Z\to\Omega_\sigma$ is injective. That would
    put the $\varepsilon$-part in $\tilde H^0$ of the source eventual range.
