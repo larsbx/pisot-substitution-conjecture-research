@@ -1,0 +1,73 @@
+{
+  "command": [
+    "/workspace/scratch/gnr-next.qHyoM1/golden-ratio-normality-research/kernel/.pixi/envs/default/bin/mojo",
+    "build",
+    "forward_carrier_export.mojo",
+    "-o",
+    "/workspace/scratch/91efcf4b7b58/carrier-diagnostics/forward-carrier-export-noncomputable"
+  ],
+  "returncode": 0,
+  "elapsed_seconds": 20.316573054999026,
+  "source_sha256": "89eeb2b7371eb16536e28274654afafa11948a1ebf602fe692945cfae8d6812b",
+  "records": [
+    {
+      "fixture": 0,
+      "mode": "json",
+      "command": [
+        "/workspace/scratch/91efcf4b7b58/carrier-diagnostics/forward-carrier-export-noncomputable",
+        "0",
+        "20000",
+        "100000"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.7496918610013381,
+      "output_sha256": "1f0e32301807023239a7d8eabdbbabf71d60c9956a96ccbc8f25b7bc8358d04f",
+      "original_packet_bytes_equal": true
+    },
+    {
+      "fixture": 0,
+      "mode": "lean",
+      "command": [
+        "/workspace/scratch/91efcf4b7b58/carrier-diagnostics/forward-carrier-export-noncomputable",
+        "0",
+        "20000",
+        "100000",
+        "--lean"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.8982682850000856,
+      "output_sha256": "019856bf4e01550382be9e2607d28a126b36da66c0533929c550e26a2c171d1a",
+      "only_explicit_modifiers_and_comment_changed": true
+    },
+    {
+      "fixture": 1,
+      "mode": "json",
+      "command": [
+        "/workspace/scratch/91efcf4b7b58/carrier-diagnostics/forward-carrier-export-noncomputable",
+        "1",
+        "20000",
+        "10000"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.6682668819994433,
+      "output_sha256": "65a78cba7b94e5b48e06e4f6617eb96e4f43f623e61b68ab97cb07dbd472fe0e",
+      "original_packet_bytes_equal": true
+    },
+    {
+      "fixture": 1,
+      "mode": "lean",
+      "command": [
+        "/workspace/scratch/91efcf4b7b58/carrier-diagnostics/forward-carrier-export-noncomputable",
+        "1",
+        "20000",
+        "10000",
+        "--lean"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.30304303799857735,
+      "output_sha256": "4d1d3a9a1d16b04536ec12dba5e1e55a86b2a37d5dd27cc75a5d8b9661500844",
+      "only_explicit_modifiers_and_comment_changed": true
+    }
+  ],
+  "binary_sha256": "62a67c3ffa025911bf5d13fd58ce5547b46f74c27ce139bab5b23e3feed138b4"
+}

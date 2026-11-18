@@ -1,0 +1,349 @@
+{
+  "actions_not_performed": [
+    "No theorem/source/repository/HEAD changes.",
+    "No development setup, large copy or deletion.",
+    "No test, build, gate or CI invocation by this review.",
+    "No other-thread worktree changes."
+  ],
+  "current_scope": "Environment readiness and a preserved start snapshot only; root-owned full gate is running and has no accepted result in this review.",
+  "development_cache": {
+    "aggregate_PscVerif_olean_present": false,
+    "cut_lean_supplement_kib": 1164,
+    "cut_lean_supplement_path": "/workspace/scratch/f96c28a561ad/cut-lean",
+    "dependency_link": "/workspace/scratch/f96c28a561ad/psc-compact/proof/PscVerif/.lake/packages",
+    "dependency_target": "/workspace/scratch/0c41f0cd3299/psc/proof/PscVerif/.lake/packages",
+    "dependency_target_kib": 8326772,
+    "packages": [
+      {
+        "build_library_present": true,
+        "manifest_rev": "4edb0dbaa3b3cf729d86d1e2f035474d5ae2ac09",
+        "name": "mathlib",
+        "observed_head_matches_pin": true,
+        "observed_tracked_source_status_empty": true
+      },
+      {
+        "build_library_present": true,
+        "manifest_rev": "d9598f07b1bc701f1e3aae163d2681c1fd978793",
+        "name": "plausible",
+        "observed_head_matches_pin": true,
+        "observed_tracked_source_status_empty": true
+      },
+      {
+        "build_library_present": true,
+        "manifest_rev": "ba67e212be1197b84c1f1f6299488a10a3002713",
+        "name": "LeanSearchClient",
+        "observed_head_matches_pin": true,
+        "observed_tracked_source_status_empty": true
+      },
+      {
+        "build_library_present": true,
+        "manifest_rev": "1681d78dd6e65e38b143f9740d829c826673807c",
+        "name": "importGraph",
+        "observed_head_matches_pin": true,
+        "observed_tracked_source_status_empty": true
+      },
+      {
+        "build_library_present": true,
+        "manifest_rev": "a8acbfd87375ff4abe14ce09db5b7664d383bc7f",
+        "name": "proofwidgets",
+        "observed_head_matches_pin": true,
+        "observed_tracked_source_status_empty": true
+      },
+      {
+        "build_library_present": true,
+        "manifest_rev": "18889deb9e83ea7420ef51c160d6f88552e744e3",
+        "name": "aesop",
+        "observed_head_matches_pin": true,
+        "observed_tracked_source_status_empty": true
+      },
+      {
+        "build_library_present": true,
+        "manifest_rev": "507746ab8f4b643ccdacb2ec4cdb5853fa9f8ab3",
+        "name": "Qq",
+        "observed_head_matches_pin": true,
+        "observed_tracked_source_status_empty": true
+      },
+      {
+        "build_library_present": true,
+        "manifest_rev": "4cac2177c37f5530c4da76aa8e4307f3fc9e4dcb",
+        "name": "batteries",
+        "observed_head_matches_pin": true,
+        "observed_tracked_source_status_empty": true
+      },
+      {
+        "build_library_present": false,
+        "manifest_rev": "ab3a82db9fea14cf0fd7f5a2de650f4b534640af",
+        "name": "Cli",
+        "observed_head_matches_pin": true,
+        "observed_tracked_source_status_empty": true
+      }
+    ],
+    "project_build_kib": 109312,
+    "project_build_path": "/workspace/scratch/f96c28a561ad/psc-compact/proof/PscVerif/.lake/build",
+    "project_olean_count_observed": 63,
+    "scope": "Existing development cache only. This inspection checked HEAD pins and tracked Git status; it is not the full strict dependency-byte/pin audit and grants no acceptance credit.",
+    "selected_modules": [
+      {
+        "development_olean_bytes": 890024,
+        "development_olean_exists": true,
+        "module": "PscVerif.Binomial",
+        "source_sha256": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8"
+      },
+      {
+        "development_olean_bytes": 690624,
+        "development_olean_exists": true,
+        "module": "PscVerif.Reduction",
+        "source_sha256": "357fa49ab6991513e07f249b8a4d74caabad75f68db76ce501395b3a0af87d2d"
+      },
+      {
+        "development_olean_bytes": 901760,
+        "development_olean_exists": true,
+        "module": "PscVerif.OccurrenceTransport",
+        "source_sha256": "3ef9fcb7df8c395c36879b63933eb626f57437f1b813e03ad429148b47d09fe0"
+      },
+      {
+        "development_olean_bytes": 226272,
+        "development_olean_exists": true,
+        "module": "PscVerif.OccurrenceFinite",
+        "source_sha256": "65ef11444d2f03c9a49febf9a859eb8d48bd8dd0e1a37fd972c47935526b48a0"
+      },
+      {
+        "development_olean_bytes": 893744,
+        "development_olean_exists": true,
+        "module": "PscVerif.OccurrenceNewborn",
+        "source_sha256": "7afaf823023d45cc6d1d4d9b6d08e2b3d6e74dce165d77174de86d7cd23dd1d0"
+      },
+      {
+        "development_olean_bytes": 4187632,
+        "development_olean_exists": true,
+        "module": "PscVerif.StrictSystem",
+        "source_sha256": "657d6c9f4041b04a2e478f19dea2ecb813952caf2fe1455789778306ad6c3a48"
+      },
+      {
+        "development_olean_bytes": 888688,
+        "development_olean_exists": true,
+        "module": "PscVerif.Descendants",
+        "source_sha256": "6641b65d81d90be34c13937b6ab8ebc029fcce91babd7c2ce398738dac783a40"
+      },
+      {
+        "development_olean_bytes": 391080,
+        "development_olean_exists": true,
+        "module": "PscVerif.StablePrefixWindow",
+        "source_sha256": "f92a5899a583689f5bcab503b3e632641f7dc8a48492d573f4c87093c684f1ef"
+      },
+      {
+        "development_olean_bytes": null,
+        "development_olean_exists": false,
+        "module": "PscVerif.NamedGeometricEnclosure",
+        "source_sha256": "e91dfcffed8884f99863591d57d892933fbc7ce0a5de2899955a4a69a99233e6"
+      },
+      {
+        "development_olean_bytes": 352776,
+        "development_olean_exists": true,
+        "module": "PscVerif.CompactNeighborhood",
+        "source_sha256": "bfc41eba2f94241d71f329458418d225c773e580b186cc9aac128957991409e4"
+      },
+      {
+        "development_olean_bytes": 351760,
+        "development_olean_exists": true,
+        "module": "PscVerif.NamedCutNeighborhood",
+        "source_sha256": "e9d6a9e1b05721fa3cc8b634d3ecd6cdb604d8b63277d42b5ba34d70327bc57e"
+      },
+      {
+        "development_olean_bytes": 146760,
+        "development_olean_exists": true,
+        "module": "PscVerif.CompactNeighborhoodControls",
+        "source_sha256": "6c0fe9d92143d0c7441c606fc46d5148643dde152e9fea49cc36d55d875f3ee1"
+      },
+      {
+        "development_olean_bytes": 394368,
+        "development_olean_exists": true,
+        "module": "PscVerif.NamedCutProximity",
+        "source_sha256": "34fa8b8a10ff483b463b15f9da906cd6c75441b6cdeeb0ec823ed8219185c901"
+      }
+    ]
+  },
+  "development_setup_plan": {
+    "conditional_if_a_concrete_fix_is_later_needed": [
+      "Keep source and all generated project outputs inside the owned new worktree.",
+      "Use a private copy or isolated output directory for the approximately107MiB project artifacts; never symlink writable project build output to another branch.",
+      "Read the shared pinned dependency library artifacts via direct Lean search paths without invoking Lake update/build against that shared tree.",
+      "Recheck source/config pin equality before selective artifact reuse and compile changed dependencies into the private output.",
+      "NamedGeometricEnclosure.olean is absent from the inspected old project library and would need a dependency-ordered development build if the named count module is recompiled.",
+      "Such focused development reuse remains separate from the required fresh-source acceptance gate."
+    ],
+    "needed_for_current_unchanged_PR560": false,
+    "old_wrapper": "/workspace/scratch/f96c28a561ad/compact-lean-dev.sh",
+    "old_wrapper_warning": "Hardcodes the old checkout path and its output directory; do not invoke unchanged for new sources.",
+    "performed": false
+  },
+  "instructions_read": {
+    "identical_to_prior_checkout": true,
+    "path": "/workspace/scratch/f96c28a561ad/psc-count/AGENTS.md",
+    "relevant_requirements": [
+      "Lean remains the deductive proof layer; Mojo-first executable policy does not replace it.",
+      "Targeted literature stop/go precedes new theorem-facing code.",
+      "Show hypotheses, derivations, replay, controls and non-claims; preserve unsuccessful attempts.",
+      "Independent human review remains separate validation debt, not a research-progress blocker.",
+      "Do not modify vendored packages or generated governance surfaces by hand."
+    ],
+    "sha256": "46f8d84936c01ae3fd8f0cb84b5dd77c77998c23b94202655958f9bacd5dc9cd"
+  },
+  "other_thread_worktree": {
+    "accessed_or_modified_by_this_review": false,
+    "path": "/workspace/scratch/4a73bc4edc62/psc"
+  },
+  "owned_source_checkout": {
+    "clean_when_inspected": true,
+    "head_observed": "31f8046291f2428e839d95e8890c8342858ec210",
+    "path": "/workspace/scratch/f96c28a561ad/psc-count",
+    "project_lake_present_before_gate": false,
+    "tree_observed": "e38c3f65efb79fa72860d8ef222e96695847a551"
+  },
+  "pins_and_project_helpers": [
+    {
+      "path": "AGENTS.md",
+      "same_bytes_as_prior_checkout": true,
+      "sha256": "46f8d84936c01ae3fd8f0cb84b5dd77c77998c23b94202655958f9bacd5dc9cd"
+    },
+    {
+      "path": "tools/check_lean.sh",
+      "same_bytes_as_prior_checkout": true,
+      "sha256": "eb63ce6fb0b837eee1208b3d47e759bcf8b3617b1374685a8850e48f283cba8d"
+    },
+    {
+      "path": "tools/setup_lean.sh",
+      "same_bytes_as_prior_checkout": true,
+      "sha256": "b2c35ccc8d0b180a75275f8234f519a00d32efcbc8a9517f8b3d74a96b3ef8da"
+    },
+    {
+      "path": "tools/make_proof_bank.py",
+      "same_bytes_as_prior_checkout": true,
+      "sha256": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8"
+    },
+    {
+      "path": "proof/PscVerif/lean-toolchain",
+      "same_bytes_as_prior_checkout": true,
+      "sha256": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88"
+    },
+    {
+      "path": "proof/PscVerif/lakefile.toml",
+      "same_bytes_as_prior_checkout": true,
+      "sha256": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a"
+    },
+    {
+      "path": "proof/PscVerif/lake-manifest.json",
+      "same_bytes_as_prior_checkout": true,
+      "sha256": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2"
+    }
+  ],
+  "prepared_runner": {
+    "heartbeat_seconds": 20,
+    "independent_read_only_guard_review": "frontier_audit reported no concrete defect; did not execute runner or tests.",
+    "path": "/workspace/scratch/f96c28a561ad/run-count-isolated-attempt-01.py",
+    "raw_log": "/workspace/scratch/f96c28a561ad/count-isolated-attempt-01.log",
+    "receipt": "/workspace/scratch/f96c28a561ad/count-isolated-attempt-01.json",
+    "schema": "c4-finite-cut-count-isolated-process-v1",
+    "sha256": "e24ec701cddc9b10cd235978eb86396c8fc822f656eeeedacd3c03cb777c23f2",
+    "syntax_compiled_without_execution": true,
+    "warning": "Executing this script, including with --help, starts its guarded gate; it has no help-only mode."
+  },
+  "prior_checkout": {
+    "clean_when_inspected": true,
+    "head_observed": "38d93a8f25df7579a688ffc3cd7cfa8c36cfa754",
+    "path": "/workspace/scratch/f96c28a561ad/psc-compact",
+    "tree_observed": "96e70f75949e669f983c7ba0a73ed01a13ec5006"
+  },
+  "recorded_at_utc": "2026-11-12T20:18:12.008975+00:00",
+  "required_gate_plan": {
+    "allowed_checker_flags": "No flags for this proof-only acceptance. Existing optional packet-export modes require exactly three arguments; no jobs/reuse/resume flag exists.",
+    "checker_sha256": "eb63ce6fb0b837eee1208b3d47e759bcf8b3617b1374685a8850e48f283cba8d",
+    "command": [
+      "./tools/check_lean.sh"
+    ],
+    "environment": {
+      "ELAN_HOME": "/workspace/scratch/84c835820757/toolchains/elan",
+      "PATH_prefix": "/workspace/scratch/84c835820757/toolchains/elan/bin",
+      "TMPDIR": "/workspace/scratch/f96c28a561ad/count-isolation-tmp"
+    },
+    "historical_success_reference": {
+      "elapsed_seconds": 3065.692,
+      "revision": "6915e8d592b7ea5cb7c6950249811e354dc6c3e7",
+      "scope": "Historical compact-neighborhood gate only; does not accept PR560.",
+      "tree": "c79e97bdae1224068895afa9dcf6cca6d7fe9fbb"
+    },
+    "setup_lean_not_needed_before_this_gate": "Pinned executables are already installed. Running setup_lean in the new checkout would duplicate dependency provisioning; check_lean creates and provisions its own isolated source-only workspace.",
+    "source_isolation": [
+      "make_proof_bank prepares only checked-in Lean source and three project configuration files in a new empty workspace.",
+      "check_lean clears caller LEAN_, LAKE_ and MATHLIB_CACHE_ variables and disables local Lake artifact/config stores.",
+      "Fresh pinned dependency clones and the fixed upstream Mathlib source-hash cache are used; local compiled artifacts are never copied.",
+      "The complete PscVerif target and ProofBankAudit are run, followed by final pin and proof-bank checks.",
+      "The unchanged checker removes its own generated temporary workspace on shell exit."
+    ],
+    "terminal_acceptance_requirements": [
+      "Actual child exit zero.",
+      "Exact source HEAD/tree and every recorded source hash unchanged; worktree clean before and after.",
+      "Complete raw-log preservation and independent compiled-declaration inspection at the same source revision.",
+      "Public/private theorem and definition inventories remain separate from generated compiled constants."
+    ],
+    "unchanged_from_prior_accepted_checker": true,
+    "working_directory": "/workspace/scratch/f96c28a561ad/psc-count"
+  },
+  "resources": {
+    "cgroup_memory_limit_at_probed_unified_path": "not exposed",
+    "cleanup_performed_by_this_review": false,
+    "df_available_kib_observed": 10241784,
+    "df_total_kib_observed": 66002476,
+    "df_used_kib_observed": 52388868,
+    "live_lean_lake_leantar_processes_at_inspection": 0,
+    "memory_available_kib_observed": 8932396,
+    "memory_total_kib_observed": 10206472,
+    "old_isolation_directory": "/workspace/scratch/f96c28a561ad/lean-isolation-tmp",
+    "old_isolation_directory_entries_observed": 0,
+    "old_isolation_directory_kib": 4,
+    "planning_note": "Available space is close to the previous successful full gate start. Avoid duplicate dependency provisioning or concurrent full builds; no deletion was performed or requested by this review.",
+    "prior_cleanup_record": "/workspace/scratch/f96c28a561ad/compact-cache-cleanup.json",
+    "root_gate_preflight": {
+      "disk_available_bytes": 10371829760,
+      "disk_free_bytes": 13824577536,
+      "disk_path": "/workspace/scratch/f96c28a561ad",
+      "disk_total_bytes": 67586535424,
+      "elan_home": "/workspace/scratch/84c835820757/toolchains/elan",
+      "gate_script_sha256": "eb63ce6fb0b837eee1208b3d47e759bcf8b3617b1374685a8850e48f283cba8d",
+      "observed_at_utc": "2026-11-12T20:16:13.989084+00:00",
+      "path_prefix": "/workspace/scratch/84c835820757/toolchains/elan/bin",
+      "scope": "Resource snapshot only; no acceptance credit or deletion.",
+      "tmpdir": "/workspace/scratch/f96c28a561ad/count-isolation-tmp",
+      "tmpdir_existing_entries": 0,
+      "toolchain_pin": "leanprover/lean4:v4.34.0-rc2"
+    },
+    "swap_total_kib_observed": 0
+  },
+  "root_owned_gate": {
+    "launch_performed_by_this_review": false,
+    "session_id_reported_by_root": 54088,
+    "snapshot": "count-evidence-stage/gate/process-start-snapshot.json",
+    "snapshot_acceptance_complete": false,
+    "snapshot_status": "running",
+    "started_at_utc_from_genuine_receipt": "2026-11-12T20:16:13.989126+00:00"
+  },
+  "schema": "c4-finite-cut-count-environment-review-v1",
+  "scope": "Read-only environment inventory and scratch runner preparation. Task shifted from new proof implementation to completing existing PR560 verification; no development compilation was needed.",
+  "toolchain": {
+    "checked_in_pin": "leanprover/lean4:v4.34.0-rc2",
+    "compiler_path": "/workspace/scratch/84c835820757/toolchains/elan/toolchains/leanprover--lean4---v4.34.0-rc2/bin/lean",
+    "elan_home": "/workspace/scratch/84c835820757/toolchains/elan",
+    "elan_version_observed": "elan 4.2.4 (227caca13 2026-08-25)",
+    "lake_version_observed": "Lake version 5.0.0-src+6a10ac8 (Lean version 4.34.0-rc2)",
+    "lean_version_observed": "Lean (version 4.34.0-rc2, x86_64-unknown-linux-gnu, commit 6a10ac8c22beadecabdbb0919c2b50214762f91d, Release)",
+    "path_prefix": "/workspace/scratch/84c835820757/toolchains/elan/bin",
+    "python_version_observed": "Python 3.12.14",
+    "toolchain_disk_kib": 3040628,
+    "version_probe_exit_codes": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

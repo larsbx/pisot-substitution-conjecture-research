@@ -1,0 +1,12 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_forward_carrier_evidence.py"
+  ],
+  "returncode": 0,
+  "elapsed_seconds": 59.648222702002386,
+  "log_sha256": "3b1b7d7ab2673f8d636b50a893694337095f14426d8753a9eb88cab6506b90ad"
+}

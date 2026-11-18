@@ -1,0 +1,13 @@
+{
+  "acceptance_complete_when_copied": false,
+  "archived": "gate/process-start-snapshot.json",
+  "bytes": 16628,
+  "captured_at_utc": "2026-11-12T20:16:44.382882+00:00",
+  "metadata_stable_during_read": true,
+  "schema": "c4-finite-cut-count-running-snapshot-v1",
+  "session_id_reported_by_root": 54088,
+  "sha256": "84d9a9c7083ba1a5c8e9893eca30e26c92d4ab8be384daa1bc24257d43795ec2",
+  "source": "/workspace/scratch/f96c28a561ad/count-isolated-attempt-01.json",
+  "started_at_utc": "2026-11-12T20:16:13.989126+00:00",
+  "status_when_copied": "running"
+}

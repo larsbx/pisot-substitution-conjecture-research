@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/workspace/scratch/84c835820757/toolchains/elan/toolchains/leanprover--lean4---v4.34.0-rc2/bin/lean",
+    "-j",
+    "1",
+    "-DautoImplicit=false",
+    "-o",
+    "/workspace/scratch/d9728856ff24/focused-lean/PscVerif/FiniteProductivity.olean",
+    "PscVerif/FiniteProductivity.lean"
+  ],
+  "compiled_acceptance": false,
+  "dependency_scope": "Real existing local project objects linked into an owned namespace and cached package objects; not the isolated acceptance gate.",
+  "development_object_directory": "/workspace/scratch/d9728856ff24/focused-lean/PscVerif",
+  "log_prefix_bytes": 0,
+  "log_prefix_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "observed_at_utc": "2026-11-13T03:14:19.793767+00:00",
+  "schema": "focused-lean-observation-v1",
+  "source_commit": "510239ac0005fb24f880369e55a4b54776224981",
+  "source_file": "proof/PscVerif/PscVerif/FiniteProductivity.lean",
+  "source_sha256": "cc64e649a03c9ef0e5668fc051d679ffd2ea538135bbc6fc5974c2dc37fb13d8",
+  "status": "pending",
+  "terminal_receipt": null,
+  "terminal_receipt_exists": false
+}

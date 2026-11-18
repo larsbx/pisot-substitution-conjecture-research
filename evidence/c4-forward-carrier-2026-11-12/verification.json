@@ -1,0 +1,331 @@
+{
+  "acceptance": {
+    "PSC": false,
+    "claim_status_promotion": false,
+    "concrete_forward_data": false,
+    "full_isolated_lean_gate": false,
+    "full_named_chain": false,
+    "general_C4": false,
+    "original_seven_obligation_archived_payloads": false,
+    "pure_discrete_spectrum": false,
+    "unconditional_named_termination": false,
+    "universal_G1": false
+  },
+  "base_commit": "2f7c058fdd50ff65fbcf00543bece49913d47ad5",
+  "branch": "research/c4-named-forward-carrier",
+  "compiled_generic_modules": {
+    "FastForwardCarrier": {
+      "compiled_axiom_audit_performed": false,
+      "compiler_returncode": 0,
+      "control_actions": [],
+      "elapsed_seconds": 13.462,
+      "ended_at_utc": "2026-11-13T04:23:25.531345+00:00",
+      "errors": [],
+      "isolated_acceptance_claimed": false,
+      "log_bytes": 841,
+      "log_sha256": "a417edd3e3d494ecf4bea1f108c4dbd3c3bf1c9d5b57f5708c93ad98ef00ffc3",
+      "maximum_sampled_rss_bytes": 2597064704,
+      "minimum_sampled_host_available_bytes": 5166841856,
+      "outcome": "passed",
+      "output_exists": true,
+      "output_sha256": "07456349145d4f5bf37663ee3b6ca37ad18fbc472f6338672c9bbc148df68a69",
+      "receipt": "fast-forward-carrier-dev/attempt03/terminal.json",
+      "signals_received": [],
+      "source_sha256": "fba7b08223e333d9380ff1e090ad85cad6aadbe8eadd1a2dde8d6b92bfcf0689",
+      "source_unchanged": true
+    },
+    "FastForwardCarrierControls": {
+      "compiled_axiom_audit_performed": false,
+      "compiler_returncode": 0,
+      "control_actions": [],
+      "elapsed_seconds": 8.253,
+      "ended_at_utc": "2026-11-13T04:04:13.150390+00:00",
+      "errors": [],
+      "isolated_acceptance_claimed": false,
+      "log_bytes": 678,
+      "log_sha256": "291fc34c5b88df7e5456b81595f460107347f69a067757758bdae9d2bf76ad2b",
+      "maximum_sampled_rss_bytes": 0,
+      "outcome": "passed",
+      "output_exists": true,
+      "output_sha256": "3b93bb1394de8cd7fd11034896048c6fab9834c6a43562b9839ce17d42b33395",
+      "receipt": "named-forward-carrier-dev/controls-attempt01/terminal.json",
+      "signals_received": [],
+      "source_sha256": "5a1fe7b40c3336cfa8df07045e27d560b63de8747b761c0001772691e0c39e47",
+      "source_unchanged": true
+    },
+    "ForwardCarrier": {
+      "compiled_axiom_audit_performed": false,
+      "compiler_returncode": 0,
+      "control_actions": [],
+      "elapsed_seconds": 132.829,
+      "ended_at_utc": "2026-11-13T03:49:59.511814+00:00",
+      "errors": [],
+      "isolated_acceptance_claimed": false,
+      "log_bytes": 706,
+      "log_sha256": "ec97b53ea63e25922d28e518cdde1378c9485375275368844d0d2d3905380f1c",
+      "maximum_sampled_rss_bytes": 338960384,
+      "outcome": "passed",
+      "output_exists": true,
+      "output_sha256": "32444ba46c41345ffeebee4712262fc7d801a31c7847f1fa0156e79d16bb05d9",
+      "receipt": "forward-carrier-dev/attempt01/terminal.json",
+      "signals_received": [],
+      "source_sha256": "df91e154ecb52a909c2ec7c06af1813f99ff2b38bd7053fb1df78928741c890e",
+      "source_unchanged": true
+    }
+  },
+  "concrete_kernel_checks": {
+    "fixture0": {
+      "reason": "fixture1 did not reach successful compilation",
+      "status": "not-started"
+    },
+    "fixture1_attempts": [
+      {
+        "compiled_axiom_audit_performed": false,
+        "compiler_returncode": -15,
+        "control_actions": [
+          {
+            "at_utc": "2026-11-13T04:03:41.689542+00:00",
+            "reason": "stop_marker",
+            "signal": "SIGTERM"
+          }
+        ],
+        "elapsed_seconds": 298.718,
+        "ended_at_utc": "2026-11-13T04:03:41.855399+00:00",
+        "errors": [],
+        "isolated_acceptance_claimed": false,
+        "log_bytes": 37,
+        "log_sha256": "1eafade7044acc10df9a79ef6a2f7470394827979360493daf69134277ae1b45",
+        "maximum_sampled_rss_bytes": 3250864128,
+        "outcome": "stop_marker",
+        "output_exists": false,
+        "output_sha256": null,
+        "receipt": "named-forward-carrier-dev/data1-attempt01/terminal.json",
+        "signals_received": [],
+        "source_sha256": "1d6b0040d00619c8538d416f0a7f0bf4a79240af7633e8b80eb334dec23f728e",
+        "source_unchanged": true
+      },
+      {
+        "compiled_axiom_audit_performed": false,
+        "compiler_returncode": -9,
+        "control_actions": [],
+        "elapsed_seconds": 296.223,
+        "ended_at_utc": "2026-11-13T04:10:42.014099+00:00",
+        "errors": [],
+        "isolated_acceptance_claimed": false,
+        "log_bytes": 37,
+        "log_sha256": "72ab6fe1b7ec139e63d3cd8666777002410ba41454f4c8673b67103ec2907df6",
+        "maximum_sampled_rss_bytes": 3837419520,
+        "minimum_sampled_host_available_bytes": 1577177088,
+        "outcome": "failed",
+        "output_exists": false,
+        "output_sha256": null,
+        "receipt": "named-forward-carrier-dev/data1-attempt02/terminal.json",
+        "signals_received": [],
+        "source_sha256": "0fcd94c0961b26e9c1af02705fa3f28f96d48461f7716cd608f4c0407e650585",
+        "source_unchanged": true
+      }
+    ],
+    "status": "unresolved"
+  },
+  "history": {
+    "archive": "development-history.tar.gz",
+    "archive_bytes": 1007624,
+    "archive_sha256": "0014f2973bcdb1b07d3c5783f38f55e2440cfd04b4db23f91dbc42bdfede566f",
+    "member_count": 350
+  },
+  "native_replay": {
+    "archived_packets_reproduced_byte_for_byte": true,
+    "binaries": {
+      "exporter": {
+        "path": "/workspace/scratch/d9728856ff24/forward-native/forward-carrier-export",
+        "sha256": "456624c073ee2fd57993db79cf22b415c662c7742718fe86623968fe803a3653"
+      },
+      "native_test": {
+        "path": "/workspace/scratch/d9728856ff24/forward-native/test-forward-carrier",
+        "sha256": "04ff51bb364d91d684a050965e77d7b174437d9c446047eaf4d56bb27026b9b6"
+      }
+    },
+    "binaries_built_by_this_gate": false,
+    "budget_refusals": [
+      {
+        "command": "fixture0-length-cap-refusal",
+        "exit_code": 1,
+        "expected_exhaustion_kind": 2,
+        "fixture": 0,
+        "interpretation": "inconclusive budget refusal; no infinitude verdict",
+        "length_cap": 10000,
+        "state_cap": 20000,
+        "stdout_empty": true
+      },
+      {
+        "command": "fixture0-state-cap-refusal",
+        "exit_code": 1,
+        "expected_exhaustion_kind": 1,
+        "fixture": 0,
+        "interpretation": "inconclusive budget refusal; no infinitude verdict",
+        "length_cap": 100000,
+        "state_cap": 1,
+        "stdout_empty": true
+      }
+    ],
+    "build_mode": "provided-binaries",
+    "compiler": {
+      "binary_sha256": "0d5f0b700b0543223a10c47e818bc4f43f3228166c34ab13d52ab7f2ad02ffcd",
+      "installed_package_metadata": "/workspace/scratch/20703ddfc887/mojo-local/.pixi/envs/default/conda-meta/mojo-compiler-1.1.0.dev2026090805-release.json",
+      "installed_package_metadata_matches_lock": true,
+      "installed_package_metadata_sha256": "83a28fdaf6784d6ab1cfc62a0cf0692b1225a4c2a9cd5a188f34354f63c40a4a",
+      "lock_sha256": "1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8",
+      "observed_version": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+      "package_archive_rehashed_by_this_gate": false,
+      "package_sha256": "0d71889abb0887e2fa8a556c1081af4026034cdf98d27ad05b57cb096d7ad4f6",
+      "package_url": "https://conda.modular.com/max-nightly/linux-64/mojo-compiler-1.1.0.dev2026090805-release.conda",
+      "path": "/workspace/scratch/20703ddfc887/mojo-local/.pixi/envs/default/bin/mojo"
+    },
+    "elapsed_seconds": 27.986132,
+    "lean_kernel_acceptance": false,
+    "lean_sources_reproduced_byte_for_byte": true,
+    "oracle_tests": 168,
+    "receipt": "forward-replay-02/replay-receipt.json",
+    "status": "passed"
+  },
+  "packets": [
+    {
+      "fixture": 0,
+      "length_cap": 100000,
+      "max_state_length": 35437,
+      "normalized_state_count": 97,
+      "ordered_child_occurrences": 5652,
+      "packet_sha256": "1f0e32301807023239a7d8eabdbbabf71d60c9956a96ccbc8f25b7bc8358d04f",
+      "repeated_occurrences": 4456,
+      "state_cap": 20000,
+      "state_count": 192,
+      "substitution": [
+        [
+          1
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "terminal_states": 2,
+      "total_track_letters": 886556
+    },
+    {
+      "fixture": 1,
+      "length_cap": 10000,
+      "max_state_length": 4872,
+      "normalized_state_count": 261,
+      "ordered_child_occurrences": 4386,
+      "packet_sha256": "65a78cba7b94e5b48e06e4f6617eb96e4f43f623e61b68ab97cb07dbd472fe0e",
+      "repeated_occurrences": 1350,
+      "state_cap": 20000,
+      "state_count": 520,
+      "substitution": [
+        [
+          1
+        ],
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "terminal_states": 2,
+      "total_track_letters": 337020
+    }
+  ],
+  "parent_intersection_repair": {
+    "failed_job": 131624024712,
+    "failed_run": 43345576693,
+    "later_observation": "parent-payload-final/summary.json",
+    "parent_commit": "16dd825648d1a1bcdba9038e079463a9bebbaf3d",
+    "payload_failed_job": 131624030047,
+    "payload_failed_run": 43345576753,
+    "payload_failure_is_same_source_obligation": true,
+    "probe_elapsed_seconds": 2.620683,
+    "probe_receipt": "parent-ci-failure/probe-run02/terminal.json",
+    "probe_status": "passed",
+    "scope": "exact extracted theorem with actual imported definitions; no full module or axiom audit",
+    "tracked_change": "three reversed cases rewrite Set.inter_comm before root simplification"
+  },
+  "recorded_at_utc": "2026-11-13T04:26:31.539388+00:00",
+  "schema": "psc-forward-carrier-evidence-v1",
+  "scope": "two literal finite forward-carrier candidates; native/oracle acceptance and scoped generic compiled evidence; no complete named acceptance",
+  "scoped_compiled_axiom_audit": {
+    "allowed_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "audit_log_sha256": "4144a941ac1c01a7755b64e7cbe232b7a409c870e4891f197c8cf099f4e7d538",
+    "compiled_axiom_audit_performed": true,
+    "compiler_returncode": 0,
+    "declarations": 172,
+    "elapsed_seconds": 2.255,
+    "ended_at_utc": "2026-11-13T04:24:02.909864+00:00",
+    "errors": [],
+    "expected_source_proofs": 50,
+    "isolated_acceptance_claimed": false,
+    "named_termination_acceptance_claimed": false,
+    "outcome": "passed",
+    "receipt": "forward-scoped-audit/run02/terminal.json",
+    "scope": "selected compiled modules only; cached dependency inputs; not complete isolated acceptance",
+    "selected_modules": [
+      "PscVerif.ForwardCarrier",
+      "PscVerif.FastForwardCarrier",
+      "PscVerif.FastForwardCarrierControls"
+    ],
+    "theorem_declarations": 96
+  },
+  "source_checks": {
+    "added_source_proofs": 161,
+    "governed_claims": 126,
+    "named_source_proof_inventory": 2974,
+    "post_whitespace_inventory_receipt": "forward-publication-checks/post-whitespace-proof-bank.json",
+    "proof_bank_regression_tests": 57,
+    "proof_bank_test_receipt": "forward-source-validation/proof-bank-tests.json",
+    "receipt": "forward-final-validation/receipt.json",
+    "recorded_data_integrity_tests": 164,
+    "source_openings": 411,
+    "status": "passed",
+    "whitespace_repair_receipt": "forward-publication-checks/whitespace-repair.json"
+  },
+  "unchanged_parent_productivity_check": {
+    "compiled_axiom_audit_performed": false,
+    "compiler_returncode": -15,
+    "control_actions": [
+      {
+        "at_utc": "2026-11-13T04:20:26.147612+00:00",
+        "reason": "timeout",
+        "signal": "SIGTERM"
+      }
+    ],
+    "elapsed_seconds": 90.363,
+    "ended_at_utc": "2026-11-13T04:20:26.318662+00:00",
+    "errors": [],
+    "isolated_acceptance_claimed": false,
+    "log_bytes": 0,
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "maximum_sampled_rss_bytes": 2525552640,
+    "minimum_sampled_host_available_bytes": 4692082688,
+    "outcome": "timeout",
+    "output_exists": false,
+    "output_sha256": null,
+    "receipt": "parent-productivity-dev/attempt01/terminal.json",
+    "signals_received": [],
+    "source_sha256": "cc64e649a03c9ef0e5668fc051d679ffd2ea538135bbc6fc5974c2dc37fb13d8",
+    "source_unchanged": true
+  }
+}

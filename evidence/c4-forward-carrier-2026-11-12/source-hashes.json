@@ -1,0 +1,86 @@
+{
+  "base_commit": "2f7c058fdd50ff65fbcf00543bece49913d47ad5",
+  "files": {
+    ".github/workflows/c4-forward-carrier.yml": {
+      "bytes": 2566,
+      "sha256": "7f3b766fd2a0e96c09e0fbba5b74189ea3c9860c57a748ae130e291b612d4daf"
+    },
+    "kernel/check_forward_carrier.sh": {
+      "bytes": 13326,
+      "sha256": "5e2f95ee54a8f112d81bd292cc83cd402aa8622b49746eff3d48b22c5953ea9f"
+    },
+    "kernel/forward_carrier_export.mojo": {
+      "bytes": 8270,
+      "sha256": "61b85238da470705e651487436488fccc072cf8ae8e511a54dba5337082fbdf1"
+    },
+    "kernel/pixi.lock": {
+      "bytes": 336111,
+      "sha256": "1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8"
+    },
+    "kernel/psc/forward_carrier.mojo": {
+      "bytes": 5922,
+      "sha256": "d9e426d2f180458b9bdafd4410b1c21378e038668f4bb36dfa1d73069cf1f5b4"
+    },
+    "kernel/tests/test_forward_carrier.mojo": {
+      "bytes": 3077,
+      "sha256": "3eb6f51722db8b15472a2f4133a9603a9e64b7dc0cc3a0d17cb2843be371a050"
+    },
+    "oracles/python/check_forward_carrier.py": {
+      "bytes": 9336,
+      "sha256": "6c4cb1d3201b8e67d74bce11353f3d3e6b6fc9351e6cfa6fca426c3fbc7e2760"
+    },
+    "proof/PscVerif/ProofBankAudit.lean": {
+      "bytes": 1689,
+      "sha256": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824"
+    },
+    "proof/PscVerif/PscVerif.lean": {
+      "bytes": 4276,
+      "sha256": "3ffc0b8857d74624deefb2eef716adb1523ef9ab78900bdae2fc7520eaf25f91"
+    },
+    "proof/PscVerif/PscVerif/FastForwardCarrier.lean": {
+      "bytes": 12512,
+      "sha256": "fba7b08223e333d9380ff1e090ad85cad6aadbe8eadd1a2dde8d6b92bfcf0689"
+    },
+    "proof/PscVerif/PscVerif/FastForwardCarrierControls.lean": {
+      "bytes": 4929,
+      "sha256": "5a1fe7b40c3336cfa8df07045e27d560b63de8747b761c0001772691e0c39e47"
+    },
+    "proof/PscVerif/PscVerif/ForwardCarrier.lean": {
+      "bytes": 5589,
+      "sha256": "df91e154ecb52a909c2ec7c06af1813f99ff2b38bd7053fb1df78928741c890e"
+    },
+    "proof/PscVerif/PscVerif/NamedForwardCarrier.lean": {
+      "bytes": 7250,
+      "sha256": "d91b37df26dc194cacdfc67ede3310146177270caca9dc241ecd03f40826e056"
+    },
+    "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean": {
+      "bytes": 1034997,
+      "sha256": "d1113f9d7349238f8903d1c783f6057a3973de2c1a918f7ec0b3e96e7f5d72bd"
+    },
+    "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean": {
+      "bytes": 517806,
+      "sha256": "0fcd94c0961b26e9c1af02705fa3f28f96d48461f7716cd608f4c0407e650585"
+    },
+    "proof/PscVerif/PscVerif/NamedStrictExclusion.lean": {
+      "bytes": 6606,
+      "sha256": "f3b2c1214635333acd509f3514660752d5064f8d41e96723b9f37a06ea761684"
+    },
+    "tests/test_forward_carrier_evidence.py": {
+      "bytes": 13231,
+      "sha256": "02978a678ff14b66fa9ae622a94484a81d2a9bbdb2c799ab1ca28fe3f26a539c"
+    },
+    "tests/test_proof_bank.py": {
+      "bytes": 29061,
+      "sha256": "b2c4ed83ac8cb78cc9c51498b426645c3a59d6819441f82f683bc613be71d8a9"
+    },
+    "tools/check_lean.sh": {
+      "bytes": 3438,
+      "sha256": "eb63ce6fb0b837eee1208b3d47e759bcf8b3617b1374685a8850e48f283cba8d"
+    },
+    "tools/make_proof_bank.py": {
+      "bytes": 25134,
+      "sha256": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8"
+    }
+  },
+  "scope": "final candidate source bytes; base commit alone does not contain these working-tree changes"
+}

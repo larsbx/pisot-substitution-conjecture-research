@@ -1,0 +1,10 @@
+{
+  "command": [
+    "python",
+    "tools/make_ledger.py",
+    "--check"
+  ],
+  "exit_code": 0,
+  "observed_at_utc": "2026-11-12T20:20:34.423785+00:00",
+  "source_revision": "31f8046291f2428e839d95e8890c8342858ec210"
+}
