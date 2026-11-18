@@ -683,6 +683,25 @@ anchor = "| Class-A boundary hitting, gaps `d <= 4` |"
 window_lines = 0
 
 [[claim]]
+name = "ClassBSectorBoundaryHitting"
+status = "proved"
+aliases = ["class-B sectors below slope 5/2"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"ClassBSectorBoundaryHitting"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| ClassBSectorBoundaryHitting |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Class-B boundary hitting below slope `5/2` |"
+window_lines = 0
+
+[[claim]]
 name = "ClassCBoundaryHittingLowGaps"
 status = "proved"
 aliases = ["class-C gaps d <= 5"]
@@ -1355,6 +1374,62 @@ anchor = '| MidArea |'
 window_lines = 0
 
 [[claim]]
+name = "MinusClassAChamberConeBoundaryHitting"
+status = "proved"
+aliases = ["Theorem CA", "class-A chamber cones t <= 5 or t <= k - 1"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"MinusClassAChamberConeBoundaryHitting"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| MinusClassAChamberConeBoundaryHitting |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Minus class-A chamber boundary hitting, `t <= 5` or `t <= k - 1` |"
+window_lines = 0
+
+[[claim]]
+name = "MinusClassAChamberConeEntry"
+status = "proved"
+aliases = ["Corollary CA-1"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"MinusClassAChamberConeEntry"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| MinusClassAChamberConeEntry |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Minus class-A chamber entry into integral zero, `t <= 5` or `t <= k - 1` |"
+window_lines = 0
+
+[[claim]]
+name = "MinusClassAWholeChamberEntry"
+status = "open"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"MinusClassAWholeChamberEntry"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "absent"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| MinusClassAWholeChamberEntry |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Minus Class-A whole-chamber entry |"
+window_lines = 0
+
+[[claim]]
 name = "MinusClassDBoundaryHitting"
 status = "proved"
 [[claim.surfaces]]
@@ -1528,6 +1603,25 @@ expect = "present"
 [[claim.surfaces]]
 path = "docs/ledger-index.md"
 anchor = '| Mod3Sieve |'
+window_lines = 0
+
+[[claim]]
+name = "NonPisotPrefixBPANontermination"
+status = "proved"
+aliases = ["Corollary B (i)", "prefix-seeded BPA off the Pisot cone"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"NonPisotPrefixBPANontermination"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| NonPisotPrefixBPANontermination |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Corollary B (i): prefix-seeded BPA off the Pisot cone |"
 window_lines = 0
 
 [[claim]]
@@ -1948,6 +2042,25 @@ window_lines = 0
 [[claim.surfaces]]
 path = "docs/class-d-assembly-audit-2026-10-21.md"
 anchor = "| Plus positive-b residual |"
+window_lines = 0
+
+[[claim]]
+name = "PrefixBPATerminationPisotOrSalem"
+status = "proved"
+aliases = ["Proposition B′", "terminating prefix-seeded BPA forces Pisot or Salem (two or more letters)"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"PrefixBPATerminationPisotOrSalem"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| PrefixBPATerminationPisotOrSalem |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Proposition B′: terminating prefix-seeded BPA forces Pisot or Salem (two or more letters) |"
 window_lines = 0
 
 [[claim]]

@@ -1,0 +1,6 @@
+Failed to initialize Crashpad.  Crash reporting will not be available.  Cause: while locating crashpad handler: unable to locate crashpad handler executable
+[[0, 1], [1, 2], [0, 2, 1]] top-only cycles [1, 1] [2] [2, 2] corrections -1 1
+[[1], [0, 2], [2, 0, 2]] top-only cycles [2, 2, 2] [2] [2, 2, 2] corrections -1 -1
+[[1], [2], [0, 2, 1]] top-only cycles [] [] [] corrections 0 0
+[[0, 1], [0, 2], [0]] top-only cycles [] [] [] corrections 0 0
+contract-receipt: Literal one-track seams have indexed births or last/first ancestry. Their cycle lists and signed corrections agree with independent periodic zero-fibre controls at powers one through twelve. A productive PIP fixture has positive minus-one correction. A literal subdivision checks the corrected odd algebraic multiplicities against its uncut words, including a surviving minus-one root. Jordan controls distinguish algebraic multiplicity, and caps, bad boundary labels and an ineligible sink refuse.

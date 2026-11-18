@@ -1,0 +1,17 @@
+{"command": ["/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python", "tools/vendoring/check_vendored_sync.py"], "started_at": "2026-11-15T18:58:14.453983+00:00"}
+OK: vendored packages match their pins (finite_exact, substitution_dynamics, finite_linear_algebra, claim_governance, proof_records, oracle_refinement, parallel_fold, proof_architecture, finite_graph, finite_automata, mojo_smoke, vendoring, polyglot_envelope).
+{"command": ["/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python", "tools/make_ledger.py", "--check"], "started_at": "2026-11-15T18:58:14.596354+00:00"}
+OK: 32 generated surfaces are current.
+{"command": ["/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python", "tools/make_math_catalogue.py", "--check"], "started_at": "2026-11-15T18:58:14.798998+00:00"}
+{"command": ["/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python", "tools/polyglot_envelope/render.py", "--check"], "started_at": "2026-11-15T18:58:14.847082+00:00"}
+OK: .polyglot/ is the rendering of the polyglot envelope template
+{"command": ["/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python", "tools/make_proof_bank.py", "--check"], "started_at": "2026-11-15T18:58:14.906918+00:00"}
+Proof bank: 126 claims, 2867 named Lean proofs, 411 source openings
+{"command": ["/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python", "tools/check_markdown_source.py"], "started_at": "2026-11-15T18:58:18.681852+00:00"}
+OK Markdown source integrity: 530 file(s) checked
+{"command": ["/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python", "tools/check_manuscript_source.py"], "started_at": "2026-11-15T18:58:19.190837+00:00"}
+OK manuscript sources: 6 required files present, 3 .tex/.pdf checked
+{"command": ["/workspace/scratch/7b7b91dcb7fe/upper-checks/bin/python", "-m", "claim_governance.cli", "--root", "."], "started_at": "2026-11-15T18:58:20.342459+00:00"}
+OK: claim governance audit of larsbx/pisot-substitution-conjecture-research passed [terminology, claims, coverage, promotion, numerics, consistency]
+{"command": ["git", "diff", "--cached", "--check"], "started_at": "2026-11-15T18:58:32.931316+00:00"}
+{"command": ["bash", "-n", "tools/check_class_a_plus_upper_recurrence.sh"], "started_at": "2026-11-15T18:58:33.043908+00:00"}

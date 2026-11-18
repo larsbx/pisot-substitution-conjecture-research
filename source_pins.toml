@@ -18,7 +18,7 @@ kind = "workflow-metadata"
 reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = "kernel/pixi.toml"
-current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
+current = "7b392a6680cb3ac7a021ef8d255b3c16451073f4f3ef2ffe76d623d1cd97c737"
 kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
 [[manifest.drift]]
@@ -70,7 +70,7 @@ kind = "workflow-metadata"
 reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = "kernel/pixi.toml"
-current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
+current = "7b392a6680cb3ac7a021ef8d255b3c16451073f4f3ef2ffe76d623d1cd97c737"
 kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
 [[manifest.drift]]
@@ -181,7 +181,7 @@ kind = "workflow-metadata"
 reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = "kernel/pixi.toml"
-current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
+current = "7b392a6680cb3ac7a021ef8d255b3c16451073f4f3ef2ffe76d623d1cd97c737"
 kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
 [[manifest.drift]]
@@ -342,7 +342,7 @@ kind = "workflow-metadata"
 reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = "kernel/pixi.toml"
-current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
+current = "7b392a6680cb3ac7a021ef8d255b3c16451073f4f3ef2ffe76d623d1cd97c737"
 kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
 [[manifest.drift]]
@@ -364,7 +364,7 @@ kind = "workflow-metadata"
 reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = "kernel/pixi.toml"
-current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
+current = "7b392a6680cb3ac7a021ef8d255b3c16451073f4f3ef2ffe76d623d1cd97c737"
 kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
 [[manifest.drift]]
@@ -417,7 +417,7 @@ kind = "workflow-metadata"
 reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = "kernel/pixi.toml"
-current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
+current = "7b392a6680cb3ac7a021ef8d255b3c16451073f4f3ef2ffe76d623d1cd97c737"
 kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
 [[manifest.drift]]
@@ -496,7 +496,7 @@ kind = "workflow-metadata"
 reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = "kernel/pixi.toml"
-current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
+current = "7b392a6680cb3ac7a021ef8d255b3c16451073f4f3ef2ffe76d623d1cd97c737"
 kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
 [[manifest.drift]]
@@ -591,7 +591,7 @@ kind = "workflow-metadata"
 reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = "kernel/pixi.toml"
-current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
+current = "7b392a6680cb3ac7a021ef8d255b3c16451073f4f3ef2ffe76d623d1cd97c737"
 kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
 [[manifest.drift]]
@@ -658,10 +658,14 @@ kind = "workflow-metadata"
 reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = "kernel/pixi.toml"
-current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
+current = "7b392a6680cb3ac7a021ef8d255b3c16451073f4f3ef2ffe76d623d1cd97c737"
 kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
 [[manifest.drift]]
 path = "vendored.toml"
 current = "420969bc12910aeba2ca479ec05492a0e76a0cbd03ec3b440d6d941d39b371b5"
 reason = "PSC word-counter overflow repair and coordinated finite-math-kernels #98 snapshot; historical replay uses the recorded revision"
+[[manifest.drift]]
+path = "kernel/class_b_cone_certificate.mojo"
+current = "73d1b039668793b78a223b1fadcf6a0f0a41415332cef5f232bc660772abef7a"
+reason = 'cone cover made generic in the class (Family.cls, family_cone, class-A endings with the opt-in Bernstein rule); class B keeps its endings and decision set, and the Theorem C plus and minus runs replay archive/2026-10-08/class-b-cone-run/ identically (evidence/class-a-chamber-cone-2026-11-15/), docs/class-a-chamber-entry-stopgo-2026-11-15.md'

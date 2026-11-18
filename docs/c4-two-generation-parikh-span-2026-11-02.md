@@ -533,3 +533,5 @@ diagonal ordinal path. The independent arithmetic
 and literal words were checked with exact integer
 counting in the development environment; **hosted
 exact-head acceptance remains to be established**.
+
+*Receipt note, 2026-11-10 (quantifier audit W19; check runs and job logs read through the GitHub API).* Hosted check runs at the head of #460 (`38e2b30`): 73 runs, 5 failures (`mojo-kernel` and `exact-kernels` twice each, `diagnostic` once) and 2 cancelled, after the merge at 2026-11-03T13:52:59Z (merge `4993a59`, on `main`). The one log opened (`mojo-kernel`) fails on the same three class-A test files as at #462: `test_class_a_madic_digits`, `test_class_a_madic_smith` and `test_class_a_prefix_carry`, compile errors under the hosted Mojo toolchain in files that are not part of #460. The other four logs were not opened. The three tests pass at `4461ae0` (local replay, 2026-11-10). The sentence above stays as the authoring-time record ([quantifier audit](quantifier-transfer-audit-2026-11-09.md), §16).

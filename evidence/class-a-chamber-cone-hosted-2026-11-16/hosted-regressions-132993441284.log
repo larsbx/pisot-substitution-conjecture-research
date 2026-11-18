@@ -1,0 +1,185 @@
+﻿2026-11-15T23:28:57.8200145Z Current runner version: '2.338.2'
+2026-11-15T23:28:57.8219215Z ##[group]Runner Image Provisioner
+2026-11-15T23:28:57.8219735Z Hosted Compute Agent
+2026-11-15T23:28:57.8220133Z Version: 20261103.629
+2026-11-15T23:28:57.8220498Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-15T23:28:57.8220931Z Build Date: 2026-11-03T17:26:59Z
+2026-11-15T23:28:57.8221353Z Worker ID: {297f0e55-5b01-43ff-9358-1425d5436ca7}
+2026-11-15T23:28:57.8221761Z Region: centralus
+2026-11-15T23:28:57.8222118Z Cloud: Azure
+2026-11-15T23:28:57.8222424Z ##[endgroup]
+2026-11-15T23:28:57.8223194Z ##[group]Operating System
+2026-11-15T23:28:57.8223578Z Ubuntu
+2026-11-15T23:28:57.8223873Z 26.04.1
+2026-11-15T23:28:57.8224198Z LTS
+2026-11-15T23:28:57.8224491Z ##[endgroup]
+2026-11-15T23:28:57.8224794Z ##[group]Runner Image
+2026-11-15T23:28:57.8225216Z Image: ubuntu-26.04
+2026-11-15T23:28:57.8225699Z Version: 20261111.196.1
+2026-11-15T23:28:57.8226434Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261111.196/images/ubuntu/Ubuntu2604-Readme.md
+2026-11-15T23:28:57.8227247Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261111.196
+2026-11-15T23:28:57.8227839Z ##[endgroup]
+2026-11-15T23:28:57.8228463Z ##[group]GITHUB_TOKEN Permissions
+2026-11-15T23:28:57.8229855Z Contents: read
+2026-11-15T23:28:57.8230186Z Metadata: read
+2026-11-15T23:28:57.8230577Z ##[endgroup]
+2026-11-15T23:28:57.8231921Z Secret source: Actions
+2026-11-15T23:28:57.8232467Z Cache mode: write
+2026-11-15T23:28:57.8232911Z Prepare workflow directory
+2026-11-15T23:28:57.8445273Z Prepare all required actions
+2026-11-15T23:28:57.8476557Z Getting action download info
+2026-11-15T23:28:58.0461853Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-15T23:28:58.2070002Z Complete job name: regressions
+2026-11-15T23:28:58.2630587Z ##[group]Run actions/checkout@v4
+2026-11-15T23:28:58.2631011Z with:
+2026-11-15T23:28:58.2631320Z   repository: larsbx/pisot-substitution-conjecture-research
+2026-11-15T23:28:58.2633718Z   token: ***
+2026-11-15T23:28:58.2633953Z   ssh-strict: true
+2026-11-15T23:28:58.2634194Z   ssh-user: git
+2026-11-15T23:28:58.2634440Z   persist-credentials: true
+2026-11-15T23:28:58.2634704Z   clean: true
+2026-11-15T23:28:58.2634951Z   sparse-checkout-cone-mode: true
+2026-11-15T23:28:58.2635241Z   fetch-depth: 1
+2026-11-15T23:28:58.2635480Z   fetch-tags: false
+2026-11-15T23:28:58.2635839Z   show-progress: true
+2026-11-15T23:28:58.2636083Z   lfs: false
+2026-11-15T23:28:58.2636309Z   submodules: false
+2026-11-15T23:28:58.2636556Z   set-safe-directory: true
+2026-11-15T23:28:58.2636832Z   allow-unsafe-pr-checkout: false
+2026-11-15T23:28:58.2637182Z ##[endgroup]
+2026-11-15T23:28:58.4419696Z Syncing repository: larsbx/pisot-substitution-conjecture-research
+2026-11-15T23:28:58.4421246Z ##[group]Getting Git version info
+2026-11-15T23:28:58.4421848Z Working directory is '/home/runner/work/pisot-substitution-conjecture-research/pisot-substitution-conjecture-research'
+2026-11-15T23:28:58.4422709Z [command]/usr/bin/git version
+2026-11-15T23:28:58.4423127Z git version 2.56.1
+2026-11-15T23:28:58.4431861Z ##[endgroup]
+2026-11-15T23:28:58.4442984Z Temporarily overriding HOME='/home/runner/work/_temp/c4ec7efb-9fc6-4fff-84ad-8394f2d2691b' before making global git config changes
+2026-11-15T23:28:58.4446953Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-15T23:28:58.4447871Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/pisot-substitution-conjecture-research/pisot-substitution-conjecture-research
+2026-11-15T23:28:58.4506760Z Deleting the contents of '/home/runner/work/pisot-substitution-conjecture-research/pisot-substitution-conjecture-research'
+2026-11-15T23:28:58.4507944Z ##[group]Initializing the repository
+2026-11-15T23:28:58.4508570Z [command]/usr/bin/git init /home/runner/work/pisot-substitution-conjecture-research/pisot-substitution-conjecture-research
+2026-11-15T23:28:58.4585907Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-15T23:28:58.4586890Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-15T23:28:58.4587437Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-15T23:28:58.4587952Z hint: call:
+2026-11-15T23:28:58.4588198Z hint:
+2026-11-15T23:28:58.4588523Z hint: 	git config --global init.defaultBranch <name>
+2026-11-15T23:28:58.4588889Z hint:
+2026-11-15T23:28:58.4589237Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-15T23:28:58.4589851Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-15T23:28:58.4590450Z hint:
+2026-11-15T23:28:58.4590783Z hint: 	git branch -m <name>
+2026-11-15T23:28:58.4591168Z hint:
+2026-11-15T23:28:58.4591690Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-15T23:28:58.4593094Z Initialized empty Git repository in /home/runner/work/pisot-substitution-conjecture-research/pisot-substitution-conjecture-research/.git/
+2026-11-15T23:28:58.4602794Z [command]/usr/bin/git remote add origin https://github.com/larsbx/pisot-substitution-conjecture-research
+2026-11-15T23:28:58.4647677Z ##[endgroup]
+2026-11-15T23:28:58.4648333Z ##[group]Disabling automatic garbage collection
+2026-11-15T23:28:58.4651835Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-15T23:28:58.4683490Z ##[endgroup]
+2026-11-15T23:28:58.4683922Z ##[group]Setting up auth
+2026-11-15T23:28:58.4690838Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-15T23:28:58.4726166Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-15T23:28:58.5069525Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-15T23:28:58.5098710Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-15T23:28:58.5313744Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-15T23:28:58.5342501Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-15T23:28:58.5560554Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-15T23:28:58.5595148Z ##[endgroup]
+2026-11-15T23:28:58.5595804Z ##[group]Fetching the repository
+2026-11-15T23:28:58.5601527Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +8e7a7955e6de9222cd52267a255146835ac48498:refs/remotes/pull/585/merge
+2026-11-15T23:29:00.3320277Z From https://github.com/larsbx/pisot-substitution-conjecture-research
+2026-11-15T23:29:00.3322050Z  * [new ref]         8e7a7955e6de9222cd52267a255146835ac48498 -> pull/585/merge
+2026-11-15T23:29:00.3325408Z ##[endgroup]
+2026-11-15T23:29:00.3326601Z ##[group]Determining the checkout info
+2026-11-15T23:29:00.3327698Z ##[endgroup]
+2026-11-15T23:29:00.3328668Z [command]/usr/bin/git sparse-checkout disable
+2026-11-15T23:29:00.3377019Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-15T23:29:00.3402203Z ##[group]Checking out the ref
+2026-11-15T23:29:00.3403459Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/585/merge
+2026-11-15T23:29:00.7402131Z Note: switching to 'refs/remotes/pull/585/merge'.
+2026-11-15T23:29:00.7402497Z 
+2026-11-15T23:29:00.7402654Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-15T23:29:00.7403028Z changes and commit them, and you can discard any commits you make in this
+2026-11-15T23:29:00.7403354Z state without impacting any branches by switching back to a branch.
+2026-11-15T23:29:00.7403542Z 
+2026-11-15T23:29:00.7403686Z If you want to create a new branch to retain commits you create, you may
+2026-11-15T23:29:00.7404291Z do so (now or later) by using -c with the switch command. Example:
+2026-11-15T23:29:00.7404438Z 
+2026-11-15T23:29:00.7404527Z   git switch -c <new-branch-name>
+2026-11-15T23:29:00.7404653Z 
+2026-11-15T23:29:00.7404776Z Or undo this operation with:
+2026-11-15T23:29:00.7404878Z 
+2026-11-15T23:29:00.7404960Z   git switch -
+2026-11-15T23:29:00.7405062Z 
+2026-11-15T23:29:00.7405246Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-15T23:29:00.7405425Z 
+2026-11-15T23:29:00.7405860Z HEAD is now at 8e7a795 Merge 5ff3f9a5cae45234884bea46779d7e4f9e3d851c into 58379fa726eadf51e32f9f76f6f3970bf0e55cd5
+2026-11-15T23:29:00.7429445Z ##[endgroup]
+2026-11-15T23:29:00.7471904Z [command]/usr/bin/git log -1 --format=%H
+2026-11-15T23:29:00.7494411Z 8e7a7955e6de9222cd52267a255146835ac48498
+2026-11-15T23:29:00.7669847Z ##[group]Run curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+2026-11-15T23:29:00.7670346Z [36;1mcurl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash[0m
+2026-11-15T23:29:00.7670635Z [36;1mecho "$HOME/.pixi/bin" >> "$GITHUB_PATH"[0m
+2026-11-15T23:29:00.7714688Z shell: /usr/bin/bash -e {0}
+2026-11-15T23:29:00.7714877Z ##[endgroup]
+2026-11-15T23:29:01.1411927Z This script will automatically download and install Pixi (latest) for you.
+2026-11-15T23:29:01.1412707Z Getting it from this url: https://github.com/prefix-dev/pixi/releases/latest/download/pixi-x86_64-unknown-linux-musl.tar.gz
+2026-11-15T23:29:02.0570287Z The 'pixi' binary is installed into '/home/runner/.pixi/bin'
+2026-11-15T23:29:02.4796992Z Sending an anonymous installation ping to prefix.dev (version, OS, arch). Set PIXI_NO_TELEMETRY=1 or DO_NOT_TRACK=1 to opt out. See https://pixi.sh/latest/reference/telemetry/
+2026-11-15T23:29:02.4839410Z Updating '/home/runner/.bashrc'
+2026-11-15T23:29:02.4839896Z Please restart or source your shell.
+2026-11-15T23:29:02.4965262Z ##[group]Run pixi run --locked mojo run -I . tests/test_class_a_chamber_entry.mojo
+2026-11-15T23:29:02.4965837Z [36;1mpixi run --locked mojo run -I . tests/test_class_a_chamber_entry.mojo[0m
+2026-11-15T23:29:02.5009677Z shell: /usr/bin/bash -e {0}
+2026-11-15T23:29:02.5009839Z ##[endgroup]
+2026-11-15T23:29:09.5837607Z  WARN Skipped running the post-link scripts because `run-post-link-scripts` = `false`
+2026-11-15T23:29:09.5838089Z 	- bin/.gdk-pixbuf-post-link.sh
+2026-11-15T23:29:09.5838351Z 	- bin/.librsvg-post-link.sh
+2026-11-15T23:29:09.5838498Z 
+2026-11-15T23:29:09.5838757Z To enable them, run:
+2026-11-15T23:29:09.5839028Z 	pixi config set --local run-post-link-scripts insecure
+2026-11-15T23:29:09.5839217Z 
+2026-11-15T23:29:09.5839293Z More info:
+2026-11-15T23:29:09.5839567Z 	https://pixi.sh/latest/reference/pixi_configuration/#run-post-link-scripts
+2026-11-15T23:29:09.5839827Z 
+2026-11-15T23:29:19.4227419Z [PASS] test_bernstein_rule
+2026-11-15T23:29:19.4260894Z [PASS] test_bernstein_refuses_a_dip_at_beta
+2026-11-15T23:29:23.2501210Z [PASS] test_bernstein_decides_the_sector_sign
+2026-11-15T23:29:23.7065700Z [PASS] test_lemma_tw_over_q_k_t
+2026-11-15T23:29:23.7066375Z [PASS] test_decomposition
+2026-11-15T23:29:24.1076272Z [PASS] test_transfer_link
+2026-11-15T23:30:19.2252097Z [PASS] test_line_t0_end_to_end
+2026-11-15T23:30:19.2254824Z contract-receipt: class-A chamber entry: the cone engine's opt-in Bernstein rule reads 2 dL^2 dU b1 exactly (non-unit brackets included), decides a quadratic whose leading coefficient changes sign on the region, and refuses through the engine a dip around beta with positive ends; Lemma TW over Q[k, t] (one incidence matrix, chi = l^3 - (n + 2) l^2 - (t + 3) l + 2 and left eigenvector ell (M - t I) = 0 mod chi for the class-A chamber member and its class-B twin, M g = -g - K e_y and (beta + 1) <ell, g> = -K ell_y for g = (1, 3, -6)), the twins' seed graphs differing; the twelve families cover exactly t <= 5 or t <= k - 1 on 0 <= k, t <= 60; at six members the exact seed-patch graph and the nine-seed closure in the oriented indexed graph have one label set, the graph is that closure with its reversal (both inclusions), the apex's one extra vertex is R(E6), and every vertex reaches integral offset zero; the line t = 0 covered by the cone engine with one 325-vertex region and 8 exact members
+2026-11-15T23:30:19.2704845Z ##[group]Run pixi run --locked mojo run -I . tests/test_symbolic_cone.mojo
+2026-11-15T23:30:19.2705153Z [36;1mpixi run --locked mojo run -I . tests/test_symbolic_cone.mojo[0m
+2026-11-15T23:30:19.2747002Z shell: /usr/bin/bash -e {0}
+2026-11-15T23:30:19.2747206Z ##[endgroup]
+2026-11-15T23:30:27.5134964Z [PASS] test_region_signs
+2026-11-15T23:30:27.5327630Z [PASS] test_asymmetric_corners_and_family_axes
+2026-11-15T23:30:27.5328550Z contract-receipt: Theorem C coordinate regression: Region(2, 5) and Region(5, 2) distinguish strict positive signs from boundary zeros and sign changes; cone Aff/fix1/fix2 evaluate on the intended axis; asymmetric class-B characteristic polynomials match the concrete integer incidence matrix under (a, b) = (s2, s1)
+2026-11-15T23:30:29.0042593Z [PASS] test_signs_at_beta_agree_with_concrete_signs
+2026-11-15T23:30:29.0443397Z [PASS] test_rouche_puts_two_roots_in_the_disc
+2026-11-15T23:30:29.0461816Z [PASS] test_a_family_off_the_class_is_refused
+2026-11-15T23:30:39.4321294Z [PASS] test_the_cone_engine_reproduces_theorem_l
+2026-11-15T23:30:39.4355505Z [PASS] test_the_branch_decompositions_cover_their_regions
+2026-11-15T23:30:39.4355944Z [PASS] test_membership_is_solved_exactly
+2026-11-15T23:31:43.3877240Z [PASS] test_sector_a_plus
+2026-11-15T23:31:43.3879255Z contract-receipt: Symbolic cone certificate (class B sectors): region signs certified by shifted coefficients with Polya's multiplier, a sign-changing polynomial left undecided; parametric signs at beta on certified brackets agree with exact signs at a member; Rouche (|c2| > 1 + |c1| + |c0|) certifies the disc on sector A+ and declines a sign-changing margin; a p = q family is refused; the cone engine reproduces Theorem L's 119-vertex line from q >= 6; the two branch decompositions leave no gap up to q = 200, family membership solved exactly; sector A+ (q + 5 <= p <= 2q - 1, r = q + 1) is covered by 5 symbolic regions of 74 vertices and 4 exact members, every vertex hitting
+2026-11-15T23:31:43.4279387Z Post job cleanup.
+2026-11-15T23:31:43.4880831Z [command]/usr/bin/git version
+2026-11-15T23:31:43.4913664Z git version 2.56.1
+2026-11-15T23:31:43.4941911Z Temporarily overriding HOME='/home/runner/work/_temp/c065d7de-aed8-494a-aa4f-dc94ccba36ca' before making global git config changes
+2026-11-15T23:31:43.4942812Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-15T23:31:43.4946134Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/pisot-substitution-conjecture-research/pisot-substitution-conjecture-research
+2026-11-15T23:31:43.4989152Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-15T23:31:43.5024151Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-15T23:31:43.5308378Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-15T23:31:43.5338235Z http.https://github.com/.extraheader
+2026-11-15T23:31:43.5349333Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-15T23:31:43.5398373Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-15T23:31:43.5674535Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-15T23:31:43.5705933Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-15T23:31:43.6080139Z Cleaning up orphan processes
+2026-11-15T23:31:43.6320915Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

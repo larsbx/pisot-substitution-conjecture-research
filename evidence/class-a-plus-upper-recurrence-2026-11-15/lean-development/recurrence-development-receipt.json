@@ -1,0 +1,253 @@
+{
+  "attempts": [
+    {
+      "attempt": "development-1",
+      "command": [
+        "lake",
+        "--no-cache",
+        "build",
+        "PscVerif.ClassAPlusUpperRecurrence"
+      ],
+      "log": {
+        "bytes": 10594,
+        "path": "recurrence-development-1.log",
+        "sha256": "a45dc2baa2c45798f8b8abb0e83bb0c56ba28e77edcfac1eab12ac9752e4ea00"
+      },
+      "note": "The log reports two missing noncomputable annotations and an unsolved denominator nonzero goal. The intermediate source bytes were overwritten during development and are unavailable.",
+      "numeric_exit_code": null,
+      "numeric_exit_code_note": "The raw redirected log does not include the process exit code. Status is recorded from explicit compiler failure/completion output and the development execution history; no exit code is fabricated.",
+      "source_bindings": [
+        {
+          "binding_basis": "Historical intermediate snapshot unavailable; no final-source attribution.",
+          "role": "proof_module",
+          "sha256": null,
+          "source": null
+        }
+      ],
+      "status": "failed",
+      "working_directory": "/workspace/scratch/7b7b91dcb7fe/upper-recurrence-lean-dev/proof/PscVerif"
+    },
+    {
+      "attempt": "development-2",
+      "command": [
+        "lake",
+        "--no-cache",
+        "build",
+        "PscVerif.ClassAPlusUpperRecurrence"
+      ],
+      "log": {
+        "bytes": 11657,
+        "path": "recurrence-development-2.log",
+        "sha256": "f7264222879338c9679e33a232f0d2587ab17d873366596cf6d9aaa513a44ab1"
+      },
+      "note": "The log reports rewrite failures, unavailable Finset.sum_div, and a cast goal. The intermediate source bytes were overwritten during development and are unavailable.",
+      "numeric_exit_code": null,
+      "numeric_exit_code_note": "The raw redirected log does not include the process exit code. Status is recorded from explicit compiler failure/completion output and the development execution history; no exit code is fabricated.",
+      "source_bindings": [
+        {
+          "binding_basis": "Historical intermediate snapshot unavailable; no final-source attribution.",
+          "role": "proof_module",
+          "sha256": null,
+          "source": null
+        }
+      ],
+      "status": "failed",
+      "working_directory": "/workspace/scratch/7b7b91dcb7fe/upper-recurrence-lean-dev/proof/PscVerif"
+    },
+    {
+      "attempt": "development-3",
+      "command": [
+        "lake",
+        "--no-cache",
+        "build",
+        "PscVerif.ClassAPlusUpperRecurrence"
+      ],
+      "log": {
+        "bytes": 8322,
+        "path": "recurrence-development-3.log",
+        "sha256": "21f1b1fe75553b6d3d5c50e164987cb13b3eee92cc85a0030a27cbdbae30d2ca"
+      },
+      "note": "The log ends with Build completed successfully (2201 jobs). This was the successful intermediate module before the two explicit public coefficient/constant wrappers were added. Its exact intermediate source bytes were not retained; it is not bound to the final source.",
+      "numeric_exit_code": null,
+      "numeric_exit_code_note": "The raw redirected log does not include the process exit code. Status is recorded from explicit compiler failure/completion output and the development execution history; no exit code is fabricated.",
+      "source_bindings": [
+        {
+          "binding_basis": "Historical intermediate snapshot unavailable; no final-source attribution.",
+          "role": "proof_module",
+          "sha256": null,
+          "source": null
+        }
+      ],
+      "status": "passed",
+      "working_directory": "/workspace/scratch/7b7b91dcb7fe/upper-recurrence-lean-dev/proof/PscVerif"
+    },
+    {
+      "attempt": "development-4",
+      "command": [
+        "lake",
+        "--no-cache",
+        "build",
+        "PscVerif.ClassAPlusUpperRecurrence"
+      ],
+      "log": {
+        "bytes": 8322,
+        "path": "recurrence-development-4.log",
+        "sha256": "b7ca6b6bd7da44254aef0181e6600f39a125c01f9b674eb8a7b7964dfbcfecbb"
+      },
+      "note": "The log ends with Build completed successfully (2201 jobs). This is the final module build, after the explicit public wrappers were added. The unchanged source remains in both the development and repository copies and is preserved here.",
+      "numeric_exit_code": null,
+      "numeric_exit_code_note": "The raw redirected log does not include the process exit code. Status is recorded from explicit compiler failure/completion output and the development execution history; no exit code is fabricated.",
+      "source_bindings": [
+        {
+          "binding_basis": "Final source copied for development-4 and unchanged thereafter; current development/repository copies are byte-identical.",
+          "role": "proof_module",
+          "sha256": "a220ded84ea5545cc405f4533959fa15e7dc181637e959bbcf012ac31ff29173",
+          "source": "recurrence-final-sources/ClassAPlusUpperRecurrence.lean.a220ded84ea5545cc405f4533959fa15e7dc181637e959bbcf012ac31ff29173.txt"
+        }
+      ],
+      "status": "passed",
+      "working_directory": "/workspace/scratch/7b7b91dcb7fe/upper-recurrence-lean-dev/proof/PscVerif"
+    },
+    {
+      "attempt": "audit-1",
+      "command": [
+        "lake",
+        "--no-cache",
+        "env",
+        "lean",
+        "ClassAPlusUpperRecurrenceAudit.lean"
+      ],
+      "log": {
+        "bytes": 2405,
+        "path": "recurrence-audit-1.log",
+        "sha256": "f4dbcf7a500a6b5757df96fbcf62e9fc07bc7afee3b0e8ce1c6714aecd1075ec"
+      },
+      "note": "The independent audit reports unknown IndexedDigitStep and rejects the RUN-step endpoint. The compiled module was the final module. The audit source was then fixed by qualifying Psc.ClassAZeroDefectEscape.IndexedDigitStep; the original complete audit snapshot is unavailable and is not bound to the final audit hash.",
+      "numeric_exit_code": null,
+      "numeric_exit_code_note": "The raw redirected log does not include the process exit code. Status is recorded from explicit compiler failure/completion output and the development execution history; no exit code is fabricated.",
+      "source_bindings": [
+        {
+          "binding_basis": "Final source copied for development-4 and unchanged thereafter; current development/repository copies are byte-identical.",
+          "role": "proof_module",
+          "sha256": "a220ded84ea5545cc405f4533959fa15e7dc181637e959bbcf012ac31ff29173",
+          "source": "recurrence-final-sources/ClassAPlusUpperRecurrence.lean.a220ded84ea5545cc405f4533959fa15e7dc181637e959bbcf012ac31ff29173.txt"
+        },
+        {
+          "binding_basis": "Historical intermediate audit snapshot unavailable; no final-audit attribution.",
+          "role": "audit",
+          "sha256": null,
+          "source": null
+        }
+      ],
+      "status": "failed",
+      "working_directory": "/workspace/scratch/7b7b91dcb7fe/upper-recurrence-lean-dev/proof/PscVerif"
+    },
+    {
+      "attempt": "audit-2",
+      "command": [
+        "lake",
+        "--no-cache",
+        "env",
+        "lean",
+        "ClassAPlusUpperRecurrenceAudit.lean"
+      ],
+      "log": {
+        "bytes": 1420,
+        "path": "recurrence-audit-2.log",
+        "sha256": "211b83acd3e912a2cae6674dcf36225b3d541a9133d195e7d7da2f7a8d799eae"
+      },
+      "note": "The independent audit reaches AUDIT_COMPLETE with 13 endpoints and 39 rejection controls. Both the module and audit sources remained unchanged and match their preserved repository/development copies.",
+      "numeric_exit_code": null,
+      "numeric_exit_code_note": "The raw redirected log does not include the process exit code. Status is recorded from explicit compiler failure/completion output and the development execution history; no exit code is fabricated.",
+      "source_bindings": [
+        {
+          "binding_basis": "Final source copied for development-4 and unchanged thereafter; current development/repository copies are byte-identical.",
+          "role": "proof_module",
+          "sha256": "a220ded84ea5545cc405f4533959fa15e7dc181637e959bbcf012ac31ff29173",
+          "source": "recurrence-final-sources/ClassAPlusUpperRecurrence.lean.a220ded84ea5545cc405f4533959fa15e7dc181637e959bbcf012ac31ff29173.txt"
+        },
+        {
+          "binding_basis": "Final audit-2 source unchanged; development/repository copies are byte-identical.",
+          "role": "audit",
+          "sha256": "ef12f802e6eb10dbf2b02ce84cccbcdf9164aed9356f4fe2917ee513923824aa",
+          "source": "recurrence-final-sources/ClassAPlusUpperRecurrenceAudit.lean.ef12f802e6eb10dbf2b02ce84cccbcdf9164aed9356f4fe2917ee513923824aa.txt"
+        }
+      ],
+      "status": "passed",
+      "working_directory": "/workspace/scratch/7b7b91dcb7fe/upper-recurrence-lean-dev/proof/PscVerif"
+    }
+  ],
+  "audit_result": {
+    "exact_endpoint_types": 13,
+    "negative_controls": 39,
+    "owned_declarations": 96,
+    "owned_modules": 1,
+    "owned_theorems": 80
+  },
+  "development_workspace": "/workspace/scratch/7b7b91dcb7fe/upper-recurrence-lean-dev",
+  "exit_code_policy": "The redirected logs do not retain numerical process statuses; numeric_exit_code is null. Explicit failed/passed output is preserved, with the basis recorded per attempt.",
+  "final_sources": {
+    "ClassAPlusUpperRecurrenceAudit.lean": {
+      "bytes": 11400,
+      "development_copy_identical": true,
+      "path": "recurrence-final-sources/ClassAPlusUpperRecurrenceAudit.lean.ef12f802e6eb10dbf2b02ce84cccbcdf9164aed9356f4fe2917ee513923824aa.txt",
+      "repository_path": "proof/PscVerif/ClassAPlusUpperRecurrenceAudit.lean",
+      "sha256": "ef12f802e6eb10dbf2b02ce84cccbcdf9164aed9356f4fe2917ee513923824aa"
+    },
+    "PscVerif/ClassAPlusUpperRecurrence.lean": {
+      "bytes": 28957,
+      "development_copy_identical": true,
+      "path": "recurrence-final-sources/ClassAPlusUpperRecurrence.lean.a220ded84ea5545cc405f4533959fa15e7dc181637e959bbcf012ac31ff29173.txt",
+      "repository_path": "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean",
+      "sha256": "a220ded84ea5545cc405f4533959fa15e7dc181637e959bbcf012ac31ff29173"
+    }
+  },
+  "intermediate_snapshot_limitations": [
+    "development-1 module unavailable",
+    "development-2 module unavailable",
+    "development-3 module unavailable",
+    "audit-1 audit source unavailable"
+  ],
+  "preserved_at_utc": "2026-11-15T18:55:30.897500+00:00",
+  "schema": "psc.class-a-plus-upper-recurrence.lean-development.v1",
+  "scope": "Development history only. This is not the fresh isolated or hosted acceptance receipt.",
+  "source_policy": "Raw logs are copied byte-for-byte. Only unchanged final module/audit sources are bound to their exact hashes. Earlier intermediate source snapshots and hashes are explicitly unavailable; none are reconstructed or misbound to current sources.",
+  "supporting_artifacts": [
+    {
+      "bytes": 4882,
+      "path": "recurrence-upstream-cache.log",
+      "sha256": "d4a99fcff3b772fb94707a8a8da71a915028910bdbc7d2f2e6bbaa10ef8a43e0"
+    },
+    {
+      "bytes": 827,
+      "path": "recurrence-external-roots.txt",
+      "sha256": "dc34aa7f4f754b9c8decefa03316de0d412f85c33edcce4bd3145548ce7b0b2d"
+    },
+    {
+      "bytes": 29,
+      "path": "recurrence-environment/lean-toolchain",
+      "sha256": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88"
+    },
+    {
+      "bytes": 3179,
+      "path": "recurrence-environment/lake-manifest.json",
+      "sha256": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2"
+    },
+    {
+      "bytes": 373,
+      "path": "recurrence-environment/lakefile.toml",
+      "sha256": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a"
+    },
+    {
+      "bytes": 13603,
+      "path": "recurrence-environment/local-source-state-at-preservation.json",
+      "sha256": "2c6ae9d58084f40289073a00d0d1fecdfadedaf63410a847269276b046ac90da"
+    }
+  ],
+  "toolchain_bin_directory": "/workspace/scratch/d2d744c3ade9/toolchain/bin",
+  "upstream_cache_scope": {
+    "downloaded_and_decompressed_artifacts": 2165,
+    "external_root_count": 25,
+    "full_mathlib_requested": false
+  }
+}

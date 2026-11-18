@@ -1,8 +1,31 @@
 # PSC research roadmap — 2026-09-21
 
+## 2026-11-14 current priority: BH escape, with A1′ in parallel
+
+The [BH escape roadmap](bh-escape-roadmap-2026-11-14.md) gives the current
+next theorem and acceptance contract. It distinguishes `main` from the
+unmerged #573 family result and #574 conditional BH finite-carrier/A1′ work;
+earlier dated frontiers below retain their historical evidence.
+
+Prioritize [#452](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/452):
+every required nonzero cyclic seed-reachable minus-Class-A state reaches one
+of the classified zero-return predecessor segments by literal occurrence
+edges. Prove source coverage and selected escape separately. Existing
+address decomposition and coherent finite path lifting already verify a
+supplied path; the universal existence argument is the principal gap.
+
+In parallel, prove residual one-sided A1′ for its prescribed fixed-hub pair,
+for example through same-position proximality. Extend the scoped BH argument
+to every required ternary PIP substitution, retaining non-unit finite-place
+data, then use the established #84 assembly when both premises are proved.
+The all-alphabet extension and a fully internal Lean spectral theorem remain
+further developments. C4 still needs uniform strict-system exclusion and
+separate finite-carrier extraction where required; a finite overlap graph
+alone supplies neither a hit nor a uniform balanced-factor bound.
+
 ## 2026-11-11 current frontier through #541
 
-**Current accepted mainline baseline:**
+**Accepted mainline baseline at that review:**
 `2848e5f67b605669a550f362a1de4bf1c1529f7c`. The
 [current-state reconciliation](current-state-reconciliation-2026-11-11.md)
 separates exact-revision receipts, the older integration queue and the active
@@ -177,6 +200,8 @@ mass/support/rank theorems do **not** supply their open universal premises.
 | P1 | **Finite-to-uniform mechanism** | Prove a parameter-dependent well-founded ranking, a uniform recurrence exclusion, or a valid compactness argument with closed *realizable* transitions; document why productive cycles rule out all-edge descent. Finite censuses cannot discharge this. | 4,554 corpus, twelve-source physical-mass computations, class-A run-index family and known packet cycles. |
 | P1 | **Shared proof interface across C4/R1/mass/BH** | For each pair of routes, write the exact output/input type and one minimal transfer lemma or a counterexample to the attempted transfer. Physical-mass source loss must be refined to genuine geometric overlaps and then to a word cut before it can imply C4. | #497/#515/#519, #520, #138/#139; keep `zero measure → empty` explicitly invalid. |
 | P1 | **PIP-valid adversarial search** | A deterministic, bounded, cap-aware canonical Mojo generator of exact primitive irreducible Pisot specimens and literal child graphs, independently checked by an existing Python oracle when valuable. Record the *first failed premise* (PIP, realization, closure, strictness, invariant, conclusion). A real PIP counterexample to a stated intermediate lemma is the valuable output; a budget cap is not a verdict. | Existing corpus infrastructure; second-letter, depth-one, naive six-state, strong G/F, zero-defect/different-parent, and R1 productivity-direction controls. |
+
+*Dated note, 2026-11-09 (quantifier audit; states read through the GitHub API on 2026-11-10).* Integration states of the REUSE list: #459 and #497 are open pull requests; #515 is merged into the branch of #497 only; #457, #462, #499, #504, #519, #520 and #521 are on `main`. Cite #459, #497 and #515 at their head revisions, as reported ([quantifier audit](quantifier-transfer-audit-2026-11-09.md), §16).
 
 ### Composition and acceptance protocol
 

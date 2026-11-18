@@ -1,0 +1,97 @@
+{
+  "checked_edges": 6512,
+  "countercontrol": {
+    "first_occurrences": 2,
+    "first_target_depth": 3,
+    "first_zero_depth": 4,
+    "literal_pairs": 106,
+    "second_occurrences": 13
+  },
+  "maximum_path_length": 10,
+  "members": 14,
+  "native_differential": {
+    "complete_source_set_compared": true,
+    "native_edges_compared": 4145,
+    "native_members": 14,
+    "native_paths_compared": 1332,
+    "row_kinds": {
+      "ENDPOINT_PATH": 176,
+      "ZERO_DEFECT_PATH": 1156
+    }
+  },
+  "paths": 3970,
+  "rows": [
+    {
+      "k": 0,
+      "strict_zero_defect_states": 147,
+      "t": 0
+    },
+    {
+      "k": 0,
+      "strict_zero_defect_states": 177,
+      "t": 1
+    },
+    {
+      "k": 1,
+      "strict_zero_defect_states": 171,
+      "t": 0
+    },
+    {
+      "k": 1,
+      "strict_zero_defect_states": 201,
+      "t": 1
+    },
+    {
+      "k": 2,
+      "strict_zero_defect_states": 285,
+      "t": 3
+    },
+    {
+      "k": 3,
+      "strict_zero_defect_states": 279,
+      "t": 2
+    },
+    {
+      "k": 2,
+      "strict_zero_defect_states": 323,
+      "t": 4
+    },
+    {
+      "k": 3,
+      "strict_zero_defect_states": 377,
+      "t": 5
+    },
+    {
+      "k": 4,
+      "strict_zero_defect_states": 431,
+      "t": 6
+    },
+    {
+      "k": 0,
+      "strict_zero_defect_states": 245,
+      "t": 3
+    },
+    {
+      "k": 0,
+      "strict_zero_defect_states": 275,
+      "t": 4
+    },
+    {
+      "k": 1,
+      "strict_zero_defect_states": 359,
+      "t": 6
+    },
+    {
+      "k": 0,
+      "strict_zero_defect_states": 305,
+      "t": 5
+    },
+    {
+      "k": 0,
+      "strict_zero_defect_states": 395,
+      "t": 8
+    }
+  ],
+  "scope": "finite complete strict-slice replay at named specimens",
+  "universal_seed_entry": false
+}

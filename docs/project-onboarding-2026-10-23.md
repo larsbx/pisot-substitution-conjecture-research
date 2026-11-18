@@ -45,6 +45,8 @@ For ternary PIP substitutions, the repository has reduced the universal completi
 - **#138 / A1′ — aligned branch:** the residual fixed-letter hub-word pair is eventually coincident.
 - **#139 / BH — strict-zipper branch:** every cyclic strict-zipper overlap has an occurrence-compatible descendant of offset zero.
 
+*Correction, 2026-11-09.* A strict-zipper overlap has no offset-zero descendant by definition; the governed BH (`UniversalBoundaryHitting`) reads "every vertex of the finite seed-patch overlap graph on a directed cycle has an offset-zero descendant" ([quantifier audit](quantifier-transfer-audit-2026-11-09.md), §10).
+
 The manuscript's two-obstruction completion theorem says that universal A1′ plus universal BH imply seed-overlap productivity and therefore PDS in the standing regime.
 
 **Issue-status repair (2026-10-23):** GitHub issue #139 was erroneously closed

@@ -1,0 +1,1 @@
+COMMAND ['/home/agent/.elan/bin/lean', 'PscVerif/ClassAPlusConstantRecurrence.lean', '-o', '/workspace/scratch/f53f64a9a0d0/central-lean-build/PscVerif/ClassAPlusConstantRecurrence.olean']

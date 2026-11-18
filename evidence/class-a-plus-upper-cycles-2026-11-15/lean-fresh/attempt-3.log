@@ -1,0 +1,388 @@
+Prepared isolated Lean workspace from source/configuration only
+Proof bank: 126 claims, 2824 named Lean proofs, 411 source openings
+PSC_CLASS_A_PLUS_UPPER_SOURCE_SNAPSHOT	128	5be0479a196dd3fcc45799ecd0c15268ff431b5509ee86a4bef4f3906a192193
+PSC_CLASS_A_PLUS_UPPER_SOURCE	ClassAPlusUpperCyclesAudit.lean	f1674a21d8c96382b5c3ea009525c43baf210a2a6db427dd3bbb60923b087c6e
+PSC_CLASS_A_PLUS_UPPER_SOURCE	ProofBankAudit.lean	7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif.lean	f957dd5d92520cb33b8839e0861019a8634b9f2cd51c6b02ef983e42f85564e6
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/ArchivedGraphRefinement.lean	87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/ArchivedGraphRefinementControls.lean	e18e726b6bd1c431f9e28500504edd6ffba157415af20069715b9c8f208f3f9b
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/ArchivedPayload.lean	38d3b2270c15baae23f36be3a7c369dcaab4255b26d5db6a00ed32ef084afe8d
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/ArchivedPayloadConsumer.lean	39768a54a2c022ef460e08dbd1879177fdf598bb8645702233264738ddf43e49
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/ArchivedPayloadControls.lean	c1687369bb8feec4b5c784c3ac6f4cc6dccb9ece05af539a13f11d1cffb83371
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/ArchivedPayloadEmit.lean	3d56413774e33215a1fb507ca418f08b4d048b3986c2c309a9cc9d626a15a6e3
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Basic.lean	0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Binomial.lean	9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/BoundaryRounding.lean	bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/BoundarySeedPath.lean	bea69cb93d5bcd15b1b88c48062b4404a721908092af1b5f5b42e6184f7abae3
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Centralizer.lean	a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/ClassACentralRecurrence.lean	f7e27955fe4238bf0a74bf31f6afe618c6d4769f047ad8ce5ffbdb4d39484a5b
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/ClassAMinusConstantRecurrence.lean	748b13de20f335033940b3cdddf2d648d10365c23080301b66dfd8db8a498e04
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/ClassAMinusPrefixAssembly.lean	a2d6944184b75c47c6d307cee5cf5f6db78de4768f0b09b3d3218861665aaa7d
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/ClassAPlusConstantRecurrence.lean	c6dbd0f1065e698ee58a04c1781d63692129f2b5c17c97d0a74cc832fd25f79a
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/ClassAPlusUpperCycles.lean	5d3cf8f6ce61e49f654710965d03761de7c046e931498bbc2aa09b872471384b
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/ClassAZeroDefectEscape.lean	a50672744789443300b5c7c4b6c0467c941fec5b1d833d7544e62440c729fa58
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/ClassBRegime.lean	1c873d0aea0201c3a60486dc90bce00e9f9612019ad72c5344cfa927d93a23e6
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/CocycleSpectrum.lean	5937db527975a492a4c45f3bdbc7550b0a1d202dd4e71634d8b35ebcfcc24ed4
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/CompactNeighborhood.lean	bfc41eba2f94241d71f329458418d225c773e580b186cc9aac128957991409e4
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/CompactNeighborhoodControls.lean	6c0fe9d92143d0c7441c606fc46d5148643dde152e9fea49cc36d55d875f3ee1
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/ConcentrationAlgebra.lean	301a1a13eca8a554d1313afc96e0a374dfc0774dfa8d2a2e8e60b97345c921b2
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/ConcentrationControls.lean	881e9c16e846722918332385c74503f0e1e697e02db4ff20dec004679feed7d7
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/CountBridge.lean	ee00588159713544ce4259d8652545a87b74ec69ca20877489d085d6e0cacc9e
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/CutPrefixControls.lean	6d6ecf01da60338db6f1a364f3565db18cbe6407aaa03f7996754058c5f9f2c5
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/CutPrefixEmbedding.lean	0f652300410b5a1fb9b8271d1b793d41dacc173f7faf3e106d4951e8256c45c3
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Cyclicity.lean	a31b77d0fcb06d1dcb582156679c7316d2847fab2ff9b06db2b998ca6effa770
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Defect4.lean	c9033863c13086fc26c8e43de294cea144702f1df36a379d0fa09dbebdb37d84
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Defect4Lie.lean	edfd4b1eb95fb2ecc729712712643d8e5e544346c0c65a109d0991c5f2b76f37
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Defect5.lean	8ef3ed8261d8e6bf78acdb21794af46ee43a99448fb07728d4799c2de84bf4d2
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Defect5Lie.lean	bd238ad5fc7b8c85e2e67b2fecf10e7432abdbfb9248d02284ac5c2dddcb755f
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Degree2Sector.lean	3adc084b817674fa4dfdb54cc2ac68dfdf6ff66bc198a316e834af435c7c19df
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Degree3Catalogue.lean	f582dbaaa9230b0110045b771db1087b240bdddcd576640c3373bc356b8be030
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Degree3Sector.lean	02875b90e69cf0089f1cbfa1f2a0de2fabc121cb022cc2a23fb5406d69c9e414
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Degree4Floor.lean	bc34017a101d388e497a394710ed7661250aaa1fb049a9454dba17f308515006
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Degree4Sector.lean	7afc131498833c8346b21872981c6f7aa4b7a736fdc952ff84b9b8c071b86f63
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Degree5Completion.lean	9dc69a390e7c1ae41700d6647473f647f4446efa4839c20f8c598c37bbf1b445
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Degree5Exterior.lean	d0bb3972b2228cf367ce42f8f7277bd77c51cf1f02f2d7a64a66e17c3b5aeef5
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Degree5RootLift.lean	03793616a416af2378b1d2072eef77305d9f61b3fb7a72a09c6a3d1cb6f67740
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Degree5Sector.lean	1c4fd12cac7317ba0e724f4c3b757a1e06fdacd5b52f575d5549a83244d6ab46
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Degree5Sieve.lean	b787a6689480edad73655df8666b2ee97a02a64af6ec26fb88acd058add82b1c
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Degree5Transport.lean	1e5e153ac4ba75582d7b4133c8fc4f035b6313b86be83649a49c0555cdfe444b
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Degree5Weights.lean	b53740ff569e9e0c6fdaf9ab99815d9c04396c729f850f138b14b5549d827b84
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/DescendantSpan.lean	6a46eb2a94b7785ba2a69db88daf56a3e98935e738fdb6dc478d685162696e8c
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/DescendantSpanStrict.lean	24a2d9d6f0eedf5a49dd17318ad90b0b9d82cc3c930a3f34336b0519f63f9c66
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Descendants.lean	6641b65d81d90be34c13937b6ab8ebc029fcce91babd7c2ce398738dac783a40
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/FixedPointLimit.lean	cd4a824f288d4c1072fd375e0e7b9014f56028e23e00cb4336fd678a210b7bbe
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/GaloisOrbit.lean	4d3b5474dbd14205f4bf2d33e98149ebbdd6d7e0fb8fd3a33787b878bcad5f07
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/GeometricPacketCarrier.lean	c3b266fc203b69f632063b38d044c0f76e7ec50825a16c6c04949fa696e275ec
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Incidence.lean	b0c865d4177dac9485a2ddbd35201143ee3d263ad735af05785b077e1f6bd6ff
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Intertwiner2.lean	4fdc6a9497a5c3fd4b39101b033e6814b70aec8391f0cbc8691028319b1143d6
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Intertwiner3.lean	23a3732cd2c16cd77175c71068e7d5fca3dc1df1a0c8ac11e94b5adfb988fde7
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/KernelCofactor.lean	63ea80d49fcc0a30df25878460f00662f6c3ff78c10090f7778933cb9c9d86c4
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Lie3.lean	f214cb13bcaa399ecfe626fcc3c912753cdd29ade14ba4a4337b816ce4b22b8d
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Lie5.lean	6d38b1553f0e3e0ea64ee5acc97aba965efd19a40f4caa4a943049c1725982ee
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Lie5Data.lean	df36055fa646536437bff13bf336304b211ba70a4d0ac11cd910c8c2751271fb
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/LieWeights.lean	f32639f83e519c69b8f428e153dd368c274e1f665a837183f88c5f1de0dd8adb
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/M0Pisot.lean	65d17cf0aa71cdac825d16da73ad601dd49c214cd0b47ac58f124cb51a64a304
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/MadicActionRange.lean	297a4102a077a50b42a955c5afee83f9d5bd6a47e2175c4c4c9d0300005de37d
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/MadicHaar.lean	a116c88bb856771b74ff7d5111e797c58216ce49057c99096ed5ddac3c2019a5
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/MadicResidue.lean	c7ff8430cb77c335f11478861584baea4129658b35f4fc67bf0c2b8509d50f6d
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/NamedArchivedDigits.lean	12059a52f4598c316a42f64cadf269cdd716853a785bc1189023207689124775
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/NamedArchivedGraph.lean	cfde4885aa910cd0c20b7a328c9f9e2af6978aa5e980f3739aadd3c37bb112b0
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/NamedArchivedGraphRefinement.lean	590b8a5e07389f8111a347419ec066322a982dea41cf8c471b3b01d5d03b934c
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/NamedCutNeighborhood.lean	e9d6a9e1b05721fa3cc8b634d3ecd6cdb604d8b63277d42b5ba34d70327bc57e
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/NamedCutProximity.lean	34fa8b8a10ff483b463b15f9da906cd6c75441b6cdeeb0ec823ed8219185c901
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/NamedFiniteCarrier.lean	13ef34fb3eb6b9ede477c4de920af612010aa280409049c185b1afb35a34a585
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/NamedGeometricEnclosure.lean	e91dfcffed8884f99863591d57d892933fbc7ce0a5de2899955a4a69a99233e6
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/NamedInverseDecoder.lean	cba40f84a103617afa5e3384a6b21b13d9679f87d0fa2224443fdbed916f1293
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/NamedOverlapBalanceControls.lean	ccf5d2d4241cbe382878cd18ba34f0ffb195b9d0a7c0c0dc049b9864e84273cb
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/NamedOverlapHaar.lean	248fa98da0eaa0cb895530cf7ff55e43f7030e07ddfcd2f92714300b36db4002
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/NamedOverlapRecurrence.lean	fd2f332087db1b010a7f2d7d8094a993c020e0228b56036d861b017d69057f30
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/NamedPrefixCompact.lean	e6cbff61401e8f5109bc0c8654e77eca155e1186286703e76f4d55044ebd220e
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/NamedProductHaar.lean	e398c9b19b65cb794034138490453d35bfdc4dab256473318daca75528b9ac14
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/NamedSharpBox.lean	44e2b209963a66409dfdd76b5224876e0d48108469e1fdb0dd32d6dc896093da
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/NamedSharpDigits.lean	f16257b92c77091e2246cc134734a1216b27a3cff54c3b3f70624135eb6a462e
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/NamedStableChart.lean	772d6dc46898bc22471db53283dc0404445f1dd28ac0b99ed16232c394336f9b
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/NamedStableContraction.lean	13381d9619cd2c574e15614ce0e00609d17e1b153b359ca788ebe73d45bde8fd
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/OccurrenceAddress.lean	fd8d4020fc3f720c8a81d23c9811056802c901eec35a48efcbb40954c5a375ad
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/OccurrenceAdmissibility.lean	0843e0a255a2a13675132264eb1385d9a155b7122138359b02158916541e2b4e
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/OccurrenceCover.lean	c66e2937532b2b289351b9ab10a18a1485b73434e362fd1e88edbfd3b6479cb6
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/OccurrenceFinite.lean	65ef11444d2f03c9a49febf9a859eb8d48bd8dd0e1a37fd972c47935526b48a0
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/OccurrenceGraphBinding.lean	31b2d7827438cd77c0e2f7fb72d4dc7791d016cd635952630220faf667e2084f
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/OccurrenceInverse.lean	f31fded6a56a9e7c9b67050319d766e5967ed431716ebb89f192caead73d5605
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/OccurrenceMass.lean	dd68bb8c196a146aab302cbd7e86a3ea40ed3d6980fa77ab740c5a0e94c57d13
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/OccurrenceMassCounts.lean	319649463bbf764279bfbeccaa2bae869325aa0afce9d58fdfa7e2dce3ba99d2
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/OccurrenceMassStrict.lean	9dbfbc03613a68f116a522ed609228c7c780cefbd3f3754be87c340b04ba634d
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/OccurrenceNewborn.lean	7afaf823023d45cc6d1d4d9b6d08e2b3d6e74dce165d77174de86d7cd23dd1d0
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/OccurrencePhysicalBudget.lean	2b1ab3d3ac6477c4bd0c81ff00445934944c05958428dd6748e89dbe0ce5d21c
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/OccurrencePiece.lean	304a9f42f3fea45cac2c752ef0b61cfd6894e78967d191803c723233d63e9ec0
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/OccurrenceRecurrence.lean	9ce4b9cfab68581d39ef893d481eb5e12fe45ff2288ef0cf4f049d97898d3fbb
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/OccurrenceResidue.lean	8552eb3d7584b6b467ae6f990a8204490ae9b543b38cecb243cd8576c58dd248
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/OccurrenceStrict.lean	f5ee2c3e7bc7b580e760f65351d0cf129480835e7ef03877c0062c8220911b25
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/OccurrenceSuccessor.lean	103e3cb42b93b234c593f46bf2d53426b198248e33408461e9c05fd3ce8c6f33
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/OccurrenceSwapCounts.lean	fdd8b6fff230eaf6d977ae724fe674be02ca37d2549b168f12c522f54668c382
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/OccurrenceTransport.lean	3ef9fcb7df8c395c36879b63933eb626f57437f1b813e03ad429148b47d09fe0
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/OverlapContraction.lean	09dd1ccc90a7245211336996f7da8b1276e86cab60dd1cc0b5471e3d7f6a2a30
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/OverlapPacket.lean	572fd9fc85082e05377321fa812670558fff66ebed16e319a81816b22950a853
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/ParikhIntertwiner.lean	bc7120433f0c103c966fc6faf41407b969537fd0881971a5d36b98169b220d96
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/ParikhRank.lean	f13cddb90200af8a8a26d01428537235a2bebddf2e081849188753e97add6e69
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/PerronCore.lean	1f06da1e0b57e74b31fc03d753bd314f25561a37e512b3a8f7f05fda0d75458c
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/PerronExistence.lean	a2ac1801abf2a99a6c312935d101ed4f760ffec0f96586d5f1f43bb176814c73
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/PerronSimple.lean	1e4d9aca60b215f17067e39ba38bd8eaec7d9781fb716d8727fa7f9cbbf737a8
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/PhysicalMass.lean	6578043c87ca7da4be96673630ae5d2d2e2356a681b1b2401c39bd9e9b036a36
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/PrefixAddress.lean	57261314c2c473fdf76e9815ad80f30ac46f0fe42e1a7ec7c3ad15524afe848d
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/PrefixClosure.lean	c9df601e2d5601af2b3ebeb05e75d43fd5600999bcba187af04e76b51e520006
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/PrimitiveExpansion.lean	70307f2cb4fb0eb854086f20bb04ca82ceb04c5433d41f0984c29a5f70bd4eff
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/QuotientDistance.lean	1431961ca4d26d60e5bf5165c7773440e7a708b51377697e339f94f7cf5896ef
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/ReductioControls.lean	73c94ccd2ec83747f47d77035ff3cdca3843d611470f0cd3eae64c10104a0e76
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Reduction.lean	357fa49ab6991513e07f249b8a4d74caabad75f68db76ce501395b3a0af87d2d
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/SectorBridge.lean	52402b9cf47212fae4fc351435bd721babb702aea48e4b5c1f2d1ed40d4e6800
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Seeds.lean	224a67ea3d89c8cd54747164d4e1fbbc9b733aa5eb404465119999b738dce747
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/SelectedRank.lean	0ab6fc76698ebcfd14ce1b319b121f0eaee9d2d64fceb26d3cf9e6a59b26c396
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Shuffle.lean	fe99c7b71174cd665633b425c0f9d1e6f6893f541387e261fb5d945bba48614c
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/SignedCocycle.lean	eccc753e1656cc949db13d50ff8d97883f084fe18ab32ef70226cded35237e7e
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/SignedIntertwiner.lean	9db35d26a6a8d434ab893b31218fcc50ba73872a74a305da366d5f95543d5280
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Spectral.lean	f7a43295221c293c670593d4be8e916d87ce51f3241ec911456ef4a4ce0b39d3
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/StablePrefixWindow.lean	f92a5899a583689f5bcab503b3e632641f7dc8a48492d573f4c87093c684f1ef
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/StrictSystem.lean	657d6c9f4041b04a2e478f19dea2ecb813952caf2fe1455789778306ad6c3a48
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/TraceLemma.lean	e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/WeightModulus.lean	97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf
+PSC_CLASS_A_PLUS_UPPER_SOURCE	PscVerif/Wielandt.lean	9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6
+PSC_CLASS_A_PLUS_UPPER_SOURCE	lake-manifest.json	7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2
+PSC_CLASS_A_PLUS_UPPER_SOURCE	lakefile.toml	6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a
+PSC_CLASS_A_PLUS_UPPER_SOURCE	lean-toolchain	8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88
+PSC_CLASS_A_PLUS_UPPER_LOCAL_IMPORT_CLOSURE	21
+PSC_CLASS_A_PLUS_UPPER_LOCAL_IMPORT	ClassAPlusUpperCyclesAudit
+PSC_CLASS_A_PLUS_UPPER_LOCAL_IMPORT	PscVerif.Binomial
+PSC_CLASS_A_PLUS_UPPER_LOCAL_IMPORT	PscVerif.ClassACentralRecurrence
+PSC_CLASS_A_PLUS_UPPER_LOCAL_IMPORT	PscVerif.ClassAMinusConstantRecurrence
+PSC_CLASS_A_PLUS_UPPER_LOCAL_IMPORT	PscVerif.ClassAMinusPrefixAssembly
+PSC_CLASS_A_PLUS_UPPER_LOCAL_IMPORT	PscVerif.ClassAPlusConstantRecurrence
+PSC_CLASS_A_PLUS_UPPER_LOCAL_IMPORT	PscVerif.ClassAPlusUpperCycles
+PSC_CLASS_A_PLUS_UPPER_LOCAL_IMPORT	PscVerif.ClassAZeroDefectEscape
+PSC_CLASS_A_PLUS_UPPER_LOCAL_IMPORT	PscVerif.ConcentrationAlgebra
+PSC_CLASS_A_PLUS_UPPER_LOCAL_IMPORT	PscVerif.Cyclicity
+PSC_CLASS_A_PLUS_UPPER_LOCAL_IMPORT	PscVerif.Descendants
+PSC_CLASS_A_PLUS_UPPER_LOCAL_IMPORT	PscVerif.FixedPointLimit
+PSC_CLASS_A_PLUS_UPPER_LOCAL_IMPORT	PscVerif.Incidence
+PSC_CLASS_A_PLUS_UPPER_LOCAL_IMPORT	PscVerif.OccurrenceAddress
+PSC_CLASS_A_PLUS_UPPER_LOCAL_IMPORT	PscVerif.OccurrenceNewborn
+PSC_CLASS_A_PLUS_UPPER_LOCAL_IMPORT	PscVerif.OccurrenceSuccessor
+PSC_CLASS_A_PLUS_UPPER_LOCAL_IMPORT	PscVerif.OccurrenceTransport
+PSC_CLASS_A_PLUS_UPPER_LOCAL_IMPORT	PscVerif.ParikhIntertwiner
+PSC_CLASS_A_PLUS_UPPER_LOCAL_IMPORT	PscVerif.PerronCore
+PSC_CLASS_A_PLUS_UPPER_LOCAL_IMPORT	PscVerif.Reduction
+PSC_CLASS_A_PLUS_UPPER_LOCAL_IMPORT	PscVerif.SignedCocycle
+PSC_CLASS_A_PLUS_UPPER_UPSTREAM_ROOT	Mathlib.Algebra.BigOperators.Ring.Finset
+PSC_CLASS_A_PLUS_UPPER_UPSTREAM_ROOT	Mathlib.Algebra.Polynomial.AlgebraMap
+PSC_CLASS_A_PLUS_UPPER_UPSTREAM_ROOT	Mathlib.Algebra.Polynomial.SpecificDegree
+PSC_CLASS_A_PLUS_UPPER_UPSTREAM_ROOT	Mathlib.Analysis.Complex.Basic
+PSC_CLASS_A_PLUS_UPPER_UPSTREAM_ROOT	Mathlib.Data.Finset.Lattice.Fold
+PSC_CLASS_A_PLUS_UPPER_UPSTREAM_ROOT	Mathlib.Data.Fintype.Card
+PSC_CLASS_A_PLUS_UPPER_UPSTREAM_ROOT	Mathlib.Data.Fintype.Pigeonhole
+PSC_CLASS_A_PLUS_UPPER_UPSTREAM_ROOT	Mathlib.Data.Int.LeastGreatest
+PSC_CLASS_A_PLUS_UPPER_UPSTREAM_ROOT	Mathlib.Data.List.Basic
+PSC_CLASS_A_PLUS_UPPER_UPSTREAM_ROOT	Mathlib.Data.Matrix.Mul
+PSC_CLASS_A_PLUS_UPPER_UPSTREAM_ROOT	Mathlib.Data.Nat.Choose.Basic
+PSC_CLASS_A_PLUS_UPPER_UPSTREAM_ROOT	Mathlib.Data.Nat.Periodic
+PSC_CLASS_A_PLUS_UPPER_UPSTREAM_ROOT	Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
+PSC_CLASS_A_PLUS_UPPER_UPSTREAM_ROOT	Mathlib.LinearAlgebra.Matrix.Charpoly.Basic
+PSC_CLASS_A_PLUS_UPPER_UPSTREAM_ROOT	Mathlib.LinearAlgebra.Matrix.Charpoly.Coeff
+PSC_CLASS_A_PLUS_UPPER_UPSTREAM_ROOT	Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+PSC_CLASS_A_PLUS_UPPER_UPSTREAM_ROOT	Mathlib.LinearAlgebra.Matrix.ToLin
+PSC_CLASS_A_PLUS_UPPER_UPSTREAM_ROOT	Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
+PSC_CLASS_A_PLUS_UPPER_UPSTREAM_ROOT	Mathlib.LinearAlgebra.Quotient.Basic
+PSC_CLASS_A_PLUS_UPPER_UPSTREAM_ROOT	Mathlib.Logic.Function.Iterate
+PSC_CLASS_A_PLUS_UPPER_UPSTREAM_ROOT	Mathlib.Tactic.ComputeDegree
+PSC_CLASS_A_PLUS_UPPER_UPSTREAM_ROOT	Mathlib.Tactic.FinCases
+PSC_CLASS_A_PLUS_UPPER_UPSTREAM_ROOT	Mathlib.Tactic.Linarith
+PSC_CLASS_A_PLUS_UPPER_UPSTREAM_ROOT	Mathlib.Tactic.NormNum
+PSC_CLASS_A_PLUS_UPPER_UPSTREAM_ROOT	Mathlib.Tactic.Ring
+Lean (version 4.34.0-rc2, x86_64-unknown-linux-gnu, commit 6a10ac8c22beadecabdbb0919c2b50214762f91d, Release)
+Lake version 5.0.0-src+6a10ac8 (Lean version 4.34.0-rc2)
+PSC_CLASS_A_PLUS_UPPER_CACHE_POLICY	fresh-pinned-dependencies	selected-upstream-source-hash-cache	no-local-artifacts
+info: mathlib: cloning https://github.com/leanprover-community/mathlib4
+info: mathlib: checking out revision '4edb0dbaa3b3cf729d86d1e2f035474d5ae2ac09'
+info: plausible: cloning https://github.com/leanprover-community/plausible
+info: plausible: checking out revision 'd9598f07b1bc701f1e3aae163d2681c1fd978793'
+info: LeanSearchClient: cloning https://github.com/leanprover-community/LeanSearchClient
+info: LeanSearchClient: checking out revision 'ba67e212be1197b84c1f1f6299488a10a3002713'
+info: importGraph: cloning https://github.com/leanprover-community/import-graph
+info: importGraph: checking out revision '1681d78dd6e65e38b143f9740d829c826673807c'
+info: proofwidgets: cloning https://github.com/leanprover-community/ProofWidgets4
+info: proofwidgets: checking out revision 'a8acbfd87375ff4abe14ce09db5b7664d383bc7f'
+info: aesop: cloning https://github.com/leanprover-community/aesop
+info: aesop: checking out revision '18889deb9e83ea7420ef51c160d6f88552e744e3'
+info: Qq: cloning https://github.com/leanprover-community/quote4
+info: Qq: checking out revision '507746ab8f4b643ccdacb2ec4cdb5853fa9f8ab3'
+info: batteries: cloning https://github.com/leanprover-community/batteries
+info: batteries: checking out revision '4cac2177c37f5530c4da76aa8e4307f3fc9e4dcb'
+info: Cli: cloning https://github.com/leanprover/lean4-cli
+info: Cli: checking out revision 'ab3a82db9fea14cf0fd7f5a2de650f4b534640af'
+PSC_CLASS_A_PLUS_UPPER_SOURCE_RECHECK	after-clone	128	5be0479a196dd3fcc45799ecd0c15268ff431b5509ee86a4bef4f3906a192193
+✔ [3/27] Built Cache.Cli (365ms)
+✔ [4/27] Built Cache.Env (392ms)
+✔ [5/27] Built Cache.Lean (491ms)
+✔ [6/27] Built Cache.Cli:c.o (268ms)
+✔ [7/27] Built Cache.Env:c.o (258ms)
+✔ [8/27] Built Cache.Lean:c.o (396ms)
+✔ [9/27] Built Cache.Infra (792ms)
+✔ [10/27] Built Batteries.Tactic.OpenPrivate (1.3s)
+✔ [11/27] Built Cache.Infra:c.o (233ms)
+✔ [12/27] Built Batteries.Tactic.OpenPrivate:c.o (1.1s)
+✔ [13/27] Built Cache.IO (1.2s)
+✔ [14/27] Built Cache.Hashing (1.1s)
+✔ [15/27] Built Cache.IO:c.o (1.5s)
+✔ [16/27] Built Cache.Hashing:c.o (360ms)
+✔ [17/27] Built Cache.Requests (2.2s)
+✔ [18/27] Built Cache.Marker (693ms)
+✔ [19/27] Built Cache.Marker:c.o (111ms)
+✔ [20/27] Built Cache.Query (615ms)
+✔ [21/27] Built Cache.Query:c.o (284ms)
+✔ [22/27] Built Cache.Warning (718ms)
+✔ [23/27] Built Cache.Warning:c.o (198ms)
+✔ [24/27] Built Cache.Requests:c.o (2.7s)
+✔ [25/27] Built Cache.Main (1.1s)
+✔ [26/27] Built Cache.Main:c.o (742ms)
+✔ [27/27] Built cache:exe (1.4s)
+Current branch: HEAD
+Using cache from origin: (some leanprover-community/mathlib4)
+Attempting to download 2165 file(s) from leanprover-community/mathlib4 cache at https://cache.mathlib.org/mathlib4-master
+Downloaded: 1 file(s) [attempted 1/2165 = 0%, 5 KB/s], Decompressed: 0[KDownloaded: 51 file(s) [attempted 51/2165 = 2%, 226 KB/s], Decompressed: 8[KDownloaded: 95 file(s) [attempted 95/2165 = 4%, 1939 KB/s], Decompressed: 24[KDownloaded: 131 file(s) [attempted 131/2165 = 6%, 511 KB/s], Decompressed: 69[KDownloaded: 189 file(s) [attempted 189/2165 = 8%, 730 KB/s], Decompressed: 69[KDownloaded: 242 file(s) [attempted 242/2165 = 11%, 676 KB/s], Decompressed: 131[KDownloaded: 296 file(s) [attempted 296/2165 = 13%, 158 KB/s], Decompressed: 131[KDownloaded: 338 file(s) [attempted 338/2165 = 15%, 37 KB/s], Decompressed: 131[KDownloaded: 382 file(s) [attempted 382/2165 = 17%, 3436 KB/s], Decompressed: 236[KDownloaded: 438 file(s) [attempted 438/2165 = 20%, 287 KB/s], Decompressed: 236[KDownloaded: 485 file(s) [attempted 485/2165 = 22%, 132 KB/s], Decompressed: 236[KDownloaded: 523 file(s) [attempted 523/2165 = 24%, 437 KB/s], Decompressed: 236[KDownloaded: 572 file(s) [attempted 572/2165 = 26%, 522 KB/s], Decompressed: 236[KDownloaded: 645 file(s) [attempted 645/2165 = 29%, 784 KB/s], Decompressed: 236[KDownloaded: 665 file(s) [attempted 665/2165 = 30%, 243 KB/s], Decompressed: 236[KDownloaded: 699 file(s) [attempted 699/2165 = 32%, 78 KB/s], Decompressed: 236[KDownloaded: 750 file(s) [attempted 750/2165 = 34%, 523 KB/s], Decompressed: 380[KDownloaded: 801 file(s) [attempted 801/2165 = 36%, 483 KB/s], Decompressed: 380[KDownloaded: 848 file(s) [attempted 848/2165 = 39%, 118 KB/s], Decompressed: 380[KDownloaded: 904 file(s) [attempted 904/2165 = 41%, 633 KB/s], Decompressed: 380[KDownloaded: 953 file(s) [attempted 953/2165 = 44%, 588 KB/s], Decompressed: 380[KDownloaded: 995 file(s) [attempted 995/2165 = 45%, 393 KB/s], Decompressed: 380[KDownloaded: 1049 file(s) [attempted 1049/2165 = 48%, 101 KB/s], Decompressed: 380[KDownloaded: 1097 file(s) [attempted 1097/2165 = 50%, 312 KB/s], Decompressed: 380[KDownloaded: 1142 file(s) [attempted 1142/2165 = 52%, 657 KB/s], Decompressed: 380[KDownloaded: 1191 file(s) [attempted 1191/2165 = 55%, 785 KB/s], Decompressed: 380[KDownloaded: 1234 file(s) [attempted 1234/2165 = 56%, 31 KB/s], Decompressed: 380[KDownloaded: 1282 file(s) [attempted 1282/2165 = 59%, 94 KB/s], Decompressed: 380[KDownloaded: 1333 file(s) [attempted 1333/2165 = 61%, 1404 KB/s], Decompressed: 380[KDownloaded: 1387 file(s) [attempted 1387/2165 = 64%, 166 KB/s], Decompressed: 748[KDownloaded: 1453 file(s) [attempted 1453/2165 = 67%, 50 KB/s], Decompressed: 748[KDownloaded: 1516 file(s) [attempted 1516/2165 = 70%, 346 KB/s], Decompressed: 748[KDownloaded: 1576 file(s) [attempted 1576/2165 = 72%, 663 KB/s], Decompressed: 748[KDownloaded: 1629 file(s) [attempted 1629/2165 = 75%, 227 KB/s], Decompressed: 748[KDownloaded: 1667 file(s) [attempted 1667/2165 = 76%, 439 KB/s], Decompressed: 748[KDownloaded: 1691 file(s) [attempted 1691/2165 = 78%, 611 KB/s], Decompressed: 748[KDownloaded: 1745 file(s) [attempted 1745/2165 = 80%, 642 KB/s], Decompressed: 748[KDownloaded: 1800 file(s) [attempted 1800/2165 = 83%, 291 KB/s], Decompressed: 748[KDownloaded: 1856 file(s) [attempted 1856/2165 = 85%, 432 KB/s], Decompressed: 748[KDownloaded: 1912 file(s) [attempted 1912/2165 = 88%, 651 KB/s], Decompressed: 748[KDownloaded: 1954 file(s) [attempted 1954/2165 = 90%, 463 KB/s], Decompressed: 748[KDownloaded: 1987 file(s) [attempted 1987/2165 = 91%, 242 KB/s], Decompressed: 748[KDownloaded: 2030 file(s) [attempted 2030/2165 = 93%, 446 KB/s], Decompressed: 748[KDownloaded: 2087 file(s) [attempted 2087/2165 = 96%, 234 KB/s], Decompressed: 748[KDownloaded: 2143 file(s) [attempted 2143/2165 = 98%, 349 KB/s], Decompressed: 748[KDownloaded: 2165 file(s) [attempted 2165/2165 = 100%, 349 KB/s], Decompressed: 748[K
+Decompressed 2165 file(s)
+Already decompressed 2165 file(s)
+PSC_CLASS_A_PLUS_UPPER_SOURCE_RECHECK	after-upstream-cache	128	5be0479a196dd3fcc45799ecd0c15268ff431b5509ee86a4bef4f3906a192193
+✔ [2181/2200] Built PscVerif.PerronCore (12s)
+✔ [2182/2200] Built PscVerif.ConcentrationAlgebra (12s)
+✔ [2183/2200] Built PscVerif.Binomial (13s)
+✔ [2184/2200] Built PscVerif.FixedPointLimit (4.0s)
+✔ [2185/2200] Built PscVerif.Incidence (5.2s)
+✔ [2186/2200] Built PscVerif.Cyclicity (6.7s)
+✔ [2187/2200] Built PscVerif.ParikhIntertwiner (4.7s)
+✔ [2188/2200] Built PscVerif.SignedCocycle (3.1s)
+✔ [2189/2200] Built PscVerif.Reduction (2.5s)
+✔ [2190/2200] Built PscVerif.Descendants (3.5s)
+⚠ [2191/2200] Built PscVerif.OccurrenceNewborn (2.8s)
+warning: PscVerif/OccurrenceNewborn.lean:53:0: automatically included section variable(s) unused in theorem `Psc.OccurrenceNewborn.SyncPlus.eventual`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: PscVerif/OccurrenceNewborn.lean:61:0: automatically included section variable(s) unused in theorem `Psc.OccurrenceNewborn.SyncMinus.eventual`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+✔ [2192/2200] Built PscVerif.OccurrenceAddress (3.2s)
+✔ [2193/2200] Built PscVerif.OccurrenceTransport (2.9s)
+✔ [2194/2200] Built PscVerif.OccurrenceSuccessor (2.6s)
+⚠ [2195/2200] Built PscVerif.ClassAZeroDefectEscape (12s)
+warning: PscVerif/ClassAZeroDefectEscape.lean:233:37: Unused tactic linter: `omega` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PscVerif/ClassAZeroDefectEscape.lean:252:54: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PscVerif/ClassAZeroDefectEscape.lean:233:37: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PscVerif/ClassAZeroDefectEscape.lean:252:54: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PscVerif/ClassAZeroDefectEscape.lean:231:50: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAZeroDefectEscape.lean:241:50: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [2196/2200] Built PscVerif.ClassACentralRecurrence (4.2s)
+✔ [2197/2200] Built PscVerif.ClassAMinusConstantRecurrence (4.2s)
+✔ [2198/2200] Built PscVerif.ClassAMinusPrefixAssembly (3.1s)
+✔ [2199/2200] Built PscVerif.ClassAPlusConstantRecurrence (5.0s)
+⚠ [2200/2200] Built PscVerif.ClassAPlusUpperCycles (17s)
+warning: PscVerif/ClassAPlusUpperCycles.lean:55:8: This simp argument is unused:
+  plusRunLength
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [packet, incidenceZ, inc, plusSigma, ClassAPlusConstantRecurrence.sigma,
+    ClassAPlusConstantRecurrence.runLength, first, last, OccurrenceTransport.residual, parikhZ, plusRunMark,
+    ClassAPlusConstantRecurrence.runMark, Matrix.mulVec, dotProduct, Fin.sum_univ_three, delta, List.count_replicate,
+    Nat.cast_sub hi0, Nat.cast_sub hj0]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:93:36: This simp argument is unused:
+  parikhZ
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [packet, incidenceZ, inc, plusSigma, ClassAPlusConstantRecurrence.sigma, plusRunLength,
+    ClassAPlusConstantRecurrence.runLength, first, last, OccurrenceTransport.residual, firstMark, Matrix.mulVec,
+    dotProduct, Fin.sum_univ_three, List.count_replicate]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:125:74: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:136:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:151:44: This simp argument is unused:
+  Nat.cast_sub (show 1 ≤ 2 * n + 12 by omega)
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [upperSigma, cyclePacket, first, Nat.cast_add, Nat.cast_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:163:31: This simp argument is unused:
+  Nat.cast_sub (show 1 ≤ 2 * n + 12 by omega)
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [upperSigma, delta, Nat.cast_add, Nat.cast_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:152:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:164:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:172:71: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:173:14: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:187:44: This simp argument is unused:
+  Nat.cast_sub (show 2 ≤ 2 * n + 12 by omega)
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [upperSigma, cyclePacket, first, Nat.cast_add, Nat.cast_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:195:31: This simp argument is unused:
+  Nat.cast_sub (show 2 ≤ 2 * n + 12 by omega)
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [upperSigma, first, Nat.cast_add, Nat.cast_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:204:61: Unused tactic linter: `congr 1` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:204:73: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:204:61: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:204:73: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:188:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:188:48: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:196:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:196:48: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully (2200 jobs).
+PSC_CLASS_A_PLUS_UPPER_SOURCE_RECHECK	after-build	128	5be0479a196dd3fcc45799ecd0c15268ff431b5509ee86a4bef4f3906a192193
+PSC_CLASS_A_PLUS_UPPER_MODULE	PscVerif.ClassAMinusPrefixAssembly	81	43
+PSC_CLASS_A_PLUS_UPPER_MODULE	PscVerif.ClassAPlusUpperCycles	86	71
+PSC_CLASS_A_PLUS_UPPER_DECLARATIONS	2	167	114
+PSC_CLASS_A_PLUS_UPPER_ENDPOINT	Psc.ClassAPlusUpperCycles.small_decrement
+PSC_CLASS_A_PLUS_UPPER_ENDPOINT	Psc.ClassAPlusUpperCycles.base_one_path
+PSC_CLASS_A_PLUS_UPPER_ENDPOINT	Psc.ClassAPlusUpperCycles.base_two_path
+PSC_CLASS_A_PLUS_UPPER_ENDPOINT	Psc.ClassAPlusUpperCycles.eight_ordered_paths
+PSC_CLASS_A_PLUS_UPPER_ENDPOINT	Psc.ClassAPlusUpperCycles.signed_ordered_paths
+PSC_CLASS_A_PLUS_UPPER_ENDPOINT	Psc.ClassAPlusUpperCycles.eight_traced_strict_prefixes
+PSC_CLASS_A_PLUS_UPPER_ENDPOINT	Psc.ClassAPlusUpperCycles.zero_typed
+PSC_CLASS_A_PLUS_UPPER_ENDPOINT	Psc.ClassAPlusUpperCycles.disputed_last_is_c
+PSC_CLASS_A_PLUS_UPPER_AUDIT_COMPLETE	8	24
+{"declarations": 167, "endpoints": 8, "modules": 2, "negative_controls": 24, "theorems": 114}
+PSC_CLASS_A_PLUS_UPPER_SOURCE_RECHECK	after-audit	128	5be0479a196dd3fcc45799ecd0c15268ff431b5509ee86a4bef4f3906a192193
+PSC_CLASS_A_PLUS_UPPER_GATE_COMPLETE	2	167	114	8	24

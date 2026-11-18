@@ -1,0 +1,32 @@
+{
+  "containers": [
+    {
+      "compressed_bytes": 917,
+      "compressed_sha256": "640a4eb7b154d060d8de6086af2dc7ab5d1815f76f26cc175e8937300755681a",
+      "compression": "gzip, mtime=0, exact raw bytes preserved",
+      "original_path": "link-repair/psc-python-failure.log",
+      "stored_path": "link-repair/psc-python-failure.log.gz",
+      "uncompressed_bytes": 2972,
+      "uncompressed_sha256": "aca0de81f3da335e2639ddc7b1b51440a2766ae15619e2fd9299dca95b54819c"
+    },
+    {
+      "compressed_bytes": 1117,
+      "compressed_sha256": "5edfe89d358569813f033e8e28478c96d4f2a283767630bb0eb1451d100093ac",
+      "compression": "gzip, mtime=0, exact raw bytes preserved",
+      "original_path": "link-repair/polynomial-verification-failure.log",
+      "stored_path": "link-repair/polynomial-verification-failure.log.gz",
+      "uncompressed_bytes": 3190,
+      "uncompressed_sha256": "b2255bd86c5d2a4f077d2f467e491cf90fd91eb04a9e7898c2f64b214c64fc47"
+    },
+    {
+      "compressed_bytes": 258,
+      "compressed_sha256": "7df3f78ac551926684ce5fb5be53bba59d579c8f91cd2047a27828fcadc07bbe",
+      "compression": "gzip, mtime=0, exact raw bytes preserved",
+      "original_path": "compatibility-bundle-verify.log",
+      "stored_path": "compatibility-bundle-verify.log.gz",
+      "uncompressed_bytes": 370,
+      "uncompressed_sha256": "95099a350a24bb2605d6bebec27a45bb4ae7d65e5d616454f53d9e7c48381237"
+    }
+  ],
+  "purpose": "Preserve provider log bytes including trailing whitespace without modifying them for git whitespace checks. Historical receipts retain the uncompressed hashes."
+}

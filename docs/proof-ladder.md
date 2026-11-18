@@ -1,8 +1,34 @@
 # Proof ladder
 
+## November 14 priority: existence of a BH escape
+
+The [BH escape roadmap](bh-escape-roadmap-2026-11-14.md) records the current
+mathematical priority and source-specific acceptance, including the unmerged
+#573 family result and #574 conditional finite-carrier/A1′ continuation.
+Their family and conditional scopes leave universal BH and A1′ open.
+
+The next concrete target is [#452](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/452):
+every required nonzero cyclic seed-reachable state in minus Class A must
+reach the classified zero-return predecessor segments by actual occurrence
+edges. Coverage and selected escape are separate obligations. Existing
+occurrence decoding and finite path lifting already compose a supplied legal
+path; the missing universal argument forces a successful path to exist.
+BH ends at zero **integral** displacement, allowing unequal terminal letters.
+
+Run residual one-sided A1′ in parallel through the prescribed fixed-hub pair
+and same-position proximality. Once both universal premises hold, use the
+existing #84 assembly for the ternary PIP regime, including nonunits.
+The all-alphabet extension and the internal Lean spectral implication remain
+separate. A finite maximum hitting depth requires coverage and hits throughout
+the relevant seed graph, including transient sources; graph finiteness alone
+does not bound balanced factors. C4's strict-system exclusion and its required
+finite-carrier extraction remain separate obligations.
+
+Earlier dated reconciliations below retain their historical scope and receipts.
+
 ## November 2 C4/BH/finite-quotient scope reconciliation
 
-The live [November 2 completion ledger](completion-ledger-2026-11-02.md)
+The [November 2 completion ledger](completion-ledger-2026-11-02.md)
 records scoped Class-B/C certificates and the Class-A finite completeness
 addition without promoting universal BH. The
 [C4 ordered-word completion interface](c4-ordered-word-completion-interface-2026-11-02.md)
@@ -88,6 +114,8 @@ PIP
 => dense eventual coincidence                                   [PROVED]
 => pure discrete spectrum                                       [IMPORTED theorem]
 ```
+
+*Correction, 2026-11-09.* Two lines of this ladder abbreviate. The BH line: its exact forms are "every vertex of the finite seed-patch overlap graph on a directed cycle has an offset-zero descendant" (governed `UniversalBoundaryHitting`) and the exclusion form `AllSeedStrictZipperExclusion`; a strict-zipper vertex has no offset-zero descendant by definition. The tag `[PROVED assembly]` is the status of the implication into its line (`thm:two-obstruction-completion`; governed `TwoObstructionCompletion`: conditional), not of the line itself: both antecedents above remain open, and #84 remains open. See the [quantifier audit](quantifier-transfer-audit-2026-11-09.md), §§10, 14.
 
 The two open lines are the primary proof obligations. The aligned endpoint
 normal form reduces #138 to one-sided A1′ (reversal is not an additional
@@ -473,6 +501,15 @@ C4 => C3-local => C2 => C1
 ```
 
 remains a valid one-way sufficiency route. It is not the headline completion ladder.
+
+*Correction, 2026-11-09.* The last arrow is under G1. `prop:chain` is stated
+for PIP substitutions "with finite `B_σ`", and the step from "no strict
+component" to C1 (SCC Producer, `conj:producer`) is the sink reduction
+`thm:sink`, which needs a finite automaton. Without finiteness, exclusion of
+finite closed strict components does not give C1: the graph `loopRay` of
+`proof/PscVerif/PscVerif/QuantifierInterface.lean` has a recurrent strict
+component and no finite closed one
+([quantifier audit](quantifier-transfer-audit-2026-11-09.md), §3).
 
 # Realization / MEF route
 

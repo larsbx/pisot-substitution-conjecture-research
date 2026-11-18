@@ -1,5 +1,28 @@
 # Direct lines of attack: how #84, #138 and #139 have narrowed (2026-10-23)
 
+## November 14 priority update
+
+Use the [BH escape roadmap](bh-escape-roadmap-2026-11-14.md) for the current
+next theorem, formal interfaces and exact-source acceptance. The October 23
+ranked tasks below are the earlier research snapshot.
+
+The leading concrete target is [#452](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/452):
+prove occurrence-compatible entry into minus Class A's classified zero-return
+predecessor segments for every required nonzero cyclic seed descendant.
+The final edge is known; source coverage and a successful escape from every
+required source remain open. Reuse the existing occurrence-address and finite
+path-lifting theorems. A selected parameter-dependent descent or an escape
+from each child-closed target-free terminal SCC is sufficient in its proved
+domain; descent along every edge is unnecessary.
+
+Keep residual A1′ in parallel, with same-position proximality of its prescribed
+hub rays as a sufficient target. The unmerged #574 conditional BH bridge and
+scoped A1′ witnesses refine the available machinery without closing universal
+#139 or #138. The #84 assembly targets ternary PIP including nonunits;
+all-alphabet closure and an internal Lean spectral implication remain separate.
+
+## Historical October 23 orientation
+
 **Status:** orientation and planning surface. It changes no claim status,
 proof-ledger node or manuscript statement. When it disagrees with
 `claim_governance.toml`, the [proof ladder](proof-ladder.md), the
@@ -32,6 +55,8 @@ PIP (ternary, standing regime, non-unit allowed)
 - **PDS ⇒ G1** is already repository-proved (`PDSImpliesRepoG1`), so #44's
   renewal route is a parallel structural programme, not on the direct path.
 
+*Correction, 2026-11-09.* In the chain of §0 the tags `[proved assembly]` and `[proved + imported]` are statuses of the implications into those lines: #84 is open (governed `OverlapProductivity`) and the assembly is governed `TwoObstructionCompletion`: conditional. The proved implication is `thm:two-obstruction-completion`: for a ternary PIP σ, lemma A (all pairs) and lemma B for σ make every vertex of the seed-patch overlap graph productive; A1′ replaces lemma A only under the quantifier over all ternary PIP substitutions (`cor:universal-completion`). "Exactly" is one direction: A1′ and BH for every ternary PIP σ imply #84; the converse is known only through PDS. See the [quantifier audit](quantifier-transfer-audit-2026-11-09.md), §11 (row C8).
+
 ## 1. How each target narrowed
 
 | Tracker | Original statement | Current exact target | Narrowed by |
@@ -39,6 +64,8 @@ PIP (ternary, standing regime, non-unit allowed)
 | **#84** | every swap seed (or every overlap) productive | **one** swap seed productive, and only via `A1′ ∧ BH` | Theorem 5.38 (one seed suffices); two-obstruction completion theorem |
 | **#138** | two-sided all-pairs strong coincidence (Arnoux–Ito), for σ and its reversal | **one-sided A1′**: the two letters of the residual bad hub edge, both fixed by the first-letter map, are eventually coincident | endpoint normal form (C/D/E/F), Barge–Diamond good edge, squaring reduction; reversal is not a premise |
 | **#139** | no closed nonproductive SCC (exclude every bad cycle) | **BH**: every *cyclic, seed-reachable, strict-zipper* vertex has *some* composable, occurrence-indexed child path to offset zero | bad-SCC dichotomy (aligned vs strict zipper); half-coincidence suffices (equal letters not needed); existential descendant, not "every edge descends" |
+
+*Correction, 2026-11-09.* In this table "**one** swap seed productive" means that every overlap reachable from the seed overlaps of one swap seed is productive, not one coincidence path from the seed; the #139 cell mixes the positive and the exclusion form of BH, since a strict-zipper vertex has no offset-zero descendant by definition. Exact wordings: [quantifier audit](quantifier-transfer-audit-2026-11-09.md), §10.
 
 ## 2. What is already settled inside the narrowed targets
 
@@ -81,7 +108,7 @@ PIP (ternary, standing regime, non-unit allowed)
   class A (`n/10 < L_n ≤ n+2`, [run-index note](p1b-class-a-run-index-2026-10-21.md)).
   A rank therefore has to be parameter-dependent and run-indexed.
 
-## 3. The direct lines of attack, in order
+## 3. The October 23 lines of attack, in their recorded order
 
 1. **A d-uniform BH certificate for classes A and C.** The
    [gap-uniformity stop/go](class-a-gap-uniformity-stopgo-2026-10-23.md)

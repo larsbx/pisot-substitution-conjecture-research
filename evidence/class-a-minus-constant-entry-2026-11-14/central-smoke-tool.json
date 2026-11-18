@@ -1,0 +1,20 @@
+{
+  "capture_kind": "Verbatim concatenation of the initial exec_command output and final write_stdin output; intermediate polls were empty. Direct stdout/stderr stream boundaries were not retained.",
+  "command": [
+    "/workspace/scratch/de1b765a2576/mojo-env/bin/mojo",
+    "run",
+    "-I",
+    ".",
+    "tests/test_class_a_minus_constant_entry.mojo"
+  ],
+  "cwd": "/workspace/scratch/f53f64a9a0d0/psc/kernel",
+  "tool_session_id": 52836,
+  "observed_exit_code": 0,
+  "started_utc": null,
+  "ended_utc": null,
+  "timestamp_note": "No start/end timestamp wrapper was used for this initial smoke invocation.",
+  "source_sha256": {
+    "kernel/psc/class_a_minus_constant_entry.mojo": "528ebd56efe49b7626378cc3cbcba10c12448e8097fc264db54be8ddd52a9c23",
+    "kernel/tests/test_class_a_minus_constant_entry.mojo": "192d023af9385faeae67877d67e5c926965723953b58af38ca03e0587e154925"
+  }
+}

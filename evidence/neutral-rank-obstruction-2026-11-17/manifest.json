@@ -1,0 +1,87 @@
+{
+  "format": "psc-neutral-rank-local-evidence-v1",
+  "review_date": "2026-11-17",
+  "scope": "Local review candidate; no strict PIP3 example, universal C4 or PSC proof, publication, or hosted CI claim.",
+  "base_revisions": {
+    "pr601_head": "f5e2aab7d434f24dcbe618d4948984daa1e1a123",
+    "pr601_merge": "2d831230c9b5a2f7b21165df6756532b3f598e37",
+    "pr602_head": "cbb8c6c64b56bcce60c2e6031da7acb9ffc5b41d",
+    "pr603_head": "8d546126ebc33feac2ba9712345e087ee6cadfe1",
+    "pr603_merge": "9dffd8ad19085c61e211eee85645e7f5e1ab8d09",
+    "local_integration": "1cf7a6ccac6b20957e153cd8e7f6fd09bb594368"
+  },
+  "source_sha256": {
+    "kernel/psc/neutral_seam_budget.mojo": "d98c1e101d928c586427d7daa33419a14f3c98ce19ef4857aa90aea2646f9c0c",
+    "kernel/neutral_seam_probe.mojo": "858e6f9d572df7d3ad997b67cf0831fdad213ec215b84a80db86320990a8250b",
+    "kernel/tests/test_neutral_seam_budget.mojo": "0ee47b27ec8f81dc1d0d0319082d7a209f1d8d6e31d5b9575008b3b0eb24b917",
+    "kernel/tests/test_neutral_rank_one_control.mojo": "02d8499e0d94603ed906669fbd85dba2639b95d5ac52feb47c7b736c36a9f245",
+    "kernel/psc/one_track_seam_spectrum.mojo": "c3caffae59e12580b6a73f5269d769bca243506bcbe27869284cef94f1fa80bc",
+    "kernel/psc/literal_seam_replay.mojo": "0131e6e38d170bf3f7bcd12d7fee0b6bf0b20027a0929adc9af7f0eaeb91b6bf",
+    "kernel/psc/periodic_overlap_returns.mojo": "3930e5e2ccaf01cf41dd1d5291ef95cd25e77f98bee82d111434914fbd628232",
+    "kernel/psc/c4_geometric_f.mojo": "b6f70bf1d4402c76293033527a991111dca68170af55fda0e44b24a6c7c8c3cc",
+    "kernel/psc/rank_two_parity.mojo": "c79606ac6b715a11b647dd9e0daa990021251f1484f4ef2ff69c02933e4e7c21",
+    "kernel/tests/test_literal_seam_replay.mojo": "060a50575533c25f966919875737aec1561206dda18bb0a89e5ffbfa6167de3b",
+    "kernel/tests/test_c4_cut_attractor.mojo": "0911ef958f3820c14907022d47670b0a35c21606edf70037100c39be62057c63",
+    "kernel/pixi.lock": "1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8"
+  },
+  "kernel_mojo_source_count": 803,
+  "kernel_mojo_source_digest_scheme": "SHA256 of concatenated sorted path + NUL + file SHA256 hex + newline, excluding hidden and build directories",
+  "kernel_mojo_sources_sha256": "4863e1169ac1141db42ceb6b768d1046f2924d247fbfc2824136f7825f560d36",
+  "runtime": {
+    "version": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+    "executable_sha256": "0d5f0b700b0543223a10c47e818bc4f43f3228166c34ab13d52ab7f2ad02ffcd",
+    "stdlib_sha256": "97ee3fc6ee37fbf3daf54a4a9182c0b0a489defe76da8b91ca4ad5541a029e41",
+    "lock_sha256": "1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8"
+  },
+  "runs": [
+    {
+      "cwd": "kernel",
+      "command": "MODULAR_HOME=/workspace/scratch/4a274e09248c/psc-runtime/mojo-prefix/share/max /workspace/scratch/4a274e09248c/psc-runtime/mojo-prefix/bin/mojo run -I . -I tests tests/test_neutral_seam_budget.mojo",
+      "exit_code": 0,
+      "log": "neutral-seam-budget.log",
+      "scope": "1476 invariant-subgraph sign checks; 7 full boxes; 3 complete literal comparisons at powers 4,2,3; reducible strict control/refusal",
+      "log_sha256": "c69ad67cfe8c3f822d0f11327a36c3512f4a75a2f0eb4c6d8e282109d2136c45"
+    },
+    {
+      "cwd": "kernel",
+      "command": "MODULAR_HOME=/workspace/scratch/4a274e09248c/psc-runtime/mojo-prefix/share/max /workspace/scratch/4a274e09248c/psc-runtime/mojo-prefix/bin/mojo run -I . -I tests tests/test_neutral_rank_one_control.mojo",
+      "exit_code": 0,
+      "log": "neutral-rank-one-control.log",
+      "scope": "literal T13 rank-one neutral span, exact unit PIP matrix, explicit first coincident factor",
+      "log_sha256": "120361603123d933d671563d3daa46c7c200211b66b5165e6a0ad2be27f197fe"
+    },
+    {
+      "cwd": "kernel",
+      "command": "MODULAR_HOME=/workspace/scratch/4a274e09248c/psc-runtime/mojo-prefix/share/max /workspace/scratch/4a274e09248c/psc-runtime/mojo-prefix/bin/mojo run -I . neutral_seam_probe.mojo",
+      "exit_code": 0,
+      "log": "source-neutral-probe.log",
+      "scope": "4554 canonical corpus sources; 492 unit Betti>=2 sources; 144 certified matrix boxes; no caps",
+      "log_sha256": "75d48344eec553322f8fd0e5043c224aeaa2eb2eb23291f8fae15e899362d976"
+    },
+    {
+      "cwd": ".",
+      "command": "bash tools/verify_all.sh provenance",
+      "exit_code": 0,
+      "log": "provenance.log",
+      "scope": "provenance/vendoring/generated inventories/Markdown/claim status; no new formal proof run",
+      "log_sha256": "edb5c3e31f72055456201b283e56ef89ff280d41ef0f69e902a7e30f4b72f1af"
+    }
+  ],
+  "not_executed": [
+    "original 48 literal comparisons",
+    "full Mojo suite",
+    "Lean compilation or isolated axiom audit",
+    "Quint/TLA+",
+    "hosted CI"
+  ],
+  "probe_summary": {
+    "corpus": 4554,
+    "unit_betti_at_least_two": 492,
+    "full_plus_positive": 12,
+    "det_minus_full_minus_positive": 12,
+    "optional_plus_positive": 24,
+    "det_minus_optional_minus_positive": 12,
+    "omitted_negative_plus": 12,
+    "certified_matrices": 144
+  }
+}

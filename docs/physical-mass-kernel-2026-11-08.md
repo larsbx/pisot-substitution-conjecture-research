@@ -227,6 +227,8 @@ Zero measure does not mean an overlap set is empty and supplies no ordered
 cut location by itself. These obligations are not consequences of the
 matrix lemma.
 
+*Clarification, 2026-11-09.* (1) The condition of "Practical next condition for issue #461" has two possible domains: the carrier generated from the three zero-offset distinct-letter roots of an arbitrary PIP source, which is what #515 computes; or a carrier attached to a supplied finite strict system, where the twelve sources are not instances (their images have length at most three, and the quantifier audit, §12.2, places them in the standing corpus, where `C4StandingCorpus` leaves no strict component) and no instance has been computed. The twelve-source computation is evidence for the mechanism on the first domain only. (2) Two output types are consistent with this route: exclusion of finite strict systems, a reductio closed by Theorem M1, which makes C4 vacuous for the source and exhibits nothing; or an exhibited newborn in an actual non-strict pair, which needs an addressed coincidence witness as input and does not follow from nullity. Which one is the interface to #461 is an owner decision ([quantifier audit](quantifier-transfer-audit-2026-11-09.md), §12).
+
 ## Claim status
 
 No governed C4 or PSC status is promoted by this contribution. General
