@@ -1,0 +1,16 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "pytest",
+    "-o",
+    "addopts=",
+    "-q",
+    "tests/test_proof_bank.py"
+  ],
+  "parent": "d6d6ba2331bc119282a9b18170053c4eb24a9346",
+  "exit_code": 0,
+  "elapsed_seconds": 28.439,
+  "test_sha256": "b2c4ed83ac8cb78cc9c51498b426645c3a59d6819441f82f683bc613be71d8a9",
+  "log_sha256": "a756a5a35ce58d4d95707eebe3fad99308b4dfe963b242fb2c17fb1cecf1cbb4"
+}

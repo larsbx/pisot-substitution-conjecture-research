@@ -1,0 +1,317 @@
+{
+  "schema": "github-workflow-observation-v1",
+  "recorded_at_utc": "2026-11-13T03:14:01.242Z",
+  "scope": "Commit-workflow endpoint first-page observations; pending workflows are not acceptance.",
+  "commits": [
+    {
+      "sha": "95e3c6ccb022dcc3fa269e69b334b5632040f64d",
+      "workflow_runs": [
+        {
+          "id": 43355532009,
+          "name": "Show your work policy",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43355507416,
+          "name": "Archived C4 graph source refinement",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43355507388,
+          "name": "PSC class-A complete boundary seed children",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43355507413,
+          "name": "Proof bank generated-source consistency",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43355507468,
+          "name": "C4 phase lattice index conservation",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43355507371,
+          "name": "Boundary synchronization layer",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43355507332,
+          "name": "C4 concrete overlap Lean packets",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43355507395,
+          "name": "C4 degree2 three-state census",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43355507363,
+          "name": "Canonical Pisot polynomial kernels",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43355507407,
+          "name": "Physical mass Lean Quint refinement",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43355507397,
+          "name": "Target-aware BPA diagnostic",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43355507327,
+          "name": "C4 named stable chart",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43355507445,
+          "name": "PR487 return-family native acceptance",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43355507326,
+          "name": "Class-D complete residual certificates",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43355507414,
+          "name": "PSC research checks",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43355507228,
+          "name": "C4 overlap Lean verification",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43355507265,
+          "name": "C4 defect-degree census",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43355507212,
+          "name": "C4 cut-pair combinatorics and source audit",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43355507192,
+          "name": "Class-A uniform gap theorem",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43355507300,
+          "name": "C4 return induction and prefix-satellite obstruction",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43355507201,
+          "name": "C4 stable prefix window",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43355507177,
+          "name": "Research branch integration conformance",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43355507199,
+          "name": "C4 pairwise strict cut frequency",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43355507173,
+          "name": "Original C4 archived payload Lean import",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43355507291,
+          "name": "C4 periodic Parikh phase rigidity",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43355507191,
+          "name": "Show your work policy",
+          "status": "completed",
+          "conclusion": "cancelled"
+        }
+      ]
+    },
+    {
+      "sha": "510239ac0005fb24f880369e55a4b54776224981",
+      "workflow_runs": [
+        {
+          "id": 43356221465,
+          "name": "Research branch integration conformance",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43356221544,
+          "name": "Original C4 archived payload Lean import",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43356221504,
+          "name": "Class-D complete residual certificates",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43356221374,
+          "name": "Class-A uniform gap theorem",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43356221378,
+          "name": "C4 overlap Lean verification",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43356221433,
+          "name": "C4 periodic Parikh phase rigidity",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43356221395,
+          "name": "PSC class-A complete boundary seed children",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43356221517,
+          "name": "Target-aware BPA diagnostic",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43356221569,
+          "name": "Physical mass Lean Quint refinement",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43356221364,
+          "name": "PSC research checks",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43356221552,
+          "name": "C4 degree2 three-state census",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43356221463,
+          "name": "Proof bank generated-source consistency",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43356221483,
+          "name": "Show your work policy",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43356221459,
+          "name": "C4 concrete overlap Lean packets",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43356221573,
+          "name": "PR487 return-family native acceptance",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43356221513,
+          "name": "Archived C4 graph source refinement",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43356221546,
+          "name": "Boundary synchronization layer",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43356221553,
+          "name": "C4 cut-pair combinatorics and source audit",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43356221598,
+          "name": "C4 named stable chart",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43356221512,
+          "name": "C4 pairwise strict cut frequency",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43356221450,
+          "name": "C4 defect-degree census",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43356221527,
+          "name": "C4 return induction and prefix-satellite obstruction",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43356221351,
+          "name": "Canonical Pisot polynomial kernels",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 43356221353,
+          "name": "C4 stable prefix window",
+          "status": "queued",
+          "conclusion": null
+        }
+      ]
+    }
+  ]
+}

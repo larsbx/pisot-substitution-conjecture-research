@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/workspace/scratch/84c835820757/toolchains/elan/toolchains/leanprover--lean4---v4.34.0-rc2/bin/lean",
+    "-j",
+    "1",
+    "-DautoImplicit=false",
+    "-o",
+    "/workspace/scratch/d9728856ff24/focused-lean/PscVerif/FiniteProductivity.olean",
+    "PscVerif/FiniteProductivity.lean"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 1.969,
+  "source_sha256": "cc64e649a03c9ef0e5668fc051d679ffd2ea538135bbc6fc5974c2dc37fb13d8",
+  "acceptance_scope": "focused development compilation; local cached dependencies, not isolated acceptance"
+}

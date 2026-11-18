@@ -1,0 +1,402 @@
+{
+  "allowed_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "completion_counts_match": true,
+  "completion_marker": "PSC_AUDIT_COMPLETE\t6646\t4865",
+  "errors": [],
+  "explicit_new_definition_count": 3,
+  "explicit_new_theorem_count": 12,
+  "explicit_private_theorem_count": 3,
+  "explicit_public_theorem_count": 9,
+  "extracted_new_module_log_path": "/workspace/scratch/f96c28a561ad/count-compiled-new-declarations.log",
+  "extracted_new_module_log_sha256": "87895aacddf89f04d4877042af868de75cb048515abd369ee2d90d9e3f4a468b",
+  "final_proof_bank_summary": "Proof bank: 126 claims, 2705 named Lean proofs, 411 source openings",
+  "global_compiled_constant_count": 6646,
+  "global_compiled_theorem_count": 4865,
+  "global_encountered_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "head_at_inspection": "31f8046291f2428e839d95e8890c8342858ec210",
+  "inspected_at_utc": "2026-11-12T21:08:54.505259+00:00",
+  "inspector_sha256": "f5e61978cdd108ce70a3151d460f8071fb39909a8a6c5c83edf8376e7a4e7478",
+  "modules": [
+    {
+      "compiled_owned_constant_count": 14,
+      "compiled_owned_theorem_count": 12,
+      "declarations": [
+        {
+          "actual": {
+            "axioms": [],
+            "kind": "declaration",
+            "name": "Psc.StrictCutCount.factorStart",
+            "owner": "PscVerif.StrictCutCount",
+            "user_name": "Psc.StrictCutCount.factorStart"
+          },
+          "compiled_record_count": 1,
+          "compiled_record_matches": true,
+          "expected_compiled_kind": "declaration",
+          "line": 11,
+          "name": "Psc.StrictCutCount.factorStart",
+          "opening": "def factorStart (bs : List WordPair) (j : Fin bs.length) : Fin 3 \u2192 \u2124 :=",
+          "owner": "PscVerif.StrictCutCount",
+          "private": false,
+          "source_kind": "def"
+        },
+        {
+          "actual": {
+            "axioms": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "kind": "declaration",
+            "name": "Psc.StrictCutCount.startVectors",
+            "owner": "PscVerif.StrictCutCount",
+            "user_name": "Psc.StrictCutCount.startVectors"
+          },
+          "compiled_record_count": 1,
+          "compiled_record_matches": true,
+          "expected_compiled_kind": "declaration",
+          "line": 16,
+          "name": "Psc.StrictCutCount.startVectors",
+          "opening": "def startVectors (bs : List WordPair) : Finset (Fin 3 \u2192 \u2124) :=",
+          "owner": "PscVerif.StrictCutCount",
+          "private": false,
+          "source_kind": "def"
+        },
+        {
+          "actual": {
+            "axioms": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "kind": "theorem",
+            "name": "Psc.StrictCutCount.factorStart_injective",
+            "owner": "PscVerif.StrictCutCount",
+            "user_name": "Psc.StrictCutCount.factorStart_injective"
+          },
+          "compiled_record_count": 1,
+          "compiled_record_matches": true,
+          "expected_compiled_kind": "theorem",
+          "line": 19,
+          "name": "Psc.StrictCutCount.factorStart_injective",
+          "opening": "theorem factorStart_injective {bs : List WordPair}",
+          "owner": "PscVerif.StrictCutCount",
+          "private": false,
+          "source_kind": "theorem"
+        },
+        {
+          "actual": {
+            "axioms": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "kind": "theorem",
+            "name": "Psc.StrictCutCount.card_startVectors",
+            "owner": "PscVerif.StrictCutCount",
+            "user_name": "Psc.StrictCutCount.card_startVectors"
+          },
+          "compiled_record_count": 1,
+          "compiled_record_matches": true,
+          "expected_compiled_kind": "theorem",
+          "line": 37,
+          "name": "Psc.StrictCutCount.card_startVectors",
+          "opening": "theorem card_startVectors {bs : List WordPair}",
+          "owner": "PscVerif.StrictCutCount",
+          "private": false,
+          "source_kind": "theorem"
+        },
+        {
+          "actual": {
+            "axioms": [
+              "propext",
+              "Quot.sound"
+            ],
+            "kind": "theorem",
+            "name": "_private.PscVerif.StrictCutCount.0.Psc.StrictCutCount.markAtFactorStart",
+            "owner": "PscVerif.StrictCutCount",
+            "user_name": "Psc.StrictCutCount.markAtFactorStart"
+          },
+          "compiled_record_count": 1,
+          "compiled_record_matches": true,
+          "expected_compiled_kind": "theorem",
+          "line": 42,
+          "name": "Psc.StrictCutCount.markAtFactorStart",
+          "opening": "private theorem markAtFactorStart (bs : List WordPair) (j : Fin bs.length)",
+          "owner": "PscVerif.StrictCutCount",
+          "private": true,
+          "source_kind": "theorem"
+        },
+        {
+          "actual": {
+            "axioms": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "kind": "theorem",
+            "name": "Psc.StrictCutCount.exists_balanced_marks_of_mem",
+            "owner": "PscVerif.StrictCutCount",
+            "user_name": "Psc.StrictCutCount.exists_balanced_marks_of_mem"
+          },
+          "compiled_record_count": 1,
+          "compiled_record_matches": true,
+          "expected_compiled_kind": "theorem",
+          "line": 60,
+          "name": "Psc.StrictCutCount.exists_balanced_marks_of_mem",
+          "opening": "theorem exists_balanced_marks_of_mem {u v : Word} (hbal : Equiv1 u v)",
+          "owner": "PscVerif.StrictCutCount",
+          "private": false,
+          "source_kind": "theorem"
+        },
+        {
+          "actual": {
+            "axioms": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "kind": "theorem",
+            "name": "_private.PscVerif.StrictCutCount.0.Psc.StrictCutCount.physicalLength_le_mul_length",
+            "owner": "PscVerif.StrictCutCount",
+            "user_name": "Psc.StrictCutCount.physicalLength_le_mul_length"
+          },
+          "compiled_record_count": 1,
+          "compiled_record_matches": true,
+          "expected_compiled_kind": "theorem",
+          "line": 81,
+          "name": "Psc.StrictCutCount.physicalLength_le_mul_length",
+          "opening": "private theorem physicalLength_le_mul_length (\u2113 : Fin 3 \u2192 \u211d) (L : \u211d)",
+          "owner": "PscVerif.StrictCutCount",
+          "private": true,
+          "source_kind": "theorem"
+        },
+        {
+          "actual": {
+            "axioms": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "kind": "theorem",
+            "name": "Psc.StrictCutCount.physicalLength_le_card_reduction_starts",
+            "owner": "PscVerif.StrictCutCount",
+            "user_name": "Psc.StrictCutCount.physicalLength_le_card_reduction_starts"
+          },
+          "compiled_record_count": 1,
+          "compiled_record_matches": true,
+          "expected_compiled_kind": "theorem",
+          "line": 94,
+          "name": "Psc.StrictCutCount.physicalLength_le_card_reduction_starts",
+          "opening": "theorem physicalLength_le_card_reduction_starts (\u2113 : Fin 3 \u2192 \u211d) (L : \u211d)",
+          "owner": "PscVerif.StrictCutCount",
+          "private": false,
+          "source_kind": "theorem"
+        },
+        {
+          "actual": {
+            "axioms": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "kind": "theorem",
+            "name": "Psc.StrictCutCount.offset_mem_strip_of_mem",
+            "owner": "PscVerif.StrictCutCount",
+            "user_name": "Psc.StrictCutCount.offset_mem_strip_of_mem"
+          },
+          "compiled_record_count": 1,
+          "compiled_record_matches": true,
+          "expected_compiled_kind": "theorem",
+          "line": 104,
+          "name": "Psc.StrictCutCount.offset_mem_strip_of_mem",
+          "opening": "theorem offset_mem_strip_of_mem (\u2113 : Fin 3 \u2192 \u211d) (h\u2113 : \u2200 a, 0 < \u2113 a)",
+          "owner": "PscVerif.StrictCutCount",
+          "private": false,
+          "source_kind": "theorem"
+        },
+        {
+          "actual": {
+            "axioms": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "kind": "theorem",
+            "name": "Psc.StrictCutCount.repeated_factor_control",
+            "owner": "PscVerif.StrictCutCount",
+            "user_name": "Psc.StrictCutCount.repeated_factor_control"
+          },
+          "compiled_record_count": 1,
+          "compiled_record_matches": true,
+          "expected_compiled_kind": "theorem",
+          "line": 120,
+          "name": "Psc.StrictCutCount.repeated_factor_control",
+          "opening": "theorem repeated_factor_control :",
+          "owner": "PscVerif.StrictCutCount",
+          "private": false,
+          "source_kind": "theorem"
+        },
+        {
+          "actual": {
+            "axioms": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "kind": "theorem",
+            "name": "Psc.StrictCutCount.empty_startVectors",
+            "owner": "PscVerif.StrictCutCount",
+            "user_name": "Psc.StrictCutCount.empty_startVectors"
+          },
+          "compiled_record_count": 1,
+          "compiled_record_matches": true,
+          "expected_compiled_kind": "theorem",
+          "line": 129,
+          "name": "Psc.StrictCutCount.empty_startVectors",
+          "opening": "theorem empty_startVectors : startVectors [] = \u2205 := by",
+          "owner": "PscVerif.StrictCutCount",
+          "private": false,
+          "source_kind": "theorem"
+        }
+      ],
+      "explicit_definition_count": 2,
+      "explicit_private_theorem_count": 2,
+      "explicit_public_theorem_count": 7,
+      "explicit_theorem_count": 9,
+      "module": "PscVerif.StrictCutCount",
+      "source_bytes": 6140,
+      "source_git_blob_sha": "88bb5e983397b38ae962503a3bf2463769108cdb",
+      "source_path": "proof/PscVerif/PscVerif/StrictCutCount.lean",
+      "source_sha256": "465d1ad883556eca80db059bde0564a425a6a62407cd307d728347bc558d62b1"
+    },
+    {
+      "compiled_owned_constant_count": 4,
+      "compiled_owned_theorem_count": 3,
+      "declarations": [
+        {
+          "actual": {
+            "axioms": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "kind": "theorem",
+            "name": "_private.PscVerif.NamedCutCount.0.Psc.NamedCutCount.physicalLength_iterate",
+            "owner": "PscVerif.NamedCutCount",
+            "user_name": "Psc.NamedCutCount.physicalLength_iterate"
+          },
+          "compiled_record_count": 1,
+          "compiled_record_matches": true,
+          "expected_compiled_kind": "theorem",
+          "line": 17,
+          "name": "Psc.NamedCutCount.physicalLength_iterate",
+          "opening": "private theorem physicalLength_iterate (fixture : Fin 2) (k : \u2115) (w : Word) :",
+          "owner": "PscVerif.NamedCutCount",
+          "private": true,
+          "source_kind": "theorem"
+        },
+        {
+          "actual": {
+            "axioms": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "kind": "declaration",
+            "name": "Psc.NamedCutCount.integerStarts",
+            "owner": "PscVerif.NamedCutCount",
+            "user_name": "Psc.NamedCutCount.integerStarts"
+          },
+          "compiled_record_count": 1,
+          "compiled_record_matches": true,
+          "expected_compiled_kind": "declaration",
+          "line": 27,
+          "name": "Psc.NamedCutCount.integerStarts",
+          "opening": "def integerStarts (fixture : Fin 2) (n : \u2115) (T : WordPair) : Finset (Fin 3 \u2192 \u2124) :=",
+          "owner": "PscVerif.NamedCutCount",
+          "private": false,
+          "source_kind": "def"
+        },
+        {
+          "actual": {
+            "axioms": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "kind": "theorem",
+            "name": "Psc.NamedCutCount.integerStarts_count_and_strip",
+            "owner": "PscVerif.NamedCutCount",
+            "user_name": "Psc.NamedCutCount.integerStarts_count_and_strip"
+          },
+          "compiled_record_count": 1,
+          "compiled_record_matches": true,
+          "expected_compiled_kind": "theorem",
+          "line": 33,
+          "name": "Psc.NamedCutCount.integerStarts_count_and_strip",
+          "opening": "theorem integerStarts_count_and_strip (fixture : Fin 2) {C : Finset WordPair}",
+          "owner": "PscVerif.NamedCutCount",
+          "private": false,
+          "source_kind": "theorem"
+        },
+        {
+          "actual": {
+            "axioms": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "kind": "theorem",
+            "name": "Psc.NamedCutCount.eventually_integerStarts_mem",
+            "owner": "PscVerif.NamedCutCount",
+            "user_name": "Psc.NamedCutCount.eventually_integerStarts_mem"
+          },
+          "compiled_record_count": 1,
+          "compiled_record_matches": true,
+          "expected_compiled_kind": "theorem",
+          "line": 49,
+          "name": "Psc.NamedCutCount.eventually_integerStarts_mem",
+          "opening": "theorem eventually_integerStarts_mem (fixture : Fin 2) {C : Finset WordPair}",
+          "owner": "PscVerif.NamedCutCount",
+          "private": false,
+          "source_kind": "theorem"
+        }
+      ],
+      "explicit_definition_count": 1,
+      "explicit_private_theorem_count": 1,
+      "explicit_public_theorem_count": 2,
+      "explicit_theorem_count": 3,
+      "module": "PscVerif.NamedCutCount",
+      "source_bytes": 3180,
+      "source_git_blob_sha": "361a08262c9fe4c9e9dea4f5261b8cf44dfd374a",
+      "source_path": "proof/PscVerif/PscVerif/NamedCutCount.lean",
+      "source_sha256": "9e265aa7f9a9a4cf4dbef2a2f4f1a320740f8cc19a6d290679d6ec8343cfeae4"
+    }
+  ],
+  "new_module_compiled_constant_count": 18,
+  "new_module_compiled_theorem_count": 15,
+  "new_module_encountered_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "passed": true,
+  "post_audit_acknowledgement": "Lean axiom audit: 6646 declarations, 4865 theorems; all named proofs reached",
+  "required_gate_log_path": "/workspace/scratch/f96c28a561ad/count-isolated-attempt-01.log",
+  "required_gate_log_sha256": "3696befdb8c89c4857cae37b2075170e075b7145276e0a43cbe9f9312b79b9f8",
+  "schema": "psc-finite-cut-count-compiled-audit-inspection-v1",
+  "scope": "Independent inspection of a complete isolated ProofBankAudit log and committed sources. No recompilation. The revision is caller-supplied; execution lineage and enclosing process exit status require the separate gate receipt.",
+  "source_inventory_path": "/workspace/scratch/f96c28a561ad/count-source-inventory.json",
+  "source_inventory_sha256": "32ce197dbfd90addd1e9d181ab0b17ff9b0d0edfe64cd0a958e1b318adc75ef4",
+  "status": "passed",
+  "subject_revision": "31f8046291f2428e839d95e8890c8342858ec210",
+  "subject_tree": "e38c3f65efb79fa72860d8ef222e96695847a551"
+}

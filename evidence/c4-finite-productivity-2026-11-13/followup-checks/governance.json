@@ -1,0 +1,31 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "claim_governance.cli",
+    "--root",
+    "."
+  ],
+  "cwd": "repository root",
+  "environment_overrides": {
+    "PYTHONPATH": "tools"
+  },
+  "exit_code": 0,
+  "elapsed_seconds": 8.881,
+  "log_sha256": "6940a57ab580c143a470ce9dfa57b03fcd085f8b569960cca2350b9ec0dbae49",
+  "scope": "Documentation and evidence follow-up; Lean and test source unchanged from 510239ac0005fb24f880369e55a4b54776224981.",
+  "launch_failures_before_audit": [
+    {
+      "environment_overrides": {},
+      "exit_code": 1,
+      "reason": "claim_governance package not on import path"
+    },
+    {
+      "environment_overrides": {
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 1,
+      "reason": "claim_governance package not on import path"
+    }
+  ]
+}

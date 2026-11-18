@@ -1,0 +1,84 @@
+{
+  "repository": "larsbx/pisot-substitution-conjecture-research",
+  "inspected_source": "52614a3b5a7199b1d17cb7a0b435da71e1e80569",
+  "failed_workflows": [
+    {
+      "id": 43492499556,
+      "name": "Physical mass Lean Quint refinement",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_number": 109,
+      "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43492499556/jobs",
+      "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43492499556/logs",
+      "workflow_id": 411019785
+    },
+    {
+      "id": 43492499475,
+      "name": "C4 concrete overlap Lean packets",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_number": 96,
+      "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43492499475/jobs",
+      "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43492499475/logs",
+      "workflow_id": 408645746
+    },
+    {
+      "id": 43492499736,
+      "name": "C4 overlap Lean verification",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_number": 90,
+      "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43492499736/jobs",
+      "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43492499736/logs",
+      "workflow_id": 408437354
+    },
+    {
+      "id": 43492499714,
+      "name": "Original C4 archived payload Lean import",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_number": 37,
+      "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43492499714/jobs",
+      "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43492499714/logs",
+      "workflow_id": 415687755
+    },
+    {
+      "id": 43492499744,
+      "name": "PSC research checks",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_number": 5179,
+      "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43492499744/jobs",
+      "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/43492499744/logs",
+      "workflow_id": 353526446
+    }
+  ],
+  "job_log_excerpts": [
+    {
+      "job_id": 132117043534,
+      "source_revision": "52614a3b5a7199b1d17cb7a0b435da71e1e80569",
+      "run_id": 43492499714,
+      "source": "GitHub job log fetched through authenticated GitHub connector",
+      "scope": "selected exact log lines, not a complete downloaded artifact",
+      "lines": [
+        "2026-11-13T19:46:51.7527074Z ✔ [9041/9045] Built PscVerif.NamedForwardCarrierData1 (647s)",
+        "2026-11-13T19:53:29.6593748Z ✔ [9042/9045] Built PscVerif.NamedForwardCarrierData0 (1048s)",
+        "2026-11-13T19:53:48.3703750Z error: PscVerif/NamedForwardCarrier.lean:77:10: maximum recursion depth has been reached",
+        "2026-11-13T19:53:48.9000796Z error: build failed"
+      ]
+    },
+    {
+      "job_id": 131960085530,
+      "source_revision": "1ce54efeff586ecda2ec1bd11a2f9c6617b2fb87",
+      "run_id": 43447323834,
+      "source": "GitHub job log fetched through authenticated GitHub connector",
+      "scope": "selected exact log lines, not a complete downloaded artifact",
+      "lines": [
+        "2026-11-13T16:02:46.4527050Z ✔ [9041/9045] Built PscVerif.NamedForwardCarrierData1 (671s)",
+        "2026-11-13T16:10:12.6839111Z ✔ [9042/9045] Built PscVerif.NamedForwardCarrierData0 (1120s)",
+        "2026-11-13T16:10:44.3151468Z error: PscVerif/NamedForwardCarrier.lean:77:4: maximum recursion depth has been reached",
+        "2026-11-13T16:10:45.1697006Z error: build failed"
+      ]
+    }
+  ]
+}
