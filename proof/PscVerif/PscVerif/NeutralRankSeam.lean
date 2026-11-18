@@ -305,6 +305,60 @@ theorem endpoint_rank_bound (E : V → EndpointData C K) (ε : K) (hε : ∀ v, 
 
 end Rank
 
+/-! ### T6: the cell/bigon intertwiner and the eigen-relation of the defect -/
+
+section Intertwiner
+
+variable {C B K : Type*} [Field K] [Fintype C] [Fintype B] [DecidableEq C] [DecidableEq B]
+
+omit [Fintype C] [Fintype B] [DecidableEq B] in
+theorem cast_count_flatMap {X : Type*} (f : X → List C) (l : List X) (u : C) :
+    (l.map fun x => ((f x).count u : K)).sum = ((l.flatMap f).count u : K) := by
+  rw [List.count_flatMap, Nat.cast_list_sum, List.map_map]
+  rfl
+
+/-- **T6, literal form.**  If the cells of every inflated block are the children of its cells,
+in order, and also the cells of its child blocks, then `A Π = Π N` for the occurrence matrices
+of rows (`A`), blocks (`Π`) and block children (`N`). -/
+theorem occ_mul_occ (rows : C → List C) (blocks : B → List C) (children : B → List B)
+    (h : ∀ b, (blocks b).flatMap rows = (children b).flatMap blocks) :
+    (occ rows : Matrix C C K) * occ blocks = occ blocks * (occ children : Matrix B B K) := by
+  ext u b
+  change ((fun c => (occ rows : Matrix C C K) u c) ᵥ* occ blocks) b =
+    ((fun b' => (occ blocks : Matrix C B K) u b') ᵥ* (occ children : Matrix B B K)) b
+  rw [vecMul_occ, vecMul_occ]
+  simp only [occ]
+  rw [cast_count_flatMap rows, cast_count_flatMap blocks, h]
+
+omit [DecidableEq C] [DecidableEq B] in
+/-- An eigen-row family pushed through an intertwiner is an eigen-row family of `N`. -/
+theorem defect_eigen {V : Type*} [Fintype V] (kap : Matrix V C K) (A : Matrix C C K)
+    (Pi : Matrix C B K) (N : Matrix B B K) (ε : K) (hA : kap * A = ε • kap)
+    (hI : A * Pi = Pi * N) : kap * Pi * N = ε • (kap * Pi) := by
+  rw [Matrix.mul_assoc, ← hI, ← Matrix.mul_assoc, hA, Matrix.smul_mul]
+
+/-- **Round-3 Proposition E, the direction used here.**  Endpoint-coboundary data on a literal
+cell system whose inflated blocks flatten as in `occ_mul_occ` give a defect with
+`D N = ε D` (E1 of the draft); its rows are pulled back from swap-odd `ε`-eigen-rows of `A`. -/
+theorem endpoint_defect_eigen {V : Type*} [Fintype V] (E : V → EndpointData C K) (ε : K)
+    (hε : ∀ v, (E v).ε = ε) (rows : C → List C) (blocks : B → List C) (children : B → List B)
+    (hrow : ∀ v c, ∃ a t, rows c = a :: t ∧ Linked (E v).Adj (a :: t) ∧ a = (E v).gL c ∧
+      (a :: t).getLast (List.cons_ne_nil a t) = (E v).gR c)
+    (hflat : ∀ b, (blocks b).flatMap rows = (children b).flatMap blocks)
+    (D : Matrix V B K) (hfac : D = Matrix.of (fun v c => (E v).kappa c) * occ blocks) :
+    D * occ children = ε • D := by
+  have hA : (Matrix.of (fun v c => (E v).kappa c) : Matrix V C K) * occ rows =
+      ε • Matrix.of (fun v c => (E v).kappa c) := by
+    ext v c
+    have : ((Matrix.of (fun v c => (E v).kappa c) : Matrix V C K) * occ rows : Matrix V C K) v c =
+        ((E v).kappa ᵥ* occ rows) c := rfl
+    rw [this, vecMul_occ_eq (E v) rows (hrow v), hε v]
+    rfl
+  rw [hfac]
+  exact defect_eigen _ _ _ _ ε hA (occ_mul_occ rows blocks children hflat)
+
+end Intertwiner
+
 /-! ### The promotion weights are needed -/
 
 section Naive

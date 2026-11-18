@@ -2,8 +2,10 @@
 
 **Status:** Two written lemmas with exact bounded Mojo controls, one new
 literal negative control, and a census of a source-only quantity. Lemma B's
-algebraic and combinatorial core, and the `01/122/201` witness, are
-machine-checked in Lean (`PscVerif.NeutralRankSeam`). Both
+algebraic and combinatorial core, T6, the spectral step of the #601 cycle
+theorem, Lemma A's orbit law and ceiling, and the `01/122/201` witness with
+its single interior $4$-cycle are machine-checked in Lean
+(`PscVerif.NeutralRankSeam`, `NeutralRankSeamCycle`, `SeamCycleSpectrum`). Both
 lemmas are conditional on a strict rank-two component, which no tested
 specimen has. Independent review is pending. Neither lemma excludes the
 neutral weight. Universal C4 and PSC remain open, and this note registers
@@ -228,13 +230,40 @@ depend only on `propext`, `Classical.choice` and `Quot.sound`.
 | four interior addresses of period $4$ | `seam_isInteriorAddress_1`–`_4` | `Psc.GeometricFLemmas.IsInteriorAddress` |
 | $U(n)-L(n)-R(n)=4\cdot[4\mid n]$, $n\le12$ | `seam_trace` | bigrams copied over a $4$-cycle |
 
-Not formalized here:
-- that a strict sink meets the hypotheses of `EndpointData`, which is the
-  written transfer ledger T1–T6;
-- the endpoint-coboundary form itself;
-- the #601 cycle theorem;
-- that the four addresses form one $f$-cycle and exhaust $I$;
-- Lemma A.
+A second round formalizes the items the first left open, as far as they
+are statements with known proofs.
+
+| Statement | Lean | Scope |
+| --- | --- | --- |
+| T6: $A\Pi=\Pi N$ | `NeutralRankSeam.occ_mul_occ` | from the literal flattening: an inflated block's cells are its cells' children and its child blocks' cells |
+| E1 of Proposition E: the endpoint form gives $DN=\varepsilon D$ | `NeutralRankSeam.endpoint_defect_eigen`, `defect_eigen` | the direction used by Lemma B |
+| spectral step of the #601 cycle theorem | `SeamCycleSpectrum.cycle_correction`, `mult_eq_card_order` | if the power sums of two multiplicities on the $D$-th roots of unity differ by the cycle counts $U-L-R$, they differ at a root of order $d$ by $\#\{q\in U:d\mid q\}-\#\{q\in L:d\mid q\}-\#\{q\in R:d\mid q\}$ |
+| power sums determine multiplicities | `SeamCycleSpectrum.eq_of_vtrace` | injectivity of `ZMod.dft` |
+| $\sum_{qk=0}\chi(kn)=q\,[q\mid n]$ | `SeamCycleSpectrum.sum_kernel` | $q\mid D$ |
+| Lemma A, orbit law: $\operatorname{per}(e,i)=p\cdot\operatorname{per}_{\psi}(e)$ | `SeamCycleSpectrum.minimalPeriod_shift`, `isPeriodicPt_shift_iff` | $\psi=\pi^p$ on the base copy |
+| Lemma A, ceiling and floor | `SeamCycleSpectrum.ceiling_bounds` | per-cycle admissible subgraphs |
+| `01/122/201`: $\chi_M=X^3-3X^2+X-1$ irreducible, $M$ primitive | `NeutralRankSeamCycle.seam_charpoly`, `seam_irreducible`, `seam_prim` | |
+| every interior address at $k\le4$ is one of the four, at $k=4$ | `NeutralRankSeamCycle.seam_address_classify` | enumerates occurrences in $\sigma^k(e)$ and the integrality of $\operatorname{adj}(M^k-I)\,p(P)/\det(M^k-I)$ |
+| periodic interior states of period dividing $k\le4$ | `NeutralRankSeamCycle.seam_periodic_iff` | for every positive left eigen-row |
+| the four states are $f^jx_0$, $j<4$: **one $f$-cycle** of exact period $4$ | `NeutralRankSeamCycle.seam_single_cycle` | for every positive left eigen-row |
+
+Still not formalized, with the reason for each:
+
+- **The transfer of a strict rank-two component to the `EndpointData` and
+  T6 hypotheses** (T1–T5). This is the strict joining $Z$ of Theorem W,
+  the BBK geometric realization, and the identification of $C$ with the
+  overlaps of $Z$. It rests on tiling-space theory that the library does
+  not contain. Inside the formal layer these facts are hypotheses: the
+  fields of `EndpointData` and the flattening hypothesis of `occ_mul_occ`.
+- **The endpoint-coboundary form itself.** Its source is the round-3 draft
+  Proposition E, which has no verifier and whose proof is not known to be
+  correct. Only its consequence E1 is formalized.
+- **The trace identities of #598 and agreement of spectra away from roots
+  of unity.** These are the hypothesis of `cycle_correction`. They depend
+  on the same geometric transfer.
+- **That $I$ has no states of period other than $4$.** Periods dividing
+  $1$–$4$ are exhausted in Lean. Larger periods are excluded only by the
+  certified Mojo search box of the (F) note, which is not formalized.
 
 ### Consequence for the obligation
 
@@ -301,7 +330,8 @@ has not run.
   [the evidence packet](../evidence/seam-ceiling-2026-11-18/README.md).
 - The #602 constructor on `01/122/201` at powers 1–12 was run from the
   draft PR head, not from `main`.
-- `lake build PscVerif.NeutralRankSeam`: pass, with no warnings. An axiom
+- `lake build` of `PscVerif.NeutralRankSeam`, `NeutralRankSeamCycle`
+  and `SeamCycleSpectrum`: pass, with no warnings. An axiom
   audit was run on the main theorems. A full `lake build` of the library
   root also passes. The isolated `tools/check_lean.sh` was not run.
 

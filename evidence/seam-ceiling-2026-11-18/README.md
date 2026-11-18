@@ -38,6 +38,16 @@ exit 0 and no warnings, using the pinned toolchain
 `Classical.choice`). A full `lake build` of the library root with the new
 import also exits 0. The isolated `tools/check_lean.sh` was not run.
 
+Second round: `lake build` of `PscVerif.NeutralRankSeamCycle` and
+`PscVerif.SeamCycleSpectrum`, and the extended `PscVerif.NeutralRankSeam`,
+exits 0 with no warnings in these modules. A full `lake build` of the
+library root exits 0. `#print axioms` on `occ_mul_occ`,
+`endpoint_defect_eigen`, `seam_irreducible`, `seam_address_classify`,
+`seam_periodic_iff`, `seam_single_cycle`, `eq_of_vtrace`, `sum_kernel`,
+`cycle_correction`, `mult_eq_card_order`, `minimalPeriod_shift` and
+`ceiling_bounds` reports only `propext`, `Classical.choice` and
+`Quot.sound`.
+
 ## Cross-check against draft #602
 
 [pr602-literal-01-122-201.log](pr602-literal-01-122-201.log) comes from a
