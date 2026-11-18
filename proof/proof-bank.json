@@ -42778,6 +42778,22 @@
       "declaration": "theorem Aq_not_conj_cyclicMinus (k : Fin 6) (P Q : Matrix (Fin 3) (Fin 3) ℚ)"
     },
     {
+      "name": "Psc.UniquePartnerLetters.card_eq_two_of_involution",
+      "module": "PscVerif.UniquePartnerLetters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/UniquePartnerLetters.lean",
+      "line": 28,
+      "declaration": "theorem card_eq_two_of_involution :"
+    },
+    {
+      "name": "Psc.UniquePartnerLetters.beta1_le_one",
+      "module": "PscVerif.UniquePartnerLetters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/UniquePartnerLetters.lean",
+      "line": 35,
+      "declaration": "theorem beta1_le_one (E : Finset (Fin 3 × Fin 3)) (hE : E.Nonempty) (lam rho : Fin 3 → Fin 3)"
+    },
+    {
       "name": "Psc.WeightModulus.norm_d",
       "module": "PscVerif.WeightModulus",
       "private": false,
@@ -44003,6 +44019,16 @@
       "source": "docs/c4-seam-birth-orbits-2026-11-04.md",
       "line": 10,
       "statement_heading": "**Lemma.** In a supplied finite strict child-closed phase-zero balanced"
+    },
+    {
+      "source": "docs/c4-unique-partner-exclusion-2026-11-18.md",
+      "line": 44,
+      "statement_heading": "### Theorem UP (unique partners)"
+    },
+    {
+      "source": "docs/c4-unique-partner-exclusion-2026-11-18.md",
+      "line": 51,
+      "statement_heading": "**Corollary.** For `σ ∈ PIP3` with odd determinant, `cr(σ) = 2` and a"
     },
     {
       "source": "docs/c4-w3-low-growth-and-interface-correction.md",
@@ -45849,10 +45875,11 @@
     "proof/PscVerif/PscVerif/StrictCutCount.lean": "465d1ad883556eca80db059bde0564a425a6a62407cd307d728347bc558d62b1",
     "proof/PscVerif/PscVerif/StrictSystem.lean": "657d6c9f4041b04a2e478f19dea2ecb813952caf2fe1455789778306ad6c3a48",
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
+    "proof/PscVerif/PscVerif/UniquePartnerLetters.lean": "fc5f8bc4d8bbcd756828e0bb532b439cc340a242db3e3d0270affcb659aa2f89",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "73b44d1ff634c1b1c7bd346e488053383e18e4766ae5209ebec15e4a2e10ccd2",
+    "proof/PscVerif/PscVerif.lean": "d17fe3fc7d8d109f2fd7674dc8710d4b01e533cc365b7da8fc6b1d717a163765",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
