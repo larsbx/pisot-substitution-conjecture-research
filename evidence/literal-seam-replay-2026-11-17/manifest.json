@@ -1,0 +1,93 @@
+{
+  "schema": "psc.local.literal-seam-replay.v1",
+  "recorded_at_utc": "2026-11-17T20:40:12.774895+00:00",
+  "base_commit": "2d831230c9b5a2f7b21165df6756532b3f598e37",
+  "source_sha256": {
+    "kernel/psc/literal_seam_replay.mojo": "0131e6e38d170bf3f7bcd12d7fee0b6bf0b20027a0929adc9af7f0eaeb91b6bf",
+    "kernel/tests/test_literal_seam_replay.mojo": "060a50575533c25f966919875737aec1561206dda18bb0a89e5ffbfa6167de3b",
+    "kernel/psc/one_track_seam_spectrum.mojo": "c3caffae59e12580b6a73f5269d769bca243506bcbe27869284cef94f1fa80bc",
+    "kernel/tests/test_one_track_seam_spectrum.mojo": "668869467b0151b65431dab3b9dca000a5f3bc2c240e8212c45058ce041aa6db",
+    "kernel/psc/periodic_overlap_returns.mojo": "3930e5e2ccaf01cf41dd1d5291ef95cd25e77f98bee82d111434914fbd628232",
+    "kernel/tests/test_periodic_overlap_returns.mojo": "e5269d9eb958566be7a1feea568f9d37b3bad4436b94dbb5c8b4ff9e153eae4f",
+    "kernel/pixi.lock": "1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8"
+  },
+  "kernel_mojo_source_count": 799,
+  "kernel_mojo_source_digest_scheme": "SHA256 of concatenated sorted path + NUL + file SHA256 hex + newline, excluding hidden and build directories",
+  "kernel_mojo_sources_sha256": "5428b493f2623515cb969831e837255060fdfe000bf91ed8cf72304cb408be5c",
+  "runtime": {
+    "mojo_version": "1.1.0.dev2026090805 (34562fa1)",
+    "compiler_package_sha256": "0d71889abb0887e2fa8a556c1081af4026034cdf98d27ad05b57cb096d7ad4f6",
+    "mojo_package_sha256": "c73cf02c19b7de5774f8f6275b0b9eb4b656558f7d10f27d3508374fa0559d28"
+  },
+  "runs": [
+    {
+      "cwd": "kernel",
+      "command": "MODULAR_HOME=/workspace/scratch/4a274e09248c/psc-runtime/mojo-prefix/share/max /workspace/scratch/4a274e09248c/psc-runtime/mojo-prefix/bin/mojo run -I . -I tests tests/test_literal_seam_replay.mojo",
+      "exit_code": 0,
+      "log": "literal-seam-replay.log"
+    },
+    {
+      "cwd": "kernel",
+      "command": "MODULAR_HOME=/workspace/scratch/4a274e09248c/psc-runtime/mojo-prefix/share/max /workspace/scratch/4a274e09248c/psc-runtime/mojo-prefix/bin/mojo run -I . -I tests tests/test_one_track_seam_spectrum.mojo",
+      "exit_code": 0,
+      "log": "canonical-seam.log"
+    },
+    {
+      "cwd": "kernel",
+      "command": "MODULAR_HOME=/workspace/scratch/4a274e09248c/psc-runtime/mojo-prefix/share/max /workspace/scratch/4a274e09248c/psc-runtime/mojo-prefix/bin/mojo run -I . -I tests tests/test_periodic_overlap_returns.mojo",
+      "exit_code": 0,
+      "log": "periodic-overlap-returns.log"
+    },
+    {
+      "cwd": ".",
+      "command": "bash tools/verify_all.sh provenance",
+      "exit_code": 0,
+      "log": "provenance.log"
+    },
+    {
+      "cwd": ".",
+      "command": "runpy.run_path('tests/test_markdown_links.py'); invoke all four test_* functions directly",
+      "exit_code": 0,
+      "log": "markdown-links.log"
+    }
+  ],
+  "bounded_replay": {
+    "specimens": 4,
+    "powers": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "comparisons": 48,
+    "negative_checks": 14
+  },
+  "unexecuted": [
+    {
+      "command": "python3 -m pytest -q tests/test_markdown_links.py tests/test_proof_bank.py",
+      "reason": "No module named pytest; runner did not start",
+      "exit_code": 1
+    }
+  ],
+  "nonclaims": [
+    "No strict PIP3 sink",
+    "No uniform neutral-spectrum exclusion",
+    "No fresh Lean or full Mojo suite",
+    "Hosted CI not established by these local receipts"
+  ],
+  "log_sha256": {
+    "canonical-seam.log": "a68245f48509ab43a2b476f33c9839deb5ff96dd7d0803de6d252f4edd430361",
+    "literal-seam-replay.log": "a3cae11c22ed757e5f7a8fe02222117352dd271bd5d9f6f92349d1b9f2f8f722",
+    "markdown-links.log": "261ed30c0bba6480b1f46c0d73bee63e38bd6b1c266f29135a25a1cb74df1076",
+    "periodic-overlap-returns.log": "79b4f6d4bf09f80995c81dd42af0a92078ee024cb4e596c42672dcdbeaacc39c",
+    "provenance.log": "a6ba47e5bafe681a9b675d900d36d657351c99c03b03aba0499c8aff4c569df6"
+  }
+}

@@ -6,6 +6,8 @@ This page introduces the mathematics and the evidence behind it. Research and co
 
 **Next mathematical target:** complete the smaller upper plus-Class-A parameter cases and bind the written paths to Lean. The [upper plus entry theorem](docs/class-a-plus-upper-all-source-entry-2026-11-16.md) and its central continuation give actual coincidence paths from every strict integral source when `n>=7,n+5<=d<=2n+11`. The whole minus-chamber written proof is recorded in the [claim registry](docs/ledger-index.md) with integration acceptance pending. Work on residual A1′ proceeds in parallel. The [BH roadmap](docs/bh-escape-roadmap-2026-11-14.md) gives the exact source scopes and evidence.
 
+**Audit continuation, 17 November:** the [current crosswalk](docs/psc-audit-continuation-2026-11-17.md) reconciles the earlier audit with merged compact-geometry, B′ and C4 work. The newest [one-track seam correction](docs/c4-one-track-seam-spectrum-2026-11-17.md) is implemented; the C4 frontier is uniform exclusion of the corrected neutral odd multiplicity in a literal candidate sink. An [independent literal replay](docs/c4-literal-seam-replay-2026-11-17.md) now checks the full endpoint and seam identities on four named productive controls at powers one through twelve, with explicit occurrence-substitution and budget refusals.
+
 ## The question
 
 A substitution assigns a nonempty word to each letter of a finite alphabet. Iterating it produces symbolic sequences and, through a geometric realization, tiling dynamical systems. Its incidence matrix counts how often each letter appears in the image of another.
