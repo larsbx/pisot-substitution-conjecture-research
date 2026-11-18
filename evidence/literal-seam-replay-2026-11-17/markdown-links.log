@@ -1,0 +1,5 @@
+PASS test_inline_code_delimiters_and_real_neighbor_links
+PASS test_inline_code_delimiters_preserve_real_links
+PASS test_links_skip_fenced_and_inline_code
+PASS test_relative_links_resolve
+4 Markdown link checks passed by direct function execution.

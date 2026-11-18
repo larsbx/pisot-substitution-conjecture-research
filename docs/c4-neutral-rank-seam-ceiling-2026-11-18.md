@@ -11,12 +11,32 @@ specimen has. Independent review is pending. Neither lemma excludes the
 neutral weight. Universal C4 and PSC remain open, and this note registers
 no governed claim.
 
+**Relation to #604.** [#604](c4-neutral-rank-obstruction-2026-11-17.md),
+merged first, was developed in parallel. It proves Lemma A in closed form
+as the orbit budget $B_\varepsilon(q)=m(H_1(E))-\mathbf 1_{\delta=1}$
+with the positive-part envelope $U_\varepsilon$; it uses connectedness of
+the eventual range $E$ and surjectivity on $H_0$. It also records the
+`01/122/201`, `12/012/221` and `12/120/221` controls and a probe of the 492
+unit specimens with $\beta_1(E)\ge2$.
+
+The census below is a brute-force maximum over invariant subgraphs on all
+2628 unit specimens, and it is an independent check of that envelope. On
+the $\beta_1\ge2$ subset it gives the same counts: 24 specimens with
+$U_+>0$, and 12 with $\det M=-1$ and $U_->0$. The other 60 members with
+$\det M=-1$ and a positive ceiling at $-1$ have $\beta_1\le1$. Barge's
+Theorem 22 already excludes those at unit rank two.
+
+New here relative to #604:
+- Lemma B (the endpoint branch carries no seam term);
+- its executable telescoping check;
+- the Lean layer.
+
 ## Targeted literature stop/go check
 
 The target is the obligation left by the
 [seam-spectrum note](c4-one-track-seam-spectrum-2026-11-17.md) and the
-[literal replay](https://github.com/larsbx/pisot-substitution-conjecture-research/blob/cbb8c6c64b56bcce60c2e6031da7acb9ffc5b41d/docs/c4-literal-seam-replay-2026-11-17.md)
-(draft #602): bound the corrected odd multiplicity at
+[literal replay](c4-literal-seam-replay-2026-11-17.md)
+(#602, merged through #604): bound the corrected odd multiplicity at
 $\varepsilon=(\det M)^m$ below the rank of a neutral first-defect image.
 This note imports no new external theorem. It uses only statements
 already gated for #598 and #601:
@@ -116,7 +136,7 @@ seam cycles have length $4$: $6$ of them, against $2$ last-letter and $3$
 first-letter germ cycles.
 
 **Literal replays.** #601's full-box scanner gives $b_1=b_2=+1$. The
-independent #602 literal-word constructor (PR head `cbb8c6c6`, run locally)
+independent #602 literal-word constructor (head `cbb8c6c6`, now on `main`)
 gives the fixed seam, last and first counts $24,8,12$ at $n=4,8$. It gives
 $0,0,0$ at the other $n\le11$, and $n=12$ refuses at the word cap. So
 $U-L-R=4\cdot[4\mid n]$, the virtual trace of $+1$ at each fourth root of
@@ -328,8 +348,8 @@ has not run.
 - `seam_ceiling_census.mojo`: complete over the corpus. The table above is
   its output; the log is in
   [the evidence packet](../evidence/seam-ceiling-2026-11-18/README.md).
-- The #602 constructor on `01/122/201` at powers 1–12 was run from the
-  draft PR head, not from `main`.
+- The #602 constructor on `01/122/201` at powers 1–12 was run from its
+  PR head `cbb8c6c6`, before #604 brought it to `main`.
 - `lake build` of `PscVerif.NeutralRankSeam`, `NeutralRankSeamCycle`
   and `SeamCycleSpectrum`: pass, with no warnings. An axiom
   audit was run on the main theorems. A full `lake build` of the library

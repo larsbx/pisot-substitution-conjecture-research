@@ -36448,13 +36448,18 @@
       "statement_heading": "**Lemma.** In a finite strict child-closed balanced SCC with positive"
     },
     {
+      "source": "docs/c4-neutral-rank-obstruction-2026-11-17.md",
+      "line": 170,
+      "statement_heading": "**Theorem.** For every represented orbit,"
+    },
+    {
       "source": "docs/c4-neutral-rank-seam-ceiling-2026-11-18.md",
-      "line": 58,
+      "line": 78,
       "statement_heading": "### Lemma A (source seam ceiling)"
     },
     {
       "source": "docs/c4-neutral-rank-seam-ceiling-2026-11-18.md",
-      "line": 128,
+      "line": 148,
       "statement_heading": "### Lemma B (the endpoint-coboundary branch carries no seam term)"
     },
     {

@@ -1,0 +1,6 @@
+Failed to initialize Crashpad.  Crash reporting will not be available.  Cause: while locating crashpad handler: unable to locate crashpad handler executable
+Neutral rank-one literal-pair control: T13; det=-1; chi=x^3-51481*x^2+30023*x+1; exact PIP; rank[K3,-K3]=1.
+K3 lex coefficients: [0, -1, 3, 2, 0, -1, -6, -4, -3, -1, 0, 5, 0, 0, -1, -4, 2, 3, 3, 5, 6, -1, -1, -6, -3, 3, 0]
+Theta(K3): [3 -9 -3][-3 -9 0][-9 -9 6]
+Explicit run-length substitution lengths: 26857,115525,4617; first literal factor=(0,0); NOT a strict component.
+contract-receipt: Neutral rank-one calibration: the irreducible literal pair T13 has first defect K3 with a rank-one swap-odd span and M^(tensor3)K3=-K3 for the positive unit PIP matrix M=-3I-7M0+51M0^2; the explicit run-length substitution with that incidence has a coincident first child, so no strict-system realization or rank-two lower bound is asserted
