@@ -387,6 +387,7 @@ has not run.
 
 **Update 2026-11-18 (after #606).** The
 [unique-partner exclusion](c4-unique-partner-exclusion-2026-11-18.md)
-shows that for odd determinant the strict component at rank two always has
-a tiling with two partners. The objects in both branches above are
+shows that, under the round-4 vertex-asymptote condition (NM_V) and for
+odd determinant, the strict component at rank two always has a tiling with
+two partners. The objects in both branches above are
 therefore non-injective joinings.

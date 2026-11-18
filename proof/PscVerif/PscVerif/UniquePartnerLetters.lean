@@ -1,13 +1,14 @@
 /-
 # Letter involutions of a unique-partner strict component
 
-`docs/c4-unique-partner-exclusion-2026-11-18.md`, steps 4–5 of Theorem UP.  If every tiling
-has a unique strict partner, the partner map induces fixed-point-free involutions `λ` on the
+`docs/c4-unique-partner-exclusion-2026-11-18.md`, steps 4–5 of Theorem UP.  Under the round-4
+vertex-asymptote condition (NM_V), if every tiling has a unique strict partner, the partner map
+induces fixed-point-free involutions `λ` on the
 left letters `L` and `ρ` on the right letters `R` of the Barge–Diamond eventual-range graph
 `E ⊆ L × R`.  Over three letters this forces `|L| = |R| = 2`, hence `β₁(E) ≤ 1`.
 
 **Proved here** (no `sorry`): `card_eq_two_of_involution`, `beta1_le_one`.
-**Not proved here:** the tiling-space steps 1–3 that produce `λ` and `ρ`.
+**Not proved here:** the tiling-space steps 1–3 that produce `λ` and `ρ`, and (NM_V).
 -/
 import Mathlib.Data.Fintype.Prod
 import Mathlib.Data.Fintype.Pi

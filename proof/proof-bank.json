@@ -44022,13 +44022,13 @@
     },
     {
       "source": "docs/c4-unique-partner-exclusion-2026-11-18.md",
-      "line": 44,
+      "line": 54,
       "statement_heading": "### Theorem UP (unique partners)"
     },
     {
       "source": "docs/c4-unique-partner-exclusion-2026-11-18.md",
-      "line": 51,
-      "statement_heading": "**Corollary.** For `σ ∈ PIP3` with odd determinant, `cr(σ) = 2` and a"
+      "line": 61,
+      "statement_heading": "**Corollary.** Let `σ ∈ PIP3` satisfy (NM_V) and have odd determinant,"
     },
     {
       "source": "docs/c4-w3-low-growth-and-interface-correction.md",

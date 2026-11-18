@@ -5478,8 +5478,8 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/c4-round4-2026-11-17.md:584](../docs/c4-round4-2026-11-17.md#L584) | *Proposition F.* The norm map N(h)(T) = ∏_{z ∈ π₁⁻¹T} h(z) is continuous |
 | [docs/c4-round4-2026-11-17.md:592](../docs/c4-round4-2026-11-17.md#L592) | *Corollary P.* Write x_B = u_B·r with u_B ∈ ℚ³. The letter frequencies of |
 | [docs/c4-seam-birth-orbits-2026-11-04.md:10](../docs/c4-seam-birth-orbits-2026-11-04.md#L10) | **Lemma.** In a supplied finite strict child-closed phase-zero balanced |
-| [docs/c4-unique-partner-exclusion-2026-11-18.md:44](../docs/c4-unique-partner-exclusion-2026-11-18.md#L44) | ### Theorem UP (unique partners) |
-| [docs/c4-unique-partner-exclusion-2026-11-18.md:51](../docs/c4-unique-partner-exclusion-2026-11-18.md#L51) | **Corollary.** For σ ∈ PIP3 with odd determinant, cr(σ) = 2 and a |
+| [docs/c4-unique-partner-exclusion-2026-11-18.md:54](../docs/c4-unique-partner-exclusion-2026-11-18.md#L54) | ### Theorem UP (unique partners) |
+| [docs/c4-unique-partner-exclusion-2026-11-18.md:61](../docs/c4-unique-partner-exclusion-2026-11-18.md#L61) | **Corollary.** Let σ ∈ PIP3 satisfy (NM_V) and have odd determinant, |
 | [docs/c4-w3-low-growth-and-interface-correction.md:98](../docs/c4-w3-low-growth-and-interface-correction.md#L98) | ### Theorem |
 | [docs/class-a-carrier-closure-2026-10-22.md:83](../docs/class-a-carrier-closure-2026-10-22.md#L83) | **Lemma 1 (elimination of n).** For integer polynomials A, B and every n, |
 | [docs/class-a-carrier-closure-2026-10-22.md:87](../docs/class-a-carrier-closure-2026-10-22.md#L87) | **Lemma 2 (interval sign).** Let Q be an integer polynomial, q = 1/(n0+1). |
