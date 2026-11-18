@@ -125,16 +125,79 @@ Round 4's Thue–Morse control (`01/10`, not PIP3) has `π₁` a homeomorphism
 and `ER = K_{2,2}`, which is exactly the residue left here, so the count
 cannot be sharpened without more input.
 
+### Theorem UP′ (coverings)
+
+Round-4 Lemma C splits the general case in two. Either `π₁` is a covering of
+constant degree `k`, or `π₁` is locally injective at no point of `Z`, which
+means some tiling has two partners that agree on a half-line. The covering
+case reduces to a regular letter graph.
+
+**Theorem UP′.** Assume (NM_V), and that `π₁` is a covering. Let
+`n_v ≥ 1` be the number of vertex-type partners of a vertex tiling `T_g`,
+`g ∈ ER`; it does not depend on `g`. Exactly one of the following holds:
+
+1. `n_v = 1` and `|L| = |R| = 2`. Then `β₁(ER) ≤ 1` and `dim H¹ ≤ 4`,
+   which is excluded for odd determinant by B15 Theorem 22.
+2. `n_v = 2` and `|L| = |R| = 3`. Then `g_L` and `g_R` are permutations of
+   the alphabet. The vertex-type partners of `T_{xy}` have the two left
+   letters other than `x` and the two right letters other than `y`.
+
+Degree one is the unique-partner case, so Theorem UP is the special case
+`k = 1` of case 1.
+
+*Proof.* Let `T, S` be vertex tilings that agree on a half-line.
+
+- **Lemma L** (round 4) matches the partners of `T` bijectively with those
+  of `S`, each with one asymptotic to it on the same side.
+- **(NM_V)** makes a partner asymptotic to a vertex-type partner itself
+  vertex-type, with the same letter on that side.
+- Applying the same argument to the inverse matching shows that vertex type
+  is preserved in both directions.
+
+Hence the multiset of left letters of the vertex-type partners of `T_{xy}`
+depends only on `x`, and the multiset of right letters only on `y`.
+
+- **Lemma C(b)** (round 4): under a covering, no two partners of one tiling
+  are asymptotic. So these letters are distinct, and the multisets are sets
+  `Λ(x) ⊆ L` and `P(y) ⊆ R`.
+- `x ∉ Λ(x)`, because a partner with the same left letter would share the
+  tile ending at the origin, against (Z2).
+- `y ∈ Λ(x)` iff `x ∈ Λ(y)`, because `Z` is swap-invariant.
+- `ER` is connected, so `n_v = |Λ(x)|` is the same for every `x`, and
+  likewise `|P(y)|`. The common value is at least 1 by (Z3).
+
+So `Λ` is an `n_v`-regular simple graph on `L` with `n_v ≥ 1`, and so is
+`P` on `R`. On at most three vertices this forces either `n_v = 1` on two
+vertices or `n_v = 2` on the triangle. ∎
+
+**Sharpness of case 2.** Round 4's singular control `012/120/201` (§3.6) has
+`ER = K_{3,3}` and `Z = {(T, ρT)}` with `ρ` the cyclic relabelling. Its
+swap-closure `{(T, ρT), (T, ρ⁻¹T)}` is a degree-two covering with
+`n_v = 2`. That control is not in PIP3, but it shows that the letter count
+alone cannot exclude case 2.
+
+**What remains for odd determinant under (NM_V).** A rank-two strict
+component is one of the following:
+
+- (i) `π₁` is locally injective nowhere: some tiling has two asymptotic
+  partners.
+- (ii) `π₁` is a covering with `n_v = 2`, both endpoint maps are
+  permutations, and `ER ⊆ K_{3,3}`.
+
 ### Lean
 
 [`proof/PscVerif/PscVerif/UniquePartnerLetters.lean`](../proof/PscVerif/PscVerif/UniquePartnerLetters.lean)
-checks steps 4 and 5 over the three-letter alphabet, with no `sorry`:
+checks steps 4 and 5 over the three-letter alphabet, and the letter count
+of Theorem UP′, with no `sorry`:
 
 - `card_eq_two_of_involution`: a nonempty `L ⊆ Fin 3` that a map sends
   into itself as a fixed-point-free involution has `L.card = 2`.
 - `beta1_le_one`: an edge set `E ⊆ Fin 3 × Fin 3` whose left and right
   letter sets each carry such an involution has
   `|E| − |L| − |R| + 1 ≤ 1`.
+- `regular_cases` and `no_matching_on_three`: an `n`-regular simple graph,
+  with `n ≥ 1`, on at most three letters has either `n = 1` and two letters
+  or `n = 2` and three.
 
 Steps 1–3 are tiling-space arguments and are written proofs here.
 
@@ -160,7 +223,11 @@ tiling are `≈_s`-equivalent, so Barge's stack relation is nontrivial on
   involution exists for every rank-two `σ` (B15 Lemma 13). The alphabet is
   the stack alphabet of a proper substitution, so the three-letter count in
   step 5 does not apply.
-- **Next statement to try:** run steps 1–4 with the multi-valued partner
-  relation in place of `ι`. In that relation the partners of one tiling
-  are pairwise coincident by (W4). The aim is a set-valued letter
-  correspondence whose parity or size contradicts `β₁(ER) ≥ 2`.
+- The covering case is reduced by Theorem UP′. Two cases remain open under
+  (NM_V) and odd determinant: the nowhere-locally-injective joining (i),
+  and the degree-two covering over a permutation substitution (ii).
+- **Next statements to try:**
+  - In case (ii), combine the cyclic structure of `Λ` and `P` (two
+    triangles) with (W4), which makes the two vertex partners of a tiling
+    coincident, and with `Φ`-equivariance of the matching.
+  - In case (i), use the asymptotic partner pair supplied by Lemma C(c).
