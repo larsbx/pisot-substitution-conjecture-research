@@ -244,3 +244,10 @@ the required corrected odd multiplicity is too small in
 every literal candidate sink, or to exclude those sinks by
 another literal constraint. The positive productive control
 keeps the seam-cycle contribution relevant off (F).
+
+**Update 2026-11-18.** Added after #603; the text above is unchanged.
+The [seam-ceiling follow-up](c4-neutral-rank-seam-ceiling-2026-11-18.md)
+records a literal positive correction at $+1$ on the $\det M=+1$ specimen
+`01/122/201`. It bounds the correction of any strict carrier by a
+source-only ceiling, and it shows that an endpoint-coboundary defect needs
+its full rank in $A_C^-$ alone.

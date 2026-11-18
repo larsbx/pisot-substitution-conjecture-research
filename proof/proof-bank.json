@@ -28714,6 +28714,350 @@
       "declaration": "theorem omitting_root_counterexample :"
     },
     {
+      "name": "Psc.NeutralRankSeam.promoted_of_shared",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 63,
+      "declaration": "theorem promoted_of_shared {c : C} (hc : shared c) : promoted g shared P ε c = P c := by"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.promoted_comp",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 70,
+      "declaration": "theorem promoted_comp (hε : ε ≠ 0) (hpers : ∀ c, shared c → shared (g c))"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.promoted_swap",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 97,
+      "declaration": "theorem promoted_swap {J : C → C} (hJg : ∀ c, g (J c) = J (g c)) (hJs : ∀ c, shared (J c) ↔ shared c)"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.adj_iterate",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 127,
+      "declaration": "theorem adj_iterate (hclosed : ∀ s t, Adj s t → Adj (gR s) (gL t)) {s t : C} (h : Adj s t) :"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.promoted_adj",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 137,
+      "declaration": "theorem promoted_adj (hclosed : ∀ s t, Adj s t → Adj (gR s) (gL t))"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.EndpointData.linked_sum",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 196,
+      "declaration": "theorem linked_sum : ∀ (a : C) (t : List C), Linked E.Adj (a :: t) →"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.EndpointData.column_identity",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 206,
+      "declaration": "theorem column_identity (c a : C) (t : List C) (hl : Linked E.Adj (a :: t))"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.EndpointData.bigon_sum",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 214,
+      "declaration": "theorem bigon_sum (a : C) (t : List C) (hl : Linked E.Adj (a :: t)) (hfirst : E.sharedL a)"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.vecMul_occ",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 231,
+      "declaration": "theorem vecMul_occ (x : C → K) (rows : B → List C) (b : B) :"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.vecMul_occ_eq",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 242,
+      "declaration": "theorem vecMul_occ_eq"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.rank_le_finrank_oddEigen",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 274,
+      "declaration": "theorem rank_le_finrank_oddEigen (A : Matrix C C K) (J : C → C) (ε : K)"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.endpoint_rank_bound",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 284,
+      "declaration": "theorem endpoint_rank_bound (E : V → EndpointData C K) (ε : K) (hε : ∀ v, (E v).ε = ε)"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.cast_count_flatMap",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 315,
+      "declaration": "theorem cast_count_flatMap {X : Type*} (f : X → List C) (l : List X) (u : C) :"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.occ_mul_occ",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 323,
+      "declaration": "theorem occ_mul_occ (rows : C → List C) (blocks : B → List C) (children : B → List B)"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.defect_eigen",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 335,
+      "declaration": "theorem defect_eigen {V : Type*} [Fintype V] (kap : Matrix V C K) (A : Matrix C C K)"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.endpoint_defect_eigen",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 343,
+      "declaration": "theorem endpoint_defect_eigen {V : Type*} [Fintype V] (E : V → EndpointData C K) (ε : K)"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.naive_fails",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 370,
+      "declaration": "theorem naive_fails :"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.seam_det",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 390,
+      "declaration": "theorem seam_det : (incZ seamSubst).det = 1 := by decide"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.seam_endpoint_maps",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 396,
+      "declaration": "theorem seam_endpoint_maps :"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.seam_bigram_legal",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 402,
+      "declaration": "theorem seam_bigram_legal :"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.seam_bigram_cyclic",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 405,
+      "declaration": "theorem seam_bigram_cyclic :"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.seam_isInteriorAddress_1",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 410,
+      "declaration": "theorem seam_isInteriorAddress_1 :"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.seam_isInteriorAddress_2",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 415,
+      "declaration": "theorem seam_isInteriorAddress_2 :"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.seam_isInteriorAddress_3",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 420,
+      "declaration": "theorem seam_isInteriorAddress_3 :"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.seam_isInteriorAddress_4",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 425,
+      "declaration": "theorem seam_isInteriorAddress_4 :"
+    },
+    {
+      "name": "Psc.NeutralRankSeam.seam_trace",
+      "module": "PscVerif.NeutralRankSeam",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeam.lean",
+      "line": 444,
+      "declaration": "theorem seam_trace :"
+    },
+    {
+      "name": "Psc.NeutralRankSeamCycle.seam_inc",
+      "module": "PscVerif.NeutralRankSeamCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeamCycle.lean",
+      "line": 28,
+      "declaration": "theorem seam_inc : inc seamSubst = !![1, 0, 1; 1, 1, 1; 0, 2, 1] := by decide"
+    },
+    {
+      "name": "Psc.NeutralRankSeamCycle.seam_charpoly",
+      "module": "PscVerif.NeutralRankSeamCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeamCycle.lean",
+      "line": 31,
+      "declaration": "theorem seam_charpoly (K : Type*) [CommRing K] :"
+    },
+    {
+      "name": "Psc.NeutralRankSeamCycle.seam_irreducible",
+      "module": "PscVerif.NeutralRankSeamCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeamCycle.lean",
+      "line": 39,
+      "declaration": "theorem seam_irreducible : Irreducible ((inc seamSubst).map (Nat.cast : ℕ → ℚ)).charpoly := by"
+    },
+    {
+      "name": "Psc.NeutralRankSeamCycle.seam_primitive",
+      "module": "PscVerif.NeutralRankSeamCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeamCycle.lean",
+      "line": 45,
+      "declaration": "theorem seam_primitive : ∀ a c, 0 < (inc seamSubst ^ 3) a c := fun a c => by"
+    },
+    {
+      "name": "Psc.NeutralRankSeamCycle.seam_prim",
+      "module": "PscVerif.NeutralRankSeamCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeamCycle.lean",
+      "line": 48,
+      "declaration": "theorem seam_prim : ∃ k ≥ 1, ∀ a c, 0 < (inc seamSubst ^ k) a c :="
+    },
+    {
+      "name": "Psc.NeutralRankSeamCycle.adjK_mul",
+      "module": "PscVerif.NeutralRankSeamCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeamCycle.lean",
+      "line": 66,
+      "declaration": "theorem adjK_mul : ∀ k ∈ [1, 2, 3, 4],"
+    },
+    {
+      "name": "Psc.NeutralRankSeamCycle.goodIdx_eq",
+      "module": "PscVerif.NeutralRankSeamCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeamCycle.lean",
+      "line": 76,
+      "declaration": "theorem goodIdx_eq :"
+    },
+    {
+      "name": "Psc.NeutralRankSeamCycle.address_index",
+      "module": "PscVerif.NeutralRankSeamCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeamCycle.lean",
+      "line": 81,
+      "declaration": "theorem address_index {k : ℕ} (hk : k ∈ [1, 2, 3, 4]) {e : Fin 3} {P Q : List (Fin 3)}"
+    },
+    {
+      "name": "Psc.NeutralRankSeamCycle.v_of_index",
+      "module": "PscVerif.NeutralRankSeamCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeamCycle.lean",
+      "line": 103,
+      "declaration": "theorem v_of_index {k : ℕ} (hd : detK k ≠ 0) {v w : Fin 3 → ℤ} (h : detK k • v = w) :"
+    },
+    {
+      "name": "Psc.NeutralRankSeamCycle.seam_address_classify",
+      "module": "PscVerif.NeutralRankSeamCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeamCycle.lean",
+      "line": 111,
+      "declaration": "theorem seam_address_classify {k : ℕ} (hk1 : 1 ≤ k) (hk4 : k ≤ 4) {e : Fin 3}"
+    },
+    {
+      "name": "Psc.NeutralRankSeamCycle.seamStates_address",
+      "module": "PscVerif.NeutralRankSeamCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeamCycle.lean",
+      "line": 136,
+      "declaration": "theorem seamStates_address : ∀ x ∈ seamStates,"
+    },
+    {
+      "name": "Psc.NeutralRankSeamCycle.seam_lengthData",
+      "module": "PscVerif.NeutralRankSeamCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeamCycle.lean",
+      "line": 155,
+      "declaration": "theorem seam_lengthData : LengthData seamSubst (lenHom ℓ) β ∧ 1 < β := by"
+    },
+    {
+      "name": "Psc.NeutralRankSeamCycle.seam_periodic_iff",
+      "module": "PscVerif.NeutralRankSeamCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeamCycle.lean",
+      "line": 160,
+      "declaration": "theorem seam_periodic_iff {k : ℕ} (hk1 : 1 ≤ k) (hk4 : k ≤ 4) (x : Fin 3 × (Fin 3 → ℤ)) :"
+    },
+    {
+      "name": "Psc.NeutralRankSeamCycle.step_vertex",
+      "module": "PscVerif.NeutralRankSeamCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeamCycle.lean",
+      "line": 174,
+      "declaration": "theorem step_vertex {a : Fin 3} {y : Fin 3 × (Fin 3 → ℤ)}"
+    },
+    {
+      "name": "Psc.NeutralRankSeamCycle.stepN_vertex",
+      "module": "PscVerif.NeutralRankSeamCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeamCycle.lean",
+      "line": 185,
+      "declaration": "theorem stepN_vertex {a : Fin 3} :"
+    },
+    {
+      "name": "Psc.NeutralRankSeamCycle.isState_of_stepN",
+      "module": "PscVerif.NeutralRankSeamCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeamCycle.lean",
+      "line": 194,
+      "declaration": "theorem isState_of_stepN {x : Fin 3 × (Fin 3 → ℤ)} (hx : IsState (lenHom ℓ) x) :"
+    },
+    {
+      "name": "Psc.NeutralRankSeamCycle.seam_single_cycle",
+      "module": "PscVerif.NeutralRankSeamCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/NeutralRankSeamCycle.lean",
+      "line": 204,
+      "declaration": "theorem seam_single_cycle :"
+    },
+    {
       "name": "Psc.OccurrenceAddress.locate_sound",
       "module": "PscVerif.OccurrenceAddress",
       "private": false,
@@ -38842,6 +39186,126 @@
       "declaration": "theorem tmRedSystem_eq : tmRedSystem.C = thueMorse.C ∧"
     },
     {
+      "name": "Psc.SeamCycleSpectrum.vtrace_eq_dft",
+      "module": "PscVerif.SeamCycleSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SeamCycleSpectrum.lean",
+      "line": 52,
+      "declaration": "theorem vtrace_eq_dft (a : ZMod D → ℂ) (n : ℕ) : vtrace a n = 𝓕 a (-(n : ZMod D)) := by"
+    },
+    {
+      "name": "Psc.SeamCycleSpectrum.vtrace_sub",
+      "module": "PscVerif.SeamCycleSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SeamCycleSpectrum.lean",
+      "line": 56,
+      "declaration": "theorem vtrace_sub (a b : ZMod D → ℂ) (n : ℕ) : vtrace (a - b) n = vtrace a n - vtrace b n := by"
+    },
+    {
+      "name": "Psc.SeamCycleSpectrum.vtrace_period",
+      "module": "PscVerif.SeamCycleSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SeamCycleSpectrum.lean",
+      "line": 59,
+      "declaration": "theorem vtrace_period (a : ZMod D → ℂ) : vtrace a D = vtrace a 0 := by"
+    },
+    {
+      "name": "Psc.SeamCycleSpectrum.eq_of_vtrace",
+      "module": "PscVerif.SeamCycleSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SeamCycleSpectrum.lean",
+      "line": 63,
+      "declaration": "theorem eq_of_vtrace {a b : ZMod D → ℂ} (h : ∀ n : ℕ, vtrace a n = vtrace b n) : a = b := by"
+    },
+    {
+      "name": "Psc.SeamCycleSpectrum.kernel_iff",
+      "module": "PscVerif.SeamCycleSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SeamCycleSpectrum.lean",
+      "line": 71,
+      "declaration": "theorem kernel_iff {q : ℕ} (hq : 0 < q) (hqD : q ∣ D) (k : ZMod D) :"
+    },
+    {
+      "name": "Psc.SeamCycleSpectrum.geom_root_sum",
+      "module": "PscVerif.SeamCycleSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SeamCycleSpectrum.lean",
+      "line": 95,
+      "declaration": "theorem geom_root_sum {q : ℕ} (hq : 0 < q) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.SeamCycleSpectrum.sum_kernel",
+      "module": "PscVerif.SeamCycleSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SeamCycleSpectrum.lean",
+      "line": 123,
+      "declaration": "theorem sum_kernel {q : ℕ} (hq : 0 < q) (hqD : q ∣ D) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.SeamCycleSpectrum.mult_eq_card_order",
+      "module": "PscVerif.SeamCycleSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SeamCycleSpectrum.lean",
+      "line": 167,
+      "declaration": "theorem mult_eq_card_order (S : Multiset ℕ) (k : ZMod D) :"
+    },
+    {
+      "name": "Psc.SeamCycleSpectrum.vtrace_mult",
+      "module": "PscVerif.SeamCycleSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SeamCycleSpectrum.lean",
+      "line": 173,
+      "declaration": "theorem vtrace_mult (S : Multiset ℕ) (hS : ∀ q ∈ S, 0 < q ∧ q ∣ D) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.SeamCycleSpectrum.cycle_correction",
+      "module": "PscVerif.SeamCycleSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SeamCycleSpectrum.lean",
+      "line": 193,
+      "declaration": "theorem cycle_correction (a b : ZMod D → ℂ) (U L R : Multiset ℕ)"
+    },
+    {
+      "name": "Psc.SeamCycleSpectrum.iterate_shift",
+      "module": "PscVerif.SeamCycleSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SeamCycleSpectrum.lean",
+      "line": 221,
+      "declaration": "theorem iterate_shift (n : ℕ) (x : E × ZMod p) :"
+    },
+    {
+      "name": "Psc.SeamCycleSpectrum.isPeriodicPt_shift_iff",
+      "module": "PscVerif.SeamCycleSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SeamCycleSpectrum.lean",
+      "line": 230,
+      "declaration": "theorem isPeriodicPt_shift_iff (n : ℕ) (x : E × ZMod p) :"
+    },
+    {
+      "name": "Psc.SeamCycleSpectrum.minimalPeriod_shift",
+      "module": "PscVerif.SeamCycleSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SeamCycleSpectrum.lean",
+      "line": 237,
+      "declaration": "theorem minimalPeriod_shift [NeZero p] (x : E × ZMod p) :"
+    },
+    {
+      "name": "Psc.SeamCycleSpectrum.dvd_minimalPeriod_shift_iff",
+      "module": "PscVerif.SeamCycleSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SeamCycleSpectrum.lean",
+      "line": 252,
+      "declaration": "theorem dvd_minimalPeriod_shift_iff [NeZero p] (x : E × ZMod p) (d : ℕ) :"
+    },
+    {
+      "name": "Psc.SeamCycleSpectrum.ceiling_bounds",
+      "module": "PscVerif.SeamCycleSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SeamCycleSpectrum.lean",
+      "line": 262,
+      "declaration": "theorem ceiling_bounds {Γ X : Type*} (G : Finset Γ) (adm : Γ → Finset (Finset X))"
+    },
+    {
       "name": "Psc.SectorBridge.exists_conj_diagonal",
       "module": "PscVerif.SectorBridge",
       "private": false,
@@ -43221,6 +43685,16 @@
       "statement_heading": "**Theorem.** For every represented orbit,"
     },
     {
+      "source": "docs/c4-neutral-rank-seam-ceiling-2026-11-18.md",
+      "line": 78,
+      "statement_heading": "### Lemma A (source seam ceiling)"
+    },
+    {
+      "source": "docs/c4-neutral-rank-seam-ceiling-2026-11-18.md",
+      "line": 148,
+      "statement_heading": "### Lemma B (the endpoint-coboundary branch carries no seam term)"
+    },
+    {
       "source": "docs/c4-nonunit-madic-counting-bridge-2026-11-04.md",
       "line": 206,
       "statement_heading": "**Theorem M1 (lifted cut-pair bound).**"
@@ -45316,6 +45790,8 @@
     "proof/PscVerif/PscVerif/NamedStableContraction.lean": "13381d9619cd2c574e15614ce0e00609d17e1b153b359ca788ebe73d45bde8fd",
     "proof/PscVerif/PscVerif/NamedStrictExclusion.lean": "80ddbe716a339bb19705de5ddb0914c5cb4b7fb75dbc3ff812df6685855f551a",
     "proof/PscVerif/PscVerif/NamedStrictExclusionControls.lean": "e5e5c2a1fbfb87f256ae71a645f9d863ad03da63b6cadaed2e4a5da15265d1d7",
+    "proof/PscVerif/PscVerif/NeutralRankSeam.lean": "075329a8526692ab0fdbf2cd485e40023834cb02ab975d441ad7ef31562cf136",
+    "proof/PscVerif/PscVerif/NeutralRankSeamCycle.lean": "db67bc7a06a7e20572de8bcd20e0ee611d9b0f85213930f80cf3a4c23b1645fc",
     "proof/PscVerif/PscVerif/OccurrenceAddress.lean": "fd8d4020fc3f720c8a81d23c9811056802c901eec35a48efcbb40954c5a375ad",
     "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean": "0843e0a255a2a13675132264eb1385d9a155b7122138359b02158916541e2b4e",
     "proof/PscVerif/PscVerif/OccurrenceCover.lean": "c66e2937532b2b289351b9ab10a18a1485b73434e362fd1e88edbfd3b6479cb6",
@@ -45361,6 +45837,7 @@
     "proof/PscVerif/PscVerif/QuotientDistance.lean": "1431961ca4d26d60e5bf5165c7773440e7a708b51377697e339f94f7cf5896ef",
     "proof/PscVerif/PscVerif/ReductioControls.lean": "73c94ccd2ec83747f47d77035ff3cdca3843d611470f0cd3eae64c10104a0e76",
     "proof/PscVerif/PscVerif/Reduction.lean": "357fa49ab6991513e07f249b8a4d74caabad75f68db76ce501395b3a0af87d2d",
+    "proof/PscVerif/PscVerif/SeamCycleSpectrum.lean": "75194d4736cc45c58236d3b30ce4f2eccbc05026e3cc225d3e6eda6a65411c91",
     "proof/PscVerif/PscVerif/SectorBridge.lean": "52402b9cf47212fae4fc351435bd721babb702aea48e4b5c1f2d1ed40d4e6800",
     "proof/PscVerif/PscVerif/Seeds.lean": "224a67ea3d89c8cd54747164d4e1fbbc9b733aa5eb404465119999b738dce747",
     "proof/PscVerif/PscVerif/SelectedRank.lean": "0ab6fc76698ebcfd14ce1b319b121f0eaee9d2d64fceb26d3cf9e6a59b26c396",
@@ -45375,7 +45852,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "f22b8e9cb06f97aaaa6e2fede8f74766cef8f671ea420b62cf673a96ab2df471",
+    "proof/PscVerif/PscVerif.lean": "73b44d1ff634c1b1c7bd346e488053383e18e4766ae5209ebec15e4a2e10ccd2",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
