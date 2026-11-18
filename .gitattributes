@@ -1,0 +1,2 @@
+# A unified patch's blank context lines are immutable evidence bytes.
+evidence/c4-named-termination-2026-11-13/prepared-inspector/inspector-change.diff whitespace=-blank-at-eol

@@ -1,0 +1,19 @@
+{
+  "base_commit": "52614a3b5a7199b1d17cb7a0b435da71e1e80569",
+  "scope": "proposed production proof transport; complete isolated Lean acceptance pending",
+  "source_hashes": {
+    "proof/PscVerif/PscVerif/NamedForwardCarrier.lean": "46625b1898b1662066831e0063e0ed0330006a0d150d244df412b44bea3f3659",
+    "proof/PscVerif/PscVerif/NamedForwardCarrierData0.lean": "5026901eb6a7f9c2500f38f7835aa96a235c6eb0e5722da1084a45fb83b2b905",
+    "proof/PscVerif/PscVerif/NamedForwardCarrierData1.lean": "a49d8fa4146b534cff95259beab31a06903088184676704c239eb11b98cc4c0a",
+    "proof/PscVerif/PscVerif/NamedForwardCarrierWords0.lean": "6583596c0d3d21a11a3e283954ec4c8ad72572969155e406bb2cd6f6baceb72a",
+    "proof/PscVerif/PscVerif/NamedForwardCarrierWords1.lean": "a44fee6794080f4f0cde90167c862476b6022115a7e3120078dff042c153702b",
+    "proof/proof-bank.json": "7ad44420a3f4146070b1342029657ffcefaf714e139ff5534a1137db2129a3b1"
+  },
+  "source_checks": {
+    "proof_bank": "126 claims, 3597 named Lean proofs, 411 source openings",
+    "generated_ledger": "32 generated surfaces current",
+    "claim_governance": "passed terminology, claims, coverage, promotion, numerics, consistency"
+  },
+  "governed_status_changes": false,
+  "full_lean_acceptance_claimed": false
+}

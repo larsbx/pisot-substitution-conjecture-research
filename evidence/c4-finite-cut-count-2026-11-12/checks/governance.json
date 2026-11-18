@@ -1,0 +1,12 @@
+{
+  "command": [
+    "python",
+    "-m",
+    "claim_governance.cli",
+    "--root",
+    "."
+  ],
+  "exit_code": 0,
+  "observed_at_utc": "2026-11-12T20:20:45.063782+00:00",
+  "source_revision": "31f8046291f2428e839d95e8890c8342858ec210"
+}

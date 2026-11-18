@@ -1,0 +1,12 @@
+{
+  "actual_parent": "38d93a8f25df7579a688ffc3cd7cfa8c36cfa754",
+  "actual_parent_tree": "96e70f75949e669f983c7ba0a73ed01a13ec5006",
+  "chronology_note": "Prior compact count plans were proposed/uncompiled interfaces; the archived audit does not retroactively relabel them as a fresh pre-code targeted gate.",
+  "code_commit": "31f8046291f2428e839d95e8890c8342858ec210",
+  "code_message": "Prove the finite lower bound for original balanced cut vectors\n",
+  "code_tree": "e38c3f65efb79fa72860d8ef222e96695847a551",
+  "initial_pr_base_sha": "38d93a8f25df7579a688ffc3cd7cfa8c36cfa754",
+  "literature_review_timing": "Postimplementation contract/literature audit of existing PR560, explicitly not a pre-code gate.",
+  "main_observed_in_initial_snapshot": "c9358c2d46d7b306853609e2c5a090328aff92c3",
+  "schema": "c4-finite-cut-count-chronology-v1"
+}

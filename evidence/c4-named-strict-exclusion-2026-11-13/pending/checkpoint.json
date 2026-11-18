@@ -1,0 +1,1598 @@
+{
+  "archive": {
+    "bytes": 100952,
+    "embedded_manifest": "manifest.json",
+    "embedded_manifest_sha256": "4b5653644d4594d75ec9dcc0411111bfd3b40ba802eb3682faf91c7647247470",
+    "filename": "pending-evidence.tar.gz",
+    "member_count": 111,
+    "sha256": "b5f25a5e5f9685cddbab92afd9ad4362489196e01b7afce42d4f5a8dc2b811da"
+  },
+  "archive_metadata_policy": {
+    "gid": 0,
+    "gzip_mtime": 0,
+    "member_mtime": 0,
+    "member_names": "safe relative paths",
+    "member_types": "regular files only",
+    "mode_octal": "0644",
+    "order": "lexicographic",
+    "uid": 0
+  },
+  "artifact_bytes_are_unchanged": true,
+  "artifact_count": 109,
+  "artifact_manifest": [
+    {
+      "archive_path": "artifacts/evidence-preparation/cancelled-v2/cancellation.json",
+      "bytes": 600,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533625659166780,
+      "original_relative_path": "evidence-preparation/cancelled-v2/cancellation.json",
+      "sha256": "8f9a3bb99a11ae150accd511a58b534eb31b060d8a791d88990a6b782a2871ca"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/cancelled-v2/cleanup.json",
+      "bytes": 311,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533625660723697,
+      "original_relative_path": "evidence-preparation/cancelled-v2/cleanup.json",
+      "sha256": "7b4f8e36220a448264b7d64bd5be38261c0d79e4b631038464e27c6a4cd8d149"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/cancelled-v2/full.log.gz",
+      "bytes": 3476,
+      "capture_kind": "unchanged_original_bytes",
+      "decompressed_log_bytes": 17310,
+      "decompressed_log_sha256": "a61831e53bf6a30223f5cfb99e48fda896b5f778b870d45f84846c62f356301f",
+      "original_mtime_ns": 1794533625663454930,
+      "original_relative_path": "evidence-preparation/cancelled-v2/full.log.gz",
+      "sha256": "695b7c4639fc89a61af29a269d258c26f9befa67d4bc97a511ae66357475172a"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/cancelled-v2/process.json",
+      "bytes": 73,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533625658830835,
+      "original_relative_path": "evidence-preparation/cancelled-v2/process.json",
+      "sha256": "f3ffb876691b86300bdd517ffc4502397b6ea497537c76d7aad831b893fd6c6d"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/cancelled-v2/runner.py",
+      "bytes": 2651,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533625663672367,
+      "original_relative_path": "evidence-preparation/cancelled-v2/runner.py",
+      "sha256": "6cef71ef1996e2e021b5cdb16824a363c1c97e106a9e2e724a350f04997de593"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/cancelled-v2/start.json",
+      "bytes": 1257,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533625658388339,
+      "original_relative_path": "evidence-preparation/cancelled-v2/start.json",
+      "sha256": "221657cfba725f02d0561a1cde22e3b79f36f22c33d4767c9ecbadc32c2833fb"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/cancelled-v3/cancellation.json",
+      "bytes": 688,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535979541941591,
+      "original_relative_path": "evidence-preparation/cancelled-v3/cancellation.json",
+      "sha256": "0785b6035d83db9f63437e1e847d4b817b0907762604771f3732fc01728af077"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/cancelled-v3/cleanup.json",
+      "bytes": 191,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535979541985517,
+      "original_relative_path": "evidence-preparation/cancelled-v3/cleanup.json",
+      "sha256": "5f8ea0f3aa22a64ac6c092d14bbbc5173a9992702f032c98f5eb00057f83bcab"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/cancelled-v3/full.log.gz",
+      "bytes": 3720,
+      "capture_kind": "unchanged_original_bytes",
+      "decompressed_log_bytes": 18826,
+      "decompressed_log_sha256": "dac5468a9684eb3462fb723c2bce2ddbf3f3a0f8341cc04653e19feea2d000bb",
+      "original_mtime_ns": 1794535979543767908,
+      "original_relative_path": "evidence-preparation/cancelled-v3/full.log.gz",
+      "sha256": "18aa998e4ecb011631d4249b1bf79235d7006ddbc790bc8fdd456ca848576bc6"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/cancelled-v3/process.json",
+      "bytes": 73,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535979541875391,
+      "original_relative_path": "evidence-preparation/cancelled-v3/process.json",
+      "sha256": "eb152b2781d260c3276d3b6755588a3cf42fb6b22783d6fc9634f104609b0f41"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/cancelled-v3/runner.py",
+      "bytes": 2791,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535979543997443,
+      "original_relative_path": "evidence-preparation/cancelled-v3/runner.py",
+      "sha256": "f6e54e5925ca88a4a69663c3e0c8d5b5849b8b75ecd7e442fa3b07cb60cf3235"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/cancelled-v3/start.json",
+      "bytes": 1451,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535979541632276,
+      "original_relative_path": "evidence-preparation/cancelled-v3/start.json",
+      "sha256": "bcca5f7567931c6efd50bee4d2b007bccb97eb3fe97865af4921fb82cf9419c1"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/failed-development/dependency-focused.log.gz",
+      "bytes": 55,
+      "capture_kind": "unchanged_original_bytes",
+      "decompressed_log_bytes": 35,
+      "decompressed_log_sha256": "3e736b03dc3a722978c82d4a0f3e1b20dfc02fa06b18268610f74e3c1209789d",
+      "original_mtime_ns": 1794533271483623562,
+      "original_relative_path": "evidence-preparation/failed-development/dependency-focused.log.gz",
+      "sha256": "dcafd205e835af759aeb0d45f1ddd52c5b3e16e77c85987510513c2769d0cdb7"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/failed-development/isolated-full.log.gz",
+      "bytes": 2981,
+      "capture_kind": "unchanged_original_bytes",
+      "decompressed_log_bytes": 15934,
+      "decompressed_log_sha256": "8d335036cba3db08aba35b80e241ca6028c58a82e2350125dd9c0b7e55af0354",
+      "original_mtime_ns": 1794533271475029499,
+      "original_relative_path": "evidence-preparation/failed-development/isolated-full.log.gz",
+      "sha256": "2c2f591362822c31de3214f138fc8731be1930e327e9080187b6c985fe783ecf"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/failed-development/isolated-terminal.json",
+      "bytes": 73,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533271476093990,
+      "original_relative_path": "evidence-preparation/failed-development/isolated-terminal.json",
+      "sha256": "22454110e90b22666658fd749bdbb77b97d3793bc761bcdd3178d5e6fb60083f"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/failed-development/manifest.json",
+      "bytes": 2616,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533271484536365,
+      "original_relative_path": "evidence-preparation/failed-development/manifest.json",
+      "sha256": "4f9d7d901e62def72548605b5a7506904dad539acfa05635810cf775336df239"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/failed-development/mojo-build-no-telemetry.log.gz",
+      "bytes": 20,
+      "capture_kind": "unchanged_original_bytes",
+      "decompressed_log_bytes": 0,
+      "decompressed_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_mtime_ns": 1794533271479133510,
+      "original_relative_path": "evidence-preparation/failed-development/mojo-build-no-telemetry.log.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/failed-development/mojo-build.log.gz",
+      "bytes": 2790,
+      "capture_kind": "unchanged_original_bytes",
+      "decompressed_log_bytes": 35640,
+      "decompressed_log_sha256": "0aa19698d33bdb1762b5141dcd5f1a1b4c4e5540b374817595335086ec807ab7",
+      "original_mtime_ns": 1794533271478376472,
+      "original_relative_path": "evidence-preparation/failed-development/mojo-build.log.gz",
+      "sha256": "32b34d8f1d94e9693b5e2035e045ff7c009c14b57a28482ea02b4d85cd85321d"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/failed-development/positive-focused-2.log.gz",
+      "bytes": 178,
+      "capture_kind": "unchanged_original_bytes",
+      "decompressed_log_bytes": 213,
+      "decompressed_log_sha256": "ee7e69397233b701bc32bb578e721f320f259b170ec12a7363bf7687a85115ec",
+      "original_mtime_ns": 1794533271484127960,
+      "original_relative_path": "evidence-preparation/failed-development/positive-focused-2.log.gz",
+      "sha256": "e429a454e620ce166d69fda35a365aa721a1c9eef0c86d99cc5698226854f9be"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/failed-development/positive-focused-3.log.gz",
+      "bytes": 20,
+      "capture_kind": "unchanged_original_bytes",
+      "decompressed_log_bytes": 0,
+      "decompressed_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_mtime_ns": 1794533271484294751,
+      "original_relative_path": "evidence-preparation/failed-development/positive-focused-3.log.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/failed-development/positive-focused.log.gz",
+      "bytes": 167,
+      "capture_kind": "unchanged_original_bytes",
+      "decompressed_log_bytes": 210,
+      "decompressed_log_sha256": "15b8b5cc5157552da9e39b6bf89f72a4c672a411ce856cd1fa9a149f07e7ff5f",
+      "original_mtime_ns": 1794533271481491436,
+      "original_relative_path": "evidence-preparation/failed-development/positive-focused.log.gz",
+      "sha256": "67ac53997150d8183655c9f3cacca99e9c5e770e14dde3126b96d1b1c5204eef"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/first-attempt.json",
+      "bytes": 561,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794532630258292120,
+      "original_relative_path": "evidence-preparation/first-attempt.json",
+      "sha256": "e686f931fbf73b5f086fc7df7686946d3c403feb2598a27fa80e52522a72337e"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/native-oracle-receipt.json",
+      "bytes": 5976,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533019519628377,
+      "original_relative_path": "evidence-preparation/native-oracle-receipt.json",
+      "sha256": "53ef2793d4b7cdbb7d011c951f1535c5e9975e63750ab9a0a9322370a2dd1ca0"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/native-replay-summary.json",
+      "bytes": 1127,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533041378579179,
+      "original_relative_path": "evidence-preparation/native-replay-summary.json",
+      "sha256": "74eac7409947a9c2b8e9f79752bc25b08cbd85976e516fc70a3dfa71f15f84ec"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/source-inventory-v2.json",
+      "bytes": 1576,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533702715334810,
+      "original_relative_path": "evidence-preparation/source-inventory-v2.json",
+      "sha256": "e794b583d7a8924c62dd9c9919d1d2036ebeebd163fe3e193cae3ed39762770d"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/source-inventory-v3.json",
+      "bytes": 1576,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533702752966841,
+      "original_relative_path": "evidence-preparation/source-inventory-v3.json",
+      "sha256": "ff60e5ed46da2bb453a3ad9aa11abcb9ce4e9c9ddddd17b93ad52afdced28a11"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/source-inventory.json",
+      "bytes": 1576,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794532630257452196,
+      "original_relative_path": "evidence-preparation/source-inventory.json",
+      "sha256": "e794b583d7a8924c62dd9c9919d1d2036ebeebd163fe3e193cae3ed39762770d"
+    },
+    {
+      "archive_path": "artifacts/evidence-preparation/v4-handle-unavailable.json",
+      "bytes": 1443,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794542414086762719,
+      "original_relative_path": "evidence-preparation/v4-handle-unavailable.json",
+      "sha256": "f0f223394dcab51e713512076f046d692609d17f5ce70a63ad23989da16672d2"
+    },
+    {
+      "archive_path": "artifacts/focused-v4/01-NamedPositiveOverlap.log",
+      "bytes": 0,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794539239439773081,
+      "original_relative_path": "focused-v4/01-NamedPositiveOverlap.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "archive_path": "artifacts/focused-v4/01-NamedPositiveOverlap.process.json",
+      "bytes": 509,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794539239440359643,
+      "original_relative_path": "focused-v4/01-NamedPositiveOverlap.process.json",
+      "sha256": "61a98e1213d8e6a62615b867d9e1829f86bb5b75034c16ea28921e3af57b78f8"
+    },
+    {
+      "archive_path": "artifacts/focused-v4/01-NamedPositiveOverlap.start.json",
+      "bytes": 1857,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794539239439773081,
+      "original_relative_path": "focused-v4/01-NamedPositiveOverlap.start.json",
+      "sha256": "e88236599f0e2234f9ce6dbe5f7873c92118cac5dc33591471f544b9bbbc3a11"
+    },
+    {
+      "archive_path": "artifacts/focused-v4/01-NamedPositiveOverlap.terminal.json",
+      "bytes": 6894,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794540439885832317,
+      "original_relative_path": "focused-v4/01-NamedPositiveOverlap.terminal.json",
+      "sha256": "c5d406d5bef6ed8f1a2ffa850d77948a89b9a1d9a9d040892cc5477b53b7e816"
+    },
+    {
+      "archive_path": "artifacts/focused-v4/README.md",
+      "bytes": 2957,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794540493531390952,
+      "original_relative_path": "focused-v4/README.md",
+      "sha256": "e17991cedcc6b029bfab74f5f41c12a201e6155809c63d27278d27a961a4d1db"
+    },
+    {
+      "archive_path": "artifacts/focused-v4/SHA256SUMS",
+      "bytes": 1012,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794540493533348502,
+      "original_relative_path": "focused-v4/SHA256SUMS",
+      "sha256": "4ebd15b5c645d7ed8fb51064f3f48123ae66ccc98beb4603a0a02b1c4a5a9874"
+    },
+    {
+      "archive_path": "artifacts/focused-v4/controller-exit.json",
+      "bytes": 452,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794540493531324662,
+      "original_relative_path": "focused-v4/controller-exit.json",
+      "sha256": "84ff7dcbc19935599833aee586132c83ca22fd100d492520dd48bf33d95e9c66"
+    },
+    {
+      "archive_path": "artifacts/focused-v4/dependency-verification.json",
+      "bytes": 791,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794539486265426844,
+      "original_relative_path": "focused-v4/dependency-verification.json",
+      "sha256": "8cb0cb38b2af74aae8bfff461cb1d06358c45b9abf21f1e9ab7e337aece2b458"
+    },
+    {
+      "archive_path": "artifacts/focused-v4/progress.json",
+      "bytes": 7881,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794540439886217766,
+      "original_relative_path": "focused-v4/progress.json",
+      "sha256": "130d4ade7dffb7b48e3b9271b1263f4e36ea5a2b0adf866e672ab0c0dc7a1517"
+    },
+    {
+      "archive_path": "artifacts/focused-v4/run-start.json",
+      "bytes": 17196,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794539239421261349,
+      "original_relative_path": "focused-v4/run-start.json",
+      "sha256": "acace9a6873f433f80f67d9da886a097c5eb6ef6e62b8d0cc6b37e674ebdce6f"
+    },
+    {
+      "archive_path": "artifacts/focused-v4/run-terminal.json",
+      "bytes": 8194,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794540439908644351,
+      "original_relative_path": "focused-v4/run-terminal.json",
+      "sha256": "464dfc5144ec1626ff4b3a2a2025124540f52eb507376644a650cf2f66399e50"
+    },
+    {
+      "archive_path": "artifacts/focused-v4/run_development.py",
+      "bytes": 9561,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794539238942612820,
+      "original_relative_path": "focused-v4/run_development.py",
+      "sha256": "eb25075a5c3252b05169fdf687b226168a4d1ff1f16ed411dcde3147a5385e10"
+    },
+    {
+      "archive_path": "artifacts/isolated-v4/full.log.prefix",
+      "bytes": 19888,
+      "capture_kind": "exact_nonterminal_prefix",
+      "ends_with_newline": true,
+      "original_relative_path": "isolated-v4/full.log",
+      "read_ended_at_utc": "2026-11-13T03:59:39.319621+00:00",
+      "read_started_at_utc": "2026-11-13T03:59:39.319311+00:00",
+      "sha256": "a204bc932767f89259e7574af4849ee7a0fe2b418aba95c6091773c5b47235e5",
+      "single_open_single_read": true,
+      "source_length_after_read": 19888,
+      "source_length_at_open": 19888,
+      "source_offset_end_exclusive": 19888,
+      "source_offset_start": 0,
+      "terminal_log_claimed": false
+    },
+    {
+      "archive_path": "artifacts/isolated-v4/process.json",
+      "bytes": 113,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535979655196936,
+      "original_relative_path": "isolated-v4/process.json",
+      "sha256": "ae454eadaf1ffe37064db9a153bfbe1bb6d0884ba888ce48907fb92a2641c5c2"
+    },
+    {
+      "archive_path": "artifacts/isolated-v4/scheduler.jsonl.prefix",
+      "bytes": 49651,
+      "capture_kind": "exact_nonterminal_prefix",
+      "ends_with_newline": true,
+      "original_relative_path": "isolated-v4/scheduler.jsonl",
+      "read_ended_at_utc": "2026-11-13T03:59:39.319986+00:00",
+      "read_started_at_utc": "2026-11-13T03:59:39.319643+00:00",
+      "sha256": "5173cf93e55130b84facf98f835c3a1c92d1cd689fccff0f6736f5904056d6e3",
+      "single_open_single_read": true,
+      "source_length_after_read": 49651,
+      "source_length_at_open": 49651,
+      "source_offset_end_exclusive": 49651,
+      "source_offset_start": 0,
+      "terminal_log_claimed": false
+    },
+    {
+      "archive_path": "artifacts/isolated-v4/start.json",
+      "bytes": 1923,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535979654682803,
+      "original_relative_path": "isolated-v4/start.json",
+      "sha256": "4a291916253b129df126da3170eca6804936dc12f8b7f8a7c48a06d504f997a8"
+    },
+    {
+      "archive_path": "artifacts/lean-runtime-resource-audit/tmpfs-deduplication.json",
+      "bytes": 732,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794532474312932743,
+      "original_relative_path": "lean-runtime-resource-audit/tmpfs-deduplication.json",
+      "sha256": "6bf203d71367e584a68f14f0ee1fd3abcda982d9b85a0bbdb1080d8d1d6bc532"
+    },
+    {
+      "archive_path": "artifacts/lean-runtime-resource-audit/tmpfs-toolchain-equivalence.json",
+      "bytes": 397,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794532323495202082,
+      "original_relative_path": "lean-runtime-resource-audit/tmpfs-toolchain-equivalence.json",
+      "sha256": "7e009c7a1dc22b21eb104d6ce610083ecbed8affcd18602fdac0b8b3322ae9ad"
+    },
+    {
+      "archive_path": "artifacts/preflight-isolated-scheduled.py",
+      "bytes": 10335,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535865614949287,
+      "original_relative_path": "preflight-isolated-scheduled.py",
+      "sha256": "f3b53f33dd7a41f69f08ae6d5aa67228580df85a39d8e2ca4630f064b3561256"
+    },
+    {
+      "archive_path": "artifacts/run-isolated-scheduled.py",
+      "bytes": 18867,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535865350944927,
+      "original_relative_path": "run-isolated-scheduled.py",
+      "sha256": "3cbc03282380dd5dac558ad585f7f2ea2dc3a48dfedf496236e78118f001bebf"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3.log",
+      "bytes": 1723,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535884542970870,
+      "original_relative_path": "scheduler-preflight-v3.log",
+      "sha256": "69d0f888cabdaefb405c1cae49d24acfe99eae39fcbadef8cd52ba6556e1e693"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/0.done",
+      "bytes": 4,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535883368320320,
+      "original_relative_path": "scheduler-preflight-v3/0.done",
+      "sha256": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/0.pid",
+      "bytes": 1,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535881308348980,
+      "original_relative_path": "scheduler-preflight-v3/0.pid",
+      "sha256": "19581e27de7ced00ff1ce50b2047e7a567c76b1cbaebabe5ef03f7c3017bb5b7"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/0.progress",
+      "bytes": 2,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535883343079625,
+      "original_relative_path": "scheduler-preflight-v3/0.progress",
+      "sha256": "86e50149658661312a9e0b35558d84f6c6d3da797f552a9657fe0558ca40cdef"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/1.done",
+      "bytes": 4,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535882249078416,
+      "original_relative_path": "scheduler-preflight-v3/1.done",
+      "sha256": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/1.pid",
+      "bytes": 2,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535881357954828,
+      "original_relative_path": "scheduler-preflight-v3/1.pid",
+      "sha256": "4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5233ade6af1dd5"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/1.progress",
+      "bytes": 2,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535882223844582,
+      "original_relative_path": "scheduler-preflight-v3/1.progress",
+      "sha256": "86e50149658661312a9e0b35558d84f6c6d3da797f552a9657fe0558ca40cdef"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/2.done",
+      "bytes": 4,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535883163753041,
+      "original_relative_path": "scheduler-preflight-v3/2.done",
+      "sha256": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/2.pid",
+      "bytes": 2,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535882279344618,
+      "original_relative_path": "scheduler-preflight-v3/2.pid",
+      "sha256": "4fc82b26aecb47d2868c4efbe3581732a3e7cbcc6c2efb32062c08170a05eeb8"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/2.progress",
+      "bytes": 2,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535883138364064,
+      "original_relative_path": "scheduler-preflight-v3/2.progress",
+      "sha256": "86e50149658661312a9e0b35558d84f6c6d3da797f552a9657fe0558ca40cdef"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/3.done",
+      "bytes": 4,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535884123279491,
+      "original_relative_path": "scheduler-preflight-v3/3.done",
+      "sha256": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/3.pid",
+      "bytes": 2,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535883233729267,
+      "original_relative_path": "scheduler-preflight-v3/3.pid",
+      "sha256": "6b51d431df5d7f141cbececcf79edf3dd861c3b4069f0b11661a3eefacbba918"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/3.progress",
+      "bytes": 2,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535884097600416,
+      "original_relative_path": "scheduler-preflight-v3/3.progress",
+      "sha256": "86e50149658661312a9e0b35558d84f6c6d3da797f552a9657fe0558ca40cdef"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/cleanup-scheduler.jsonl",
+      "bytes": 1405,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535884272029096,
+      "original_relative_path": "scheduler-preflight-v3/cleanup-scheduler.jsonl",
+      "sha256": "e2c7de5a020bb92010be5410c00b429e9a4e9901eb9e02c8ea61c40f42504106"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/cleanup/0.pid",
+      "bytes": 2,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535884206495479,
+      "original_relative_path": "scheduler-preflight-v3/cleanup/0.pid",
+      "sha256": "e629fa6598d732768f7c726b4b621285f9c3b85303900aa912017db7617d8bdb"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/cleanup/1.pid",
+      "bytes": 2,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535884252020139,
+      "original_relative_path": "scheduler-preflight-v3/cleanup/1.pid",
+      "sha256": "b17ef6d19c7a5b1ee83b907c595526dcb1eb06db8227d650d5dda0a9f4ce8cd9"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/cleanup/1.progress",
+      "bytes": 1,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535884302559197,
+      "original_relative_path": "scheduler-preflight-v3/cleanup/1.progress",
+      "sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/cleanup/2.pid",
+      "bytes": 2,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535884290746814,
+      "original_relative_path": "scheduler-preflight-v3/cleanup/2.pid",
+      "sha256": "4523540f1504cd17100c4835e85b7eefd49911580f8efff0599a8f283be6b9e3"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/cleanup/2.progress",
+      "bytes": 1,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535884316126139,
+      "original_relative_path": "scheduler-preflight-v3/cleanup/2.progress",
+      "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/harmless-worker.py",
+      "bytes": 905,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535881249422755,
+      "original_relative_path": "scheduler-preflight-v3/harmless-worker.py",
+      "sha256": "dfdc0dc214c4339da557ebaa7f18b171c47a43c14fd302d6adcce8ea20b275fe"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/log-failure-scheduler.jsonl",
+      "bytes": 1248,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535884455260810,
+      "original_relative_path": "scheduler-preflight-v3/log-failure-scheduler.jsonl",
+      "sha256": "083af02bee30740ad1b009e18e0c2711815484c34c71d87bb889836b6b6fe11f"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/log-failure/0.pid",
+      "bytes": 2,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535884395824201,
+      "original_relative_path": "scheduler-preflight-v3/log-failure/0.pid",
+      "sha256": "f5ca38f748a1d6eaf726b8a42fb575c3c71f1864a8143301782de13da2d9202b"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/log-failure/1.pid",
+      "bytes": 2,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535884432595925,
+      "original_relative_path": "scheduler-preflight-v3/log-failure/1.pid",
+      "sha256": "6f4b6612125fb3a0daecd2799dfd6c9c299424fd920f9b308110a2c1fbd8f443"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/log-failure/1.progress",
+      "bytes": 1,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535884483092840,
+      "original_relative_path": "scheduler-preflight-v3/log-failure/1.progress",
+      "sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/log-failure/2.pid",
+      "bytes": 2,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535884477482676,
+      "original_relative_path": "scheduler-preflight-v3/log-failure/2.pid",
+      "sha256": "785f3ec7eb32f30b90cd0fcf3657d388b5ff4297f2f9716ff66e9b69c05ddd09"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/log-failure/2.progress",
+      "bytes": 1,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535884502977685,
+      "original_relative_path": "scheduler-preflight-v3/log-failure/2.progress",
+      "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/nested.done",
+      "bytes": 4,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535882476413552,
+      "original_relative_path": "scheduler-preflight-v3/nested.done",
+      "sha256": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/nested.pid",
+      "bytes": 2,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535881589604678,
+      "original_relative_path": "scheduler-preflight-v3/nested.pid",
+      "sha256": "3fdba35f04dc8c462986c992bcf875546257113072a909c162f7e470e581e278"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/nested.progress",
+      "bytes": 2,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535882451184756,
+      "original_relative_path": "scheduler-preflight-v3/nested.progress",
+      "sha256": "86e50149658661312a9e0b35558d84f6c6d3da797f552a9657fe0558ca40cdef"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/outside.pid",
+      "bytes": 1,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535881279922174,
+      "original_relative_path": "scheduler-preflight-v3/outside.pid",
+      "sha256": "7902699be42c8a8e46fbbb4501726517e86b22c56a189f7625a6da49081b2451"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/outside.progress",
+      "bytes": 3,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535884526004501,
+      "original_relative_path": "scheduler-preflight-v3/outside.progress",
+      "sha256": "2747b7c718564ba5f066f0523b03e17f6a496b06851333d2d59ab6d863225848"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/preflight.json",
+      "bytes": 1723,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535884535017257,
+      "original_relative_path": "scheduler-preflight-v3/preflight.json",
+      "sha256": "1e3d73ca2d23778772e8d8c5da3496678a1e69d364fdf3d1c682796481a89230"
+    },
+    {
+      "archive_path": "artifacts/scheduler-preflight-v3/scheduler.jsonl",
+      "bytes": 3099,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794535883395243246,
+      "original_relative_path": "scheduler-preflight-v3/scheduler.jsonl",
+      "sha256": "e48893be03b9249004de9bf85e3d2e7f0fcf9cbee701035cefdfdcf1d342bab7"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v3/SHA256SUMS",
+      "bytes": 1657,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533619399167954,
+      "original_relative_path": "source-checks-v3/SHA256SUMS",
+      "sha256": "9fc197010697c29ac5959bee1dc6f2d5147b76e4216a36d5d98732fb0ba5d660"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v3/context.json",
+      "bytes": 637,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533606582218956,
+      "original_relative_path": "source-checks-v3/context.json",
+      "sha256": "7fcc6aa2dc3b8cb0fc3610fc33768531fca72375e9c2c2866c123e1bcf4b386e"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v3/import-repair-review.json",
+      "bytes": 12045,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533619382548428,
+      "original_relative_path": "source-checks-v3/import-repair-review.json",
+      "sha256": "0c2736258863e0fab27621cf3f7e121330f300a05a8ac0d250e9969d83aa74d8"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v3/import-repair-review.md",
+      "bytes": 1275,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533619382879987,
+      "original_relative_path": "source-checks-v3/import-repair-review.md",
+      "sha256": "4c21068b107f78e9eb055b3b7ac058cba23cb7755cfcb6a85046d5b932df0e19"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v3/logs/audit-protocol.log",
+      "bytes": 1276,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533606739336610,
+      "original_relative_path": "source-checks-v3/logs/audit-protocol.log",
+      "sha256": "96b59dee2cd12ab68f84d11295a742eb1107bb19be0ca6ea86b1cb24d85f398a"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v3/logs/claim-governance.log",
+      "bytes": 149,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533618025783171,
+      "original_relative_path": "source-checks-v3/logs/claim-governance.log",
+      "sha256": "6940a57ab580c143a470ce9dfa57b03fcd085f8b569960cca2350b9ec0dbae49"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v3/logs/ledger.log",
+      "bytes": 39,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533609433641637,
+      "original_relative_path": "source-checks-v3/logs/ledger.log",
+      "sha256": "87e6e3fc1f68a3418fbefd2f09df76e36d95d4624c7d11ffe2b3b6c64a09b9d6"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v3/logs/manuscript-source.log",
+      "bytes": 69,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533619273803723,
+      "original_relative_path": "source-checks-v3/logs/manuscript-source.log",
+      "sha256": "b8b6216a8335b48ba12fb2b8582d9d371b5c04ed1d19f94438f9768f98da1b9d"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v3/logs/markdown-source.log",
+      "bytes": 50,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533618409789494,
+      "original_relative_path": "source-checks-v3/logs/markdown-source.log",
+      "sha256": "f6b121b2f5e251503d205186826b5cab8ff2f220ffa35d30e819b921b34d929c"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v3/logs/proof-bank.log",
+      "bytes": 68,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533609257638736,
+      "original_relative_path": "source-checks-v3/logs/proof-bank.log",
+      "sha256": "11f32f3d3d7074ede4c069e3b51ed6a0a4f95e0101019908102ddc2b5d261594"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v3/logs/vendored-pins.log",
+      "bytes": 261,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533618149785212,
+      "original_relative_path": "source-checks-v3/logs/vendored-pins.log",
+      "sha256": "e8d155882db130e44383ec6d1f0767dd421fc94c07aaa3fe2263b786200eea5b"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v3/receipts/audit-protocol.json",
+      "bytes": 876,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533606806290406,
+      "original_relative_path": "source-checks-v3/receipts/audit-protocol.json",
+      "sha256": "cc916d4b568a2a3dc4bfcad536c4876bf11f1601cf2650f7c998dbc3fae1e156"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v3/receipts/claim-governance.json",
+      "bytes": 817,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533618089579566,
+      "original_relative_path": "source-checks-v3/receipts/claim-governance.json",
+      "sha256": "51dc6457e57ec4beaa9169c8488a43fc43cf1a6d1754bdfbae812369c3d8a860"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v3/receipts/ledger.json",
+      "bytes": 728,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533609471085191,
+      "original_relative_path": "source-checks-v3/receipts/ledger.json",
+      "sha256": "a44ec20d82dc25f0d92d8010a8db7e8017ab4e53a636c34236bd7cb3e57f5ab4"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v3/receipts/manuscript-source.json",
+      "bytes": 751,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533619322708836,
+      "original_relative_path": "source-checks-v3/receipts/manuscript-source.json",
+      "sha256": "38a2560107ac814bb39876f6ad8b6c77fd2f4e1e8d4d505631aea1498dba6cf9"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v3/receipts/markdown-source.json",
+      "bytes": 743,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533618474487133,
+      "original_relative_path": "source-checks-v3/receipts/markdown-source.json",
+      "sha256": "b7dafb463930f98c598d98ff075cac82f632b66ad9b2996b1b889fd3e1022d37"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v3/receipts/proof-bank.json",
+      "bytes": 744,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533609321639791,
+      "original_relative_path": "source-checks-v3/receipts/proof-bank.json",
+      "sha256": "291bb2937dcf4147c13d756e49d6935fb222f570eb894cc5df29b3e506f83d79"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v3/receipts/vendored-pins.json",
+      "bytes": 756,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533618182263031,
+      "original_relative_path": "source-checks-v3/receipts/vendored-pins.json",
+      "sha256": "82073dd35fac0b34743f22bcc9fffc186719bc8a55fcc97c6d48dc0ad8c1aa47"
+    },
+    {
+      "archive_path": "artifacts/source-checks-v3/summary.json",
+      "bytes": 6656,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533619397661558,
+      "original_relative_path": "source-checks-v3/summary.json",
+      "sha256": "5e04b7b2dafd9259c45a29f18a30eed369938b1a260a8c8dabc1a16b132ed22e"
+    },
+    {
+      "archive_path": "artifacts/static-review-v2/SHA256SUMS",
+      "bytes": 269,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533051330557899,
+      "original_relative_path": "static-review-v2/SHA256SUMS",
+      "sha256": "686329058b4a153eff97a905b2aad5eaa2869b910b3ff40b1d9314d39d80b50d"
+    },
+    {
+      "archive_path": "artifacts/static-review-v2/compiled-audit-guidance.md",
+      "bytes": 4707,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794532922606360410,
+      "original_relative_path": "static-review-v2/compiled-audit-guidance.md",
+      "sha256": "c57884cc6a9e99a361925c26824a4946bff8c7204215c74323951ed524093787"
+    },
+    {
+      "archive_path": "artifacts/static-review-v2/source-metadata.json",
+      "bytes": 24324,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794532850776118494,
+      "original_relative_path": "static-review-v2/source-metadata.json",
+      "sha256": "d8f34387f56b6b8428a9d23d11a04f204b8606f56882b6e2442096378cc5412a"
+    },
+    {
+      "archive_path": "artifacts/static-review-v2/static-review.md",
+      "bytes": 7056,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794532922338356003,
+      "original_relative_path": "static-review-v2/static-review.md",
+      "sha256": "7f13bd7ba552b1269e244ebdfbe7959a239399886f9435eb62c9c77042a2fa9e"
+    },
+    {
+      "archive_path": "artifacts/static-review-v3/SHA256SUMS",
+      "bytes": 356,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533643465091163,
+      "original_relative_path": "static-review-v3/SHA256SUMS",
+      "sha256": "31701cb1c78063b938f48adcb758358611a8aefc4949b3fc6fd31fcb4b434449"
+    },
+    {
+      "archive_path": "artifacts/static-review-v3/compiled-audit-guidance.md",
+      "bytes": 4968,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533643463938980,
+      "original_relative_path": "static-review-v3/compiled-audit-guidance.md",
+      "sha256": "8493dc34b720f488f43806878adc386573f6a1c1a90315fb309f68a1e92bde18"
+    },
+    {
+      "archive_path": "artifacts/static-review-v3/provenance-note.md",
+      "bytes": 2849,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533643464069496,
+      "original_relative_path": "static-review-v3/provenance-note.md",
+      "sha256": "b70ff4afb1f1c4540b6a7c731b8814376d77c5925c7317e1d520d6ae0e231410"
+    },
+    {
+      "archive_path": "artifacts/static-review-v3/source-metadata.json",
+      "bytes": 30637,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533643463438427,
+      "original_relative_path": "static-review-v3/source-metadata.json",
+      "sha256": "402fa095d2b5ce66d8cbb1f010500dbf56dc65019ef2000b70b187eb8c69c886"
+    },
+    {
+      "archive_path": "artifacts/static-review-v3/static-review.md",
+      "bytes": 7681,
+      "capture_kind": "unchanged_original_bytes",
+      "original_mtime_ns": 1794533643463775675,
+      "original_relative_path": "static-review-v3/static-review.md",
+      "sha256": "1df5c7fed1477d1e5251ff699c41c5a385b49e697bb0908fe37ee71dd6a00f3e"
+    }
+  ],
+  "capture_started_at_utc": "2026-11-13T03:59:39.267627+00:00",
+  "checkpoint_annotation_updated_at_utc": "2026-11-13T04:03:22.449050+00:00",
+  "checkpoint_status": "NONTERMINAL_VERIFICATION_PENDING",
+  "created_at_utc": "2026-11-13T03:59:39.320029+00:00",
+  "hash_semantics": "bytes/sha256 refer to the exact retained file bytes; .gz log entries additionally expose decompressed raw sizes/hashes.",
+  "history": [
+    {
+      "acceptance_credit": false,
+      "attempt": "initial-isolated-gate",
+      "exit_code": 137,
+      "outcome": "exit_137",
+      "prelaunch_receipt_recorded": false,
+      "published_same_tree_commit": "dd0858ab2d04653e35f42a82288c5784c6d0ee77",
+      "record": "artifacts/evidence-preparation/first-attempt.json",
+      "source_commit": "52cc81ff33c5aa36f35c851ef8f679569fd47d74",
+      "source_tree": "b8801b1e4223ee674751419eefb4075b975815ed"
+    },
+    {
+      "acceptance_credit": false,
+      "attempt": "isolated-v2",
+      "normal_wrapper_terminal_receipt_created": false,
+      "observed_tool_exit_code": 130,
+      "outcome": "intentionally_cancelled",
+      "reason": "Intentional cancellation via terminal interrupt after source inspection found missing StrictSystem import in the wrong-type fixture.",
+      "record": "artifacts/evidence-preparation/cancelled-v2/cancellation.json",
+      "source_commit": "137d1e980418f34f9eb5e92142d5bbc53b4368e6",
+      "source_tree": "0c15c2ebf0de0354f8d0592e3b3c958cb12c3aea"
+    },
+    {
+      "acceptance_credit": false,
+      "attempt": "isolated-v3",
+      "normal_wrapper_terminal_receipt_created": false,
+      "observed_tool_exit_code": 130,
+      "outcome": "intentionally_cancelled",
+      "reason": "Intentional cancellation to restart the same unchanged gate and source with an independently reviewed cap-two external compiler-process scheduler after extreme slowdown on unchanged modules. Cause of slowdown not proved.",
+      "record": "artifacts/evidence-preparation/cancelled-v3/cancellation.json",
+      "source_commit": "16dd825648d1a1bcdba9038e079463a9bebbaf3d",
+      "source_tree": "ae73f53be5b43879d92c8995597960909afef684"
+    },
+    {
+      "acceptance_credit": false,
+      "attempt": "focused-v4-development",
+      "compiler_returncode": -15,
+      "controller_exit_code": 1,
+      "elapsed_seconds": 1200.369,
+      "later_modules_started": false,
+      "log_bytes": 0,
+      "module": "PscVerif.NamedPositiveOverlap",
+      "outcome": "timeout_1200s",
+      "produced_outputs": [],
+      "record": "artifacts/focused-v4/run-terminal.json",
+      "source": {
+        "commit": "16dd825648d1a1bcdba9038e079463a9bebbaf3d",
+        "status": "",
+        "tree": "ae73f53be5b43879d92c8995597960909afef684"
+      }
+    },
+    {
+      "acceptance_credit": false,
+      "attempt": "isolated-v4",
+      "gate_returncode": null,
+      "outcome": "terminal_unknown_tool_handle_unavailable",
+      "record": "artifacts/evidence-preparation/v4-handle-unavailable.json",
+      "source_commit": "16dd825648d1a1bcdba9038e079463a9bebbaf3d",
+      "source_tree": "ae73f53be5b43879d92c8995597960909afef684"
+    }
+  ],
+  "known_missing_or_nonterminal_records": [
+    "The initial failed isolated gate has no prelaunch start receipt; its preserved exit code is 137.",
+    "The successful native development build has no prelaunch receipt; the retained summary labels its later source-identity comparison.",
+    "Intentionally cancelled V2 and V3 have cancellation/cleanup records but no normal wrapper terminal receipt.",
+    "V4 has no terminal receipt at either side of prefix capture. Root later reported its tool session was unknown after compaction. Present process liveness and terminal outcome are unknown; no gate exit or acceptance is inferred.",
+    "The focused NamedPositiveOverlap attempt timed out after 1200 seconds, produced no objects and no diagnostics, and did not start later modules.",
+    "No completed compiled audit of the new generic exclusion theorem or both generated exclusion consumers is credited by this checkpoint."
+  ],
+  "missing_requested_artifacts": [],
+  "package_integrity_verified": true,
+  "publication": {
+    "intended_destination": "A separate checkpoint branch; active candidate HEAD is unchanged.",
+    "published_by_this_task": false
+  },
+  "readme": {
+    "bytes": 8454,
+    "filename": "README.md",
+    "sha256": "b5575dde0b1a0465fa03d4bcd22515d58eafc11903bd91e8ce774f164e73bda3"
+  },
+  "retained_original_artifact_bytes": 321833,
+  "schema": "c4-named-strict-exclusion-nonterminal-checkpoint-v1",
+  "scope": {
+    "archived_fixtures_only": true,
+    "candidate_result": "Generic named packet no-StrictSystem bridge and two fixture-specific generated consumers.",
+    "fixture_count": 2,
+    "fixtures": [
+      {
+        "addressed_packet_sha256": "e960043f7481993fd56d7ac3976f119e132e00d5762bdcb78b8a061557ecfe8c",
+        "fixture": 0,
+        "historical_graph_sha256": "23f85af92c327a64f70983db990753a84cd1489e3c72c3047e51f14e97afce6e",
+        "sigma": [
+          "1",
+          "021",
+          "001"
+        ]
+      },
+      {
+        "addressed_packet_sha256": "915126ff282c0b1347c4518c57b7b7e350ebaaf1c6838c56776e6a12bdc61bc9",
+        "fixture": 1,
+        "historical_graph_sha256": "a63d544b25b5f7146abbd25f1960fed77f85584a1f20957b5869bea30b389256",
+        "sigma": [
+          "1",
+          "012",
+          "001"
+        ]
+      }
+    ],
+    "full_lean_gate_pass_claimed": false,
+    "general_c4_open": true,
+    "independent_human_review_claimed": false
+  },
+  "selection": {
+    "additional_requested_files": [
+      "evidence-preparation/v4-handle-unavailable.json"
+    ],
+    "duplicate_focused_records_verified_identical": {
+      "01-NamedPositiveOverlap.log": true,
+      "01-NamedPositiveOverlap.process.json": true,
+      "01-NamedPositiveOverlap.start.json": true,
+      "01-NamedPositiveOverlap.terminal.json": true,
+      "README.md": true,
+      "SHA256SUMS": true,
+      "controller-exit.json": true,
+      "dependency-verification.json": true,
+      "progress.json": true,
+      "run-start.json": true,
+      "run-terminal.json": true,
+      "run_development.py": true
+    },
+    "excluded": [
+      "All .olean/.ilean/object files, executable binaries, dependency/build caches and repositories.",
+      "Native exporter executable and native payload body; their retained receipts preserve identities.",
+      "Duplicate evidence-preparation/focused-v4 subtree; identical canonical focused-v4 bytes retained."
+    ],
+    "selected_directories": [
+      "evidence-preparation/failed-development",
+      "evidence-preparation/cancelled-v2",
+      "evidence-preparation/cancelled-v3",
+      "source-checks-v3",
+      "static-review-v2",
+      "static-review-v3",
+      "focused-v4",
+      "lean-runtime-resource-audit",
+      "scheduler-preflight-v3"
+    ]
+  },
+  "source": {
+    "commit": "16dd825648d1a1bcdba9038e079463a9bebbaf3d",
+    "status_porcelain": "",
+    "tree": "ae73f53be5b43879d92c8995597960909afef684"
+  },
+  "v4": {
+    "build_error_lines_in_full_prefix": [],
+    "captured_bytes_match_later_root_handle_observation": {
+      "full.log": true,
+      "process.json": true,
+      "scheduler.jsonl": true,
+      "start.json": true
+    },
+    "command": [
+      "./tools/check_lean.sh",
+      "--archived-packets",
+      "/workspace/scratch/5535bb23ca85/c4-archived-export",
+      "/workspace/scratch/5535bb23ca85/isolated-v4/replay"
+    ],
+    "completed_project_module_entries_in_full_prefix": 49,
+    "current_process_liveness": "unknown",
+    "full_acceptance_pending": true,
+    "last_scheduler_event_at_utc": "2026-11-13T03:40:21.891406+00:00",
+    "log_prefixes": [
+      {
+        "archive_path": "artifacts/isolated-v4/full.log.prefix",
+        "bytes": 19888,
+        "capture_kind": "exact_nonterminal_prefix",
+        "ends_with_newline": true,
+        "original_relative_path": "isolated-v4/full.log",
+        "read_ended_at_utc": "2026-11-13T03:59:39.319621+00:00",
+        "read_started_at_utc": "2026-11-13T03:59:39.319311+00:00",
+        "sha256": "a204bc932767f89259e7574af4849ee7a0fe2b418aba95c6091773c5b47235e5",
+        "single_open_single_read": true,
+        "source_length_after_read": 19888,
+        "source_length_at_open": 19888,
+        "source_offset_end_exclusive": 19888,
+        "source_offset_start": 0,
+        "terminal_log_claimed": false
+      },
+      {
+        "archive_path": "artifacts/isolated-v4/scheduler.jsonl.prefix",
+        "bytes": 49651,
+        "capture_kind": "exact_nonterminal_prefix",
+        "ends_with_newline": true,
+        "original_relative_path": "isolated-v4/scheduler.jsonl",
+        "read_ended_at_utc": "2026-11-13T03:59:39.319986+00:00",
+        "read_started_at_utc": "2026-11-13T03:59:39.319643+00:00",
+        "sha256": "5173cf93e55130b84facf98f835c3a1c92d1cd689fccff0f6736f5904056d6e3",
+        "single_open_single_read": true,
+        "source_length_after_read": 49651,
+        "source_length_at_open": 49651,
+        "source_offset_end_exclusive": 49651,
+        "source_offset_start": 0,
+        "terminal_log_claimed": false
+      }
+    ],
+    "max_admitted_compiler_trees": 2,
+    "prefixes_are_sequential_not_atomic_together": true,
+    "process_liveness_independently_observed": false,
+    "project_module_completions_in_full_prefix": [
+      {
+        "action": "Built",
+        "module": "PscVerif.SelectedRank",
+        "reported_duration": "588ms"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.ClassBRegime",
+        "reported_duration": "1.3s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.Binomial",
+        "reported_duration": "6.6s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.ConcentrationAlgebra",
+        "reported_duration": "11s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.Degree4Sector",
+        "reported_duration": "16s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.PerronCore",
+        "reported_duration": "18s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.Lie5Data",
+        "reported_duration": "19s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.PhysicalMass",
+        "reported_duration": "20s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.Degree5Sector",
+        "reported_duration": "21s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.OverlapContraction",
+        "reported_duration": "23s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.MadicResidue",
+        "reported_duration": "22s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.NamedStableChart",
+        "reported_duration": "21s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.CompactNeighborhoodControls",
+        "reported_duration": "16s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.FundamentalCellPacking",
+        "reported_duration": "20s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.QuotientDistance",
+        "reported_duration": "14s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.FixedPointLimit",
+        "reported_duration": "15s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.Incidence",
+        "reported_duration": "14s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.Cyclicity",
+        "reported_duration": "17s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.PerronSimple",
+        "reported_duration": "16s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.Wielandt",
+        "reported_duration": "18s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.BoundarySeedPath",
+        "reported_duration": "394s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.WeightModulus",
+        "reported_duration": "398s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.Basic",
+        "reported_duration": "808s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.BoundaryRounding",
+        "reported_duration": "809s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.OccurrenceMassCounts",
+        "reported_duration": "814s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.OverlapPacket",
+        "reported_duration": "814s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.MadicActionRange",
+        "reported_duration": "822s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.CompactNeighborhood",
+        "reported_duration": "828s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.NamedFullChart",
+        "reported_duration": "468s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.NamedStableContraction",
+        "reported_duration": "471s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.PrimitiveExpansion",
+        "reported_duration": "62s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.Intertwiner3",
+        "reported_duration": "64s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.ParikhIntertwiner",
+        "reported_duration": "79s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.ConcentrationControls",
+        "reported_duration": "80s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.Intertwiner2",
+        "reported_duration": "75s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.Lie5",
+        "reported_duration": "1047s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.GaloisOrbit",
+        "reported_duration": "757s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.MadicHaar",
+        "reported_duration": "903s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.SignedCocycle",
+        "reported_duration": "977s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.Shuffle",
+        "reported_duration": "1111s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.M0Pisot",
+        "reported_duration": "1912s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.MadicFundamentalCell",
+        "reported_duration": "1344s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.ParikhRank",
+        "reported_duration": "1670s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.CountBridge",
+        "reported_duration": "2778s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.Reduction",
+        "reported_duration": "2152s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.Seeds",
+        "reported_duration": "3031s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.PerronExistence",
+        "reported_duration": "2192s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.MadicFundamentalCellControls",
+        "reported_duration": "1940s"
+      },
+      {
+        "action": "Built",
+        "module": "PscVerif.Descendants",
+        "reported_duration": "1055s"
+      }
+    ],
+    "reported_exec_session_id": 78123,
+    "root_session_observation": {
+      "annotation_recorded_at_utc": "2026-11-13T04:00:33.584631+00:00",
+      "exact_tool_result": "write_stdin failed: Unknown process id 78123",
+      "independently_reproduced_by_checkpoint_task": false,
+      "record_sha256": "f0f223394dcab51e713512076f046d692609d17f5ce70a63ad23989da16672d2",
+      "recorded_at_utc": "2026-11-13T04:00:14.086067+00:00",
+      "reported_after_compaction": true,
+      "result_reported_by_root": "Unknown process id",
+      "retained_record": "artifacts/evidence-preparation/v4-handle-unavailable.json",
+      "session_id": 78123
+    },
+    "scheduler_complete_events_in_prefix": 305,
+    "source_commit": "16dd825648d1a1bcdba9038e079463a9bebbaf3d",
+    "source_tree": "ae73f53be5b43879d92c8995597960909afef684",
+    "started_at_utc": "2026-11-13T02:12:59.651646+00:00",
+    "status": "LAST_OBSERVED_PROGRESS_TERMINAL_UNKNOWN",
+    "status_evidence": "Earlier root observations reported V4 active. Root subsequently reported that write_stdin for session 78123 returned Unknown process id after compaction. The checkpoint observed start/process receipts, exact log prefixes, and no terminal receipt; these do not establish present liveness or a terminal outcome.",
+    "terminal_outcome": "unknown",
+    "terminal_receipt_present_after_capture": false,
+    "terminal_receipt_present_before_capture": false,
+    "terminal_receipt_relative_path": "isolated-v4/terminal.json",
+    "unexited_jobs_reconstructed_from_prefix": [
+      {
+        "admitted": true,
+        "paused": false,
+        "pid": 1239,
+        "sequence": 64
+      },
+      {
+        "admitted": true,
+        "paused": false,
+        "pid": 1273,
+        "sequence": 66
+      },
+      {
+        "admitted": false,
+        "paused": true,
+        "pid": 1297,
+        "sequence": 67
+      },
+      {
+        "admitted": false,
+        "paused": true,
+        "pid": 1299,
+        "sequence": 68
+      }
+    ],
+    "unique_completed_project_modules_in_full_prefix": 49
+  },
+  "verification": {
+    "current_source_inventory_matches": {
+      "kernel/c4_archived_lean_export.mojo": true,
+      "proof/PscVerif/PscVerif.lean": true,
+      "proof/PscVerif/PscVerif/NamedPositiveOverlap.lean": true,
+      "proof/PscVerif/PscVerif/NamedStrictExclusion.lean": true,
+      "proof/PscVerif/PscVerif/NamedStrictExclusionControls.lean": true,
+      "proof/PscVerif/lake-manifest.json": true,
+      "proof/PscVerif/lean-toolchain": true,
+      "tests/fixtures/c4_archived_bad_binding.lean": true,
+      "tests/test_archived_payload_lean_replay.py": true,
+      "tools/check_lean.sh": true,
+      "tools/replay_archived_payload_lean.py": true
+    },
+    "native_oracle": {
+      "exporter_sha256": "8c8e79649016a261436b7e4d7c3eb3da2a40c9c4b30c4c2f7c34ff9ea1dc637f",
+      "fixtures_verified": 2,
+      "kernel_acceptance_supplied": false,
+      "negative_controls_per_fixture": {
+        "0": 16,
+        "1": 16
+      },
+      "negative_controls_rejected": 32,
+      "observed_process_exit": 0,
+      "payload_bytes": 3908423,
+      "payload_sha256": "447d58d811359235d1f4689433500494ae14724b89b5da91f429e7e7247beaca",
+      "prelaunch_receipt_recorded": false,
+      "record": "artifacts/evidence-preparation/native-oracle-receipt.json",
+      "source_identity_comparison": {
+        "commit": "dd0858ab2d04653e35f42a82288c5784c6d0ee77",
+        "exporter_source_sha256": "41a738300044d4083088730b34f695eee5952353c62adb5085c041c962df28cf",
+        "role": "Committed exporter source corresponding to the completed development build; this is not a claimed prelaunch checkout receipt.",
+        "tree": "b8801b1e4223ee674751419eefb4075b975815ed"
+      }
+    },
+    "scheduler_preflight": {
+      "all_passed": true,
+      "controls_passed": 16,
+      "record": "artifacts/scheduler-preflight-v3/preflight.json",
+      "runner_sha256": "3cbc03282380dd5dac558ad585f7f2ea2dc3a48dfedf496236e78118f001bebf",
+      "scope": "Harmless process-control simulations only; no Lean/Lake/project gate invoked."
+    },
+    "source_checks": {
+      "all_passed": true,
+      "audit_protocol_unit_tests": 8,
+      "checks": [
+        {
+          "command": "python -m unittest discover -s tests -p test_archived_payload_lean_replay.py -v",
+          "elapsed_seconds": 0.169681,
+          "exit_code": 0,
+          "log_sha256": "96b59dee2cd12ab68f84d11295a742eb1107bb19be0ca6ea86b1cb24d85f398a",
+          "name": "audit-protocol"
+        },
+        {
+          "command": "python tools/make_proof_bank.py --check",
+          "elapsed_seconds": 2.488409,
+          "exit_code": 0,
+          "log_sha256": "11f32f3d3d7074ede4c069e3b51ed6a0a4f95e0101019908102ddc2b5d261594",
+          "name": "proof-bank"
+        },
+        {
+          "command": "python tools/make_ledger.py --check",
+          "elapsed_seconds": 0.114955,
+          "exit_code": 0,
+          "log_sha256": "87e6e3fc1f68a3418fbefd2f09df76e36d95d4624c7d11ffe2b3b6c64a09b9d6",
+          "name": "ledger"
+        },
+        {
+          "command": "PYTHONPATH=tools python -m claim_governance.cli --root .",
+          "elapsed_seconds": 8.591873,
+          "exit_code": 0,
+          "log_sha256": "6940a57ab580c143a470ce9dfa57b03fcd085f8b569960cca2350b9ec0dbae49",
+          "name": "claim-governance"
+        },
+        {
+          "command": "python tools/vendoring/check_vendored_sync.py",
+          "elapsed_seconds": 0.064898,
+          "exit_code": 0,
+          "log_sha256": "e8d155882db130e44383ec6d1f0767dd421fc94c07aaa3fe2263b786200eea5b",
+          "name": "vendored-pins"
+        },
+        {
+          "command": "python tools/check_markdown_source.py",
+          "elapsed_seconds": 0.265075,
+          "exit_code": 0,
+          "log_sha256": "f6b121b2f5e251503d205186826b5cab8ff2f220ffa35d30e819b921b34d929c",
+          "name": "markdown-source"
+        },
+        {
+          "command": "python tools/check_manuscript_source.py",
+          "elapsed_seconds": 0.817172,
+          "exit_code": 0,
+          "log_sha256": "b8b6216a8335b48ba12fb2b8582d9d371b5c04ed1d19f94438f9768f98da1b9d",
+          "name": "manuscript-source"
+        }
+      ],
+      "count": 7,
+      "scope": "Source/governance and audit-protocol checks only; no Lean proof acceptance.",
+      "source_commit": "16dd825648d1a1bcdba9038e079463a9bebbaf3d",
+      "source_tree": "ae73f53be5b43879d92c8995597960909afef684"
+    },
+    "static_reviews": {
+      "retained": [
+        "static-review-v2",
+        "static-review-v3"
+      ],
+      "scope": "Source review only; not compiled theorem acceptance."
+    }
+  },
+  "work_shown": {
+    "candidate_documents": [
+      {
+        "path": "docs/c4-named-strict-exclusion.md",
+        "sha256": "793bb0e274e76bcae46f2c98ce897ffca5628c4e776e41d982f38651629df37d",
+        "source_commit": "16dd825648d1a1bcdba9038e079463a9bebbaf3d",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/16dd825648d1a1bcdba9038e079463a9bebbaf3d/docs/c4-named-strict-exclusion.md"
+      },
+      {
+        "path": "docs/c4-named-strict-exclusion-literature-2026-11-12.md",
+        "sha256": "cea5131fd0a28af6eb7b76882d74a070882aa2f6011a496f213cd2880b0d9523",
+        "source_commit": "16dd825648d1a1bcdba9038e079463a9bebbaf3d",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/blob/16dd825648d1a1bcdba9038e079463a9bebbaf3d/docs/c4-named-strict-exclusion-literature-2026-11-12.md"
+      }
+    ],
+    "compiled_acceptance_checks_pending": [
+      "Aggregate project compilation",
+      "Compiled proof-bank audit",
+      "Generic named packet exclusion theorem and Lean counterexample controls",
+      "Both generated no_strict_system exact-type and transitive-axiom audits",
+      "Intended compiled wrong-type exclusion rejection"
+    ],
+    "full_checker_command_role": "Historical V4 invocation; new replay requires fresh output/TMPDIR and a new start receipt.",
+    "invocation_environment_record": "artifacts/isolated-v4/start.json",
+    "native_exporter_build_telemetry_setting": "MODULAR_TELEMETRY_ENABLED=0",
+    "pixi_activation_prescribed": false,
+    "required_headings": [
+      "Assumptions and hypotheses",
+      "Derivation / reduction",
+      "Evidence and replay",
+      "Negative controls",
+      "Non-claims / remaining gaps"
+    ],
+    "source_level_replay_commands": [
+      "python -m unittest discover -s tests -p test_archived_payload_lean_replay.py -v",
+      "python tools/make_proof_bank.py --check",
+      "python tools/make_ledger.py --check",
+      "PYTHONPATH=tools python -m claim_governance.cli --root .",
+      "python tools/vendoring/check_vendored_sync.py",
+      "python tools/check_markdown_source.py",
+      "python tools/check_manuscript_source.py"
+    ],
+    "unchanged_recorded_full_checker_command_argv": [
+      "./tools/check_lean.sh",
+      "--archived-packets",
+      "/workspace/scratch/5535bb23ca85/c4-archived-export",
+      "/workspace/scratch/5535bb23ca85/isolated-v4/replay"
+    ]
+  }
+}

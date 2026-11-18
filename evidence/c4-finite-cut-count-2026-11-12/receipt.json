@@ -1,0 +1,171 @@
+{
+  "acceptance_complete": true,
+  "archive_status": "complete_local_isolated_acceptance",
+  "artifact_checksums": "SHA256SUMS",
+  "artifact_manifest": "artifact-manifest.json",
+  "claim_status_changes": 0,
+  "code_revision": {
+    "commit": "31f8046291f2428e839d95e8890c8342858ec210",
+    "parent": "38d93a8f25df7579a688ffc3cd7cfa8c36cfa754",
+    "source_inventory": "source-inventory.json",
+    "source_manifest": "source-manifest.json",
+    "tree": "e38c3f65efb79fa72860d8ef222e96695847a551"
+  },
+  "finalization_condition": "Satisfied: terminal process exit zero, exact unchanged source/head/tree, matching complete raw-log digest and successful independent compiled inspection. Hosted and independent-human-review status remain unchanged.",
+  "finalized_at_utc": "2026-11-12T21:08:59.458366+00:00",
+  "finalizer_source_sha256": "a254690bab7c8e0e7150b58ee68f996e0c465004222ed2caa284c4a437994d88",
+  "future_work": {
+    "literature_gate": "future/cell-packing-literature-review.md",
+    "literature_gate_sha256": "a56de1890925feccae7e3ac741995600dc6c390d013b8f12319165215aa1b89c",
+    "mathematical_route_note": "future/cell-packing-route-review.md",
+    "mathematical_route_note_sha256": "59800046ee8263ae26e1d7d6df53be722904b203f52d593a71fe3bd930e9f725",
+    "mathematical_route_scope": "Proposed uncompiled following step; no current theorem, compiled acceptance or positivity claim.",
+    "new_code_or_tests_added": false,
+    "scope": "Proposed uncompiled following increment, separate from the current postimplementation audit and current acceptance scope."
+  },
+  "hosted_ci": {
+    "counts_at_snapshot": {
+      "queued/none": 76
+    },
+    "reported_total": 76,
+    "returned_checks": 76,
+    "scope": "Initial read-only PR snapshot; not a current-state guarantee or accepted hosted run.",
+    "snapshot_has_embedded_retrieval_timestamp": false,
+    "source": "review/initial-pr-snapshot.json",
+    "subject_revision": "31f8046291f2428e839d95e8890c8342858ec210",
+    "success_claimed": false
+  },
+  "initial_focused_compilation": {
+    "scope": "Reported retained-artifact compilation and focused audit of nine public theorems; not independently rerun or credited as the complete isolated gate here.",
+    "source": "review/initial-pr-snapshot.json",
+    "status": "claims preserved only as the original PR body assertions"
+  },
+  "local_source_checks": {
+    "governance": {
+      "exit_code": 0,
+      "log": "checks/governance.log",
+      "observed_at_utc": "2026-11-12T20:20:45.063782+00:00",
+      "receipt": "checks/governance.json",
+      "result": "all six governance checks",
+      "scope": "Recorded governance/source consistency check; not the isolated Lean acceptance gate."
+    },
+    "ledger": {
+      "exit_code": 0,
+      "log": "checks/ledger.log",
+      "observed_at_utc": "2026-11-12T20:20:34.423785+00:00",
+      "receipt": "checks/ledger.json",
+      "result": "32 generated surfaces",
+      "scope": "Recorded governance/source consistency check; not the isolated Lean acceptance gate."
+    },
+    "proof-bank": {
+      "exit_code": 0,
+      "log": "checks/proof-bank.log",
+      "observed_at_utc": "2026-11-12T20:20:37.113601+00:00",
+      "receipt": "checks/proof-bank.json",
+      "result": "126 claims,2705 named Lean proofs,411 source openings",
+      "scope": "Recorded governance/source consistency check; not the isolated Lean acceptance gate."
+    }
+  },
+  "new_tests_builds_or_ci_invocations_during_preparation": 0,
+  "remaining_obligations": [
+    "fixed-origin upper count and finiteness of the original integer strip/window set",
+    "all-depth cylinder masses and actual chart covolume",
+    "regular outer-cover measure assembly and positive-overlap conclusion"
+  ],
+  "repository_or_head_mutations_during_preparation": 0,
+  "required_isolated_lean": {
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "attempt_number": 1,
+    "command": "./tools/check_lean.sh",
+    "compiled_audit_inspection": "gate/compiled-audit-inspection.json",
+    "compiled_audit_inspection_sha256": "d34712dc0a76b64d553bd136cfb513d1643d122dd0d9d717f7def963d57ae9f3",
+    "compiled_new_declarations": "gate/compiled-new-declarations.log.gz",
+    "compiled_new_declarations_archive_sha256": "eb30fabd09273bf0c3fa4b75ac576c81f3497ee85463cb79c14f90b966ffec8a",
+    "compiled_new_declarations_raw_bytes": 3034,
+    "compiled_new_declarations_raw_sha256": "87895aacddf89f04d4877042af868de75cb048515abd369ee2d90d9e3f4a468b",
+    "completed_at_utc": "2026-11-12T21:08:49.179037+00:00",
+    "elapsed_seconds": 3155.19,
+    "exit_code": 0,
+    "focused_development_assertions_are_not_acceptance": true,
+    "full_log": "gate/isolated-lean.log.gz",
+    "full_log_archive_bytes": 70854,
+    "full_log_archive_sha256": "1cc1a52d526badca935ca42470920e1a997870b019dc5ebac2b413d7595d8509",
+    "full_log_bytes": 1030128,
+    "full_log_sha256": "3696befdb8c89c4857cae37b2075170e075b7145276e0a43cbe9f9312b79b9f8",
+    "gate_runner": "gate/runner.py",
+    "gate_start_snapshot": "gate/process-start-snapshot.json",
+    "global_compiled_constants": 6646,
+    "global_compiled_theorem_constants": 4865,
+    "global_encountered_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "historical_snapshots_retained": true,
+    "inspector_source": "gate/inspect-count-audit.py",
+    "inspector_source_sha256": "f5e61978cdd108ce70a3151d460f8071fb39909a8a6c5c83edf8376e7a4e7478",
+    "local_compiled_dependency_artifacts_used": false,
+    "new_explicit_definitions_verified": 3,
+    "new_explicit_private_theorems_verified": 3,
+    "new_explicit_public_theorems_verified": 9,
+    "new_explicit_theorems_verified": 12,
+    "new_module_encountered_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "new_owned_compiled_constants": 18,
+    "new_owned_compiled_theorem_constants": 15,
+    "prepared_inspector_snapshot": "gate/inspector-prepared.py",
+    "raw_log_input": "count-isolated-attempt-01.log",
+    "source_inventory_sha256": "32ce197dbfd90addd1e9d181ab0b17ff9b0d0edfe64cd0a958e1b318adc75ef4",
+    "source_tree_clean_before_and_after": true,
+    "started_at_utc": "2026-11-12T20:16:13.989126+00:00",
+    "status": "passed",
+    "terminal_process_input": "count-isolated-attempt-01.json",
+    "terminal_process_receipt": "gate/process-terminal.json",
+    "terminal_process_receipt_sha256": "21fea39dea7831e4aa5281100550187919e04f413d615e3ff35645f26fd00df9",
+    "upstream_source_hash_dependency_cache_used": true,
+    "working_directory": "/workspace/scratch/f96c28a561ad/psc-count"
+  },
+  "review": {
+    "environment": "review/environment.json",
+    "independent_human_review": "pending, separate validation debt",
+    "initial_pr": "review/initial-pr-snapshot.json",
+    "literature_timing": "post-code audit; not a pre-code gate",
+    "postimplementation_literature": "review/postimplementation-literature-audit.md",
+    "semantic": "review/semantic-interface-audit.md"
+  },
+  "schema": "c4-finite-cut-count-local-verification-v1",
+  "source_inventory": {
+    "compiled_audit_counts_are_not_source_counts": true,
+    "explicit_definitions": 3,
+    "explicit_private_theorems": 3,
+    "explicit_public_theorems": 9,
+    "explicit_theorems": 12,
+    "governed_claims": 126,
+    "modules": [
+      {
+        "definitions": 2,
+        "name": "PscVerif.StrictCutCount",
+        "private_theorems": 2,
+        "public_theorems": 7,
+        "theorems": 9
+      },
+      {
+        "definitions": 1,
+        "name": "PscVerif.NamedCutCount",
+        "private_theorems": 1,
+        "public_theorems": 2,
+        "theorems": 3
+      }
+    ],
+    "source_named_proof_bank_total": 2705,
+    "source_statement_openings": 411
+  },
+  "staged_at_utc": "2026-11-12T20:21:53.994995+00:00"
+}
