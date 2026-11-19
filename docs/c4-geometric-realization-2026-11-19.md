@@ -114,6 +114,9 @@ Thue–Morse is not irreducible Pisot. BBK §4 cite the Morse substitution as a 
 2. **The Pisot contraction is not derived** from the characteristic polynomial. It is a
    `PisotData` field, checked here only for Fibonacci and Thue–Morse. No PIP3 member is
    instantiated.
+   *Update:* the [contraction note](c4-pisot-contraction-2026-11-19.md) derives `PisotData`
+   from `χ_M = (X − β) Q` with `Q(β) ≠ 0` and the roots of `Q` in the unit disc, and that from
+   the PIP3 conditions; Tribonacci `01/02/0` is proved a PIP3 member and instantiated.
 3. **Recognizability is imported** as bijectivity of `inflateH`. The models do not supply it.
 4. **Continuity is not proved.** The hull carries the exact-agreement ultrametric, in which
    translation is not continuous. No topology is put on the solenoid. The realization is
