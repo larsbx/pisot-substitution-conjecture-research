@@ -36258,6 +36258,54 @@
       "declaration": "theorem endpoint_persistent_of_periodic (hβ : 1 < β) {x y : X} {a b : α}"
     },
     {
+      "name": "Psc.PeriodicPartnerCompleteRange.next_column_distinct",
+      "module": "PscVerif.PeriodicPartnerCompleteRange",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerCompleteRange.lean",
+      "line": 32,
+      "declaration": "private theorem next_column_distinct : ∀ a : Fin 3, a ≠ a + 1 := by decide"
+    },
+    {
+      "name": "Psc.PeriodicPartnerCompleteRange.other_row",
+      "module": "PscVerif.PeriodicPartnerCompleteRange",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerCompleteRange.lean",
+      "line": 34,
+      "declaration": "private theorem other_row (a b : Bool) (h : b ≠ a) : b = !a := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerCompleteRange.partner_of_seam_is_vertex",
+      "module": "PscVerif.PeriodicPartnerCompleteRange",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerCompleteRange.lean",
+      "line": 39,
+      "declaration": "theorem partner_of_seam_is_vertex (D : CoveringData seam Left Right Partner)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerCompleteRange.partners_of_seam_equal",
+      "module": "PscVerif.PeriodicPartnerCompleteRange",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerCompleteRange.lean",
+      "line": 52,
+      "declaration": "theorem partners_of_seam_equal (D : CoveringData seam Left Right Partner)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerCompleteRange.square_inverse_of_derangement",
+      "module": "PscVerif.PeriodicPartnerCompleteRange",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerCompleteRange.lean",
+      "line": 63,
+      "declaration": "theorem square_inverse_of_derangement :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerCompleteRange.covering_impossible",
+      "module": "PscVerif.PeriodicPartnerCompleteRange",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerCompleteRange.lean",
+      "line": 70,
+      "declaration": "theorem covering_impossible (D : CoveringData seam Left Right Partner) : False := by"
+    },
+    {
       "name": "Psc.PeriodicPartnerControls.mergeMatrix_counts",
       "module": "PscVerif.PeriodicPartnerControls",
       "private": false,
@@ -36568,6 +36616,54 @@
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerDichotomy.lean",
       "line": 117,
       "declaration": "theorem ternary_branch_triple_dichotomy"
+    },
+    {
+      "name": "Psc.PeriodicPartner.tendsto_of_singleton_fibre",
+      "module": "PscVerif.PeriodicPartnerDirectional",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean",
+      "line": 17,
+      "declaration": "theorem tendsto_of_singleton_fibre {X Y I : Type*} [TopologicalSpace X] [CompactSpace X]"
+    },
+    {
+      "name": "Psc.PeriodicPartner.injective_endpoint_of_large_cycle_rank",
+      "module": "PscVerif.PeriodicPartnerDirectional",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean",
+      "line": 37,
+      "declaration": "theorem injective_endpoint_of_large_cycle_rank (gR gL : Letter → Letter)"
+    },
+    {
+      "name": "Psc.PeriodicPartner.three_letter_germ_disjointness",
+      "module": "PscVerif.PeriodicPartnerDirectional",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean",
+      "line": 52,
+      "declaration": "theorem three_letter_germ_disjointness (N : Fin 3 → Fin 3 → Prop)"
+    },
+    {
+      "name": "Psc.PeriodicPartner.groupCycle_row",
+      "module": "PscVerif.PeriodicPartnerDirectional",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean",
+      "line": 103,
+      "declaration": "private theorem groupCycle_row {I J A : Type*} [Fintype I] [Fintype J] [AddCommGroup A]"
+    },
+    {
+      "name": "Psc.PeriodicPartner.groupCycle_swap",
+      "module": "PscVerif.PeriodicPartnerDirectional",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean",
+      "line": 118,
+      "declaration": "private theorem groupCycle_swap {I J A : Type*} [Fintype I] [Fintype J] [AddCommGroup A]"
+    },
+    {
+      "name": "Psc.PeriodicPartner.grouped_cycle_entries",
+      "module": "PscVerif.PeriodicPartnerDirectional",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean",
+      "line": 128,
+      "declaration": "theorem grouped_cycle_entries {I J A : Type*} [Fintype I] [Fintype J] [AddCommGroup A]"
     },
     {
       "name": "Psc.PeriodicPartnerDynamics.pairPeriodic_of_mem",
@@ -37184,6 +37280,94 @@
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
       "line": 757,
       "declaration": "theorem thueMorse_hull_nonempty : Nonempty thueMorse.Hull := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.tile_end_le_of_start_lt",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 19,
+      "declaration": "private theorem tile_end_le_of_start_lt {T : S.Hull} {p q : α × ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.startsAt_of_endsAt",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 27,
+      "declaration": "theorem startsAt_of_endsAt {T : S.Hull} {y : ℝ} {b : α}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.endsAt_of_startsAt",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 44,
+      "declaration": "private theorem endsAt_of_startsAt {T : S.Hull} {y : ℝ} {a : α}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.agreeRight_extend_to_common_tile",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 65,
+      "declaration": "theorem agreeRight_extend_to_common_tile {T U : S.Hull} {p : α × ℝ} {r : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.branchExistence",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 83,
+      "declaration": "theorem branchExistence [Finite α] [Nonempty α] :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.inflateH_iterate_tiles",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 127,
+      "declaration": "private theorem inflateH_iterate_tiles [Nonempty α] (T : S.Hull) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.periodic_ray_of_startsAt",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 135,
+      "declaration": "theorem periodic_ray_of_startsAt [Nonempty α] (hβ : 1 < S.β) {T U : S.Hull} {a : α}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.vertexLaws",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 174,
+      "declaration": "theorem vertexLaws [Nonempty α] (hβ : 1 < S.β) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.periodic_branch_at_origin_of_injective",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 182,
+      "declaration": "theorem periodic_branch_at_origin_of_injective [Finite α] [Nonempty α]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.hull_origin_witness_of_injective",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 201,
+      "declaration": "theorem hull_origin_witness_of_injective (hβ : 1 < S.β) (P : PublishedInputs S Y)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.hull_selection_dichotomy",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 231,
+      "declaration": "theorem hull_selection_dichotomy (hβ : 1 < S.β) (P : PublishedInputs S Y)"
     },
     {
       "name": "Psc.PeriodicPartnerModels.constantTwo_semiconj",
@@ -45833,52 +46017,52 @@
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 174,
+      "line": 178,
       "statement_heading": "**Theorem FP (exact count).** Let `s` be a primitive substitution on an"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 246,
+      "line": 250,
       "statement_heading": "**Lemma K (power sums bounded above).** Let `f` be a monic complex"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 263,
+      "line": 267,
       "statement_heading": "**Lemma U (monomials that are roots of unity).** Let `χ ∈ ℤ[t]` be a monic"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 291,
+      "line": 295,
       "statement_heading": "**Theorem TT.** Let `σ ∈ PIP3`, `P ≥ 1`, `τ = σ^P`, and let `B` be a"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 362,
+      "line": 366,
       "statement_heading": "**Theorem NI.** Let `σ ∈ PIP3`, `τ = σ^P`, and let `B` be a strict"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 468,
+      "line": 472,
       "statement_heading": "**Theorem W (the rank-two wall).** Let `σ ∈ PIP3` with `cr(σ) = 2` have a"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 757,
+      "line": 761,
       "statement_heading": "**Lemma 9′ (classes are eigenfunction classes; every determinant).** Let"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 805,
+      "line": 809,
       "statement_heading": "**Theorem H3.** Let `σ ∈ PIP3` with `dim H¹(Ω_σ; ℚ) = 3`. Then"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 862,
+      "line": 866,
       "statement_heading": "**Corollary (dimension).** For `σ ∈ PIP3`, `cr(σ) = 2` forces"
     },
     {
       "source": "docs/c4-rank-two-wall-2026-11-16.md",
-      "line": 1093,
+      "line": 1097,
       "statement_heading": "*Theorem FP (`test_fixed_point_count.mojo`).* The formula"
     },
     {
@@ -47731,7 +47915,7 @@
     "proof/PscVerif/ClassAPlusUpperRecurrenceAudit.lean": "ef12f802e6eb10dbf2b02ce84cccbcdf9164aed9356f4fe2917ee513923824aa",
     "proof/PscVerif/ClassARunDescentAudit.lean": "a1fe09a772c2112929a6f892993da045628ef410f15cd53b1d8eba74343959fc",
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "81efe5b8745576f8f15a59a263563b31e08307e9c432e78fa2ef9021a613b2d1",
-    "proof/PscVerif/PeriodicPartnerAudit.lean": "b878a6b6c9131ff5ac456fd6896bff61a0e674d3929e6a2eef93b389f6c91b14",
+    "proof/PscVerif/PeriodicPartnerAudit.lean": "aaff6701aeb70c284dd187d4bc4ee79e04b6d53ca76c649e56c6e8a1299739e6",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean": "87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean": "e18e726b6bd1c431f9e28500504edd6ffba157415af20069715b9c8f208f3f9b",
@@ -47895,10 +48079,13 @@
     "proof/PscVerif/PscVerif/PeriodicPartner.lean": "8b4cfa2dbed0bf629a0a0f0dfd57ecb63b0d83bc02b48ee3392faa90404f4aaf",
     "proof/PscVerif/PscVerif/PeriodicPartnerAsymptotic.lean": "0ad011b1e6eb02418699a4838c22ae630f28954696810c470fdb054e077b4c23",
     "proof/PscVerif/PscVerif/PeriodicPartnerCollapse.lean": "a0b3df8c6040977532413191864a2ba002ebf45a6fb79cd3a40fe9a8fb45fd91",
+    "proof/PscVerif/PscVerif/PeriodicPartnerCompleteRange.lean": "df5e5f39df78d9a48c02f61399558ecb600dd5cc3c9d936c238300ece7caba23",
     "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean": "84725326692e81dafcef2c4a724bfb2cee8629fdba398686540db35be72eb0fd",
     "proof/PscVerif/PscVerif/PeriodicPartnerDichotomy.lean": "d74034c65d26d8b98916f6fdca046c6772e9a3389fb53fdd03bcf3baeea2339b",
+    "proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean": "2de97bdedb63711b40bdce3c39388cd1c0e3db83f8f81af69fcadbd778903582",
     "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean": "812599f6a9dfb4ab5d0da0924fa6c3901128f74644e76d14eb2996de17f55c44",
     "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean": "44838714eba3bef21f504217d0d1160ffc036b5e38a4ff1e01a50008bc2cea26",
+    "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean": "59d86f345c47142bdd7a74200c04b48f4ae975d1d5afe2dc29331048d7f37988",
     "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean": "434d5573fb928bb0ee6667da6dedc8fc76867b76c26d72f5707ac1387a62c5ea",
     "proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean": "140e1a71503a0648d17099247ef4cb9b92d67c1cdc15257ee66526a89527ece5",
     "proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean": "13c39c9aea34b64f377cbfd3eb074fe436a952e8f0d806eb9ed37f6c2ef70e41",
@@ -47932,7 +48119,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "69be7ed3f481a41962c9ec7ea7391dbeefd9cad7c64ff945db6e9ac2238339dc",
+    "proof/PscVerif/PscVerif.lean": "aec4f13434fec5ee0be66984692896d12325d3da46cb570ead049a9667c4e305",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

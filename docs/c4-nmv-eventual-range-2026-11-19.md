@@ -236,3 +236,10 @@ implication using coincidence rank two or the strict system itself,
 or an argument that bypasses (NM_V). The counterexample concerns the
 implication without a coincidence-rank premise. Periodic-partner
 witness selection and the remaining C4 and PSC obligations stay open.
+
+The [complete-range covering follow-up](c4-complete-range-covering-2026-11-19.md)
+bypasses (NM_V) for the covering step. At odd determinant and coincidence rank
+two, the projection is nowhere locally injective. Returns to a singleton
+partner fibre select a witness in the injective endpoint direction and give
+an origin-anchored triple. The [stack quotient follow-up](c4-rank-two-stack-cycle-exclusion-2026-11-19.md)
+uses these witnesses to obtain the odd-determinant rank-two contradiction.
