@@ -90,7 +90,10 @@ python3 tools/make_proof_bank.py --check
 
 The scoped gate compiles both modules with the rest of the periodic-partner closure from fresh
 sources, and audits every compiled declaration for the standard axioms (`propext`,
-`Classical.choice`, `Quot.sound`) only. Its session receipt is recorded in the integration PR.
+`Classical.choice`, `Quot.sound`) only. Session receipt (Lean `v4.34.0-rc2`, source snapshot
+`aad53f79…306c` over 222 files): `PSC_PERIODIC_PARTNER_AUDIT_VERIFIED 16 806 561 336`,
+`PSC_PERIODIC_PARTNER_GATE_COMPLETE fresh-local-closure standard-axioms-only`. The hosted CI
+receipt is separate.
 
 ### Negative controls
 
