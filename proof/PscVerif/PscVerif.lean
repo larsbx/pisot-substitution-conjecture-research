@@ -196,6 +196,10 @@ import PscVerif.PeriodicPartnerSpectral
 import PscVerif.PeriodicPartnerSpectralModels
 import PscVerif.PeriodicPartnerSpectralCertificate
 import PscVerif.PeriodicPartnerSpectralCensus
+import PscVerif.PeriodicPartnerHullContinuity
+import PscVerif.PeriodicPartnerLocalTopology
+import PscVerif.PeriodicPartnerLocalTopologyControls
+import PscVerif.PeriodicPartnerLocalRealization
 import PscVerif.EvenCompanionWords
 import PscVerif.EvenCompanionFamily
 import PscVerif.EvenSeamCycles
