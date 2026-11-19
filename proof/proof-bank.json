@@ -37866,6 +37866,566 @@
       "declaration": "theorem contraction_collapse_from_endpoint_merge :"
     },
     {
+      "name": "Psc.PeriodicPartnerRealization.isClosed_lattice",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 62,
+      "declaration": "theorem isClosed_lattice : IsClosed (lattice α : Set (α → ℝ)) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.ab_mem_lattice",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 84,
+      "declaration": "theorem ab_mem_lattice (w : List α) : ab w ∈ lattice α := fun b => ⟨(w.count b : ℤ), by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.dot_ab",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 87,
+      "declaration": "theorem dot_ab (w : List α) : S.ℓ ⬝ᵥ ab w = (w.map S.ℓ).sum := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.dot_single",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 97,
+      "declaration": "theorem dot_single (a : α) : S.ℓ ⬝ᵥ Pi.single a 1 = S.ℓ a := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.single_mem_lattice",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 100,
+      "declaration": "theorem single_mem_lattice (a : α) : (Pi.single a 1 : α → ℝ) ∈ lattice α := fun b => by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.dot_mat_mulVec",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 106,
+      "declaration": "theorem dot_mat_mulVec (v : α → ℝ) : S.ℓ ⬝ᵥ ((mat S) *ᵥ v) = S.β * (S.ℓ ⬝ᵥ v) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.mulVec_mem_lattice",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 115,
+      "declaration": "theorem mulVec_mem_lattice {v : α → ℝ} (hv : v ∈ lattice α) : (mat S) *ᵥ v ∈ lattice α := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.pow_mulVec_mem_lattice",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 121,
+      "declaration": "theorem pow_mulVec_mem_lattice {v : α → ℝ} (hv : v ∈ lattice α) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.torusMap_mk",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 134,
+      "declaration": "theorem torusMap_mk (v : α → ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.PisotData.dot_proj",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 162,
+      "declaration": "theorem dot_proj (v : α → ℝ) : S.ℓ ⬝ᵥ P.proj v = 0 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.PisotData.proj_neg",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 165,
+      "declaration": "theorem proj_neg (v : α → ℝ) : P.proj (-v) = -P.proj v := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.PisotData.pow_mulVec_u",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 169,
+      "declaration": "theorem pow_mulVec_u (n : ℕ) : ((mat S) ^ n) *ᵥ P.u = S.β ^ n • P.u := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.PisotData.pow_mulVec_proj",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 176,
+      "declaration": "theorem pow_mulVec_proj (c : α → ℝ) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.PisotData.norm_pow_proj_le",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 180,
+      "declaration": "theorem norm_pow_proj_le (c : α → ℝ) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.PisotData.partial_sub_mem",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 194,
+      "declaration": "theorem partial_sub_mem {x : ℕ → ℝ} {c : ℕ → α → ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.PisotData.summable",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 211,
+      "declaration": "theorem summable {c : ℕ → α → ℝ} {K : ℝ} (hK : ∀ k, ‖P.proj (c k)‖ ≤ K) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.PisotData.tendsto_psum",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 224,
+      "declaration": "theorem tendsto_psum {x : ℕ → ℝ} {c : ℕ → α → ℝ} {K : ℝ} (hK : ∀ k, ‖P.proj (c k)‖ ≤ K) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.PisotData.tendsto_pow_proj_zero",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 228,
+      "declaration": "theorem tendsto_pow_proj_zero {d : ℕ → α → ℝ} {K : ℝ} (hK : ∀ n, ‖P.proj (d n)‖ ≤ K) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.PisotData.vec_sub_mem_of_eventually",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 240,
+      "declaration": "theorem vec_sub_mem_of_eventually {x x' : ℕ → ℝ} {c c' : ℕ → α → ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.PisotData.vec_shift",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 268,
+      "declaration": "theorem vec_shift {x x' : ℕ → ℝ} {c c' : ℕ → α → ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.place_prefix",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 299,
+      "declaration": "theorem place_prefix {w : List α} {y : ℝ} {q : α × ℝ} (hq : q ∈ S.place w y) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.tileAt_spec",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 316,
+      "declaration": "theorem tileAt_spec (T : S.Hull) (z : ℝ) : tileAt T z ∈ T.1 ∧ z ∈ S.supp (tileAt T z) :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.tileAt_eq",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 319,
+      "declaration": "theorem tileAt_eq {T : S.Hull} {z : ℝ} {p : α × ℝ} (hp : p ∈ T.1) (hz : z ∈ S.supp p) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.origin_translate",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 326,
+      "declaration": "theorem origin_translate (s : ℝ) (U : S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.tileAt_next",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 338,
+      "declaration": "theorem tileAt_next {U : S.Hull} {q : α × ℝ} (hq : q ∈ U.1) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.minLen_pos",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 355,
+      "declaration": "theorem minLen_pos [Nonempty α] : 0 < minLen S :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.minLen_le",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 358,
+      "declaration": "theorem minLen_le [Nonempty α] (a : α) : minLen S ≤ S.ℓ a :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.exists_prev",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 362,
+      "declaration": "theorem exists_prev [Nonempty α] {U : S.Hull} {q : α × ℝ} (hq : q ∈ U.1) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.tileAt_near",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 391,
+      "declaration": "theorem tileAt_near [Nonempty α] (U : S.Hull) {s : ℝ} (hs : |s| < minLen S) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.tileAt_inflate",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 416,
+      "declaration": "theorem tileAt_inflate [Nonempty α] (U : S.Hull) (z : ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.PisotData.le_offsetBound",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 436,
+      "declaration": "theorem le_offsetBound {a : α} {w : List α} (hw : w ∈ (S.σ a).inits) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.PisotData.near_bound",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 446,
+      "declaration": "theorem near_bound {d : α → ℝ} (hd : d ∈ ({0} ∪ range (fun a => (Pi.single a 1 : α → ℝ)) ∪"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.offset_eq",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 466,
+      "declaration": "theorem offset_eq (U : S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.offset_mem",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 472,
+      "declaration": "theorem offset_mem (U : S.Hull) : offset U ∈ lattice α := ab_mem_lattice _"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.offset_bound",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 476,
+      "declaration": "theorem offset_bound (U : S.Hull) : ‖P.proj (offset U)‖ ≤ P.offsetBound :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.inflateH_desub",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 486,
+      "declaration": "theorem inflateH_desub (T : S.Hull) : inflateH (desub hR T) = T := surjInv_eq hR.2 T"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.desub_inflateH",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 488,
+      "declaration": "theorem desub_inflateH (T : S.Hull) : desub hR (inflateH T) = T :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.inflateH_level_succ",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 494,
+      "declaration": "theorem inflateH_level_succ (n : ℕ) (T : S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.level_succ_inflateH",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 498,
+      "declaration": "theorem level_succ_inflateH (n : ℕ) (T : S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.level_add",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 502,
+      "declaration": "theorem level_add (m n : ℕ) (T : S.Hull) : level hR (m + n) T = level hR m (level hR n T) :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.level_inflate_iterate",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 505,
+      "declaration": "theorem level_inflate_iterate (n : ℕ) (T : S.Hull) : level hR n (inflateH^[n] T) = T := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.desub_translate",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 511,
+      "declaration": "theorem desub_translate (t : ℝ) (U : S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.level_translate",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 517,
+      "declaration": "theorem level_translate (t : ℝ) (n : ℕ) (T : S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.xs_succ",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 531,
+      "declaration": "theorem xs_succ (T : S.Hull) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.cs_mem",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 537,
+      "declaration": "theorem cs_mem (T : S.Hull) (n : ℕ) : cs hR T n ∈ lattice α := offset_mem _"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.cs_bound",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 539,
+      "declaration": "theorem cs_bound (T : S.Hull) (n : ℕ) : ‖P.proj (cs hR T n)‖ ≤ P.offsetBound :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.torusRealize_inflate",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 549,
+      "declaration": "theorem torusRealize_inflate (T : S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.torusRealize_translate",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 562,
+      "declaration": "theorem torusRealize_translate (hβ : 1 < S.β) (t : ℝ) (T : S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.torusRealize_periodic_vertex",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 587,
+      "declaration": "theorem torusRealize_periodic_vertex {T : S.Hull} {p : ℕ} (hp : 0 < p)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.shiftS_zero",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 632,
+      "declaration": "theorem shiftS_zero : shiftS S 0 = 0 := Subtype.ext (funext fun _ => map_zero _)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.shiftS_bijective",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 636,
+      "declaration": "theorem shiftS_bijective : Bijective (shiftS S) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.coord_zero_injective",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 645,
+      "declaration": "theorem coord_zero_injective (hM : Injective (torusMap S)) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.iterate_coord",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 653,
+      "declaration": "theorem iterate_coord (z : Solenoid S) (k n : ℕ) : (torusMap S)^[k] (z.1 (n + k)) = z.1 n := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.realize_inflate",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 670,
+      "declaration": "theorem realize_inflate (T : S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.realize_semiconj",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 679,
+      "declaration": "theorem realize_semiconj : Semiconj (realize P hR) inflateH (shiftS S) := realize_inflate P hR"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.realize_translate",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 690,
+      "declaration": "theorem realize_translate (hβ : 1 < S.β) (t : ℝ) (T : S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.realize_r4",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 699,
+      "declaration": "theorem realize_r4 : R4ZeroFibre inflateH (realize P hR) 0 EndsAt := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationModels.pow_mulVec_of_eigen",
+      "module": "PscVerif.PeriodicPartnerRealizationModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean",
+      "line": 29,
+      "declaration": "theorem pow_mulVec_of_eigen {α : Type*} [Fintype α] [DecidableEq α] {A : Matrix α α ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationModels.thueMorse_mat",
+      "module": "PscVerif.PeriodicPartnerRealizationModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean",
+      "line": 37,
+      "declaration": "theorem thueMorse_mat : mat thueMorse = !![1, 1; 1, 1] := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationModels.thueMorse_mulVec",
+      "module": "PscVerif.PeriodicPartnerRealizationModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean",
+      "line": 40,
+      "declaration": "theorem thueMorse_mulVec (v : Fin 2 → ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationModels.thueMorse_dot",
+      "module": "PscVerif.PeriodicPartnerRealizationModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean",
+      "line": 44,
+      "declaration": "theorem thueMorse_dot (v : Fin 2 → ℝ) : thueMorse.ℓ ⬝ᵥ v = v 0 + v 1 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationModels.half_not_int",
+      "module": "PscVerif.PeriodicPartnerRealizationModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean",
+      "line": 68,
+      "declaration": "theorem half_not_int : (1 / 2 : ℝ) ∉ Set.range ((↑) : ℤ → ℝ) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationModels.thueMorse_torusMap_not_injective",
+      "module": "PscVerif.PeriodicPartnerRealizationModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean",
+      "line": 77,
+      "declaration": "theorem thueMorse_torusMap_not_injective : ¬ Injective (torusMap thueMorse) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationModels.fibonacci_mat",
+      "module": "PscVerif.PeriodicPartnerRealizationModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean",
+      "line": 103,
+      "declaration": "theorem fibonacci_mat : mat fibonacci = !![1, 1; 1, 0] := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationModels.fibonacci_mulVec",
+      "module": "PscVerif.PeriodicPartnerRealizationModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean",
+      "line": 106,
+      "declaration": "theorem fibonacci_mulVec (v : Fin 2 → ℝ) : mat fibonacci *ᵥ v = ![v 0 + v 1, v 0] := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationModels.fibonacci_dot",
+      "module": "PscVerif.PeriodicPartnerRealizationModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean",
+      "line": 109,
+      "declaration": "theorem fibonacci_dot (v : Fin 2 → ℝ) : fibonacci.ℓ ⬝ᵥ v = φ * v 0 + v 1 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationModels.fibonacci_torusMap_injective",
+      "module": "PscVerif.PeriodicPartnerRealizationModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean",
+      "line": 150,
+      "declaration": "theorem fibonacci_torusMap_injective : Injective (torusMap fibonacci) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationModels.fibonacci_coord_zero_injective",
+      "module": "PscVerif.PeriodicPartnerRealizationModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean",
+      "line": 169,
+      "declaration": "theorem fibonacci_coord_zero_injective :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationModels.doubled_mulVec",
+      "module": "PscVerif.PeriodicPartnerRealizationModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean",
+      "line": 184,
+      "declaration": "theorem doubled_mulVec (v : Fin 2 → ℝ) : mat doubled *ᵥ v = ![v 0 + 2 * v 1, 2 * v 0 + v 1] := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationModels.doubled_not_pisot",
+      "module": "PscVerif.PeriodicPartnerRealizationModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean",
+      "line": 190,
+      "declaration": "theorem doubled_not_pisot : IsEmpty (PisotData doubled) := by"
+    },
+    {
       "name": "Psc.PeriodicPartnerReflection.LeftBranchLaws.toRightBranchLaws",
       "module": "PscVerif.PeriodicPartnerReflection",
       "private": false,
@@ -47915,7 +48475,7 @@
     "proof/PscVerif/ClassAPlusUpperRecurrenceAudit.lean": "ef12f802e6eb10dbf2b02ce84cccbcdf9164aed9356f4fe2917ee513923824aa",
     "proof/PscVerif/ClassARunDescentAudit.lean": "a1fe09a772c2112929a6f892993da045628ef410f15cd53b1d8eba74343959fc",
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "81efe5b8745576f8f15a59a263563b31e08307e9c432e78fa2ef9021a613b2d1",
-    "proof/PscVerif/PeriodicPartnerAudit.lean": "aaff6701aeb70c284dd187d4bc4ee79e04b6d53ca76c649e56c6e8a1299739e6",
+    "proof/PscVerif/PeriodicPartnerAudit.lean": "281a2115a12fc2ed9ecb313305ed5cb7b06ac1105b0039c144230ce838ec15bd",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean": "87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean": "e18e726b6bd1c431f9e28500504edd6ffba157415af20069715b9c8f208f3f9b",
@@ -48087,6 +48647,8 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean": "44838714eba3bef21f504217d0d1160ffc036b5e38a4ff1e01a50008bc2cea26",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean": "59d86f345c47142bdd7a74200c04b48f4ae975d1d5afe2dc29331048d7f37988",
     "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean": "434d5573fb928bb0ee6667da6dedc8fc76867b76c26d72f5707ac1387a62c5ea",
+    "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean": "d26e4b6f4f1262b3fcdb7f3456e88e375f64262df9e4b7bcdda9a847fa199e72",
+    "proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean": "0096850910c94d4b72d3b1d039eb533422f894c2415c44d90a337b152c2701e0",
     "proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean": "140e1a71503a0648d17099247ef4cb9b92d67c1cdc15257ee66526a89527ece5",
     "proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean": "13c39c9aea34b64f377cbfd3eb074fe436a952e8f0d806eb9ed37f6c2ef70e41",
     "proof/PscVerif/PscVerif/PerronCore.lean": "1f06da1e0b57e74b31fc03d753bd314f25561a37e512b3a8f7f05fda0d75458c",
@@ -48119,7 +48681,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "aec4f13434fec5ee0be66984692896d12325d3da46cb570ead049a9667c4e305",
+    "proof/PscVerif/PscVerif.lean": "562346c9cd6de1d4e73aa4bcfc0525c2ce9a19a57bbd6f4466b3d5f503dd02f8",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
