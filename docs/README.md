@@ -507,6 +507,8 @@ closed on caps and retain a replayable record for every survivor.
 - [Formalization source decision](c4-periodic-partner-formalization-stop-go-2026-11-19.md): primitive local inputs, published imports, and the noncircular proof boundary.
 - [Legal tiling hull instance](c4-tiling-hull-realization-2026-11-19.md): the legal two-sided hull, translation, inflation, endpoints and an exact-agreement metric in Lean, with every local contract discharged on it; geometric realization is not constructed and the published inputs remain named fields.
 - [Hull source decision](c4-tiling-hull-realization-stop-go-2026-11-19.md): which contracts are local, the metric choice, and why realization is deferred.
+- [Witness selection under (NM_V)](c4-witness-selection-2026-11-19.md): Theorem S in Lean. A vertex leaf forces the branch to the origin, and failing branches have interior leaves on the collapsed endpoint pair. The exact census of that residual finds it in `F₀` on 12 in-scope specimens; selection stays open.
+- [Selection source decision](c4-witness-selection-stop-go-2026-11-19.md): what transfers from BDS, BBK and Barge–Diamond, the local contracts, and why selection itself is deferred.
 
 ## Primary completion route: finite seed-patch overlaps
 

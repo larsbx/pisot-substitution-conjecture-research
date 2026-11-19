@@ -37770,6 +37770,118 @@
       "declaration": "theorem left_ternary_zero_fibre_periodic_triple {X Y : Type*}"
     },
     {
+      "name": "Psc.PeriodicPartnerSelection.six_of_mem_periodicPts",
+      "module": "PscVerif.PeriodicPartnerSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean",
+      "line": 35,
+      "declaration": "theorem six_of_mem_periodicPts {g : Fin 3 → Fin 3} {p : Fin 3}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSelection.mem_periodicPts_iff_six",
+      "module": "PscVerif.PeriodicPartnerSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean",
+      "line": 46,
+      "declaration": "theorem mem_periodicPts_iff_six (g : Fin 3 → Fin 3) (p : Fin 3) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSelection.collapse_at_first_step",
+      "module": "PscVerif.PeriodicPartnerSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean",
+      "line": 55,
+      "declaration": "theorem collapse_at_first_step :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSelection.collapsed_pair_unique",
+      "module": "PscVerif.PeriodicPartnerSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean",
+      "line": 61,
+      "declaration": "theorem collapsed_pair_unique :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSelection.TwoPeriodicLetters.collapse",
+      "module": "PscVerif.PeriodicPartnerSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean",
+      "line": 67,
+      "declaration": "theorem TwoPeriodicLetters.collapse {g : Fin 3 → Fin 3} (hg : TwoPeriodicLetters g)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSelection.constant_map_merges_all",
+      "module": "PscVerif.PeriodicPartnerSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean",
+      "line": 73,
+      "declaration": "theorem constant_map_merges_all : ∀ b c : Fin 3, (fun _ : Fin 3 => (0 : Fin 3))^[2] b ="
+    },
+    {
+      "name": "Psc.PeriodicPartnerSelection.collapsed_pair_example",
+      "module": "PscVerif.PeriodicPartnerSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean",
+      "line": 79,
+      "declaration": "theorem collapsed_pair_example :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSelection.pairPeriodic_swap",
+      "module": "PscVerif.PeriodicPartnerSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean",
+      "line": 119,
+      "declaration": "theorem pairPeriodic_swap {S U : X} (hp : PairPeriodic f S U) : PairPeriodic f U S := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSelection.branch_swap",
+      "module": "PscVerif.PeriodicPartnerSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean",
+      "line": 123,
+      "declaration": "theorem branch_swap (V : VertexLaws f AgreeRight EndsAt StartsAt) {S U : X} {y : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSelection.branch_nonneg_of_pairPeriodic",
+      "module": "PscVerif.PeriodicPartnerSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean",
+      "line": 130,
+      "declaration": "theorem branch_nonneg_of_pairPeriodic"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSelection.branch_eq_zero_of_persistent",
+      "module": "PscVerif.PeriodicPartnerSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean",
+      "line": 144,
+      "declaration": "theorem branch_eq_zero_of_persistent"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSelection.branch_eq_zero_of_vertex_leaf",
+      "module": "PscVerif.PeriodicPartnerSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean",
+      "line": 156,
+      "declaration": "theorem branch_eq_zero_of_vertex_leaf"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSelection.interior_leaves_of_merge",
+      "module": "PscVerif.PeriodicPartnerSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean",
+      "line": 177,
+      "declaration": "theorem interior_leaves_of_merge"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSelection.selection_dichotomy",
+      "module": "PscVerif.PeriodicPartnerSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean",
+      "line": 213,
+      "declaration": "theorem selection_dichotomy"
+    },
+    {
       "name": "Psc.PerronCore.super_eigen_eq",
       "module": "PscVerif.PerronCore",
       "private": false,
@@ -45837,6 +45949,46 @@
       "statement_heading": "### Theorem"
     },
     {
+      "source": "docs/c4-witness-selection-2026-11-19.md",
+      "line": 34,
+      "statement_heading": "**Lemma K (three letters).** Let `g : {0,1,2} → {0,1,2}` have at least two periodic"
+    },
+    {
+      "source": "docs/c4-witness-selection-2026-11-19.md",
+      "line": 38,
+      "statement_heading": "**Lemma A′ (location).** A periodic pair's branch satisfies `y ≥ 0`, and `y = 0` when its"
+    },
+    {
+      "source": "docs/c4-witness-selection-2026-11-19.md",
+      "line": 41,
+      "statement_heading": "**Lemma V (vertex leaves branch at the origin).** Assume (R4), (E1) and (NM_V). If a"
+    },
+    {
+      "source": "docs/c4-witness-selection-2026-11-19.md",
+      "line": 44,
+      "statement_heading": "**Theorem S (branch reduction).** Assume the inputs of Lemmas P and V, and that `g`"
+    },
+    {
+      "source": "docs/c4-witness-selection-2026-11-19.md",
+      "line": 59,
+      "statement_heading": "*Lemma K.* After two steps every letter of a three-letter map lies on a cycle"
+    },
+    {
+      "source": "docs/c4-witness-selection-2026-11-19.md",
+      "line": 66,
+      "statement_heading": "*Lemma A′.* The pair is fixed by `Φⁿ`, which sends agreement on `[y, ∞)` to agreement on"
+    },
+    {
+      "source": "docs/c4-witness-selection-2026-11-19.md",
+      "line": 71,
+      "statement_heading": "*Lemma V.* Let `S` have a vertex at `0`. By (R4) `S ∈ F₀`; by (E1) `U ∈ F₀`. (NM_V)"
+    },
+    {
+      "source": "docs/c4-witness-selection-2026-11-19.md",
+      "line": 77,
+      "statement_heading": "*Theorem S.* Lemma P gives the periodic translate. Take its first branch `(y, b, c)`. If"
+    },
+    {
       "source": "docs/class-a-carrier-closure-2026-10-22.md",
       "line": 83,
       "statement_heading": "**Lemma 1 (elimination of n).** For integer polynomials `A, B` and every `n`,"
@@ -47491,7 +47643,7 @@
     "proof/PscVerif/ClassAPlusUpperRecurrenceAudit.lean": "ef12f802e6eb10dbf2b02ce84cccbcdf9164aed9356f4fe2917ee513923824aa",
     "proof/PscVerif/ClassARunDescentAudit.lean": "a1fe09a772c2112929a6f892993da045628ef410f15cd53b1d8eba74343959fc",
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "81efe5b8745576f8f15a59a263563b31e08307e9c432e78fa2ef9021a613b2d1",
-    "proof/PscVerif/PeriodicPartnerAudit.lean": "4dc86aa04b932fdc5f9423d8d1435f39c9c1b6194a62a79208c2fc2e7aede999",
+    "proof/PscVerif/PeriodicPartnerAudit.lean": "b878a6b6c9131ff5ac456fd6896bff61a0e674d3929e6a2eef93b389f6c91b14",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean": "87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean": "e18e726b6bd1c431f9e28500504edd6ffba157415af20069715b9c8f208f3f9b",
@@ -47661,6 +47813,7 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean": "44838714eba3bef21f504217d0d1160ffc036b5e38a4ff1e01a50008bc2cea26",
     "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean": "434d5573fb928bb0ee6667da6dedc8fc76867b76c26d72f5707ac1387a62c5ea",
     "proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean": "140e1a71503a0648d17099247ef4cb9b92d67c1cdc15257ee66526a89527ece5",
+    "proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean": "13c39c9aea34b64f377cbfd3eb074fe436a952e8f0d806eb9ed37f6c2ef70e41",
     "proof/PscVerif/PscVerif/PerronCore.lean": "1f06da1e0b57e74b31fc03d753bd314f25561a37e512b3a8f7f05fda0d75458c",
     "proof/PscVerif/PscVerif/PerronExistence.lean": "a2ac1801abf2a99a6c312935d101ed4f760ffec0f96586d5f1f43bb176814c73",
     "proof/PscVerif/PscVerif/PerronSimple.lean": "1e4d9aca60b215f17067e39ba38bd8eaec7d9781fb716d8727fa7f9cbbf737a8",
@@ -47690,7 +47843,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "9aa8754f319f5b83994dc3b66c7d69383e9a213195508c8310dc8dcb189d350f",
+    "proof/PscVerif/PscVerif.lean": "26a812701c6e084e99f54020dfb5a55fb4c163556476864f5f39c1a98fd34d70",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

@@ -143,6 +143,25 @@ def literal_pair(sigma: List[List[Int]], seam_left: Int, seam_right: Int, s: Pro
     return literal_agree(vr, [0, 0, 0], ir, start, right)
 
 
+def literal_interior_pair(sigma: List[List[Int]], s: PrototileState, t: PrototileState, right: Bool) raises -> Bool:
+    var start_s = s.vector()
+    var start_t = t.vector()
+    for i in range(3):
+        start_s[i] = -start_s[i]
+        start_t[i] = -start_t[i]
+    return literal_agree(interior_ray(sigma, s, right), start_s, interior_ray(sigma, t, right), start_t, right)
+
+
+def residual(sigma: List[List[Int]], left: List[String], right: List[String]) raises:
+    """Interior-interior asymptotes of `F₀` (the selection note's residual)."""
+    var boxes = StableRadiiCache()
+    var m = PrototileMap(sigma)
+    var r = nmv_report(m, boxes)
+    assert_true(r.holds())
+    assert_equal(r.left_interior, left)
+    assert_equal(r.right_interior, right)
+
+
 def check(sigma: List[List[Int]], members: Int, interior: Int, left: List[String], right: List[String]) raises:
     var boxes = StableRadiiCache()
     var m = PrototileMap(sigma)
@@ -179,4 +198,14 @@ def main() raises:
     var w = Member(True, 1, 1, PrototileState(1, 0, 0, 0))
     assert_true(asymptotic(m, v, w, False))
     _ = boxes
-    require_contract("Zero-fibre asymptotes are decided exactly from left and right branches of the central overlap chain; (NM_V) failures on 1/012/21, 01/12/021 and 220/01/021 are replayed by independent literal word rays, (NM_V) holds on 01/122/201 and Tribonacci, and a decided non-asymptote shows no literal agreement.")
+    # Residual of the witness-selection note: (NM_V) holds, beta_1 = 2, and two
+    # distinct interior members of F₀ are asymptotic (left: 01/12/110, g = (0,1,1);
+    # right: 10/200/02, g_R = (0,0,2)). Literal rays confirm both.
+    residual([[0, 1], [1, 2], [1, 1, 0]], ["(1;1,0,0) ~ (2;1,0,0)"], [])
+    assert_true(literal_interior_pair([[0, 1], [1, 2], [1, 1, 0]], PrototileState(1, 1, 0, 0), PrototileState(2, 1, 0, 0), False))
+    residual([[1, 0], [2, 0, 0], [0, 2]], [], ["(0;1,0,-1) ~ (1;0,1,-1)"])
+    assert_true(literal_interior_pair([[1, 0], [2, 0, 0], [0, 2]], PrototileState(0, 1, 0, -1), PrototileState(1, 0, 1, -1), True))
+    # Tribonacci and 01/122/201 have no interior asymptotes.
+    residual([[0, 1], [0, 2], [0]], [], [])
+    residual([[0, 1], [1, 2, 2], [2, 0, 1]], [], [])
+    require_contract("Zero-fibre asymptotes are decided exactly from left and right branches of the central overlap chain; (NM_V) failures on 1/012/21, 01/12/021 and 220/01/021 are replayed by independent literal word rays, (NM_V) holds on 01/122/201 and Tribonacci, a decided non-asymptote shows no literal agreement, and interior-interior zero-fibre asymptotes on 01/12/110 (left) and 10/200/02 (right), where (NM_V) holds at beta_1 = 2, are replayed by literal rays.")

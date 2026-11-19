@@ -362,6 +362,11 @@ obligations are still exact and separate:
    analyze the periodic branch fibres that do not meet this branch-origin
    criterion. Lemma C(c) does not select endpoint labels, and (Z3)'s
    anchored pair need not be the same witness.
+   *Update 2026-11-19:* the [witness-selection note](c4-witness-selection-2026-11-19.md)
+   reduces this to one case. Under (NM_V) a failing periodic branch lies right of
+   the origin on the collapsed pair of `g_R`, and both leaves are interior-type.
+   The exact census finds that configuration inside `F₀` on 12 (NM_V) specimens with
+   `β₁(ER) = 2`, so (NM_V) alone does not select a witness.
 2. **A contradiction after successful zero-fibre extraction.** Control the
    common partner's vertex or interior type and the repeated-letter
    multiplicities without using the covering-only matching lemma. Prove a
