@@ -3,6 +3,7 @@
 from std.testing import assert_equal, assert_false, assert_true
 from mojo_smoke.claims import require_contract
 from psc.c4_geometric_f import PrototileMap, PrototileState, StableRadiiCache
+from psc.h1_census import eventual_range, graph_shape, legal_two_words
 from psc.zero_fibre_asymptotes import Member, asymptotic, nmv_report
 
 comptime RAY = 1500
@@ -173,6 +174,12 @@ def check(sigma: List[List[Int]], members: Int, interior: Int, left: List[String
     assert_equal(r.right_failures, right)
 
 
+def check_complete_range(sigma: List[List[Int]], expected: List[Bool]) raises:
+    var er = eventual_range(sigma, legal_two_words(sigma))
+    assert_equal(er, expected)
+    assert_equal(graph_shape(er, 3), List[Int]([6, 5, 1]))
+
+
 def main() raises:
     # Round-4 certificate: 1/012/21 merges an interior member on the right (g_R not injective).
     check([[1], [0, 1, 2], [2, 1]], 5, 1, [], ["1.2 ~R (1;-1,0,1)", "2.2 ~R (1;-1,0,1)"])
@@ -208,4 +215,20 @@ def main() raises:
     # Tribonacci and 01/122/201 have no interior asymptotes.
     residual([[0, 1], [0, 2], [0]], [], [])
     residual([[0, 1], [1, 2, 2], [2, 0, 1]], [], [])
+    # Beyond the corpus, 01/210/1021 fails (NM_V) on K_(2,3). Reflection
+    # moves the failure to the left and gives K_(3,2), at the same rank two.
+    var counterexample: List[List[Int]] = [[0, 1], [2, 1, 0], [1, 0, 2, 1]]
+    var right_range: List[Bool] = [True, True, True, True, True, True, False, False, False]
+    check_complete_range(counterexample, right_range)
+    check(counterexample, 8, 2, [], ["0.0 ~R (2;-1,0,1)", "1.0 ~R (2;-1,0,1)"])
+    var reflected: List[List[Int]] = [[1, 0], [0, 1, 2], [1, 2, 0, 1]]
+    check_complete_range(reflected, [True, True, False, True, True, False, True, True, False])
+    check(reflected, 8, 2, ["0.0 ~L (2;1,0,0)", "0.1 ~L (2;1,0,0)"], [])
+    # Same graph and interior address, with the parity condition of Theorem P.
+    var parity_control: List[List[Int]] = [[0, 1], [2, 1, 0, 0], [1, 0, 0, 2, 1]]
+    var parity_map = PrototileMap(parity_control)
+    assert_equal(parity_map.incidence.charpoly(), List[Int]([1, -1, -3, 1]))
+    check_complete_range(parity_control, right_range)
+    check(parity_control, 8, 2, [], ["0.0 ~R (2;-1,0,1)", "1.0 ~R (2;-1,0,1)"])
     require_contract("Zero-fibre asymptotes are decided exactly from left and right branches of the central overlap chain; (NM_V) failures on 1/012/21, 01/12/021 and 220/01/021 are replayed by independent literal word rays, (NM_V) holds on 01/122/201 and Tribonacci, a decided non-asymptote shows no literal agreement, and interior-interior zero-fibre asymptotes on 01/12/110 (left) and 10/200/02 (right), where (NM_V) holds at beta_1 = 2, are replayed by literal rays.")
+    require_contract("01/210/1021 has a complete 2-by-3 eventual range and fails (NM_V) on the right. Its reflection fails on the left at the same rank, and 01/2100/10021 also fails with the parity condition of Theorem P.")

@@ -44682,6 +44682,94 @@
       "declaration": "theorem partner_triangle {E : Finset (Fin 3 × Fin 3)} {N : Fin 3 × Fin 3 → Finset (Fin 3 × Fin 3)}"
     },
     {
+      "name": "Psc.VertexAsymptoteRange.periodic_letters_card_le_two",
+      "module": "PscVerif.VertexAsymptoteRange",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/VertexAsymptoteRange.lean",
+      "line": 27,
+      "declaration": "theorem periodic_letters_card_le_two (g : Letter → Letter) (h : ¬ Injective g) :"
+    },
+    {
+      "name": "Psc.VertexAsymptoteRange.count_with_small_side",
+      "module": "PscVerif.VertexAsymptoteRange",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/VertexAsymptoteRange.lean",
+      "line": 49,
+      "declaration": "private theorem count_with_small_side (m n e : ℕ) (hm : m ≤ 2) (hn : n ≤ 3)"
+    },
+    {
+      "name": "Psc.VertexAsymptoteRange.cycle_rank_bound",
+      "module": "PscVerif.VertexAsymptoteRange",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/VertexAsymptoteRange.lean",
+      "line": 67,
+      "declaration": "theorem cycle_rank_bound (L R : Finset Letter) (E : Finset Seam) (hE : E ⊆ L ×ˢ R)"
+    },
+    {
+      "name": "Psc.VertexAsymptoteRange.example_endpoints",
+      "module": "PscVerif.VertexAsymptoteRange",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/VertexAsymptoteRange.lean",
+      "line": 98,
+      "declaration": "theorem example_endpoints :"
+    },
+    {
+      "name": "Psc.VertexAsymptoteRange.example_internal_bigrams",
+      "module": "PscVerif.VertexAsymptoteRange",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/VertexAsymptoteRange.lean",
+      "line": 107,
+      "declaration": "theorem example_internal_bigrams (e : Seam) :"
+    },
+    {
+      "name": "Psc.VertexAsymptoteRange.example_legal_bigrams",
+      "module": "PscVerif.VertexAsymptoteRange",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/VertexAsymptoteRange.lean",
+      "line": 116,
+      "declaration": "theorem example_legal_bigrams :"
+    },
+    {
+      "name": "Psc.VertexAsymptoteRange.example_eventual_range",
+      "module": "PscVerif.VertexAsymptoteRange",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/VertexAsymptoteRange.lean",
+      "line": 129,
+      "declaration": "theorem example_eventual_range :"
+    },
+    {
+      "name": "Psc.VertexAsymptoteRange.example_matrix_counts",
+      "module": "PscVerif.VertexAsymptoteRange",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/VertexAsymptoteRange.lean",
+      "line": 136,
+      "declaration": "theorem example_matrix_counts :"
+    },
+    {
+      "name": "Psc.VertexAsymptoteRange.example_primitive_square",
+      "module": "PscVerif.VertexAsymptoteRange",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/VertexAsymptoteRange.lean",
+      "line": 141,
+      "declaration": "theorem example_primitive_square : ∀ i j : Letter, 0 < (exampleMatrix * exampleMatrix) i j := by"
+    },
+    {
+      "name": "Psc.VertexAsymptoteRange.example_address",
+      "module": "PscVerif.VertexAsymptoteRange",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/VertexAsymptoteRange.lean",
+      "line": 148,
+      "declaration": "theorem example_address :"
+    },
+    {
+      "name": "Psc.VertexAsymptoteRange.example_common_suffixes",
+      "module": "PscVerif.VertexAsymptoteRange",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/VertexAsymptoteRange.lean",
+      "line": 157,
+      "declaration": "theorem example_common_suffixes (n : ℕ) :"
+    },
+    {
       "name": "Psc.WeightModulus.norm_d",
       "module": "PscVerif.WeightModulus",
       "private": false,
@@ -47840,10 +47928,11 @@
     "proof/PscVerif/PscVerif/StrictSystem.lean": "657d6c9f4041b04a2e478f19dea2ecb813952caf2fe1455789778306ad6c3a48",
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/UniquePartnerLetters.lean": "48c3ef59f3a814c3c0fa0993744d0c2440f639e5355debf996c2f4098501b7e4",
+    "proof/PscVerif/PscVerif/VertexAsymptoteRange.lean": "c8328ddb30c748ed93c4399880b473b954c000f7f81b1035a70e1fbee0ba3191",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "26a812701c6e084e99f54020dfb5a55fb4c163556476864f5f39c1a98fd34d70",
+    "proof/PscVerif/PscVerif.lean": "69be7ed3f481a41962c9ec7ea7391dbeefd9cad7c64ff945db6e9ac2238339dc",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

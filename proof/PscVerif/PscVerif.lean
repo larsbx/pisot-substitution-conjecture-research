@@ -186,3 +186,4 @@ import PscVerif.PeriodicPartnerReflection
 import PscVerif.PeriodicPartnerAsymptotic
 import PscVerif.PeriodicPartnerHull
 import PscVerif.PeriodicPartnerSelection
+import PscVerif.VertexAsymptoteRange
