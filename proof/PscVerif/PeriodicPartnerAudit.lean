@@ -1,16 +1,25 @@
 /- Replay directly with `lake env lean PeriodicPartnerAudit.lean`.
-Audit every compiled declaration owned by the two periodic-partner modules and
+Audit every compiled declaration owned by the periodic-partner modules and
 every imported PscVerif dependency, including definitions and generated helpers.
 The isolated shell gate additionally binds the source import closure and checks
 that every named source theorem was reached by this compiled audit. -/
 import PscVerif.PeriodicPartner
 import PscVerif.PeriodicPartnerControls
+import PscVerif.PeriodicPartnerDynamics
+import PscVerif.PeriodicPartnerCollapse
+import PscVerif.PeriodicPartnerModels
+import PscVerif.PeriodicPartnerDichotomy
+import PscVerif.PeriodicPartnerReflection
+import PscVerif.PeriodicPartnerAsymptotic
 import Lean.Util.CollectAxioms
 
 open Lean Elab Command in
 run_cmd do
   let env ← getEnv
-  let required := #[`PscVerif.PeriodicPartner, `PscVerif.PeriodicPartnerControls]
+  let required := #[`PscVerif.PeriodicPartner, `PscVerif.PeriodicPartnerControls,
+    `PscVerif.PeriodicPartnerDynamics, `PscVerif.PeriodicPartnerCollapse,
+    `PscVerif.PeriodicPartnerModels, `PscVerif.PeriodicPartnerDichotomy,
+    `PscVerif.PeriodicPartnerReflection, `PscVerif.PeriodicPartnerAsymptotic]
   for mod in required do
     unless (env.getModuleIdx? mod).isSome do
       throwError "Missing compiled periodic-partner module: {mod}"

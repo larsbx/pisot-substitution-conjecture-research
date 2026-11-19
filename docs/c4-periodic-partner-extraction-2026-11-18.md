@@ -9,6 +9,14 @@ from `main@4f8b3581605028b2e842c8b095ccbe164be8bdaa`.
 
 [Pre-code literature decision](c4-periodic-partner-extraction-stop-go-2026-11-18.md)
 
+**Formalization update, 2026-11-19:** the
+[conditional deductions of P, E and M](c4-periodic-partner-formalization-2026-11-19.md),
+including the left/right transfer and combined ternary dichotomy, are now
+checked in Lean. Their inputs are explicit local geometric contracts and
+the named published periodicization/origin-fibre inputs. Constructing the
+actual legal tiling-space instance remains a separate obligation; the
+written geometric interpretation below is retained.
+
 The proposed next step in the [unique-partner note](c4-unique-partner-exclusion-2026-11-18.md)
 has three different parts. **Simultaneous periodicity is available:** a common
 translation makes both asymptotic partners and their common partner periodic.

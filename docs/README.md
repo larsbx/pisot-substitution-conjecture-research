@@ -503,6 +503,8 @@ closed on caps and retain a replayable record for every survivor.
 
 - [Periodic-partner extraction](c4-periodic-partner-extraction-2026-11-18.md): a periodic triple in a periodic fibre, the exact endpoint criterion for anchoring its branch at the zero fibre, and collapse when the endpoint letters merge. Finite deductions and controls are in Lean; tiling-space steps are written with explicit hypotheses.
 - [Targeted source decision](c4-periodic-partner-extraction-stop-go-2026-11-18.md): published periodicization, finite-fibre lifting, and the boundaries of the proposed rank-two contradiction.
+- [Conditional formalization](c4-periodic-partner-formalization-2026-11-19.md): Lean proofs of P/E/M, checked left/right transfer and exact-ray/metric correspondence, the exact endpoint/collapse dichotomy, and concrete models of the explicit contracts. The legal tiling realization and universal witness selection remain separate.
+- [Formalization source decision](c4-periodic-partner-formalization-stop-go-2026-11-19.md): primitive local inputs, published imports, and the noncircular proof boundary.
 
 ## Primary completion route: finite seed-patch overlaps
 
