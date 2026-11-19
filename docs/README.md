@@ -499,6 +499,24 @@ These are theorems over their enumerated finite domain. They are evidence, not
 general concentration or wedge-productivity theorems. Certificates must fail
 closed on caps and retain a replayable record for every survivor.
 
+## Periodic partners after the covering exclusion
+
+- [Periodic-partner extraction](c4-periodic-partner-extraction-2026-11-18.md): a periodic triple in a periodic fibre, the exact endpoint criterion for anchoring its branch at the zero fibre, and collapse when the endpoint letters merge. Finite deductions and controls are in Lean; tiling-space steps are written with explicit hypotheses.
+- [Targeted source decision](c4-periodic-partner-extraction-stop-go-2026-11-18.md): published periodicization, finite-fibre lifting, and the boundaries of the proposed rank-two contradiction.
+- [Conditional formalization](c4-periodic-partner-formalization-2026-11-19.md): Lean proofs of P/E/M, checked left/right transfer and exact-ray/metric correspondence, the exact endpoint/collapse dichotomy, and concrete models of the explicit contracts. The legal tiling realization and universal witness selection remain separate.
+- [Formalization source decision](c4-periodic-partner-formalization-stop-go-2026-11-19.md): primitive local inputs, published imports, and the noncircular proof boundary.
+- [Legal tiling hull instance](c4-tiling-hull-realization-2026-11-19.md): the legal two-sided hull, translation, inflation, endpoints and an exact-agreement metric in Lean, with every local contract discharged on it; geometric realization is not constructed and the published inputs remain named fields.
+- [Hull source decision](c4-tiling-hull-realization-stop-go-2026-11-19.md): which contracts are local, the metric choice, and why realization is deferred.
+- [Geometric realization](c4-geometric-realization-2026-11-19.md): the realization map of the hull into the solenoid of `M`, with semiconjugacy, translation equivariance and (R4) proved under the Pisot contraction and recognizability; finite fibres stay an input. Fibonacci (unit), Thue–Morse (nonunit) and a non-Pisot control.
+- [Realization source decision](c4-geometric-realization-stop-go-2026-11-19.md): Baker–Barge–Kwapisz Definition 3.1 specialised to `Σ = ℤᵈ`, and what stays imported.
+- [Realization target topology](c4-geometric-realization-topology-2026-11-19.md) proves compactness, the shift homeomorphism and continuity of the target flow. A checked Thue–Morse pair shows that depth zero loses information on the hull.
+- [Pisot contraction, derived](c4-pisot-contraction-2026-11-19.md): `PisotData` from `χ_M = (X − β) Q` through Gelfand's formula, and from the PIP3 conditions; Tribonacci `01/02/0` proved a PIP3 member and instantiated.
+- [Contraction source decision](c4-pisot-contraction-stop-go-2026-11-19.md): deflation `M − β u ℓᵀ`, simplicity from separability, and what stays imported.
+- [The census in Lean](c4-pisot-census-2026-11-19.md): a kernel-evaluated certificate (Jury's conditions, a dyadic bracket of `β`, a positive `ℓ = 𝟙ᵀ Q(M)`) and a rejection certificate decide PIP3 on all 59,319 specimens; exactly 4,554 are members, each with `PisotData`.
+- [Census source decision](c4-pisot-census-stop-go-2026-11-19.md): the cofactor at any root, positivity without Perron–Frobenius, completeness without primitivity, and the memory split of the kernel evaluation.
+- [Witness selection under (NM_V)](c4-witness-selection-2026-11-19.md): Theorem S in Lean. A vertex leaf forces the branch to the origin, and failing branches have interior leaves on the collapsed endpoint pair. The exact census of that residual finds it in `F₀` on 12 in-scope specimens; selection stays open.
+- [Selection source decision](c4-witness-selection-stop-go-2026-11-19.md): what transfers from BDS, BBK and Barge–Diamond, the local contracts, and why selection itself is deferred.
+
 ## Primary completion route: finite seed-patch overlaps
 
 - G1b-1 bounded discrepancy: repository-proved.
