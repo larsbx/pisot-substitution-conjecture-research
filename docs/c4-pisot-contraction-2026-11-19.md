@@ -102,6 +102,10 @@ dropped. `thueMorsePisot` (`Q = X`) is consistent with (F) but is not PIP3; it i
 1. **No universal instance.** (PIP3) ⇒ `PisotData` is proved for every `LengthSubst` meeting its
    hypotheses; that the 4,554 census members meet them is the census's exact Pisot screen and is
    not imported into Lean. Only Tribonacci is instantiated.
+   *Update:* the [census note](c4-pisot-census-2026-11-19.md) brings the census into Lean: a
+   kernel-evaluated certificate and its refutation decide PIP3 on all 59,319 three-letter
+   substitutions with images of length at most three, exactly 4,554 are members, and each
+   receives `PisotData` through `SpectralPisot.toPisotData`.
 2. **Recognizability, BDS and finite fibres** remain inputs for Tribonacci as for every
    `LengthSubst`; `tribonacciPisot` does not by itself produce `publishedInputs`.
 3. Non-claims 1, 3–6 of the [realization note](c4-geometric-realization-2026-11-19.md)
