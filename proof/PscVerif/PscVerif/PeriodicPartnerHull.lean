@@ -676,12 +676,13 @@ theorem tilesOn_inflate_iterate [Nonempty α] {x y : ℝ} {P : Set (α × ℝ)}
   | succ n ih =>
     simpa only [iterate_succ_apply', pow_succ', mul_assoc] using S.tilesOn_inflate ih
 
-/-- A seed tiling an interval around the origin, contained in its own `k`-fold inflation and
-legal as a whole, generates a legal two-sided tiling: the hull is nonempty. -/
-theorem hull_nonempty_of_seed [Nonempty α] (hβ : 1 < S.β) {k : ℕ} (hk : 0 < k)
+/-- A legal seed tiling an interval around the origin, nested in its `k`-fold
+inflation, extends to a legal tiling fixed by that power of inflation. -/
+theorem periodic_hull_of_seed [Nonempty α] (hβ : 1 < S.β) {k : ℕ} (hk : 0 < k)
     {P : Set (α × ℝ)} {x y : ℝ} (hx : x < 0) (hy : 0 < y)
     (htiles : S.TilesOn (Ico x y) P) (hgrow : P ⊆ S.inflate^[k] P)
-    (hlegal : ∃ c m t, P ⊆ shift t (S.supertile c m)) : Nonempty S.Hull := by
+    (hlegal : ∃ c m t, P ⊆ shift t (S.supertile c m)) :
+    ∃ T : S.Hull, P ⊆ T.1 ∧ inflateH^[k] T = T := by
   set F : ℕ → Set (α × ℝ) := fun n => S.inflate^[k * n] P with hF
   have hmono : Monotone F := by
     refine monotone_nat_of_le_succ fun n => ?_
@@ -729,15 +730,55 @@ theorem hull_nonempty_of_seed [Nonempty α] (hβ : 1 < S.β) {k : ℕ} (hk : 0 <
     have hsub := S.inflate_iterate_mono hPt (k * n)
     rw [S.inflate_iterate_shift, supertile, ← iterate_add_apply, add_comm] at hsub
     exact hsub hpn
-  exact ⟨⟨T, hT, hL⟩⟩
+  have hunion (j : ℕ) (Q : ℕ → Set (α × ℝ)) :
+      S.inflate^[j] (⋃ n, Q n) = ⋃ n, S.inflate^[j] (Q n) := by
+    induction j with
+    | zero => rfl
+    | succ j ih =>
+      simp only [iterate_succ_apply', ih]
+      ext q
+      constructor
+      · rintro ⟨p, hp, hq⟩
+        obtain ⟨n, hn⟩ := mem_iUnion.mp hp
+        exact mem_iUnion.mpr ⟨n, p, hn, hq⟩
+      · intro hq
+        obtain ⟨n, p, hp, hq⟩ := mem_iUnion.mp hq
+        exact ⟨p, mem_iUnion.mpr ⟨n, hp⟩, hq⟩
+  have hval (j : ℕ) (U : S.Hull) : (inflateH^[j] U).1 = S.inflate^[j] U.1 := by
+    induction j with
+    | zero => rfl
+    | succ j ih => simp only [iterate_succ_apply', inflateH, ih]
+  let U : S.Hull := ⟨T, hT, hL⟩
+  refine ⟨U, fun p hp => mem_iUnion.mpr ⟨0, by simpa [hF] using hp⟩,
+    Subtype.ext ((hval k U).trans ?_)⟩
+  change S.inflate^[k] (⋃ n, F n) = ⋃ n, F n
+  rw [hunion]
+  have hsucc (n : ℕ) : S.inflate^[k] (F n) = F (n + 1) := by
+    simp only [hF, Nat.mul_succ]
+    rw [add_comm (k * n) k, iterate_add_apply]
+  simp_rw [hsucc]
+  ext p
+  constructor
+  · intro hp
+    obtain ⟨n, hn⟩ := mem_iUnion.mp hp
+    exact mem_iUnion.mpr ⟨n + 1, hn⟩
+  · intro hp
+    obtain ⟨n, hn⟩ := mem_iUnion.mp hp
+    exact mem_iUnion.mpr ⟨n, hmono (Nat.le_succ n) hn⟩
+
+theorem hull_nonempty_of_seed [Nonempty α] (hβ : 1 < S.β) {k : ℕ} (hk : 0 < k)
+    {P : Set (α × ℝ)} {x y : ℝ} (hx : x < 0) (hy : 0 < y)
+    (htiles : S.TilesOn (Ico x y) P) (hgrow : P ⊆ S.inflate^[k] P)
+    (hlegal : ∃ c m t, P ⊆ shift t (S.supertile c m)) : Nonempty S.Hull := by
+  obtain ⟨T, _, _⟩ := S.periodic_hull_of_seed hβ hk hx hy htiles hgrow hlegal
+  exact ⟨T⟩
 
 end LengthSubst
 
 /-! ## Control: the Thue--Morse hull is nonempty -/
 
-/-- Thue--Morse, `0 ↦ 01`, `1 ↦ 10`, with unit tiles and `β = 2`.  An aperiodic primitive
-substitution, used only to show that the construction is not vacuous.  It is not an
-irreducible Pisot substitution and realizes no periodic-partner configuration. -/
+/-- Thue--Morse, `0 ↦ 01`, `1 ↦ 10`, with unit tiles and `β = 2`.
+The incidence has degree-one Pisot expansion and is reducible. -/
 def thueMorse : LengthSubst (Fin 2) where
   σ := ![[0, 1], [1, 0]]
   ne_nil a := by fin_cases a <;> simp
@@ -754,14 +795,15 @@ theorem thueMorse_mem_inflate {P : Set (Fin 2 × ℝ)} {p q : Fin 2 × ℝ} (hp 
     (hq : q ∈ thueMorse.place (thueMorse.σ p.1) (2 * p.2)) : q ∈ thueMorse.inflate P :=
   ⟨p, hp, hq⟩
 
-theorem thueMorse_hull_nonempty : Nonempty thueMorse.Hull := by
+theorem thueMorse_periodic_seed :
+    ∃ T : thueMorse.Hull, thueMorseSeed ⊆ T.1 ∧ inflateH^[2] T = T := by
   have hσ0 : thueMorse.σ 0 = [0, 1] := rfl
   have hσ1 : thueMorse.σ 1 = [1, 0] := rfl
   have hℓ : ∀ a, thueMorse.ℓ a = 1 := fun _ => rfl
   have hplace : ∀ (a b : Fin 2) (x : ℝ), thueMorse.place [a, b] x = [(a, x), (b, x + 1)] := by
     intro a b x
     simp [LengthSubst.place, hℓ]
-  refine thueMorse.hull_nonempty_of_seed (by norm_num [thueMorse]) (k := 2) (by norm_num)
+  refine thueMorse.periodic_hull_of_seed (by norm_num [thueMorse]) (k := 2) (by norm_num)
     (P := thueMorseSeed) (x := -1) (y := 1) (by norm_num) (by norm_num) ?_ ?_ ?_
   · refine ⟨?_, fun z hz => ?_⟩
     · rintro p (rfl | rfl) z ⟨h1, h2⟩ <;> simp only [hℓ] at h1 h2 <;>
@@ -790,5 +832,9 @@ theorem thueMorse_hull_nonempty : Nonempty thueMorse.Hull := by
     rintro p (rfl | rfl)
     · exact thueMorse_mem_inflate (p := (1, 1)) h11 (by simp only [hσ1, hplace]; norm_num)
     · exact thueMorse_mem_inflate (p := (1, 1)) h11 (by simp only [hσ1, hplace]; norm_num)
+
+theorem thueMorse_hull_nonempty : Nonempty thueMorse.Hull := by
+  obtain ⟨T, _, _⟩ := thueMorse_periodic_seed
+  exact ⟨T⟩
 
 end Psc.PeriodicPartnerHull

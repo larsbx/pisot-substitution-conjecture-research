@@ -9,7 +9,9 @@ constructed (`publishedInputs`). Recognizability, BDS periodicization and finite
 inputs, and the Pisot contraction is a hypothesis (`PisotData`). Independent human review is
 pending. C4 and PSC remain open; no governed claim changes.
 
-Starting revision: `main@e79e3e3`.
+Starting revision: `main@e79e3e3`. The [topology follow-up](c4-geometric-realization-topology-2026-11-19.md)
+proves compact Hausdorff topology, a shift homeomorphism and continuous target flow, and
+checks on actual Thue–Morse tilings that depth zero loses information.
 [Source decision](c4-geometric-realization-stop-go-2026-11-19.md).
 
 ## Work shown
@@ -99,7 +101,7 @@ receipt is separate.
 
 | Model | Point checked |
 | --- | --- |
-| Thue–Morse, `M = [[1,1],[1,1]]` | `PisotData` holds with `C = 1`, `ρ = 0`, `u = (½, ½)`. `torusMap` sends `(½, 0)` and `(0, ½)` to `(½, ½)`, so it is not injective (`thueMorse_torusMap_not_injective`). A torus-valued realization would semiconjugate the injective inflation to a non-injective map. The solenoid target is needed. |
+| Thue–Morse, `M = [[1,1],[1,1]]` | `PisotData` holds with `C = 1`, `ρ = 0`, `u = (½, ½)`. `torusMap` sends `(½, 0)` and `(0, ½)` to `(½, ½)`, so it is not injective (`thueMorse_torusMap_not_injective`). On the actual hull under bijective inflation, a period-two tiling and its translate by two have the same depth-zero class and different depth-one classes (`thueMorse_hull_depth_zero_loses_information`). |
 | Fibonacci, `ℓ = (φ, 1)`, `M = [[1,1],[1,0]]` | `PisotData` with `C = 1`, `ρ = |ψ|`: `M` acts as `ψ` on `ker ℓ`. `torusMap` is injective, so the first solenoid coordinate is injective (`fibonacci_coord_zero_injective`). This is the unit case, in which the solenoid is the torus. |
 | `0 ↦ 011`, `1 ↦ 100`, unit lengths, `β = 3` | `M (1,−1) = −(1,−1)` on `ker ℓ`, so `‖Mⁿ (1,−1)‖ = 1`. No `PisotData` exists (`doubled_not_pisot`). The contraction is a real restriction and not vacuous. |
 
@@ -118,9 +120,10 @@ Thue–Morse is not irreducible Pisot. BBK §4 cite the Morse substitution as a 
    from `χ_M = (X − β) Q` with `Q(β) ≠ 0` and the roots of `Q` in the unit disc, and that from
    the PIP3 conditions; Tribonacci `01/02/0` is proved a PIP3 member and instantiated.
 3. **Recognizability is imported** as bijectivity of `inflateH`. The models do not supply it.
-4. **Continuity is not proved.** The hull carries the exact-agreement ultrametric, in which
-   translation is not continuous. No topology is put on the solenoid. The realization is
-   constructed and equivariant as a map of sets and groups only.
+4. **Hull continuity remains open.** The hull carries the exact-agreement ultrametric.
+   The [topology follow-up](c4-geometric-realization-topology-2026-11-19.md) gives the solenoid
+   the product-subspace topology and proves continuity of the shift and the target flow.
+   Relating the realization to the ordinary tiling topology requires a separate proof.
 5. The reducible case (`Σ ≠ Γ`, non-contracted `W`) is out of scope.
 6. Gaps 2–6 of the [hull note](c4-tiling-hull-realization-2026-11-19.md#non-claims-and-remaining-gaps),
    witness selection under (NM_V) and the global rank-two contradiction are unchanged.

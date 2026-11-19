@@ -33,6 +33,8 @@ import PscVerif.PeriodicPartnerHull
 import Mathlib.LinearAlgebra.Matrix.ToLin
 import Mathlib.Analysis.SpecificLimits.Normed
 import Mathlib.Analysis.Normed.Group.Uniform
+import Mathlib.Algebra.Order.Floor.Ring
+import Mathlib.Topology.Algebra.Group.Quotient
 import Mathlib.Topology.Algebra.InfiniteSum.Real
 import Mathlib.Topology.Instances.Matrix
 
@@ -738,5 +740,88 @@ noncomputable def publishedInputs
   r4 := realize_r4 P hR
 
 end SolenoidRealization
+
+/-! ## The quotient and inverse-limit topologies -/
+
+/-- The closed integer lattice gives a Hausdorff quotient. -/
+theorem torus_t2Space : T2Space (Torus α) := by
+  let _ : IsClosed (lattice α : Set (α → ℝ)) := isClosed_lattice
+  infer_instance
+
+/-- The image of the compact unit cube covers the torus, by subtracting the
+integer part in each coordinate. -/
+theorem torus_compactSpace : CompactSpace (Torus α) := by
+  let cube : Set (α → ℝ) := Set.pi univ fun _ => Icc 0 1
+  let q := QuotientAddGroup.mk' (lattice α)
+  have hcover : q '' cube = univ := by
+    apply eq_univ_of_forall
+    intro z
+    obtain ⟨v, rfl⟩ := QuotientAddGroup.mk'_surjective (lattice α) z
+    let i : α → ℝ := fun a => ⌊v a⌋
+    have hi : i ∈ lattice α := fun a => ⟨⌊v a⌋, rfl⟩
+    have hzero : q i = 0 := (QuotientAddGroup.eq_zero_iff _).mpr hi
+    refine ⟨v - i, ?_, by rw [map_sub, hzero, sub_zero]⟩
+    intro a _
+    change v a - (⌊v a⌋ : ℝ) ∈ Icc 0 1
+    exact ⟨sub_nonneg.mpr (Int.floor_le _), by linarith [Int.lt_floor_add_one (v a)]⟩
+  apply isCompact_univ_iff.mp
+  rw [← hcover]
+  exact (isCompact_univ_pi fun _ => isCompact_Icc).image QuotientAddGroup.continuous_mk
+
+variable (S : LengthSubst α)
+
+theorem continuous_torusMap : Continuous (torusMap S) := by
+  apply (QuotientAddGroup.isQuotientMap_mk (lattice α)).continuous_iff.mpr
+  apply QuotientAddGroup.continuous_mk.comp
+  apply continuous_pi
+  intro a
+  change Continuous (fun v : α → ℝ => ∑ b, mat S a b * v b)
+  exact continuous_finsetSum _ fun b _ => continuous_const.mul (continuous_apply b)
+
+/-- Each backward compatibility condition cuts out a closed subset of the
+product of tori. -/
+theorem isClosed_solenoid : IsClosed (solenoid S : Set (ℕ → Torus α)) := by
+  let _ : T2Space (Torus α) := torus_t2Space
+  have h : (solenoid S : Set (ℕ → Torus α)) =
+      ⋂ n : ℕ, {z | torusMap S (z (n + 1)) = z n} := by
+    ext z
+    simp [solenoid]
+  rw [h]
+  exact isClosed_iInter fun n =>
+    isClosed_eq ((continuous_torusMap S).comp (continuous_apply (n + 1))) (continuous_apply n)
+
+theorem solenoid_compactSpace : CompactSpace (Solenoid S) := by
+  let _ : CompactSpace (Torus α) := torus_compactSpace
+  exact isCompact_iff_compactSpace.mp (isClosed_solenoid S).isCompact
+
+theorem solenoid_t2Space : T2Space (Solenoid S) := by
+  let _ : T2Space (Torus α) := torus_t2Space
+  infer_instance
+
+/-- The existing shift is a homeomorphism even when the torus endomorphism
+is noninjective. Dropping coordinate zero is its continuous inverse. -/
+def shiftHomeomorph : Solenoid S ≃ₜ Solenoid S where
+  toFun := shiftS S
+  invFun z := ⟨fun n => z.1 (n + 1), fun n => z.2 (n + 1)⟩
+  left_inv z := Subtype.ext (funext z.2)
+  right_inv z := Subtype.ext (funext z.2)
+  continuous_toFun := by
+    apply Continuous.subtype_mk
+    exact continuous_pi fun n =>
+      (continuous_torusMap S).comp ((continuous_apply n).comp continuous_subtype_val)
+  continuous_invFun := by
+    apply Continuous.subtype_mk
+    exact continuous_pi fun n => (continuous_apply (n + 1)).comp continuous_subtype_val
+
+/-- Continuity is joint in the time and target variables. -/
+theorem continuous_flow [Nonempty α] (P : PisotData S) :
+    Continuous (fun p : ℝ × Solenoid S => flow P p.1 p.2) := by
+  apply Continuous.subtype_mk
+  apply continuous_pi
+  intro n
+  change Continuous (fun p : ℝ × Solenoid S =>
+    p.2.1 n + (((p.1 / S.β ^ n) • P.u : α → ℝ) : Torus α))
+  exact ((continuous_apply n).comp (continuous_subtype_val.comp continuous_snd)).add
+    (QuotientAddGroup.continuous_mk.comp ((continuous_fst.div_const _).smul continuous_const))
 
 end Psc.PeriodicPartnerRealization
