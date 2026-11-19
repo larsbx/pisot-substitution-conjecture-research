@@ -257,7 +257,10 @@ remaining obligations are:
 1. Construct the actual legal two-sided tiling space, its flow/inflation,
    endpoint predicates, local metric and geometric-realization map; prove
    the primitive contracts and connect the published BDS/R4 inputs to
-   that instance.
+   that instance. *Update:* the
+   [hull instance](c4-tiling-hull-realization-2026-11-19.md) does all of this
+   except the geometric-realization map, with an exact-agreement metric; the
+   published inputs are fields of `PublishedInputs` on that hull.
 2. Under the surviving strict rank-two, odd-determinant and (NM_V)
    hypotheses, select a witness that passes the endpoint test or treat
    its other periodic branch fibre. No theorem here supplies that selection.

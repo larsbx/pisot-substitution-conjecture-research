@@ -36738,6 +36738,454 @@
       "declaration": "theorem ternary_zero_fibre_periodic_triple {X Y : Type*}"
     },
     {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.sum_nonneg",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 63,
+      "declaration": "theorem sum_nonneg (w : List α) : 0 ≤ (w.map S.ℓ).sum :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.sum_pos",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 66,
+      "declaration": "theorem sum_pos {w : List α} (hw : w ≠ []) : 0 < (w.map S.ℓ).sum := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.β_pos",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 70,
+      "declaration": "theorem β_pos [Nonempty α] : 0 < S.β := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.place_mem_bounds",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 86,
+      "declaration": "theorem place_mem_bounds {w : List α} {x : ℝ} {q : α × ℝ} (hq : q ∈ S.place w x) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.supp_subset_of_mem_place",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 99,
+      "declaration": "theorem supp_subset_of_mem_place {w : List α} {x : ℝ} {q : α × ℝ} (hq : q ∈ S.place w x) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.place_cover",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 105,
+      "declaration": "theorem place_cover {w : List α} {x z : ℝ} (hz : z ∈ Ico x (x + (w.map S.ℓ).sum)) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.place_unique",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 120,
+      "declaration": "theorem place_unique {w : List α} {x z : ℝ} {q q' : α × ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.place_last",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 135,
+      "declaration": "theorem place_last {w : List α} (hw : w ≠ []) (x : ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.place_add",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 150,
+      "declaration": "theorem place_add (w : List α) (x c : ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.supp_shift",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 182,
+      "declaration": "theorem supp_shift (t : ℝ) (p : α × ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.mem_supp_shift",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 192,
+      "declaration": "theorem mem_supp_shift {t z : ℝ} {p : α × ℝ} :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.shift_zero",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 197,
+      "declaration": "theorem shift_zero (T : Set (α × ℝ)) : shift 0 T = T := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.shift_shift",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 201,
+      "declaration": "theorem shift_shift (s t : ℝ) (T : Set (α × ℝ)) : shift s (shift t T) = shift (s + t) T := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.shift_injective",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 206,
+      "declaration": "theorem shift_injective (t : ℝ) : Injective (shift (α := α) t) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.mem_supp_parent",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 212,
+      "declaration": "theorem mem_supp_parent [Nonempty α] {p q : α × ℝ} {z : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.inflate_shift",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 223,
+      "declaration": "theorem inflate_shift (t : ℝ) (T : Set (α × ℝ)) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.isTiling_shift",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 244,
+      "declaration": "theorem isTiling_shift {T : Set (α × ℝ)} (hT : S.IsTiling T) (t : ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.unique_inflate",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 257,
+      "declaration": "theorem unique_inflate [Nonempty α] {T : Set (α × ℝ)} {z : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.isTiling_inflate",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 274,
+      "declaration": "theorem isTiling_inflate [Nonempty α] {T : Set (α × ℝ)} (hT : S.IsTiling T) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.legal_shift",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 277,
+      "declaration": "theorem legal_shift {T : Set (α × ℝ)} (hT : S.Legal T) (t : ℝ) : S.Legal (shift t T) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.legal_inflate",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 287,
+      "declaration": "theorem legal_inflate [Nonempty α] {T : Set (α × ℝ)} (hT : S.Legal T) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.translate_injective",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 321,
+      "declaration": "theorem translate_injective (t : ℝ) : Injective (translate (S := S) t) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.translate_translate",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 325,
+      "declaration": "theorem translate_translate (s t : ℝ) (T : S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.inflateH_translate",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 329,
+      "declaration": "theorem inflateH_translate [Nonempty α] (t : ℝ) (T : S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.supp_inter_Ioi",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 345,
+      "declaration": "theorem supp_inter_Ioi {p : α × ℝ} {r : ℝ} (h : r < p.2 + S.ℓ p.1) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.AgreeOn.mono",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 352,
+      "declaration": "theorem AgreeOn.mono {W W' : Set ℝ} {T U : Set (α × ℝ)} (h : S.AgreeOn W T U)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.AgreeOn.shift",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 355,
+      "declaration": "theorem AgreeOn.shift {W W' : Set ℝ} {T U : Set (α × ℝ)} {t : ℝ} (h : S.AgreeOn W T U)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.AgreeOn.inflate",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 359,
+      "declaration": "theorem AgreeOn.inflate [Nonempty α] {W W' : Set ℝ} {T U : Set (α × ℝ)}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.mem_supp_endpoint",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 370,
+      "declaration": "theorem mem_supp_endpoint {y z : ℝ} {b : α} (h1 : y - S.ℓ b ≤ z) (h2 : z < y) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.endsAt_unique",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 373,
+      "declaration": "theorem endsAt_unique {T : S.Hull} {y : ℝ} {b c : α}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.agree_endpoint",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 383,
+      "declaration": "theorem agree_endpoint {T U : S.Hull} {r y : ℝ} {b c : α} (h : AgreeRight T U r)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.rightBranchLaws",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 390,
+      "declaration": "theorem rightBranchLaws [Nonempty α] :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.agree_iff_window",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 422,
+      "declaration": "theorem agree_iff_window {T U : S.Hull} {n : ℕ} :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.window_injective",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 433,
+      "declaration": "theorem window_injective : Injective (window (S := S)) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.hull_dist_def",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 453,
+      "declaration": "theorem hull_dist_def (T U : S.Hull) : dist T U = dist (window T) (window U) := rfl"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.agree_mono",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 455,
+      "declaration": "theorem agree_mono {r R : ℝ} {T U : S.Hull} (h : Agree R T U) (hr : r ≤ R) : Agree r T U :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.dist_le_of_agree",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 458,
+      "declaration": "theorem dist_le_of_agree {T U : S.Hull} {n : ℕ} (h : Agree (n : ℝ) T U) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.agree_of_dist_lt",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 464,
+      "declaration": "theorem agree_of_dist_lt {T U : S.Hull} {n : ℕ} (h : dist T U < (1 / 2) ^ n) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.window_of_ray",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 485,
+      "declaration": "theorem window_of_ray {R r : ℝ} {T U : S.Hull} (_hR : 0 < R) (hr : r ≤ -R)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.common_patch",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 491,
+      "declaration": "theorem common_patch {T U : S.Hull} {a : α} (hray : AgreeRight T U 0)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.rightAsymptotic_iff_translationRightAsymptotic",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 508,
+      "declaration": "theorem rightAsymptotic_iff_translationRightAsymptotic [Nonempty α] {T U : S.Hull} :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.bds_ray_iff_metric",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 528,
+      "declaration": "theorem bds_ray_iff_metric [Nonempty α] :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.distance_tendsto_zero_of_endpoint_merge",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 543,
+      "declaration": "theorem distance_tendsto_zero_of_endpoint_merge [Nonempty α] (hβ : 1 < S.β)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.endpoint_persistent_of_periodic",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 552,
+      "declaration": "theorem endpoint_persistent_of_periodic [Nonempty α] (hβ : 1 < S.β)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.hull_endpoint_merge_iff_collapse",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 591,
+      "declaration": "theorem hull_endpoint_merge_iff_collapse (hβ : 1 < S.β)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.hull_two_step_iff_pairPeriodic",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 602,
+      "declaration": "theorem hull_two_step_iff_pairPeriodic (hβ : 1 < S.β)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.hull_two_step_iff_zero_fibre",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 611,
+      "declaration": "theorem hull_two_step_iff_zero_fibre (hβ : 1 < S.β) (P : PublishedInputs S Y)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.hull_branch_triple_dichotomy",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 620,
+      "declaration": "theorem hull_branch_triple_dichotomy (hβ : 1 < S.β) (P : PublishedInputs S Y)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.inflate_mono",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 646,
+      "declaration": "theorem inflate_mono {P Q : Set (α × ℝ)} (h : P ⊆ Q) : S.inflate P ⊆ S.inflate Q :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.inflate_iterate_mono",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 649,
+      "declaration": "theorem inflate_iterate_mono {P Q : Set (α × ℝ)} (h : P ⊆ Q) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.inflate_iterate_shift",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 655,
+      "declaration": "theorem inflate_iterate_shift (t : ℝ) (P : Set (α × ℝ)) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.tilesOn_inflate",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 662,
+      "declaration": "theorem tilesOn_inflate [Nonempty α] {x y : ℝ} {P : Set (α × ℝ)}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.tilesOn_inflate_iterate",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 671,
+      "declaration": "theorem tilesOn_inflate_iterate [Nonempty α] {x y : ℝ} {P : Set (α × ℝ)}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.hull_nonempty_of_seed",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 681,
+      "declaration": "theorem hull_nonempty_of_seed [Nonempty α] (hβ : 1 < S.β) {k : ℕ} (hk : 0 < k)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.thueMorse_mem_inflate",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 753,
+      "declaration": "theorem thueMorse_mem_inflate {P : Set (Fin 2 × ℝ)} {p q : Fin 2 × ℝ} (hp : p ∈ P)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.thueMorse_hull_nonempty",
+      "module": "PscVerif.PeriodicPartnerHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
+      "line": 757,
+      "declaration": "theorem thueMorse_hull_nonempty : Nonempty thueMorse.Hull := by"
+    },
+    {
       "name": "Psc.PeriodicPartnerModels.constantTwo_semiconj",
       "module": "PscVerif.PeriodicPartnerModels",
       "private": false,
@@ -47043,7 +47491,7 @@
     "proof/PscVerif/ClassAPlusUpperRecurrenceAudit.lean": "ef12f802e6eb10dbf2b02ce84cccbcdf9164aed9356f4fe2917ee513923824aa",
     "proof/PscVerif/ClassARunDescentAudit.lean": "a1fe09a772c2112929a6f892993da045628ef410f15cd53b1d8eba74343959fc",
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "81efe5b8745576f8f15a59a263563b31e08307e9c432e78fa2ef9021a613b2d1",
-    "proof/PscVerif/PeriodicPartnerAudit.lean": "05fa8367cd6a2923db7c4ca43d83371cdf0bae457a7352d5a2bdeb5bae375493",
+    "proof/PscVerif/PeriodicPartnerAudit.lean": "4dc86aa04b932fdc5f9423d8d1435f39c9c1b6194a62a79208c2fc2e7aede999",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean": "87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean": "e18e726b6bd1c431f9e28500504edd6ffba157415af20069715b9c8f208f3f9b",
@@ -47210,6 +47658,7 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean": "84725326692e81dafcef2c4a724bfb2cee8629fdba398686540db35be72eb0fd",
     "proof/PscVerif/PscVerif/PeriodicPartnerDichotomy.lean": "d74034c65d26d8b98916f6fdca046c6772e9a3389fb53fdd03bcf3baeea2339b",
     "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean": "812599f6a9dfb4ab5d0da0924fa6c3901128f74644e76d14eb2996de17f55c44",
+    "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean": "44838714eba3bef21f504217d0d1160ffc036b5e38a4ff1e01a50008bc2cea26",
     "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean": "434d5573fb928bb0ee6667da6dedc8fc76867b76c26d72f5707ac1387a62c5ea",
     "proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean": "140e1a71503a0648d17099247ef4cb9b92d67c1cdc15257ee66526a89527ece5",
     "proof/PscVerif/PscVerif/PerronCore.lean": "1f06da1e0b57e74b31fc03d753bd314f25561a37e512b3a8f7f05fda0d75458c",
@@ -47241,7 +47690,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "c59a44807d3fcb02ab7ac5714d63a61e1cebaf577e4c40bd7f41023a53cee5d2",
+    "proof/PscVerif/PscVerif.lean": "9aa8754f319f5b83994dc3b66c7d69383e9a213195508c8310dc8dcb189d350f",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

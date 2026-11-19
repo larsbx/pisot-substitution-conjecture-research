@@ -505,6 +505,8 @@ closed on caps and retain a replayable record for every survivor.
 - [Targeted source decision](c4-periodic-partner-extraction-stop-go-2026-11-18.md): published periodicization, finite-fibre lifting, and the boundaries of the proposed rank-two contradiction.
 - [Conditional formalization](c4-periodic-partner-formalization-2026-11-19.md): Lean proofs of P/E/M, checked left/right transfer and exact-ray/metric correspondence, the exact endpoint/collapse dichotomy, and concrete models of the explicit contracts. The legal tiling realization and universal witness selection remain separate.
 - [Formalization source decision](c4-periodic-partner-formalization-stop-go-2026-11-19.md): primitive local inputs, published imports, and the noncircular proof boundary.
+- [Legal tiling hull instance](c4-tiling-hull-realization-2026-11-19.md): the legal two-sided hull, translation, inflation, endpoints and an exact-agreement metric in Lean, with every local contract discharged on it; geometric realization is not constructed and the published inputs remain named fields.
+- [Hull source decision](c4-tiling-hull-realization-stop-go-2026-11-19.md): which contracts are local, the metric choice, and why realization is deferred.
 
 ## Primary completion route: finite seed-patch overlaps
 
