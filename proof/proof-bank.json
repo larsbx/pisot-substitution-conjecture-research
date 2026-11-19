@@ -38658,6 +38658,422 @@
       "declaration": "theorem selection_dichotomy"
     },
     {
+      "name": "Psc.PeriodicPartnerSpectral.pow_mulVec_eigen",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 50,
+      "declaration": "theorem pow_mulVec_eigen {A : Matrix ι ι K} {x : ι → K} {c : K} (h : A *ᵥ x = c • x) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.aeval_mulVec_eigen",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 56,
+      "declaration": "theorem aeval_mulVec_eigen {A : Matrix ι ι K} {x : ι → K} {c : K} (h : A *ᵥ x = c • x)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.vecMul_pow_eigen",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 64,
+      "declaration": "theorem vecMul_pow_eigen {A : Matrix ι ι K} {w : ι → K} {c : K} (h : w ᵥ* A = c • w) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.vecMul_aeval_eigen",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 70,
+      "declaration": "theorem vecMul_aeval_eigen {A : Matrix ι ι K} {w : ι → K} {c : K} (h : w ᵥ* A = c • w)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.exists_pow_norm_le",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 83,
+      "declaration": "theorem exists_pow_norm_le {A : Type*} [NormedRing A] [NormedAlgebra ℂ A] [CompleteSpace A]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.vecMul_mat",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 139,
+      "declaration": "theorem vecMul_mat : S.ℓ ᵥ* mat S = S.β • S.ℓ := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.dot_aeval",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 145,
+      "declaration": "theorem dot_aeval (p : ℝ[X]) (v : α → ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.aeval_charpoly_factor",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 149,
+      "declaration": "theorem aeval_charpoly_factor :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.dot_w",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 157,
+      "declaration": "theorem dot_w : S.ℓ ⬝ᵥ H.w = H.Q.eval S.β * (S.ℓ ⬝ᵥ S.ℓ) := dot_aeval _ _"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.dot_self_pos",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 159,
+      "declaration": "theorem dot_self_pos [Nonempty α] : 0 < S.ℓ ⬝ᵥ S.ℓ := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.dot_w_ne",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 164,
+      "declaration": "theorem dot_w_ne [Nonempty α] : S.ℓ ⬝ᵥ H.w ≠ 0 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.w_eigen",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 167,
+      "declaration": "theorem w_eigen : mat S *ᵥ H.w = S.β • H.w := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.u_eigen",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 176,
+      "declaration": "theorem u_eigen : mat S *ᵥ H.u = S.β • H.u := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.dot_u",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 179,
+      "declaration": "theorem dot_u [Nonempty α] : S.ℓ ⬝ᵥ H.u = 1 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.mulVec_ofReal",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 195,
+      "declaration": "theorem mulVec_ofReal (A : Matrix α α ℝ) (v : α → ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.Mc_pow",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 199,
+      "declaration": "theorem Mc_pow (n : ℕ) : (Mc S) ^ n = ((mat S) ^ n).map ι := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.dot_ofReal",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 202,
+      "declaration": "theorem dot_ofReal (v w : α → ℝ) : (ι ∘ v) ⬝ᵥ (ι ∘ w) = ι (v ⬝ᵥ w) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.vecMul_Mc",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 205,
+      "declaration": "theorem vecMul_Mc : ℓc S ᵥ* Mc S = (S.β : ℂ) • ℓc S := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.dot_Mc",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 211,
+      "declaration": "theorem dot_Mc (x : α → ℂ) : ℓc S ⬝ᵥ (Mc S *ᵥ x) = (S.β : ℂ) * (ℓc S ⬝ᵥ x) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.uc_eigen",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 214,
+      "declaration": "theorem uc_eigen : Mc S *ᵥ H.uc = (S.β : ℂ) • H.uc := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.dot_uc",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 218,
+      "declaration": "theorem dot_uc [Nonempty α] : ℓc S ⬝ᵥ H.uc = 1 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.charpoly_Mc",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 221,
+      "declaration": "theorem charpoly_Mc : (Mc S).charpoly = (X - C (S.β : ℂ)) * H.Q.map ι := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.eval_Q_map",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 225,
+      "declaration": "theorem eval_Q_map (z : ℝ) : (H.Q.map ι).eval (z : ℂ) = ((H.Q.eval z : ℝ) : ℂ) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.Q_map_ne_zero",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 228,
+      "declaration": "theorem Q_map_ne_zero : H.Q.map ι ≠ 0 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.rootMultiplicity_β",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 235,
+      "declaration": "theorem rootMultiplicity_β : (Mc S).charpoly.rootMultiplicity (S.β : ℂ) = 1 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.eq_zero_of_eigen_β",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 244,
+      "declaration": "theorem eq_zero_of_eigen_β [Nonempty α] {v : α → ℂ} (hv : Mc S *ᵥ v = (S.β : ℂ) • v)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.isRoot_of_eigen",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 265,
+      "declaration": "theorem isRoot_of_eigen {μ : ℂ} {v : α → ℂ} (hv0 : v ≠ 0) (hv : Mc S *ᵥ v = μ • v)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.B_mulVec",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 277,
+      "declaration": "theorem B_mulVec (x : α → ℂ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.dot_B",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 281,
+      "declaration": "theorem dot_B [Nonempty α] (x : α → ℂ) : ℓc S ⬝ᵥ (H.B *ᵥ x) = 0 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.B_mulVec_of_dot",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 284,
+      "declaration": "theorem B_mulVec_of_dot {x : α → ℂ} (hx : ℓc S ⬝ᵥ x = 0) : H.B *ᵥ x = Mc S *ᵥ x := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.B_pow_mulVec",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 287,
+      "declaration": "theorem B_pow_mulVec [Nonempty α] (n : ℕ) {x : α → ℂ} (hx : ℓc S ⬝ᵥ x = 0) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.norm_lt_one_of_mem_spectrum",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 295,
+      "declaration": "theorem norm_lt_one_of_mem_spectrum [Nonempty α] {μ : ℂ} (hμ : μ ∈ spectrum ℂ H.B) : ‖μ‖ < 1 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.spectralRadius_B_lt_one",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 315,
+      "declaration": "theorem spectralRadius_B_lt_one [Nonempty α] : spectralRadius ℂ H.B < 1 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.norm_ofReal_comp",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 321,
+      "declaration": "theorem norm_ofReal_comp (v : α → ℝ) : ‖(ι ∘ v : α → ℂ)‖ = ‖v‖ := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.exists_contract",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 328,
+      "declaration": "theorem exists_contract [Nonempty α] :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectral.SpectralPisot.isRoot_charpoly_β",
+      "module": "PscVerif.PeriodicPartnerSpectral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean",
+      "line": 355,
+      "declaration": "theorem isRoot_charpoly_β [Nonempty α] : (mat S).charpoly.IsRoot S.β := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralModels.exists_root",
+      "module": "PscVerif.PeriodicPartnerSpectralModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralModels.lean",
+      "line": 31,
+      "declaration": "theorem exists_root : ∃ x ∈ Set.Icc (1 : ℝ) 2, x ^ 3 - x ^ 2 - x - 1 = 0 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralModels.τ_cube",
+      "module": "PscVerif.PeriodicPartnerSpectralModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralModels.lean",
+      "line": 38,
+      "declaration": "theorem τ_cube : τ ^ 3 = τ ^ 2 + τ + 1 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralModels.one_lt_τ",
+      "module": "PscVerif.PeriodicPartnerSpectralModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralModels.lean",
+      "line": 41,
+      "declaration": "theorem one_lt_τ : 1 < τ := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralModels.τ_lt_two",
+      "module": "PscVerif.PeriodicPartnerSpectralModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralModels.lean",
+      "line": 46,
+      "declaration": "theorem τ_lt_two : τ < 2 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralModels.τ_mul_t",
+      "module": "PscVerif.PeriodicPartnerSpectralModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralModels.lean",
+      "line": 52,
+      "declaration": "theorem τ_mul_t : τ * (τ ^ 2 - τ - 1) = 1 := by linear_combination τ_cube"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralModels.tribonacci_mat",
+      "module": "PscVerif.PeriodicPartnerSpectralModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralModels.lean",
+      "line": 70,
+      "declaration": "theorem tribonacci_mat : mat tribonacci = !![1, 1, 1; 1, 0, 0; 0, 1, 0] := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralModels.tribonacci_charpoly",
+      "module": "PscVerif.PeriodicPartnerSpectralModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralModels.lean",
+      "line": 73,
+      "declaration": "theorem tribonacci_charpoly : (mat tribonacci).charpoly = X ^ 3 - X ^ 2 - X - 1 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralModels.tribonacci_primitive",
+      "module": "PscVerif.PeriodicPartnerSpectralModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralModels.lean",
+      "line": 80,
+      "declaration": "theorem tribonacci_primitive : ∀ i j, 0 < ((mat tribonacci) ^ 3) i j := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralModels.tribPolyℚ_natDegree",
+      "module": "PscVerif.PeriodicPartnerSpectralModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralModels.lean",
+      "line": 89,
+      "declaration": "theorem tribPolyℚ_natDegree : tribPolyℚ.natDegree = 3 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralModels.tribPolyℚ_no_root",
+      "module": "PscVerif.PeriodicPartnerSpectralModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralModels.lean",
+      "line": 92,
+      "declaration": "theorem tribPolyℚ_no_root (x : ℚ) : ¬ tribPolyℚ.IsRoot x := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralModels.tribPolyℚ_irreducible",
+      "module": "PscVerif.PeriodicPartnerSpectralModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralModels.lean",
+      "line": 105,
+      "declaration": "theorem tribPolyℚ_irreducible : Irreducible tribPolyℚ :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralModels.tribonacci_charpoly_eq_map",
+      "module": "PscVerif.PeriodicPartnerSpectralModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralModels.lean",
+      "line": 109,
+      "declaration": "theorem tribonacci_charpoly_eq_map :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralModels.factor",
+      "module": "PscVerif.PeriodicPartnerSpectralModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralModels.lean",
+      "line": 118,
+      "declaration": "theorem factor : (mat tribonacci).charpoly = (X - C tribonacci.β) * Q := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralModels.Q_eval",
+      "module": "PscVerif.PeriodicPartnerSpectralModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralModels.lean",
+      "line": 124,
+      "declaration": "theorem Q_eval : Q.eval τ = (3 * τ + 1) * (τ - 1) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralModels.norm_lt_one_of_root",
+      "module": "PscVerif.PeriodicPartnerSpectralModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralModels.lean",
+      "line": 128,
+      "declaration": "theorem norm_lt_one_of_root {μ : ℂ} (hμ : (Q.map (algebraMap ℝ ℂ)).IsRoot μ) : ‖μ‖ < 1 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralModels.tribonacci_mem_PIP3",
+      "module": "PscVerif.PeriodicPartnerSpectralModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralModels.lean",
+      "line": 165,
+      "declaration": "theorem tribonacci_mem_PIP3 :"
+    },
+    {
       "name": "Psc.PerronCore.super_eigen_eq",
       "module": "PscVerif.PerronCore",
       "private": false,
@@ -48507,7 +48923,7 @@
     "proof/PscVerif/ClassAPlusUpperRecurrenceAudit.lean": "ef12f802e6eb10dbf2b02ce84cccbcdf9164aed9356f4fe2917ee513923824aa",
     "proof/PscVerif/ClassARunDescentAudit.lean": "a1fe09a772c2112929a6f892993da045628ef410f15cd53b1d8eba74343959fc",
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "81efe5b8745576f8f15a59a263563b31e08307e9c432e78fa2ef9021a613b2d1",
-    "proof/PscVerif/PeriodicPartnerAudit.lean": "281a2115a12fc2ed9ecb313305ed5cb7b06ac1105b0039c144230ce838ec15bd",
+    "proof/PscVerif/PeriodicPartnerAudit.lean": "2956fa0c66d8311b35e4ae4139ac5ba94d9c1bfffb684792d880d4e25b500a89",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean": "87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean": "e18e726b6bd1c431f9e28500504edd6ffba157415af20069715b9c8f208f3f9b",
@@ -48683,6 +49099,8 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean": "0096850910c94d4b72d3b1d039eb533422f894c2415c44d90a337b152c2701e0",
     "proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean": "140e1a71503a0648d17099247ef4cb9b92d67c1cdc15257ee66526a89527ece5",
     "proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean": "13c39c9aea34b64f377cbfd3eb074fe436a952e8f0d806eb9ed37f6c2ef70e41",
+    "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean": "45d12d1e6e7589bbbccfbf44798af9700c99be94a24a61ea02ece5ad8c55eafd",
+    "proof/PscVerif/PscVerif/PeriodicPartnerSpectralModels.lean": "bf43a2f49e4de6ca8eb938ad3c282f0676099f41e6b978bcc4285d34e8b10f7b",
     "proof/PscVerif/PscVerif/PerronCore.lean": "1f06da1e0b57e74b31fc03d753bd314f25561a37e512b3a8f7f05fda0d75458c",
     "proof/PscVerif/PscVerif/PerronExistence.lean": "a2ac1801abf2a99a6c312935d101ed4f760ffec0f96586d5f1f43bb176814c73",
     "proof/PscVerif/PscVerif/PerronSimple.lean": "1e4d9aca60b215f17067e39ba38bd8eaec7d9781fb716d8727fa7f9cbbf737a8",
@@ -48713,7 +49131,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "562346c9cd6de1d4e73aa4bcfc0525c2ce9a19a57bbd6f4466b3d5f503dd02f8",
+    "proof/PscVerif/PscVerif.lean": "f6478f81bc7cbdc3882bad1d050231e99b5ed9f8e993b74e30e08fc9f0222ad3",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

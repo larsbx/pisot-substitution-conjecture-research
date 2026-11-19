@@ -192,3 +192,5 @@ import PscVerif.PeriodicPartnerDirectional
 import PscVerif.VertexAsymptoteRange
 import PscVerif.PeriodicPartnerRealization
 import PscVerif.PeriodicPartnerRealizationModels
+import PscVerif.PeriodicPartnerSpectral
+import PscVerif.PeriodicPartnerSpectralModels
