@@ -39034,6 +39034,1046 @@
       "declaration": "theorem isRoot_charpoly_β [Nonempty α] : (mat S).charpoly.IsRoot S.β := by"
     },
     {
+      "name": "Psc.PeriodicPartnerSpectralCensus.mem_words",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 37,
+      "declaration": "theorem mem_words {w : List (Fin 3)} (h1 : 1 ≤ w.length) (h3 : w.length ≤ 3) : w ∈ words := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.mem_specimens",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 49,
+      "declaration": "theorem mem_specimens {s : Sub3} (h : ∀ a, 1 ≤ (s.σ a).length ∧ (s.σ a).length ≤ 3) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.corpus_eq",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 65,
+      "declaration": "theorem corpus_eq : corpus = words.flatMap chunk := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_0",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 73,
+      "declaration": "theorem row_0 : (chunk [0]).length = 0 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_1",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 74,
+      "declaration": "theorem row_1 : (chunk [1]).length = 238 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_2",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 75,
+      "declaration": "theorem row_2 : (chunk [2]).length = 238 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_00",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 76,
+      "declaration": "theorem row_00 : (chunk [0, 0]).length = 0 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_01",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 77,
+      "declaration": "theorem row_01 : (chunk [0, 1]).length = 229 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_02",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 78,
+      "declaration": "theorem row_02 : (chunk [0, 2]).length = 229 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_10",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 79,
+      "declaration": "theorem row_10 : (chunk [1, 0]).length = 229 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_11",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 80,
+      "declaration": "theorem row_11 : (chunk [1, 1]).length = 126 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_12",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 81,
+      "declaration": "theorem row_12 : (chunk [1, 2]).length = 222 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_20",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 82,
+      "declaration": "theorem row_20 : (chunk [2, 0]).length = 229 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_21",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 83,
+      "declaration": "theorem row_21 : (chunk [2, 1]).length = 222 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_22",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 84,
+      "declaration": "theorem row_22 : (chunk [2, 2]).length = 126 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_000",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 85,
+      "declaration": "theorem row_000 : (chunk [0, 0, 0]).length = 0 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_001",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 86,
+      "declaration": "theorem row_001 : (chunk [0, 0, 1]).length = 92 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_002",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 87,
+      "declaration": "theorem row_002 : (chunk [0, 0, 2]).length = 92 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_010",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 88,
+      "declaration": "theorem row_010 : (chunk [0, 1, 0]).length = 92 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_011",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 89,
+      "declaration": "theorem row_011 : (chunk [0, 1, 1]).length = 94 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_012",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 90,
+      "declaration": "theorem row_012 : (chunk [0, 1, 2]).length = 148 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_020",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 91,
+      "declaration": "theorem row_020 : (chunk [0, 2, 0]).length = 92 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_021",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 92,
+      "declaration": "theorem row_021 : (chunk [0, 2, 1]).length = 148 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_022",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 93,
+      "declaration": "theorem row_022 : (chunk [0, 2, 2]).length = 94 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_100",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 94,
+      "declaration": "theorem row_100 : (chunk [1, 0, 0]).length = 92 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_101",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 95,
+      "declaration": "theorem row_101 : (chunk [1, 0, 1]).length = 94 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_102",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 96,
+      "declaration": "theorem row_102 : (chunk [1, 0, 2]).length = 148 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_110",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 97,
+      "declaration": "theorem row_110 : (chunk [1, 1, 0]).length = 94 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_111",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 98,
+      "declaration": "theorem row_111 : (chunk [1, 1, 1]).length = 0 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_112",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 99,
+      "declaration": "theorem row_112 : (chunk [1, 1, 2]).length = 77 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_120",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 100,
+      "declaration": "theorem row_120 : (chunk [1, 2, 0]).length = 148 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_121",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 101,
+      "declaration": "theorem row_121 : (chunk [1, 2, 1]).length = 77 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_122",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 102,
+      "declaration": "theorem row_122 : (chunk [1, 2, 2]).length = 77 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_200",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 103,
+      "declaration": "theorem row_200 : (chunk [2, 0, 0]).length = 92 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_201",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 104,
+      "declaration": "theorem row_201 : (chunk [2, 0, 1]).length = 148 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_202",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 105,
+      "declaration": "theorem row_202 : (chunk [2, 0, 2]).length = 94 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_210",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 106,
+      "declaration": "theorem row_210 : (chunk [2, 1, 0]).length = 148 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_211",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 107,
+      "declaration": "theorem row_211 : (chunk [2, 1, 1]).length = 77 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_212",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 108,
+      "declaration": "theorem row_212 : (chunk [2, 1, 2]).length = 77 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_220",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 109,
+      "declaration": "theorem row_220 : (chunk [2, 2, 0]).length = 94 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_221",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 110,
+      "declaration": "theorem row_221 : (chunk [2, 2, 1]).length = 77 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.row_222",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 111,
+      "declaration": "theorem row_222 : (chunk [2, 2, 2]).length = 0 := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.corpus_length",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 114,
+      "declaration": "theorem corpus_length : corpus.length = 4554 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.corpus_sound",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 120,
+      "declaration": "theorem corpus_sound {s : Sub3} (hs : s ∈ corpus) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_0",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 132,
+      "declaration": "theorem decided_0 : (row [0]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_1",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 133,
+      "declaration": "theorem decided_1 : (row [1]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_2",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 134,
+      "declaration": "theorem decided_2 : (row [2]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_00",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 135,
+      "declaration": "theorem decided_00 : (row [0, 0]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_01",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 136,
+      "declaration": "theorem decided_01 : (row [0, 1]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_02",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 137,
+      "declaration": "theorem decided_02 : (row [0, 2]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_10",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 138,
+      "declaration": "theorem decided_10 : (row [1, 0]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_11",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 139,
+      "declaration": "theorem decided_11 : (row [1, 1]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_12",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 140,
+      "declaration": "theorem decided_12 : (row [1, 2]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_20",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 141,
+      "declaration": "theorem decided_20 : (row [2, 0]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_21",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 142,
+      "declaration": "theorem decided_21 : (row [2, 1]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_22",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 143,
+      "declaration": "theorem decided_22 : (row [2, 2]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_000",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 144,
+      "declaration": "theorem decided_000 : (row [0, 0, 0]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_001",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 145,
+      "declaration": "theorem decided_001 : (row [0, 0, 1]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_002",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 146,
+      "declaration": "theorem decided_002 : (row [0, 0, 2]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_010",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 147,
+      "declaration": "theorem decided_010 : (row [0, 1, 0]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_011",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 148,
+      "declaration": "theorem decided_011 : (row [0, 1, 1]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_012",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 149,
+      "declaration": "theorem decided_012 : (row [0, 1, 2]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_020",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 150,
+      "declaration": "theorem decided_020 : (row [0, 2, 0]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_021",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 151,
+      "declaration": "theorem decided_021 : (row [0, 2, 1]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_022",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 152,
+      "declaration": "theorem decided_022 : (row [0, 2, 2]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_100",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 153,
+      "declaration": "theorem decided_100 : (row [1, 0, 0]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_101",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 154,
+      "declaration": "theorem decided_101 : (row [1, 0, 1]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_102",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 155,
+      "declaration": "theorem decided_102 : (row [1, 0, 2]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_110",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 156,
+      "declaration": "theorem decided_110 : (row [1, 1, 0]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_111",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 157,
+      "declaration": "theorem decided_111 : (row [1, 1, 1]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_112",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 158,
+      "declaration": "theorem decided_112 : (row [1, 1, 2]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_120",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 159,
+      "declaration": "theorem decided_120 : (row [1, 2, 0]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_121",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 160,
+      "declaration": "theorem decided_121 : (row [1, 2, 1]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_122",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 161,
+      "declaration": "theorem decided_122 : (row [1, 2, 2]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_200",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 162,
+      "declaration": "theorem decided_200 : (row [2, 0, 0]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_201",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 163,
+      "declaration": "theorem decided_201 : (row [2, 0, 1]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_202",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 164,
+      "declaration": "theorem decided_202 : (row [2, 0, 2]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_210",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 165,
+      "declaration": "theorem decided_210 : (row [2, 1, 0]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_211",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 166,
+      "declaration": "theorem decided_211 : (row [2, 1, 1]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_212",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 167,
+      "declaration": "theorem decided_212 : (row [2, 1, 2]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_220",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 168,
+      "declaration": "theorem decided_220 : (row [2, 2, 0]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_221",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 169,
+      "declaration": "theorem decided_221 : (row [2, 2, 1]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_222",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 170,
+      "declaration": "theorem decided_222 : (row [2, 2, 2]).all decided = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.decided_of_mem",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 172,
+      "declaration": "theorem decided_of_mem {s : Sub3} (hs : s ∈ specimens) : decided s = true := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.mem_corpus_of_PIP3",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 187,
+      "declaration": "theorem mem_corpus_of_PIP3 {s : Sub3} (hs : s ∈ specimens) {S : LengthSubst (Fin 3)}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.census",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 196,
+      "declaration": "theorem census (σ : Fin 3 → List (Fin 3)) (hlen : ∀ a, 1 ≤ (σ a).length ∧ (σ a).length ≤ 3) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCensus.tribonacci_mem_corpus",
+      "module": "PscVerif.PeriodicPartnerSpectralCensus",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean",
+      "line": 211,
+      "declaration": "theorem tribonacci_mem_corpus : (([0, 1], [0, 2], [0]) : Sub3) ∈ corpus :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.M3.toMat_mul",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 191,
+      "declaration": "theorem toMat_mul (x y : M3) : (x.mul y).toMat = x.toMat * y.toMat := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.M3.col_eq",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 195,
+      "declaration": "theorem col_eq (x : M3) (j : Fin 3) : x.col j = ∑ i, x.toMat i j := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.M3.pos_spec",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 198,
+      "declaration": "theorem pos_spec {x : M3} (h : x.pos = true) (i j : Fin 3) : 0 < x.toMat i j := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.M3.charpoly_toMat",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 202,
+      "declaration": "theorem charpoly_toMat (x : M3) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.parikh_toMat",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 213,
+      "declaration": "theorem parikh_toMat (s : Sub3) : (parikh s).toMat = fun b a => ((s.σ a).count b : ℤ) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.col_nonneg",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 217,
+      "declaration": "theorem col_nonneg (s : Sub3) (j : Fin 3) : 0 ≤ (parikh s).col j := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.noRoot_spec",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 220,
+      "declaration": "theorem noRoot_spec {f : ℤ → ℤ} : ∀ {n : ℕ}, noRoot f n = true → ∀ r : ℤ, r.natAbs ≤ n → f r ≠ 0"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.noRoot_of_forall",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 232,
+      "declaration": "theorem noRoot_of_forall {f : ℤ → ℤ} :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.facts",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 253,
+      "declaration": "theorem facts {s : Sub3} (h : check s = true) : Facts s := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.horner_cast",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 274,
+      "declaration": "theorem horner_cast (x : ℤ) : ((horner (tr s) (mn s) (dt s) x : ℤ) : ℝ) = pR s x := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.hornerS_cast",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 277,
+      "declaration": "theorem hornerS_cast (x : ℤ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.exists_root",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 281,
+      "declaration": "theorem exists_root (F : Facts s) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.beta_mem",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 302,
+      "declaration": "theorem beta_mem (F : Facts s) : beta F ∈ Set.Icc ((lo s : ℝ) / 16) ((hi s : ℝ) / 16) :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.pR_beta",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 305,
+      "declaration": "theorem pR_beta (F : Facts s) : pR s (beta F) = 0 := (exists_root F).choose_spec.2"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.lo_lt_beta",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 308,
+      "declaration": "theorem lo_lt_beta (F : Facts s) : (lo s : ℝ) / 16 < beta F := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.base_le_lo",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 314,
+      "declaration": "theorem base_le_lo (F : Facts s) : (1 : ℝ) ≤ (lo s : ℝ) / 16 ∧ |(dt s : ℝ)| ≤ (lo s : ℝ) / 16 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.one_lt_beta",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 322,
+      "declaration": "theorem one_lt_beta (F : Facts s) : 1 < beta F := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.abs_dt_lt_beta",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 325,
+      "declaration": "theorem abs_dt_lt_beta (F : Facts s) : |(dt s : ℝ)| < beta F := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.charpoly_matR",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 340,
+      "declaration": "theorem charpoly_matR :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.pR_factor",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 348,
+      "declaration": "theorem pR_factor {β : ℝ} (hβ : pR s β = 0) (hne : β ≠ 0) (x : ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.charpoly_factor",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 354,
+      "declaration": "theorem charpoly_factor {β : ℝ} (hβ : pR s β = 0) (hne : β ≠ 0) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.norm_lt_one_of_quadratic",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 372,
+      "declaration": "theorem norm_lt_one_of_quadratic {a b : ℝ} (h1 : 0 < 1 + a + b) (h2 : 0 < 1 - a + b)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.jury_of_norm_lt_one",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 410,
+      "declaration": "theorem jury_of_norm_lt_one {a b : ℝ} (h : ∀ μ : ℂ, μ ^ 2 + a * μ + b = 0 → ‖μ‖ < 1) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.beta_ne",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 451,
+      "declaration": "theorem beta_ne : beta F ≠ 0 := (zero_lt_one.trans (one_lt_beta F)).ne'"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.factor",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 453,
+      "declaration": "theorem factor : (matR s).charpoly = (X - C (beta F)) * cofactor F :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.jury",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 457,
+      "declaration": "theorem jury : 0 < 1 + (beta F - tr s) + dt s / beta F ∧"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.cofactor_small",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 471,
+      "declaration": "theorem cofactor_small (μ : ℂ) (hμ : ((cofactor F).map (algebraMap ℝ ℂ)).IsRoot μ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.ell_vecMul",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 480,
+      "declaration": "theorem ell_vecMul : ell F ᵥ* matR s = beta F • ell F := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.sum_map_count",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 488,
+      "declaration": "theorem sum_map_count (w : List (Fin 3)) (f : Fin 3 → ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.matR_apply",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 498,
+      "declaration": "theorem matR_apply (b a : Fin 3) : matR s b a = ((s.σ a).count b : ℝ) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.eigen",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 501,
+      "declaration": "theorem eigen (a : Fin 3) : ((s.σ a).map (ell F)).sum = beta F * ell F a := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.matR_sq",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 508,
+      "declaration": "theorem matR_sq : matR s ^ 2 = (sq s).toMat.map (Int.castRingHom ℝ) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.beta_mul_ell",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 513,
+      "declaration": "theorem beta_mul_ell (j : Fin 3) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.ell_pos",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 526,
+      "declaration": "theorem ell_pos (j : Fin 3) : 0 < ell F j := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.mat_subst",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 562,
+      "declaration": "theorem mat_subst : mat (subst F) = matR s := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.pQ_natDegree",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 585,
+      "declaration": "theorem pQ_natDegree (s : Sub3) : (pQ s).natDegree = 3 := by unfold pQ; compute_degree!"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.pQ_irreducible",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 587,
+      "declaration": "theorem pQ_irreducible (hF : Facts s) : Irreducible (pQ s) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.charpoly_eq_map",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 603,
+      "declaration": "theorem charpoly_eq_map : (mat (subst F)).charpoly = (pQ s).map (algebraMap ℚ ℝ) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.mem_PIP3",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 618,
+      "declaration": "theorem mem_PIP3 {s : Sub3} (F : Facts s) : PIP3 (subst F) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.sound",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 631,
+      "declaration": "theorem sound {s : Sub3} (h : check s = true) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.refute_spec",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 638,
+      "declaration": "theorem refute_spec {s : Sub3} {S : LengthSubst (Fin 3)} (hS : S.σ = s.σ) (hP : PIP3 S) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.check_tribonacci",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 705,
+      "declaration": "theorem check_tribonacci : check ([0, 1], [0, 2], [0]) = true := by decide +kernel"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSpectralCertificate.check_reducible",
+      "module": "PscVerif.PeriodicPartnerSpectralCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean",
+      "line": 709,
+      "declaration": "theorem check_reducible : check ([0, 1, 1], [1, 0, 0], [2]) = false := by decide +kernel"
+    },
+    {
       "name": "Psc.PeriodicPartnerSpectralModels.exists_root",
       "module": "PscVerif.PeriodicPartnerSpectralModels",
       "private": false,
@@ -49011,7 +50051,7 @@
     "proof/PscVerif/ClassAPlusUpperRecurrenceAudit.lean": "ef12f802e6eb10dbf2b02ce84cccbcdf9164aed9356f4fe2917ee513923824aa",
     "proof/PscVerif/ClassARunDescentAudit.lean": "a1fe09a772c2112929a6f892993da045628ef410f15cd53b1d8eba74343959fc",
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "81efe5b8745576f8f15a59a263563b31e08307e9c432e78fa2ef9021a613b2d1",
-    "proof/PscVerif/PeriodicPartnerAudit.lean": "2956fa0c66d8311b35e4ae4139ac5ba94d9c1bfffb684792d880d4e25b500a89",
+    "proof/PscVerif/PeriodicPartnerAudit.lean": "8b028bf147da31ceb0c62db0b24d5f7adce5a7e648485f37ed430b6dfb92af71",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean": "87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean": "e18e726b6bd1c431f9e28500504edd6ffba157415af20069715b9c8f208f3f9b",
@@ -49188,6 +50228,8 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean": "140e1a71503a0648d17099247ef4cb9b92d67c1cdc15257ee66526a89527ece5",
     "proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean": "13c39c9aea34b64f377cbfd3eb074fe436a952e8f0d806eb9ed37f6c2ef70e41",
     "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean": "45d12d1e6e7589bbbccfbf44798af9700c99be94a24a61ea02ece5ad8c55eafd",
+    "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean": "af195787b8856b750f4f513e80a3045873a05743d86f245204fdf278386f79ba",
+    "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean": "90fb4042c25c01e906e828c6e1da15d782ae9301f591b34270283dcc18786ebd",
     "proof/PscVerif/PscVerif/PeriodicPartnerSpectralModels.lean": "bf43a2f49e4de6ca8eb938ad3c282f0676099f41e6b978bcc4285d34e8b10f7b",
     "proof/PscVerif/PscVerif/PerronCore.lean": "1f06da1e0b57e74b31fc03d753bd314f25561a37e512b3a8f7f05fda0d75458c",
     "proof/PscVerif/PscVerif/PerronExistence.lean": "a2ac1801abf2a99a6c312935d101ed4f760ffec0f96586d5f1f43bb176814c73",
@@ -49219,7 +50261,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "f6478f81bc7cbdc3882bad1d050231e99b5ed9f8e993b74e30e08fc9f0222ad3",
+    "proof/PscVerif/PscVerif.lean": "f318687f6421fed282587cd3a3bca538ef54827dedce922a6cd856cf7e2d0152",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

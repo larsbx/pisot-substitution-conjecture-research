@@ -512,6 +512,8 @@ closed on caps and retain a replayable record for every survivor.
 - [Realization target topology](c4-geometric-realization-topology-2026-11-19.md) proves compactness, the shift homeomorphism and continuity of the target flow. A checked Thue–Morse pair shows that depth zero loses information on the hull.
 - [Pisot contraction, derived](c4-pisot-contraction-2026-11-19.md): `PisotData` from `χ_M = (X − β) Q` through Gelfand's formula, and from the PIP3 conditions; Tribonacci `01/02/0` proved a PIP3 member and instantiated.
 - [Contraction source decision](c4-pisot-contraction-stop-go-2026-11-19.md): deflation `M − β u ℓᵀ`, simplicity from separability, and what stays imported.
+- [The census in Lean](c4-pisot-census-2026-11-19.md): a kernel-evaluated certificate (Jury's conditions, a dyadic bracket of `β`, a positive `ℓ = 𝟙ᵀ Q(M)`) and a rejection certificate decide PIP3 on all 59,319 specimens; exactly 4,554 are members, each with `PisotData`.
+- [Census source decision](c4-pisot-census-stop-go-2026-11-19.md): the cofactor at any root, positivity without Perron–Frobenius, completeness without primitivity, and the memory split of the kernel evaluation.
 - [Witness selection under (NM_V)](c4-witness-selection-2026-11-19.md): Theorem S in Lean. A vertex leaf forces the branch to the origin, and failing branches have interior leaves on the collapsed endpoint pair. The exact census of that residual finds it in `F₀` on 12 in-scope specimens; selection stays open.
 - [Selection source decision](c4-witness-selection-stop-go-2026-11-19.md): what transfers from BDS, BBK and Barge–Diamond, the local contracts, and why selection itself is deferred.
 

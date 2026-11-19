@@ -9,6 +9,7 @@ on:
       - 'docs/c4-tiling-hull-realization*.md'
       - 'docs/c4-geometric-realization*.md'
       - 'docs/c4-pisot-contraction*.md'
+      - 'docs/c4-pisot-census*.md'
       - 'docs/c4-complete-range-covering*.md'
       - 'proof/PscVerif/PscVerif/PeriodicPartner.lean'
       - 'proof/PscVerif/PscVerif/PeriodicPartnerControls.lean'
@@ -28,6 +29,8 @@ on:
       - 'proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean'
       - 'proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean'
       - 'proof/PscVerif/PscVerif/PeriodicPartnerSpectralModels.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean'
       - 'proof/PscVerif/PeriodicPartnerAudit.lean'
       - 'proof/PscVerif/PscVerif.lean'
       - 'proof/PscVerif/lean-toolchain'
@@ -45,6 +48,7 @@ on:
       - 'docs/c4-tiling-hull-realization*.md'
       - 'docs/c4-geometric-realization*.md'
       - 'docs/c4-pisot-contraction*.md'
+      - 'docs/c4-pisot-census*.md'
       - 'docs/c4-complete-range-covering*.md'
       - 'proof/PscVerif/PscVerif/PeriodicPartner.lean'
       - 'proof/PscVerif/PscVerif/PeriodicPartnerControls.lean'
@@ -64,6 +68,8 @@ on:
       - 'proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean'
       - 'proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean'
       - 'proof/PscVerif/PscVerif/PeriodicPartnerSpectralModels.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean'
       - 'proof/PscVerif/PeriodicPartnerAudit.lean'
       - 'proof/PscVerif/PscVerif.lean'
       - 'proof/PscVerif/lean-toolchain'
@@ -85,7 +91,7 @@ jobs:
   isolated-lean:
     name: Fresh periodic partner Lean acceptance
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 50
     steps:
       - uses: actions/checkout@v4
         with:
