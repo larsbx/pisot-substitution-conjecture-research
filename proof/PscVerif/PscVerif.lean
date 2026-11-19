@@ -196,3 +196,7 @@ import PscVerif.PeriodicPartnerSpectral
 import PscVerif.PeriodicPartnerSpectralModels
 import PscVerif.PeriodicPartnerSpectralCertificate
 import PscVerif.PeriodicPartnerSpectralCensus
+import PscVerif.EvenCompanionWords
+import PscVerif.EvenCompanionFamily
+import PscVerif.EvenSeamCycles
+import PscVerif.PeriodicPartnerEvenSolenoid

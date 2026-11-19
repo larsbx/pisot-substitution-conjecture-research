@@ -1,0 +1,6 @@
+COMMAND /workspace/scratch/803fbaddeced/runtimes/pixi/pixi run --locked --manifest-path /workspace/scratch/803fbaddeced/psc/kernel/pixi.toml python3 -c 'import os; os.chdir('"'"'/workspace/scratch/37fa5d8c3a9e/psc-even-rank-two/kernel'"'"'); os.execvp("mojo", ["mojo", "run", "-I", ".", "-I", "tests", "tests/test_c4_even_stack_residue.mojo"])'
+even-det corpus 1926 positive ER rank 564 residue 96
+nilpotent by dim H1 3:336 4:36 5:48 7:12
+literal left witness levels 1:54 2:18 3:24 4:84 5:96 6:6 7:6
+1/2/10022221 [-2, -2, -4, 1] K2,2 literal left witness [3, 16, 2] prefix Parikh [4, 5, 7]
+contract-receipt: Even stack residue: 96 of the 564 positive-ER-rank even determinant corpus specimens have nilpotent incidence modulo two. All 288 unordered letter pairs on those 96 have an exact shortest left coincidence witness confirmed by literal words. The PIP3 control 1/2/10022221 has the nilpotent parity and K2,2 eventual range beyond the corpus, and its periodic first letters coincide at level 3.

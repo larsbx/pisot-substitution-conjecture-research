@@ -1,0 +1,28 @@
+PSC_STRICT_CORE_EXTRACTION
+{
+  "baseline": "c0231e0fd64d9eee7f7bb798042d9966276e4cd6",
+  "baseline_strict_system_sha256": "657d6c9f4041b04a2e478f19dea2ecb813952caf2fe1455789778306ad6c3a48",
+  "moved_blocks": [
+    {
+      "name": "strict_systems_through_no_strictSystem_of_strongCoincidence",
+      "bytes": 14335,
+      "lines": 299,
+      "baseline_sha256": "64299f2beca3186ca384ccb6ae03e513a3bdc4b06b52d5de8757890652c6f651",
+      "core_sha256": "64299f2beca3186ca384ccb6ae03e513a3bdc4b06b52d5de8757890652c6f651"
+    },
+    {
+      "name": "index_witness_through_fin3_all_pairs",
+      "bytes": 4934,
+      "lines": 98,
+      "baseline_sha256": "017e92d1dffb197b7e3c6732a3f04582aaf6a6f5932e14d7e298b8922c25c03b",
+      "core_sha256": "017e92d1dffb197b7e3c6732a3f04582aaf6a6f5932e14d7e298b8922c25c03b"
+    }
+  ],
+  "private_declarations": 0,
+  "remaining_body_equal_after_import_replacement": true,
+  "remaining_body_sha256": "fa1581eca78b49e11d7d364b9f4c26890aae73c74f4b4d34fb9406c4b883ac18",
+  "new_core_sha256": "1d0541339119827d208ea4e1dafffc46fe0bf1749b067f9e0b1eeb541aa7fc1a",
+  "new_strict_system_sha256": "15735ded75124954c53a248a216883f63db9185e1e36dbbe05eb749f1994fcbd"
+}
+✔ [2150/2150] Built PscVerif.StrictSystemCore (21s)
+Build completed successfully (2150 jobs).

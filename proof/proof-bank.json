@@ -12666,6 +12666,222 @@
       "declaration": "theorem fib_descR_two :"
     },
     {
+      "name": "Psc.EvenCompanion.pair_one_two",
+      "module": "PscVerif.EvenCompanionFamily",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenCompanionFamily.lean",
+      "line": 18,
+      "declaration": "theorem pair_one_two (r : ℕ) (hr : 3 ≤ r) : WitnessAt (sigma r) 1 2 3 := by"
+    },
+    {
+      "name": "Psc.EvenCompanion.pair_zero_two",
+      "module": "PscVerif.EvenCompanionFamily",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenCompanionFamily.lean",
+      "line": 24,
+      "declaration": "theorem pair_zero_two (r : ℕ) : WitnessAt (sigma r) 0 2 1 := by"
+    },
+    {
+      "name": "Psc.EvenCompanion.pair_zero_one",
+      "module": "PscVerif.EvenCompanionFamily",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenCompanionFamily.lean",
+      "line": 31,
+      "declaration": "theorem pair_zero_one (r : ℕ) (hr : 3 ≤ r) : WitnessAt (sigma r) 0 1 4 := by"
+    },
+    {
+      "name": "Psc.EvenCompanion.all_pairs",
+      "module": "PscVerif.EvenCompanionFamily",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenCompanionFamily.lean",
+      "line": 42,
+      "declaration": "theorem all_pairs (r : ℕ) (hr : 3 ≤ r) :"
+    },
+    {
+      "name": "Psc.EvenCompanion.no_strict_system",
+      "module": "PscVerif.EvenCompanionFamily",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenCompanionFamily.lean",
+      "line": 52,
+      "declaration": "theorem no_strict_system (r : ℕ) (hr : 3 ≤ r) (C : Finset (Word × Word)) :"
+    },
+    {
+      "name": "Psc.EvenCompanion.no_strict_system_even",
+      "module": "PscVerif.EvenCompanionFamily",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenCompanionFamily.lean",
+      "line": 57,
+      "declaration": "theorem no_strict_system_even (n : ℕ) (C : Finset (Word × Word)) :"
+    },
+    {
+      "name": "Psc.EvenCompanion.copies_zero",
+      "module": "PscVerif.EvenCompanionWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenCompanionWords.lean",
+      "line": 28,
+      "declaration": "@[simp] theorem copies_zero (w : Word) : copies 0 w = [] := rfl"
+    },
+    {
+      "name": "Psc.EvenCompanion.copies_succ",
+      "module": "PscVerif.EvenCompanionWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenCompanionWords.lean",
+      "line": 30,
+      "declaration": "@[simp] theorem copies_succ (n : ℕ) (w : Word) :"
+    },
+    {
+      "name": "Psc.EvenCompanion.subst_copies",
+      "module": "PscVerif.EvenCompanionWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenCompanionWords.lean",
+      "line": 34,
+      "declaration": "theorem subst_copies (s : Fin 3 → Word) (n : ℕ) (w : Word) :"
+    },
+    {
+      "name": "Psc.EvenCompanion.subst_word",
+      "module": "PscVerif.EvenCompanionWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenCompanionWords.lean",
+      "line": 43,
+      "declaration": "theorem subst_word (r : ℕ) : subst (sigma r) (word r) = second r := by"
+    },
+    {
+      "name": "Psc.EvenCompanion.subst_second",
+      "module": "PscVerif.EvenCompanionWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenCompanionWords.lean",
+      "line": 46,
+      "declaration": "theorem subst_second (r : ℕ) :"
+    },
+    {
+      "name": "Psc.EvenCompanion.iterate_three_one",
+      "module": "PscVerif.EvenCompanionWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenCompanionWords.lean",
+      "line": 53,
+      "declaration": "theorem iterate_three_one (r : ℕ) : (subst (sigma r))^[3] [1] = second r := by"
+    },
+    {
+      "name": "Psc.EvenCompanion.iterate_three_two",
+      "module": "PscVerif.EvenCompanionWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenCompanionWords.lean",
+      "line": 59,
+      "declaration": "theorem iterate_three_two (r : ℕ) :"
+    },
+    {
+      "name": "Psc.EvenCompanion.prefixes_balanced",
+      "module": "PscVerif.EvenCompanionWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenCompanionWords.lean",
+      "line": 72,
+      "declaration": "theorem prefixes_balanced (r : ℕ) : Equiv1 (topPrefix r) (bottomPrefix r) := by"
+    },
+    {
+      "name": "Psc.EvenCompanion.prefix_lengths",
+      "module": "PscVerif.EvenCompanionWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenCompanionWords.lean",
+      "line": 76,
+      "declaration": "theorem prefix_lengths (r : ℕ) :"
+    },
+    {
+      "name": "Psc.EvenCompanion.prefix_counts",
+      "module": "PscVerif.EvenCompanionWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenCompanionWords.lean",
+      "line": 80,
+      "declaration": "theorem prefix_counts (r : ℕ) :"
+    },
+    {
+      "name": "Psc.EvenCompanion.small_prefix",
+      "module": "PscVerif.EvenCompanionWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenCompanionWords.lean",
+      "line": 85,
+      "declaration": "theorem small_prefix (n : ℕ) :"
+    },
+    {
+      "name": "Psc.EvenCompanion.word_prefix_copies",
+      "module": "PscVerif.EvenCompanionWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenCompanionWords.lean",
+      "line": 90,
+      "declaration": "theorem word_prefix_copies (n : ℕ) (w : Word) : w <+: copies (n + 1) w := by"
+    },
+    {
+      "name": "Psc.EvenCompanion.top_followed_by_two",
+      "module": "PscVerif.EvenCompanionWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenCompanionWords.lean",
+      "line": 94,
+      "declaration": "theorem top_followed_by_two (n : ℕ) :"
+    },
+    {
+      "name": "Psc.EvenCompanion.bottom_followed_by_two",
+      "module": "PscVerif.EvenCompanionWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenCompanionWords.lean",
+      "line": 110,
+      "declaration": "theorem bottom_followed_by_two (n : ℕ) :"
+    },
+    {
+      "name": "Psc.EvenCompanion.level_three_witness",
+      "module": "PscVerif.EvenCompanionWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenCompanionWords.lean",
+      "line": 128,
+      "declaration": "theorem level_three_witness (r : ℕ) (hr : 3 ≤ r) :"
+    },
+    {
+      "name": "Psc.EvenSeamCycles.four_cycle_coefficient",
+      "module": "PscVerif.EvenSeamCycles",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenSeamCycles.lean",
+      "line": 25,
+      "declaration": "theorem four_cycle_coefficient :"
+    },
+    {
+      "name": "Psc.EvenSeamCycles.six_cycle_coefficient",
+      "module": "PscVerif.EvenSeamCycles",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenSeamCycles.lean",
+      "line": 32,
+      "declaration": "theorem six_cycle_coefficient :"
+    },
+    {
+      "name": "Psc.EvenSeamCycles.four_cycle_nonzero_is_unit",
+      "module": "PscVerif.EvenSeamCycles",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenSeamCycles.lean",
+      "line": 39,
+      "declaration": "theorem four_cycle_nonzero_is_unit (rows cols : Fin 2 → Bool)"
+    },
+    {
+      "name": "Psc.EvenSeamCycles.six_cycle_nonzero_is_unit",
+      "module": "PscVerif.EvenSeamCycles",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenSeamCycles.lean",
+      "line": 49,
+      "declaration": "theorem six_cycle_nonzero_is_unit (rows cols : Fin 3 → Bool)"
+    },
+    {
+      "name": "Psc.EvenSeamCycles.eight_cycle_coefficient_two",
+      "module": "PscVerif.EvenSeamCycles",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenSeamCycles.lean",
+      "line": 62,
+      "declaration": "theorem eight_cycle_coefficient_two :"
+    },
+    {
+      "name": "Psc.EvenSeamCycles.eight_cycle_unit_bound_fails",
+      "module": "PscVerif.EvenSeamCycles",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/EvenSeamCycles.lean",
+      "line": 66,
+      "declaration": "theorem eight_cycle_unit_bound_fails :"
+    },
+    {
       "name": "Psc.FastForwardCarrier.Counter.get_zero",
       "module": "PscVerif.FastForwardCarrier",
       "private": false,
@@ -36866,6 +37082,182 @@
       "declaration": "theorem ternary_zero_fibre_periodic_triple {X Y : Type*}"
     },
     {
+      "name": "Psc.PeriodicPartnerEvenSolenoid.half_add",
+      "module": "PscVerif.PeriodicPartnerEvenSolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean",
+      "line": 33,
+      "declaration": "theorem half_add (z w : Solenoid S) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenSolenoid.half_zero",
+      "module": "PscVerif.PeriodicPartnerEvenSolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean",
+      "line": 39,
+      "declaration": "theorem half_zero : half S B hcomm 0 = 0 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenSolenoid.two_smul_half",
+      "module": "PscVerif.PeriodicPartnerEvenSolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean",
+      "line": 48,
+      "declaration": "theorem two_smul_half (z : Solenoid S) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenSolenoid.half_two_smul",
+      "module": "PscVerif.PeriodicPartnerEvenSolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean",
+      "line": 56,
+      "declaration": "theorem half_two_smul (z : Solenoid S) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenSolenoid.two_smul_bijective",
+      "module": "PscVerif.PeriodicPartnerEvenSolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean",
+      "line": 64,
+      "declaration": "theorem two_smul_bijective : Bijective fun z : Solenoid S => (2 : ℕ) • z := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenSolenoid.no_two_torsion",
+      "module": "PscVerif.PeriodicPartnerEvenSolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean",
+      "line": 73,
+      "declaration": "theorem no_two_torsion (z : Solenoid S) (hz : (2 : ℕ) • z = 0) : z = 0 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenSolenoid.unique_half",
+      "module": "PscVerif.PeriodicPartnerEvenSolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean",
+      "line": 77,
+      "declaration": "theorem unique_half (z : Solenoid S) : ∃! w : Solenoid S, (2 : ℕ) • w = z := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenSolenoid.half_shift",
+      "module": "PscVerif.PeriodicPartnerEvenSolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean",
+      "line": 86,
+      "declaration": "theorem half_shift (z : Solenoid S) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenSolenoid.intMatHom_mem_lattice",
+      "module": "PscVerif.PeriodicPartnerEvenSolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean",
+      "line": 104,
+      "declaration": "theorem intMatHom_mem_lattice (B : Matrix α α ℤ) {v : α → ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenSolenoid.intTorusMap_mk",
+      "module": "PscVerif.PeriodicPartnerEvenSolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean",
+      "line": 115,
+      "declaration": "theorem intTorusMap_mk (B : Matrix α α ℤ) (v : α → ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenSolenoid.intTorusMap_add",
+      "module": "PscVerif.PeriodicPartnerEvenSolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean",
+      "line": 119,
+      "declaration": "theorem intTorusMap_add (A B : Matrix α α ℤ) (x : Torus α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenSolenoid.intTorusMap_mul",
+      "module": "PscVerif.PeriodicPartnerEvenSolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean",
+      "line": 129,
+      "declaration": "theorem intTorusMap_mul (A B : Matrix α α ℤ) (x : Torus α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenSolenoid.intTorusMap_one",
+      "module": "PscVerif.PeriodicPartnerEvenSolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean",
+      "line": 137,
+      "declaration": "theorem intTorusMap_one (x : Torus α) : intTorusMap (1 : Matrix α α ℤ) x = x := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenSolenoid.intTorusMap_pow",
+      "module": "PscVerif.PeriodicPartnerEvenSolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean",
+      "line": 143,
+      "declaration": "theorem intTorusMap_pow (A : Matrix α α ℤ) (k : ℕ) (x : Torus α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenSolenoid.intTorusMap_incidence",
+      "module": "PscVerif.PeriodicPartnerEvenSolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean",
+      "line": 149,
+      "declaration": "theorem intTorusMap_incidence (S : LengthSubst α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenSolenoid.commutes_of_cube_eq_double",
+      "module": "PscVerif.PeriodicPartnerEvenSolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean",
+      "line": 160,
+      "declaration": "theorem commutes_of_cube_eq_double (A B : Matrix α α ℤ) (h : A ^ 3 = B + B) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenSolenoid.torus_factor_of_cube_eq_double",
+      "module": "PscVerif.PeriodicPartnerEvenSolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean",
+      "line": 175,
+      "declaration": "theorem torus_factor_of_cube_eq_double (S : LengthSubst α) (B : Matrix α α ℤ)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenSolenoid.incidence_unique_halving",
+      "module": "PscVerif.PeriodicPartnerEvenSolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean",
+      "line": 187,
+      "declaration": "theorem incidence_unique_halving (S : LengthSubst α) (B : Matrix α α ℤ)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenSolenoid.exists_cube_half_of_mod_two",
+      "module": "PscVerif.PeriodicPartnerEvenSolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean",
+      "line": 196,
+      "declaration": "theorem exists_cube_half_of_mod_two (A : Matrix α α ℤ)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenSolenoid.incidence_mod_two_unique_halving",
+      "module": "PscVerif.PeriodicPartnerEvenSolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean",
+      "line": 209,
+      "declaration": "theorem incidence_mod_two_unique_halving (S : LengthSubst α)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenSolenoid.thueMorse_mod_two_cube",
+      "module": "PscVerif.PeriodicPartnerEvenSolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean",
+      "line": 219,
+      "declaration": "theorem thueMorse_mod_two_cube :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenSolenoid.thueMorse_unique_halving",
+      "module": "PscVerif.PeriodicPartnerEvenSolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean",
+      "line": 224,
+      "declaration": "theorem thueMorse_unique_halving :"
+    },
+    {
       "name": "Psc.PeriodicPartnerHull.LengthSubst.sum_nonneg",
       "module": "PscVerif.PeriodicPartnerHull",
       "private": false,
@@ -45082,267 +45474,11 @@
       "declaration": "theorem empty_startVectors : startVectors [] = ∅ := by"
     },
     {
-      "name": "Psc.StrictSystem.isBlock_swap",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 261,
-      "declaration": "theorem isBlock_swap {T : List α × List α} (h : IsBlock T) : IsBlock T.swap := by"
-    },
-    {
-      "name": "Psc.StrictSystem.mem_swapClosureF",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 275,
-      "declaration": "theorem mem_swapClosureF {C : Finset (List α × List α)} {T : List α × List α} :"
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.equiv1",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 290,
-      "declaration": "theorem equiv1 (h : StrictSystem s C) : ∀ T ∈ C, Equiv1 T.1 T.2 :="
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.balanced",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 294,
-      "declaration": "theorem balanced (h : StrictSystem s C) : ∀ T ∈ C, Equiv1 T.1 T.2 ∧ T.1 ≠ [] :="
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.childClosed",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 297,
-      "declaration": "theorem childClosed (h : StrictSystem s C) : ChildClosed s ↑C :="
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.mem_of_red_iterate",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 302,
-      "declaration": "theorem mem_of_red_iterate (h : StrictSystem s C) (n : ℕ) :"
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.reflTransGen_mem",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 318,
-      "declaration": "theorem reflTransGen_mem (h : StrictSystem s C) {T U : List α × List α} (hT : T ∈ C)"
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.transGen_mem",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 324,
-      "declaration": "theorem transGen_mem (h : StrictSystem s C) {T U : List α × List α} (hT : T ∈ C)"
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.swapClosure",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 329,
-      "declaration": "theorem swapClosure (h : StrictSystem s C) : StrictSystem s (swapClosureF C) where"
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.swapClosure_swap_mem",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 338,
-      "declaration": "theorem swapClosure_swap_mem : ∀ T ∈ swapClosureF C, T.swap ∈ swapClosureF C :="
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.toChildSystem_C",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 350,
-      "declaration": "@[simp] theorem toChildSystem_C : (h.toChildSystem hs).C = C := rfl"
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.toChildSystem_s",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 352,
-      "declaration": "@[simp] theorem toChildSystem_s : (h.toChildSystem hs).s = s := rfl"
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.toChildSystem_children",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 354,
-      "declaration": "theorem toChildSystem_children (T : List α × List α) :"
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.toChildSystem_equiv1",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 359,
-      "declaration": "theorem toChildSystem_equiv1 : ∀ T ∈ (h.toChildSystem hs).C, Equiv1 T.1 T.2 := h.equiv1"
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.toChildSystem_nonempty",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 362,
-      "declaration": "theorem toChildSystem_nonempty : (h.toChildSystem hs).C.Nonempty := h.nonempty"
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.toChildSystem_isBlock",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 364,
-      "declaration": "theorem toChildSystem_isBlock : ∀ T ∈ (h.toChildSystem hs).C, IsBlock T := h.isBlock"
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.toChildSystem_top_ne_nil",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 366,
-      "declaration": "theorem toChildSystem_top_ne_nil : ∀ T ∈ (h.toChildSystem hs).C, T.1 ≠ [] :="
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.toChildSystem_noncoincident",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 369,
-      "declaration": "theorem toChildSystem_noncoincident : ∀ T ∈ (h.toChildSystem hs).C, T.1 ≠ T.2 :="
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.toChildSystem_desc",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 373,
-      "declaration": "theorem toChildSystem_desc (n : ℕ) (T : List α × List α) (hT : T ∈ C) :"
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.lexNorm_R",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 388,
-      "declaration": "theorem lexNorm_R [LinearOrder α] :"
-    },
-    {
-      "name": "Psc.StrictSystem.strongCoincidenceWitness_comm",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 407,
-      "declaration": "theorem strongCoincidenceWitness_comm {s : α → List α} {c c' : α} :"
-    },
-    {
-      "name": "Psc.StrictSystem.exists_first_block",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 415,
-      "declaration": "theorem exists_first_block {c c' : α} {q q' : List α} (h : Equiv1 (c :: q) (c' :: q')) :"
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.first_letters_ne",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 443,
-      "declaration": "theorem first_letters_ne {T : List α × List α} (hT : T ∈ C) :"
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.cutPair_ne",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 455,
-      "declaration": "theorem cutPair_ne {c c' : α} (hcp : CutPair C c c') : c ≠ c' := by"
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.exists_cutPair",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 462,
-      "declaration": "theorem exists_cutPair : ∃ c c', CutPair C c c' := by"
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.cut_follow",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 470,
-      "declaration": "theorem cut_follow {T : List α × List α} (hT : T ∈ C) (n : ℕ) {p q p' q' : List α} {c c' : α}"
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.cut_follow_index",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 483,
-      "declaration": "theorem cut_follow_index {T : List α × List α} (hT : T ∈ C) (n : ℕ) {k : ℕ}"
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.cutPair_subst",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 498,
-      "declaration": "theorem cutPair_subst {c c' d d' : α} (hcp : CutPair C c c') (hd : (s c).head? = some d)"
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.cutPair_first",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 512,
-      "declaration": "theorem cutPair_first (hs : ∀ a, s a ≠ []) {c c' : α} (hcp : CutPair C c c') :"
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.not_witness",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 518,
-      "declaration": "theorem not_witness {c c' : α} (hcp : CutPair C c c') : ¬ StrongCoincidenceWitness s c c' := by"
-    },
-    {
-      "name": "Psc.StrictSystem.StrictSystem.not_witness_of_cutPair_swap",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 530,
-      "declaration": "theorem not_witness_of_cutPair_swap {c c' : α} (hcp : CutPair C c' c) :"
-    },
-    {
-      "name": "Psc.StrictSystem.no_strictSystem_of_strongCoincidence",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 538,
-      "declaration": "theorem no_strictSystem_of_strongCoincidence {s : α → List α}"
-    },
-    {
       "name": "Psc.StrictSystem.factorSet_eq_reachable",
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 553,
+      "line": 254,
       "declaration": "theorem factorSet_eq_reachable {s : α → List α} {T : List α × List α} (hT : IsBlock T) :"
     },
     {
@@ -45350,7 +45486,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 558,
+      "line": 259,
       "declaration": "theorem factorSet_childClosed {s : α → List α} {T : List α × List α} (hT : Equiv1 T.1 T.2) :"
     },
     {
@@ -45358,7 +45494,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 569,
+      "line": 270,
       "declaration": "theorem strictSystem_of_factorSet {s : α → List α} {T : List α × List α}"
     },
     {
@@ -45366,7 +45502,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 581,
+      "line": 282,
       "declaration": "theorem StrictSystem.factorSet_subset {s : α → List α} {C : Finset (List α × List α)}"
     },
     {
@@ -45374,7 +45510,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 587,
+      "line": 288,
       "declaration": "theorem exists_strictSystem_iff {s : α → List α} :"
     },
     {
@@ -45382,7 +45518,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 612,
+      "line": 313,
       "declaration": "theorem productive_of_reflTransGen {s : α → List α} {T U : List α × List α}"
     },
     {
@@ -45390,7 +45526,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 619,
+      "line": 320,
       "declaration": "theorem reachable_of_not_productive {s : α → List α} {T U : List α × List α}"
     },
     {
@@ -45398,7 +45534,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 636,
+      "line": 337,
       "declaration": "theorem no_coincidence_reachable {T U : List α × List α} (hT : T ∈ C)"
     },
     {
@@ -45406,7 +45542,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 641,
+      "line": 342,
       "declaration": "theorem not_productive {T : List α × List α} (hT : T ∈ C) : ¬ Productive s T :="
     },
     {
@@ -45414,7 +45550,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 646,
+      "line": 347,
       "declaration": "theorem not_terminates {T₀ T : List α × List α} (hT : T ∈ C)"
     },
     {
@@ -45422,7 +45558,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 653,
+      "line": 354,
       "declaration": "theorem exists_seed_not_terminates [Fintype α] {T : List α × List α} (hT : T ∈ C)"
     },
     {
@@ -45430,7 +45566,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 664,
+      "line": 365,
       "declaration": "theorem exists_strictSystem_of_not_terminates [Fintype α] {s : α → List α}"
     },
     {
@@ -45438,7 +45574,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 689,
+      "line": 390,
       "declaration": "theorem terminates_of_strongCoincidence [Fintype α] {s : α → List α}"
     },
     {
@@ -45446,7 +45582,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 713,
+      "line": 414,
       "declaration": "theorem swapClosure (h : StrictComponent s C) : StrictComponent s (swapClosureF C) := by"
     },
     {
@@ -45454,7 +45590,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 731,
+      "line": 432,
       "declaration": "theorem transGen_childNC (h : StrictSystem s C) {T U : List α × List α} (hT : T ∈ C)"
     },
     {
@@ -45462,7 +45598,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 741,
+      "line": 442,
       "declaration": "theorem of_cycle (h : StrictSystem s C) (f : List α × List α → List α × List α)"
     },
     {
@@ -45470,7 +45606,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 768,
+      "line": 469,
       "declaration": "theorem repOf_spec {T : List α × List α} (hT : T ∈ S.C) :"
     },
     {
@@ -45478,7 +45614,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 775,
+      "line": 476,
       "declaration": "theorem repOf_rep (i : P.Rep) (hi : i.1 ∈ S.C) : repOf P hi = i := by"
     },
     {
@@ -45486,7 +45622,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 781,
+      "line": 482,
       "declaration": "theorem repOf_swap_rep (i : P.Rep) (hi : i.1.swap ∈ S.C) : repOf P hi = i := by"
     },
     {
@@ -45494,7 +45630,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 788,
+      "line": 489,
       "declaration": "theorem nrep_pos_iff (i j : P.Rep) :"
     },
     {
@@ -45502,7 +45638,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 794,
+      "line": 495,
       "declaration": "theorem nrep_pos_of_child {V W : List α × List α} (hV : V ∈ S.C) (hW : W ∈ S.C)"
     },
     {
@@ -45510,7 +45646,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 815,
+      "line": 516,
       "declaration": "theorem nrep_stronglyConnected (h : StrictComponent s C) (hs : ∀ a, s a ≠ [])"
     },
     {
@@ -45518,7 +45654,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 845,
+      "line": 546,
       "declaration": "theorem lexNorm_stronglyConnected [LinearOrder α] (h : StrictComponent s C)"
     },
     {
@@ -45526,7 +45662,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 872,
+      "line": 573,
       "declaration": "theorem nonproductive_iff_no_coincidence_child {s : α → List α} {C : Finset (List α × List α)}"
     },
     {
@@ -45534,7 +45670,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 891,
+      "line": 592,
       "declaration": "theorem toStrictComponent (h : BpaStrictComponent s C) : StrictComponent s C where"
     },
     {
@@ -45542,7 +45678,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 903,
+      "line": 604,
       "declaration": "theorem reachable_mem (h : BpaStrictComponent s C) {T U : List α × List α} (hT : T ∈ C)"
     },
     {
@@ -45550,7 +45686,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 911,
+      "line": 612,
       "declaration": "theorem StrictComponent.toBpa [Fintype α] {s : α → List α} {C : Finset (List α × List α)}"
     },
     {
@@ -45558,7 +45694,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 936,
+      "line": 637,
       "declaration": "@[simp] theorem mismatch_nil_left (v : List α) : mismatch [] v = 0 := rfl"
     },
     {
@@ -45566,7 +45702,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 938,
+      "line": 639,
       "declaration": "theorem mismatch_cons (a b : α) (u v : List α) :"
     },
     {
@@ -45574,7 +45710,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 943,
+      "line": 644,
       "declaration": "theorem mismatch_append {u v : List α} (u' v' : List α) (h : u.length = v.length) :"
     },
     {
@@ -45582,7 +45718,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 948,
+      "line": 649,
       "declaration": "theorem mismatch_pos {u v : List α} (hl : u.length = v.length) (hne : u ≠ v) :"
     },
     {
@@ -45590,7 +45726,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 963,
+      "line": 664,
       "declaration": "theorem length_le_mul_mismatch (L : ℕ) (bs : List (List α × List α))"
     },
     {
@@ -45598,7 +45734,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 981,
+      "line": 682,
       "declaration": "theorem StrictSystem.mismatch_density {s : α → List α} {C : Finset (List α × List α)}"
     },
     {
@@ -45606,7 +45742,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 998,
+      "line": 699,
       "declaration": "theorem le_maxLen {C : Finset (List α × List α)} {U : List α × List α} (hU : U ∈ C) :"
     },
     {
@@ -45614,7 +45750,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1003,
+      "line": 704,
       "declaration": "theorem StrictSystem.mismatch_density_maxLen {s : α → List α} {C : Finset (List α × List α)}"
     },
     {
@@ -45622,7 +45758,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1015,
+      "line": 716,
       "declaration": "theorem nsub_eq_count_sublists' (x w : List α) : nsub x w = w.sublists'.count x :="
     },
     {
@@ -45630,7 +45766,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1018,
+      "line": 719,
       "declaration": "theorem nsub_nil_right (x : List α) : nsub x [] = if x = [] then 1 else 0 := by"
     },
     {
@@ -45638,7 +45774,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1022,
+      "line": 723,
       "declaration": "theorem nsub_cons_right (x : List α) (c : α) (w : List α) :"
     },
     {
@@ -45646,7 +45782,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1026,
+      "line": 727,
       "declaration": "theorem nsub_nil_left (w : List α) : nsub [] w = 1 := by"
     },
     {
@@ -45654,7 +45790,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1034,
+      "line": 735,
       "declaration": "theorem nsub_cons_cons (a : α) (x : List α) (c : α) (w : List α) :"
     },
     {
@@ -45662,7 +45798,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1046,
+      "line": 747,
       "declaration": "theorem nsub_single (a : α) (w : List α) : nsub [a] w = w.count a := by"
     },
     {
@@ -45670,7 +45806,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1056,
+      "line": 757,
       "declaration": "theorem nsub_two (a b : α) (w : List α) : nsub [a, b] w = n2 w a b := by"
     },
     {
@@ -45678,7 +45814,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1062,
+      "line": 763,
       "declaration": "theorem nsub_three (a b c : α) (w : List α) : nsub [a, b, c] w = n3 w a b c := by"
     },
     {
@@ -45686,7 +45822,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1068,
+      "line": 769,
       "declaration": "theorem nsub_four (a b c d : α) (w : List α) : nsub [a, b, c, d] w = Psc.Defect4.n4 w a b c d := by"
     },
     {
@@ -45694,7 +45830,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1073,
+      "line": 774,
       "declaration": "theorem nsub_eq_zero_of_length_lt {x w : List α} (h : w.length < x.length) : nsub x w = 0 :="
     },
     {
@@ -45702,7 +45838,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1076,
+      "line": 777,
       "declaration": "theorem nsub_eq_zero_of_ne {x w : List α} (hl : x.length = w.length) (hne : x ≠ w) :"
     },
     {
@@ -45710,7 +45846,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1080,
+      "line": 781,
       "declaration": "theorem nsub_self (w : List α) : nsub w w = 1 := by"
     },
     {
@@ -45718,7 +45854,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1093,
+      "line": 794,
       "declaration": "theorem kx_ne_zero {u v x : List α} : Kx u v x ≠ 0 ↔ nsub x u ≠ nsub x v := by"
     },
     {
@@ -45726,7 +45862,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1096,
+      "line": 797,
       "declaration": "theorem kx_two (u v : List α) (a b : α) : Kx u v [a, b] = Psc.Intertwiner2.K2 u v a b := by"
     },
     {
@@ -45734,7 +45870,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1099,
+      "line": 800,
       "declaration": "theorem kx_three (u v : List α) (a b c : α) :"
     },
     {
@@ -45742,7 +45878,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1103,
+      "line": 804,
       "declaration": "theorem kx_four (u v : List α) (a b c d : α) :"
     },
     {
@@ -45750,7 +45886,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1107,
+      "line": 808,
       "declaration": "theorem not_kNe_zero (u v : List α) : ¬ KNe 0 u v := by"
     },
     {
@@ -45758,7 +45894,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1112,
+      "line": 813,
       "declaration": "theorem kNe_one_iff {u v : List α} : KNe 1 u v ↔ ¬ Equiv1 u v := by"
     },
     {
@@ -45766,7 +45902,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1123,
+      "line": 824,
       "declaration": "theorem kNe_two_iff {u v : List α} :"
     },
     {
@@ -45774,7 +45910,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1132,
+      "line": 833,
       "declaration": "theorem kNe_three_iff {u v : List α} :"
     },
     {
@@ -45782,7 +45918,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1141,
+      "line": 842,
       "declaration": "theorem kNe_four_iff {u v : List α} :"
     },
     {
@@ -45790,7 +45926,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1150,
+      "line": 851,
       "declaration": "theorem equiv2_iff_not_kNe {u v : List α} : Equiv2 u v ↔ ¬ KNe 1 u v ∧ ¬ KNe 2 u v := by"
     },
     {
@@ -45798,7 +45934,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1155,
+      "line": 856,
       "declaration": "theorem equiv3_iff_not_kNe {u v : List α} :"
     },
     {
@@ -45806,7 +45942,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1162,
+      "line": 863,
       "declaration": "theorem kNe_length {u v : List α} (hl : u.length = v.length) (hne : u ≠ v) :"
     },
     {
@@ -45814,7 +45950,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1177,
+      "line": 878,
       "declaration": "theorem not_hasDefect_zero (C : Finset (List α × List α)) : ¬ HasDefect C 0 :="
     },
     {
@@ -45822,7 +45958,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1180,
+      "line": 881,
       "declaration": "theorem hasDefect_length {T : List α × List α} (hT : T ∈ C) (hl : T.1.length = T.2.length)"
     },
     {
@@ -45830,7 +45966,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1185,
+      "line": 886,
       "declaration": "theorem hasDefect_defectDegree (h : ∃ T ∈ C, T.1.length = T.2.length ∧ T.1 ≠ T.2) :"
     },
     {
@@ -45838,7 +45974,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1192,
+      "line": 893,
       "declaration": "theorem defectDegree_le {T : List α × List α} (hT : T ∈ C) (hl : T.1.length = T.2.length)"
     },
     {
@@ -45846,7 +45982,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1196,
+      "line": 897,
       "declaration": "theorem not_hasDefect_of_lt {k : ℕ} (hk : k < defectDegree C) : ¬ HasDefect C k :="
     },
     {
@@ -45854,7 +45990,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1199,
+      "line": 900,
       "declaration": "theorem defectDegree_eq_iff {r : ℕ} (hr : 0 < r) :"
     },
     {
@@ -45862,7 +45998,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1214,
+      "line": 915,
       "declaration": "theorem defectDegree_eq_two_iff :"
     },
     {
@@ -45870,7 +46006,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1229,
+      "line": 930,
       "declaration": "theorem defectDegree_eq_three_iff :"
     },
     {
@@ -45878,7 +46014,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1246,
+      "line": 947,
       "declaration": "theorem defectDegree_eq_four_iff :"
     },
     {
@@ -45886,7 +46022,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1268,
+      "line": 969,
       "declaration": "theorem StrictSystem.defectDegree_spec {s : α → List α} {C : Finset (List α × List α)}"
     },
     {
@@ -45894,7 +46030,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1288,
+      "line": 989,
       "declaration": "theorem exists_k2_ne_iff_kw {u v : List (Fin 3)} (h : Equiv1 u v) :"
     },
     {
@@ -45902,7 +46038,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1306,
+      "line": 1007,
       "declaration": "theorem k3Vec_ne_zero_iff {u v : List (Fin 3)} :"
     },
     {
@@ -45910,7 +46046,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1319,
+      "line": 1020,
       "declaration": "theorem k4Vec_ne_zero_iff {u v : List (Fin 3)} :"
     },
     {
@@ -45918,7 +46054,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1336,
+      "line": 1037,
       "declaration": "theorem defectDegree_eq_two_iff_kw :"
     },
     {
@@ -45926,7 +46062,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1347,
+      "line": 1048,
       "declaration": "theorem defectDegree_eq_three_iff_k3Vec :"
     },
     {
@@ -45934,7 +46070,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1354,
+      "line": 1055,
       "declaration": "theorem defectDegree_eq_four_iff_k4Vec :"
     },
     {
@@ -45942,7 +46078,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1372,
+      "line": 1073,
       "declaration": "theorem equiv2_comm {u v : List α} (h : Equiv2 u v) : Equiv2 v u :="
     },
     {
@@ -45950,7 +46086,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1375,
+      "line": 1076,
       "declaration": "theorem equiv3_comm {u v : List α} (h : Psc.Defect4.Equiv3 u v) : Psc.Defect4.Equiv3 v u :="
     },
     {
@@ -45958,7 +46094,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1379,
+      "line": 1080,
       "declaration": "theorem forall_swapClosureF {C : Finset (List α × List α)} {p : List α × List α → Prop}"
     },
     {
@@ -45966,7 +46102,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1388,
+      "line": 1089,
       "declaration": "theorem k3Vec_swap (u v : List (Fin 3)) : Psc.Lie3.k3Vec v u = - Psc.Lie3.k3Vec u v := by"
     },
     {
@@ -45974,7 +46110,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1393,
+      "line": 1094,
       "declaration": "theorem k4Vec_swap (u v : List (Fin 3)) :"
     },
     {
@@ -45982,7 +46118,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1402,
+      "line": 1103,
       "declaration": "theorem exists_rep_kw {T : List (Fin 3) × List (Fin 3)} (hT : T ∈ S.C)"
     },
     {
@@ -45990,7 +46126,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1411,
+      "line": 1112,
       "declaration": "theorem exists_rep_k3Vec {T : List (Fin 3) × List (Fin 3)} (hT : T ∈ S.C)"
     },
     {
@@ -45998,71 +46134,15 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1419,
+      "line": 1120,
       "declaration": "theorem exists_rep_k4Vec {T : List (Fin 3) × List (Fin 3)} (hT : T ∈ S.C)"
-    },
-    {
-      "name": "Psc.StrictSystem.strongCoincidenceWitness_iff_exists_witnessAt",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1447,
-      "declaration": "theorem strongCoincidenceWitness_iff_exists_witnessAt {s : α → List α} {c c' : α} :"
-    },
-    {
-      "name": "Psc.StrictSystem.witnessAt_iff_index",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1453,
-      "declaration": "theorem witnessAt_iff_index {s : α → List α} {c c' : α} {n : ℕ} :"
-    },
-    {
-      "name": "Psc.StrictSystem.strongCoincidenceWitness_iff_index",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1472,
-      "declaration": "theorem strongCoincidenceWitness_iff_index {s : α → List α} {c c' : α} :"
-    },
-    {
-      "name": "Psc.StrictSystem.witness_of_index",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1476,
-      "declaration": "theorem witness_of_index {s : α → List α} {c c' : α} (n i j : ℕ)"
-    },
-    {
-      "name": "Psc.StrictSystem.IndexWitness.aligned",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1481,
-      "declaration": "theorem IndexWitness.aligned {s : α → List α} {c c' : α} {n i j : ℕ}"
-    },
-    {
-      "name": "Psc.StrictSystem.leastWitnessLevel_spec",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1505,
-      "declaration": "theorem leastWitnessLevel_spec {s : α → List α} {c c' : α} {m : ℕ}"
-    },
-    {
-      "name": "Psc.StrictSystem.fin3_all_pairs",
-      "module": "PscVerif.StrictSystem",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1515,
-      "declaration": "theorem fin3_all_pairs {s : Fin 3 → List (Fin 3)} (h01 : StrongCoincidenceWitness s 0 1)"
     },
     {
       "name": "Psc.StrictSystem.reversal_conventions",
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1542,
+      "line": 1145,
       "declaration": "theorem reversal_conventions :"
     },
     {
@@ -46070,7 +46150,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1549,
+      "line": 1152,
       "declaration": "theorem witness_of_least {s : α → List α} {c c' : α} {m : ℕ}"
     },
     {
@@ -46078,7 +46158,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1555,
+      "line": 1158,
       "declaration": "theorem plastic_least :"
     },
     {
@@ -46086,7 +46166,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1564,
+      "line": 1167,
       "declaration": "theorem plasticRev_least :"
     },
     {
@@ -46094,7 +46174,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1570,
+      "line": 1173,
       "declaration": "theorem census_least :"
     },
     {
@@ -46102,7 +46182,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1577,
+      "line": 1180,
       "declaration": "theorem censusRev_least :"
     },
     {
@@ -46110,7 +46190,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1584,
+      "line": 1187,
       "declaration": "theorem censusRevNF_least :"
     },
     {
@@ -46118,7 +46198,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1591,
+      "line": 1194,
       "declaration": "theorem trib_least :"
     },
     {
@@ -46126,7 +46206,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1597,
+      "line": 1200,
       "declaration": "theorem plastic_no_strictSystem (C : Finset (List (Fin 3) × List (Fin 3))) :"
     },
     {
@@ -46134,7 +46214,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1604,
+      "line": 1207,
       "declaration": "theorem plasticRev_no_strictSystem (C : Finset (List (Fin 3) × List (Fin 3))) :"
     },
     {
@@ -46142,7 +46222,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1612,
+      "line": 1215,
       "declaration": "theorem census_no_strictSystem (C : Finset (List (Fin 3) × List (Fin 3))) :"
     },
     {
@@ -46150,7 +46230,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1618,
+      "line": 1221,
       "declaration": "theorem censusRev_no_strictSystem (C : Finset (List (Fin 3) × List (Fin 3))) :"
     },
     {
@@ -46158,7 +46238,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1626,
+      "line": 1229,
       "declaration": "theorem censusRevNF_no_strictSystem (C : Finset (List (Fin 3) × List (Fin 3))) :"
     },
     {
@@ -46166,7 +46246,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1634,
+      "line": 1237,
       "declaration": "theorem trib_no_strictSystem (C : Finset (List (Fin 3) × List (Fin 3))) :"
     },
     {
@@ -46174,7 +46254,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1641,
+      "line": 1244,
       "declaration": "theorem fib_no_strictSystem (C : Finset (List (Fin 2) × List (Fin 2))) :"
     },
     {
@@ -46182,7 +46262,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1654,
+      "line": 1257,
       "declaration": "theorem tm_strictSystem : StrictSystem thueMorseSubst {tmPair, tmPair.swap} where"
     },
     {
@@ -46190,7 +46270,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1660,
+      "line": 1263,
       "declaration": "theorem tm_child_all : ∀ T ∈ ({tmPair, tmPair.swap} : Finset (List (Fin 2) × List (Fin 2))),"
     },
     {
@@ -46198,7 +46278,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1666,
+      "line": 1269,
       "declaration": "theorem tm_strictComponent : StrictComponent thueMorseSubst {tmPair, tmPair.swap} :="
     },
     {
@@ -46206,7 +46286,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1671,
+      "line": 1274,
       "declaration": "theorem tm_no_witness : ¬ StrongCoincidenceWitness thueMorseSubst 0 1 :="
     },
     {
@@ -46214,7 +46294,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1676,
+      "line": 1279,
       "declaration": "theorem tm_not_terminates : ¬ TerminatesWithCoincidence thueMorseSubst tmPair :="
     },
     {
@@ -46222,7 +46302,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1680,
+      "line": 1283,
       "declaration": "theorem tm_bpaStrictComponent : BpaStrictComponent thueMorseSubst {tmPair, tmPair.swap} :="
     },
     {
@@ -46230,7 +46310,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1685,
+      "line": 1288,
       "declaration": "theorem tm_stronglyConnected :"
     },
     {
@@ -46238,7 +46318,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1697,
+      "line": 1300,
       "declaration": "theorem tm_defectDegree : defectDegree ({tmPair, tmPair.swap} :"
     },
     {
@@ -46246,7 +46326,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1703,
+      "line": 1306,
       "declaration": "theorem alt_strictSystem : StrictSystem altSubst {tmPair} where"
     },
     {
@@ -46254,7 +46334,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1732,
+      "line": 1335,
       "declaration": "theorem cyc_strictSystem : StrictSystem cycSubst cycC where"
     },
     {
@@ -46262,7 +46342,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1739,
+      "line": 1342,
       "declaration": "theorem cyc_child_all : ∀ T ∈ cycC, ∀ U ∈ cycC,"
     },
     {
@@ -46270,7 +46350,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1744,
+      "line": 1347,
       "declaration": "theorem cyc_strictComponent : StrictComponent cycSubst cycC :="
     },
     {
@@ -46278,7 +46358,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1750,
+      "line": 1353,
       "declaration": "theorem cyc_no_witness : ∀ c c' : Fin 3, c ≠ c' → ¬ StrongCoincidenceWitness cycSubst c c' := by"
     },
     {
@@ -46286,7 +46366,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1764,
+      "line": 1367,
       "declaration": "theorem cyc_defectDegree : defectDegree cycC = 2 :="
     },
     {
@@ -46294,7 +46374,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1770,
+      "line": 1373,
       "declaration": "theorem cyc_stronglyConnected :"
     },
     {
@@ -46302,7 +46382,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1792,
+      "line": 1395,
       "declaration": "theorem carrier_strictSystem : StrictSystem carrierSubst carrierC where"
     },
     {
@@ -46310,7 +46390,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1800,
+      "line": 1403,
       "declaration": "theorem carrier_factorSet : factorSet carrierSubst carrierSeed = ↑carrierC := by"
     },
     {
@@ -46318,7 +46398,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1810,
+      "line": 1413,
       "declaration": "theorem carrier_A5 : ∃ hfin : (factorSet carrierSubst carrierSeed).Finite,"
     },
     {
@@ -46326,7 +46406,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1822,
+      "line": 1425,
       "declaration": "theorem carrier_witnesses : ¬ StrongCoincidenceWitness carrierSubst 0 2 ∧"
     },
     {
@@ -46334,7 +46414,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1827,
+      "line": 1430,
       "declaration": "theorem carrierSink_strictSystem : StrictSystem carrierSubst carrierSink where"
     },
     {
@@ -46342,7 +46422,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1845,
+      "line": 1448,
       "declaration": "theorem carrierSink_strictComponent : StrictComponent carrierSubst carrierSink :="
     },
     {
@@ -46350,7 +46430,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1849,
+      "line": 1452,
       "declaration": "theorem carrierSink_cutPair {c c' : Fin 3} (h : CutPair carrierSink c c') : c = 1 ∧ c' = 2 := by"
     },
     {
@@ -46358,7 +46438,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1855,
+      "line": 1458,
       "declaration": "theorem carrierSink_stronglyConnected :"
     },
     {
@@ -46366,7 +46446,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1864,
+      "line": 1467,
       "declaration": "theorem m121_least : LeastWitnessLevel m121Subst 0 1 2 ∧ LeastWitnessLevel m121Subst 0 2 1 ∧"
     },
     {
@@ -46374,7 +46454,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1868,
+      "line": 1471,
       "declaration": "theorem m121_no_strictSystem (C : Finset (List (Fin 3) × List (Fin 3))) :"
     },
     {
@@ -46382,7 +46462,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1877,
+      "line": 1480,
       "declaration": "theorem u021_least : LeastWitnessLevel u021Subst 0 1 4 ∧ LeastWitnessLevel u021Subst 0 2 1 ∧"
     },
     {
@@ -46390,7 +46470,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1882,
+      "line": 1485,
       "declaration": "theorem u021_no_strictSystem (C : Finset (List (Fin 3) × List (Fin 3))) :"
     },
     {
@@ -46398,7 +46478,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1899,
+      "line": 1502,
       "declaration": "theorem nonerasing_of_irreducible {s : Fin 3 → List (Fin 3)}"
     },
     {
@@ -46406,7 +46486,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1916,
+      "line": 1519,
       "declaration": "theorem swapSystem_equiv1 : ∀ T ∈ (h.swapSystem hs).C, Equiv1 T.1 T.2 := h.swapClosure.equiv1"
     },
     {
@@ -46414,7 +46494,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1918,
+      "line": 1521,
       "declaration": "theorem swapSystem_nonempty : (h.swapSystem hs).C.Nonempty := h.swapClosure.nonempty"
     },
     {
@@ -46422,7 +46502,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1920,
+      "line": 1523,
       "declaration": "theorem mem_swapSystem {T : List α × List α} (hT : T ∈ C) : T ∈ (h.swapSystem hs).C :="
     },
     {
@@ -46430,7 +46510,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1924,
+      "line": 1527,
       "declaration": "theorem swapSystem_equiv2 (hdeg : defectDegree C = 3) :"
     },
     {
@@ -46438,7 +46518,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1930,
+      "line": 1533,
       "declaration": "theorem swapSystem_equiv3 (hdeg : defectDegree C = 4) :"
     },
     {
@@ -46446,7 +46526,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1937,
+      "line": 1540,
       "declaration": "theorem card_swapClosureF (P : Normalisation (h.swapSystem hs)) :"
     },
     {
@@ -46454,7 +46534,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1946,
+      "line": 1549,
       "declaration": "theorem card_rep_le (P : Normalisation (h.swapSystem hs)) : Fintype.card P.Rep ≤ C.card := by"
     },
     {
@@ -46462,7 +46542,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1960,
+      "line": 1563,
       "declaration": "theorem exists_rep_kw_of_two (hdeg : defectDegree C = 2) (P : Normalisation (h.swapSystem hs)) :"
     },
     {
@@ -46470,7 +46550,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1966,
+      "line": 1569,
       "declaration": "theorem exists_rep_k3_of_three (hdeg : defectDegree C = 3) (P : Normalisation (h.swapSystem hs)) :"
     },
     {
@@ -46478,7 +46558,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1972,
+      "line": 1575,
       "declaration": "theorem exists_rep_k4_of_four (hdeg : defectDegree C = 4) (P : Normalisation (h.swapSystem hs)) :"
     },
     {
@@ -46486,7 +46566,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 1988,
+      "line": 1591,
       "declaration": "theorem StrictSystem.deg2_sector {s : Fin 3 → List (Fin 3)}"
     },
     {
@@ -46494,7 +46574,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2027,
+      "line": 1630,
       "declaration": "theorem StrictComponent.kernel_cofactor {s : Fin 3 → List (Fin 3)}"
     },
     {
@@ -46502,7 +46582,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2070,
+      "line": 1673,
       "declaration": "theorem phi3_neg {R : Type*} [CommRing R] (M : Matrix (Fin 3) (Fin 3) R) (f : Psc.Lie3.Vec3 R) :"
     },
     {
@@ -46510,7 +46590,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2084,
+      "line": 1687,
       "declaration": "theorem StrictSystem.deg23_iii {s : Fin 3 → List (Fin 3)}"
     },
     {
@@ -46518,7 +46598,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2144,
+      "line": 1747,
       "declaration": "theorem StrictSystem.sieve4 {s : Fin 3 → List (Fin 3)}"
     },
     {
@@ -46526,7 +46606,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2174,
+      "line": 1777,
       "declaration": "theorem StrictComponent.theoremA {s : Fin 3 → List (Fin 3)}"
     },
     {
@@ -46534,7 +46614,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2212,
+      "line": 1815,
       "declaration": "theorem StrictComponent.gauge_or_antiGauge {s : Fin 3 → List (Fin 3)}"
     },
     {
@@ -46542,7 +46622,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2232,
+      "line": 1835,
       "declaration": "theorem StrictComponent.deg2_sector {s : Fin 3 → List (Fin 3)}"
     },
     {
@@ -46550,7 +46630,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2253,
+      "line": 1856,
       "declaration": "theorem StrictComponent.deg23_iii {s : Fin 3 → List (Fin 3)}"
     },
     {
@@ -46558,7 +46638,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2284,
+      "line": 1887,
       "declaration": "theorem StrictComponent.sieve4 {s : Fin 3 → List (Fin 3)}"
     },
     {
@@ -46566,7 +46646,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2310,
+      "line": 1913,
       "declaration": "theorem isAntiGauge_walk {S : ChildSystem α} {P : Normalisation S}"
     },
     {
@@ -46574,7 +46654,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2323,
+      "line": 1926,
       "declaration": "theorem StrictComponent.closed_walk_sign {s : Fin 3 → List (Fin 3)}"
     },
     {
@@ -46582,7 +46662,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2345,
+      "line": 1948,
       "declaration": "theorem StrictSystem.three_le_card_rep {s : Fin 3 → List (Fin 3)}"
     },
     {
@@ -46590,7 +46670,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2354,
+      "line": 1957,
       "declaration": "theorem StrictSystem.three_le_card {s : Fin 3 → List (Fin 3)}"
     },
     {
@@ -46598,7 +46678,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2365,
+      "line": 1968,
       "declaration": "theorem StrictSystem.lcm_le_card {s : Fin 3 → List (Fin 3)}"
     },
     {
@@ -46606,7 +46686,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2381,
+      "line": 1984,
       "declaration": "theorem no_strictSystem_deg2_of_card_lt {s : Fin 3 → List (Fin 3)}"
     },
     {
@@ -46614,7 +46694,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2391,
+      "line": 1994,
       "declaration": "theorem no_strictSystem_deg2_odd {s : Fin 3 → List (Fin 3)}"
     },
     {
@@ -46622,7 +46702,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2407,
+      "line": 2010,
       "declaration": "theorem no_strictSystem_deg3_of_not_eigen {s : Fin 3 → List (Fin 3)}"
     },
     {
@@ -46630,7 +46710,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2421,
+      "line": 2024,
       "declaration": "theorem no_strictSystem_deg4_of_abs_det_ne_one {s : Fin 3 → List (Fin 3)}"
     },
     {
@@ -46638,7 +46718,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2442,
+      "line": 2045,
       "declaration": "theorem StrictSystem.exists_both_of_hasBothSigns {s : α → List α}"
     },
     {
@@ -46646,7 +46726,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2468,
+      "line": 2071,
       "declaration": "theorem no_strictComponent_deg4_of_hasBothSigns {s : Fin 3 → List (Fin 3)}"
     },
     {
@@ -46654,7 +46734,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2506,
+      "line": 2109,
       "declaration": "theorem StrictSystem.counterexample {s : α → List α}"
     },
     {
@@ -46662,7 +46742,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2536,
+      "line": 2139,
       "declaration": "theorem exists_child (h : StrictSystem s C) (hs : ∀ a, s a ≠ []) {T : List α × List α}"
     },
     {
@@ -46670,7 +46750,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2544,
+      "line": 2147,
       "declaration": "theorem filter_childClosed (h : StrictSystem s C) (p : List α × List α → Prop)"
     },
     {
@@ -46678,7 +46758,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2554,
+      "line": 2157,
       "declaration": "theorem defectDegree_le_of_subset {C' : Finset (List α × List α)} (h' : StrictSystem s C')"
     },
     {
@@ -46686,7 +46766,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2564,
+      "line": 2167,
       "declaration": "theorem exists_strictComponent_reachable (h : StrictSystem s C) (hs : ∀ a, s a ≠ [])"
     },
     {
@@ -46694,7 +46774,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2593,
+      "line": 2196,
       "declaration": "theorem exists_strictComponent_subset (h : StrictSystem s C) (hs : ∀ a, s a ≠ []) :"
     },
     {
@@ -46702,7 +46782,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2606,
+      "line": 2209,
       "declaration": "theorem exists_bpaStrictComponent_of_not_terminates [Fintype α] {s : α → List α}"
     },
     {
@@ -46710,7 +46790,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2621,
+      "line": 2224,
       "declaration": "theorem exists_bpaStrictComponent_of_finite [Fintype α] {s : α → List α} (hs : ∀ a, s a ≠ [])"
     },
     {
@@ -46718,7 +46798,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2636,
+      "line": 2239,
       "declaration": "theorem erase_control : StrictSystem eraseSubst {tmPair} ∧"
     },
     {
@@ -46726,7 +46806,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2653,
+      "line": 2256,
       "declaration": "theorem no_strictComponent_of_strongCoincidence {s : α → List α}"
     },
     {
@@ -46734,7 +46814,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2661,
+      "line": 2264,
       "declaration": "theorem specimens_no_strictSystem (C : Finset (List (Fin 3) × List (Fin 3))) :"
     },
     {
@@ -46742,7 +46822,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2674,
+      "line": 2277,
       "declaration": "theorem plastic_vacuous :"
     },
     {
@@ -46750,7 +46830,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2688,
+      "line": 2291,
       "declaration": "theorem census_vacuous :"
     },
     {
@@ -46758,7 +46838,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2712,
+      "line": 2315,
       "declaration": "theorem m0_no_strictSystem (C : Finset (List (Fin 3) × List (Fin 3))) :"
     },
     {
@@ -46766,7 +46846,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2732,
+      "line": 2335,
       "declaration": "theorem no_strictSystem_deg2_odd_control :"
     },
     {
@@ -46774,7 +46854,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2748,
+      "line": 2351,
       "declaration": "theorem no_strictSystem_deg3_control :"
     },
     {
@@ -46782,7 +46862,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2772,
+      "line": 2375,
       "declaration": "theorem no_strictSystem_deg4_control :"
     },
     {
@@ -46790,7 +46870,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2792,
+      "line": 2395,
       "declaration": "theorem cyc_primitive : ∃ k ≥ 1, ∀ a c, 0 < (inc cycSubst ^ k) a c :="
     },
     {
@@ -46798,7 +46878,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2796,
+      "line": 2399,
       "declaration": "theorem cyc_not_irreducible : ¬ Irreducible ((inc cycSubst).map (Nat.cast : ℕ → ℚ)).charpoly :="
     },
     {
@@ -46806,7 +46886,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2801,
+      "line": 2404,
       "declaration": "theorem carrier_primitive : ∃ k ≥ 1, ∀ a c, 0 < (inc carrierSubst ^ k) a c :="
     },
     {
@@ -46814,7 +46894,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2805,
+      "line": 2408,
       "declaration": "theorem carrier_not_irreducible :"
     },
     {
@@ -46822,7 +46902,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2812,
+      "line": 2415,
       "declaration": "theorem cyc_charpoly_Q :"
     },
     {
@@ -46830,7 +46910,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2827,
+      "line": 2430,
       "declaration": "theorem cyc_pisot_root : ∃ β : ℂ, aeval β ((inc cycSubst).map (Nat.cast : ℕ → ℚ)).charpoly = 0 ∧"
     },
     {
@@ -46838,7 +46918,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2842,
+      "line": 2445,
       "declaration": "theorem carrier_not_pisot : ¬ ∃ β : ℂ,"
     },
     {
@@ -46846,7 +46926,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2863,
+      "line": 2466,
       "declaration": "theorem strictComponent_controls :"
     },
     {
@@ -46854,7 +46934,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2883,
+      "line": 2486,
       "declaration": "theorem cyc_inc_two : (inc cycSubst).map (Nat.cast : ℕ → ZMod 2) = Matrix.of fun _ _ => 1 := by"
     },
     {
@@ -46862,7 +46942,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2887,
+      "line": 2490,
       "declaration": "theorem cyc_wedge2_two : Psc.Cyclicity.wedge2 ((inc cycSubst).map (Nat.cast : ℕ → ZMod 2)) = 0 := by"
     },
     {
@@ -46870,7 +46950,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2891,
+      "line": 2494,
       "declaration": "theorem cyc_charpoly_two : ((inc cycSubst).map (Nat.cast : ℕ → ZMod 2)).charpoly ="
     },
     {
@@ -46878,7 +46958,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2905,
+      "line": 2508,
       "declaration": "theorem cyc_lcm_natDegree : 4 ≤ (lcm ((inc cycSubst).map (Nat.cast : ℕ → ZMod 2)).charpoly"
     },
     {
@@ -46886,7 +46966,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2925,
+      "line": 2528,
       "declaration": "theorem cyc_card_rep : Fintype.card (cyc_strictSystem.lexNorm (by decide)).Rep = 3 := by"
     },
     {
@@ -46894,7 +46974,7 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2934,
+      "line": 2537,
       "declaration": "theorem cyc_lcm_control : StrictComponent cycSubst cycC ∧ defectDegree cycC = 2 ∧"
     },
     {
@@ -46902,8 +46982,320 @@
       "module": "PscVerif.StrictSystem",
       "private": false,
       "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
-      "line": 2945,
+      "line": 2548,
       "declaration": "theorem hasBothSigns_controls : HasBothSigns thueMorseSubst {tmPair, tmPair.swap} ∧"
+    },
+    {
+      "name": "Psc.StrictSystem.isBlock_swap",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 37,
+      "declaration": "theorem isBlock_swap {T : List α × List α} (h : IsBlock T) : IsBlock T.swap := by"
+    },
+    {
+      "name": "Psc.StrictSystem.mem_swapClosureF",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 51,
+      "declaration": "theorem mem_swapClosureF {C : Finset (List α × List α)} {T : List α × List α} :"
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.equiv1",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 66,
+      "declaration": "theorem equiv1 (h : StrictSystem s C) : ∀ T ∈ C, Equiv1 T.1 T.2 :="
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.balanced",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 70,
+      "declaration": "theorem balanced (h : StrictSystem s C) : ∀ T ∈ C, Equiv1 T.1 T.2 ∧ T.1 ≠ [] :="
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.childClosed",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 73,
+      "declaration": "theorem childClosed (h : StrictSystem s C) : ChildClosed s ↑C :="
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.mem_of_red_iterate",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 78,
+      "declaration": "theorem mem_of_red_iterate (h : StrictSystem s C) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.reflTransGen_mem",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 94,
+      "declaration": "theorem reflTransGen_mem (h : StrictSystem s C) {T U : List α × List α} (hT : T ∈ C)"
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.transGen_mem",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 100,
+      "declaration": "theorem transGen_mem (h : StrictSystem s C) {T U : List α × List α} (hT : T ∈ C)"
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.swapClosure",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 105,
+      "declaration": "theorem swapClosure (h : StrictSystem s C) : StrictSystem s (swapClosureF C) where"
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.swapClosure_swap_mem",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 114,
+      "declaration": "theorem swapClosure_swap_mem : ∀ T ∈ swapClosureF C, T.swap ∈ swapClosureF C :="
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.toChildSystem_C",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 126,
+      "declaration": "@[simp] theorem toChildSystem_C : (h.toChildSystem hs).C = C := rfl"
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.toChildSystem_s",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 128,
+      "declaration": "@[simp] theorem toChildSystem_s : (h.toChildSystem hs).s = s := rfl"
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.toChildSystem_children",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 130,
+      "declaration": "theorem toChildSystem_children (T : List α × List α) :"
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.toChildSystem_equiv1",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 135,
+      "declaration": "theorem toChildSystem_equiv1 : ∀ T ∈ (h.toChildSystem hs).C, Equiv1 T.1 T.2 := h.equiv1"
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.toChildSystem_nonempty",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 138,
+      "declaration": "theorem toChildSystem_nonempty : (h.toChildSystem hs).C.Nonempty := h.nonempty"
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.toChildSystem_isBlock",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 140,
+      "declaration": "theorem toChildSystem_isBlock : ∀ T ∈ (h.toChildSystem hs).C, IsBlock T := h.isBlock"
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.toChildSystem_top_ne_nil",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 142,
+      "declaration": "theorem toChildSystem_top_ne_nil : ∀ T ∈ (h.toChildSystem hs).C, T.1 ≠ [] :="
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.toChildSystem_noncoincident",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 145,
+      "declaration": "theorem toChildSystem_noncoincident : ∀ T ∈ (h.toChildSystem hs).C, T.1 ≠ T.2 :="
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.toChildSystem_desc",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 149,
+      "declaration": "theorem toChildSystem_desc (n : ℕ) (T : List α × List α) (hT : T ∈ C) :"
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.lexNorm_R",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 164,
+      "declaration": "theorem lexNorm_R [LinearOrder α] :"
+    },
+    {
+      "name": "Psc.StrictSystem.strongCoincidenceWitness_comm",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 183,
+      "declaration": "theorem strongCoincidenceWitness_comm {s : α → List α} {c c' : α} :"
+    },
+    {
+      "name": "Psc.StrictSystem.exists_first_block",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 191,
+      "declaration": "theorem exists_first_block {c c' : α} {q q' : List α} (h : Equiv1 (c :: q) (c' :: q')) :"
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.first_letters_ne",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 219,
+      "declaration": "theorem first_letters_ne {T : List α × List α} (hT : T ∈ C) :"
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.cutPair_ne",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 231,
+      "declaration": "theorem cutPair_ne {c c' : α} (hcp : CutPair C c c') : c ≠ c' := by"
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.exists_cutPair",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 238,
+      "declaration": "theorem exists_cutPair : ∃ c c', CutPair C c c' := by"
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.cut_follow",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 246,
+      "declaration": "theorem cut_follow {T : List α × List α} (hT : T ∈ C) (n : ℕ) {p q p' q' : List α} {c c' : α}"
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.cut_follow_index",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 259,
+      "declaration": "theorem cut_follow_index {T : List α × List α} (hT : T ∈ C) (n : ℕ) {k : ℕ}"
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.cutPair_subst",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 274,
+      "declaration": "theorem cutPair_subst {c c' d d' : α} (hcp : CutPair C c c') (hd : (s c).head? = some d)"
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.cutPair_first",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 288,
+      "declaration": "theorem cutPair_first (hs : ∀ a, s a ≠ []) {c c' : α} (hcp : CutPair C c c') :"
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.not_witness",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 294,
+      "declaration": "theorem not_witness {c c' : α} (hcp : CutPair C c c') : ¬ StrongCoincidenceWitness s c c' := by"
+    },
+    {
+      "name": "Psc.StrictSystem.StrictSystem.not_witness_of_cutPair_swap",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 306,
+      "declaration": "theorem not_witness_of_cutPair_swap {c c' : α} (hcp : CutPair C c' c) :"
+    },
+    {
+      "name": "Psc.StrictSystem.no_strictSystem_of_strongCoincidence",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 314,
+      "declaration": "theorem no_strictSystem_of_strongCoincidence {s : α → List α}"
+    },
+    {
+      "name": "Psc.StrictSystem.strongCoincidenceWitness_iff_exists_witnessAt",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 338,
+      "declaration": "theorem strongCoincidenceWitness_iff_exists_witnessAt {s : α → List α} {c c' : α} :"
+    },
+    {
+      "name": "Psc.StrictSystem.witnessAt_iff_index",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 344,
+      "declaration": "theorem witnessAt_iff_index {s : α → List α} {c c' : α} {n : ℕ} :"
+    },
+    {
+      "name": "Psc.StrictSystem.strongCoincidenceWitness_iff_index",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 363,
+      "declaration": "theorem strongCoincidenceWitness_iff_index {s : α → List α} {c c' : α} :"
+    },
+    {
+      "name": "Psc.StrictSystem.witness_of_index",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 367,
+      "declaration": "theorem witness_of_index {s : α → List α} {c c' : α} (n i j : ℕ)"
+    },
+    {
+      "name": "Psc.StrictSystem.IndexWitness.aligned",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 372,
+      "declaration": "theorem IndexWitness.aligned {s : α → List α} {c c' : α} {n i j : ℕ}"
+    },
+    {
+      "name": "Psc.StrictSystem.leastWitnessLevel_spec",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 396,
+      "declaration": "theorem leastWitnessLevel_spec {s : α → List α} {c c' : α} {m : ℕ}"
+    },
+    {
+      "name": "Psc.StrictSystem.fin3_all_pairs",
+      "module": "PscVerif.StrictSystemCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/StrictSystemCore.lean",
+      "line": 406,
+      "declaration": "theorem fin3_all_pairs {s : Fin 3 → List (Fin 3)} (h01 : StrongCoincidenceWitness s 0 1)"
     },
     {
       "name": "Psc.trace_sq_cyclicPlus",
@@ -50051,6 +50443,7 @@
     "proof/PscVerif/ClassAPlusUpperRecurrenceAudit.lean": "ef12f802e6eb10dbf2b02ce84cccbcdf9164aed9356f4fe2917ee513923824aa",
     "proof/PscVerif/ClassARunDescentAudit.lean": "a1fe09a772c2112929a6f892993da045628ef410f15cd53b1d8eba74343959fc",
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "81efe5b8745576f8f15a59a263563b31e08307e9c432e78fa2ef9021a613b2d1",
+    "proof/PscVerif/EvenRankTwoAudit.lean": "cfc2c3b6dfae0305e1ab27989607917e4ffe8944a513aa861dc5ca781ba620ca",
     "proof/PscVerif/PeriodicPartnerAudit.lean": "8b028bf147da31ceb0c62db0b24d5f7adce5a7e648485f37ed430b6dfb92af71",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean": "87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025",
@@ -50116,6 +50509,9 @@
     "proof/PscVerif/PscVerif/DescendantSpan.lean": "6a46eb2a94b7785ba2a69db88daf56a3e98935e738fdb6dc478d685162696e8c",
     "proof/PscVerif/PscVerif/DescendantSpanStrict.lean": "24a2d9d6f0eedf5a49dd17318ad90b0b9d82cc3c930a3f34336b0519f63f9c66",
     "proof/PscVerif/PscVerif/Descendants.lean": "6641b65d81d90be34c13937b6ab8ebc029fcce91babd7c2ce398738dac783a40",
+    "proof/PscVerif/PscVerif/EvenCompanionFamily.lean": "bbad96e791ac195646dad76931972e1b05ad035cc6ad36b2d6bb0cf94b8b4bab",
+    "proof/PscVerif/PscVerif/EvenCompanionWords.lean": "c4d12efdc40fa5d95a407aec815c4ba4320d72a1d4adb5d436591cc38e1b3ca4",
+    "proof/PscVerif/PscVerif/EvenSeamCycles.lean": "1fca81527f75a903cf682d6e806ecf4e486b85cadba45e953de9e6984ef42e0a",
     "proof/PscVerif/PscVerif/FastForwardCarrier.lean": "fba7b08223e333d9380ff1e090ad85cad6aadbe8eadd1a2dde8d6b92bfcf0689",
     "proof/PscVerif/PscVerif/FastForwardCarrierControls.lean": "5a1fe7b40c3336cfa8df07045e27d560b63de8747b761c0001772691e0c39e47",
     "proof/PscVerif/PscVerif/FiniteProductivity.lean": "cc64e649a03c9ef0e5668fc051d679ffd2ea538135bbc6fc5974c2dc37fb13d8",
@@ -50220,6 +50616,7 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerDichotomy.lean": "d74034c65d26d8b98916f6fdca046c6772e9a3389fb53fdd03bcf3baeea2339b",
     "proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean": "080463d8b7cd0fb0936ca25b01c690f0d487ca38290614d5235e973ccb77f7e3",
     "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean": "812599f6a9dfb4ab5d0da0924fa6c3901128f74644e76d14eb2996de17f55c44",
+    "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean": "24de7ca583a5a654e331a0fae80e407174589843b58051fca044fefcd76d874c",
     "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean": "6124e92faa7ace36663a57ff5dda39f281fd86237cc30006912cf4c2a0a65b6e",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean": "59d86f345c47142bdd7a74200c04b48f4ae975d1d5afe2dc29331048d7f37988",
     "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean": "434d5573fb928bb0ee6667da6dedc8fc76867b76c26d72f5707ac1387a62c5ea",
@@ -50254,14 +50651,15 @@
     "proof/PscVerif/PscVerif/Spectral.lean": "f7a43295221c293c670593d4be8e916d87ce51f3241ec911456ef4a4ce0b39d3",
     "proof/PscVerif/PscVerif/StablePrefixWindow.lean": "f92a5899a583689f5bcab503b3e632641f7dc8a48492d573f4c87093c684f1ef",
     "proof/PscVerif/PscVerif/StrictCutCount.lean": "465d1ad883556eca80db059bde0564a425a6a62407cd307d728347bc558d62b1",
-    "proof/PscVerif/PscVerif/StrictSystem.lean": "657d6c9f4041b04a2e478f19dea2ecb813952caf2fe1455789778306ad6c3a48",
+    "proof/PscVerif/PscVerif/StrictSystem.lean": "15735ded75124954c53a248a216883f63db9185e1e36dbbe05eb749f1994fcbd",
+    "proof/PscVerif/PscVerif/StrictSystemCore.lean": "1d0541339119827d208ea4e1dafffc46fe0bf1749b067f9e0b1eeb541aa7fc1a",
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
     "proof/PscVerif/PscVerif/UniquePartnerLetters.lean": "48c3ef59f3a814c3c0fa0993744d0c2440f639e5355debf996c2f4098501b7e4",
     "proof/PscVerif/PscVerif/VertexAsymptoteRange.lean": "c8328ddb30c748ed93c4399880b473b954c000f7f81b1035a70e1fbee0ba3191",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "f318687f6421fed282587cd3a3bca538ef54827dedce922a6cd856cf7e2d0152",
+    "proof/PscVerif/PscVerif.lean": "7c0fdd6c82eae1d38c86b3db60c85ee4fbd104e6394e47c5e3b2ff13e0b9a453",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
