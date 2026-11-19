@@ -79,7 +79,9 @@ structure field. None is a Lean axiom, and every compiled declaration uses only 
    map is supplied.
 
 Witness selection under (NM_V) and the global rank-two contradiction (gaps 2 and 3 of the
-formalization note) are untouched.
+formalization note) are untouched. *Update:* the
+[hull-selection note](c4-hull-selection-2026-11-19.md) proves `VertexLaws` and
+`BranchExistence` on this hull and instantiates Theorem S here.
 
 ## Replay
 

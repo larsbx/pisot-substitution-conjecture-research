@@ -13,6 +13,7 @@ import PscVerif.PeriodicPartnerReflection
 import PscVerif.PeriodicPartnerAsymptotic
 import PscVerif.PeriodicPartnerHull
 import PscVerif.PeriodicPartnerSelection
+import PscVerif.PeriodicPartnerHullSelection
 import Lean.Util.CollectAxioms
 
 open Lean Elab Command in
@@ -22,7 +23,8 @@ run_cmd do
     `PscVerif.PeriodicPartnerDynamics, `PscVerif.PeriodicPartnerCollapse,
     `PscVerif.PeriodicPartnerModels, `PscVerif.PeriodicPartnerDichotomy,
     `PscVerif.PeriodicPartnerReflection, `PscVerif.PeriodicPartnerAsymptotic,
-    `PscVerif.PeriodicPartnerHull, `PscVerif.PeriodicPartnerSelection]
+    `PscVerif.PeriodicPartnerHull, `PscVerif.PeriodicPartnerSelection,
+    `PscVerif.PeriodicPartnerHullSelection]
   for mod in required do
     unless (env.getModuleIdx? mod).isSome do
       throwError "Missing compiled periodic-partner module: {mod}"

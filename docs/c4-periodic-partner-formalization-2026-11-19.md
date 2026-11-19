@@ -270,6 +270,10 @@ remaining obligations are:
 3. Obtain the further global contradiction. The asymptotic leaves share
    tiles, so their mutual edge is not strict; W4 and the two strict links
    do not themselves give a noncoincidence triangle or a parity argument.
+   *Update:* the [hull-selection note](c4-hull-selection-2026-11-19.md) shows that a
+   vertex-type common partner in the origin case forces `g_R` to be a permutation, and
+   records that this obligation, under (NM_V) and odd determinant, is the rank-two wall
+   itself rather than a local step.
 
 No universal (NM_V), no new strict-system exclusion, and no C4 or PSC proof
 is claimed. The concrete tiling correspondence and independent human

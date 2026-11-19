@@ -37186,6 +37186,142 @@
       "declaration": "theorem thueMorse_hull_nonempty : Nonempty thueMorse.Hull := by"
     },
     {
+      "name": "Psc.PeriodicPartnerHullSelection.periodic_letter",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 38,
+      "declaration": "theorem periodic_letter (laws : RightBranchLaws f translate β g AgreeRight EndsAt)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullSelection.injective_of_three_periodic",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 49,
+      "declaration": "theorem injective_of_three_periodic :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullSelection.two_periodic_not_injective",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 55,
+      "declaration": "theorem two_periodic_not_injective :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullSelection.injective_of_vertex_partner",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 67,
+      "declaration": "theorem injective_of_vertex_partner (laws : RightBranchLaws f translate β g AgreeRight EndsAt)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullSelection.agreeRight_symm",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 86,
+      "declaration": "theorem agreeRight_symm {T U : L.Hull} {y : ℝ} (h : AgreeRight T U y) : AgreeRight U T y :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullSelection.startsAt_of_endsAt",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 90,
+      "declaration": "theorem startsAt_of_endsAt {T : L.Hull} {y : ℝ} {b : α} (h : EndsAt T y b) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullSelection.inflateH_iterate_val",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 110,
+      "declaration": "theorem inflateH_iterate_val [Nonempty α] (T : L.Hull) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullSelection.supertile_subset",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 118,
+      "declaration": "theorem supertile_subset [Nonempty α] {T : L.Hull} {a : α} {n : ℕ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullSelection.tilesOn_supertile",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 126,
+      "declaration": "theorem tilesOn_supertile [Nonempty α] (a : α) (m : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullSelection.periodic_ray",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 138,
+      "declaration": "theorem periodic_ray [Nonempty α] (hβ : 1 < L.β) {T U : L.Hull} {a : α}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullSelection.vertexLaws",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 162,
+      "declaration": "theorem vertexLaws [Nonempty α] (hβ : 1 < L.β) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullSelection.agree_extend",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 171,
+      "declaration": "theorem agree_extend {T U : L.Hull} {y : ℝ} {p : α × ℝ} (h : AgreeRight T U y)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullSelection.startsAt_of_least",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 186,
+      "declaration": "theorem startsAt_of_least {T U : L.Hull} {y : ℝ} (h : AgreeRight T U y)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullSelection.endsAt_of_startsAt",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 199,
+      "declaration": "theorem endsAt_of_startsAt [Finite α] {T : L.Hull} {y : ℝ} {a : α} (ha : StartsAt T y a) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullSelection.branchExistence",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 226,
+      "declaration": "theorem branchExistence [Finite α] :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullSelection.hull_selection_dichotomy",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 263,
+      "declaration": "theorem hull_selection_dichotomy (hβ : 1 < L.β) (P : PublishedInputs L Y)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullSelection.hull_lastLetter_injective_of_vertex_partner",
+      "module": "PscVerif.PeriodicPartnerHullSelection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
+      "line": 295,
+      "declaration": "theorem hull_lastLetter_injective_of_vertex_partner"
+    },
+    {
       "name": "Psc.PeriodicPartnerModels.constantTwo_semiconj",
       "module": "PscVerif.PeriodicPartnerModels",
       "private": false,
@@ -45579,6 +45715,11 @@
       "statement_heading": "**Theorem Fork.** Let `σ ∈ PIP3` be unit with `dim H¹(Ω_σ; ℚ) = 3`, and let"
     },
     {
+      "source": "docs/c4-hull-selection-2026-11-19.md",
+      "line": 57,
+      "statement_heading": "**Lemma VP (vertex partner).** In (A_v), `g_R` is a permutation of the three letters."
+    },
+    {
       "source": "docs/c4-legal-seams-2026-11-04.md",
       "line": 18,
       "statement_heading": "**Lemma.** In a finite strict child-closed balanced SCC with positive"
@@ -47643,7 +47784,7 @@
     "proof/PscVerif/ClassAPlusUpperRecurrenceAudit.lean": "ef12f802e6eb10dbf2b02ce84cccbcdf9164aed9356f4fe2917ee513923824aa",
     "proof/PscVerif/ClassARunDescentAudit.lean": "a1fe09a772c2112929a6f892993da045628ef410f15cd53b1d8eba74343959fc",
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "81efe5b8745576f8f15a59a263563b31e08307e9c432e78fa2ef9021a613b2d1",
-    "proof/PscVerif/PeriodicPartnerAudit.lean": "b878a6b6c9131ff5ac456fd6896bff61a0e674d3929e6a2eef93b389f6c91b14",
+    "proof/PscVerif/PeriodicPartnerAudit.lean": "b2a8799524fe01e3cb3061cb8f362f538a5c7041ef54fe237d4993c83bed3d76",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean": "87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean": "e18e726b6bd1c431f9e28500504edd6ffba157415af20069715b9c8f208f3f9b",
@@ -47811,6 +47952,7 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerDichotomy.lean": "d74034c65d26d8b98916f6fdca046c6772e9a3389fb53fdd03bcf3baeea2339b",
     "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean": "812599f6a9dfb4ab5d0da0924fa6c3901128f74644e76d14eb2996de17f55c44",
     "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean": "44838714eba3bef21f504217d0d1160ffc036b5e38a4ff1e01a50008bc2cea26",
+    "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean": "4efba854759977e51c3cdcd33771d13620b89ac1ecb14028c1153419a446c0aa",
     "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean": "434d5573fb928bb0ee6667da6dedc8fc76867b76c26d72f5707ac1387a62c5ea",
     "proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean": "140e1a71503a0648d17099247ef4cb9b92d67c1cdc15257ee66526a89527ece5",
     "proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean": "13c39c9aea34b64f377cbfd3eb074fe436a952e8f0d806eb9ed37f6c2ef70e41",
@@ -47843,7 +47985,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "26a812701c6e084e99f54020dfb5a55fb4c163556476864f5f39c1a98fd34d70",
+    "proof/PscVerif/PscVerif.lean": "569a937d14ed492e2c33e3a55b950292450628b1b7f2f63cc29904b0ba71a76b",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

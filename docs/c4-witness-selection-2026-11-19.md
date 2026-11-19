@@ -161,8 +161,9 @@ namespace `Psc.PeriodicPartnerSelection`:
 Inputs are the structures `RightBranchLaws` and `VertexLaws`, the contract
 `BranchExistence`, and the named hypotheses `BDSPeriodicization`, `R4ZeroFibre`,
 `AsymptoticSameFibre` (E1) and `NMVRight`. None is an axiom. `VertexLaws` and
-`BranchExistence` are not yet discharged on
-[`PeriodicPartnerHull`](c4-tiling-hull-realization-2026-11-19.md).
+`BranchExistence` are discharged on
+[`PeriodicPartnerHull`](c4-tiling-hull-realization-2026-11-19.md) in the
+[hull-selection note](c4-hull-selection-2026-11-19.md).
 
 ```sh
 cd proof/PscVerif && lake build PscVerif.PeriodicPartnerSelection
@@ -180,7 +181,8 @@ Local acceptance is recorded in
    (B₀) gap 2 receives a zero-fibre triple with interior leaves; for (B₁) a triple in a
    nonzero periodic fibre. The census shows (B₀) cannot be excluded by (NM_V) alone.
 2. **Contracts on the hull.** `VertexLaws` and `BranchExistence` are local but are not
-   yet proved for `PeriodicPartnerHull`.
+   yet proved for `PeriodicPartnerHull`. *Update:* both are proved, and Theorem S is
+   instantiated on the hull, in the [hull-selection note](c4-hull-selection-2026-11-19.md).
 3. **Census reach.** Unit corpus only, zero fibre only, pairs only. The two
    observations (collapsed origin letters, determinant `−1`) are unexplained.
 

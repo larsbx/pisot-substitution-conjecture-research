@@ -137,7 +137,7 @@ fi
     PscVerif.PeriodicPartnerDynamics PscVerif.PeriodicPartnerCollapse PscVerif.PeriodicPartnerModels \
     PscVerif.PeriodicPartnerDichotomy PscVerif.PeriodicPartnerReflection \
     PscVerif.PeriodicPartnerAsymptotic PscVerif.PeriodicPartnerHull \
-    PscVerif.PeriodicPartnerSelection
+    PscVerif.PeriodicPartnerSelection PscVerif.PeriodicPartnerHullSelection
 psc_periodic_check_sources_and_pins after-build
 "${PSC_PERIODIC_LAKE[@]}" --no-cache env lean PeriodicPartnerAudit.lean \
     | tee "$PSC_PERIODIC_TMP/audit.log"
