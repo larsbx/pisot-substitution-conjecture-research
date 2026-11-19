@@ -294,6 +294,12 @@ The corpus has no strict system, so this maps where the theorems apply and
 excludes nothing new. Every failure of (NM_V) on the corpus has
 `β₁(ER) ≤ 1`.
 
+**Beyond the corpus.** The unimodular substitution `01/210/1021` fails
+(NM_V) with `ER = K_{2,3}` and `β₁(ER) = 2`. The sharp general threshold
+for PIP3 is `β₁(ER) ≥ 3`. At rank two, a failure forces a complete
+two-by-three range with the two-letter side given by the noninjective
+endpoint map. [Counterexample and rank bound](c4-nmv-eventual-range-2026-11-19.md).
+
 ### Lean
 
 [`proof/PscVerif/PscVerif/UniquePartnerLetters.lean`](../proof/PscVerif/PscVerif/UniquePartnerLetters.lean)
