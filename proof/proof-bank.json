@@ -36622,7 +36622,7 @@
       "module": "PscVerif.PeriodicPartnerDirectional",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean",
-      "line": 17,
+      "line": 19,
       "declaration": "theorem tendsto_of_singleton_fibre {X Y I : Type*} [TopologicalSpace X] [CompactSpace X]"
     },
     {
@@ -36630,7 +36630,7 @@
       "module": "PscVerif.PeriodicPartnerDirectional",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean",
-      "line": 37,
+      "line": 39,
       "declaration": "theorem injective_endpoint_of_large_cycle_rank (gR gL : Letter → Letter)"
     },
     {
@@ -36638,7 +36638,7 @@
       "module": "PscVerif.PeriodicPartnerDirectional",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean",
-      "line": 52,
+      "line": 54,
       "declaration": "theorem three_letter_germ_disjointness (N : Fin 3 → Fin 3 → Prop)"
     },
     {
@@ -36646,7 +36646,7 @@
       "module": "PscVerif.PeriodicPartnerDirectional",
       "private": true,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean",
-      "line": 103,
+      "line": 105,
       "declaration": "private theorem groupCycle_row {I J A : Type*} [Fintype I] [Fintype J] [AddCommGroup A]"
     },
     {
@@ -36654,7 +36654,7 @@
       "module": "PscVerif.PeriodicPartnerDirectional",
       "private": true,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean",
-      "line": 118,
+      "line": 120,
       "declaration": "private theorem groupCycle_swap {I J A : Type*} [Fintype I] [Fintype J] [AddCommGroup A]"
     },
     {
@@ -36662,8 +36662,40 @@
       "module": "PscVerif.PeriodicPartnerDirectional",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean",
-      "line": 128,
+      "line": 130,
       "declaration": "theorem grouped_cycle_entries {I J A : Type*} [Fintype I] [Fintype J] [AddCommGroup A]"
+    },
+    {
+      "name": "Psc.PeriodicPartner.grouped_cycle_support",
+      "module": "PscVerif.PeriodicPartnerDirectional",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean",
+      "line": 155,
+      "declaration": "theorem grouped_cycle_support {I J A : Type*} [Fintype I] [Fintype J] [AddCommGroup A]"
+    },
+    {
+      "name": "Psc.PeriodicPartner.grouped_row_crosses",
+      "module": "PscVerif.PeriodicPartnerDirectional",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean",
+      "line": 187,
+      "declaration": "theorem grouped_row_crosses {I J A : Type*} [Fintype I] [Fintype J] [AddCommGroup A]"
+    },
+    {
+      "name": "Psc.PeriodicPartner.continuous_square_one_eq_one",
+      "module": "PscVerif.PeriodicPartnerDirectional",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean",
+      "line": 218,
+      "declaration": "theorem continuous_square_one_eq_one {T K : Type*} [TopologicalSpace T]"
+    },
+    {
+      "name": "Psc.PeriodicPartner.even_stack_residue_degrees",
+      "module": "PscVerif.PeriodicPartnerDirectional",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean",
+      "line": 232,
+      "declaration": "theorem even_stack_residue_degrees {degree stack base r q d₂ : ℕ}"
     },
     {
       "name": "Psc.PeriodicPartnerDynamics.pairPeriodic_of_mem",
@@ -48642,7 +48674,7 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerCompleteRange.lean": "df5e5f39df78d9a48c02f61399558ecb600dd5cc3c9d936c238300ece7caba23",
     "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean": "84725326692e81dafcef2c4a724bfb2cee8629fdba398686540db35be72eb0fd",
     "proof/PscVerif/PscVerif/PeriodicPartnerDichotomy.lean": "d74034c65d26d8b98916f6fdca046c6772e9a3389fb53fdd03bcf3baeea2339b",
-    "proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean": "2de97bdedb63711b40bdce3c39388cd1c0e3db83f8f81af69fcadbd778903582",
+    "proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean": "080463d8b7cd0fb0936ca25b01c690f0d487ca38290614d5235e973ccb77f7e3",
     "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean": "812599f6a9dfb4ab5d0da0924fa6c3901128f74644e76d14eb2996de17f55c44",
     "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean": "44838714eba3bef21f504217d0d1160ffc036b5e38a4ff1e01a50008bc2cea26",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean": "59d86f345c47142bdd7a74200c04b48f4ae975d1d5afe2dc29331048d7f37988",
