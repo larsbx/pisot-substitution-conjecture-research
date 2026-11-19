@@ -81,6 +81,13 @@ attempts the actual modules in their full repository import environment.
 The exact local terminal results are recorded in
 `evidence/barge-diamond-bridge-2026-11-19/`.
 
+The actual-import attempt did not reach the new modules within the local
+run. It was stopped in existing dependencies (`CountBridge`, and `M0Pisot`
+in the concurrent attempt). There was no reported rejection of the new
+source, but this is not successful actual-module acceptance. The precise
+boundary is in `local-import-attempt.json`; the new hosted isolated job was
+queued at inspection. Integration remains pending that acceptance gate.
+
 ```sh
 cd proof/PscVerif
 lake build PscVerif.BargeDiamondBridgeControls

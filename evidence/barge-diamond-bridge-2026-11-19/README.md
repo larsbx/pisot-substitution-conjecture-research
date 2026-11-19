@@ -23,3 +23,16 @@ broader and is not asserted by the scoped workflow.
 
 No existence axiom, BBK identification, rank-two exclusion, universal C4 or
 PSC theorem is introduced by these receipts.
+
+## Local attempt boundary
+
+The actual-module attempt was stopped without reaching the two new modules.
+It completed 23 dependency modules (20 source-matched cached inputs and
+3 fresh compilations). Concurrent compilation remained in unmodified
+`CountBridge` and `M0Pisot`; a sequential retry remained in `CountBridge`.
+No rejection of the new Lean source was observed, but there is no successful
+actual-import receipt or scoped actual-import axiom audit.
+`local-import-attempt.json` binds this boundary to the source hashes and
+preserves the historical slice result as a separate scope. The isolated
+hosted job was queued at inspection. The PR remains a draft and is not
+merged on the strength of the historical slice.

@@ -1,0 +1,40 @@
+{
+  "source_base": "ec026774e666fb8e8ac43b1ba975b9a4df8891b2",
+  "source_head_before_receipt": "34735fda827c571335442951a0d3fce0791f0e04",
+  "source_tree_before_receipt": "dafabfafb559061e545ecb86235a05d599824374",
+  "status": "controlled stop without an actual-new-module acceptance receipt",
+  "completed_dependency_modules": 23,
+  "source_matched_cached_dependencies": 20,
+  "fresh_dependency_compilations_without_scoped_axiom_audit": [
+    "PscVerif.BPrimeBinding",
+    "PscVerif.GeometricFInclusion",
+    "PscVerif.GeometricFRank"
+  ],
+  "parallel_attempt_unfinished": [
+    "PscVerif.CountBridge",
+    "PscVerif.M0Pisot"
+  ],
+  "sequential_attempt_unfinished": [
+    "PscVerif.CountBridge"
+  ],
+  "new_modules_reached": false,
+  "new_module_lean_rejection_observed": false,
+  "new_actual_module_acceptance": false,
+  "full_isolated_library_acceptance": false,
+  "focused_hosted_workflow": "queued at last inspection",
+  "historical_slice_only": {
+    "new_named_proofs": 24,
+    "owned_declarations": 212,
+    "owned_theorems": 147,
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "source_sha256": {
+    "proof/PscVerif/PscVerif/BargeDiamondBridge.lean": "d182a18512ffcd6989664f3e6786a0f4aa82b8ba9c03ab776321f39a415971fe",
+    "proof/PscVerif/PscVerif/BargeDiamondBridgeControls.lean": "45bd1684ecbdfabdc02658405874358b5bfccd80b57d435f2c108f707b59f059",
+    "proof/PscVerif/BargeDiamondBridgeAudit.lean": "848f69a4b29250196404182dd0013b324ff0da147657927943c1f10d1641b70d"
+  }
+}
