@@ -78,8 +78,8 @@ checks every compiled declaration for the standard axioms only. Session receipts
 `v4.34.0-rc2`, 4 cores, 16 GB):
 
 - `lake build PscVerif.PeriodicPartnerSpectralCensus`: 533 s, peak resident memory 4.45 GB.
-- `./tools/check_c4_periodic_partner.sh` (fresh closure, source snapshot `741e8756…d77e` over
-  226 files, 605 s): `PSC_PERIODIC_PARTNER_AUDIT_VERIFIED 20 1350 985 522`,
+- `./tools/check_c4_periodic_partner.sh` after merging `main@0179693` (fresh closure, source
+  snapshot `ba0654e7…1dbd` over 226 files): `PSC_PERIODIC_PARTNER_AUDIT_VERIFIED 20 1371 1005 533`,
   `PSC_PERIODIC_PARTNER_GATE_COMPLETE fresh-local-closure standard-axioms-only`.
 - `#print axioms census`: `[propext, Classical.choice, Quot.sound]`; `corpus_length`:
   `[propext]`.

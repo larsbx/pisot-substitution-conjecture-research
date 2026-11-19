@@ -84,6 +84,56 @@ theorem thueMorse_torusMap_not_injective : ¬ Injective (torusMap thueMorse) := 
   obtain ⟨n, hn⟩ := hmem 1
   exact half_not_int ⟨n, by rw [hn]; simp⟩
 
+/-- For the current incidence lattice, time two preserves the zeroth class
+and changes the first class of every Thue--Morse solenoid point. -/
+theorem thueMorse_flow_two (z : Solenoid thueMorse) :
+    (flow thueMorsePisot 2 z).1 0 = z.1 0 ∧ (flow thueMorsePisot 2 z).1 1 ≠ z.1 1 := by
+  let v (n : ℕ) : Fin 2 → ℝ := ((2 : ℝ) / thueMorse.β ^ n) • thueMorsePisot.u
+  have h0 : (v 0 : Torus (Fin 2)) = 0 := by
+    apply (QuotientAddGroup.eq_zero_iff _).mpr
+    intro i
+    refine ⟨1, ?_⟩
+    fin_cases i <;> norm_num [v, thueMorsePisot, thueMorse]
+  have h1 : (v 1 : Torus (Fin 2)) ≠ 0 := by
+    intro hz
+    have hmem := (QuotientAddGroup.eq_zero_iff _).mp hz
+    exact half_not_int (by simpa [v, thueMorsePisot, thueMorse] using hmem (0 : Fin 2))
+  constructor
+  · change z.1 0 + (v 0 : Torus (Fin 2)) = z.1 0
+    rw [h0, add_zero]
+  · intro h
+    change z.1 1 + (v 1 : Torus (Fin 2)) = z.1 1 at h
+    exact h1 (add_left_cancel (h.trans (add_zero _).symm))
+
+/-- Two actual legal tilings have origin cuts and agree at depth zero but
+disagree at depth one. The unshifted periodic seed realizes to zero. -/
+theorem thueMorse_hull_depth_zero_loses_information
+    (hR : Bijective (inflateH (S := thueMorse))) :
+    ∃ T : thueMorse.Hull, EndsAt T 0 1 ∧ (∃ b, EndsAt (translate 2 T) 0 b) ∧
+      realize thueMorsePisot hR T = 0 ∧
+      (realize thueMorsePisot hR (translate 2 T)).1 0 = 0 ∧
+      (realize thueMorsePisot hR (translate 2 T)).1 1 ≠ 0 := by
+  obtain ⟨T, hseed, hperiod⟩ := thueMorse_periodic_seed
+  have hend : EndsAt T 0 1 := by
+    change ((1 : Fin 2), (0 : ℝ) - 1) ∈ T.1
+    simpa using hseed (show ((1 : Fin 2), (-1 : ℝ)) ∈ thueMorseSeed from Or.inl rfl)
+  have hright : ((0 : Fin 2), (0 : ℝ)) ∈ T.1 := hseed (Or.inr rfl)
+  let q := tileAt T 1
+  have hq : q.2 = 1 := by
+    simpa [q, thueMorse] using tileAt_next (S := thueMorse) hright
+  have hend₂ : EndsAt T 2 q.1 := by
+    change (q.1, (2 : ℝ) - 1) ∈ T.1
+    rw [show (q.1, (2 : ℝ) - 1) = q from Prod.ext rfl (by linarith)]
+    exact (tileAt_spec T 1).1
+  have hcut : EndsAt (translate 2 T) 0 q.1 := by
+    simpa using (rightBranchLaws (S := thueMorse)).endpoint_translate 2 hend₂
+  have hT : realize thueMorsePisot hR T = 0 :=
+    realize_r4 thueMorsePisot hR (mk_mem_periodicPts (by decide) hperiod) hend
+  have hβ : 1 < thueMorse.β := by norm_num [thueMorse]
+  refine ⟨T, hend, ⟨q.1, hcut⟩, hT, ?_⟩
+  rw [realize_translate thueMorsePisot hR hβ, hT]
+  exact thueMorse_flow_two 0
+
 /-! ## Fibonacci: unit -/
 
 /-- Fibonacci, `0 ↦ 01`, `1 ↦ 0`, with lengths `(φ, 1)` and `β = φ`. -/
