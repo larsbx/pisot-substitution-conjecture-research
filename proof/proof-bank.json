@@ -36130,6 +36130,134 @@
       "declaration": "theorem swapTwo_period_two : swapTwo^[2] 0 = 0 := by decide"
     },
     {
+      "name": "Psc.PeriodicPartnerAsymptotic.translationRightAsymptotic_of_rightAsymptotic",
+      "module": "PscVerif.PeriodicPartnerAsymptotic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerAsymptotic.lean",
+      "line": 39,
+      "declaration": "theorem translationRightAsymptotic_of_rightAsymptotic"
+    },
+    {
+      "name": "Psc.PeriodicPartnerAsymptotic.bdsPeriodicization_of_translationRightAsymptotic",
+      "module": "PscVerif.PeriodicPartnerAsymptotic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerAsymptotic.lean",
+      "line": 61,
+      "declaration": "theorem bdsPeriodicization_of_translationRightAsymptotic"
+    },
+    {
+      "name": "Psc.PeriodicPartnerAsymptotic.translationRightAsymptotic_of_branch_laws",
+      "module": "PscVerif.PeriodicPartnerAsymptotic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerAsymptotic.lean",
+      "line": 82,
+      "declaration": "theorem translationRightAsymptotic_of_branch_laws"
+    },
+    {
+      "name": "Psc.PeriodicPartnerAsymptotic.ternary_two_step_iff_pairPeriodic_of_metric_BDS",
+      "module": "PscVerif.PeriodicPartnerAsymptotic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerAsymptotic.lean",
+      "line": 101,
+      "declaration": "theorem ternary_two_step_iff_pairPeriodic_of_metric_BDS"
+    },
+    {
+      "name": "Psc.PeriodicPartnerAsymptotic.ternary_two_step_iff_zero_fibre_of_metric_BDS",
+      "module": "PscVerif.PeriodicPartnerAsymptotic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerAsymptotic.lean",
+      "line": 115,
+      "declaration": "theorem ternary_two_step_iff_zero_fibre_of_metric_BDS"
+    },
+    {
+      "name": "Psc.PeriodicPartnerCollapse.eq_of_periodic_of_distance_tendsto_zero",
+      "module": "PscVerif.PeriodicPartnerCollapse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerCollapse.lean",
+      "line": 42,
+      "declaration": "theorem eq_of_periodic_of_distance_tendsto_zero {X : Type*} [MetricSpace X]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerCollapse.AgreementData.agreement_iterate",
+      "module": "PscVerif.PeriodicPartnerCollapse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerCollapse.lean",
+      "line": 62,
+      "declaration": "theorem agreement_iterate (hβ : 0 < β) {R : ℝ} (hR : 0 < R) {x y : X}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerCollapse.AgreementData.distance_tendsto_zero",
+      "module": "PscVerif.PeriodicPartnerCollapse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerCollapse.lean",
+      "line": 73,
+      "declaration": "theorem distance_tendsto_zero (hβ : 1 < β) {R : ℝ} (hR : 0 < R) {x y : X}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerCollapse.AgreementData.distance_tendsto_zero_of_eventual_agreement",
+      "module": "PscVerif.PeriodicPartnerCollapse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerCollapse.lean",
+      "line": 90,
+      "declaration": "theorem distance_tendsto_zero_of_eventual_agreement (hβ : 1 < β) {R : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerCollapse.AgreementData.common_subsequence_limits_eq",
+      "module": "PscVerif.PeriodicPartnerCollapse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerCollapse.lean",
+      "line": 99,
+      "declaration": "theorem common_subsequence_limits_eq (hβ : 1 < β) {R : ℝ} (hR : 0 < R)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerCollapse.AgreementData.eq_of_periodic_of_eventual_agreement",
+      "module": "PscVerif.PeriodicPartnerCollapse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerCollapse.lean",
+      "line": 109,
+      "declaration": "theorem eq_of_periodic_of_eventual_agreement (hβ : 1 < β) {R : ℝ} (hR : 0 < R)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerCollapse.RightEndpointData.ray_iterate",
+      "module": "PscVerif.PeriodicPartnerCollapse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerCollapse.lean",
+      "line": 140,
+      "declaration": "theorem ray_iterate {x y : X} (h : E.CommonRightRay x y) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerCollapse.RightEndpointData.endpoint_iterate",
+      "module": "PscVerif.PeriodicPartnerCollapse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerCollapse.lean",
+      "line": 147,
+      "declaration": "theorem endpoint_iterate {x : X} {a : α} (h : E.EndsAtZero x a) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerCollapse.RightEndpointData.agreement_of_endpoint_merge",
+      "module": "PscVerif.PeriodicPartnerCollapse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerCollapse.lean",
+      "line": 155,
+      "declaration": "theorem agreement_of_endpoint_merge {x y : X} {a b : α}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerCollapse.RightEndpointData.distance_tendsto_zero_of_endpoint_merge",
+      "module": "PscVerif.PeriodicPartnerCollapse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerCollapse.lean",
+      "line": 165,
+      "declaration": "theorem distance_tendsto_zero_of_endpoint_merge (hβ : 1 < β) {x y : X} {a b : α}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerCollapse.RightEndpointData.endpoint_persistent_of_periodic",
+      "module": "PscVerif.PeriodicPartnerCollapse",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerCollapse.lean",
+      "line": 175,
+      "declaration": "theorem endpoint_persistent_of_periodic (hβ : 1 < β) {x y : X} {a b : α}"
+    },
+    {
       "name": "Psc.PeriodicPartnerControls.mergeMatrix_counts",
       "module": "PscVerif.PeriodicPartnerControls",
       "private": false,
@@ -36408,6 +36536,790 @@
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
       "line": 269,
       "declaration": "theorem triangle_partner_disjoint_labels :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDichotomy.ternary_endpoint_merge_iff_collapse",
+      "module": "PscVerif.PeriodicPartnerDichotomy",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDichotomy.lean",
+      "line": 61,
+      "declaration": "theorem ternary_endpoint_merge_iff_collapse"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDichotomy.ternary_endpoint_separation_iff_not_collapse",
+      "module": "PscVerif.PeriodicPartnerDichotomy",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDichotomy.lean",
+      "line": 83,
+      "declaration": "theorem ternary_endpoint_separation_iff_not_collapse"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDichotomy.ternary_zero_fibre_iff_not_collapse",
+      "module": "PscVerif.PeriodicPartnerDichotomy",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDichotomy.lean",
+      "line": 97,
+      "declaration": "theorem ternary_zero_fibre_iff_not_collapse"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDichotomy.ternary_branch_triple_dichotomy",
+      "module": "PscVerif.PeriodicPartnerDichotomy",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDichotomy.lean",
+      "line": 117,
+      "declaration": "theorem ternary_branch_triple_dichotomy"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDynamics.pairPeriodic_of_mem",
+      "module": "PscVerif.PeriodicPartnerDynamics",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean",
+      "line": 40,
+      "declaration": "theorem pairPeriodic_of_mem {X : Type*} {f : X → X} {S U : X}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDynamics.PairPeriodic.mem_left",
+      "module": "PscVerif.PeriodicPartnerDynamics",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean",
+      "line": 46,
+      "declaration": "theorem PairPeriodic.mem_left {X : Type*} {f : X → X} {S U : X}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDynamics.PairPeriodic.mem_right",
+      "module": "PscVerif.PeriodicPartnerDynamics",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean",
+      "line": 51,
+      "declaration": "theorem PairPeriodic.mem_right {X : Type*} {f : X → X} {S U : X}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDynamics.periodic_triple_of_asymptotic_partners",
+      "module": "PscVerif.PeriodicPartnerDynamics",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean",
+      "line": 62,
+      "declaration": "theorem periodic_triple_of_asymptotic_partners {X Y R : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDynamics.RightBranchLaws.agree_iterate",
+      "module": "PscVerif.PeriodicPartnerDynamics",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean",
+      "line": 139,
+      "declaration": "theorem agree_iterate {S U : X} {y : ℝ} (n : ℕ) (h : AgreeRight S U y) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDynamics.RightBranchLaws.endpoint_iterate",
+      "module": "PscVerif.PeriodicPartnerDynamics",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean",
+      "line": 146,
+      "declaration": "theorem endpoint_iterate {S : X} {y : ℝ} {b : α} (n : ℕ) (h : EndsAt S y b) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDynamics.RightBranchLaws.branch_ne",
+      "module": "PscVerif.PeriodicPartnerDynamics",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean",
+      "line": 153,
+      "declaration": "theorem branch_ne {S U : X} {y : ℝ} {b c : α}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDynamics.RightBranchLaws.branch_unique",
+      "module": "PscVerif.PeriodicPartnerDynamics",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean",
+      "line": 159,
+      "declaration": "theorem branch_unique {S U : X} {y z : ℝ} {b c d e : α}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDynamics.RightBranchLaws.branch_translate",
+      "module": "PscVerif.PeriodicPartnerDynamics",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean",
+      "line": 167,
+      "declaration": "theorem branch_translate {S U : X} {y : ℝ} {b c : α} (t : ℝ)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDynamics.RightBranchLaws.branch_iterate",
+      "module": "PscVerif.PeriodicPartnerDynamics",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean",
+      "line": 175,
+      "declaration": "theorem branch_iterate {S U : X} {y : ℝ} {b c : α} (n : ℕ)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDynamics.expanding_fixed_location_eq_zero",
+      "module": "PscVerif.PeriodicPartnerDynamics",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean",
+      "line": 184,
+      "declaration": "theorem expanding_fixed_location_eq_zero {β y : ℝ} {n : ℕ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDynamics.periodicization_translation_eq_zero",
+      "module": "PscVerif.PeriodicPartnerDynamics",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean",
+      "line": 193,
+      "declaration": "theorem periodicization_translation_eq_zero {X α : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDynamics.pairPeriodic_of_endpoint_persistent",
+      "module": "PscVerif.PeriodicPartnerDynamics",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean",
+      "line": 210,
+      "declaration": "theorem pairPeriodic_of_endpoint_persistent {X α : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDynamics.endpoint_persistent_of_pairPeriodic",
+      "module": "PscVerif.PeriodicPartnerDynamics",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean",
+      "line": 225,
+      "declaration": "theorem endpoint_persistent_of_pairPeriodic {X α : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDynamics.endpoint_persistent_iff_pairPeriodic",
+      "module": "PscVerif.PeriodicPartnerDynamics",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean",
+      "line": 239,
+      "declaration": "theorem endpoint_persistent_iff_pairPeriodic {X α : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDynamics.periodic_of_fixed_fibre",
+      "module": "PscVerif.PeriodicPartnerDynamics",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean",
+      "line": 258,
+      "declaration": "theorem periodic_of_fixed_fibre {X Y : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDynamics.pairPeriodic_iff_zero_fibre",
+      "module": "PscVerif.PeriodicPartnerDynamics",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean",
+      "line": 268,
+      "declaration": "theorem pairPeriodic_iff_zero_fibre {X Y α : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDynamics.endpoint_persistent_iff_zero_fibre",
+      "module": "PscVerif.PeriodicPartnerDynamics",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean",
+      "line": 287,
+      "declaration": "theorem endpoint_persistent_iff_zero_fibre {X Y α : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDynamics.ternary_two_step_iff_pairPeriodic",
+      "module": "PscVerif.PeriodicPartnerDynamics",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean",
+      "line": 304,
+      "declaration": "theorem ternary_two_step_iff_pairPeriodic {X : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDynamics.ternary_two_step_iff_zero_fibre",
+      "module": "PscVerif.PeriodicPartnerDynamics",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean",
+      "line": 315,
+      "declaration": "theorem ternary_two_step_iff_zero_fibre {X Y : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDynamics.ternary_zero_fibre_periodic_triple",
+      "module": "PscVerif.PeriodicPartnerDynamics",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean",
+      "line": 332,
+      "declaration": "theorem ternary_zero_fibre_periodic_triple {X Y : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.constantTwo_semiconj",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 29,
+      "declaration": "theorem constantTwo_semiconj :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.constantTwo_finite_fibre",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 34,
+      "declaration": "theorem constantTwo_finite_fibre : {x : Fin 2 | (fun _ : Fin 2 => ()) x = ()}.Finite :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.constantTwo_not_injective",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 37,
+      "declaration": "theorem constantTwo_not_injective : ¬ Injective constantTwo := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.constantTwo_iterate_positive",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 42,
+      "declaration": "theorem constantTwo_iterate_positive {n : ℕ} (hn : 0 < n) (x : Fin 2) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.constantTwo_nonperiodic_lift",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 48,
+      "declaration": "theorem constantTwo_nonperiodic_lift : (1 : Fin 2) ∉ periodicPts constantTwo := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.integerSuccessor_injective",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 57,
+      "declaration": "theorem integerSuccessor_injective : Injective integerSuccessor := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.integerSuccessor_semiconj",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 61,
+      "declaration": "theorem integerSuccessor_semiconj :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.integerSuccessor_iterate",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 66,
+      "declaration": "theorem integerSuccessor_iterate (n : ℕ) (x : ℤ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.integerSuccessor_nonperiodic_lift",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 72,
+      "declaration": "theorem integerSuccessor_nonperiodic_lift : (0 : ℤ) ∉ periodicPts integerSuccessor := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.integerSuccessor_infinite_fibre",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 78,
+      "declaration": "theorem integerSuccessor_infinite_fibre :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.inflate_injective",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 111,
+      "declaration": "theorem inflate_injective : Injective inflate := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.translate_injective",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 119,
+      "declaration": "theorem translate_injective (t : ℝ) : Injective (translate t) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.base_semiconj",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 127,
+      "declaration": "theorem base_semiconj : Semiconj base inflate baseInflate := fun _ => rfl"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.base_fibre_finite",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 129,
+      "declaration": "theorem base_fibre_finite (q : ℝ) : {S : State | base S = q}.Finite := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.partner_same_fibre",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 134,
+      "declaration": "theorem partner_same_fibre {S U : State} (h : partner S U) : base S = base U := h.1"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.partner_distinct",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 136,
+      "declaration": "theorem partner_distinct {S U : State} (h : partner S U) : S ≠ U := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.partner_translate",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 140,
+      "declaration": "theorem partner_translate {S U : State} (h : partner S U) (t : ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.partner_not_right_asymptotic",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 144,
+      "declaration": "theorem partner_not_right_asymptotic {S U : State} (h : partner S U) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.translate_zero",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 153,
+      "declaration": "theorem translate_zero (S : State) : translate 0 S = S := by simp [translate]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.endpoint_unique",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 155,
+      "declaration": "theorem endpoint_unique {S : State} {y : ℝ} {b c : Fin 3}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.agree_endpoint",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 158,
+      "declaration": "theorem agree_endpoint {S U : State} {r y : ℝ} {b c : Fin 3}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.agree_translate",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 166,
+      "declaration": "theorem agree_translate {S U : State} {y : ℝ} (t : ℝ) (h : agreeRight S U y) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.endpoint_translate",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 172,
+      "declaration": "theorem endpoint_translate {S : State} {y : ℝ} {b : Fin 3} (t : ℝ)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.agree_inflate",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 176,
+      "declaration": "theorem agree_inflate {S U : State} {y : ℝ} (h : agreeRight S U y) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.endpoint_inflate",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 182,
+      "declaration": "theorem endpoint_inflate {S : State} {y : ℝ} {b : Fin 3} (h : endsAt S y b) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.origin_fixed",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 186,
+      "declaration": "theorem origin_fixed (a : Fin 3) : inflate (0, a) = (0, a) := by simp [inflate]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.origin_periodic",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 188,
+      "declaration": "theorem origin_periodic (a : Fin 3) : (0, a) ∈ periodicPts inflate :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.translated_periodic_pair",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 193,
+      "declaration": "theorem translated_periodic_pair {S U : State} (h : ∃ r, agreeRight S U r) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.leaves_agree",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 204,
+      "declaration": "theorem leaves_agree (x : ℝ) : agreeRight (x, 1) (x, 2) x := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.two_strict_links",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 208,
+      "declaration": "theorem two_strict_links (x : ℝ) : partner (x, 0) (x, 1) ∧ partner (x, 0) (x, 2) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.branch_laws",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 213,
+      "declaration": "theorem branch_laws : RightBranchLaws inflate translate 2 id agreeRight endsAt where"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.periodicization",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 223,
+      "declaration": "theorem periodicization : BDSPeriodicization inflate translate (RightAsymptotic agreeRight) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.origin_fibre",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 227,
+      "declaration": "theorem origin_fibre : R4ZeroFibre inflate base 0 endsAt := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.branch_witness",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 231,
+      "declaration": "theorem branch_witness (x : ℝ) : BranchAt agreeRight endsAt (x, 1) (x, 2) x 1 2 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.asymptotic_translate",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 234,
+      "declaration": "theorem asymptotic_translate (t : ℝ) {S U : State} (h : RightAsymptotic agreeRight S U) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.promoted_star_triple",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 240,
+      "declaration": "theorem promoted_star_triple (x : ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.zero_fibre_from_endpoint_test",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 260,
+      "declaration": "theorem zero_fibre_from_endpoint_test :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.zero_fibre_star_triple",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 268,
+      "declaration": "theorem zero_fibre_star_triple :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.metricEmbedding_injective",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 290,
+      "declaration": "theorem metricEmbedding_injective : Injective metricEmbedding := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.common_origin_patch",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 320,
+      "declaration": "theorem common_origin_patch {S U : State} {a : Fin 3} (_ : agreeRight S U 0)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.state_dist_eq",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 324,
+      "declaration": "theorem state_dist_eq (S U : State) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.leaf_distance_bound",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 329,
+      "declaration": "theorem leaf_distance_bound {S U : State} (hx : S.1 = U.1)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.ray_window",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 378,
+      "declaration": "theorem ray_window {R r : ℝ} {S U : State} (_ : 0 < R) (hr : r ≤ -R)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.ray_common_origin_patch",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 384,
+      "declaration": "theorem ray_common_origin_patch {S U : State} {a : Fin 3} (h : agreeRight S U 0)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.coordinate_distance_le",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 388,
+      "declaration": "theorem coordinate_distance_le (t : ℝ) (S U : State) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.metric_asymptotic_same_coordinate",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 399,
+      "declaration": "theorem metric_asymptotic_same_coordinate {S U : State}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.metric_periodicization",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 405,
+      "declaration": "theorem metric_periodicization :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.leaf_translation_asymptotic",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 413,
+      "declaration": "theorem leaf_translation_asymptotic (x : ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.periodicization_from_metric_bridge",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 418,
+      "declaration": "theorem periodicization_from_metric_bridge :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.partner_metric_separated",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 423,
+      "declaration": "theorem partner_metric_separated {S U : State} (h : partner S U) (t : ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.partner_not_metric_asymptotic",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 432,
+      "declaration": "theorem partner_not_metric_asymptotic {S U : State} (h : partner S U) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.zero_fibre_from_metric_endpoint_test",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 440,
+      "declaration": "theorem zero_fibre_from_metric_endpoint_test :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.BranchModel.joint_zero_fibre_no_collapse",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 451,
+      "declaration": "theorem joint_zero_fibre_no_collapse :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.identity_one_positive_agreement",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 487,
+      "declaration": "theorem identity_one_positive_agreement : identityAgreementOne.Agree 1 0 1 :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.identity_zero_agreement",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 512,
+      "declaration": "theorem identity_zero_agreement : identityAgreementZero.Agree 0 0 1 := Or.inr le_rfl"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.identity_distances_not_tendsto_zero",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 514,
+      "declaration": "theorem identity_distances_not_tendsto_zero :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.contraction_initial_agreement",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 545,
+      "declaration": "theorem contraction_initial_agreement : contractionAgreement.Agree 1 0 1 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.contraction_distance_tendsto_zero",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 549,
+      "declaration": "theorem contraction_distance_tendsto_zero :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.halve_injective",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 554,
+      "declaration": "theorem halve_injective : Injective halve := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.contraction_iterates_distinct",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 560,
+      "declaration": "theorem contraction_iterates_distinct (n : ℕ) : halve^[n] 0 ≠ halve^[n] 1 :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.contraction_distinct_initial_endpoints",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 591,
+      "declaration": "theorem contraction_distinct_initial_endpoints :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerModels.contraction_collapse_from_endpoint_merge",
+      "module": "PscVerif.PeriodicPartnerModels",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean",
+      "line": 599,
+      "declaration": "theorem contraction_collapse_from_endpoint_merge :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReflection.LeftBranchLaws.toRightBranchLaws",
+      "module": "PscVerif.PeriodicPartnerReflection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean",
+      "line": 61,
+      "declaration": "theorem LeftBranchLaws.toRightBranchLaws {X α : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReflection.leftBranchAt_iff_reflected",
+      "module": "PscVerif.PeriodicPartnerReflection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean",
+      "line": 86,
+      "declaration": "theorem leftBranchAt_iff_reflected {X α : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReflection.leftBranchAt_zero_iff_reflected",
+      "module": "PscVerif.PeriodicPartnerReflection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean",
+      "line": 93,
+      "declaration": "theorem leftBranchAt_zero_iff_reflected {X α : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReflection.rightAsymptotic_reflection_iff",
+      "module": "PscVerif.PeriodicPartnerReflection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean",
+      "line": 101,
+      "declaration": "theorem rightAsymptotic_reflection_iff {X : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReflection.bdsPeriodicization_reflection_iff",
+      "module": "PscVerif.PeriodicPartnerReflection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean",
+      "line": 112,
+      "declaration": "theorem bdsPeriodicization_reflection_iff {X : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReflection.r4ZeroFibre_reflection_iff",
+      "module": "PscVerif.PeriodicPartnerReflection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean",
+      "line": 130,
+      "declaration": "theorem r4ZeroFibre_reflection_iff {X Y α : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReflection.LeftBranchLaws.branch_unique",
+      "module": "PscVerif.PeriodicPartnerReflection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean",
+      "line": 137,
+      "declaration": "theorem LeftBranchLaws.branch_unique {X α : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReflection.left_endpoint_persistent_iff_pairPeriodic",
+      "module": "PscVerif.PeriodicPartnerReflection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean",
+      "line": 151,
+      "declaration": "theorem left_endpoint_persistent_iff_pairPeriodic {X α : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReflection.left_ternary_two_step_iff_pairPeriodic",
+      "module": "PscVerif.PeriodicPartnerReflection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean",
+      "line": 163,
+      "declaration": "theorem left_ternary_two_step_iff_pairPeriodic {X : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReflection.left_ternary_two_step_iff_zero_fibre",
+      "module": "PscVerif.PeriodicPartnerReflection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean",
+      "line": 176,
+      "declaration": "theorem left_ternary_two_step_iff_zero_fibre {X Y : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReflection.left_ternary_zero_fibre_periodic_triple",
+      "module": "PscVerif.PeriodicPartnerReflection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean",
+      "line": 195,
+      "declaration": "theorem left_ternary_zero_fibre_periodic_triple {X Y : Type*}"
     },
     {
       "name": "Psc.PerronCore.super_eigen_eq",
@@ -44233,17 +45145,17 @@
     },
     {
       "source": "docs/c4-periodic-partner-extraction-2026-11-18.md",
-      "line": 65,
+      "line": 73,
       "statement_heading": "**Lemma P (periodic partner promotion).** Under the preceding inputs, there"
     },
     {
       "source": "docs/c4-periodic-partner-extraction-2026-11-18.md",
-      "line": 104,
+      "line": 112,
       "statement_heading": "**Lemma E (exact endpoint criterion).** For this branch-normalized pair,"
     },
     {
       "source": "docs/c4-periodic-partner-extraction-2026-11-18.md",
-      "line": 160,
+      "line": 168,
       "statement_heading": "**Lemma M (collapse of unshifted inflation).** If"
     },
     {
@@ -46131,7 +47043,7 @@
     "proof/PscVerif/ClassAPlusUpperRecurrenceAudit.lean": "ef12f802e6eb10dbf2b02ce84cccbcdf9164aed9356f4fe2917ee513923824aa",
     "proof/PscVerif/ClassARunDescentAudit.lean": "a1fe09a772c2112929a6f892993da045628ef410f15cd53b1d8eba74343959fc",
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "81efe5b8745576f8f15a59a263563b31e08307e9c432e78fa2ef9021a613b2d1",
-    "proof/PscVerif/PeriodicPartnerAudit.lean": "526387de76813c30224c362300379ea28db27a92670ad1ffdfa35b2dbd01d296",
+    "proof/PscVerif/PeriodicPartnerAudit.lean": "05fa8367cd6a2923db7c4ca43d83371cdf0bae457a7352d5a2bdeb5bae375493",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean": "87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean": "e18e726b6bd1c431f9e28500504edd6ffba157415af20069715b9c8f208f3f9b",
@@ -46293,7 +47205,13 @@
     "proof/PscVerif/PscVerif/ParikhIntertwiner.lean": "bc7120433f0c103c966fc6faf41407b969537fd0881971a5d36b98169b220d96",
     "proof/PscVerif/PscVerif/ParikhRank.lean": "f13cddb90200af8a8a26d01428537235a2bebddf2e081849188753e97add6e69",
     "proof/PscVerif/PscVerif/PeriodicPartner.lean": "8b4cfa2dbed0bf629a0a0f0dfd57ecb63b0d83bc02b48ee3392faa90404f4aaf",
+    "proof/PscVerif/PscVerif/PeriodicPartnerAsymptotic.lean": "0ad011b1e6eb02418699a4838c22ae630f28954696810c470fdb054e077b4c23",
+    "proof/PscVerif/PscVerif/PeriodicPartnerCollapse.lean": "a0b3df8c6040977532413191864a2ba002ebf45a6fb79cd3a40fe9a8fb45fd91",
     "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean": "84725326692e81dafcef2c4a724bfb2cee8629fdba398686540db35be72eb0fd",
+    "proof/PscVerif/PscVerif/PeriodicPartnerDichotomy.lean": "d74034c65d26d8b98916f6fdca046c6772e9a3389fb53fdd03bcf3baeea2339b",
+    "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean": "812599f6a9dfb4ab5d0da0924fa6c3901128f74644e76d14eb2996de17f55c44",
+    "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean": "434d5573fb928bb0ee6667da6dedc8fc76867b76c26d72f5707ac1387a62c5ea",
+    "proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean": "140e1a71503a0648d17099247ef4cb9b92d67c1cdc15257ee66526a89527ece5",
     "proof/PscVerif/PscVerif/PerronCore.lean": "1f06da1e0b57e74b31fc03d753bd314f25561a37e512b3a8f7f05fda0d75458c",
     "proof/PscVerif/PscVerif/PerronExistence.lean": "a2ac1801abf2a99a6c312935d101ed4f760ffec0f96586d5f1f43bb176814c73",
     "proof/PscVerif/PscVerif/PerronSimple.lean": "1e4d9aca60b215f17067e39ba38bd8eaec7d9781fb716d8727fa7f9cbbf737a8",
@@ -46323,7 +47241,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "ffd7a29545e78dd525adf42e22346cef8f2856952daad708ab64e6ab6ea59621",
+    "proof/PscVerif/PscVerif.lean": "c59a44807d3fcb02ab7ac5714d63a61e1cebaf577e4c40bd7f41023a53cee5d2",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

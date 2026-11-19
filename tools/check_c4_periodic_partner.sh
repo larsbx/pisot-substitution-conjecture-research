@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Fresh local sources and pinned dependency checkouts; only selected upstream
 # source-hash artifacts may be restored. Compile and audit the complete local
-# import closure of the two periodic-partner modules, without reusing local objects.
+# periodic-partner import closure, without reusing local objects.
 set -euo pipefail
 PSC_PERIODIC_ROOT=$(cd "$(dirname "$0")/.." && pwd -P)
 PSC_PERIODIC_TMP=$(mktemp -d)
@@ -133,7 +133,10 @@ if [[ -d .lake/build/lib/lean/PscVerif || -e .lake/build/lib/lean/PscVerif.olean
     echo "unexpected local project artifacts before fresh compilation" >&2
     exit 1
 fi
-"${PSC_PERIODIC_LAKE[@]}" --no-cache build PscVerif.PeriodicPartner PscVerif.PeriodicPartnerControls
+"${PSC_PERIODIC_LAKE[@]}" --no-cache build PscVerif.PeriodicPartner PscVerif.PeriodicPartnerControls \
+    PscVerif.PeriodicPartnerDynamics PscVerif.PeriodicPartnerCollapse PscVerif.PeriodicPartnerModels \
+    PscVerif.PeriodicPartnerDichotomy PscVerif.PeriodicPartnerReflection \
+    PscVerif.PeriodicPartnerAsymptotic
 psc_periodic_check_sources_and_pins after-build
 "${PSC_PERIODIC_LAKE[@]}" --no-cache env lean PeriodicPartnerAudit.lean \
     | tee "$PSC_PERIODIC_TMP/audit.log"

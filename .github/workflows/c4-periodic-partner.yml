@@ -1,4 +1,4 @@
-name: C4 periodic partner finite lemmas
+name: C4 periodic partner formalization
 
 on:
   pull_request:
@@ -8,6 +8,12 @@ on:
       - 'docs/c4-unique-partner-exclusion-2026-11-18.md'
       - 'proof/PscVerif/PscVerif/PeriodicPartner.lean'
       - 'proof/PscVerif/PscVerif/PeriodicPartnerControls.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerCollapse.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerModels.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerDichotomy.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerAsymptotic.lean'
       - 'proof/PscVerif/PeriodicPartnerAudit.lean'
       - 'proof/PscVerif/PscVerif.lean'
       - 'proof/PscVerif/lean-toolchain'
@@ -24,6 +30,12 @@ on:
       - 'docs/c4-unique-partner-exclusion-2026-11-18.md'
       - 'proof/PscVerif/PscVerif/PeriodicPartner.lean'
       - 'proof/PscVerif/PscVerif/PeriodicPartnerControls.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerCollapse.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerModels.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerDichotomy.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerAsymptotic.lean'
       - 'proof/PscVerif/PeriodicPartnerAudit.lean'
       - 'proof/PscVerif/PscVerif.lean'
       - 'proof/PscVerif/lean-toolchain'
