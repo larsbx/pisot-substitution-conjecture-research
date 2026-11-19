@@ -1,7 +1,7 @@
 # Ordinary topology on the legal tiling hull
 
-**Status:** implementation draft; compilation and acceptance evidence are
-pending. The new source gives the existing legal tilings their ordinary
+**Status:** the fresh scoped build and compiled axiom audit pass. The four
+new modules add 44 named Lean proofs. They give the existing legal tilings their ordinary
 local topology, identifies its neighbourhoods by small translations and
 exact agreement on large windows, and proves continuity of translation and
 inflation. A separate criterion reduces continuity of an equivariant map
@@ -133,13 +133,33 @@ side of the continuity equivalence as an unconditional theorem.
 
 ### Evidence and replay
 
-**Pending at the time this note was drafted.** The proof sources have
-been written; compilation, compiled axiom audit, proof-inventory checks
-and any hosted acceptance must be recorded separately before claiming
-successful replay. No result counts or successful build receipts are
-asserted here.
+The unchanged canonical periodic-partner gate rebuilt the complete local
+import closure from fresh sources and pinned dependency checkouts, using
+only selected upstream source-hash cache artifacts. It reused no local
+project objects. The compiled audit verified **24 modules, 1,458
+declarations, 1,068 theorem declarations and all 577 source-named
+proofs**, including the **44 new named proofs** in this increment. Every
+compiled declaration uses only `propext`, `Classical.choice` and
+`Quot.sound`; no additional axiom is accepted.
 
-| Module | Statements to verify |
+All 236 source and pin bindings were rechecked after dependency cloning,
+upstream cache restoration, compilation and the compiled audit. Their
+canonical snapshot SHA-256 is
+`7bee0352555808162025eb1c3596ee278b90d5482348a1512bf5b0cdebbd45d8`.
+The verified local source checkpoint is
+`9fb7c7d7f528f3ccf35d9f393dc050d063e26762`; the published checkpoint is
+`f407bd05f4ca12603e78026a08b7058e18e09cea`. Both have tree
+`5d4cdfca23cac14478efd5a84c3bd4813cb0016b`. Subsequent documentation and
+evidence packaging leave all checked Lean sources and gate support unchanged.
+
+The [evidence packet](../evidence/ordinary-hull-topology-2026-11-19/README.md)
+contains the lossless gate log, terminal receipts, exact source bindings
+and repository-check records. All 252 focused regression tests pass; the
+generated proof inventory, generated ledger, claim-governance audit and
+Markdown-source checks also pass. The compiler is Lean 4.34.0-rc2 and mathlib
+is pinned to `4edb0dbaa3b3cf729d86d1e2f035474d5ae2ac09`.
+
+| Module | Verified statements |
 | --- | --- |
 | [`PeriodicPartnerHullContinuity.lean`](../proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean) | Exact agreement laws, fixed-translation homeomorphisms, uniform continuity of inflation, and the exact agreement neighbourhood basis. |
 | [`PeriodicPartnerLocalTopology.lean`](../proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean) | Chart saturation and open quotient, ordinary patch neighbourhoods, joint translation continuity, inflation continuity, and the equivariant continuity criterion. |
@@ -156,10 +176,11 @@ lake build PscVerif.PeriodicPartnerHullContinuity \
   PscVerif.PeriodicPartnerLocalRealization
 ```
 
-The focused periodic-partner gate and compiled inventory must include the
-new modules before their aggregate audit can count as acceptance of this
-increment. Any full-library or hosted result has its own revision and
-scope; it must not be inferred from the existence of these source files.
+The focused periodic-partner gate and compiled inventory include all four
+new modules. Its full fresh replay command is
+`./tools/check_c4_periodic_partner.sh` from the repository root. This is
+scoped local acceptance; it does not claim a full root-library build or
+hosted acceptance. Independent human review remains pending.
 
 ### Negative controls
 
@@ -174,7 +195,7 @@ Choosing a tile that contains zero gives
 `delta > 0`, some `0 < t < delta` fails exact agreement on radius one.
 `not_continuousAt_exact_orbit` converts this to discontinuity of the old
 orbit map at zero. These are universal source statements, not a finite
-sample; their compilation is part of the pending evidence above. The
+sample; their compilation and axiom dependencies are covered by the receipt above. The
 existing legal Thue–Morse seed supplies a nonempty hull independently of
 recognizability.
 
