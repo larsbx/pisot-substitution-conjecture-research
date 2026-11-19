@@ -499,6 +499,11 @@ These are theorems over their enumerated finite domain. They are evidence, not
 general concentration or wedge-productivity theorems. Certificates must fail
 closed on caps and retain a replayable record for every survivor.
 
+## Periodic partners after the covering exclusion
+
+- [Periodic-partner extraction](c4-periodic-partner-extraction-2026-11-18.md): a periodic triple in a periodic fibre, the exact endpoint criterion for anchoring its branch at the zero fibre, and collapse when the endpoint letters merge. Finite deductions and controls are in Lean; tiling-space steps are written with explicit hypotheses.
+- [Targeted source decision](c4-periodic-partner-extraction-stop-go-2026-11-18.md): published periodicization, finite-fibre lifting, and the boundaries of the proposed rank-two contradiction.
+
 ## Primary completion route: finite seed-patch overlaps
 
 - G1b-1 bounded discrepancy: repository-proved.

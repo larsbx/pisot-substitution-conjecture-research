@@ -244,3 +244,14 @@ tiling are `≈_s`-equivalent, so Barge's stack relation is nontrivial on
   half-line, supplied by round-4 Lemma C(c). Show they can be chosen
   `Φ`-periodic in the zero fibre, and that with (NM_V) and (W4) they force
   a third pairwise non-coincident tiling or a letter parity contradiction.
+
+**Follow-up (2026-11-18).** The [periodic-partner extraction note](c4-periodic-partner-extraction-2026-11-18.md)
+separates these obligations. A published asymptotic-periodicization theorem
+and finite-fibre lifting make the whole triple periodic after one common
+translation. Zero-fibre anchoring at the branch origin is equivalent to
+nonmerging of the differing endpoint letters; on three letters this is a
+two-step test checked in Lean. If those letters merge, unshifted inflation
+collapses the two leaves. Even successful extraction does not create a
+strict triangle: the asymptotic leaves share tiles, and the covering-only
+distinct-letter and regularity premises are unavailable. The note gives
+exact controls and retains both remaining geometric obligations.

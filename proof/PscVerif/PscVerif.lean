@@ -176,3 +176,5 @@ import PscVerif.NeutralRankSeam
 import PscVerif.NeutralRankSeamCycle
 import PscVerif.SeamCycleSpectrum
 import PscVerif.UniquePartnerLetters
+import PscVerif.PeriodicPartner
+import PscVerif.PeriodicPartnerControls
