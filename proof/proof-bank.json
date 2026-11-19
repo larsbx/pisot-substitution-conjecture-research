@@ -36026,6 +36026,390 @@
       "declaration": "theorem no_equiv_fin3 {S : ChildSystem (Fin 3)} (P : Normalisation S) :"
     },
     {
+      "name": "Psc.PeriodicPartner.periodic_of_finite_invariant",
+      "module": "PscVerif.PeriodicPartner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartner.lean",
+      "line": 25,
+      "declaration": "theorem periodic_of_finite_invariant {X : Type*} (f : X → X) (A : Set X)"
+    },
+    {
+      "name": "Psc.PeriodicPartner.periodic_lift_of_finite_fibre",
+      "module": "PscVerif.PeriodicPartner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartner.lean",
+      "line": 39,
+      "declaration": "theorem periodic_lift_of_finite_fibre {X Y : Type*} (f : X → X) (g : Y → Y)"
+    },
+    {
+      "name": "Psc.PeriodicPartner.mem_periodicPts_of_finite_fibre",
+      "module": "PscVerif.PeriodicPartner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartner.lean",
+      "line": 54,
+      "declaration": "theorem mem_periodicPts_of_finite_fibre {X Y : Type*} (f : X → X) (g : Y → Y)"
+    },
+    {
+      "name": "Psc.PeriodicPartner.common_period_three",
+      "module": "PscVerif.PeriodicPartner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartner.lean",
+      "line": 64,
+      "declaration": "theorem common_period_three {X : Type*} (f : X → X) {x y z : X}"
+    },
+    {
+      "name": "Psc.PeriodicPartner.endpoint_separation_step",
+      "module": "PscVerif.PeriodicPartner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartner.lean",
+      "line": 81,
+      "declaration": "theorem endpoint_separation_step :"
+    },
+    {
+      "name": "Psc.PeriodicPartner.endpoint_persistent_iff",
+      "module": "PscVerif.PeriodicPartner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartner.lean",
+      "line": 87,
+      "declaration": "theorem endpoint_persistent_iff (g : Fin 3 → Fin 3) (b c : Fin 3) :"
+    },
+    {
+      "name": "Psc.PeriodicPartner.endpoint_period_six",
+      "module": "PscVerif.PeriodicPartner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartner.lean",
+      "line": 100,
+      "declaration": "theorem endpoint_period_six :"
+    },
+    {
+      "name": "Psc.PeriodicPartner.endpoint_persistent_of_injective",
+      "module": "PscVerif.PeriodicPartner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartner.lean",
+      "line": 105,
+      "declaration": "theorem endpoint_persistent_of_injective (g : Fin 3 → Fin 3) (hg : Injective g)"
+    },
+    {
+      "name": "Psc.PeriodicPartner.endpoint_merge_persists",
+      "module": "PscVerif.PeriodicPartner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartner.lean",
+      "line": 111,
+      "declaration": "theorem endpoint_merge_persists {X : Type*} (g : X → X) {b c : X} {n : ℕ}"
+    },
+    {
+      "name": "Psc.PeriodicPartner.swapTwo_injective",
+      "module": "PscVerif.PeriodicPartner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartner.lean",
+      "line": 119,
+      "declaration": "theorem swapTwo_injective : Injective swapTwo := by decide"
+    },
+    {
+      "name": "Psc.PeriodicPartner.swapTwo_semiconj",
+      "module": "PscVerif.PeriodicPartner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartner.lean",
+      "line": 121,
+      "declaration": "theorem swapTwo_semiconj :"
+    },
+    {
+      "name": "Psc.PeriodicPartner.swapTwo_not_fixed",
+      "module": "PscVerif.PeriodicPartner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartner.lean",
+      "line": 126,
+      "declaration": "theorem swapTwo_not_fixed : swapTwo 0 ≠ 0 := by decide"
+    },
+    {
+      "name": "Psc.PeriodicPartner.swapTwo_period_two",
+      "module": "PscVerif.PeriodicPartner",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartner.lean",
+      "line": 128,
+      "declaration": "theorem swapTwo_period_two : swapTwo^[2] 0 = 0 := by decide"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.mergeMatrix_counts",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 48,
+      "declaration": "theorem mergeMatrix_counts :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.merge_left_endpoints",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 53,
+      "declaration": "theorem merge_left_endpoints :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.merge_right_endpoints",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 57,
+      "declaration": "theorem merge_right_endpoints :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.merge_left_injective",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 61,
+      "declaration": "theorem merge_left_injective : Function.Injective mergeLeft := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.merge_right_collision",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 65,
+      "declaration": "theorem merge_right_collision :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.merge_patch_identity",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 70,
+      "declaration": "theorem merge_patch_identity :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.merge_ray_identity",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 75,
+      "declaration": "theorem merge_ray_identity :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.merge_legal_patch_occurrences",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 80,
+      "declaration": "theorem merge_legal_patch_occurrences :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.merge_vertex_seam",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 86,
+      "declaration": "theorem merge_vertex_seam :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.merge_start_equation",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 91,
+      "declaration": "theorem merge_start_equation :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.merge_word_count_vectors",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 96,
+      "declaration": "theorem merge_word_count_vectors :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.merge_interior_address_equations",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 106,
+      "declaration": "theorem merge_interior_address_equations :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.merge_same_endpoint",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 112,
+      "declaration": "theorem merge_same_endpoint :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.merge_distinct_branch_letters",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 117,
+      "declaration": "theorem merge_distinct_branch_letters :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.merge_tail_displacement",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 123,
+      "declaration": "theorem merge_tail_displacement :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.branch_numerator_fixed_mod_three",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 139,
+      "declaration": "theorem branch_numerator_fixed_mod_three :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.branch_numerator_nonzero_mod_three",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 143,
+      "declaration": "theorem branch_numerator_nonzero_mod_three :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.model_seam_count",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 174,
+      "declaration": "theorem model_seam_count : Fintype.card Seam = 6 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.model_seam_connected",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 178,
+      "declaration": "theorem model_seam_connected (e f : Seam) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.model_partner_symmetric",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 182,
+      "declaration": "theorem model_partner_symmetric :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.model_partner_disjoint_labels",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 186,
+      "declaration": "theorem model_partner_disjoint_labels :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.model_partner_nonempty",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 190,
+      "declaration": "theorem model_partner_nonempty :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.model_partner_triangle_free",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 194,
+      "declaration": "theorem model_partner_triangle_free :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.model_stack_equivalence",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 198,
+      "declaration": "theorem model_stack_equivalence : Equivalence modelStack := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.model_copartners_stack_equivalent",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 201,
+      "declaration": "theorem model_copartners_stack_equivalent :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.model_partners_not_stack_equivalent",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 205,
+      "declaration": "theorem model_partners_not_stack_equivalent :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.model_asymptotic_copartners",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 210,
+      "declaration": "theorem model_asymptotic_copartners :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.model_nonconstant_degree",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 217,
+      "declaration": "theorem model_nonconstant_degree :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.model_degree_formula",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 222,
+      "declaration": "theorem model_degree_formula :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.model_betti_count",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 226,
+      "declaration": "theorem model_betti_count : (6 : ℤ) - 3 - 2 + 1 = 2 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.triangle_relabelling_commutes",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 246,
+      "declaration": "theorem triangle_relabelling_commutes :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.triangle_rho_order_three",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 250,
+      "declaration": "theorem triangle_rho_order_three :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.triangle_all_bigrams_legal",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 255,
+      "declaration": "theorem triangle_all_bigrams_legal :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.triangle_closes",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 261,
+      "declaration": "theorem triangle_closes : ∀ e : Letter × Letter,"
+    },
+    {
+      "name": "Psc.PeriodicPartnerControls.triangle_partner_disjoint_labels",
+      "module": "PscVerif.PeriodicPartnerControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean",
+      "line": 269,
+      "declaration": "theorem triangle_partner_disjoint_labels :"
+    },
+    {
       "name": "Psc.PerronCore.super_eigen_eq",
       "module": "PscVerif.PerronCore",
       "private": false,
@@ -43848,6 +44232,21 @@
       "statement_heading": "**Theorem 3 (exact phase balance).** Let v>0 be a right Perron vector of N, Nv=beta v (the eigenvalue equality follows from the positive left vector ell^T P of the complete strictly closed system). Write v^(k) for v restricted to class k, with zeros outside. Then"
     },
     {
+      "source": "docs/c4-periodic-partner-extraction-2026-11-18.md",
+      "line": 65,
+      "statement_heading": "**Lemma P (periodic partner promotion).** Under the preceding inputs, there"
+    },
+    {
+      "source": "docs/c4-periodic-partner-extraction-2026-11-18.md",
+      "line": 104,
+      "statement_heading": "**Lemma E (exact endpoint criterion).** For this branch-normalized pair,"
+    },
+    {
+      "source": "docs/c4-periodic-partner-extraction-2026-11-18.md",
+      "line": 160,
+      "statement_heading": "**Lemma M (collapse of unshifted inflation).** If"
+    },
+    {
       "source": "docs/c4-phase-lattice-index-conservation-2026-11-04.md",
       "line": 21,
       "statement_heading": "**Theorem 1 (phase index conservation).** Under §1, for each k modulo h,"
@@ -45732,6 +46131,7 @@
     "proof/PscVerif/ClassAPlusUpperRecurrenceAudit.lean": "ef12f802e6eb10dbf2b02ce84cccbcdf9164aed9356f4fe2917ee513923824aa",
     "proof/PscVerif/ClassARunDescentAudit.lean": "a1fe09a772c2112929a6f892993da045628ef410f15cd53b1d8eba74343959fc",
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "81efe5b8745576f8f15a59a263563b31e08307e9c432e78fa2ef9021a613b2d1",
+    "proof/PscVerif/PeriodicPartnerAudit.lean": "526387de76813c30224c362300379ea28db27a92670ad1ffdfa35b2dbd01d296",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean": "87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean": "e18e726b6bd1c431f9e28500504edd6ffba157415af20069715b9c8f208f3f9b",
@@ -45892,6 +46292,8 @@
     "proof/PscVerif/PscVerif/PacketSquareData/Tribonacci.lean": "48d66e751e1af210a087d87a7b03395d380b0c6d33077085d0a96d1ca6b5b72a",
     "proof/PscVerif/PscVerif/ParikhIntertwiner.lean": "bc7120433f0c103c966fc6faf41407b969537fd0881971a5d36b98169b220d96",
     "proof/PscVerif/PscVerif/ParikhRank.lean": "f13cddb90200af8a8a26d01428537235a2bebddf2e081849188753e97add6e69",
+    "proof/PscVerif/PscVerif/PeriodicPartner.lean": "8b4cfa2dbed0bf629a0a0f0dfd57ecb63b0d83bc02b48ee3392faa90404f4aaf",
+    "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean": "84725326692e81dafcef2c4a724bfb2cee8629fdba398686540db35be72eb0fd",
     "proof/PscVerif/PscVerif/PerronCore.lean": "1f06da1e0b57e74b31fc03d753bd314f25561a37e512b3a8f7f05fda0d75458c",
     "proof/PscVerif/PscVerif/PerronExistence.lean": "a2ac1801abf2a99a6c312935d101ed4f760ffec0f96586d5f1f43bb176814c73",
     "proof/PscVerif/PscVerif/PerronSimple.lean": "1e4d9aca60b215f17067e39ba38bd8eaec7d9781fb716d8727fa7f9cbbf737a8",
@@ -45921,7 +46323,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "d17fe3fc7d8d109f2fd7674dc8710d4b01e533cc365b7da8fc6b1d717a163765",
+    "proof/PscVerif/PscVerif.lean": "ffd7a29545e78dd525adf42e22346cef8f2856952daad708ab64e6ab6ea59621",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
