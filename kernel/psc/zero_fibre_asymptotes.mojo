@@ -172,12 +172,23 @@ struct NMVReport(Copyable, Movable):
     var interior: Int
     var left_failures: List[String]
     var right_failures: List[String]
+    # Distinct interior members asymptotic to each other: the zero-fibre form of
+    # the residual configuration of the witness-selection note.
+    var left_interior: List[String]
+    var right_interior: List[String]
+    # The origin-tile letters of each such pair, encoded `3 * a + b` with `a < b`.
+    var left_interior_letters: List[Int]
+    var right_interior_letters: List[Int]
 
     def __init__(out self, members: Int, interior: Int):
         self.members = members
         self.interior = interior
         self.left_failures = List[String]()
         self.right_failures = List[String]()
+        self.left_interior = List[String]()
+        self.right_interior = List[String]()
+        self.left_interior_letters = List[Int]()
+        self.right_interior_letters = List[Int]()
 
     def holds(self) -> Bool:
         return len(self.left_failures) == 0 and len(self.right_failures) == 0
@@ -206,7 +217,8 @@ def _name(x: Member) -> String:
 
 
 def nmv_report(mut m: PrototileMap, mut boxes: StableRadiiCache) raises -> NMVReport:
-    """(NM_V) on both sides, with each violating pair named."""
+    """(NM_V) on both sides, with each violating pair named, and every pair of
+    distinct interior members that are asymptotic on a side."""
     var members = zero_fibre_members(m, boxes)
     var interior = 0
     for x in members:
@@ -226,4 +238,20 @@ def nmv_report(mut m: PrototileMap, mut boxes: StableRadiiCache) raises -> NMVRe
             if not (x.vertex and x.right == v.right):
                 if asymptotic(m, v, x, True):
                     report.right_failures.append(String(v.left, ".", v.right, " ~R ", _name(x)))
+    for xi in range(len(members)):
+        if members[xi].vertex:
+            continue
+        for yi in range(xi + 1, len(members)):
+            if members[yi].vertex:
+                continue
+            var pair = String(_name(members[xi]), " ~ ", _name(members[yi]))
+            var a = members[xi].state.letter
+            var b = members[yi].state.letter
+            var letters = 3 * min(a, b) + max(a, b)
+            if asymptotic(m, members[xi], members[yi], False):
+                report.left_interior.append(pair)
+                report.left_interior_letters.append(letters)
+            if asymptotic(m, members[xi], members[yi], True):
+                report.right_interior.append(pair)
+                report.right_interior_letters.append(letters)
     return report^

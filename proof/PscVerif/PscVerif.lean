@@ -185,3 +185,4 @@ import PscVerif.PeriodicPartnerDichotomy
 import PscVerif.PeriodicPartnerReflection
 import PscVerif.PeriodicPartnerAsymptotic
 import PscVerif.PeriodicPartnerHull
+import PscVerif.PeriodicPartnerSelection

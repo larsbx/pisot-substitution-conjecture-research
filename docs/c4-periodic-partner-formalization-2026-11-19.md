@@ -264,6 +264,9 @@ remaining obligations are:
 2. Under the surviving strict rank-two, odd-determinant and (NM_V)
    hypotheses, select a witness that passes the endpoint test or treat
    its other periodic branch fibre. No theorem here supplies that selection.
+   *Update:* [Theorem S](c4-witness-selection-2026-11-19.md) checks the reduction to
+   interior leaves on the collapsed pair; that case stays open and is populated in
+   `F₀` on the corpus.
 3. Obtain the further global contradiction. The asymptotic leaves share
    tiles, so their mutual edge is not strict; W4 and the two strict links
    do not themselves give a noncoincidence triangle or a parity argument.
