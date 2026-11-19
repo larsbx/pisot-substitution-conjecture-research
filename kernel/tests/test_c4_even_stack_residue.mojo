@@ -30,6 +30,8 @@ def test_even_corpus() raises:
     var positive_range = 0
     var nilpotent = Histogram(8)
     var levels = Histogram(WITNESS_DEPTH + 1)
+    var shapes = Histogram(400)  # key = 100 * left + 10 * right + edges
+    var complete = 0
     for specimen in corpus:
         ref m = specimen.incidence
         var determinant = m.det()
@@ -45,6 +47,19 @@ def test_even_corpus() raises:
         nilpotent.record(h.dimension)
         if h.dimension == 3:
             continue
+        var er = eventual_range(specimen.sigma, legal_two_words(specimen.sigma))
+        var left = 0
+        var right = 0
+        for a in range(3):
+            var row_used = False
+            var column_used = False
+            for b in range(3):
+                row_used = row_used or er[3 * a + b]
+                column_used = column_used or er[3 * b + a]
+            left += Int(row_used)
+            right += Int(column_used)
+        shapes.record(100 * left + 10 * right + h.edges)
+        complete += Int(h.edges == left * right)
         for a in range(3):
             for b in range(a + 1, 3):
                 var depth = coincidence_level(specimen.sigma, a, b)
@@ -59,9 +74,39 @@ def test_even_corpus() raises:
     assert_equal(nilpotent.line("dim H1"), "dim H1 3:336 4:36 5:48 7:12")
     assert_equal(levels.total(), 288)
     assert_equal(levels.maximum(), 7)
+    assert_equal(shapes.line("original ER shapes"),
+                 "original ER shapes 224:24 235:6 236:24 325:6 326:24 339:12")
+    assert_equal(shapes.total(), 96)
+    assert_equal(complete, 84)
     print("even-det corpus", even, "positive ER rank", positive_range, "residue", levels.total() // 3)
     print(nilpotent.line("nilpotent by dim H1"))
     print(levels.line("literal left witness levels"))
+    print(shapes.line("original ER shapes (100*left+10*right+edges)"))
+    print("original ER complete", complete, "missing one edge", shapes.total() - complete)
+
+
+def test_incomplete_original_range() raises:
+    # A grouped square is not a claim that the original graph was complete.
+    var sigma: List[List[Int]] = [[0, 1], [2, 1, 1], [1, 0, 2]]
+    var m = Mat3(substitution_incidence(sigma))
+    assert_true(is_pip(m))
+    assert_equal(chi_mod2_code(m.det(), m.trace(), principal_minor_sum(m)), 0)
+    var er = eventual_range(sigma, legal_two_words(sigma))
+    assert_equal(er, [False, False, False, True, True, True, False, True, True])
+    var h = h1_profile(sigma)
+    assert_equal(h.edges, 5)
+    assert_equal(h.vertices, 5)
+    assert_equal(h.dimension, 4)
+    # Illustrative finite grouping: rows 1/2, columns {0,1}/{2}.
+    # This does not identify the actual geometric stack factor.
+    var grouped = List[Bool](length=4, fill=False)
+    for a in range(1, 3):
+        for b in range(3):
+            if er[3 * a + b]:
+                grouped[2 * (a - 1) + Int(b == 2)] = True
+    assert_equal(grouped, [True, True, True, True])
+    print("01/211/102", "original_ER=K2,3_minus_one_edge", "dim_H1=4",
+          "illustrative_grouped_graph=K2,2", "actual_stack_factor_not_computed")
 
 
 def test_long_image_control() raises:
@@ -92,5 +137,6 @@ def test_long_image_control() raises:
 
 def main() raises:
     test_even_corpus()
+    test_incomplete_original_range()
     test_long_image_control()
-    require_contract("Even stack residue: 96 of the 564 positive-ER-rank even determinant corpus specimens have nilpotent incidence modulo two. All 288 unordered letter pairs on those 96 have an exact shortest left coincidence witness confirmed by literal words. The PIP3 control 1/2/10022221 has the nilpotent parity and K2,2 eventual range beyond the corpus, and its periodic first letters coincide at level 3.")
+    require_contract("Even stack residue: 96 of the 564 positive-ER-rank even determinant corpus specimens have nilpotent incidence modulo two. Their original eventual-range shapes are 24 K2,2, 24 K2,3, 24 K3,2, 12 K3,3, six K2,3 minus one edge and six K3,2 minus one edge. The incomplete 01/211/102 graph can group to a square without asserting a geometric stack factor. All 288 unordered letter pairs on those 96 have an exact shortest left coincidence witness confirmed by literal words. The PIP3 control 1/2/10022221 has the nilpotent parity and K2,2 eventual range beyond the corpus, and its periodic first letters coincide at level 3.")

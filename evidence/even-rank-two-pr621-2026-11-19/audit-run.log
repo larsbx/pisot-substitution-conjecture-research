@@ -1,0 +1,2 @@
+COMMAND lake --no-cache env lean EvenRankTwoAudit.lean
+EXIT_CODE 0

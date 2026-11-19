@@ -1,0 +1,19 @@
+COMMAND python3 tools/make_proof_bank.py
+Proof bank: 132 claims, 5584 named Lean proofs, 525 source openings
+EXIT_CODE 0
+COMMAND python3 tools/make_proof_bank.py --check
+Proof bank: 132 claims, 5584 named Lean proofs, 525 source openings
+EXIT_CODE 0
+COMMAND python3 tools/make_ledger.py --check
+OK: 32 generated surfaces are current.
+EXIT_CODE 0
+COMMAND env PYTHONPATH=tools python3 -m claim_governance.cli --root .
+OK: claim governance audit of larsbx/pisot-substitution-conjecture-research passed [terminology, claims, coverage, promotion, numerics, consistency]
+EXIT_CODE 0
+COMMAND /workspace/scratch/a4ba384fd738/psc-venv/bin/python -m pytest tests/test_markdown_links.py tests/test_check_markdown_source.py tests/test_proof_bank.py
+.................................................................        [100%]
+65 passed in 75.45s (0:01:15)
+EXIT_CODE 0
+COMMAND git diff --check
+EXIT_CODE 0
+PSC_EVEN_REPOSITORY_CHECKS_PASSED
