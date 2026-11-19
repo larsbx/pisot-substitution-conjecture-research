@@ -507,6 +507,8 @@ closed on caps and retain a replayable record for every survivor.
 - [Formalization source decision](c4-periodic-partner-formalization-stop-go-2026-11-19.md): primitive local inputs, published imports, and the noncircular proof boundary.
 - [Legal tiling hull instance](c4-tiling-hull-realization-2026-11-19.md): the legal two-sided hull, translation, inflation, endpoints and an exact-agreement metric in Lean, with every local contract discharged on it; geometric realization is not constructed and the published inputs remain named fields.
 - [Hull source decision](c4-tiling-hull-realization-stop-go-2026-11-19.md): which contracts are local, the metric choice, and why realization is deferred.
+- [Geometric realization](c4-geometric-realization-2026-11-19.md): the realization map of the hull into the solenoid of `M`, with semiconjugacy, translation equivariance and (R4) proved under the Pisot contraction and recognizability; finite fibres stay an input. Fibonacci (unit), Thue–Morse (nonunit) and a non-Pisot control.
+- [Realization source decision](c4-geometric-realization-stop-go-2026-11-19.md): Baker–Barge–Kwapisz Definition 3.1 specialised to `Σ = ℤᵈ`, and what stays imported.
 - [Witness selection under (NM_V)](c4-witness-selection-2026-11-19.md): Theorem S in Lean. A vertex leaf forces the branch to the origin, and failing branches have interior leaves on the collapsed endpoint pair. The exact census of that residual finds it in `F₀` on 12 in-scope specimens; selection stays open.
 - [Selection source decision](c4-witness-selection-stop-go-2026-11-19.md): what transfers from BDS, BBK and Barge–Diamond, the local contracts, and why selection itself is deferred.
 

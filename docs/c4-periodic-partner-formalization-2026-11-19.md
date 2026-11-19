@@ -260,7 +260,10 @@ remaining obligations are:
    that instance. *Update:* the
    [hull instance](c4-tiling-hull-realization-2026-11-19.md) does all of this
    except the geometric-realization map, with an exact-agreement metric; the
-   published inputs are fields of `PublishedInputs` on that hull.
+   published inputs are fields of `PublishedInputs` on that hull. The
+   [realization note](c4-geometric-realization-2026-11-19.md) then constructs the
+   realization map into the solenoid and proves its semiconjugacy and (R4); finite
+   fibres, BDS and recognizability remain inputs.
 2. Under the surviving strict rank-two, odd-determinant and (NM_V)
    hypotheses, select a witness that passes the endpoint test or treat
    its other periodic branch fibre. No theorem here supplies that selection.

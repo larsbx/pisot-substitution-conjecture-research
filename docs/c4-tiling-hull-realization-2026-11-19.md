@@ -63,6 +63,9 @@ structure field. None is a Lean axiom, and every compiled declaration uses only 
 1. **Geometric realization is not constructed.** It needs the Pisot contraction, an
    inverse-limit/solenoid target in the nonunit case, and recognizability. It remains the
    field `PublishedInputs.realize` with its semiconjugacy and finite fibres.
+   *Update:* the [realization note](c4-geometric-realization-2026-11-19.md) constructs it into the
+   solenoid under `PisotData` and bijective inflation, with semiconjugacy, flow equivariance and
+   (R4) proved; finite fibres remain an input.
 2. **Published theorems are not proved.** Recognizability, BDS, finite fibres and (R4) are
    supplied as fields. Primitivity and the Pisot property are hypotheses of those
    theorems. They are not fields of `LengthSubst`, whose local contracts need neither.
