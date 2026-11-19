@@ -13,6 +13,10 @@ read). Nothing here changes a governed claim status (C4, #138, #139, #84, G1
 and PSC are unchanged), and no ledger claim is registered.
 [Issue #461](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/461).
 
+**Follow-up (2026-11-19).** The [stack quotient argument](c4-rank-two-stack-cycle-exclusion-2026-11-19.md)
+uses (W1), (W2) and (W4) to exclude strict systems at odd determinant and
+coincidence rank two. The original results below retain their stated scope.
+
 Literature gate:
 [`c4-rank-two-wall-stop-go-2026-11-16.md`](c4-rank-two-wall-stop-go-2026-11-16.md).
 Parents: the (F)-class note

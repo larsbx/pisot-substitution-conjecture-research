@@ -160,13 +160,14 @@ namespace `Psc.PeriodicPartnerSelection`:
 
 Inputs are the structures `RightBranchLaws` and `VertexLaws`, the contract
 `BranchExistence`, and the named hypotheses `BDSPeriodicization`, `R4ZeroFibre`,
-`AsymptoticSameFibre` (E1) and `NMVRight`. None is an axiom. `VertexLaws` and
-`BranchExistence` are not yet discharged on
-[`PeriodicPartnerHull`](c4-tiling-hull-realization-2026-11-19.md).
+`AsymptoticSameFibre` (E1) and `NMVRight`. None is an axiom. The separate
+[`PeriodicPartnerHullSelection` follow-up](c4-complete-range-covering-2026-11-19.md#local-laws-on-the-concrete-hull)
+proves `VertexLaws` and `BranchExistence` on the concrete hull and specializes
+Theorem S there.
 
 ```sh
 cd proof/PscVerif && lake build PscVerif.PeriodicPartnerSelection
-./tools/check_c4_periodic_partner.sh        # fresh clone, all ten periodic-partner modules
+./tools/check_c4_periodic_partner.sh        # fresh build of the periodic-partner import closure
 (cd kernel && pixi run --locked mojo run -I . -I tests tests/test_zero_fibre_asymptotes.mojo)
 (cd kernel && pixi run --locked mojo run -I . nmv_census.mojo)
 ```
@@ -176,11 +177,14 @@ Local acceptance is recorded in
 
 ## Non-claims / remaining gaps
 
-1. **(B) is open.** Exclude it for strict witnesses, or carry gap 2 through it. For
-   (B₀) gap 2 receives a zero-fibre triple with interior leaves; for (B₁) a triple in a
-   nonzero periodic fibre. The census shows (B₀) cannot be excluded by (NM_V) alone.
-2. **Contracts on the hull.** `VertexLaws` and `BranchExistence` are local but are not
-   yet proved for `PeriodicPartnerHull`.
+1. **(B) remains possible for an arbitrary witness.** For (B₀) gap 2 receives
+   a zero-fibre triple with interior leaves, and for (B₁) a triple in a nonzero
+   periodic fibre. The census shows (B₀) can occur for pairs under (NM_V).
+2. **Direction of the witness.** At odd determinant and coincidence rank two,
+   the [directional extraction](c4-complete-range-covering-2026-11-19.md#directional-extraction-from-a-singleton-fibre)
+   gives a witness in the injective endpoint direction. This bypasses (B) for
+   the selection problem. The [stack quotient argument](c4-rank-two-stack-cycle-exclusion-2026-11-19.md)
+   uses such witnesses for the odd-determinant rank-two exclusion.
 3. **Census reach.** Unit corpus only, zero fibre only, pairs only. The two
    observations (collapsed origin letters, determinant `−1`) are unexplained.
 
