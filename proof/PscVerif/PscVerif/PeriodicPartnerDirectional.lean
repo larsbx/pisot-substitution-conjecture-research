@@ -4,6 +4,8 @@ the grouped cycle calculation for the stack quotient argument. The topology
 of the strict component is abstracted here as a compact space.
 -/
 import Mathlib.Algebra.BigOperators.Group.Finset.Basic
+import Mathlib.Algebra.Ring.Commute
+import Mathlib.Topology.Connected.TotallyDisconnected
 import Mathlib.Topology.Separation.Hausdorff
 import PscVerif.VertexAsymptoteRange
 
@@ -147,5 +149,91 @@ theorem grouped_cycle_entries {I J A : Type*} [Fintype I] [Fintype J] [AddCommGr
     simpa only [neg_neg] using eq_neg_of_add_eq_zero_right h
   intro u v
   cases u <;> cases v <;> simp [hft, htf, htt]
+
+/-- A nonzero cycle on two groups per side needs a seam of nonzero weight
+over each of the four grouped edges. -/
+theorem grouped_cycle_support {I J A : Type*} [Fintype I] [Fintype J] [AddCommGroup A]
+    (p : I → Bool) (q : J → Bool) (w : I → J → A)
+    (hrow : ∀ i, ∑ j, w i j = 0) (hcol : ∀ j, ∑ i, w i j = 0)
+    (hne : ∃ u v, (∑ i, ∑ j, if p i = u ∧ q j = v then w i j else 0) ≠ 0) :
+    ∀ u v, ∃ i j, p i = u ∧ q j = v ∧ w i j ≠ 0 := by
+  classical
+  let x := groupCycle p q w
+  have hshape : ∀ u v, x u v = if u = v then x false false else -x false false :=
+    grouped_cycle_entries p q w hrow hcol
+  change ∃ u v, x u v ≠ 0 at hne
+  intro u v
+  by_contra hmissing
+  have hzero : x u v = 0 := by
+    unfold x groupCycle
+    apply Finset.sum_eq_zero
+    intro i _
+    apply Finset.sum_eq_zero
+    intro j _
+    by_cases hgroup : p i = u ∧ q j = v
+    · have hw : w i j = 0 := by
+        by_contra hn
+        exact hmissing ⟨i, j, hgroup.1, hgroup.2, hn⟩
+      simp [hgroup, hw]
+    · simp [hgroup]
+  have hfirst : x false false = 0 := by
+    rw [hshape u v] at hzero
+    split at hzero <;> simpa using hzero
+  obtain ⟨u', v', hnonzero⟩ := hne
+  exact hnonzero (by rw [hshape u' v', hfirst]; simp)
+
+/-- A nonzero grouped entry picks out an original row meeting both column
+groups, since that row has zero total weight. -/
+theorem grouped_row_crosses {I J A : Type*} [Fintype I] [Fintype J] [AddCommGroup A]
+    (p : I → Bool) (q : J → Bool) (w : I → J → A)
+    (hrow : ∀ i, ∑ j, w i j = 0) {u : Bool}
+    (hentry : (∑ i, ∑ j, if p i = u ∧ q j = false then w i j else 0) ≠ 0) :
+    ∃ i j k, p i = u ∧ q j = false ∧ q k = true ∧ w i j ≠ 0 ∧ w i k ≠ 0 := by
+  obtain ⟨i, _, hi⟩ := Finset.exists_ne_zero_of_sum_ne_zero hentry
+  have hp : p i = u := by
+    by_contra h
+    exact hi (by simp [h])
+  simp only [hp, true_and] at hi
+  have hadd : (∑ j, if q j = false then w i j else 0) +
+      (∑ j, if q j = true then w i j else 0) = 0 := by
+    rw [← Finset.sum_add_distrib]
+    refine Eq.trans ?_ (hrow i)
+    apply Finset.sum_congr rfl
+    intro j _
+    cases q j <;> simp
+  have hsecond : (∑ j, if q j = true then w i j else 0) ≠ 0 :=
+    fun h => hi (by simpa only [h, add_zero] using hadd)
+  obtain ⟨j, _, hj⟩ := Finset.exists_ne_zero_of_sum_ne_zero hi
+  obtain ⟨k, _, hk⟩ := Finset.exists_ne_zero_of_sum_ne_zero hsecond
+  split at hj
+  · rename_i hqj
+    split at hk
+    · rename_i hqk
+      exact ⟨i, j, k, hp, hqj, hqk, hj, hk⟩
+    · exact (hk rfl).elim
+  · exact (hj rfl).elim
+
+/-- The normalized phase in the square-root eigenfunction argument is
+constant on a preconnected parameter space. -/
+theorem continuous_square_one_eq_one {T K : Type*} [TopologicalSpace T]
+    [PreconnectedSpace T] [CommRing K] [IsDomain K] [TopologicalSpace K] [T2Space K]
+    {f : T → K} (hf : Continuous f) (hsq : ∀ t, f t ^ 2 = 1)
+    {t₀ : T} (hstart : f t₀ = 1) (t : T) : f t = 1 := by
+  have hfinite : (range f).Finite := by
+    refine ((finite_singleton (-1 : K)).insert 1).subset ?_
+    rintro _ ⟨s, rfl⟩
+    simpa only [mem_insert_iff, mem_singleton_iff] using sq_eq_one_iff.mp (hsq s)
+  have hconstant := (isPreconnected_range hf).isDiscrete_iff_subsingleton.mp hfinite.isDiscrete
+  exact (hconstant ⟨t, rfl⟩ ⟨t₀, rfl⟩).trans hstart
+
+/-- The upper bound on stack cohomology and the lower bound on the cover's
+base saturate the even part. The signed incidence identity then has no
+nonzero modular roots in the original incidence factor. -/
+theorem even_stack_residue_degrees {degree stack base r q d₂ : ℕ}
+    (hupper : stack ≤ degree + 1) (hlower : degree + 1 ≤ base)
+    (hfixed : base ≤ degree + r) (hdim : stack = degree + r + q)
+    (hmod₂ : d₂ + r = 1 + q) :
+    stack = degree + 1 ∧ base = degree + 1 ∧ r = 1 ∧ q = 0 ∧ d₂ = 0 := by
+  omega
 
 end Psc.PeriodicPartner

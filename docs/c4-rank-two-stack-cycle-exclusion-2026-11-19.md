@@ -218,3 +218,6 @@ are independent of the cohomological contradiction.
 
 This argument leaves even determinant and coincidence ranks above two
 outside its exclusion. It does not settle universal C4 or PSC.
+
+The [even-determinant follow-up](c4-even-stack-residue-2026-11-19.md) narrows
+the rank-two residue using the two-sheet covering of the stack quotient.
