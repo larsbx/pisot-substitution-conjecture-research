@@ -1,0 +1,5 @@
+From the repository root, with the pinned Lean and Lake executables on PATH:
+
+./tools/check_c4_periodic_partner.sh
+
+The recorded invocation supplied PATH=/workspace/scratch/a4ba384fd738/lean-runtime/lean-4.34.0-rc2-linux/bin:$PATH and TMPDIR=/workspace/scratch/ad388b20f266/realization-gate-tmp, and captured combined stdout/stderr in /workspace/scratch/ad388b20f266/realization-continuity-gate.log. It used the unchanged canonical gate.

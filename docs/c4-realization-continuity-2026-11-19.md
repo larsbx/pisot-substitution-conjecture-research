@@ -1,9 +1,11 @@
 # Continuity of the concrete geometric realization
 
 **Status:** the concrete ordinary-hull continuity theorem and its supporting
-modules compile locally. The integrated fresh-closure build, compiled axiom
-audit and repository acceptance receipts are pending and will be recorded
-below. No hosted or full root-library acceptance is asserted by this status.
+modules passed the unchanged fresh-closure build and compiled axiom audit.
+The seven new modules add **53 named Lean proofs**, with no new continuity
+premise on the final theorem. The [evidence packet](../evidence/realization-continuity-2026-11-19/README.md)
+records the exact accepted source and replay receipts. This is local scoped
+acceptance; hosted and full root-library acceptance are not asserted.
 
 Starting revision: `c8d582ff502b18745f7b0a73037458c92e705ad9`, the merge of
 PR #625. The [pre-code source decision](c4-realization-continuity-stop-go-2026-11-19.md)
@@ -149,10 +151,35 @@ The only recognizability hypothesis remains the original bijectivity input.
 
 ### Evidence and replay
 
-The seven new modules have been compiled individually with pinned Lean
-4.34.0-rc2 and `autoImplicit=false`. Integrated clean-build and compiled
-axiom-audit evidence is pending; this paragraph will be replaced by its
-terminal receipts after the gate completes.
+The unchanged canonical gate rebuilt the full local periodic-partner import
+closure in a new temporary project, with fresh pinned dependency checkouts
+and only selected upstream source-hash artifacts restored. No local project
+objects were reused. All seven new modules also compiled individually with
+pinned Lean 4.34.0-rc2 and `autoImplicit=false`.
+
+The compiled audit accepted **31 modules, 1536 declarations,
+1135 theorem declarations and all 630 source-named proofs**,
+using only `propext`, `Classical.choice` and `Quot.sound`. All **243 source
+and pin files** retained snapshot
+`e55d0dd7d8deef9b15b60bf4ffebd82e48342638a32f922c2cf429fb198b3f20`
+after dependency cloning, cache restoration, compilation and the audit.
+The complete marker is `fresh-local-closure standard-axioms-only`.
+
+The verified local source checkpoint
+`5697ae4ef9757e5f02be32387975853b3dca376a` and published source checkpoint
+`4e5b0dd9ec474b42c3a58d779d5747e2b0c8544b` share Git tree
+`05be35058b81bb62c7e2f2fa234dfcc78ee3c47d`; the fetched tree comparison
+is empty. Final documentation and evidence packaging preserve every checked
+Lean source and acceptance-support file.
+
+The [evidence packet](../evidence/realization-continuity-2026-11-19/README.md)
+contains the lossless gate log, exact source bindings, terminal audit receipts,
+repository checks, focused regression records and checksums. The generated
+inventory records 132 claims, 5,822 named Lean proofs and 525 source openings.
+Inventory, ledger, governance and Markdown-source checks passed at the source
+checkpoint; the final focused regression run and its exact counts are recorded
+separately in the packet. These receipts do not assert a full root-library
+build or hosted CI acceptance.
 
 | Module | Formal scope |
 | --- | --- |
