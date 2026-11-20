@@ -520,6 +520,7 @@ closed on caps and retain a replayable record for every survivor.
 - [Selection source decision](c4-witness-selection-stop-go-2026-11-19.md): what transfers from BDS, BBK and Barge–Diamond, the local contracts, and why selection itself is deferred.
 - [Vertex-type common partner](c4-vertex-partner-2026-11-20.md): in the origin case of Theorem S, a common partner with a vertex at the origin forces the last-letter map to be a permutation (Lean, determinant-free).
 - [Homoclinic winding](c4-homoclinic-winding-2026-11-20.md) constructs normalized circle lifts in Lean and derives odd winding from the opposite-sheet seam hypothesis in the even-determinant reduction.
+- [Literal finite differences](c4-literal-periodic-defect-2026-11-20.md) rules out a periodic finite difference in the original tiling at nilpotent incidence modulo two and gives coincidence witnesses in a companion family of unbounded even determinant.
 
 ## Primary completion route: finite seed-patch overlaps
 

@@ -327,8 +327,8 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
                                     f"{LEFTMOST}, Lemma S, Proposition LC and Corollary LC4; 10,584 sign/shape checks, 10,128 integral replays and 456 uncomputed offsets on the standing corpus; {REVIEWED}", (), ()),
     "LeftmostChainG1Certificate": (T, "a PIP substitution whose box graph has no terminal leftmost cycle satisfies all-seed strict-zipper exclusion, hence finite BPA",
                                    f"{LEFTMOST}, Corollary LC5, with {MANUSCRIPT}, Proposition 5.47; {REVIEWED}", ("BoxCycleContainment",), ()),
-    "MinusClassAWholeChamberEntry": (P, "for every k,t>=0 with n=k+t+3 and d=k+2t+5 (equivalently n+2<=d<=2n-1), the minus class-A substitution x->x y^(n+d) x, c->c y^n x, y->x y^(n-1) c has a finite path of actual ordered strict child occurrences to typed coincidence from every strict integral overlap when n>=6 and from every S18 seed-reachable vertex in the six complete graphs when n<6; original occurrence indices and the full integral prefix identity M^m w=P-Q are retained",
-        "written proof merged to main by PR #578 (2103548) and PR #577 (75ebe17); docs/class-a-central-entry-2026-11-14.md sections 2-7, unchanged since that merge; central-entry and scoped Lean runs 43749570859 and 43749570601 passed at f8fab40de91c407e6ee57651ad3e03d598c94459; pre-merge stack integration run 43749586092 failed Python tests; no post-merge acceptance on main is recorded yet; the open ledger status tracks integration acceptance; Lean coverage is partial and independent human review is pending", (), ()),
+    "MinusClassAWholeChamberEntry": (T, "for every k,t>=0 with n=k+t+3 and d=k+2t+5 (equivalently n+2<=d<=2n-1), the minus class-A substitution x->x y^(n+d) x, c->c y^n x, y->x y^(n-1) c has a finite path of actual ordered strict child occurrences to typed coincidence from every strict integral overlap when n>=6 and from every S18 seed-reachable vertex in the six complete graphs when n<6; original occurrence indices and the full integral prefix identity M^m w=P-Q are retained",
+        "written proof in docs/class-a-central-entry-2026-11-14.md sections 2-7, from PR #578 integrated by PR #577 at 59adf93f61ea5b7cecc78526b2099fa410c36bc0 and merged as 75ebe17cea95fcce35df4be333d55aa77f3c8f8e; pre-code source and hypothesis review docs/bh-class-a-central-entry-stop-go-2026-11-14.md; exact-head central-entry run 43864432132, literal Lean interface run 43864432245 and PSC research run 43864432043 all succeeded, including full proof-bank compilation and axiom audit in the last run; rechecked 2026-11-19 against main c8d582ff502b18745f7b0a73037458c92e705ad9; historical stack run 43749586092 failed Python tests at 210354853ba816a3d2d5639319cf1982fd4e4b06 and is not credited as passing; accepted for progression at the written theorem scope, with partial Lean coverage and independent human review pending", (), ()),
     # --- retracted ------------------------------------------------------------------------
     "V5Thm51": (P, "v5 Theorem 5.1", "retired: the v5 Theorem 5.1 argument is withdrawn", (), (gl.WITHDRAWN_TAG,)),
 }
@@ -506,6 +506,7 @@ SURFACES = {  # prose surfaces on which each claim's status is spelled out (labe
 SCOPES = {
     "PrefixBPATerminationPisotOrSalem": "primitive substitutions on a finite alphabet with irreducible incidence characteristic polynomial (not restricted to PIP; vacuous on it)",
     "NonPisotPrefixBPANontermination": "primitive substitutions on a finite alphabet with irreducible incidence characteristic polynomial (not restricted to PIP; vacuous on it)",
+    "MinusClassAWholeChamberEntry": "the literal minus-Class-A chamber n+2<=d<=2n-1; all strict integral overlaps for n>=6, and only the complete S18 seed graphs for the six n<6 members",
 }
 LEAN_CHECKED = frozenset({"PrefixBPATerminationPisotOrSalem", "NonPisotPrefixBPANontermination"})
 
@@ -538,6 +539,11 @@ def records() -> dict[str, Record]:
         if name in LEAN_CHECKED:
             evidence += (("human_review_pending", "true"),
                          ("lean_checked", "true"))
+        if name == "MinusClassAWholeChamberEntry":
+            evidence += (("human_review_pending", "true"),
+                         ("lean_coverage", "partial"),
+                         ("accepted_source_revision", "59adf93f61ea5b7cecc78526b2099fa410c36bc0"),
+                         ("merge_revision", "75ebe17cea95fcce35df4be333d55aa77f3c8f8e"))
         if name == "G1":
             evidence += (("dependency_alternatives", json.dumps(
                 [[build(r).id] for r in ("G1FromRenewal", "G1OverlapRoute", "G1HalfCoincidenceRoute", "G1FormalProductivityRoute")],

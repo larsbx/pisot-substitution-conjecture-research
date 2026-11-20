@@ -706,7 +706,7 @@
     {
       "name": "FiniteCollarDeath",
       "status": "evidence",
-      "source": "docs/p1-overlap-collar-2026-09-16.md, finite evidence only; no collar-completeness theorem",
+      "source": "docs/p1-overlap-collar-2026-09-16.md, Sections 2-3: finite ancestry-separation, patch-collapse and pump-persistence diagnostics; legacy identifier, not the withdrawn 1764-cycle/radius-seven claim (docs/formal-overlap-carriers-2026-10-04.md, Section 1); no collar-completeness theorem",
       "dependencies": [],
       "ledger_node": false,
       "lean_support": {
@@ -1024,8 +1024,8 @@
     },
     {
       "name": "MinusClassAWholeChamberEntry",
-      "status": "open",
-      "source": "written proof merged to main by PR #578 (2103548) and PR #577 (75ebe17); docs/class-a-central-entry-2026-11-14.md sections 2-7, unchanged since that merge; central-entry and scoped Lean runs 43749570859 and 43749570601 passed at f8fab40de91c407e6ee57651ad3e03d598c94459; pre-merge stack integration run 43749586092 failed Python tests; no post-merge acceptance on main is recorded yet; the open ledger status tracks integration acceptance; Lean coverage is partial and independent human review is pending",
+      "status": "proved",
+      "source": "written proof in docs/class-a-central-entry-2026-11-14.md sections 2-7, from PR #578 integrated by PR #577 at 59adf93f61ea5b7cecc78526b2099fa410c36bc0 and merged as 75ebe17cea95fcce35df4be333d55aa77f3c8f8e; pre-code source and hypothesis review docs/bh-class-a-central-entry-stop-go-2026-11-14.md; exact-head central-entry run 43864432132, literal Lean interface run 43864432245 and PSC research run 43864432043 all succeeded, including full proof-bank compilation and axiom audit in the last run; rechecked 2026-11-19 against main c8d582ff502b18745f7b0a73037458c92e705ad9; historical stack run 43749586092 failed Python tests at 210354853ba816a3d2d5639319cf1982fd4e4b06 and is not credited as passing; accepted for progression at the written theorem scope, with partial Lean coverage and independent human review pending",
       "dependencies": [],
       "ledger_node": true,
       "lean_support": {
@@ -38770,6 +38770,46 @@
       "declaration": "theorem endpoint_persistent_of_periodic (hβ : 1 < β) {x y : X} {a b : α}"
     },
     {
+      "name": "Psc.PeriodicPartnerCompanionWords.copies_succ",
+      "module": "PscVerif.PeriodicPartnerCompanionWords",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerCompanionWords.lean",
+      "line": 25,
+      "declaration": "private theorem copies_succ {α : Type*} (n : ℕ) (w : List α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerCompanionWords.flatMap_copies",
+      "module": "PscVerif.PeriodicPartnerCompanionWords",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerCompanionWords.lean",
+      "line": 29,
+      "declaration": "private theorem flatMap_copies {α β : Type*} (s : α → List β) (n : ℕ) (w : List α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerCompanionWords.image_longWord",
+      "module": "PscVerif.PeriodicPartnerCompanionWords",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerCompanionWords.lean",
+      "line": 37,
+      "declaration": "private theorem image_longWord (m r : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerCompanionWords.image_second",
+      "module": "PscVerif.PeriodicPartnerCompanionWords",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerCompanionWords.lean",
+      "line": 42,
+      "declaration": "private theorem image_second (m r : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerCompanionWords.level_three_witness",
+      "module": "PscVerif.PeriodicPartnerCompanionWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerCompanionWords.lean",
+      "line": 49,
+      "declaration": "theorem level_three_witness (m r : ℕ) (hm : 0 < m) (hr : m < r) :"
+    },
+    {
       "name": "Psc.PeriodicPartnerCompleteRange.next_column_distinct",
       "module": "PscVerif.PeriodicPartnerCompleteRange",
       "private": true,
@@ -40184,6 +40224,166 @@
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
       "line": 231,
       "declaration": "theorem hull_selection_dichotomy (hβ : 1 < S.β) (P : PublishedInputs S Y)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.expansion_of",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 23,
+      "declaration": "private theorem expansion_of {α : Type*} (a : α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.expansion_constant",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 26,
+      "declaration": "private theorem expansion_constant {α : Type*} (w : FreeMonoid α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.letter_mul_coeff",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 39,
+      "declaration": "private theorem letter_mul_coeff {α : Type*} [DecidableEq α]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.expansion_linear",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 56,
+      "declaration": "private theorem expansion_linear {α : Type*} [DecidableEq α] (w : FreeMonoid α) (b : α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.evaluate_basis",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 69,
+      "declaration": "private theorem evaluate_basis {α : Type*} (f : α → WordAlgebra α) (w : FreeMonoid α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.expansion_injective",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 72,
+      "declaration": "private theorem expansion_injective {α : Type*} :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.VanishesBelow.mono",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 91,
+      "declaration": "private theorem VanishesBelow.mono {α : Type*} {d e : ℕ} {f : WordAlgebra α}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.VanishesBelow.add",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 95,
+      "declaration": "private theorem VanishesBelow.add {α : Type*} {d : ℕ} {f g : WordAlgebra α}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.VanishesBelow.sub",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 100,
+      "declaration": "private theorem VanishesBelow.sub {α : Type*} {d : ℕ} {f g : WordAlgebra α}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.VanishesBelow.mul",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 105,
+      "declaration": "private theorem VanishesBelow.mul {α : Type*} {d e : ℕ} {f g : WordAlgebra α}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.expansion_sub_one",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 122,
+      "declaration": "private theorem expansion_sub_one {α : Type*} (w : FreeMonoid α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.expansion_even_image",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 129,
+      "declaration": "private theorem expansion_even_image {α : Type*} [DecidableEq α] (w : FreeMonoid α)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.evaluate_length",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 137,
+      "declaration": "private theorem evaluate_length {α : Type*} {f : α → WordAlgebra α}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.evaluate_raises_degree",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 148,
+      "declaration": "private theorem evaluate_raises_degree {α : Type*} {f : α → WordAlgebra α}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.padding_difference",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 162,
+      "declaration": "private theorem padding_difference {α : Type*} (l r : FreeMonoid α) {d : ℕ} {x : WordAlgebra α}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.evaluate_expansion",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 175,
+      "declaration": "private theorem evaluate_expansion {α : Type*} (s : FreeMonoid α →* FreeMonoid α)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.freeMonoid_eq_of_common_padding",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 185,
+      "declaration": "private theorem freeMonoid_eq_of_common_padding {α : Type*} [DecidableEq α]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.lift_ofList_flatMap",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 214,
+      "declaration": "private theorem lift_ofList_flatMap {α : Type*} (s : α → List α) (w : List α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.eq_of_common_padding",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 223,
+      "declaration": "theorem eq_of_common_padding {α : Type*} [DecidableEq α] (s : α → List α)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.period_doubling_padding_control",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 235,
+      "declaration": "theorem period_doubling_padding_control :"
     },
     {
       "name": "Psc.PeriodicPartnerLocalRealization.realizeLocal_inflate",
@@ -53499,7 +53699,7 @@
     }
   ],
   "input_digests": {
-    "claim_governance.toml": "1657e24d565d09fab739cea484c400a0fc15e26a28abec623bf2626facc5cc72",
+    "claim_governance.toml": "895eb1950ccd19725ad600b1d40d988652d5e15524a336288bef7761411d8a7c",
     "proof/PscVerif/A1PrimeTailAudit.lean": "eee41a524a6a114716a7704f169726b6484ab56c2398431dcd297fe6809a0b23",
     "proof/PscVerif/BHFiniteReachabilityAudit.lean": "5469fdefea80286841bb3b40b7944a4674de5dce03ca12b490ee72b77ca2b79d",
     "proof/PscVerif/C4ParameterFamilyAudit.lean": "71861a4249ef9a84e9f4357f227e038000ca6b32f5ed2a5e947cd140bc7edb8a",
@@ -53516,7 +53716,7 @@
     "proof/PscVerif/ClassARunDescentAudit.lean": "a1fe09a772c2112929a6f892993da045628ef410f15cd53b1d8eba74343959fc",
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "81efe5b8745576f8f15a59a263563b31e08307e9c432e78fa2ef9021a613b2d1",
     "proof/PscVerif/EvenRankTwoAudit.lean": "cfc2c3b6dfae0305e1ab27989607917e4ffe8944a513aa861dc5ca781ba620ca",
-    "proof/PscVerif/PeriodicPartnerAudit.lean": "13c4c0d0778507183d15240b0a06427def748673c49bffc3126ebf2fba0a21de",
+    "proof/PscVerif/PeriodicPartnerAudit.lean": "4b457b15450d0e695d9dfa57d0cfd262344932fd6a3726a3e5c426c4f9eba63b",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean": "f1c4480b95159800bb52cd42164763d01e6ab6045dc72b07874f164409a0eaf1",
     "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean": "6387c221871d7b70efca50349c815fac07421bb44a28122f9157ff0652cb074f",
@@ -53693,6 +53893,7 @@
     "proof/PscVerif/PscVerif/PeriodicPartner.lean": "8b4cfa2dbed0bf629a0a0f0dfd57ecb63b0d83bc02b48ee3392faa90404f4aaf",
     "proof/PscVerif/PscVerif/PeriodicPartnerAsymptotic.lean": "0ad011b1e6eb02418699a4838c22ae630f28954696810c470fdb054e077b4c23",
     "proof/PscVerif/PscVerif/PeriodicPartnerCollapse.lean": "a0b3df8c6040977532413191864a2ba002ebf45a6fb79cd3a40fe9a8fb45fd91",
+    "proof/PscVerif/PscVerif/PeriodicPartnerCompanionWords.lean": "2e06df72b09958cc21009a195ff96cc9388d7e2fd5e0ca59391277d9f64d7e21",
     "proof/PscVerif/PscVerif/PeriodicPartnerCompleteRange.lean": "df5e5f39df78d9a48c02f61399558ecb600dd5cc3c9d936c238300ece7caba23",
     "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean": "84725326692e81dafcef2c4a724bfb2cee8629fdba398686540db35be72eb0fd",
     "proof/PscVerif/PscVerif/PeriodicPartnerDichotomy.lean": "d74034c65d26d8b98916f6fdca046c6772e9a3389fb53fdd03bcf3baeea2339b",
@@ -53702,6 +53903,7 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean": "6124e92faa7ace36663a57ff5dda39f281fd86237cc30006912cf4c2a0a65b6e",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean": "80e0f040cd0ea768a0d5ddf74710dc659c9a9431fb667740953f41369a652386",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean": "59d86f345c47142bdd7a74200c04b48f4ae975d1d5afe2dc29331048d7f37988",
+    "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean": "bad233b2986dd12d4cd1552d2265cb79eafdade743ac55cb840ec22609628067",
     "proof/PscVerif/PscVerif/PeriodicPartnerLocalRealization.lean": "472eacd674a293a84e841a7888398fd1fbaeedbdeff3a372c2e6ab665556e2b1",
     "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean": "ab9cca25c9b6f57b944a912e1e8a239b4bb46bd7a73727542af056760331b7cf",
     "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopologyControls.lean": "1573603e555c519d258421eaa50e01e06828166794811a1b6e5028a6040ee509",
@@ -53752,13 +53954,13 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "eeff4773033ddbed5d9293d5a291ba556f67ecd74ca00b4acc5d8a836513637a",
+    "proof/PscVerif/PscVerif.lean": "a98f509b748444addc0d5fd1e3ef2099df2f71c43f82e51a2fb9054470f2f89e",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
-    "proof/proof-bank.toml": "60ab9f9c41bb962b17d827e9e746a2428453361cf98a8b5c690c99a712d31880",
+    "proof/proof-bank.toml": "c462e211cdb2a7aca4a59d75efc7b4ffdd3c4cd2c7780588e861b15c42aa8937",
     "tools/check_lean.sh": "eb63ce6fb0b837eee1208b3d47e759bcf8b3617b1374685a8850e48f283cba8d",
-    "tools/make_ledger.py": "40b1ced5f51c9f09c122d84f58d978545cb559841c1510ba444f4b35ffb0c67b",
+    "tools/make_ledger.py": "7639499e905ca898e650cd40d9dd5ae405d7f0dfac15ef3547ce40044c795ed5",
     "tools/make_proof_bank.py": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8",
     "tools/setup_lean.sh": "8c4e5f4a35c6daf437c612bb868410ac2ecad68984154d50493fd7f42d86a824"
   }

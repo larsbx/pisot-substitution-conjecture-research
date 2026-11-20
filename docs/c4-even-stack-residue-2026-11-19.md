@@ -273,6 +273,9 @@ The next even-determinant obligation concerns primitive irreducible cubic
 substitutions with nilpotent incidence modulo two and a surviving grouped
 seam square. It needs either a cubic obstruction to the periodic
 homoclinic winding with four seam lifts from the original ternary hull,
-or an independent strict-system exclusion on this class. The literal
-control shows why parity and the graph alone leave a residue beyond the
-corpus. Higher coincidence ranks, universal C4 and PSC remain open.
+or an independent strict-system exclusion on this class. The
+[literal follow-up](c4-literal-periodic-defect-2026-11-20.md) rules out a
+periodic finite difference in the original hull and excludes a companion
+family with every positive even determinant. The unordered factor can
+still have a finite difference whose original lifts do not agree on both
+tails. Higher coincidence ranks, universal C4 and PSC remain open.

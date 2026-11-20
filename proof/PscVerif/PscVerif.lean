@@ -193,6 +193,8 @@ import PscVerif.PeriodicPartnerDirectional
 import PscVerif.PeriodicPartnerSeamCycles
 import PscVerif.PeriodicPartnerWinding
 import PscVerif.PeriodicPartnerWindingSeams
+import PscVerif.PeriodicPartnerLiteralDefect
+import PscVerif.PeriodicPartnerCompanionWords
 import PscVerif.VertexAsymptoteRange
 import PscVerif.PeriodicPartnerRealization
 import PscVerif.PeriodicPartnerRealizationModels
