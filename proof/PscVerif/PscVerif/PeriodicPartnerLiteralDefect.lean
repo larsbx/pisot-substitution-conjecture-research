@@ -1,10 +1,12 @@
-/- The finite-word obstruction for a substitution power with even image counts. -/
+/- Finite-word obstructions from incidence modulo two. -/
 module
 
 import Mathlib.Algebra.FreeMonoid.Basic
 public import Mathlib.Algebra.Group.Even
 import Mathlib.Algebra.MonoidAlgebra.Basic
-import Mathlib.Data.ZMod.Basic
+public import Mathlib.Algebra.Module.LinearMap.Defs
+public import Mathlib.Data.ZMod.Basic
+public import Mathlib.Logic.Function.Iterate
 import Mathlib.Tactic.Abel
 
 public section
@@ -134,9 +136,9 @@ private theorem expansion_even_image {α : Type*} [DecidableEq α] (w : FreeMono
   · obtain ⟨b, rfl⟩ := FreeMonoid.length_eq_one.mp (by omega : v.length = 1)
     simp [MonoidAlgebra.coeff_sub, expansion_linear, MonoidAlgebra.one_def, (h b).natCast_zmod_two]
 
-private theorem evaluate_length {α : Type*} {f : α → WordAlgebra α}
-    (h : ∀ a, VanishesBelow 2 (f a)) (w : FreeMonoid α) :
-    VanishesBelow (2 * w.length) (evaluate f (basis w)) := by
+private theorem evaluate_length {α : Type*} {f : α → WordAlgebra α} {k : ℕ}
+    (h : ∀ a, VanishesBelow k (f a)) (w : FreeMonoid α) :
+    VanishesBelow (k * w.length) (evaluate f (basis w)) := by
   rw [evaluate_basis]
   induction w using FreeMonoid.inductionOn' with
   | one => simp [VanishesBelow]
@@ -158,6 +160,44 @@ private theorem evaluate_raises_degree {α : Type*} {f : α → WordAlgebra α}
   have hvan := (evaluate_length h w).mono (Nat.mul_le_mul_left 2 hlen)
   change x.coeff w • (evaluate f (basis w)).coeff v = 0
   rw [hvan v hv, smul_zero]
+
+private theorem evaluate_sub_basis {α : Type*} {f g : α → WordAlgebra α}
+    (hf : ∀ a, VanishesBelow 1 (f a)) (hg : ∀ a, VanishesBelow 1 (g a))
+    (hfg : ∀ a, VanishesBelow 2 (f a - g a)) (w : FreeMonoid α) :
+    VanishesBelow (w.length + 1) (evaluate f (basis w) - evaluate g (basis w)) := by
+  simp only [evaluate_basis]
+  induction w using FreeMonoid.inductionOn' with
+  | one => simp [VanishesBelow]
+  | of_mul a w ih =>
+    rw [map_mul, map_mul, FreeMonoid.lift_eval_of, FreeMonoid.lift_eval_of,
+      FreeMonoid.length_mul, FreeMonoid.length_of]
+    have htail : VanishesBelow w.length (FreeMonoid.lift f w) := by
+      simpa only [one_mul, evaluate_basis] using evaluate_length hf w
+    have he : f a * FreeMonoid.lift f w - g a * FreeMonoid.lift g w =
+        (f a - g a) * FreeMonoid.lift f w +
+          g a * (FreeMonoid.lift f w - FreeMonoid.lift g w) := by
+      simp only [sub_mul, mul_sub]
+      abel
+    rw [he]
+    have hlen : 2 + w.length = 1 + w.length + 1 := by omega
+    exact (hlen ▸ (hfg a).mul htail).add (by simpa only [Nat.add_assoc] using (hg a).mul ih)
+
+private theorem evaluate_sub_raises_degree {α : Type*} {f g : α → WordAlgebra α}
+    (hf : ∀ a, VanishesBelow 1 (f a)) (hg : ∀ a, VanishesBelow 1 (g a))
+    (hfg : ∀ a, VanishesBelow 2 (f a - g a)) {d : ℕ} {x : WordAlgebra α}
+    (hx : VanishesBelow d x) : VanishesBelow (d + 1) (evaluate f x - evaluate g x) := by
+  classical
+  intro v hv
+  rw [MonoidAlgebra.lift_unique (evaluate f) x, MonoidAlgebra.lift_unique (evaluate g) x]
+  simp only [Finsupp.sum, MonoidAlgebra.coeff_sub, MonoidAlgebra.coeff_sum,
+    Finsupp.sub_apply, Finsupp.finsetSum_apply, MonoidAlgebra.coeff_smul_apply, ← Finset.sum_sub_distrib]
+  refine Finset.sum_eq_zero fun w hw => ?_
+  have hlen : d ≤ w.length := Nat.le_of_not_lt fun hn => Finsupp.mem_support_iff.mp hw (hx w hn)
+  have hvan := evaluate_sub_basis hf hg hfg w v (by omega)
+  simp only [MonoidAlgebra.coeff_sub, Finsupp.sub_apply] at hvan
+  rw [← smul_sub]
+  change x.coeff w • ((evaluate f (basis w)).coeff v - (evaluate g (basis w)).coeff v) = 0
+  rw [hvan, smul_zero]
 
 private theorem padding_difference {α : Type*} (l r : FreeMonoid α) {d : ℕ} {x : WordAlgebra α}
     (hx : VanishesBelow d x) :
@@ -182,34 +222,84 @@ private theorem evaluate_expansion {α : Type*} (s : FreeMonoid α →* FreeMono
       FreeMonoid.lift_eval_of]
     abel_nf
 
-private theorem freeMonoid_eq_of_common_padding {α : Type*} [DecidableEq α]
-    (s : FreeMonoid α →* FreeMonoid α) (h : ∀ a b, Even ((s (FreeMonoid.of a)).toList.count b))
-    {u v l r : FreeMonoid α} (hu : s u = l * u * r) (hv : s v = l * v * r) : u = v := by
-  let f (a : α) := expansion (s (FreeMonoid.of a)) - 1
-  let x := expansion u - expansion v
-  have he : evaluate f x = expansion l * x * expansion r := by
-    change evaluate f (expansion u - expansion v) = _
-    rw [map_sub, evaluate_expansion, evaluate_expansion, hu, hv]
-    simp only [x, map_mul, mul_sub, sub_mul]
-  have hbase : VanishesBelow 1 x := by
-    intro w hw
-    have heq : w = 1 := FreeMonoid.length_eq_zero.mp (by omega)
-    subst w
-    simp [x, MonoidAlgebra.coeff_sub, expansion_constant]
-  have hdegrees (k : ℕ) : VanishesBelow (k + 1) x := by
+private theorem evaluate_padded_difference {α : Type*} (s : FreeMonoid α →* FreeMonoid α)
+    {u v l r : FreeMonoid α} (hu : s u = l * u * r) (hv : s v = l * v * r) :
+    evaluate (fun a => expansion (s (FreeMonoid.of a)) - 1) (expansion u - expansion v) =
+      expansion l * (expansion u - expansion v) * expansion r := by
+  rw [map_sub, evaluate_expansion, evaluate_expansion, hu, hv]
+  simp only [map_mul, mul_sub, sub_mul]
+
+private theorem eq_of_padded_degree_increase {α : Type*} (s : FreeMonoid α →* FreeMonoid α)
+    {u v l r : FreeMonoid α} (hu : s u = l * u * r) (hv : s v = l * v * r)
+    (hraise : ∀ d, 1 ≤ d → VanishesBelow d (expansion u - expansion v) →
+      VanishesBelow (d + 1) (evaluate (fun a => expansion (s (FreeMonoid.of a)) - 1)
+        (expansion u - expansion v))) : u = v := by
+  have hdegrees (k : ℕ) : VanishesBelow (k + 1) (expansion u - expansion v) := by
     induction k with
-    | zero => exact hbase
+    | zero =>
+      intro w hw
+      have heq : w = 1 := FreeMonoid.length_eq_zero.mp (by omega)
+      subst w
+      simp [MonoidAlgebra.coeff_sub, expansion_constant]
     | succ k ih =>
-      have hhigh := (evaluate_raises_degree
-        (f := f) (fun a => expansion_even_image _ (h a)) ih).mono
-        (show k + 1 + 1 ≤ 2 * (k + 1) by omega)
+      have hhigh := hraise (k + 1) (by omega) ih
       have hpad := padding_difference l r ih
-      rw [← he] at hpad
+      rw [← evaluate_padded_difference s hu hv] at hpad
       simpa only [sub_sub_cancel] using hhigh.sub hpad
   apply expansion_injective
   apply sub_eq_zero.mp
   apply MonoidAlgebra.ext
   exact Finsupp.ext fun w => hdegrees w.length w (Nat.lt_succ_self w.length)
+
+private theorem freeMonoid_eq_of_common_padding {α : Type*} [DecidableEq α]
+    (s : FreeMonoid α →* FreeMonoid α) (h : ∀ a b, Even ((s (FreeMonoid.of a)).toList.count b))
+    {u v l r : FreeMonoid α} (hu : s u = l * u * r) (hv : s v = l * v * r) : u = v := by
+  apply eq_of_padded_degree_increase s hu hv
+  intro d hd hx
+  exact (evaluate_raises_degree (fun a => expansion_even_image _ (h a)) hx).mono (by omega)
+
+private theorem evaluate_marked_expansion {α : Type*} (mark : α → Bool) (t : WordAlgebra α)
+    (w : FreeMonoid α) :
+    evaluate (fun a => if mark a then t else 0) (expansion w) =
+      (1 + t) ^ (w.toList.countP mark) := by
+  induction w using FreeMonoid.inductionOn' with
+  | one => simp
+  | of_mul a w ih =>
+    rw [map_mul, map_mul, ih, expansion_of, map_add, map_one, evaluate_basis,
+      FreeMonoid.lift_eval_of, FreeMonoid.toList_of_mul]
+    cases h : mark a <;> simp [h, pow_succ']
+
+private theorem freeMonoid_eq_of_common_padding_of_marked_count {α : Type*} [DecidableEq α]
+    (s : FreeMonoid α →* FreeMonoid α) (mark : α → Bool) (reference : α)
+    (hcolumns : ∀ a b, ((s (FreeMonoid.of a)).toList.count b : ZMod 2) =
+      if mark a then ((s (FreeMonoid.of reference)).toList.count b : ZMod 2) else 0)
+    {u v l r : FreeMonoid α} (hu : s u = l * u * r) (hv : s v = l * v * r)
+    (hcount : u.toList.countP mark = v.toList.countP mark) : u = v := by
+  let f (a : α) := expansion (s (FreeMonoid.of a)) - 1
+  let g (a : α) := if mark a then f reference else 0
+  have hf (a : α) : VanishesBelow 1 (f a) := expansion_sub_one _
+  have hg (a : α) : VanishesBelow 1 (g a) := by
+    by_cases hm : mark a
+    · simpa only [g, ite_eq_left hm] using hf reference
+    · simp [g, hm, VanishesBelow]
+  have hfg (a : α) : VanishesBelow 2 (f a - g a) := by
+    intro w hw
+    by_cases hzero : w.length = 0
+    · exact (hf a).sub (hg a) w (by omega)
+    · obtain ⟨b, rfl⟩ := FreeMonoid.length_eq_one.mp (by omega : w.length = 1)
+      have h := hcolumns a b
+      by_cases hm : mark a <;>
+        simp [f, g, hm, MonoidAlgebra.coeff_sub, expansion_linear, MonoidAlgebra.one_def] at h ⊢ <;>
+        simp [h]
+  have hsurrogate : evaluate g (expansion u - expansion v) = 0 := by
+    rw [map_sub]
+    change evaluate (fun a => if mark a then f reference else 0) (expansion u) -
+      evaluate (fun a => if mark a then f reference else 0) (expansion v) = 0
+    rw [evaluate_marked_expansion, evaluate_marked_expansion, hcount, sub_self]
+  apply eq_of_padded_degree_increase s hu hv
+  intro _ _ hx
+  have hlow := evaluate_sub_raises_degree hf hg hfg hx
+  rwa [hsurrogate, sub_zero] at hlow
 
 private theorem lift_ofList_flatMap {α : Type*} (s : α → List α) (w : List α) :
     FreeMonoid.lift (fun a => FreeMonoid.ofList (s a)) (FreeMonoid.ofList w) =
@@ -230,6 +320,71 @@ theorem eq_of_common_padding {α : Type*} [DecidableEq α] (s : α → List α)
   · simp only [lift_ofList_flatMap, hu, FreeMonoid.ofList_append, mul_assoc]
   · simp only [lift_ofList_flatMap, hv, FreeMonoid.ofList_append, mul_assoc]
 
+/-- When the image-count columns modulo two are zero or the same column,
+the number of marked letters determines a word reproduced between fixed pads. -/
+theorem eq_of_common_padding_of_marked_count {α : Type*} [DecidableEq α]
+    (s : α → List α) (mark : α → Bool) (reference : α)
+    (hcolumns : ∀ a b, ((s a).count b : ZMod 2) =
+      if mark a then ((s reference).count b : ZMod 2) else 0)
+    {u v l r : List α} (hu : u.flatMap s = l ++ u ++ r) (hv : v.flatMap s = l ++ v ++ r)
+    (hcount : u.countP mark = v.countP mark) : u = v := by
+  apply FreeMonoid.ofList.injective
+  refine freeMonoid_eq_of_common_padding_of_marked_count
+    (FreeMonoid.lift fun a => FreeMonoid.ofList (s a)) mark reference
+    (by simpa only [FreeMonoid.lift_eval_of, FreeMonoid.toList_ofList] using hcolumns)
+    (l := FreeMonoid.ofList l) (r := FreeMonoid.ofList r) ?_ ?_
+    (by simpa only [FreeMonoid.toList_ofList] using hcount)
+  · simp only [lift_ofList_flatMap, hu, FreeMonoid.ofList_append, mul_assoc]
+  · simp only [lift_ofList_flatMap, hv, FreeMonoid.ofList_append, mul_assoc]
+
+private theorem count_flatMap_of_marked_columns {α : Type*} [DecidableEq α]
+    (s : α → List α) (mark : α → Bool) (b : α) (column : ZMod 2)
+    (h : ∀ a, ((s a).count b : ZMod 2) = if mark a then column else 0) (w : List α) :
+    ((w.flatMap s).count b : ZMod 2) = (w.countP mark : ZMod 2) * column := by
+  induction w with
+  | nil => simp
+  | cons a w ih =>
+    rw [List.flatMap_cons, List.count_append, Nat.cast_add, h a, ih]
+    cases ha : mark a <;> simp [ha, add_mul, add_comm]
+
+/-- For a common-padding pair, the marked-count difference modulo two
+determines every coordinate of the letter-count difference modulo two. -/
+theorem count_difference_mod_two_of_common_padding {α : Type*} [DecidableEq α]
+    (s : α → List α) (mark : α → Bool) (reference : α)
+    (hcolumns : ∀ a b, ((s a).count b : ZMod 2) =
+      if mark a then ((s reference).count b : ZMod 2) else 0)
+    {u v l r : List α} (hu : u.flatMap s = l ++ u ++ r) (hv : v.flatMap s = l ++ v ++ r)
+    (b : α) : (u.count b : ZMod 2) - (v.count b : ZMod 2) =
+      ((u.countP mark : ZMod 2) - (v.countP mark : ZMod 2)) * (s reference).count b := by
+  calc
+    _ = ((u.flatMap s).count b : ZMod 2) - ((v.flatMap s).count b : ZMod 2) := by
+      rw [hu, hv]
+      simp only [List.count_append, Nat.cast_add]
+      abel
+    _ = _ := by
+      rw [count_flatMap_of_marked_columns s mark b _ (fun a => hcolumns a b),
+        count_flatMap_of_marked_columns s mark b _ (fun a => hcolumns a b), sub_mul]
+
+/-- An invariant mod-two quotient row kills the contribution of any
+intertwining transfer from a nilpotent source. Only the boundary term survives. -/
+theorem winding_eq_boundary_of_nilpotent_transfer {U V : Type*}
+    [AddCommMonoid U] [Module (ZMod 2) U] [AddCommMonoid V] [Module (ZMod 2) V]
+    (A : U →ₗ[ZMod 2] U) (B : V →ₗ[ZMod 2] V) (transfer : U →ₗ[ZMod 2] V)
+    (mark : V →ₗ[ZMod 2] ZMod 2) {n : ℕ}
+    (hnil : ∀ u, ((A : U → U)^[n]) u = 0)
+    (htransfer : ∀ u, B (transfer u) = transfer (A u))
+    (hfixed : ∀ v, mark (B v) = mark v) (u : U) (boundary : V) :
+    mark (transfer u + boundary) = mark boundary := by
+  have hstep (x : U) : mark (transfer (A x)) = mark (transfer x) := by
+    rw [← htransfer, hfixed]
+  have hiterate (k : ℕ) (x : U) : mark (transfer (((A : U → U)^[k]) x)) = mark (transfer x) := by
+    induction k generalizing x with
+    | zero => rfl
+    | succ k ih => rw [Function.iterate_succ_apply, ih, hstep]
+  have hu := (hiterate n u).symm
+  rw [hnil u, map_zero, map_zero] at hu
+  rw [map_add, hu, zero_add]
+
 /-- Period doubling has a common-prefix difference, and its second power
 fails the even-count hypothesis. -/
 theorem period_doubling_padding_control :
@@ -237,6 +392,15 @@ theorem period_doubling_padding_control :
     let s : Bool → List Bool := fun a => (δ a).flatMap δ
     let l := [false, true, false]
     s false = l ++ [false] ∧ s true = l ++ [true] ∧ ¬ Even ((s false).count false) := by
+  decide
+
+/-- The same period-doubling power has the required columns, but its two
+one-letter padded words have different marked counts. -/
+theorem period_doubling_marked_count_control :
+    let δ : Bool → List Bool := fun a => [false, !a]
+    let s : Bool → List Bool := fun a => (δ a).flatMap δ
+    (∀ a b : Bool, ((s a).count b : ZMod 2) = if !a then ((s false).count b : ZMod 2) else 0) ∧
+      ([false] : List Bool).countP (!·) = 1 ∧ ([true] : List Bool).countP (!·) = 0 := by
   decide
 
 end Psc.PeriodicPartnerLiteralDefect

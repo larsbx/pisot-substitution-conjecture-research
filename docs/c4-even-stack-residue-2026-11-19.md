@@ -278,4 +278,7 @@ or an independent strict-system exclusion on this class. The
 periodic finite difference in the original hull and excludes a companion
 family with every positive even determinant. The unordered factor can
 still have a finite difference whose original lifts do not agree on both
-tails. Higher coincidence ranks, universal C4 and PSC remain open.
+tails. The [marked-count follow-up](c4-homoclinic-winding-counts-2026-11-20.md)
+identifies its nonzero count vector modulo two and gives a modulo-four
+test on the original seam cycle for the boundary contribution. Higher
+coincidence ranks, universal C4 and PSC remain open.

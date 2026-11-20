@@ -40230,7 +40230,7 @@
       "module": "PscVerif.PeriodicPartnerLiteralDefect",
       "private": true,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
-      "line": 23,
+      "line": 25,
       "declaration": "private theorem expansion_of {α : Type*} (a : α) :"
     },
     {
@@ -40238,7 +40238,7 @@
       "module": "PscVerif.PeriodicPartnerLiteralDefect",
       "private": true,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
-      "line": 26,
+      "line": 28,
       "declaration": "private theorem expansion_constant {α : Type*} (w : FreeMonoid α) :"
     },
     {
@@ -40246,7 +40246,7 @@
       "module": "PscVerif.PeriodicPartnerLiteralDefect",
       "private": true,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
-      "line": 39,
+      "line": 41,
       "declaration": "private theorem letter_mul_coeff {α : Type*} [DecidableEq α]"
     },
     {
@@ -40254,7 +40254,7 @@
       "module": "PscVerif.PeriodicPartnerLiteralDefect",
       "private": true,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
-      "line": 56,
+      "line": 58,
       "declaration": "private theorem expansion_linear {α : Type*} [DecidableEq α] (w : FreeMonoid α) (b : α) :"
     },
     {
@@ -40262,7 +40262,7 @@
       "module": "PscVerif.PeriodicPartnerLiteralDefect",
       "private": true,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
-      "line": 69,
+      "line": 71,
       "declaration": "private theorem evaluate_basis {α : Type*} (f : α → WordAlgebra α) (w : FreeMonoid α) :"
     },
     {
@@ -40270,7 +40270,7 @@
       "module": "PscVerif.PeriodicPartnerLiteralDefect",
       "private": true,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
-      "line": 72,
+      "line": 74,
       "declaration": "private theorem expansion_injective {α : Type*} :"
     },
     {
@@ -40278,7 +40278,7 @@
       "module": "PscVerif.PeriodicPartnerLiteralDefect",
       "private": true,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
-      "line": 91,
+      "line": 93,
       "declaration": "private theorem VanishesBelow.mono {α : Type*} {d e : ℕ} {f : WordAlgebra α}"
     },
     {
@@ -40286,7 +40286,7 @@
       "module": "PscVerif.PeriodicPartnerLiteralDefect",
       "private": true,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
-      "line": 95,
+      "line": 97,
       "declaration": "private theorem VanishesBelow.add {α : Type*} {d : ℕ} {f g : WordAlgebra α}"
     },
     {
@@ -40294,7 +40294,7 @@
       "module": "PscVerif.PeriodicPartnerLiteralDefect",
       "private": true,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
-      "line": 100,
+      "line": 102,
       "declaration": "private theorem VanishesBelow.sub {α : Type*} {d : ℕ} {f g : WordAlgebra α}"
     },
     {
@@ -40302,7 +40302,7 @@
       "module": "PscVerif.PeriodicPartnerLiteralDefect",
       "private": true,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
-      "line": 105,
+      "line": 107,
       "declaration": "private theorem VanishesBelow.mul {α : Type*} {d e : ℕ} {f g : WordAlgebra α}"
     },
     {
@@ -40310,7 +40310,7 @@
       "module": "PscVerif.PeriodicPartnerLiteralDefect",
       "private": true,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
-      "line": 122,
+      "line": 124,
       "declaration": "private theorem expansion_sub_one {α : Type*} (w : FreeMonoid α) :"
     },
     {
@@ -40318,7 +40318,7 @@
       "module": "PscVerif.PeriodicPartnerLiteralDefect",
       "private": true,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
-      "line": 129,
+      "line": 131,
       "declaration": "private theorem expansion_even_image {α : Type*} [DecidableEq α] (w : FreeMonoid α)"
     },
     {
@@ -40326,23 +40326,39 @@
       "module": "PscVerif.PeriodicPartnerLiteralDefect",
       "private": true,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
-      "line": 137,
-      "declaration": "private theorem evaluate_length {α : Type*} {f : α → WordAlgebra α}"
+      "line": 139,
+      "declaration": "private theorem evaluate_length {α : Type*} {f : α → WordAlgebra α} {k : ℕ}"
     },
     {
       "name": "Psc.PeriodicPartnerLiteralDefect.evaluate_raises_degree",
       "module": "PscVerif.PeriodicPartnerLiteralDefect",
       "private": true,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
-      "line": 148,
+      "line": 150,
       "declaration": "private theorem evaluate_raises_degree {α : Type*} {f : α → WordAlgebra α}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.evaluate_sub_basis",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 164,
+      "declaration": "private theorem evaluate_sub_basis {α : Type*} {f g : α → WordAlgebra α}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.evaluate_sub_raises_degree",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 185,
+      "declaration": "private theorem evaluate_sub_raises_degree {α : Type*} {f g : α → WordAlgebra α}"
     },
     {
       "name": "Psc.PeriodicPartnerLiteralDefect.padding_difference",
       "module": "PscVerif.PeriodicPartnerLiteralDefect",
       "private": true,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
-      "line": 162,
+      "line": 202,
       "declaration": "private theorem padding_difference {α : Type*} (l r : FreeMonoid α) {d : ℕ} {x : WordAlgebra α}"
     },
     {
@@ -40350,23 +40366,55 @@
       "module": "PscVerif.PeriodicPartnerLiteralDefect",
       "private": true,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
-      "line": 175,
+      "line": 215,
       "declaration": "private theorem evaluate_expansion {α : Type*} (s : FreeMonoid α →* FreeMonoid α)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.evaluate_padded_difference",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 225,
+      "declaration": "private theorem evaluate_padded_difference {α : Type*} (s : FreeMonoid α →* FreeMonoid α)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.eq_of_padded_degree_increase",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 232,
+      "declaration": "private theorem eq_of_padded_degree_increase {α : Type*} (s : FreeMonoid α →* FreeMonoid α)"
     },
     {
       "name": "Psc.PeriodicPartnerLiteralDefect.freeMonoid_eq_of_common_padding",
       "module": "PscVerif.PeriodicPartnerLiteralDefect",
       "private": true,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
-      "line": 185,
+      "line": 254,
       "declaration": "private theorem freeMonoid_eq_of_common_padding {α : Type*} [DecidableEq α]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.evaluate_marked_expansion",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 261,
+      "declaration": "private theorem evaluate_marked_expansion {α : Type*} (mark : α → Bool) (t : WordAlgebra α)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.freeMonoid_eq_of_common_padding_of_marked_count",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 272,
+      "declaration": "private theorem freeMonoid_eq_of_common_padding_of_marked_count {α : Type*} [DecidableEq α]"
     },
     {
       "name": "Psc.PeriodicPartnerLiteralDefect.lift_ofList_flatMap",
       "module": "PscVerif.PeriodicPartnerLiteralDefect",
       "private": true,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
-      "line": 214,
+      "line": 304,
       "declaration": "private theorem lift_ofList_flatMap {α : Type*} (s : α → List α) (w : List α) :"
     },
     {
@@ -40374,16 +40422,56 @@
       "module": "PscVerif.PeriodicPartnerLiteralDefect",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
-      "line": 223,
+      "line": 313,
       "declaration": "theorem eq_of_common_padding {α : Type*} [DecidableEq α] (s : α → List α)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.eq_of_common_padding_of_marked_count",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 325,
+      "declaration": "theorem eq_of_common_padding_of_marked_count {α : Type*} [DecidableEq α]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.count_flatMap_of_marked_columns",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 340,
+      "declaration": "private theorem count_flatMap_of_marked_columns {α : Type*} [DecidableEq α]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.count_difference_mod_two_of_common_padding",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 352,
+      "declaration": "theorem count_difference_mod_two_of_common_padding {α : Type*} [DecidableEq α]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.winding_eq_boundary_of_nilpotent_transfer",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 370,
+      "declaration": "theorem winding_eq_boundary_of_nilpotent_transfer {U V : Type*}"
     },
     {
       "name": "Psc.PeriodicPartnerLiteralDefect.period_doubling_padding_control",
       "module": "PscVerif.PeriodicPartnerLiteralDefect",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
-      "line": 235,
+      "line": 390,
       "declaration": "theorem period_doubling_padding_control :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLiteralDefect.period_doubling_marked_count_control",
+      "module": "PscVerif.PeriodicPartnerLiteralDefect",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean",
+      "line": 399,
+      "declaration": "theorem period_doubling_marked_count_control :"
     },
     {
       "name": "Psc.PeriodicPartnerLocalRealization.realizeLocal_inflate",
@@ -53903,7 +53991,7 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean": "6124e92faa7ace36663a57ff5dda39f281fd86237cc30006912cf4c2a0a65b6e",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean": "80e0f040cd0ea768a0d5ddf74710dc659c9a9431fb667740953f41369a652386",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean": "59d86f345c47142bdd7a74200c04b48f4ae975d1d5afe2dc29331048d7f37988",
-    "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean": "bad233b2986dd12d4cd1552d2265cb79eafdade743ac55cb840ec22609628067",
+    "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean": "0c9d009618b409578d573a94e2f15b8052610eaa8c4f9d28aa77c3045644b9bb",
     "proof/PscVerif/PscVerif/PeriodicPartnerLocalRealization.lean": "472eacd674a293a84e841a7888398fd1fbaeedbdeff3a372c2e6ab665556e2b1",
     "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean": "ab9cca25c9b6f57b944a912e1e8a239b4bb46bd7a73727542af056760331b7cf",
     "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopologyControls.lean": "1573603e555c519d258421eaa50e01e06828166794811a1b6e5028a6040ee509",
