@@ -1,0 +1,41 @@
+interpretation of Mathlib.Tactic._aux_Mathlib_Tactic_Linarith_Frontend___elabRules_Mathlib_Tactic_nlinarith_1._boxed took 716ms
+interpretation of Mathlib.Tactic._aux_Mathlib_Tactic_Linarith_Frontend___elabRules_Mathlib_Tactic_nlinarith_1._boxed took 767ms
+/workspace/scratch/psc-next/psc/proof/PscVerif/PscVerif/BHFiniteReachability.lean:402:2: error: unsolved goals
+case refine_1
+⊢ ↑(List.length physicalZeroControl.top.before) < 3 / 2 ∧
+    3 / 2 < ↑(List.length physicalZeroControl.top.before) + 1 ∧
+      ↑(List.length physicalZeroControl.bottom.before) < 3 / 2 ∧
+        3 / 2 < ↑(List.length physicalZeroControl.bottom.before) + 1
+/workspace/scratch/psc-next/psc/proof/PscVerif/PscVerif/BHFiniteReachability.lean:414:6: error: Type mismatch
+  hhi
+has type
+  ↑(List.length u) ≤ ↑(List.length physicalZeroControl.top.before) + 1
+but is expected to have type
+  List.length u ≤ 2
+cumulative profiling times:
+	attribute application 0.282ms
+	compilation (IR) 0.0545ms
+	compilation (LCNF base) 0.652ms
+	compilation (LCNF impure) 0.355ms
+	compilation (LCNF mono) 0.491ms
+	congr simp thm 2.82ms
+	dsimp 1.01ms
+	elaboration 168ms
+	fix level params 1.55ms
+	initialization 27.5ms
+	instantiate metavars 5.62ms
+	interpretation 1.99s
+	let-to-have transformation 0.265ms
+	linting 43ms
+	module linting 0.00131ms
+	norm_num 29.9ms
+	overlappingInstancesLinter 6.48ms
+	parsing 24.9ms
+	process pre-definitions 18.2ms
+	ring 53.2ms
+	share common exprs 18.2ms
+	simp 148ms
+	tactic execution 332ms
+	tacticAnalysis 52.6ms
+	type checking 98.5ms
+	typeclass inference 591ms

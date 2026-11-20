@@ -1,0 +1,36 @@
+{
+  "source": "/workspace/scratch/psc-next/psc/proof/PscVerif/PscVerif/BHFiniteReachability.lean",
+  "sha256": "e86cb95d6362326a908a5028ec6ca060db754c6fed8520b508db1906446cd629",
+  "header_sha256": "7a47e9655945b6521926871c22eb4441064eba3192f1a20a3fe846e6f0b61c54",
+  "direct_import_objects": {
+    "/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/build/lib/lean/PscVerif/OccurrenceSuccessor.olean": "86ecd5233d07c5d320b0753ac73beab5375c8f029156083953ab4ac419f387b8",
+    "/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/build/lib/lean/PscVerif/TerminationFactors.olean": "90b1b5ff03ef172869b27714889426cf68e042756e2eceb04b109da478bb8e83"
+  },
+  "command": [
+    "/home/agent/.elan/bin/elan",
+    "run",
+    "leanprover/lean4:v4.34.0-rc2",
+    "lake",
+    "--no-cache",
+    "env",
+    "lean",
+    "-DautoImplicit=false",
+    "--profile",
+    "-j",
+    "2",
+    "--incr-header-save=/workspace/scratch/psc-next/bh-development/bh-header-df0fdb3c3b2af97bdaf753fbe8a8e033661307d788e1b1efc1515dd9b9403b84.snap",
+    "-o",
+    "/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/build/lib/lean/PscVerif/BHFiniteReachability.olean",
+    "/workspace/scratch/psc-next/psc/proof/PscVerif/PscVerif/BHFiniteReachability.lean"
+  ],
+  "mode": "cached-development-save",
+  "timeout_seconds": 1200,
+  "source_snapshot": "/workspace/scratch/psc-next/bh-development/bh-001.lean",
+  "started_at": 1794687011.0006268,
+  "terminal_exit": 1,
+  "outcome": "completed",
+  "elapsed_seconds": 29.14454674720764,
+  "source_unchanged": true,
+  "object_written": false,
+  "log": "/workspace/scratch/psc-next/bh-development/logs/bh-001.log"
+}
