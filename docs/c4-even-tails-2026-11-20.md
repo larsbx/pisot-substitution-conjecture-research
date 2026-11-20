@@ -30,10 +30,18 @@ then `S = U`.
 `0`, and they agree beyond a common vertex `b ≥ 0`, then they agree on every tile meeting
 `(0, ∞)`.
 
-On the hull (`hull_eq_of_two_tails`, `hull_agree_right_of_vertex`), take tilings fixed by
-`Φⁿ` and require even counts in the images of `σⁿ`. When `M^j ≡ 0 (mod 2)` and `p` is a
-common period, `n = jp` qualifies, since the image counts of `σⁿ` are the columns of `Mⁿ`.
-That identification of counts with matrix columns is standard and is not formalized here.
+**Origin vertex, left** (`agree_left_of_vertex`). The mirror: tilings with a vertex at `0`
+that agree before a common vertex `a ≤ 0` agree on every tile meeting `(−∞, 0)`.
+
+**Counts are matrix columns** (`count_iterWord`). The letter counts of `σⁿ(a)` are column `a`
+of `Mⁿ`, where `M = incidence` counts letters of `σ(a)`. Hence `M^j ≡ 0 (mod 2)` and `0 < p`
+make every image of `σ^(jp)` even (`even_of_nilpotent`).
+
+On the hull the hypothesis is stated directly as nilpotence modulo two. Take
+`M^j ≡ 0 (mod 2)` and tilings fixed by `Φᵖ` with `0 < p`. Then two-sided agreement forces
+equality (`hull_eq_of_two_tails_of_nilpotent`). Origin-vertex tilings share their whole
+right, resp. left, ray once they agree beyond, resp. before, a common vertex
+(`hull_rays_of_nilpotent`).
 
 ## Proof structure
 
@@ -55,11 +63,44 @@ That identification of counts with matrix columns is standard and is not formali
 
 ## Consequence
 
-For periodic vertex seams of the original hull at even nilpotent incidence, exact
-right-tail agreement forces agreement on `(0, ∞)`, so equal first letters. The left version
-follows by reflection and is not instantiated. This is the vertex–vertex part of (NM_V) at
+For periodic vertex seams of the original hull at nilpotent incidence modulo two, exact
+right-tail agreement forces agreement on `(0, ∞)`, hence equal first letters. Exact left-tail
+agreement forces equal last letters. This is the vertex–vertex part of (NM_V) at
 nilpotent incidence. Interior members of `F₀` are not covered: the origin argument needs
 vertices at `0` in both tilings.
+
+## The hard step: one route attempted, and where it stops
+
+The open obligation is the even-determinant rank-two residue: nilpotent incidence modulo
+two with a surviving grouped seam square. **It is not discharged here.** The route tried
+uses only nilpotence and the strict bigon system `B` of Theorem W. Single prover, no
+verifier.
+
+*Route.* For a balanced pair `(u, v)`, let `δ(u, v)` be the least degree of
+`E(u) − E(v)` in the expansion over `𝔽₂` used by the word theorem. Then `δ ≥ 2`, since the
+degree-one part is the parity of the Parikh vector. `δ` is finite for `u ≠ v`, by
+injectivity of the expansion. Substituting `σ³` raises least degrees at least twofold,
+because its images have even counts. Telescoping over the irreducible blocks of
+`(σ³u, σ³v)` writes the image difference as a sum of block differences multiplied by
+expansions with constant term one. Let `δ₀` be the least `δ` over `B`, and `λ` the
+degree-`δ₀` part of the block difference on bigons with `δ = δ₀`, extended by zero. Every
+bigon's image vanishes below degree `2δ₀ > δ₀`. This gives the linear condition
+
+```text
+λ · N³ ≡ 0 (mod 2)   on the bigon system,   λ ≠ 0,
+```
+
+where `N` is the child matrix of `B`.
+
+*Where it stops.* The condition is satisfiable. (W3) gives `χ_M | χ_{N₊}`, and
+`χ_M ≡ t³ (mod 2)`, so `N` is singular modulo two. The route needs invertibility of `N`
+modulo two, and that premise fails. It cannot be rescued from mod-2 data alone. The square
+of Thue–Morse has incidence `≡ 0 (mod 2)` and the child-closed strict bigon system
+`{(01, 10), (10, 01)}` (`thueMorseSq_even`, `thueMorseSq_strict_bigons`). Its
+characteristic polynomial `t(t − 4)` is reducible and its matrix singular. So an exclusion must use
+the irreducible Pisot cubic, not just its reduction modulo two. This agrees with the
+algebraic consistency model of the [solenoid note](c4-even-solenoid-2026-11-19.md#non-claims--remaining-gaps),
+which reaches the same boundary from the cohomological side.
 
 ## Controls
 
@@ -77,7 +118,10 @@ namespace `Psc.PeriodicPartnerEvenTails`.
 | word between vertices; uniqueness | `exists_word`, `word_unique` |
 | inflation of placed words | `place_flatMap_subset`, `mem_place_flatMap`, `vertex_inflate` |
 | decomposition | `inflate_word` |
-| both tails; origin vertex | `eq_of_two_tails`, `agree_right_of_vertex` |
+| both tails; origin vertex | `eq_of_two_tails`, `agree_right_of_vertex`, `agree_left_of_vertex` |
+| counts and nilpotence | `count_iterWord`, `even_of_nilpotent` |
+| nilpotent hull forms | `hull_eq_of_two_tails_of_nilpotent`, `hull_rays_of_nilpotent` |
+| control | `thueMorseSq_even`, `thueMorseSq_strict_bigons` |
 | powers | `LengthSubst.pow`, `inflate_pow` |
 | on the hull | `hull_eq_of_two_tails`, `hull_agree_right_of_vertex` |
 
@@ -92,9 +136,7 @@ Locally the module builds without warnings, and the periodic-partner audit repor
 
 ## Non-claims / remaining gaps
 
-1. The identification of image counts with columns of `Mⁿ` is not formalized.
-2. The left-hand origin version is not instantiated.
-3. The open even-determinant obligation is unchanged. It needs a cubic restriction on the
+1. The open even-determinant obligation is unchanged. It needs a cubic restriction on the
    twin-vertex readout of the fixed return vectors, or an independent strict-system
    exclusion ([return-seam note](c4-return-seam-boundary-2026-11-20.md#non-claims--remaining-gaps)).
    The literal lifts of the quotient pair need not agree on both tails, so this module does
