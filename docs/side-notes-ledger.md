@@ -614,6 +614,15 @@ by deleting it.
   speed up member decisions. · `audit-finite-regime-advice-2026-10-08.md`;
   `experiments/z2-route/boxtime.mojo`
 
+- 2026-11-20 · The plus-Class-A family `x -> x y^(n+d) x, c -> c y^n x,
+  y -> x y^(n+1) c` is PIP for no `d >= 2n+12`: `chi(-1) = -(2n+12-d)`, a root
+  at `-1` when `d = 2n+12` and a real root below `-1` beyond. The exact screen
+  finds every `1 <= d <= 2n+11` PIP for `n <= 9`. All 70 upper members
+  `n <= 6, n+5 <= d <= 2n+11` have complete S18 graphs in which every state
+  reaches typed zero: at most 2,922 states and depth 9, about 18 s native for
+  all 70. Do not search the upper strip beyond `d = 2n+11`. ·
+  `class-a-plus-upper-small-members-2026-11-20.md`
+
 ## 6. Tooling pitfalls
 
 - 2026-10-04 · `pkill -f PATTERN` inside a shell command whose own text
@@ -728,6 +737,26 @@ by deleting it.
   strict inequality admits one invalid child exactly when `t + m ell_y = ell_A`
   identically, and on the class B line it produced 123 vertices (4 without a
   hit) instead of the exact 119. · `kernel/psc/symbolic_line.mojo` (`least_m`)
+
+- 2026-11-20 · On a shallow clone (`git clone --depth 1`, the default of a
+  fresh agent container) 30 provenance tests in `test_class_d_closure_rebind`,
+  `test_class_d_integration_ci` and `test_source_pins` fail with a bare
+  `CalledProcessError`, because they read pinned historical revisions. The
+  failures are environmental; `git fetch --unshallow` makes all three files
+  pass. Do not patch the `tools/check_class_d_*.py` checkers to report it:
+  they are digest-pinned accepted sources, and editing them refuses the
+  class-D acceptance packet (15 failures). `tests/conftest.py` names the
+  shallow clone in the pytest header and summary instead; nothing is skipped.
+  · `tests/conftest.py`
+
+- 2026-11-20 · `git rebase` drops merge commits, including any work that only
+  lives in one (an "evil merge"). `research/c4-periodic-ray-decision` (#576)
+  carried the whole phase-aligned-ray change (`c4-phase-aligned-ray*.md`, the
+  `c4_periodic_rays` kernel, test and oracle) inside its merge `e541fe8d`; a
+  plain rebase silently lost it. Before rebasing a branch with merges, list the
+  paths where each merge differs from its main-side parent and replay those as
+  an ordinary commit; afterwards check that every file `main` never touched is
+  byte-identical to the old head. · PR #576 rebase comment
 
 ## 7. Review outcomes
 
