@@ -6,6 +6,11 @@ discharges the written interval argument of the
 It excludes no strict system on its own, and no governed claim changes. Starting revision:
 `origin/main@796be5a`.
 
+**Follow-up, 2026-11-20.** The [stack word rigidity proof](c4-nonunit-stack-word-rigidity-2026-11-20.md)
+uses nonunit norm and the subdivision at original letter cuts to exclude
+the rank-two strict residue in writing. Its finite algebra has scoped
+Lean checks. The results and controls below describe the earlier routes.
+
 ## Source decision
 
 | Source | Used for |
