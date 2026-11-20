@@ -52536,6 +52536,16 @@
       "statement_heading": "**Lemma.** In a supplied finite strict child-closed phase-zero balanced"
     },
     {
+      "source": "docs/c4-stack-rigidity-review-2026-11-20.md",
+      "line": 50,
+      "statement_heading": "**Lemma SR (stack rigidity).** Two tilings of `Ω` with the same image in `Ω/≈_s` agree"
+    },
+    {
+      "source": "docs/c4-stack-rigidity-review-2026-11-20.md",
+      "line": 61,
+      "statement_heading": "**Corollary (nonunit, any rank).** Suppose a nonunit PIP3 substitution has a strict system."
+    },
+    {
       "source": "docs/c4-strict-component-period-2026-11-14.md",
       "line": 9,
       "statement_heading": "**Theorem (strict-component primitivity).** Let σ have primitive irreducible"
