@@ -2,6 +2,15 @@
 
 **Status:** planning and source reconciliation; universal BH and A1′ remain open.
 
+**November 20, upper small members.** The 70 upper plus members
+`n<=6,n+5<=d<=2n+11` now have
+[complete swap-seed certificates](class-a-plus-upper-small-members-2026-11-20.md)
+at seed scope, with canonical Mojo and independent replay; hosted acceptance
+is pending. No member with `d>=2n+12` is PIP, since `chi(-1)=-(2n+12-d)`. At
+their stated scopes, the existing parts and these certificates cover every PIP
+plus-Class-A member. Lean binding of the written `n>=7` entry path remains the
+open obligation on this family.
+
 **November 16, integration update.** Main now has the [upper plus all-source
 entry theorem](class-a-plus-upper-all-source-entry-2026-11-16.md) for
 `n>=7,n+5<=d<=2n+11`. It enters the

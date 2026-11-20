@@ -51867,6 +51867,11 @@
       "statement_heading": "**Theorem (repository-proved).** Let `n,d` be integers with `n>=6` and"
     },
     {
+      "source": "docs/class-a-plus-upper-small-members-2026-11-20.md",
+      "line": 37,
+      "statement_heading": "**Lemma (PIP boundary).** Write `J = 2n+12-d`. The incidence cubic of the"
+    },
+    {
       "source": "docs/class-a-residue-rays-2026-10-22.md",
       "line": 88,
       "statement_heading": "**Theorem R.** For each tabulated ray and every `n >= floor` on it, the"

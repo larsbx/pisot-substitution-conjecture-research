@@ -614,6 +614,15 @@ by deleting it.
   speed up member decisions. · `audit-finite-regime-advice-2026-10-08.md`;
   `experiments/z2-route/boxtime.mojo`
 
+- 2026-11-20 · The plus-Class-A family `x -> x y^(n+d) x, c -> c y^n x,
+  y -> x y^(n+1) c` is PIP for no `d >= 2n+12`: `chi(-1) = -(2n+12-d)`, a root
+  at `-1` when `d = 2n+12` and a real root below `-1` beyond. The exact screen
+  finds every `1 <= d <= 2n+11` PIP for `n <= 9`. All 70 upper members
+  `n <= 6, n+5 <= d <= 2n+11` have complete S18 graphs in which every state
+  reaches typed zero: at most 2,922 states and depth 9, about 18 s native for
+  all 70. Do not search the upper strip beyond `d = 2n+11`. ·
+  `class-a-plus-upper-small-members-2026-11-20.md`
+
 ## 6. Tooling pitfalls
 
 - 2026-10-04 · `pkill -f PATTERN` inside a shell command whose own text
