@@ -50712,6 +50712,11 @@
       "statement_heading": "**Lemma.** Let `T` be an actual irreducible noncoincident balanced"
     },
     {
+      "source": "docs/c4-bilateral-newborn-family-2026-11-14.md",
+      "line": 68,
+      "statement_heading": "**Theorem (two-parameter newborn exclusion).** Among"
+    },
+    {
       "source": "docs/c4-closed-component-search-2026-11-07.md",
       "line": 156,
       "statement_heading": "**Lemma 1 (normalisation).** For a balanced `(u, v)` the blocks of"
@@ -50935,6 +50940,11 @@
       "source": "docs/c4-defect-degree-census.md",
       "line": 120,
       "statement_heading": "**Proposition (bounded PIP corpus).** Among the 4,554 primitive ternary"
+    },
+    {
+      "source": "docs/c4-determinant-three-carrier-2026-11-14.md",
+      "line": 8,
+      "statement_heading": "**Theorem.** For every integer $k\\ge 3$, the balanced-pair algorithm for"
     },
     {
       "source": "docs/c4-endpoint-core-program.md",
@@ -51367,6 +51377,16 @@
       "statement_heading": "**Lemma M (collapse of unshifted inflation).** If"
     },
     {
+      "source": "docs/c4-periodic-ray-decision-2026-11-14.md",
+      "line": 33,
+      "statement_heading": "**Theorem (periodic-ray criterion).** A finite strict system exists if and"
+    },
+    {
+      "source": "docs/c4-phase-aligned-rays-2026-11-14.md",
+      "line": 26,
+      "statement_heading": "**Theorem (flat periodic-ray criterion).** A finite strict system of phase"
+    },
+    {
       "source": "docs/c4-phase-lattice-index-conservation-2026-11-04.md",
       "line": 21,
       "statement_heading": "**Theorem 1 (phase index conservation).** Under §1, for each k modulo h,"
@@ -51570,6 +51590,16 @@
       "source": "docs/c4-seam-birth-orbits-2026-11-04.md",
       "line": 10,
       "statement_heading": "**Lemma.** In a supplied finite strict child-closed phase-zero balanced"
+    },
+    {
+      "source": "docs/c4-strict-component-period-2026-11-14.md",
+      "line": 9,
+      "statement_heading": "**Theorem (strict-component primitivity).** Let σ have primitive irreducible"
+    },
+    {
+      "source": "docs/c4-two-parameter-carrier-2026-11-14.md",
+      "line": 6,
+      "statement_heading": "**Theorem.** For integers $r\\ge4$ and $k\\ge r+3$, let"
     },
     {
       "source": "docs/c4-unique-partner-exclusion-2026-11-18.md",
