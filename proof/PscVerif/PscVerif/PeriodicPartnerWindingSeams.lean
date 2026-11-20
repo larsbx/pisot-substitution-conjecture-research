@@ -1,5 +1,9 @@
-import PscVerif.PeriodicPartnerDirectional
-import PscVerif.PeriodicPartnerWinding
+module
+
+public import PscVerif.PeriodicPartnerSeamCycles
+public import PscVerif.PeriodicPartnerWinding
+
+public section
 
 namespace Psc.PeriodicPartnerWinding
 
@@ -44,8 +48,12 @@ theorem odd_winding_of_grouped_seams {I J A : Type*} [Fintype I] [Fintype J] [Ad
     abel
   let f : HomoclinicPhase :=
     ⟨⟨(fun t => left t + left t), hl.add hl⟩,
-      by simpa only [add_zero] using hlEnd.add hlEnd,
-      by simpa only [add_zero] using (hrEnd.add hrEnd).congr (fun t => (heq t).symm)⟩
+      by
+        change Tendsto (fun t => left t + left t) atBot (𝓝 0)
+        simpa only [add_zero] using hlEnd.add hlEnd,
+      by
+        change Tendsto (fun t => left t + left t) atTop (𝓝 0)
+        simpa only [add_zero] using (hrEnd.add hrEnd).congr (fun t => (heq t).symm)⟩
   refine ⟨f, fun t => ?_, f.odd_winding_of_deck_switch hl hr hlEnd hrEnd (fun _ => rfl)
     (fun t => (heq t).symm) hoffset⟩
   exact (two_nsmul (left t)).symm

@@ -214,11 +214,11 @@ evaluate to zero because `A,B` share their maximal equicontinuous image.
 
 ### Evidence and replay
 
-Lean checks `grouped_cycle_support`, `grouped_row_crosses`,
-`continuous_square_one_eq_one`, and `even_stack_residue_degrees` in
+Lean checks `grouped_cycle_support` and `grouped_row_crosses` in
+[PeriodicPartnerSeamCycles](../proof/PscVerif/PscVerif/PeriodicPartnerSeamCycles.lean).
+The constancy of the normalized phase and the degree argument are checked by
+`continuous_square_one_eq_one` and `even_stack_residue_degrees` in
 [PeriodicPartnerDirectional](../proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean).
-These prove the finite group support and row crossing, constancy of the
-normalized phase, and the degree argument from their stated inputs.
 The [homoclinic winding formalization](c4-homoclinic-winding-2026-11-20.md)
 checks the lift construction and odd winding from the stated seam phase
 conditions. The geometric factor construction and its transfer of the

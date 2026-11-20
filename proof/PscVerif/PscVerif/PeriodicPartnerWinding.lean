@@ -1,10 +1,15 @@
 /- The local winding calculation for the two-sheet stack factor. The
 normalized lifts are constructed using the period-one circle covering. -/
+module
+
 import Mathlib.Analysis.Convex.Contractible
+import Mathlib.Topology.Algebra.Module.LocallyConvex
 import Mathlib.Topology.Algebra.Order.ArchimedeanDiscrete
 import Mathlib.Topology.Covering.AddCircle
 import Mathlib.Topology.Homotopy.Lifting
-import Mathlib.Topology.Instances.AddCircle.Real
+public import Mathlib.Topology.Instances.AddCircle.Real
+
+public section
 
 namespace Psc.PeriodicPartnerWinding
 
@@ -29,21 +34,20 @@ theorem exists_tailLift_atTop {phase : ℝ → UnitAddCircle} (h : Continuous ph
     change (0 : ℝ) ∈ Ioo (-(1 / 2)) (-(1 / 2) + 1)
     norm_num [mem_Ioo]
   have htarget : (0 : UnitAddCircle) ∈ chart.target := by
-    simpa only [AddCircle.openPartialHomeomorphCoe_apply, AddCircle.coe_zero] using
-      chart.map_source hsource
-  have hchartZero : chart.symm 0 = 0 := by
-    simpa only [AddCircle.openPartialHomeomorphCoe_apply, AddCircle.coe_zero] using
-      chart.left_inv hsource
+    change chart (0 : ℝ) ∈ chart.target
+    exact chart.map_source hsource
   obtain ⟨a, ha⟩ := eventually_atTop.mp (hlim.eventually (chart.open_target.mem_nhds htarget))
   obtain ⟨lift, ⟨hstart, hprojects⟩, _⟩ := circleCover.existsUnique_continuousMap_lifts
     ⟨phase, h⟩ a (chart.symm (phase a)) (chart.right_inv (ha a le_rfl))
   have hagree : (Ici a).EqOn lift (chart.symm ∘ phase) := by
     apply circleCover.eqOn_of_comp_eqOn isPreconnected_Ici lift.continuous.continuousOn
-      (chart.continuousOn_symm.comp h.continuousOn fun t ht => ha t ht) _ self_mem_Ici hstart
+      (chart.continuousOn_symm.comp h.continuousOn (by
+        intro t ht
+        exact ha t ht)) _ self_mem_Ici hstart
     intro t ht
     exact (congrFun hprojects t).trans (chart.right_inv (ha t ht)).symm
-  have hlocal : Tendsto (chart.symm ∘ phase) atTop (𝓝 0) := by
-    simpa only [hchartZero] using (chart.continuousAt_symm htarget).tendsto.comp hlim
+  have hlocal : Tendsto (chart.symm ∘ phase) atTop (𝓝 0) :=
+    (chart.tendsto_symm hsource).comp hlim
   exact ⟨lift, lift.continuous, congrFun hprojects,
     hlocal.congr' (eventually_atTop.mpr ⟨a, fun t ht => (hagree ht).symm⟩)⟩
 
@@ -192,13 +196,14 @@ theorem winding_one_control : ∃ f : HomoclinicPhase, f.winding = 1 := by
     simp [ramp, min_eq_left ht]
   have hphase (t : ℝ) : (↑(ramp t - 1) : UnitAddCircle) = (ramp t : UnitAddCircle) := by
     rw [AddCircle.coe_sub, AddCircle.coe_period, sub_zero]
-  have hcoe := AddCircle.continuous_mk' (1 : ℝ)
+  have hcoe : Continuous ((↑) : ℝ → UnitAddCircle) := AddCircle.continuous_mk' 1
   let f : HomoclinicPhase :=
     ⟨⟨(fun t => (ramp t : UnitAddCircle)), hcoe.comp hcont⟩,
-      by simpa only [AddCircle.coe_zero] using (hcoe.tendsto 0).comp hleft,
-      by simpa only [AddCircle.coe_zero] using ((hcoe.tendsto 0).comp hright).congr hphase⟩
+      (hcoe.tendsto 0).comp hleft,
+      ((hcoe.tendsto 0).comp hright).congr hphase⟩
   refine ⟨f, ?_⟩
-  have h := f.winding_eq_of_lifts ⟨hcont, fun _ => rfl, hleft⟩
+  have h := f.winding_eq_of_lifts (l := ramp) (r := fun t => ramp t - 1)
+    ⟨hcont, fun _ => rfl, hleft⟩
     ⟨hcont.sub continuous_const, hphase, hright⟩
   have hcast : (f.winding : ℝ) = (1 : ℝ) := by linarith
   exact_mod_cast hcast

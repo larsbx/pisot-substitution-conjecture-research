@@ -54,6 +54,8 @@ the same double at every time and differ by a half-turn at zero.
 The endpoints are in
 [`PeriodicPartnerWinding.lean`](../proof/PscVerif/PscVerif/PeriodicPartnerWinding.lean)
 and [`PeriodicPartnerWindingSeams.lean`](../proof/PscVerif/PscVerif/PeriodicPartnerWindingSeams.lean).
+The winding proof uses the existing cycle and crossing lemmas from
+[`PeriodicPartnerSeamCycles.lean`](../proof/PscVerif/PscVerif/PeriodicPartnerSeamCycles.lean).
 
 ```sh
 ./tools/check_c4_periodic_partner.sh
