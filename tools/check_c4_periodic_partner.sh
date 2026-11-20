@@ -57,7 +57,10 @@ if not external or "Mathlib" in external:
     raise SystemExit("refuse empty or whole-Mathlib cache request")
 (temporary / "external-roots.txt").write_text("\n".join(sorted(external)) + "\n")
 owned = sorted(m for m in visited if m == "PscVerif" or m.startswith("PscVerif."))
+if not owned:
+    raise SystemExit("empty local module closure for scoped audit")
 (temporary / "local-modules.json").write_text(json.dumps(owned))
+(temporary / "local-build-targets.txt").write_text("\n".join(owned) + "\n")
 expected = sorted((d["module"], d["name"]) for d in lean_declarations(temporary)
                   if d["module"] in owned)
 if not expected:
@@ -133,11 +136,8 @@ if [[ -d .lake/build/lib/lean/PscVerif || -e .lake/build/lib/lean/PscVerif.olean
     echo "unexpected local project artifacts before fresh compilation" >&2
     exit 1
 fi
-"${PSC_PERIODIC_LAKE[@]}" --no-cache build PscVerif.PeriodicPartner PscVerif.PeriodicPartnerControls \
-    PscVerif.PeriodicPartnerDynamics PscVerif.PeriodicPartnerCollapse PscVerif.PeriodicPartnerModels \
-    PscVerif.PeriodicPartnerDichotomy PscVerif.PeriodicPartnerReflection \
-    PscVerif.PeriodicPartnerAsymptotic PscVerif.PeriodicPartnerHull \
-    PscVerif.PeriodicPartnerSelection PscVerif.PeriodicPartnerHullSelection
+mapfile -t PSC_PERIODIC_BUILD_TARGETS < "$PSC_PERIODIC_TMP/local-build-targets.txt"
+"${PSC_PERIODIC_LAKE[@]}" --no-cache build "${PSC_PERIODIC_BUILD_TARGETS[@]}"
 psc_periodic_check_sources_and_pins after-build
 "${PSC_PERIODIC_LAKE[@]}" --no-cache env lean PeriodicPartnerAudit.lean \
     | tee "$PSC_PERIODIC_TMP/audit.log"

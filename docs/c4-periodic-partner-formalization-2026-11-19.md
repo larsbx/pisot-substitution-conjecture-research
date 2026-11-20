@@ -260,7 +260,10 @@ remaining obligations are:
    that instance. *Update:* the
    [hull instance](c4-tiling-hull-realization-2026-11-19.md) does all of this
    except the geometric-realization map, with an exact-agreement metric; the
-   published inputs are fields of `PublishedInputs` on that hull.
+   published inputs are fields of `PublishedInputs` on that hull. The
+   [realization note](c4-geometric-realization-2026-11-19.md) then constructs the
+   realization map into the solenoid and proves its semiconjugacy and (R4); finite
+   fibres, BDS and recognizability remain inputs.
 2. Under the surviving strict rank-two, odd-determinant and (NM_V)
    hypotheses, select a witness that passes the endpoint test or treat
    its other periodic branch fibre. No theorem here supplies that selection.
@@ -270,10 +273,6 @@ remaining obligations are:
 3. Obtain the further global contradiction. The asymptotic leaves share
    tiles, so their mutual edge is not strict; W4 and the two strict links
    do not themselves give a noncoincidence triangle or a parity argument.
-   *Update:* the [hull-selection note](c4-hull-selection-2026-11-19.md) shows that a
-   vertex-type common partner in the origin case forces `g_R` to be a permutation, and
-   records that this obligation, under (NM_V) and odd determinant, is the rank-two wall
-   itself rather than a local step.
 
 No universal (NM_V), no new strict-system exclusion, and no C4 or PSC proof
 is claimed. The concrete tiling correspondence and independent human

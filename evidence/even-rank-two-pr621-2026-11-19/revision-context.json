@@ -1,0 +1,29 @@
+{
+  "allowed_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "audited_declarations": 1106,
+  "audited_theorem_declarations": 804,
+  "finite_replay_inherited_from_unchanged_sources": true,
+  "focused_targets": [
+    "PscVerif.EvenCompanionFamily",
+    "PscVerif.EvenSeamCycles",
+    "PscVerif.PeriodicPartnerEvenSolenoid"
+  ],
+  "full_root_build": false,
+  "hosted_candidate_acceptance": false,
+  "integrated_main": "017969364269c116aaa5873bfcba6c9f1b1ba7e5",
+  "integrated_main_tree": "7edf77264cde501af8b4c3524fedda3916b2e67f",
+  "legacy_sector_aggregate_rebuilt": false,
+  "local_modules": 21,
+  "new_named_proofs": 49,
+  "pr621_head": "d50ca9dacb9beb2b6b6a90b35c8c14482597bb25",
+  "pr621_title": "Prove the topology of the C4 realization target",
+  "prior_verified_checkpoint": "dc4f2723cd4f8313a20b387ca7c9fbcb6f2401c6",
+  "publication_authorized": false,
+  "raw_audit_sha256": "c79e2de73b066844dcc7acdd78e9e000f2aabb2b46ce0eea680b9262247bcfb9",
+  "research_base": "c0231e0fd64d9eee7f7bb798042d9966276e4cd6",
+  "source_named_proofs": 483
+}

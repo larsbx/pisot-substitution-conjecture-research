@@ -1,0 +1,123 @@
+⚠ [2191/2194] Replayed PscVerif.OccurrenceNewborn
+warning: PscVerif/OccurrenceNewborn.lean:53:0: automatically included section variable(s) unused in theorem `Psc.OccurrenceNewborn.SyncPlus.eventual`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: PscVerif/OccurrenceNewborn.lean:61:0: automatically included section variable(s) unused in theorem `Psc.OccurrenceNewborn.SyncMinus.eventual`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+✖ [2194/2194] Building PscVerif.A1PrimeTailCoincidence (10s)
+trace: .> LEAN_PATH=/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/Cli/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/batteries/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/Qq/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/aesop/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/proofwidgets/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/importGraph/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/plausible/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/mathlib/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/build/lib/lean /home/agent/.elan/toolchains/leanprover--lean4---v4.34.0-rc2/bin/lean /workspace/scratch/psc-next/psc/proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean -o /workspace/scratch/psc-next/psc/proof/PscVerif/.lake/build/lib/lean/PscVerif/A1PrimeTailCoincidence.olean -i /workspace/scratch/psc-next/psc/proof/PscVerif/.lake/build/lib/lean/PscVerif/A1PrimeTailCoincidence.ilean -c /workspace/scratch/psc-next/psc/proof/PscVerif/.lake/build/ir/PscVerif/A1PrimeTailCoincidence.c --setup /workspace/scratch/psc-next/psc/proof/PscVerif/.lake/build/ir/PscVerif/A1PrimeTailCoincidence.setup.json --json
+warning: PscVerif/A1PrimeTailCoincidence.lean:100:34: This simp argument is unused:
+  List.append_assoc
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [substitution]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:124:34: This simp argument is unused:
+  List.append_assoc
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [substitution]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: PscVerif/A1PrimeTailCoincidence.lean:141:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (x, y).1
+in the target expression
+  x = m.top.before ++ a :: m.top.after
+
+case refine_1
+m : MarkedPair
+x y : Word
+a : Fin 3
+hwords : m.words = (x, y)
+hp : m.packet = { top := a, bottom := a, delta := 0 }
+ht : m.top.letter = a
+hb : m.bottom.letter = a
+⊢ x = m.top.before ++ a :: m.top.after
+error: PscVerif/A1PrimeTailCoincidence.lean:143:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (x, y).2
+in the target expression
+  y = m.bottom.before ++ a :: m.bottom.after
+
+case refine_2
+m : MarkedPair
+x y : Word
+a : Fin 3
+hwords : m.words = (x, y)
+hp : m.packet = { top := a, bottom := a, delta := 0 }
+ht : m.top.letter = a
+hb : m.bottom.letter = a
+⊢ y = m.bottom.before ++ a :: m.bottom.after
+warning: PscVerif/A1PrimeTailCoincidence.lean:197:43: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:223:79: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:197:43: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:223:79: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:185:39: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:189:39: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:193:39: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:204:53: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:211:53: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:218:53: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:280:45: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:403:61: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:408:61: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:420:53: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:427:53: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:434:53: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:441:53: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:446:75: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:490:49: Unused tactic linter: `omega` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:490:49: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:593:55: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Some required targets logged failures:
+- PscVerif.A1PrimeTailCoincidence
+error: build failed

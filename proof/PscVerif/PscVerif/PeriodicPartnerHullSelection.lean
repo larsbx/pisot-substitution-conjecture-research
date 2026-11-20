@@ -1,309 +1,255 @@
 /-
-# Theorem S on the legal tiling hull, and the vertex-partner case of (A)
-
-`PeriodicPartnerSelection` proves Theorem S from two local contracts that were not yet
-discharged on `PeriodicPartnerHull`: `VertexLaws` (symmetry of ray agreement, a tile after
-every vertex, and the periodic-ray law) and `BranchExistence` (a first branch point of two
-distinct asymptotic tilings).  This module proves both for the concrete hull and
-instantiates Theorem S there.  The remaining inputs are the fields of `PublishedInputs`, the
-joining relation with its translation and fibre laws, (E1) and (NM_V); each is a named
-hypothesis, none is an axiom.
-
-It also proves one new step towards the global contradiction.  In case (A) the two leaves
-end tiles `b ≠ c` at the origin.  If the common partner also has a vertex there, ending a
-tile `x`, then (Z2) at level zero gives `x ≠ b` and `x ≠ c`, and periodicity makes all three
-letters periodic for the last-letter map.  Three periodic letters on three letters force a
-permutation: **a vertex-type common partner puts the right side in the injective regime of
-round-4 Lemma A.**  It does not exclude the configuration.
-
-`BranchExistence` needs a finite alphabet (a positive minimal tile length); `periodic_ray`
-needs `1 < β`.
+Local vertex and branch laws for the legal half-open tiling hull.
+The two contracts of PeriodicPartnerSelection follow from disjoint tiles,
+positive lengths, and a uniform positive lower length bound for a finite
+alphabet. No realization assumption enters those proofs.
 -/
 import PscVerif.PeriodicPartnerHull
 import PscVerif.PeriodicPartnerSelection
 
-namespace Psc.PeriodicPartnerHullSelection
+namespace Psc.PeriodicPartnerHull.LengthSubst
 
 open Function Set Psc.PeriodicPartnerDynamics Psc.PeriodicPartnerSelection
-  Psc.PeriodicPartnerHull Psc.PeriodicPartnerHull.LengthSubst
 
-/-! ## Abstract: a vertex-type common partner forces a permutation -/
+variable {α : Type*} {S : LengthSubst α}
 
-section Abstract
+/-- A tile with the given label starts at the indicated physical position. -/
+def StartsAt (T : S.Hull) (y : ℝ) (a : α) : Prop := (a, y) ∈ T.1
 
-variable {X α : Type*} {f : X → X} {translate : ℝ → X → X} {β : ℝ} {g : α → α}
-    {AgreeRight : X → X → ℝ → Prop} {EndsAt : X → ℝ → α → Prop}
+private theorem tile_end_le_of_start_lt {T : S.Hull} {p q : α × ℝ}
+    (hp : p ∈ T.1) (hq : q ∈ T.1) (hpq : p.2 < q.2) : p.2 + S.ℓ p.1 ≤ q.2 := by
+  by_contra h
+  have hpz : q.2 ∈ S.supp p := ⟨hpq.le, lt_of_not_ge h⟩
+  have hqz : q.2 ∈ S.supp q := ⟨le_rfl, lt_add_of_pos_right _ (S.ℓ_pos q.1)⟩
+  exact hpq.ne (congrArg Prod.snd ((T.2.1 q.2).unique ⟨hp, hpz⟩ ⟨hq, hqz⟩))
 
-/-- The letter ending a tile at the origin of a periodic tiling is periodic for `g`. -/
-theorem periodic_letter (laws : RightBranchLaws f translate β g AgreeRight EndsAt)
-    {T : X} {x : α} (hT : T ∈ periodicPts f) (hx : EndsAt T 0 x) : x ∈ periodicPts g := by
-  obtain ⟨n, hn, hTn⟩ := hT
-  refine ⟨n, hn, ?_⟩
-  have h := laws.endpoint_iterate n hx
-  rw [mul_zero, hTn.eq] at h
-  exact laws.endpoint_unique h hx
+/-- The tile covering a known endpoint starts there. -/
+theorem startsAt_of_endsAt {T : S.Hull} {y : ℝ} {b : α}
+    (hb : EndsAt T y b) : ∃ a, StartsAt T y a := by
+  obtain ⟨⟨a, x⟩, ⟨ha, hx⟩, -⟩ := T.2.1 y
+  change x ≤ y ∧ y < x + S.ℓ a at hx
+  have eq : x = y := by
+    by_contra hne
+    have hxy := lt_of_le_of_ne hx.1 hne
+    let z := max (y - S.ℓ b) x
+    have hzy : z < y := max_lt (sub_lt_self _ (S.ℓ_pos b)) hxy
+    have hz₁ : z ∈ S.supp (b, y - S.ℓ b) := S.mem_supp_endpoint (le_max_left _ _) hzy
+    have hz₂ : z ∈ S.supp (a, x) := ⟨le_max_right _ _, hzy.trans hx.2⟩
+    have he := (T.2.1 z).unique ⟨hb, hz₁⟩ ⟨ha, hz₂⟩
+    have hends := congrArg (fun p : α × ℝ => p.2 + S.ℓ p.1) he
+    change y - S.ℓ b + S.ℓ b = x + S.ℓ a at hends
+    linarith [hx.2]
+  exact ⟨a, by simpa only [StartsAt, eq] using ha⟩
 
-end Abstract
+private theorem endsAt_of_startsAt {T : S.Hull} {y : ℝ} {a : α}
+    (ha : StartsAt T y a) {d : ℝ} (hd : 0 < d) (hbound : ∀ c, d ≤ S.ℓ c) :
+    ∃ b, EndsAt T y b := by
+  obtain ⟨⟨b, x⟩, ⟨hb, hx⟩, -⟩ := T.2.1 (y - d)
+  change x ≤ y - d ∧ y - d < x + S.ℓ b at hx
+  have hxy : x < y := by linarith [hx.1]
+  have hle : x + S.ℓ b ≤ y := tile_end_le_of_start_lt hb ha hxy
+  have eq : x + S.ℓ b = y := by
+    by_contra hne
+    have hlt := lt_of_le_of_ne hle hne
+    have hb' : EndsAt T (x + S.ℓ b) b := by simpa [EndsAt] using hb
+    obtain ⟨c, hc⟩ := startsAt_of_endsAt hb'
+    have hnext : x + S.ℓ b + S.ℓ c ≤ y := tile_end_le_of_start_lt hc ha hlt
+    linarith [hx.2, hbound c]
+  exact ⟨b, by
+    change (b, y - S.ℓ b) ∈ T.1
+    have h : y - S.ℓ b = x := by linarith
+    simpa only [h] using hb⟩
 
-/-- Three distinct periodic letters make a ternary map injective. -/
-theorem injective_of_three_periodic :
-    ∀ (g : Fin 3 → Fin 3) (x b c : Fin 3), x ≠ b → x ≠ c → b ≠ c →
-      g^[6] x = x → g^[6] b = b → g^[6] c = c → Injective g := by
-  decide
+/-- A common tile that reaches the ray's cutoff lets the agreement start
+at the left endpoint of that tile. -/
+theorem agreeRight_extend_to_common_tile {T U : S.Hull} {p : α × ℝ} {r : ℝ}
+    (agree : AgreeRight T U r) (hpT : p ∈ T.1) (hpU : p ∈ U.1)
+    (hr : r ≤ p.2 + S.ℓ p.1) : AgreeRight T U p.2 := by
+  intro q hq
+  by_cases h : r < q.2 + S.ℓ q.1
+  · exact agree q (S.supp_inter_Ioi h)
+  obtain ⟨z, hzq, hzw⟩ := hq
+  have hzp : z ∈ S.supp p := ⟨hzw.le, hzq.2.trans_le ((le_of_not_gt h).trans hr)⟩
+  constructor
+  · intro hT
+    have eq := (T.2.1 z).unique ⟨hT, hzq⟩ ⟨hpT, hzp⟩
+    exact eq ▸ hpU
+  · intro hU
+    have eq := (U.2.1 z).unique ⟨hU, hzq⟩ ⟨hpU, hzp⟩
+    exact eq ▸ hpT
 
-/-- Two periodic letters alone do not suffice: `(0,1,1)` is the control. -/
-theorem two_periodic_not_injective :
-    TwoPeriodicLetters ![0, 1, 1] ∧ ¬ Injective (![0, 1, 1] : Fin 3 → Fin 3) := by
-  refine ⟨collapsed_pair_example.1, fun h => absurd (h collapsed_pair_example.2) (by decide)⟩
+/-- Distinct right-asymptotic tilings on a finite alphabet have a first
+common ray, preceded by different endpoint labels. -/
+theorem branchExistence [Finite α] [Nonempty α] :
+    BranchExistence (AgreeRight (S := S)) EndsAt := by
+  classical
+  intro T U hne
+  rintro ⟨r, hr⟩
+  let D : Set ℝ :=
+    {x | ∃ p : α × ℝ, ¬ (p ∈ T.1 ↔ p ∈ U.1) ∧ x = p.2 + S.ℓ p.1}
+  have hD : D.Nonempty := by
+    by_contra he
+    apply hne
+    apply Subtype.ext
+    ext p
+    by_contra hp
+    exact he ⟨p.2 + S.ℓ p.1, p, hp, rfl⟩
+  have upper {cut : ℝ} (hcut : AgreeRight T U cut) : ∀ x ∈ D, x ≤ cut := by
+    rintro x ⟨p, hp, rfl⟩
+    exact le_of_not_gt fun h => hp (hcut p (S.supp_inter_Ioi h))
+  have bounded : BddAbove D := ⟨r, upper hr⟩
+  let y := sSup D
+  have agree : AgreeRight T U y := by
+    intro p hp
+    by_contra hd
+    obtain ⟨z, hz, hzy⟩ := hp
+    have hle : p.2 + S.ℓ p.1 ≤ y := le_csSup bounded ⟨p, hd, rfl⟩
+    exact (not_lt_of_ge hle) (hzy.trans hz.2)
+  obtain ⟨⟨a, x⟩, ⟨hpT, hpy⟩, -⟩ := T.2.1 y
+  change x ≤ y ∧ y < x + S.ℓ a at hpy
+  have hpU : (a, x) ∈ U.1 := (agree _ (S.supp_inter_Ioi hpy.2)).mp hpT
+  have hxy : x = y := le_antisymm hpy.1
+    (csSup_le hD (upper (agreeRight_extend_to_common_tile agree hpT hpU hpy.2.le)))
+  have startT : StartsAt T y a := by simpa only [StartsAt, hxy] using hpT
+  have startU : StartsAt U y a := by simpa only [StartsAt, hxy] using hpU
+  obtain ⟨d, -, hd⟩ := Set.exists_min_image (univ : Set α) S.ℓ Set.finite_univ Set.univ_nonempty
+  have lower (c : α) : S.ℓ d ≤ S.ℓ c := hd c (mem_univ c)
+  obtain ⟨b, hb⟩ := endsAt_of_startsAt startT (S.ℓ_pos d) lower
+  obtain ⟨c, hc⟩ := endsAt_of_startsAt startU (S.ℓ_pos d) lower
+  refine ⟨y, b, c, agree, hb, hc, ?_⟩
+  intro eq
+  subst c
+  have extend : AgreeRight T U (y - S.ℓ b) :=
+    agreeRight_extend_to_common_tile agree hb hc (by dsimp; linarith)
+  have h := csSup_le hD (upper extend)
+  exact (not_le_of_gt (sub_lt_self y (S.ℓ_pos b))) h
 
-section AbstractTernary
-
-variable {X : Type*} {f : X → X} {translate : ℝ → X → X} {β : ℝ} {g : Fin 3 → Fin 3}
-    {AgreeRight : X → X → ℝ → Prop} {EndsAt : X → ℝ → Fin 3 → Prop}
-
-/-- **Vertex partner.**  Three periodic tilings ending pairwise different tiles at the
-origin force the last-letter map to be a permutation.  In case (A) the leaves end `b ≠ c`,
-and (Z2) at level zero separates the partner's letter `x` from both. -/
-theorem injective_of_vertex_partner (laws : RightBranchLaws f translate β g AgreeRight EndsAt)
-    {T S U : X} {x b c : Fin 3}
-    (hT : T ∈ periodicPts f) (hS : S ∈ periodicPts f) (hU : U ∈ periodicPts f)
-    (hx : EndsAt T 0 x) (hb : EndsAt S 0 b) (hc : EndsAt U 0 c)
-    (hxb : x ≠ b) (hxc : x ≠ c) (hbc : b ≠ c) : Injective g :=
-  injective_of_three_periodic g x b c hxb hxc hbc
-    (six_of_mem_periodicPts (periodic_letter laws hT hx))
-    (six_of_mem_periodicPts (periodic_letter laws hS hb))
-    (six_of_mem_periodicPts (periodic_letter laws hU hc))
-
-end AbstractTernary
-
-/-! ## The hull: vertex laws -/
-
-variable {α : Type*} {L : LengthSubst α}
-
-/-- The tile labelled `a` starts at `y`. -/
-def StartsAt (T : L.Hull) (y : ℝ) (a : α) : Prop := (a, y) ∈ T.1
-
-theorem agreeRight_symm {T U : L.Hull} {y : ℝ} (h : AgreeRight T U y) : AgreeRight U T y :=
-  fun p hp => (h p hp).symm
-
-/-- The tile covering an endpoint starts there. -/
-theorem startsAt_of_endsAt {T : L.Hull} {y : ℝ} {b : α} (h : EndsAt T y b) :
-    ∃ a, StartsAt T y a := by
-  obtain ⟨⟨a, x⟩, ⟨hp, hy⟩, -⟩ := T.2.1 y
-  refine ⟨a, ?_⟩
-  simp only [LengthSubst.supp, mem_Ico] at hy
-  have hb := L.ℓ_pos b
-  rcases hy.1.lt_or_eq with hlt | heq
-  · exfalso
-    have hzy : max x (y - L.ℓ b) < y := max_lt hlt (by linarith)
-    have h1 : max x (y - L.ℓ b) ∈ L.supp (a, x) :=
-      ⟨le_max_left _ _, lt_trans hzy hy.2⟩
-    have h2 : max x (y - L.ℓ b) ∈ L.supp (b, y - L.ℓ b) :=
-      L.mem_supp_endpoint (le_max_right _ _) hzy
-    have hpq := (T.2.1 _).unique ⟨hp, h1⟩ ⟨h, h2⟩
-    simp only [Prod.mk.injEq] at hpq
-    obtain ⟨rfl, rfl⟩ := hpq
-    linarith [hy.2]
-  · change (a, y) ∈ T.1
-    rwa [← heq]
-
-theorem inflateH_iterate_val [Nonempty α] (T : L.Hull) (n : ℕ) :
-    (inflateH^[n] T).1 = L.inflate^[n] T.1 := by
+private theorem inflateH_iterate_tiles [Nonempty α] (T : S.Hull) (n : ℕ) :
+    ((inflateH^[n]) T).1 = S.inflate^[n] T.1 := by
   induction n with
   | zero => rfl
-  | succ n ih => rw [iterate_succ_apply', iterate_succ_apply', ← ih]; rfl
+  | succ n ih => simp only [iterate_succ_apply', inflateH, ih]
 
-/-- A periodic tiling with the tile `a` at the origin contains every supertile of `a` at
-multiples of its period. -/
-theorem supertile_subset [Nonempty α] {T : L.Hull} {a : α} {n : ℕ}
-    (hT : inflateH^[n] T = T) (ha : StartsAt T 0 a) (k : ℕ) :
-    L.supertile a (n * k) ⊆ T.1 := by
-  have hfix : inflateH^[n * k] T = T := (IsPeriodicPt.mul_const hT k).eq
-  calc L.supertile a (n * k) = L.inflate^[n * k] {(a, 0)} := rfl
-    _ ⊆ L.inflate^[n * k] T.1 := L.inflate_iterate_mono (singleton_subset_iff.mpr ha) _
-    _ = T.1 := by rw [← inflateH_iterate_val, hfix]
-
-theorem tilesOn_supertile [Nonempty α] (a : α) (m : ℕ) :
-    L.TilesOn (Ico 0 (L.β ^ m * L.ℓ a)) (L.supertile a m) := by
-  have h0 : L.TilesOn (Ico 0 (L.ℓ a)) {(a, 0)} := by
-    refine ⟨fun p hp => ?_, fun z hz => ⟨(a, 0), ⟨rfl, ?_⟩, fun q hq => hq.1⟩⟩
-    · rw [mem_singleton_iff.mp hp]
-      intro z hz
-      simpa [LengthSubst.supp] using hz
-    · simpa [LengthSubst.supp] using hz
-  simpa [LengthSubst.supertile] using L.tilesOn_inflate_iterate h0 m
-
-/-- **Periodic-ray law.**  Two inflation-periodic tilings starting the same tile at the
-origin agree on `(0, ∞)`: both contain its supertiles at a common period. -/
-theorem periodic_ray [Nonempty α] (hβ : 1 < L.β) {T U : L.Hull} {a : α}
-    (hT : T ∈ periodicPts inflateH) (hU : U ∈ periodicPts inflateH)
+/-- A common origin tile of two periodic tilings inflates to a common
+supertile covering every positive position. -/
+theorem periodic_ray_of_startsAt [Nonempty α] (hβ : 1 < S.β) {T U : S.Hull} {a : α}
+    (hT : T ∈ periodicPts (inflateH (S := S))) (hU : U ∈ periodicPts (inflateH (S := S)))
     (haT : StartsAt T 0 a) (haU : StartsAt U 0 a) : AgreeRight T U 0 := by
-  obtain ⟨n, hn, hTn⟩ := hT
-  obtain ⟨m, hm, hUm⟩ := hU
-  have hT' : inflateH^[n * m] T = T := (hTn.mul_const m).eq
-  have hU' : inflateH^[n * m] U = U := by rw [mul_comm]; exact (hUm.mul_const n).eq
-  have key : ∀ V W : L.Hull, inflateH^[n * m] V = V → inflateH^[n * m] W = W →
-      StartsAt V 0 a → StartsAt W 0 a →
-      ∀ p, (L.supp p ∩ Ioi 0).Nonempty → p ∈ V.1 → p ∈ W.1 := by
-    intro V W hV hW haV haW p ⟨z, hz, hz0⟩ hp
-    have hℓ := L.ℓ_pos a
-    obtain ⟨k, hk⟩ := pow_unbounded_of_one_lt (z / L.ℓ a) hβ
-    have hkle : k ≤ n * m * k := Nat.le_mul_of_pos_left k (Nat.mul_pos hn hm)
-    have hzk : z < L.β ^ (n * m * k) * L.ℓ a := by
-      rw [div_lt_iff₀ hℓ] at hk
-      exact hk.trans_le (mul_le_mul_of_nonneg_right (pow_le_pow_right₀ hβ.le hkle) hℓ.le)
-    obtain ⟨q, ⟨hq, hzq⟩, -⟩ :=
-      (tilesOn_supertile (L := L) a (n * m * k)).2 z ⟨le_of_lt hz0, hzk⟩
-    have hpq : p = q := (V.2.1 z).unique ⟨hp, hz⟩ ⟨supertile_subset hV haV k hq, hzq⟩
-    exact hpq ▸ supertile_subset hW haW k hq
-  exact fun p hp => ⟨key T U hT' hU' haT haU p hp, key U T hU' hT' haU haT p hp⟩
+  let seed : Set (α × ℝ) := {(a, 0)}
+  have hSeed : S.TilesOn (Ico 0 (S.ℓ a)) seed := by
+    constructor
+    · intro p hp
+      have eq : p = (a, 0) := mem_singleton_iff.mp hp
+      subst p
+      simp [supp]
+    · intro z hz
+      refine ⟨(a, 0), ⟨mem_singleton _, by simpa [supp] using hz⟩, ?_⟩
+      exact fun p hp => mem_singleton_iff.mp hp.1
+  obtain ⟨n, hn, hTn, hUn⟩ := pairPeriodic_of_mem hT hU
+  have periodT : IsPeriodicPt (inflateH (S := S)) n T := hTn
+  have periodU : IsPeriodicPt (inflateH (S := S)) n U := hUn
+  intro p hp
+  obtain ⟨z, hz, hpos⟩ := hp
+  obtain ⟨k, hk⟩ :=
+    pow_unbounded_of_one_lt (z / S.ℓ a) (one_lt_pow₀ hβ (Nat.ne_of_gt hn))
+  have hz' : z < S.β ^ (k * n) * S.ℓ a := by
+    rw [← div_lt_iff₀ (S.ℓ_pos a), Nat.mul_comm k n, pow_mul]
+    exact hk
+  have patch : S.TilesOn (Ico 0 (S.β ^ (k * n) * S.ℓ a)) (S.inflate^[k * n] seed) := by
+    simpa only [mul_zero] using S.tilesOn_inflate_iterate hSeed (k * n)
+  obtain ⟨q, ⟨hq, hzq⟩, -⟩ := patch.2 z ⟨hpos.le, hz'⟩
+  have hsubT := S.inflate_iterate_mono (singleton_subset_iff.mpr haT : seed ⊆ T.1) (k * n)
+  have hsubU := S.inflate_iterate_mono (singleton_subset_iff.mpr haU : seed ⊆ U.1) (k * n)
+  rw [← inflateH_iterate_tiles T, (periodT.const_mul k).eq] at hsubT
+  rw [← inflateH_iterate_tiles U, (periodU.const_mul k).eq] at hsubU
+  constructor
+  · intro hpT
+    have eq := (T.2.1 z).unique ⟨hpT, hz⟩ ⟨hsubT hq, hzq⟩
+    exact eq ▸ hsubU hq
+  · intro hpU
+    have eq := (U.2.1 z).unique ⟨hpU, hz⟩ ⟨hsubU hq, hzq⟩
+    exact eq ▸ hsubT hq
 
-/-- `VertexLaws` holds on the hull. -/
-theorem vertexLaws [Nonempty α] (hβ : 1 < L.β) :
-    VertexLaws (inflateH (S := L)) AgreeRight EndsAt StartsAt where
-  agree_symm h := agreeRight_symm h
-  start_of_end h := startsAt_of_endsAt h
-  periodic_ray hT hU haT haU := periodic_ray hβ hT hU haT haU
+/-- The local vertex laws required by Theorem S hold on the actual hull. -/
+theorem vertexLaws [Nonempty α] (hβ : 1 < S.β) :
+    VertexLaws (inflateH (S := S)) AgreeRight EndsAt StartsAt where
+  agree_symm h p hp := (h p hp).symm
+  start_of_end := startsAt_of_endsAt
+  periodic_ray := periodic_ray_of_startsAt hβ
 
-/-! ## The hull: branch existence -/
+/-- The injective endpoint direction of Lemma A, with first-branch
+existence discharged on the hull. -/
+theorem periodic_branch_at_origin_of_injective [Finite α] [Nonempty α]
+    (hβ : 1 < S.β) (hg : Injective S.lastLetter) {T U : S.Hull}
+    (hp : PairPeriodic inflateH T U) (hne : T ≠ U) (hA : RightAsymptotic AgreeRight T U) :
+    ∃ b c, BranchAt AgreeRight EndsAt T U 0 b c := by
+  obtain ⟨y, b, c, hb⟩ := branchExistence hne hA
+  have hy := branch_eq_zero_of_persistent rightBranchLaws hβ hp hb
+    (fun n eq => hb.2.2.2 ((hg.iterate n) eq))
+  exact ⟨b, c, hy ▸ hb⟩
 
-/-- A tile common to both tilings and reaching `y` extends ray agreement back to its start. -/
-theorem agree_extend {T U : L.Hull} {y : ℝ} {p : α × ℝ} (h : AgreeRight T U y)
-    (hpT : p ∈ T.1) (hpU : p ∈ U.1) (hyp : y ≤ p.2 + L.ℓ p.1) :
-    AgreeRight T U p.2 := by
-  have side : ∀ V : L.Hull, p ∈ V.1 → ∀ q, (L.supp q ∩ Ioi p.2).Nonempty →
-      ¬ (L.supp q ∩ Ioi y).Nonempty → (q ∈ V.1 ↔ q = p) := by
-    intro V hpV q ⟨w, hw, hwp⟩ hqy
-    have hend : q.2 + L.ℓ q.1 ≤ y := not_lt.mp fun hlt => hqy (L.supp_inter_Ioi hlt)
-    have hwp' : w ∈ L.supp p := ⟨le_of_lt hwp, lt_of_lt_of_le (lt_of_lt_of_le hw.2 hend) hyp⟩
-    exact ⟨fun hq => (V.2.1 w).unique ⟨hq, hw⟩ ⟨hpV, hwp'⟩, fun hq => hq ▸ hpV⟩
-  intro q hq
-  by_cases hqy : (L.supp q ∩ Ioi y).Nonempty
-  · exact h q hqy
-  · rw [side T hpT q hq hqy, side U hpU q hq hqy]
+end Psc.PeriodicPartnerHull.LengthSubst
 
-/-- At the least point of agreement a tile starts. -/
-theorem startsAt_of_least {T U : L.Hull} {y : ℝ} (h : AgreeRight T U y)
-    (hmin : ∀ x < y, ¬ AgreeRight T U x) : ∃ a, StartsAt T y a := by
-  obtain ⟨⟨a, x⟩, ⟨hp, hy⟩, -⟩ := T.2.1 y
-  refine ⟨a, ?_⟩
-  simp only [LengthSubst.supp, mem_Ico] at hy
-  rcases hy.1.lt_or_eq with hlt | heq
-  · exfalso
-    have hpU : (a, x) ∈ U.1 := (h (a, x) (L.supp_inter_Ioi (p := (a, x)) hy.2)).mp hp
-    exact hmin x hlt (agree_extend (p := (a, x)) h hp hpU hy.2.le)
-  · change (a, y) ∈ T.1
-    rwa [← heq]
+namespace Psc.PeriodicPartnerHull
 
-/-- With a finite alphabet, a tile starting at `y` is preceded by a tile ending at `y`. -/
-theorem endsAt_of_startsAt [Finite α] {T : L.Hull} {y : ℝ} {a : α} (ha : StartsAt T y a) :
-    ∃ b, EndsAt T y b := by
-  have : Nonempty α := ⟨a⟩
-  obtain ⟨c₀, hc₀⟩ := Finite.exists_min L.ℓ
-  have hm := L.ℓ_pos c₀
-  have ha' : y ∈ L.supp (a, y) := ⟨le_rfl, by simpa using L.ℓ_pos a⟩
-  obtain ⟨⟨b, x⟩, ⟨hq, hw⟩, -⟩ := T.2.1 (y - L.ℓ c₀ / 2)
-  simp only [LengthSubst.supp, mem_Ico] at hw
-  -- a tile meeting `y` is the tile starting there
-  have notcover : ∀ d s, (d, s) ∈ T.1 → s < y → s + L.ℓ d ≤ y := by
-    intro d s hds hsy
-    by_contra hlt
-    have hpq := (T.2.1 y).unique ⟨hds, ⟨hsy.le, not_le.mp hlt⟩⟩ ⟨ha, ha'⟩
-    simp only [Prod.mk.injEq] at hpq
-    linarith [hpq.2]
-  have hle := notcover b x hq (by linarith)
-  rcases hle.lt_or_eq with hlt | heq
-  · exfalso
-    obtain ⟨c, hc⟩ := startsAt_of_endsAt (T := T) (y := x + L.ℓ b) (b := b)
-      (by change (b, x + L.ℓ b - L.ℓ b) ∈ T.1; simpa using hq)
-    have hce := notcover c _ hc hlt
-    linarith [hc₀ c]
-  · exact ⟨b, by change (b, y - L.ℓ b) ∈ T.1; rw [← heq]; simpa using hq⟩
+open Function LengthSubst Psc.PeriodicPartnerDynamics Psc.PeriodicPartnerSelection
 
-/-- `BranchExistence` holds on the hull of a substitution on a finite alphabet: the least
-point of agreement of two distinct right-asymptotic tilings is a common vertex with
-different tiles ending there. -/
-theorem branchExistence [Finite α] :
-    BranchExistence (AgreeRight (S := L)) (EndsAt (S := L)) := by
-  intro T U hne hasym
-  obtain ⟨r, hr⟩ := hasym
-  set A := {x : ℝ | AgreeRight T U x}
-  have hA : A.Nonempty := ⟨r, hr⟩
-  have hbdd : BddBelow A := by
-    by_contra hnb
-    refine hne (Subtype.ext (Set.ext fun p => ?_))
-    obtain ⟨x, hx, hxp⟩ := not_bddBelow_iff.mp hnb p.2
-    exact hx p ⟨p.2, ⟨le_rfl, by linarith [L.ℓ_pos p.1]⟩, hxp⟩
-  have hy : AgreeRight T U (sInf A) := by
-    intro p ⟨z, hz, hzy⟩
-    obtain ⟨x, hx, hxz⟩ := exists_lt_of_csInf_lt hA hzy
-    exact hx p ⟨z, hz, hxz⟩
-  have hmin : ∀ x < sInf A, ¬ AgreeRight T U x :=
-    fun x hx hAx => not_le.mpr hx (csInf_le hbdd hAx)
-  obtain ⟨a, haT⟩ := startsAt_of_least hy hmin
-  obtain ⟨a', haU⟩ := startsAt_of_least (agreeRight_symm hy)
-    (fun x hx h' => hmin x hx (agreeRight_symm h'))
-  obtain ⟨b, hb⟩ := endsAt_of_startsAt haT
-  obtain ⟨c, hc⟩ := endsAt_of_startsAt haU
-  refine ⟨sInf A, b, c, hy, hb, hc, ?_⟩
-  rintro rfl
-  have hbℓ := L.ℓ_pos b
-  exact hmin (sInf A - L.ℓ b) (by linarith)
-    (agree_extend (p := (b, sInf A - L.ℓ b)) hy hb hc (by simp))
+variable {S : LengthSubst (Fin 3)} {Y : Type*}
 
-/-! ## Theorem S on the hull -/
+/-- A witness in an injective endpoint direction can be periodicized with
+its branch at the origin and all three tilings in the distinguished fibre. -/
+theorem hull_origin_witness_of_injective (hβ : 1 < S.β) (P : PublishedInputs S Y)
+    (hg : Injective S.lastLetter) (Z : S.Hull → S.Hull → Prop)
+    (hTranslate : ∀ t {T U}, Z T U → Z (translate t T) (translate t U))
+    (hFibre : ∀ {T U}, Z T U → P.realize T = P.realize U)
+    (hDistinct : ∀ {T U}, Z T U → T ≠ U) {T U V : S.Hull}
+    (hTU : Z T U) (hTV : Z T V) (hUV : U ≠ V) (hA : RightAsymptotic AgreeRight U V) :
+    ∃ t n b c, 0 < n ∧ Z (translate t T) (translate t U) ∧
+      Z (translate t T) (translate t V) ∧ inflateH^[n] (translate t T) = translate t T ∧
+      inflateH^[n] (translate t U) = translate t U ∧
+      inflateH^[n] (translate t V) = translate t V ∧
+      BranchAt AgreeRight EndsAt (translate t U) (translate t V) 0 b c ∧
+      P.realize (translate t T) = P.q₀ ∧ P.realize (translate t U) = P.q₀ ∧
+      P.realize (translate t V) = P.q₀ := by
+  have shiftAsym : ∀ t {x y : S.Hull}, RightAsymptotic AgreeRight x y →
+      RightAsymptotic AgreeRight (translate t x) (translate t y) := by
+    rintro t x y ⟨r, hr⟩
+    exact ⟨r - t, rightBranchLaws.agree_translate t hr⟩
+  obtain ⟨t, n, _, hn, hTU', hTV', hTn, hUn, hVn, -, -, -, -, -, -, hUV', hA'⟩ :=
+    periodic_triple_of_asymptotic_partners inflateH P.A P.realize translate Z
+      (RightAsymptotic AgreeRight) P.inflate_injective P.semiconj P.finite_fibres
+      translate_injective hTranslate shiftAsym hFibre hDistinct (bds_ray_iff_metric.mpr P.bds)
+      hTU hTV hUV hA
+  have hp : PairPeriodic inflateH (translate t U) (translate t V) := ⟨n, hn, hUn, hVn⟩
+  obtain ⟨b, c, hbranch⟩ := periodic_branch_at_origin_of_injective hβ hg hp hUV' hA'
+  have hu := P.r4 hp.mem_left hbranch.2.1
+  have hv := P.r4 hp.mem_right hbranch.2.2.1
+  exact ⟨t, n, b, c, hn, hTU', hTV', hTn, hUn, hVn, hbranch, (hFibre hTU').trans hu, hu, hv⟩
 
-section Ternary
-
-variable {L : LengthSubst (Fin 3)} {Y : Type*}
-
-/-- **Theorem S on the legal tiling hull.**  Every local contract is discharged; the inputs
-are the fields of `PublishedInputs`, the joining relation `Z` with its translation and fibre
-laws, (E1) and (NM_V). -/
-theorem hull_selection_dichotomy (hβ : 1 < L.β) (P : PublishedInputs L Y)
-    (Z : L.Hull → L.Hull → Prop)
-    (hZtranslate : ∀ t {x y}, Z x y → Z (translate t x) (translate t y))
-    (hZfibre : ∀ {x y}, Z x y → P.realize x = P.realize y) (hZne : ∀ {x y}, Z x y → x ≠ y)
+/-- Theorem S on the legal tiling hull with its two local contracts supplied.
+The realization, asymptotic periodicization and (NM_V) inputs stay named. -/
+theorem hull_selection_dichotomy (hβ : 1 < S.β) (P : PublishedInputs S Y)
+    (Z : S.Hull → S.Hull → Prop)
+    (hTranslate : ∀ t {T U}, Z T U → Z (translate t T) (translate t U))
+    (hFibre : ∀ {T U}, Z T U → P.realize T = P.realize U)
+    (hDistinct : ∀ {T U}, Z T U → T ≠ U)
     (hE1 : AsymptoticSameFibre P.realize AgreeRight)
     (hNMV : NMVRight P.realize P.q₀ AgreeRight EndsAt StartsAt)
-    (hTwo : TwoPeriodicLetters L.lastLetter)
-    {T S U : L.Hull} (hTS : Z T S) (hTU : Z T U) (hSU : S ≠ U)
-    (hAsym : RightAsymptotic AgreeRight S U) :
+    (hTwo : TwoPeriodicLetters S.lastLetter) {T U V : S.Hull}
+    (hTU : Z T U) (hTV : Z T V) (hUV : U ≠ V) (hA : RightAsymptotic AgreeRight U V) :
     ∃ t n, 0 < n ∧
-      Z (translate t T) (translate t S) ∧ Z (translate t T) (translate t U) ∧
+      Z (translate t T) (translate t U) ∧ Z (translate t T) (translate t V) ∧
       inflateH^[n] (translate t T) = translate t T ∧
-      inflateH^[n] (translate t S) = translate t S ∧
       inflateH^[n] (translate t U) = translate t U ∧
-      ∃ y b c, BranchAt AgreeRight EndsAt (translate t S) (translate t U) y b c ∧
-        ((y = 0 ∧ L.lastLetter^[2] b ≠ L.lastLetter^[2] c ∧ P.realize (translate t T) = P.q₀ ∧
-            P.realize (translate t S) = P.q₀ ∧ P.realize (translate t U) = P.q₀) ∨
-         (0 < y ∧ L.lastLetter^[2] b = L.lastLetter^[2] c ∧ L.lastLetter b = L.lastLetter c ∧
-            ¬ VertexAtOrigin EndsAt (translate t S) ∧
-            ¬ VertexAtOrigin EndsAt (translate t U))) :=
+      inflateH^[n] (translate t V) = translate t V ∧
+      ∃ y b c, BranchAt AgreeRight EndsAt (translate t U) (translate t V) y b c ∧
+        ((y = 0 ∧ S.lastLetter^[2] b ≠ S.lastLetter^[2] c ∧ P.realize (translate t T) = P.q₀ ∧
+            P.realize (translate t U) = P.q₀ ∧ P.realize (translate t V) = P.q₀) ∨
+         (0 < y ∧ S.lastLetter^[2] b = S.lastLetter^[2] c ∧ S.lastLetter b = S.lastLetter c ∧
+            ¬ VertexAtOrigin EndsAt (translate t U) ∧ ¬ VertexAtOrigin EndsAt (translate t V))) :=
   selection_dichotomy rightBranchLaws (vertexLaws hβ) hβ branchExistence
     (bds_ray_iff_metric.mpr P.bds) P.A P.realize P.q₀ Z P.inflate_injective P.semiconj
-    P.finite_fibres translate_injective hZtranslate hZfibre hZne P.r4 hE1 hNMV hTwo
-    hTS hTU hSU hAsym
+    P.finite_fibres translate_injective hTranslate hFibre hDistinct P.r4 hE1 hNMV hTwo
+    hTU hTV hUV hA
 
-/-- Two hull tilings share no tile at level zero: the level-zero part of (Z2). -/
-def NoCommonTile (T U : L.Hull) : Prop := ∀ p, p ∈ T.1 → p ∉ U.1
-
-/-- **Case (A), vertex-type common partner, on the hull.**  If the leaves branch at the
-origin and the common partner also has a vertex there, sharing no tile with either leaf,
-then the last-letter map is a permutation.  So the right side lies in round-4 Lemma A's
-injective regime, where (NM_V) on the right holds and case (B) is empty. -/
-theorem hull_lastLetter_injective_of_vertex_partner
-    {T S U : L.Hull} {x b c : Fin 3}
-    (hT : T ∈ periodicPts inflateH) (hS : S ∈ periodicPts inflateH)
-    (hU : U ∈ periodicPts inflateH) (hbranch : BranchAt AgreeRight EndsAt S U 0 b c)
-    (hx : EndsAt T 0 x) (hTS : NoCommonTile T S) (hTU : NoCommonTile T U) :
-    Injective L.lastLetter := by
-  have hb : EndsAt S 0 b := hbranch.2.1
-  have hc : EndsAt U 0 c := hbranch.2.2.1
-  refine injective_of_vertex_partner rightBranchLaws hT hS hU hx hb hc ?_ ?_ hbranch.2.2.2
-  · rintro rfl; exact hTS _ hx hb
-  · rintro rfl; exact hTU _ hx hc
-
-end Ternary
-
-end Psc.PeriodicPartnerHullSelection
+end Psc.PeriodicPartnerHull

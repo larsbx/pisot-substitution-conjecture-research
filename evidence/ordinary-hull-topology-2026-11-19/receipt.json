@@ -1,0 +1,48 @@
+{
+  "accepted_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "audit": {
+    "declarations": 1458,
+    "modules": 24,
+    "source_named_proofs": 577,
+    "theorem_declarations": 1068
+  },
+  "base_revision": "ec026774e666fb8e8ac43b1ba975b9a4df8891b2",
+  "hosted_acceptance": "not claimed by this packet",
+  "independent_human_review": "pending; agent review is not independent human review",
+  "lean_toolchain": "leanprover/lean4:v4.34.0-rc2",
+  "local_artifacts_reused": false,
+  "mathlib_revision": "4edb0dbaa3b3cf729d86d1e2f035474d5ae2ac09",
+  "new_modules": {
+    "PscVerif.PeriodicPartnerHullContinuity": 15,
+    "PscVerif.PeriodicPartnerLocalRealization": 3,
+    "PscVerif.PeriodicPartnerLocalTopology": 21,
+    "PscVerif.PeriodicPartnerLocalTopologyControls": 5
+  },
+  "new_named_proofs": 44,
+  "published_source_revision": "f407bd05f4ca12603e78026a08b7058e18e09cea",
+  "recorded_at_utc": "2026-11-19T23:01:39.287588+00:00",
+  "repository_tests": {
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0,
+    "tests": 252
+  },
+  "scope": "fresh periodic-partner local import closure; not a full root-library build",
+  "source_rechecks": [
+    "after-clone",
+    "after-upstream-cache",
+    "after-build",
+    "after-audit"
+  ],
+  "source_snapshot": {
+    "files": 236,
+    "sha256": "7bee0352555808162025eb1c3596ee278b90d5482348a1512bf5b0cdebbd45d8"
+  },
+  "upstream_cache": "selected upstream source-hash artifacts, with freshly cloned pinned dependencies",
+  "verified_and_published_tree": "5d4cdfca23cac14478efd5a84c3bd4813cb0016b",
+  "verified_source_revision": "9fb7c7d7f528f3ccf35d9f393dc050d063e26762"
+}

@@ -367,6 +367,9 @@ obligations are still exact and separate:
    the origin on the collapsed pair of `g_R`, and both leaves are interior-type.
    The exact census finds that configuration inside `F₀` on 12 (NM_V) specimens with
    `β₁(ER) = 2`, so (NM_V) alone does not select a witness.
+   *Further update 2026-11-19:* [directional extraction](c4-complete-range-covering-2026-11-19.md#directional-extraction-from-a-singleton-fibre)
+   uses the strict-component projection at odd determinant and coincidence
+   rank two to select a nonmerging origin branch without (NM_V).
 2. **A contradiction after successful zero-fibre extraction.** Control the
    common partner's vertex or interior type and the repeated-letter
    multiplicities without using the covering-only matching lemma. Prove a

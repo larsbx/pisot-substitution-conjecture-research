@@ -1,0 +1,102 @@
+{
+  "repository": "larsbx/pisot-substitution-conjecture-research",
+  "observed_date": "2026-11-19",
+  "base_revision": "c0231e0fd64d9eee7f7bb798042d9966276e4cd6",
+  "base_tree": "67659d5673c9720938b5860b4da7fcf4671a7345",
+  "base_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/commit/c0231e0fd64d9eee7f7bb798042d9966276e4cd6",
+  "pull_requests": [
+    {
+      "number": 617,
+      "head": "82ac57cef6ee45877cf635d1f506d07c75dfb8db",
+      "merge": "e79e3e31b7391a216aed697f2adfef0d020dc823"
+    },
+    {
+      "number": 618,
+      "head": "ae372beda785809bfc773d6adedfc11b9c43bea5",
+      "merge": "c1ce3867ce3d00cda8032a4c7639a9becc21ff62"
+    },
+    {
+      "number": 619,
+      "head": "3b4f7e02d7098a3a2b5c9dd777c4388f71322aa0",
+      "merge": "3e29e7f08afc0d850d8b63f56ae5ab4d17c68851"
+    },
+    {
+      "number": 620,
+      "head": "dac57533c7f4386cabb1e460151480626633ed63",
+      "merge": "c0231e0fd64d9eee7f7bb798042d9966276e4cd6"
+    }
+  ],
+  "baseline_workflows": [
+    {
+      "name": "Canonical Pisot polynomial kernels",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/44596583388",
+      "head_sha": "c0231e0fd64d9eee7f7bb798042d9966276e4cd6"
+    },
+    {
+      "name": "Packet square (Lean tables, regeneration gate, independent oracle)",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/44596579589",
+      "head_sha": "c0231e0fd64d9eee7f7bb798042d9966276e4cd6"
+    },
+    {
+      "name": "C4 degree2 three-state census",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/44596580594",
+      "head_sha": "c0231e0fd64d9eee7f7bb798042d9966276e4cd6"
+    },
+    {
+      "name": "Plus-Class-A upper central recurrence and cycle exits",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/44596579425",
+      "head_sha": "c0231e0fd64d9eee7f7bb798042d9966276e4cd6"
+    },
+    {
+      "name": "PR487 return-family native acceptance",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/44596580153",
+      "head_sha": "c0231e0fd64d9eee7f7bb798042d9966276e4cd6"
+    },
+    {
+      "name": "C4 defect-degree census",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/44596579412",
+      "head_sha": "c0231e0fd64d9eee7f7bb798042d9966276e4cd6"
+    },
+    {
+      "name": "Boundary synchronization layer",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/44596579199",
+      "head_sha": "c0231e0fd64d9eee7f7bb798042d9966276e4cd6"
+    },
+    {
+      "name": "C4 periodic partner formalization",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/44596579364",
+      "head_sha": "c0231e0fd64d9eee7f7bb798042d9966276e4cd6"
+    },
+    {
+      "name": "PSC research checks",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/44596579398",
+      "head_sha": "c0231e0fd64d9eee7f7bb798042d9966276e4cd6"
+    },
+    {
+      "name": "Physical mass Lean Quint refinement",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/44596579668",
+      "head_sha": "c0231e0fd64d9eee7f7bb798042d9966276e4cd6"
+    }
+  ],
+  "candidate_hosted_checks": "Not run: candidate remains local and unpublished."
+}
