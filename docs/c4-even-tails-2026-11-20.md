@@ -102,6 +102,47 @@ the irreducible Pisot cubic, not just its reduction modulo two. This agrees with
 algebraic consistency model of the [solenoid note](c4-even-solenoid-2026-11-19.md#non-claims--remaining-gaps),
 which reaches the same boundary from the cohomological side.
 
+## The hard step: a second route through mod-2 cohomology
+
+A different route: compute the mod-2 cohomology of the three hulls of the even residue and
+look for an incompatibility. **It is not discharged either.** Single prover, no verifier.
+Notation as in the [even stack residue](c4-even-stack-residue-2026-11-19.md#assumptions-and-hypotheses):
+`Ω` the original hull, `q : Ω → X` the stack quotient, `p : X → Y` the two-sheet cover with
+deck involution `ι`, `z` the odd sheet function and `F = z²` on `Y`.
+
+*Derivation.*
+
+1. **The proper hulls.** Barge's Theorem 12 gives proper presentations of `X` and `Y`.
+   For a proper substitution the Anderson–Putnam complex is a wedge of circles, so
+   `H¹(·; 𝔽₂)` is the eventual image of the transposed incidence modulo two. Both
+   incidences have nonzero characteristic factor `χ_M(t)(t − 1)` (rational dimension four
+   with spectrum `χ_M` and `1`). Modulo two this is `t³(t − 1)`, whose eventual image is one
+   line. Hence `H¹(X; 𝔽₂) ≅ H¹(Y; 𝔽₂) ≅ 𝔽₂`.
+2. **The transfer sequence** of the free involution, with `𝔽₂` coefficients:
+   `0 → H⁰(Y) → H⁰(X) → H⁰(Y) →(∪w) H¹(Y) →(p*) H¹(X) →(τ) H¹(Y) →(∪w) H²(Y)`.
+   `X` is connected and the cover is nontrivial, so `∪w` is injective on `H⁰`. Its image is
+   all of `H¹(Y; 𝔽₂)`. Therefore **`p* = 0` on `H¹(·; 𝔽₂)`, the transfer `τ` is an
+   isomorphism, and `w ∪ w = 0`.** Since `N(z) = −F`, the transfer sends `[z] mod 2` to
+   `[F] mod 2 = w`. So `[z] mod 2` generates `H¹(X; 𝔽₂)`.
+3. **The original hull.** `M` is nilpotent modulo two, so the letter-count term of the
+   Barge–Diamond sequence vanishes with `𝔽₂` coefficients, and
+   `H¹(Ω; 𝔽₂) ≅ H¹(ER; 𝔽₂)`: mod-2 classes on `Ω` are detected by seam cycles alone.
+   `q*[z] mod 2` is nonzero there, since its unit-cycle readout is the odd `K` of the
+   [count note](c4-homoclinic-winding-counts-2026-11-20.md#two-checks-on-the-original-to-quotient-transfer).
+
+*Where it stops.* Every statement above holds for Thue–Morse over period doubling, with
+`Ω = X` the Thue–Morse hull. Its incidence is nilpotent modulo two and its eventual range is
+`K₂,₂` with `β₁ = 1`, so `H¹(TM; 𝔽₂) ≅ 𝔽₂`. The period-doubling incidence reduces to a
+nonzero idempotent other than the identity, so `H¹(PD; 𝔽₂) ≅ 𝔽₂`
+(`periodDoubling_mod_two_fixed_line`; Thue–Morse nilpotence is the existing
+`thueMorse_mod_two_cube`). So the mod-2 cohomology data is realized, and the route has no
+contradiction to reach. The first failed premise is the same as in the first route: nothing
+here uses the irreducible Pisot cubic beyond its reduction modulo two. The one feature
+Thue–Morse lacks is a proper factor map `q : Ω → X` from an irreducible cubic hull. At even
+determinant `σ` is nonunit, so (W4) makes `≈_s` nontrivial and `q` is not injective.
+Whatever excludes the residue has to use that factor's geometry, which matches the
+`η_k` readout obligation of the [return-seam note](c4-return-seam-boundary-2026-11-20.md#non-claims--remaining-gaps).
+
 ## Controls
 
 Period doubling `0 → 01, 1 → 00` satisfies both padding equations with distinct words. Its
@@ -121,7 +162,7 @@ namespace `Psc.PeriodicPartnerEvenTails`.
 | both tails; origin vertex | `eq_of_two_tails`, `agree_right_of_vertex`, `agree_left_of_vertex` |
 | counts and nilpotence | `count_iterWord`, `even_of_nilpotent` |
 | nilpotent hull forms | `hull_eq_of_two_tails_of_nilpotent`, `hull_rays_of_nilpotent` |
-| control | `thueMorseSq_even`, `thueMorseSq_strict_bigons` |
+| controls | `thueMorseSq_even`, `thueMorseSq_strict_bigons`, `periodDoubling_mod_two_fixed_line` |
 | powers | `LengthSubst.pow`, `inflate_pow` |
 | on the hull | `hull_eq_of_two_tails`, `hull_agree_right_of_vertex` |
 

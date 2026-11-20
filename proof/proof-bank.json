@@ -39834,6 +39834,14 @@
       "declaration": "theorem thueMorseSq_strict_bigons :"
     },
     {
+      "name": "Psc.PeriodicPartnerEvenTails.periodDoubling_mod_two_fixed_line",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 562,
+      "declaration": "theorem periodDoubling_mod_two_fixed_line :"
+    },
+    {
       "name": "Psc.PeriodicPartnerHull.LengthSubst.sum_nonneg",
       "module": "PscVerif.PeriodicPartnerHull",
       "private": false,
@@ -54372,7 +54380,7 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean": "e78626f1b8c8a8878249dbdb959ea4b493bedef844755a693ef6450043607664",
     "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean": "812599f6a9dfb4ab5d0da0924fa6c3901128f74644e76d14eb2996de17f55c44",
     "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean": "24de7ca583a5a654e331a0fae80e407174589843b58051fca044fefcd76d874c",
-    "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean": "f59b17d5c5a3210501415bc0007290c02bf9f85a8150ed006818b32c097f0c22",
+    "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean": "5519f5698c83b43956df8e04263f873e4879a1ec4e48533fe96e36b330f7d626",
     "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean": "6124e92faa7ace36663a57ff5dda39f281fd86237cc30006912cf4c2a0a65b6e",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean": "80e0f040cd0ea768a0d5ddf74710dc659c9a9431fb667740953f41369a652386",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean": "59d86f345c47142bdd7a74200c04b48f4ae975d1d5afe2dc29331048d7f37988",

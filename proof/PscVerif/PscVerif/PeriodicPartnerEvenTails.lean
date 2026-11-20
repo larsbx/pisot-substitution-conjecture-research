@@ -549,4 +549,25 @@ theorem thueMorseSq_strict_bigons :
     ([0, 1] : List (Fin 2)).head? ≠ ([1, 0] : List (Fin 2)).head? := by
   decide
 
+/-- Period doubling, `0 ↦ 01`, `1 ↦ 00`: the unordered quotient of Thue–Morse. -/
+def periodDoubling : Fin 2 → List (Fin 2) := ![[0, 1], [0, 0]]
+
+/-- Its incidence modulo two, entry `(b, a)` the parity of `b` in the image of `a`. -/
+def periodDoublingModTwo : Matrix (Fin 2) (Fin 2) (ZMod 2) :=
+  fun b a => ((periodDoubling a).count b : ZMod 2)
+
+/-- The reduced incidence is a nonzero idempotent other than the identity, so its eventual
+image is a single fixed line: `H¹(PD; 𝔽₂) ≅ 𝔽₂` for the proper square, as in the even
+residue's base `Y`. -/
+theorem periodDoubling_mod_two_fixed_line :
+    periodDoublingModTwo * periodDoublingModTwo = periodDoublingModTwo ∧
+      periodDoublingModTwo ≠ 0 ∧ periodDoublingModTwo ≠ 1 := by
+  refine ⟨?_, fun h => ?_, fun h => ?_⟩
+  · ext i j
+    fin_cases i <;> fin_cases j <;> decide
+  · have := congrFun (congrFun h 0) 0
+    revert this; decide
+  · have := congrFun (congrFun h 1) 1
+    revert this; decide
+
 end Psc.PeriodicPartnerEvenTails
