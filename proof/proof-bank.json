@@ -36802,6 +36802,38 @@
       "declaration": "theorem triangle_partner_disjoint_labels :"
     },
     {
+      "name": "Psc.PeriodicPartnerDesubContinuity.origin_mem_parentOrigins",
+      "module": "PscVerif.PeriodicPartnerDesubContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDesubContinuity.lean",
+      "line": 36,
+      "declaration": "theorem origin_mem_parentOrigins (U : S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDesubContinuity.isCompact_inflate_preimage_origin_fibre",
+      "module": "PscVerif.PeriodicPartnerDesubContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDesubContinuity.lean",
+      "line": 52,
+      "declaration": "theorem isCompact_inflate_preimage_origin_fibre (q : α × ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDesubContinuity.isClosedMap_inflateH",
+      "module": "PscVerif.PeriodicPartnerDesubContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDesubContinuity.lean",
+      "line": 67,
+      "declaration": "theorem isClosedMap_inflateH : IsClosedMap (inflateH (S := S)) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDesubContinuity.continuous_desub",
+      "module": "PscVerif.PeriodicPartnerDesubContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDesubContinuity.lean",
+      "line": 91,
+      "declaration": "theorem continuous_desub (hR : Bijective (inflateH (S := S))) :"
+    },
+    {
       "name": "Psc.PeriodicPartnerDichotomy.ternary_endpoint_merge_iff_collapse",
       "module": "PscVerif.PeriodicPartnerDichotomy",
       "private": false,
@@ -37722,6 +37754,150 @@
       "declaration": "theorem thueMorse_hull_nonempty : Nonempty thueMorse.Hull := by"
     },
     {
+      "name": "Psc.PeriodicPartnerHullCompact.rightTile_mem",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 39,
+      "declaration": "theorem rightTile_mem (T : S.Hull) (n : ℕ) : rightTile T n ∈ T.1 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.leftTile_mem",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 44,
+      "declaration": "theorem leftTile_mem (T : S.Hull) (n : ℕ) : leftTile T n ∈ T.1 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.rightTile_start_succ",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 50,
+      "declaration": "theorem rightTile_start_succ (T : S.Hull) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.tileAt_prev_end",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 55,
+      "declaration": "theorem tileAt_prev_end {T : S.Hull} {q : α × ℝ} (hq : q ∈ T.1) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.leftTile_end_succ",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 68,
+      "declaration": "theorem leftTile_end_succ (T : S.Hull) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.leftTile_start_succ",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 72,
+      "declaration": "theorem leftTile_start_succ (T : S.Hull) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.rightTile_start_lower",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 76,
+      "declaration": "theorem rightTile_start_lower (T : S.Hull) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.leftTile_start_upper",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 85,
+      "declaration": "theorem leftTile_start_upper (T : S.Hull) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.rightTile_cover",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 96,
+      "declaration": "theorem rightTile_cover (T : S.Hull) (n : ℕ) {z : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.leftTile_cover",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 109,
+      "declaration": "theorem leftTile_cover (T : S.Hull) (n : ℕ) {z : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.finite_range_rightTile",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 123,
+      "declaration": "theorem finite_range_rightTile (p : α × ℝ) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.finite_range_leftTile",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 139,
+      "declaration": "theorem finite_range_leftTile (p : α × ℝ) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.exists_finite_window_container",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 156,
+      "declaration": "theorem exists_finite_window_container (p : α × ℝ) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.finite_range_window",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 185,
+      "declaration": "theorem finite_range_window (p : α × ℝ) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.totallyBounded_origin_fibre",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 193,
+      "declaration": "theorem totallyBounded_origin_fibre (p : α × ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.isCompact_origin_fibre",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 206,
+      "declaration": "theorem isCompact_origin_fibre (p : α × ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.cauchySeq_eventually_agree",
+      "module": "PscVerif.PeriodicPartnerHullComplete",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullComplete.lean",
+      "line": 19,
+      "declaration": "theorem cauchySeq_eventually_agree {u : ℕ → S.Hull} (hu : CauchySeq u) (R : ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.exists_tendsto_of_cauchySeq",
+      "module": "PscVerif.PeriodicPartnerHullComplete",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullComplete.lean",
+      "line": 26,
+      "declaration": "theorem exists_tendsto_of_cauchySeq {u : ℕ → S.Hull} (hu : CauchySeq u) :"
+    },
+    {
       "name": "Psc.PeriodicPartnerHull.LengthSubst.Agree.refl",
       "module": "PscVerif.PeriodicPartnerHullContinuity",
       "private": false,
@@ -37928,6 +38104,46 @@
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
       "line": 231,
       "declaration": "theorem hull_selection_dichotomy (hβ : 1 < S.β) (P : PublishedInputs S Y)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalInflation.desubLocal_chart",
+      "module": "PscVerif.PeriodicPartnerLocalInflation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalInflation.lean",
+      "line": 30,
+      "declaration": "theorem desubLocal_chart (p : ℝ × S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalInflation.continuous_desubLocal",
+      "module": "PscVerif.PeriodicPartnerLocalInflation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalInflation.lean",
+      "line": 36,
+      "declaration": "theorem continuous_desubLocal : Continuous (desubLocal hR) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalInflation.desubLocal_translate",
+      "module": "PscVerif.PeriodicPartnerLocalInflation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalInflation.lean",
+      "line": 44,
+      "declaration": "theorem desubLocal_translate (t : ℝ) (T : LocalHull S) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalInflation.inflate_desubLocal",
+      "module": "PscVerif.PeriodicPartnerLocalInflation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalInflation.lean",
+      "line": 50,
+      "declaration": "@[simp] theorem inflate_desubLocal (T : LocalHull S) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalInflation.desubLocal_inflate",
+      "module": "PscVerif.PeriodicPartnerLocalInflation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalInflation.lean",
+      "line": 55,
+      "declaration": "@[simp] theorem desubLocal_inflate (T : LocalHull S) :"
     },
     {
       "name": "Psc.PeriodicPartnerLocalRealization.realizeLocal_inflate",
@@ -38658,6 +38874,78 @@
       "declaration": "theorem contraction_collapse_from_endpoint_merge :"
     },
     {
+      "name": "Psc.PeriodicPartnerOriginContinuity.origin_eq_of_agree_one",
+      "module": "PscVerif.PeriodicPartnerOriginContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerOriginContinuity.lean",
+      "line": 29,
+      "declaration": "theorem origin_eq_of_agree_one {T U : S.Hull} (h : Agree 1 T U) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerOriginContinuity.isLocallyConstant_origin",
+      "module": "PscVerif.PeriodicPartnerOriginContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerOriginContinuity.lean",
+      "line": 37,
+      "declaration": "theorem isLocallyConstant_origin : IsLocallyConstant (origin (S := S)) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerOriginContinuity.isOpen_origin_fibre",
+      "module": "PscVerif.PeriodicPartnerOriginContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerOriginContinuity.lean",
+      "line": 45,
+      "declaration": "theorem isOpen_origin_fibre (p : α × ℝ) : IsOpen {T : S.Hull | origin T = p} :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerOriginContinuity.isClosed_origin_fibre",
+      "module": "PscVerif.PeriodicPartnerOriginContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerOriginContinuity.lean",
+      "line": 48,
+      "declaration": "theorem isClosed_origin_fibre (p : α × ℝ) : IsClosed {T : S.Hull | origin T = p} :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerOriginContinuity.origin_inflate_eq_of_origin_eq",
+      "module": "PscVerif.PeriodicPartnerOriginContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerOriginContinuity.lean",
+      "line": 55,
+      "declaration": "theorem origin_inflate_eq_of_origin_eq {U V : S.Hull} (h : origin U = origin V) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerOriginContinuity.offset_eq_of_origin_eq",
+      "module": "PscVerif.PeriodicPartnerOriginContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerOriginContinuity.lean",
+      "line": 69,
+      "declaration": "theorem offset_eq_of_origin_eq {U V : S.Hull} (h : origin U = origin V) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerOriginContinuity.isLocallyConstant_offset",
+      "module": "PscVerif.PeriodicPartnerOriginContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerOriginContinuity.lean",
+      "line": 78,
+      "declaration": "theorem isLocallyConstant_offset : IsLocallyConstant (offset (S := S)) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerOriginContinuity.continuous_origin_start",
+      "module": "PscVerif.PeriodicPartnerOriginContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerOriginContinuity.lean",
+      "line": 85,
+      "declaration": "theorem continuous_origin_start : Continuous (fun T : S.Hull => (origin T).2) :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerOriginContinuity.continuous_offset",
+      "module": "PscVerif.PeriodicPartnerOriginContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerOriginContinuity.lean",
+      "line": 88,
+      "declaration": "theorem continuous_offset : Continuous (offset (S := S)) :="
+    },
+    {
       "name": "Psc.PeriodicPartnerRealization.isClosed_lattice",
       "module": "PscVerif.PeriodicPartnerRealization",
       "private": false,
@@ -39168,6 +39456,142 @@
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
       "line": 817,
       "declaration": "theorem continuous_flow [Nonempty α] (P : PisotData S) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.realization_term_norm_le",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 32,
+      "declaration": "theorem realization_term_norm_le (k : ℕ) (T : S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.summable_realization_majorant",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 43,
+      "declaration": "theorem summable_realization_majorant :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.tendstoUniformly_realization_series",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 49,
+      "declaration": "theorem tendstoUniformly_realization_series :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.continuous_level_of_continuous_desub",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 58,
+      "declaration": "theorem continuous_level_of_continuous_desub"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.isLocallyConstant_xs_of_continuous_desub",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 62,
+      "declaration": "theorem isLocallyConstant_xs_of_continuous_desub"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.isLocallyConstant_cs_of_continuous_desub",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 69,
+      "declaration": "theorem isLocallyConstant_cs_of_continuous_desub"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.continuous_realVec_of_continuous_desub",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 78,
+      "declaration": "theorem continuous_realVec_of_continuous_desub"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.continuous_torusRealize_of_continuous_desub",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 90,
+      "declaration": "theorem continuous_torusRealize_of_continuous_desub"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.continuous_realize_of_continuous_desub",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 97,
+      "declaration": "theorem continuous_realize_of_continuous_desub"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.continuous_realizeLocal_of_continuous_desub",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 104,
+      "declaration": "theorem continuous_realizeLocal_of_continuous_desub (hβ : 1 < S.β)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.continuous_level",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 113,
+      "declaration": "theorem continuous_level (n : ℕ) : Continuous (level hR n) :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.continuous_realVec",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 119,
+      "declaration": "theorem continuous_realVec : Continuous (realVec P hR) :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.continuous_torusRealize",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 123,
+      "declaration": "theorem continuous_torusRealize : Continuous (torusRealize P hR) :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.continuous_realize",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 128,
+      "declaration": "theorem continuous_realize : Continuous (realize P hR) :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.continuous_realizeLocal",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 135,
+      "declaration": "theorem continuous_realizeLocal (hβ : 1 < S.β) : Continuous (realizeLocal P hR) :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuityControls.not_continuousAt_local_originStart_of_zero",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuityControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuityControls.lean",
+      "line": 21,
+      "declaration": "theorem not_continuousAt_local_originStart_of_zero (T : S.Hull)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuityControls.not_continuous_local_originStart",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuityControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuityControls.lean",
+      "line": 64,
+      "declaration": "theorem not_continuous_local_originStart (T : S.Hull) :"
     },
     {
       "name": "Psc.PeriodicPartnerRealizationModels.pow_mulVec_of_eigen",
@@ -50796,7 +51220,7 @@
     "proof/PscVerif/ClassARunDescentAudit.lean": "a1fe09a772c2112929a6f892993da045628ef410f15cd53b1d8eba74343959fc",
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "81efe5b8745576f8f15a59a263563b31e08307e9c432e78fa2ef9021a613b2d1",
     "proof/PscVerif/EvenRankTwoAudit.lean": "cfc2c3b6dfae0305e1ab27989607917e4ffe8944a513aa861dc5ca781ba620ca",
-    "proof/PscVerif/PeriodicPartnerAudit.lean": "6ddb48e309faac5adbe6c839a8f6feb9ba4db092662e1883951411eae9d50b6a",
+    "proof/PscVerif/PeriodicPartnerAudit.lean": "15f80558910a3150a7ac21a7f2c6a84c08311578d6c5e9719d1af7cdb21c1ec5",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean": "87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean": "e18e726b6bd1c431f9e28500504edd6ffba157415af20069715b9c8f208f3f9b",
@@ -50965,18 +51389,25 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerCollapse.lean": "a0b3df8c6040977532413191864a2ba002ebf45a6fb79cd3a40fe9a8fb45fd91",
     "proof/PscVerif/PscVerif/PeriodicPartnerCompleteRange.lean": "df5e5f39df78d9a48c02f61399558ecb600dd5cc3c9d936c238300ece7caba23",
     "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean": "84725326692e81dafcef2c4a724bfb2cee8629fdba398686540db35be72eb0fd",
+    "proof/PscVerif/PscVerif/PeriodicPartnerDesubContinuity.lean": "57bd1013e5cc26d2ece86c44ded9b20e57ed2df9068a3cf6d243aed3fc87fcfe",
     "proof/PscVerif/PscVerif/PeriodicPartnerDichotomy.lean": "d74034c65d26d8b98916f6fdca046c6772e9a3389fb53fdd03bcf3baeea2339b",
     "proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean": "080463d8b7cd0fb0936ca25b01c690f0d487ca38290614d5235e973ccb77f7e3",
     "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean": "812599f6a9dfb4ab5d0da0924fa6c3901128f74644e76d14eb2996de17f55c44",
     "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean": "24de7ca583a5a654e331a0fae80e407174589843b58051fca044fefcd76d874c",
     "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean": "6124e92faa7ace36663a57ff5dda39f281fd86237cc30006912cf4c2a0a65b6e",
+    "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean": "3be4cdd1c79f495bf3a00e3a12ffe858c7a00676aea0f31126f340e047d9bba8",
+    "proof/PscVerif/PscVerif/PeriodicPartnerHullComplete.lean": "800e0ff78b0e0bf9ea8f477b734952ef92d4b96e034ea6fc0be310c6fc8070c0",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean": "80e0f040cd0ea768a0d5ddf74710dc659c9a9431fb667740953f41369a652386",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean": "59d86f345c47142bdd7a74200c04b48f4ae975d1d5afe2dc29331048d7f37988",
+    "proof/PscVerif/PscVerif/PeriodicPartnerLocalInflation.lean": "ae8cbbab23f406aa1b93e377106c23e13109d12b63a4512c488d4eae6aec6193",
     "proof/PscVerif/PscVerif/PeriodicPartnerLocalRealization.lean": "472eacd674a293a84e841a7888398fd1fbaeedbdeff3a372c2e6ab665556e2b1",
     "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean": "ab9cca25c9b6f57b944a912e1e8a239b4bb46bd7a73727542af056760331b7cf",
     "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopologyControls.lean": "1573603e555c519d258421eaa50e01e06828166794811a1b6e5028a6040ee509",
     "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean": "434d5573fb928bb0ee6667da6dedc8fc76867b76c26d72f5707ac1387a62c5ea",
+    "proof/PscVerif/PscVerif/PeriodicPartnerOriginContinuity.lean": "8dc8686400f6a170c42e962359a406b4eaa649bf899a5d8149488e5ee8c37d50",
     "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean": "90c75822a22e6a88f7872fb8b894e39ff19f4b3bbe502feca88c5d2755228f0c",
+    "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean": "8d779d4d0ebb448ddb784f35b4e135cc5c7ce78ba97fd3c55537d1cbbb5a2d04",
+    "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuityControls.lean": "a415026c3cd498c372aafb4854fa18f0aec03853686de6c540d330d29dd442b5",
     "proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean": "870d45802ea6b8678a90bdbb88bdfa90a986fdafad52f00962766245353eb323",
     "proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean": "140e1a71503a0648d17099247ef4cb9b92d67c1cdc15257ee66526a89527ece5",
     "proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean": "13c39c9aea34b64f377cbfd3eb074fe436a952e8f0d806eb9ed37f6c2ef70e41",
@@ -51015,7 +51446,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "8d5259c2e496f999b4664459669436c9cc8584a7fa0c5807f32720222aa460a4",
+    "proof/PscVerif/PscVerif.lean": "030dd7d8fbe36c22b1533c6a4ee8e2b62689727f40cf10970c65304f4dc170f5",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

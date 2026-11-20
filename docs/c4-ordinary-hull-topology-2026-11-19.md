@@ -229,3 +229,16 @@ formalized in these modules.
 5. BDS periodicization, witness-selection inputs and the remaining
    rank-two/global strict-system exclusions are unchanged. No C4 or PSC
    claim is promoted.
+
+## Concrete continuity follow-up
+
+The [next formalization](c4-realization-continuity-2026-11-19.md) discharges
+the exact-source continuity obligation in this note. It proves completeness
+of the exact hull, compactness of its fixed-origin fibres and finiteness of
+possible parent origins, then derives continuity of the existing inverse
+from bijective inflation. Uniform convergence of the actual stable series
+proves continuity of the realization, and the iff above transfers it to
+the ordinary topology. Ordinary inflation is also now a homeomorphism under
+the same bijectivity input. Recognizability itself, full ordinary compactness
+and separation, normalized BBK identification and finite fibres remain
+separate. The receipt in this note continues to refer to its original scope.
