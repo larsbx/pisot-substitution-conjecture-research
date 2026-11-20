@@ -18,6 +18,7 @@ import PscVerif.PeriodicPartnerVertexPartner
 import PscVerif.PeriodicPartnerCompleteRange
 import PscVerif.PeriodicPartnerDirectional
 import PscVerif.PeriodicPartnerSeamCycles
+import PscVerif.PeriodicPartnerReturnBoundary
 import PscVerif.PeriodicPartnerWinding
 import PscVerif.PeriodicPartnerWindingSeams
 import PscVerif.PeriodicPartnerLiteralDefect
@@ -45,6 +46,7 @@ run_cmd do
     `PscVerif.PeriodicPartnerHullSelection, `PscVerif.PeriodicPartnerVertexPartner,
     `PscVerif.PeriodicPartnerCompleteRange,
     `PscVerif.PeriodicPartnerDirectional, `PscVerif.PeriodicPartnerSeamCycles,
+    `PscVerif.PeriodicPartnerReturnBoundary,
     `PscVerif.PeriodicPartnerWinding,
     `PscVerif.PeriodicPartnerWindingSeams, `PscVerif.PeriodicPartnerLiteralDefect,
     `PscVerif.PeriodicPartnerCompanionWords, `PscVerif.VertexAsymptoteRange,

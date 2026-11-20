@@ -41922,6 +41922,110 @@
       "declaration": "theorem left_ternary_zero_fibre_periodic_triple {X Y : Type*}"
     },
     {
+      "name": "Psc.PeriodicPartnerReturnBoundary.seamSum_congr",
+      "module": "PscVerif.PeriodicPartnerReturnBoundary",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReturnBoundary.lean",
+      "line": 22,
+      "declaration": "private theorem seamSum_congr {I J A : Type*} [Fintype I] [Fintype J] [AddCommGroup A]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReturnBoundary.seamSum_add",
+      "module": "PscVerif.PeriodicPartnerReturnBoundary",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReturnBoundary.lean",
+      "line": 31,
+      "declaration": "private theorem seamSum_add {I J A : Type*} [Fintype I] [Fintype J] [AddCommGroup A]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReturnBoundary.map_seamSum",
+      "module": "PscVerif.PeriodicPartnerReturnBoundary",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReturnBoundary.lean",
+      "line": 36,
+      "declaration": "private theorem map_seamSum {I J A B : Type*} [Fintype I] [Fintype J]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReturnBoundary.seamSum_side_terms_zero",
+      "module": "PscVerif.PeriodicPartnerReturnBoundary",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReturnBoundary.lean",
+      "line": 41,
+      "declaration": "private theorem seamSum_side_terms_zero {I J A : Type*} [Fintype I] [Fintype J]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReturnBoundary.seam_sum_fixed_of_side_padding",
+      "module": "PscVerif.PeriodicPartnerReturnBoundary",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReturnBoundary.lean",
+      "line": 61,
+      "declaration": "theorem seam_sum_fixed_of_side_padding {I J A : Type*} [Fintype I] [Fintype J]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReturnBoundary.seam_sum_map_zero_of_side_terms",
+      "module": "PscVerif.PeriodicPartnerReturnBoundary",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReturnBoundary.lean",
+      "line": 74,
+      "declaration": "theorem seam_sum_map_zero_of_side_terms {I J A B : Type*} [Fintype I] [Fintype J]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReturnBoundary.seam_sum_readout_eq_marker_mul",
+      "module": "PscVerif.PeriodicPartnerReturnBoundary",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReturnBoundary.lean",
+      "line": 84,
+      "declaration": "theorem seam_sum_readout_eq_marker_mul {I J A : Type*} [Fintype I] [Fintype J]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReturnBoundary.grouped_value_eq_side_terms_add_marker",
+      "module": "PscVerif.PeriodicPartnerReturnBoundary",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReturnBoundary.lean",
+      "line": 96,
+      "declaration": "private theorem grouped_value_eq_side_terms_add_marker (diagonal offDiagonal : ℤ) (i j : Bool) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReturnBoundary.grouped_seam_marked_count",
+      "module": "PscVerif.PeriodicPartnerReturnBoundary",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReturnBoundary.lean",
+      "line": 106,
+      "declaration": "theorem grouped_seam_marked_count {I J : Type*} [Fintype I] [Fintype J]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReturnBoundary.grouped_seam_marked_count_mod_four",
+      "module": "PscVerif.PeriodicPartnerReturnBoundary",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReturnBoundary.lean",
+      "line": 122,
+      "declaration": "theorem grouped_seam_marked_count_mod_four {I J : Type*} [Fintype I] [Fintype J]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReturnBoundary.sheetChanges_same_run",
+      "module": "PscVerif.PeriodicPartnerReturnBoundary",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReturnBoundary.lean",
+      "line": 137,
+      "declaration": "private theorem sheetChanges_same_run (b c : Bool) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReturnBoundary.marks_crossing_stack_tile",
+      "module": "PscVerif.PeriodicPartnerReturnBoundary",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReturnBoundary.lean",
+      "line": 146,
+      "declaration": "theorem marks_crossing_stack_tile (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReturnBoundary.thue_morse_marker_return_control",
+      "module": "PscVerif.PeriodicPartnerReturnBoundary",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReturnBoundary.lean",
+      "line": 154,
+      "declaration": "theorem thue_morse_marker_return_control :"
+    },
+    {
       "name": "Psc.PeriodicPartner.groupCycle_row",
       "module": "PscVerif.PeriodicPartnerSeamCycles",
       "private": true,
@@ -53804,7 +53908,7 @@
     "proof/PscVerif/ClassARunDescentAudit.lean": "a1fe09a772c2112929a6f892993da045628ef410f15cd53b1d8eba74343959fc",
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "81efe5b8745576f8f15a59a263563b31e08307e9c432e78fa2ef9021a613b2d1",
     "proof/PscVerif/EvenRankTwoAudit.lean": "cfc2c3b6dfae0305e1ab27989607917e4ffe8944a513aa861dc5ca781ba620ca",
-    "proof/PscVerif/PeriodicPartnerAudit.lean": "4b457b15450d0e695d9dfa57d0cfd262344932fd6a3726a3e5c426c4f9eba63b",
+    "proof/PscVerif/PeriodicPartnerAudit.lean": "40408a9ee89dfb4ac5ef8dd53526e9793a8b50c30995d9ad059c28f52538f40b",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean": "f1c4480b95159800bb52cd42164763d01e6ab6045dc72b07874f164409a0eaf1",
     "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean": "6387c221871d7b70efca50349c815fac07421bb44a28122f9157ff0652cb074f",
@@ -53999,6 +54103,7 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean": "90c75822a22e6a88f7872fb8b894e39ff19f4b3bbe502feca88c5d2755228f0c",
     "proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean": "870d45802ea6b8678a90bdbb88bdfa90a986fdafad52f00962766245353eb323",
     "proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean": "140e1a71503a0648d17099247ef4cb9b92d67c1cdc15257ee66526a89527ece5",
+    "proof/PscVerif/PscVerif/PeriodicPartnerReturnBoundary.lean": "84e8948f48cda97e3099fb7db5b14b6f5fa703fee4d8a9cfe597919578b13ff9",
     "proof/PscVerif/PscVerif/PeriodicPartnerSeamCycles.lean": "15693988e36bb7e4ba0e3d7e6e2e15fb2cc85ff2b36552ccd8b395cf08260ef7",
     "proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean": "13c39c9aea34b64f377cbfd3eb074fe436a952e8f0d806eb9ed37f6c2ef70e41",
     "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean": "45d12d1e6e7589bbbccfbf44798af9700c99be94a24a61ea02ece5ad8c55eafd",
@@ -54042,7 +54147,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "a98f509b748444addc0d5fd1e3ef2099df2f71c43f82e51a2fb9054470f2f89e",
+    "proof/PscVerif/PscVerif.lean": "60fbb02f9239f1b51f2c2c84b17f70f4d6b362e39c9635b749c700e201f597b4",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

@@ -181,8 +181,8 @@ in the [even stack reduction](c4-even-stack-residue-2026-11-19.md#negative-contr
 ### Non-claims / remaining gaps
 
 The quotient constraints force a joint contribution from the two
-original rays modulo four. The remaining cubic obligation is to
-derive the actual return-word and stack boundary terms and prove
-their weighted marked contribution vanishes, or exclude the residue
-by an independent argument. The general even-determinant rank-two
-case and C4 remain open. Independent human review is pending.
+original rays modulo four. The [return-word follow-up](c4-return-seam-boundary-2026-11-20.md)
+identifies the fixed count vector behind that term and its readout
+from twin vertices. An exclusion still needs a cubic restriction on
+that readout or an independent argument. The general even-determinant
+rank-two case and C4 remain open. Independent human review is pending.
