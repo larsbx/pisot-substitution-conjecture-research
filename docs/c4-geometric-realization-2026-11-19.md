@@ -129,6 +129,12 @@ Thue–Morse is not irreducible Pisot. BBK §4 cite the Morse substitution as a 
    joint source translation continuity and forward inflation continuity. The unchanged
    realization on that presentation is continuous exactly when its exact-source map is
    continuous; neither side of this equivalence has been discharged.
+   *Further update:* the [concrete continuity proof](c4-realization-continuity-2026-11-19.md)
+   now discharges both sides under the existing Pisot, bijective-inflation and `beta > 1`
+   hypotheses. Compact exact origin fibres and finite possible parent origins derive
+   inverse continuity; uniform convergence of the actual stable series supplies the map
+   continuity. Recognizability itself and the normalized BBK identification remain inputs
+   or separate obligations.
 5. The reducible case (`Σ ≠ Γ`, non-contracted `W`) is out of scope.
 6. Gaps 2–6 of the [hull note](c4-tiling-hull-realization-2026-11-19.md#non-claims-and-remaining-gaps),
    witness selection under (NM_V) and the global rank-two contradiction are unchanged.
