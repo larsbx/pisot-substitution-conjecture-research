@@ -124,6 +124,11 @@ Thue–Morse is not irreducible Pisot. BBK §4 cite the Morse substitution as a 
    The [topology follow-up](c4-geometric-realization-topology-2026-11-19.md) gives the solenoid
    the product-subspace topology and proves continuity of the shift and the target flow.
    Relating the realization to the ordinary tiling topology requires a separate proof.
+   *Update:* the [ordinary-hull formalization](c4-ordinary-hull-topology-2026-11-19.md)
+   gives the same legal tilings the usual small-translation/window topology and proves
+   joint source translation continuity and forward inflation continuity. The unchanged
+   realization on that presentation is continuous exactly when its exact-source map is
+   continuous; neither side of this equivalence has been discharged.
 5. The reducible case (`Σ ≠ Γ`, non-contracted `W`) is out of scope.
 6. Gaps 2–6 of the [hull note](c4-tiling-hull-realization-2026-11-19.md#non-claims-and-remaining-gaps),
    witness selection under (NM_V) and the global rank-two contradiction are unchanged.

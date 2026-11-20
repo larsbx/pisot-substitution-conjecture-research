@@ -22,6 +22,10 @@ import PscVerif.PeriodicPartnerSpectral
 import PscVerif.PeriodicPartnerSpectralModels
 import PscVerif.PeriodicPartnerSpectralCertificate
 import PscVerif.PeriodicPartnerSpectralCensus
+import PscVerif.PeriodicPartnerHullContinuity
+import PscVerif.PeriodicPartnerLocalTopology
+import PscVerif.PeriodicPartnerLocalTopologyControls
+import PscVerif.PeriodicPartnerLocalRealization
 import Lean.Util.CollectAxioms
 
 open Lean Elab Command in
@@ -36,7 +40,9 @@ run_cmd do
     `PscVerif.PeriodicPartnerDirectional, `PscVerif.VertexAsymptoteRange,
     `PscVerif.PeriodicPartnerRealization, `PscVerif.PeriodicPartnerRealizationModels,
     `PscVerif.PeriodicPartnerSpectral, `PscVerif.PeriodicPartnerSpectralModels,
-    `PscVerif.PeriodicPartnerSpectralCertificate, `PscVerif.PeriodicPartnerSpectralCensus]
+    `PscVerif.PeriodicPartnerSpectralCertificate, `PscVerif.PeriodicPartnerSpectralCensus,
+    `PscVerif.PeriodicPartnerHullContinuity, `PscVerif.PeriodicPartnerLocalTopology,
+    `PscVerif.PeriodicPartnerLocalTopologyControls, `PscVerif.PeriodicPartnerLocalRealization]
   for mod in required do
     unless (env.getModuleIdx? mod).isSome do
       throwError "Missing compiled periodic-partner module: {mod}"

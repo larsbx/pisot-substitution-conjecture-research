@@ -37722,6 +37722,126 @@
       "declaration": "theorem thueMorse_hull_nonempty : Nonempty thueMorse.Hull := by"
     },
     {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.Agree.refl",
+      "module": "PscVerif.PeriodicPartnerHullContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean",
+      "line": 25,
+      "declaration": "theorem Agree.refl (R : ℝ) (T : S.Hull) : Agree R T T :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.Agree.symm",
+      "module": "PscVerif.PeriodicPartnerHullContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean",
+      "line": 29,
+      "declaration": "theorem Agree.symm {R : ℝ} {T U : S.Hull} (h : Agree R T U) : Agree R U T :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.Agree.trans",
+      "module": "PscVerif.PeriodicPartnerHullContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean",
+      "line": 33,
+      "declaration": "theorem Agree.trans {R : ℝ} {T U V : S.Hull}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.translate_zero",
+      "module": "PscVerif.PeriodicPartnerHullContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean",
+      "line": 37,
+      "declaration": "@[simp] theorem translate_zero (T : S.Hull) : translate 0 T = T :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.agree_translate_of_agree",
+      "module": "PscVerif.PeriodicPartnerHullContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean",
+      "line": 41,
+      "declaration": "theorem agree_translate_of_agree {R : ℝ} {T U : S.Hull} (t : ℝ)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.Agree.inflate",
+      "module": "PscVerif.PeriodicPartnerHullContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean",
+      "line": 48,
+      "declaration": "theorem Agree.inflate [Nonempty α] {R : ℝ} {T U : S.Hull} (h : Agree R T U) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.uniformContinuous_translate",
+      "module": "PscVerif.PeriodicPartnerHullContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean",
+      "line": 60,
+      "declaration": "theorem uniformContinuous_translate (t : ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.continuous_translate",
+      "module": "PscVerif.PeriodicPartnerHullContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean",
+      "line": 73,
+      "declaration": "theorem continuous_translate (t : ℝ) : Continuous (translate (S := S) t) :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.uniformContinuous_inflateH",
+      "module": "PscVerif.PeriodicPartnerHullContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean",
+      "line": 86,
+      "declaration": "theorem uniformContinuous_inflateH [Nonempty α] :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.continuous_inflateH",
+      "module": "PscVerif.PeriodicPartnerHullContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean",
+      "line": 100,
+      "declaration": "theorem continuous_inflateH [Nonempty α] : Continuous (inflateH (S := S)) :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.isOpen_agreement",
+      "module": "PscVerif.PeriodicPartnerHullContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean",
+      "line": 104,
+      "declaration": "theorem isOpen_agreement (T : S.Hull) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.agreement_mem_nhds",
+      "module": "PscVerif.PeriodicPartnerHullContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean",
+      "line": 113,
+      "declaration": "theorem agreement_mem_nhds (T : S.Hull) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.mem_nhds_iff_exists_agreement_subset",
+      "module": "PscVerif.PeriodicPartnerHullContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean",
+      "line": 118,
+      "declaration": "theorem mem_nhds_iff_exists_agreement_subset (T : S.Hull) (V : Set S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.nhds_agreement_basis",
+      "module": "PscVerif.PeriodicPartnerHullContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean",
+      "line": 130,
+      "declaration": "theorem nhds_agreement_basis (T : S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.isOpen_iff_agreement",
+      "module": "PscVerif.PeriodicPartnerHullContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean",
+      "line": 137,
+      "declaration": "theorem isOpen_iff_agreement (V : Set S.Hull) :"
+    },
+    {
       "name": "Psc.PeriodicPartnerHull.LengthSubst.tile_end_le_of_start_lt",
       "module": "PscVerif.PeriodicPartnerHullSelection",
       "private": true,
@@ -37808,6 +37928,238 @@
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
       "line": 231,
       "declaration": "theorem hull_selection_dichotomy (hβ : 1 < S.β) (P : PublishedInputs S Y)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalRealization.realizeLocal_inflate",
+      "module": "PscVerif.PeriodicPartnerLocalRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalRealization.lean",
+      "line": 23,
+      "declaration": "theorem realizeLocal_inflate (T : LocalHull S) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalRealization.realizeLocal_translate",
+      "module": "PscVerif.PeriodicPartnerLocalRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalRealization.lean",
+      "line": 28,
+      "declaration": "theorem realizeLocal_translate (hβ : 1 < S.β) (t : ℝ) (T : LocalHull S) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalRealization.continuous_realizeLocal_iff",
+      "module": "PscVerif.PeriodicPartnerLocalRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalRealization.lean",
+      "line": 35,
+      "declaration": "theorem continuous_realizeLocal_iff (hβ : 1 < S.β) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopology.chart_zero",
+      "module": "PscVerif.PeriodicPartnerLocalTopology",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean",
+      "line": 42,
+      "declaration": "@[simp] theorem chart_zero (T : S.Hull) : chart S (0, T) = ofExact S T := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopology.chart_surjective",
+      "module": "PscVerif.PeriodicPartnerLocalTopology",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean",
+      "line": 46,
+      "declaration": "theorem chart_surjective : Surjective (chart S) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopology.continuous_chart",
+      "module": "PscVerif.PeriodicPartnerLocalTopology",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean",
+      "line": 50,
+      "declaration": "theorem continuous_chart : Continuous (chart S) := continuous_coinduced_rng"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopology.continuous_ofExact",
+      "module": "PscVerif.PeriodicPartnerLocalTopology",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean",
+      "line": 52,
+      "declaration": "theorem continuous_ofExact : Continuous (ofExact S) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopology.continuous_fibreShift",
+      "module": "PscVerif.PeriodicPartnerLocalTopology",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean",
+      "line": 62,
+      "declaration": "theorem continuous_fibreShift (t : ℝ) : Continuous (fibreShift S t) :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopology.chart_fibreShift",
+      "module": "PscVerif.PeriodicPartnerLocalTopology",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean",
+      "line": 66,
+      "declaration": "@[simp] theorem chart_fibreShift (t : ℝ) (p : ℝ × S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopology.chart_saturation",
+      "module": "PscVerif.PeriodicPartnerLocalTopology",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean",
+      "line": 74,
+      "declaration": "theorem chart_saturation (U : Set (ℝ × S.Hull)) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopology.isOpenMap_chart",
+      "module": "PscVerif.PeriodicPartnerLocalTopology",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean",
+      "line": 100,
+      "declaration": "theorem isOpenMap_chart : IsOpenMap (chart S) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopology.isOpenQuotientMap_chart",
+      "module": "PscVerif.PeriodicPartnerLocalTopology",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean",
+      "line": 107,
+      "declaration": "theorem isOpenQuotientMap_chart : IsOpenQuotientMap (chart S) :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopology.patch_eq_image",
+      "module": "PscVerif.PeriodicPartnerLocalTopology",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean",
+      "line": 115,
+      "declaration": "theorem patch_eq_image (T : LocalHull S) (ε : ℝ) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopology.isOpen_patch",
+      "module": "PscVerif.PeriodicPartnerLocalTopology",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean",
+      "line": 134,
+      "declaration": "theorem isOpen_patch (T : LocalHull S) (ε : ℝ) (n : ℕ) : IsOpen (patch S T ε n) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopology.nhds_patch_basis",
+      "module": "PscVerif.PeriodicPartnerLocalTopology",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean",
+      "line": 139,
+      "declaration": "theorem nhds_patch_basis (T : LocalHull S) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopology.mem_nhds_iff",
+      "module": "PscVerif.PeriodicPartnerLocalTopology",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean",
+      "line": 148,
+      "declaration": "theorem mem_nhds_iff (T : LocalHull S) (U : Set (LocalHull S)) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopology.isOpen_iff",
+      "module": "PscVerif.PeriodicPartnerLocalTopology",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean",
+      "line": 154,
+      "declaration": "theorem isOpen_iff (U : Set (LocalHull S)) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopology.translate_zero",
+      "module": "PscVerif.PeriodicPartnerLocalTopology",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean",
+      "line": 163,
+      "declaration": "@[simp] theorem translate_zero (T : LocalHull S) : translate S 0 T = T := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopology.translate_translate",
+      "module": "PscVerif.PeriodicPartnerLocalTopology",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean",
+      "line": 167,
+      "declaration": "theorem translate_translate (s t : ℝ) (T : LocalHull S) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopology.translate_chart",
+      "module": "PscVerif.PeriodicPartnerLocalTopology",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean",
+      "line": 172,
+      "declaration": "theorem translate_chart (s : ℝ) (p : ℝ × S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopology.continuous_translate",
+      "module": "PscVerif.PeriodicPartnerLocalTopology",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean",
+      "line": 178,
+      "declaration": "theorem continuous_translate :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopology.inflate_chart",
+      "module": "PscVerif.PeriodicPartnerLocalTopology",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean",
+      "line": 200,
+      "declaration": "theorem inflate_chart [Nonempty α] (p : ℝ × S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopology.continuous_inflate",
+      "module": "PscVerif.PeriodicPartnerLocalTopology",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean",
+      "line": 205,
+      "declaration": "theorem continuous_inflate [Nonempty α] : Continuous (inflate S) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopology.continuous_iff_exact_of_equivariant",
+      "module": "PscVerif.PeriodicPartnerLocalTopology",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean",
+      "line": 215,
+      "declaration": "theorem continuous_iff_exact_of_equivariant {Y : Type*} [TopologicalSpace Y]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopologyControls.small_translate_eq_zero_of_agree",
+      "module": "PscVerif.PeriodicPartnerLocalTopologyControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopologyControls.lean",
+      "line": 27,
+      "declaration": "theorem small_translate_eq_zero_of_agree {T : S.Hull} {p : α × ℝ} {R t : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopologyControls.exists_small_translate_not_agree",
+      "module": "PscVerif.PeriodicPartnerLocalTopologyControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopologyControls.lean",
+      "line": 48,
+      "declaration": "theorem exists_small_translate_not_agree (T : S.Hull) {δ : ℝ} (hδ : 0 < δ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopologyControls.not_continuousAt_exact_orbit",
+      "module": "PscVerif.PeriodicPartnerLocalTopologyControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopologyControls.lean",
+      "line": 66,
+      "declaration": "theorem not_continuousAt_exact_orbit (T : S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopologyControls.continuous_local_orbit",
+      "module": "PscVerif.PeriodicPartnerLocalTopologyControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopologyControls.lean",
+      "line": 80,
+      "declaration": "theorem continuous_local_orbit (T : S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopologyControls.not_continuous_toHull",
+      "module": "PscVerif.PeriodicPartnerLocalTopologyControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopologyControls.lean",
+      "line": 88,
+      "declaration": "theorem not_continuous_toHull (T : S.Hull) :"
     },
     {
       "name": "Psc.PeriodicPartnerModels.constantTwo_semiconj",
@@ -50444,7 +50796,7 @@
     "proof/PscVerif/ClassARunDescentAudit.lean": "a1fe09a772c2112929a6f892993da045628ef410f15cd53b1d8eba74343959fc",
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "81efe5b8745576f8f15a59a263563b31e08307e9c432e78fa2ef9021a613b2d1",
     "proof/PscVerif/EvenRankTwoAudit.lean": "cfc2c3b6dfae0305e1ab27989607917e4ffe8944a513aa861dc5ca781ba620ca",
-    "proof/PscVerif/PeriodicPartnerAudit.lean": "8b028bf147da31ceb0c62db0b24d5f7adce5a7e648485f37ed430b6dfb92af71",
+    "proof/PscVerif/PeriodicPartnerAudit.lean": "6ddb48e309faac5adbe6c839a8f6feb9ba4db092662e1883951411eae9d50b6a",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinement.lean": "87e57b74655b0d1ed378a65e695b988382a4e8e88ca1c804221c2497eb0e7025",
     "proof/PscVerif/PscVerif/ArchivedGraphRefinementControls.lean": "e18e726b6bd1c431f9e28500504edd6ffba157415af20069715b9c8f208f3f9b",
@@ -50618,7 +50970,11 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean": "812599f6a9dfb4ab5d0da0924fa6c3901128f74644e76d14eb2996de17f55c44",
     "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean": "24de7ca583a5a654e331a0fae80e407174589843b58051fca044fefcd76d874c",
     "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean": "6124e92faa7ace36663a57ff5dda39f281fd86237cc30006912cf4c2a0a65b6e",
+    "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean": "80e0f040cd0ea768a0d5ddf74710dc659c9a9431fb667740953f41369a652386",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean": "59d86f345c47142bdd7a74200c04b48f4ae975d1d5afe2dc29331048d7f37988",
+    "proof/PscVerif/PscVerif/PeriodicPartnerLocalRealization.lean": "472eacd674a293a84e841a7888398fd1fbaeedbdeff3a372c2e6ab665556e2b1",
+    "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean": "ab9cca25c9b6f57b944a912e1e8a239b4bb46bd7a73727542af056760331b7cf",
+    "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopologyControls.lean": "1573603e555c519d258421eaa50e01e06828166794811a1b6e5028a6040ee509",
     "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean": "434d5573fb928bb0ee6667da6dedc8fc76867b76c26d72f5707ac1387a62c5ea",
     "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean": "90c75822a22e6a88f7872fb8b894e39ff19f4b3bbe502feca88c5d2755228f0c",
     "proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean": "870d45802ea6b8678a90bdbb88bdfa90a986fdafad52f00962766245353eb323",
@@ -50659,7 +51015,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "7c0fdd6c82eae1d38c86b3db60c85ee4fbd104e6394e47c5e3b2ff13e0b9a453",
+    "proof/PscVerif/PscVerif.lean": "8d5259c2e496f999b4664459669436c9cc8584a7fa0c5807f32720222aa460a4",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
