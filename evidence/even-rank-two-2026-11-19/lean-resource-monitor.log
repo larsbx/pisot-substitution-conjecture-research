@@ -1,0 +1,301 @@
+2026-11-19T20:19:15Z PscVerif.Basic elapsed 0
+      6       5  0.0   212 lake
+2026-11-19T20:19:25Z PscVerif.Basic elapsed 10
+      6       5 89.4 923560 lake
+2026-11-19T20:19:35Z PscVerif.Basic elapsed 20
+      6       5 86.7 1030700 lake
+     60       6 49.6 455756 lean
+2026-11-19T20:19:45Z PscVerif.Basic elapsed 30
+      6       5 57.8 950408 lake
+     60       6 38.1 615144 lean
+2026-11-19T20:19:55Z PscVerif.Basic elapsed 40
+      6       5 43.4 823324 lake
+     60       6 38.0 745084 lean
+2026-11-19T20:20:05Z PscVerif.Basic elapsed 50
+      6       5 34.7 823276 lake
+     60       6 35.7 794524 lean
+2026-11-19T20:20:15Z PscVerif.Basic elapsed 60
+      6       5 29.0 823212 lake
+     60       6 34.3 878352 lean
+2026-11-19T20:20:25Z PscVerif.Basic elapsed 70
+      6       5 24.8 824972 lake
+     60       6 37.6 1923224 lean
+2026-11-19T20:20:35Z PscVerif.Basic elapsed 80
+      6       5 21.7 441992 lake
+     60       6 39.7 2028008 lean
+2026-11-19T20:20:45Z PscVerif.Basic elapsed 90
+      6       5 19.3 441480 lake
+     60       6 39.1 1960144 lean
+2026-11-19T20:20:55Z PscVerif.Basic elapsed 100
+      6       5 17.4 360204 lake
+     60       6 39.3 1810356 lean
+2026-11-19T20:21:05Z PscVerif.Basic elapsed 110
+      6       5 15.8 294260 lake
+     60       6 38.7 1761308 lean
+2026-11-19T20:21:15Z PscVerif.Basic elapsed 120
+      6       5 14.5 275832 lake
+     60       6 39.0 1274548 lean
+2026-11-19T20:21:25Z PscVerif.Basic elapsed 130
+      6       5 13.4 270464 lake
+     60       6 38.7 897796 lean
+2026-11-19T20:21:35Z PscVerif.Basic elapsed 140
+      6       5 12.5 270584 lake
+     60       6 38.3 1017804 lean
+2026-11-19T20:21:45Z PscVerif.Basic elapsed 150
+      6       5 11.8 270584 lake
+     60       6 39.0 1059048 lean
+2026-11-19T20:21:55Z PscVerif.Basic elapsed 160
+      6       5 11.2 270584 lake
+     60       6 39.6 983612 lean
+2026-11-19T20:22:05Z PscVerif.Basic elapsed 170
+      6       5 10.5 273044 lake
+     60       6 39.5 966036 lean
+2026-11-19T20:22:15Z PscVerif.Basic elapsed 180
+      6       5  9.9 274352 lake
+     60       6 39.4 956704 lean
+2026-11-19T20:22:25Z PscVerif.Basic elapsed 190
+      6       5  9.4 274352 lake
+     60       6 39.5 970528 lean
+2026-11-19T20:22:35Z PscVerif.Basic elapsed 200
+      6       5  8.9 274352 lake
+     60       6 39.7 983792 lean
+2026-11-19T20:22:45Z PscVerif.Basic elapsed 210
+      6       5  8.5 274352 lake
+     60       6 40.1 951624 lean
+2026-11-19T20:22:55Z PscVerif.Basic elapsed 220
+      6       5  8.1 274352 lake
+     60       6 40.4 972636 lean
+2026-11-19T20:23:05Z PscVerif.Basic elapsed 230
+      6       5  7.8 274352 lake
+     60       6 40.8 955764 lean
+2026-11-19T20:23:15Z PscVerif.Basic elapsed 240
+      6       5  7.5 274352 lake
+     60       6 40.9 947012 lean
+2026-11-19T20:23:25Z PscVerif.Basic elapsed 250
+      6       5  7.2 274352 lake
+     60       6 40.9 956960 lean
+2026-11-19T20:23:35Z PscVerif.Basic elapsed 260
+      6       5  6.9 274352 lake
+     60       6 41.2 949332 lean
+2026-11-19T20:23:45Z PscVerif.Basic elapsed 270
+      6       5  6.6 274352 lake
+     60       6 41.2 950252 lean
+2026-11-19T20:23:55Z PscVerif.Basic elapsed 280
+      6       5  6.4 274352 lake
+     60       6 41.1 971052 lean
+2026-11-19T20:24:06Z PscVerif.Basic elapsed 290
+      6       5  6.2 274352 lake
+     60       6 41.3 995208 lean
+2026-11-19T20:24:16Z PscVerif.Basic elapsed 300
+      6       5  6.0 274352 lake
+     60       6 41.3 989976 lean
+2026-11-19T20:24:26Z PscVerif.Basic elapsed 311
+      6       5  5.8 274352 lake
+     60       6 41.4 1007260 lean
+2026-11-19T20:24:36Z PscVerif.Basic elapsed 321
+      6       5  5.6 274352 lake
+     60       6 41.6 997808 lean
+2026-11-19T20:24:46Z PscVerif.Basic elapsed 331
+      6       5  5.4 274352 lake
+     60       6 41.8 988136 lean
+2026-11-19T20:24:56Z PscVerif.Basic elapsed 341
+      6       5  5.3 274352 lake
+     60       6 42.0 959096 lean
+2026-11-19T20:25:06Z PscVerif.Basic elapsed 351
+      6       5  5.1 274352 lake
+     60       6 42.1 963200 lean
+2026-11-19T20:25:16Z PscVerif.Basic elapsed 361
+      6       5  5.0 274352 lake
+     60       6 42.1 968056 lean
+2026-11-19T20:25:26Z PscVerif.Basic elapsed 371
+      6       5  4.8 274352 lake
+     60       6 42.2 974896 lean
+2026-11-19T20:25:36Z PscVerif.Basic elapsed 381
+      6       5  4.7 274352 lake
+     60       6 42.1 933852 lean
+2026-11-19T20:25:46Z PscVerif.Basic elapsed 391
+      6       5  4.6 274352 lake
+     60       6 42.2 1052152 lean
+2026-11-19T20:25:56Z PscVerif.Basic elapsed 401
+      6       5  4.5 274352 lake
+     60       6 42.1 1028600 lean
+2026-11-19T20:26:06Z PscVerif.Basic elapsed 411
+      6       5  4.4 274352 lake
+     60       6 42.1 1079388 lean
+2026-11-19T20:26:16Z PscVerif.Basic elapsed 421
+      6       5  4.3 274352 lake
+     60       6 42.1 1022128 lean
+2026-11-19T20:26:26Z PscVerif.Basic elapsed 431
+      6       5  4.2 274352 lake
+     60       6 42.2 1069672 lean
+2026-11-19T20:26:36Z PscVerif.Basic elapsed 441
+      6       5  4.1 274352 lake
+     60       6 42.1 1000288 lean
+2026-11-19T20:26:46Z PscVerif.Basic elapsed 451
+      6       5  4.0 274352 lake
+     60       6 42.1 1031804 lean
+2026-11-19T20:26:56Z PscVerif.Basic elapsed 461
+      6       5  3.9 274352 lake
+     60       6 42.0 998792 lean
+2026-11-19T20:27:06Z PscVerif.Basic elapsed 471
+      6       5  3.8 274352 lake
+     60       6 41.8 812148 lean
+2026-11-19T20:27:16Z PscVerif.Basic elapsed 481
+      6       5  3.7 274352 lake
+     60       6 41.8 785312 lean
+2026-11-19T20:27:26Z PscVerif.Basic elapsed 491
+      6       5  3.7 274352 lake
+     60       6 41.8 900344 lean
+2026-11-19T20:27:36Z PscVerif.Basic elapsed 501
+      6       5  3.6 274352 lake
+     60       6 41.7 1462340 lean
+2026-11-19T20:27:46Z PscVerif.Basic elapsed 511
+      6       5  3.5 274352 lake
+     60       6 41.6 1359924 lean
+2026-11-19T20:27:56Z PscVerif.Basic elapsed 521
+      6       5  3.5 274352 lake
+     60       6 41.7 1888904 lean
+2026-11-19T20:28:06Z PscVerif.Basic elapsed 531
+      6       5  3.4 274352 lake
+     60       6 42.0 1950580 lean
+2026-11-19T20:28:16Z PscVerif.Basic elapsed 541
+      6       5  3.3 274352 lake
+     60       6 42.1 1226168 lean
+2026-11-19T20:28:26Z PscVerif.Basic elapsed 551
+      6       5  3.3 274352 lake
+     60       6 42.0 1177360 lean
+2026-11-19T20:28:36Z PscVerif.Basic elapsed 561
+      6       5  3.2 274352 lake
+     60       6 41.9 1197476 lean
+2026-11-19T20:28:46Z PscVerif.CountBridge elapsed 0
+    128       5  0.0  1968 lake
+2026-11-19T20:28:56Z PscVerif.CountBridge elapsed 10
+    128       5 80.3 897572 lake
+2026-11-19T20:29:06Z PscVerif.CountBridge elapsed 20
+    128       5 95.0 981296 lake
+2026-11-19T20:29:16Z PscVerif.CountBridge elapsed 30
+    128       5 67.6 700760 lake
+    183     128 45.3 818728 lean
+2026-11-19T20:29:26Z PscVerif.CountBridge elapsed 40
+    128       5 50.7 698780 lake
+    183     128 42.8 1186784 lean
+2026-11-19T20:29:36Z PscVerif.CountBridge elapsed 50
+    128       5 40.6 576836 lake
+    183     128 39.8 1145580 lean
+2026-11-19T20:29:46Z PscVerif.CountBridge elapsed 60
+    128       5 33.9 517684 lake
+    183     128 39.2 1009852 lean
+2026-11-19T20:29:56Z PscVerif.CountBridge elapsed 70
+    128       5 29.0 389700 lake
+    183     128 40.4 1531424 lean
+2026-11-19T20:30:06Z PscVerif.CountBridge elapsed 80
+    128       5 25.5 389700 lake
+    183     128 42.9 1754496 lean
+2026-11-19T20:30:16Z PscVerif.CountBridge elapsed 90
+    128       5 22.6 265616 lake
+    183     128 43.3 2080968 lean
+2026-11-19T20:30:26Z PscVerif.CountBridge elapsed 100
+    128       5 20.4 265616 lake
+    183     128 42.3 1848436 lean
+2026-11-19T20:30:36Z PscVerif.CountBridge elapsed 110
+    128       5 18.5 265616 lake
+    183     128 40.6 1745284 lean
+2026-11-19T20:30:46Z PscVerif.CountBridge elapsed 120
+    128       5 17.0 265608 lake
+    183     128 40.6 1872120 lean
+2026-11-19T20:30:56Z PscVerif.CountBridge elapsed 130
+    128       5 15.7 265608 lake
+    183     128 40.4 1702472 lean
+2026-11-19T20:31:06Z PscVerif.CountBridge elapsed 140
+    128       5 14.6 264360 lake
+    183     128 39.8 1598660 lean
+2026-11-19T20:31:16Z PscVerif.CountBridge elapsed 150
+    128       5 13.6 260520 lake
+    183     128 38.6 1259896 lean
+2026-11-19T20:31:26Z PscVerif.CountBridge elapsed 160
+    128       5 12.8 258308 lake
+    183     128 38.1 905336 lean
+2026-11-19T20:31:36Z PscVerif.CountBridge elapsed 170
+    128       5 12.0 260912 lake
+    183     128 38.2 997932 lean
+2026-11-19T20:31:46Z PscVerif.CountBridge elapsed 180
+    128       5 11.4 264116 lake
+    183     128 38.3 983620 lean
+2026-11-19T20:31:56Z PscVerif.CountBridge elapsed 190
+    128       5 10.8 264116 lake
+    183     128 38.3 904368 lean
+2026-11-19T20:32:06Z PscVerif.CountBridge elapsed 200
+    128       5 10.2 264116 lake
+    183     128 38.1 907812 lean
+2026-11-19T20:32:16Z PscVerif.CountBridge elapsed 210
+    128       5  9.7 264116 lake
+    183     128 38.2 1003660 lean
+2026-11-19T20:32:26Z PscVerif.CountBridge elapsed 220
+    128       5  9.3 264116 lake
+    183     128 38.3 976600 lean
+2026-11-19T20:32:36Z PscVerif.CountBridge elapsed 230
+    128       5  8.9 264116 lake
+    183     128 38.5 964208 lean
+2026-11-19T20:32:46Z PscVerif.CountBridge elapsed 240
+    128       5  8.5 264116 lake
+    183     128 38.5 980988 lean
+2026-11-19T20:32:56Z PscVerif.CountBridge elapsed 250
+    128       5  8.2 264116 lake
+    183     128 39.0 978476 lean
+2026-11-19T20:33:06Z PscVerif.CountBridge elapsed 260
+    128       5  7.9 264116 lake
+    183     128 39.5 948680 lean
+2026-11-19T20:33:16Z PscVerif.CountBridge elapsed 270
+    128       5  7.6 264116 lake
+    183     128 39.9 999812 lean
+2026-11-19T20:33:26Z PscVerif.CountBridge elapsed 280
+    128       5  7.3 264116 lake
+    183     128 39.9 987100 lean
+2026-11-19T20:33:36Z PscVerif.CountBridge elapsed 290
+    128       5  7.1 264116 lake
+    183     128 40.2 954248 lean
+2026-11-19T20:33:46Z PscVerif.CountBridge elapsed 301
+    128       5  6.8 264116 lake
+    183     128 40.5 942364 lean
+2026-11-19T20:33:56Z PscVerif.CountBridge elapsed 311
+    128       5  6.6 264116 lake
+    183     128 40.7 967116 lean
+2026-11-19T20:34:06Z PscVerif.CountBridge elapsed 321
+    128       5  6.4 264116 lake
+    183     128 40.8 966144 lean
+2026-11-19T20:34:16Z PscVerif.CountBridge elapsed 331
+    128       5  6.2 264116 lake
+    183     128 41.0 973508 lean
+2026-11-19T20:34:26Z PscVerif.CountBridge elapsed 341
+    128       5  6.0 264116 lake
+    183     128 41.3 950232 lean
+2026-11-19T20:34:36Z PscVerif.CountBridge elapsed 351
+    128       5  5.9 264116 lake
+    183     128 41.5 951456 lean
+2026-11-19T20:34:47Z PscVerif.CountBridge elapsed 361
+    128       5  5.7 264116 lake
+    183     128 41.7 947260 lean
+2026-11-19T20:34:57Z PscVerif.CountBridge elapsed 371
+    128       5  5.6 264116 lake
+    183     128 41.8 974200 lean
+2026-11-19T20:35:07Z PscVerif.CountBridge elapsed 381
+    128       5  5.4 264116 lake
+    183     128 42.2 951476 lean
+2026-11-19T20:35:17Z PscVerif.CountBridge elapsed 391
+    128       5  5.3 264116 lake
+    183     128 42.2 945076 lean
+2026-11-19T20:35:27Z PscVerif.CountBridge elapsed 401
+    128       5  5.1 264116 lake
+    183     128 42.4 934844 lean
+2026-11-19T20:35:37Z PscVerif.CountBridge elapsed 411
+    128       5  5.0 264116 lake
+    183     128 42.6 961588 lean
+2026-11-19T20:35:47Z PscVerif.CountBridge elapsed 421
+    128       5  4.9 264116 lake
+    183     128 42.7 963248 lean
+2026-11-19T20:35:57Z PscVerif.CountBridge elapsed 431
+    128       5  4.8 264116 lake
+    183     128 42.9 979212 lean
+2026-11-19T20:36:07Z PscVerif.CountBridge elapsed 441
+    128       5  4.7 264116 lake
+    183     128 43.0 947060 lean

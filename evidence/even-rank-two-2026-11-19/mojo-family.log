@@ -1,0 +1,7 @@
+LOCK_SHA256 1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8
+SOURCE_CWD /workspace/scratch/37fa5d8c3a9e/psc-even-rank-two/kernel
+COMMAND /workspace/scratch/803fbaddeced/runtimes/pixi/pixi run --locked --manifest-path /workspace/scratch/803fbaddeced/psc/kernel/pixi.toml python3 -c 'import os; os.chdir('"'"'/workspace/scratch/37fa5d8c3a9e/psc-even-rank-two/kernel'"'"'); os.execvp("mojo", ["mojo", "run", "-I", ".", "-I", "tests", "tests/test_even_companion_family.mojo"])'
+Mojo 1.1.0.dev2026090805 (34562fa1)
+EVEN_COMPANION_FAMILY even_r=2..32 specimens 16 nilpotent_mod2=true ER=K2,2 dim_H1=4 all_letter_pairs 48 pair02_level=1 r>=4_pair12=level3,offset_r+12,letter2 r>=4_pair01_level=4 r2_pair12=level4,offset20,letter2 r2_pair01_level=5
+EVEN_COMPANION_FAMILY_CONTROLS r3_odd=true r2_formula_refused=true invalid_parameter_refused=true image_cap_refused=true word_cap_refused=true
+contract-receipt: Even companion family: every even r in 2..32 has exact cubic Pisot incidence, nilpotent reduction modulo two, and K2,2 eventual range. All 48 unordered letter pairs have literal strong-coincidence witnesses: for r>=4 the levels for pairs 02,12,01 are 1,3,4; r=2 has levels 1,4,5. The explicit periodic-letter prefix witness agrees with independent literal search. Odd r=3 validates the word formula without nilpotent parity, and exhausted budgets refuse to conclude. The finite replay is separate from the unbounded Lean theorem.

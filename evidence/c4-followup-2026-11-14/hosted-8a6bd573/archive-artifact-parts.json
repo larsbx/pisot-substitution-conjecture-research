@@ -1,0 +1,34 @@
+{
+  "artifact_id": 14105484504,
+  "contiguous_ordered_parts": [
+    {
+      "bytes": 8388608,
+      "git_blob_sha": "3db3d0aca16da7615b7294e60236a42ac4811800",
+      "path": "archive-artifact.zip.part01",
+      "sha256": "8ceb46f4632b10b987c77d416c364349002d2af38497fc18d7d4dfd8400485bf"
+    },
+    {
+      "bytes": 8388608,
+      "git_blob_sha": "3244eeee09aad0408a735c7deb629fc3b5f46787",
+      "path": "archive-artifact.zip.part02",
+      "sha256": "5d5bde475dc8d34849ef6c2fc2d2b02ca35ee216759b93738eb731f8fa3ee7d7"
+    },
+    {
+      "bytes": 2501011,
+      "git_blob_sha": "d9afa45eea32a123ddf6fc64199e7d9e952d6097",
+      "path": "archive-artifact.zip.part03",
+      "sha256": "b8bb51058a0e1cc4110490f3b2a4937f9bc87dbf28f04b063444207708af64dd"
+    }
+  ],
+  "exact_reassembly_verified": true,
+  "job_id": 132374993239,
+  "original_artifact_bytes_changed": false,
+  "original_bytes": 19278227,
+  "original_filename": "archive-artifact.zip",
+  "original_sha256": "d948ee6722572efa3d6d33183bcfc80778ec1c7a35b8ec60213b302803e4123f",
+  "run_attempt": 1,
+  "run_id": 43570948106,
+  "schema": "psc-github-artifact-byte-parts-v1",
+  "subject_revision": "8a6bd5732fefba94ad4fef5df2333065c1302452",
+  "subject_tree": "a7dcb3ebf30f3bb686d8f1beb3545dec26df8448"
+}

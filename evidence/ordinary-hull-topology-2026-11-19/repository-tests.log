@@ -1,0 +1,7 @@
+$ /workspace/scratch/a4ba384fd738/psc-venv/bin/python -m pytest -q tests/test_markdown_links.py tests/test_check_markdown_source.py tests/test_proof_bank.py tests/test_recorded_data_integrity.py --junitxml=/workspace/scratch/ad388b20f266/ordinary-hull-tests.xml
+........................................................................ [ 28%]
+........................................................................ [ 57%]
+........................................................................ [ 85%]
+....................................                                     [100%]
+
+exit_code=0

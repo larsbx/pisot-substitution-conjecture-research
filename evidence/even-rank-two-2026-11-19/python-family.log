@@ -1,0 +1,13 @@
+COMMAND python3 oracles/python/even_companion_family.py --corpus-shapes
+EVEN_COMPANION_ORACLE even_r=2..32 specimens=16 unordered_pairs=48 odd_r3_pairs=3
+literal_expansion=independent prefix_count_scan=independent arithmetic=Python_int_Fraction
+PIP_checks=primitive_cube,rational_root_test,negative_discriminant,root_above_2
+nilpotence=direct_matrix_cube all_checks=passed unbounded_claim=false
+EVEN_RESIDUE_SHAPES columns=left_vertices,right_vertices,edges,beta1,count,example
+2	2	4	1	24	01/112/021
+2	3	5	1	6	01/211/102
+2	3	6	2	24	01/112/201
+3	2	5	1	6	10/112/201
+3	2	6	2	24	01/102/00
+3	3	9	4	12	01/112/210
+EVEN_RESIDUE_SHAPES retained=96 original_complete=84 original_missing_one_edge=12

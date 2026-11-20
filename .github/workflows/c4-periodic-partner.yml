@@ -1,0 +1,135 @@
+name: C4 periodic partner formalization
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/c4-periodic-partner.yml'
+      - 'docs/c4-periodic-partner*.md'
+      - 'docs/c4-unique-partner-exclusion-2026-11-18.md'
+      - 'docs/c4-tiling-hull-realization*.md'
+      - 'docs/c4-geometric-realization*.md'
+      - 'docs/c4-ordinary-hull-topology*.md'
+      - 'docs/c4-pisot-contraction*.md'
+      - 'docs/c4-pisot-census*.md'
+      - 'docs/c4-complete-range-covering*.md'
+      - 'proof/PscVerif/PscVerif/PeriodicPartner.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerControls.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerCollapse.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerModels.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerDichotomy.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerAsymptotic.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerHull.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerCompleteRange.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean'
+      - 'proof/PscVerif/PscVerif/VertexAsymptoteRange.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerSpectralModels.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerLocalTopologyControls.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerLocalRealization.lean'
+      - 'proof/PscVerif/PeriodicPartnerAudit.lean'
+      - 'proof/PscVerif/PscVerif.lean'
+      - 'proof/PscVerif/lean-toolchain'
+      - 'proof/PscVerif/lakefile.toml'
+      - 'proof/PscVerif/lake-manifest.json'
+      - 'tools/check_c4_periodic_partner.sh'
+      - 'tools/make_proof_bank.py'
+      - 'tools/setup_lean.sh'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/c4-periodic-partner.yml'
+      - 'docs/c4-periodic-partner*.md'
+      - 'docs/c4-unique-partner-exclusion-2026-11-18.md'
+      - 'docs/c4-tiling-hull-realization*.md'
+      - 'docs/c4-geometric-realization*.md'
+      - 'docs/c4-ordinary-hull-topology*.md'
+      - 'docs/c4-pisot-contraction*.md'
+      - 'docs/c4-pisot-census*.md'
+      - 'docs/c4-complete-range-covering*.md'
+      - 'proof/PscVerif/PscVerif/PeriodicPartner.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerControls.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerCollapse.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerModels.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerDichotomy.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerAsymptotic.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerHull.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerCompleteRange.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean'
+      - 'proof/PscVerif/PscVerif/VertexAsymptoteRange.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerSpectralModels.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerLocalTopologyControls.lean'
+      - 'proof/PscVerif/PscVerif/PeriodicPartnerLocalRealization.lean'
+      - 'proof/PscVerif/PeriodicPartnerAudit.lean'
+      - 'proof/PscVerif/PscVerif.lean'
+      - 'proof/PscVerif/lean-toolchain'
+      - 'proof/PscVerif/lakefile.toml'
+      - 'proof/PscVerif/lake-manifest.json'
+      - 'tools/check_c4_periodic_partner.sh'
+      - 'tools/make_proof_bank.py'
+      - 'tools/setup_lean.sh'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  isolated-lean:
+    name: Fresh periodic partner Lean acceptance
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Bind exact revision and provision pinned Lean
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test -z "$(git status --porcelain)"
+          mkdir -p "$RUNNER_TEMP/periodic-partner"
+          git rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/periodic-partner/revision.txt"
+          ./tools/setup_lean.sh --toolchain-only
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Isolated source build and complete scoped axiom audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./tools/check_c4_periodic_partner.sh 2>&1 | tee "$RUNNER_TEMP/periodic-partner/fresh-gate.log"
+          test -z "$(git status --porcelain)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: periodic-partner-lean-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/periodic-partner
+          if-no-files-found: error
+          retention-days: 30

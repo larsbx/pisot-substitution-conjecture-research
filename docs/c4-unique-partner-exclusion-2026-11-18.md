@@ -125,16 +125,198 @@ Round 4's Thue–Morse control (`01/10`, not PIP3) has `π₁` a homeomorphism
 and `ER = K_{2,2}`, which is exactly the residue left here, so the count
 cannot be sharpened without more input.
 
+### Theorem UP′ (coverings)
+
+Round-4 Lemma C splits the general case in two. Either `π₁` is a covering of
+constant degree `k`, or `π₁` is locally injective at no point of `Z`, which
+means some tiling has two partners that agree on a half-line. The covering
+case reduces to a regular letter graph.
+
+**Theorem UP′.** Assume (NM_V), and that `π₁` is a covering. Let
+`n_v ≥ 1` be the number of vertex-type partners of a vertex tiling `T_g`,
+`g ∈ ER`; it does not depend on `g`. Then:
+
+1. Either `n_v = 1` and `|L| = |R| = 2`, so `β₁(ER) ≤ 1` and
+   `dim H¹ ≤ 4`. This is excluded for odd determinant by B15 Theorem 22.
+2. Or `n_v = 2` and `|L| = |R| = 3`. This case is **impossible at every
+   determinant**: the two vertex partners of a vertex tiling are partners
+   of each other, which gives three pairwise non-coincident tilings in one
+   fibre, against `cr(σ) = 2`.
+
+So under (NM_V), `π₁` is not a covering when `det M` is odd. When `det M`
+is even, a covering forces `n_v = 1` and `ER = K_{2,2}`. Degree one is the
+unique-partner case, so Theorem UP is the special case `k = 1`.
+
+*Proof.* Let `T, S` be vertex tilings that agree on a half-line.
+
+- **Lemma L** (round 4) matches the partners of `T` bijectively with those
+  of `S`, each with one asymptotic to it on the same side.
+- **(NM_V)** makes a partner asymptotic to a vertex-type partner itself
+  vertex-type, with the same letter on that side.
+- Applying the same argument to the inverse matching shows that vertex type
+  is preserved in both directions.
+
+Hence the multiset of left letters of the vertex-type partners of `T_{xy}`
+depends only on `x`, and the multiset of right letters only on `y`.
+
+- **Lemma C(b)** (round 4): under a covering, no two partners of one tiling
+  are asymptotic. So these letters are distinct, and the multisets are sets
+  `Λ(x) ⊆ L` and `P(y) ⊆ R`.
+- `x ∉ Λ(x)`, because a partner with the same left letter would share the
+  tile ending at the origin, against (Z2).
+- `y ∈ Λ(x)` iff `x ∈ Λ(y)`, because `Z` is swap-invariant.
+- `ER` is connected, so `n_v = |Λ(x)|` is the same for every `x`, and
+  likewise `|P(y)|`. The common value is at least 1 by (Z3).
+
+So `Λ` is an `n_v`-regular simple graph on `L` with `n_v ≥ 1`, and so is
+`P` on `R`. On at most three vertices this forces either `n_v = 1` on two
+vertices or `n_v = 2` on the triangle.
+
+*Case 2 closes a triangle.* Let `e = xy` have the vertex partners `f` and
+`g`. Their left letters are the two letters other than `x`, and their right
+letters the two other than `y`.
+- `f`'s vertex partners have the left letters other than `f`'s and the
+  right letters other than `f`'s.
+- One of them is `e`, by swap-invariance.
+- The other therefore has the third left letter and the third right letter,
+  so it is `g`.
+
+Then `e`, `f`, `g` are pairwise partners. By (Z2) they share no tile at any
+level, so they are three pairwise non-coincident tilings in the zero fibre.
+BBK Remark 4.3 then gives `cr(σ) ≥ 3`, a contradiction. ∎
+
+**Correction to the earlier sharpness remark.** Round 4's singular control
+`012/120/201` (§3.6) has `ER = K_{3,3}` and `Z = {(T, ρT)}`, with `ρ` the
+cyclic relabelling. Its swap-closure is a degree-two covering with
+`n_v = 2`, but its partner graph is a union of triangles, so it has
+coincidence rank at least 3. It is not a rank-two example of case 2.
+
+**What remains under (NM_V).** For odd determinant, a rank-two strict
+component has `π₁` locally injective nowhere (round-4 Lemma C): some tiling
+has two partners that agree on a half-line. For even determinant, the
+covering case is limited to `n_v = 1` with `ER = K_{2,2}`.
+
+### Scope on the corpus: where (NM_V) holds
+
+Theorems UP and UP′ assume (NM_V). This section decides (NM_V) exactly on the
+corpus, with a new decision procedure for asymptotes in the zero fibre.
+
+#### Targeted literature stop/go for the asymptote decision
+
+*Claim.* For two `Φ^Q`-fixed members `T`, `S` of `F₀`, `T ∼_L S` holds iff no
+non-coincident overlap state reachable from a left branch of the central
+overlap chain lies on a cycle of the overlap graph. The mirror statement
+holds for `∼_R`. The criterion is a finite, exact computation.
+
+| Source | Statement used | Gate |
+| --- | --- | --- |
+| Sirvent–Solomyak, *Pure discrete spectrum for one-dimensional substitution systems of Pisot type*, Canad. Math. Bull. 45 (2002), Thm 5.6 and §§3–5 | The overlap algorithm: cells of two tilings as overlap states `(top, bottom, offset)` closed under inflation. Its finiteness for the Perron lengths of an irreducible Pisot substitution, and the persistence of coincidences. | [overlap-depth gate](bpa-overlap-depth-literature-gate-2026-10-02.md) §2 |
+| Barge–Diamond, Proc. AMS 136 (2008), Thm 4 and the eventual range | The vertex-type members of `F₀` are the seams of `ER`. | [round-4 note](c4-round4-2026-11-17.md), §1.2 |
+| Baker–Barge–Kwapisz, Ann. Inst. Fourier 56 (2006), Thm 4.2 | Finite fibres, so `F₀` is finite and its members are `Φ`-periodic. | [(F)-class literature](c4-geometric-f-class-literature-2026-11-16.md) |
+| Barge, Bull. SMF 143 (2015), the asymptotic cycles before Cor. 25 | The notion of asymptotic members of the identity fibre being decided here. | [round-4 note](c4-round4-2026-11-17.md), §1.2 |
+| Round-4 note §3.3 (Lemma A, (R3), (R4)) and §3.7 | Branch points of `Φ^Q`-fixed asymptotic pairs, and the earlier scratch method: bounded merge certificates, with interior members enumerated in floating point. | internal |
+
+*Transfers.*
+- Sirvent–Solomyak's overlap states and their exact children: fibre-mates
+  have integral offsets, so the closure is finite on the screened
+  irreducible Pisot tables. A cap raises.
+- Coincidences persist under inflation.
+- Every member of `F₀` is fixed by `Φ^Q` (BBK Thm 4.2 with (R4)).
+- The complete list of interior members comes from the certified box of the
+  (F)-class note (Lemmas B and W) through `decide_geometric_f`.
+
+*Does not transfer.*
+- Sirvent–Solomyak decide whether translates `T` and `T − β^n x` coincide
+  with bounded gaps. The criterion here instead concerns one side of a
+  pair of periodic fibre-mates. Only their overlap kernel is reused, not
+  their theorem.
+- The criterion needs both tilings `Φ^Q`-fixed and in one fibre. For
+  non-periodic tilings, or tilings in different fibres, the central chain is
+  not eventually periodic and the reduction does not apply.
+- Round 4's scratch merge certificates were one-sided ("none found under
+  caps does not prove absence"). The criterion here is two-sided.
+
+*Controls.*
+- Round 4's exact certificate on `1/012/21`, with an interior member
+  merged on the right, is reproduced.
+- Every reported asymptote is confirmed by literal word rays from an
+  independent oracle.
+- Round 4's Lemma A is asserted throughout the census.
+
+*Decision.* **Proceed.** Novelty is claimed only for the exact two-sided
+criterion, measured against round 4's scratch method and the sources above.
+
+**Exact decision of `∼_L` and `∼_R` on `F₀`.** The procedure is
+`kernel/psc/zero_fibre_asymptotes.mojo`.
+- Every member is fixed by `Φ^Q` for a common `Q`.
+- Every cell of a pair to the left of the origin descends from a left
+  branch of the central chain of cells containing `0⁻`.
+- A descendant of a left branch at depth `k` lies in `β^k` times a fixed
+  negative interval.
+
+Hence two members are left-asymptotic iff no non-coincident overlap state
+reachable from a left branch lies on a cycle of the overlap graph. The right
+side is the mirror. Interior members are the certified `f`-cycle states of
+`decide_geometric_f`. All arithmetic is exact, and every cap raises.
+
+**Census** (`kernel/nmv_census.mojo`, 23 s). It covers the unit corpus
+members with at least two periodic letters for both endpoint maps, which is
+necessary for a strict root pair.
+
+| Count | Value |
+| --- | --- |
+| members of the domain | 936 |
+| (NM_V) holds | 888 |
+| fails on the left | 24 |
+| fails on the right | 24 |
+| `β₁(ER) ≥ 2` | 492 |
+| `β₁(ER) ≥ 2` with (NM_V) | **492** |
+
+Checks run alongside the census:
+- **Lemma A consistency.** A right failure needs `g_R` non-injective and a
+  left failure needs `g_L` non-injective. The census asserts this and it
+  holds throughout.
+- **Literal oracle.** `oracles/python/nmv_literal_rays.py` shares no code
+  with the Mojo module. It rebuilds both rays from the substitution words,
+  using literal interior addresses, and confirms all 96 failing pairs as
+  aligned agreements (`tests/test_nmv_literal_rays_oracle.py`).
+- **Pinned specimens.** The Mojo regression pins three failures: `1/012/21`
+  (right; round 4's certificate), `01/12/021` (right) and `220/01/021`
+  (left). It also pins two passes, `01/122/201` and Tribonacci, and one
+  decided non-asymptote that literal rays also separate.
+
+**Consequence on the corpus.** Take a unit corpus member with odd
+determinant. If it had coincidence rank 2, B15 Theorem 22 would give
+`β₁(ER) ≥ 2`, so (NM_V) holds for it. Theorems UP and UP′ then apply
+without hypothesis: a strict component at rank two could be neither
+unique-partner nor a covering, so `π₁` would be locally injective nowhere.
+The corpus has no strict system, so this maps where the theorems apply and
+excludes nothing new. Every failure of (NM_V) on the corpus has
+`β₁(ER) ≤ 1`.
+
+**Beyond the corpus.** The unimodular substitution `01/210/1021` fails
+(NM_V) with `ER = K_{2,3}` and `β₁(ER) = 2`. The sharp general threshold
+for PIP3 is `β₁(ER) ≥ 3`. At rank two, a failure forces a complete
+two-by-three range with the two-letter side given by the noninjective
+endpoint map. [Counterexample and rank bound](c4-nmv-eventual-range-2026-11-19.md).
+
 ### Lean
 
 [`proof/PscVerif/PscVerif/UniquePartnerLetters.lean`](../proof/PscVerif/PscVerif/UniquePartnerLetters.lean)
-checks steps 4 and 5 over the three-letter alphabet, with no `sorry`:
+checks steps 4 and 5 over the three-letter alphabet, and the letter count
+of Theorem UP′, with no `sorry`:
 
 - `card_eq_two_of_involution`: a nonempty `L ⊆ Fin 3` that a map sends
   into itself as a fixed-point-free involution has `L.card = 2`.
 - `beta1_le_one`: an edge set `E ⊆ Fin 3 × Fin 3` whose left and right
   letter sets each carry such an involution has
   `|E| − |L| − |R| + 1 ≤ 1`.
+- `regular_cases` and `no_matching_on_three`: an `n`-regular simple graph,
+  with `n ≥ 1`, on at most three letters has either `n = 1` and two letters
+  or `n = 2` and three.
+- `partner_triangle`: in two-partner data on bigrams of `Fin 3 × Fin 3`
+  (symmetric, letters differing from the bigram's own and from each other),
+  the two partners of a bigram are partners of each other.
 
 Steps 1–3 are tiling-space arguments and are written proofs here.
 
@@ -160,7 +342,20 @@ tiling are `≈_s`-equivalent, so Barge's stack relation is nontrivial on
   involution exists for every rank-two `σ` (B15 Lemma 13). The alphabet is
   the stack alphabet of a proper substitution, so the three-letter count in
   step 5 does not apply.
-- **Next statement to try:** run steps 1–4 with the multi-valued partner
-  relation in place of `ι`. In that relation the partners of one tiling
-  are pairwise coincident by (W4). The aim is a set-valued letter
-  correspondence whose parity or size contradicts `β₁(ER) ≥ 2`.
+- Theorem UP′ removes the covering case under (NM_V) and odd determinant.
+  What remains is the joining that is locally injective nowhere.
+- **Next statement to try:** take the two partners that agree on a
+  half-line, supplied by round-4 Lemma C(c). Show they can be chosen
+  `Φ`-periodic in the zero fibre, and that with (NM_V) and (W4) they force
+  a third pairwise non-coincident tiling or a letter parity contradiction.
+
+**Follow-up (2026-11-18).** The [periodic-partner extraction note](c4-periodic-partner-extraction-2026-11-18.md)
+separates these obligations. A published asymptotic-periodicization theorem
+and finite-fibre lifting make the whole triple periodic after one common
+translation. Zero-fibre anchoring at the branch origin is equivalent to
+nonmerging of the differing endpoint letters; on three letters this is a
+two-step test checked in Lean. If those letters merge, unshifted inflation
+collapses the two leaves. Even successful extraction does not create a
+strict triangle: the asymptotic leaves share tiles, and the covering-only
+distinct-letter and regularity premises are unavailable. The note gives
+exact controls and retains both remaining geometric obligations.
