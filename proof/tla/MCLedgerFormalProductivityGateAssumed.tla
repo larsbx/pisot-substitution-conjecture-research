@@ -44,6 +44,7 @@ Reachable == {
     "MidArea",
     "MinusClassAChamberConeBoundaryHitting",
     "MinusClassAChamberConeEntry",
+    "MinusClassAWholeChamberEntry",
     "MinusClassDBoundaryHitting",
     "MinusClassDBoundaryLine",
     "MinusClassDBoundaryStrips",

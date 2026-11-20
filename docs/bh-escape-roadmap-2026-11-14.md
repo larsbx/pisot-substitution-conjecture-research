@@ -11,14 +11,31 @@ their stated scopes, the existing parts and these certificates cover every PIP
 plus-Class-A member. Lean binding of the written `n>=7` entry path remains the
 open obligation on this family.
 
+**November 19, acceptance reconciliation.** The mathematical entry target of
+[#452](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/452)
+on `n+2<=d<=2n-1` is repository-proved and accepted for progression. The
+[written proof](class-a-central-entry-2026-11-14.md), originating in #578,
+was integrated through #577 at `59adf93f61ea5b7cecc78526b2099fa410c36bc0`
+and merged as `75ebe17cea95fcce35df4be333d55aa77f3c8f8e`. At that exact
+integrated head, the [central-entry replay](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43864432132),
+[literal Lean interfaces](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43864432245)
+and [PSC research checks, including the full Lean bank](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43864432043)
+all succeeded. The [earlier Python integration failure](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/43749586092)
+at `210354853ba816a3d2d5639319cf1982fd4e4b06` remains historical evidence.
+For `n>=6` the written theorem covers every strict integral source; the six
+`n<6` members retain their complete S18 seed-graph scope. This acceptance
+does not enlarge either quantifier. Full all-source geometric entry and
+occurrence assembly in Lean, independent human review, and the remaining
+BH domains are separate work. The earlier #452 priority below is historical.
+
 **November 16, integration update.** Main now has the [upper plus all-source
 entry theorem](class-a-plus-upper-all-source-entry-2026-11-16.md) for
 `n>=7,n+5<=d<=2n+11`. It enters the
 [central-source escape](class-a-plus-upper-central-recurrence-2026-11-15.md),
 including all eight alternating-cycle exits. The smaller upper plus members and
 the end-to-end Lean binding remain separate obligations. The [whole minus-chamber
-registry record](ledger-index.md) tracks the written proof and its integration
-acceptance. The dated November 14 notes below retain their original scopes.
+registry record](ledger-index.md) now carries the November 19 acceptance
+reconciliation above. The dated November 14 notes below retain their original scopes.
 
 **November 14, plus-Class-A continuation.** The new
 [constant-entry theorem](class-a-plus-constant-entry-2026-11-14.md) proves
