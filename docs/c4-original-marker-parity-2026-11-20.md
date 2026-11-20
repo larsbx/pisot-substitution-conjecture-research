@@ -233,8 +233,10 @@ criterion.
 ### Non-claims / remaining gaps
 
 The written argument gives the necessary law on the entire standing
-even-determinant rank-two residue. The literal refutations cover the
-bounded source corpus. A general cubic exclusion still requires a
-proof that every candidate outside the corpus has a parity-violating
-balanced interval or another obstruction. Independent human review
-is pending.
+even-determinant rank-two residue. The replay above covers the
+bounded source corpus. The [all-level continuation](c4-marker-reachability-2026-11-20.md)
+decides the test on each prescribed pair of periodic seams and gives
+a uniform three-letter violation in another family with unbounded
+image lengths. A general cubic exclusion still requires a violating
+interval or another obstruction for every remaining candidate.
+Independent human review is pending.

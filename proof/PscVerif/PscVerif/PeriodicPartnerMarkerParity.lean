@@ -54,16 +54,17 @@ theorem normalized_gauges_agree_of_connected {A B C : Type*}
   exact ⟨c, fun a ha => by simpa [value, ha] using along (hconnected (.inl a) (.inl a₀)),
     fun b hb => by simpa [value, hb] using along (hconnected (.inr b) (.inl a₀))⟩
 
-private def countJoin {A : Type*} (mark : A → A → Bool) : Option A → Option A → ℕ
+/-- The marked-pair contribution at a join, with zero for an absent endpoint. -/
+@[expose] def countJoin {A : Type*} (mark : A → A → Bool) : Option A → Option A → ℕ
   | some a, some b => if mark a b then 1 else 0
   | _, _ => 0
 
 /-- Count internal marked adjacent pairs of a word. -/
-def adjacentCount {A : Type*} (mark : A → A → Bool) : List A → ℕ
+@[expose] def adjacentCount {A : Type*} (mark : A → A → Bool) : List A → ℕ
   | [] => 0
   | a :: as => adjacentCount mark as + countJoin mark (some a) as.head?
 
-private theorem adjacentCount_append {A : Type*} (mark : A → A → Bool) (u v : List A) :
+theorem adjacentCount_append {A : Type*} (mark : A → A → Bool) (u v : List A) :
     adjacentCount mark (u ++ v) =
       adjacentCount mark u + adjacentCount mark v + countJoin mark u.getLast? v.head? := by
   induction u with
@@ -84,7 +85,7 @@ private theorem head_flatMap {A B : Type*} (s : A → List B) (first : A → B)
     (w.flatMap s).head? = w.head?.map first := by
   cases w <;> simp [List.flatMap_cons, hfirst]
 
-private theorem adjacentCount_flatMap {A B : Type*} (s : A → List B) (mark : B → B → Bool)
+theorem adjacentCount_flatMap {A B : Type*} (s : A → List B) (mark : B → B → Bool)
     (first last : A → B) (hfirst : ∀ a, (s a).head? = some (first a))
     (hlast : ∀ a, (s a).getLast? = some (last a)) (w : List A) :
     adjacentCount mark (w.flatMap s) = (w.map (fun a => adjacentCount mark (s a))).sum +

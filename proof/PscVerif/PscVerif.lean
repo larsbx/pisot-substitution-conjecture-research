@@ -193,6 +193,8 @@ import PscVerif.PeriodicPartnerDirectional
 import PscVerif.PeriodicPartnerSeamCycles
 import PscVerif.PeriodicPartnerReturnBoundary
 import PscVerif.PeriodicPartnerMarkerParity
+import PscVerif.PeriodicPartnerMarkerReachability
+import PscVerif.PeriodicPartnerMarkerFamily
 import PscVerif.PeriodicPartnerWinding
 import PscVerif.PeriodicPartnerWindingSeams
 import PscVerif.PeriodicPartnerLiteralDefect
