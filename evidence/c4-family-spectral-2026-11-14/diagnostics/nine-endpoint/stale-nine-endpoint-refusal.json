@@ -1,0 +1,8 @@
+{
+  "historical_receipt": "endpoint-audit-attempt-1.log",
+  "historical_endpoints": 9,
+  "required_endpoints": 11,
+  "new_gate_receipt_parser_exit": 1,
+  "verdict": "rejected as required",
+  "scope": "The actual new shell parser refuses the earlier successful but now incomplete nine-endpoint audit."
+}
