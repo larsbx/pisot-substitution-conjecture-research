@@ -209,7 +209,7 @@ hypotheses.
 The cohomology evaluation, its surjectivity, and the passage to the
 stack quotient are written mathematics using the sources above. The
 finite grouping calculation is checked by `grouped_cycle_entries` in
-[PeriodicPartnerDirectional](../proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean).
+[PeriodicPartnerSeamCycles](../proof/PscVerif/PscVerif/PeriodicPartnerSeamCycles.lean).
 The scoped periodic-partner gate also checks the preceding finite covering
 proof, the singleton-fibre convergence lemma and the local branch laws.
 The exact unit-corpus replay and independent literal-ray checks exercise

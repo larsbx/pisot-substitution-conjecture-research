@@ -190,6 +190,12 @@ import PscVerif.PeriodicPartnerHullSelection
 import PscVerif.PeriodicPartnerVertexPartner
 import PscVerif.PeriodicPartnerCompleteRange
 import PscVerif.PeriodicPartnerDirectional
+import PscVerif.PeriodicPartnerSeamCycles
+import PscVerif.PeriodicPartnerReturnBoundary
+import PscVerif.PeriodicPartnerWinding
+import PscVerif.PeriodicPartnerWindingSeams
+import PscVerif.PeriodicPartnerLiteralDefect
+import PscVerif.PeriodicPartnerCompanionWords
 import PscVerif.VertexAsymptoteRange
 import PscVerif.PeriodicPartnerRealization
 import PscVerif.PeriodicPartnerRealizationModels
