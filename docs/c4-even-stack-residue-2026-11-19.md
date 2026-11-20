@@ -218,9 +218,11 @@ Lean checks `grouped_cycle_support`, `grouped_row_crosses`,
 `continuous_square_one_eq_one`, and `even_stack_residue_degrees` in
 [PeriodicPartnerDirectional](../proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean).
 These prove the finite group support and row crossing, constancy of the
-normalized phase, and the degree argument from their stated inputs. The
-geometric factor construction, graph transfer, and homoclinic winding
-remain written arguments with the published inputs above.
+normalized phase, and the degree argument from their stated inputs.
+The [homoclinic winding formalization](c4-homoclinic-winding-2026-11-20.md)
+checks the lift construction and odd winding from the stated seam phase
+conditions. The geometric factor construction and its transfer of the
+tail and sheet conditions use the written arguments and published inputs above.
 
 The [Mojo regression](../kernel/tests/test_c4_even_stack_residue.mojo)
 uses the standing 4,554-specimen PIP3 corpus, the Barge–Diamond profile,

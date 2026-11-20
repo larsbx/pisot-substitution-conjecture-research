@@ -519,6 +519,7 @@ closed on caps and retain a replayable record for every survivor.
 - [Witness selection under (NM_V)](c4-witness-selection-2026-11-19.md): Theorem S in Lean. A vertex leaf forces the branch to the origin, and failing branches have interior leaves on the collapsed endpoint pair. The exact census of that residual finds it in `F₀` on 12 in-scope specimens; selection stays open.
 - [Selection source decision](c4-witness-selection-stop-go-2026-11-19.md): what transfers from BDS, BBK and Barge–Diamond, the local contracts, and why selection itself is deferred.
 - [Vertex-type common partner](c4-vertex-partner-2026-11-20.md): in the origin case of Theorem S, a common partner with a vertex at the origin forces the last-letter map to be a permutation (Lean, determinant-free).
+- [Homoclinic winding](c4-homoclinic-winding-2026-11-20.md) constructs normalized circle lifts in Lean and derives odd winding from the opposite-sheet seam hypothesis in the even-determinant reduction.
 
 ## Primary completion route: finite seed-patch overlaps
 

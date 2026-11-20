@@ -43282,6 +43282,142 @@
       "declaration": "theorem hull_lastLetter_injective_of_vertex_partner"
     },
     {
+      "name": "Psc.PeriodicPartnerWinding.circleCover",
+      "module": "PscVerif.PeriodicPartnerWinding",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerWinding.lean",
+      "line": 20,
+      "declaration": "private theorem circleCover : IsCoveringMap ((↑) : ℝ → UnitAddCircle) :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerWinding.exists_tailLift_atTop",
+      "module": "PscVerif.PeriodicPartnerWinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerWinding.lean",
+      "line": 25,
+      "declaration": "theorem exists_tailLift_atTop {phase : ℝ → UnitAddCircle} (h : Continuous phase)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerWinding.exists_tailLift_atBot",
+      "module": "PscVerif.PeriodicPartnerWinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerWinding.lean",
+      "line": 51,
+      "declaration": "theorem exists_tailLift_atBot {phase : ℝ → UnitAddCircle} (h : Continuous phase)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerWinding.IsTailLift.unique",
+      "module": "PscVerif.PeriodicPartnerWinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerWinding.lean",
+      "line": 60,
+      "declaration": "theorem IsTailLift.unique {tail : Filter ℝ} [NeBot tail] {phase : ℝ → UnitAddCircle}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerWinding.IsTailLift.add",
+      "module": "PscVerif.PeriodicPartnerWinding",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerWinding.lean",
+      "line": 71,
+      "declaration": "private theorem IsTailLift.add {tail : Filter ℝ} {f g : ℝ → UnitAddCircle}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerWinding.HomoclinicPhase.leftLift_spec",
+      "module": "PscVerif.PeriodicPartnerWinding",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerWinding.lean",
+      "line": 91,
+      "declaration": "private theorem leftLift_spec (f : HomoclinicPhase) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerWinding.HomoclinicPhase.rightLift_spec",
+      "module": "PscVerif.PeriodicPartnerWinding",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerWinding.lean",
+      "line": 95,
+      "declaration": "private theorem rightLift_spec (f : HomoclinicPhase) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerWinding.HomoclinicPhase.int_of_phase_zero",
+      "module": "PscVerif.PeriodicPartnerWinding",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerWinding.lean",
+      "line": 103,
+      "declaration": "private theorem int_of_phase_zero {x : ℝ} (h : (x : UnitAddCircle) = 0) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerWinding.HomoclinicPhase.winding_eq_of_lifts",
+      "module": "PscVerif.PeriodicPartnerWinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerWinding.lean",
+      "line": 108,
+      "declaration": "theorem winding_eq_of_lifts (f : HomoclinicPhase) {l r : ℝ → ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerWinding.HomoclinicPhase.winding_add",
+      "module": "PscVerif.PeriodicPartnerWinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerWinding.lean",
+      "line": 117,
+      "declaration": "theorem winding_add (f g h : HomoclinicPhase)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerWinding.HomoclinicPhase.winding_eq_zero_of_lift",
+      "module": "PscVerif.PeriodicPartnerWinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerWinding.lean",
+      "line": 130,
+      "declaration": "theorem winding_eq_zero_of_lift (f : HomoclinicPhase) {lift : ℝ → ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerWinding.HomoclinicPhase.winding_of_double",
+      "module": "PscVerif.PeriodicPartnerWinding",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerWinding.lean",
+      "line": 137,
+      "declaration": "private theorem winding_of_double (f : HomoclinicPhase) {l r : ℝ → UnitAddCircle}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerWinding.HomoclinicPhase.odd_winding_of_deck_switch",
+      "module": "PscVerif.PeriodicPartnerWinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerWinding.lean",
+      "line": 152,
+      "declaration": "theorem odd_winding_of_deck_switch (f : HomoclinicPhase) {l r : ℝ → UnitAddCircle}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerWinding.HomoclinicPhase.even_winding_of_double",
+      "module": "PscVerif.PeriodicPartnerWinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerWinding.lean",
+      "line": 168,
+      "declaration": "theorem even_winding_of_double (f g : HomoclinicPhase)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerWinding.HomoclinicPhase.no_homoclinic_half_of_odd",
+      "module": "PscVerif.PeriodicPartnerWinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerWinding.lean",
+      "line": 174,
+      "declaration": "theorem no_homoclinic_half_of_odd (f : HomoclinicPhase) (hodd : Odd f.winding) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerWinding.winding_one_control",
+      "module": "PscVerif.PeriodicPartnerWinding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerWinding.lean",
+      "line": 183,
+      "declaration": "theorem winding_one_control : ∃ f : HomoclinicPhase, f.winding = 1 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerWinding.odd_winding_of_grouped_seams",
+      "module": "PscVerif.PeriodicPartnerWindingSeams",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerWindingSeams.lean",
+      "line": 11,
+      "declaration": "theorem odd_winding_of_grouped_seams {I J A : Type*} [Fintype I] [Fintype J] [AddCommGroup A]"
+    },
+    {
       "name": "Psc.PerronCore.super_eigen_eq",
       "module": "PscVerif.PerronCore",
       "private": false,
@@ -53380,7 +53516,7 @@
     "proof/PscVerif/ClassARunDescentAudit.lean": "a1fe09a772c2112929a6f892993da045628ef410f15cd53b1d8eba74343959fc",
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "81efe5b8745576f8f15a59a263563b31e08307e9c432e78fa2ef9021a613b2d1",
     "proof/PscVerif/EvenRankTwoAudit.lean": "cfc2c3b6dfae0305e1ab27989607917e4ffe8944a513aa861dc5ca781ba620ca",
-    "proof/PscVerif/PeriodicPartnerAudit.lean": "f2ee99effe27a6c2fb414026c4530472ec854b221dcd87f4097dabcee9842ec3",
+    "proof/PscVerif/PeriodicPartnerAudit.lean": "8e5c725169c7b2eaef58e07defe24e29934b8b84bc973b448014e3dc22565a6f",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean": "f1c4480b95159800bb52cd42164763d01e6ab6045dc72b07874f164409a0eaf1",
     "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean": "6387c221871d7b70efca50349c815fac07421bb44a28122f9157ff0652cb074f",
@@ -53579,6 +53715,8 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean": "90fb4042c25c01e906e828c6e1da15d782ae9301f591b34270283dcc18786ebd",
     "proof/PscVerif/PscVerif/PeriodicPartnerSpectralModels.lean": "bf43a2f49e4de6ca8eb938ad3c282f0676099f41e6b978bcc4285d34e8b10f7b",
     "proof/PscVerif/PscVerif/PeriodicPartnerVertexPartner.lean": "eab186933f42e44e3ac13b2db2aedfb157d248ed73257528b58c22eac0b6ec14",
+    "proof/PscVerif/PscVerif/PeriodicPartnerWinding.lean": "4b4e5dbf0476ed6b9a18e531ec4367dd5858ff6eb5019b46958f4af907c20baa",
+    "proof/PscVerif/PscVerif/PeriodicPartnerWindingSeams.lean": "34d9469a4536e0ae6fab20d19e40be028d74aec82a04a94f39275832f2887f4f",
     "proof/PscVerif/PscVerif/PerronCore.lean": "1f06da1e0b57e74b31fc03d753bd314f25561a37e512b3a8f7f05fda0d75458c",
     "proof/PscVerif/PscVerif/PerronExistence.lean": "a2ac1801abf2a99a6c312935d101ed4f760ffec0f96586d5f1f43bb176814c73",
     "proof/PscVerif/PscVerif/PerronSimple.lean": "1e4d9aca60b215f17067e39ba38bd8eaec7d9781fb716d8727fa7f9cbbf737a8",
@@ -53613,7 +53751,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "32c4e9faecf7f8d4791113b296600839a6bd02989ef85e8d5e959424a486218f",
+    "proof/PscVerif/PscVerif.lean": "ecacaccc89b4a0dee1f9cb56a0cf3ceb746c9a523444bd54a4aaf6c5b1a70d0a",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
