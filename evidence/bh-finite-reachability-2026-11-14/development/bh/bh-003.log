@@ -1,0 +1,32 @@
+.olean serialization took 429ms
+interpretation of Mathlib.Tactic._aux_Mathlib_Tactic_Linarith_Frontend___elabRules_Mathlib_Tactic_nlinarith_1._boxed took 1.22s
+interpretation of Mathlib.Tactic._aux_Mathlib_Tactic_Linarith_Frontend___elabRules_Mathlib_Tactic_nlinarith_1._boxed took 1.1s
+tactic execution of Lean.Parser.Tactic.change took 109ms
+cumulative profiling times:
+	.olean serialization 429ms
+	attribute application 0.216ms
+	compilation (IR) 0.061ms
+	compilation (LCNF base) 0.786ms
+	compilation (LCNF impure) 0.466ms
+	compilation (LCNF mono) 0.692ms
+	congr simp thm 4.38ms
+	dsimp 12.9ms
+	elaboration 180ms
+	fix level params 3.65ms
+	initialization 27.9ms
+	instantiate metavars 13.6ms
+	interpretation 3.27s
+	let-to-have transformation 0.311ms
+	linting 73.8ms
+	module linting 0.00131ms
+	norm_num 69.1ms
+	overlappingInstancesLinter 14ms
+	parsing 37.3ms
+	process pre-definitions 44.5ms
+	ring 87.3ms
+	share common exprs 23.9ms
+	simp 304ms
+	tactic execution 924ms
+	tacticAnalysis 68.5ms
+	type checking 212ms
+	typeclass inference 1.17s

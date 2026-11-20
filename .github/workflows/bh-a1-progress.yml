@@ -1,0 +1,64 @@
+name: BH finite reachability and A1 tail witnesses
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/bh-a1-progress.yml'
+      - 'proof/PscVerif/**'
+      - 'proof/proof-bank.json'
+      - 'proof/proof-bank.toml'
+      - 'tools/check_bh_a1_progress.sh'
+      - 'tools/setup_lean.sh'
+      - 'tools/make_proof_bank.py'
+      - 'docs/bh-finite-*.md'
+      - 'docs/p1a-minimal-z3-tail-*.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lean-progress:
+    name: Isolated literal packet bridge and tail-family proof audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Bind the exact source revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test -z "$(git status --porcelain)"
+          mkdir -p "$RUNNER_TEMP/bh-a1-progress"
+          git rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/bh-a1-progress/source.txt"
+      - name: Provision the pinned release
+        run: |
+          ./tools/setup_lean.sh
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Compile isolated sources and audit literal endpoints
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./tools/check_bh_a1_progress.sh | tee "$RUNNER_TEMP/bh-a1-progress/lean.log"
+      - name: Recheck source identity after verification
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test -z "$(git status --porcelain --untracked-files=no)"
+      - name: Retain exact source and terminal log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bh-a1-progress-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/bh-a1-progress
+          if-no-files-found: error
+          retention-days: 30

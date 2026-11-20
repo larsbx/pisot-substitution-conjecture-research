@@ -1,0 +1,6 @@
+{
+  "status": "cancelled_inconclusive",
+  "exit": 130,
+  "reason": "concurrent default-thread Lean imports stalled; retry with -j2",
+  "theorem_acceptance": false
+}

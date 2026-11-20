@@ -1,0 +1,129 @@
+import took 7.13s
+/workspace/scratch/psc-next/psc/proof/PscVerif/PscVerif/BHFiniteReachability.lean:92:18: error: don't know how to synthesize implicit argument `a`
+  @le_add_of_nonneg_right ℝ ?m.108 (ℓ m.top.letter) Real.instAddMonoid.toAddZeroClass Real.instPreorder.toLE
+    IsOrderedAddMonoid.toAddLeftMono (le_of_lt (hpos m.top.letter))
+context:
+s : Fin 3 → Word
+ℓ : Fin 3 → ℝ
+β : ℝ
+hpos : ∀ (a : Fin 3), 0 < ℓ a
+hβ : 0 < β
+hscale : ∀ (a : Fin 3), physicalLength ℓ (s a) = β * ℓ a
+p q : Packet
+hq : q.delta = 0
+m : MarkedPair
+hm : m.packet = q
+hzero : OccurrenceTransport.residual m.top.before m.bottom.before = 0
+hbal : Equiv1 m.top.before m.bottom.before
+⊢ ℝ
+/workspace/scratch/psc-next/psc/proof/PscVerif/PscVerif/BHFiniteReachability.lean:118:6: error: linarith failed to find a contradiction
+case head.refine_4
+s : Fin 3 → Word
+ℓ : Fin 3 → ℝ
+β : ℝ
+hpos : ∀ (a : Fin 3), 0 < ℓ a
+hβ : 0 < β
+hscale : ∀ (a : Fin 3), physicalLength ℓ (s a) = β * ℓ a
+p✝ q : Packet
+hq : q.delta = 0
+p r : Packet
+hpr : InteriorStep s ℓ p r
+h✝ : Relation.ReflTransGen (InteriorStep s ℓ) r q
+n : ℕ
+hn : ∀ (m : MarkedPair), m.packet = r → TileCut s ℓ β m n
+m : MarkedPair
+hm : m.packet = p
+dt : Mark (s m.packet.top)
+db : Mark (s m.packet.bottom)
+hr :
+  r =
+    { top := dt.letter, bottom := db.letter,
+      delta := (incidenceZ s).mulVec m.packet.delta + OccurrenceTransport.residual dt.before db.before }
+hnext : (MarkedPair.inflate s m dt db).packet = r
+u v ru rv : Word
+hu : (subst s)^[n] (MarkedPair.inflate s m dt db).words.1 = u ++ ru
+hv : (subst s)^[n] (MarkedPair.inflate s m dt db).words.2 = v ++ rv
+hbal : Equiv1 u v
+hlo : β ^ n * physicalLength ℓ (MarkedPair.inflate s m dt db).top.before ≤ physicalLength ℓ u
+hd : physicalLength ℓ dt.before + ℓ dt.letter ≤ β * ℓ m.packet.top
+hhi : physicalLength ℓ u ≤ β ^ n * (β * physicalLength ℓ m.top.before + physicalLength ℓ dt.before + ℓ dt.letter)
+hmul : β ^ n * (physicalLength ℓ dt.before + ℓ dt.letter) ≤ β ^ n * (β * ℓ m.packet.top)
+a✝ : β ^ n * β * (physicalLength ℓ m.top.before + ℓ m.top.letter) < physicalLength ℓ u
+⊢ False
+failed
+interpretation of Mathlib.Tactic._aux_Mathlib_Tactic_Linarith_Frontend___elabRules_Mathlib_Tactic_nlinarith_1._boxed took 114ms
+/workspace/scratch/psc-next/psc/proof/PscVerif/PscVerif/BHFiniteReachability.lean:222:11: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  MulRightStrictMono ℝ
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+/workspace/scratch/psc-next/psc/proof/PscVerif/PscVerif/BHFiniteReachability.lean:223:4: error: No goals to be solved
+/workspace/scratch/psc-next/psc/proof/PscVerif/PscVerif/BHFiniteReachability.lean:225:11: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  MulRightStrictMono ℝ
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+/workspace/scratch/psc-next/psc/proof/PscVerif/PscVerif/BHFiniteReachability.lean:226:4: error: No goals to be solved
+interpretation of Mathlib.Tactic._aux_Mathlib_Tactic_Linarith_Frontend___elabRules_Mathlib_Tactic_nlinarith_1._boxed took 944ms
+interpretation of Mathlib.Tactic._aux_Mathlib_Tactic_Linarith_Frontend___elabRules_Mathlib_Tactic_nlinarith_1._boxed took 1.19s
+/workspace/scratch/psc-next/psc/proof/PscVerif/PscVerif/BHFiniteReachability.lean:304:7: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  MulLeftStrictMono ℝ
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+/workspace/scratch/psc-next/psc/proof/PscVerif/PscVerif/BHFiniteReachability.lean:306:23: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  List.length U.2
+in the target expression
+  U.2 ∈ {w | List.length w ≤ N}
+
+ℓ : Fin 3 → ℝ
+hpos : ∀ (a : Fin 3), 0 < ℓ a
+B : ℝ
+μ : ℝ := min (ℓ 0) (min (ℓ 1)interpretation of Lean.registerNameMapExtension._redArg._lam_3._boxed took 115ms
+ (ℓ 2))
+hμpos : 0 < μ
+hμ : ∀ (a : Fin 3), μ ≤ ℓ a
+N : ℕ
+hN : B / μ < ↑N
+U : Word × Word
+hbal : Equiv1 U.1 U.2
+hbound : physicalLength ℓ U.1 ≤ B
+hlen : List.length U.1 ≤ N
+⊢ U.2 ∈ {w | List.length w ≤ N}
+/workspace/scratch/psc-next/psc/proof/PscVerif/PscVerif/BHFiniteReachability.lean:400:2: error: unsolved goals
+case refine_1
+⊢ physicalLength (fun x => 1) physicalZeroControl.top.before < 3 / 2 ∧
+    3 / 2 < physicalLength (fun x => 1) physicalZeroControl.top.before + 1 ∧
+      physicalLength (fun x => 1) physicalZeroControl.bottom.before < 3 / 2 ∧
+        3 / 2 < physicalLength (fun x => 1) physicalZeroControl.bottom.before + 1
+/workspace/scratch/psc-next/psc/proof/PscVerif/PscVerif/BHFiniteReachability.lean:411:6: error: Type mismatch: After simplification, term
+  hhi
+ has type
+  ↑(List.length u) ≤ 1 + 1
+but is expected to have type
+  List.length u ≤ 2
+cumulative profiling times:
+	attribute application 0.159ms
+	compilation (IR) 0.0524ms
+	compilation (LCNF base) 0.67ms
+	compilation (LCNF impure) 0.4ms
+	compilation (LCNF mono) 0.52ms
+	congr simp thm 5.23ms
+	dsimp 0.917ms
+	elaboration 133ms
+	fix level params 1.7ms
+	import 7.13s
+	initialization 27.6ms
+	instantiate metavars 11ms
+	interpretation 3.23s
+	let-to-have transformation 0.258ms
+	linting 44.3ms
+	module linting 0.0014ms
+	norm_num 36.5ms
+	overlappingInstancesLinter 9.37ms
+	parsing 26.8ms
+	process pre-definitions 25.8ms
+	ring 83.7ms
+	share common exprs 22.9ms
+	simp 258ms
+	tactic execution 584ms
+	tacticAnalysis 38.1ms
+	type checking 143ms
+	typeclass inference 1.07s

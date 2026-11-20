@@ -1,0 +1,33 @@
+{
+  "reason": "Original failed compiler diagnostics and timestamped job excerpt contain trailing whitespace. Preserve their exact bytes in deterministic gzip rather than editing their contents.",
+  "staged_whitespace_attempt_before_encoding": 2,
+  "files": [
+    {
+      "original_path": "development/a1-coincidence/coincidence-attempt-1.log",
+      "original_sha256": "41eeea0d357aff6017b7f304478174c7ea77c58d14c89255e5f3c8078cdddf93",
+      "original_bytes": 44371,
+      "stored_path": "development/a1-coincidence/coincidence-attempt-1.log.gz",
+      "stored_sha256": "758eacff5776e51477c066e962f0fddd7521bb34848c4f9568d741efdd67aacc",
+      "stored_bytes": 3575,
+      "encoding": "gzip, level9, mtime0; exact byte recovery verified"
+    },
+    {
+      "original_path": "development/a1-coincidence/coincidence-attempt-2.log",
+      "original_sha256": "870f94420d82a0194511162d846925bb1cf8379a2c912e64024b30c2213df98c",
+      "original_bytes": 58052,
+      "stored_path": "development/a1-coincidence/coincidence-attempt-2.log.gz",
+      "stored_sha256": "eaee6d216f7621ed90dcfb550ccc49ecab501fe5739a3fe42687c29c03402375",
+      "stored_bytes": 3432,
+      "encoding": "gzip, level9, mtime0; exact byte recovery verified"
+    },
+    {
+      "original_path": "parent-573/job-source-binding-excerpt.txt",
+      "original_sha256": "00bb4c873467867b7d42af4898cdcfd8475719d3840a3d30f897f84a779f7a93",
+      "original_bytes": 3294,
+      "stored_path": "parent-573/job-source-binding-excerpt.txt.gz",
+      "stored_sha256": "e2bf11a525c8e0ff3b08f07fb0e93223b3ccbbf0eaef636631a94929c2424fd6",
+      "stored_bytes": 1260,
+      "encoding": "gzip, level9, mtime0; exact byte recovery verified"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "record_kind": "reconstructed from observed terminal tool output after executor switch",
+  "old_source_scope": "Superseded matrix-only j=1; no literal incidence binding and no j=2 implementation in that snapshot",
+  "old_source_sha256": "bc16a05068226957c3812ce405b162ac62ab0aeb6857a0457a61f85cd7fa4e21",
+  "old_reported_log_sha256": "f1712fcf9cad50be5d3b1ace2a3b034b7ae87d46739ad7b0f1cc7139f05a9a35",
+  "compiler_returncode": 1,
+  "seconds": 340.3029687299859,
+  "old_command": [
+    "/workspace/scratch/gnr-next.qHyoM1/toolchains/lean-4.34.0-rc2-linux/bin/lean",
+    "-j2",
+    "-DautoImplicit=false",
+    "-o",
+    "/workspace/scratch/640fcc79ecb3/a1-tail-pisot-dev/PscVerif/A1PrimeTailPisot.olean",
+    "/workspace/scratch/640fcc79ecb3/a1-tail-pisot-dev/PscVerif/A1PrimeTailPisot.lean"
+  ],
+  "diagnostics": [
+    "line52: unreachable/unused omega warning",
+    "line220: No goals to be solved",
+    "line220: unsolved goal 2 < b after a single-line nested by/have proof"
+  ],
+  "outcome": "Failed compiler run; no accepted object. The hb2 proof now uses separate lines. The generalized j=1,2 source and literal bindings are still uncompiled.",
+  "interruption_note": "Parent requested stopping the superseded run to release import pressure. A Ctrl-C tool call returned the terminal compiler exit1 receipt; no interruption-specific result is claimed.",
+  "original_files_available": false,
+  "reconstructed_source_sha256": "d0ee17a7a377158af05bc3aaf3a30fe9d534f8a9270f183d340493f8f3eba6a5",
+  "reconstructed_source_acceptance": "none"
+}

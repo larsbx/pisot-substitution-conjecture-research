@@ -22,7 +22,7 @@ def test_audit_accepts_current_correct_formulations(tmp_path: Path) -> None:
         "paper.tex",
         """
         The synthetic algebraic solution is $N_C=M_\\sigma^\\top$ with $P=I$.
-        The matrix acts on an invariant subspace as a similar copy of $M_\sigma$.
+        The matrix acts on an invariant subspace as a similar copy of $M_\\sigma$.
         Then, conditional on the SCC Producer Theorem, the associated tiling
         dynamical system has pure discrete spectrum.
         """,

@@ -518,6 +518,7 @@ closed on caps and retain a replayable record for every survivor.
 - [Census source decision](c4-pisot-census-stop-go-2026-11-19.md): the cofactor at any root, positivity without Perron–Frobenius, completeness without primitivity, and the memory split of the kernel evaluation.
 - [Witness selection under (NM_V)](c4-witness-selection-2026-11-19.md): Theorem S in Lean. A vertex leaf forces the branch to the origin, and failing branches have interior leaves on the collapsed endpoint pair. The exact census of that residual finds it in `F₀` on 12 in-scope specimens; selection stays open.
 - [Selection source decision](c4-witness-selection-stop-go-2026-11-19.md): what transfers from BDS, BBK and Barge–Diamond, the local contracts, and why selection itself is deferred.
+- [Vertex-type common partner](c4-vertex-partner-2026-11-20.md): in the origin case of Theorem S, a common partner with a vertex at the origin forces the last-letter map to be a permutation (Lean, determinant-free).
 
 ## Primary completion route: finite seed-patch overlaps
 

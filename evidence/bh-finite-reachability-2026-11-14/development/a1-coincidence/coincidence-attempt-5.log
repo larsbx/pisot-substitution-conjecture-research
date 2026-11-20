@@ -1,0 +1,186 @@
+⚠ [2191/2194] Replayed PscVerif.OccurrenceNewborn
+warning: PscVerif/OccurrenceNewborn.lean:53:0: automatically included section variable(s) unused in theorem `Psc.OccurrenceNewborn.SyncPlus.eventual`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: PscVerif/OccurrenceNewborn.lean:61:0: automatically included section variable(s) unused in theorem `Psc.OccurrenceNewborn.SyncMinus.eventual`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+✖ [2194/2194] Building PscVerif.A1PrimeTailCoincidence (8.8s)
+trace: .> LEAN_PATH=/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/Cli/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/batteries/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/Qq/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/aesop/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/proofwidgets/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/importGraph/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/plausible/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/packages/mathlib/.lake/build/lib/lean:/workspace/scratch/psc-next/psc/proof/PscVerif/.lake/build/lib/lean /home/agent/.elan/toolchains/leanprover--lean4---v4.34.0-rc2/bin/lean /workspace/scratch/psc-next/psc/proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean -o /workspace/scratch/psc-next/psc/proof/PscVerif/.lake/build/lib/lean/PscVerif/A1PrimeTailCoincidence.olean -i /workspace/scratch/psc-next/psc/proof/PscVerif/.lake/build/lib/lean/PscVerif/A1PrimeTailCoincidence.ilean -c /workspace/scratch/psc-next/psc/proof/PscVerif/.lake/build/ir/PscVerif/A1PrimeTailCoincidence.c --setup /workspace/scratch/psc-next/psc/proof/PscVerif/.lake/build/ir/PscVerif/A1PrimeTailCoincidence.setup.json --json
+warning: PscVerif/A1PrimeTailCoincidence.lean:100:34: This simp argument is unused:
+  List.append_assoc
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [substitution]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:124:34: This simp argument is unused:
+  List.append_assoc
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [substitution]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:195:43: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:221:79: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:195:43: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:221:79: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:183:39: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:187:39: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:191:39: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:202:53: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:209:53: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:216:53: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:278:45: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:401:61: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:406:61: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:418:53: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:425:53: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:432:53: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:439:53: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:444:75: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:488:49: Unused tactic linter: `omega` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:488:49: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PscVerif/A1PrimeTailCoincidence.lean:591:55: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+error: PscVerif/A1PrimeTailCoincidence.lean:626:63: Unknown identifier `subst_nil`
+error: PscVerif/A1PrimeTailCoincidence.lean:625:69: unsolved goals
+s : Fin 3 → Word
+n : ℕ
+c : Fin 3
+h0 : s 0 = [1]
+tail1 tail2 : Word
+h1 : s 1 = 0 :: tail1
+h2 : s 2 = 0 :: tail2
+p q u t : Word
+hp : power s n 0 = p ++ c :: u
+hq : power s n 1 = q ++ c :: t
+hpq : Equiv1 p q
+a : Fin 3
+⊢ (subst s)^[n] (s a ++ subst s []) = (subst s)^[n] (s a)
+error: PscVerif/A1PrimeTailCoincidence.lean:630:16: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  s 0
+in the target expression
+  (subst s)^[n] (s ((fun i ↦ i) ⟨0, ⋯⟩)) =
+    ![q, p, p] ((fun i ↦ i) ⟨0, ⋯⟩) ++
+      c :: ![t, u ++ (subst s)^[n] tail1, u ++ (subst s)^[n] tail2] ((fun i ↦ i) ⟨0, ⋯⟩)
+
+case refine_1.«0»
+s : Fin 3 → Word
+n : ℕ
+c : Fin 3
+h0 : s 0 = [1]
+tail1 tail2 : Word
+h1 : s 1 = 0 :: tail1
+h2 : s 2 = 0 :: tail2
+p q u t : Word
+hp : power s n 0 = p ++ c :: u
+hq : power s n 1 = q ++ c :: t
+hpq : Equiv1 p q
+step : ∀ (a : Fin 3), power s (n + 1) a = (subst s)^[n] (s a)
+⊢ (subst s)^[n] (s ((fun i ↦ i) ⟨0, ⋯⟩)) =
+    ![q, p, p] ((fun i ↦ i) ⟨0, ⋯⟩) ++
+      c :: ![t, u ++ (subst s)^[n] tail1, u ++ (subst s)^[n] tail2] ((fun i ↦ i) ⟨0, ⋯⟩)
+error: PscVerif/A1PrimeTailCoincidence.lean:632:16: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  s 1
+in the target expression
+  (subst s)^[n] (s ((fun i ↦ i) ⟨1, ⋯⟩)) =
+    ![q, p, p] ((fun i ↦ i) ⟨1, ⋯⟩) ++
+      c :: ![t, u ++ (subst s)^[n] tail1, u ++ (subst s)^[n] tail2] ((fun i ↦ i) ⟨1, ⋯⟩)
+
+case refine_1.«1»
+s : Fin 3 → Word
+n : ℕ
+c : Fin 3
+h0 : s 0 = [1]
+tail1 tail2 : Word
+h1 : s 1 = 0 :: tail1
+h2 : s 2 = 0 :: tail2
+p q u t : Word
+hp : power s n 0 = p ++ c :: u
+hq : power s n 1 = q ++ c :: t
+hpq : Equiv1 p q
+step : ∀ (a : Fin 3), power s (n + 1) a = (subst s)^[n] (s a)
+⊢ (subst s)^[n] (s ((fun i ↦ i) ⟨1, ⋯⟩)) =
+    ![q, p, p] ((fun i ↦ i) ⟨1, ⋯⟩) ++
+      c :: ![t, u ++ (subst s)^[n] tail1, u ++ (subst s)^[n] tail2] ((fun i ↦ i) ⟨1, ⋯⟩)
+error: PscVerif/A1PrimeTailCoincidence.lean:637:16: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  s 2
+in the target expression
+  (subst s)^[n] (s ((fun i ↦ i) ⟨2, ⋯⟩)) =
+    ![q, p, p] ((fun i ↦ i) ⟨2, ⋯⟩) ++
+      c :: ![t, u ++ (subst s)^[n] tail1, u ++ (subst s)^[n] tail2] ((fun i ↦ i) ⟨2, ⋯⟩)
+
+case refine_1.«2»
+s : Fin 3 → Word
+n : ℕ
+c : Fin 3
+h0 : s 0 = [1]
+tail1 tail2 : Word
+h1 : s 1 = 0 :: tail1
+h2 : s 2 = 0 :: tail2
+p q u t : Word
+hp : power s n 0 = p ++ c :: u
+hq : power s n 1 = q ++ c :: t
+hpq : Equiv1 p q
+step : ∀ (a : Fin 3), power s (n + 1) a = (subst s)^[n] (s a)
+⊢ (subst s)^[n] (s ((fun i ↦ i) ⟨2, ⋯⟩)) =
+    ![q, p, p] ((fun i ↦ i) ⟨2, ⋯⟩) ++
+      c :: ![t, u ++ (subst s)^[n] tail1, u ++ (subst s)^[n] tail2] ((fun i ↦ i) ⟨2, ⋯⟩)
+warning: PscVerif/A1PrimeTailCoincidence.lean:626:74: This simp argument is unused:
+  List.append_nil
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [power, Function.iterate_succ_apply, subst_cons, subst_nil]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+Some required targets logged failures:
+- PscVerif.A1PrimeTailCoincidence
+error: build failed

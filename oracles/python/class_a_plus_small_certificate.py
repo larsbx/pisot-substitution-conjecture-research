@@ -1,4 +1,6 @@
-"""Independent complete S18 replay for exactly five plus-Class-A members.
+"""Independent complete S18 replay for the declared small plus-Class-A members:
+the five seams (--scope seams) and the 70 upper members n=0..6,
+n+5<=d<=2n+11 (--scope upper).
 
 The canonical certificate is Mojo. This oracle rebuilds every child by
 Cartesian enumeration over literal words, verifies every ordered occurrence,
@@ -17,16 +19,31 @@ HERE = Path(__file__).resolve().parent
 PLUS = runpy.run_path(str(HERE / "class_a_plus_constant_entry.py"))
 GRAPH = runpy.run_path(str(HERE / "class_a_x_productivity.py"))
 SmallGeometry = PLUS["SmallGeometry"]
+LiteralGeometry = PLUS["LiteralGeometry"]
 original_prefix_certificate = PLUS["original_prefix_certificate"]
-MEMBERS = tuple((n, n+4) for n in range(1, 6))
+MEMBERS = PLUS["SMALL_MEMBERS"]
+UPPER_MEMBERS = PLUS["UPPER_SMALL_MEMBERS"]
 STATE_CAP, PAIR_CAP = 6000, 20_000_000
 CONTRACT = ("ClassAPlusFiveSmallCompleteS18; every original ordered child and "
             "every full integral state has an actual typed-zero path; exactly "
             "n=1..5,d=n+4; caps refuse")
+UPPER_CONTRACT = ("ClassAPlusUpperSmallCompleteS18; every original ordered child and "
+                  "every full integral state reached from the eighteen swap sources has "
+                  "an actual typed-zero path; exactly n=0..6,n+5<=d<=2n+11; caps refuse")
+# members, contract receipt, total-receipt tag, native refusal count, scope sentence
+SCOPES = {
+    "seams": (MEMBERS, CONTRACT, "CLASS_A_PLUS_FIVE_SMALL_ENTRY_PASS", 12,
+              "exactly five complete literal S18 graphs; not arbitrary strict sources"),
+    "upper": (UPPER_MEMBERS, UPPER_CONTRACT, "CLASS_A_PLUS_UPPER_SMALL_ENTRY_PASS", 4,
+              "exactly 70 complete literal S18 graphs n=0..6,n+5<=d<=2n+11; "
+              "not arbitrary strict sources"),
+}
 
 
-class BoundedGeometry(SmallGeometry):
+class BoundedGeometry(LiteralGeometry):
     def __init__(self, n, d, pair_cap):
+        if (n, d) not in MEMBERS + UPPER_MEMBERS:
+            raise ValueError("outside the declared small plus members")
         if type(pair_cap) is not int or pair_cap < 1:
             raise ValueError("nonpositive occurrence-pair cap")
         super().__init__(n, d)
@@ -96,7 +113,7 @@ def make_member(n, d, state_cap=STATE_CAP, pair_cap=PAIR_CAP):
     return packet, summary
 
 
-@lru_cache(maxsize=5)
+@lru_cache(maxsize=None)
 def _canonical(n, d):
     return make_member(n, d)
 
@@ -105,7 +122,7 @@ def verify_member(packet):
     if set(packet) != {"n", "d", "vertices", "edges", "paths", "complete"}:
         raise ValueError("missing or unexpected complete-certificate field")
     n, d = packet["n"], packet["d"]
-    if type(n) is not int or type(d) is not int or (n, d) not in MEMBERS:
+    if type(n) is not int or type(d) is not int or (n, d) not in MEMBERS + UPPER_MEMBERS:
         raise ValueError("unexpected small-member parameter")
     expected, summary = _canonical(n, d)
     # Exact lists retain vertex order, every ordered edge and multiplicity,
@@ -119,14 +136,15 @@ def verify_member(packet):
     return summary
 
 
-def verify_native_text(text):
+def verify_native_text(text, scope="seams"):
+    members, contract_text, total_tag, refusals, scope_text = SCOPES[scope]
     packets, completions, member_passes = {}, set(), {}
     total, contract = None, False
     for line in text.splitlines():
         if not line.strip():
             continue
         if line.startswith("contract-receipt:"):
-            if contract or line != "contract-receipt: " + CONTRACT:
+            if contract or line != "contract-receipt: " + contract_text:
                 raise ValueError("missing, altered or repeated complete-small contract")
             contract = True
             continue
@@ -135,12 +153,12 @@ def verify_native_text(text):
             values = list(map(int, parts[1:]))
         except ValueError as exc:
             raise ValueError("nonintegral small native record") from exc
-        if parts[0] == "CLASS_A_PLUS_FIVE_SMALL_ENTRY_PASS":
+        if parts[0] == total_tag:
             if total is not None or len(values) != 7:
                 raise ValueError("malformed or duplicate small-total receipt")
             total = values
             continue
-        if len(values) < 2 or tuple(values[:2]) not in MEMBERS:
+        if len(values) < 2 or tuple(values[:2]) not in members:
             raise ValueError("unexpected small record/member")
         n, d = values[:2]
         key = (n, d)
@@ -169,12 +187,12 @@ def verify_native_text(text):
             member_passes[key] = data
         else:
             raise ValueError("unexpected line in complete-small transcript")
-    if set(packets) != set(MEMBERS) or completions != set(MEMBERS) or set(member_passes) != set(MEMBERS):
-        raise ValueError("the five complete small members are not all present")
+    if set(packets) != set(members) or completions != set(members) or set(member_passes) != set(members):
+        raise ValueError("the complete small members are not all present")
     if not contract or total is None:
         raise ValueError("complete-small transcript has no final acceptance receipts")
     summaries = []
-    for key in MEMBERS:
+    for key in members:
         summary = verify_member(packets[key])
         if member_passes[key] != packets[key]["complete"][:5]:
             raise ValueError("small-member printed pass differs from complete record")
@@ -184,10 +202,10 @@ def verify_native_text(text):
                       sum(s["occurrence_pairs"] for s in summaries),
                       sum(s["paths"] for s in summaries),
                       sum(s["path_edges"] for s in summaries),
-                      max(s["max_distance"] for s in summaries), 12]
+                      max(s["max_distance"] for s in summaries), refusals]
     if total != expected_total:
         raise ValueError("small-total counters or refusal count disagree")
-    return dict(scope="exactly five complete literal S18 graphs; not arbitrary strict sources",
+    return dict(scope=scope_text,
                 native_log_sha256=sha256(text.encode()).hexdigest(),
                 members=summaries, total=dict(zip(("vertices", "indexed_edges", "occurrence_pairs",
                 "paths", "path_edges", "max_distance", "native_refusals"), expected_total)))
@@ -196,8 +214,9 @@ def verify_native_text(text):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--native-log", type=Path, required=True)
+    parser.add_argument("--scope", choices=sorted(SCOPES), default="seams")
     args = parser.parse_args()
-    print(json.dumps(verify_native_text(args.native_log.read_text()), indent=2, sort_keys=True))
+    print(json.dumps(verify_native_text(args.native_log.read_text(), args.scope), indent=2, sort_keys=True))
 
 
 if __name__ == "__main__":

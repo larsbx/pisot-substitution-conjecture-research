@@ -118,3 +118,107 @@ Remaining export/module work stays in #2/#46/#151. PDF-versus-TeX semantic and
 citation checks remain an explicit #3 remainder. Fresh focused test results and the
 new PR's hosted status are recorded on the remediation PR; historical proof
 receipts above are not a fresh whole-library run of this maintenance tree.
+
+
+## November 20 integration and CI repair
+
+The follow-up reconciles this remediation with
+`main@b5e8df5a886270f30b9873f218446ed839f5ebf1`, preserving the merged
+#629 upper-small-member certificates, #628 vertex-partner formalization and
+#574 family/bridge work. Authored conflicts retain both sets of results;
+ledger and proof-bank conflicts are resolved by regeneration from their
+source records. Current README paragraphs now distinguish the completed
+small-member seed certificates, the remaining all-source Lean binding, and
+historical draft observations from the merged work.
+
+### Historical failure and narrow repair
+
+At the original remediation head
+`b1f2cfca0c4add2424dba1411dbb6238ea32cc86`,
+[research checks 44655802213](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/44655802213)
+and [canonical polynomial checks 44655802010](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/44655802010)
+failed four historical Class-D integration tests. Broadening the audit command
+inside `boundary-sync.yml` changed bytes bound by the accepted historical
+workflow contract. The repair restores that workflow to current main's
+accepted compatibility command and adds the expanded audit as
+[its own workflow](../.github/workflows/manuscript-audit.yml).
+
+The new workflow runs on every push and pull request, without path-filter
+gaps, and supports manual dispatch. It checks out the exact pull-request
+head (or the triggering commit), runs the auditor regressions, scans all live
+text and reports historical findings separately. It has read-only contents
+permissions. Both existing `ci.yml` and `boundary-sync.yml` match the
+integration base byte-for-byte. Historical validators, manifests, hashes,
+archives and failed receipts are unchanged.
+
+The same original research run's Lean job ended on runner shutdown after
+9,077 of 9,124 reported build steps, not a reported proof rejection. The
+[archived-payload run 44655802211](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/44655802211)
+also failed during its isolated build; the unavailable job log prevents a
+more specific cause from being asserted. These historical outcomes are not
+relabelled as passes by the maintenance repair.
+
+### Accepted source preservation
+
+Fresh inspection confirms all three #452 acceptance workflows above
+succeeded at `59adf93f61ea5b7cecc78526b2099fa410c36bc0`. An independent agent
+review also checked their individual jobs and steps. The written proof,
+source/hypothesis review and original evidence packet are unchanged at the
+new main baseline, as are all 52 local native files in the central/entry/small
+test import closure and all 23 local formal files in the focused recurrence
+and literal-interface closure. This is source-preservation evidence, not a
+new compiled replay on the maintenance revision.
+
+The integrated research kernels, Python oracles and Lean proof sources are
+byte-identical to the main baseline. The only governed theorem-status
+change remains `MinusClassAWholeChamberEntry`, at its original written
+statement. Dependency edges and universal BH, A1′, C4, G1 and PSC statuses
+are unchanged. The finite-collar evidence annotation retains its existing
+status and actual test binding.
+
+### Tracker placement
+
+The already-recorded November 19 recommendations on #2, #43, #46 and #151
+are retained. Follow-up notes on #44, #84, #85, #138, #139, #442, #452,
+#461, #511 and #514 record the remaining recommendations in their own
+issues, preserving earlier dated observations. #3 receives the implementation
+and CI-repair receipt. #452's note recommends completion at the accepted
+written family scope when this registry reconciliation is integrated; its
+separate refinement and universal obligations remain on #442 and #139.
+
+### Local verification and replay
+
+The focused repair run passed all 94 tests: 74 manuscript-audit regressions
+and 20 Class-D integration tests, including the four previously failing
+cases. The expanded live audit passed and reported two preserved historical
+findings in `archive/2026-09-08/manuscripts/PSC_PROOF_v15.tex` without
+crediting those historical assertions as current results. Workflow YAML,
+read-only permissions and exact-source checkout were checked. Generated
+ledger checks cover 32 surfaces; the regenerated proof inventory contains
+132 claims, 6,086 named Lean proofs and 534 source openings. Inventory
+regeneration is not compilation or an axiom audit.
+
+```sh
+python3 -m pytest -q tests/test_audit_manuscript.py tests/test_class_d_integration_ci.py
+python3 tools/audit_manuscript.py --root . --report-history
+python3 tools/make_ledger.py --check
+python3 tools/make_proof_bank.py --check
+PYTHONPATH=tools python3 -m claim_governance.cli --root .
+python3 tools/check_markdown_source.py
+git diff --check b5e8df5a886270f30b9873f218446ed839f5ebf1
+```
+
+The broader maintenance suite completed with **402 passed and 2 skipped**.
+This includes the 94 focused tests above, not 94 additional tests. The two
+existing optional TLC checks skip when `TLA_TOOLS` is unavailable. The
+successful suite also covers BPA basics, boundary synchronization, birth
+events, generated ledgers, claim governance, Markdown source/links, proof
+inventory, claim coverage and recorded-data integrity:
+
+```sh
+python3 -m pytest -q tests/test_audit_manuscript.py tests/test_class_d_integration_ci.py tests/test_bpa_basics.py tests/test_boundary_sync.py tests/test_birth_event.py tests/test_ledger_generation.py tests/test_claim_governance.py tests/test_check_markdown_source.py tests/test_markdown_links.py tests/test_proof_bank.py tests/test_claim_coverage.py tests/test_recorded_data_integrity.py
+```
+
+The published revision's hosted checks are recorded on #626 separately from
+the original theorem receipts. No fresh complete Lean, Mojo or TLC replay is
+claimed by this repair.

@@ -1,0 +1,65 @@
+{
+  "provenance": "Reconstructed from returned tool output after executor replacement. These are historical outcome records, not recovered original receipt or object files.",
+  "new_source": {
+    "path": "/workspace/scratch/bh-recovery/BHFiniteReachability.lean",
+    "sha256": "f9a06b5e562f02b19798e642d7fe1e73409977fc6cc98d02697cc327294f700c",
+    "lines": 425,
+    "status": "not yet elaborated"
+  },
+  "historical_attempts": [
+    {
+      "attempt": 1,
+      "module": "BHFiniteReachability",
+      "exit_code": 1,
+      "elapsed_seconds": 0.32544422149658203,
+      "sha256": "a6198535a29f7a103e356f5587a3ec1ea933917ca85169ae6ada1056577605a3",
+      "source_unchanged": true,
+      "diagnostic": "object file PscVerif/OccurrenceSuccessor.olean does not exist; source body was not elaborated"
+    },
+    {
+      "attempt": 2,
+      "module": "OccurrenceNewborn",
+      "outcome": "owned timeout",
+      "timeout_seconds": 240,
+      "elapsed_seconds": 240.24798917770386,
+      "sha256": "7afaf823023d45cc6d1d4d9b6d08e2b3d6e74dce165d77174de86d7cd23dd1d0",
+      "source_unchanged": true,
+      "output": "empty",
+      "object_observed": false
+    },
+    {
+      "attempt": 3,
+      "module": "OccurrenceNewborn",
+      "exit_code": 0,
+      "timeout_seconds": 1200,
+      "elapsed_seconds": 375.0605745315552,
+      "sha256": "7afaf823023d45cc6d1d4d9b6d08e2b3d6e74dce165d77174de86d7cd23dd1d0",
+      "source_unchanged": true,
+      "profile": {
+        "import_seconds_printed": 366,
+        "elaboration_seconds_printed": 1.89,
+        "serialization_seconds_printed": 2.34
+      },
+      "object_status": "object produced in former executor; artifact unavailable after executor replacement"
+    },
+    {
+      "attempt": 4,
+      "module": "OccurrenceAddress",
+      "outcome": "executor transport lost; terminal receipt and object state unrecovered",
+      "timeout_seconds": 1200,
+      "old_session_id": 19609,
+      "diagnostic": "exec-server transport disconnected; executor key changed during session recovery"
+    }
+  ],
+  "historical_compiler": "/workspace/scratch/gnr-next.qHyoM1/toolchains/lean-4.34.0-rc2-linux/bin/lean",
+  "historical_common_arguments": [
+    "-DautoImplicit=false",
+    "-j",
+    "2",
+    "-o",
+    "PscVerif/MODULE.olean",
+    "PscVerif/MODULE.lean"
+  ],
+  "profile_flag_from_attempt": 3,
+  "historical_output_directory": "/workspace/scratch/640fcc79ecb3/bh-finite-dev"
+}

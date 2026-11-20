@@ -14,6 +14,7 @@ import PscVerif.PeriodicPartnerAsymptotic
 import PscVerif.PeriodicPartnerHull
 import PscVerif.PeriodicPartnerSelection
 import PscVerif.PeriodicPartnerHullSelection
+import PscVerif.PeriodicPartnerVertexPartner
 import PscVerif.PeriodicPartnerCompleteRange
 import PscVerif.PeriodicPartnerDirectional
 import PscVerif.PeriodicPartnerRealization
@@ -36,7 +37,8 @@ run_cmd do
     `PscVerif.PeriodicPartnerModels, `PscVerif.PeriodicPartnerDichotomy,
     `PscVerif.PeriodicPartnerReflection, `PscVerif.PeriodicPartnerAsymptotic,
     `PscVerif.PeriodicPartnerHull, `PscVerif.PeriodicPartnerSelection,
-    `PscVerif.PeriodicPartnerHullSelection, `PscVerif.PeriodicPartnerCompleteRange,
+    `PscVerif.PeriodicPartnerHullSelection, `PscVerif.PeriodicPartnerVertexPartner,
+    `PscVerif.PeriodicPartnerCompleteRange,
     `PscVerif.PeriodicPartnerDirectional, `PscVerif.VertexAsymptoteRange,
     `PscVerif.PeriodicPartnerRealization, `PscVerif.PeriodicPartnerRealizationModels,
     `PscVerif.PeriodicPartnerSpectral, `PscVerif.PeriodicPartnerSpectralModels,

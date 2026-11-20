@@ -1,0 +1,9 @@
+{
+  "exit": 0,
+  "seconds": 98.04853065799398,
+  "thread_limit": 2,
+  "source_sha256": "98b75297c14f75b6a2c87c651d06b3da13131616cf1b53c2630d7b498a1b5540",
+  "source_path": "/workspace/scratch/640fcc79ecb3/psc/proof/PscVerif/PscVerif/C4ParameterFamilyControls.lean",
+  "log_path": "/workspace/scratch/640fcc79ecb3/math-controls-dev/controls-compile.log",
+  "proof_state": "compiled; axiom audit delegated to full family gate"
+}
