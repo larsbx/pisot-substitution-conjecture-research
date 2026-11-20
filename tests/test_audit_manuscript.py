@@ -158,3 +158,119 @@ def test_audit_rejects_psc_closed_premise(tmp_path: Path, text: str) -> None:
 def test_audit_accepts_psc_open_framing(tmp_path: Path, text: str) -> None:
     write(tmp_path, "ok.md", text)
     assert audit_manuscript.main(["--root", str(tmp_path)]) == 0
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "C1 <=> C4.",
+        "We prove C4 ⇔ C1.",
+        "C1 is equivalent to C4.",
+        r"The manuscript asserts $C_1 \Longleftrightarrow C_{4}$.",
+        "Earlier work proves C4 iff C1.",
+        "The old argument is false, but C1 <=> C4.",
+        "The old argument is false, BUT C1 <=> C4.",
+        "The old argument is withdrawn. C1 <=> C4.",
+        "Unlike the withdrawn predecessor argument, C1 <=> C4.",
+        "C1 <=> C4, while the older argument is false.",
+        "It is not false that C1 <=> C4.",
+        "Do not reject C1 <=> C4.",
+        "- The old argument is withdrawn\n- C1 <=> C4.",
+        "The normalized transfer is Q2 N_C = Lambda^2(M) Q2.",
+        "The normalized transfer is Q3 N_C = Phi3 Q3.",
+        r"For normalized states, $Q_{2} N_{C} = \Lambda^{2}(M) Q_{2}$.",
+        r"Earlier work proves $Q_3 N_C = \Phi_3 Q_3$.",
+        "Predecessor contraction proves G1.",
+        "Predecessor-contraction argument implies BPA finiteness.",
+        r"Predecessor contraction \Rightarrow G_1.",
+        "Earlier work supplies a predecessor contraction proof of G1.",
+        "Fibonacci defeats an earlier argument, and we prove there is no recurrent noncoincident cycle.",
+    ],
+)
+def test_audit_rejects_missing_issue3_controls(tmp_path: Path, text: str) -> None:
+    write(tmp_path, "bad.md", text)
+    assert audit_manuscript.main(["--root", str(tmp_path)]) == 1
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "With G1 for extraction, C4 => C3-local => C2 => C1 is the sufficient direction.",
+        r"Under G1, $C_4 \Rightarrow C_1$ does not supply the converse.",
+        "The false equivalence C1 <=> C4 is retired.",
+        "The earlier claim C4 iff C1 is not established.",
+        "The claim C1 <=> C4 is not true.",
+        "Do not infer C1 <=> C4.",
+        r"The claim $C_1 \Leftrightarrow C_4$ is \emph{false}.",
+        "Q2 S = Lambda^2(M) Q2 and Q3 S = Phi3 Q3, where S=A-B.",
+        "The correct identity is Q2 N_C = Lambda^2(M) Q2 + 2 Q2 B, since N_C = S + 2B.",
+        "The correct identity is Q3 N_C = Phi3 Q3 + 2 Q3 B, since N_C = S + 2B.",
+        "The unsigned formula Q2 N_C = Lambda^2(M) Q2 is withdrawn.",
+        "The false normalized identity Q3 N_C = Phi3 Q3 must use S instead.",
+        "Predecessor contraction does not prove G1.",
+        "The withdrawn predecessor-contraction proof of G1 needs replacement.",
+        "The claim that predecessor contraction proves G1 is false.",
+        'The historical chain "finite BPA -> no recurrent noncoincident cycle -> PDS" is not established.',
+        'Fibonacci defeats the historical claim "there are no recurrent noncoincident cycles".',
+        "Human review is post-PSC.",
+        "Human validation remains post-PSC. PSC remains open.",
+    ],
+)
+def test_audit_accepts_scoped_results_and_explicit_retractions(tmp_path: Path, text: str) -> None:
+    write(tmp_path, "ok.md", text)
+    assert audit_manuscript.main(["--root", str(tmp_path)]) == 0
+
+
+def test_review_timing_does_not_exempt_psc_closure_claim(tmp_path: Path) -> None:
+    write(tmp_path, "bad.md", "Human review is post-PSC. PSC is proved.")
+    assert audit_manuscript.main(["--root", str(tmp_path)]) == 1
+
+
+@pytest.mark.parametrize("path", ["manuscripts/paper.tex", "docs/verification-architecture.md"])
+def test_default_scan_checks_live_manuscripts_and_verification_architecture(tmp_path: Path, path: str, capsys) -> None:
+    write(tmp_path, path, "C1 <=> C4.")
+    assert audit_manuscript.main(["--root", str(tmp_path)]) == 1
+    assert path in capsys.readouterr().err
+
+
+def test_historical_allowlist_is_explicit_and_reported_separately(tmp_path: Path, capsys) -> None:
+    for directory in audit_manuscript.HISTORICAL_ROOTS:
+        write(tmp_path, f"{directory}/old.md", "C1 <=> C4.")
+    write(tmp_path, "README.md", "C4 => C1.")
+
+    assert audit_manuscript.main(["--root", str(tmp_path)]) == 0
+    assert "old.md" not in capsys.readouterr().out
+    assert audit_manuscript.main(["--root", str(tmp_path), "--report-history"]) == 0
+    output = capsys.readouterr()
+    assert "Historical manuscript/source findings (nonblocking): 3" in output.out
+    for directory in audit_manuscript.HISTORICAL_ROOTS:
+        assert f"{directory}/old.md" in output.out
+    assert not output.err
+
+
+def test_dated_live_documents_are_not_implicitly_historical(tmp_path: Path) -> None:
+    write(tmp_path, "docs/audit-2026-09-10.md", "C1 <=> C4.")
+    assert audit_manuscript.main(["--root", str(tmp_path)]) == 1
+
+
+def test_live_failure_stays_fatal_with_historical_report(tmp_path: Path, capsys) -> None:
+    write(tmp_path, "archive/old.md", "C1 <=> C4.")
+    write(tmp_path, "README.md", "Predecessor contraction proves G1.")
+    assert audit_manuscript.main(["--root", str(tmp_path), "--report-history"]) == 1
+    output = capsys.readouterr()
+    assert "Historical manuscript/source findings (nonblocking): 1" in output.out
+    assert "README.md" in output.err
+    assert "archive/old.md" not in output.err
+
+
+def test_scan_order_is_deterministic_and_ignores_dependency_trees(tmp_path: Path) -> None:
+    for name in ["docs/z.md", "a.md", "docs/a.md", ".lake/old.md", ".pixi/old.md"]:
+        write(tmp_path, name, "C1 <=> C4.")
+    paths = [str(p.relative_to(tmp_path)) for p in audit_manuscript.iter_text_files(tmp_path)]
+    assert paths == ["a.md", "docs/a.md", "docs/z.md"]
+
+
+def test_strict_current_keeps_its_compatibility_scope(tmp_path: Path) -> None:
+    write(tmp_path, "docs/proof-ladder.md", "C4 => C1.")
+    write(tmp_path, "manuscripts/paper.tex", "C1 <=> C4.")
+    assert audit_manuscript.main(["--root", str(tmp_path), "--strict-current"]) == 0

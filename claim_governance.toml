@@ -1413,13 +1413,13 @@ window_lines = 0
 
 [[claim]]
 name = "MinusClassAWholeChamberEntry"
-status = "open"
+status = "proved"
 [[claim.surfaces]]
 path = "proof/tla/Ledger.tla"
 anchor = '"MinusClassAWholeChamberEntry"'
 section = "ProvedDef == {"
 section_end = "}"
-expect = "absent"
+expect = "present"
 [[claim.surfaces]]
 path = "docs/ledger-index.md"
 anchor = '| MinusClassAWholeChamberEntry |'
