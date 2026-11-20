@@ -28,6 +28,8 @@ MEMBERS = tuple(dict.fromkeys((n, d) for d in (5, 7, 11) for n in
     (max(6, d-4), d-1, d, d+1, d+4, 2*d-2, 2*d-1, 4*d, 12*d, 24*d)
     if n >= 6 and d <= n+4))
 SMALL_MEMBERS = tuple((n, n+4) for n in range(1, 6))
+# The 70 upper members below the n>=7 all-source entry theorem.
+UPPER_SMALL_MEMBERS = tuple((n, d) for n in range(0, 7) for d in range(n+5, 2*n+12))
 
 
 def parameters(n, d):
@@ -37,8 +39,23 @@ def parameters(n, d):
 
 
 def _literal_parameters(n, d):
-    if type(n) is not int or type(d) is not int or n < 1 or not 5 <= d <= n+4:
+    if type(n) is not int or type(d) is not int or not (
+            (n >= 1 and 5 <= d <= n+4) or (n, d) in UPPER_SMALL_MEMBERS):
         raise ValueError("outside the declared plus literal-word domain")
+
+
+def perron_bracket(n, d):
+    """Exact unit bracket [b, b+1] of the largest real root of the literal plus
+    cubic: b=n+3 on the constant domain, the last integer with chi<0 otherwise."""
+    _literal_parameters(n, d)
+    chi = lambda x: x**3 - (n+4)*x*x + (n+5-d)*x - 2
+    bound = 1 + max(n+4, abs(n+5-d), 2)
+    if any(chi(x) == 0 for x in range(bound+1)):
+        raise ValueError("integer root: reducible plus cubic")
+    b = max(x for x in range(bound+1) if chi(x) < 0)
+    if d <= n+4 and b != n+3:
+        raise ValueError("constant-chamber Perron floor is not n+3")
+    return Fraction(b), Fraction(b+1)
 
 
 class LiteralGeometry(ParentGeometry):
@@ -50,7 +67,7 @@ class LiteralGeometry(ParentGeometry):
                       (1,) + (2,)*n + (0,),
                       (0,) + (2,)*(n+1) + (1,))
         self.chi = (-2, n-d+5, -(n+4))
-        self.lo, self.hi = Fraction(n+3), Fraction(n+4)
+        self.lo, self.hi = perron_bracket(n, d)
         if not self.polynomial(self.lo) < 0 < self.polynomial(self.hi):
             raise ValueError("literal plus cubic does not bracket its Perron root")
         self.lengths = ((1, d-2, 1), (1, -2, 1), (0, -1, 1))

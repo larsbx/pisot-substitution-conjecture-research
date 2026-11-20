@@ -1,4 +1,4 @@
-PSC AGENT PRIORITY ADDENDUM — 2026-11-14 (planning, not proof)
+PSC AGENT PRIORITY ADDENDUM — 2026-11-19 (planning and acceptance reconciliation)
 =======================================================================
 Read docs/bh-escape-roadmap-2026-11-14.md first, with AGENTS.md and current
 claim governance. This overlay supersedes the November 9 task ordering;
@@ -12,13 +12,19 @@ from every required cyclic seed-reachable strict-zipper source to ZERO
 INTEGRAL DISPLACEMENT. Terminal letters may differ; physical zero alone is
 not the contract. Retain original prefix addresses in M^m w=p-q and the
 sign conversion delta=-w to the Lean packet convention.
-P0 CONCRETE TARGET (#452): For minus Class A, prove uniform entry of every
-required nonzero cyclic source into the nine classified zero-return
-predecessor segments, intersected with the actual seed graph. Prove source
-coverage separately from a selected escape rule; complete child closure or
-an independent coverage theorem is required. A parameter-dependent rank
-or an escape from each child-closed target-free terminal SCC may suffice.
-Do not require every edge to decrease: productive cycles are valid controls.
+COMPLETED SCOPED TARGET (#452): Minus-Class-A entry on n+2<=d<=2n-1 is
+repository-proved by the written theorem integrated through #577. For n>=6
+it covers every strict integral overlap; for n<6 it covers the six complete
+S18 seed graphs. At integrated head 59adf93f61ea5b7cecc78526b2099fa410c36bc0,
+central-entry run 43864432132, literal Lean run 43864432245 and research run
+43864432043 all passed. The merge is 75ebe17cea95fcce35df4be333d55aa77f3c8f8e.
+The full theorem is not end-to-end Lean formalized; human review is pending.
+NEXT CONCRETE WORK: complete source coverage in the remaining BH domains
+and the actual geometric/occurrence assembly of the written family proofs
+in Lean. Do not re-prove #452's accepted entry theorem. Source coverage and
+a selected escape rule remain separate obligations; complete child closure
+or an independent coverage theorem is required. Productive cycles remain
+valid controls, so not every edge must decrease.
 P1 RESIDUAL A1-PRIME (#138), IN PARALLEL: Prove same-position proximality of
 the prescribed fixed-hub rays under the residual hub hypotheses, or supply
 direct one-sided coincidence. New family witnesses do not cover all hubs.
@@ -31,10 +37,11 @@ OccurrenceTransport.packet_path_lift and AddressedPath.child_path already
 provide mainline occurrence decoding and coherent finite path composition
 at their stated hypotheses. A supplied original transcript has a narrower
 preservation contract; constructing ordinary finite lifting is not the gap.
-Draft #574 adds BHFiniteCarrier and scoped A1 tail results at fd23a668;
-its focused workflow 43638030436 passed, while full-library 43638030298
-was in progress at this snapshot. Draft #573 family, full-library and
-original-archive gates passed at 6bf0b970. These sources are not mainline.
+Historical November 14 source snapshot: draft #574 added BHFiniteCarrier
+and scoped A1 tail results at fd23a668; its focused workflow 43638030436
+passed, while full-library 43638030298 was in progress. Draft #573 family,
+full-library and original-archive gates passed at 6bf0b970. Their then-open
+state is historical; recheck current merge/acceptance before integration.
 The roadmap pins full revisions, exact premises and workflow URLs.
 
 QUANTIFIERS AND SCOPE:

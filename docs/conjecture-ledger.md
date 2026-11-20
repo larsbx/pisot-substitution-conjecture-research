@@ -82,22 +82,33 @@ PSC unchanged.
 
 ### Current implementation frontier
 
-The [November 11 crosswalk](current-state-reconciliation-2026-11-11.md) records
-the exact distinction between merged implementation, tested-revision acceptance
-and mathematical closure. In particular, #520 repaired and accepted the R1
-finite support/rank validators; their earlier Lean failure is historical.
-Complete source-bound extraction and uniform PIP existence remain open. The
-Class-A finite certificates and local arithmetic interfaces do not supply
-uniform entry or complete all-descendant coverage.
+**November 19 reconciliation.** The [issue-remediation record](issue-audit-remediation-2026-11-19.md)
+updates the [November 11 crosswalk](current-state-reconciliation-2026-11-11.md)
+against main `c8d582ff502b18745f7b0a73037458c92e705ad9`. Dated earlier
+receipts remain historical evidence. #520's finite support/rank validators are
+accepted at their recorded source; complete canonical source-bound extraction
+and uniform PIP existence remain open under #511/#514.
 
-For C4, accepted main through #541 includes actual finite occurrence histories,
-conditional compact covers, local incoming admissibility, a constructed compact
-matrix-adic carrier and integral range reflection with a supplied stable factor.
-Authentic prefix tiles and complete tile equations, finite nonempty-ancestor
-coverage, product-Haar scaling and positive compact strict-cut-root measure
-remain live premises. A uniform theorem forcing at least one productive
-physical crossing in a supplied strict PIP component remains open. The separate
-active #542–#544 continuations are not part of this mainline baseline.
+The [minus-Class-A entry proof](class-a-central-entry-2026-11-14.md) from
+#578 is now on main through #577. Its exact integrated head `59adf93f61ea5b7cecc78526b2099fa410c36bc0`
+passed the central-entry, literal Lean-interface and broad research workflows.
+`MinusClassAWholeChamberEntry` is reconciled at its existing written family
+scope: all strict integral sources for `n>=6`, and the six complete S18 seed
+graphs for `n<6`, within `n+2<=d<=2n-1`. End-to-end Lean binding and independent
+human review remain separate; universal BH #139 remains open.
+
+For C4, #542–#545 are merged. Actual prefix-closure, stable-window and named
+compact-tile interfaces have advanced, as recorded in the
+[November 17 audit continuation](psc-audit-continuation-2026-11-17.md).
+The later [odd rank-two exclusion](c4-rank-two-stack-cycle-exclusion-2026-11-19.md),
+[even rank-two reduction](c4-even-stack-residue-2026-11-19.md), and
+[companion-family exclusion](c4-even-companion-family-2026-11-19.md) retain
+their distinct written, imported, finite and Lean scopes. The
+[ordinary-hull topology](c4-ordinary-hull-topology-2026-11-19.md) proves continuous
+translation and forward inflation, while concrete-realization continuity,
+normalized BBK correspondence, recognizability and finite fibres retain their
+stated obligations. Universal strict-system exclusion, higher-rank cases,
+global extraction where required, C4, A1′, BH, G1 and PSC remain open.
 
 ## A. Stable base
 

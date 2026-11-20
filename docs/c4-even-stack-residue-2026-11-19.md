@@ -214,13 +214,15 @@ evaluate to zero because `A,B` share their maximal equicontinuous image.
 
 ### Evidence and replay
 
-Lean checks `grouped_cycle_support`, `grouped_row_crosses`,
-`continuous_square_one_eq_one`, and `even_stack_residue_degrees` in
+Lean checks `grouped_cycle_support` and `grouped_row_crosses` in
+[PeriodicPartnerSeamCycles](../proof/PscVerif/PscVerif/PeriodicPartnerSeamCycles.lean).
+The constancy of the normalized phase and the degree argument are checked by
+`continuous_square_one_eq_one` and `even_stack_residue_degrees` in
 [PeriodicPartnerDirectional](../proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean).
-These prove the finite group support and row crossing, constancy of the
-normalized phase, and the degree argument from their stated inputs. The
-geometric factor construction, graph transfer, and homoclinic winding
-remain written arguments with the published inputs above.
+The [homoclinic winding formalization](c4-homoclinic-winding-2026-11-20.md)
+checks the lift construction and odd winding from the stated seam phase
+conditions. The geometric factor construction and its transfer of the
+tail and sheet conditions use the written arguments and published inputs above.
 
 The [Mojo regression](../kernel/tests/test_c4_even_stack_residue.mojo)
 uses the standing 4,554-specimen PIP3 corpus, the Barge–Diamond profile,
@@ -271,6 +273,12 @@ The next even-determinant obligation concerns primitive irreducible cubic
 substitutions with nilpotent incidence modulo two and a surviving grouped
 seam square. It needs either a cubic obstruction to the periodic
 homoclinic winding with four seam lifts from the original ternary hull,
-or an independent strict-system exclusion on this class. The literal
-control shows why parity and the graph alone leave a residue beyond the
-corpus. Higher coincidence ranks, universal C4 and PSC remain open.
+or an independent strict-system exclusion on this class. The
+[literal follow-up](c4-literal-periodic-defect-2026-11-20.md) rules out a
+periodic finite difference in the original hull and excludes a companion
+family with every positive even determinant. The unordered factor can
+still have a finite difference whose original lifts do not agree on both
+tails. The [marked-count follow-up](c4-homoclinic-winding-counts-2026-11-20.md)
+identifies its nonzero count vector modulo two and gives a modulo-four
+test on the original seam cycle for the boundary contribution. Higher
+coincidence ranks, universal C4 and PSC remain open.

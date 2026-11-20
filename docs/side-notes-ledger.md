@@ -614,6 +614,15 @@ by deleting it.
   speed up member decisions. · `audit-finite-regime-advice-2026-10-08.md`;
   `experiments/z2-route/boxtime.mojo`
 
+- 2026-11-20 · The plus-Class-A family `x -> x y^(n+d) x, c -> c y^n x,
+  y -> x y^(n+1) c` is PIP for no `d >= 2n+12`: `chi(-1) = -(2n+12-d)`, a root
+  at `-1` when `d = 2n+12` and a real root below `-1` beyond. The exact screen
+  finds every `1 <= d <= 2n+11` PIP for `n <= 9`. All 70 upper members
+  `n <= 6, n+5 <= d <= 2n+11` have complete S18 graphs in which every state
+  reaches typed zero: at most 2,922 states and depth 9, about 18 s native for
+  all 70. Do not search the upper strip beyond `d = 2n+11`. ·
+  `class-a-plus-upper-small-members-2026-11-20.md`
+
 ## 6. Tooling pitfalls
 
 - 2026-10-04 · `pkill -f PATTERN` inside a shell command whose own text
@@ -728,6 +737,26 @@ by deleting it.
   strict inequality admits one invalid child exactly when `t + m ell_y = ell_A`
   identically, and on the class B line it produced 123 vertices (4 without a
   hit) instead of the exact 119. · `kernel/psc/symbolic_line.mojo` (`least_m`)
+
+- 2026-11-20 · On a shallow clone (`git clone --depth 1`, the default of a
+  fresh agent container) 30 provenance tests in `test_class_d_closure_rebind`,
+  `test_class_d_integration_ci` and `test_source_pins` fail with a bare
+  `CalledProcessError`, because they read pinned historical revisions. The
+  failures are environmental; `git fetch --unshallow` makes all three files
+  pass. Do not patch the `tools/check_class_d_*.py` checkers to report it:
+  they are digest-pinned accepted sources, and editing them refuses the
+  class-D acceptance packet (15 failures). `tests/conftest.py` names the
+  shallow clone in the pytest header and summary instead; nothing is skipped.
+  · `tests/conftest.py`
+
+- 2026-11-20 · `git rebase` drops merge commits, including any work that only
+  lives in one (an "evil merge"). `research/c4-periodic-ray-decision` (#576)
+  carried the whole phase-aligned-ray change (`c4-phase-aligned-ray*.md`, the
+  `c4_periodic_rays` kernel, test and oracle) inside its merge `e541fe8d`; a
+  plain rebase silently lost it. Before rebasing a branch with merges, list the
+  paths where each merge differs from its main-side parent and replay those as
+  an ordinary commit; afterwards check that every file `main` never touched is
+  byte-identical to the old head. · PR #576 rebase comment
 
 ## 7. Review outcomes
 
@@ -3345,6 +3374,9 @@ claim-ledger promotion. Evidence: `docs/occurrence-path-replay-2026-10-16.md`,
 - **2026-11-19 — the census is in Lean: 4,554 PIP3 members, each with the derived contraction.** A Boolean certificate on integer data (`p(±1) < 0`, rational-root irreducibility, `M⁵ > 0`, a dyadic bracket `β > max(1, |D|)`, positive lower bounds for `β ℓⱼ`) is proved sound: it builds the `LengthSubst`, its PIP3 membership and `PisotData`. A rejection certificate (`p(±1) ≥ 0`, an integer root, or `p(|D|) ≥ 0` with `|D| ≥ 2`) is proved incompatible with PIP3 through Jury's test in the converse direction. The kernel evaluates both on all 59,319 specimens (`decide +kernel`, standard axioms): 4,554 accepted, the rest refuted, so `census` is an iff. Pitfalls avoided: Perron–Frobenius is replaced by `ℓ = 𝟙ᵀ Q(M)` and a per-specimen bound; primitivity never decides a rejection, so Wielandt is not needed; one kernel evaluation of the whole enumeration exceeds 13 GB, so it is split by first image. Recognizability, BDS and finite fibres stay inputs. No C4/PSC status changes. Locators: [census note](c4-pisot-census-2026-11-19.md), [source decision](c4-pisot-census-stop-go-2026-11-19.md), `PscVerif.PeriodicPartnerSpectralCertificate`, `PeriodicPartnerSpectralCensus`.
 
 - **2026-11-19 — ordinary local topology needs an open quotient, and its source metric must remain separate.** Fixed translations are homeomorphisms in the exact-agreement metric, but every nonempty translation orbit is discontinuous in time there. The chart `(t,T) -> T-t` gives a separate ordinary hull; its saturation by fixed fibre shifts proves it is an open quotient, and the explicit small-translation/window basis identifies the topology. Joint translation continuity descends through `id x chart`; the product of an arbitrary quotient would not suffice. Inflation descends through `(t,T) -> (beta*t,inflate T)`. For the concrete realization, flow equivariance yields an iff between ordinary-hull continuity and exact-source continuity, leaving both unproved without the remaining transverse argument. Bare bijectivity of inflation supplies no continuous inverse. No compactness, recognizability, finite-fibre or C4/PSC conclusion follows. Locators: [formalization and evidence](c4-ordinary-hull-topology-2026-11-19.md), [source decision](c4-ordinary-hull-topology-stop-go-2026-11-19.md).
+
+- **2026-11-19 — stale issue descriptions require acceptance-level reconciliation.** The #452 written family entry proof was already merged through #577; integrated-head runs 43864432132, 43864432245 and 43864432043 all succeeded at `59adf93f61ea5b7cecc78526b2099fa410c36bc0`. Its governed record is now reconciled at the unchanged chamber/source scope, preserving partial Lean coverage, human-review debt and the earlier failed integration. #43/#85 remain open. #46's old collar-radius census is withdrawn, while the legacy `FiniteCollarDeath` identifier still binds actual finite separation/collapse/pump-persistence controls, so its evidence scope is clarified instead of blanket retirement. #2/#151 retain concrete export/module remainders. The manuscript auditor now rejects the three demonstrated missing stale formulations and separates explicitly preserved historical roots from live scans. Locator: [issue audit and remediation](issue-audit-remediation-2026-11-19.md).
+
 - **2026-11-12 — a byte-exact N2 slice can compose only over a proved update schedule.** The new trace theorem consumes a per-entry readiness relation. Deriving that relation from loop back edges and the runtime ABI remains open. Locator [projected update sequence](../proof/WordCounters/N2MachineSlice.md#projected-update-sequence).
 - **2026-11-14 — redirect the parameterized named-fixture root-nullity proposal.** For `sigma_k=(1,0 1^k 2,001)`, `k>=1`, exact hand algebra verifies nonunit PIP, while `k>=2` has depth-1/2/3 pairwise prefix witnesses using the existing Lemma L_y and prefix-transfer mechanism (simultaneous depth two for `k>=3`); these independently checked identities are not Lean-compiled acceptance. The common-suffix companion has immediate terminal coincidence. Stop a redundant root-loss search; any further family target is finite actual `ChildNC` reachability of seed `01/10`, conditional on prior-coverage/conjugacy screening. Matching the beta polynomial does not identify the source substitution, and no family or universal PDS/PSC claim is promoted. Locator: [proportional stop/go and exact hypotheses](c4-parameter-family-stop-go-2026-11-14.md).
 
@@ -3395,5 +3427,16 @@ claim-ledger promotion. Evidence: `docs/occurrence-path-replay-2026-10-16.md`,
 - **2026-11-14 — determinant-three termination needs a separate small-parameter carrier.** For `1/(0 1^k 2)/0001`, every Pisot parameter has a finite productive `01/10` carrier. At `k=3` the complete ordered graph has 587 states, with some requiring two substitutions to meet a coincidence. For `k>=9` a 29-row symbolic table (two rows terminalized) bounds the full ordered graph by 57 and supplies a diagonal in every noncoincident row. The affine alignment has a zero-length span at `k=8`, so the literal boundary replay covers that parameter as well. Locator: [symbolic closure and ordered replay](c4-determinant-three-carrier-2026-11-14.md).
 
 - **2026-11-14 — a balanced partition suffices to bound actual irreducible factors.** The complete Parikh-cut factorization refines every balanced partition, so a symbolic family of bounded balanced blocks can supply the forward length bound without a symbolic irreducibility check. For `1/(0 1^k 2)/(0^r 1)` with `r>=4,k>=r+3`, 30 bivariate templates give bound `(r+2)(k+4)`. Bilateral strict-system exclusion then gives coincidence for every factor. One repeat vanishes at `k=r+3` and becomes negative off the proved region. Locator: [two-parameter partition and literal controls](c4-two-parameter-carrier-2026-11-14.md).
+- **2026-11-20 — a vertex-type common partner forces a permutation.** In the origin case (A) of Theorem S, if the common partner also has a vertex at the origin, (Z2) at level zero and periodicity make the three end letters distinct and periodic, so `g_R` is a permutation. Right (NM_V) then holds and case (B) is empty on that side, so a non-injective side carries only interior-partner origin witnesses or case (B). Determinant-free; relevant to the even residue. The `K_{3,2}` seam control realizes the configuration. No strict system is excluded. Locators: [note](c4-vertex-partner-2026-11-20.md), `PscVerif.PeriodicPartnerVertexPartner`.
+
+- **2026-11-20 — expanding an audit inside a provenance-bound workflow invalidates the historical contract.** PR #626's original `boundary-sync.yml` command change produced four Class-D acceptance failures. Restore the accepted command and run the broader live/history audit in a separate workflow that checks out the exact PR head. The 94 focused regressions pass without editing validators, hashes or archives. Preserve the source-identical #452 accepted written theorem and the newly merged small-member and vertex-partner work when regenerating the conflicted ledgers. Locator: [integration repair and evidence boundaries](issue-audit-remediation-2026-11-19.md#november-20-integration-and-ci-repair).
+
+- **2026-11-20 — opposite sheets force an odd winding along the grouped seam pair.** The group crossing lemmas and normalized circle lifts reduce the parity calculation to a half-turn at zero. A compactly supported phase with winding one shows that the two tail limits alone allow this parity. The transfer through the actual stack quotient and the cubic obstruction are separate obligations. [Derivation and control](c4-homoclinic-winding-2026-11-20.md)
+
+- **2026-11-20 — a periodic finite difference cannot occur in the original hull at nilpotent incidence modulo two.** The ordered word expansion sends a difference to twice its minimum degree, while common padding preserves it. Period doubling has a literal common-padding pair and fails the parity hypothesis. The fixed-seam ray relation reduces to equality of the corresponding endpoint letter. A separate uniform cut for `1/2/(1 0^m 2^r 1)`, `0<m<r`, gives strict-system exclusion on a companion family with unbounded even determinant. The winding of a general unordered stack factor remains open. [Literal proofs and controls](c4-literal-periodic-defect-2026-11-20.md)
+
+- **2026-11-20 — the odd stack winding gives a marked-tile count and a modulo-four seam test.** On the eventual rank-one quotient incidence modulo two, equal integer marked counts force equal common-padding words. For a distinct pair the marked imbalance determines its parity vector. A balanced original seam cycle through a singleton corner has weighted marked count two modulo four, ruling out a sum of independent original-ray contributions. An equivariant transfer from original letter counts leaves the joint boundary term as the only source of winding parity. The cubic exclusion still needs the actual reblocking boundary calculation. [Marked counts and controls](c4-homoclinic-winding-counts-2026-11-20.md)
+
+- **2026-11-20 — proper return words retain the entire original seam cycle.** Their signed count column is fixed by return incidence and flattens to zero original counts. Adjacent-pair readouts recover every integer seam weight. In the cubic case the columns exhaust the fixed return lattice and hence the eventual count image modulo powers of two under original nilpotence. In the rank-two stack geometry, counting inflated stack tiles containing a twin vertex reads the selected marker coefficient times the odd winding. The Thue–Morse marker `0.0` gives `(1,1,1,−2)` with total count one, and the irreducible cubic companion retains a return cycle while its strong coincidence excludes the strict residue. [Derivation, Lean endpoints and controls](c4-return-seam-boundary-2026-11-20.md)
 
 - **2026-11-18 — FC2 orientation module: Lemma Z de-duplicated against round 4, and FC2 (2) on PIP3 in integer form with Barge–Diamond as a named hypothesis.** The module's own proof of the injectivity of `ℓ` on `ℤ^d` (`eq_zero_of_length_eq_zero`, `det_incZ_ne_zero_of_irreducible`, `lenHom_injective_of_pisot`, through contraction data and `det M ≠ 0`) is removed in favour of round 4's `Psc.GeometricFLemmas.lenHom_eq_zero_iff` (weaker hypotheses), through the wrapper `lenHom_zero_of_pos_eigen`; the 2026-11-17 entries naming the removed declarations describe the module as merged in #599. New `fc2_pip3_rank_le_two`: on PIP3 with (F) and one left strongly coincident pair of distinct letters (Barge–Diamond 2002 Thm 1, not formalised), the integer rank is 1 or 2 in all four forms and a strict system exists iff it is 2. Excluding rank 2 on (F) remains open. Locator: [FC2 orientation note §8](c4-fc2-orientation-2026-11-17.md).
