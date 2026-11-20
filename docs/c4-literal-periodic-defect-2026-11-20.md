@@ -94,8 +94,9 @@ Lean checks `eq_of_common_padding` and `period_doubling_padding_control`
 in [PeriodicPartnerLiteralDefect](../proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean).
 It checks the two literal level-three cuts and their equal Parikh vectors
 in [PeriodicPartnerCompanionWords](../proof/PscVerif/PscVerif/PeriodicPartnerCompanionWords.lean).
-The interval argument, the composition with the existing strict-system
-theorem and the Pisot calculation are written deductions above.
+The interval argument is checked in
+[PeriodicPartnerEvenTails](c4-even-tails-2026-11-20.md). The composition with the existing
+strict-system theorem and the Pisot calculation are written deductions above.
 
 ```sh
 (cd proof/PscVerif && lake build PscVerif.PeriodicPartnerLiteralDefect PscVerif.PeriodicPartnerCompanionWords)
