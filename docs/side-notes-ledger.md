@@ -729,6 +729,26 @@ by deleting it.
   identically, and on the class B line it produced 123 vertices (4 without a
   hit) instead of the exact 119. · `kernel/psc/symbolic_line.mojo` (`least_m`)
 
+- 2026-11-20 · On a shallow clone (`git clone --depth 1`, the default of a
+  fresh agent container) 30 provenance tests in `test_class_d_closure_rebind`,
+  `test_class_d_integration_ci` and `test_source_pins` fail with a bare
+  `CalledProcessError`, because they read pinned historical revisions. The
+  failures are environmental; `git fetch --unshallow` makes all three files
+  pass. Do not patch the `tools/check_class_d_*.py` checkers to report it:
+  they are digest-pinned accepted sources, and editing them refuses the
+  class-D acceptance packet (15 failures). `tests/conftest.py` names the
+  shallow clone in the pytest header and summary instead; nothing is skipped.
+  · `tests/conftest.py`
+
+- 2026-11-20 · `git rebase` drops merge commits, including any work that only
+  lives in one (an "evil merge"). `research/c4-periodic-ray-decision` (#576)
+  carried the whole phase-aligned-ray change (`c4-phase-aligned-ray*.md`, the
+  `c4_periodic_rays` kernel, test and oracle) inside its merge `e541fe8d`; a
+  plain rebase silently lost it. Before rebasing a branch with merges, list the
+  paths where each merge differs from its main-side parent and replay those as
+  an ordinary commit; afterwards check that every file `main` never touched is
+  byte-identical to the old head. · PR #576 rebase comment
+
 ## 7. Review outcomes
 
 - 2026-10-04 · Independent status audit (`audit-2026-10-04.md`) re-derived
