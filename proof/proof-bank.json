@@ -1025,7 +1025,7 @@
     {
       "name": "MinusClassAWholeChamberEntry",
       "status": "open",
-      "source": "written proof on unmerged PR #577 as of 210354853ba816a3d2d5639319cf1982fd4e4b06, from PR #578; https://github.com/larsbx/pisot-substitution-conjecture-research/blob/210354853ba816a3d2d5639319cf1982fd4e4b06/docs/class-a-central-entry-2026-11-14.md sections 2-7; central-entry and scoped Lean runs 43749570859 and 43749570601 passed at f8fab40de91c407e6ee57651ad3e03d598c94459; stack integration run 43749586092 failed Python tests; current-main reconciliation and acceptance pending; the open ledger status tracks integration acceptance; Lean coverage is partial and independent human review is pending",
+      "source": "written proof merged to main by PR #578 (2103548) and PR #577 (75ebe17); docs/class-a-central-entry-2026-11-14.md sections 2-7, unchanged since that merge; central-entry and scoped Lean runs 43749570859 and 43749570601 passed at f8fab40de91c407e6ee57651ad3e03d598c94459; pre-merge stack integration run 43749586092 failed Python tests; no post-merge acceptance on main is recorded yet; the open ledger status tracks integration acceptance; Lean coverage is partial and independent human review is pending",
       "dependencies": [],
       "ledger_node": true,
       "lean_support": {
@@ -51917,6 +51917,11 @@
       "statement_heading": "**Theorem (repository-proved).** Let `n,d` be integers with `n>=6` and"
     },
     {
+      "source": "docs/class-a-plus-upper-small-members-2026-11-20.md",
+      "line": 37,
+      "statement_heading": "**Lemma (PIP boundary).** Write `J = 2n+12-d`. The incidence cubic of the"
+    },
+    {
       "source": "docs/class-a-residue-rays-2026-10-22.md",
       "line": 88,
       "statement_heading": "**Theorem R.** For each tabulated ray and every `n >= floor` on it, the"
@@ -53614,7 +53619,7 @@
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
     "proof/proof-bank.toml": "60ab9f9c41bb962b17d827e9e746a2428453361cf98a8b5c690c99a712d31880",
     "tools/check_lean.sh": "eb63ce6fb0b837eee1208b3d47e759bcf8b3617b1374685a8850e48f283cba8d",
-    "tools/make_ledger.py": "13d1d5a4cfc87b268a71457c44c71c4f07fd1d4a58845f0027cb6995ab725eef",
+    "tools/make_ledger.py": "40b1ced5f51c9f09c122d84f58d978545cb559841c1510ba444f4b35ffb0c67b",
     "tools/make_proof_bank.py": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8",
     "tools/setup_lean.sh": "8c4e5f4a35c6daf437c612bb868410ac2ecad68984154d50493fd7f42d86a824"
   }
