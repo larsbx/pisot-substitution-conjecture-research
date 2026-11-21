@@ -93,6 +93,42 @@ exact Parikh automaton and applies without choosing a maximum
 inflation depth. A resource refusal in its executable construction
 still leaves the test unresolved.
 
+#### Lean correspondence for one orientation, 2026-11-21
+
+The [Lean product](../proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean)
+abstracts the exact Parikh automaton as an initial state, a transition
+on two occurrence digits, and an acceptance bit. Its `ExactParikh`
+hypothesis identifies acceptance on admissible paths with the two
+decoded prefixes being permutations of each other. For a finite
+decidable alphabet this is exact equality of all letter counts.
+
+`cut_flatMap` traces the following occurrence through the inflated
+word, including cuts at image boundaries. `addressPath_of_cuts`
+then reads two cuts at any common depth. If the two cuts lie in
+different sixth-power approximants, move both to the larger depth.
+A first letter fixed by the sixth power of the first-letter map
+makes those approximants nested. `rayCuts_iff` proves this
+synchronization, including the following letter in each cut.
+
+`reachable_iff_address` relates the valid product edges to these
+addresses. The register update uses the destination phase and the
+original last-letter map. Periodicity handles the wrap from phase
+zero to five. At phase zero and exact Parikh equality, the
+correction cancels. `reachable_target_iff_ray_failure` proves that a
+reachable target is equivalent to a literal violation in the
+specified orientation. The three target cases are equal last
+groups, equal next groups, and a marker parity mismatch.
+
+`card_productState_with_sink_three` gives `1728P + 1` states for the
+ternary product with one rejecting sink. A certificate
+contains the root, avoids targets, and is closed under every valid
+edge. Induction along a path proves soundness. When no target is
+reachable, the finite set of all reachable states is a certificate.
+`closed_certificate_iff_no_ray_failure` combines both directions
+with the literal-ray theorem. The ternary specialization uses
+the projected endpoint groups and the top seed's origin bit
+from the Mojo target predicate.
+
 There is also a finite certificate for a search with no parity
 violation. In the product, forget the accumulated parity and
 label each occurrence edge by its parity increment. After ruling
@@ -237,6 +273,15 @@ phases with the pinned Mojo and Lean toolchains.
 ./tools/check_c4_periodic_partner.sh
 ```
 
+The formal cut and certificate checks are imported by
+`PeriodicPartnerAudit.lean`. To compile the product and the existing
+three-letter family controls with the repository's pinned Lean toolchain,
+run the following in `proof/PscVerif`.
+
+```sh
+lake --no-cache build PscVerif.PeriodicPartnerMarkerDecision PscVerif.PeriodicPartnerMarkerFamily
+```
+
 The command-line input gives the slash-separated images, the marker
 seam and the two starting seams. For a saved two-sided certificate, use
 the same executable's `check` operation.
@@ -248,6 +293,11 @@ pixi run --locked mojo run -I . c4_marker_reachability.mojo check /tmp/thue-mors
 ```
 
 ### Negative controls
+
+Lean checks the three separate failure cases and a passing cut in
+`failure_controls`. `singleton_root_fails_closure` exhibits a
+target-free carrier containing the root whose omitted edge reaches
+a target. This checks the need for the successor-closure condition.
 
 In Thue–Morse the two fixed complementary rays have complementary
 blocks. A balanced complementary binary block has even length.
@@ -273,10 +323,15 @@ directly against the literal iterates in the independent replay.
 
 The geometric use of the finite decision retains rational independence
 of the Perron lengths, the grouped-seam hypotheses and the deck-twin
-assumption. The two-sided decision argument is written. Lean checks
-its register algebra and the interval identities. Uniform existence
-of a violating cut across all grouped presentations remains open
-for the marker-law approach.
+assumption. Lean proves the one-orientation literal reachability
+and certificate theorems under the exact Parikh acceptance contract
+and three-step nilpotence of the mod-two letter rows. The Perron
+reserve used to build the Mojo Parikh automaton, packed certificate
+keys, and the geometric identification of the two-sided decision
+remain outside this correspondence. The two-sided argument uses
+the written reversal and interval reduction with Lean-checked
+interval identities. Uniform existence of a violating cut across
+all grouped presentations remains open for the marker-law approach.
 
 The [stack word rigidity proof](c4-nonunit-stack-word-rigidity-2026-11-20.md)
 gives a written exclusion of strict systems for primitive irreducible

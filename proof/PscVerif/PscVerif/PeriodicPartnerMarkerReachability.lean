@@ -113,6 +113,28 @@ def register (σ : A → List A) (mark : ℤ → A → A → Bool) (j : ℤ)
     (u v : List A) : Register A :=
   ⟨u.getLast?, v.getLast?, corrected σ mark j u - corrected σ mark j v⟩
 
+theorem register_empty (σ : A → List A) (mark : ℤ → A → A → Bool) (j : ℤ) :
+    register σ mark j [] [] = ⟨none, none, 0⟩ := by
+  simp [register]
+
+theorem register_of_perm (σ : A → List A) (mark : ℤ → A → A → Bool) (j : ℤ)
+    {u v : List A} (h : u.Perm v) :
+    register σ mark j u v =
+      ⟨u.getLast?, v.getLast?, (adjacentCount (mark j) u : ZMod 2) - adjacentCount (mark j) v⟩ := by
+  simp only [register, corrected_difference_of_perm σ mark j h]
+
+theorem register_periodic (σ : A → List A) (mark : ℤ → A → A → Bool)
+    (hp : ∀ j, mark (j + 6) = mark j) (j : ℤ) (u v : List A) :
+    register σ mark (j + 6) u v = register σ mark j u v := by
+  have hw (i : ℤ) : imageWeight σ mark (i + 6) = imageWeight σ mark i := by
+    funext a
+    simp only [imageWeight, hp]
+  have h : correction σ mark (j + 6) = correction σ mark j := by
+    funext a
+    simp only [correction, show j + 6 - 1 = j - 1 + 6 by omega,
+      show j + 6 - 2 = j - 2 + 6 by omega, show j + 6 - 3 = j - 3 + 6 by omega, hw]
+  simp only [register, corrected, h, hp]
+
 /-- Update by the proper image prefixes preceding the two chosen letters. -/
 def advance (σ : A → List A) (mark : ℤ → A → A → Bool) (j : ℤ) (last : A → A)
     (state : Register A) (p q : List A) : Register A :=

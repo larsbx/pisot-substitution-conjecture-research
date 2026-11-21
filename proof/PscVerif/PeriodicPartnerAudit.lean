@@ -21,6 +21,7 @@ import PscVerif.PeriodicPartnerSeamCycles
 import PscVerif.PeriodicPartnerReturnBoundary
 import PscVerif.PeriodicPartnerMarkerParity
 import PscVerif.PeriodicPartnerMarkerReachability
+import PscVerif.PeriodicPartnerMarkerDecision
 import PscVerif.PeriodicPartnerMarkerFamily
 import PscVerif.PeriodicPartnerWinding
 import PscVerif.PeriodicPartnerWindingSeams
@@ -53,7 +54,8 @@ run_cmd do
     `PscVerif.PeriodicPartnerCompleteRange,
     `PscVerif.PeriodicPartnerDirectional, `PscVerif.PeriodicPartnerSeamCycles,
     `PscVerif.PeriodicPartnerReturnBoundary, `PscVerif.PeriodicPartnerMarkerParity,
-    `PscVerif.PeriodicPartnerMarkerReachability, `PscVerif.PeriodicPartnerMarkerFamily,
+    `PscVerif.PeriodicPartnerMarkerReachability, `PscVerif.PeriodicPartnerMarkerDecision,
+    `PscVerif.PeriodicPartnerMarkerFamily,
     `PscVerif.PeriodicPartnerWinding,
     `PscVerif.PeriodicPartnerWindingSeams, `PscVerif.PeriodicPartnerLiteralDefect,
     `PscVerif.PeriodicPartnerEvenTails, `PscVerif.PeriodicPartnerTwinEndpoint, `PscVerif.PeriodicPartnerStackWordRigidity,

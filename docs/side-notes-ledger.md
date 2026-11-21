@@ -623,6 +623,12 @@ by deleting it.
   all 70. Do not search the upper strip beyond `d = 2n+11`. ·
   `class-a-plus-upper-small-members-2026-11-20.md`
 
+- 2026-11-21 · A target-free carrier containing the initial marker
+  state can omit a reachable target. The Lean closure counterexample
+  isolates the successor check, and the literal-address correspondence
+  makes that check sufficient for a prescribed ray pair. ·
+  `c4-marker-reachability-2026-11-20.md`, Lean correspondence
+
 ## 6. Tooling pitfalls
 
 - 2026-10-04 · `pkill -f PATTERN` inside a shell command whose own text
