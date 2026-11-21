@@ -192,6 +192,61 @@ rays, and the irreducibility and conjugate bounds are written proofs.
 python3 tools/make_proof_bank.py --check
 ```
 
+### Executable decision and certificate
+
+The [canonical Mojo product](../kernel/psc/c4_marker_reachability.mojo)
+uses the existing equal-Parikh DFA and precomputes the corrected
+contribution of each proper image prefix and its join with an inflated
+previous prefix. It explores the product in breadth-first order from the
+empty pair. Each state stores one Parikh DFA state, the phase, both
+current letters, both previous last letters or their absence, and the
+corrected parity difference. The implementation follows admissible
+occurrence digits and omits a separate inadmissibility sink. Thus the
+number of distinct packed keys is at most `1728 P`.
+
+At a target the predecessor digits reconstruct both literal prefixes and
+their next letters. The code checks the exact Parikh vectors, projected
+endpoints and original marker counts again on the literal words. On the
+left, the exported words are read outward from the origin. If there is no
+target, the certificate lists the visited packed keys. Its verifier
+rebuilds the same Parikh DFA, checks that the root belongs to the set,
+checks each key for a target, and checks closure under every admissible
+occurrence edge. Induction on address length proves the negative
+decision from these three checks. Two such certificates establish the
+conditions on all balanced intervals of the prescribed pair by the
+interval argument above.
+
+The three-letter branch uses the existing primitive irreducible Pisot
+screen, incidence-entry bound 64, exact Perron reserve and checked
+Parikh arithmetic. The binary branch covers primitive equal-column
+controls, including Thue–Morse and its square. When both binary images
+have length `r`, a nonzero length difference `d` cannot return to zero
+under `d ↦ r d + p − q` because `|p − q| < r`. A zero-length
+difference is killed by identical incidence columns, so the same generic
+Parikh DFA is finite for these inputs. The marker, starting seams,
+opposite origin groups and `M³ = 0` modulo two are checked at the input.
+The Parikh and product state caps and the literal-prefix cap can cause
+a refusal. The procedure has no search depth cap.
+
+Run the native regressions, independent literal replay, and comparison
+with the executable Lean register on both track positions and all six
+phases with the pinned Mojo and Lean toolchains.
+
+```sh
+./tools/check_c4_marker_reachability.sh /tmp/c4-marker-replay
+./tools/check_c4_periodic_partner.sh
+```
+
+The command-line input gives the slash-separated images, the marker
+seam and the two starting seams. For a saved two-sided certificate, use
+the same executable's `check` operation.
+
+```sh
+cd kernel
+pixi run --locked mojo run -I . c4_marker_reachability.mojo 01/10 00 00 11 > /tmp/thue-morse.tsv
+pixi run --locked mojo run -I . c4_marker_reachability.mojo check /tmp/thue-morse.tsv
+```
+
 ### Negative controls
 
 In Thue–Morse the two fixed complementary rays have complementary
@@ -207,15 +262,26 @@ This preserves the incidence, the endpoint maps and the four
 periodic seams. The third cut now compares `012` with `120`.
 The endpoint group tests still pass, and both internal counts
 are zero. The witness depends on the literal ordering. Lean
-checks this cut in `reordered_prefix_control`.
+checks this cut in `reordered_prefix_control`. For `t = 4`, the
+all-level test finds a same-group last endpoint at right cut 25 and a
+pure parity violation at left cut 5. The earlier cubic `01/112/021`
+also gives a same-group next endpoint at right cut 11 under marker
+`1.0` and starting seams `1.0` and `2.1`. These cuts are checked
+directly against the literal iterates in the independent replay.
 
 ### Non-claims / remaining gaps
 
-This step gives a written finite decision for each prescribed pair
-and a uniform family exclusion under the even rank-two strict
-hypotheses. Applying the decision to all possible grouped seam
-presentations would still require a uniform existence proof for
-violating cuts or an independent contradiction on the surviving
-presentations. The product is specified through the existing
-Parikh automaton and Lean register, with a canonical Mojo product
-implementation left open. Independent human review is pending.
+The geometric use of the finite decision retains rational independence
+of the Perron lengths, the grouped-seam hypotheses and the deck-twin
+assumption. The two-sided decision argument is written. Lean checks
+its register algebra and the interval identities. Uniform existence
+of a violating cut across all grouped presentations remains open
+for the marker-law approach.
+
+The [stack word rigidity proof](c4-nonunit-stack-word-rigidity-2026-11-20.md)
+gives a written exclusion of strict systems for primitive irreducible
+nonunit Pisot substitutions on three letters at coincidence rank two,
+including the even-determinant residue. Lean checks the finite algebra
+of that proof. The [even-incidence tail results](c4-even-tails-2026-11-20.md)
+record the limits of using mod-two data alone. General C4 and PSC remain
+open. Independent human review is pending.

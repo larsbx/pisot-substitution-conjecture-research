@@ -198,6 +198,9 @@ import PscVerif.PeriodicPartnerMarkerFamily
 import PscVerif.PeriodicPartnerWinding
 import PscVerif.PeriodicPartnerWindingSeams
 import PscVerif.PeriodicPartnerLiteralDefect
+import PscVerif.PeriodicPartnerEvenTails
+import PscVerif.PeriodicPartnerTwinEndpoint
+import PscVerif.PeriodicPartnerStackWordRigidity
 import PscVerif.PeriodicPartnerCompanionWords
 import PscVerif.VertexAsymptoteRange
 import PscVerif.PeriodicPartnerRealization

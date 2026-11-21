@@ -237,6 +237,8 @@ even-determinant rank-two residue. The replay above covers the
 bounded source corpus. The [all-level continuation](c4-marker-reachability-2026-11-20.md)
 decides the test on each prescribed pair of periodic seams and gives
 a uniform three-letter violation in another family with unbounded
-image lengths. A general cubic exclusion still requires a violating
-interval or another obstruction for every remaining candidate.
+image lengths. Uniform witness existence remains open for the
+marker-law approach. The [stack word rigidity proof](c4-nonunit-stack-word-rigidity-2026-11-20.md)
+gives a written exclusion of strict systems in the nonunit
+three-letter irreducible Pisot class at coincidence rank two.
 Independent human review is pending.

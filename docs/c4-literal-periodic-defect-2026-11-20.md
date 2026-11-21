@@ -122,8 +122,9 @@ Lean checks `eq_of_common_padding` and `period_doubling_padding_control`
 in [PeriodicPartnerLiteralDefect](../proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean).
 It checks the literal level-three and equal-run level-four cuts with their equal Parikh vectors
 in [PeriodicPartnerCompanionWords](../proof/PscVerif/PscVerif/PeriodicPartnerCompanionWords.lean).
-The interval argument, the composition with the existing strict-system
-theorem and the Pisot calculation are written deductions above.
+The interval argument is checked in
+[PeriodicPartnerEvenTails](c4-even-tails-2026-11-20.md). The composition with the existing
+strict-system theorem and the Pisot calculation are written deductions above.
 
 ```sh
 (cd proof/PscVerif && lake build PscVerif.PeriodicPartnerLiteralDefect PscVerif.PeriodicPartnerCompanionWords)
@@ -138,7 +139,8 @@ entire run of `2`s and reaches `1`. The equal-run witness above
 uses level four.
 
 The quotient may have a bi-asymptotic pair although none of its distinct
-periodic original representatives agree on both literal tails. The word
-rigidity therefore leaves the obstruction for arbitrary literal lifts of
-the quotient pair open. The family exclusion does not cover that general
-case. Independent human review is pending.
+periodic original representatives agree on both literal tails. The
+[stack word rigidity proof](c4-nonunit-stack-word-rigidity-2026-11-20.md)
+uses the stack subdivision to compare those original lifts and gives a
+written exclusion in the three-letter nonunit rank-two case. Independent
+human review is pending.
