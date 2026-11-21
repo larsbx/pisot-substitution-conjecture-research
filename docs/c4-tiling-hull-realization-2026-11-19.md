@@ -82,6 +82,9 @@ structure field. None is a Lean axiom, and every compiled declaration uses only 
 6. The left-hand consumers of `PeriodicPartnerReflection` are not re-instantiated. The
    right-hand laws transfer through the existing reflection theorems once a reflected hull
    map is supplied.
+   *Update:* [closed](c4-hull-left-consumers-2026-11-21.md). The left laws, common patch,
+   ray/metric correspondence and start/end (R4) equivalence are proved on the hull; only
+   the left BDS input is new.
 
 Witness selection under (NM_V) and the global rank-two contradiction (gaps 2 and 3 of the
 formalization note) are untouched.
