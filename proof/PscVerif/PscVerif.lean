@@ -202,6 +202,7 @@ import PscVerif.PeriodicPartnerLiteralDefect
 import PscVerif.PeriodicPartnerEvenTails
 import PscVerif.PeriodicPartnerTwinEndpoint
 import PscVerif.PeriodicPartnerStackWordRigidity
+import PscVerif.PeriodicPartnerGraphSpectrum
 import PscVerif.PeriodicPartnerCompanionWords
 import PscVerif.VertexAsymptoteRange
 import PscVerif.PeriodicPartnerRealization
