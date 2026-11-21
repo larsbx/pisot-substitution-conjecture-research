@@ -1,6 +1,7 @@
-"""Complete original S18 graphs for five explicitly named plus seam members.
+"""Complete original S18 graphs for explicitly named small plus members.
 
-The finite scope is n=1..5, d=n+4. Strict geometry is exact, every ordered
+The finite scope is the five seams n=1..5, d=n+4, and the 70 upper members
+n=0..6, n+5<=d<=2n+11 below the n>=7 all-source entry theorem. Strict geometry is exact, every ordered
 occurrence is retained, and typed full zero is the only terminal. Bounds
 refuse rather than yielding a partial mathematical verdict.
 """
@@ -20,9 +21,38 @@ from psc.perron_field3 import (
 )
 
 
+def seam_member(n: Int, d: Int) -> Bool:
+    return n >= 1 and n <= 5 and d == n+4
+
+
+def upper_small_member(n: Int, d: Int) -> Bool:
+    """The 70 upper members below the n>=7 all-source entry theorem."""
+    return n >= 0 and n <= 6 and d >= n+5 and d <= 2*n+11
+
+
 def small_parameters(n: Int, d: Int) raises:
-    if n < 1 or n > 5 or d != n+4:
-        raise Error("plus small certificate requires one of (1,5)..(5,9)")
+    if not (seam_member(n, d) or upper_small_member(n, d)):
+        raise Error("plus small certificate requires one of (1,5)..(5,9) "
+                    "or an upper member n<=6, n+5<=d<=2n+11")
+
+
+def perron_floor(n: Int, d: Int) raises -> Int:
+    """Exact floor of the largest real root of the literal plus cubic
+    x^3-(n+4)x^2+(n+5-d)x-2, which has no integer root on this domain.
+    n+3 on the five seams; the scan is bounded by the Cauchy bound."""
+    small_parameters(n, d)
+    var bound = 1 + max(n+4, max(abs(n+5-d), 2))
+    var b = -1
+    for x in range(bound+1):
+        var chi = checked_sub(checked_add(checked_sub(checked_mul(checked_mul(x, x), x),
+                  checked_mul(n+4, checked_mul(x, x))), checked_mul(n+5-d, x)), 2)
+        if chi == 0:
+            raise Error("integer root: reducible plus cubic")
+        if chi < 0:
+            b = x
+    if b < 0 or (seam_member(n, d) and b != n+3):
+        raise Error("plus Perron floor outside its exact interval")
+    return b
 
 
 def bind_small(tables: SeedOverlapTables, n: Int, d: Int) raises:
@@ -40,8 +70,9 @@ def bind_small(tables: SeedOverlapTables, n: Int, d: Int) raises:
     if (tables.field.chi0 != -2 or tables.field.chi1 != n-d+5 or
         tables.field.chi2 != -(n+4)):
         raise Error("foreign small plus incidence cubic")
-    if (sign_at_perron(tables.field, CubicElt(-(n+3), 1, 0)) <= 0 or
-        sign_at_perron(tables.field, CubicElt(-(n+4), 1, 0)) >= 0):
+    var b = perron_floor(n, d)
+    if (sign_at_perron(tables.field, CubicElt(-b, 1, 0)) <= 0 or
+        sign_at_perron(tables.field, CubicElt(-(b+1), 1, 0)) >= 0):
         raise Error("foreign small plus Perron interval")
     var total = 0
     for a in range(3):

@@ -1,0 +1,19 @@
+PSC_A1_TAIL_MODULE	PscVerif.A1PrimeTailCoincidence	179	125
+PSC_A1_TAIL_MODULE	PscVerif.A1PrimeTailPisot	70	64
+PSC_A1_TAIL_DECLARATIONS	2	249	189
+PSC_A1_TAIL_ENDPOINT	Psc.A1PrimeTailCoincidence.six_level_coincidence	propext,Classical.choice,Quot.sound
+PSC_A1_TAIL_ENDPOINT	Psc.A1PrimeTailPisot.primitive	propext,Classical.choice,Quot.sound
+PSC_A1_TAIL_ENDPOINT	Psc.A1PrimeTailPisot.irreducible	propext,Classical.choice,Quot.sound
+PSC_A1_TAIL_ENDPOINT	Psc.A1PrimeTailPisot.pisot	propext,Classical.choice,Quot.sound
+PSC_A1_TAIL_ENDPOINT	Psc.A1PrimeTailCoincidence.second_layer_six_level	propext,Classical.choice,Quot.sound
+PSC_A1_TAIL_ENDPOINT	Psc.A1PrimeTailPisot.second_primitive	propext,Classical.choice,Quot.sound
+PSC_A1_TAIL_ENDPOINT	Psc.A1PrimeTailPisot.second_irreducible	propext,Classical.choice,Quot.sound
+PSC_A1_TAIL_ENDPOINT	Psc.A1PrimeTailPisot.second_pisot	propext,Classical.choice,Quot.sound
+PSC_A1_TAIL_ENDPOINT	Psc.A1PrimeTailCoincidence.z4_three_level	propext,Classical.choice,Quot.sound
+PSC_A1_TAIL_ENDPOINT	Psc.A1PrimeTailPisot.third_layer_unit_root	propext,Classical.choice,Quot.sound
+PSC_A1_TAIL_ENDPOINT	Psc.A1PrimeTailCoincidence.residual_parameter_cases	propext,Classical.choice,Quot.sound
+PSC_A1_TAIL_ENDPOINT	Psc.A1PrimeTailPisot.residual_run_split	propext,Classical.choice,Quot.sound
+PSC_A1_TAIL_ENDPOINT	Psc.A1PrimeTailCoincidence.first_layer_simultaneous	propext,Classical.choice,Quot.sound
+PSC_A1_TAIL_ENDPOINT	Psc.A1PrimeTailCoincidence.second_layer_simultaneous	propext,Classical.choice,Quot.sound
+PSC_A1_TAIL_ENDPOINT	Psc.A1PrimeTailCoincidence.z4_simultaneous	propext,Classical.choice,Quot.sound
+PSC_A1_TAIL_AUDIT_COMPLETE	15	30

@@ -1,0 +1,21 @@
+{
+  "source_commit": "32015cfb9d0914cedc9867f3290ea4bcdbbbb3b7",
+  "tree": "f12969dd3837260fb0481c137c34d6176c27f2fe",
+  "record_kind": "observed predecessor job metadata and filtered log markers; not an original archive",
+  "family_run": 43625009731,
+  "family_jobs": [
+    132538789296,
+    132538789538
+  ],
+  "family_conclusion": "success",
+  "full_lean_run": 43625009501,
+  "full_lean_job": 132538788538,
+  "full_lean_conclusion": "success",
+  "full_lean_log_markers": [
+    "Build completed successfully (9049 jobs).",
+    "PSC_AUDIT_COMPLETE\t11854\t7747",
+    "Lean axiom audit: 11854 declarations, 7747 theorems; all named proofs reached",
+    "Proof bank: 126 claims, 3774 named Lean proofs, 411 source openings"
+  ],
+  "scope": "Predecessor only; no acceptance transfer to newly added modules."
+}

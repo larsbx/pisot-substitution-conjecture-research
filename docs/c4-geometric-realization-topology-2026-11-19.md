@@ -84,3 +84,14 @@ The new topology is on the target. The source still has the exact-agreement
 ultrametric. Continuity on the ordinary tiling hull, correspondence with the
 published normalized BBK map, recognizability and finite fibres remain
 separate obligations. No strict-system exclusion or governed claim changes.
+
+## Ordinary source topology follow-up
+
+The [ordinary-hull formalization](c4-ordinary-hull-topology-2026-11-19.md)
+now gives the same legal carrier a separate local topology, identifies its
+neighbourhood basis, and proves joint translation continuity and continuity
+of inflation. The concrete realization is carried to that presentation,
+with an exact equivalence between its ordinary and exact-source continuity
+obligations. Neither continuity side is asserted unconditionally.
+Recognizability, compactness, the normalized BBK identification and finite
+fibres remain separate.

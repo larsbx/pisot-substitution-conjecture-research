@@ -1,0 +1,17 @@
+{
+  "acceptance_from_this_normalization": false,
+  "cause": "An embedded U+FEFF BOM before one GitHub log timestamp prevents the anchored prefix removal, leaving one generated-theorem row outside the parser input.",
+  "excluded_line_count": 1,
+  "expected_named_proofs_missing": [],
+  "hosted_run_conclusion": "success",
+  "normalization": "Only UTC prefix removed with anchored regular expression; no BOM removal",
+  "observed_error": "Incomplete Lean audit: missing=[], receipt=(11322, 7273)",
+  "raw_job_log_unchanged": true,
+  "receipt_constants": 11322,
+  "receipt_theorems": 7273,
+  "recognized_constants": 11321,
+  "recognized_theorems": 7272,
+  "resolution": "Inspect the original retained audit artifact without job-log timestamp normalization.",
+  "schema": "psc-job-log-normalization-refusal-v1",
+  "source_parser_unchanged": true
+}

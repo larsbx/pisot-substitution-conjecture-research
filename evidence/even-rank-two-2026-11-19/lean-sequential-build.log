@@ -1,0 +1,6 @@
+POLICY one local module target at a time; unchanged current-source artifacts retained; LEAN_NUM_THREADS=2
+COMMAND lake --no-cache build PscVerif.Basic
+✔ [8906/8906] Built PscVerif.Basic (550s)
+Build completed successfully (8906 jobs).
+EXIT_CODE 0 elapsed_seconds 570.9
+COMMAND lake --no-cache build PscVerif.CountBridge

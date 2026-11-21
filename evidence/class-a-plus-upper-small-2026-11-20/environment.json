@@ -1,0 +1,11 @@
+{
+  "clone": "full history (not shallow)",
+  "git_base": "11c15bcef12a1743d36715cd04bb9aedecaeca7c",
+  "mojo": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+  "pixi": "pixi 0.84.2",
+  "platform": "Linux-6.18.44-fc-v726-x86_64-with-glibc2.39",
+  "python": "3.13.18",
+  "python_packages": {
+    "pytest": "9.1.1"
+  }
+}

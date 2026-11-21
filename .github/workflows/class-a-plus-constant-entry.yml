@@ -10,12 +10,15 @@ on:
       - 'kernel/tests/test_class_a_plus_constant_entry.mojo'
       - 'kernel/tests/test_class_a_plus_entry_search.mojo'
       - 'kernel/tests/test_class_a_plus_small_entry.mojo'
+      - 'kernel/tests/test_class_a_plus_upper_small_entry.mojo'
       - 'kernel/pixi.toml'
       - 'kernel/pixi.lock'
       - 'oracles/python/class_a_*.py'
       - 'tests/test_class_a_plus_constant_entry.py'
       - 'tests/test_class_a_plus_constant_symbolic.py'
       - 'tests/test_class_a_plus_small_certificate.py'
+      - 'tests/test_class_a_plus_upper_small_certificate.py'
+      - 'reference/psc_research/pip_screen.py'
       - 'proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean'
       - 'proof/PscVerif/PscVerif/ClassACentralRecurrence.lean'
       - 'proof/PscVerif/PscVerif/ClassAMinusConstantRecurrence.lean'
@@ -30,6 +33,8 @@ on:
       - 'tools/make_proof_bank.py'
       - 'docs/bh-class-a-plus-constant-stop-go-2026-11-14.md'
       - 'docs/class-a-plus-constant-entry-2026-11-14.md'
+      - 'docs/class-a-plus-upper-small-members-2026-11-20.md'
+      - 'evidence/class-a-plus-upper-small-2026-11-20/**'
       - 'evidence/class-a-plus-constant-entry-2026-11-14/**'
   workflow_dispatch:
 
@@ -67,6 +72,13 @@ jobs:
           if len(cases) != 78 or any(case.find(tag) is not None for case in cases for tag in ('failure', 'error', 'skipped')):
               raise SystemExit('the 78 required independent cases did not all pass')
           PY
+          python -m pytest -o addopts='' -q --junitxml=/tmp/psc-class-a-plus-constant-entry/upper-pytest.xml tests/test_class_a_plus_upper_small_certificate.py | tee /tmp/psc-class-a-plus-constant-entry/upper-pytest.log
+          python - <<'PY'
+          import xml.etree.ElementTree as E
+          cases = E.parse('/tmp/psc-class-a-plus-constant-entry/upper-pytest.xml').getroot().findall('.//testcase')
+          if len(cases) != 195 or any(case.find(tag) is not None for case in cases for tag in ('failure', 'error', 'skipped')):
+              raise SystemExit('the 195 required upper small independent cases did not all pass')
+          PY
           python oracles/python/class_a_plus_constant_symbolic.py | tee /tmp/psc-class-a-plus-constant-entry/symbolic.json
           python tools/make_proof_bank.py --check | tee /tmp/psc-class-a-plus-constant-entry/proof-bank.log
       - uses: prefix-dev/setup-pixi@v0.9.1
@@ -83,6 +95,8 @@ jobs:
           pixi run --locked mojo run -j 1 -I . tests/test_class_a_plus_constant_entry.mojo --emit | tee /tmp/psc-class-a-plus-constant-entry/central-native.log
           pixi run --locked mojo run -j 1 -I . tests/test_class_a_plus_entry_search.mojo --emit | tee /tmp/psc-class-a-plus-constant-entry/entry-native.log
           pixi run --locked mojo run -j 1 -I . tests/test_class_a_plus_small_entry.mojo --emit-certificates | tee /tmp/psc-class-a-plus-constant-entry/small-native.log
+          pixi run --locked mojo run -j 1 -I . tests/test_class_a_plus_upper_small_entry.mojo --emit-certificates > /tmp/psc-class-a-plus-constant-entry/upper-small-native.log
+          grep -v '^PLUS_SMALL_\(VERTEX\|EDGE\|PATH\) ' /tmp/psc-class-a-plus-constant-entry/upper-small-native.log
       - name: Replay every original occurrence and composed prefix certificate
         shell: bash
         run: |
@@ -90,6 +104,8 @@ jobs:
           cat /tmp/psc-class-a-plus-constant-entry/central-native.log /tmp/psc-class-a-plus-constant-entry/entry-native.log > /tmp/psc-class-a-plus-constant-entry/paths-native.log
           python oracles/python/class_a_plus_constant_entry.py --native-log /tmp/psc-class-a-plus-constant-entry/paths-native.log | tee /tmp/psc-class-a-plus-constant-entry/literal-and-differential.json
           python oracles/python/class_a_plus_small_certificate.py --native-log /tmp/psc-class-a-plus-constant-entry/small-native.log | tee /tmp/psc-class-a-plus-constant-entry/small-independent.json
+          python oracles/python/class_a_plus_small_certificate.py --native-log /tmp/psc-class-a-plus-constant-entry/upper-small-native.log --scope upper > /tmp/psc-class-a-plus-constant-entry/upper-small-independent.json
+          python -c "import json; d=json.load(open('/tmp/psc-class-a-plus-constant-entry/upper-small-independent.json')); print(d['scope']); print(json.dumps(d['total'], sort_keys=True))"
       - name: Retain exact-source native and independent receipts
         if: always()
         uses: actions/upload-artifact@v4

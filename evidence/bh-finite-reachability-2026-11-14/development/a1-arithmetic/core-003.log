@@ -1,0 +1,41 @@
+/workspace/scratch/psc-next/a1-pisot-development/PscVerif/A1CoreDiagnostic.lean:53:39: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/workspace/scratch/psc-next/a1-pisot-development/PscVerif/A1CoreDiagnostic.lean:165:24: error: linarith failed to find a contradiction
+case inl.left
+e : ℕ
+heR : 0 ≤ ↑e
+hc : Continuous fun x => x ^ 3 - (2 * ↑e + ↑1 + 3) * x ^ 2 + (2 * ↑e + 3 * ↑1 - 2) * x - 2
+a✝ : 0 ≤ (fun x => x ^ 3 - (2 * ↑e + ↑1 + 3) * x ^ 2 + (2 * ↑e + 3 * ↑1 - 2) * x - 2) (2 * ↑e + ↑1 + 2)
+⊢ False
+failed
+/workspace/scratch/psc-next/a1-pisot-development/PscVerif/A1CoreDiagnostic.lean:165:24: error: linarith failed to find a contradiction
+case inl.right
+e : ℕ
+heR : 0 ≤ ↑e
+hc : Continuous fun x => x ^ 3 - (2 * ↑e + ↑1 + 3) * x ^ 2 + (2 * ↑e + 3 * ↑1 - 2) * x - 2
+a✝ : (fun x => x ^ 3 - (2 * ↑e + ↑1 + 3) * x ^ 2 + (2 * ↑e + 3 * ↑1 - 2) * x - 2) (2 * ↑e + ↑1 + 3) ≤ 0
+⊢ False
+failed
+/workspace/scratch/psc-next/a1-pisot-development/PscVerif/A1CoreDiagnostic.lean:165:24: error: linarith failed to find a contradiction
+case inr.left
+e : ℕ
+heR : 0 ≤ ↑e
+hc : Continuous fun x => x ^ 3 - (2 * ↑e + ↑2 + 3) * x ^ 2 + (2 * ↑e + 3 * ↑2 - 2) * x - 2
+a✝ : 0 ≤ (fun x => x ^ 3 - (2 * ↑e + ↑2 + 3) * x ^ 2 + (2 * ↑e + 3 * ↑2 - 2) * x - 2) (2 * ↑e + ↑2 + 2)
+⊢ False
+failed
+/workspace/scratch/psc-next/a1-pisot-development/PscVerif/A1CoreDiagnostic.lean:165:24: error: linarith failed to find a contradiction
+case inr.right
+e : ℕ
+heR : 0 ≤ ↑e
+hc : Continuous fun x => x ^ 3 - (2 * ↑e + ↑2 + 3) * x ^ 2 + (2 * ↑e + 3 * ↑2 - 2) * x - 2
+a✝ : (fun x => x ^ 3 - (2 * ↑e + ↑2 + 3) * x ^ 2 + (2 * ↑e + 3 * ↑2 - 2) * x - 2) (2 * ↑e + ↑2 + 3) ≤ 0
+⊢ False
+failed
+/workspace/scratch/psc-next/a1-pisot-development/PscVerif/A1CoreDiagnostic.lean:284:2: error: Type mismatch: After simplification, term
+  h
+ has type
+  ‖1‖ < 1
+but is expected to have type
+  False

@@ -1,0 +1,32 @@
+{
+  "source": "/workspace/scratch/psc-next/psc/proof/PscVerif/A1PrimeTailAudit.lean",
+  "sha256": "eee41a524a6a114716a7704f169726b6484ab56c2398431dcd297fe6809a0b23",
+  "repository_source_sha256": "eee41a524a6a114716a7704f169726b6484ab56c2398431dcd297fe6809a0b23",
+  "source_snapshot": "/workspace/scratch/psc-next/a1-pisot-development/audit-001.lean",
+  "direct_import_objects": {
+    "/workspace/scratch/psc-next/a1-pisot-development/PscVerif/A1PrimeTailPisot.olean": "752f729b4f7514de1cd3732f23b9db50f31e2e6d4ee31397679d753a2ffecb18",
+    "/home/agent/.elan/toolchains/leanprover--lean4---v4.34.0-rc2/lib/lean/Lean/Util/CollectAxioms.olean": "a004cf8ccf2514174c19950df98c4e2470ad4e76b3f91b4c03710cf101866127"
+  },
+  "command": [
+    "/home/agent/.elan/toolchains/leanprover--lean4---v4.34.0-rc2/bin/lean",
+    "-DautoImplicit=false",
+    "-j",
+    "2",
+    "-o",
+    "/workspace/scratch/psc-next/a1-pisot-development/A1PrimeTailAudit.olean",
+    "/workspace/scratch/psc-next/psc/proof/PscVerif/A1PrimeTailAudit.lean"
+  ],
+  "cwd": "/workspace/scratch/psc-next/psc/proof/PscVerif",
+  "scope": "Complete source-bound development replay against centrally built dependencies; fresh gate remains separate.",
+  "timeout_seconds": 600,
+  "started_at": 1794687661.8610027,
+  "terminal_exit": 0,
+  "outcome": "completed",
+  "elapsed_seconds": 2.685630043000174,
+  "source_unchanged": true,
+  "object_written": true,
+  "log": "/workspace/scratch/psc-next/a1-pisot-development/logs/audit-001.log",
+  "log_sha256": "2d10fb43609f288534eee0bfab607e90533798bf6850153a054defb55b30e168",
+  "object": "/workspace/scratch/psc-next/a1-pisot-development/A1PrimeTailAudit.olean",
+  "object_sha256": "3b674c4a942dbdcb9bf833ef42fb9566a3a64ae6866d6b07924c3c6c32675cfa"
+}

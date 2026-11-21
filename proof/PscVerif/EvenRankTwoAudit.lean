@@ -1,0 +1,51 @@
+/- Replay with `lake env lean EvenRankTwoAudit.lean` after building the three
+target modules. Audit all declarations in their complete local import closure,
+including the existing strict-system exclusion and concrete solenoid. -/
+import PscVerif.EvenCompanionFamily
+import PscVerif.EvenSeamCycles
+import PscVerif.PeriodicPartnerEvenSolenoid
+import Lean.Util.CollectAxioms
+
+open Lean Elab Command in
+run_cmd do
+  let env ← getEnv
+  let required := #[`PscVerif.EvenCompanionWords, `PscVerif.EvenCompanionFamily,
+    `PscVerif.EvenSeamCycles, `PscVerif.PeriodicPartnerEvenSolenoid,
+    `PscVerif.StrictSystemCore, `PscVerif.PeriodicPartnerRealization]
+  for mod in required do
+    unless (env.getModuleIdx? mod).isSome do
+      throwError "Missing compiled even-rank-two module: {mod}"
+  let allowed := #[`propext, `Classical.choice, `Quot.sound]
+  let mut count := 0
+  let mut theorems := 0
+  let mut modules := 0
+  for index in [:env.header.moduleNames.size] do
+    let mod := env.header.moduleNames[index]!
+    if mod.getRoot != `PscVerif then continue
+    let data := env.header.moduleData[index]!
+    let mut localCount := 0
+    let mut localTheorems := 0
+    for info in data.constants do
+      let name := info.name
+      let some owner := env.getModuleIdxFor? name | continue
+      if owner.toNat != index then continue
+      if info.isAxiom then throwError "Local even-rank-two axiom: {name}"
+      let axioms ← collectAxioms name
+      for ax in axioms do
+        unless allowed.contains ax do
+          throwError "Nonstandard even-rank-two axiom in {name}: {ax}"
+      localCount := localCount + 1
+      if info.isTheorem then localTheorems := localTheorems + 1
+      let kind := if info.isTheorem then "theorem" else "declaration"
+      let names := String.intercalate "," (axioms.toList.map toString)
+      liftIO <| IO.println
+        s!"PSC_AXIOMS\t{kind}\t{mod}\t{name}\t{privateToUserName name}\t{names}"
+    if localCount == 0 then throwError "Empty even-rank-two dependency module: {mod}"
+    count := count + localCount
+    theorems := theorems + localTheorems
+    modules := modules + 1
+    liftIO <| IO.println
+      s!"PSC_EVEN_RANK_TWO_MODULE\t{mod}\t{localCount}\t{localTheorems}"
+  if modules < required.size || theorems == 0 then
+    throwError "Incomplete even-rank-two compiled import closure"
+  liftIO <| IO.println s!"PSC_AUDIT_COMPLETE\t{count}\t{theorems}"

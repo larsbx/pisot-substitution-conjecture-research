@@ -14,14 +14,27 @@ import PscVerif.PeriodicPartnerAsymptotic
 import PscVerif.PeriodicPartnerHull
 import PscVerif.PeriodicPartnerSelection
 import PscVerif.PeriodicPartnerHullSelection
+import PscVerif.PeriodicPartnerVertexPartner
 import PscVerif.PeriodicPartnerCompleteRange
 import PscVerif.PeriodicPartnerDirectional
+import PscVerif.PeriodicPartnerSeamCycles
+import PscVerif.PeriodicPartnerReturnBoundary
+import PscVerif.PeriodicPartnerWinding
+import PscVerif.PeriodicPartnerWindingSeams
+import PscVerif.PeriodicPartnerLiteralDefect
+import PscVerif.PeriodicPartnerEvenTails
+import PscVerif.PeriodicPartnerStackWordRigidity
+import PscVerif.PeriodicPartnerCompanionWords
 import PscVerif.PeriodicPartnerRealization
 import PscVerif.PeriodicPartnerRealizationModels
 import PscVerif.PeriodicPartnerSpectral
 import PscVerif.PeriodicPartnerSpectralModels
 import PscVerif.PeriodicPartnerSpectralCertificate
 import PscVerif.PeriodicPartnerSpectralCensus
+import PscVerif.PeriodicPartnerHullContinuity
+import PscVerif.PeriodicPartnerLocalTopology
+import PscVerif.PeriodicPartnerLocalTopologyControls
+import PscVerif.PeriodicPartnerLocalRealization
 import Lean.Util.CollectAxioms
 
 open Lean Elab Command in
@@ -32,11 +45,19 @@ run_cmd do
     `PscVerif.PeriodicPartnerModels, `PscVerif.PeriodicPartnerDichotomy,
     `PscVerif.PeriodicPartnerReflection, `PscVerif.PeriodicPartnerAsymptotic,
     `PscVerif.PeriodicPartnerHull, `PscVerif.PeriodicPartnerSelection,
-    `PscVerif.PeriodicPartnerHullSelection, `PscVerif.PeriodicPartnerCompleteRange,
-    `PscVerif.PeriodicPartnerDirectional, `PscVerif.VertexAsymptoteRange,
+    `PscVerif.PeriodicPartnerHullSelection, `PscVerif.PeriodicPartnerVertexPartner,
+    `PscVerif.PeriodicPartnerCompleteRange,
+    `PscVerif.PeriodicPartnerDirectional, `PscVerif.PeriodicPartnerSeamCycles,
+    `PscVerif.PeriodicPartnerReturnBoundary,
+    `PscVerif.PeriodicPartnerWinding,
+    `PscVerif.PeriodicPartnerWindingSeams, `PscVerif.PeriodicPartnerLiteralDefect,
+    `PscVerif.PeriodicPartnerEvenTails, `PscVerif.PeriodicPartnerStackWordRigidity,
+    `PscVerif.PeriodicPartnerCompanionWords, `PscVerif.VertexAsymptoteRange,
     `PscVerif.PeriodicPartnerRealization, `PscVerif.PeriodicPartnerRealizationModels,
     `PscVerif.PeriodicPartnerSpectral, `PscVerif.PeriodicPartnerSpectralModels,
-    `PscVerif.PeriodicPartnerSpectralCertificate, `PscVerif.PeriodicPartnerSpectralCensus]
+    `PscVerif.PeriodicPartnerSpectralCertificate, `PscVerif.PeriodicPartnerSpectralCensus,
+    `PscVerif.PeriodicPartnerHullContinuity, `PscVerif.PeriodicPartnerLocalTopology,
+    `PscVerif.PeriodicPartnerLocalTopologyControls, `PscVerif.PeriodicPartnerLocalRealization]
   for mod in required do
     unless (env.getModuleIdx? mod).isSome do
       throwError "Missing compiled periodic-partner module: {mod}"

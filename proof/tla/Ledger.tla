@@ -296,6 +296,7 @@ ProvedDef == {
     "MidArea",
     "MinusClassAChamberConeBoundaryHitting",
     "MinusClassAChamberConeEntry",
+    "MinusClassAWholeChamberEntry",
     "MinusClassDBoundaryHitting",
     "MinusClassDBoundaryLine",
     "MinusClassDBoundaryStrips",
