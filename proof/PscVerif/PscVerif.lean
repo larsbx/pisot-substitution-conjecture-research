@@ -241,3 +241,5 @@ import PscVerif.BHFiniteReachability
 import PscVerif.BHFiniteCarrier
 import PscVerif.A1PrimeTailCoincidence
 import PscVerif.A1PrimeTailPisot
+import PscVerif.C4FiniteTileAutomaton
+import PscVerif.C4FamilyTileAutomatonWords
