@@ -1,0 +1,28 @@
+{
+  "baseline_revision": "7a5025ed7b8104413477ea7fbd15b52206e0959c",
+  "baseline_tree": "371684de70999cef922b4ce0b7f4e34f3a931692",
+  "compiler": "Lean 4.34.0-rc2 (6a10ac8c22beadecabdbb0919c2b50214762f91d)",
+  "compiler_options": [
+    "autoImplicit=false",
+    "pp.unicode.fun=true"
+  ],
+  "compiled_project_modules": 49,
+  "compiled_audit_fixtures": 1,
+  "compiled_files": 50,
+  "fresh_project_outputs": true,
+  "initial_final_source_sha256_guard_passed": true,
+  "audited_owned_modules": 23,
+  "audited_declarations": 1053,
+  "audited_theorem_constants": 905,
+  "endpoint_types_passed": 35,
+  "refusal_controls_passed": 70,
+  "allowed_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "all_50_olean_files_byte_identical_to_default_options": true,
+  "external_dependencies": "Pinned clean cached external package sources and compiled artifacts; no external artifact re-download",
+  "isolated_repository_shell_gate_run": false,
+  "hosted_acceptance_established": false
+}

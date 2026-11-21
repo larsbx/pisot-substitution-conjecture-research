@@ -1,6 +1,6 @@
 PSC AGENT PRIORITY ADDENDUM — 2026-11-21 (current source reconciliation)
 =======================================================================
-Baseline: main@e7e6e330b80b560be70c2a5346e217f415fe4711, through #641.
+Baseline: main@7de25513b127d6e72709354d95c39e3d5273e2db, through #642.
 Read docs/research-roadmap-2026-09-21.md's November 21 section first,
 with AGENTS.md and claim governance. The external literature cutoff in
 docs/psc-sigma-k-research-review-2026-11-20.md remains November 20;
@@ -18,16 +18,15 @@ continuous_action, action_aperiodic and finite_local_complexity (k>=1).
 #639 supplies the concrete ordinary hull and periodic swap density;
 #641 supplies legal_patches_dense_eventual, hull_dense_eventual and
 periodic_common_tile_of_origin_witnesses (k>=2).
-NEXT: instantiate injective inflation/recognizability, a semiconjugate
-maximal equicontinuous factor with finite fibres, and same-fibre
-closed-origin witnesses. Match the exact source hull and its required
-topological hypotheses, including compactness/Hausdorffness where used.
-periodic_fibre_common_tiles currently consumes these inputs and concludes
-ONE nonempty fibre with pairwise common tiles. It does not conclude pure
-discrete spectrum or globally singleton fibres. Formalize the subsequent
-disjoint-pair/rank-one criterion and invariant-measure L2 spectral result.
-See docs/c4-family-tiling-2026-11-21.md and
-docs/c4-family-legal-coincidence-2026-11-21.md.
+The family solenoid realization is continuous, onto, finite-to-one
+and equivariant for translation and inflation (k>=1). Recognizability
+and stable contraction are proved for the literal geometry. Every tiling
+in the zero fibre is inflation-periodic.
+NEXT: derive one pair of exact origin windows and a common-shift
+window for each pair over zero, then apply
+common_tile_of_zero_fibre_witnesses (k>=2). Formalize the subsequent
+coincidence-rank and invariant-measure L2 theorem.
+See docs/c4-family-solenoid-factor-2026-11-21.md.
 The written spectrum proof uses Barge–Stimac–Williams Corollary 2;
 k=1 uses a separate published small-trace result. The combined coincidence
 and conditional-fibre Lean endpoint still has k>=2. Universal C4 is not a

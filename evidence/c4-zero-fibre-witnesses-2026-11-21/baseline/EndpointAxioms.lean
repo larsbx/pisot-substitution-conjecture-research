@@ -1,0 +1,16 @@
+import PscVerif.C4ParameterFamilySolenoid
+
+#print axioms Psc.ParameterFamilySolenoid.common_tile_of_zero_fibre_witnesses
+#print axioms Psc.ParameterFamilySolenoid.periodic_of_realize_zero
+#print axioms Psc.ParameterFamilySolenoid.solenoidRealize_fibres_eq_of_equivariant
+#print axioms Psc.ParameterFamilySolenoid.solenoidRealize_finite_fibres
+#print axioms Psc.ParameterFamilySolenoid.continuous_solenoidRealize
+#print axioms Psc.ParameterFamilySolenoid.solenoidRealize_surjective
+#print axioms Psc.ParameterFamilyTiling.periodic_common_tile_of_origin_witnesses
+#print axioms Psc.ParameterFamilyTiling.periodic_fibre_common_tiles
+#print axioms Psc.PeriodicPartnerLegalCoincidence.periodic_common_tile_of_local_witnesses
+
+#check Psc.ParameterFamilySolenoid.common_tile_of_zero_fibre_witnesses
+#check Psc.ParameterFamilyTiling.periodic_common_tile_of_origin_witnesses
+#check Psc.PeriodicPartnerLegalCoincidence.periodic_common_tile_of_local_witnesses
+#check Psc.ParameterFamilyTiling.periodic_fibre_common_tiles

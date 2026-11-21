@@ -136,7 +136,8 @@ theorem fixed_hull_tiling (k : ℕ) (hk : 1 ≤ k) :
     (neg_lt_zero.mpr hl) hl htiles hgrow hlegal
   exact ⟨T, hP (Or.inl rfl), hP (Or.inr rfl), hT⟩
 
-private theorem every_letter_in_square (k : ℕ) (hk : 1 ≤ k) (a c : Fin 3) :
+/-- Each letter occurs in each literal level-two supertile. -/
+theorem every_letter_in_square (k : ℕ) (hk : 1 ≤ k) (a c : Fin 3) :
     ∃ x, (a, x) ∈ (geometry k hk).supertile c 2 := by
   let S := geometry k hk
   have h1 : (1 : Fin 3) ∈ ones k := by simp [ones, show k ≠ 0 by omega]
