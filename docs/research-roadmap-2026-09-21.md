@@ -39,10 +39,22 @@ Barge–Štimac–Williams Corollary 2](https://doi.org/10.3934/dcds.2013.33.579
 already gives the written family conclusion. The spectral use of the
 separate published `k=1` result stays outside the combined Lean endpoint.
 
+**Finite-kernel method, 21 November.** At source baseline
+`f5ca04063db75722e7736cfbad36629b7cd36d35`, the next proof work uses
+automata, exact integer certificates and finite induction. The
+[three-label tile-chain automaton](c4-finite-tile-automaton-2026-11-21.md)
+has explicit signed loops generating all of `Z^3`; every forward edge
+has a literal family occurrence by substitution depth two for every
+`k>=2`. This supplies uniform integer coverage without a larger bounded
+origin-state scan. Its actual-hull interpretation and the transfer to
+the stated spectral conclusion remain named interfaces. Further
+limit-based analysis is not the working route for these new obligations.
+
 ### Deliverables and the premises each must discharge
 
 | Workstream | Reuse at its recorded scope | Next deliverable and completion condition |
 | --- | --- | --- |
+| **Finite tile-chain certificates** | The shared finite-kernel DFA, SCC and exact arithmetic packages; the explicit integer-output certificate and uniformly legal five-edge family alphabet. | Interpret the checked finite chains in actual legal tilings, retaining edge occurrences, reversed traversal and exact integer displacement; feed the existing lattice-origin and shared-tile coincidence interfaces. A chain of legal co-occurrences need not be one legal word. |
 | **Family factor geometry** | Unique desubstitution and the onto, finite-to-one ordinary-hull map to the full solenoid. Its zero fibre is periodic. | Derive the common-shift witnesses for each pair over zero. Lean proves a fibre comparison for continuous maps into the same time-normalized solenoid. The published factor identification and same-fibre witness theorem are written inputs. |
 | **Family measured spectrum** | The nonempty fibre with pairwise common tiles once the preceding inputs are supplied. | Formalize the disjoint-pair obstruction to failure of pure discreteness, or the equivalent coincidence-rank-one theorem, for this hull. Specify the invariant probability measure and translation action, and conclude density of the translation eigenfunctions in its `L²` space for every `k>=2`. A symbolic-shift conclusion needs its own transfer theorem. |
 | **BH and Class A** | The accepted written minus-Class-A cover, written upper plus entry/continuation, and the 70 small upper plus certificates at their complete swap-seed scope. | Bind the written upper plus original-occurrence paths to Lean; retain the recorded acceptance status of each finite certificate. Extend source coverage and an actual selected path to zero integral displacement to the remaining BH domains, including the full nonunit representation. Use the [BH roadmap](bh-escape-roadmap-2026-11-14.md) for the exact scopes. |

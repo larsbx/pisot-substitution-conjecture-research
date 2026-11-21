@@ -5338,6 +5338,358 @@
       "declaration": "theorem selected_stage_rank_decreases (i : ℕ) (hi : i < 6) :"
     },
     {
+      "name": "Psc.C4FamilyTileAutomatonWords.subst_singleton",
+      "module": "PscVerif.C4FamilyTileAutomatonWords",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean",
+      "line": 30,
+      "declaration": "private theorem subst_singleton (k : ℕ) (a : Label) :"
+    },
+    {
+      "name": "Psc.C4FamilyTileAutomatonWords.subst_append",
+      "module": "PscVerif.C4FamilyTileAutomatonWords",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean",
+      "line": 34,
+      "declaration": "private theorem subst_append (k : ℕ) (u v : Word) :"
+    },
+    {
+      "name": "Psc.C4FamilyTileAutomatonWords.zero_zero",
+      "module": "PscVerif.C4FamilyTileAutomatonWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean",
+      "line": 39,
+      "declaration": "theorem zero_zero (k : ℕ) : OccursInIterate k 1 0 0 := by"
+    },
+    {
+      "name": "Psc.C4FamilyTileAutomatonWords.zero_one",
+      "module": "PscVerif.C4FamilyTileAutomatonWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean",
+      "line": 42,
+      "declaration": "theorem zero_one (k : ℕ) : OccursInIterate k 1 0 1 := by"
+    },
+    {
+      "name": "Psc.C4FamilyTileAutomatonWords.split_one_one",
+      "module": "PscVerif.C4FamilyTileAutomatonWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean",
+      "line": 46,
+      "declaration": "theorem split_one_one (k : ℕ) (hk : 2 ≤ k) :"
+    },
+    {
+      "name": "Psc.C4FamilyTileAutomatonWords.one_one",
+      "module": "PscVerif.C4FamilyTileAutomatonWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean",
+      "line": 56,
+      "declaration": "theorem one_one (k : ℕ) (hk : 2 ≤ k) : OccursInIterate k 1 1 1 := by"
+    },
+    {
+      "name": "Psc.C4FamilyTileAutomatonWords.one_two",
+      "module": "PscVerif.C4FamilyTileAutomatonWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean",
+      "line": 62,
+      "declaration": "theorem one_two (k : ℕ) (hk : 2 ≤ k) : OccursInIterate k 1 1 2 := by"
+    },
+    {
+      "name": "Psc.C4FamilyTileAutomatonWords.two_zero",
+      "module": "PscVerif.C4FamilyTileAutomatonWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean",
+      "line": 76,
+      "declaration": "theorem two_zero (k : ℕ) (hk : 2 ≤ k) : OccursInIterate k 2 2 0 := by"
+    },
+    {
+      "name": "Psc.C4FamilyTileAutomatonWords.all_forward_edges_have_literal_witness",
+      "module": "PscVerif.C4FamilyTileAutomatonWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean",
+      "line": 84,
+      "declaration": "theorem all_forward_edges_have_literal_witness (k : ℕ) (hk : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.C4FamilyTileAutomatonWords.all_signed_edges_have_literal_witness",
+      "module": "PscVerif.C4FamilyTileAutomatonWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean",
+      "line": 97,
+      "declaration": "theorem all_signed_edges_have_literal_witness (k : ℕ) (hk : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.inverse_source",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 47,
+      "declaration": "@[simp] theorem inverse_source (e : Edge) : source (inverse e) = target e := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.inverse_target",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 50,
+      "declaration": "@[simp] theorem inverse_target (e : Edge) : target (inverse e) = source e := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.inverse_inverse",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 53,
+      "declaration": "@[simp] theorem inverse_inverse (e : Edge) : inverse (inverse e) = e := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.inverse_output",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 56,
+      "declaration": "@[simp] theorem inverse_output (e : Edge) : edgeOutput (inverse e) = -edgeOutput e := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.controlLabel_code",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 71,
+      "declaration": "@[simp] theorem controlLabel_code (a : Label) : controlLabel (controlCode a) = some a := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.controlStep_code",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 74,
+      "declaration": "@[simp] theorem controlStep_code (a : Label) (e : Edge) :"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.controlStep_reject",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 79,
+      "declaration": "@[simp] theorem controlStep_reject (e : Edge) : controlStep 3 e = 3 := rfl"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.control_table_exact",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 85,
+      "declaration": "theorem control_table_exact : controlTable = ["
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.output_table_exact",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 95,
+      "declaration": "theorem output_table_exact : outputTable = ["
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.Walk.replay_eq",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 120,
+      "declaration": "theorem Walk.replay_eq {a b : Label} {w : List Edge} {v : Vector}"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.Walk.control",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 126,
+      "declaration": "theorem Walk.control {a b : Label} {w : List Edge} {v : Vector}"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.replay_walk",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 132,
+      "declaration": "theorem replay_walk {a b : Label} {w : List Edge} {v : Vector}"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.replay_iff_walk",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 151,
+      "declaration": "theorem replay_iff_walk (a b : Label) (w : List Edge) (v : Vector) :"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.Walk.append",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 155,
+      "declaration": "theorem Walk.append {a b c : Label} {u w : List Edge} {v z : Vector}"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.single_edge",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 161,
+      "declaration": "theorem single_edge (e : Edge) : Walk (source e) [e] (target e) (edgeOutput e) := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.Walk.reverse",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 166,
+      "declaration": "theorem Walk.reverse {a b : Label} {w : List Edge} {v : Vector}"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.Walk.repeat",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 181,
+      "declaration": "theorem Walk.repeat {a : Label} {w : List Edge} {v : Vector}"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.Walk.signed_repeat",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 192,
+      "declaration": "theorem Walk.signed_repeat {a : Label} {w : List Edge} {v : Vector}"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.loop0_walk",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 202,
+      "declaration": "theorem loop0_walk : Walk 1 loop0 1 (basis 0) := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.loop1_walk",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 206,
+      "declaration": "theorem loop1_walk : Walk 1 loop1 1 (basis 1) := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.loop2_walk",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 210,
+      "declaration": "theorem loop2_walk : Walk 1 loop2 1 (basis 0 + basis 1 + basis 2) := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.loop_decomposition",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 219,
+      "declaration": "theorem loop_decomposition (v : Vector) :"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.anchorWord_walk",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 226,
+      "declaration": "theorem anchorWord_walk (v : Vector) : Walk 1 (anchorWord v) 1 v := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.terminalWord_walk",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 238,
+      "declaration": "theorem terminalWord_walk (b : Label) : Walk 1 (terminalWord b) b 0 := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.certificate_walk",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 246,
+      "declaration": "theorem certificate_walk (v : Vector) (b : Label) : Walk 1 (certificate v b) b v := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.certificate_replay",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 250,
+      "declaration": "theorem certificate_replay (v : Vector) (b : Label) :"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.certificate_control",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 254,
+      "declaration": "theorem certificate_control (v : Vector) (b : Label) :"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.exists_signed_walk",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 257,
+      "declaration": "theorem exists_signed_walk (v : Vector) (b : Label) :"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.disconnected_rejected",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 261,
+      "declaration": "theorem disconnected_rejected : replay 1 [0] = none := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.reversed_sign_rejected",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 265,
+      "declaration": "theorem reversed_sign_rejected : replay 1 [7] ≠ some (1, basis 1) := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.reduced_edge_coboundary",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 277,
+      "declaration": "theorem reduced_edge_coboundary (e : Edge) (h : ReducedEdge e) :"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.Walk.reduced_coboundary",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 283,
+      "declaration": "theorem Walk.reduced_coboundary {a b : Label} {w : List Edge} {v : Vector}"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.reduced_based_loop_constraint",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 296,
+      "declaration": "theorem reduced_based_loop_constraint {w : List Edge} {v : Vector}"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.reduced_basis0_impossible",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 303,
+      "declaration": "theorem reduced_basis0_impossible :"
+    },
+    {
       "name": "Psc.ParameterFamilyBridge.full_factor_termination",
       "module": "PscVerif.C4ParameterFamilyBridge",
       "private": false,
@@ -56872,6 +57224,7 @@
     "claim_governance.toml": "895eb1950ccd19725ad600b1d40d988652d5e15524a336288bef7761411d8a7c",
     "proof/PscVerif/A1PrimeTailAudit.lean": "eee41a524a6a114716a7704f169726b6484ab56c2398431dcd297fe6809a0b23",
     "proof/PscVerif/BHFiniteReachabilityAudit.lean": "5469fdefea80286841bb3b40b7944a4674de5dce03ca12b490ee72b77ca2b79d",
+    "proof/PscVerif/C4FiniteTileAutomatonAudit.lean": "03ae6c9467da09b705a6ddf5c51403797a17e559bbf81175d5544e34c1eb8b08",
     "proof/PscVerif/C4ParameterFamilyAudit.lean": "5d63a488ad5d3a98f20e6e109049a349a440c9459dc33013ba40f915ade5c5a3",
     "proof/PscVerif/C4ZeroFibreWitnessAudit.lean": "fa9d4d6d34b745d9e485b723a242685175cb747d9146f13a979b25c25517312d",
     "proof/PscVerif/ClassABoundaryEscapeAudit.lean": "f5b5147990567d0ca653e6f96336d3e44e00087dc6a577c101b840592495abdb",
@@ -56907,6 +57260,8 @@
     "proof/PscVerif/PscVerif/Binomial.lean": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
     "proof/PscVerif/PscVerif/BoundarySeedPath.lean": "bea69cb93d5bcd15b1b88c48062b4404a721908092af1b5f5b42e6184f7abae3",
+    "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean": "9b97606079e367b743a2f863403dff677a58c096068ad1715160eeef5a8b9559",
+    "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean": "b8123aec4c0e1c2a9a1b5937a17cd0c9c26189e0d884c8a27bf1465e3b8b5b24",
     "proof/PscVerif/PscVerif/C4ParameterFamilyBridge.lean": "eb29f8b3bf9c325163a1e932dcfc324bd094f0b754ed28a2789daadb45e0354a",
     "proof/PscVerif/PscVerif/C4ParameterFamilyCarrier.lean": "fba5f9b5a2a20c08107aa3e7714c20f2e92a4aeacd28e816e1a4e331e5e03208",
     "proof/PscVerif/PscVerif/C4ParameterFamilyControls.lean": "98b75297c14f75b6a2c87c651d06b3da13131616cf1b53c2630d7b498a1b5540",
@@ -57159,7 +57514,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "c6156245f65051dbef4e2487520da9ed807eacaafc300df0014e11c05165b169",
+    "proof/PscVerif/PscVerif.lean": "bf8a886c77869fd295eda306ab9a8fcfbf5372a96e03bb17dcad6a254f9073bc",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

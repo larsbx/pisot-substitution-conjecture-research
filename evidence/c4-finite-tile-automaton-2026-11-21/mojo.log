@@ -1,0 +1,2 @@
+PSC_FINITE_TILE_AUTOMATON control_states=3 sink_states=1 edges=10 generators=3 determinant=1 tails=3 bigz_bits=151
+contract-receipt: finite signed family tile-chain automaton, exact integer generator certificate, inverse signs, composable paths, and compressed arbitrary-integer recipes; actual-hull transfer is separate

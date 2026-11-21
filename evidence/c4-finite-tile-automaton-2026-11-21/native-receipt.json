@@ -1,0 +1,20 @@
+{
+  "scope": "local native finite tile-chain certificate and refusal controls",
+  "base_revision": "f5ca04063db75722e7736cfbad36629b7cd36d35",
+  "compiler_version": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+  "command": [
+    "/workspace/scratch/d16112039a60/runtime/pixi-cache/pkgs/mojo-compiler-1.1.0.dev2026090805-release/bin/mojo",
+    "run",
+    "-I",
+    ".",
+    "tests/test_family_tile_automaton.mojo"
+  ],
+  "exit_code": 0,
+  "sources": {
+    "kernel/psc/family_tile_automaton.mojo": "c01fc6c47089a13cd3a18d6805050c118c5102a7b029549837f97add6ceb7fce",
+    "kernel/tests/test_family_tile_automaton.mojo": "4933e98c2d4325c99b8533ac9a32d2e6e240a88fb4d58498de5f18131c4f30c3"
+  },
+  "hosted_acceptance": false,
+  "actual_hull_transfer": false,
+  "spectral_closure": false
+}
