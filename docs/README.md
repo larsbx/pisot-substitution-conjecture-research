@@ -19,6 +19,13 @@ for source-linked theorem scopes, non-unit/strong-coincidence cautions,
 the Nakaishi audit and the open #84/#138/#139/#461 interfaces. It adds
 no proof claim or ledger promotion.
 
+The [sigma-k spectral and coincidence research review](psc-sigma-k-research-review-2026-11-20.md)
+assesses literature through 20 November, distinguishes publications from
+preprints, derives the low-complexity exclusion for the literal family, and
+maps the remaining formal spectral bridge. Its 21 November publication
+addendum reconciles the merged marker, parity and graph-spectrum work with
+the original dated assessment. It adds no proof claim or ledger promotion.
+
 **New collaborator?** Start with [`project-onboarding-2026-10-23.md`](project-onboarding-2026-10-23.md). It gives the current live theorem lane, the v6/v9 salvage firewall, the Tier-2 Plastic-A/Growth-Bridge lane, and the non-load-bearing Penrose interface map in one status-safe document.
 
 For definitions and implementation authority, use the generated
