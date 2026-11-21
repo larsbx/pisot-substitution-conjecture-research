@@ -253,3 +253,10 @@ carrier from arbitrary nonproductivity are separate obligations.
 **Review, 2026-11-20.** A [step-by-step check](c4-stack-rigidity-review-2026-11-20.md)
 against Barge's text found no gap. It records a rank-free form of the core lemma and the
 resulting higher-rank obligation in the nonunit case.
+
+**Review, 2026-11-21.** A [second pass](c4-graded-lift-review-2026-11-21.md) checked the
+letter cuts, the literal path maps, the spectrum transfer, the correction at each finite
+degree and the truncations, and found no gap. The graded step and the word separation
+are now in Lean (`graded_step_exists_unique`, `word_separation`). Each interval uses one
+finite truncation; no inverse limit of the truncated algebras is formed. The status
+above is unchanged.

@@ -39842,6 +39842,150 @@
       "declaration": "theorem periodDoubling_mod_two_fixed_line :"
     },
     {
+      "name": "Psc.PeriodicPartnerGradedLift.step_iff",
+      "module": "PscVerif.PeriodicPartnerGradedLift",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerGradedLift.lean",
+      "line": 28,
+      "declaration": "theorem step_iff (f : E → List E) (base : E → R) (F : R →+* R) (j : W →+ R)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerGradedLift.constr_sylvester",
+      "module": "PscVerif.PeriodicPartnerGradedLift",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerGradedLift.lean",
+      "line": 49,
+      "declaration": "theorem constr_sylvester (f : E → List E) (D : Module.End K W) (d : E → W) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerGradedLift.graded_step_exists_unique",
+      "module": "PscVerif.PeriodicPartnerGradedLift",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerGradedLift.lean",
+      "line": 63,
+      "declaration": "theorem graded_step_exists_unique [FiniteDimensional K W]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerGradedLift.step_truncates",
+      "module": "PscVerif.PeriodicPartnerGradedLift",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerGradedLift.lean",
+      "line": 98,
+      "declaration": "theorem step_truncates {E W R R' : Type*} [AddCommGroup W] [Ring R] [Ring R']"
+    },
+    {
+      "name": "Psc.PeriodicPartnerGradedLift.above_deg_zero",
+      "module": "PscVerif.PeriodicPartnerGradedLift",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerGradedLift.lean",
+      "line": 119,
+      "declaration": "theorem above_deg_zero (x : MonoidAlgebra ℚ (FreeMonoid α)) : Above 0 x :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerGradedLift.above_zero",
+      "module": "PscVerif.PeriodicPartnerGradedLift",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerGradedLift.lean",
+      "line": 122,
+      "declaration": "theorem above_zero (k : ℕ) : Above k (0 : MonoidAlgebra ℚ (FreeMonoid α)) := fun _ _ => rfl"
+    },
+    {
+      "name": "Psc.PeriodicPartnerGradedLift.Above.mono",
+      "module": "PscVerif.PeriodicPartnerGradedLift",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerGradedLift.lean",
+      "line": 124,
+      "declaration": "theorem Above.mono {k l : ℕ} {x : MonoidAlgebra ℚ (FreeMonoid α)} (h : Above l x)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerGradedLift.Above.add",
+      "module": "PscVerif.PeriodicPartnerGradedLift",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerGradedLift.lean",
+      "line": 127,
+      "declaration": "theorem Above.add {k : ℕ} {x y : MonoidAlgebra ℚ (FreeMonoid α)} (hx : Above k x)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerGradedLift.Above.mul",
+      "module": "PscVerif.PeriodicPartnerGradedLift",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerGradedLift.lean",
+      "line": 131,
+      "declaration": "theorem Above.mul {k l : ℕ} {x y : MonoidAlgebra ℚ (FreeMonoid α)} (hx : Above k x)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerGradedLift.above_single",
+      "module": "PscVerif.PeriodicPartnerGradedLift",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerGradedLift.lean",
+      "line": 146,
+      "declaration": "theorem above_single (m : FreeMonoid α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerGradedLift.pathProduct_congr_above",
+      "module": "PscVerif.PeriodicPartnerGradedLift",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerGradedLift.lean",
+      "line": 156,
+      "declaration": "theorem pathProduct_congr_above {N : ℕ} (g g' : α → MonoidAlgebra ℚ (FreeMonoid α))"
+    },
+    {
+      "name": "Psc.PeriodicPartnerGradedLift.pathProduct_leading",
+      "module": "PscVerif.PeriodicPartnerGradedLift",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerGradedLift.lean",
+      "line": 173,
+      "declaration": "theorem pathProduct_leading (hk : ∀ a, Above 2 (k a - single (FreeMonoid.of a) 1))"
+    },
+    {
+      "name": "Psc.PeriodicPartnerGradedLift.pathProduct_one_add",
+      "module": "PscVerif.PeriodicPartnerGradedLift",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerGradedLift.lean",
+      "line": 202,
+      "declaration": "theorem pathProduct_one_add (w : List α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerGradedLift.sum_map_indicator",
+      "module": "PscVerif.PeriodicPartnerGradedLift",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerGradedLift.lean",
+      "line": 212,
+      "declaration": "private theorem sum_map_indicator [DecidableEq α] (x : List α) (l : List (List α)) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerGradedLift.sum_map_filter",
+      "module": "PscVerif.PeriodicPartnerGradedLift",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerGradedLift.lean",
+      "line": 220,
+      "declaration": "private theorem sum_map_filter (p : List α → Prop) [DecidablePred p] (h : List α → ℚ)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerGradedLift.coeff_pathProduct",
+      "module": "PscVerif.PeriodicPartnerGradedLift",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerGradedLift.lean",
+      "line": 231,
+      "declaration": "theorem coeff_pathProduct [DecidableEq α] (hk : ∀ a, Above 2 (k a - single (FreeMonoid.of a) 1))"
+    },
+    {
+      "name": "Psc.PeriodicPartnerGradedLift.word_separation",
+      "module": "PscVerif.PeriodicPartnerGradedLift",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerGradedLift.lean",
+      "line": 271,
+      "declaration": "theorem word_separation [DecidableEq α] (hk : ∀ a, Above 2 (k a - single (FreeMonoid.of a) 1))"
+    },
+    {
+      "name": "Psc.PeriodicPartnerGradedLift.degree_two_control",
+      "module": "PscVerif.PeriodicPartnerGradedLift",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerGradedLift.lean",
+      "line": 304,
+      "declaration": "theorem degree_two_control :"
+    },
+    {
       "name": "Psc.PeriodicPartnerGraphSpectrum.boundary_range_invariant",
       "module": "PscVerif.PeriodicPartnerGraphSpectrum",
       "private": false,
@@ -54911,7 +55055,7 @@
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "81efe5b8745576f8f15a59a263563b31e08307e9c432e78fa2ef9021a613b2d1",
     "proof/PscVerif/EvenRankTwoAudit.lean": "cfc2c3b6dfae0305e1ab27989607917e4ffe8944a513aa861dc5ca781ba620ca",
     "proof/PscVerif/MarkerReachabilityReplay.lean": "4d21e06344eff182c78196d2f8eb815e1dbb8f517920dedf6849cc1546d831a3",
-    "proof/PscVerif/PeriodicPartnerAudit.lean": "5209d4fc3a6e862fefaddf411dd6f29706a42b651e42fc2990240647d409d20e",
+    "proof/PscVerif/PeriodicPartnerAudit.lean": "5797f586bd8216b143357ac08ee8d2871b575dca3dfa0f553be56535ce553f9a",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean": "f1c4480b95159800bb52cd42164763d01e6ab6045dc72b07874f164409a0eaf1",
     "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean": "6387c221871d7b70efca50349c815fac07421bb44a28122f9157ff0652cb074f",
@@ -55096,6 +55240,7 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean": "812599f6a9dfb4ab5d0da0924fa6c3901128f74644e76d14eb2996de17f55c44",
     "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean": "24de7ca583a5a654e331a0fae80e407174589843b58051fca044fefcd76d874c",
     "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean": "5519f5698c83b43956df8e04263f873e4879a1ec4e48533fe96e36b330f7d626",
+    "proof/PscVerif/PscVerif/PeriodicPartnerGradedLift.lean": "2a30fa67345bdfc4efc019c9fc92190ec6cbe22efb5faa2de44a2052c63d4837",
     "proof/PscVerif/PscVerif/PeriodicPartnerGraphSpectrum.lean": "d1f70a6da1a88f58abba2ee29223ed9d96c13ffc70ce5a7942731d9cfe7326a6",
     "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean": "6124e92faa7ace36663a57ff5dda39f281fd86237cc30006912cf4c2a0a65b6e",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean": "80e0f040cd0ea768a0d5ddf74710dc659c9a9431fb667740953f41369a652386",
@@ -55158,7 +55303,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "5e647eab95bc8cfe6e3e2db7798cb5b798217035bf06d309acf35a1f6be36ca7",
+    "proof/PscVerif/PscVerif.lean": "365e7fc071b92a4761d163d3eee1946f2b3a4cb6fe9141572c6ad98fda0f747b",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
