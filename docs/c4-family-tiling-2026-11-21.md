@@ -109,13 +109,13 @@ geometric density conclusion.
 
 ### Non-claims / remaining gaps
 
-The remaining formal chain is the one-dimensional spectral implication
-of Barge–Štimac–Williams Theorem 3.1.
-The implication transfers coincidence from the periodic patterns to legal
-patches and then applies the structural results about fibres of the maximal
-equicontinuous factor. The final Lean endpoint should assert that the span
-of translation eigenfunctions is dense in the invariant measure's
-`L²` space. The published Corollary 2 already gives the paper-level result.
+The [legal-patch follow-up](c4-family-legal-coincidence-2026-11-21.md)
+checks the transfer from periodic patterns to legal patches and the
+closed-origin argument for periodic partners. The remaining formal chain
+uses the structure of the maximal equicontinuous factor of the literal
+hull. Its final endpoint should assert that the span of translation
+eigenfunctions is dense in the invariant measure's `L²` space. The
+published Corollary 2 already gives the paper-level result.
 
 At base revision `8bbc05b898b48b3ad97fcab0534a128998ec9677` the broader endpoints
 are distinct research obligations.

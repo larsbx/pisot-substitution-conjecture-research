@@ -15,6 +15,9 @@ open Psc.Reduction (red IsBlock)
 open Psc.Incidence (inc)
 open Psc.ParameterFamilyTiling (geometry TilingSpace)
 open Psc.PeriodicPartnerBalancedGeometry (repeatWord)
+open Psc.PeriodicPartnerEventualCoincidence (level level_mono eventual)
+open Psc.PeriodicPartnerLegalCoincidence (LegalPatch openOverlap originPatch)
+open Psc.PeriodicPartnerHull (thueMorse LengthSubst)
 open Psc.PeriodicPartnerHull.LengthSubst (inflateH shift)
 open Psc.PeriodicPartnerLocalTopology (translate)
 open Set
@@ -151,6 +154,34 @@ def PeriodicSwapGeometryType : Prop :=
       q ∈ S.inflate^[j] Q ∧ q ∈ S.inflate^[j] (shift (S.ℓ 0) Q) ∧
       S.β ^ j * y ∈ Ioo q.2 (q.2 + S.ℓ q.1)}
 
+def LegalPatchDensityType : Prop :=
+  ∀ (k : ℕ) (hk : 2 ≤ k),
+    let S := geometry k (show 1 ≤ k by omega)
+    ∀ {A B}, LegalPatch S A → LegalPatch S B → (A ∩ B).Nonempty →
+      openOverlap S A B ⊆ closure (eventual S A B ∩ openOverlap S A B)
+
+def HullCoincidenceDensityType : Prop :=
+  ∀ (k : ℕ) (hk : 2 ≤ k),
+    let S := geometry k (show 1 ≤ k by omega)
+    ∀ {T U : S.Hull}, (T.1 ∩ U.1).Nonempty → Dense (eventual S T.1 U.1)
+
+def PeriodicOriginWitnessType : Prop :=
+  ∀ (k : ℕ) (hk : 2 ≤ k),
+    let S := geometry k (show 1 ≤ k by omega)
+    ∀ {T U T' U' : S.Hull} {m n : ℕ}, 0 < m → 0 < n → inflateH^[m] T = T → inflateH^[n] U = U →
+      ∀ {v : ℝ}, originPatch S T.1 = originPatch S T'.1 → originPatch S U.1 = originPatch S U'.1 →
+        originPatch S (shift v T'.1) = originPatch S (shift v U'.1) → (T.1 ∩ U.1).Nonempty
+
+def PeriodicFibreType : Prop :=
+  ∀ {Y : Type u} (k : ℕ) (hk : 2 ≤ k),
+    let S := geometry k (show 1 ≤ k by omega)
+    ∀ (g : S.Hull → Y) (f : Y → Y), Function.Injective (inflateH (S := S)) →
+      Function.Semiconj g inflateH f → (∀ y, {T | g T = y}.Finite) →
+      (∀ {T U}, g T = g U → ∃ (T' U' : S.Hull) (v : ℝ),
+        originPatch S T.1 = originPatch S T'.1 ∧ originPatch S U.1 = originPatch S U'.1 ∧
+        originPatch S (shift v T'.1) = originPatch S (shift v U'.1)) →
+      ∃ y, {T | g T = y}.Nonempty ∧ ∀ T U, g T = y → g U = y → (T.1 ∩ U.1).Nonempty
+
 /-- Independent literal binding for the two-letter non-Pisot control. -/
 def controlSubstitution : Fin 2 → List (Fin 2)
   | 0 => [0, 0, 0, 0, 1]
@@ -185,8 +216,27 @@ example : SwapRotationType := Psc.ParameterFamilyTiling.swap_rotation_irrational
 example : DenseRotationType := Psc.ParameterFamilyTiling.swap_rotation_dense
 example : DenseSwapCoincidenceType := Psc.ParameterFamilyTiling.dense_swap_coincidences
 example : PeriodicSwapGeometryType := Psc.ParameterFamilyTiling.periodic_swap_geometry
+example : LegalPatchDensityType := Psc.ParameterFamilyTiling.legal_patches_dense_eventual
+example : HullCoincidenceDensityType := Psc.ParameterFamilyTiling.hull_dense_eventual
+example : PeriodicOriginWitnessType := Psc.ParameterFamilyTiling.periodic_common_tile_of_origin_witnesses
+example : PeriodicFibreType.{u} := Psc.ParameterFamilyTiling.periodic_fibre_common_tiles
 example : AllBlocksProductiveControlType := Psc.UniversalClosureReduction.all_blocks_productive
 example : InfiniteSeedControlType := Psc.UniversalClosureReduction.infinite_seed_reachability
+
+-- At the child seam, the interior of the common region persists even
+-- though the interiors of the individual common tiles miss the point.
+example :
+    let P : Set (Fin 2 × ℝ) := {(0, 0)}
+    (1 / 2 : ℝ) ∈ interior (level thueMorse P P 1) ∧
+      ¬ ∃ q ∈ thueMorse.inflate P, thueMorse.β * (1 / 2 : ℝ) ∈ Ioo q.2 (q.2 + thueMorse.ℓ q.1) := by
+  let P : Set (Fin 2 × ℝ) := {(0, 0)}
+  have h : Ioo (0 : ℝ) 1 ⊆ level thueMorse P P 0 := by
+    intro x hx
+    exact ⟨(0, 0), rfl, rfl, by
+      simpa [thueMorse, LengthSubst.supp] using (show x ∈ Ico (0 : ℝ) 1 from ⟨hx.1.le, hx.2⟩)⟩
+  refine ⟨interior_mono (level_mono thueMorse P P (by decide : 0 ≤ 1))
+    (interior_maximal h isOpen_Ioo (by norm_num)), ?_⟩
+  norm_num [P, thueMorse, LengthSubst.inflate, LengthSubst.place, List.mem_cons]
 
 /-- A theorem of the right declaration kind but the wrong semantic type. -/
 theorem wrongTypeControl : True := True.intro
@@ -239,6 +289,14 @@ run_cmd do
         `PscVerif.C4ParameterFamilyTiling),
       (``Psc.ParameterFamilyTiling.periodic_swap_geometry, ``PeriodicSwapGeometryType,
         `PscVerif.C4ParameterFamilyTiling),
+      (``Psc.ParameterFamilyTiling.legal_patches_dense_eventual, ``LegalPatchDensityType,
+        `PscVerif.C4ParameterFamilyTiling),
+      (``Psc.ParameterFamilyTiling.hull_dense_eventual, ``HullCoincidenceDensityType,
+        `PscVerif.C4ParameterFamilyTiling),
+      (``Psc.ParameterFamilyTiling.periodic_common_tile_of_origin_witnesses, ``PeriodicOriginWitnessType,
+        `PscVerif.C4ParameterFamilyTiling),
+      (``Psc.ParameterFamilyTiling.periodic_fibre_common_tiles, ``PeriodicFibreType,
+        `PscVerif.C4ParameterFamilyTiling),
       (``Psc.UniversalClosureReduction.all_blocks_productive, ``AllBlocksProductiveControlType,
         `PscVerif.UniversalClosureReduction),
       (``Psc.UniversalClosureReduction.infinite_seed_reachability, ``InfiniteSeedControlType,
@@ -262,7 +320,8 @@ run_cmd do
       `PscVerif.C4ParameterFamilyPisot, `PscVerif.TerminationFactors,
       `PscVerif.C4ParameterFamilyBridge, `PscVerif.UniversalClosureReduction,
       `PscVerif.PeriodicPartnerHullPatches, `PscVerif.PeriodicPartnerBalancedGeometry,
-      `PscVerif.C4ParameterFamilyTiling]
+      `PscVerif.C4ParameterFamilyTiling, `PscVerif.PeriodicPartnerEventualCoincidence,
+      `PscVerif.PeriodicPartnerLegalCoincidence]
     let mut declarations := 0
     let mut proofs := 0
     for mod in modules do
