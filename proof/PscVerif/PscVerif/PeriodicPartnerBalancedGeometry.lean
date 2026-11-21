@@ -27,6 +27,24 @@ private theorem subst_eq_flatMap (s : α → List α) : subst s = fun w => w.fla
 def repeatWord (w : List α) : Set (α × ℝ) :=
   {q | ∃ m : ℤ, q ∈ S.place w ((m : ℝ) * (w.map S.ℓ).sum)}
 
+/-- The repeated tile set has the word length as a translation period. -/
+theorem repeatWord_period (w : List α) :
+    LengthSubst.shift ((w.map S.ℓ).sum) (repeatWord S w) = repeatWord S w := by
+  let d := lengthOf S w
+  ext ⟨a, x⟩
+  change (∃ m : ℤ, (a, x + d) ∈ S.place w (m * d)) ↔
+    ∃ m : ℤ, (a, x) ∈ S.place w (m * d)
+  constructor
+  · rintro ⟨m, hm⟩
+    rw [show (m : ℝ) * d = ((m - 1 : ℤ) : ℝ) * d + d by push_cast; ring, S.place_add] at hm
+    obtain ⟨q, hq, he⟩ := List.mem_map.mp hm
+    have he' : q = (a, x) := Prod.ext (Prod.mk.inj he).1 (add_right_cancel (Prod.mk.inj he).2)
+    exact ⟨m - 1, he' ▸ hq⟩
+  · rintro ⟨m, hm⟩
+    refine ⟨m + 1, ?_⟩
+    rw [show (((m + 1 : ℤ) : ℝ) * d) = (m : ℝ) * d + d by push_cast; ring, S.place_add]
+    exact List.mem_map.mpr ⟨(a, x), hm, rfl⟩
+
 private theorem in_cell_iff {x d : ℝ} (hd : 0 < d) (m : ℤ) :
     x ∈ Ico ((m : ℝ) * d) ((m : ℝ) * d + d) ↔ ⌊x / d⌋ = m := by
   rw [Int.floor_eq_iff, mem_Ico, le_div_iff₀ hd, div_lt_iff₀ hd, add_mul, one_mul]

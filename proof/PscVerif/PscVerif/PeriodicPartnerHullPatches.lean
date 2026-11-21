@@ -41,17 +41,22 @@ theorem supertile_tilesOn [Nonempty α] (a : α) (n : ℕ) :
   simpa [supertile] using S.tilesOn_inflate_iterate h n
 
 /-- The complete descendant supertile of an occurrence, with its scaled position. -/
-theorem shifted_supertile_subset {a : α} {p : α × ℝ} {m : ℕ}
-    (hp : p ∈ S.supertile a m) (n : ℕ) :
-    shift (-(S.β ^ n * p.2)) (S.supertile p.1 n) ⊆ S.supertile a (m + n) := by
-  have h : shift (-p.2) ({(p.1, 0)} : Set (α × ℝ)) ⊆ S.supertile a m := by
+theorem shifted_supertile_subset_inflate {P : Set (α × ℝ)} {p : α × ℝ}
+    (hp : p ∈ P) (n : ℕ) :
+    shift (-(S.β ^ n * p.2)) (S.supertile p.1 n) ⊆ S.inflate^[n] P := by
+  have h : shift (-p.2) ({(p.1, 0)} : Set (α × ℝ)) ⊆ P := by
     intro q hq
     have heq : (q.1, q.2 + -p.2) = (p.1, 0) := hq
     have hqp : q = p := Prod.ext (Prod.mk.inj heq).1 (by linarith [(Prod.mk.inj heq).2])
     rwa [hqp]
   have h' := S.inflate_iterate_mono h n
   rw [S.inflate_iterate_shift, mul_neg] at h'
-  simpa only [supertile, add_comm m n, iterate_add_apply] using h'
+  exact h'
+
+theorem shifted_supertile_subset {a : α} {p : α × ℝ} {m : ℕ}
+    (hp : p ∈ S.supertile a m) (n : ℕ) :
+    shift (-(S.β ^ n * p.2)) (S.supertile p.1 n) ⊆ S.supertile a (m + n) := by
+  simpa only [supertile, add_comm m n, iterate_add_apply] using S.shifted_supertile_subset_inflate hp n
 
 /-- Every hull tiling contains a complete translated supertile at any chosen
 level. The proof uses only legality and positive expanding tile lengths. -/

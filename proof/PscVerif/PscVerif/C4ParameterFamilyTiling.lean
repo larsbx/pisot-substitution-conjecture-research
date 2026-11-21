@@ -1,5 +1,6 @@
 import PscVerif.C4ParameterFamilyBridge
 import PscVerif.PeriodicPartnerBalancedGeometry
+import PscVerif.PeriodicPartnerLegalCoincidence
 import PscVerif.PeriodicPartnerHullPatches
 import PscVerif.PeriodicPartnerLocalTopology
 import Mathlib.Topology.Instances.AddCircle.DenseSubgroup
@@ -279,5 +280,68 @@ theorem periodic_swap_geometry (k : ℕ) (hk : 2 ≤ k) :
   rw [shift_swap_periodic_patch]
   apply Psc.PeriodicPartnerBalancedGeometry.dense_coincidence_repeatWord S (by simp) (by simp [add_comm])
   simpa [S, geometry_image] using dense_swap_coincidences k hk
+
+open Psc.PeriodicPartnerEventualCoincidence (eventual)
+open Psc.PeriodicPartnerLegalCoincidence (LegalPatch openOverlap originPatch)
+
+/-- Every two legal patches sharing a tile have dense eventual coincidence
+on their open overlap for the literal family. -/
+theorem legal_patches_dense_eventual (k : ℕ) (hk : 2 ≤ k) :
+    let S := geometry k (show 1 ≤ k by omega)
+    ∀ {A B}, LegalPatch S A → LegalPatch S B → (A ∩ B).Nonempty →
+      openOverlap S A B ⊆ closure (eventual S A B ∩ openOverlap S A B) := by
+  let hk' : 1 ≤ k := by omega
+  let S := geometry k hk'
+  let Q := repeatWord S [0, 1]
+  obtain ⟨hQ, hd⟩ := periodic_swap_geometry k hk
+  have hp : LengthSubst.shift (S.ℓ 0 + S.ℓ 1) Q = Q := by
+    simpa [Q] using Psc.PeriodicPartnerBalancedGeometry.repeatWord_period S [0, 1]
+  have hg : Dense (eventual S Q (LengthSubst.shift (S.ℓ 0) Q)) := hd.mono (by
+    rintro x ⟨j, q, hL, hR, hx⟩
+    exact Psc.PeriodicPartnerEventualCoincidence.mem_eventual_of_tile_interior S hL hR hx)
+  exact fun {_ _} hA hB hc => Psc.PeriodicPartnerLegalCoincidence.dense_legal_overlap S hQ hp
+    (swap_rotation_irrational k hk') hg (every_letter_in_square k hk') hA hB hc
+
+/-- Two legal hull tilings sharing a tile are densely eventually coincident
+on the whole line. -/
+theorem hull_dense_eventual (k : ℕ) (hk : 2 ≤ k) :
+    let S := geometry k (show 1 ≤ k by omega)
+    ∀ {T U : S.Hull}, (T.1 ∩ U.1).Nonempty → Dense (eventual S T.1 U.1) :=
+  Psc.PeriodicPartnerLegalCoincidence.dense_hull_of_common_tile _ (legal_patches_dense_eventual k hk)
+
+/-- The literal family excludes disjoint inflation-periodic partners with
+the published closed-origin witnesses. -/
+theorem periodic_common_tile_of_origin_witnesses (k : ℕ) (hk : 2 ≤ k) :
+    let S := geometry k (show 1 ≤ k by omega)
+    ∀ {T U T' U' : S.Hull} {m n : ℕ}, 0 < m → 0 < n → inflateH^[m] T = T → inflateH^[n] U = U →
+      ∀ {v : ℝ}, originPatch S T.1 = originPatch S T'.1 → originPatch S U.1 = originPatch S U'.1 →
+        originPatch S (LengthSubst.shift v T'.1) = originPatch S (LengthSubst.shift v U'.1) →
+          (T.1 ∩ U.1).Nonempty :=
+  Psc.PeriodicPartnerLegalCoincidence.periodic_common_tile_of_origin_witnesses _ (hull_dense_eventual k hk)
+
+/-- With injective inflation and the finite-fibre and two-point witness
+properties of the published factor, the fibre of the constructed periodic
+tiling contains no disjoint pair. -/
+theorem periodic_fibre_common_tiles {Y : Type*} (k : ℕ) (hk : 2 ≤ k) :
+    let S := geometry k (show 1 ≤ k by omega)
+    ∀ (g : S.Hull → Y) (f : Y → Y), Injective (inflateH (S := S)) → Semiconj g inflateH f →
+      (∀ y, {T | g T = y}.Finite) →
+      (∀ {T U}, g T = g U → ∃ (T' U' : S.Hull) (v : ℝ),
+        originPatch S T.1 = originPatch S T'.1 ∧ originPatch S U.1 = originPatch S U'.1 ∧
+        originPatch S (LengthSubst.shift v T'.1) = originPatch S (LengthSubst.shift v U'.1)) →
+      ∃ y, {T | g T = y}.Nonempty ∧ ∀ T U, g T = y → g U = y → (T.1 ∩ U.1).Nonempty := by
+  intro S g f hinj hsem hfin hw
+  obtain ⟨V, _, _, hV⟩ := fixed_hull_tiling k (show 1 ≤ k by omega)
+  let y := g V
+  have hy : f^[2] y = y := by
+    dsimp only [y]
+    rw [← (hsem.iterate_right 2) V, hV]
+  refine ⟨y, ⟨V, rfl⟩, fun T U ht hu => ?_⟩
+  obtain ⟨m, hm, _, hT⟩ := Psc.PeriodicPartner.periodic_lift_of_finite_fibre
+    _ f g hinj hsem (hfin y) (by decide : 0 < 2) hy ht
+  obtain ⟨n, hn, _, hU⟩ := Psc.PeriodicPartner.periodic_lift_of_finite_fibre
+    _ f g hinj hsem (hfin y) (by decide : 0 < 2) hy hu
+  obtain ⟨T', U', v, h₁, h₂, hv⟩ := hw (ht.trans hu.symm)
+  exact periodic_common_tile_of_origin_witnesses k hk hm hn hT hU h₁ h₂ hv
 
 end Psc.ParameterFamilyTiling
