@@ -39,12 +39,12 @@ elan run "$PSC_FAMILY_PIN" lake --no-cache env true
 psc_family_check_pins
 elan run "$PSC_FAMILY_PIN" lake --no-cache exe cache get
 elan run "$PSC_FAMILY_PIN" lake --no-cache build \
-    PscVerif.C4ParameterFamilyTiling PscVerif.C4ParameterFamilyControls \
-    PscVerif.UniversalClosureReduction
+    PscVerif.C4ParameterFamilySolenoid PscVerif.C4ParameterFamilyControls \
+    PscVerif.UniversalClosureReduction PscVerif.PeriodicPartnerRealizationModels
 psc_family_check_pins
 elan run "$PSC_FAMILY_PIN" lake --no-cache env lean C4ParameterFamilyAudit.lean \
     | tee "$PSC_FAMILY_TMP/family-audit.log"
-test "$(grep -c '^PSC_PARAMETER_FAMILY_ENDPOINT' "$PSC_FAMILY_TMP/family-audit.log")" -eq 24
+test "$(grep -c '^PSC_PARAMETER_FAMILY_ENDPOINT' "$PSC_FAMILY_TMP/family-audit.log")" -eq 35
 for PSC_FAMILY_ENDPOINT in \
     Psc.ParameterFamily.finite_and_productive \
     Psc.ParameterFamily.coincidence_child \
@@ -68,14 +68,25 @@ for PSC_FAMILY_ENDPOINT in \
     Psc.ParameterFamilyTiling.hull_dense_eventual \
     Psc.ParameterFamilyTiling.periodic_common_tile_of_origin_witnesses \
     Psc.ParameterFamilyTiling.periodic_fibre_common_tiles \
+    Psc.ParameterFamilyRecognizability.inflateH_bijective \
+    Psc.ParameterFamilySolenoid.mat_eq \
+    Psc.ParameterFamilySolenoid.continuous_solenoidRealize \
+    Psc.ParameterFamilySolenoid.solenoidRealize_surjective \
+    Psc.ParameterFamilySolenoid.solenoidRealize_finite_fibres \
+    Psc.ParameterFamilySolenoid.solenoidRealize_inflate \
+    Psc.ParameterFamilySolenoid.solenoidRealize_translate \
+    Psc.ParameterFamilySolenoid.fixed_tiling_over_zero \
+    Psc.ParameterFamilySolenoid.periodic_of_realize_zero \
+    Psc.ParameterFamilySolenoid.solenoidRealize_fibres_eq_of_equivariant \
+    Psc.ParameterFamilySolenoid.common_tile_of_zero_fibre_witnesses \
     Psc.UniversalClosureReduction.all_blocks_productive \
     Psc.UniversalClosureReduction.infinite_seed_reachability; do
     test "$(awk -F '\t' -v name="$PSC_FAMILY_ENDPOINT" \
         '$1 == "PSC_PARAMETER_FAMILY_ENDPOINT" && $2 == name {n++} END {print n+0}' \
         "$PSC_FAMILY_TMP/family-audit.log")" -eq 1
 done
-test "$(grep -c '^PSC_PARAMETER_FAMILY_MODULE' "$PSC_FAMILY_TMP/family-audit.log")" -eq 13
-test "$(awk -F '\t' '$1 == "PSC_PARAMETER_FAMILY_DECLARATIONS" && $2 == 13 {n++} END {print n+0}' \
+test "$(grep -c '^PSC_PARAMETER_FAMILY_MODULE' "$PSC_FAMILY_TMP/family-audit.log")" -eq 23
+test "$(awk -F '\t' '$1 == "PSC_PARAMETER_FAMILY_DECLARATIONS" && $2 == 23 {n++} END {print n+0}' \
     "$PSC_FAMILY_TMP/family-audit.log")" -eq 1
-test "$(grep -Fxc $'PSC_PARAMETER_FAMILY_AUDIT_COMPLETE\t24\t48' "$PSC_FAMILY_TMP/family-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_PARAMETER_FAMILY_AUDIT_COMPLETE\t35\t70' "$PSC_FAMILY_TMP/family-audit.log")" -eq 1
 psc_family_check_pins

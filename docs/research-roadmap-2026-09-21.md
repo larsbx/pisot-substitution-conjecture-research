@@ -28,22 +28,22 @@ extends this to legal patches sharing a tile and their open overlap, and to
 legal hull tilings sharing a tile. These are completed formal components,
 not new requests to discover a family carrier or construct the hull.
 
-The exact next interface is
-[`Psc.ParameterFamilyTiling.periodic_fibre_common_tiles`](../proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean).
-It concludes that **one nonempty factor fibre has pairwise common tiles**,
-conditional on injective inflation, inflation semiconjugacy, finite fibres,
-and same-fibre closed-origin witnesses. It does not yet conclude coincidence
-rank one or pure discrete spectrum. The [published Barge–Štimac–Williams
-Corollary 2](https://doi.org/10.3934/dcds.2013.33.579) already supplies the
-paper-level family conclusion without a unit-determinant hypothesis. The
-formal family task can proceed independently of universal BH or C4. Keep
-the separate published `k=1` corollary outside the `k>=2` combined Lean endpoint.
+The [solenoid realization](c4-family-solenoid-factor-2026-11-21.md)
+establishes recognizability and a continuous, onto, finite-to-one factor
+for the ordinary hull at `k>=1`. The zero fibre is nonempty and all its
+tilings are inflation-periodic. For `k>=2`,
+[`common_tile_of_zero_fibre_witnesses`](../proof/PscVerif/PscVerif/C4ParameterFamilySolenoid.lean)
+takes exact origin agreements and an exact agreement after a common shift.
+It gives a common tile for the pair over zero. The [published
+Barge–Štimac–Williams Corollary 2](https://doi.org/10.3934/dcds.2013.33.579)
+already gives the written family conclusion. The spectral use of the
+separate published `k=1` result stays outside the combined Lean endpoint.
 
 ### Deliverables and the premises each must discharge
 
 | Workstream | Reuse at its recorded scope | Next deliverable and completion condition |
 | --- | --- | --- |
-| **Family factor geometry** | The literal ordinary hull, aperiodicity, FLC, dense legal-patch coincidence and the conditional periodic-fibre theorem. | Instantiate recognizability/injective inflation and the same concrete maximal equicontinuous factor: its semiconjugacy, finite fibres, and implication from equal factor images to the closed-origin witnesses. Prove the ordinary-hull compactness, Hausdorffness and map-identification premises required by the chosen imports. Inflation preimages and factor fibres remain different objects. |
+| **Family factor geometry** | Unique desubstitution and the onto, finite-to-one ordinary-hull map to the full solenoid. Its zero fibre is periodic. | Derive the common-shift witnesses for each pair over zero. Lean proves a fibre comparison for continuous maps into the same time-normalized solenoid. The published factor identification and same-fibre witness theorem are written inputs. |
 | **Family measured spectrum** | The nonempty fibre with pairwise common tiles once the preceding inputs are supplied. | Formalize the disjoint-pair obstruction to failure of pure discreteness, or the equivalent coincidence-rank-one theorem, for this hull. Specify the invariant probability measure and translation action, and conclude density of the translation eigenfunctions in its `L²` space for every `k>=2`. A symbolic-shift conclusion needs its own transfer theorem. |
 | **BH and Class A** | The accepted written minus-Class-A cover, written upper plus entry/continuation, and the 70 small upper plus certificates at their complete swap-seed scope. | Bind the written upper plus original-occurrence paths to Lean; retain the recorded acceptance status of each finite certificate. Extend source coverage and an actual selected path to zero integral displacement to the remaining BH domains, including the full nonunit representation. Use the [BH roadmap](bh-escape-roadmap-2026-11-14.md) for the exact scopes. |
 | **Residual A1′** | The scoped tail witnesses and the two-obstruction completion theorem. | Prove one-sided coincidence for the prescribed residual first-letter-fixed hub pair; same-position proximality or an equal-Parikh prefix with the same next letter is a concrete target. The uncovered non-crossing Theorem K cells are a narrower starting point. Universal BH and A1′ together feed #84; #84 is not a third independent existence premise. |
@@ -53,10 +53,10 @@ the separate published `k=1` corollary outside the `k>=2` combined Lean endpoint
 
 For the broader realization route, the [ordinary hull topology](c4-ordinary-hull-topology-2026-11-19.md)
 and [derived Pisot contraction](c4-pisot-contraction-2026-11-19.md) are available.
-Continuity of the constructed realization and its identification with the
-specific published BBK map still need their own proofs before that map's
-finite-fibre theorem can be applied. Preserve the nonunit inverse limit;
-compactness of its target does not establish compactness of the source hull.
+The ordinary hull is now compact, and bijective inflation with the Pisot
+data supplies continuity and finite fibres for the constructed map.
+Applying the published factor relation to a general substitution still needs
+the corresponding identification and hypotheses.
 
 ### Literature decisions that change the work plan
 

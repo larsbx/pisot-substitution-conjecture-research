@@ -229,6 +229,7 @@ import PscVerif.TerminationFactors
 import PscVerif.C4ParameterFamilyPisot
 import PscVerif.C4ParameterFamilyBridge
 import PscVerif.C4ParameterFamilyTiling
+import PscVerif.C4ParameterFamilySolenoid
 import PscVerif.UniversalClosureReduction
 import PscVerif.OccurrenceAncestry
 import PscVerif.BHFiniteReachability
