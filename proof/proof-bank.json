@@ -40114,6 +40114,198 @@
       "declaration": "theorem periodDoubling_mod_two_fixed_line :"
     },
     {
+      "name": "Psc.PeriodicPartnerFixedPointHull.first_iterWord",
+      "module": "PscVerif.PeriodicPartnerFixedPointHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointHull.lean",
+      "line": 19,
+      "declaration": "theorem first_iterWord (n : ℕ) (a : α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointHull.last_iterWord",
+      "module": "PscVerif.PeriodicPartnerFixedPointHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointHull.lean",
+      "line": 29,
+      "declaration": "theorem last_iterWord (n : ℕ) (a : α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointHull.iterWord_ne_singleton_self",
+      "module": "PscVerif.PeriodicPartnerFixedPointHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointHull.lean",
+      "line": 49,
+      "declaration": "theorem iterWord_ne_singleton_self (hβ : 1 < S.β) {n : ℕ} (hn : 0 < n) (a : α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointHull.count_partition",
+      "module": "PscVerif.PeriodicPartnerFixedPointHull",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointHull.lean",
+      "line": 60,
+      "declaration": "private theorem count_partition [DecidableEq α] (w : List α) (a : α) (hw : w ≠ [a]) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointHull.mem_legalSeams_of_origin",
+      "module": "PscVerif.PeriodicPartnerFixedPointHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointHull.lean",
+      "line": 92,
+      "declaration": "theorem mem_legalSeams_of_origin {T : S.Hull} {b a : α}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointHull.fixedSeed_card",
+      "module": "PscVerif.PeriodicPartnerFixedPointHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointHull.lean",
+      "line": 119,
+      "declaration": "theorem fixedSeed_card (hβ : 1 < S.β) {n : ℕ} (hn : 0 < n) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointHull.hull_count_of_classification",
+      "module": "PscVerif.PeriodicPartnerFixedPointHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointHull.lean",
+      "line": 143,
+      "declaration": "theorem hull_count_of_classification (hβ : 1 < S.β) {n : ℕ} (hn : 0 < n)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointHull.hull_parity_of_classification",
+      "module": "PscVerif.PeriodicPartnerFixedPointHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointHull.lean",
+      "line": 157,
+      "declaration": "theorem hull_parity_of_classification (S : LengthSubst (Fin 3))"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.even_card_fixedPoints",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 22,
+      "declaration": "theorem even_card_fixedPoints {X : Type*} (f twin : X → X) [Finite (fixedPoints f)]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.mem_fixedLetters",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 54,
+      "declaration": "@[simp] theorem mem_fixedLetters {g : α → α} {n : ℕ} {a : α} :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.mem_periodicLetters",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 58,
+      "declaration": "@[simp] theorem mem_periodicLetters {g : α → α} {a : α} :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.fixed_subset_periodic",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 63,
+      "declaration": "private theorem fixed_subset_periodic (g : α → α) {n : ℕ} (hn : 0 < n) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.fixedLetters_card_zero_or_two",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 70,
+      "declaration": "theorem fixedLetters_card_zero_or_two (g : α → α) {n : ℕ} (hn : 0 < n)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.fixedSeams_card_of_complete",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 109,
+      "declaration": "theorem fixedSeams_card_of_complete (last first : α → α) (legal : Finset (α × α))"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.even_count_iff_even_trace",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 124,
+      "declaration": "theorem even_count_iff_even_trace (last first : α → α) (legal : Finset (α × α))"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.periodicLetters_nonempty",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 144,
+      "declaration": "private theorem periodicLetters_nonempty : ∀ g : Fin 3 → Fin 3,"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.periodicLetters_card_le_two",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 147,
+      "declaration": "private theorem periodicLetters_card_le_two {g : Fin 3 → Fin 3} (hg : ¬Injective g) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.complete_range_of_edge_bound",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 162,
+      "declaration": "theorem complete_range_of_edge_bound (last first : Fin 3 → Fin 3)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.charpoly_cubic",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 212,
+      "declaration": "theorem charpoly_cubic (A : Matrix (Fin 3) (Fin 3) R) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.newton_two_three",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 225,
+      "declaration": "theorem newton_two_three (A : Matrix (Fin 3) (Fin 3) R) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.det_zero_of_first_third",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 242,
+      "declaration": "theorem det_zero_of_first_third (A : Matrix (Fin 3) (Fin 3) F₂)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.all_power_traces_zero_iff",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 251,
+      "declaration": "theorem all_power_traces_zero_iff (A : Matrix (Fin 3) (Fin 3) F₂) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.charpoly_cases_of_trace_det",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 282,
+      "declaration": "theorem charpoly_cases_of_trace_det (A : Matrix (Fin 3) (Fin 3) F₂)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.cube_zero_of_signed_factors",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 298,
+      "declaration": "theorem cube_zero_of_signed_factors (A : Matrix (Fin 3) (Fin 3) F₂)"
+    },
+    {
       "name": "Psc.PeriodicPartnerGraphSpectrum.boundary_range_invariant",
       "module": "PscVerif.PeriodicPartnerGraphSpectrum",
       "private": false,
@@ -55255,7 +55447,7 @@
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "81efe5b8745576f8f15a59a263563b31e08307e9c432e78fa2ef9021a613b2d1",
     "proof/PscVerif/EvenRankTwoAudit.lean": "cfc2c3b6dfae0305e1ab27989607917e4ffe8944a513aa861dc5ca781ba620ca",
     "proof/PscVerif/MarkerReachabilityReplay.lean": "4d21e06344eff182c78196d2f8eb815e1dbb8f517920dedf6849cc1546d831a3",
-    "proof/PscVerif/PeriodicPartnerAudit.lean": "5209d4fc3a6e862fefaddf411dd6f29706a42b651e42fc2990240647d409d20e",
+    "proof/PscVerif/PeriodicPartnerAudit.lean": "13de9fe1d73255b7aaad4e894ba57f99c7e8d36f9559007ed8a4e7996ca9ede5",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean": "f1c4480b95159800bb52cd42164763d01e6ab6045dc72b07874f164409a0eaf1",
     "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean": "6387c221871d7b70efca50349c815fac07421bb44a28122f9157ff0652cb074f",
@@ -55442,6 +55634,8 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean": "812599f6a9dfb4ab5d0da0924fa6c3901128f74644e76d14eb2996de17f55c44",
     "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean": "24de7ca583a5a654e331a0fae80e407174589843b58051fca044fefcd76d874c",
     "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean": "5519f5698c83b43956df8e04263f873e4879a1ec4e48533fe96e36b330f7d626",
+    "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointHull.lean": "ea853775c5ef040594228907ccf63082505cb596e39778e6a942f0a4374583fd",
+    "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean": "5b2e91b27abcdbb06b7acac3eac752a1b52b10b2b1045445b6a496263b44630c",
     "proof/PscVerif/PscVerif/PeriodicPartnerGraphSpectrum.lean": "d1f70a6da1a88f58abba2ee29223ed9d96c13ffc70ce5a7942731d9cfe7326a6",
     "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean": "6124e92faa7ace36663a57ff5dda39f281fd86237cc30006912cf4c2a0a65b6e",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean": "80e0f040cd0ea768a0d5ddf74710dc659c9a9431fb667740953f41369a652386",
@@ -55505,7 +55699,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "f11fc2a70bd54982793ac00664145fecf291731fa039d77c5c8989ffe979ba2c",
+    "proof/PscVerif/PscVerif.lean": "43fa81c0579feaa21bb561b9f86e5398ae244e47fdff78bf4e050c00d6afb04b",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
