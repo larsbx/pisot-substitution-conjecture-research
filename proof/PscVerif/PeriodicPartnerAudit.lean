@@ -27,8 +27,11 @@ import PscVerif.PeriodicPartnerWinding
 import PscVerif.PeriodicPartnerWindingSeams
 import PscVerif.PeriodicPartnerLiteralDefect
 import PscVerif.PeriodicPartnerEvenTails
+import PscVerif.PeriodicPartnerFixedPointParity
+import PscVerif.PeriodicPartnerFixedPointHull
 import PscVerif.PeriodicPartnerTwinEndpoint
 import PscVerif.PeriodicPartnerStackWordRigidity
+import PscVerif.PeriodicPartnerGradedLift
 import PscVerif.PeriodicPartnerCompanionWords
 import PscVerif.PeriodicPartnerRealization
 import PscVerif.PeriodicPartnerRealizationModels
@@ -58,7 +61,10 @@ run_cmd do
     `PscVerif.PeriodicPartnerMarkerFamily,
     `PscVerif.PeriodicPartnerWinding,
     `PscVerif.PeriodicPartnerWindingSeams, `PscVerif.PeriodicPartnerLiteralDefect,
-    `PscVerif.PeriodicPartnerEvenTails, `PscVerif.PeriodicPartnerTwinEndpoint, `PscVerif.PeriodicPartnerStackWordRigidity,
+    `PscVerif.PeriodicPartnerEvenTails, `PscVerif.PeriodicPartnerFixedPointParity,
+    `PscVerif.PeriodicPartnerFixedPointHull, `PscVerif.PeriodicPartnerTwinEndpoint,
+    `PscVerif.PeriodicPartnerStackWordRigidity,
+    `PscVerif.PeriodicPartnerGradedLift,
     `PscVerif.PeriodicPartnerCompanionWords, `PscVerif.VertexAsymptoteRange,
     `PscVerif.PeriodicPartnerRealization, `PscVerif.PeriodicPartnerRealizationModels,
     `PscVerif.PeriodicPartnerSpectral, `PscVerif.PeriodicPartnerSpectralModels,

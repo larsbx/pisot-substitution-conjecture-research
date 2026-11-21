@@ -1,5 +1,10 @@
 # Spectral closure for the literal C4 parameter family
 
+The [geometric follow-up](c4-family-tiling-2026-11-21.md) checks the literal
+ordinary hull, aperiodicity, finite local complexity and dense eventual
+coincidence of the periodically repeated swap tilings. The mathematical
+conclusion uses the published spectral implication.
+
 ## Result and formal boundary
 
 For every natural `k >= 2`, the literal substitution

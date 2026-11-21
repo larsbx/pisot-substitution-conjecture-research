@@ -4,25 +4,34 @@
 remains: *family criterion inputs proved in Lean; spectral conclusion obtained by a published
 theorem.* C4 and PSC remain open. Independent human review is pending on every cited module.
 
-Starting revision: `main@8bbc05b`. The family is
+Starting revision: `main@c4cc728` (through #644). The family is
 
 \[
 \sigma_k(0)=1,\qquad \sigma_k(1)=0\,1^k\,2,\qquad \sigma_k(2)=001,
 \]
 
-with current Lean endpoint `Psc.ParameterFamilyBridge.spectral_criterion_inputs`
+with arithmetic endpoint `Psc.ParameterFamilyBridge.spectral_criterion_inputs`
 (premises: `k`, `2 ≤ k`) and external application in the
-[spectral-closure note](c4-family-spectral-closure-2026-11-14.md), §3.
+[spectral-closure note](c4-family-spectral-closure-2026-11-14.md), §3. This note refines the
+family ordering of the [live roadmap](research-roadmap-2026-09-21.md) and the
+[research review](psc-sigma-k-research-review-2026-11-20.md), §11; it does not replace them.
+
+**Rebase note.** The first draft was written against `8bbc05b`. Main then merged the
+[family hull](c4-family-tiling-2026-11-21.md) (#639) and the
+[legal-patch transfer](c4-family-legal-coincidence-2026-11-21.md) (#641), which complete
+most of F1 and several items of F2 below. Completed items are kept and marked, with their
+declarations, so the remaining order stays readable.
 
 ## 0. Baseline, with two stale descriptions corrected
 
 Declaration names below were read from the sources at the starting revision; nothing was
-rebuilt for this note.
+rebuilt for this note. `PT` abbreviates `Psc.ParameterFamilyTiling`.
 
 | Topic | Stale description | Baseline at `8bbc05b` | Still open |
 | --- | --- | --- | --- |
-| Stable contraction | "`PisotData` is an assumed analytic input" | Derived: `SpectralPisot.toPisotData` from `χ_M = (X − β)Q`, `Q(β) ≠ 0`, roots of `Q` in the open unit disc; `SpectralPisot.ofIrreducible` produces that from an irreducible rational `χ_M` and the root condition ([contraction note](c4-pisot-contraction-2026-11-19.md)). | Instantiation for `σ_k`. The length-≤3 census certificate does not cover `σ_k`, `k ≥ 2`. |
+| Stable contraction | "`PisotData` is an assumed analytic input" | Derived: `SpectralPisot.toPisotData` from `χ_M = (X − β)Q`, `Q(β) ≠ 0`, roots of `Q` in the open unit disc; `SpectralPisot.ofIrreducible` produces that from an irreducible rational `χ_M` and the root condition ([contraction note](c4-pisot-contraction-2026-11-19.md)). | `SpectralPisot (PT.geometry k hk)` is not yet stated. The length-≤3 census certificate does not cover `σ_k`, `k ≥ 2`. |
 | Source continuity | "hull continuity is open" | `LocalHull S` carries the ordinary topology; `continuous_translate` (joint in `(t, T)`), `continuous_inflate`, `isOpenQuotientMap_chart`, `nhds_patch_basis` ([ordinary-hull note](c4-ordinary-hull-topology-2026-11-19.md)). | Continuity of the *constructed* `realize`: `continuous_realizeLocal_iff` reduces it to the exact presentation, and neither side is proved. |
+| Family hull | "the family has no geometric object in Lean" | `PT.geometry`, `fixed_hull_tiling`, `aperiodic`, `finite_local_complexity`, `continuous_action` for `k ≥ 1`; `hull_dense_eventual`, `periodic_fibre_common_tiles` for `k ≥ 2`. | Compactness, Hausdorffness, recognizability, the factor map and its fibres. |
 | Target | — | `solenoid_compactSpace`, `solenoid_t2Space`, `shiftHomeomorph`, `continuous_flow` ([realization note](c4-geometric-realization-2026-11-19.md)). | Surjectivity, finite fibres, identification with BBK's map. |
 
 The remaining continuity problem is specific. `realize T = ([G(Tₙ)])ₙ`, where `Tₙ` is the
@@ -32,8 +41,8 @@ continuous, which bare `Bijective inflateH` does not give, and (ii) local consta
 `(c₀, …, c_N)` up to the small-translation direction, with the tail controlled uniformly by
 `C · offsetBound · ρⁿ`.
 
-Not in Lean for any substitution: compactness or Hausdorffness of `LocalHull`, finite local
-complexity, nonperiodicity, recognizability, an invariant measure, a Koopman representation.
+Not in Lean for any substitution: compactness or Hausdorffness of `LocalHull`,
+recognizability, an invariant measure, a Koopman representation.
 The pinned Mathlib has `MeasurePreserving` and `Ergodic` and no Koopman file.
 
 ## 1. Order of work
@@ -42,50 +51,36 @@ Each stage is theorem-facing, so each needs its own short stop/go note before co
 (AGENTS.md). Sources named below from memory are marked †; they are to be re-read at that
 stage and are not relied on here.
 
-### F1. The literal family as a `LengthSubst`
+### F1. The literal family as a `LengthSubst` — done except the contraction
 
-Target: `familySubst (k) (hk : 1 ≤ k) : LengthSubst (Fin 3)` with
-`σ = ParameterFamilyRows.substitution k`, `ℓ = (β, β², β + 2)`, and
-`familySpectral k hk : SpectralPisot (familySubst k hk)`, hence `PisotData`.
+Done (#639): `PT.expansion`, `PT.geometry k hk : LengthSubst (Fin 3)` with
+`σ = substitution k`, `ℓ = (β, β², β + 2)`, `expansion_gt_one`, `expansion_pisot`, for
+`1 ≤ k`.
 
-| Obligation | Available | Gap |
-| --- | --- | --- |
-| a definite `β` | `ParameterFamilyPisot.real_root`, `pisot` (existential) | choose it, or prove uniqueness of the real root above `2` from `other_root` |
-| `ne_nil`, `ℓ_pos`, `1 < β` | `2 < β` | immediate |
-| `eigen`: `Σ ℓ(σ a) = β ℓ a` | `positive_left_eigenvector` (`w ᵥ* M = β w`, source letters index columns) | unfold `vecMul` against image words |
-| `mat S` is the cast of `inc (substitution k)` | `incidence_eq` | bind the two matrix presentations once |
-| `SpectralPisot` | `irreducible`, `pisot`, `SpectralPisot.ofIrreducible` | transport `χ` along the cast |
-
-Control: `zero_no_root_above_two` (`k = 0`). Exit: `PisotData (familySubst k hk)` with only
-`k`, `1 ≤ k` as premises.
+Remaining: `SpectralPisot (PT.geometry k hk)`, hence `PisotData`, through
+`SpectralPisot.ofIrreducible`. This needs `mat (geometry k hk)` identified with the cast of
+`inc (substitution k)` so that `ParameterFamilyPisot.irreducible` and `expansion_pisot`
+apply to its characteristic polynomial. No new contraction assumption. Control:
+`zero_no_root_above_two` (`k = 0`).
 
 ### F2. The legal hull and its properties
 
-All statements are on `LocalHull (familySubst k hk)` unless stated.
+`PT.TilingSpace k hk` is `LocalHull (PT.geometry k hk)`.
 
-1. **Nonempty.** `hull_nonempty_of_seed` needs a legal two-tile seed fixed by a power of
-   inflation; exhibit one for `σ_k`.
-2. **Finite local complexity.** For each `R`, finitely many patches on `(−R, R)` up to
-   translation. Uses only `Fintype α` and `min ℓ > 0`; state it for every `LengthSubst`.
-3. **Compact.** `S.Hull` with the exact metric is not compact, so go through the transversal
-   `Ξ = {T | a tile starts at 0}`: `Ξ` is totally bounded by FLC and complete because `Legal`
-   and `IsTiling` are patchwise; then `LocalHull = chart '' ([0, max ℓ] × Ξ)`.
-4. **Hausdorff.** Separate distinct tilings by patch neighbourhoods;
-   `small_translate_eq_zero_of_agree` supplies the local rigidity.
-5. **Action laws.** Have `translate_translate`, `inflateH_translate`, joint continuity. Add
-   `translate 0 = id` and package as a continuous `ℝ`-action with `inflate ∘ translate t =
-   translate (β t) ∘ inflate`.
-6. **Nonperiodic.** `translate t T = T → t = 0`. The written argument uses minimality and
-   letter frequencies with `root_irrational`. Decide at stop/go between formalizing that and
-   deriving it from recognizability.
-7. **Recognizability**, only where F4's route needs it: `Injective inflateH` and
-   `Surjective inflateH` as separate facts, then inverse inflation continuous (compact
-   Hausdorff source makes a continuous bijection a homeomorphism, so item 3 pays for this).
-   General Mossé/Solomyak† is large; a family-specific marker argument is the alternative.
+| Item | Status | Declarations or gap |
+| --- | --- | --- |
+| nonempty | done, `k ≥ 1` | `fixed_hull_tiling` (seam `1.1`, fixed by squared inflation), `tiling_space_nonempty` |
+| finite local complexity | done, generic | `LengthSubst.finite_local_complexity`; family form `PT.finite_local_complexity` |
+| nonperiodic | done, `k ≥ 1` | `aperiodic`, `action_aperiodic`, through `aperiodic_of_inflate_fixed` and `window_occurs` |
+| joint continuity | done | `continuous_action` |
+| action laws | open, small | `translate 0 = id` on `LocalHull`; package with `translate_translate` and `inflate ∘ translate t = translate (β t) ∘ inflate` |
+| compact | open | `S.Hull` with the exact metric is not compact. Go through the transversal `Ξ` of tilings with a tile starting at 0: totally bounded by FLC, complete because `Legal` and `IsTiling` are patchwise; then `LocalHull = chart '' ([0, max ℓ] × Ξ)` |
+| Hausdorff | open | separate distinct tilings by patch neighbourhoods; `small_translate_eq_zero_of_agree` supplies the local rigidity |
+| recognizability | open, only where F4 needs it | `Injective inflateH` and `Surjective inflateH` as separate facts. With a compact Hausdorff source the continuous bijection is a homeomorphism, so compactness pays for continuity of inverse inflation. Solomyak's unique-composition theorem is the candidate named in the review; aperiodicity and FLC, its standing hypotheses, are now in Lean |
 
-Items 2–5 are substitution-generic and independent of F1. Controls: the existing
-`a ↦ aa` boundary example (periodic, inflation not injective) should be formalized here as
-the negative control for 6 and 7.
+Compactness and Hausdorffness are substitution-generic and should be stated for every
+`LengthSubst` with a finite alphabet. The `a ↦ aa` boundary example (periodic, inflation not
+injective) should be formalized as the negative control for recognizability.
 
 ### F3. One criterion definition
 
@@ -120,10 +115,18 @@ Decomposition, with the criterion entering only at (c):
 
 | Step | Statement | Uses |
 | --- | --- | --- |
-| (a) | `realizeLocal` is continuous, equivariant and onto the solenoid | F2.3, F2.7, `PisotData`, §0 (i)–(ii) |
+| (a) | `realizeLocal` is continuous, equivariant and onto the solenoid | F2 compactness and recognizability, `PisotData`, §0 (i)–(ii) |
 | (b) | the solenoid flow `z ↦ z + [tβ⁻ⁿu]` is a minimal translation flow on a compact abelian group; its only invariant probability is Haar | irreducibility of `χ_M` |
 | (c) | `FullFactorCriterion` at one unequal-letter seed ⇒ the set of solenoid points with more than one preimage is Haar-null | Barge–Štimac–Williams, Cor. 2 |
 | (d) | an equivariant, measure-preserving, a.e.-injective map onto a compact abelian translation flow gives `PureDiscrete` | characters separate points; Stone–Weierstrass |
+
+Already available for (c), for `k ≥ 2`: `hull_dense_eventual` (dense eventual coincidence
+for hull tilings sharing a tile) and `periodic_fibre_common_tiles`, which gives one nonempty
+fibre with pairwise common tiles from four premises: injective inflation, semiconjugacy,
+finite fibres and same-fibre closed-origin witnesses. The first comes from F2, the second
+from (a). Finite fibres and the witnesses are the two premises still to discharge, and the
+step from one such fibre to a Haar-null multi-preimage set (coincidence rank one) is not yet
+stated. So non-claim 3 below is superseded on finite fibres: they are on this path.
 
 If (b) holds, every invariant `μ` pushes forward to Haar and the conclusion can quantify over
 all invariant `μ`, which avoids proving unique ergodicity of the hull. That design choice is
@@ -135,7 +138,7 @@ Until (a)–(d) are all checked the status sentence at the top stands unchanged.
 
 Two theorems, never one:
 
-- `family_tiling_pureDiscrete`: the `ℝ`-action on `LocalHull (familySubst k hk)`;
+- `family_tiling_pureDiscrete`: the `ℝ`-action on `LocalHull (PT.geometry k hk)`;
 - `family_shift_pureDiscrete`: the `ℤ`-shift on the two-sided subshift of `σ_k`.
 
 The tiling flow is the suspension of the shift under the roof `x ↦ ℓ(x₀)`, which is not
@@ -149,8 +152,8 @@ that hypothesis in its statement.
 
 ```lean
 theorem family_tiling_pureDiscrete (k : ℕ) (hk : 2 ≤ k) :
-    ∀ μ, IsProbabilityMeasure μ → Invariant (translate (familySubst k _)) μ →
-      PureDiscrete (translate (familySubst k _)) μ
+    ∀ μ, IsProbabilityMeasure μ → Invariant (translate (PT.geometry k _)) μ →
+      PureDiscrete (translate (PT.geometry k _)) μ
 ```
 
 No finiteness, coincidence, root, recognizability or spectral premise is supplied by the
@@ -158,15 +161,17 @@ caller. The request's quantifier symbol was lost in transit; it is read here as 
 termination proof needs `2 ≤ k` (`terminates_with_coincidence`), so `k = 1` is either a
 separate finite certificate or stays external through the cubic trace-at-most-two theorem.
 
-Dependencies: F1 → F2.1, F2.6; F2.2 → F2.3 → F2.7 → F4(a); F3 → F4(c); F4 → F5. F2.2–F2.5 and
-F4(d) have no family dependency and can start immediately.
+Remaining order: F1 contraction; F2 compact → Hausdorff → recognizability → F4(a); F3 →
+F4(c); F4 → F5. Compactness, Hausdorffness, the action laws and F4(d) have no family
+dependency and can start immediately.
 
 ## 3. Non-claims
 
 1. Nothing here is proved; the signatures are targets and may change at each stop/go.
 2. No universal PIP3 statement: every stage is for `σ_k` or for a generic `LengthSubst`, and
    F4(c) is the family's criterion, not a strict-system exclusion.
-3. Finite fibres, BDS periodicization and the BBK identification are not on this path unless
-   F4(a) or (c) turns out to need them; if so that is recorded at the stage's stop/go.
+3. Finite fibres are on this path through `periodic_fibre_common_tiles`. BDS periodicization
+   and the BBK identification are not, unless the finite-fibre proof turns out to need the
+   latter; if so that is recorded at the stage's stop/go.
 4. Lean is the deductive layer here. No executable census or certificate is planned, so no
    Mojo module is owed; if a stage adds a finite computation it goes to `kernel/` first.
