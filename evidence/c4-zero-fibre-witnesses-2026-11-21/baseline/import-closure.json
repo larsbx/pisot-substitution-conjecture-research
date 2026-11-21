@@ -1,0 +1,266 @@
+{
+  "C4ParameterFamilyAudit": [
+    "PscVerif.C4ParameterFamilyBridge",
+    "PscVerif.C4ParameterFamilyControls",
+    "PscVerif.C4ParameterFamilySolenoid",
+    "PscVerif.PeriodicPartnerRealizationModels",
+    "PscVerif.UniversalClosureReduction",
+    "Lean.Util.CollectAxioms"
+  ],
+  "PscVerif.C4ParameterFamilyBridge": [
+    "PscVerif.C4ParameterFamilyPisot",
+    "PscVerif.C4ParameterFamilyCarrier",
+    "PscVerif.TerminationFactors"
+  ],
+  "PscVerif.C4ParameterFamilyPisot": [
+    "Mathlib.Algebra.Polynomial.SpecificDegree",
+    "Mathlib.Analysis.Complex.Norm",
+    "Mathlib.LinearAlgebra.Matrix.Charpoly.Basic",
+    "Mathlib.NumberTheory.Real.Irrational",
+    "Mathlib.RingTheory.Polynomial.RationalRoot",
+    "Mathlib.Topology.Order.IntermediateValue",
+    "Mathlib.Tactic.ComputeDegree",
+    "Mathlib.Tactic.FinCases",
+    "Mathlib.Tactic.FunProp",
+    "Mathlib.Tactic.Linarith",
+    "Mathlib.Tactic.LinearCombination",
+    "Mathlib.Tactic.NormNum",
+    "Mathlib.Tactic.Ring",
+    "PscVerif.Incidence",
+    "PscVerif.C4ParameterFamilyWords"
+  ],
+  "PscVerif.Incidence": [
+    "PscVerif.Binomial",
+    "Mathlib.Data.Matrix.Mul",
+    "Mathlib.Algebra.BigOperators.Ring.Finset"
+  ],
+  "PscVerif.Binomial": [
+    "Mathlib.Data.List.Basic",
+    "Mathlib.Data.Fintype.Card",
+    "Mathlib.Logic.Function.Iterate",
+    "Mathlib.Data.Fintype.Pigeonhole",
+    "Mathlib.Data.Nat.Choose.Basic",
+    "Mathlib.Tactic.Ring",
+    "Mathlib.Tactic.Linarith"
+  ],
+  "PscVerif.C4ParameterFamilyWords": [],
+  "PscVerif.C4ParameterFamilyCarrier": [
+    "PscVerif.C4ParameterFamilyWords",
+    "PscVerif.Termination",
+    "PscVerif.FastForwardCarrier"
+  ],
+  "PscVerif.Termination": [
+    "PscVerif.Descendants"
+  ],
+  "PscVerif.Descendants": [
+    "PscVerif.Reduction"
+  ],
+  "PscVerif.Reduction": [
+    "PscVerif.SignedCocycle",
+    "PscVerif.FixedPointLimit"
+  ],
+  "PscVerif.SignedCocycle": [
+    "PscVerif.ParikhIntertwiner"
+  ],
+  "PscVerif.ParikhIntertwiner": [
+    "PscVerif.Incidence",
+    "PscVerif.PerronCore",
+    "PscVerif.ConcentrationAlgebra"
+  ],
+  "PscVerif.PerronCore": [
+    "Mathlib.Data.Matrix.Mul",
+    "Mathlib.Analysis.Complex.Basic"
+  ],
+  "PscVerif.ConcentrationAlgebra": [
+    "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+    "Mathlib.LinearAlgebra.Matrix.Charpoly.Basic",
+    "Mathlib.LinearAlgebra.Matrix.ToLinearEquiv",
+    "Mathlib.LinearAlgebra.Matrix.ToLin",
+    "Mathlib.LinearAlgebra.Quotient.Basic",
+    "Mathlib.Algebra.Polynomial.AlgebraMap"
+  ],
+  "PscVerif.FixedPointLimit": [
+    "PscVerif.Binomial",
+    "Mathlib.Data.Finset.Lattice.Fold"
+  ],
+  "PscVerif.FastForwardCarrier": [
+    "PscVerif.ForwardCarrier",
+    "Mathlib.Tactic.FinCases"
+  ],
+  "PscVerif.ForwardCarrier": [
+    "PscVerif.Descendants"
+  ],
+  "PscVerif.TerminationFactors": [
+    "PscVerif.Termination"
+  ],
+  "PscVerif.C4ParameterFamilyControls": [
+    "PscVerif.C4ParameterFamilyWords",
+    "PscVerif.FastForwardCarrier"
+  ],
+  "PscVerif.C4ParameterFamilySolenoid": [
+    "PscVerif.C4ParameterFamilyRecognizability",
+    "PscVerif.PeriodicPartnerRealizationFinite",
+    "PscVerif.PeriodicPartnerRealizationOnto",
+    "PscVerif.PeriodicPartnerSpectral"
+  ],
+  "PscVerif.C4ParameterFamilyRecognizability": [
+    "PscVerif.C4ParameterFamilyTiling",
+    "PscVerif.PeriodicPartnerDesubContinuity"
+  ],
+  "PscVerif.C4ParameterFamilyTiling": [
+    "PscVerif.C4ParameterFamilyBridge",
+    "PscVerif.PeriodicPartnerBalancedGeometry",
+    "PscVerif.PeriodicPartnerLegalCoincidence",
+    "PscVerif.PeriodicPartnerHullPatches",
+    "PscVerif.PeriodicPartnerLocalTopology",
+    "Mathlib.Topology.Instances.AddCircle.DenseSubgroup"
+  ],
+  "PscVerif.PeriodicPartnerBalancedGeometry": [
+    "PscVerif.PeriodicPartnerEvenTails",
+    "PscVerif.Reduction"
+  ],
+  "PscVerif.PeriodicPartnerEvenTails": [
+    "PscVerif.PeriodicPartnerHull",
+    "PscVerif.PeriodicPartnerLiteralDefect",
+    "Mathlib.Data.Matrix.Basic",
+    "Mathlib.Data.ZMod.Basic"
+  ],
+  "PscVerif.PeriodicPartnerHull": [
+    "PscVerif.PeriodicPartnerAsymptotic",
+    "PscVerif.PeriodicPartnerDichotomy",
+    "Mathlib.Topology.MetricSpace.PiNat"
+  ],
+  "PscVerif.PeriodicPartnerAsymptotic": [
+    "PscVerif.PeriodicPartnerDynamics",
+    "PscVerif.PeriodicPartnerCollapse"
+  ],
+  "PscVerif.PeriodicPartnerDynamics": [
+    "PscVerif.PeriodicPartner",
+    "Mathlib.Basic.Real.Basic",
+    "Mathlib.Algebra.Order.GroupWithZero.Basic"
+  ],
+  "PscVerif.PeriodicPartner": [
+    "Mathlib.Dynamics.PeriodicPts.Lemmas",
+    "Mathlib.Data.Fintype.Pi",
+    "Mathlib.Data.Fin.VecNotation"
+  ],
+  "PscVerif.PeriodicPartnerCollapse": [
+    "PscVerif.PeriodicPartner",
+    "Mathlib.Algebra.Order.Archimedean.Basic",
+    "Mathlib.Topology.MetricSpace.Basic"
+  ],
+  "PscVerif.PeriodicPartnerDichotomy": [
+    "PscVerif.PeriodicPartnerDynamics",
+    "PscVerif.PeriodicPartnerCollapse"
+  ],
+  "PscVerif.PeriodicPartnerLiteralDefect": [
+    "Mathlib.Algebra.FreeMonoid.Basic",
+    "Mathlib.Algebra.MonoidAlgebra.Basic",
+    "Mathlib.Tactic.Abel"
+  ],
+  "PscVerif.PeriodicPartnerLegalCoincidence": [
+    "PscVerif.PeriodicPartnerEventualCoincidence",
+    "PscVerif.PeriodicPartnerHullPatches"
+  ],
+  "PscVerif.PeriodicPartnerEventualCoincidence": [
+    "PscVerif.PeriodicPartnerHullContinuity",
+    "Mathlib.Topology.Algebra.GroupWithZero",
+    "Mathlib.Topology.Instances.AddCircle.DenseSubgroup"
+  ],
+  "PscVerif.PeriodicPartnerHullContinuity": [
+    "PscVerif.PeriodicPartnerHull",
+    "Mathlib.Topology.Homeomorph.Defs"
+  ],
+  "PscVerif.PeriodicPartnerHullPatches": [
+    "PscVerif.PeriodicPartnerEvenTails",
+    "Mathlib.Data.Set.Finite.List",
+    "Mathlib.NumberTheory.Real.Irrational",
+    "Mathlib.Topology.Algebra.Order.Archimedean"
+  ],
+  "PscVerif.PeriodicPartnerLocalTopology": [
+    "PscVerif.PeriodicPartnerHullContinuity",
+    "Mathlib.Topology.Constructions.SumProd",
+    "Mathlib.Topology.Maps.OpenQuotient"
+  ],
+  "PscVerif.PeriodicPartnerDesubContinuity": [
+    "PscVerif.PeriodicPartnerHullCompact"
+  ],
+  "PscVerif.PeriodicPartnerHullCompact": [
+    "PscVerif.PeriodicPartnerHullComplete",
+    "PscVerif.PeriodicPartnerRealization",
+    "PscVerif.PeriodicPartnerOriginContinuity",
+    "Mathlib.Data.Set.Finite.Powerset",
+    "Mathlib.Topology.MetricSpace.Pseudo.Basic"
+  ],
+  "PscVerif.PeriodicPartnerHullComplete": [
+    "PscVerif.PeriodicPartnerHullContinuity",
+    "Mathlib.Topology.MetricSpace.Cauchy"
+  ],
+  "PscVerif.PeriodicPartnerRealization": [
+    "PscVerif.PeriodicPartnerHull",
+    "Mathlib.LinearAlgebra.Matrix.ToLin",
+    "Mathlib.Analysis.SpecificLimits.Normed",
+    "Mathlib.Analysis.Normed.Group.Uniform",
+    "Mathlib.Algebra.Order.Floor.Ring",
+    "Mathlib.Topology.Algebra.Group.Quotient",
+    "Mathlib.Topology.Algebra.InfiniteSum.Real",
+    "Mathlib.Topology.Instances.Matrix"
+  ],
+  "PscVerif.PeriodicPartnerOriginContinuity": [
+    "PscVerif.PeriodicPartnerHullContinuity",
+    "PscVerif.PeriodicPartnerRealization",
+    "Mathlib.Topology.LocallyConstant.Basic"
+  ],
+  "PscVerif.PeriodicPartnerRealizationFinite": [
+    "PscVerif.PeriodicPartnerRealizationContinuity",
+    "Mathlib.Data.Set.Finite.Powerset"
+  ],
+  "PscVerif.PeriodicPartnerRealizationContinuity": [
+    "PscVerif.PeriodicPartnerOriginContinuity",
+    "PscVerif.PeriodicPartnerLocalRealization",
+    "PscVerif.PeriodicPartnerDesubContinuity",
+    "Mathlib.Analysis.Normed.Group.FunctionSeries"
+  ],
+  "PscVerif.PeriodicPartnerLocalRealization": [
+    "PscVerif.PeriodicPartnerLocalTopology",
+    "PscVerif.PeriodicPartnerRealization"
+  ],
+  "PscVerif.PeriodicPartnerRealizationOnto": [
+    "PscVerif.PeriodicPartnerRealizationContinuity"
+  ],
+  "PscVerif.PeriodicPartnerSpectral": [
+    "PscVerif.PeriodicPartnerRealization",
+    "Mathlib.Analysis.Normed.Algebra.GelfandFormula",
+    "Mathlib.Analysis.Matrix.Normed",
+    "Mathlib.Analysis.Complex.Basic",
+    "Mathlib.LinearAlgebra.Matrix.Charpoly.Eigs",
+    "Mathlib.LinearAlgebra.Charpoly.ToMatrix",
+    "Mathlib.LinearAlgebra.Eigenspace.Zero",
+    "Mathlib.FieldTheory.Separable"
+  ],
+  "PscVerif.PeriodicPartnerRealizationModels": [
+    "PscVerif.PeriodicPartnerRealization",
+    "Mathlib.NumberTheory.Real.GoldenRatio",
+    "Mathlib.Tactic.LinearCombination"
+  ],
+  "PscVerif.UniversalClosureReduction": [
+    "PscVerif.Intertwiner2",
+    "PscVerif.Termination",
+    "Mathlib.Data.Finset.Max",
+    "Mathlib.Analysis.SpecialFunctions.Sqrt"
+  ],
+  "PscVerif.Intertwiner2": [
+    "PscVerif.Incidence",
+    "PscVerif.Cyclicity"
+  ],
+  "PscVerif.Cyclicity": [
+    "Mathlib.Algebra.Polynomial.SpecificDegree",
+    "Mathlib.LinearAlgebra.FiniteDimensional.Lemmas",
+    "Mathlib.LinearAlgebra.Matrix.Charpoly.Coeff",
+    "Mathlib.Tactic.ComputeDegree",
+    "Mathlib.Tactic.FinCases",
+    "Mathlib.Tactic.NormNum",
+    "Mathlib.Tactic.Ring",
+    "PscVerif.ConcentrationAlgebra"
+  ]
+}

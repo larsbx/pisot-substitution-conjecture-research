@@ -1,0 +1,25 @@
+{
+  "verified_utc": "2026-11-21T20:03:23.947127+00:00",
+  "pr_body_policy_passed": true,
+  "checks": [
+    {
+      "command": [
+        "bash",
+        "-n",
+        "tools/check_c4_parameter_family.sh"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output": ""
+    }
+  ]
+}

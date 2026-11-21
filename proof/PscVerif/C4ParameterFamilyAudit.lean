@@ -4,7 +4,8 @@ target. The unchanged full proof-bank audit separately inspects every imported
 project constant. -/
 import PscVerif.C4ParameterFamilyBridge
 import PscVerif.C4ParameterFamilyControls
-import PscVerif.C4ParameterFamilyTiling
+import PscVerif.C4ParameterFamilySolenoid
+import PscVerif.PeriodicPartnerRealizationModels
 import PscVerif.UniversalClosureReduction
 import Lean.Util.CollectAxioms
 
@@ -18,9 +19,12 @@ open Psc.PeriodicPartnerBalancedGeometry (repeatWord)
 open Psc.PeriodicPartnerEventualCoincidence (level level_mono eventual)
 open Psc.PeriodicPartnerLegalCoincidence (LegalPatch openOverlap originPatch)
 open Psc.PeriodicPartnerHull (thueMorse LengthSubst)
-open Psc.PeriodicPartnerHull.LengthSubst (inflateH shift)
-open Psc.PeriodicPartnerLocalTopology (translate)
-open Set
+open Psc.PeriodicPartnerHull.LengthSubst (inflateH shift Agree)
+open Psc.PeriodicPartnerLocalTopology (translate inflate LocalHull)
+open Psc.PeriodicPartnerRealization (Solenoid mat flow shiftS realize torusMap torusMap_mk Torus lattice)
+open Psc.ParameterFamilyRecognizability (inflateH_bijective)
+open Psc.ParameterFamilySolenoid (solenoidRealize pisotData)
+open Matrix Set
 
 universe u
 
@@ -182,6 +186,57 @@ def PeriodicFibreType : Prop :=
         originPatch S (shift v T'.1) = originPatch S (shift v U'.1)) →
       ∃ y, {T | g T = y}.Nonempty ∧ ∀ T U, g T = y → g U = y → (T.1 ∩ U.1).Nonempty
 
+def RecognizabilityType : Prop :=
+  ∀ (k : ℕ) (hk : 1 ≤ k), Function.Bijective (inflateH (S := geometry k hk))
+
+def RealizationMatrixType : Prop :=
+  ∀ (k : ℕ) (hk : 1 ≤ k),
+    mat (geometry k hk) =
+      ((inc (literalSubstitution k)).map (Nat.cast : Nat → Rat)).map (algebraMap Rat Real)
+
+def SolenoidContinuousType : Prop :=
+  ∀ (k : ℕ) (hk : 1 ≤ k), Continuous (solenoidRealize k hk)
+
+def SolenoidSurjectiveType : Prop :=
+  ∀ (k : ℕ) (hk : 1 ≤ k), Function.Surjective (solenoidRealize k hk)
+
+def SolenoidFiniteType : Prop :=
+  ∀ (k : ℕ) (hk : 1 ≤ k) (z : Solenoid (geometry k hk)),
+    {T | solenoidRealize k hk T = z}.Finite
+
+def SolenoidInflateType : Prop :=
+  ∀ (k : ℕ) (hk : 1 ≤ k) (T : LocalHull (geometry k hk)),
+    solenoidRealize k hk (inflate (geometry k hk) T) =
+      shiftS (geometry k hk) (solenoidRealize k hk T)
+
+def SolenoidTranslateType : Prop :=
+  ∀ (k : ℕ) (hk : 1 ≤ k) (t : ℝ) (T : LocalHull (geometry k hk)),
+    solenoidRealize k hk (translate (geometry k hk) t T) =
+      flow (pisotData k hk) t (solenoidRealize k hk T)
+
+def SolenoidZeroSeedType : Prop :=
+  ∀ (k : ℕ) (hk : 1 ≤ k), ∃ T : (geometry k hk).Hull, inflateH^[2] T = T ∧
+    realize (pisotData k hk) (inflateH_bijective k hk) T = 0
+
+def SolenoidPeriodicZeroType : Prop :=
+  ∀ (k : ℕ) (hk : 1 ≤ k) {T : (geometry k hk).Hull},
+    realize (pisotData k hk) (inflateH_bijective k hk) T = 0 →
+    ∃ m > 0, inflateH^[m] T = T
+
+def SolenoidFibreComparisonType : Prop :=
+  ∀ (k : ℕ) (hk : 1 ≤ k) (g : LocalHull (geometry k hk) → Solenoid (geometry k hk)),
+    Continuous g →
+    (∀ t T, g (translate (geometry k hk) t T) = flow (pisotData k hk) t (g T)) →
+    ∀ T U, g T = g U ↔ solenoidRealize k hk T = solenoidRealize k hk U
+
+def SolenoidCommonTileType : Prop :=
+  ∀ (k : ℕ) (hk : 1 ≤ k), 2 ≤ k → ∀ {T U T' U' : (geometry k hk).Hull} {t : ℝ},
+    realize (pisotData k hk) (inflateH_bijective k hk) T = 0 →
+    realize (pisotData k hk) (inflateH_bijective k hk) U = 0 →
+    Agree 1 T T' → Agree 1 U U' →
+    Agree 1 (LengthSubst.translate t T') (LengthSubst.translate t U') →
+    (T.1 ∩ U.1).Nonempty
+
 /-- Independent literal binding for the two-letter non-Pisot control. -/
 def controlSubstitution : Fin 2 → List (Fin 2)
   | 0 => [0, 0, 0, 0, 1]
@@ -220,6 +275,17 @@ example : LegalPatchDensityType := Psc.ParameterFamilyTiling.legal_patches_dense
 example : HullCoincidenceDensityType := Psc.ParameterFamilyTiling.hull_dense_eventual
 example : PeriodicOriginWitnessType := Psc.ParameterFamilyTiling.periodic_common_tile_of_origin_witnesses
 example : PeriodicFibreType.{u} := Psc.ParameterFamilyTiling.periodic_fibre_common_tiles
+example : RecognizabilityType := Psc.ParameterFamilyRecognizability.inflateH_bijective
+example : RealizationMatrixType := Psc.ParameterFamilySolenoid.mat_eq
+example : SolenoidContinuousType := Psc.ParameterFamilySolenoid.continuous_solenoidRealize
+example : SolenoidSurjectiveType := Psc.ParameterFamilySolenoid.solenoidRealize_surjective
+example : SolenoidFiniteType := Psc.ParameterFamilySolenoid.solenoidRealize_finite_fibres
+example : SolenoidInflateType := Psc.ParameterFamilySolenoid.solenoidRealize_inflate
+example : SolenoidTranslateType := Psc.ParameterFamilySolenoid.solenoidRealize_translate
+example : SolenoidZeroSeedType := Psc.ParameterFamilySolenoid.fixed_tiling_over_zero
+example : SolenoidPeriodicZeroType := Psc.ParameterFamilySolenoid.periodic_of_realize_zero
+example : SolenoidFibreComparisonType := Psc.ParameterFamilySolenoid.solenoidRealize_fibres_eq_of_equivariant
+example : SolenoidCommonTileType := Psc.ParameterFamilySolenoid.common_tile_of_zero_fibre_witnesses
 example : AllBlocksProductiveControlType := Psc.UniversalClosureReduction.all_blocks_productive
 example : InfiniteSeedControlType := Psc.UniversalClosureReduction.infinite_seed_reachability
 
@@ -237,6 +303,28 @@ example :
   refine ⟨interior_mono (level_mono thueMorse P P (by decide : 0 ≤ 1))
     (interior_maximal h isOpen_Ioo (by norm_num)), ?_⟩
   norm_num [P, thueMorse, LengthSubst.inflate, LengthSubst.place, List.mem_cons]
+
+-- The literal determinant-two matrix has a nontrivial kernel modulo
+-- the lattice, so invertible inflation needs the full compatible history.
+example (k : ℕ) (hk : 1 ≤ k) : ¬ Function.Injective (torusMap (geometry k hk)) := by
+  intro h
+  let v : Fin 3 → ℝ := ![1 / 2, 0, 1 / 2]
+  have hm : mat (geometry k hk) *ᵥ v = ![1, 1, 0] := by
+    rw [Psc.ParameterFamilySolenoid.mat_eq, Psc.ParameterFamilyPisot.incidenceQ_eq]
+    ext a
+    fin_cases a <;>
+      norm_num [v, Matrix.mulVec, dotProduct, Fin.sum_univ_succ, Matrix.map_apply]
+  have hL : (![1, 1, 0] : Fin 3 → ℝ) ∈ lattice (Fin 3) := by
+    intro a
+    fin_cases a
+    · exact ⟨1, by norm_num⟩
+    · exact ⟨1, by norm_num⟩
+    · exact ⟨0, by norm_num⟩
+  have hz : torusMap (geometry k hk) (v : Torus (Fin 3)) = torusMap (geometry k hk) 0 := by
+    rw [torusMap_mk, hm, map_zero]
+    exact (QuotientAddGroup.eq_zero_iff _).mpr hL
+  have hv := (QuotientAddGroup.eq_zero_iff v).mp (h hz)
+  exact Psc.PeriodicPartnerRealizationModels.half_not_int (hv 0)
 
 /-- A theorem of the right declaration kind but the wrong semantic type. -/
 theorem wrongTypeControl : True := True.intro
@@ -297,6 +385,28 @@ run_cmd do
         `PscVerif.C4ParameterFamilyTiling),
       (``Psc.ParameterFamilyTiling.periodic_fibre_common_tiles, ``PeriodicFibreType,
         `PscVerif.C4ParameterFamilyTiling),
+      (``Psc.ParameterFamilyRecognizability.inflateH_bijective,
+        ``RecognizabilityType, `PscVerif.C4ParameterFamilyRecognizability),
+      (``Psc.ParameterFamilySolenoid.mat_eq,
+        ``RealizationMatrixType, `PscVerif.C4ParameterFamilySolenoid),
+      (``Psc.ParameterFamilySolenoid.continuous_solenoidRealize,
+        ``SolenoidContinuousType, `PscVerif.C4ParameterFamilySolenoid),
+      (``Psc.ParameterFamilySolenoid.solenoidRealize_surjective,
+        ``SolenoidSurjectiveType, `PscVerif.C4ParameterFamilySolenoid),
+      (``Psc.ParameterFamilySolenoid.solenoidRealize_finite_fibres,
+        ``SolenoidFiniteType, `PscVerif.C4ParameterFamilySolenoid),
+      (``Psc.ParameterFamilySolenoid.solenoidRealize_inflate,
+        ``SolenoidInflateType, `PscVerif.C4ParameterFamilySolenoid),
+      (``Psc.ParameterFamilySolenoid.solenoidRealize_translate,
+        ``SolenoidTranslateType, `PscVerif.C4ParameterFamilySolenoid),
+      (``Psc.ParameterFamilySolenoid.fixed_tiling_over_zero,
+        ``SolenoidZeroSeedType, `PscVerif.C4ParameterFamilySolenoid),
+      (``Psc.ParameterFamilySolenoid.periodic_of_realize_zero,
+        ``SolenoidPeriodicZeroType, `PscVerif.C4ParameterFamilySolenoid),
+      (``Psc.ParameterFamilySolenoid.solenoidRealize_fibres_eq_of_equivariant,
+        ``SolenoidFibreComparisonType, `PscVerif.C4ParameterFamilySolenoid),
+      (``Psc.ParameterFamilySolenoid.common_tile_of_zero_fibre_witnesses,
+        ``SolenoidCommonTileType, `PscVerif.C4ParameterFamilySolenoid),
       (``Psc.UniversalClosureReduction.all_blocks_productive, ``AllBlocksProductiveControlType,
         `PscVerif.UniversalClosureReduction),
       (``Psc.UniversalClosureReduction.infinite_seed_reachability, ``InfiniteSeedControlType,
@@ -321,7 +431,12 @@ run_cmd do
       `PscVerif.C4ParameterFamilyBridge, `PscVerif.UniversalClosureReduction,
       `PscVerif.PeriodicPartnerHullPatches, `PscVerif.PeriodicPartnerBalancedGeometry,
       `PscVerif.C4ParameterFamilyTiling, `PscVerif.PeriodicPartnerEventualCoincidence,
-      `PscVerif.PeriodicPartnerLegalCoincidence]
+      `PscVerif.PeriodicPartnerLegalCoincidence, `PscVerif.C4ParameterFamilyRecognizability,
+      `PscVerif.C4ParameterFamilySolenoid, `PscVerif.PeriodicPartnerRealization,
+      `PscVerif.PeriodicPartnerHullComplete, `PscVerif.PeriodicPartnerOriginContinuity,
+      `PscVerif.PeriodicPartnerHullCompact, `PscVerif.PeriodicPartnerDesubContinuity,
+      `PscVerif.PeriodicPartnerRealizationContinuity, `PscVerif.PeriodicPartnerRealizationFinite,
+      `PscVerif.PeriodicPartnerRealizationOnto]
     let mut declarations := 0
     let mut proofs := 0
     for mod in modules do
