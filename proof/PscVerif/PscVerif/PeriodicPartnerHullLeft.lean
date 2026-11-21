@@ -6,7 +6,7 @@ Gap 6 of `docs/c4-tiling-hull-realization-2026-11-19.md`: the reflected consumer
 left-oriented predicates of the hull and proves their local contract:
 
 * `AgreeLeft T U y`: the same tiles among those meeting the open left ray `(-∞, y)`;
-* `StartsAt T y b`: the tile labelled `b` starts at `y`;
+* `StartsAt T y b` (from `PeriodicPartnerHullSelection`): the tile labelled `b` starts at `y`;
 * `leftBranchLaws`: `LeftBranchLaws inflateH translate β g_L AgreeLeft StartsAt`,
   with `g_L` the first-letter map;
 * `left_common_patch`: a common left ray at `0` and a common start label `a` give
@@ -22,6 +22,7 @@ separate published statement, the mirror of the right one; it is not derived fro
 Source decision: `docs/c4-hull-left-consumers-stop-go-2026-11-21.md`.
 -/
 import PscVerif.PeriodicPartnerHullNonempty
+import PscVerif.PeriodicPartnerHullSelection
 import PscVerif.PeriodicPartnerReflection
 
 namespace Psc.PeriodicPartnerHull
@@ -38,9 +39,6 @@ variable {α : Type*} {S : LengthSubst α}
 
 /-- Exact agreement on the open left ray `(-∞, y)`. -/
 def AgreeLeft (T U : S.Hull) (y : ℝ) : Prop := S.AgreeOn (Iio y) T.1 U.1
-
-/-- The tile labelled `b` starts at `y`. -/
-def StartsAt (T : S.Hull) (y : ℝ) (b : α) : Prop := (b, y) ∈ T.1
 
 theorem startsAt_unique {T : S.Hull} {y : ℝ} {b c : α}
     (hb : StartsAt T y b) (hc : StartsAt T y c) : b = c :=
@@ -141,28 +139,6 @@ theorem left_bds_ray_iff_metric [Nonempty α] :
 
 /-! ## Origin starts and origin ends -/
 
-/-- A tile ending at `y` is followed by a tile starting at `y`. -/
-theorem startsAt_of_endsAt {T : S.Hull} {y : ℝ} {c : α} (hc : EndsAt T y c) :
-    ∃ b, StartsAt T y b := by
-  obtain ⟨q, ⟨hq, hyq⟩, -⟩ := T.2.1 y
-  refine ⟨q.1, ?_⟩
-  rcases eq_or_lt_of_le hyq.1 with heq | hlt
-  · simpa [StartsAt, ← heq] using hq
-  exfalso
-  -- `q` would overlap the tile `(c, y - ℓ c)` just left of `y`
-  set w := max q.2 (y - S.ℓ c)
-  have hℓ := S.ℓ_pos c
-  have hℓq := S.ℓ_pos q.1
-  have hw1 : w ∈ S.supp q := ⟨le_max_left _ _, max_lt (by linarith [hyq.2]) (by
-    linarith [hyq.2])⟩
-  have hw2 : w ∈ S.supp (c, y - S.ℓ c) := ⟨le_max_right _ _, by
-    show w < y - S.ℓ c + S.ℓ c
-    rw [sub_add_cancel]
-    exact max_lt hlt (by linarith)⟩
-  have := (T.2.1 w).unique ⟨hq, hw1⟩ ⟨hc, hw2⟩
-  rw [this] at hyq
-  exact absurd hyq.2 (by simp)
-
 /-- On a finite alphabet, a tile starting at `y` is preceded by a tile ending at `y`. -/
 theorem endsAt_of_startsAt [Fintype α] [DecidableEq α] [Nonempty α] {T : S.Hull} {y : ℝ}
     {b : α} (hb : StartsAt T y b) : ∃ c, EndsAt T y c := by
@@ -182,7 +158,7 @@ theorem endsAt_of_startsAt [Fintype α] [DecidableEq α] [Nonempty α] {T : S.Hu
   rcases eq_or_lt_of_le he_le with heq | hlt
   · simp only [EndsAt]; convert hq using 2; linarith
   exfalso
-  obtain ⟨r, hrs⟩ := startsAt_of_endsAt (T := T) (y := q.2 + S.ℓ q.1) (c := q.1)
+  obtain ⟨r, hrs⟩ := startsAt_of_endsAt (T := T) (y := q.2 + S.ℓ q.1) (b := q.1)
     (by simpa [EndsAt] using hq)
   have hrℓ := Psc.PeriodicPartnerRealization.minLen_le (S := S) r
   have := (T.2.1 y).unique ⟨hrs, by linarith, by linarith [hzq.2]⟩

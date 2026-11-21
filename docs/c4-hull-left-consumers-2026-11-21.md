@@ -17,11 +17,11 @@ Module [`PeriodicPartnerHullLeft.lean`](../proof/PscVerif/PscVerif/PeriodicPartn
 
 | Lean | Content | External input |
 | --- | --- | --- |
-| `AgreeLeft`, `StartsAt` | tiles meeting `(-∞, y)`; `(b, y) ∈ T` | — |
+| `AgreeLeft` (new), `StartsAt` (reused from `PeriodicPartnerHullSelection`) | tiles meeting `(-∞, y)`; `(b, y) ∈ T` | — |
 | `leftBranchLaws` | all seven fields of `LeftBranchLaws inflateH translate β g_L AgreeLeft StartsAt` | none |
 | `left_common_patch`, `reflected_common_patch` | common left ray at `0` plus common start `a` give agreement of radius `ℓ a` | none |
 | `leftAsymptotic_iff_metric`, `left_bds_ray_iff_metric` | exact left rays coincide with metric asymptoticity under `t ↦ translate (-t)`, and the two forms of left BDS coincide | none |
-| `startsAt_of_endsAt` | a tile ending at `y` is followed by one starting at `y` | none |
+| `startsAt_of_endsAt` (reused from `PeriodicPartnerHullSelection`) | a tile ending at `y` is followed by one starting at `y` | none |
 | `endsAt_of_startsAt` | on a finite alphabet, a tile starting at `y` is preceded by one ending at `y`. Cover `y − m/2`, with `m` the minimum length; a gap before `y` would contain a tile start whose tile reaches past `y`. | none |
 | `r4_startsAt_iff_endsAt` | (R4) at origin starts is (R4) at origin ends | none |
 | `hull_left_collapse_of_merge` | left Lemma M | none |
