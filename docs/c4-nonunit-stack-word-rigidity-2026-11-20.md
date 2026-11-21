@@ -36,8 +36,9 @@ By (W4), the partners have the same stack image, and the positions
 of their eventual tile coincidences form a dense set. Write
 `q : Ω → X` for the stack quotient.
 
-Take a common positive inflation power fixing `T,T′` and the original
-eventual-range graph and inducing a proper return substitution.
+Take a common positive inflation power fixing `T,T′`, the marking
+seam and the oriented cells of the original eventual-range graph.
+Increase it as needed to induce a proper return substitution.
 Use `M` and `β` for the powered original incidence and dilation.
 The original unpowered incidence has irreducible characteristic
 polynomial and three conjugate eigenvalues. The eigenvalues of `M` are their corresponding powers,
@@ -91,12 +92,16 @@ chains is `im ∂`, an invariant subspace of the vertex chains. A map
 of a finite set of vertices has only zero and roots of unity in its
 spectrum.
 
-On `R` the Barge–Diamond exact sequence has the incidence part
-`Mᵗ` and fixed eventual-range terms. In particular its cohomology
-has only eigenvalues of `M` and roots of unity, and `β` has
-multiplicity one. Proposition 19 injects `H¹(X; ℚ)` equivariantly
-into this space. Thus on `A,R,S` every edge eigenvalue is zero, a
-root of unity or an eigenvalue of `M`.
+Apply the Barge–Diamond exact sequence to the original powered
+substitution. Its incidence part is `Mᵗ` and its eventual-range
+terms are fixed. Transfer that hull cohomology action to the return
+presentation via the equivariant reblocking. It has only eigenvalues
+of `M` and roots of unity, and `β` has algebraic multiplicity
+one. Proposition 19 injects `H¹(X; ℚ)` equivariantly into this
+space. Thus on `A,R,S` every edge eigenvalue is zero, a root of
+unity or an eigenvalue of `M`. The boundary image accounts for any
+extra edge factors due to subdivision. The [graph-spectrum review](c4-graph-spectrum-review-2026-11-21.md)
+gives the factorization and an exact control.
 The multiplicity of `β` on the stack edge chains is at most one
 and is exactly one because the positive length row is a left
 `β`-eigenvector.

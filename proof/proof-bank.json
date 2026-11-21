@@ -39842,6 +39842,46 @@
       "declaration": "theorem periodDoubling_mod_two_fixed_line :"
     },
     {
+      "name": "Psc.PeriodicPartnerGraphSpectrum.boundary_range_invariant",
+      "module": "PscVerif.PeriodicPartnerGraphSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerGraphSpectrum.lean",
+      "line": 16,
+      "declaration": "theorem boundary_range_invariant (commutes : boundary.comp edge = vertex.comp boundary) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerGraphSpectrum.edge_charpoly_factor",
+      "module": "PscVerif.PeriodicPartnerGraphSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerGraphSpectrum.lean",
+      "line": 24,
+      "declaration": "theorem edge_charpoly_factor (commutes : boundary.comp edge = vertex.comp boundary) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerGraphSpectrum.edge_charpoly_dvd_vertex_mul_cycles",
+      "module": "PscVerif.PeriodicPartnerGraphSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerGraphSpectrum.lean",
+      "line": 42,
+      "declaration": "theorem edge_charpoly_dvd_vertex_mul_cycles [FiniteDimensional K V]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerGraphSpectrum.vertex_power_repeat",
+      "module": "PscVerif.PeriodicPartnerGraphSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerGraphSpectrum.lean",
+      "line": 57,
+      "declaration": "theorem vertex_power_repeat (f : α → α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerGraphSpectrum.vertex_charpoly_root",
+      "module": "PscVerif.PeriodicPartnerGraphSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerGraphSpectrum.lean",
+      "line": 72,
+      "declaration": "theorem vertex_charpoly_root (f : α → α) {z : K}"
+    },
+    {
       "name": "Psc.PeriodicPartnerHull.LengthSubst.sum_nonneg",
       "module": "PscVerif.PeriodicPartnerHull",
       "private": false,
@@ -55056,6 +55096,7 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean": "812599f6a9dfb4ab5d0da0924fa6c3901128f74644e76d14eb2996de17f55c44",
     "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean": "24de7ca583a5a654e331a0fae80e407174589843b58051fca044fefcd76d874c",
     "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean": "5519f5698c83b43956df8e04263f873e4879a1ec4e48533fe96e36b330f7d626",
+    "proof/PscVerif/PscVerif/PeriodicPartnerGraphSpectrum.lean": "d1f70a6da1a88f58abba2ee29223ed9d96c13ffc70ce5a7942731d9cfe7326a6",
     "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean": "6124e92faa7ace36663a57ff5dda39f281fd86237cc30006912cf4c2a0a65b6e",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean": "80e0f040cd0ea768a0d5ddf74710dc659c9a9431fb667740953f41369a652386",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean": "59d86f345c47142bdd7a74200c04b48f4ae975d1d5afe2dc29331048d7f37988",
@@ -55117,7 +55158,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "c1afa9dd0f8de2525c9a3c22feeec300da64ac917c4efc7764618c5a6aff0526",
+    "proof/PscVerif/PscVerif.lean": "5e647eab95bc8cfe6e3e2db7798cb5b798217035bf06d309acf35a1f6be36ca7",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
