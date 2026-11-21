@@ -88,14 +88,43 @@ The original eventual range is the complete square on those letters.
 This gives a strict-system exclusion within the even, complete-square
 Pisot class for each even determinant `m≥2`.
 
+### The equal-run boundary
+
+For `m=r≥1`, keep `W`, `A`, `P`, `Q` and `D` as above. The fourth
+iterates are `W Q D^m W` and `D W^m σ(D)^m D` for letters 1 and 2,
+respectively. Cut them after
+
+```text
+P₄ = W Q A W^(m−1) P,
+Q₄ = D P 2^(m−1).
+```
+
+In the first word the cut is in the last copy of `W` inside the
+first `D`. In the second it is just before the final `2` of the
+first `W` after `D`. Both following letters are `2`. The prefix
+counts agree because `D = A W^m 2` and `Q = 2^m`. In order
+`0,1,2`, the common Parikh vector is
+`(m²+m, 3m+1, m²+m+1)`. This proves strong coincidence for the
+periodic first letters at level four. The `0,2` witness is still
+at level one and `0,1` reduces to `1,2` after one substitution.
+The same all-pair criterion therefore excludes any strict system
+at equality, independently of the stack hypotheses.
+
+For even `m=r≥2`, the signs at `r` and `r+1` are still opposite,
+and the quadratic factor has negative discriminant by the same
+bound `9 < 4mβ`. In particular `β > m` makes its conjugate modulus
+less than one. Even incidence nilpotence and the complete seam
+square also persist. The even Pisot family now includes `r=m`.
+
 ## Evidence and controls
 
 Lean checks `eq_of_common_padding` and `period_doubling_padding_control`
 in [PeriodicPartnerLiteralDefect](../proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean).
-It checks the two literal level-three cuts and their equal Parikh vectors
+It checks the literal level-three and equal-run level-four cuts with their equal Parikh vectors
 in [PeriodicPartnerCompanionWords](../proof/PscVerif/PscVerif/PeriodicPartnerCompanionWords.lean).
-The interval argument, the composition with the existing strict-system
-theorem and the Pisot calculation are written deductions above.
+The interval argument is checked in
+[PeriodicPartnerEvenTails](c4-even-tails-2026-11-20.md). The composition with the existing
+strict-system theorem and the Pisot calculation are written deductions above.
 
 ```sh
 (cd proof/PscVerif && lake build PscVerif.PeriodicPartnerLiteralDefect PscVerif.PeriodicPartnerCompanionWords)
@@ -105,12 +134,13 @@ python3 tools/make_proof_bank.py --check
 
 Period doubling has `δ²(0)=0100` and `δ²(1)=0101`. With `L=010`, empty
 `R`, and `u=0,v=1`, it satisfies both padding equations. The even-count
-hypothesis fails. At the companion boundary `m=r` the proposed first
-cut has consumed the entire run of `2`s and the following tile is `1`.
-The explicit coincidence cut is a claim for `m<r`.
+hypothesis fails. The first level-three cut at `m=r` consumes the
+entire run of `2`s and reaches `1`. The equal-run witness above
+uses level four.
 
 The quotient may have a bi-asymptotic pair although none of its distinct
-periodic original representatives agree on both literal tails. The word
-rigidity therefore leaves the obstruction for arbitrary literal lifts of
-the quotient pair open. The family exclusion does not cover that general
-case. Independent human review is pending.
+periodic original representatives agree on both literal tails. The
+[stack word rigidity proof](c4-nonunit-stack-word-rigidity-2026-11-20.md)
+uses the stack subdivision to compare those original lifts and gives a
+written exclusion in the three-letter nonunit rank-two case. Independent
+human review is pending.

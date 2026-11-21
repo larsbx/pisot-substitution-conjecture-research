@@ -38802,6 +38802,14 @@
       "declaration": "theorem level_three_witness (m r : ℕ) (hm : 0 < m) (hr : m < r) :"
     },
     {
+      "name": "Psc.PeriodicPartnerCompanionWords.level_four_equal_run_witness",
+      "module": "PscVerif.PeriodicPartnerCompanionWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerCompanionWords.lean",
+      "line": 119,
+      "declaration": "theorem level_four_equal_run_witness (n : ℕ) :"
+    },
+    {
       "name": "Psc.PeriodicPartnerCompleteRange.next_column_distinct",
       "module": "PscVerif.PeriodicPartnerCompleteRange",
       "private": true,
@@ -39544,6 +39552,294 @@
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean",
       "line": 224,
       "declaration": "theorem thueMorse_unique_halving :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.place_append",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 39,
+      "declaration": "theorem place_append (u v : List α) (x : ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.sum_flatMap",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 46,
+      "declaration": "theorem sum_flatMap (w : List α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.place_flatMap_subset",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 53,
+      "declaration": "theorem place_flatMap_subset {T : Set (α × ℝ)} {w : List α} {x : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.word_unique",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 67,
+      "declaration": "theorem word_unique {T : Set (α × ℝ)} (hT : L.IsTiling T) {u v : List α} {x : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.start_after",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 95,
+      "declaration": "theorem start_after {T : Set (α × ℝ)} (hT : L.IsTiling T) {p : α × ℝ} (hp : p ∈ T) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.exists_word",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 113,
+      "declaration": "theorem exists_word [Finite α] {T : Set (α × ℝ)} (hT : L.IsTiling T) {a b : ℝ} (hab : a ≤ b)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.vertex_inflate",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 147,
+      "declaration": "theorem vertex_inflate {T : Set (α × ℝ)} (hfix : L.inflate T = T) {a : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.inflate_word",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 156,
+      "declaration": "theorem inflate_word [Finite α] {T : Set (α × ℝ)} (hT : L.IsTiling T)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.mem_of_word",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 182,
+      "declaration": "theorem mem_of_word {T U : Set (α × ℝ)} (hT : L.IsTiling T) {u : List α} {a : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.pad_eq",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 191,
+      "declaration": "theorem pad_eq {T U : Set (α × ℝ)} (hU : L.IsTiling U) {W : Set ℝ} (hTU : L.AgreeOn W T U)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.right_pads",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 198,
+      "declaration": "theorem right_pads {S U : Set (α × ℝ)} (hU : L.IsTiling U) {b : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.left_pads",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 206,
+      "declaration": "theorem left_pads {S U : Set (α × ℝ)} (hU : L.IsTiling U) {a : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.centre_pad",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 216,
+      "declaration": "theorem centre_pad {l : List α} (h : L.β * 0 + (l.map L.ℓ).sum = 0) : l = [] := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.two_sided_words",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 222,
+      "declaration": "theorem two_sided_words [Finite α] [DecidableEq α] (hev : ∀ a b, Even ((L.σ a).count b))"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.eq_of_two_tails",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 249,
+      "declaration": "theorem eq_of_two_tails [Finite α] [DecidableEq α] (hev : ∀ a b, Even ((L.σ a).count b))"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.agree_right_of_vertex",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 272,
+      "declaration": "theorem agree_right_of_vertex [Finite α] [DecidableEq α]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.agree_left_of_vertex",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 303,
+      "declaration": "theorem agree_left_of_vertex [Finite α] [DecidableEq α]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.iterate_flatMap_append",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 330,
+      "declaration": "theorem iterate_flatMap_append (k : ℕ) (u v : List α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.flatMap_iterWord",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 337,
+      "declaration": "theorem flatMap_iterWord (k : ℕ) (w : List α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.sum_iterate",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 347,
+      "declaration": "theorem sum_iterate (k : ℕ) (w : List α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.iterWord_ne_nil",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 353,
+      "declaration": "theorem iterWord_ne_nil (k : ℕ) (a : α) : L.iterWord k a ≠ [] := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.mem_place_flatMap",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 372,
+      "declaration": "theorem mem_place_flatMap {w : List α} {x : ℝ} {q : α × ℝ} :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.place_pow",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 381,
+      "declaration": "theorem place_pow (k : ℕ) (w : List α) (x : ℝ) : (L.pow k).place w x = L.place w x := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.inflate_pow",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 387,
+      "declaration": "theorem inflate_pow (k : ℕ) (T : Set (α × ℝ)) : (L.pow k).inflate T = L.inflate^[k] T := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.hull_iterate_val",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 412,
+      "declaration": "theorem hull_iterate_val [Nonempty α] (T : L.Hull) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.hull_eq_of_two_tails",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 420,
+      "declaration": "theorem hull_eq_of_two_tails [Finite α] [Nonempty α] [DecidableEq α] {n : ℕ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.hull_agree_right_of_vertex",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 432,
+      "declaration": "theorem hull_agree_right_of_vertex [Finite α] [Nonempty α] [DecidableEq α] {n : ℕ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.hull_agree_left_of_vertex",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 443,
+      "declaration": "theorem hull_agree_left_of_vertex [Finite α] [Nonempty α] [DecidableEq α] {n : ℕ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.count_flatMap",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 460,
+      "declaration": "theorem count_flatMap [Fintype α] [DecidableEq α] (w : List α) (b : α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.count_iterWord",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 472,
+      "declaration": "theorem count_iterWord [Fintype α] [DecidableEq α] (n : ℕ) (a b : α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.even_of_nilpotent",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 485,
+      "declaration": "theorem even_of_nilpotent [Fintype α] [DecidableEq α] {j p : ℕ} (hp : 0 < p)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.hull_eq_of_two_tails_of_nilpotent",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 502,
+      "declaration": "theorem hull_eq_of_two_tails_of_nilpotent [Fintype α] [Nonempty α] [DecidableEq α]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.hull_rays_of_nilpotent",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 517,
+      "declaration": "theorem hull_rays_of_nilpotent [Fintype α] [Nonempty α] [DecidableEq α]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.thueMorseSq_even",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 538,
+      "declaration": "theorem thueMorseSq_even : ∀ a b : Fin 2, Even ((thueMorseSq a).count b) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.thueMorseSq_strict_bigons",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 546,
+      "declaration": "theorem thueMorseSq_strict_bigons :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEvenTails.periodDoubling_mod_two_fixed_line",
+      "module": "PscVerif.PeriodicPartnerEvenTails",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean",
+      "line": 562,
+      "declaration": "theorem periodDoubling_mod_two_fixed_line :"
     },
     {
       "name": "Psc.PeriodicPartnerHull.LengthSubst.sum_nonneg",
@@ -40696,6 +40992,518 @@
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopologyControls.lean",
       "line": 88,
       "declaration": "theorem not_continuous_toHull (T : S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.Cut.of_prefix",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 23,
+      "declaration": "theorem Cut.of_prefix {w w' u : List A} {a : A} (h : Cut w u a) (hp : w <+: w') :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.Cut.inflate",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 29,
+      "declaration": "theorem Cut.inflate {σ : A → List A} {w u p : List A} {a b : A}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.cut_flatMap",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 37,
+      "declaration": "theorem cut_flatMap {σ : A → List A} {w u : List A} {b : A}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.levelWord_succ",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 77,
+      "declaration": "theorem levelWord_succ (σ : A → List A) (n : ℕ) (x : A) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.levelWord_head",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 81,
+      "declaration": "theorem levelWord_head {σ : A → List A} {first : A → A}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.seed_prolongable",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 90,
+      "declaration": "theorem seed_prolongable {σ : A → List A} {first : A → A}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.levelWord_prefix_of_le",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 100,
+      "declaration": "theorem levelWord_prefix_of_le {σ : A → List A} {x : A}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.rayCuts_iff",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 117,
+      "declaration": "theorem rayCuts_iff {σ : A → List A} {x y a b : A} {u v : List A}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.AddressPath.cuts",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 129,
+      "declaration": "theorem AddressPath.cuts {σ : A → List A} {D : ParikhDFA Q} {x y a b : A}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.cut_singleton",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 138,
+      "declaration": "private theorem cut_singleton {x a : A} {u : List A} (h : Cut [x] u a) : u = [] ∧ a = x := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.addressPath_of_cuts",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 147,
+      "declaration": "theorem addressPath_of_cuts {σ : A → List A} (D : ParikhDFA Q) {x y a b : A}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.phase_succ",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 170,
+      "declaration": "theorem phase_succ (n : ℕ) : phase (n + 1) = previousPhase (phase n) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.phase_eq_zero",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 175,
+      "declaration": "theorem phase_eq_zero (n : ℕ) : phase n = 0 ↔ n % 6 = 0 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.projectedMark_zero",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 198,
+      "declaration": "theorem projectedMark_zero [DecidableEq A] (first last : A → A) (left right a b : A) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.endpointPhase_step",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 203,
+      "declaration": "private theorem endpointPhase_step (f : A → A) (hf : f^[12] = f^[6]) (j : ℤ) (a : A) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.endpoint_six_idempotent",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 215,
+      "declaration": "private theorem endpoint_six_idempotent (f : Fin 3 → Fin 3) : f^[12] = f^[6] := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.markerRules_three",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 219,
+      "declaration": "theorem markerRules_three {σ : Fin 3 → List (Fin 3)} {first last : Fin 3 → Fin 3}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.advance_phase_register",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 234,
+      "declaration": "private theorem advance_phase_register {σ : A → List A} {mark : ℤ → A → A → Bool}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.card_productState_three",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 274,
+      "declaration": "theorem card_productState_three [Fintype Q] :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.card_productState_with_sink_three",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 280,
+      "declaration": "theorem card_productState_with_sink_three [Fintype Q] :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.view_root",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 291,
+      "declaration": "theorem view_root (σ : A → List A) (mark : ℤ → A → A → Bool) (D : ParikhDFA Q) (x y : A) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.advance_view",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 305,
+      "declaration": "theorem advance_view {σ : A → List A} {mark : ℤ → A → A → Bool} {first last : A → A}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.reachable_iff_address",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 314,
+      "declaration": "theorem reachable_iff_address {σ : A → List A} {mark : ℤ → A → A → Bool} {first last : A → A}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.target_view_iff",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 351,
+      "declaration": "theorem target_view_iff {σ : A → List A} {D : ParikhDFA Q} {mark : ℤ → A → A → Bool}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.reachable_target_iff_literal",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 367,
+      "declaration": "theorem reachable_target_iff_literal {σ : A → List A} {mark : ℤ → A → A → Bool}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.reachable_target_iff_ray_failure",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 385,
+      "declaration": "theorem reachable_target_iff_ray_failure {σ : A → List A} {mark : ℤ → A → A → Bool}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.no_target_of_closed_certificate",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 405,
+      "declaration": "theorem no_target_of_closed_certificate {step : S → S → Prop} {root : S} {target : S → Prop}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.closed_certificate_of_no_target",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 416,
+      "declaration": "theorem closed_certificate_of_no_target [Finite S] {step : S → S → Prop} {root : S}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.closed_certificate_iff_no_ray_failure",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 427,
+      "declaration": "theorem closed_certificate_iff_no_ray_failure [Fintype A] [Fintype Q]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.ternary_certificate_iff_no_ray_failure",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 438,
+      "declaration": "theorem ternary_certificate_iff_no_ray_failure [Fintype Q] {σ : Fin 3 → List (Fin 3)}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.singleton_root_fails_closure",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 452,
+      "declaration": "theorem singleton_root_fails_closure :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerDecision.failure_controls",
+      "module": "PscVerif.PeriodicPartnerMarkerDecision",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean",
+      "line": 458,
+      "declaration": "theorem failure_controls :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerFamily.incidence",
+      "module": "PscVerif.PeriodicPartnerMarkerFamily",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerFamily.lean",
+      "line": 38,
+      "declaration": "theorem incidence (n : ℕ) (a b : Fin 3) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerFamily.charpoly",
+      "module": "PscVerif.PeriodicPartnerMarkerFamily",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerFamily.lean",
+      "line": 43,
+      "declaration": "theorem charpoly (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerFamily.even_incidence_nilpotent",
+      "module": "PscVerif.PeriodicPartnerMarkerFamily",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerFamily.lean",
+      "line": 56,
+      "declaration": "theorem even_incidence_nilpotent (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerFamily.endpoints",
+      "module": "PscVerif.PeriodicPartnerMarkerFamily",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerFamily.lean",
+      "line": 68,
+      "declaration": "theorem endpoints (n : ℕ) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerFamily.endpoint_maps_idempotent",
+      "module": "PscVerif.PeriodicPartnerMarkerFamily",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerFamily.lean",
+      "line": 73,
+      "declaration": "theorem endpoint_maps_idempotent (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerFamily.periodic_seams",
+      "module": "PscVerif.PeriodicPartnerMarkerFamily",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerFamily.lean",
+      "line": 81,
+      "declaration": "theorem periodic_seams (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerFamily.three_letter_violation",
+      "module": "PscVerif.PeriodicPartnerMarkerFamily",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerFamily.lean",
+      "line": 88,
+      "declaration": "theorem three_letter_violation (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerFamily.reordered_prefix_control",
+      "module": "PscVerif.PeriodicPartnerMarkerFamily",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerFamily.lean",
+      "line": 103,
+      "declaration": "theorem reordered_prefix_control :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerParity.normalized_gauges_agree_of_connected",
+      "module": "PscVerif.PeriodicPartnerMarkerParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerParity.lean",
+      "line": 21,
+      "declaration": "theorem normalized_gauges_agree_of_connected {A B C : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerParity.adjacentCount_append",
+      "module": "PscVerif.PeriodicPartnerMarkerParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerParity.lean",
+      "line": 67,
+      "declaration": "theorem adjacentCount_append {A : Type*} (mark : A → A → Bool) (u v : List A) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerParity.head_flatMap",
+      "module": "PscVerif.PeriodicPartnerMarkerParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerParity.lean",
+      "line": 83,
+      "declaration": "theorem head_flatMap {A B : Type*} (s : A → List B) (first : A → B)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerParity.adjacentCount_flatMap",
+      "module": "PscVerif.PeriodicPartnerMarkerParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerParity.lean",
+      "line": 88,
+      "declaration": "theorem adjacentCount_flatMap {A B : Type*} (s : A → List B) (mark : B → B → Bool)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerParity.balanced_marker_difference_of_inflation",
+      "module": "PscVerif.PeriodicPartnerMarkerParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerParity.lean",
+      "line": 106,
+      "declaration": "theorem balanced_marker_difference_of_inflation {A B : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerParity.marker_difference_of_opposite_seams",
+      "module": "PscVerif.PeriodicPartnerMarkerParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerParity.lean",
+      "line": 120,
+      "declaration": "theorem marker_difference_of_opposite_seams (left right : Bool) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerParity.marker_parity_of_common_gauge",
+      "module": "PscVerif.PeriodicPartnerMarkerParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerParity.lean",
+      "line": 126,
+      "declaration": "theorem marker_parity_of_common_gauge (observed start finish first last c : ZMod 2)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerParity.thue_morse_marker_parity_control",
+      "module": "PscVerif.PeriodicPartnerMarkerParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerParity.lean",
+      "line": 138,
+      "declaration": "theorem thue_morse_marker_parity_control :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerParity.cubic_marker_parity_control",
+      "module": "PscVerif.PeriodicPartnerMarkerParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerParity.lean",
+      "line": 148,
+      "declaration": "theorem cubic_marker_parity_control :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.weight_add",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 21,
+      "declaration": "private theorem weight_add (r s : A → ZMod 2) (w : List A) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.pull_add",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 25,
+      "declaration": "private theorem pull_add (σ : A → List A) (r s : A → ZMod 2) (a : A) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.weight_flatMap",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 29,
+      "declaration": "private theorem weight_flatMap (σ : A → List A) (r : A → ZMod 2) (w : List A) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.correction_step",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 45,
+      "declaration": "theorem correction_step (σ : A → List A) (mark : ℤ → A → A → Bool) (j : ℤ)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.corrected_inflation",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 61,
+      "declaration": "theorem corrected_inflation (σ : A → List A) (mark : ℤ → A → A → Bool) (j : ℤ)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.corrected_difference_of_perm",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 82,
+      "declaration": "theorem corrected_difference_of_perm (σ : A → List A) (mark : ℤ → A → A → Bool)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.corrected_append",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 89,
+      "declaration": "private theorem corrected_append (σ : A → List A) (mark : ℤ → A → A → Bool)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.last_flatMap",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 97,
+      "declaration": "private theorem last_flatMap (σ : A → List A) (last : A → A)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.register_empty",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 116,
+      "declaration": "theorem register_empty (σ : A → List A) (mark : ℤ → A → A → Bool) (j : ℤ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.register_of_perm",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 120,
+      "declaration": "theorem register_of_perm (σ : A → List A) (mark : ℤ → A → A → Bool) (j : ℤ)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.register_periodic",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 126,
+      "declaration": "theorem register_periodic (σ : A → List A) (mark : ℤ → A → A → Bool)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.advance_register",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 148,
+      "declaration": "theorem advance_register (σ : A → List A) (mark : ℤ → A → A → Bool) (j : ℤ)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.combine_interval_laws",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 162,
+      "declaration": "theorem combine_interval_laws (first₀ last₁ first₁ last₂ : ZMod 2) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.extend_interval_iff",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 171,
+      "declaration": "theorem extend_interval_iff (first₀ last₁ first₁ last₂ observed : ZMod 2) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.complementary_words_parity",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 182,
+      "declaration": "theorem complementary_words_parity (a : Bool) (tail : List Bool) :"
     },
     {
       "name": "Psc.PeriodicPartnerModels.constantTwo_semiconj",
@@ -43624,6 +44432,118 @@
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerSpectralModels.lean",
       "line": 165,
       "declaration": "theorem tribonacci_mem_PIP3 :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerStackWordRigidity.aeval_comp_of_intertwines",
+      "module": "PscVerif.PeriodicPartnerStackWordRigidity",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerStackWordRigidity.lean",
+      "line": 28,
+      "declaration": "private theorem aeval_comp_of_intertwines"
+    },
+    {
+      "name": "Psc.PeriodicPartnerStackWordRigidity.sylvester_injective_of_annihilator",
+      "module": "PscVerif.PeriodicPartnerStackWordRigidity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerStackWordRigidity.lean",
+      "line": 49,
+      "declaration": "theorem sylvester_injective_of_annihilator"
+    },
+    {
+      "name": "Psc.PeriodicPartnerStackWordRigidity.sylvester_exists_unique",
+      "module": "PscVerif.PeriodicPartnerStackWordRigidity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerStackWordRigidity.lean",
+      "line": 64,
+      "declaration": "theorem sylvester_exists_unique [FiniteDimensional K U] [FiniteDimensional K V]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerStackWordRigidity.pathProduct_flatMap",
+      "module": "PscVerif.PeriodicPartnerStackWordRigidity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerStackWordRigidity.lean",
+      "line": 78,
+      "declaration": "theorem pathProduct_flatMap {A B R : Type*} [Monoid R] (labels : B → R)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerStackWordRigidity.pathProduct_map",
+      "module": "PscVerif.PeriodicPartnerStackWordRigidity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerStackWordRigidity.lean",
+      "line": 89,
+      "declaration": "theorem pathProduct_map {A R : Type*} [Monoid R] (F : R →* R)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerStackWordRigidity.pullback_equivariant",
+      "module": "PscVerif.PeriodicPartnerStackWordRigidity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerStackWordRigidity.lean",
+      "line": 99,
+      "declaration": "theorem pullback_equivariant {A B R : Type*} [Monoid R]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerStackWordRigidity.pathProduct_add_correction",
+      "module": "PscVerif.PeriodicPartnerStackWordRigidity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerStackWordRigidity.lean",
+      "line": 112,
+      "declaration": "theorem pathProduct_add_correction {A W R : Type*} [AddCommMonoid W] [Ring R]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerStackWordRigidity.same_stack_interval_products_eq",
+      "module": "PscVerif.PeriodicPartnerStackWordRigidity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerStackWordRigidity.lean",
+      "line": 134,
+      "declaration": "theorem same_stack_interval_products_eq {A B S R : Type*} [Monoid R]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerStackWordRigidity.tensor_norm_separates",
+      "module": "PscVerif.PeriodicPartnerStackWordRigidity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerStackWordRigidity.lean",
+      "line": 146,
+      "declaration": "theorem tensor_norm_separates {F : Type*} [Monoid F] (norm : F →* ℚ)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerStackWordRigidity.fixedTilings_eq_of_common_intervals",
+      "module": "PscVerif.PeriodicPartnerStackWordRigidity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerStackWordRigidity.lean",
+      "line": 169,
+      "declaration": "theorem fixedTilings_eq_of_common_intervals {α : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerStackWordRigidity.equal_letter_labels_control",
+      "module": "PscVerif.PeriodicPartnerStackWordRigidity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerStackWordRigidity.lean",
+      "line": 198,
+      "declaration": "theorem equal_letter_labels_control {R : Type*} [Monoid R] (label : R) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerTwinEndpoint.vertex_of_injective",
+      "module": "PscVerif.PeriodicPartnerTwinEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerTwinEndpoint.lean",
+      "line": 27,
+      "declaration": "theorem vertex_of_injective (laws : RightBranchLaws f translate β g AgreeRight EndsAt)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerTwinEndpoint.no_asymptotic_companion",
+      "module": "PscVerif.PeriodicPartnerTwinEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerTwinEndpoint.lean",
+      "line": 41,
+      "declaration": "theorem no_asymptotic_companion (laws : RightBranchLaws f translate β g AgreeRight EndsAt)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerTwinEndpoint.exists_left_vertex_of_degree_two",
+      "module": "PscVerif.PeriodicPartnerTwinEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerTwinEndpoint.lean",
+      "line": 57,
+      "declaration": "theorem exists_left_vertex_of_degree_two {L R : Type*} [DecidableEq L] [DecidableEq R]"
     },
     {
       "name": "Psc.PeriodicPartnerVertexPartner.periodic_letter",
@@ -51852,6 +52772,31 @@
       "statement_heading": "### Corollary R4 (stronger necessary condition for a strict system)"
     },
     {
+      "source": "docs/c4-nonunit-trivial-stack-2026-11-21.md",
+      "line": 40,
+      "statement_heading": "**Theorem T (trivial stack relation).** Under these hypotheses `≈_s` is trivial on `Ω`. So"
+    },
+    {
+      "source": "docs/c4-nonunit-trivial-stack-2026-11-21.md",
+      "line": 63,
+      "statement_heading": "**Corollary T2 (twins at rank two).** If moreover `cr(σ) = 2`:"
+    },
+    {
+      "source": "docs/c4-nonunit-trivial-stack-2026-11-21.md",
+      "line": 75,
+      "statement_heading": "**Proposition V (twins share a vertex ⇒ a finite strict system).** Under Corollary T2,"
+    },
+    {
+      "source": "docs/c4-nonunit-trivial-stack-2026-11-21.md",
+      "line": 97,
+      "statement_heading": "**Corollary V.** For nonunit `σ` with `cr(σ) = 2`, twins never share a vertex. Otherwise"
+    },
+    {
+      "source": "docs/c4-nonunit-twin-endpoint-2026-11-21.md",
+      "line": 16,
+      "statement_heading": "**Theorem E.**"
+    },
+    {
       "source": "docs/c4-one-track-seam-spectrum-2026-11-17.md",
       "line": 31,
       "statement_heading": "**Lemma (complete one-track adjacency set).** In $C$ every adjacent"
@@ -52150,6 +53095,16 @@
       "source": "docs/c4-seam-birth-orbits-2026-11-04.md",
       "line": 10,
       "statement_heading": "**Lemma.** In a supplied finite strict child-closed phase-zero balanced"
+    },
+    {
+      "source": "docs/c4-stack-rigidity-review-2026-11-20.md",
+      "line": 50,
+      "statement_heading": "**Lemma SR (stack rigidity).** Two tilings of `Ω` with the same image in `Ω/≈_s` agree"
+    },
+    {
+      "source": "docs/c4-stack-rigidity-review-2026-11-20.md",
+      "line": 61,
+      "statement_heading": "**Corollary (nonunit, any rank).** Suppose a nonunit PIP3 substitution has a strict system."
     },
     {
       "source": "docs/c4-strict-component-period-2026-11-14.md",
@@ -53900,7 +54855,8 @@
     "proof/PscVerif/ClassARunDescentAudit.lean": "a1fe09a772c2112929a6f892993da045628ef410f15cd53b1d8eba74343959fc",
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "81efe5b8745576f8f15a59a263563b31e08307e9c432e78fa2ef9021a613b2d1",
     "proof/PscVerif/EvenRankTwoAudit.lean": "cfc2c3b6dfae0305e1ab27989607917e4ffe8944a513aa861dc5ca781ba620ca",
-    "proof/PscVerif/PeriodicPartnerAudit.lean": "40408a9ee89dfb4ac5ef8dd53526e9793a8b50c30995d9ad059c28f52538f40b",
+    "proof/PscVerif/MarkerReachabilityReplay.lean": "4d21e06344eff182c78196d2f8eb815e1dbb8f517920dedf6849cc1546d831a3",
+    "proof/PscVerif/PeriodicPartnerAudit.lean": "5209d4fc3a6e862fefaddf411dd6f29706a42b651e42fc2990240647d409d20e",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean": "f1c4480b95159800bb52cd42164763d01e6ab6045dc72b07874f164409a0eaf1",
     "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean": "6387c221871d7b70efca50349c815fac07421bb44a28122f9157ff0652cb074f",
@@ -54077,13 +55033,14 @@
     "proof/PscVerif/PscVerif/PeriodicPartner.lean": "8b4cfa2dbed0bf629a0a0f0dfd57ecb63b0d83bc02b48ee3392faa90404f4aaf",
     "proof/PscVerif/PscVerif/PeriodicPartnerAsymptotic.lean": "0ad011b1e6eb02418699a4838c22ae630f28954696810c470fdb054e077b4c23",
     "proof/PscVerif/PscVerif/PeriodicPartnerCollapse.lean": "a0b3df8c6040977532413191864a2ba002ebf45a6fb79cd3a40fe9a8fb45fd91",
-    "proof/PscVerif/PscVerif/PeriodicPartnerCompanionWords.lean": "2e06df72b09958cc21009a195ff96cc9388d7e2fd5e0ca59391277d9f64d7e21",
+    "proof/PscVerif/PscVerif/PeriodicPartnerCompanionWords.lean": "b6e615d563c73042cf6fc70da6593ad38cd871cedc16f807c4465f488ee69618",
     "proof/PscVerif/PscVerif/PeriodicPartnerCompleteRange.lean": "df5e5f39df78d9a48c02f61399558ecb600dd5cc3c9d936c238300ece7caba23",
     "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean": "84725326692e81dafcef2c4a724bfb2cee8629fdba398686540db35be72eb0fd",
     "proof/PscVerif/PscVerif/PeriodicPartnerDichotomy.lean": "d74034c65d26d8b98916f6fdca046c6772e9a3389fb53fdd03bcf3baeea2339b",
     "proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean": "e78626f1b8c8a8878249dbdb959ea4b493bedef844755a693ef6450043607664",
     "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean": "812599f6a9dfb4ab5d0da0924fa6c3901128f74644e76d14eb2996de17f55c44",
     "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean": "24de7ca583a5a654e331a0fae80e407174589843b58051fca044fefcd76d874c",
+    "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean": "5519f5698c83b43956df8e04263f873e4879a1ec4e48533fe96e36b330f7d626",
     "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean": "6124e92faa7ace36663a57ff5dda39f281fd86237cc30006912cf4c2a0a65b6e",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean": "80e0f040cd0ea768a0d5ddf74710dc659c9a9431fb667740953f41369a652386",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean": "59d86f345c47142bdd7a74200c04b48f4ae975d1d5afe2dc29331048d7f37988",
@@ -54091,6 +55048,10 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerLocalRealization.lean": "472eacd674a293a84e841a7888398fd1fbaeedbdeff3a372c2e6ab665556e2b1",
     "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean": "ab9cca25c9b6f57b944a912e1e8a239b4bb46bd7a73727542af056760331b7cf",
     "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopologyControls.lean": "1573603e555c519d258421eaa50e01e06828166794811a1b6e5028a6040ee509",
+    "proof/PscVerif/PscVerif/PeriodicPartnerMarkerDecision.lean": "6113d233c362b6873aa76eab40c97b62de34f736dcaeb73855b0ee2d6450aa47",
+    "proof/PscVerif/PscVerif/PeriodicPartnerMarkerFamily.lean": "51e2fbc98f7c97ead96a8cf91d5e8adada131941ea2a94702e552706b4ff5b45",
+    "proof/PscVerif/PscVerif/PeriodicPartnerMarkerParity.lean": "42227be445623aa8ee65df4ea029bfd3c69a65a269af0984a89b5743e2291664",
+    "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean": "c8f1c3dcf79e7dc003ebcdbcf5a1aa2ec1c8dabbd58119c3b20b96ef89595216",
     "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean": "434d5573fb928bb0ee6667da6dedc8fc76867b76c26d72f5707ac1387a62c5ea",
     "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean": "90c75822a22e6a88f7872fb8b894e39ff19f4b3bbe502feca88c5d2755228f0c",
     "proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean": "870d45802ea6b8678a90bdbb88bdfa90a986fdafad52f00962766245353eb323",
@@ -54102,6 +55063,8 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean": "af195787b8856b750f4f513e80a3045873a05743d86f245204fdf278386f79ba",
     "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean": "90fb4042c25c01e906e828c6e1da15d782ae9301f591b34270283dcc18786ebd",
     "proof/PscVerif/PscVerif/PeriodicPartnerSpectralModels.lean": "bf43a2f49e4de6ca8eb938ad3c282f0676099f41e6b978bcc4285d34e8b10f7b",
+    "proof/PscVerif/PscVerif/PeriodicPartnerStackWordRigidity.lean": "57d832858a3f24eab10e0b3cfd6b085dffddc5501d1f9f08bf40a99aeb34e98b",
+    "proof/PscVerif/PscVerif/PeriodicPartnerTwinEndpoint.lean": "c1d1a58ce897393e9e42d4d6ebaee26a91a17463d39470ba6cce53e2a1115b13",
     "proof/PscVerif/PscVerif/PeriodicPartnerVertexPartner.lean": "eab186933f42e44e3ac13b2db2aedfb157d248ed73257528b58c22eac0b6ec14",
     "proof/PscVerif/PscVerif/PeriodicPartnerWinding.lean": "495d9094f16037a74b73a1bc8b5419c6784f5dc4e706767fa003b85fbf3706d5",
     "proof/PscVerif/PscVerif/PeriodicPartnerWindingSeams.lean": "504a39ee4ef077f60683d0e371df0c4d662009efe94727f9181f800f7abd4621",
@@ -54139,7 +55102,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "60fbb02f9239f1b51f2c2c84b17f70f4d6b362e39c9635b749c700e201f597b4",
+    "proof/PscVerif/PscVerif.lean": "c1afa9dd0f8de2525c9a3c22feeec300da64ac917c4efc7764618c5a6aff0526",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
