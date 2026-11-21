@@ -30,3 +30,19 @@ nilpotence and irreducible Pisot property for every parameter.
 Proceed with that class of word orderings. The hypotheses on the
 prefixes are essential to the proposed witness. This step leaves
 uniform reachability across arbitrary sources open.
+
+## Lean correspondence, 2026-11-21
+
+Proceed with the literal-address and finite-certificate obligations
+for the product above. Canterini–Siegel's prefix-suffix construction
+gives the ordered-image decomposition. Here only finite addresses
+of proper cuts of words are needed, so the proof can proceed by
+splitting an inflated list at the selected occurrence. Recognizability
+and uniqueness of an infinite desubstitution play no role in that
+decomposition. The closure check from the finite-graph argument
+applies to the reachable product states with the marker target.
+Sirvent–Solomyak's length-to-Parikh implication remains a geometric
+input. The Lean statement takes exact Parikh acceptance on admissible
+addresses as a separate hypothesis. Use a same-group endpoint and a
+parity mismatch as distinct target cases, and check that a target-free
+set containing the root can fail the successor-closure test.

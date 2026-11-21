@@ -80,7 +80,7 @@ theorem adjacentCount_append {A : Type*} (mark : A → A → Bool) (u v : List A
       simp only [List.cons_append, List.head?_cons, List.getLast?_cons_cons]
       omega
 
-private theorem head_flatMap {A B : Type*} (s : A → List B) (first : A → B)
+theorem head_flatMap {A B : Type*} (s : A → List B) (first : A → B)
     (hfirst : ∀ a, (s a).head? = some (first a)) (w : List A) :
     (w.flatMap s).head? = w.head?.map first := by
   cases w <;> simp [List.flatMap_cons, hfirst]
