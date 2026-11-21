@@ -1,0 +1,11 @@
+{
+  "previous_receipt": "evidence/c4-finite-hull-witnesses-2026-11-21/native-receipt.json",
+  "previous_receipt_sha256": "68e5287163789a2229221acae190fb351e2e1546c667155a1b3df7e8f7299d88",
+  "source_sha256": {
+    "kernel/psc/family_tile_automaton.mojo": "7670d0a9c62e51ab6b8028566b4557342c40999a7d285f27791baec674432f36",
+    "kernel/tests/test_family_tile_automaton.mojo": "a5a5cb55e27fe9d64498fdc705d441b3a3f29928e5d44ff52ae154a95ce7c400"
+  },
+  "byte_identical": true,
+  "native_replayed_this_increment": false,
+  "reason": "Only Lean consumers changed; the exact same native source and test retain their accepted replay receipt"
+}

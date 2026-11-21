@@ -7,9 +7,10 @@ BH, residual A1′, C4 and PSC remain open. No claim is promoted by this roadmap
 ## 2026-11-21 current priorities: family spectral endpoint and universal coincidence
 
 **Inspected main:**
-[`fbaa2ef1867e191f160cc3dbf9b8e26e10af45a7`](https://github.com/larsbx/pisot-substitution-conjecture-research/commit/fbaa2ef1867e191f160cc3dbf9b8e26e10af45a7),
-through [#647](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/647),
-with the finite automaton interpretation described below.
+[`bbe0640dcef2520d57532a1a9e301b35ed97fc1f`](https://github.com/larsbx/pisot-substitution-conjecture-research/commit/bbe0640dcef2520d57532a1a9e301b35ed97fc1f),
+through [#647](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/647)
+and [#645](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/645),
+with the finite automaton continuation described below.
 The [research review](psc-sigma-k-research-review-2026-11-20.md) supplies the
 literature assessment through 20 November and its publication addendum.
 The developments below supersede its earlier family implementation targets
@@ -55,13 +56,26 @@ uniform coverage without a bounded origin-state scan or a new limit
 argument. The previously proved hull and density dependencies remain
 explicit, and the invariant-measure conclusion remains separate.
 
+The [next finite obligations](c4-finite-fibre-obligations-2026-11-21.md)
+now connect these witnesses to the already verified ordinary-hull
+transport and factor-descent modules. Ordinary proximality equals the
+actual fibre relation, its finite nonproximal rank is one, and the actual
+solenoid has the intrinsic maximal-equicontinuous-factor property.
+Finite intersections and a maximum depth synchronize an entire fibre.
+A finite gap for bounded equal-torus origin displacements then supplies
+an open synchronization set through the existing compact closed map.
+Finite-support integer characters separate full solenoid histories,
+have an exact flow frequency, and have dense continuous span by the
+existing Stone--Weierstrass theorem. The retained analytic boundaries
+are explicit; none of these facts alone supplies the measured conclusion.
+
 ### Deliverables and the premises each must discharge
 
 | Workstream | Reuse at its recorded scope | Next deliverable and completion condition |
 | --- | --- | --- |
 | **Finite tile-chain certificates** | Completed: native DFA/SCC/BigZ/Mat3 certificates, uniformly legal five-edge alphabet, exact signed replay, actual legal-hull edge realizations, and finite Walk transfer to dense eventual coincidence. | Reuse this checked route; no additional chain-realization or zero-fibre witness premise remains. A chain may use distinct legal tilings for its edges and need not be one legal word. |
-| **Family factor geometry** | Unique desubstitution, the onto finite-to-one ordinary-hull solenoid map, universal zero-fibre common tiles and arbitrary-radius exact witnesses, and dense eventual coincidence for equal full images. | Complete the formal ordinary-proximality/coincidence-rank and maximal-factor correspondence at their exact hypotheses. Dense eventual coincidence on general fibres alone is not an almost-everywhere singleton-fibre result. |
-| **Family measured spectrum** | The actual nonempty zero fibre now has pairwise common tiles, uniformly for `k>=2`. | Formalize the disjoint-pair obstruction to failure of pure discreteness, or the equivalent coincidence-rank-one theorem, for this hull. Supply almost-everywhere singleton fibres, specify the invariant probability measure and translation action, and conclude density of the translation eigenfunctions in its `L²` space. A symbolic-shift conclusion needs its own transfer theorem. |
+| **Family factor geometry** | Completed: unique desubstitution, the onto finite-to-one actual factor, automaton zero-fibre witnesses, ordinary proximality exactly on fibres, nonproximal fibre rank one, and intrinsic maximal equicontinuous-factor descent. | Reuse these exact interfaces. The distinct zero-fibre seam control still refutes universal injectivity; rank one counts pairwise nonproximal subsets, not all members of an exceptional fibre. |
+| **Family measured spectrum** | Whole-fibre finite synchronization, a finite origin-displacement gap, a nonempty open set of fibres with one common positive window, and finite-character continuous eigenfunctions with dense span on the actual solenoid. | Prove Haar preservation and ergodicity of actual solenoid inflation; the finite-character/finite-Bessel route is recorded. Expand and saturate the proved open seed, then obtain a.e. singleton fibres, a measurable inverse and surjective `L²` pullback for an explicitly specified invariant probability measure. A symbolic-shift conclusion needs its own transfer theorem. |
 | **BH and Class A** | The accepted written minus-Class-A cover, written upper plus entry/continuation, and the 70 small upper plus certificates at their complete swap-seed scope. | Bind the written upper plus original-occurrence paths to Lean; retain the recorded acceptance status of each finite certificate. Extend source coverage and an actual selected path to zero integral displacement to the remaining BH domains, including the full nonunit representation. Use the [BH roadmap](bh-escape-roadmap-2026-11-14.md) for the exact scopes. |
 | **Residual A1′** | The scoped tail witnesses and the two-obstruction completion theorem. | Prove one-sided coincidence for the prescribed residual first-letter-fixed hub pair; same-position proximality or an equal-Parikh prefix with the same next letter is a concrete target. The uncovered non-crossing Theorem K cells are a narrower starting point. Universal BH and A1′ together feed #84; #84 is not a third independent existence premise. |
 | **Nonunit rank-two C4** | The [written global residue](c4-nonunit-rank-two-residue-2026-11-21.md): `ER=K₂,₂`, both endpoint maps non-injective, and incidence nilpotent modulo two, under the named twin/cohomology/covering inputs. | Find a geometric obstruction for twins branching on the collapsed endpoint pair. Preserve the distinction between excluding rank-two **strict systems** and excluding arbitrary rank-two hulls. The unit case, higher ranks, and extraction of a finite strict carrier from arbitrary failure remain separate. |

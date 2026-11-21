@@ -1,6 +1,7 @@
 PSC AGENT PRIORITY ADDENDUM — 2026-11-21 (current source reconciliation)
 =======================================================================
-Baseline: main@fbaa2ef1867e191f160cc3dbf9b8e26e10af45a7, through #647.
+Baseline: main@bbe0640dcef2520d57532a1a9e301b35ed97fc1f, through #647 and #645,
+with the finite-automaton continuation documented below.
 Read docs/research-roadmap-2026-09-21.md's November 21 section first,
 with AGENTS.md and claim governance. The external literature cutoff in
 docs/psc-sigma-k-research-review-2026-11-20.md remains November 20;
@@ -30,9 +31,22 @@ hypothesis; only the final endpoints use the existing periodicity theorem.
 same_fibre_dense_eventual covers arbitrary equal solenoid images, with
 dense eventual coincidence as its conclusion. Reuse the vendored finite
 kernels and exact integer certificates; no origin-state box scan is needed.
-NEXT: formalize the coincidence-rank and invariant-measure L2 implication,
-retaining the almost-everywhere singleton-fibre and factor-identification
-obligations. See docs/c4-finite-hull-witnesses-2026-11-21.md.
+The finite witnesses now feed the reused ordinary-hull transport:
+C4FamilyFiniteProximal proves fibre/proximality equivalence, closed
+proximality, nonproximal fibre rank one and intrinsic equicontinuous-factor
+descent. The seven unchanged downstream support files are reused from
+the accepted local closure, with no TileChains/old ZeroFibreClosure import.
+Finite intersections and a maximum depth synchronize each whole finite
+fibre. A bounded integer-origin displacement set gives a positive gap;
+with the existing compact closed factor map this proves a nonempty open
+set of fibres agreeing on one positive window. This is not singleton
+fibres. C4FamilySolenoidCharacters gives finite-support integer character
+certificates, exact flow eigenfunctions and dense continuous span on the
+full solenoid. Its actual nonunit history refutes zeroth-coordinate
+injectivity. NEXT: prove actual Haar preservation/inflation ergodicity,
+then a.e. singleton fibres, a measurable inverse and surjective L2 pullback.
+Use the finite-character/finite-Bessel route where its premises are proved.
+See docs/c4-finite-fibre-obligations-2026-11-21.md for exact boundaries.
 The written spectrum proof uses Barge–Stimac–Williams Corollary 2;
 k=1 uses a separate published small-trace result. The combined coincidence
 and zero-fibre witness Lean endpoint still has k>=2. Universal C4 is not a

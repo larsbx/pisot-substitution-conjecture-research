@@ -1,0 +1,7 @@
+PscVerif/PeriodicPartnerRealizationFinite.lean:1:0: error: object file '/workspace/scratch/af5a9d959e4d/finite-origin-check/PscVerif/PeriodicPartnerRealizationContinuity.olean' of module PscVerif.PeriodicPartnerRealizationContinuity does not exist
+
+Development diagnosis: the first PscVerif namespace root in LEAN_PATH
+shadows subsequent roots for its submodules. Preparing a merged private
+development overlay resolved the lookup. No theorem statement, proof
+obligation or acceptance condition was weakened. Final acceptance uses
+fresh project objects and explicitly pinned external artifacts.

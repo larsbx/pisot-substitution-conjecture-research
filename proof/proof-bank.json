@@ -5338,6 +5338,222 @@
       "declaration": "theorem selected_stage_rank_decreases (i : ℕ) (hi : i < 6) :"
     },
     {
+      "name": "Psc.C4FamilyCharacterOrbits.shiftS_flow",
+      "module": "PscVerif.C4FamilyCharacterOrbits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyCharacterOrbits.lean",
+      "line": 30,
+      "declaration": "theorem shiftS_flow (t : ℝ) (z : Solenoid (geometry k hk)) :"
+    },
+    {
+      "name": "Psc.C4FamilyCharacterOrbits.shiftS_iterate_flow",
+      "module": "PscVerif.C4FamilyCharacterOrbits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyCharacterOrbits.lean",
+      "line": 47,
+      "declaration": "theorem shiftS_iterate_flow (n : ℕ) (t : ℝ) (z : Solenoid (geometry k hk)) :"
+    },
+    {
+      "name": "Psc.C4FamilyCharacterOrbits.shiftS_iterate_zero",
+      "module": "PscVerif.C4FamilyCharacterOrbits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyCharacterOrbits.lean",
+      "line": 57,
+      "declaration": "theorem shiftS_iterate_zero (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilyCharacterOrbits.orbitCharacter_apply",
+      "module": "PscVerif.C4FamilyCharacterOrbits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyCharacterOrbits.lean",
+      "line": 70,
+      "declaration": "theorem orbitCharacter_apply (c : Certificate (Fin 3)) (n : ℕ)"
+    },
+    {
+      "name": "Psc.C4FamilyCharacterOrbits.orbitCharacter_zero",
+      "module": "PscVerif.C4FamilyCharacterOrbits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyCharacterOrbits.lean",
+      "line": 76,
+      "declaration": "theorem orbitCharacter_zero (c : Certificate (Fin 3)) :"
+    },
+    {
+      "name": "Psc.C4FamilyCharacterOrbits.orbitCharacter_norm",
+      "module": "PscVerif.C4FamilyCharacterOrbits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyCharacterOrbits.lean",
+      "line": 82,
+      "declaration": "theorem orbitCharacter_norm (c : Certificate (Fin 3)) (n : ℕ)"
+    },
+    {
+      "name": "Psc.C4FamilyCharacterOrbits.orbitCharacter_map_add",
+      "module": "PscVerif.C4FamilyCharacterOrbits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyCharacterOrbits.lean",
+      "line": 88,
+      "declaration": "theorem orbitCharacter_map_add (c : Certificate (Fin 3)) (n : ℕ)"
+    },
+    {
+      "name": "Psc.C4FamilyCharacterOrbits.orbitCharacter_flow_zero",
+      "module": "PscVerif.C4FamilyCharacterOrbits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyCharacterOrbits.lean",
+      "line": 106,
+      "declaration": "theorem orbitCharacter_flow_zero (c : Certificate (Fin 3)) (n : ℕ) (t : ℝ) :"
+    },
+    {
+      "name": "Psc.C4FamilyCharacterOrbits.real_eq_zero_of_circle_multiples_zero",
+      "module": "PscVerif.C4FamilyCharacterOrbits",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilyCharacterOrbits.lean",
+      "line": 120,
+      "declaration": "private theorem real_eq_zero_of_circle_multiples_zero (d : ℝ)"
+    },
+    {
+      "name": "Psc.C4FamilyCharacterOrbits.scaled_frequency_eq_of_orbitCharacter_eq",
+      "module": "PscVerif.C4FamilyCharacterOrbits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyCharacterOrbits.lean",
+      "line": 132,
+      "declaration": "theorem scaled_frequency_eq_of_orbitCharacter_eq (c : Certificate (Fin 3)) {m n : ℕ}"
+    },
+    {
+      "name": "Psc.C4FamilyCharacterOrbits.character_eq_one_of_frequency_eq_zero",
+      "module": "PscVerif.C4FamilyCharacterOrbits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyCharacterOrbits.lean",
+      "line": 153,
+      "declaration": "theorem character_eq_one_of_frequency_eq_zero (c : Certificate (Fin 3))"
+    },
+    {
+      "name": "Psc.C4FamilyCharacterOrbits.orbitCharacter_injective",
+      "module": "PscVerif.C4FamilyCharacterOrbits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyCharacterOrbits.lean",
+      "line": 165,
+      "declaration": "theorem orbitCharacter_injective (c : Certificate (Fin 3))"
+    },
+    {
+      "name": "Psc.C4FamilyCharacterOrbits.character_eq_one_of_inflation_period",
+      "module": "PscVerif.C4FamilyCharacterOrbits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyCharacterOrbits.lean",
+      "line": 175,
+      "declaration": "theorem character_eq_one_of_inflation_period (c : Certificate (Fin 3))"
+    },
+    {
+      "name": "Psc.C4FamilyCharacterOrbits.finite_orbit_injective",
+      "module": "PscVerif.C4FamilyCharacterOrbits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyCharacterOrbits.lean",
+      "line": 189,
+      "declaration": "theorem finite_orbit_injective (c : Certificate (Fin 3))"
+    },
+    {
+      "name": "Psc.C4FamilyCharacterOrbits.compatibilityCertificate_ne_zero",
+      "module": "PscVerif.C4FamilyCharacterOrbits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyCharacterOrbits.lean",
+      "line": 200,
+      "declaration": "theorem compatibilityCertificate_ne_zero : compatibilityCertificate ≠ 0 := by"
+    },
+    {
+      "name": "Psc.C4FamilyCharacterOrbits.compatibilityCertificate_frequency",
+      "module": "PscVerif.C4FamilyCharacterOrbits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyCharacterOrbits.lean",
+      "line": 206,
+      "declaration": "theorem compatibilityCertificate_frequency :"
+    },
+    {
+      "name": "Psc.C4FamilyCharacterOrbits.compatibilityCertificate_character",
+      "module": "PscVerif.C4FamilyCharacterOrbits",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyCharacterOrbits.lean",
+      "line": 219,
+      "declaration": "theorem compatibilityCertificate_character :"
+    },
+    {
+      "name": "Psc.C4FamilyFiniteFibreSynchronization.fibre_common_tile_after_inflation",
+      "module": "PscVerif.C4FamilyFiniteFibreSynchronization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFiniteFibreSynchronization.lean",
+      "line": 37,
+      "declaration": "theorem fibre_common_tile_after_inflation (hk₂ : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.C4FamilyFiniteFibreSynchronization.fibre_common_window_after_inflation",
+      "module": "PscVerif.C4FamilyFiniteFibreSynchronization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFiniteFibreSynchronization.lean",
+      "line": 56,
+      "declaration": "theorem fibre_common_window_after_inflation (hk₂ : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.C4FamilyFiniteFibreSynchronization.fibre_common_window_at_shifted_base",
+      "module": "PscVerif.C4FamilyFiniteFibreSynchronization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFiniteFibreSynchronization.lean",
+      "line": 77,
+      "declaration": "theorem fibre_common_window_at_shifted_base (hk₂ : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.C4FamilyFiniteFibreSynchronization.exists_fibre_common_window",
+      "module": "PscVerif.C4FamilyFiniteFibreSynchronization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFiniteFibreSynchronization.lean",
+      "line": 110,
+      "declaration": "theorem exists_fibre_common_window (hk₂ : 2 ≤ k) {R : ℝ} (hR : 0 < R) :"
+    },
+    {
+      "name": "Psc.C4FamilyFiniteProximal.same_fibre_topologicallyProximal",
+      "module": "PscVerif.C4FamilyFiniteProximal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFiniteProximal.lean",
+      "line": 36,
+      "declaration": "theorem same_fibre_topologicallyProximal (hk₂ : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.C4FamilyFiniteProximal.same_fibre_iff_topologicallyProximal",
+      "module": "PscVerif.C4FamilyFiniteProximal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFiniteProximal.lean",
+      "line": 46,
+      "declaration": "theorem same_fibre_iff_topologicallyProximal (hk₂ : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.C4FamilyFiniteProximal.isClosed_topologicallyProximal",
+      "module": "PscVerif.C4FamilyFiniteProximal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFiniteProximal.lean",
+      "line": 56,
+      "declaration": "theorem isClosed_topologicallyProximal (hk₂ : 2 ≤ k) :"
+    },
+    {
+      "name": "Psc.C4FamilyFiniteProximal.concreteFibreRank_eq_one",
+      "module": "PscVerif.C4FamilyFiniteProximal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFiniteProximal.lean",
+      "line": 75,
+      "declaration": "theorem concreteFibreRank_eq_one (hk₂ : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.C4FamilyFiniteProximal.rotation_factor_descent",
+      "module": "PscVerif.C4FamilyFiniteProximal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFiniteProximal.lean",
+      "line": 87,
+      "declaration": "theorem rotation_factor_descent (hk₂ : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.C4FamilyFiniteProximal.equicontinuous_factor_descent",
+      "module": "PscVerif.C4FamilyFiniteProximal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFiniteProximal.lean",
+      "line": 103,
+      "declaration": "theorem equicontinuous_factor_descent (hk₂ : 2 ≤ k)"
+    },
+    {
       "name": "Psc.PeriodicPartnerEventualCoincidence.dense_eventual_trans",
       "module": "PscVerif.C4FamilyFiniteZeroFibre",
       "private": false,
@@ -5448,6 +5664,126 @@
       "source": "proof/PscVerif/PscVerif/C4FamilyFiniteZeroFibre.lean",
       "line": 216,
       "declaration": "theorem zero_fibre_stronglyRegionallyProximal (hk₂ : 2 ≤ k) {T U : (geometry k hk).Hull}"
+    },
+    {
+      "name": "Psc.C4FamilyOpenSynchronization.exists_centered_tile_fibre",
+      "module": "PscVerif.C4FamilyOpenSynchronization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyOpenSynchronization.lean",
+      "line": 34,
+      "declaration": "theorem exists_centered_tile_fibre (hk₂ : 2 ≤ k) :"
+    },
+    {
+      "name": "Psc.C4FamilyOpenSynchronization.origin_of_centered_patch",
+      "module": "PscVerif.C4FamilyOpenSynchronization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyOpenSynchronization.lean",
+      "line": 67,
+      "declaration": "theorem origin_of_centered_patch (a : Fin 3) {δ : ℝ}"
+    },
+    {
+      "name": "Psc.C4FamilyOpenSynchronization.open_common_window_of_centered_tile_fibre",
+      "module": "PscVerif.C4FamilyOpenSynchronization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyOpenSynchronization.lean",
+      "line": 94,
+      "declaration": "theorem open_common_window_of_centered_tile_fibre"
+    },
+    {
+      "name": "Psc.C4FamilyOpenSynchronization.exists_open_common_window",
+      "module": "PscVerif.C4FamilyOpenSynchronization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyOpenSynchronization.lean",
+      "line": 167,
+      "declaration": "theorem exists_open_common_window (hk₂ : 2 ≤ k) :"
+    },
+    {
+      "name": "Psc.C4FamilySolenoidCharacters.eigenfunction_apply",
+      "module": "PscVerif.C4FamilySolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySolenoidCharacters.lean",
+      "line": 36,
+      "declaration": "theorem eigenfunction_apply (c : Certificate (Fin 3)) (T : LocalHull (geometry k hk)) :"
+    },
+    {
+      "name": "Psc.C4FamilySolenoidCharacters.eigenfunction_norm",
+      "module": "PscVerif.C4FamilySolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySolenoidCharacters.lean",
+      "line": 39,
+      "declaration": "theorem eigenfunction_norm (c : Certificate (Fin 3)) (T : LocalHull (geometry k hk)) :"
+    },
+    {
+      "name": "Psc.C4FamilySolenoidCharacters.eigenfunction_translate",
+      "module": "PscVerif.C4FamilySolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySolenoidCharacters.lean",
+      "line": 43,
+      "declaration": "theorem eigenfunction_translate (c : Certificate (Fin 3)) (t : ℝ)"
+    },
+    {
+      "name": "Psc.C4FamilySolenoidCharacters.eigenfunctions_eq_iff",
+      "module": "PscVerif.C4FamilySolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySolenoidCharacters.lean",
+      "line": 54,
+      "declaration": "theorem eigenfunctions_eq_iff (T U : LocalHull (geometry k hk)) :"
+    },
+    {
+      "name": "Psc.C4FamilySolenoidCharacters.solenoid_character_span_dense",
+      "module": "PscVerif.C4FamilySolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySolenoidCharacters.lean",
+      "line": 63,
+      "declaration": "theorem solenoid_character_span_dense :"
+    },
+    {
+      "name": "Psc.C4FamilySolenoidCharacters.mat_predecessor",
+      "module": "PscVerif.C4FamilySolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySolenoidCharacters.lean",
+      "line": 73,
+      "declaration": "theorem mat_predecessor (v : Fin 3 → ℝ) :"
+    },
+    {
+      "name": "Psc.C4FamilySolenoidCharacters.nonunitHistory_coord_zero",
+      "module": "PscVerif.C4FamilySolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySolenoidCharacters.lean",
+      "line": 87,
+      "declaration": "theorem nonunitHistory_coord_zero : (nonunitHistory k hk).1 0 = 0 := by"
+    },
+    {
+      "name": "Psc.C4FamilySolenoidCharacters.nonunitHistory_coord_one_two",
+      "module": "PscVerif.C4FamilySolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySolenoidCharacters.lean",
+      "line": 96,
+      "declaration": "theorem nonunitHistory_coord_one_two :"
+    },
+    {
+      "name": "Psc.C4FamilySolenoidCharacters.nonunitHistory_character",
+      "module": "PscVerif.C4FamilySolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySolenoidCharacters.lean",
+      "line": 101,
+      "declaration": "theorem nonunitHistory_character :"
+    },
+    {
+      "name": "Psc.C4FamilySolenoidCharacters.nonunitHistory_ne_zero",
+      "module": "PscVerif.C4FamilySolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySolenoidCharacters.lean",
+      "line": 111,
+      "declaration": "theorem nonunitHistory_ne_zero : nonunitHistory k hk ≠ 0 := by"
+    },
+    {
+      "name": "Psc.C4FamilySolenoidCharacters.coord_zero_not_injective",
+      "module": "PscVerif.C4FamilySolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySolenoidCharacters.lean",
+      "line": 118,
+      "declaration": "theorem coord_zero_not_injective :"
     },
     {
       "name": "Psc.C4FamilyTileAutomatonHull.lengthOutput_zero",
@@ -6434,6 +6770,78 @@
       "declaration": "theorem delayedPair_no_coincidence_child :"
     },
     {
+      "name": "Psc.ParameterFamilyEquicontinuousFactor.uniformEquicontinuous_solenoid_flow",
+      "module": "PscVerif.C4ParameterFamilyEquicontinuousFactor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyEquicontinuousFactor.lean",
+      "line": 26,
+      "declaration": "theorem uniformEquicontinuous_solenoid_flow :"
+    },
+    {
+      "name": "Psc.ParameterFamilyEquicontinuousFactor.equicontinuous_solenoid_flow",
+      "module": "PscVerif.C4ParameterFamilyEquicontinuousFactor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyEquicontinuousFactor.lean",
+      "line": 37,
+      "declaration": "theorem equicontinuous_solenoid_flow : Equicontinuous (flow (pisotData k hk)) :="
+    },
+    {
+      "name": "Psc.ParameterFamilyEquicontinuousFactor.solenoid_flow_zero",
+      "module": "PscVerif.C4ParameterFamilyEquicontinuousFactor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyEquicontinuousFactor.lean",
+      "line": 42,
+      "declaration": "theorem solenoid_flow_zero (z : Solenoid (geometry k hk)) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyEquicontinuousFactor.solenoid_flow_add",
+      "module": "PscVerif.C4ParameterFamilyEquicontinuousFactor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyEquicontinuousFactor.lean",
+      "line": 47,
+      "declaration": "theorem solenoid_flow_add (s t : ℝ) (z : Solenoid (geometry k hk)) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyEquicontinuousFactor.equicontinuous_factor_descent_of_zero_anchor_common_tile",
+      "module": "PscVerif.C4ParameterFamilyEquicontinuousFactor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyEquicontinuousFactor.lean",
+      "line": 57,
+      "declaration": "theorem equicontinuous_factor_descent_of_zero_anchor_common_tile"
+    },
+    {
+      "name": "Psc.ParameterFamilyFibreDistal.fibreDistal_iff_unique_preimage",
+      "module": "PscVerif.C4ParameterFamilyFibreDistal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyFibreDistal.lean",
+      "line": 32,
+      "declaration": "theorem fibreDistal_iff_unique_preimage (hk₂ : 2 ≤ k) (z : Solenoid (geometry k hk)) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyFibreDistal.ae_fibreDistal_iff_ae_unique_preimage",
+      "module": "PscVerif.C4ParameterFamilyFibreDistal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyFibreDistal.lean",
+      "line": 41,
+      "declaration": "theorem ae_fibreDistal_iff_ae_unique_preimage (hk₂ : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.ParameterFamilyFibreDistal.ae_unique_preimage_of_ae_fibreDistal",
+      "module": "PscVerif.C4ParameterFamilyFibreDistal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyFibreDistal.lean",
+      "line": 49,
+      "declaration": "theorem ae_unique_preimage_of_ae_fibreDistal (hk₂ : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.ParameterFamilyFibreDistal.zero_not_fibreDistal",
+      "module": "PscVerif.C4ParameterFamilyFibreDistal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyFibreDistal.lean",
+      "line": 57,
+      "declaration": "theorem zero_not_fibreDistal (hk₂ : 2 ≤ k) :"
+    },
+    {
       "name": "Psc.ParameterFamilyInteriorProximal.seam_interior_common_tile",
       "module": "PscVerif.C4ParameterFamilyInteriorProximal",
       "private": false,
@@ -6520,6 +6928,38 @@
       "source": "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorZero.lean",
       "line": 66,
       "declaration": "theorem seam_and_interior_zero_witnesses :"
+    },
+    {
+      "name": "Psc.ParameterFamilyOrdinaryProximal.same_fibre_proximal_of_zero_anchor",
+      "module": "PscVerif.C4ParameterFamilyOrdinaryProximal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOrdinaryProximal.lean",
+      "line": 27,
+      "declaration": "theorem same_fibre_proximal_of_zero_anchor"
+    },
+    {
+      "name": "Psc.ParameterFamilyOrdinaryProximal.same_fibre_proximal_of_zero_anchor_common_tile",
+      "module": "PscVerif.C4ParameterFamilyOrdinaryProximal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOrdinaryProximal.lean",
+      "line": 53,
+      "declaration": "theorem same_fibre_proximal_of_zero_anchor_common_tile"
+    },
+    {
+      "name": "Psc.ParameterFamilyOrdinaryProximal.same_fibre_proximal_of_zero_anchor_witnesses",
+      "module": "PscVerif.C4ParameterFamilyOrdinaryProximal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOrdinaryProximal.lean",
+      "line": 68,
+      "declaration": "theorem same_fibre_proximal_of_zero_anchor_witnesses (hk₂ : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.ParameterFamilyOrdinaryProximal.same_fibre_proximal_of_zero_fibre_witnesses",
+      "module": "PscVerif.C4ParameterFamilyOrdinaryProximal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOrdinaryProximal.lean",
+      "line": 83,
+      "declaration": "theorem same_fibre_proximal_of_zero_fibre_witnesses (hk₂ : 2 ≤ k)"
     },
     {
       "name": "Psc.ParameterFamilyPisot.incidence_eq",
@@ -6792,6 +7232,46 @@
       "source": "proof/PscVerif/PscVerif/C4ParameterFamilyRecognizability.lean",
       "line": 175,
       "declaration": "theorem inflateH_bijective (k : ℕ) (hk : 1 ≤ k) : Bijective (inflateH (S := geometry k hk)) :="
+    },
+    {
+      "name": "Psc.ParameterFamilyRotationFactor.solenoid_flow_eq_add",
+      "module": "PscVerif.C4ParameterFamilyRotationFactor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyRotationFactor.lean",
+      "line": 26,
+      "declaration": "theorem solenoid_flow_eq_add (t : ℝ) (z : Solenoid (geometry k hk)) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyRotationFactor.solenoidRealize_eq_of_topologicallyProximal",
+      "module": "PscVerif.C4ParameterFamilyRotationFactor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyRotationFactor.lean",
+      "line": 33,
+      "declaration": "theorem solenoidRealize_eq_of_topologicallyProximal"
+    },
+    {
+      "name": "Psc.ParameterFamilyRotationFactor.same_fibre_iff_proximal_of_zero_anchor_common_tile",
+      "module": "PscVerif.C4ParameterFamilyRotationFactor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyRotationFactor.lean",
+      "line": 47,
+      "declaration": "theorem same_fibre_iff_proximal_of_zero_anchor_common_tile"
+    },
+    {
+      "name": "Psc.ParameterFamilyRotationFactor.concreteFibreRank_eq_one_of_zero_anchor_common_tile",
+      "module": "PscVerif.C4ParameterFamilyRotationFactor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyRotationFactor.lean",
+      "line": 67,
+      "declaration": "theorem concreteFibreRank_eq_one_of_zero_anchor_common_tile"
+    },
+    {
+      "name": "Psc.ParameterFamilyRotationFactor.rotation_descent_of_zero_anchor_common_tile",
+      "module": "PscVerif.C4ParameterFamilyRotationFactor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyRotationFactor.lean",
+      "line": 81,
+      "declaration": "theorem rotation_descent_of_zero_anchor_common_tile"
     },
     {
       "name": "Psc.ParameterFamilySolenoid.mat_eq",
@@ -40666,6 +41146,30 @@
       "declaration": "theorem ternary_zero_fibre_periodic_triple {X Y : Type*}"
     },
     {
+      "name": "Psc.PeriodicPartnerEquicontinuousFactor.eq_of_topologicallyProximal_of_equicontinuous",
+      "module": "PscVerif.PeriodicPartnerEquicontinuousFactor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEquicontinuousFactor.lean",
+      "line": 32,
+      "declaration": "theorem eq_of_topologicallyProximal_of_equicontinuous (act : ℝ → Z → Z)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEquicontinuousFactor.existsUnique_equicontinuous_descent",
+      "module": "PscVerif.PeriodicPartnerEquicontinuousFactor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEquicontinuousFactor.lean",
+      "line": 55,
+      "declaration": "theorem existsUnique_equicontinuous_descent"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEquicontinuousFactor.uniformEquicontinuous_right_rotations",
+      "module": "PscVerif.PeriodicPartnerEquicontinuousFactor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEquicontinuousFactor.lean",
+      "line": 78,
+      "declaration": "theorem uniformEquicontinuous_right_rotations {ι G : Type*}"
+    },
+    {
       "name": "Psc.PeriodicPartnerEvenSolenoid.half_add",
       "module": "PscVerif.PeriodicPartnerEvenSolenoid",
       "private": false,
@@ -41288,6 +41792,62 @@
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerEventualCoincidence.lean",
       "line": 222,
       "declaration": "theorem dense_of_one_hit [Nonempty α] {P : Set (α × ℝ)} (hP : S.IsTiling P) {p g : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFibreDistal.fibreDistal_iff_subsingleton",
+      "module": "PscVerif.PeriodicPartnerFibreDistal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFibreDistal.lean",
+      "line": 36,
+      "declaration": "theorem fibreDistal_iff_subsingleton"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFibreDistal.fibreDistal_iff_existsUnique",
+      "module": "PscVerif.PeriodicPartnerFibreDistal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFibreDistal.lean",
+      "line": 47,
+      "declaration": "theorem fibreDistal_iff_existsUnique"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFibreDistal.not_fibreDistal_of_distinct_proximal",
+      "module": "PscVerif.PeriodicPartnerFibreDistal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFibreDistal.lean",
+      "line": 61,
+      "declaration": "theorem not_fibreDistal_of_distinct_proximal {z : Y} {x y : X}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFibreDistal.ae_fibreDistal_iff_ae_existsUnique",
+      "module": "PscVerif.PeriodicPartnerFibreDistal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFibreDistal.lean",
+      "line": 70,
+      "declaration": "theorem ae_fibreDistal_iff_ae_existsUnique [MeasurableSpace Y]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFiniteCoincidence.common_tile_of_finite_eventual",
+      "module": "PscVerif.PeriodicPartnerFiniteCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFiniteCoincidence.lean",
+      "line": 30,
+      "declaration": "theorem common_tile_of_finite_eventual (T : ι → S.Hull) (i₀ : ι) {x : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFiniteCoincidence.common_tile_of_finite_dense_eventual",
+      "module": "PscVerif.PeriodicPartnerFiniteCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFiniteCoincidence.lean",
+      "line": 49,
+      "declaration": "theorem common_tile_of_finite_dense_eventual (T : ι → S.Hull) (i₀ : ι)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFiniteCoincidence.common_window_of_finite_dense_eventual",
+      "module": "PscVerif.PeriodicPartnerFiniteCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFiniteCoincidence.lean",
+      "line": 64,
+      "declaration": "theorem common_window_of_finite_dense_eventual (hβ : 1 < S.β)"
     },
     {
       "name": "Psc.PeriodicPartnerFixedPointHull.first_iterWord",
@@ -44138,6 +44698,38 @@
       "declaration": "theorem contraction_collapse_from_endpoint_merge :"
     },
     {
+      "name": "Psc.PeriodicPartnerOrdinaryProximal.pair_orbit_closure_invariant",
+      "module": "PscVerif.PeriodicPartnerOrdinaryProximal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerOrdinaryProximal.lean",
+      "line": 38,
+      "declaration": "theorem pair_orbit_closure_invariant (act : ℝ → X → X)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerOrdinaryProximal.topologicallyProximal_of_anchor",
+      "module": "PscVerif.PeriodicPartnerOrdinaryProximal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerOrdinaryProximal.lean",
+      "line": 58,
+      "declaration": "theorem topologicallyProximal_of_anchor [CompactSpace X] [T2Space Y]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerOrdinaryProximal.mem_patch_of_agree",
+      "module": "PscVerif.PeriodicPartnerOrdinaryProximal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerOrdinaryProximal.lean",
+      "line": 97,
+      "declaration": "theorem mem_patch_of_agree {V T U : LocalHull S} {ε R : ℝ} {n : ℕ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerOrdinaryProximal.topologicallyProximal_of_exactProximal",
+      "module": "PscVerif.PeriodicPartnerOrdinaryProximal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerOrdinaryProximal.lean",
+      "line": 111,
+      "declaration": "theorem topologicallyProximal_of_exactProximal"
+    },
+    {
       "name": "Psc.PeriodicPartnerOriginContinuity.origin_eq_of_agree_one",
       "module": "PscVerif.PeriodicPartnerOriginContinuity",
       "private": false,
@@ -44208,6 +44800,30 @@
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerOriginContinuity.lean",
       "line": 88,
       "declaration": "theorem continuous_offset : Continuous (offset (S := S)) :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerOriginSeparation.exists_finite_origin_displacements",
+      "module": "PscVerif.PeriodicPartnerOriginSeparation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerOriginSeparation.lean",
+      "line": 24,
+      "declaration": "theorem exists_finite_origin_displacements :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerOriginSeparation.finite_nonzero_gap",
+      "module": "PscVerif.PeriodicPartnerOriginSeparation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerOriginSeparation.lean",
+      "line": 42,
+      "declaration": "theorem finite_nonzero_gap {D : Set ℝ} (hD : D.Finite) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerOriginSeparation.exists_origin_separation",
+      "module": "PscVerif.PeriodicPartnerOriginSeparation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerOriginSeparation.lean",
+      "line": 63,
+      "declaration": "theorem exists_origin_separation :"
     },
     {
       "name": "Psc.PeriodicPartnerPeriodicZero.realize_zero_of_periodic_torus_zero",
@@ -44964,17 +45580,17 @@
     {
       "name": "Psc.PeriodicPartnerRealizationFinite.finite_lattice_ball",
       "module": "PscVerif.PeriodicPartnerRealizationFinite",
-      "private": true,
+      "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationFinite.lean",
-      "line": 68,
-      "declaration": "private theorem finite_lattice_ball (K : ℝ) :"
+      "line": 70,
+      "declaration": "theorem finite_lattice_ball (K : ℝ) :"
     },
     {
       "name": "Psc.PeriodicPartnerRealizationFinite.agree_of_window_eq",
       "module": "PscVerif.PeriodicPartnerRealizationFinite",
       "private": true,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationFinite.lean",
-      "line": 88,
+      "line": 90,
       "declaration": "private theorem agree_of_window_eq {T U : S.Hull} (h : window T = window U) :"
     },
     {
@@ -44982,7 +45598,7 @@
       "module": "PscVerif.PeriodicPartnerRealizationFinite",
       "private": true,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationFinite.lean",
-      "line": 96,
+      "line": 98,
       "declaration": "private theorem exists_finite_windows :"
     },
     {
@@ -44990,7 +45606,7 @@
       "module": "PscVerif.PeriodicPartnerRealizationFinite",
       "private": true,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationFinite.lean",
-      "line": 128,
+      "line": 130,
       "declaration": "private theorem exists_agree_radius (T U : S.Hull) :"
     },
     {
@@ -44998,7 +45614,7 @@
       "module": "PscVerif.PeriodicPartnerRealizationFinite",
       "private": true,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationFinite.lean",
-      "line": 140,
+      "line": 142,
       "declaration": "private theorem level_agree_expands {T U : S.Hull} (n : ℕ)"
     },
     {
@@ -45006,7 +45622,7 @@
       "module": "PscVerif.PeriodicPartnerRealizationFinite",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationFinite.lean",
-      "line": 151,
+      "line": 153,
       "declaration": "theorem realize_finite_fibres (hβ : 1 < S.β) (z : Solenoid S) :"
     },
     {
@@ -45014,7 +45630,7 @@
       "module": "PscVerif.PeriodicPartnerRealizationFinite",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationFinite.lean",
-      "line": 186,
+      "line": 188,
       "declaration": "theorem realizeLocal_finite_fibres (hβ : 1 < S.β) (z : Solenoid S) :"
     },
     {
@@ -45370,6 +45986,54 @@
       "declaration": "theorem thue_morse_marker_return_control :"
     },
     {
+      "name": "Psc.PeriodicPartnerRotationFactor.topologicallyProximal_map",
+      "module": "PscVerif.PeriodicPartnerRotationFactor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRotationFactor.lean",
+      "line": 29,
+      "declaration": "theorem topologicallyProximal_map (act : ℝ → X → X) (act' : ℝ → Y → Y)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRotationFactor.eq_of_topologicallyProximal_rotation",
+      "module": "PscVerif.PeriodicPartnerRotationFactor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRotationFactor.lean",
+      "line": 55,
+      "declaration": "theorem eq_of_topologicallyProximal_rotation (ρ : ℝ → G) {x y : G}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRotationFactor.existsUnique_continuous_equivariant_descent",
+      "module": "PscVerif.PeriodicPartnerRotationFactor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRotationFactor.lean",
+      "line": 75,
+      "declaration": "theorem existsUnique_continuous_equivariant_descent"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRotationFactor.existsUnique_rotation_descent",
+      "module": "PscVerif.PeriodicPartnerRotationFactor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRotationFactor.lean",
+      "line": 108,
+      "declaration": "theorem existsUnique_rotation_descent"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRotationFactor.fibreNonproximalRank_eq_one",
+      "module": "PscVerif.PeriodicPartnerRotationFactor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRotationFactor.lean",
+      "line": 137,
+      "declaration": "theorem fibreNonproximalRank_eq_one (act : ℝ → X → X) (g : X → Y) (z : Y)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRotationFactor.fibreNonproximalRank_eq_one_of_surjective",
+      "module": "PscVerif.PeriodicPartnerRotationFactor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRotationFactor.lean",
+      "line": 162,
+      "declaration": "theorem fibreNonproximalRank_eq_one_of_surjective"
+    },
+    {
       "name": "Psc.PeriodicPartner.groupCycle_row",
       "module": "PscVerif.PeriodicPartnerSeamCycles",
       "private": true,
@@ -45520,6 +46184,222 @@
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean",
       "line": 213,
       "declaration": "theorem selection_dichotomy"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.torusCoordinate_mk",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 42,
+      "declaration": "theorem torusCoordinate_mk (a : α) (v : α → ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.continuous_torusCoordinate",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 46,
+      "declaration": "theorem continuous_torusCoordinate (a : α) : Continuous (torusCoordinate a) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.torusCoordinate_ext",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 51,
+      "declaration": "theorem torusCoordinate_ext {z w : Torus α}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.phase_zero",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 78,
+      "declaration": "theorem phase_zero (z : Solenoid S) : phase S 0 z = 0 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.phase_add",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 81,
+      "declaration": "theorem phase_add (c d : Certificate α) (z : Solenoid S) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.phase_neg",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 87,
+      "declaration": "theorem phase_neg (c : Certificate α) (z : Solenoid S) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.phase_single",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 93,
+      "declaration": "theorem phase_single (ni : ℕ × α) (e : ℤ) (z : Solenoid S) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.continuous_phase",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 99,
+      "declaration": "theorem continuous_phase (c : Certificate α) : Continuous (phase S c) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.character_apply",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 114,
+      "declaration": "theorem character_apply (c : Certificate α) (z : Solenoid S) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.character_zero",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 118,
+      "declaration": "theorem character_zero : character S 0 = 1 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.character_add",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 122,
+      "declaration": "theorem character_add (c d : Certificate α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.character_neg",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 128,
+      "declaration": "theorem character_neg (c : Certificate α) : character S (-c) = star (character S c) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.character_norm",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 133,
+      "declaration": "theorem character_norm (c : Certificate α) (z : Solenoid S) : ‖character S c z‖ = 1 :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.character_map_add",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 136,
+      "declaration": "theorem character_map_add (c : Certificate α) (z w : Solenoid S) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.character_at_zero",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 141,
+      "declaration": "theorem character_at_zero (c : Certificate α) : character S c 0 = 1 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.frequency_zero",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 150,
+      "declaration": "theorem frequency_zero (P : PisotData S) : frequency S P 0 = 0 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.frequency_add",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 153,
+      "declaration": "theorem frequency_add (P : PisotData S) (c d : Certificate α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.frequency_neg",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 162,
+      "declaration": "theorem frequency_neg (P : PisotData S) (c : Certificate α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.frequency_single",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 168,
+      "declaration": "theorem frequency_single (P : PisotData S) (ni : ℕ × α) (e : ℤ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.phase_flow_zero",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 173,
+      "declaration": "theorem phase_flow_zero [Nonempty α] (P : PisotData S) (c : Certificate α) (t : ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.character_flow",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 188,
+      "declaration": "theorem character_flow [Nonempty α] (P : PisotData S) (c : Certificate α) (t : ℝ)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.character_ext",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 201,
+      "declaration": "theorem character_ext {z w : Solenoid S}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.exists_single_character_ne",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 213,
+      "declaration": "theorem exists_single_character_ne {z w : Solenoid S} (h : z ≠ w) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.characterAlgebra_toSubmodule",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 238,
+      "declaration": "theorem characterAlgebra_toSubmodule :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.characterAlgebra_separatesPoints",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 247,
+      "declaration": "theorem characterAlgebra_separatesPoints : (characterAlgebra S).SeparatesPoints := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.characterAlgebra_closure_eq_top",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 254,
+      "declaration": "theorem characterAlgebra_closure_eq_top : (characterAlgebra S).topologicalClosure = ⊤ :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerSolenoidCharacters.span_character_closure_eq_top",
+      "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean",
+      "line": 259,
+      "declaration": "theorem span_character_closure_eq_top :"
     },
     {
       "name": "Psc.PeriodicPartnerSpectral.pow_mulVec_eigen",
@@ -57400,9 +58280,13 @@
     "claim_governance.toml": "895eb1950ccd19725ad600b1d40d988652d5e15524a336288bef7761411d8a7c",
     "proof/PscVerif/A1PrimeTailAudit.lean": "eee41a524a6a114716a7704f169726b6484ab56c2398431dcd297fe6809a0b23",
     "proof/PscVerif/BHFiniteReachabilityAudit.lean": "5469fdefea80286841bb3b40b7944a4674de5dce03ca12b490ee72b77ca2b79d",
+    "proof/PscVerif/C4CharacterOrbitsAudit.lean": "23c1dae1939fe054375bb8de0fa9add025b21728f38b98a98956cb0d8f50191f",
     "proof/PscVerif/C4FiniteHullWitnessAudit.lean": "58d7293dcc4baf9066599bf8349963512855a654ab680e357e7bd38e35d38f47",
+    "proof/PscVerif/C4FiniteProximalAudit.lean": "9d75e8645c7eebbe0f8479d267ad66f6ff4b1976f759f8b472f510f29909c851",
+    "proof/PscVerif/C4FiniteSynchronizationAudit.lean": "a04634c4d67258b9de1dd8bcb1554b8174f59336a144bd5e2cb402ac861029c9",
     "proof/PscVerif/C4FiniteTileAutomatonAudit.lean": "03ae6c9467da09b705a6ddf5c51403797a17e559bbf81175d5544e34c1eb8b08",
     "proof/PscVerif/C4ParameterFamilyAudit.lean": "5d63a488ad5d3a98f20e6e109049a349a440c9459dc33013ba40f915ade5c5a3",
+    "proof/PscVerif/C4SolenoidCharactersAudit.lean": "a58b05f8e660fb239f6fbb90b8c5dace255481b3818ad0c7dfcb11cdb5405dbe",
     "proof/PscVerif/C4ZeroFibreWitnessAudit.lean": "fa9d4d6d34b745d9e485b723a242685175cb747d9146f13a979b25c25517312d",
     "proof/PscVerif/ClassABoundaryEscapeAudit.lean": "f5b5147990567d0ca653e6f96336d3e44e00087dc6a577c101b840592495abdb",
     "proof/PscVerif/ClassACentralRecurrenceAudit.lean": "c312940fe33a565e0031cf0c87e303a291755da0db9080f65222b1ffa6a4519b",
@@ -57437,18 +58321,27 @@
     "proof/PscVerif/PscVerif/Binomial.lean": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
     "proof/PscVerif/PscVerif/BoundarySeedPath.lean": "bea69cb93d5bcd15b1b88c48062b4404a721908092af1b5f5b42e6184f7abae3",
+    "proof/PscVerif/PscVerif/C4FamilyCharacterOrbits.lean": "a8604253adf021654c5b0cb572c54b7a7b9aad7fc255648c5460a6e53de2ebd6",
+    "proof/PscVerif/PscVerif/C4FamilyFiniteFibreSynchronization.lean": "9dd07cf862829b61a18e82409893ebd9fba6855a3d0bda2543d786c92355f390",
+    "proof/PscVerif/PscVerif/C4FamilyFiniteProximal.lean": "f0626913d31535e076e6afd0ce495ad5d4c49b1214d81c9b3b3f5b533244dc1c",
     "proof/PscVerif/PscVerif/C4FamilyFiniteZeroFibre.lean": "47832e3754b2cf087dced965641afc954537b94949d990f264f9bd91835221b8",
+    "proof/PscVerif/PscVerif/C4FamilyOpenSynchronization.lean": "d67995845d97872e01484eca0e3eb8d78dafb7c25c29dedbce2668c8e47ab923",
+    "proof/PscVerif/PscVerif/C4FamilySolenoidCharacters.lean": "4309de68886bf368e18470e0d903877ec46fe47cd553e9dac37de95fda6e4903",
     "proof/PscVerif/PscVerif/C4FamilyTileAutomatonHull.lean": "02d57375d81d07073d12dc864a8632abfd6068808c051500ac1895d0f99d737c",
     "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean": "9b97606079e367b743a2f863403dff677a58c096068ad1715160eeef5a8b9559",
     "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean": "b8123aec4c0e1c2a9a1b5937a17cd0c9c26189e0d884c8a27bf1465e3b8b5b24",
     "proof/PscVerif/PscVerif/C4ParameterFamilyBridge.lean": "eb29f8b3bf9c325163a1e932dcfc324bd094f0b754ed28a2789daadb45e0354a",
     "proof/PscVerif/PscVerif/C4ParameterFamilyCarrier.lean": "fba5f9b5a2a20c08107aa3e7714c20f2e92a4aeacd28e816e1a4e331e5e03208",
     "proof/PscVerif/PscVerif/C4ParameterFamilyControls.lean": "98b75297c14f75b6a2c87c651d06b3da13131616cf1b53c2630d7b498a1b5540",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyEquicontinuousFactor.lean": "d581184210ba15a673591078d0050b3be8a3f58c13878e39814818b6d414268f",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyFibreDistal.lean": "556923495164687e8b52258cc00ccf52b0411f348cdaf0031674a369090be9fc",
     "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorProximal.lean": "68ce95f9f0cdf53603f79cff4d3a6b38c1e6e51ae4750b4fc68108b30fa4a9b2",
     "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorSeed.lean": "6cc2b07ef323a93901d647b211fa0621566bf93b1c980a4fa6e8a530c12e2ad0",
     "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorZero.lean": "a84c06f8694a66eaa0b488ba8b2673c9dcc062bec9996d3dc5443cf97ce8b52e",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyOrdinaryProximal.lean": "7636d2c4c641deb791407072755958df0c8e3e26b4d3b753439a868f20829c6a",
     "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean": "17c1a41e6726dfef7f04f3ccc0594f0cbfc5eb90fd61325114179541c763423c",
     "proof/PscVerif/PscVerif/C4ParameterFamilyRecognizability.lean": "b6889e7a4bf84e33cb154b36229be3f8c7992ce0d6afb1b241ff6e3d89ca2532",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyRotationFactor.lean": "dda99b8395b96881a2078a3f5e296c7bf296d3523fef779c5298640ec1dd0bed",
     "proof/PscVerif/PscVerif/C4ParameterFamilySolenoid.lean": "9b3b06d944c2b531ab6d3649144f5361244dc89a554ba9354e564dae26f52917",
     "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean": "421b9833f2d132206d0a34ee9ff9dcf511594cb5c7e14540f4c5a1fb9a83ba1c",
     "proof/PscVerif/PscVerif/C4ParameterFamilyWords.lean": "e49cc02bc7b82b8f44101ce153d93982f02e31684501ffe7499cfb53d55c86d7",
@@ -57615,9 +58508,12 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerDichotomy.lean": "d74034c65d26d8b98916f6fdca046c6772e9a3389fb53fdd03bcf3baeea2339b",
     "proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean": "e78626f1b8c8a8878249dbdb959ea4b493bedef844755a693ef6450043607664",
     "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean": "812599f6a9dfb4ab5d0da0924fa6c3901128f74644e76d14eb2996de17f55c44",
+    "proof/PscVerif/PscVerif/PeriodicPartnerEquicontinuousFactor.lean": "7bb8ff4ad0ee87a2421df93384511253cc88c7836d7b900c37971f96c5196071",
     "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean": "24de7ca583a5a654e331a0fae80e407174589843b58051fca044fefcd76d874c",
     "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean": "5519f5698c83b43956df8e04263f873e4879a1ec4e48533fe96e36b330f7d626",
     "proof/PscVerif/PscVerif/PeriodicPartnerEventualCoincidence.lean": "d25e97d6a1c338a452fc61c987bfc9addb569cde5a7e2df3eaed5d485f92238a",
+    "proof/PscVerif/PscVerif/PeriodicPartnerFibreDistal.lean": "4819d353bd09427da45695d11143746d9ead187f4d90802e915a2c83e1b0deef",
+    "proof/PscVerif/PscVerif/PeriodicPartnerFiniteCoincidence.lean": "ae5c8796441d2334e157976498067e4dfd8359e0362b801c312c1cafb93bad0e",
     "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointHull.lean": "ea853775c5ef040594228907ccf63082505cb596e39778e6a942f0a4374583fd",
     "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean": "5b2e91b27abcdbb06b7acac3eac752a1b52b10b2b1045445b6a496263b44630c",
     "proof/PscVerif/PscVerif/PeriodicPartnerGradedLift.lean": "2a30fa67345bdfc4efc019c9fc92190ec6cbe22efb5faa2de44a2052c63d4837",
@@ -57638,18 +58534,22 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerMarkerParity.lean": "42227be445623aa8ee65df4ea029bfd3c69a65a269af0984a89b5743e2291664",
     "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean": "c8f1c3dcf79e7dc003ebcdbcf5a1aa2ec1c8dabbd58119c3b20b96ef89595216",
     "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean": "434d5573fb928bb0ee6667da6dedc8fc76867b76c26d72f5707ac1387a62c5ea",
+    "proof/PscVerif/PscVerif/PeriodicPartnerOrdinaryProximal.lean": "cf93554a7032dd4bb34bc5f51d60330bbeb8fcaa63ad0c1ef107190d8b38d73d",
     "proof/PscVerif/PscVerif/PeriodicPartnerOriginContinuity.lean": "8dc8686400f6a170c42e962359a406b4eaa649bf899a5d8149488e5ee8c37d50",
+    "proof/PscVerif/PscVerif/PeriodicPartnerOriginSeparation.lean": "f0304cc8f908e48a8566a9b110884469b9e82e51679ed0ee13b35ba9a44d244d",
     "proof/PscVerif/PscVerif/PeriodicPartnerPeriodicZero.lean": "651bc59774daae1c2f363253d5734cdc47c9830134cf9784c85c483916583df8",
     "proof/PscVerif/PscVerif/PeriodicPartnerProximal.lean": "83944b6beee8157260961fc8c4d6e27573836f6f45f1811390bc0deac202feae",
     "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean": "3b983148f0e3bc048984c15cb5350bcb77cb272b3bd77058ba02020008cd764d",
     "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean": "8d779d4d0ebb448ddb784f35b4e135cc5c7ce78ba97fd3c55537d1cbbb5a2d04",
-    "proof/PscVerif/PscVerif/PeriodicPartnerRealizationFinite.lean": "9792341552874a42c4f0d746145d984bdd0b879815fb679d5f4263dd8e704a78",
+    "proof/PscVerif/PscVerif/PeriodicPartnerRealizationFinite.lean": "df8a3538f890eb6c5a25349c806e8b0eb54a9a1b2ca8f839ea4bfeb3e774feda",
     "proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean": "870d45802ea6b8678a90bdbb88bdfa90a986fdafad52f00962766245353eb323",
     "proof/PscVerif/PscVerif/PeriodicPartnerRealizationOnto.lean": "ce6eac4f63139a67ab95687d5da0bba2e51efc8457f5535ca7ed6a3436a35721",
     "proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean": "140e1a71503a0648d17099247ef4cb9b92d67c1cdc15257ee66526a89527ece5",
     "proof/PscVerif/PscVerif/PeriodicPartnerReturnBoundary.lean": "84e8948f48cda97e3099fb7db5b14b6f5fa703fee4d8a9cfe597919578b13ff9",
+    "proof/PscVerif/PscVerif/PeriodicPartnerRotationFactor.lean": "0d3ab745b6d63394490b39b7bc07c8680aad77cd7e51804da09d476367e340fe",
     "proof/PscVerif/PscVerif/PeriodicPartnerSeamCycles.lean": "15693988e36bb7e4ba0e3d7e6e2e15fb2cc85ff2b36552ccd8b395cf08260ef7",
     "proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean": "13c39c9aea34b64f377cbfd3eb074fe436a952e8f0d806eb9ed37f6c2ef70e41",
+    "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean": "b501792f12cc16d524209a20eabb834b69ee0a7188afbceb92b9459cb3fffdfd",
     "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean": "45d12d1e6e7589bbbccfbf44798af9700c99be94a24a61ea02ece5ad8c55eafd",
     "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean": "af195787b8856b750f4f513e80a3045873a05743d86f245204fdf278386f79ba",
     "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean": "90fb4042c25c01e906e828c6e1da15d782ae9301f591b34270283dcc18786ebd",
@@ -57693,7 +58593,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "cbbcb1659f5e47245e5a70890d48517927be0930cd21864debfa992598e63d65",
+    "proof/PscVerif/PscVerif.lean": "b118070fae353198c12c6991ca71a867672cb3b5921d90ac4f3a6a1a7a644d5c",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
