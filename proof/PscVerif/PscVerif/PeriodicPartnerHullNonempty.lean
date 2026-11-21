@@ -247,11 +247,11 @@ theorem census_hull_nonempty (σ : Fin 3 → List (Fin 3))
     ∃ S : LengthSubst (Fin 3), S.σ = σ ∧ PIP3 S ∧
       Nonempty (Psc.PeriodicPartnerRealization.PisotData S) ∧ Nonempty S.Hull := by
   obtain ⟨S, hσ, hP, hD⟩ := (Psc.PeriodicPartnerSpectralCensus.census σ hlen).2 hmem
-  exact ⟨S, hσ, hP, hD, hP.hull_nonempty⟩
+  exact ⟨S, hσ, hP, hD, PIP3.hull_nonempty hP⟩
 
 /-- The Tribonacci hull is nonempty. -/
 theorem tribonacci_hull_nonempty : Nonempty Psc.PeriodicPartnerSpectralModels.tribonacci.Hull :=
   Psc.PeriodicPartnerSpectralModels.tribonacci.hull_nonempty
-    Psc.PeriodicPartnerSpectralModels.tribonacci_mem_PIP3.2.2.2.1
+    Psc.PeriodicPartnerSpectralModels.one_lt_τ
 
 end Psc.PeriodicPartnerHull
