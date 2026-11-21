@@ -205,6 +205,7 @@ import PscVerif.PeriodicPartnerFixedPointHull
 import PscVerif.PeriodicPartnerTwinEndpoint
 import PscVerif.PeriodicPartnerStackWordRigidity
 import PscVerif.PeriodicPartnerGraphSpectrum
+import PscVerif.PeriodicPartnerGradedLift
 import PscVerif.PeriodicPartnerCompanionWords
 import PscVerif.VertexAsymptoteRange
 import PscVerif.PeriodicPartnerRealization
