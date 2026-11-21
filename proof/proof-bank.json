@@ -41130,6 +41130,126 @@
       "declaration": "theorem isOpen_iff_agreement (V : Set S.Hull) :"
     },
     {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.startsAt_unique",
+      "module": "PscVerif.PeriodicPartnerHullLeft",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
+      "line": 45,
+      "declaration": "theorem startsAt_unique {T : S.Hull} {y : ℝ} {b c : α}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.agree_start",
+      "module": "PscVerif.PeriodicPartnerHullLeft",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
+      "line": 50,
+      "declaration": "theorem agree_start {T U : S.Hull} {r y : ℝ} {b c : α} (h : AgreeLeft T U r)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.leftBranchLaws",
+      "module": "PscVerif.PeriodicPartnerHullLeft",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
+      "line": 55,
+      "declaration": "theorem leftBranchLaws [Nonempty α] :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.left_common_patch",
+      "module": "PscVerif.PeriodicPartnerHullLeft",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
+      "line": 80,
+      "declaration": "theorem left_common_patch {T U : S.Hull} {a : α} (hray : AgreeLeft T U 0)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.reflected_common_patch",
+      "module": "PscVerif.PeriodicPartnerHullLeft",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
+      "line": 95,
+      "declaration": "theorem reflected_common_patch [Nonempty α] {T U : S.Hull} {a : α}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.reflected_window_of_ray",
+      "module": "PscVerif.PeriodicPartnerHullLeft",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
+      "line": 103,
+      "declaration": "theorem reflected_window_of_ray {R r : ℝ} {T U : S.Hull} (_hR : 0 < R) (hr : r ≤ -R)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.leftAsymptotic_iff_metric",
+      "module": "PscVerif.PeriodicPartnerHullLeft",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
+      "line": 108,
+      "declaration": "theorem leftAsymptotic_iff_metric [Nonempty α] {T U : S.Hull} :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.left_bds_ray_iff_metric",
+      "module": "PscVerif.PeriodicPartnerHullLeft",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
+      "line": 132,
+      "declaration": "theorem left_bds_ray_iff_metric [Nonempty α] :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.startsAt_of_endsAt",
+      "module": "PscVerif.PeriodicPartnerHullLeft",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
+      "line": 145,
+      "declaration": "theorem startsAt_of_endsAt {T : S.Hull} {y : ℝ} {c : α} (hc : EndsAt T y c) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.endsAt_of_startsAt",
+      "module": "PscVerif.PeriodicPartnerHullLeft",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
+      "line": 167,
+      "declaration": "theorem endsAt_of_startsAt [Fintype α] [DecidableEq α] [Nonempty α] {T : S.Hull} {y : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.r4_startsAt_iff_endsAt",
+      "module": "PscVerif.PeriodicPartnerHullLeft",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
+      "line": 194,
+      "declaration": "theorem r4_startsAt_iff_endsAt [Fintype α] [DecidableEq α] [Nonempty α] {Y : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.hull_left_two_step_iff_pairPeriodic",
+      "module": "PscVerif.PeriodicPartnerHullLeft",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
+      "line": 221,
+      "declaration": "theorem hull_left_two_step_iff_pairPeriodic (hβ : 1 < S.β) (hBDS : LeftBDS S)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.hull_left_two_step_iff_zero_fibre",
+      "module": "PscVerif.PeriodicPartnerHullLeft",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
+      "line": 230,
+      "declaration": "theorem hull_left_two_step_iff_zero_fibre (hβ : 1 < S.β) (P : PublishedInputs S Y)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.hull_left_collapse_of_merge",
+      "module": "PscVerif.PeriodicPartnerHullLeft",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
+      "line": 239,
+      "declaration": "theorem hull_left_collapse_of_merge (hβ : 1 < S.β) {T U : S.Hull} {a b : Fin 3}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.hull_left_branch_triple_dichotomy",
+      "module": "PscVerif.PeriodicPartnerHullLeft",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
+      "line": 249,
+      "declaration": "theorem hull_left_branch_triple_dichotomy (hβ : 1 < S.β) (P : PublishedInputs S Y)"
+    },
+    {
       "name": "Psc.PeriodicPartnerHull.LengthSubst.subst_append",
       "module": "PscVerif.PeriodicPartnerHullNonempty",
       "private": false,
@@ -55895,7 +56015,7 @@
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "81efe5b8745576f8f15a59a263563b31e08307e9c432e78fa2ef9021a613b2d1",
     "proof/PscVerif/EvenRankTwoAudit.lean": "cfc2c3b6dfae0305e1ab27989607917e4ffe8944a513aa861dc5ca781ba620ca",
     "proof/PscVerif/MarkerReachabilityReplay.lean": "4d21e06344eff182c78196d2f8eb815e1dbb8f517920dedf6849cc1546d831a3",
-    "proof/PscVerif/PeriodicPartnerAudit.lean": "a3a4882394adb797dd9b81bb61b3d73c472a608709218bb27625c530af76504c",
+    "proof/PscVerif/PeriodicPartnerAudit.lean": "b44ab24cac548dd65055a56050ba100eee2f313bb5e283a6fbe1b59312fc7404",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean": "f1c4480b95159800bb52cd42164763d01e6ab6045dc72b07874f164409a0eaf1",
     "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean": "6387c221871d7b70efca50349c815fac07421bb44a28122f9157ff0652cb074f",
@@ -56088,6 +56208,7 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerGraphSpectrum.lean": "d1f70a6da1a88f58abba2ee29223ed9d96c13ffc70ce5a7942731d9cfe7326a6",
     "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean": "6124e92faa7ace36663a57ff5dda39f281fd86237cc30006912cf4c2a0a65b6e",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean": "80e0f040cd0ea768a0d5ddf74710dc659c9a9431fb667740953f41369a652386",
+    "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean": "8ad2c1703d5772a03ebb2a896ee5217daaca4bed6b8dc9e2f232fe8a066d5a1f",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullNonempty.lean": "a42b83d6d61d8b94e4699dc3582f2b7560240bb1a2b4efe414f0ce756217505e",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullPatches.lean": "07ce32643bfcec7aac4f9e9cc36969a888cd726462aa32077c3fbd2b44a03698",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean": "59d86f345c47142bdd7a74200c04b48f4ae975d1d5afe2dc29331048d7f37988",
@@ -56151,7 +56272,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "cf3b12aab7204a0119974658360a8a4423f521373470731b8a9359e7bd2312e7",
+    "proof/PscVerif/PscVerif.lean": "54fe0367c91c4e85925887b1dd1fa98c523a8056ae902753050100fa43d81b5a",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
