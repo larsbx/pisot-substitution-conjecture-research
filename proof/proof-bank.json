@@ -5338,6 +5338,182 @@
       "declaration": "theorem selected_stage_rank_decreases (i : ℕ) (hi : i < 6) :"
     },
     {
+      "name": "Psc.PeriodicPartnerEventualCoincidence.dense_eventual_trans",
+      "module": "PscVerif.C4FamilyFiniteZeroFibre",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFiniteZeroFibre.lean",
+      "line": 24,
+      "declaration": "theorem dense_eventual_trans {α : Type*} [Nonempty α] (S : LengthSubst α)"
+    },
+    {
+      "name": "Psc.C4FamilyFiniteZeroFibre.dense_eventual_of_walk",
+      "module": "PscVerif.C4FamilyFiniteZeroFibre",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFiniteZeroFibre.lean",
+      "line": 50,
+      "declaration": "theorem dense_eventual_of_walk (hk₂ : 2 ≤ k) {a b : Label} {w : List Edge} {v : Vector}"
+    },
+    {
+      "name": "Psc.C4FamilyFiniteZeroFibre.dense_eventual_of_replay",
+      "module": "PscVerif.C4FamilyFiniteZeroFibre",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFiniteZeroFibre.lean",
+      "line": 70,
+      "declaration": "theorem dense_eventual_of_replay (hk₂ : 2 ≤ k) {a b : Label} {w : List Edge} {v : Vector}"
+    },
+    {
+      "name": "Psc.C4FamilyFiniteZeroFibre.dense_eventual_of_integer_displacement",
+      "module": "PscVerif.C4FamilyFiniteZeroFibre",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFiniteZeroFibre.lean",
+      "line": 80,
+      "declaration": "theorem dense_eventual_of_integer_displacement (hk₂ : 2 ≤ k) {a b : Label} (v : Vector)"
+    },
+    {
+      "name": "Psc.C4FamilyFiniteZeroFibre.dense_eventual_of_torusRealize_eq",
+      "module": "PscVerif.C4FamilyFiniteZeroFibre",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFiniteZeroFibre.lean",
+      "line": 92,
+      "declaration": "theorem dense_eventual_of_torusRealize_eq (hk₂ : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.C4FamilyFiniteZeroFibre.same_fibre_dense_eventual",
+      "module": "PscVerif.C4FamilyFiniteZeroFibre",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFiniteZeroFibre.lean",
+      "line": 117,
+      "declaration": "theorem same_fibre_dense_eventual (hk₂ : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.C4FamilyFiniteZeroFibre.integer_origin_of_zero",
+      "module": "PscVerif.C4FamilyFiniteZeroFibre",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFiniteZeroFibre.lean",
+      "line": 128,
+      "declaration": "theorem integer_origin_of_zero {T : (geometry k hk).Hull}"
+    },
+    {
+      "name": "Psc.C4FamilyFiniteZeroFibre.dense_eventual_of_integer_origins",
+      "module": "PscVerif.C4FamilyFiniteZeroFibre",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFiniteZeroFibre.lean",
+      "line": 141,
+      "declaration": "theorem dense_eventual_of_integer_origins (hk₂ : 2 ≤ k) {T U : (geometry k hk).Hull}"
+    },
+    {
+      "name": "Psc.C4FamilyFiniteZeroFibre.zero_fibre_dense_eventual",
+      "module": "PscVerif.C4FamilyFiniteZeroFibre",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFiniteZeroFibre.lean",
+      "line": 159,
+      "declaration": "theorem zero_fibre_dense_eventual (hk₂ : 2 ≤ k) {T U : (geometry k hk).Hull}"
+    },
+    {
+      "name": "Psc.C4FamilyFiniteZeroFibre.zero_fibre_common_tile",
+      "module": "PscVerif.C4FamilyFiniteZeroFibre",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFiniteZeroFibre.lean",
+      "line": 168,
+      "declaration": "theorem zero_fibre_common_tile (hk₂ : 2 ≤ k) {T U : (geometry k hk).Hull}"
+    },
+    {
+      "name": "Psc.C4FamilyFiniteZeroFibre.zero_fibre_exactProximal",
+      "module": "PscVerif.C4FamilyFiniteZeroFibre",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFiniteZeroFibre.lean",
+      "line": 190,
+      "declaration": "theorem zero_fibre_exactProximal (hk₂ : 2 ≤ k) {T U : (geometry k hk).Hull}"
+    },
+    {
+      "name": "Psc.C4FamilyFiniteZeroFibre.zero_fibre_windowWitnesses",
+      "module": "PscVerif.C4FamilyFiniteZeroFibre",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFiniteZeroFibre.lean",
+      "line": 199,
+      "declaration": "theorem zero_fibre_windowWitnesses (hk₂ : 2 ≤ k) {T U : (geometry k hk).Hull}"
+    },
+    {
+      "name": "Psc.C4FamilyFiniteZeroFibre.zero_fibre_closedOriginWitnesses",
+      "module": "PscVerif.C4FamilyFiniteZeroFibre",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFiniteZeroFibre.lean",
+      "line": 208,
+      "declaration": "theorem zero_fibre_closedOriginWitnesses (hk₂ : 2 ≤ k) {T U : (geometry k hk).Hull}"
+    },
+    {
+      "name": "Psc.C4FamilyFiniteZeroFibre.zero_fibre_stronglyRegionallyProximal",
+      "module": "PscVerif.C4FamilyFiniteZeroFibre",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFiniteZeroFibre.lean",
+      "line": 216,
+      "declaration": "theorem zero_fibre_stronglyRegionallyProximal (hk₂ : 2 ≤ k) {T U : (geometry k hk).Hull}"
+    },
+    {
+      "name": "Psc.C4FamilyTileAutomatonHull.lengthOutput_zero",
+      "module": "PscVerif.C4FamilyTileAutomatonHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonHull.lean",
+      "line": 31,
+      "declaration": "@[simp] theorem lengthOutput_zero (S : LengthSubst (Fin 3)) :"
+    },
+    {
+      "name": "Psc.C4FamilyTileAutomatonHull.lengthOutput_add",
+      "module": "PscVerif.C4FamilyTileAutomatonHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonHull.lean",
+      "line": 34,
+      "declaration": "@[simp] theorem lengthOutput_add (S : LengthSubst (Fin 3)) (v w : Vector) :"
+    },
+    {
+      "name": "Psc.C4FamilyTileAutomatonHull.lengthOutput_neg",
+      "module": "PscVerif.C4FamilyTileAutomatonHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonHull.lean",
+      "line": 38,
+      "declaration": "@[simp] theorem lengthOutput_neg (S : LengthSubst (Fin 3)) (v : Vector) :"
+    },
+    {
+      "name": "Psc.C4FamilyTileAutomatonHull.lengthOutput_basis",
+      "module": "PscVerif.C4FamilyTileAutomatonHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonHull.lean",
+      "line": 42,
+      "declaration": "@[simp] theorem lengthOutput_basis (S : LengthSubst (Fin 3)) (a : Label) :"
+    },
+    {
+      "name": "Psc.C4FamilyTileAutomatonHull.supertile_hull",
+      "module": "PscVerif.C4FamilyTileAutomatonHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonHull.lean",
+      "line": 48,
+      "declaration": "theorem supertile_hull (k : ℕ) (hk : 1 ≤ k) (c : Label) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilyTileAutomatonHull.occurrence_hull_bridge",
+      "module": "PscVerif.C4FamilyTileAutomatonHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonHull.lean",
+      "line": 68,
+      "declaration": "theorem occurrence_hull_bridge (k : ℕ) (hk : 1 ≤ k) {n : ℕ} {a b : Label}"
+    },
+    {
+      "name": "Psc.C4FamilyTileAutomatonHull.forward_edge_hull_bridge",
+      "module": "PscVerif.C4FamilyTileAutomatonHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonHull.lean",
+      "line": 95,
+      "declaration": "theorem forward_edge_hull_bridge (k : ℕ) (hk : 1 ≤ k) (hk₂ : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.C4FamilyTileAutomatonHull.signed_edge_hull_bridge",
+      "module": "PscVerif.C4FamilyTileAutomatonHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonHull.lean",
+      "line": 108,
+      "declaration": "theorem signed_edge_hull_bridge (k : ℕ) (hk : 1 ≤ k) (hk₂ : 2 ≤ k)"
+    },
+    {
       "name": "Psc.C4FamilyTileAutomatonWords.subst_singleton",
       "module": "PscVerif.C4FamilyTileAutomatonWords",
       "private": true,
@@ -57224,6 +57400,7 @@
     "claim_governance.toml": "895eb1950ccd19725ad600b1d40d988652d5e15524a336288bef7761411d8a7c",
     "proof/PscVerif/A1PrimeTailAudit.lean": "eee41a524a6a114716a7704f169726b6484ab56c2398431dcd297fe6809a0b23",
     "proof/PscVerif/BHFiniteReachabilityAudit.lean": "5469fdefea80286841bb3b40b7944a4674de5dce03ca12b490ee72b77ca2b79d",
+    "proof/PscVerif/C4FiniteHullWitnessAudit.lean": "58d7293dcc4baf9066599bf8349963512855a654ab680e357e7bd38e35d38f47",
     "proof/PscVerif/C4FiniteTileAutomatonAudit.lean": "03ae6c9467da09b705a6ddf5c51403797a17e559bbf81175d5544e34c1eb8b08",
     "proof/PscVerif/C4ParameterFamilyAudit.lean": "5d63a488ad5d3a98f20e6e109049a349a440c9459dc33013ba40f915ade5c5a3",
     "proof/PscVerif/C4ZeroFibreWitnessAudit.lean": "fa9d4d6d34b745d9e485b723a242685175cb747d9146f13a979b25c25517312d",
@@ -57260,6 +57437,8 @@
     "proof/PscVerif/PscVerif/Binomial.lean": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
     "proof/PscVerif/PscVerif/BoundarySeedPath.lean": "bea69cb93d5bcd15b1b88c48062b4404a721908092af1b5f5b42e6184f7abae3",
+    "proof/PscVerif/PscVerif/C4FamilyFiniteZeroFibre.lean": "47832e3754b2cf087dced965641afc954537b94949d990f264f9bd91835221b8",
+    "proof/PscVerif/PscVerif/C4FamilyTileAutomatonHull.lean": "02d57375d81d07073d12dc864a8632abfd6068808c051500ac1895d0f99d737c",
     "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean": "9b97606079e367b743a2f863403dff677a58c096068ad1715160eeef5a8b9559",
     "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean": "b8123aec4c0e1c2a9a1b5937a17cd0c9c26189e0d884c8a27bf1465e3b8b5b24",
     "proof/PscVerif/PscVerif/C4ParameterFamilyBridge.lean": "eb29f8b3bf9c325163a1e932dcfc324bd094f0b754ed28a2789daadb45e0354a",
@@ -57514,7 +57693,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "bf8a886c77869fd295eda306ab9a8fcfbf5372a96e03bb17dcad6a254f9073bc",
+    "proof/PscVerif/PscVerif.lean": "cbbcb1659f5e47245e5a70890d48517927be0930cd21864debfa992598e63d65",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

@@ -242,3 +242,5 @@ import PscVerif.A1PrimeTailCoincidence
 import PscVerif.A1PrimeTailPisot
 import PscVerif.C4FiniteTileAutomaton
 import PscVerif.C4FamilyTileAutomatonWords
+import PscVerif.C4FamilyTileAutomatonHull
+import PscVerif.C4FamilyFiniteZeroFibre

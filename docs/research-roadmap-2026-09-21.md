@@ -7,8 +7,9 @@ BH, residual A1′, C4 and PSC remain open. No claim is promoted by this roadmap
 ## 2026-11-21 current priorities: family spectral endpoint and universal coincidence
 
 **Inspected main:**
-[`e7e6e330b80b560be70c2a5346e217f415fe4711`](https://github.com/larsbx/pisot-substitution-conjecture-research/commit/e7e6e330b80b560be70c2a5346e217f415fe4711),
-through [#641](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/641).
+[`fbaa2ef1867e191f160cc3dbf9b8e26e10af45a7`](https://github.com/larsbx/pisot-substitution-conjecture-research/commit/fbaa2ef1867e191f160cc3dbf9b8e26e10af45a7),
+through [#647](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/647),
+with the finite automaton interpretation described below.
 The [research review](psc-sigma-k-research-review-2026-11-20.md) supplies the
 literature assessment through 20 November and its publication addendum.
 The developments below supersede its earlier family implementation targets
@@ -39,24 +40,28 @@ Barge–Štimac–Williams Corollary 2](https://doi.org/10.3934/dcds.2013.33.579
 already gives the written family conclusion. The spectral use of the
 separate published `k=1` result stays outside the combined Lean endpoint.
 
-**Finite-kernel method, 21 November.** At source baseline
-`f5ca04063db75722e7736cfbad36629b7cd36d35`, the next proof work uses
-automata, exact integer certificates and finite induction. The
+**Finite-kernel method, 21 November.** The
 [three-label tile-chain automaton](c4-finite-tile-automaton-2026-11-21.md)
 has explicit signed loops generating all of `Z^3`; every forward edge
 has a literal family occurrence by substitution depth two for every
-`k>=2`. This supplies uniform integer coverage without a larger bounded
-origin-state scan. Its actual-hull interpretation and the transfer to
-the stated spectral conclusion remain named interfaces. Further
-limit-based analysis is not the working route for these new obligations.
+`k>=2`. Its [actual-hull interpretation](c4-finite-hull-witnesses-2026-11-21.md)
+now proves the universal zero-fibre common-tile and exact-window witnesses.
+Each edge has a real legal-hull witness, and finite Walk induction composes
+the existing shared-tile coincidence transfer. Intermediate hull members
+need no zero or period premise. The integer origins select a finite path;
+periodicity of the two endpoints yields the common tile. Equal full
+solenoid histories also imply dense eventual coincidence. This supplies
+uniform coverage without a bounded origin-state scan or a new limit
+argument. The previously proved hull and density dependencies remain
+explicit, and the invariant-measure conclusion remains separate.
 
 ### Deliverables and the premises each must discharge
 
 | Workstream | Reuse at its recorded scope | Next deliverable and completion condition |
 | --- | --- | --- |
-| **Finite tile-chain certificates** | The shared finite-kernel DFA, SCC and exact arithmetic packages; the explicit integer-output certificate and uniformly legal five-edge family alphabet. | Interpret the checked finite chains in actual legal tilings, retaining edge occurrences, reversed traversal and exact integer displacement; feed the existing lattice-origin and shared-tile coincidence interfaces. A chain of legal co-occurrences need not be one legal word. |
-| **Family factor geometry** | Unique desubstitution and the onto, finite-to-one ordinary-hull map to the full solenoid. Its zero fibre is periodic. | Derive the common-shift witnesses for each pair over zero. Lean proves a fibre comparison for continuous maps into the same time-normalized solenoid. The published factor identification and same-fibre witness theorem are written inputs. |
-| **Family measured spectrum** | The nonempty fibre with pairwise common tiles once the preceding inputs are supplied. | Formalize the disjoint-pair obstruction to failure of pure discreteness, or the equivalent coincidence-rank-one theorem, for this hull. Specify the invariant probability measure and translation action, and conclude density of the translation eigenfunctions in its `L²` space for every `k>=2`. A symbolic-shift conclusion needs its own transfer theorem. |
+| **Finite tile-chain certificates** | Completed: native DFA/SCC/BigZ/Mat3 certificates, uniformly legal five-edge alphabet, exact signed replay, actual legal-hull edge realizations, and finite Walk transfer to dense eventual coincidence. | Reuse this checked route; no additional chain-realization or zero-fibre witness premise remains. A chain may use distinct legal tilings for its edges and need not be one legal word. |
+| **Family factor geometry** | Unique desubstitution, the onto finite-to-one ordinary-hull solenoid map, universal zero-fibre common tiles and arbitrary-radius exact witnesses, and dense eventual coincidence for equal full images. | Complete the formal ordinary-proximality/coincidence-rank and maximal-factor correspondence at their exact hypotheses. Dense eventual coincidence on general fibres alone is not an almost-everywhere singleton-fibre result. |
+| **Family measured spectrum** | The actual nonempty zero fibre now has pairwise common tiles, uniformly for `k>=2`. | Formalize the disjoint-pair obstruction to failure of pure discreteness, or the equivalent coincidence-rank-one theorem, for this hull. Supply almost-everywhere singleton fibres, specify the invariant probability measure and translation action, and conclude density of the translation eigenfunctions in its `L²` space. A symbolic-shift conclusion needs its own transfer theorem. |
 | **BH and Class A** | The accepted written minus-Class-A cover, written upper plus entry/continuation, and the 70 small upper plus certificates at their complete swap-seed scope. | Bind the written upper plus original-occurrence paths to Lean; retain the recorded acceptance status of each finite certificate. Extend source coverage and an actual selected path to zero integral displacement to the remaining BH domains, including the full nonunit representation. Use the [BH roadmap](bh-escape-roadmap-2026-11-14.md) for the exact scopes. |
 | **Residual A1′** | The scoped tail witnesses and the two-obstruction completion theorem. | Prove one-sided coincidence for the prescribed residual first-letter-fixed hub pair; same-position proximality or an equal-Parikh prefix with the same next letter is a concrete target. The uncovered non-crossing Theorem K cells are a narrower starting point. Universal BH and A1′ together feed #84; #84 is not a third independent existence premise. |
 | **Nonunit rank-two C4** | The [written global residue](c4-nonunit-rank-two-residue-2026-11-21.md): `ER=K₂,₂`, both endpoint maps non-injective, and incidence nilpotent modulo two, under the named twin/cohomology/covering inputs. | Find a geometric obstruction for twins branching on the collapsed endpoint pair. Preserve the distinction between excluding rank-two **strict systems** and excluding arbitrary rank-two hulls. The unit case, higher ranks, and extraction of a finite strict carrier from arbitrary failure remain separate. |

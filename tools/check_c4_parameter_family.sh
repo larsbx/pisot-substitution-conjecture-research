@@ -43,7 +43,8 @@ elan run "$PSC_FAMILY_PIN" lake --no-cache build \
     PscVerif.UniversalClosureReduction PscVerif.PeriodicPartnerRealizationModels \
     PscVerif.C4ParameterFamilyZeroFibreWitnesses \
     PscVerif.C4ParameterFamilyZeroFibreControls PscVerif.C4ParameterFamilyInteriorZero \
-    PscVerif.C4FiniteTileAutomaton PscVerif.C4FamilyTileAutomatonWords
+    PscVerif.C4FiniteTileAutomaton PscVerif.C4FamilyTileAutomatonWords \
+    PscVerif.C4FamilyTileAutomatonHull PscVerif.C4FamilyFiniteZeroFibre
 psc_family_check_pins
 elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
     -DautoImplicit=false -Dpp.unicode.fun=true C4ParameterFamilyAudit.lean \
@@ -105,4 +106,9 @@ elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
     | tee "$PSC_FAMILY_TMP/finite-tile-audit.log"
 test "$(grep -Fxc $'PSC_FINITE_TILE_AUDIT_COMPLETE\t164\t103' "$PSC_FAMILY_TMP/finite-tile-audit.log")" -eq 1
 test "$(grep -Fxc $'PSC_FINITE_TILE_REFUSAL_CONTROLS\t20' "$PSC_FAMILY_TMP/finite-tile-audit.log")" -eq 1
+elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
+    -DautoImplicit=false -Dpp.unicode.fun=true C4FiniteHullWitnessAudit.lean \
+    | tee "$PSC_FAMILY_TMP/finite-hull-audit.log"
+test "$(grep -Fxc $'PSC_FINITE_HULL_AUDIT_COMPLETE\t26\t25' "$PSC_FAMILY_TMP/finite-hull-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_FINITE_HULL_REFUSAL_CONTROLS\t48' "$PSC_FAMILY_TMP/finite-hull-audit.log")" -eq 1
 psc_family_check_pins
