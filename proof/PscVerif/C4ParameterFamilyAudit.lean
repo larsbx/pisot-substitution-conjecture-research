@@ -4,6 +4,7 @@ target. The unchanged full proof-bank audit separately inspects every imported
 project constant. -/
 import PscVerif.C4ParameterFamilyBridge
 import PscVerif.C4ParameterFamilyControls
+import PscVerif.C4ParameterFamilyTiling
 import PscVerif.UniversalClosureReduction
 import Lean.Util.CollectAxioms
 
@@ -12,6 +13,11 @@ namespace Psc.ParameterFamilyAudit
 open Psc.Binomial (subst)
 open Psc.Reduction (red IsBlock)
 open Psc.Incidence (inc)
+open Psc.ParameterFamilyTiling (geometry TilingSpace)
+open Psc.PeriodicPartnerBalancedGeometry (repeatWord)
+open Psc.PeriodicPartnerHull.LengthSubst (inflateH shift)
+open Psc.PeriodicPartnerLocalTopology (translate)
+open Set
 
 universe u
 
@@ -98,6 +104,53 @@ def SpectralCriterionInputsType : Prop :=
         ∃ m a, ([a], [a]) ∈ red ((subst (literalSubstitution k))^[m] U.1)
           ((subst (literalSubstitution k))^[m] U.2)
 
+def GeometryBindingType : Prop :=
+  ∀ (k : ℕ) (hk : 1 ≤ k), (geometry k hk).σ = literalSubstitution k
+
+def FixedHullTilingType : Prop :=
+  ∀ (k : ℕ) (hk : 1 ≤ k), ∃ T : (geometry k hk).Hull,
+    (1, -(geometry k hk).ℓ 1) ∈ T.1 ∧ (1, 0) ∈ T.1 ∧ inflateH^[2] T = T
+
+def ContinuousActionType : Prop :=
+  ∀ (k : ℕ) (hk : 1 ≤ k),
+    Continuous (fun p : ℝ × TilingSpace k hk => translate (geometry k hk) p.1 p.2)
+
+def AperiodicActionType : Prop :=
+  ∀ (k : ℕ) (hk : 1 ≤ k) (T : TilingSpace k hk) (t : ℝ),
+    translate (geometry k hk) t T = T → t = 0
+
+def FiniteLocalComplexityType : Prop :=
+  ∀ (k : ℕ) (hk : 1 ≤ k) (R : ℝ), 0 < R →
+    ∃ F : Set (Set (Fin 3 × ℝ)), F.Finite ∧ ∀ T : TilingSpace k hk,
+      ∃ x, shift x {p ∈ T.toHull.1 |
+        ((geometry k hk).supp p ∩ Ioo (-R) R).Nonempty} ∈ F
+
+def SwapRotationType : Prop :=
+  ∀ (k : ℕ) (hk : 1 ≤ k),
+    Irrational ((geometry k hk).ℓ 0 / ((geometry k hk).ℓ 0 + (geometry k hk).ℓ 1))
+
+def DenseRotationType : Prop :=
+  ∀ (k : ℕ) (hk : 1 ≤ k),
+    let S := geometry k hk
+    DenseRange (fun n : ℤ => n • (S.ℓ 0 : AddCircle (S.ℓ 0 + S.ℓ 1)))
+
+def DenseSwapCoincidenceType : Prop :=
+  ∀ (k : ℕ) (hk : 2 ≤ k),
+    let S := geometry k (show 1 ≤ k by omega)
+    ∀ t ∈ Ioo 0 (S.ℓ 0 + S.ℓ 1), ∀ ε > 0,
+      ∃ y ∈ Ioo 0 (S.ℓ 0 + S.ℓ 1), |y - t| < ε ∧
+        ∃ (j : ℕ) (q : Fin 3 × ℝ), q ∈ S.place ((subst (literalSubstitution k))^[j] [0, 1]) 0 ∧
+          q ∈ S.place ((subst (literalSubstitution k))^[j] [1, 0]) 0 ∧
+          S.β ^ j * y ∈ Ioo q.2 (q.2 + S.ℓ q.1)
+
+def PeriodicSwapGeometryType : Prop :=
+  ∀ (k : ℕ) (hk : 2 ≤ k),
+    let S := geometry k (show 1 ≤ k by omega)
+    let Q := repeatWord S [0, 1]
+    S.IsTiling Q ∧ Dense {y : ℝ | ∃ (j : ℕ) (q : Fin 3 × ℝ),
+      q ∈ S.inflate^[j] Q ∧ q ∈ S.inflate^[j] (shift (S.ℓ 0) Q) ∧
+      S.β ^ j * y ∈ Ioo q.2 (q.2 + S.ℓ q.1)}
+
 /-- Independent literal binding for the two-letter non-Pisot control. -/
 def controlSubstitution : Fin 2 → List (Fin 2)
   | 0 => [0, 0, 0, 0, 1]
@@ -123,6 +176,15 @@ example : FactorsEquivalenceType.{u} :=
   Psc.TerminationFactors.terminates_iff_finite_factors_and_coincidences
 example : FullFactorTerminationType := Psc.ParameterFamilyBridge.full_factor_termination
 example : SpectralCriterionInputsType := Psc.ParameterFamilyBridge.spectral_criterion_inputs
+example : GeometryBindingType := Psc.ParameterFamilyTiling.geometry_image
+example : FixedHullTilingType := Psc.ParameterFamilyTiling.fixed_hull_tiling
+example : ContinuousActionType := Psc.ParameterFamilyTiling.continuous_action
+example : AperiodicActionType := Psc.ParameterFamilyTiling.action_aperiodic
+example : FiniteLocalComplexityType := Psc.ParameterFamilyTiling.finite_local_complexity
+example : SwapRotationType := Psc.ParameterFamilyTiling.swap_rotation_irrational
+example : DenseRotationType := Psc.ParameterFamilyTiling.swap_rotation_dense
+example : DenseSwapCoincidenceType := Psc.ParameterFamilyTiling.dense_swap_coincidences
+example : PeriodicSwapGeometryType := Psc.ParameterFamilyTiling.periodic_swap_geometry
 example : AllBlocksProductiveControlType := Psc.UniversalClosureReduction.all_blocks_productive
 example : InfiniteSeedControlType := Psc.UniversalClosureReduction.infinite_seed_reachability
 
@@ -159,6 +221,24 @@ run_cmd do
         `PscVerif.C4ParameterFamilyBridge),
       (``Psc.ParameterFamilyBridge.spectral_criterion_inputs, ``SpectralCriterionInputsType,
         `PscVerif.C4ParameterFamilyBridge),
+      (``Psc.ParameterFamilyTiling.geometry_image, ``GeometryBindingType,
+        `PscVerif.C4ParameterFamilyTiling),
+      (``Psc.ParameterFamilyTiling.fixed_hull_tiling, ``FixedHullTilingType,
+        `PscVerif.C4ParameterFamilyTiling),
+      (``Psc.ParameterFamilyTiling.continuous_action, ``ContinuousActionType,
+        `PscVerif.C4ParameterFamilyTiling),
+      (``Psc.ParameterFamilyTiling.action_aperiodic, ``AperiodicActionType,
+        `PscVerif.C4ParameterFamilyTiling),
+      (``Psc.ParameterFamilyTiling.finite_local_complexity, ``FiniteLocalComplexityType,
+        `PscVerif.C4ParameterFamilyTiling),
+      (``Psc.ParameterFamilyTiling.swap_rotation_irrational, ``SwapRotationType,
+        `PscVerif.C4ParameterFamilyTiling),
+      (``Psc.ParameterFamilyTiling.swap_rotation_dense, ``DenseRotationType,
+        `PscVerif.C4ParameterFamilyTiling),
+      (``Psc.ParameterFamilyTiling.dense_swap_coincidences, ``DenseSwapCoincidenceType,
+        `PscVerif.C4ParameterFamilyTiling),
+      (``Psc.ParameterFamilyTiling.periodic_swap_geometry, ``PeriodicSwapGeometryType,
+        `PscVerif.C4ParameterFamilyTiling),
       (``Psc.UniversalClosureReduction.all_blocks_productive, ``AllBlocksProductiveControlType,
         `PscVerif.UniversalClosureReduction),
       (``Psc.UniversalClosureReduction.infinite_seed_reachability, ``InfiniteSeedControlType,
@@ -180,7 +260,9 @@ run_cmd do
     let modules := #[`PscVerif.Termination, `PscVerif.C4ParameterFamilyWords,
       `PscVerif.C4ParameterFamilyCarrier, `PscVerif.C4ParameterFamilyControls,
       `PscVerif.C4ParameterFamilyPisot, `PscVerif.TerminationFactors,
-      `PscVerif.C4ParameterFamilyBridge, `PscVerif.UniversalClosureReduction]
+      `PscVerif.C4ParameterFamilyBridge, `PscVerif.UniversalClosureReduction,
+      `PscVerif.PeriodicPartnerHullPatches, `PscVerif.PeriodicPartnerBalancedGeometry,
+      `PscVerif.C4ParameterFamilyTiling]
     let mut declarations := 0
     let mut proofs := 0
     for mod in modules do
@@ -203,7 +285,7 @@ run_cmd do
       declarations := declarations + owned
       proofs := proofs + ownedProofs
       Lean.Core.liftIOCore <| IO.println s!"PSC_PARAMETER_FAMILY_MODULE\t{mod}\t{owned}\t{ownedProofs}"
-    Lean.Core.liftIOCore <| IO.println s!"PSC_PARAMETER_FAMILY_DECLARATIONS\t8\t{declarations}\t{proofs}"
+    Lean.Core.liftIOCore <| IO.println s!"PSC_PARAMETER_FAMILY_DECLARATIONS\t{modules.size}\t{declarations}\t{proofs}"
     for (name, expected, expectedOwner) in endpoints do
       unless ← matchesType name expected do
         throwError "Missing or wrong-typed family endpoint: {name}"
@@ -229,6 +311,6 @@ run_cmd do
         throwError "Family endpoint audit accepted a wrong-type theorem"
       if ← matchesType `Psc.ParameterFamilyAudit.absentEndpoint expected then
         throwError "Family endpoint audit accepted a missing declaration"
-    Lean.Core.liftIOCore <| IO.println "PSC_PARAMETER_FAMILY_AUDIT_COMPLETE\t11\t22"
+    Lean.Core.liftIOCore <| IO.println s!"PSC_PARAMETER_FAMILY_AUDIT_COMPLETE\t{endpoints.size}\t{2 * endpoints.size}"
 
 end Psc.ParameterFamilyAudit
