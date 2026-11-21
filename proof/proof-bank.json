@@ -52760,6 +52760,21 @@
       "statement_heading": "**Corollary M3 (finite-cylinder approximation).** For a compact"
     },
     {
+      "source": "docs/c4-nonunit-rank-two-residue-2026-11-21.md",
+      "line": 16,
+      "statement_heading": "**Lemma N (fixed tilings).** For a primitive aperiodic substitution and `n ≥ 1`,"
+    },
+    {
+      "source": "docs/c4-nonunit-rank-two-residue-2026-11-21.md",
+      "line": 22,
+      "statement_heading": "**Proposition P (parity).** Under the standing hypotheses `#Fix(Φⁿ)` is even for every"
+    },
+    {
+      "source": "docs/c4-nonunit-rank-two-residue-2026-11-21.md",
+      "line": 25,
+      "statement_heading": "**Theorem R (residue).** Under the standing hypotheses:"
+    },
+    {
       "source": "docs/c4-nonunit-residue-occupancy-2026-11-04.md",
       "line": 65,
       "statement_heading": "### Lemma R1 (fixed-coset density)"

@@ -68,6 +68,11 @@ At nonunit determinant and rank two, Theorem E leaves only two cases:
 - `ER` is a single edge (`|L| = |R| = 1`, cycle rank zero, `dim H¹ = 3`);
 - both endpoint maps are non-injective (or the matching opposite side has one letter).
 
+*Correction, 2026-11-21.* The single-edge case was already excluded: there `dim H¹ = 3`,
+and Theorem H3 of the [rank-two wall note](c4-rank-two-wall-2026-11-16.md) excludes rank
+two. The [residue note](c4-nonunit-rank-two-residue-2026-11-21.md) gives the sharper form:
+`ER = K₂,₂`, both endpoint maps non-injective, `χ_M ≡ t³` modulo two.
+
 In the second case every pair of seams sharing a ray has twins branching on the **collapsed
 pair** of the matching endpoint map, strictly off the origin. This is case (B) of
 [Theorem S](c4-witness-selection-2026-11-19.md#results), now realized by twins rather than
