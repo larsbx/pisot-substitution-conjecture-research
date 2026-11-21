@@ -1,4 +1,4 @@
-/- Literal left coincidences for `1 / 2 / (1 0^m 2^r 1)` with `0 < m < r`. -/
+/- Literal left coincidences for `1 / 2 / (1 0^m 2^r 1)` with `0 < m ≤ r`. -/
 module
 
 import Mathlib.Data.List.Basic
@@ -112,6 +112,69 @@ theorem level_three_witness (m r : ℕ) (hm : 0 < m) (hr : m < r) :
     rw [h2, hw, hd, hbottom]
   · intro b
     simp only [List.count_append]
+    omega
+
+/-- At the equal-run boundary, the fourth iterates have a `2` after
+prefixes with equal counts. The run length is `n + 1`. -/
+theorem level_four_equal_run_witness (n : ℕ) :
+    let m := n + 1
+    ∃ P Q U V : Word,
+      ((fun w : Word => w.flatMap (sigma m m))^[4]) [1] = P ++ 2 :: U ∧
+      ((fun w : Word => w.flatMap (sigma m m))^[4]) [2] = Q ++ 2 :: V ∧
+      ∀ a, P.count a = Q.count a := by
+  let m := n + 1
+  let w := longWord m m
+  let d := second m m
+  let a := oneRun m
+  let p := zeroRun m
+  let q : Word := List.replicate m 2
+  let q₀ : Word := List.replicate n 2
+  let sub (xs : Word) := xs.flatMap (sigma m m)
+  have hqEnd : q = q₀ ++ [2] := by simp [q, q₀, m, List.replicate_add]
+  have hwFirst : w = p ++ 2 :: (q₀ ++ [1]) := by
+    simp [w, longWord, p, q₀, m, List.replicate_succ]
+  have hwLast : w = (p ++ q₀) ++ 2 :: [1] := by
+    change p ++ q ++ [1] = _
+    simp [hqEnd, List.append_assoc]
+  have hcopiesLast : copies m w = copies n w ++ w := by
+    simp [copies, m, List.replicate_add]
+  have hdSplit : d = a ++ copies n w ++ w ++ [2] := by
+    change a ++ copies m w ++ [2] = _
+    simp [hcopiesLast, List.append_assoc]
+  have hdFirst : d = (a ++ copies n w ++ p) ++ 2 :: (q₀ ++ [1, 2]) := by
+    calc
+      d = a ++ copies n w ++ w ++ [2] := hdSplit
+      _ = a ++ copies n w ++ (p ++ 2 :: (q₀ ++ [1])) ++ [2] :=
+        congrArg (fun t => a ++ copies n w ++ t ++ [2]) hwFirst
+      _ = _ := by simp [List.append_assoc]
+  have h1 : sub [1] = [2] := by simp [sub, sigma]
+  have h2 : sub [2] = w := by simp [sub, sigma, w]
+  have hw : sub w = d := image_longWord m m
+  have hd : sub d = w ++ q ++ copies m d ++ w := image_second m m
+  have hq : q.flatMap (sigma m m) = copies m w := by
+    simp [q, copies, List.flatMap_replicate, sigma, w]
+  have h4 : sub (w ++ q ++ copies m d ++ w) = d ++ copies m w ++ copies m (sub d) ++ d := by
+    simp only [sub, List.flatMap_append, hq, flatMap_copies, w, image_longWord]
+    rfl
+  refine ⟨w ++ q ++ a ++ copies n w ++ p, d ++ p ++ q₀,
+    q₀ ++ [1, 2] ++ copies n d ++ w, [1] ++ copies n w ++ copies m (sub d) ++ d,
+    ?_, ?_, ?_⟩
+  · change sub (sub (sub (sub [1]))) = _
+    rw [h1, h2, hw, hd, show copies m d = d ++ copies n d from copies_succ n d]
+    calc
+      _ = w ++ q ++ (((a ++ copies n w ++ p) ++ 2 :: (q₀ ++ [1, 2])) ++ copies n d) ++ w :=
+        congrArg (fun t => w ++ q ++ (t ++ copies n d) ++ w) hdFirst
+      _ = _ := by simp [List.append_assoc]
+  · change sub (sub (sub (sub [2]))) = _
+    conv_lhs => rw [h2, hw, hd, h4, show copies m w = w ++ copies n w from copies_succ n w]
+    calc
+      _ = d ++ (((p ++ q₀) ++ 2 :: [1]) ++ copies n w) ++ copies m (sub d) ++ d :=
+        congrArg (fun t => d ++ (t ++ copies n w) ++ copies m (sub d) ++ d) hwLast
+      _ = _ := by simp [List.append_assoc]
+  · intro b
+    have hdc := congrArg (List.count b) hdSplit
+    have hqc := congrArg (List.count b) hqEnd
+    simp only [List.count_append] at hdc hqc ⊢
     omega
 
 end Psc.PeriodicPartnerCompanionWords

@@ -38810,6 +38810,14 @@
       "declaration": "theorem level_three_witness (m r : ℕ) (hm : 0 < m) (hr : m < r) :"
     },
     {
+      "name": "Psc.PeriodicPartnerCompanionWords.level_four_equal_run_witness",
+      "module": "PscVerif.PeriodicPartnerCompanionWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerCompanionWords.lean",
+      "line": 119,
+      "declaration": "theorem level_four_equal_run_witness (n : ℕ) :"
+    },
+    {
       "name": "Psc.PeriodicPartnerCompleteRange.next_column_distinct",
       "module": "PscVerif.PeriodicPartnerCompleteRange",
       "private": true,
@@ -40992,6 +41000,238 @@
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopologyControls.lean",
       "line": 88,
       "declaration": "theorem not_continuous_toHull (T : S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerFamily.incidence",
+      "module": "PscVerif.PeriodicPartnerMarkerFamily",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerFamily.lean",
+      "line": 38,
+      "declaration": "theorem incidence (n : ℕ) (a b : Fin 3) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerFamily.charpoly",
+      "module": "PscVerif.PeriodicPartnerMarkerFamily",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerFamily.lean",
+      "line": 43,
+      "declaration": "theorem charpoly (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerFamily.even_incidence_nilpotent",
+      "module": "PscVerif.PeriodicPartnerMarkerFamily",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerFamily.lean",
+      "line": 56,
+      "declaration": "theorem even_incidence_nilpotent (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerFamily.endpoints",
+      "module": "PscVerif.PeriodicPartnerMarkerFamily",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerFamily.lean",
+      "line": 68,
+      "declaration": "theorem endpoints (n : ℕ) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerFamily.endpoint_maps_idempotent",
+      "module": "PscVerif.PeriodicPartnerMarkerFamily",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerFamily.lean",
+      "line": 73,
+      "declaration": "theorem endpoint_maps_idempotent (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerFamily.periodic_seams",
+      "module": "PscVerif.PeriodicPartnerMarkerFamily",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerFamily.lean",
+      "line": 81,
+      "declaration": "theorem periodic_seams (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerFamily.three_letter_violation",
+      "module": "PscVerif.PeriodicPartnerMarkerFamily",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerFamily.lean",
+      "line": 88,
+      "declaration": "theorem three_letter_violation (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerFamily.reordered_prefix_control",
+      "module": "PscVerif.PeriodicPartnerMarkerFamily",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerFamily.lean",
+      "line": 103,
+      "declaration": "theorem reordered_prefix_control :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerParity.normalized_gauges_agree_of_connected",
+      "module": "PscVerif.PeriodicPartnerMarkerParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerParity.lean",
+      "line": 21,
+      "declaration": "theorem normalized_gauges_agree_of_connected {A B C : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerParity.adjacentCount_append",
+      "module": "PscVerif.PeriodicPartnerMarkerParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerParity.lean",
+      "line": 67,
+      "declaration": "theorem adjacentCount_append {A : Type*} (mark : A → A → Bool) (u v : List A) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerParity.head_flatMap",
+      "module": "PscVerif.PeriodicPartnerMarkerParity",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerParity.lean",
+      "line": 83,
+      "declaration": "private theorem head_flatMap {A B : Type*} (s : A → List B) (first : A → B)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerParity.adjacentCount_flatMap",
+      "module": "PscVerif.PeriodicPartnerMarkerParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerParity.lean",
+      "line": 88,
+      "declaration": "theorem adjacentCount_flatMap {A B : Type*} (s : A → List B) (mark : B → B → Bool)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerParity.balanced_marker_difference_of_inflation",
+      "module": "PscVerif.PeriodicPartnerMarkerParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerParity.lean",
+      "line": 106,
+      "declaration": "theorem balanced_marker_difference_of_inflation {A B : Type*}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerParity.marker_difference_of_opposite_seams",
+      "module": "PscVerif.PeriodicPartnerMarkerParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerParity.lean",
+      "line": 120,
+      "declaration": "theorem marker_difference_of_opposite_seams (left right : Bool) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerParity.marker_parity_of_common_gauge",
+      "module": "PscVerif.PeriodicPartnerMarkerParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerParity.lean",
+      "line": 126,
+      "declaration": "theorem marker_parity_of_common_gauge (observed start finish first last c : ZMod 2)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerParity.thue_morse_marker_parity_control",
+      "module": "PscVerif.PeriodicPartnerMarkerParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerParity.lean",
+      "line": 138,
+      "declaration": "theorem thue_morse_marker_parity_control :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerParity.cubic_marker_parity_control",
+      "module": "PscVerif.PeriodicPartnerMarkerParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerParity.lean",
+      "line": 148,
+      "declaration": "theorem cubic_marker_parity_control :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.weight_add",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 21,
+      "declaration": "private theorem weight_add (r s : A → ZMod 2) (w : List A) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.pull_add",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 25,
+      "declaration": "private theorem pull_add (σ : A → List A) (r s : A → ZMod 2) (a : A) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.weight_flatMap",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 29,
+      "declaration": "private theorem weight_flatMap (σ : A → List A) (r : A → ZMod 2) (w : List A) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.correction_step",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 45,
+      "declaration": "theorem correction_step (σ : A → List A) (mark : ℤ → A → A → Bool) (j : ℤ)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.corrected_inflation",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 61,
+      "declaration": "theorem corrected_inflation (σ : A → List A) (mark : ℤ → A → A → Bool) (j : ℤ)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.corrected_difference_of_perm",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 82,
+      "declaration": "theorem corrected_difference_of_perm (σ : A → List A) (mark : ℤ → A → A → Bool)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.corrected_append",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 89,
+      "declaration": "private theorem corrected_append (σ : A → List A) (mark : ℤ → A → A → Bool)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.last_flatMap",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 97,
+      "declaration": "private theorem last_flatMap (σ : A → List A) (last : A → A)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.advance_register",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 126,
+      "declaration": "theorem advance_register (σ : A → List A) (mark : ℤ → A → A → Bool) (j : ℤ)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.combine_interval_laws",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 140,
+      "declaration": "theorem combine_interval_laws (first₀ last₁ first₁ last₂ : ZMod 2) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.extend_interval_iff",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 149,
+      "declaration": "theorem extend_interval_iff (first₀ last₁ first₁ last₂ observed : ZMod 2) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerMarkerReachability.complementary_words_parity",
+      "module": "PscVerif.PeriodicPartnerMarkerReachability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean",
+      "line": 160,
+      "declaration": "theorem complementary_words_parity (a : Bool) (tail : List Bool) :"
     },
     {
       "name": "Psc.PeriodicPartnerModels.constantTwo_semiconj",
@@ -54343,7 +54583,8 @@
     "proof/PscVerif/ClassARunDescentAudit.lean": "a1fe09a772c2112929a6f892993da045628ef410f15cd53b1d8eba74343959fc",
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "81efe5b8745576f8f15a59a263563b31e08307e9c432e78fa2ef9021a613b2d1",
     "proof/PscVerif/EvenRankTwoAudit.lean": "cfc2c3b6dfae0305e1ab27989607917e4ffe8944a513aa861dc5ca781ba620ca",
-    "proof/PscVerif/PeriodicPartnerAudit.lean": "927ecd5d7a2b63583a1b24e8495386325fb40c31a664825d9afd29f02baf9722",
+    "proof/PscVerif/MarkerReachabilityReplay.lean": "4d21e06344eff182c78196d2f8eb815e1dbb8f517920dedf6849cc1546d831a3",
+    "proof/PscVerif/PeriodicPartnerAudit.lean": "18e13a15123906554814cc05eba8599352a320362a8bde8c73fe7dc5bc709c32",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean": "f1c4480b95159800bb52cd42164763d01e6ab6045dc72b07874f164409a0eaf1",
     "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean": "6387c221871d7b70efca50349c815fac07421bb44a28122f9157ff0652cb074f",
@@ -54520,7 +54761,7 @@
     "proof/PscVerif/PscVerif/PeriodicPartner.lean": "8b4cfa2dbed0bf629a0a0f0dfd57ecb63b0d83bc02b48ee3392faa90404f4aaf",
     "proof/PscVerif/PscVerif/PeriodicPartnerAsymptotic.lean": "0ad011b1e6eb02418699a4838c22ae630f28954696810c470fdb054e077b4c23",
     "proof/PscVerif/PscVerif/PeriodicPartnerCollapse.lean": "a0b3df8c6040977532413191864a2ba002ebf45a6fb79cd3a40fe9a8fb45fd91",
-    "proof/PscVerif/PscVerif/PeriodicPartnerCompanionWords.lean": "2e06df72b09958cc21009a195ff96cc9388d7e2fd5e0ca59391277d9f64d7e21",
+    "proof/PscVerif/PscVerif/PeriodicPartnerCompanionWords.lean": "b6e615d563c73042cf6fc70da6593ad38cd871cedc16f807c4465f488ee69618",
     "proof/PscVerif/PscVerif/PeriodicPartnerCompleteRange.lean": "df5e5f39df78d9a48c02f61399558ecb600dd5cc3c9d936c238300ece7caba23",
     "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean": "84725326692e81dafcef2c4a724bfb2cee8629fdba398686540db35be72eb0fd",
     "proof/PscVerif/PscVerif/PeriodicPartnerDichotomy.lean": "d74034c65d26d8b98916f6fdca046c6772e9a3389fb53fdd03bcf3baeea2339b",
@@ -54535,6 +54776,9 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerLocalRealization.lean": "472eacd674a293a84e841a7888398fd1fbaeedbdeff3a372c2e6ab665556e2b1",
     "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean": "ab9cca25c9b6f57b944a912e1e8a239b4bb46bd7a73727542af056760331b7cf",
     "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopologyControls.lean": "1573603e555c519d258421eaa50e01e06828166794811a1b6e5028a6040ee509",
+    "proof/PscVerif/PscVerif/PeriodicPartnerMarkerFamily.lean": "51e2fbc98f7c97ead96a8cf91d5e8adada131941ea2a94702e552706b4ff5b45",
+    "proof/PscVerif/PscVerif/PeriodicPartnerMarkerParity.lean": "ca66680d5d16c099fb1d5a0e3af68e65802bd6880aae783f20bd6498f668c32e",
+    "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean": "3117b556662bae74336a1280dc9b9f2572add84c9a55456a64d4fd0e094cf1de",
     "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean": "434d5573fb928bb0ee6667da6dedc8fc76867b76c26d72f5707ac1387a62c5ea",
     "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean": "90c75822a22e6a88f7872fb8b894e39ff19f4b3bbe502feca88c5d2755228f0c",
     "proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean": "870d45802ea6b8678a90bdbb88bdfa90a986fdafad52f00962766245353eb323",
@@ -54585,7 +54829,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "84ccef307001a94d143355c7d116b80ed36d5fc7c55ca9fd0cd8c2a20351585c",
+    "proof/PscVerif/PscVerif.lean": "13be1a480f84fa91dc66875fe129c16e8f4942945a8da4d5277e6f60d66cd092",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

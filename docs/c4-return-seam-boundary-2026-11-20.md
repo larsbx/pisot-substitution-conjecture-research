@@ -261,10 +261,9 @@ by itself is therefore compatible with irreducible cubic incidence.
 ### Non-claims / remaining gaps
 
 The actual boundary term in the hypothetical rank-two geometry
-is odd after division by two. A cubic exclusion still needs a
-geometric restriction on the twin-vertex readout of the fixed
-return vectors, or an independent obstruction to that geometry.
-The arithmetic nilpotence and the literal original word obstruction
-give no such restriction on their own. The general even-determinant
-rank-two case and universal C4 remain open. Independent human review
-is pending.
+is odd after division by two. The [original-word follow-up](c4-original-marker-parity-2026-11-20.md)
+transfers it to a necessary parity of raw adjacent marker counts and
+gives witnesses for every singleton group in the bounded residue.
+A general cubic exclusion still needs to force such a witness or
+give another obstruction. Universal C4 remains open. Independent
+human review is pending.
