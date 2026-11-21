@@ -2,6 +2,53 @@
 
 **Status:** planning and source reconciliation; universal BH and A1′ remain open.
 
+## November 21: current family boundary and universal work
+
+At main
+[`e7e6e330b80b560be70c2a5346e217f415fe4711`](https://github.com/larsbx/pisot-substitution-conjecture-research/commit/e7e6e330b80b560be70c2a5346e217f415fe4711),
+the [current research roadmap](research-roadmap-2026-09-21.md#2026-11-21-current-priorities-family-spectral-endpoint-and-universal-coincidence)
+integrates the [research review](psc-sigma-k-research-review-2026-11-20.md)
+and the subsequent #639–#641 proof developments. The following dated
+snapshots preserve their original scopes and acceptance observations; their
+old draft status and already-completed implementation targets are historical.
+
+The `σₖ` arithmetic and full-factor coincidence theorem for every `k>=2`
+were integrated through #574; #572 and #573 are closed predecessors. The
+[literal family hull](c4-family-tiling-2026-11-21.md) now supplies the geometric
+substitution, aperiodicity, finite local complexity and continuous translation
+action for `k>=1`, and dense periodic-swap coincidence for `k>=2`.
+The [legal-patch transfer](c4-family-legal-coincidence-2026-11-21.md) supplies
+dense eventual coincidence on the open overlap of legal patches sharing a
+tile, and the periodic-partner closed-origin argument. The conditional
+`periodic_fibre_common_tiles` endpoint gives one nonempty factor fibre with
+pairwise common tiles; it still requires injective inflation, semiconjugacy,
+finite fibres, and same-fibre closed-origin witnesses. Instantiate these for
+the actual maximal equicontinuous factor, then prove the measured spectral
+implication. The published Barge–Štimac–Williams criterion already gives
+the paper-level family conclusion. Universal BH and C4 are not prerequisites
+for completing this family formalization.
+
+The active BH work remains the original-occurrence Lean assembly of the
+written upper plus-Class-A paths and extension to uncovered source domains.
+Retain the 70 small upper plus certificates at complete swap-seed scope and
+their separately recorded acceptance status. For residual A1′, prove one-sided
+coincidence for the prescribed fixed-hub pair; neither the family endpoint
+nor the new legal-patch theorem supplies that universal assertion. The broader
+C4 rank-two residue is `K₂,₂` with non-injective endpoint maps and incidence
+nilpotent modulo two under the named geometric inputs. The roadmap separates
+that written reduction, the new finite parity/graph/marker Lean results, and
+the remaining geometric and witness-existence obligations.
+
+The literature assessment found **no new external result in its checked
+14–20 November window that closes these gaps**. Creutz–Pavlov's revised
+preprint is a material correction, but its complexity hypothesis fails for
+the literal σₖ coding. Published address-automata constructions can support
+exact certificates; they do not force a productive path. The research
+roadmap records publication status, hypothesis mismatches and specific next
+deliverables without promoting a governed claim.
+
+## Dated progress and acceptance history
+
 **November 20, upper small members.** The 70 upper plus members
 `n<=6,n+5<=d<=2n+11` now have
 [complete swap-seed certificates](class-a-plus-upper-small-members-2026-11-20.md)
@@ -159,7 +206,7 @@ Thus rebuilding this conditional bridge is no longer the next task. The
 remaining work is to supply its coverage and hitting premises where needed.
 Neither this bridge nor the completed `sigma_k` family proves universal BH.
 
-## 2. The next Class-A theorem: force entry into an explicit target
+## 2. Historical Class-A target: force entry into an explicit target
 
 For arbitrary `k,t>=0`, put
 
