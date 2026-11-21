@@ -7426,6 +7426,118 @@
       "declaration": "theorem base_exit (n i : Nat) (hi : i < 25)"
     },
     {
+      "name": "Psc.PeriodicPartnerRealization.origin_inflateH",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 39,
+      "declaration": "theorem origin_inflateH (U : S.Hull) : origin (inflateH U) = originChild S (origin U) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.originChild_eq",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 51,
+      "declaration": "theorem originChild_eq {q p : α × ℝ} (hp : p ∈ S.place (S.σ q.1) (S.β * q.2))"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.origin_inflateH_iterate",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 58,
+      "declaration": "theorem origin_inflateH_iterate (U : S.Hull) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.originChild_periodic_of_periodic",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 65,
+      "declaration": "theorem originChild_periodic_of_periodic {U : S.Hull} {n : ℕ}"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.head_child",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 98,
+      "declaration": "theorem head_child {V : (geometry k hk).Hull} {a : Fin 3} {x : ℝ}"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.origin_vertex_iterate",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 115,
+      "declaration": "theorem origin_vertex_iterate {U : (geometry k hk).Hull} {a : Fin 3}"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.origin_vertex_ne_two",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 128,
+      "declaration": "theorem origin_vertex_ne_two {U : (geometry k hk).Hull} {n : ℕ} (hn : 0 < n)"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.vertex_tile_periodic",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 144,
+      "declaration": "theorem vertex_tile_periodic :"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.interior_phase_periodic",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 168,
+      "declaration": "theorem interior_phase_periodic :"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.anchor_common_tile_of_origin_vertex",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 190,
+      "declaration": "theorem anchor_common_tile_of_origin_vertex"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.anchor_common_tile_of_interior_phase",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 215,
+      "declaration": "theorem anchor_common_tile_of_interior_phase"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.anchor_common_tile_of_classified",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 243,
+      "declaration": "theorem anchor_common_tile_of_classified"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.all_pair_witnesses_of_classified",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 265,
+      "declaration": "theorem all_pair_witnesses_of_classified"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.zero_fibre_exactProximal_of_classified",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 283,
+      "declaration": "theorem zero_fibre_exactProximal_of_classified"
+    },
+    {
       "name": "Psc.ParameterFamilyZeroFibreControls.zero_fibre_seam_control",
       "module": "PscVerif.C4ParameterFamilyZeroFibreControls",
       "private": false,
@@ -56918,6 +57030,7 @@
     "proof/PscVerif/PscVerif/C4ParameterFamilySolenoid.lean": "9b3b06d944c2b531ab6d3649144f5361244dc89a554ba9354e564dae26f52917",
     "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean": "421b9833f2d132206d0a34ee9ff9dcf511594cb5c7e14540f4c5a1fb9a83ba1c",
     "proof/PscVerif/PscVerif/C4ParameterFamilyWords.lean": "e49cc02bc7b82b8f44101ce153d93982f02e31684501ffe7499cfb53d55c86d7",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean": "f3bf88fd143cd7287c550cf2305138c47c4df1074d00c441b174bc079dc181b7",
     "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreControls.lean": "dd990353621f404c2adb759c5cf207b7dd95ac2639b09e2450921bbfa8939427",
     "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreWitnesses.lean": "3510a37f7bc609c962a88ab184f3b7591479abdcae0de0abfb6490fb90a6fb3d",
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
@@ -57159,7 +57272,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "c6156245f65051dbef4e2487520da9ed807eacaafc300df0014e11c05165b169",
+    "proof/PscVerif/PscVerif.lean": "592a58ceb7266da4ca997eb3cc40e50d80eff751dc995c3ae521a752097c5b84",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

@@ -42,7 +42,8 @@ elan run "$PSC_FAMILY_PIN" lake --no-cache build \
     PscVerif.C4ParameterFamilySolenoid PscVerif.C4ParameterFamilyControls \
     PscVerif.UniversalClosureReduction PscVerif.PeriodicPartnerRealizationModels \
     PscVerif.C4ParameterFamilyZeroFibreWitnesses \
-    PscVerif.C4ParameterFamilyZeroFibreControls PscVerif.C4ParameterFamilyInteriorZero
+    PscVerif.C4ParameterFamilyZeroFibreControls PscVerif.C4ParameterFamilyInteriorZero \
+    PscVerif.C4ParameterFamilyZeroFibreAnchor
 psc_family_check_pins
 elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
     -DautoImplicit=false -Dpp.unicode.fun=true C4ParameterFamilyAudit.lean \
