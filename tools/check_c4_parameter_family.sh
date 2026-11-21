@@ -44,7 +44,7 @@ elan run "$PSC_FAMILY_PIN" lake --no-cache build \
 psc_family_check_pins
 elan run "$PSC_FAMILY_PIN" lake --no-cache env lean C4ParameterFamilyAudit.lean \
     | tee "$PSC_FAMILY_TMP/family-audit.log"
-test "$(grep -c '^PSC_PARAMETER_FAMILY_ENDPOINT' "$PSC_FAMILY_TMP/family-audit.log")" -eq 20
+test "$(grep -c '^PSC_PARAMETER_FAMILY_ENDPOINT' "$PSC_FAMILY_TMP/family-audit.log")" -eq 24
 for PSC_FAMILY_ENDPOINT in \
     Psc.ParameterFamily.finite_and_productive \
     Psc.ParameterFamily.coincidence_child \
@@ -64,14 +64,18 @@ for PSC_FAMILY_ENDPOINT in \
     Psc.ParameterFamilyTiling.swap_rotation_dense \
     Psc.ParameterFamilyTiling.dense_swap_coincidences \
     Psc.ParameterFamilyTiling.periodic_swap_geometry \
+    Psc.ParameterFamilyTiling.legal_patches_dense_eventual \
+    Psc.ParameterFamilyTiling.hull_dense_eventual \
+    Psc.ParameterFamilyTiling.periodic_common_tile_of_origin_witnesses \
+    Psc.ParameterFamilyTiling.periodic_fibre_common_tiles \
     Psc.UniversalClosureReduction.all_blocks_productive \
     Psc.UniversalClosureReduction.infinite_seed_reachability; do
     test "$(awk -F '\t' -v name="$PSC_FAMILY_ENDPOINT" \
         '$1 == "PSC_PARAMETER_FAMILY_ENDPOINT" && $2 == name {n++} END {print n+0}' \
         "$PSC_FAMILY_TMP/family-audit.log")" -eq 1
 done
-test "$(grep -c '^PSC_PARAMETER_FAMILY_MODULE' "$PSC_FAMILY_TMP/family-audit.log")" -eq 11
-test "$(awk -F '\t' '$1 == "PSC_PARAMETER_FAMILY_DECLARATIONS" && $2 == 11 {n++} END {print n+0}' \
+test "$(grep -c '^PSC_PARAMETER_FAMILY_MODULE' "$PSC_FAMILY_TMP/family-audit.log")" -eq 13
+test "$(awk -F '\t' '$1 == "PSC_PARAMETER_FAMILY_DECLARATIONS" && $2 == 13 {n++} END {print n+0}' \
     "$PSC_FAMILY_TMP/family-audit.log")" -eq 1
-test "$(grep -Fxc $'PSC_PARAMETER_FAMILY_AUDIT_COMPLETE\t20\t40' "$PSC_FAMILY_TMP/family-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_PARAMETER_FAMILY_AUDIT_COMPLETE\t24\t48' "$PSC_FAMILY_TMP/family-audit.log")" -eq 1
 psc_family_check_pins
