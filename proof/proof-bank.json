@@ -7426,6 +7426,158 @@
       "declaration": "theorem base_exit (n i : Nat) (hi : i < 25)"
     },
     {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.contains_image_patch",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 45,
+      "declaration": "theorem contains_image_patch (T : (geometry k hk).Hull) (c : Fin 3) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.zero_pair_in_image",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 56,
+      "declaration": "theorem zero_pair_in_image :"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.one_pair_in_image",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 70,
+      "declaration": "theorem one_pair_in_image (hk₂ : 2 ≤ k) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.length_two_eq",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 90,
+      "declaration": "theorem length_two_eq :"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.lattice_offset_of_realize_eq",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 101,
+      "declaration": "theorem lattice_offset_of_realize_eq {T U : (geometry k hk).Hull}"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.one_pair_absent_at_one",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 115,
+      "declaration": "theorem one_pair_absent_at_one :"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.hull_dense",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 131,
+      "declaration": "theorem hull_dense {T U : (geometry k hk).Hull} (h : (T.1 ∩ U.1).Nonempty) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.length_mem_coincidenceShifts",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 136,
+      "declaration": "theorem length_mem_coincidenceShifts (T : (geometry k hk).Hull) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.dense_eventual_of_lattice_offset",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 160,
+      "declaration": "theorem dense_eventual_of_lattice_offset {T U : (geometry k hk).Hull}"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.fibre_dense_eventual",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 186,
+      "declaration": "theorem fibre_dense_eventual {T U : (geometry k hk).Hull}"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.periodic_common_tile_of_lattice_offset",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 195,
+      "declaration": "theorem periodic_common_tile_of_lattice_offset {T U : (geometry k hk).Hull} {m n : ℕ}"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.zero_fibre_common_tile",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 215,
+      "declaration": "theorem zero_fibre_common_tile {T U : (geometry k hk).Hull}"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.periodic_fibre_common_tile",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 227,
+      "declaration": "theorem periodic_fibre_common_tile {T U : (geometry k hk).Hull} {m n : ℕ}"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.periodic_lattice_anchor",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 237,
+      "declaration": "theorem periodic_lattice_anchor {V : (geometry k hk).Hull}"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.zero_fibre_exactProximal",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 247,
+      "declaration": "theorem zero_fibre_exactProximal {T U : (geometry k hk).Hull}"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.zero_fibre_stronglyRegionallyProximal",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 255,
+      "declaration": "theorem zero_fibre_stronglyRegionallyProximal {T U : (geometry k hk).Hull}"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.zero_fibre_window_witnesses",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 264,
+      "declaration": "theorem zero_fibre_window_witnesses :"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.zero_fibre_closedOriginWitnesses",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 272,
+      "declaration": "theorem zero_fibre_closedOriginWitnesses {T U : (geometry k hk).Hull}"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.same_fibre_distinct_control",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 284,
+      "declaration": "theorem same_fibre_distinct_control :"
+    },
+    {
       "name": "Psc.ParameterFamilyZeroFibreControls.zero_fibre_seam_control",
       "module": "PscVerif.C4ParameterFamilyZeroFibreControls",
       "private": false,
@@ -44842,6 +44994,102 @@
       "declaration": "theorem thue_morse_marker_return_control :"
     },
     {
+      "name": "Psc.PeriodicPartnerReturnModule.dense_eventual_trans",
+      "module": "PscVerif.PeriodicPartnerReturnModule",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReturnModule.lean",
+      "line": 30,
+      "declaration": "theorem dense_eventual_trans [Nonempty α] {P Q R : Set (α × ℝ)} (hQ : S.IsTiling Q)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReturnModule.length_mem_lengthGroup",
+      "module": "PscVerif.PeriodicPartnerReturnModule",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReturnModule.lean",
+      "line": 38,
+      "declaration": "theorem length_mem_lengthGroup (a : α) : S.ℓ a ∈ lengthGroup S :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerReturnModule.sum_mem_lengthGroup",
+      "module": "PscVerif.PeriodicPartnerReturnModule",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReturnModule.lean",
+      "line": 41,
+      "declaration": "theorem sum_mem_lengthGroup (w : List α) : (w.map S.ℓ).sum ∈ lengthGroup S :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerReturnModule.dot_mem_lengthGroup",
+      "module": "PscVerif.PeriodicPartnerReturnModule",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReturnModule.lean",
+      "line": 47,
+      "declaration": "theorem dot_mem_lengthGroup [Fintype α] {v : α → ℝ} (hv : v ∈ lattice α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReturnModule.place_start_mem_lengthGroup",
+      "module": "PscVerif.PeriodicPartnerReturnModule",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReturnModule.lean",
+      "line": 55,
+      "declaration": "theorem place_start_mem_lengthGroup {w : List α} {y : ℝ} {q : α × ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReturnModule.start_sub_mem_lengthGroup",
+      "module": "PscVerif.PeriodicPartnerReturnModule",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReturnModule.lean",
+      "line": 68,
+      "declaration": "theorem start_sub_mem_lengthGroup (T : S.Hull) {p q : α × ℝ} (hp : p ∈ T.1) (hq : q ∈ T.1) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReturnModule.mem_coincidenceShifts",
+      "module": "PscVerif.PeriodicPartnerReturnModule",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReturnModule.lean",
+      "line": 110,
+      "declaration": "theorem mem_coincidenceShifts [Nonempty α] {T : S.Hull} {w : ℝ} :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReturnModule.return_mem",
+      "module": "PscVerif.PeriodicPartnerReturnModule",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReturnModule.lean",
+      "line": 115,
+      "declaration": "theorem return_mem [Nonempty α] {T : S.Hull} {a : α} {x y : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReturnModule.return_mem_of_patch",
+      "module": "PscVerif.PeriodicPartnerReturnModule",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReturnModule.lean",
+      "line": 122,
+      "declaration": "theorem return_mem_of_patch [Nonempty α] {T : S.Hull} {X : Set (α × ℝ)} {s : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReturnModule.inflate_mem",
+      "module": "PscVerif.PeriodicPartnerReturnModule",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReturnModule.lean",
+      "line": 130,
+      "declaration": "theorem inflate_mem [Nonempty α] {T : S.Hull} {w : ℝ} (hw : w ∈ coincidenceShifts hd T) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReturnModule.dense_eventual_of_shift_mem",
+      "module": "PscVerif.PeriodicPartnerReturnModule",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReturnModule.lean",
+      "line": 139,
+      "declaration": "theorem dense_eventual_of_shift_mem [Nonempty α] {T U : S.Hull} {a : α} {x y : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerReturnModule.dense_eventual_of_lengthGroup",
+      "module": "PscVerif.PeriodicPartnerReturnModule",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerReturnModule.lean",
+      "line": 153,
+      "declaration": "theorem dense_eventual_of_lengthGroup [Nonempty α] {T U : S.Hull}"
+    },
+    {
       "name": "Psc.PeriodicPartner.groupCycle_row",
       "module": "PscVerif.PeriodicPartnerSeamCycles",
       "private": true,
@@ -56873,6 +57121,7 @@
     "proof/PscVerif/A1PrimeTailAudit.lean": "eee41a524a6a114716a7704f169726b6484ab56c2398431dcd297fe6809a0b23",
     "proof/PscVerif/BHFiniteReachabilityAudit.lean": "5469fdefea80286841bb3b40b7944a4674de5dce03ca12b490ee72b77ca2b79d",
     "proof/PscVerif/C4ParameterFamilyAudit.lean": "5d63a488ad5d3a98f20e6e109049a349a440c9459dc33013ba40f915ade5c5a3",
+    "proof/PscVerif/C4ZeroFibreAnchorAudit.lean": "db681196d610624bf06f71fe41d7d091703f058a13a8334967aff03c5c5c79fc",
     "proof/PscVerif/C4ZeroFibreWitnessAudit.lean": "fa9d4d6d34b745d9e485b723a242685175cb747d9146f13a979b25c25517312d",
     "proof/PscVerif/ClassABoundaryEscapeAudit.lean": "f5b5147990567d0ca653e6f96336d3e44e00087dc6a577c101b840592495abdb",
     "proof/PscVerif/ClassACentralRecurrenceAudit.lean": "c312940fe33a565e0031cf0c87e303a291755da0db9080f65222b1ffa6a4519b",
@@ -56918,6 +57167,7 @@
     "proof/PscVerif/PscVerif/C4ParameterFamilySolenoid.lean": "9b3b06d944c2b531ab6d3649144f5361244dc89a554ba9354e564dae26f52917",
     "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean": "421b9833f2d132206d0a34ee9ff9dcf511594cb5c7e14540f4c5a1fb9a83ba1c",
     "proof/PscVerif/PscVerif/C4ParameterFamilyWords.lean": "e49cc02bc7b82b8f44101ce153d93982f02e31684501ffe7499cfb53d55c86d7",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean": "299972dca4faf50e552a4051befd2420b61fc504cbbd7c4bc1124d3a9c256fcd",
     "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreControls.lean": "dd990353621f404c2adb759c5cf207b7dd95ac2639b09e2450921bbfa8939427",
     "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreWitnesses.lean": "3510a37f7bc609c962a88ab184f3b7591479abdcae0de0abfb6490fb90a6fb3d",
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
@@ -57114,6 +57364,7 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerRealizationOnto.lean": "ce6eac4f63139a67ab95687d5da0bba2e51efc8457f5535ca7ed6a3436a35721",
     "proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean": "140e1a71503a0648d17099247ef4cb9b92d67c1cdc15257ee66526a89527ece5",
     "proof/PscVerif/PscVerif/PeriodicPartnerReturnBoundary.lean": "84e8948f48cda97e3099fb7db5b14b6f5fa703fee4d8a9cfe597919578b13ff9",
+    "proof/PscVerif/PscVerif/PeriodicPartnerReturnModule.lean": "de8bc6ab5ca7c7fcc62d8b708f14410d140e2eac8e9ab72daf7569e0dea6bb3c",
     "proof/PscVerif/PscVerif/PeriodicPartnerSeamCycles.lean": "15693988e36bb7e4ba0e3d7e6e2e15fb2cc85ff2b36552ccd8b395cf08260ef7",
     "proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean": "13c39c9aea34b64f377cbfd3eb074fe436a952e8f0d806eb9ed37f6c2ef70e41",
     "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean": "45d12d1e6e7589bbbccfbf44798af9700c99be94a24a61ea02ece5ad8c55eafd",
@@ -57159,7 +57410,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "c6156245f65051dbef4e2487520da9ed807eacaafc300df0014e11c05165b169",
+    "proof/PscVerif/PscVerif.lean": "592a58ceb7266da4ca997eb3cc40e50d80eff751dc995c3ae521a752097c5b84",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

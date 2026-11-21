@@ -34,7 +34,10 @@ for the ordinary hull at `k>=1`. The zero fibre is nonempty and all its
 tilings are inflation-periodic. For `k>=2`,
 [`common_tile_of_zero_fibre_witnesses`](../proof/PscVerif/PscVerif/C4ParameterFamilySolenoid.lean)
 takes exact origin agreements and an exact agreement after a common shift.
-It gives a common tile for the pair over zero. The [published
+It gives a common tile for the pair over zero. The
+[return-group proof](c4-family-zero-fibre-anchor-2026-11-21.md) now supplies
+those witnesses for every pair over zero, and proves that any two tilings
+with equal solenoid image are densely eventually coincident. The [published
 Barge–Štimac–Williams Corollary 2](https://doi.org/10.3934/dcds.2013.33.579)
 already gives the written family conclusion. The spectral use of the
 separate published `k=1` result stays outside the combined Lean endpoint.
@@ -43,8 +46,8 @@ separate published `k=1` result stays outside the combined Lean endpoint.
 
 | Workstream | Reuse at its recorded scope | Next deliverable and completion condition |
 | --- | --- | --- |
-| **Family factor geometry** | Unique desubstitution and the onto, finite-to-one ordinary-hull map to the full solenoid. Its zero fibre is periodic. | Derive the common-shift witnesses for each pair over zero. Lean proves a fibre comparison for continuous maps into the same time-normalized solenoid. The published factor identification and same-fibre witness theorem are written inputs. |
-| **Family measured spectrum** | The nonempty fibre with pairwise common tiles once the preceding inputs are supplied. | Formalize the disjoint-pair obstruction to failure of pure discreteness, or the equivalent coincidence-rank-one theorem, for this hull. Specify the invariant probability measure and translation action, and conclude density of the translation eigenfunctions in its `L²` space for every `k>=2`. A symbolic-shift conclusion needs its own transfer theorem. |
+| **Family factor geometry** | Unique desubstitution and the onto, finite-to-one ordinary-hull map to the full solenoid. Its zero fibre is periodic, every pair over zero shares a tile, and tilings with equal image are densely eventually coincident (`k>=2`). | The common-shift witnesses for each pair over zero are proved. Lean proves a fibre comparison for continuous maps into the same time-normalized solenoid. The published factor identification and same-fibre witness theorem are written inputs. |
+| **Family measured spectrum** | The zero fibre with pairwise common tiles, and dense eventual coincidence on every fibre. | Formalize the disjoint-pair obstruction to failure of pure discreteness, or the equivalent coincidence-rank-one theorem, for this hull. Specify the invariant probability measure and translation action, and conclude density of the translation eigenfunctions in its `L²` space for every `k>=2`. A symbolic-shift conclusion needs its own transfer theorem. |
 | **BH and Class A** | The accepted written minus-Class-A cover, written upper plus entry/continuation, and the 70 small upper plus certificates at their complete swap-seed scope. | Bind the written upper plus original-occurrence paths to Lean; retain the recorded acceptance status of each finite certificate. Extend source coverage and an actual selected path to zero integral displacement to the remaining BH domains, including the full nonunit representation. Use the [BH roadmap](bh-escape-roadmap-2026-11-14.md) for the exact scopes. |
 | **Residual A1′** | The scoped tail witnesses and the two-obstruction completion theorem. | Prove one-sided coincidence for the prescribed residual first-letter-fixed hub pair; same-position proximality or an equal-Parikh prefix with the same next letter is a concrete target. The uncovered non-crossing Theorem K cells are a narrower starting point. Universal BH and A1′ together feed #84; #84 is not a third independent existence premise. |
 | **Nonunit rank-two C4** | The [written global residue](c4-nonunit-rank-two-residue-2026-11-21.md): `ER=K₂,₂`, both endpoint maps non-injective, and incidence nilpotent modulo two, under the named twin/cohomology/covering inputs. | Find a geometric obstruction for twins branching on the collapsed endpoint pair. Preserve the distinction between excluding rank-two **strict systems** and excluding arbitrary rank-two hulls. The unit case, higher ranks, and extraction of a finite strict carrier from arbitrary failure remain separate. |
