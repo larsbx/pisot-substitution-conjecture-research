@@ -1,0 +1,62 @@
+{
+  "candidate_base": "7a5025ed7b8104413477ea7fbd15b52206e0959c",
+  "compiler": "Lean 4.34.0-rc2 (6a10ac8c22beadecabdbb0919c2b50214762f91d)",
+  "compiler_options": [
+    "autoImplicit=false",
+    "pp.unicode.fun=true"
+  ],
+  "compiled_project_modules": 7,
+  "compiled_audit_fixtures": 1,
+  "compiled_files": 8,
+  "audited_owned_modules": 7,
+  "audited_declarations": 49,
+  "audited_theorem_constants": 45,
+  "public_endpoints_checked": 38,
+  "refusal_controls_passed": 76,
+  "allowed_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "initial_final_source_sha256_guard_passed": true,
+  "current_sources_still_match_receipt": true,
+  "fresh_candidate_compilation": true,
+  "baseline_artifacts": "Symlinks only to the same-session isolated strict-option baseline rebuild; no older project cache used",
+  "external_dependencies": "Pinned clean cached external package sources and compiled artifacts; no external artifact re-download",
+  "olean_parity": [
+    {
+      "module": "PscVerif.PeriodicPartnerProximal",
+      "identical": true
+    },
+    {
+      "module": "PscVerif.PeriodicPartnerPeriodicZero",
+      "identical": true
+    },
+    {
+      "module": "PscVerif.C4ParameterFamilyZeroFibreControls",
+      "identical": true
+    },
+    {
+      "module": "PscVerif.C4ParameterFamilyInteriorSeed",
+      "identical": true
+    },
+    {
+      "module": "PscVerif.C4ParameterFamilyZeroFibreWitnesses",
+      "identical": true
+    },
+    {
+      "module": "PscVerif.C4ParameterFamilyInteriorProximal",
+      "identical": true
+    },
+    {
+      "module": "PscVerif.C4ParameterFamilyInteriorZero",
+      "identical": true
+    },
+    {
+      "module": "C4ZeroFibreWitnessAudit",
+      "identical": true
+    }
+  ],
+  "verified_utc": "2026-11-21T19:05:44.759587+00:00",
+  "hosted_acceptance_established": false
+}

@@ -5338,6 +5338,358 @@
       "declaration": "theorem selected_stage_rank_decreases (i : ℕ) (hi : i < 6) :"
     },
     {
+      "name": "Psc.C4FamilyTileAutomatonWords.subst_singleton",
+      "module": "PscVerif.C4FamilyTileAutomatonWords",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean",
+      "line": 30,
+      "declaration": "private theorem subst_singleton (k : ℕ) (a : Label) :"
+    },
+    {
+      "name": "Psc.C4FamilyTileAutomatonWords.subst_append",
+      "module": "PscVerif.C4FamilyTileAutomatonWords",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean",
+      "line": 34,
+      "declaration": "private theorem subst_append (k : ℕ) (u v : Word) :"
+    },
+    {
+      "name": "Psc.C4FamilyTileAutomatonWords.zero_zero",
+      "module": "PscVerif.C4FamilyTileAutomatonWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean",
+      "line": 39,
+      "declaration": "theorem zero_zero (k : ℕ) : OccursInIterate k 1 0 0 := by"
+    },
+    {
+      "name": "Psc.C4FamilyTileAutomatonWords.zero_one",
+      "module": "PscVerif.C4FamilyTileAutomatonWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean",
+      "line": 42,
+      "declaration": "theorem zero_one (k : ℕ) : OccursInIterate k 1 0 1 := by"
+    },
+    {
+      "name": "Psc.C4FamilyTileAutomatonWords.split_one_one",
+      "module": "PscVerif.C4FamilyTileAutomatonWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean",
+      "line": 46,
+      "declaration": "theorem split_one_one (k : ℕ) (hk : 2 ≤ k) :"
+    },
+    {
+      "name": "Psc.C4FamilyTileAutomatonWords.one_one",
+      "module": "PscVerif.C4FamilyTileAutomatonWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean",
+      "line": 56,
+      "declaration": "theorem one_one (k : ℕ) (hk : 2 ≤ k) : OccursInIterate k 1 1 1 := by"
+    },
+    {
+      "name": "Psc.C4FamilyTileAutomatonWords.one_two",
+      "module": "PscVerif.C4FamilyTileAutomatonWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean",
+      "line": 62,
+      "declaration": "theorem one_two (k : ℕ) (hk : 2 ≤ k) : OccursInIterate k 1 1 2 := by"
+    },
+    {
+      "name": "Psc.C4FamilyTileAutomatonWords.two_zero",
+      "module": "PscVerif.C4FamilyTileAutomatonWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean",
+      "line": 76,
+      "declaration": "theorem two_zero (k : ℕ) (hk : 2 ≤ k) : OccursInIterate k 2 2 0 := by"
+    },
+    {
+      "name": "Psc.C4FamilyTileAutomatonWords.all_forward_edges_have_literal_witness",
+      "module": "PscVerif.C4FamilyTileAutomatonWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean",
+      "line": 84,
+      "declaration": "theorem all_forward_edges_have_literal_witness (k : ℕ) (hk : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.C4FamilyTileAutomatonWords.all_signed_edges_have_literal_witness",
+      "module": "PscVerif.C4FamilyTileAutomatonWords",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean",
+      "line": 97,
+      "declaration": "theorem all_signed_edges_have_literal_witness (k : ℕ) (hk : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.inverse_source",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 47,
+      "declaration": "@[simp] theorem inverse_source (e : Edge) : source (inverse e) = target e := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.inverse_target",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 50,
+      "declaration": "@[simp] theorem inverse_target (e : Edge) : target (inverse e) = source e := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.inverse_inverse",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 53,
+      "declaration": "@[simp] theorem inverse_inverse (e : Edge) : inverse (inverse e) = e := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.inverse_output",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 56,
+      "declaration": "@[simp] theorem inverse_output (e : Edge) : edgeOutput (inverse e) = -edgeOutput e := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.controlLabel_code",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 71,
+      "declaration": "@[simp] theorem controlLabel_code (a : Label) : controlLabel (controlCode a) = some a := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.controlStep_code",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 74,
+      "declaration": "@[simp] theorem controlStep_code (a : Label) (e : Edge) :"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.controlStep_reject",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 79,
+      "declaration": "@[simp] theorem controlStep_reject (e : Edge) : controlStep 3 e = 3 := rfl"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.control_table_exact",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 85,
+      "declaration": "theorem control_table_exact : controlTable = ["
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.output_table_exact",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 95,
+      "declaration": "theorem output_table_exact : outputTable = ["
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.Walk.replay_eq",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 120,
+      "declaration": "theorem Walk.replay_eq {a b : Label} {w : List Edge} {v : Vector}"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.Walk.control",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 126,
+      "declaration": "theorem Walk.control {a b : Label} {w : List Edge} {v : Vector}"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.replay_walk",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 132,
+      "declaration": "theorem replay_walk {a b : Label} {w : List Edge} {v : Vector}"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.replay_iff_walk",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 151,
+      "declaration": "theorem replay_iff_walk (a b : Label) (w : List Edge) (v : Vector) :"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.Walk.append",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 155,
+      "declaration": "theorem Walk.append {a b c : Label} {u w : List Edge} {v z : Vector}"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.single_edge",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 161,
+      "declaration": "theorem single_edge (e : Edge) : Walk (source e) [e] (target e) (edgeOutput e) := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.Walk.reverse",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 166,
+      "declaration": "theorem Walk.reverse {a b : Label} {w : List Edge} {v : Vector}"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.Walk.repeat",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 181,
+      "declaration": "theorem Walk.repeat {a : Label} {w : List Edge} {v : Vector}"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.Walk.signed_repeat",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 192,
+      "declaration": "theorem Walk.signed_repeat {a : Label} {w : List Edge} {v : Vector}"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.loop0_walk",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 202,
+      "declaration": "theorem loop0_walk : Walk 1 loop0 1 (basis 0) := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.loop1_walk",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 206,
+      "declaration": "theorem loop1_walk : Walk 1 loop1 1 (basis 1) := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.loop2_walk",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 210,
+      "declaration": "theorem loop2_walk : Walk 1 loop2 1 (basis 0 + basis 1 + basis 2) := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.loop_decomposition",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 219,
+      "declaration": "theorem loop_decomposition (v : Vector) :"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.anchorWord_walk",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 226,
+      "declaration": "theorem anchorWord_walk (v : Vector) : Walk 1 (anchorWord v) 1 v := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.terminalWord_walk",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 238,
+      "declaration": "theorem terminalWord_walk (b : Label) : Walk 1 (terminalWord b) b 0 := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.certificate_walk",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 246,
+      "declaration": "theorem certificate_walk (v : Vector) (b : Label) : Walk 1 (certificate v b) b v := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.certificate_replay",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 250,
+      "declaration": "theorem certificate_replay (v : Vector) (b : Label) :"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.certificate_control",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 254,
+      "declaration": "theorem certificate_control (v : Vector) (b : Label) :"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.exists_signed_walk",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 257,
+      "declaration": "theorem exists_signed_walk (v : Vector) (b : Label) :"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.disconnected_rejected",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 261,
+      "declaration": "theorem disconnected_rejected : replay 1 [0] = none := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.reversed_sign_rejected",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 265,
+      "declaration": "theorem reversed_sign_rejected : replay 1 [7] ≠ some (1, basis 1) := by"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.reduced_edge_coboundary",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 277,
+      "declaration": "theorem reduced_edge_coboundary (e : Edge) (h : ReducedEdge e) :"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.Walk.reduced_coboundary",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 283,
+      "declaration": "theorem Walk.reduced_coboundary {a b : Label} {w : List Edge} {v : Vector}"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.reduced_based_loop_constraint",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 296,
+      "declaration": "theorem reduced_based_loop_constraint {w : List Edge} {v : Vector}"
+    },
+    {
+      "name": "Psc.C4FiniteTileAutomaton.reduced_basis0_impossible",
+      "module": "PscVerif.C4FiniteTileAutomaton",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean",
+      "line": 303,
+      "declaration": "theorem reduced_basis0_impossible :"
+    },
+    {
       "name": "Psc.ParameterFamilyBridge.full_factor_termination",
       "module": "PscVerif.C4ParameterFamilyBridge",
       "private": false,
@@ -5906,6 +6258,94 @@
       "declaration": "theorem delayedPair_no_coincidence_child :"
     },
     {
+      "name": "Psc.ParameterFamilyInteriorProximal.seam_interior_common_tile",
+      "module": "PscVerif.C4ParameterFamilyInteriorProximal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorProximal.lean",
+      "line": 23,
+      "declaration": "theorem seam_interior_common_tile (k : ℕ) (hk : 1 ≤ k) (hk₂ : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.ParameterFamilyInteriorProximal.seam_interior_exactProximal",
+      "module": "PscVerif.C4ParameterFamilyInteriorProximal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorProximal.lean",
+      "line": 72,
+      "declaration": "theorem seam_interior_exactProximal (k : ℕ) (hk : 1 ≤ k) (hk₂ : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.ParameterFamilyInteriorProximal.seam_interior_orbit_exactProximal",
+      "module": "PscVerif.C4ParameterFamilyInteriorProximal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorProximal.lean",
+      "line": 84,
+      "declaration": "theorem seam_interior_orbit_exactProximal (k : ℕ) (hk : 1 ≤ k) (hk₂ : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.ParameterFamilyInteriorSeed.interior_child_positions",
+      "module": "PscVerif.C4ParameterFamilyInteriorSeed",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorSeed.lean",
+      "line": 30,
+      "declaration": "theorem interior_child_positions (x : ℝ) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyInteriorSeed.interior_cycle_tiles",
+      "module": "PscVerif.C4ParameterFamilyInteriorSeed",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorSeed.lean",
+      "line": 58,
+      "declaration": "theorem interior_cycle_tiles {P : Set (Fin 3 × ℝ)}"
+    },
+    {
+      "name": "Psc.ParameterFamilyInteriorSeed.interior_periodic_tiling",
+      "module": "PscVerif.C4ParameterFamilyInteriorSeed",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorSeed.lean",
+      "line": 102,
+      "declaration": "theorem interior_periodic_tiling :"
+    },
+    {
+      "name": "Psc.ParameterFamilyInteriorSeed.interior_periodic_origins",
+      "module": "PscVerif.C4ParameterFamilyInteriorSeed",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorSeed.lean",
+      "line": 127,
+      "declaration": "theorem interior_periodic_origins :"
+    },
+    {
+      "name": "Psc.ParameterFamilyInteriorSeed.no_origin_vertex",
+      "module": "PscVerif.C4ParameterFamilyInteriorSeed",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorSeed.lean",
+      "line": 149,
+      "declaration": "theorem no_origin_vertex {T : (geometry k hk).Hull}"
+    },
+    {
+      "name": "Psc.ParameterFamilyInteriorZero.interior_zero_cycle",
+      "module": "PscVerif.C4ParameterFamilyInteriorZero",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorZero.lean",
+      "line": 31,
+      "declaration": "theorem interior_zero_cycle :"
+    },
+    {
+      "name": "Psc.ParameterFamilyInteriorZero.zero_fibre_not_all_vertices",
+      "module": "PscVerif.C4ParameterFamilyInteriorZero",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorZero.lean",
+      "line": 55,
+      "declaration": "theorem zero_fibre_not_all_vertices :"
+    },
+    {
+      "name": "Psc.ParameterFamilyInteriorZero.seam_and_interior_zero_witnesses",
+      "module": "PscVerif.C4ParameterFamilyInteriorZero",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorZero.lean",
+      "line": 66,
+      "declaration": "theorem seam_and_interior_zero_witnesses :"
+    },
+    {
       "name": "Psc.ParameterFamilyPisot.incidence_eq",
       "module": "PscVerif.C4ParameterFamilyPisot",
       "private": false,
@@ -6074,6 +6514,214 @@
       "declaration": "theorem zero_no_root_above_two {b : ℝ} (hb : 2 < b) :"
     },
     {
+      "name": "Psc.ParameterFamilyRecognizability.place_zero",
+      "module": "PscVerif.C4ParameterFamilyRecognizability",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyRecognizability.lean",
+      "line": 24,
+      "declaration": "private theorem place_zero (x : ℝ) : (G).place (substitution k 0) x = [(1, x)] := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyRecognizability.place_one",
+      "module": "PscVerif.C4ParameterFamilyRecognizability",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyRecognizability.lean",
+      "line": 27,
+      "declaration": "private theorem place_one (x : ℝ) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyRecognizability.place_two",
+      "module": "PscVerif.C4ParameterFamilyRecognizability",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyRecognizability.lean",
+      "line": 32,
+      "declaration": "private theorem place_two (x : ℝ) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyRecognizability.place_ones_label",
+      "module": "PscVerif.C4ParameterFamilyRecognizability",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyRecognizability.lean",
+      "line": 36,
+      "declaration": "private theorem place_ones_label {m : ℕ} {x : ℝ} {q : Fin 3 × ℝ}"
+    },
+    {
+      "name": "Psc.ParameterFamilyRecognizability.place_one_second",
+      "module": "PscVerif.C4ParameterFamilyRecognizability",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyRecognizability.lean",
+      "line": 46,
+      "declaration": "private theorem place_one_second (x : ℝ) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyRecognizability.parent_of_two",
+      "module": "PscVerif.C4ParameterFamilyRecognizability",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyRecognizability.lean",
+      "line": 52,
+      "declaration": "private theorem parent_of_two {T : Set (Fin 3 × ℝ)} {x : ℝ}"
+    },
+    {
+      "name": "Psc.ParameterFamilyRecognizability.parent_of_zeros",
+      "module": "PscVerif.C4ParameterFamilyRecognizability",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyRecognizability.lean",
+      "line": 73,
+      "declaration": "private theorem parent_of_zeros {T : Set (Fin 3 × ℝ)} (hT : (G).IsTiling T) {x : ℝ}"
+    },
+    {
+      "name": "Psc.ParameterFamilyRecognizability.larger_parents",
+      "module": "PscVerif.C4ParameterFamilyRecognizability",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyRecognizability.lean",
+      "line": 106,
+      "declaration": "private theorem larger_parents {T U : Set (Fin 3 × ℝ)} (hU : (G).IsTiling U)"
+    },
+    {
+      "name": "Psc.ParameterFamilyRecognizability.parent_subset",
+      "module": "PscVerif.C4ParameterFamilyRecognizability",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyRecognizability.lean",
+      "line": 120,
+      "declaration": "private theorem parent_subset {T U : Set (Fin 3 × ℝ)} (hT : (G).IsTiling T) (hU : (G).IsTiling U)"
+    },
+    {
+      "name": "Psc.ParameterFamilyRecognizability.inflate_injective_on_tilings",
+      "module": "PscVerif.C4ParameterFamilyRecognizability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyRecognizability.lean",
+      "line": 147,
+      "declaration": "theorem inflate_injective_on_tilings {T U : Set (Fin 3 × ℝ)}"
+    },
+    {
+      "name": "Psc.ParameterFamilyRecognizability.inflateH_injective",
+      "module": "PscVerif.C4ParameterFamilyRecognizability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyRecognizability.lean",
+      "line": 152,
+      "declaration": "theorem inflateH_injective (k : ℕ) (hk : 1 ≤ k) : Injective (inflateH (S := geometry k hk)) := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyRecognizability.inflateH_surjective",
+      "module": "PscVerif.C4ParameterFamilyRecognizability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyRecognizability.lean",
+      "line": 157,
+      "declaration": "theorem inflateH_surjective (k : ℕ) (hk : 1 ≤ k) : Surjective (inflateH (S := geometry k hk)) := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyRecognizability.inflateH_bijective",
+      "module": "PscVerif.C4ParameterFamilyRecognizability",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyRecognizability.lean",
+      "line": 175,
+      "declaration": "theorem inflateH_bijective (k : ℕ) (hk : 1 ≤ k) : Bijective (inflateH (S := geometry k hk)) :="
+    },
+    {
+      "name": "Psc.ParameterFamilySolenoid.mat_eq",
+      "module": "PscVerif.C4ParameterFamilySolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilySolenoid.lean",
+      "line": 25,
+      "declaration": "theorem mat_eq : mat (geometry k hk) = (incidenceQ k).map (algebraMap ℚ ℝ) := by"
+    },
+    {
+      "name": "Psc.ParameterFamilySolenoid.charpoly_map",
+      "module": "PscVerif.C4ParameterFamilySolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilySolenoid.lean",
+      "line": 29,
+      "declaration": "theorem charpoly_map :"
+    },
+    {
+      "name": "Psc.ParameterFamilySolenoid.continuous_solenoidRealize",
+      "module": "PscVerif.C4ParameterFamilySolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilySolenoid.lean",
+      "line": 50,
+      "declaration": "theorem continuous_solenoidRealize : Continuous (solenoidRealize k hk) :="
+    },
+    {
+      "name": "Psc.ParameterFamilySolenoid.solenoidRealize_inflate",
+      "module": "PscVerif.C4ParameterFamilySolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilySolenoid.lean",
+      "line": 53,
+      "declaration": "theorem solenoidRealize_inflate (T : LocalHull (geometry k hk)) :"
+    },
+    {
+      "name": "Psc.ParameterFamilySolenoid.solenoidRealize_translate",
+      "module": "PscVerif.C4ParameterFamilySolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilySolenoid.lean",
+      "line": 58,
+      "declaration": "theorem solenoidRealize_translate (t : ℝ) (T : LocalHull (geometry k hk)) :"
+    },
+    {
+      "name": "Psc.ParameterFamilySolenoid.fixed_tiling_over_zero",
+      "module": "PscVerif.C4ParameterFamilySolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilySolenoid.lean",
+      "line": 64,
+      "declaration": "theorem fixed_tiling_over_zero :"
+    },
+    {
+      "name": "Psc.ParameterFamilySolenoid.solenoidRealize_surjective",
+      "module": "PscVerif.C4ParameterFamilySolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilySolenoid.lean",
+      "line": 72,
+      "declaration": "theorem solenoidRealize_surjective : Surjective (solenoidRealize k hk) := by"
+    },
+    {
+      "name": "Psc.ParameterFamilySolenoid.solenoidRealize_finite_fibres",
+      "module": "PscVerif.C4ParameterFamilySolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilySolenoid.lean",
+      "line": 77,
+      "declaration": "theorem solenoidRealize_finite_fibres (z : Solenoid (geometry k hk)) :"
+    },
+    {
+      "name": "Psc.ParameterFamilySolenoid.periodic_of_realize_zero",
+      "module": "PscVerif.C4ParameterFamilySolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilySolenoid.lean",
+      "line": 82,
+      "declaration": "theorem periodic_of_realize_zero {T : (geometry k hk).Hull}"
+    },
+    {
+      "name": "Psc.ParameterFamilySolenoid.denseRange_translate",
+      "module": "PscVerif.C4ParameterFamilySolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilySolenoid.lean",
+      "line": 93,
+      "declaration": "theorem denseRange_translate (T : LocalHull (geometry k hk)) :"
+    },
+    {
+      "name": "Psc.ParameterFamilySolenoid.solenoidRealize_fibres_eq_of_equivariant",
+      "module": "PscVerif.C4ParameterFamilySolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilySolenoid.lean",
+      "line": 109,
+      "declaration": "theorem solenoidRealize_fibres_eq_of_equivariant"
+    },
+    {
+      "name": "Psc.ParameterFamilySolenoid.originPatch_eq_of_agree",
+      "module": "PscVerif.C4ParameterFamilySolenoid",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilySolenoid.lean",
+      "line": 130,
+      "declaration": "private theorem originPatch_eq_of_agree {S : LengthSubst (Fin 3)} {R : ℝ} (hR : 0 < R)"
+    },
+    {
+      "name": "Psc.ParameterFamilySolenoid.common_tile_of_zero_fibre_witnesses",
+      "module": "PscVerif.C4ParameterFamilySolenoid",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilySolenoid.lean",
+      "line": 144,
+      "declaration": "theorem common_tile_of_zero_fibre_witnesses (hk₂ : 2 ≤ k)"
+    },
+    {
       "name": "Psc.ParameterFamilyTiling.exists_expansion",
       "module": "PscVerif.C4ParameterFamilyTiling",
       "private": true,
@@ -6140,17 +6788,17 @@
     {
       "name": "Psc.ParameterFamilyTiling.every_letter_in_square",
       "module": "PscVerif.C4ParameterFamilyTiling",
-      "private": true,
+      "private": false,
       "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
-      "line": 139,
-      "declaration": "private theorem every_letter_in_square (k : ℕ) (hk : 1 ≤ k) (a c : Fin 3) :"
+      "line": 140,
+      "declaration": "theorem every_letter_in_square (k : ℕ) (hk : 1 ≤ k) (a c : Fin 3) :"
     },
     {
       "name": "Psc.ParameterFamilyTiling.square_irrational",
       "module": "PscVerif.C4ParameterFamilyTiling",
       "private": true,
       "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
-      "line": 160,
+      "line": 161,
       "declaration": "private theorem square_irrational (k : ℕ) (hk : 1 ≤ k) : Irrational ((geometry k hk).β ^ 2) := by"
     },
     {
@@ -6158,7 +6806,7 @@
       "module": "PscVerif.C4ParameterFamilyTiling",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
-      "line": 175,
+      "line": 176,
       "declaration": "theorem aperiodic (k : ℕ) (hk : 1 ≤ k) (T : (geometry k hk).Hull) (t : ℝ)"
     },
     {
@@ -6166,7 +6814,7 @@
       "module": "PscVerif.C4ParameterFamilyTiling",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
-      "line": 189,
+      "line": 190,
       "declaration": "theorem tiling_space_nonempty (k : ℕ) (hk : 1 ≤ k) : Nonempty (TilingSpace k hk) := by"
     },
     {
@@ -6174,7 +6822,7 @@
       "module": "PscVerif.C4ParameterFamilyTiling",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
-      "line": 194,
+      "line": 195,
       "declaration": "theorem continuous_action (k : ℕ) (hk : 1 ≤ k) :"
     },
     {
@@ -6182,7 +6830,7 @@
       "module": "PscVerif.C4ParameterFamilyTiling",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
-      "line": 199,
+      "line": 200,
       "declaration": "theorem action_aperiodic (k : ℕ) (hk : 1 ≤ k) (T : TilingSpace k hk) (t : ℝ)"
     },
     {
@@ -6190,7 +6838,7 @@
       "module": "PscVerif.C4ParameterFamilyTiling",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
-      "line": 205,
+      "line": 206,
       "declaration": "theorem finite_local_complexity (k : ℕ) (hk : 1 ≤ k) (R : ℝ) (hR : 0 < R) :"
     },
     {
@@ -6198,7 +6846,7 @@
       "module": "PscVerif.C4ParameterFamilyTiling",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
-      "line": 213,
+      "line": 214,
       "declaration": "theorem swap_rotation_irrational (k : ℕ) (hk : 1 ≤ k) :"
     },
     {
@@ -6206,7 +6854,7 @@
       "module": "PscVerif.C4ParameterFamilyTiling",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
-      "line": 225,
+      "line": 226,
       "declaration": "theorem swap_rotation_dense (k : ℕ) (hk : 1 ≤ k) :"
     },
     {
@@ -6214,7 +6862,7 @@
       "module": "PscVerif.C4ParameterFamilyTiling",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
-      "line": 232,
+      "line": 233,
       "declaration": "theorem dense_swap_coincidences (k : ℕ) (hk : 2 ≤ k) :"
     },
     {
@@ -6222,7 +6870,7 @@
       "module": "PscVerif.C4ParameterFamilyTiling",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
-      "line": 252,
+      "line": 253,
       "declaration": "theorem shift_swap_periodic_patch (S : LengthSubst (Fin 3)) :"
     },
     {
@@ -6230,7 +6878,7 @@
       "module": "PscVerif.C4ParameterFamilyTiling",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
-      "line": 268,
+      "line": 269,
       "declaration": "theorem periodic_swap_geometry (k : ℕ) (hk : 2 ≤ k) :"
     },
     {
@@ -6238,7 +6886,7 @@
       "module": "PscVerif.C4ParameterFamilyTiling",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
-      "line": 289,
+      "line": 290,
       "declaration": "theorem legal_patches_dense_eventual (k : ℕ) (hk : 2 ≤ k) :"
     },
     {
@@ -6246,7 +6894,7 @@
       "module": "PscVerif.C4ParameterFamilyTiling",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
-      "line": 307,
+      "line": 308,
       "declaration": "theorem hull_dense_eventual (k : ℕ) (hk : 2 ≤ k) :"
     },
     {
@@ -6254,7 +6902,7 @@
       "module": "PscVerif.C4ParameterFamilyTiling",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
-      "line": 314,
+      "line": 315,
       "declaration": "theorem periodic_common_tile_of_origin_witnesses (k : ℕ) (hk : 2 ≤ k) :"
     },
     {
@@ -6262,7 +6910,7 @@
       "module": "PscVerif.C4ParameterFamilyTiling",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
-      "line": 325,
+      "line": 326,
       "declaration": "theorem periodic_fibre_common_tiles {Y : Type*} (k : ℕ) (hk : 2 ≤ k) :"
     },
     {
@@ -7128,6 +7776,126 @@
       "source": "proof/PscVerif/PscVerif/C4ParameterFamilyWords.lean",
       "line": 456,
       "declaration": "theorem base_exit (n i : Nat) (hi : i < 25)"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreControls.zero_fibre_seam_control",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreControls.lean",
+      "line": 31,
+      "declaration": "theorem zero_fibre_seam_control (k : ℕ) (hk : 1 ≤ k) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreControls.solenoidRealize_not_injective",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreControls.lean",
+      "line": 78,
+      "declaration": "theorem solenoidRealize_not_injective (k : ℕ) (hk : 1 ≤ k) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreControls.seam_pair_common_tile",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreControls.lean",
+      "line": 90,
+      "declaration": "theorem seam_pair_common_tile (k : ℕ) (hk : 1 ≤ k) (hk₂ : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreControls.zero_fibre_pair_with_exact_shifts",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreControls.lean",
+      "line": 128,
+      "declaration": "theorem zero_fibre_pair_with_exact_shifts (k : ℕ) (hk : 1 ≤ k) (hk₂ : 2 ≤ k) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerProximal.closedOriginWitnesses_of_windowWitnesses",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreWitnesses",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreWitnesses.lean",
+      "line": 41,
+      "declaration": "theorem closedOriginWitnesses_of_windowWitnesses {R : ℝ} (hR : 0 < R)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerProximal.stronglyRegionallyProximal_of_exactProximal",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreWitnesses",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreWitnesses.lean",
+      "line": 48,
+      "declaration": "theorem stronglyRegionallyProximal_of_exactProximal {T U : S.Hull}"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreWitnesses.realize_zero_iff_periodic_lattice_origin",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreWitnesses",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreWitnesses.lean",
+      "line": 71,
+      "declaration": "theorem realize_zero_iff_periodic_lattice_origin {T : (geometry k hk).Hull} :"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreWitnesses.common_tile_of_closedOriginWitnesses",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreWitnesses",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreWitnesses.lean",
+      "line": 85,
+      "declaration": "theorem common_tile_of_closedOriginWitnesses (hk₂ : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreWitnesses.exactProximal_iff_common_tile",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreWitnesses",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreWitnesses.lean",
+      "line": 97,
+      "declaration": "theorem exactProximal_iff_common_tile"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreWitnesses.windowWitnesses_iff_common_tile",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreWitnesses",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreWitnesses.lean",
+      "line": 108,
+      "declaration": "theorem windowWitnesses_iff_common_tile (hk₂ : 2 ≤ k) {R : ℝ} (hR : 0 < R)"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreWitnesses.closedOriginWitnesses_iff_common_tile",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreWitnesses",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreWitnesses.lean",
+      "line": 121,
+      "declaration": "theorem closedOriginWitnesses_iff_common_tile (hk₂ : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreWitnesses.stronglyRegionallyProximal_iff_common_tile",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreWitnesses",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreWitnesses.lean",
+      "line": 130,
+      "declaration": "theorem stronglyRegionallyProximal_iff_common_tile (hk₂ : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreWitnesses.common_tile_trans",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreWitnesses",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreWitnesses.lean",
+      "line": 145,
+      "declaration": "theorem common_tile_trans (hk₂ : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreWitnesses.all_pair_witnesses_iff_anchor",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreWitnesses",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreWitnesses.lean",
+      "line": 174,
+      "declaration": "theorem all_pair_witnesses_iff_anchor (hk₂ : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreWitnesses.all_pair_witnesses_iff_periodic_lattice_anchor",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreWitnesses",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreWitnesses.lean",
+      "line": 197,
+      "declaration": "theorem all_pair_witnesses_iff_periodic_lattice_anchor (hk₂ : 2 ≤ k)"
     },
     {
       "name": "Psc.no_commuting_of_no_eigenvalue",
@@ -39450,6 +40218,38 @@
       "declaration": "theorem triangle_partner_disjoint_labels :"
     },
     {
+      "name": "Psc.PeriodicPartnerDesubContinuity.origin_mem_parentOrigins",
+      "module": "PscVerif.PeriodicPartnerDesubContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDesubContinuity.lean",
+      "line": 36,
+      "declaration": "theorem origin_mem_parentOrigins (U : S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDesubContinuity.isCompact_inflate_preimage_origin_fibre",
+      "module": "PscVerif.PeriodicPartnerDesubContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDesubContinuity.lean",
+      "line": 52,
+      "declaration": "theorem isCompact_inflate_preimage_origin_fibre (q : α × ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDesubContinuity.isClosedMap_inflateH",
+      "module": "PscVerif.PeriodicPartnerDesubContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDesubContinuity.lean",
+      "line": 67,
+      "declaration": "theorem isClosedMap_inflateH : IsClosedMap (inflateH (S := S)) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerDesubContinuity.continuous_desub",
+      "module": "PscVerif.PeriodicPartnerDesubContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerDesubContinuity.lean",
+      "line": 91,
+      "declaration": "theorem continuous_desub (hR : Bijective (inflateH (S := S))) :"
+    },
+    {
       "name": "Psc.PeriodicPartnerDichotomy.ternary_endpoint_merge_iff_collapse",
       "module": "PscVerif.PeriodicPartnerDichotomy",
       "private": false,
@@ -41152,6 +41952,150 @@
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean",
       "line": 836,
       "declaration": "theorem thueMorse_hull_nonempty : Nonempty thueMorse.Hull := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.rightTile_mem",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 39,
+      "declaration": "theorem rightTile_mem (T : S.Hull) (n : ℕ) : rightTile T n ∈ T.1 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.leftTile_mem",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 44,
+      "declaration": "theorem leftTile_mem (T : S.Hull) (n : ℕ) : leftTile T n ∈ T.1 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.rightTile_start_succ",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 50,
+      "declaration": "theorem rightTile_start_succ (T : S.Hull) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.tileAt_prev_end",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 55,
+      "declaration": "theorem tileAt_prev_end {T : S.Hull} {q : α × ℝ} (hq : q ∈ T.1) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.leftTile_end_succ",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 68,
+      "declaration": "theorem leftTile_end_succ (T : S.Hull) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.leftTile_start_succ",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 72,
+      "declaration": "theorem leftTile_start_succ (T : S.Hull) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.rightTile_start_lower",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 76,
+      "declaration": "theorem rightTile_start_lower (T : S.Hull) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.leftTile_start_upper",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 85,
+      "declaration": "theorem leftTile_start_upper (T : S.Hull) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.rightTile_cover",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 96,
+      "declaration": "theorem rightTile_cover (T : S.Hull) (n : ℕ) {z : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.leftTile_cover",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 109,
+      "declaration": "theorem leftTile_cover (T : S.Hull) (n : ℕ) {z : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.finite_range_rightTile",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 123,
+      "declaration": "theorem finite_range_rightTile (p : α × ℝ) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.finite_range_leftTile",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 139,
+      "declaration": "theorem finite_range_leftTile (p : α × ℝ) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.exists_finite_window_container",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 156,
+      "declaration": "theorem exists_finite_window_container (p : α × ℝ) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.finite_range_window",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 185,
+      "declaration": "theorem finite_range_window (p : α × ℝ) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.totallyBounded_origin_fibre",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 193,
+      "declaration": "theorem totallyBounded_origin_fibre (p : α × ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHullCompact.isCompact_origin_fibre",
+      "module": "PscVerif.PeriodicPartnerHullCompact",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean",
+      "line": 206,
+      "declaration": "theorem isCompact_origin_fibre (p : α × ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.cauchySeq_eventually_agree",
+      "module": "PscVerif.PeriodicPartnerHullComplete",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullComplete.lean",
+      "line": 19,
+      "declaration": "theorem cauchySeq_eventually_agree {u : ℕ → S.Hull} (hu : CauchySeq u) (R : ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.exists_tendsto_of_cauchySeq",
+      "module": "PscVerif.PeriodicPartnerHullComplete",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullComplete.lean",
+      "line": 26,
+      "declaration": "theorem exists_tendsto_of_cauchySeq {u : ℕ → S.Hull} (hu : CauchySeq u) :"
     },
     {
       "name": "Psc.PeriodicPartnerHull.LengthSubst.Agree.refl",
@@ -43018,6 +43962,174 @@
       "declaration": "theorem contraction_collapse_from_endpoint_merge :"
     },
     {
+      "name": "Psc.PeriodicPartnerOriginContinuity.origin_eq_of_agree_one",
+      "module": "PscVerif.PeriodicPartnerOriginContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerOriginContinuity.lean",
+      "line": 29,
+      "declaration": "theorem origin_eq_of_agree_one {T U : S.Hull} (h : Agree 1 T U) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerOriginContinuity.isLocallyConstant_origin",
+      "module": "PscVerif.PeriodicPartnerOriginContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerOriginContinuity.lean",
+      "line": 37,
+      "declaration": "theorem isLocallyConstant_origin : IsLocallyConstant (origin (S := S)) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerOriginContinuity.isOpen_origin_fibre",
+      "module": "PscVerif.PeriodicPartnerOriginContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerOriginContinuity.lean",
+      "line": 45,
+      "declaration": "theorem isOpen_origin_fibre (p : α × ℝ) : IsOpen {T : S.Hull | origin T = p} :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerOriginContinuity.isClosed_origin_fibre",
+      "module": "PscVerif.PeriodicPartnerOriginContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerOriginContinuity.lean",
+      "line": 48,
+      "declaration": "theorem isClosed_origin_fibre (p : α × ℝ) : IsClosed {T : S.Hull | origin T = p} :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerOriginContinuity.origin_inflate_eq_of_origin_eq",
+      "module": "PscVerif.PeriodicPartnerOriginContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerOriginContinuity.lean",
+      "line": 55,
+      "declaration": "theorem origin_inflate_eq_of_origin_eq {U V : S.Hull} (h : origin U = origin V) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerOriginContinuity.offset_eq_of_origin_eq",
+      "module": "PscVerif.PeriodicPartnerOriginContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerOriginContinuity.lean",
+      "line": 69,
+      "declaration": "theorem offset_eq_of_origin_eq {U V : S.Hull} (h : origin U = origin V) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerOriginContinuity.isLocallyConstant_offset",
+      "module": "PscVerif.PeriodicPartnerOriginContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerOriginContinuity.lean",
+      "line": 78,
+      "declaration": "theorem isLocallyConstant_offset : IsLocallyConstant (offset (S := S)) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerOriginContinuity.continuous_origin_start",
+      "module": "PscVerif.PeriodicPartnerOriginContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerOriginContinuity.lean",
+      "line": 85,
+      "declaration": "theorem continuous_origin_start : Continuous (fun T : S.Hull => (origin T).2) :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerOriginContinuity.continuous_offset",
+      "module": "PscVerif.PeriodicPartnerOriginContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerOriginContinuity.lean",
+      "line": 88,
+      "declaration": "theorem continuous_offset : Continuous (offset (S := S)) :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerPeriodicZero.realize_zero_of_periodic_torus_zero",
+      "module": "PscVerif.PeriodicPartnerPeriodicZero",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerPeriodicZero.lean",
+      "line": 27,
+      "declaration": "theorem realize_zero_of_periodic_torus_zero {T : S.Hull} {p : ℕ} (hp : 0 < p)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerPeriodicZero.torusRealize_zero_of_periodic_lattice_origin",
+      "module": "PscVerif.PeriodicPartnerPeriodicZero",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerPeriodicZero.lean",
+      "line": 53,
+      "declaration": "theorem torusRealize_zero_of_periodic_lattice_origin {T : S.Hull} {p : ℕ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerPeriodicZero.realize_zero_of_periodic_lattice_origin",
+      "module": "PscVerif.PeriodicPartnerPeriodicZero",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerPeriodicZero.lean",
+      "line": 88,
+      "declaration": "theorem realize_zero_of_periodic_lattice_origin {T : S.Hull} {p : ℕ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerPeriodicZero.lattice_origin_of_realize_zero",
+      "module": "PscVerif.PeriodicPartnerPeriodicZero",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerPeriodicZero.lean",
+      "line": 96,
+      "declaration": "theorem lattice_origin_of_realize_zero {T : S.Hull} (h : realize P hR T = 0) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerPeriodicZero.realize_zero_iff_lattice_origin_of_periodic",
+      "module": "PscVerif.PeriodicPartnerPeriodicZero",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerPeriodicZero.lean",
+      "line": 105,
+      "declaration": "theorem realize_zero_iff_lattice_origin_of_periodic {T : S.Hull} {p : ℕ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerProximal.originPatch_eq_of_agree",
+      "module": "PscVerif.PeriodicPartnerProximal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerProximal.lean",
+      "line": 31,
+      "declaration": "theorem originPatch_eq_of_agree {R : ℝ} (hR : 0 < R) {T U : S.Hull}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerProximal.agree_at_common_tile",
+      "module": "PscVerif.PeriodicPartnerProximal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerProximal.lean",
+      "line": 47,
+      "declaration": "theorem agree_at_common_tile {T U : S.Hull} {q : α × ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerProximal.inflateH_iterate_translate",
+      "module": "PscVerif.PeriodicPartnerProximal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerProximal.lean",
+      "line": 66,
+      "declaration": "theorem inflateH_iterate_translate [Nonempty α] (T : S.Hull) (t : ℝ) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerProximal.ExactProximal.inflate_iterate",
+      "module": "PscVerif.PeriodicPartnerProximal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerProximal.lean",
+      "line": 76,
+      "declaration": "theorem ExactProximal.inflate_iterate [Nonempty α] {T U : S.Hull}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerProximal.exactProximal_of_periodic_common_tile",
+      "module": "PscVerif.PeriodicPartnerProximal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerProximal.lean",
+      "line": 92,
+      "declaration": "theorem exactProximal_of_periodic_common_tile [Nonempty α] (hβ : 1 < S.β)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerProximal.common_tile_of_exactProximal",
+      "module": "PscVerif.PeriodicPartnerProximal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerProximal.lean",
+      "line": 122,
+      "declaration": "theorem common_tile_of_exactProximal {T U : S.Hull}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerProximal.exactProximal_iff_common_tile_of_periodic",
+      "module": "PscVerif.PeriodicPartnerProximal",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerProximal.lean",
+      "line": 132,
+      "declaration": "theorem exactProximal_iff_common_tile_of_periodic [Nonempty α] (hβ : 1 < S.β)"
+    },
+    {
       "name": "Psc.PeriodicPartnerRealization.isClosed_lattice",
       "module": "PscVerif.PeriodicPartnerRealization",
       "private": false,
@@ -43482,11 +44594,19 @@
       "declaration": "theorem torus_t2Space : T2Space (Torus α) := by"
     },
     {
+      "name": "Psc.PeriodicPartnerRealization.exists_torus_lift",
+      "module": "PscVerif.PeriodicPartnerRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
+      "line": 752,
+      "declaration": "theorem exists_torus_lift (z : Torus α) :"
+    },
+    {
       "name": "Psc.PeriodicPartnerRealization.torus_compactSpace",
       "module": "PscVerif.PeriodicPartnerRealization",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
-      "line": 753,
+      "line": 766,
       "declaration": "theorem torus_compactSpace : CompactSpace (Torus α) := by"
     },
     {
@@ -43494,7 +44614,7 @@
       "module": "PscVerif.PeriodicPartnerRealization",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
-      "line": 773,
+      "line": 776,
       "declaration": "theorem continuous_torusMap : Continuous (torusMap S) := by"
     },
     {
@@ -43502,7 +44622,7 @@
       "module": "PscVerif.PeriodicPartnerRealization",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
-      "line": 783,
+      "line": 786,
       "declaration": "theorem isClosed_solenoid : IsClosed (solenoid S : Set (ℕ → Torus α)) := by"
     },
     {
@@ -43510,7 +44630,7 @@
       "module": "PscVerif.PeriodicPartnerRealization",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
-      "line": 793,
+      "line": 796,
       "declaration": "theorem solenoid_compactSpace : CompactSpace (Solenoid S) := by"
     },
     {
@@ -43518,7 +44638,7 @@
       "module": "PscVerif.PeriodicPartnerRealization",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
-      "line": 797,
+      "line": 800,
       "declaration": "theorem solenoid_t2Space : T2Space (Solenoid S) := by"
     },
     {
@@ -43526,8 +44646,200 @@
       "module": "PscVerif.PeriodicPartnerRealization",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean",
-      "line": 817,
+      "line": 820,
       "declaration": "theorem continuous_flow [Nonempty α] (P : PisotData S) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.realization_term_norm_le",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 32,
+      "declaration": "theorem realization_term_norm_le (k : ℕ) (T : S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.summable_realization_majorant",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 43,
+      "declaration": "theorem summable_realization_majorant :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.tendstoUniformly_realization_series",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 49,
+      "declaration": "theorem tendstoUniformly_realization_series :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.continuous_level_of_continuous_desub",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 58,
+      "declaration": "theorem continuous_level_of_continuous_desub"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.isLocallyConstant_xs_of_continuous_desub",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 62,
+      "declaration": "theorem isLocallyConstant_xs_of_continuous_desub"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.isLocallyConstant_cs_of_continuous_desub",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 69,
+      "declaration": "theorem isLocallyConstant_cs_of_continuous_desub"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.continuous_realVec_of_continuous_desub",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 78,
+      "declaration": "theorem continuous_realVec_of_continuous_desub"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.continuous_torusRealize_of_continuous_desub",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 90,
+      "declaration": "theorem continuous_torusRealize_of_continuous_desub"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.continuous_realize_of_continuous_desub",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 97,
+      "declaration": "theorem continuous_realize_of_continuous_desub"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.continuous_realizeLocal_of_continuous_desub",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 104,
+      "declaration": "theorem continuous_realizeLocal_of_continuous_desub (hβ : 1 < S.β)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.continuous_level",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 113,
+      "declaration": "theorem continuous_level (n : ℕ) : Continuous (level hR n) :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.continuous_realVec",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 119,
+      "declaration": "theorem continuous_realVec : Continuous (realVec P hR) :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.continuous_torusRealize",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 123,
+      "declaration": "theorem continuous_torusRealize : Continuous (torusRealize P hR) :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.continuous_realize",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 128,
+      "declaration": "theorem continuous_realize : Continuous (realize P hR) :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuity.continuous_realizeLocal",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
+      "line": 135,
+      "declaration": "theorem continuous_realizeLocal (hβ : 1 < S.β) : Continuous (realizeLocal P hR) :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationFinite.dot_realVec",
+      "module": "PscVerif.PeriodicPartnerRealizationFinite",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationFinite.lean",
+      "line": 27,
+      "declaration": "theorem dot_realVec (T : S.Hull) : S.ℓ ⬝ᵥ realVec P hR T = -(origin T).2 := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationFinite.exists_realVec_bound",
+      "module": "PscVerif.PeriodicPartnerRealizationFinite",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationFinite.lean",
+      "line": 48,
+      "declaration": "theorem exists_realVec_bound : ∃ K : ℝ, ∀ T : S.Hull, ‖realVec P hR T‖ ≤ K := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationFinite.finite_lattice_ball",
+      "module": "PscVerif.PeriodicPartnerRealizationFinite",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationFinite.lean",
+      "line": 68,
+      "declaration": "private theorem finite_lattice_ball (K : ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationFinite.agree_of_window_eq",
+      "module": "PscVerif.PeriodicPartnerRealizationFinite",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationFinite.lean",
+      "line": 88,
+      "declaration": "private theorem agree_of_window_eq {T U : S.Hull} (h : window T = window U) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationFinite.exists_finite_windows",
+      "module": "PscVerif.PeriodicPartnerRealizationFinite",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationFinite.lean",
+      "line": 96,
+      "declaration": "private theorem exists_finite_windows :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationFinite.exists_agree_radius",
+      "module": "PscVerif.PeriodicPartnerRealizationFinite",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationFinite.lean",
+      "line": 128,
+      "declaration": "private theorem exists_agree_radius (T U : S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationFinite.level_agree_expands",
+      "module": "PscVerif.PeriodicPartnerRealizationFinite",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationFinite.lean",
+      "line": 140,
+      "declaration": "private theorem level_agree_expands {T U : S.Hull} (n : ℕ)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationFinite.realize_finite_fibres",
+      "module": "PscVerif.PeriodicPartnerRealizationFinite",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationFinite.lean",
+      "line": 151,
+      "declaration": "theorem realize_finite_fibres (hβ : 1 < S.β) (z : Solenoid S) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationFinite.realizeLocal_finite_fibres",
+      "module": "PscVerif.PeriodicPartnerRealizationFinite",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationFinite.lean",
+      "line": 186,
+      "declaration": "theorem realizeLocal_finite_fibres (hβ : 1 < S.β) (z : Solenoid S) :"
     },
     {
       "name": "Psc.PeriodicPartnerRealizationModels.pow_mulVec_of_eigen",
@@ -43648,6 +44960,46 @@
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean",
       "line": 240,
       "declaration": "theorem doubled_not_pisot : IsEmpty (PisotData doubled) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationOnto.localHull_compactSpace",
+      "module": "PscVerif.PeriodicPartnerRealizationOnto",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationOnto.lean",
+      "line": 24,
+      "declaration": "theorem localHull_compactSpace : CompactSpace (LocalHull S) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationOnto.torusMap_iterate_lift",
+      "module": "PscVerif.PeriodicPartnerRealizationOnto",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationOnto.lean",
+      "line": 51,
+      "declaration": "private theorem torusMap_iterate_lift (n : ℕ) (v : α → ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationOnto.denseRange_flow_zero",
+      "module": "PscVerif.PeriodicPartnerRealizationOnto",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationOnto.lean",
+      "line": 60,
+      "declaration": "theorem denseRange_flow_zero : DenseRange (fun t : ℝ => flow P t 0) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationOnto.flow_sub",
+      "module": "PscVerif.PeriodicPartnerRealizationOnto",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationOnto.lean",
+      "line": 112,
+      "declaration": "theorem flow_sub (t : ℝ) (z w : Solenoid S) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationOnto.realizeLocal_surjective",
+      "module": "PscVerif.PeriodicPartnerRealizationOnto",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationOnto.lean",
+      "line": 118,
+      "declaration": "theorem realizeLocal_surjective (hβ : 1 < S.β) (hR : Bijective (inflateH (S := S)))"
     },
     {
       "name": "Psc.PeriodicPartnerReflection.LeftBranchLaws.toRightBranchLaws",
@@ -55872,7 +57224,9 @@
     "claim_governance.toml": "895eb1950ccd19725ad600b1d40d988652d5e15524a336288bef7761411d8a7c",
     "proof/PscVerif/A1PrimeTailAudit.lean": "eee41a524a6a114716a7704f169726b6484ab56c2398431dcd297fe6809a0b23",
     "proof/PscVerif/BHFiniteReachabilityAudit.lean": "5469fdefea80286841bb3b40b7944a4674de5dce03ca12b490ee72b77ca2b79d",
-    "proof/PscVerif/C4ParameterFamilyAudit.lean": "89790bc2bee4a1953e3b3ec2e0136b4c5084d5f849ee35c09f506bad99ff28db",
+    "proof/PscVerif/C4FiniteTileAutomatonAudit.lean": "03ae6c9467da09b705a6ddf5c51403797a17e559bbf81175d5544e34c1eb8b08",
+    "proof/PscVerif/C4ParameterFamilyAudit.lean": "5d63a488ad5d3a98f20e6e109049a349a440c9459dc33013ba40f915ade5c5a3",
+    "proof/PscVerif/C4ZeroFibreWitnessAudit.lean": "fa9d4d6d34b745d9e485b723a242685175cb747d9146f13a979b25c25517312d",
     "proof/PscVerif/ClassABoundaryEscapeAudit.lean": "f5b5147990567d0ca653e6f96336d3e44e00087dc6a577c101b840592495abdb",
     "proof/PscVerif/ClassACentralRecurrenceAudit.lean": "c312940fe33a565e0031cf0c87e303a291755da0db9080f65222b1ffa6a4519b",
     "proof/PscVerif/ClassAMinusConstantRecurrenceAudit.lean": "6e90eee52630956763ce1bca0525ecc0fd20b02b956ac09a5007863e8c930ecc",
@@ -55906,12 +57260,21 @@
     "proof/PscVerif/PscVerif/Binomial.lean": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
     "proof/PscVerif/PscVerif/BoundarySeedPath.lean": "bea69cb93d5bcd15b1b88c48062b4404a721908092af1b5f5b42e6184f7abae3",
+    "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean": "9b97606079e367b743a2f863403dff677a58c096068ad1715160eeef5a8b9559",
+    "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean": "b8123aec4c0e1c2a9a1b5937a17cd0c9c26189e0d884c8a27bf1465e3b8b5b24",
     "proof/PscVerif/PscVerif/C4ParameterFamilyBridge.lean": "eb29f8b3bf9c325163a1e932dcfc324bd094f0b754ed28a2789daadb45e0354a",
     "proof/PscVerif/PscVerif/C4ParameterFamilyCarrier.lean": "fba5f9b5a2a20c08107aa3e7714c20f2e92a4aeacd28e816e1a4e331e5e03208",
     "proof/PscVerif/PscVerif/C4ParameterFamilyControls.lean": "98b75297c14f75b6a2c87c651d06b3da13131616cf1b53c2630d7b498a1b5540",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorProximal.lean": "68ce95f9f0cdf53603f79cff4d3a6b38c1e6e51ae4750b4fc68108b30fa4a9b2",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorSeed.lean": "6cc2b07ef323a93901d647b211fa0621566bf93b1c980a4fa6e8a530c12e2ad0",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorZero.lean": "a84c06f8694a66eaa0b488ba8b2673c9dcc062bec9996d3dc5443cf97ce8b52e",
     "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean": "17c1a41e6726dfef7f04f3ccc0594f0cbfc5eb90fd61325114179541c763423c",
-    "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean": "62edafc4c240ee570e743ecbd04775447940d0bcb3b37c117ce2281b5050eddc",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyRecognizability.lean": "b6889e7a4bf84e33cb154b36229be3f8c7992ce0d6afb1b241ff6e3d89ca2532",
+    "proof/PscVerif/PscVerif/C4ParameterFamilySolenoid.lean": "9b3b06d944c2b531ab6d3649144f5361244dc89a554ba9354e564dae26f52917",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean": "421b9833f2d132206d0a34ee9ff9dcf511594cb5c7e14540f4c5a1fb9a83ba1c",
     "proof/PscVerif/PscVerif/C4ParameterFamilyWords.lean": "e49cc02bc7b82b8f44101ce153d93982f02e31684501ffe7499cfb53d55c86d7",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreControls.lean": "dd990353621f404c2adb759c5cf207b7dd95ac2639b09e2450921bbfa8939427",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreWitnesses.lean": "3510a37f7bc609c962a88ab184f3b7591479abdcae0de0abfb6490fb90a6fb3d",
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
     "proof/PscVerif/PscVerif/ClassABoundaryEscape.lean": "3f4fd5237cbd01f356a0f12bb2c2dcb1684a338166e7c8ca17505654a8dc5476",
     "proof/PscVerif/PscVerif/ClassACentralRecurrence.lean": "f7e27955fe4238bf0a74bf31f6afe618c6d4769f047ad8ce5ffbdb4d39484a5b",
@@ -56069,6 +57432,7 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerCompanionWords.lean": "b6e615d563c73042cf6fc70da6593ad38cd871cedc16f807c4465f488ee69618",
     "proof/PscVerif/PscVerif/PeriodicPartnerCompleteRange.lean": "df5e5f39df78d9a48c02f61399558ecb600dd5cc3c9d936c238300ece7caba23",
     "proof/PscVerif/PscVerif/PeriodicPartnerControls.lean": "84725326692e81dafcef2c4a724bfb2cee8629fdba398686540db35be72eb0fd",
+    "proof/PscVerif/PscVerif/PeriodicPartnerDesubContinuity.lean": "57bd1013e5cc26d2ece86c44ded9b20e57ed2df9068a3cf6d243aed3fc87fcfe",
     "proof/PscVerif/PscVerif/PeriodicPartnerDichotomy.lean": "d74034c65d26d8b98916f6fdca046c6772e9a3389fb53fdd03bcf3baeea2339b",
     "proof/PscVerif/PscVerif/PeriodicPartnerDirectional.lean": "e78626f1b8c8a8878249dbdb959ea4b493bedef844755a693ef6450043607664",
     "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean": "812599f6a9dfb4ab5d0da0924fa6c3901128f74644e76d14eb2996de17f55c44",
@@ -56080,6 +57444,8 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerGradedLift.lean": "2a30fa67345bdfc4efc019c9fc92190ec6cbe22efb5faa2de44a2052c63d4837",
     "proof/PscVerif/PscVerif/PeriodicPartnerGraphSpectrum.lean": "d1f70a6da1a88f58abba2ee29223ed9d96c13ffc70ce5a7942731d9cfe7326a6",
     "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean": "6124e92faa7ace36663a57ff5dda39f281fd86237cc30006912cf4c2a0a65b6e",
+    "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean": "3be4cdd1c79f495bf3a00e3a12ffe858c7a00676aea0f31126f340e047d9bba8",
+    "proof/PscVerif/PscVerif/PeriodicPartnerHullComplete.lean": "800e0ff78b0e0bf9ea8f477b734952ef92d4b96e034ea6fc0be310c6fc8070c0",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean": "80e0f040cd0ea768a0d5ddf74710dc659c9a9431fb667740953f41369a652386",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullPatches.lean": "07ce32643bfcec7aac4f9e9cc36969a888cd726462aa32077c3fbd2b44a03698",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean": "59d86f345c47142bdd7a74200c04b48f4ae975d1d5afe2dc29331048d7f37988",
@@ -56093,8 +57459,14 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerMarkerParity.lean": "42227be445623aa8ee65df4ea029bfd3c69a65a269af0984a89b5743e2291664",
     "proof/PscVerif/PscVerif/PeriodicPartnerMarkerReachability.lean": "c8f1c3dcf79e7dc003ebcdbcf5a1aa2ec1c8dabbd58119c3b20b96ef89595216",
     "proof/PscVerif/PscVerif/PeriodicPartnerModels.lean": "434d5573fb928bb0ee6667da6dedc8fc76867b76c26d72f5707ac1387a62c5ea",
-    "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean": "90c75822a22e6a88f7872fb8b894e39ff19f4b3bbe502feca88c5d2755228f0c",
+    "proof/PscVerif/PscVerif/PeriodicPartnerOriginContinuity.lean": "8dc8686400f6a170c42e962359a406b4eaa649bf899a5d8149488e5ee8c37d50",
+    "proof/PscVerif/PscVerif/PeriodicPartnerPeriodicZero.lean": "651bc59774daae1c2f363253d5734cdc47c9830134cf9784c85c483916583df8",
+    "proof/PscVerif/PscVerif/PeriodicPartnerProximal.lean": "83944b6beee8157260961fc8c4d6e27573836f6f45f1811390bc0deac202feae",
+    "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean": "3b983148f0e3bc048984c15cb5350bcb77cb272b3bd77058ba02020008cd764d",
+    "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean": "8d779d4d0ebb448ddb784f35b4e135cc5c7ce78ba97fd3c55537d1cbbb5a2d04",
+    "proof/PscVerif/PscVerif/PeriodicPartnerRealizationFinite.lean": "9792341552874a42c4f0d746145d984bdd0b879815fb679d5f4263dd8e704a78",
     "proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean": "870d45802ea6b8678a90bdbb88bdfa90a986fdafad52f00962766245353eb323",
+    "proof/PscVerif/PscVerif/PeriodicPartnerRealizationOnto.lean": "ce6eac4f63139a67ab95687d5da0bba2e51efc8457f5535ca7ed6a3436a35721",
     "proof/PscVerif/PscVerif/PeriodicPartnerReflection.lean": "140e1a71503a0648d17099247ef4cb9b92d67c1cdc15257ee66526a89527ece5",
     "proof/PscVerif/PscVerif/PeriodicPartnerReturnBoundary.lean": "84e8948f48cda97e3099fb7db5b14b6f5fa703fee4d8a9cfe597919578b13ff9",
     "proof/PscVerif/PscVerif/PeriodicPartnerSeamCycles.lean": "15693988e36bb7e4ba0e3d7e6e2e15fb2cc85ff2b36552ccd8b395cf08260ef7",
@@ -56142,7 +57514,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "2fbe389f8287cc48f384b53abf2a159dcfbc21d8d29c5eb07be7d2a56a9c7d30",
+    "proof/PscVerif/PscVerif.lean": "bf8a886c77869fd295eda306ab9a8fcfbf5372a96e03bb17dcad6a254f9073bc",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

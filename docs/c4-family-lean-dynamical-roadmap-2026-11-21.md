@@ -22,6 +22,37 @@ family ordering of the [live roadmap](research-roadmap-2026-09-21.md) and the
 most of F1 and several items of F2 below. Completed items are kept and marked, with their
 declarations, so the remaining order stays readable.
 
+## Status at `main@fbaa2ef` (through #647) — read this first
+
+Main moved again after the rebase note above: the
+[solenoid factor](c4-family-solenoid-factor-2026-11-21.md) (#643/#646), the
+[zero-fibre interface](c4-zero-fibre-spectral-interface-2026-11-21.md) and the
+[finite tile-chain automaton](c4-finite-tile-automaton-2026-11-21.md) (#647). Where the
+sections below disagree with this table, the table is current; the sections are kept as
+the record of the order that was proposed. Names are in `Psc.ParameterFamilySolenoid`
+unless qualified, read from source and not rebuilt here.
+
+| Stage | Status | Declarations, or what remains |
+| --- | --- | --- |
+| F1 | **done**, `k ≥ 1` | `mat_eq`, `charpoly_map`, `spectral : SpectralPisot (geometry k hk)`, `pisotData` |
+| F2 compact | done | `localHull_compactSpace` (`PeriodicPartnerRealizationOnto`), from `isCompact_origin_fibre` and `totallyBounded_origin_fibre`, by the transversal route |
+| F2 recognizability | done, `k ≥ 1` | `inflateH_bijective`, proved from the literal markers; `continuous_desub` |
+| F2 Hausdorff, packaged action laws | not located as named instances | state `T2Space (LocalHull S)` and the action structure, or record where they are implied |
+| F3 | open, unchanged | one `FullFactorCriterion` structure consumed by the final theorem |
+| F4(a) | **done**, `k ≥ 1` | `continuous_solenoidRealize`, `solenoidRealize_surjective`, `solenoidRealize_finite_fibres`, `solenoidRealize_translate`, `solenoidRealize_inflate` |
+| F4(b) | partly | `denseRange_translate`; uniqueness of the invariant measure on the target is not stated |
+| F4(c) | open | the four interfaces of the zero-fibre note: witnesses for *every* pair over zero (`k ≥ 2`), propagation to coincidence rank one, rank one to a.e. singleton fibres, and the `L²` endpoint. `common_tile_of_zero_fibre_witnesses` and `exactProximal_of_periodic_common_tile` consume the witnesses and do not construct them |
+| F4(d) | open | no measure, Koopman representation or `PureDiscrete` definition yet |
+| F5 | open, unchanged | separate tiling and symbolic theorems with a visible transfer |
+
+The continuity problem of §0 is closed: `continuous_realizeLocal` holds from bijective
+inflation and `PisotData`, by exactly the two ingredients listed there
+(`continuous_desub`, `isLocallyConstant_cs_of_continuous_desub`, uniform convergence of the
+series). Main's working method for F4(c) is the finite-kernel automaton route, and the
+[live roadmap](research-roadmap-2026-09-21.md) owns that ordering. What this note still
+adds is F3, the F4(d) definitions and the F5 separation. The status sentence at the top is
+unchanged: no coincidence-rank or invariant-measure conclusion is in Lean.
+
 ## 0. Baseline, with two stale descriptions corrected
 
 Declaration names below were read from the sources at the starting revision; nothing was

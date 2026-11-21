@@ -1,0 +1,19 @@
+[
+  {
+    "module": "PscVerif.PeriodicPartnerProximal",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-j",
+      "2",
+      "-o",
+      "/workspace/scratch/23e6cbb0c6d9/baseline-verification/strict-options/candidate-olean/PscVerif/PeriodicPartnerProximal.olean",
+      "PscVerif/PeriodicPartnerProximal.lean"
+    ],
+    "exit_code": 1,
+    "seconds": 0.3956477329993504,
+    "source_sha256": "83944b6beee8157260961fc8c4d6e27573836f6f45f1811390bc0deac202feae",
+    "log": "/workspace/scratch/23e6cbb0c6d9/baseline-verification/strict-options/candidate-PscVerif.PeriodicPartnerProximal.log"
+  }
+]

@@ -230,9 +230,15 @@ import PscVerif.TerminationFactors
 import PscVerif.C4ParameterFamilyPisot
 import PscVerif.C4ParameterFamilyBridge
 import PscVerif.C4ParameterFamilyTiling
+import PscVerif.C4ParameterFamilySolenoid
+import PscVerif.C4ParameterFamilyZeroFibreWitnesses
+import PscVerif.C4ParameterFamilyZeroFibreControls
+import PscVerif.C4ParameterFamilyInteriorZero
 import PscVerif.UniversalClosureReduction
 import PscVerif.OccurrenceAncestry
 import PscVerif.BHFiniteReachability
 import PscVerif.BHFiniteCarrier
 import PscVerif.A1PrimeTailCoincidence
 import PscVerif.A1PrimeTailPisot
+import PscVerif.C4FiniteTileAutomaton
+import PscVerif.C4FamilyTileAutomatonWords
