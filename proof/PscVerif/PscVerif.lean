@@ -211,6 +211,7 @@ import PscVerif.PeriodicPartnerSpectral
 import PscVerif.PeriodicPartnerSpectralModels
 import PscVerif.PeriodicPartnerSpectralCertificate
 import PscVerif.PeriodicPartnerSpectralCensus
+import PscVerif.PeriodicPartnerHullNonempty
 import PscVerif.PeriodicPartnerHullContinuity
 import PscVerif.PeriodicPartnerLocalTopology
 import PscVerif.PeriodicPartnerLocalTopologyControls

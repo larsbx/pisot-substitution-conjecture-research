@@ -77,6 +77,8 @@ structure field. None is a Lean axiom, and every compiled declaration uses only 
 5. **Nonemptiness for PIP3 members is not instantiated.** `hull_nonempty_of_seed` applies
    once a legal growing seed and the real eigenvector are supplied. Only Thue–Morse is
    checked.
+   *Update:* [closed](c4-hull-nonempty-2026-11-21.md). The seed exists whenever `1 < β`, so
+   every PIP3 member, every census specimen and Tribonacci has a nonempty hull.
 6. The left-hand consumers of `PeriodicPartnerReflection` are not re-instantiated. The
    right-hand laws transfer through the existing reflection theorems once a reflected hull
    map is supplied.
