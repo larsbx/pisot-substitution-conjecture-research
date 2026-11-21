@@ -1,4 +1,74 @@
-PSC AGENT PRIORITY ADDENDUM — 2026-11-19 (planning and acceptance reconciliation)
+PSC AGENT PRIORITY ADDENDUM — 2026-11-21 (current source reconciliation)
+=======================================================================
+Baseline: main@e7e6e330b80b560be70c2a5346e217f415fe4711, through #641.
+Read docs/research-roadmap-2026-09-21.md's November 21 section first,
+with AGENTS.md and claim governance. The external literature cutoff in
+docs/psc-sigma-k-research-review-2026-11-20.md remains November 20;
+the current roadmap accounts separately for later repository proofs.
+Older dated priorities below are historical where superseded here.
+
+FAMILY SPECTRAL ENDPOINT (sigma_k = (1, 0 1^k 2, 001)):
+Reuse ParameterFamilyBridge.spectral_criterion_inputs and
+full_factor_termination: for every k>=2, the arithmetic and finite set of
+all full-iterate balanced factors, each with eventual coincidence, are
+already proved. #574 merged the family stack; #572/#573 are closed
+predecessors. No new finite-carrier discovery or sampled-k census is needed.
+Reuse ParameterFamilyTiling.geometry, tiling_space_nonempty,
+continuous_action, action_aperiodic and finite_local_complexity (k>=1).
+#639 supplies the concrete ordinary hull and periodic swap density;
+#641 supplies legal_patches_dense_eventual, hull_dense_eventual and
+periodic_common_tile_of_origin_witnesses (k>=2).
+NEXT: instantiate injective inflation/recognizability, a semiconjugate
+maximal equicontinuous factor with finite fibres, and same-fibre
+closed-origin witnesses. Match the exact source hull and its required
+topological hypotheses, including compactness/Hausdorffness where used.
+periodic_fibre_common_tiles currently consumes these inputs and concludes
+ONE nonempty fibre with pairwise common tiles. It does not conclude pure
+discrete spectrum or globally singleton fibres. Formalize the subsequent
+disjoint-pair/rank-one criterion and invariant-measure L2 spectral result.
+See docs/c4-family-tiling-2026-11-21.md and
+docs/c4-family-legal-coincidence-2026-11-21.md.
+The written spectrum proof uses Barge–Stimac–Williams Corollary 2;
+k=1 uses a separate published small-trace result. The combined coincidence
+and conditional-fibre Lean endpoint still has k>=2. Universal C4 is not a
+prerequisite for completing this family formalization.
+
+UNIVERSAL COINCIDENCE, IN PARALLEL:
+BH (#139): bind the written upper plus-Class-A paths to Lean, preserving
+actual occurrence addresses and the smaller members' complete seed scope;
+extend coverage to the remaining BH domains. The accepted written #452
+minus entry result is no longer a mathematical existence target.
+Residual A1-prime (#138) still needs one-sided coincidence for the prescribed
+fixed-hub pair. The #84 assembly consumes these two universal premises.
+C4 (#461): the written nonunit rank-two reduction leaves K2,2, two
+non-injective endpoint maps and incidence nilpotent modulo two under its
+geometric/cohomological inputs. #640 formalizes finite parity and algebra;
+the original-hull fixed-tiling/origin-seed classification is still supplied.
+All-power parity alone leaves X^3 OR X(X+1)^2; nilpotence also needs the
+signed-factor and degree/dimension inputs. The residue is not excluded.
+The marker product and its one-orientation Lean correspondence are built.
+Next prove concrete reserve/refusal refinement, two-sided geometric meaning
+and uniform witness existence, retaining ExactParikh and mod-two nilpotence.
+Finite graph-spectrum algebra is formalized; geometric graph/cohomology
+identification and all-degree word assembly remain separate. Unit cases,
+higher rank and arbitrary-failure finite-carrier extraction remain open.
+
+LITERATURE STOP/GO, AS CHECKED THROUGH NOVEMBER 20:
+Peer-reviewed recurrence automata can certify exact arithmetic predicates;
+a recognizer for each fixed parameter is not a uniform existence theorem.
+Creutz–Pavlov v3 (November 15) is a preprint correction; the literal family
+has factor complexity >=2n+1 and fails its older <3/2 slope hypothesis.
+Walton's recognizability result is a preprint; inflation preimages are not
+realization fibres. Eigenvalue criteria do not prove L2 completeness.
+The cited random-Rauzy spectral criterion assumes unimodularity, which the
+family's determinant two violates. No newly verified external result in the
+November 14–20 review closed the family Lean or universal coincidence gaps.
+Use the research review's primary sources and explicit publication labels.
+This reconciliation promotes no governed claim and asserts no new replay.
+
+=======================================================================
+
+HISTORICAL PSC AGENT PRIORITY ADDENDUM — 2026-11-19
 =======================================================================
 Read docs/bh-escape-roadmap-2026-11-14.md first, with AGENTS.md and current
 claim governance. This overlay supersedes the November 9 task ordering;
