@@ -127,7 +127,9 @@ PYTHONPATH=tools python3 -m claim_governance.cli --root .
 ### Non-claims / remaining gaps
 
 1. **Twin vertices.** Whether a twin pair can be vertex-disjoint in a nonunit rank-two hull
-   is open. Showing that some pair shares a vertex would complete the nonunit rank-two case
+   is open. *Update:* [Theorem E](c4-nonunit-twin-endpoint-2026-11-21.md) uses
+   vertex-disjointness to exclude rank two whenever an endpoint map is injective and the
+   opposite side of `ER` has two letters. Showing that some pair shares a vertex would complete the nonunit rank-two case
    of PSC on three letters, conditionally on the written inputs.
 2. **Higher rank.** Theorem T holds at every rank, but Barge's twin structure (Lemmas
    13–14, Theorem 17) is specific to `cr = 2`. A trivial stack relation at `cr ≥ 3` yields

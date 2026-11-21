@@ -44010,6 +44010,30 @@
       "declaration": "theorem equal_letter_labels_control {R : Type*} [Monoid R] (label : R) :"
     },
     {
+      "name": "Psc.PeriodicPartnerTwinEndpoint.vertex_of_injective",
+      "module": "PscVerif.PeriodicPartnerTwinEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerTwinEndpoint.lean",
+      "line": 27,
+      "declaration": "theorem vertex_of_injective (laws : RightBranchLaws f translate β g AgreeRight EndsAt)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerTwinEndpoint.no_asymptotic_companion",
+      "module": "PscVerif.PeriodicPartnerTwinEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerTwinEndpoint.lean",
+      "line": 41,
+      "declaration": "theorem no_asymptotic_companion (laws : RightBranchLaws f translate β g AgreeRight EndsAt)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerTwinEndpoint.exists_left_vertex_of_degree_two",
+      "module": "PscVerif.PeriodicPartnerTwinEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerTwinEndpoint.lean",
+      "line": 57,
+      "declaration": "theorem exists_left_vertex_of_degree_two {L R : Type*} [DecidableEq L] [DecidableEq R]"
+    },
+    {
       "name": "Psc.PeriodicPartnerVertexPartner.periodic_letter",
       "module": "PscVerif.PeriodicPartnerVertexPartner",
       "private": false,
@@ -52256,6 +52280,11 @@
       "statement_heading": "**Corollary V.** For nonunit `σ` with `cr(σ) = 2`, twins never share a vertex. Otherwise"
     },
     {
+      "source": "docs/c4-nonunit-twin-endpoint-2026-11-21.md",
+      "line": 16,
+      "statement_heading": "**Theorem E.**"
+    },
+    {
       "source": "docs/c4-one-track-seam-spectrum-2026-11-17.md",
       "line": 31,
       "statement_heading": "**Lemma (complete one-track adjacency set).** In $C$ every adjacent"
@@ -54314,7 +54343,7 @@
     "proof/PscVerif/ClassARunDescentAudit.lean": "a1fe09a772c2112929a6f892993da045628ef410f15cd53b1d8eba74343959fc",
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "81efe5b8745576f8f15a59a263563b31e08307e9c432e78fa2ef9021a613b2d1",
     "proof/PscVerif/EvenRankTwoAudit.lean": "cfc2c3b6dfae0305e1ab27989607917e4ffe8944a513aa861dc5ca781ba620ca",
-    "proof/PscVerif/PeriodicPartnerAudit.lean": "b2b6c2e52e0316f641affddb05b674028c4859da47a539311ef2f772354d52ae",
+    "proof/PscVerif/PeriodicPartnerAudit.lean": "927ecd5d7a2b63583a1b24e8495386325fb40c31a664825d9afd29f02baf9722",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean": "f1c4480b95159800bb52cd42164763d01e6ab6045dc72b07874f164409a0eaf1",
     "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean": "6387c221871d7b70efca50349c815fac07421bb44a28122f9157ff0652cb074f",
@@ -54518,6 +54547,7 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean": "90fb4042c25c01e906e828c6e1da15d782ae9301f591b34270283dcc18786ebd",
     "proof/PscVerif/PscVerif/PeriodicPartnerSpectralModels.lean": "bf43a2f49e4de6ca8eb938ad3c282f0676099f41e6b978bcc4285d34e8b10f7b",
     "proof/PscVerif/PscVerif/PeriodicPartnerStackWordRigidity.lean": "57d832858a3f24eab10e0b3cfd6b085dffddc5501d1f9f08bf40a99aeb34e98b",
+    "proof/PscVerif/PscVerif/PeriodicPartnerTwinEndpoint.lean": "c1d1a58ce897393e9e42d4d6ebaee26a91a17463d39470ba6cce53e2a1115b13",
     "proof/PscVerif/PscVerif/PeriodicPartnerVertexPartner.lean": "eab186933f42e44e3ac13b2db2aedfb157d248ed73257528b58c22eac0b6ec14",
     "proof/PscVerif/PscVerif/PeriodicPartnerWinding.lean": "495d9094f16037a74b73a1bc8b5419c6784f5dc4e706767fa003b85fbf3706d5",
     "proof/PscVerif/PscVerif/PeriodicPartnerWindingSeams.lean": "504a39ee4ef077f60683d0e371df0c4d662009efe94727f9181f800f7abd4621",
@@ -54555,7 +54585,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "7e46a13fabb84abe6dd05d78e7c9f0a02ab6442d38bb3b30c0a3113ff1fa576c",
+    "proof/PscVerif/PscVerif.lean": "84ccef307001a94d143355c7d116b80ed36d5fc7c55ca9fd0cd8c2a20351585c",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
