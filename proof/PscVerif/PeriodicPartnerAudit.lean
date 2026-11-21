@@ -23,6 +23,7 @@ import PscVerif.PeriodicPartnerWinding
 import PscVerif.PeriodicPartnerWindingSeams
 import PscVerif.PeriodicPartnerLiteralDefect
 import PscVerif.PeriodicPartnerEvenTails
+import PscVerif.PeriodicPartnerTwinEndpoint
 import PscVerif.PeriodicPartnerStackWordRigidity
 import PscVerif.PeriodicPartnerCompanionWords
 import PscVerif.PeriodicPartnerRealization
@@ -51,7 +52,7 @@ run_cmd do
     `PscVerif.PeriodicPartnerReturnBoundary,
     `PscVerif.PeriodicPartnerWinding,
     `PscVerif.PeriodicPartnerWindingSeams, `PscVerif.PeriodicPartnerLiteralDefect,
-    `PscVerif.PeriodicPartnerEvenTails, `PscVerif.PeriodicPartnerStackWordRigidity,
+    `PscVerif.PeriodicPartnerEvenTails, `PscVerif.PeriodicPartnerTwinEndpoint, `PscVerif.PeriodicPartnerStackWordRigidity,
     `PscVerif.PeriodicPartnerCompanionWords, `PscVerif.VertexAsymptoteRange,
     `PscVerif.PeriodicPartnerRealization, `PscVerif.PeriodicPartnerRealizationModels,
     `PscVerif.PeriodicPartnerSpectral, `PscVerif.PeriodicPartnerSpectralModels,

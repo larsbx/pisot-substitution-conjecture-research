@@ -244,3 +244,7 @@ the identification of the norms with Galois conjugates, and the
 assembly of the graded lift are written mathematics. Independent review
 is pending. Higher coincidence ranks and extraction of a finite strict
 carrier from arbitrary nonproductivity are separate obligations.
+
+**Review, 2026-11-20.** A [step-by-step check](c4-stack-rigidity-review-2026-11-20.md)
+against Barge's text found no gap. It records a rank-free form of the core lemma and the
+resulting higher-rank obligation in the nonunit case.
