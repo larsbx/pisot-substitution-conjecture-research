@@ -52236,6 +52236,26 @@
       "statement_heading": "### Corollary R4 (stronger necessary condition for a strict system)"
     },
     {
+      "source": "docs/c4-nonunit-trivial-stack-2026-11-21.md",
+      "line": 40,
+      "statement_heading": "**Theorem T (trivial stack relation).** Under these hypotheses `≈_s` is trivial on `Ω`. So"
+    },
+    {
+      "source": "docs/c4-nonunit-trivial-stack-2026-11-21.md",
+      "line": 63,
+      "statement_heading": "**Corollary T2 (twins at rank two).** If moreover `cr(σ) = 2`:"
+    },
+    {
+      "source": "docs/c4-nonunit-trivial-stack-2026-11-21.md",
+      "line": 75,
+      "statement_heading": "**Proposition V (twins share a vertex ⇒ a finite strict system).** Under Corollary T2,"
+    },
+    {
+      "source": "docs/c4-nonunit-trivial-stack-2026-11-21.md",
+      "line": 97,
+      "statement_heading": "**Corollary V.** For nonunit `σ` with `cr(σ) = 2`, twins never share a vertex. Otherwise"
+    },
+    {
       "source": "docs/c4-one-track-seam-spectrum-2026-11-17.md",
       "line": 31,
       "statement_heading": "**Lemma (complete one-track adjacency set).** In $C$ every adjacent"
