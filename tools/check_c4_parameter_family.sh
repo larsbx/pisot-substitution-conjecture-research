@@ -42,7 +42,8 @@ elan run "$PSC_FAMILY_PIN" lake --no-cache build \
     PscVerif.C4ParameterFamilySolenoid PscVerif.C4ParameterFamilyControls \
     PscVerif.UniversalClosureReduction PscVerif.PeriodicPartnerRealizationModels \
     PscVerif.C4ParameterFamilyZeroFibreWitnesses \
-    PscVerif.C4ParameterFamilyZeroFibreControls PscVerif.C4ParameterFamilyInteriorZero
+    PscVerif.C4ParameterFamilyZeroFibreControls PscVerif.C4ParameterFamilyInteriorZero \
+    PscVerif.C4FiniteTileAutomaton PscVerif.C4FamilyTileAutomatonWords
 psc_family_check_pins
 elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
     -DautoImplicit=false -Dpp.unicode.fun=true C4ParameterFamilyAudit.lean \
@@ -99,4 +100,9 @@ test "$(grep -c '^PSC_ZERO_FIBRE_ENDPOINT' "$PSC_FAMILY_TMP/zero-fibre-audit.log
 test "$(grep -c '^PSC_ZERO_FIBRE_MODULE' "$PSC_FAMILY_TMP/zero-fibre-audit.log")" -eq 7
 test "$(grep -Fxc $'PSC_ZERO_FIBRE_DECLARATIONS\t7\t49\t45' "$PSC_FAMILY_TMP/zero-fibre-audit.log")" -eq 1
 test "$(grep -Fxc $'PSC_ZERO_FIBRE_AUDIT_COMPLETE\t38\t76' "$PSC_FAMILY_TMP/zero-fibre-audit.log")" -eq 1
+elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
+    -DautoImplicit=false -Dpp.unicode.fun=true C4FiniteTileAutomatonAudit.lean \
+    | tee "$PSC_FAMILY_TMP/finite-tile-audit.log"
+test "$(grep -Fxc $'PSC_FINITE_TILE_AUDIT_COMPLETE\t164\t103' "$PSC_FAMILY_TMP/finite-tile-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_FINITE_TILE_REFUSAL_CONTROLS\t20' "$PSC_FAMILY_TMP/finite-tile-audit.log")" -eq 1
 psc_family_check_pins

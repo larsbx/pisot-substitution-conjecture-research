@@ -95,6 +95,7 @@ jobs:
         run: |
           set -euo pipefail
           pixi run mojo run -I . tests/test_c4_parameter_family_carrier.mojo | tee "$RUNNER_TEMP/c4-family-native/mojo.log"
+          pixi run mojo run -I . tests/test_family_tile_automaton.mojo | tee "$RUNNER_TEMP/c4-family-native/tile-automaton.log"
       - name: Replay the independent symbolic and boundary oracle
         shell: bash
         run: |
