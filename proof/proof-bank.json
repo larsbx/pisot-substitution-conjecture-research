@@ -17282,35 +17282,19 @@
       "declaration": "theorem leftAll_iff_rightAll [Nonempty α] {s : α → List α} {L : (α → ℤ) →+ ℝ} {β : ℝ}"
     },
     {
-      "name": "Psc.GeometricF.eq_zero_of_length_eq_zero",
+      "name": "Psc.GeometricF.lenHom_zero_of_pos_eigen",
       "module": "PscVerif.GeometricFOrientation",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
-      "line": 492,
-      "declaration": "theorem eq_zero_of_length_eq_zero (hL : LengthData s L β) (hC : ContractionData s L ν ρ)"
-    },
-    {
-      "name": "Psc.GeometricF.det_incZ_ne_zero_of_irreducible",
-      "module": "PscVerif.GeometricFOrientation",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
-      "line": 544,
-      "declaration": "theorem det_incZ_ne_zero_of_irreducible [Nontrivial α] (s : α → List α)"
-    },
-    {
-      "name": "Psc.GeometricF.lenHom_injective_of_pisot",
-      "module": "PscVerif.GeometricFOrientation",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
-      "line": 571,
-      "declaration": "theorem lenHom_injective_of_pisot [Nontrivial α] {ℓ : α → ℝ}"
+      "line": 488,
+      "declaration": "theorem lenHom_zero_of_pos_eigen [Nonempty α] {s : α → List α} {β : ℝ} {ℓ : α → ℝ}"
     },
     {
       "name": "Psc.GeometricF.fc2_integer_rank_of_primitive_pisot",
       "module": "PscVerif.GeometricFOrientation",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
-      "line": 592,
+      "line": 504,
       "declaration": "theorem fc2_integer_rank_of_primitive_pisot [Nontrivial α]"
     },
     {
@@ -17318,7 +17302,7 @@
       "module": "PscVerif.GeometricFOrientation",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
-      "line": 609,
+      "line": 521,
       "declaration": "theorem vertexCoincident_iff_strongCoincidenceWitness {a b : α} :"
     },
     {
@@ -17326,7 +17310,7 @@
       "module": "PscVerif.GeometricFOrientation",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
-      "line": 617,
+      "line": 529,
       "declaration": "theorem fc1_right_of_primitive_pisot [Nontrivial α]"
     },
     {
@@ -17334,15 +17318,23 @@
       "module": "PscVerif.GeometricFOrientation",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
-      "line": 654,
+      "line": 566,
       "declaration": "theorem fc2_integer_rank_pip3 {s : Fin 3 → List (Fin 3)} {β : ℝ} {ℓ : Fin 3 → ℝ}"
+    },
+    {
+      "name": "Psc.GeometricF.fc2_pip3_rank_le_two",
+      "module": "PscVerif.GeometricFOrientation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
+      "line": 586,
+      "declaration": "theorem fc2_pip3_rank_le_two {s : Fin 3 → List (Fin 3)} {β : ℝ} {ℓ : Fin 3 → ℝ}"
     },
     {
       "name": "Psc.GeometricF.trib_right_all",
       "module": "PscVerif.GeometricFOrientation",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
-      "line": 678,
+      "line": 635,
       "declaration": "theorem trib_right_all : ∀ a b : Fin 3, RightStrongCoincidenceWitness tribSubst a b := by"
     },
     {
@@ -17350,7 +17342,7 @@
       "module": "PscVerif.GeometricFOrientation",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
-      "line": 691,
+      "line": 648,
       "declaration": "theorem trib_integer_rank_one :"
     },
     {
@@ -17358,7 +17350,7 @@
       "module": "PscVerif.GeometricFOrientation",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
-      "line": 709,
+      "line": 666,
       "declaration": "theorem trib_right_witness_01 : RightStrongCoincidenceWitness tribSubst 0 1 :="
     },
     {
@@ -17366,7 +17358,7 @@
       "module": "PscVerif.GeometricFOrientation",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
-      "line": 714,
+      "line": 671,
       "declaration": "theorem trib_right_witness_02 : RightStrongCoincidenceWitness tribSubst 0 2 :="
     },
     {
@@ -17374,7 +17366,7 @@
       "module": "PscVerif.GeometricFOrientation",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
-      "line": 719,
+      "line": 676,
       "declaration": "theorem trib_right_witness_12 : RightStrongCoincidenceWitness tribSubst 1 2 :="
     },
     {
@@ -17382,7 +17374,7 @@
       "module": "PscVerif.GeometricFOrientation",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
-      "line": 731,
+      "line": 688,
       "declaration": "theorem propertyF_of_mulVec_state_eq_zero [DecidableEq α] {s : α → List α}"
     },
     {
@@ -17390,7 +17382,7 @@
       "module": "PscVerif.GeometricFOrientation",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
-      "line": 745,
+      "line": 702,
       "declaration": "theorem tm_mulVec_state {x : Fin 2 × (Fin 2 → ℤ)} (hx : IsState tmL x) :"
     },
     {
@@ -17398,7 +17390,7 @@
       "module": "PscVerif.GeometricFOrientation",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
-      "line": 759,
+      "line": 716,
       "declaration": "theorem tm_reverse_propertyF : PropertyF (reverseSubstitution thueMorseSubst) tmL :="
     },
     {
@@ -17406,7 +17398,7 @@
       "module": "PscVerif.GeometricFOrientation",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
-      "line": 770,
+      "line": 727,
       "declaration": "theorem tm_integer_rank_two :"
     },
     {
@@ -17414,7 +17406,7 @@
       "module": "PscVerif.GeometricFOrientation",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
-      "line": 803,
+      "line": 760,
       "declaration": "theorem bd_power (n : ℕ) :"
     },
     {
@@ -17422,7 +17414,7 @@
       "module": "PscVerif.GeometricFOrientation",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
-      "line": 818,
+      "line": 775,
       "declaration": "theorem bd_not_left : ¬ VertexCoincident bdSubst 0 1 := by"
     },
     {
@@ -17430,7 +17422,7 @@
       "module": "PscVerif.GeometricFOrientation",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
-      "line": 846,
+      "line": 803,
       "declaration": "theorem bd_right : RightStrongCoincidenceWitness bdSubst 0 1 :="
     },
     {
@@ -17438,7 +17430,7 @@
       "module": "PscVerif.GeometricFOrientation",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
-      "line": 851,
+      "line": 808,
       "declaration": "theorem bd_left_two_right_one :"
     },
     {
@@ -17446,7 +17438,7 @@
       "module": "PscVerif.GeometricFOrientation",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
-      "line": 873,
+      "line": 830,
       "declaration": "theorem bd_lengthData : LengthData bdSubst (lenHom fun _ => 1) 3 := by"
     },
     {
@@ -17454,7 +17446,7 @@
       "module": "PscVerif.GeometricFOrientation",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
-      "line": 882,
+      "line": 839,
       "declaration": "theorem bd_not_contractionData {L : (Fin 2 → ℤ) →+ ℝ} {β : ℝ} {ν : (Fin 2 → ℤ) → ℝ} {ρ : ℝ}"
     },
     {
@@ -17462,7 +17454,7 @@
       "module": "PscVerif.GeometricFOrientation",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
-      "line": 888,
+      "line": 845,
       "declaration": "theorem bd_not_propertyF : ¬ PropertyF bdSubst (lenHom fun _ => 1) := by"
     },
     {
@@ -17470,7 +17462,7 @@
       "module": "PscVerif.GeometricFOrientation",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
-      "line": 898,
+      "line": 855,
       "declaration": "theorem bd_reverse_not_propertyF :"
     },
     {
@@ -54965,7 +54957,7 @@
     "proof/PscVerif/PscVerif/GaloisOrbit.lean": "4d3b5474dbd14205f4bf2d33e98149ebbdd6d7e0fb8fd3a33787b878bcad5f07",
     "proof/PscVerif/PscVerif/GeometricFInclusion.lean": "4b96ca14c725dbcfd473ba1af7b2f9c93489a1fae2e6af7fe285008ca0685c54",
     "proof/PscVerif/PscVerif/GeometricFLemmas.lean": "60ba09cf00ca5049cc3155361381106844dfc7d26a751c2d289beb3b70aa43a7",
-    "proof/PscVerif/PscVerif/GeometricFOrientation.lean": "8605e03fad18d6d502834fdf34c9c6c62c05da2eb699d829fbb2a5e1995e05c4",
+    "proof/PscVerif/PscVerif/GeometricFOrientation.lean": "39520919cc78934d87f30b1651322826236751b85c757b8970400b0f1365189b",
     "proof/PscVerif/PscVerif/GeometricFPisot.lean": "bf0a0f22acc5f1217d6340b2f5acf5302e4bf9753ef35106d1d790aef5d73bcc",
     "proof/PscVerif/PscVerif/GeometricFRank.lean": "2f2cfca2ad6e05ce8347e97b1968c09b7bbb671f4e0d8f0a366966c0503d47b9",
     "proof/PscVerif/PscVerif/GeometricFStrict.lean": "d21956f722083b84473d633854cd43173ebe99c1cde99e7292c57cd046221abb",

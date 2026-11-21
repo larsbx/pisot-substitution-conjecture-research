@@ -487,3 +487,45 @@ also the rank-two non-vacuity instance (`tm_integer_rank_two`).
   is known either way.
 - Universal C4, #138, #139, #84, G1 and PSC are open; no governed status
   changes.
+
+## 8. Update 2026-11-18
+
+Added on 2026-11-18; §§0–7 are unchanged and describe the module as
+merged in #599.
+
+**(Z) now reuses round 4.** Round 4 (#600) machine-checked Lemma 1 (1) of
+the class note under weaker hypotheses (`χ_M` irreducible over `ℚ` and a
+nonzero left eigen-row; no Pisot or contraction input):
+`Psc.GeometricFLemmas.lenHom_eq_zero_iff`. The module's own proof of
+Lemma Z (`eq_zero_of_length_eq_zero`, `det_incZ_ne_zero_of_irreducible`,
+`lenHom_injective_of_pisot`) duplicated it and is removed. Its call sites use
+`lenHom_zero_of_pos_eigen`, a wrapper that only derives `ℓ ≠ 0` from
+positivity. Every statement of §2 that used Lemma Z keeps its hypotheses or
+weakens them; the proof of Lemma Z in §3 stays as a written alternative.
+
+**FC2 (2) on PIP3 in integer form.** New: `fc2_pip3_rank_le_two`. On the
+standing class on three letters with (F), if two distinct letters are left
+strongly coincident (Barge–Diamond 2002, Theorem 1, which holds for every
+substitution of Pisot type and is taken as a hypothesis, not formalised),
+then the integer rank `r` satisfies `1 ≤ r ≤ 2` in all four forms, and
+`σ` has a strict system iff `r = 2`.
+
+*Proof.* `r ≤ 3` and the four maxima agree (`fc2_integer_rank_pip3`). If
+`r = 3`, a letter family of size 3 is injective into three letters, hence
+contains both letters of the Barge–Diamond pair, which are coincident: a
+contradiction. FC1 (`fc1_pip3`) says a strict system exists iff not every
+pair of distinct letters is left strongly coincident, and for the reflexive
+symmetric left coincidence that is `r ≠ 1` (`isMaximumSize_one_iff`); with
+`1 ≤ r ≤ 2` this is `r = 2`. ∎
+
+With the one-sided import `cr(σ) = S(σ)` this is Corollary E of the class
+note in the form "`cr = 1` iff no strict system, and otherwise `cr = 2`".
+The geometric imports are unchanged (§5); Barge–Diamond Theorem 1 is now a
+named hypothesis of a Lean theorem instead of a step of the written proof.
+
+*Replay.* As in §7, with the audit over every declaration of the module
+(52): each depends on a subset of `propext`, `Classical.choice`,
+`Quot.sound`; no `sorry`, no `native_decide`.
+
+*Non-claims.* Barge–Diamond Theorem 1 is not formalised. Excluding `r = 2`
+on (F) remains open.
