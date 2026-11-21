@@ -216,6 +216,8 @@ formalized in these modules.
 1. No compactness, Hausdorffness or metric for `LocalHull` is established
    in this increment. The ordinary neighbourhood topology is identified
    directly, but those additional properties need their own proofs.
+   *Update:* [Hausdorffness is proved](c4-ordinary-hull-hausdorff-2026-11-21.md)
+   for every length substitution; compactness and a metric remain open.
 2. Recognizability remains an external input. No continuous inverse for
    inflation is constructed, and bare bijectivity in the old exact
    topology is not upgraded to a homeomorphism.

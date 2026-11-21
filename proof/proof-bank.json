@@ -41754,6 +41754,38 @@
       "declaration": "theorem period_doubling_marked_count_control :"
     },
     {
+      "name": "Psc.PeriodicPartnerLocalTopology.mem_of_approx",
+      "module": "PscVerif.PeriodicPartnerLocalHausdorff",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalHausdorff.lean",
+      "line": 28,
+      "declaration": "theorem mem_of_approx {X : Set (α × ℝ)} (hX : S.IsTiling X) {a : α} {x : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopology.eq_of_approx",
+      "module": "PscVerif.PeriodicPartnerLocalHausdorff",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalHausdorff.lean",
+      "line": 51,
+      "declaration": "theorem eq_of_approx {T U : S.Hull}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopology.mem_patch_self",
+      "module": "PscVerif.PeriodicPartnerLocalHausdorff",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalHausdorff.lean",
+      "line": 79,
+      "declaration": "theorem mem_patch_self (T : LocalHull S) {ε : ℝ} (hε : 0 < ε) (n : ℕ) : T ∈ patch S T ε n :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalTopology.approx_of_patches",
+      "module": "PscVerif.PeriodicPartnerLocalHausdorff",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalHausdorff.lean",
+      "line": 83,
+      "declaration": "theorem approx_of_patches {T U : LocalHull S}"
+    },
+    {
       "name": "Psc.PeriodicPartnerLocalRealization.realizeLocal_inflate",
       "module": "PscVerif.PeriodicPartnerLocalRealization",
       "private": false,
@@ -55863,7 +55895,7 @@
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "81efe5b8745576f8f15a59a263563b31e08307e9c432e78fa2ef9021a613b2d1",
     "proof/PscVerif/EvenRankTwoAudit.lean": "cfc2c3b6dfae0305e1ab27989607917e4ffe8944a513aa861dc5ca781ba620ca",
     "proof/PscVerif/MarkerReachabilityReplay.lean": "4d21e06344eff182c78196d2f8eb815e1dbb8f517920dedf6849cc1546d831a3",
-    "proof/PscVerif/PeriodicPartnerAudit.lean": "96cf4d4ed132ea748925a629d28752fb972f3ec87bbb7a8b1b8438bbb1f7e99a",
+    "proof/PscVerif/PeriodicPartnerAudit.lean": "a3a4882394adb797dd9b81bb61b3d73c472a608709218bb27625c530af76504c",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean": "f1c4480b95159800bb52cd42164763d01e6ab6045dc72b07874f164409a0eaf1",
     "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean": "6387c221871d7b70efca50349c815fac07421bb44a28122f9157ff0652cb074f",
@@ -56061,6 +56093,7 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean": "59d86f345c47142bdd7a74200c04b48f4ae975d1d5afe2dc29331048d7f37988",
     "proof/PscVerif/PscVerif/PeriodicPartnerLegalCoincidence.lean": "3c81c675054bea4b16fa83e8d912525b4d456218997d9e21697d8847e148e23d",
     "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean": "0c9d009618b409578d573a94e2f15b8052610eaa8c4f9d28aa77c3045644b9bb",
+    "proof/PscVerif/PscVerif/PeriodicPartnerLocalHausdorff.lean": "d073e519b2f24c5d2e08ca81ede2beefc16598c801c049044b7f1b924e4c800d",
     "proof/PscVerif/PscVerif/PeriodicPartnerLocalRealization.lean": "472eacd674a293a84e841a7888398fd1fbaeedbdeff3a372c2e6ab665556e2b1",
     "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean": "ab9cca25c9b6f57b944a912e1e8a239b4bb46bd7a73727542af056760331b7cf",
     "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopologyControls.lean": "1573603e555c519d258421eaa50e01e06828166794811a1b6e5028a6040ee509",
@@ -56118,7 +56151,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "89db42c8e3c7d1ffe200c6a585f082b0addc58741dc3dfe91c2a2eebcfab352b",
+    "proof/PscVerif/PscVerif.lean": "cf3b12aab7204a0119974658360a8a4423f521373470731b8a9359e7bd2312e7",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
