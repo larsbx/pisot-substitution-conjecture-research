@@ -200,6 +200,8 @@ import PscVerif.PeriodicPartnerWinding
 import PscVerif.PeriodicPartnerWindingSeams
 import PscVerif.PeriodicPartnerLiteralDefect
 import PscVerif.PeriodicPartnerEvenTails
+import PscVerif.PeriodicPartnerFixedPointParity
+import PscVerif.PeriodicPartnerFixedPointHull
 import PscVerif.PeriodicPartnerTwinEndpoint
 import PscVerif.PeriodicPartnerStackWordRigidity
 import PscVerif.PeriodicPartnerGraphSpectrum
