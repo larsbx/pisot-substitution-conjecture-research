@@ -6074,6 +6074,198 @@
       "declaration": "theorem zero_no_root_above_two {b : ℝ} (hb : 2 < b) :"
     },
     {
+      "name": "Psc.ParameterFamilyTiling.exists_expansion",
+      "module": "PscVerif.C4ParameterFamilyTiling",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
+      "line": 26,
+      "declaration": "private theorem exists_expansion (k : ℕ) (hk : 1 ≤ k) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyTiling.two_lt_expansion",
+      "module": "PscVerif.C4ParameterFamilyTiling",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
+      "line": 38,
+      "declaration": "theorem two_lt_expansion (k : ℕ) (hk : 1 ≤ k) : 2 < expansion k hk :="
+    },
+    {
+      "name": "Psc.ParameterFamilyTiling.expansion_equation",
+      "module": "PscVerif.C4ParameterFamilyTiling",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
+      "line": 41,
+      "declaration": "theorem expansion_equation (k : ℕ) (hk : 1 ≤ k) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyTiling.expansion_pisot",
+      "module": "PscVerif.C4ParameterFamilyTiling",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
+      "line": 45,
+      "declaration": "theorem expansion_pisot (k : ℕ) (hk : 1 ≤ k) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyTiling.geometry_image",
+      "module": "PscVerif.C4ParameterFamilyTiling",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
+      "line": 67,
+      "declaration": "@[simp] theorem geometry_image (k : ℕ) (hk : 1 ≤ k) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyTiling.expansion_gt_one",
+      "module": "PscVerif.C4ParameterFamilyTiling",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
+      "line": 70,
+      "declaration": "theorem expansion_gt_one (k : ℕ) (hk : 1 ≤ k) : 1 < (geometry k hk).β :="
+    },
+    {
+      "name": "Psc.ParameterFamilyTiling.iterWord_two",
+      "module": "PscVerif.C4ParameterFamilyTiling",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
+      "line": 73,
+      "declaration": "private theorem iterWord_two (S : LengthSubst (Fin 3)) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyTiling.fixed_hull_tiling",
+      "module": "PscVerif.C4ParameterFamilyTiling",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
+      "line": 79,
+      "declaration": "theorem fixed_hull_tiling (k : ℕ) (hk : 1 ≤ k) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyTiling.every_letter_in_square",
+      "module": "PscVerif.C4ParameterFamilyTiling",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
+      "line": 139,
+      "declaration": "private theorem every_letter_in_square (k : ℕ) (hk : 1 ≤ k) (a c : Fin 3) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyTiling.square_irrational",
+      "module": "PscVerif.C4ParameterFamilyTiling",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
+      "line": 160,
+      "declaration": "private theorem square_irrational (k : ℕ) (hk : 1 ≤ k) : Irrational ((geometry k hk).β ^ 2) := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyTiling.aperiodic",
+      "module": "PscVerif.C4ParameterFamilyTiling",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
+      "line": 175,
+      "declaration": "theorem aperiodic (k : ℕ) (hk : 1 ≤ k) (T : (geometry k hk).Hull) (t : ℝ)"
+    },
+    {
+      "name": "Psc.ParameterFamilyTiling.tiling_space_nonempty",
+      "module": "PscVerif.C4ParameterFamilyTiling",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
+      "line": 189,
+      "declaration": "theorem tiling_space_nonempty (k : ℕ) (hk : 1 ≤ k) : Nonempty (TilingSpace k hk) := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyTiling.continuous_action",
+      "module": "PscVerif.C4ParameterFamilyTiling",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
+      "line": 194,
+      "declaration": "theorem continuous_action (k : ℕ) (hk : 1 ≤ k) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyTiling.action_aperiodic",
+      "module": "PscVerif.C4ParameterFamilyTiling",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
+      "line": 199,
+      "declaration": "theorem action_aperiodic (k : ℕ) (hk : 1 ≤ k) (T : TilingSpace k hk) (t : ℝ)"
+    },
+    {
+      "name": "Psc.ParameterFamilyTiling.finite_local_complexity",
+      "module": "PscVerif.C4ParameterFamilyTiling",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
+      "line": 205,
+      "declaration": "theorem finite_local_complexity (k : ℕ) (hk : 1 ≤ k) (R : ℝ) (hR : 0 < R) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyTiling.swap_rotation_irrational",
+      "module": "PscVerif.C4ParameterFamilyTiling",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
+      "line": 213,
+      "declaration": "theorem swap_rotation_irrational (k : ℕ) (hk : 1 ≤ k) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyTiling.swap_rotation_dense",
+      "module": "PscVerif.C4ParameterFamilyTiling",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
+      "line": 225,
+      "declaration": "theorem swap_rotation_dense (k : ℕ) (hk : 1 ≤ k) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyTiling.dense_swap_coincidences",
+      "module": "PscVerif.C4ParameterFamilyTiling",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
+      "line": 232,
+      "declaration": "theorem dense_swap_coincidences (k : ℕ) (hk : 2 ≤ k) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyTiling.shift_swap_periodic_patch",
+      "module": "PscVerif.C4ParameterFamilyTiling",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
+      "line": 252,
+      "declaration": "theorem shift_swap_periodic_patch (S : LengthSubst (Fin 3)) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyTiling.periodic_swap_geometry",
+      "module": "PscVerif.C4ParameterFamilyTiling",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
+      "line": 268,
+      "declaration": "theorem periodic_swap_geometry (k : ℕ) (hk : 2 ≤ k) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyTiling.legal_patches_dense_eventual",
+      "module": "PscVerif.C4ParameterFamilyTiling",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
+      "line": 289,
+      "declaration": "theorem legal_patches_dense_eventual (k : ℕ) (hk : 2 ≤ k) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyTiling.hull_dense_eventual",
+      "module": "PscVerif.C4ParameterFamilyTiling",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
+      "line": 307,
+      "declaration": "theorem hull_dense_eventual (k : ℕ) (hk : 2 ≤ k) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyTiling.periodic_common_tile_of_origin_witnesses",
+      "module": "PscVerif.C4ParameterFamilyTiling",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
+      "line": 314,
+      "declaration": "theorem periodic_common_tile_of_origin_witnesses (k : ℕ) (hk : 2 ≤ k) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyTiling.periodic_fibre_common_tiles",
+      "module": "PscVerif.C4ParameterFamilyTiling",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean",
+      "line": 325,
+      "declaration": "theorem periodic_fibre_common_tiles {Y : Type*} (k : ℕ) (hk : 2 ≤ k) :"
+    },
+    {
       "name": "Psc.ParameterFamilyWords.rotate_repeat",
       "module": "PscVerif.C4ParameterFamilyWords",
       "private": false,
@@ -38674,6 +38866,126 @@
       "declaration": "theorem ternary_two_step_iff_zero_fibre_of_metric_BDS"
     },
     {
+      "name": "Psc.PeriodicPartnerBalancedGeometry.length_append",
+      "module": "PscVerif.PeriodicPartnerBalancedGeometry",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerBalancedGeometry.lean",
+      "line": 21,
+      "declaration": "private theorem length_append (u v : List α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerBalancedGeometry.subst_eq_flatMap",
+      "module": "PscVerif.PeriodicPartnerBalancedGeometry",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerBalancedGeometry.lean",
+      "line": 24,
+      "declaration": "private theorem subst_eq_flatMap (s : α → List α) : subst s = fun w => w.flatMap s := rfl"
+    },
+    {
+      "name": "Psc.PeriodicPartnerBalancedGeometry.repeatWord_period",
+      "module": "PscVerif.PeriodicPartnerBalancedGeometry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerBalancedGeometry.lean",
+      "line": 31,
+      "declaration": "theorem repeatWord_period (w : List α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerBalancedGeometry.in_cell_iff",
+      "module": "PscVerif.PeriodicPartnerBalancedGeometry",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerBalancedGeometry.lean",
+      "line": 48,
+      "declaration": "private theorem in_cell_iff {x d : ℝ} (hd : 0 < d) (m : ℤ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerBalancedGeometry.isTiling_repeatWord",
+      "module": "PscVerif.PeriodicPartnerBalancedGeometry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerBalancedGeometry.lean",
+      "line": 53,
+      "declaration": "theorem isTiling_repeatWord {w : List α} (hw : w ≠ []) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerBalancedGeometry.place_iterate_inflate",
+      "module": "PscVerif.PeriodicPartnerBalancedGeometry",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerBalancedGeometry.lean",
+      "line": 67,
+      "declaration": "private theorem place_iterate_inflate {w : List α} {x : ℝ} {Q : Set (α × ℝ)}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerBalancedGeometry.mem_inflate_repeatWord",
+      "module": "PscVerif.PeriodicPartnerBalancedGeometry",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerBalancedGeometry.lean",
+      "line": 80,
+      "declaration": "private theorem mem_inflate_repeatWord {w : List α} {j : ℕ} {q : α × ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerBalancedGeometry.dense_coincidence_repeatWord",
+      "module": "PscVerif.PeriodicPartnerBalancedGeometry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerBalancedGeometry.lean",
+      "line": 89,
+      "declaration": "theorem dense_coincidence_repeatWord [Nonempty α] {u v : List α}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerBalancedGeometry.placed_iterate_subset",
+      "module": "PscVerif.PeriodicPartnerBalancedGeometry",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerBalancedGeometry.lean",
+      "line": 130,
+      "declaration": "private theorem placed_iterate_subset {u v : List α} {x y : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerBalancedGeometry.iterate_length",
+      "module": "PscVerif.PeriodicPartnerBalancedGeometry",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerBalancedGeometry.lean",
+      "line": 142,
+      "declaration": "private theorem iterate_length (w : List α) (j : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerBalancedGeometry.factor_cover",
+      "module": "PscVerif.PeriodicPartnerBalancedGeometry",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerBalancedGeometry.lean",
+      "line": 146,
+      "declaration": "private theorem factor_cover {bs : List (List α × List α)}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerBalancedGeometry.length_eq",
+      "module": "PscVerif.PeriodicPartnerBalancedGeometry",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerBalancedGeometry.lean",
+      "line": 166,
+      "declaration": "private theorem length_eq (bs : List (List α × List α)) (hb : ∀ U ∈ bs, U.1.Perm U.2) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerBalancedGeometry.common_tile_of_factor",
+      "module": "PscVerif.PeriodicPartnerBalancedGeometry",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerBalancedGeometry.lean",
+      "line": 176,
+      "declaration": "private theorem common_tile_of_factor {u v : List α} (h : Equiv1 u v) {a : α}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerBalancedGeometry.iterate_balanced",
+      "module": "PscVerif.PeriodicPartnerBalancedGeometry",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerBalancedGeometry.lean",
+      "line": 194,
+      "declaration": "private theorem iterate_balanced {u v : List α} (h : Equiv1 u v) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerBalancedGeometry.dense_coincidence_in_cell",
+      "module": "PscVerif.PeriodicPartnerBalancedGeometry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerBalancedGeometry.lean",
+      "line": 203,
+      "declaration": "theorem dense_coincidence_in_cell [Nonempty α] (hβ : 1 < S.β) {u v : List α}"
+    },
+    {
       "name": "Psc.PeriodicPartnerCollapse.eq_of_periodic_of_distance_tendsto_zero",
       "module": "PscVerif.PeriodicPartnerCollapse",
       "private": false,
@@ -39842,6 +40154,358 @@
       "declaration": "theorem periodDoubling_mod_two_fixed_line :"
     },
     {
+      "name": "Psc.PeriodicPartnerEventualCoincidence.eventual_open",
+      "module": "PscVerif.PeriodicPartnerEventualCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEventualCoincidence.lean",
+      "line": 26,
+      "declaration": "theorem eventual_open (P Q : Set (α × ℝ)) : IsOpen (eventual S P Q) :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerEventualCoincidence.eventual_mono",
+      "module": "PscVerif.PeriodicPartnerEventualCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEventualCoincidence.lean",
+      "line": 29,
+      "declaration": "theorem eventual_mono {P P' Q Q' : Set (α × ℝ)} (hP : P ⊆ P') (hQ : Q ⊆ Q') :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEventualCoincidence.eventual_symm",
+      "module": "PscVerif.PeriodicPartnerEventualCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEventualCoincidence.lean",
+      "line": 37,
+      "declaration": "theorem eventual_symm (P Q : Set (α × ℝ)) : eventual S P Q = eventual S Q P := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEventualCoincidence.mem_eventual_of_tile_interior",
+      "module": "PscVerif.PeriodicPartnerEventualCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEventualCoincidence.lean",
+      "line": 43,
+      "declaration": "theorem mem_eventual_of_tile_interior {P Q : Set (α × ℝ)} {q : α × ℝ} {x : ℝ} {n : ℕ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEventualCoincidence.mem_eventual_of_common",
+      "module": "PscVerif.PeriodicPartnerEventualCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEventualCoincidence.lean",
+      "line": 53,
+      "declaration": "theorem mem_eventual_of_common {P Q : Set (α × ℝ)} {q : α × ℝ} {x : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEventualCoincidence.level_mono",
+      "module": "PscVerif.PeriodicPartnerEventualCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEventualCoincidence.lean",
+      "line": 57,
+      "declaration": "theorem level_mono [Nonempty α] (P Q : Set (α × ℝ)) : Monotone (level S P Q) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEventualCoincidence.tiling_iterate",
+      "module": "PscVerif.PeriodicPartnerEventualCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEventualCoincidence.lean",
+      "line": 68,
+      "declaration": "theorem tiling_iterate [Nonempty α] {P : Set (α × ℝ)} (hP : S.IsTiling P) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEventualCoincidence.eventual_trans",
+      "module": "PscVerif.PeriodicPartnerEventualCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEventualCoincidence.lean",
+      "line": 76,
+      "declaration": "theorem eventual_trans [Nonempty α] {P Q R : Set (α × ℝ)} (hQ : S.IsTiling Q) {x : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEventualCoincidence.level_shift",
+      "module": "PscVerif.PeriodicPartnerEventualCoincidence",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEventualCoincidence.lean",
+      "line": 90,
+      "declaration": "private theorem level_shift (P Q : Set (α × ℝ)) (t : ℝ) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEventualCoincidence.eventual_shift",
+      "module": "PscVerif.PeriodicPartnerEventualCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEventualCoincidence.lean",
+      "line": 108,
+      "declaration": "theorem eventual_shift (P Q : Set (α × ℝ)) (t : ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEventualCoincidence.agreeOn_iterate",
+      "module": "PscVerif.PeriodicPartnerEventualCoincidence",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEventualCoincidence.lean",
+      "line": 113,
+      "declaration": "private theorem agreeOn_iterate [Nonempty α] {P Q : Set (α × ℝ)} {W : Set ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEventualCoincidence.level_inter_eq",
+      "module": "PscVerif.PeriodicPartnerEventualCoincidence",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEventualCoincidence.lean",
+      "line": 122,
+      "declaration": "private theorem level_inter_eq [Nonempty α] {P P' Q Q' : Set (α × ℝ)} {W : Set ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEventualCoincidence.eventual_inter_eq",
+      "module": "PscVerif.PeriodicPartnerEventualCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEventualCoincidence.lean",
+      "line": 141,
+      "declaration": "theorem eventual_inter_eq [Nonempty α] {P P' Q Q' : Set (α × ℝ)} {W : Set ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEventualCoincidence.dense_inflate_iterate",
+      "module": "PscVerif.PeriodicPartnerEventualCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEventualCoincidence.lean",
+      "line": 148,
+      "declaration": "theorem dense_inflate_iterate [Nonempty α] {P Q : Set (α × ℝ)}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEventualCoincidence.dense_add_preimage",
+      "module": "PscVerif.PeriodicPartnerEventualCoincidence",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEventualCoincidence.lean",
+      "line": 167,
+      "declaration": "private theorem dense_add_preimage {U : Set ℝ} (hd : Dense U) (t : ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEventualCoincidence.dense_shift",
+      "module": "PscVerif.PeriodicPartnerEventualCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEventualCoincidence.lean",
+      "line": 176,
+      "declaration": "theorem dense_shift {P Q : Set (α × ℝ)} (hd : Dense (eventual S P Q)) (t : ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEventualCoincidence.reverse_dense",
+      "module": "PscVerif.PeriodicPartnerEventualCoincidence",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEventualCoincidence.lean",
+      "line": 181,
+      "declaration": "private theorem reverse_dense {P : Set (α × ℝ)} {g : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEventualCoincidence.closure_add_generator",
+      "module": "PscVerif.PeriodicPartnerEventualCoincidence",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEventualCoincidence.lean",
+      "line": 186,
+      "declaration": "private theorem closure_add_generator [Nonempty α] {P : Set (α × ℝ)}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEventualCoincidence.closure_add_period",
+      "module": "PscVerif.PeriodicPartnerEventualCoincidence",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEventualCoincidence.lean",
+      "line": 207,
+      "declaration": "private theorem closure_add_period {P : Set (α × ℝ)} {p : ℝ} (hp : shift p P = P) (w : ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerEventualCoincidence.dense_of_one_hit",
+      "module": "PscVerif.PeriodicPartnerEventualCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerEventualCoincidence.lean",
+      "line": 222,
+      "declaration": "theorem dense_of_one_hit [Nonempty α] {P : Set (α × ℝ)} (hP : S.IsTiling P) {p g : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointHull.first_iterWord",
+      "module": "PscVerif.PeriodicPartnerFixedPointHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointHull.lean",
+      "line": 19,
+      "declaration": "theorem first_iterWord (n : ℕ) (a : α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointHull.last_iterWord",
+      "module": "PscVerif.PeriodicPartnerFixedPointHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointHull.lean",
+      "line": 29,
+      "declaration": "theorem last_iterWord (n : ℕ) (a : α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointHull.iterWord_ne_singleton_self",
+      "module": "PscVerif.PeriodicPartnerFixedPointHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointHull.lean",
+      "line": 49,
+      "declaration": "theorem iterWord_ne_singleton_self (hβ : 1 < S.β) {n : ℕ} (hn : 0 < n) (a : α) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointHull.count_partition",
+      "module": "PscVerif.PeriodicPartnerFixedPointHull",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointHull.lean",
+      "line": 60,
+      "declaration": "private theorem count_partition [DecidableEq α] (w : List α) (a : α) (hw : w ≠ [a]) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointHull.mem_legalSeams_of_origin",
+      "module": "PscVerif.PeriodicPartnerFixedPointHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointHull.lean",
+      "line": 92,
+      "declaration": "theorem mem_legalSeams_of_origin {T : S.Hull} {b a : α}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointHull.fixedSeed_card",
+      "module": "PscVerif.PeriodicPartnerFixedPointHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointHull.lean",
+      "line": 119,
+      "declaration": "theorem fixedSeed_card (hβ : 1 < S.β) {n : ℕ} (hn : 0 < n) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointHull.hull_count_of_classification",
+      "module": "PscVerif.PeriodicPartnerFixedPointHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointHull.lean",
+      "line": 143,
+      "declaration": "theorem hull_count_of_classification (hβ : 1 < S.β) {n : ℕ} (hn : 0 < n)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointHull.hull_parity_of_classification",
+      "module": "PscVerif.PeriodicPartnerFixedPointHull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointHull.lean",
+      "line": 157,
+      "declaration": "theorem hull_parity_of_classification (S : LengthSubst (Fin 3))"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.even_card_fixedPoints",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 22,
+      "declaration": "theorem even_card_fixedPoints {X : Type*} (f twin : X → X) [Finite (fixedPoints f)]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.mem_fixedLetters",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 54,
+      "declaration": "@[simp] theorem mem_fixedLetters {g : α → α} {n : ℕ} {a : α} :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.mem_periodicLetters",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 58,
+      "declaration": "@[simp] theorem mem_periodicLetters {g : α → α} {a : α} :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.fixed_subset_periodic",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 63,
+      "declaration": "private theorem fixed_subset_periodic (g : α → α) {n : ℕ} (hn : 0 < n) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.fixedLetters_card_zero_or_two",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 70,
+      "declaration": "theorem fixedLetters_card_zero_or_two (g : α → α) {n : ℕ} (hn : 0 < n)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.fixedSeams_card_of_complete",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 109,
+      "declaration": "theorem fixedSeams_card_of_complete (last first : α → α) (legal : Finset (α × α))"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.even_count_iff_even_trace",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 124,
+      "declaration": "theorem even_count_iff_even_trace (last first : α → α) (legal : Finset (α × α))"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.periodicLetters_nonempty",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 144,
+      "declaration": "private theorem periodicLetters_nonempty : ∀ g : Fin 3 → Fin 3,"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.periodicLetters_card_le_two",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 147,
+      "declaration": "private theorem periodicLetters_card_le_two {g : Fin 3 → Fin 3} (hg : ¬Injective g) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.complete_range_of_edge_bound",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 162,
+      "declaration": "theorem complete_range_of_edge_bound (last first : Fin 3 → Fin 3)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.charpoly_cubic",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 212,
+      "declaration": "theorem charpoly_cubic (A : Matrix (Fin 3) (Fin 3) R) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.newton_two_three",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 225,
+      "declaration": "theorem newton_two_three (A : Matrix (Fin 3) (Fin 3) R) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.det_zero_of_first_third",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 242,
+      "declaration": "theorem det_zero_of_first_third (A : Matrix (Fin 3) (Fin 3) F₂)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.all_power_traces_zero_iff",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 251,
+      "declaration": "theorem all_power_traces_zero_iff (A : Matrix (Fin 3) (Fin 3) F₂) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.charpoly_cases_of_trace_det",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 282,
+      "declaration": "theorem charpoly_cases_of_trace_det (A : Matrix (Fin 3) (Fin 3) F₂)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerFixedPointParity.cube_zero_of_signed_factors",
+      "module": "PscVerif.PeriodicPartnerFixedPointParity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean",
+      "line": 298,
+      "declaration": "theorem cube_zero_of_signed_factors (A : Matrix (Fin 3) (Fin 3) F₂)"
+    },
+    {
       "name": "Psc.PeriodicPartnerGradedLift.step_iff",
       "module": "PscVerif.PeriodicPartnerGradedLift",
       "private": false,
@@ -40610,6 +41274,86 @@
       "declaration": "theorem isOpen_iff_agreement (V : Set S.Hull) :"
     },
     {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.tilesOn_place",
+      "module": "PscVerif.PeriodicPartnerHullPatches",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullPatches.lean",
+      "line": 21,
+      "declaration": "theorem tilesOn_place (w : List α) (x : ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.supertile_eq_place",
+      "module": "PscVerif.PeriodicPartnerHullPatches",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullPatches.lean",
+      "line": 27,
+      "declaration": "theorem supertile_eq_place (a : α) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.supertile_tilesOn",
+      "module": "PscVerif.PeriodicPartnerHullPatches",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullPatches.lean",
+      "line": 35,
+      "declaration": "theorem supertile_tilesOn [Nonempty α] (a : α) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.shifted_supertile_subset_inflate",
+      "module": "PscVerif.PeriodicPartnerHullPatches",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullPatches.lean",
+      "line": 44,
+      "declaration": "theorem shifted_supertile_subset_inflate {P : Set (α × ℝ)} {p : α × ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.shifted_supertile_subset",
+      "module": "PscVerif.PeriodicPartnerHullPatches",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullPatches.lean",
+      "line": 56,
+      "declaration": "theorem shifted_supertile_subset {a : α} {p : α × ℝ} {m : ℕ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.contains_supertile_of_level",
+      "module": "PscVerif.PeriodicPartnerHullPatches",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullPatches.lean",
+      "line": 63,
+      "declaration": "theorem contains_supertile_of_level [Finite α] [Nonempty α] (hβ : 1 ≤ S.β)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.window_occurs",
+      "module": "PscVerif.PeriodicPartnerHullPatches",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullPatches.lean",
+      "line": 125,
+      "declaration": "theorem window_occurs [Finite α] [Nonempty α] (hβ : 1 ≤ S.β) {e : ℕ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.finite_local_complexity",
+      "module": "PscVerif.PeriodicPartnerHullPatches",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullPatches.lean",
+      "line": 149,
+      "declaration": "theorem finite_local_complexity [Finite α] [Nonempty α] (R : ℝ) (hR : 0 < R) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.aperiodic_of_inflate_fixed",
+      "module": "PscVerif.PeriodicPartnerHullPatches",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullPatches.lean",
+      "line": 203,
+      "declaration": "theorem aperiodic_of_inflate_fixed [Nonempty α] {T : S.Hull} {n : ℕ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerHull.LengthSubst.period_of_windows",
+      "module": "PscVerif.PeriodicPartnerHullPatches",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullPatches.lean",
+      "line": 247,
+      "declaration": "theorem period_of_windows {T U : S.Hull} {t : ℝ} (ht : translate t T = T)"
+    },
+    {
       "name": "Psc.PeriodicPartnerHull.LengthSubst.tile_end_le_of_start_lt",
       "module": "PscVerif.PeriodicPartnerHullSelection",
       "private": true,
@@ -40696,6 +41440,94 @@
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean",
       "line": 231,
       "declaration": "theorem hull_selection_dichotomy (hβ : 1 < S.β) (P : PublishedInputs S Y)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLegalCoincidence.agree_of_cover",
+      "module": "PscVerif.PeriodicPartnerLegalCoincidence",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLegalCoincidence.lean",
+      "line": 28,
+      "declaration": "private theorem agree_of_cover {A B : Set (α × ℝ)} {W : Set ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLegalCoincidence.legalPatch_embed",
+      "module": "PscVerif.PeriodicPartnerLegalCoincidence",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLegalCoincidence.lean",
+      "line": 36,
+      "declaration": "private theorem legalPatch_embed [Nonempty α] {P A : Set (α × ℝ)} (hP : S.IsTiling P) {e : ℕ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLegalCoincidence.dense_legal_overlap",
+      "module": "PscVerif.PeriodicPartnerLegalCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLegalCoincidence.lean",
+      "line": 60,
+      "declaration": "theorem dense_legal_overlap [Nonempty α] {P : Set (α × ℝ)} (hP : S.IsTiling P) {p g : ℝ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLegalCoincidence.cover_window",
+      "module": "PscVerif.PeriodicPartnerLegalCoincidence",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLegalCoincidence.lean",
+      "line": 113,
+      "declaration": "private theorem cover_window (T : S.Hull) (W : Set ℝ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLegalCoincidence.legal_window",
+      "module": "PscVerif.PeriodicPartnerLegalCoincidence",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLegalCoincidence.lean",
+      "line": 119,
+      "declaration": "private theorem legal_window (T : S.Hull) (r : ℝ) : LegalPatch S (windowPatch S T (Ioo (-r) r)) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLegalCoincidence.dense_hull_of_common_tile",
+      "module": "PscVerif.PeriodicPartnerLegalCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLegalCoincidence.lean",
+      "line": 125,
+      "declaration": "theorem dense_hull_of_common_tile [Nonempty α]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLegalCoincidence.common_tile_of_periodic_eventual",
+      "module": "PscVerif.PeriodicPartnerLegalCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLegalCoincidence.lean",
+      "line": 147,
+      "declaration": "theorem common_tile_of_periodic_eventual [Nonempty α] {P Q : Set (α × ℝ)} {m : ℕ}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLegalCoincidence.periodic_common_tile_of_local_witnesses",
+      "module": "PscVerif.PeriodicPartnerLegalCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLegalCoincidence.lean",
+      "line": 166,
+      "declaration": "theorem periodic_common_tile_of_local_witnesses [Nonempty α]"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLegalCoincidence.tile_ends_at_origin",
+      "module": "PscVerif.PeriodicPartnerLegalCoincidence",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLegalCoincidence.lean",
+      "line": 185,
+      "declaration": "private theorem tile_ends_at_origin [Finite α] [Nonempty α] {P : Set (α × ℝ)}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLegalCoincidence.agree_near_origin",
+      "module": "PscVerif.PeriodicPartnerLegalCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLegalCoincidence.lean",
+      "line": 212,
+      "declaration": "theorem agree_near_origin [Finite α] [Nonempty α] {P Q : Set (α × ℝ)}"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLegalCoincidence.periodic_common_tile_of_origin_witnesses",
+      "module": "PscVerif.PeriodicPartnerLegalCoincidence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLegalCoincidence.lean",
+      "line": 247,
+      "declaration": "theorem periodic_common_tile_of_origin_witnesses [Finite α] [Nonempty α]"
     },
     {
       "name": "Psc.PeriodicPartnerLiteralDefect.expansion_of",
@@ -55040,7 +55872,7 @@
     "claim_governance.toml": "895eb1950ccd19725ad600b1d40d988652d5e15524a336288bef7761411d8a7c",
     "proof/PscVerif/A1PrimeTailAudit.lean": "eee41a524a6a114716a7704f169726b6484ab56c2398431dcd297fe6809a0b23",
     "proof/PscVerif/BHFiniteReachabilityAudit.lean": "5469fdefea80286841bb3b40b7944a4674de5dce03ca12b490ee72b77ca2b79d",
-    "proof/PscVerif/C4ParameterFamilyAudit.lean": "71861a4249ef9a84e9f4357f227e038000ca6b32f5ed2a5e947cd140bc7edb8a",
+    "proof/PscVerif/C4ParameterFamilyAudit.lean": "89790bc2bee4a1953e3b3ec2e0136b4c5084d5f849ee35c09f506bad99ff28db",
     "proof/PscVerif/ClassABoundaryEscapeAudit.lean": "f5b5147990567d0ca653e6f96336d3e44e00087dc6a577c101b840592495abdb",
     "proof/PscVerif/ClassACentralRecurrenceAudit.lean": "c312940fe33a565e0031cf0c87e303a291755da0db9080f65222b1ffa6a4519b",
     "proof/PscVerif/ClassAMinusConstantRecurrenceAudit.lean": "6e90eee52630956763ce1bca0525ecc0fd20b02b956ac09a5007863e8c930ecc",
@@ -55055,7 +55887,7 @@
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "81efe5b8745576f8f15a59a263563b31e08307e9c432e78fa2ef9021a613b2d1",
     "proof/PscVerif/EvenRankTwoAudit.lean": "cfc2c3b6dfae0305e1ab27989607917e4ffe8944a513aa861dc5ca781ba620ca",
     "proof/PscVerif/MarkerReachabilityReplay.lean": "4d21e06344eff182c78196d2f8eb815e1dbb8f517920dedf6849cc1546d831a3",
-    "proof/PscVerif/PeriodicPartnerAudit.lean": "5797f586bd8216b143357ac08ee8d2871b575dca3dfa0f553be56535ce553f9a",
+    "proof/PscVerif/PeriodicPartnerAudit.lean": "90c468d13edb763a1de277fecfd6bda47f582527d88cfa16f7cc2505bc31b0a1",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean": "f1c4480b95159800bb52cd42164763d01e6ab6045dc72b07874f164409a0eaf1",
     "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean": "6387c221871d7b70efca50349c815fac07421bb44a28122f9157ff0652cb074f",
@@ -55078,6 +55910,7 @@
     "proof/PscVerif/PscVerif/C4ParameterFamilyCarrier.lean": "fba5f9b5a2a20c08107aa3e7714c20f2e92a4aeacd28e816e1a4e331e5e03208",
     "proof/PscVerif/PscVerif/C4ParameterFamilyControls.lean": "98b75297c14f75b6a2c87c651d06b3da13131616cf1b53c2630d7b498a1b5540",
     "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean": "17c1a41e6726dfef7f04f3ccc0594f0cbfc5eb90fd61325114179541c763423c",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean": "62edafc4c240ee570e743ecbd04775447940d0bcb3b37c117ce2281b5050eddc",
     "proof/PscVerif/PscVerif/C4ParameterFamilyWords.lean": "e49cc02bc7b82b8f44101ce153d93982f02e31684501ffe7499cfb53d55c86d7",
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
     "proof/PscVerif/PscVerif/ClassABoundaryEscape.lean": "3f4fd5237cbd01f356a0f12bb2c2dcb1684a338166e7c8ca17505654a8dc5476",
@@ -55231,6 +56064,7 @@
     "proof/PscVerif/PscVerif/ParikhRank.lean": "f13cddb90200af8a8a26d01428537235a2bebddf2e081849188753e97add6e69",
     "proof/PscVerif/PscVerif/PeriodicPartner.lean": "8b4cfa2dbed0bf629a0a0f0dfd57ecb63b0d83bc02b48ee3392faa90404f4aaf",
     "proof/PscVerif/PscVerif/PeriodicPartnerAsymptotic.lean": "0ad011b1e6eb02418699a4838c22ae630f28954696810c470fdb054e077b4c23",
+    "proof/PscVerif/PscVerif/PeriodicPartnerBalancedGeometry.lean": "168cfad4dcda3241055411e9f40502926f2738740287ebcebd382f16258104e2",
     "proof/PscVerif/PscVerif/PeriodicPartnerCollapse.lean": "a0b3df8c6040977532413191864a2ba002ebf45a6fb79cd3a40fe9a8fb45fd91",
     "proof/PscVerif/PscVerif/PeriodicPartnerCompanionWords.lean": "b6e615d563c73042cf6fc70da6593ad38cd871cedc16f807c4465f488ee69618",
     "proof/PscVerif/PscVerif/PeriodicPartnerCompleteRange.lean": "df5e5f39df78d9a48c02f61399558ecb600dd5cc3c9d936c238300ece7caba23",
@@ -55240,11 +56074,16 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean": "812599f6a9dfb4ab5d0da0924fa6c3901128f74644e76d14eb2996de17f55c44",
     "proof/PscVerif/PscVerif/PeriodicPartnerEvenSolenoid.lean": "24de7ca583a5a654e331a0fae80e407174589843b58051fca044fefcd76d874c",
     "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean": "5519f5698c83b43956df8e04263f873e4879a1ec4e48533fe96e36b330f7d626",
+    "proof/PscVerif/PscVerif/PeriodicPartnerEventualCoincidence.lean": "d25e97d6a1c338a452fc61c987bfc9addb569cde5a7e2df3eaed5d485f92238a",
+    "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointHull.lean": "ea853775c5ef040594228907ccf63082505cb596e39778e6a942f0a4374583fd",
+    "proof/PscVerif/PscVerif/PeriodicPartnerFixedPointParity.lean": "5b2e91b27abcdbb06b7acac3eac752a1b52b10b2b1045445b6a496263b44630c",
     "proof/PscVerif/PscVerif/PeriodicPartnerGradedLift.lean": "2a30fa67345bdfc4efc019c9fc92190ec6cbe22efb5faa2de44a2052c63d4837",
     "proof/PscVerif/PscVerif/PeriodicPartnerGraphSpectrum.lean": "d1f70a6da1a88f58abba2ee29223ed9d96c13ffc70ce5a7942731d9cfe7326a6",
     "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean": "6124e92faa7ace36663a57ff5dda39f281fd86237cc30006912cf4c2a0a65b6e",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean": "80e0f040cd0ea768a0d5ddf74710dc659c9a9431fb667740953f41369a652386",
+    "proof/PscVerif/PscVerif/PeriodicPartnerHullPatches.lean": "07ce32643bfcec7aac4f9e9cc36969a888cd726462aa32077c3fbd2b44a03698",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean": "59d86f345c47142bdd7a74200c04b48f4ae975d1d5afe2dc29331048d7f37988",
+    "proof/PscVerif/PscVerif/PeriodicPartnerLegalCoincidence.lean": "3c81c675054bea4b16fa83e8d912525b4d456218997d9e21697d8847e148e23d",
     "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean": "0c9d009618b409578d573a94e2f15b8052610eaa8c4f9d28aa77c3045644b9bb",
     "proof/PscVerif/PscVerif/PeriodicPartnerLocalRealization.lean": "472eacd674a293a84e841a7888398fd1fbaeedbdeff3a372c2e6ab665556e2b1",
     "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean": "ab9cca25c9b6f57b944a912e1e8a239b4bb46bd7a73727542af056760331b7cf",
@@ -55303,7 +56142,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "365e7fc071b92a4761d163d3eee1946f2b3a4cb6fe9141572c6ad98fda0f747b",
+    "proof/PscVerif/PscVerif.lean": "2fbe389f8287cc48f384b53abf2a159dcfbc21d8d29c5eb07be7d2a56a9c7d30",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

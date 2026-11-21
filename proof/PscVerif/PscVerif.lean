@@ -200,6 +200,8 @@ import PscVerif.PeriodicPartnerWinding
 import PscVerif.PeriodicPartnerWindingSeams
 import PscVerif.PeriodicPartnerLiteralDefect
 import PscVerif.PeriodicPartnerEvenTails
+import PscVerif.PeriodicPartnerFixedPointParity
+import PscVerif.PeriodicPartnerFixedPointHull
 import PscVerif.PeriodicPartnerTwinEndpoint
 import PscVerif.PeriodicPartnerStackWordRigidity
 import PscVerif.PeriodicPartnerGraphSpectrum
@@ -227,6 +229,7 @@ import PscVerif.Termination
 import PscVerif.TerminationFactors
 import PscVerif.C4ParameterFamilyPisot
 import PscVerif.C4ParameterFamilyBridge
+import PscVerif.C4ParameterFamilyTiling
 import PscVerif.UniversalClosureReduction
 import PscVerif.OccurrenceAncestry
 import PscVerif.BHFiniteReachability

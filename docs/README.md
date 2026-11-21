@@ -19,6 +19,13 @@ for source-linked theorem scopes, non-unit/strong-coincidence cautions,
 the Nakaishi audit and the open #84/#138/#139/#461 interfaces. It adds
 no proof claim or ledger promotion.
 
+The [sigma-k spectral and coincidence research review](psc-sigma-k-research-review-2026-11-20.md)
+assesses literature through 20 November, distinguishes publications from
+preprints, derives the low-complexity exclusion for the literal family, and
+maps the remaining formal spectral bridge. Its 21 November publication
+addendum reconciles the merged marker, parity and graph-spectrum work with
+the original dated assessment. It adds no proof claim or ledger promotion.
+
 **New collaborator?** Start with [`project-onboarding-2026-10-23.md`](project-onboarding-2026-10-23.md). It gives the current live theorem lane, the v6/v9 salvage firewall, the Tier-2 Plastic-A/Growth-Bridge lane, and the non-load-bearing Penrose interface map in one status-safe document.
 
 For definitions and implementation authority, use the generated
@@ -525,6 +532,7 @@ closed on caps and retain a replayable record for every survivor.
 - [Trivial stack relation, nonunit](c4-nonunit-trivial-stack-2026-11-21.md): for nonunit PIP3 hulls without pure discrete spectrum the stack relation is trivial; at rank two Barge's twin structure then holds with no strict system assumed, and the case reduces to whether some tiling shares a vertex with its twin.
 - [Nonunit rank two, injective endpoint map](c4-nonunit-twin-endpoint-2026-11-21.md): with twins vertex-disjoint, an injective endpoint map and two letters on the opposite side of `ER` rule out rank two; the residue is a single-edge `ER` or both endpoint maps non-injective (Lean finite core).
 - [Nonunit rank-two residue](c4-nonunit-rank-two-residue-2026-11-21.md): the twin involution is free on `Fix(Φⁿ)`, so the fixed-tiling count is even; with Theorem E and Theorem H3 the residue without a strict system is `ER = K₂,₂`, both endpoint maps non-injective, `M` nilpotent modulo two (24 corpus classes, all pure discrete).
+- [Lean review of nonunit rank-two parity](c4-nonunit-parity-lean-review-2026-11-21.md) proves the finite count and cubic implications and checks the hypotheses needed on the original legal hull.
 - [Homoclinic winding](c4-homoclinic-winding-2026-11-20.md) constructs normalized circle lifts in Lean and derives odd winding from the opposite-sheet seam hypothesis in the even-determinant reduction.
 - [Literal finite differences](c4-literal-periodic-defect-2026-11-20.md) rules out a periodic finite difference in the original tiling at nilpotent incidence modulo two and gives coincidence witnesses in a companion family of unbounded even determinant.
 
