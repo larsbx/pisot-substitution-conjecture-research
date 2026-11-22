@@ -47,7 +47,7 @@ elan run "$PSC_FAMILY_PIN" lake --no-cache build \
     PscVerif.C4FamilyTileAutomatonHull PscVerif.C4FamilyFiniteZeroFibre \
     PscVerif.C4FamilyFiniteProximal PscVerif.C4ParameterFamilyFibreDistal \
     PscVerif.C4FamilyOpenSynchronization PscVerif.C4FamilySolenoidCharacters \
-    PscVerif.C4FamilyCharacterOrbits
+    PscVerif.C4FamilyCharacterOrbits PscVerif.C4FamilyMeasuredSpectrum
 psc_family_check_pins
 elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
     -DautoImplicit=false -Dpp.unicode.fun=true C4ParameterFamilyAudit.lean \
@@ -134,4 +134,10 @@ elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
     | tee "$PSC_FAMILY_TMP/character-orbits-audit.log"
 test "$(grep -Fxc $'PSC_CHARACTER_ORBIT_AUDIT_COMPLETE\t23\t21' "$PSC_FAMILY_TMP/character-orbits-audit.log")" -eq 1
 test "$(grep -Fxc $'PSC_CHARACTER_ORBIT_REFUSAL_CONTROLS\t36' "$PSC_FAMILY_TMP/character-orbits-audit.log")" -eq 1
+elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
+    -DautoImplicit=false -Dpp.unicode.fun=true C4MeasuredSpectrumAudit.lean \
+    | tee "$PSC_FAMILY_TMP/measured-spectrum-audit.log"
+test "$(grep -Fxc $'PSC_MEASURED_SPECTRUM_AUDIT_COMPLETE\t60\t38' "$PSC_FAMILY_TMP/measured-spectrum-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_MEASURED_SPECTRUM_REFUSAL_CONTROLS\t12' "$PSC_FAMILY_TMP/measured-spectrum-audit.log")" -eq 1
+test "$(grep -c '^PSC_MEASURED_SPECTRUM_CONTRACT_REFUSED' "$PSC_FAMILY_TMP/measured-spectrum-audit.log")" -eq 2
 psc_family_check_pins

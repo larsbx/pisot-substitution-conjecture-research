@@ -68,6 +68,22 @@ series). Main's working method for F4(c) is the finite-kernel automaton route, a
 adds is F3, the F4(d) definitions and the F5 separation. The status sentence at the top is
 unchanged: no coincidence-rank or invariant-measure conclusion is in Lean.
 
+## Status at `main@f5ba148d` (through #649), 2026-11-22
+
+Main then proved the topological half of F4(c): ordinary proximality equals the fibre
+relation, nonproximal rank one, the maximal-equicontinuous-factor property, and uniformly
+dense continuous characters ([next obligations](c4-finite-fibre-obligations-2026-11-21.md)).
+The [measured interface](c4-measured-pure-discrete-2026-11-22.md) supplies F4(d): the
+`PureDiscrete` definition, pure discreteness of the solenoid flow for every invariant weakly
+regular measure, and the hull conclusion conditional on a measurable almost everywhere
+inverse of the realization. Remaining for the unconditional family theorem, in order:
+
+1. Haar-almost-every fibre of `solenoidRealize` is a singleton (`k ≥ 2`).
+2. A measurable almost everywhere inverse from 1.
+3. An invariant Borel probability on the hull, and weak regularity of its image.
+4. F3, one `FullFactorCriterion` structure, so the final statement names its criterion.
+5. F5, the separate symbolic theorem.
+
 ## 0. Baseline, with two stale descriptions corrected
 
 Declaration names below were read from the sources at the starting revision; nothing was
