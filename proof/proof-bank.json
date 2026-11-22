@@ -5786,6 +5786,182 @@
       "declaration": "theorem ae_singleton_fibre (hk₂ : 2 ≤ k) :"
     },
     {
+      "name": "Psc.C4FamilyMeasuredRealization.singletonSet_spec",
+      "module": "PscVerif.C4FamilyMeasuredRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean",
+      "line": 43,
+      "declaration": "theorem singletonSet_spec :"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredRealization.restrictPreimage_bijective",
+      "module": "PscVerif.C4FamilyMeasuredRealization",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean",
+      "line": 48,
+      "declaration": "private theorem restrictPreimage_bijective :"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredRealization.measurable_measurableInverse",
+      "module": "PscVerif.C4FamilyMeasuredRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean",
+      "line": 79,
+      "declaration": "theorem measurable_measurableInverse : Measurable (measurableInverse k hk hk₂) :="
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredRealization.factor_inverse_on",
+      "module": "PscVerif.C4FamilyMeasuredRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean",
+      "line": 84,
+      "declaration": "theorem factor_inverse_on {z : G} (hz : z ∈ singletonSet k hk hk₂) :"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredRealization.factor_inverse_ae",
+      "module": "PscVerif.C4FamilyMeasuredRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean",
+      "line": 92,
+      "declaration": "theorem factor_inverse_ae : (π ∘ measurableInverse k hk hk₂) =ᵐ[μₛ] id :="
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredRealization.measurePreserving_inverse",
+      "module": "PscVerif.C4FamilyMeasuredRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean",
+      "line": 98,
+      "declaration": "theorem measurePreserving_inverse :"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredRealization.measurePreserving_factor",
+      "module": "PscVerif.C4FamilyMeasuredRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean",
+      "line": 107,
+      "declaration": "theorem measurePreserving_factor : MeasurePreserving π (hullMeasure k hk hk₂) μₛ := by"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredRealization.inverse_factor_ae_of_measurePreserving",
+      "module": "PscVerif.C4FamilyMeasuredRealization",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean",
+      "line": 113,
+      "declaration": "private theorem inverse_factor_ae_of_measurePreserving (ν : Measure X)"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredRealization.inverse_factor_ae",
+      "module": "PscVerif.C4FamilyMeasuredRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean",
+      "line": 119,
+      "declaration": "theorem inverse_factor_ae : (measurableInverse k hk hk₂ ∘ π) =ᵐ[hullMeasure k hk hk₂] id :="
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredRealization.hullMeasure_eq_of_map",
+      "module": "PscVerif.C4FamilyMeasuredRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean",
+      "line": 123,
+      "declaration": "theorem hullMeasure_eq_of_map (ν : Measure X) (hν : Measure.map π ν = μₛ) :"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredRealization.measurePreserving_of_semiconj",
+      "module": "PscVerif.C4FamilyMeasuredRealization",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean",
+      "line": 134,
+      "declaration": "private theorem measurePreserving_of_semiconj {f : X → X} {g : G → G}"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredRealization.measurePreserving_translate",
+      "module": "PscVerif.C4FamilyMeasuredRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean",
+      "line": 142,
+      "declaration": "theorem measurePreserving_translate (t : ℝ) :"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredRealization.measurePreserving_inflate",
+      "module": "PscVerif.C4FamilyMeasuredRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean",
+      "line": 155,
+      "declaration": "theorem measurePreserving_inflate :"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredSpectrum.compL2_surjective_of_ae_leftInverse",
+      "module": "PscVerif.C4FamilyMeasuredSpectrum",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredSpectrum.lean",
+      "line": 19,
+      "declaration": "private theorem compL2_surjective_of_ae_leftInverse"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredSpectrum.pullback_surjective",
+      "module": "PscVerif.C4FamilyMeasuredSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredSpectrum.lean",
+      "line": 43,
+      "declaration": "theorem pullback_surjective : Surjective (pullback k hk hk₂) :="
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredSpectrum.translationKoopman_surjective",
+      "module": "PscVerif.C4FamilyMeasuredSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredSpectrum.lean",
+      "line": 56,
+      "declaration": "theorem translationKoopman_surjective (t : ℝ) : Surjective (translationKoopman k hk hk₂ t) :="
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredSpectrum.eigenfunctionLp_ae",
+      "module": "PscVerif.C4FamilyMeasuredSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredSpectrum.lean",
+      "line": 66,
+      "declaration": "theorem eigenfunctionLp_ae (c : Certificate (Fin 3)) :"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredSpectrum.eigenfunctionLp_inner_self",
+      "module": "PscVerif.C4FamilyMeasuredSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredSpectrum.lean",
+      "line": 73,
+      "declaration": "theorem eigenfunctionLp_inner_self (c : Certificate (Fin 3)) :"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredSpectrum.eigenfunctionLp_ne_zero",
+      "module": "PscVerif.C4FamilyMeasuredSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredSpectrum.lean",
+      "line": 78,
+      "declaration": "theorem eigenfunctionLp_ne_zero (c : Certificate (Fin 3)) : eigenfunctionLp k hk hk₂ c ≠ 0 := by"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredSpectrum.eigenfunctionLp_translate",
+      "module": "PscVerif.C4FamilyMeasuredSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredSpectrum.lean",
+      "line": 88,
+      "declaration": "theorem eigenfunctionLp_translate (c : Certificate (Fin 3)) (t : ℝ) :"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredSpectrum.span_eigenfunctionLp_closure_eq_top",
+      "module": "PscVerif.C4FamilyMeasuredSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredSpectrum.lean",
+      "line": 108,
+      "declaration": "theorem span_eigenfunctionLp_closure_eq_top :"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredSpectrum.pureDiscrete_translation",
+      "module": "PscVerif.C4FamilyMeasuredSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredSpectrum.lean",
+      "line": 122,
+      "declaration": "theorem pureDiscrete_translation :"
+    },
+    {
       "name": "Psc.C4FamilyOpenSynchronization.exists_centered_tile_fibre",
       "module": "PscVerif.C4FamilyOpenSynchronization",
       "private": false,
@@ -58410,6 +58586,7 @@
     "proof/PscVerif/BHFiniteReachabilityAudit.lean": "5469fdefea80286841bb3b40b7944a4674de5dce03ca12b490ee72b77ca2b79d",
     "proof/PscVerif/C4CharacterOrbitsAudit.lean": "23c1dae1939fe054375bb8de0fa9add025b21728f38b98a98956cb0d8f50191f",
     "proof/PscVerif/C4FamilyHaarAudit.lean": "ce2e947f905a7da206827c6c7c6fa97943eae3823dffd4bf3881da385f3f0607",
+    "proof/PscVerif/C4FamilyMeasuredSpectrumAudit.lean": "cea480792090c92694eab6d32219d52f03439a963d919b41868257b08fdca5ff",
     "proof/PscVerif/C4FiniteHullWitnessAudit.lean": "58d7293dcc4baf9066599bf8349963512855a654ab680e357e7bd38e35d38f47",
     "proof/PscVerif/C4FiniteProximalAudit.lean": "9d75e8645c7eebbe0f8479d267ad66f6ff4b1976f759f8b472f510f29909c851",
     "proof/PscVerif/C4FiniteSynchronizationAudit.lean": "a04634c4d67258b9de1dd8bcb1554b8174f59336a144bd5e2cb402ac861029c9",
@@ -58456,6 +58633,8 @@
     "proof/PscVerif/PscVerif/C4FamilyFiniteZeroFibre.lean": "47832e3754b2cf087dced965641afc954537b94949d990f264f9bd91835221b8",
     "proof/PscVerif/PscVerif/C4FamilyHaarErgodicity.lean": "81cf9efa86e64520927307c305696ea4692c339f974daee94f87e1a37b5538ef",
     "proof/PscVerif/PscVerif/C4FamilyHaarSingletonFibres.lean": "66323188238cb1bcbe99c98e20cfdacd5e9adedcd60b3ff3e7f93ae125fb10e1",
+    "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean": "4dafec9bb5ec030c5bbcb1375216afa5e9e080a3ceabccf8de244005ed6ffaf0",
+    "proof/PscVerif/PscVerif/C4FamilyMeasuredSpectrum.lean": "be362e24a8b3ad083213a06f6c8c09f5065fc7639d3ed015c83b73a92a556617",
     "proof/PscVerif/PscVerif/C4FamilyOpenSynchronization.lean": "d67995845d97872e01484eca0e3eb8d78dafb7c25c29dedbce2668c8e47ab923",
     "proof/PscVerif/PscVerif/C4FamilySolenoidCharacters.lean": "4309de68886bf368e18470e0d903877ec46fe47cd553e9dac37de95fda6e4903",
     "proof/PscVerif/PscVerif/C4FamilyTileAutomatonHull.lean": "02d57375d81d07073d12dc864a8632abfd6068808c051500ac1895d0f99d737c",
@@ -58725,7 +58904,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "02b3e6a43e4fbf6e5e293151631935f1b5cbe380afcbf99596f75be38ad99d79",
+    "proof/PscVerif/PscVerif.lean": "8d890a26f8afe829aac7a1fc6fa38f8708272d6862a2896d5578c12383454d14",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
