@@ -9,11 +9,10 @@ is the anchor theorem:
 > every legal inflation-periodic `U` whose origin-tile start lies in
 > `−ℓ(ℤ³)` shares a labelled tile with one fixed zero-fibre anchor `V`.
 
-This note records the source decision taken before any code, then the
-work done. The result is a reduction, not a proof: the anchor theorem is
-machine-checked from one arithmetic premise about integer vectors, the
-premise is confirmed exactly on a stated box for `k = 2..12`, and it is
-**not proved** for all `k ≥ 2`.
+This note records the 21 November reduction from the anchor theorem to a
+classification of periodic integer vectors. The 22 November follow-up
+proves C(k) in Lean for every `k ≥ 2` and derives the anchor theorem and
+all-pairs witnesses. [Convex-window proof](c4-zero-fibre-anchor-proof-2026-11-22.md)
 
 ## Source decision
 
@@ -179,15 +178,16 @@ Finite object: for each `k = 1..12`, all interior tiles `(a; v)` with
 `|v_i| ≤ 8` (551 tiles at `k = 2`, 341 at `k = 12`), each followed to its
 cycle with step cap 4096. Result: for `k = 2..12` the cycles reached are
 the vertex cycle `(0;0,0,0) → (1;0,0,0)` and the three-phase cycle, and
-no other; the longest transient is 16 steps at `k = 2` and 5 for
-`k ≥ 6`. Log and digests:
-[evidence](../evidence/c4-zero-fibre-anchor-2026-11-21/README.md).
+no other. The corrected maxima for `k = 1..12` are `44, 18, 11, 8, 7,
+6, 5, 6, 5, 5, 5, 5`. Each counts the steps to the first cycle tile.
+At `k = 2`, `(1;8,2,-8)` first reaches `(1;-1,1,0)` on step 18.
+[Corrected census and digests](../evidence/c4-zero-fibre-anchor-proof-2026-11-22/README.md)
 
 Fail-closed behaviour (refuse to conclude): an orbit past the step cap,
 a coordinate outside the packed range, a parameter outside `1..64`, a
 bracket that does not isolate `β`, and a tile with no child or two
-children at the origin all raise. A census run that raises reports
-nothing.
+children at the origin all raise. For a step-cap failure, the driver
+exits before printing a row for that parameter.
 
 ### Negative controls
 
@@ -203,32 +203,16 @@ nothing.
   same cycles for `k = 1..6` on `|v_i| ≤ 7` before the exact census
   existed. It is superseded by the Mojo census and is not in the
   repository.
+- A sup-norm bound from the conjugate recurrence, `|w_i| ≤
+  (θ+2α)·max|w| + 1 + 2α`, contracts only for `k ≥ 4`. The follow-up
+  uses nested integer windows and covers `k = 2` and `k = 3` as well.
 
 ### Non-claims / remaining gaps
 
-- C(k) is **not proved** for any `k`. The census is a statement about
-  its box: a periodic interior tile with a coordinate beyond 8 is not
-  excluded, and `k > 12` is not examined. No bound on the coordinates of
-  a periodic tile is proved here.
-- Therefore the anchor theorem, the all-pairs witness statement, rank
-  one at the zero fibre, and every spectral consequence remain
-  unproved in Lean. No claim status changes.
-- The conjugate recurrence gives a bound on `w` for periodic orbits in
-  principle (the quadratic factor is contracting), but the sup-norm
-  estimate `|w_i| ≤ (θ+2α)·max|w| + 1 + 2α` contracts only for `k ≥ 4`,
-  and usefully only for larger `k`. A proof of C(k) needs either a
-  two-step estimate plus a finite check for small `k`, or a normalization
-  argument in the manner of Frougny–Solomyak adapted to the shifted map.
-  Neither was carried out.
-- Independent human review is pending for everything in this note.
-
-## Correction, 2026-11-22
-
-Lean now establishes C(k) for every `k ≥ 2`, in the declaration
-`periodicLatticeOriginsClassified` of the module
-`C4ParameterFamilyOriginCycle`. The anchor theorem and the all-pairs
-witness statement therefore hold without a premise. The sentences above that call C(k), the anchor theorem and the
-witness statement unproved describe the state of 2026-11-21. The two
-routes named in the last section were not needed: the proof is a
-one-step convex-window argument.
-[Proof, replay and remaining gaps](c4-zero-fibre-anchor-proof-2026-11-22.md)
+- The census certifies starting tiles in `|v_i| ≤ 8` for `1 ≤ k ≤ 12`.
+  Lean's `periodicLatticeOriginsClassified` supplies the classification for
+  all integer coordinates and all `k ≥ 2`. [Convex-window proof](c4-zero-fibre-anchor-proof-2026-11-22.md)
+- Merged #650 proves the measured real translation theorem for `k ≥ 2`
+  via the finite-automaton witnesses. The recurrence proof supplies a second
+  derivation of the zero-fibre witnesses. [PR #650](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/650)
+- Independent human review of the recurrence reduction and proof is pending.

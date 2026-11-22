@@ -11,10 +11,10 @@ tiling with a lattice origin is a periodic point of this map (Lean:
 
 Every comparison is the exact sign of `2 w2 + (w0 + w2) x + w1 x^2` at
 `beta`, a Sturm--Tarski query on an isolating rational bracket.  No floating
-value enters.  `cycle_census` follows every interior tile of a coordinate box
-to its cycle; it raises, rather than report, when an orbit exceeds the step
-cap or the packed coordinate range.  A census is a statement about the box
-it names: it does not bound the periodic tiles outside the box.
+value enters. `cycle_census` follows every interior tile of a coordinate box
+to its cycle. It raises if the walk or the full distance to the cycle exceeds
+the step cap, or if the walk leaves the packed coordinate range. A census
+certifies only the starting tiles in its box.
 
 An interior tile can inflate to a tile that starts at the origin (`(2;-1,0,1)`
 has `l.v = 2`, and `2 beta` is the start of the third child of `sigma(2)`).
@@ -130,7 +130,7 @@ struct CycleCensus(Movable):
 def cycle_census(mut system: OriginSystem, box: Int, cap: Int) raises -> CycleCensus:
     """Follow every interior tile with `|v_i| <= box` to its cycle."""
     var out = CycleCensus()
-    var cycle_of = Dict[Int, Int]()  # tile -> index of the cycle it reaches
+    var distance_to_cycle = Dict[Int, Int]()  # zero for a cycle tile
     for a in range(3):
         for v0 in range(-box, box + 1):
             for v1 in range(-box, box + 1):
@@ -141,16 +141,15 @@ def cycle_census(mut system: OriginSystem, box: Int, cap: Int) raises -> CycleCe
                     var step = Dict[Int, Int]()
                     var path = List[Int]()
                     var cur = pack_tile(a, v0, v1, v2)
-                    while cur not in step and cur not in cycle_of:
+                    while cur not in step and cur not in distance_to_cycle:
                         if len(path) >= cap:
                             raise Error("orbit exceeded the step cap: census refused")
                         step[cur] = len(path)
                         path.append(cur)
                         cur = system.child(cur)
-                    var index = len(out.cycles)
-                    var tail = len(path)
-                    if cur in cycle_of:
-                        index = cycle_of[cur]
+                    var tail: Int
+                    if cur in distance_to_cycle:
+                        tail = len(path) + distance_to_cycle[cur]
                     else:
                         tail = step[cur]
                         var least = tail
@@ -161,10 +160,11 @@ def cycle_census(mut system: OriginSystem, box: Int, cap: Int) raises -> CycleCe
                         for i in range(len(path) - tail):
                             cycle.append(path[tail + (least - tail + i) % (len(path) - tail)])
                         out.cycles.append(cycle^)
-                    if tail > out.longest:
-                        out.longest = tail
+                    if tail > cap:
+                        raise Error("orbit exceeded the step cap: census refused")
+                    out.longest = max(out.longest, tail)
                     for i in range(len(path)):
-                        cycle_of[path[i]] = index
+                        distance_to_cycle[path[i]] = max(tail - i, 0)
     return out^
 
 

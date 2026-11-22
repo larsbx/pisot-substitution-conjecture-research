@@ -1,0 +1,37 @@
+origin-cycle census: box 8 step cap 4096
+k 1 interior tiles 619 longest transient 44 cycles 2
+  cycle length 8 : (0;1,-1,1) -> (1;1,1,-1) -> (1;-2,1,1) -> (2;2,-1,1) -> (1;-1,2,-1) -> (2;-1,-1,2) -> (0;2,0,-1) -> (1;-2,1,0)
+  cycle length 2 : (0;0,0,0) -> (1;0,0,0)
+k 2 interior tiles 551 longest transient 18 cycles 2
+  cycle length 3 : (1;-1,1,0) -> (1;0,0,1) -> (1;1,0,0)
+  cycle length 2 : (0;0,0,0) -> (1;0,0,0)
+k 3 interior tiles 485 longest transient 11 cycles 2
+  cycle length 3 : (1;-1,1,0) -> (1;0,0,1) -> (1;1,0,0)
+  cycle length 2 : (0;0,0,0) -> (1;0,0,0)
+k 4 interior tiles 441 longest transient 8 cycles 2
+  cycle length 3 : (1;-1,1,0) -> (1;0,0,1) -> (1;1,0,0)
+  cycle length 2 : (0;0,0,0) -> (1;0,0,0)
+k 5 interior tiles 410 longest transient 7 cycles 2
+  cycle length 3 : (1;-1,1,0) -> (1;0,0,1) -> (1;1,0,0)
+  cycle length 2 : (0;0,0,0) -> (1;0,0,0)
+k 6 interior tiles 391 longest transient 6 cycles 2
+  cycle length 3 : (1;-1,1,0) -> (1;0,0,1) -> (1;1,0,0)
+  cycle length 2 : (0;0,0,0) -> (1;0,0,0)
+k 7 interior tiles 376 longest transient 5 cycles 2
+  cycle length 3 : (1;-1,1,0) -> (1;0,0,1) -> (1;1,0,0)
+  cycle length 2 : (0;0,0,0) -> (1;0,0,0)
+k 8 interior tiles 364 longest transient 6 cycles 2
+  cycle length 3 : (1;-1,1,0) -> (1;0,0,1) -> (1;1,0,0)
+  cycle length 2 : (0;0,0,0) -> (1;0,0,0)
+k 9 interior tiles 353 longest transient 5 cycles 2
+  cycle length 3 : (1;-1,1,0) -> (1;0,0,1) -> (1;1,0,0)
+  cycle length 2 : (0;0,0,0) -> (1;0,0,0)
+k 10 interior tiles 348 longest transient 5 cycles 2
+  cycle length 3 : (1;-1,1,0) -> (1;0,0,1) -> (1;1,0,0)
+  cycle length 2 : (0;0,0,0) -> (1;0,0,0)
+k 11 interior tiles 345 longest transient 5 cycles 2
+  cycle length 3 : (1;-1,1,0) -> (1;0,0,1) -> (1;1,0,0)
+  cycle length 2 : (0;0,0,0) -> (1;0,0,0)
+k 12 interior tiles 341 longest transient 5 cycles 2
+  cycle length 3 : (1;-1,1,0) -> (1;0,0,1) -> (1;1,0,0)
+  cycle length 2 : (0;0,0,0) -> (1;0,0,0)

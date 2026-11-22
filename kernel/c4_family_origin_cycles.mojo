@@ -2,17 +2,18 @@
 
 For each `k` in the stated range, every interior lattice tile `(a; v)` with
 `|v_i| <= BOX` is followed to its cycle by exact sign queries
-(`psc.origin_cycle`).  The line for `k` lists every cycle reached.  The
-arithmetic premise `PeriodicLatticeOriginsClassified` of the Lean anchor
-reduction says that for `k >= 2` the only cycle other than the vertex cycle
+(`psc.origin_cycle`). The line for `k` gives the maximum distance to a first
+cycle tile and lists every cycle reached. The Lean theorem
+`periodicLatticeOriginsClassified` gives the interior classification for
+all `k >= 2`. For the sampled parameters `k >= 2` the only cycle other than the vertex cycle
 `(0;0,0,0) -> (1;0,0,0)` is the three-phase interior cycle
 `(1;1,0,0) -> (1;-1,1,0) -> (1;0,0,1)`; `k = 1` is the negative control,
 where that cycle does not exist.
 
 Finite evidence for the named box and range of `k` only.  A periodic tile
 outside the box is not excluded, and no value of `k` beyond the range is
-examined.  An orbit that exceeds the step cap raises; nothing is reported
-for a capped run.
+examined. An orbit that exceeds the step cap raises before the row for its
+parameter is printed.
 """
 
 from psc.origin_cycle import OriginSystem, cycle_census, cycle_text

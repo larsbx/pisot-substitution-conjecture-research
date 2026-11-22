@@ -8,9 +8,10 @@ premise C(k) of the
 > the only periodic interior lattice tiles of the origin-tile map are
 > `(1; 1,0,0)`, `(1; −1,1,0)`, `(1; 0,0,1)`.
 
-**C(k) is now proved in Lean for every `k ≥ 2`**, and with it the anchor
-theorem and the all-pairs witness statement, with no premise. Status:
-mechanically certified at this scope; independent human review pending.
+**Lean proves C(k) for every `k ≥ 2`** and uses it to discharge the
+classification premise in the anchor theorem and all-pairs witness
+statement. This gives a second derivation of the zero-fibre witnesses
+used in the family's dynamical analysis. Independent human review is pending.
 
 ## Source decision
 
@@ -73,7 +74,7 @@ the tiling to it.
 2. *Digit identity.* `dᵢ + eᵢ₊₁ = k wᵢ + 2wᵢ₋₁ + 2wᵢ₋₂ − wᵢ₊₁`.
 
 **Window (`window`, `R_window`).** Let `R₀ = 0`, `Rᵢ₊₁ = Rᵢ + 3wᵢ − 1`.
-With `z, y, x` three consecutive values, newest first,
+With `z, y, x` three consecutive values of `w`, newest first,
 
 ```text
 E = (1−θ)·z + 2α²·(y+z) + 2α·(x+y+z),
@@ -142,13 +143,19 @@ lake env lean -DautoImplicit=false -Dpp.unicode.fun=true \
 Endpoints: `anchor_common_tile`, `zero_fibre_common_tile`,
 `all_pair_witnesses`, `zero_fibre_exactProximal`, `zero_fibre_origin`.
 
-Mojo, exact and independent of the Lean proof: the box census of the
-previous increment is unchanged, and `window_increases` checks that no
-origin child in the box has a larger window range.
+The Mojo census computes the complete distance to each reached cycle.
+Cycle tiles have distance zero. For a path that joins a cached tile,
+the distance is the length of the new prefix plus the cached distance.
+The resulting box-8 maximum at `k = 2` is 18. The regression walks
+`(1;8,2,-8)` to its first cycle tile `(1;-1,1,0)` at step 18 and checks
+that the census refuses a step cap of 17. The `window_increases` check
+for `k = 2..6` uses box 5. The Lean proof depends on the window and
+digit relations in the source derivation.
 
 ```sh
 cd kernel
-mojo run -I . -I tests tests/test_origin_cycle.mojo
+pixi run --locked mojo run -I . -I tests tests/test_origin_cycle.mojo
+pixi run --locked mojo run -I . c4_family_origin_cycles.mojo
 ```
 
 Receipts: [evidence](../evidence/c4-zero-fibre-anchor-proof-2026-11-22/README.md).
@@ -170,13 +177,14 @@ Receipts: [evidence](../evidence/c4-zero-fibre-anchor-proof-2026-11-22/README.md
 
 ### Non-claims / remaining gaps
 
-- This is coincidence at the **zero fibre** only. Propagation to every
-  fibre, ordinary proximality, the almost-everywhere one-to-one
-  statement and the `L²` conclusion are not formalized; they are the
-  interfaces 2–4 of the
-  [spectral-interface note](c4-zero-fibre-spectral-interface-2026-11-21.md).
-- `k = 1` is not covered and the statement is false there in this form.
-- Nothing is claimed for substitutions outside the family, and no
-  ledger claim changes status.
-- Local build and tests only; hosted CI has not run on this revision.
-  Independent human review is pending.
+- The recurrence route establishes the anchor, common labelled tiles and
+  exact window witnesses over the zero history for `k ≥ 2`. The `k = 1`
+  eight-cycle controls the scope of the three-phase classification.
+- The finite-automaton route already gives ordinary proximality on factor
+  fibres. Merged #650 proves Haar ergodicity for `k ≥ 1` and, for `k ≥ 2`,
+  Haar-almost-everywhere singleton fibres and pure discrete spectrum of
+  actual real translation on the ordinary legal hull with the Haar lift.
+  [PR #650](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/650)
+- The symbolic-shift transfer and the universal Pisot conjecture remain
+  separate research obligations. The recurrence proof awaits hosted
+  acceptance and independent human review.

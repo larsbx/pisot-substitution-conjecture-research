@@ -1,9 +1,7 @@
 # Receipts: zero-fibre anchor reduction
 
-The mathematics, its scope and its non-claims are in
-[the note](../../docs/c4-zero-fibre-anchor-stop-go-2026-11-21.md). The
-anchor theorem is reduced to an arithmetic premise; the premise is **not**
-proved.
+This historical packet records the anchor reduction to C(k). The next
+increment proves C(k) and records the corrected census. [Reduction and scope](../../docs/c4-zero-fibre-anchor-stop-go-2026-11-21.md)
 
 - Base revision: `7258dccf1265243c67c62c3979272507c8957c25`.
 - Lean `4.34.0-rc2`, Mathlib `4edb0dbaa3b3cf729d86d1e2f035474d5ae2ac09`,
@@ -16,12 +14,12 @@ proved.
 | --- | --- |
 | `AnchorAxioms.lean` | `#check` and `#print axioms` for the new declarations |
 | `anchor-axioms.log` | its output: ten closures, each `propext, Classical.choice, Quot.sound` |
-| `origin-cycle-census.log` | `kernel/c4_family_origin_cycles.mojo`, `k = 1..12`, box 8, step cap 4096 |
+| `origin-cycle-census.log` | Original `k = 1..12`, box-8 census with step cap 4096. Its largest transient is understated for five parameters. |
 | `SHA256SUMS` | digests of the files of this packet |
 
-These are local receipts. Hosted CI has not run on this revision.
+These receipts were recorded locally for the reduction.
 
-Replay:
+Replay the historical logs from `eb95c7fcd698dab65f149b637ac750bccef6502d`.
 
 ```sh
 cd proof/PscVerif
@@ -35,14 +33,8 @@ mojo run -I . c4_family_origin_cycles.mojo
 
 ## Correction, 2026-11-22
 
-The manifest first committed with this packet pinned four source files
-outside the packet and omitted this README, against the rule that a
-packet pins exactly the files it holds
-(`tests/test_recorded_data_integrity.py`). The manifest now pins the four
-files of the packet. The three recorded outputs are byte-identical to
-the first commit. Two of the sources they came from,
-`kernel/psc/origin_cycle.mojo` and `kernel/tests/test_origin_cycle.mojo`,
-gained the window-range check on 2026-11-22; the census driver and its
-log are unchanged. The premise this packet calls unproved has since been
-proved: see
-[the proof note](../../docs/c4-zero-fibre-anchor-proof-2026-11-22.md).
+The original census measured only the new prefix when an orbit reached
+a cached tile. Its log is retained as a record of that run. The corrected
+maximum at `k = 2` is 18. The exact tile counts and reached cycles agree
+with this historical run for all twelve parameters.
+[Current census and replay](../c4-zero-fibre-anchor-proof-2026-11-22/README.md)

@@ -46,6 +46,28 @@ def test_unique_cycle() raises:
         assert_equal(interior[0], phases())
 
 
+def test_longest_transient() raises:
+    var s = OriginSystem(2)
+    var current = pack_tile(1, 8, 2, -8)
+    var cycle = phases()
+    assert_true(s.is_interior(1, 8, 2, -8))
+    for _ in range(18):
+        assert_true(current not in cycle)
+        current = s.child(current)
+    assert_equal(current, cycle[0])
+
+    var census = cycle_census(s, 8, 4096)
+    assert_equal(census.longest, 18)
+
+    var refused = False
+    try:
+        _ = cycle_census(s, 8, 17)
+    except e:
+        assert_equal(String(e), "orbit exceeded the step cap: census refused")
+        refused = True
+    assert_true(refused)
+
+
 def test_parameter_one_control() raises:
     # At k = 1 the second child of the phase at -l2 has type 2: the
     # three-phase cycle does not exist and an eight-cycle takes its place.
@@ -103,7 +125,18 @@ def test_refusals() raises:
 def main() raises:
     test_signs_and_children()
     test_unique_cycle()
+    test_longest_transient()
     test_parameter_one_control()
     test_window_range()
     test_refusals()
-    require_contract("The origin-tile recurrence of 0 -> 1, 1 -> 0 1^k 2, 2 -> 001 is evaluated by exact sign queries at beta. For k = 2..6 every interior lattice tile with coordinates of absolute value at most 5 reaches the three-phase cycle (1;1,0,0) -> (1;-1,1,0) -> (1;0,0,1) or the vertex cycle (0;0,0,0) -> (1;0,0,0) and no other cycle; at k = 1 the three-phase cycle does not exist and the only interior cycle the same box reaches is one eight-cycle. For k = 2..6 no origin child in that box has a larger window range max - min of {0, 3 v1 - 1, 3 (v1 + v2) - 2}; at k = 1 the child (1;1,-1,1) of (0;-2,1,0) raises it from 2 to 4. A step cap, a parameter below one and a tile not covering the origin raise. Box-bounded finite evidence; periodic tiles outside the box are not excluded.")
+    require_contract(
+        "The origin-tile recurrence of 0 -> 1, 1 -> 0 1^k 2, 2 -> 001 is evaluated by exact sign queries at beta. "
+        "For k = 2..6 every interior lattice tile with coordinates of absolute value at most 5 reaches the three-phase cycle "
+        "(1;1,0,0) -> (1;-1,1,0) -> (1;0,0,1) or the vertex cycle (0;0,0,0) -> (1;0,0,0) and no other cycle. "
+        "At k = 1 the three-phase cycle does not exist and the only interior cycle the same box reaches is one eight-cycle. "
+        "At k = 2 in box 8, the exact longest transient is 18. The tile (1;8,2,-8) first reaches the cycle at "
+        "(1;-1,1,0) on step 18, and the census refuses step cap 17. "
+        "For k = 2..6 no origin child in box 5 has a larger window range max - min of {0, 3 v1 - 1, 3 (v1 + v2) - 2}. "
+        "At k = 1 the child (1;1,-1,1) of (0;-2,1,0) raises it from 2 to 4. A parameter below one and a tile not covering the origin raise. "
+        "The cycle census concerns only the named boxes."
+    )
