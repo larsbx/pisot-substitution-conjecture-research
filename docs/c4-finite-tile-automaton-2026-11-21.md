@@ -1,5 +1,10 @@
 # Finite tile-chain automaton for the literal sigma-k family
 
+**Follow-up:** the [actual-hull interpretation](c4-finite-hull-witnesses-2026-11-21.md)
+now binds these exact certificates to legal tilings and proves the universal
+zero-fibre witness endpoint. The source decision and acceptance below retain
+the original PR #647 scope; they are not retroactively expanded.
+
 ## Source decision before implementation
 
 Proceed with a finite integer certificate for the five tile-chain generators

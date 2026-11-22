@@ -1,0 +1,30 @@
+{
+  "kind": "automated read-only semantic review",
+  "independent_human_review": false,
+  "result": "No mathematical gap found at the recorded scope",
+  "sources": {
+    "PeriodicPartnerFiniteCoincidence.lean": "ae5c8796441d2334e157976498067e4dfd8359e0362b801c312c1cafb93bad0e",
+    "C4FamilyFiniteFibreSynchronization.lean": "9dd07cf862829b61a18e82409893ebd9fba6855a3d0bda2543d786c92355f390",
+    "PeriodicPartnerOriginSeparation.lean": "f0304cc8f908e48a8566a9b110884469b9e82e51679ed0ee13b35ba9a44d244d",
+    "C4FamilyOpenSynchronization.lean": "d67995845d97872e01484eca0e3eb8d78dafb7c25c29dedbce2668c8e47ab923",
+    "PeriodicPartnerSolenoidCharacters.lean": "b501792f12cc16d524209a20eabb834b69ee0a7188afbceb92b9459cb3fffdfd",
+    "C4FamilySolenoidCharacters.lean": "4309de68886bf368e18470e0d903877ec46fe47cd553e9dac37de95fda6e4903",
+    "C4FamilyCharacterOrbits.lean": "a8604253adf021654c5b0cb572c54b7a7b9aad7fc255648c5460a6e53de2ebd6"
+  },
+  "checks": [
+    "One finite maximum depth and one translation precede all tiling quantifiers",
+    "Bijective inflation and shift injectivity recover every member of the transformed fibre",
+    "Origin separation retains equal torus images and bounded integer coefficients",
+    "Open target is complement of the image of the source complement, ensuring whole-fibre containment",
+    "Character density is on continuous functions of the actual full-history solenoid",
+    "Flow sign and beta-to-the-negative-history-depth normalization match the existing factor",
+    "Actual nonunit compatible history has character value minus one",
+    "Orbit frequency equality uses every real time and a half-period contradiction",
+    "Nonzero compatibility certificate represents the trivial character; nontrivial-character hypothesis is retained"
+  ],
+  "remaining": [
+    "Actual Haar construction and inflation ergodicity",
+    "Haar-almost-everywhere singleton fibres",
+    "Measurable inverse and surjective L2 pullback"
+  ]
+}

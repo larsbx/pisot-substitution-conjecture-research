@@ -22,7 +22,22 @@ family ordering of the [live roadmap](research-roadmap-2026-09-21.md) and the
 most of F1 and several items of F2 below. Completed items are kept and marked, with their
 declarations, so the remaining order stays readable.
 
-## Status at `main@fbaa2ef` (through #647) — read this first
+## Finite-automaton continuation after `main@bbe0640d`
+
+The [finite-fibre continuation](c4-finite-fibre-obligations-2026-11-21.md)
+advances F4(c): universal zero-fibre witnesses now feed ordinary
+proximality, nonproximal fibre rank one and intrinsic maximal-factor
+descent. Finite synchronization and a positive origin-displacement gap
+give a nonempty open set of fibres with a common positive window.
+Explicit full-history characters give continuous eigenfunctions and
+dense continuous span on the solenoid. Haar preservation/inflation
+ergodicity, almost-everywhere singleton fibres, and the invariant-measure
+`L2` endpoint remain to be proved. These current endpoints supersede the
+open F4(c) entries in the historical table below. The top-level family
+spectral status remains partly external; the separate symbolic transfer
+also remains open.
+
+## Historical status at `main@fbaa2ef` (through #647)
 
 Main moved again after the rebase note above: the
 [solenoid factor](c4-family-solenoid-factor-2026-11-21.md) (#643/#646), the

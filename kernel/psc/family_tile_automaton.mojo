@@ -88,6 +88,23 @@ def terminal_word(target: Int) raises -> List[Int]:
     return [7, 3]
 
 
+def entry_word(source: Int) raises -> List[Int]:
+    """A source-to-anchor chain with zero output, reversing the legal tail."""
+    return reversed_walk(terminal_word(source))
+
+
+def walk_output_from(word: List[Int], source: Int, target: Int) raises -> List[BigZ]:
+    """Replay from an arbitrary tile label through the same shared DFA.
+
+    Its fixed initial state is label 1. Prepending the already checked
+    zero-output terminal word puts it at source without changing output.
+    """
+    var anchored = terminal_word(source)
+    for edge in word:
+        anchored.append(edge)
+    return walk_output(anchored, target)
+
+
 def recipe_powers(v: List[BigZ]) raises -> List[BigZ]:
     """Compressed finite walk for ANY integer triple, no box or state cap.
 
