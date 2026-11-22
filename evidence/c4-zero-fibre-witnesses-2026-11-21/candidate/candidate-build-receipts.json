@@ -1,0 +1,138 @@
+[
+  {
+    "module": "PscVerif.PeriodicPartnerProximal",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-j",
+      "2",
+      "-o",
+      "/workspace/scratch/23e6cbb0c6d9/baseline-verification/strict-options/candidate-olean/PscVerif/PeriodicPartnerProximal.olean",
+      "PscVerif/PeriodicPartnerProximal.lean"
+    ],
+    "exit_code": 0,
+    "seconds": 11.82645792200492,
+    "source_sha256": "83944b6beee8157260961fc8c4d6e27573836f6f45f1811390bc0deac202feae",
+    "log": "/workspace/scratch/23e6cbb0c6d9/baseline-verification/strict-options/candidate-PscVerif.PeriodicPartnerProximal.log"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerPeriodicZero",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-j",
+      "2",
+      "-o",
+      "/workspace/scratch/23e6cbb0c6d9/baseline-verification/strict-options/candidate-olean/PscVerif/PeriodicPartnerPeriodicZero.olean",
+      "PscVerif/PeriodicPartnerPeriodicZero.lean"
+    ],
+    "exit_code": 0,
+    "seconds": 17.317676150996704,
+    "source_sha256": "651bc59774daae1c2f363253d5734cdc47c9830134cf9784c85c483916583df8",
+    "log": "/workspace/scratch/23e6cbb0c6d9/baseline-verification/strict-options/candidate-PscVerif.PeriodicPartnerPeriodicZero.log"
+  },
+  {
+    "module": "PscVerif.C4ParameterFamilyZeroFibreControls",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-j",
+      "2",
+      "-o",
+      "/workspace/scratch/23e6cbb0c6d9/baseline-verification/strict-options/candidate-olean/PscVerif/C4ParameterFamilyZeroFibreControls.olean",
+      "PscVerif/C4ParameterFamilyZeroFibreControls.lean"
+    ],
+    "exit_code": 0,
+    "seconds": 191.67168093700457,
+    "source_sha256": "dd990353621f404c2adb759c5cf207b7dd95ac2639b09e2450921bbfa8939427",
+    "log": "/workspace/scratch/23e6cbb0c6d9/baseline-verification/strict-options/candidate-PscVerif.C4ParameterFamilyZeroFibreControls.log"
+  },
+  {
+    "module": "PscVerif.C4ParameterFamilyInteriorSeed",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-j",
+      "2",
+      "-o",
+      "/workspace/scratch/23e6cbb0c6d9/baseline-verification/strict-options/candidate-olean/PscVerif/C4ParameterFamilyInteriorSeed.olean",
+      "PscVerif/C4ParameterFamilyInteriorSeed.lean"
+    ],
+    "exit_code": 0,
+    "seconds": 10.135643296001945,
+    "source_sha256": "6cc2b07ef323a93901d647b211fa0621566bf93b1c980a4fa6e8a530c12e2ad0",
+    "log": "/workspace/scratch/23e6cbb0c6d9/baseline-verification/strict-options/candidate-PscVerif.C4ParameterFamilyInteriorSeed.log"
+  },
+  {
+    "module": "PscVerif.C4ParameterFamilyZeroFibreWitnesses",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-j",
+      "2",
+      "-o",
+      "/workspace/scratch/23e6cbb0c6d9/baseline-verification/strict-options/candidate-olean/PscVerif/C4ParameterFamilyZeroFibreWitnesses.olean",
+      "PscVerif/C4ParameterFamilyZeroFibreWitnesses.lean"
+    ],
+    "exit_code": 0,
+    "seconds": 3.6224536590016214,
+    "source_sha256": "3510a37f7bc609c962a88ab184f3b7591479abdcae0de0abfb6490fb90a6fb3d",
+    "log": "/workspace/scratch/23e6cbb0c6d9/baseline-verification/strict-options/candidate-PscVerif.C4ParameterFamilyZeroFibreWitnesses.log"
+  },
+  {
+    "module": "PscVerif.C4ParameterFamilyInteriorProximal",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-j",
+      "2",
+      "-o",
+      "/workspace/scratch/23e6cbb0c6d9/baseline-verification/strict-options/candidate-olean/PscVerif/C4ParameterFamilyInteriorProximal.olean",
+      "PscVerif/C4ParameterFamilyInteriorProximal.lean"
+    ],
+    "exit_code": 0,
+    "seconds": 3.897048694001569,
+    "source_sha256": "68ce95f9f0cdf53603f79cff4d3a6b38c1e6e51ae4750b4fc68108b30fa4a9b2",
+    "log": "/workspace/scratch/23e6cbb0c6d9/baseline-verification/strict-options/candidate-PscVerif.C4ParameterFamilyInteriorProximal.log"
+  },
+  {
+    "module": "PscVerif.C4ParameterFamilyInteriorZero",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-j",
+      "2",
+      "-o",
+      "/workspace/scratch/23e6cbb0c6d9/baseline-verification/strict-options/candidate-olean/PscVerif/C4ParameterFamilyInteriorZero.olean",
+      "PscVerif/C4ParameterFamilyInteriorZero.lean"
+    ],
+    "exit_code": 0,
+    "seconds": 6.906984827997803,
+    "source_sha256": "a84c06f8694a66eaa0b488ba8b2673c9dcc062bec9996d3dc5443cf97ce8b52e",
+    "log": "/workspace/scratch/23e6cbb0c6d9/baseline-verification/strict-options/candidate-PscVerif.C4ParameterFamilyInteriorZero.log"
+  },
+  {
+    "module": "C4ZeroFibreWitnessAudit",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-j",
+      "2",
+      "-o",
+      "/workspace/scratch/23e6cbb0c6d9/baseline-verification/strict-options/candidate-olean/C4ZeroFibreWitnessAudit.olean",
+      "C4ZeroFibreWitnessAudit.lean"
+    ],
+    "exit_code": 0,
+    "seconds": 5.119518057006644,
+    "source_sha256": "fa9d4d6d34b745d9e485b723a242685175cb747d9146f13a979b25c25517312d",
+    "log": "/workspace/scratch/23e6cbb0c6d9/baseline-verification/strict-options/candidate-C4ZeroFibreWitnessAudit.log"
+  }
+]

@@ -1,0 +1,51 @@
+{
+  "verified_utc": "2026-11-21T19:07:10.599385+00:00",
+  "checks": [
+    {
+      "command": [
+        "bash",
+        "-n",
+        "tools/check_c4_parameter_family.sh"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "check": "exact_audit_receipt_counts",
+      "log": "baseline/C4ParameterFamilyAudit.log",
+      "passed": true
+    },
+    {
+      "check": "exact_audit_receipt_counts",
+      "log": "candidate/candidate-C4ZeroFibreWitnessAudit.log",
+      "passed": true
+    },
+    {
+      "check": "final_current_source_hash_guard",
+      "manifest": "baseline/source-sha256.json",
+      "files": 50,
+      "passed": true
+    },
+    {
+      "check": "final_current_source_hash_guard",
+      "manifest": "candidate/candidate-source-sha256.json",
+      "files": 8,
+      "passed": true
+    },
+    {
+      "check": "local_markdown_links",
+      "documents": 4,
+      "passed": true
+    }
+  ]
+}

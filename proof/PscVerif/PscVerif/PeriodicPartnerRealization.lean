@@ -748,22 +748,25 @@ theorem torus_t2Space : T2Space (Torus α) := by
   let _ : IsClosed (lattice α : Set (α → ℝ)) := isClosed_lattice
   infer_instance
 
-/-- The image of the compact unit cube covers the torus, by subtracting the
-integer part in each coordinate. -/
+/-- Each torus point has a lift in the closed unit cube. -/
+theorem exists_torus_lift (z : Torus α) :
+    ∃ v ∈ Set.pi univ (fun _ : α => Icc (0 : ℝ) 1),
+      (v : Torus α) = z := by
+  let q := QuotientAddGroup.mk' (lattice α)
+  obtain ⟨v, rfl⟩ := QuotientAddGroup.mk'_surjective (lattice α) z
+  let i : α → ℝ := fun a => ⌊v a⌋
+  have hi : i ∈ lattice α := fun a => ⟨⌊v a⌋, rfl⟩
+  have hzero : q i = 0 := (QuotientAddGroup.eq_zero_iff _).mpr hi
+  refine ⟨v - i, ?_, show q (v - i) = q v by rw [map_sub, hzero, sub_zero]⟩
+  intro a _
+  change v a - (⌊v a⌋ : ℝ) ∈ Icc 0 1
+  exact ⟨sub_nonneg.mpr (Int.floor_le _), by linarith [Int.lt_floor_add_one (v a)]⟩
+
+/-- The image of the compact unit cube covers the torus. -/
 theorem torus_compactSpace : CompactSpace (Torus α) := by
   let cube : Set (α → ℝ) := Set.pi univ fun _ => Icc 0 1
   let q := QuotientAddGroup.mk' (lattice α)
-  have hcover : q '' cube = univ := by
-    apply eq_univ_of_forall
-    intro z
-    obtain ⟨v, rfl⟩ := QuotientAddGroup.mk'_surjective (lattice α) z
-    let i : α → ℝ := fun a => ⌊v a⌋
-    have hi : i ∈ lattice α := fun a => ⟨⌊v a⌋, rfl⟩
-    have hzero : q i = 0 := (QuotientAddGroup.eq_zero_iff _).mpr hi
-    refine ⟨v - i, ?_, by rw [map_sub, hzero, sub_zero]⟩
-    intro a _
-    change v a - (⌊v a⌋ : ℝ) ∈ Icc 0 1
-    exact ⟨sub_nonneg.mpr (Int.floor_le _), by linarith [Int.lt_floor_add_one (v a)]⟩
+  have hcover : q '' cube = univ := eq_univ_of_forall exists_torus_lift
   apply isCompact_univ_iff.mp
   rw [← hcover]
   exact (isCompact_univ_pi fun _ => isCompact_Icc).image QuotientAddGroup.continuous_mk
