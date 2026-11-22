@@ -1,0 +1,250 @@
+{
+  "base_draft_pr": 650,
+  "base_commit": "67e2bcd2629fcb4b6a48a8b9cc6f10351296e235",
+  "base_tree": "4531ea051d96a11cdfd0021f06d19fa7625357be",
+  "lean_version": "Lean (version 4.34.0-rc2, x86_64-unknown-linux-gnu, commit 6a10ac8c22beadecabdbb0919c2b50214762f91d, Release)",
+  "project_compiler_options": [
+    "-DautoImplicit=false",
+    "-Dpp.unicode.fun=true"
+  ],
+  "scope": "Selected roots and fixtures of the family gate on initially empty project outputs with source-only project copies and reused pinned external dependency caches. Hosted acceptance is separate.",
+  "canonical_gate": "tools/check_c4_parameter_family.sh",
+  "pinned_external_sources": {
+    "lean": "leanprover/lean4:v4.34.0-rc2",
+    "packages": [
+      {
+        "name": "mathlib",
+        "rev": "4edb0dbaa3b3cf729d86d1e2f035474d5ae2ac09",
+        "url": "https://github.com/leanprover-community/mathlib4"
+      },
+      {
+        "name": "plausible",
+        "rev": "d9598f07b1bc701f1e3aae163d2681c1fd978793",
+        "url": "https://github.com/leanprover-community/plausible"
+      },
+      {
+        "name": "LeanSearchClient",
+        "rev": "ba67e212be1197b84c1f1f6299488a10a3002713",
+        "url": "https://github.com/leanprover-community/LeanSearchClient"
+      },
+      {
+        "name": "importGraph",
+        "rev": "1681d78dd6e65e38b143f9740d829c826673807c",
+        "url": "https://github.com/leanprover-community/import-graph"
+      },
+      {
+        "name": "proofwidgets",
+        "rev": "a8acbfd87375ff4abe14ce09db5b7664d383bc7f",
+        "url": "https://github.com/leanprover-community/ProofWidgets4"
+      },
+      {
+        "name": "aesop",
+        "rev": "18889deb9e83ea7420ef51c160d6f88552e744e3",
+        "url": "https://github.com/leanprover-community/aesop"
+      },
+      {
+        "name": "Qq",
+        "rev": "507746ab8f4b643ccdacb2ec4cdb5853fa9f8ab3",
+        "url": "https://github.com/leanprover-community/quote4"
+      },
+      {
+        "name": "batteries",
+        "rev": "4cac2177c37f5530c4da76aa8e4307f3fc9e4dcb",
+        "url": "https://github.com/leanprover-community/batteries"
+      },
+      {
+        "name": "Cli",
+        "rev": "ab3a82db9fea14cf0fd7f5a2de650f4b534640af",
+        "url": "https://github.com/leanprover/lean4-cli"
+      }
+    ]
+  },
+  "project_modules_built": 81,
+  "audit_fixtures_passed": [
+    "C4CharacterOrbitsAudit.lean",
+    "C4FamilyHaarAudit.lean",
+    "C4FamilyMeasuredSpectrumAudit.lean",
+    "C4FiniteHullWitnessAudit.lean",
+    "C4FiniteProximalAudit.lean",
+    "C4FiniteSynchronizationAudit.lean",
+    "C4FiniteTileAutomatonAudit.lean",
+    "C4ParameterFamilyAudit.lean",
+    "C4SolenoidCharactersAudit.lean",
+    "C4ZeroFibreWitnessAudit.lean"
+  ],
+  "replayed_source_sha256": {
+    "proof/PscVerif/PscVerif/Binomial.lean": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
+    "proof/PscVerif/PscVerif/C4FamilyCharacterOrbits.lean": "a8604253adf021654c5b0cb572c54b7a7b9aad7fc255648c5460a6e53de2ebd6",
+    "proof/PscVerif/PscVerif/C4FamilyFiniteFibreSynchronization.lean": "9dd07cf862829b61a18e82409893ebd9fba6855a3d0bda2543d786c92355f390",
+    "proof/PscVerif/PscVerif/C4FamilyFiniteProximal.lean": "f0626913d31535e076e6afd0ce495ad5d4c49b1214d81c9b3b3f5b533244dc1c",
+    "proof/PscVerif/PscVerif/C4FamilyFiniteZeroFibre.lean": "47832e3754b2cf087dced965641afc954537b94949d990f264f9bd91835221b8",
+    "proof/PscVerif/PscVerif/C4FamilyHaarErgodicity.lean": "81cf9efa86e64520927307c305696ea4692c339f974daee94f87e1a37b5538ef",
+    "proof/PscVerif/PscVerif/C4FamilyHaarSingletonFibres.lean": "66323188238cb1bcbe99c98e20cfdacd5e9adedcd60b3ff3e7f93ae125fb10e1",
+    "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean": "4dafec9bb5ec030c5bbcb1375216afa5e9e080a3ceabccf8de244005ed6ffaf0",
+    "proof/PscVerif/PscVerif/C4FamilyMeasuredSpectrum.lean": "be362e24a8b3ad083213a06f6c8c09f5065fc7639d3ed015c83b73a92a556617",
+    "proof/PscVerif/PscVerif/C4FamilyOpenSynchronization.lean": "d67995845d97872e01484eca0e3eb8d78dafb7c25c29dedbce2668c8e47ab923",
+    "proof/PscVerif/PscVerif/C4FamilySolenoidCharacters.lean": "4309de68886bf368e18470e0d903877ec46fe47cd553e9dac37de95fda6e4903",
+    "proof/PscVerif/PscVerif/C4FamilyTileAutomatonHull.lean": "02d57375d81d07073d12dc864a8632abfd6068808c051500ac1895d0f99d737c",
+    "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean": "9b97606079e367b743a2f863403dff677a58c096068ad1715160eeef5a8b9559",
+    "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean": "b8123aec4c0e1c2a9a1b5937a17cd0c9c26189e0d884c8a27bf1465e3b8b5b24",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyBridge.lean": "eb29f8b3bf9c325163a1e932dcfc324bd094f0b754ed28a2789daadb45e0354a",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyCarrier.lean": "fba5f9b5a2a20c08107aa3e7714c20f2e92a4aeacd28e816e1a4e331e5e03208",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyControls.lean": "98b75297c14f75b6a2c87c651d06b3da13131616cf1b53c2630d7b498a1b5540",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyEquicontinuousFactor.lean": "d581184210ba15a673591078d0050b3be8a3f58c13878e39814818b6d414268f",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyFibreDistal.lean": "556923495164687e8b52258cc00ccf52b0411f348cdaf0031674a369090be9fc",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorProximal.lean": "68ce95f9f0cdf53603f79cff4d3a6b38c1e6e51ae4750b4fc68108b30fa4a9b2",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorSeed.lean": "6cc2b07ef323a93901d647b211fa0621566bf93b1c980a4fa6e8a530c12e2ad0",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorZero.lean": "a84c06f8694a66eaa0b488ba8b2673c9dcc062bec9996d3dc5443cf97ce8b52e",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyOrdinaryProximal.lean": "7636d2c4c641deb791407072755958df0c8e3e26b4d3b753439a868f20829c6a",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean": "17c1a41e6726dfef7f04f3ccc0594f0cbfc5eb90fd61325114179541c763423c",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyRecognizability.lean": "b6889e7a4bf84e33cb154b36229be3f8c7992ce0d6afb1b241ff6e3d89ca2532",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyRotationFactor.lean": "dda99b8395b96881a2078a3f5e296c7bf296d3523fef779c5298640ec1dd0bed",
+    "proof/PscVerif/PscVerif/C4ParameterFamilySolenoid.lean": "9b3b06d944c2b531ab6d3649144f5361244dc89a554ba9354e564dae26f52917",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean": "421b9833f2d132206d0a34ee9ff9dcf511594cb5c7e14540f4c5a1fb9a83ba1c",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyWords.lean": "e49cc02bc7b82b8f44101ce153d93982f02e31684501ffe7499cfb53d55c86d7",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreControls.lean": "dd990353621f404c2adb759c5cf207b7dd95ac2639b09e2450921bbfa8939427",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreWitnesses.lean": "3510a37f7bc609c962a88ab184f3b7591479abdcae0de0abfb6490fb90a6fb3d",
+    "proof/PscVerif/PscVerif/ConcentrationAlgebra.lean": "301a1a13eca8a554d1313afc96e0a374dfc0774dfa8d2a2e8e60b97345c921b2",
+    "proof/PscVerif/PscVerif/Cyclicity.lean": "a31b77d0fcb06d1dcb582156679c7316d2847fab2ff9b06db2b998ca6effa770",
+    "proof/PscVerif/PscVerif/Descendants.lean": "6641b65d81d90be34c13937b6ab8ebc029fcce91babd7c2ce398738dac783a40",
+    "proof/PscVerif/PscVerif/FastForwardCarrier.lean": "fba7b08223e333d9380ff1e090ad85cad6aadbe8eadd1a2dde8d6b92bfcf0689",
+    "proof/PscVerif/PscVerif/FixedPointLimit.lean": "cd4a824f288d4c1072fd375e0e7b9014f56028e23e00cb4336fd678a210b7bbe",
+    "proof/PscVerif/PscVerif/ForwardCarrier.lean": "df91e154ecb52a909c2ec7c06af1813f99ff2b38bd7053fb1df78928741c890e",
+    "proof/PscVerif/PscVerif/Incidence.lean": "b0c865d4177dac9485a2ddbd35201143ee3d263ad735af05785b077e1f6bd6ff",
+    "proof/PscVerif/PscVerif/Intertwiner2.lean": "4fdc6a9497a5c3fd4b39101b033e6814b70aec8391f0cbc8691028319b1143d6",
+    "proof/PscVerif/PscVerif/ParikhIntertwiner.lean": "bc7120433f0c103c966fc6faf41407b969537fd0881971a5d36b98169b220d96",
+    "proof/PscVerif/PscVerif/PeriodicPartner.lean": "8b4cfa2dbed0bf629a0a0f0dfd57ecb63b0d83bc02b48ee3392faa90404f4aaf",
+    "proof/PscVerif/PscVerif/PeriodicPartnerAsymptotic.lean": "0ad011b1e6eb02418699a4838c22ae630f28954696810c470fdb054e077b4c23",
+    "proof/PscVerif/PscVerif/PeriodicPartnerBalancedGeometry.lean": "168cfad4dcda3241055411e9f40502926f2738740287ebcebd382f16258104e2",
+    "proof/PscVerif/PscVerif/PeriodicPartnerCollapse.lean": "a0b3df8c6040977532413191864a2ba002ebf45a6fb79cd3a40fe9a8fb45fd91",
+    "proof/PscVerif/PscVerif/PeriodicPartnerDesubContinuity.lean": "57bd1013e5cc26d2ece86c44ded9b20e57ed2df9068a3cf6d243aed3fc87fcfe",
+    "proof/PscVerif/PscVerif/PeriodicPartnerDichotomy.lean": "d74034c65d26d8b98916f6fdca046c6772e9a3389fb53fdd03bcf3baeea2339b",
+    "proof/PscVerif/PscVerif/PeriodicPartnerDynamics.lean": "812599f6a9dfb4ab5d0da0924fa6c3901128f74644e76d14eb2996de17f55c44",
+    "proof/PscVerif/PscVerif/PeriodicPartnerEquicontinuousFactor.lean": "7bb8ff4ad0ee87a2421df93384511253cc88c7836d7b900c37971f96c5196071",
+    "proof/PscVerif/PscVerif/PeriodicPartnerEvenTails.lean": "5519f5698c83b43956df8e04263f873e4879a1ec4e48533fe96e36b330f7d626",
+    "proof/PscVerif/PscVerif/PeriodicPartnerEventualCoincidence.lean": "d25e97d6a1c338a452fc61c987bfc9addb569cde5a7e2df3eaed5d485f92238a",
+    "proof/PscVerif/PscVerif/PeriodicPartnerFibreDistal.lean": "4819d353bd09427da45695d11143746d9ead187f4d90802e915a2c83e1b0deef",
+    "proof/PscVerif/PscVerif/PeriodicPartnerFiniteCoincidence.lean": "ae5c8796441d2334e157976498067e4dfd8359e0362b801c312c1cafb93bad0e",
+    "proof/PscVerif/PscVerif/PeriodicPartnerHull.lean": "6124e92faa7ace36663a57ff5dda39f281fd86237cc30006912cf4c2a0a65b6e",
+    "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean": "3be4cdd1c79f495bf3a00e3a12ffe858c7a00676aea0f31126f340e047d9bba8",
+    "proof/PscVerif/PscVerif/PeriodicPartnerHullComplete.lean": "800e0ff78b0e0bf9ea8f477b734952ef92d4b96e034ea6fc0be310c6fc8070c0",
+    "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean": "80e0f040cd0ea768a0d5ddf74710dc659c9a9431fb667740953f41369a652386",
+    "proof/PscVerif/PscVerif/PeriodicPartnerHullPatches.lean": "07ce32643bfcec7aac4f9e9cc36969a888cd726462aa32077c3fbd2b44a03698",
+    "proof/PscVerif/PscVerif/PeriodicPartnerLegalCoincidence.lean": "3c81c675054bea4b16fa83e8d912525b4d456218997d9e21697d8847e148e23d",
+    "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean": "0c9d009618b409578d573a94e2f15b8052610eaa8c4f9d28aa77c3045644b9bb",
+    "proof/PscVerif/PscVerif/PeriodicPartnerLocalRealization.lean": "472eacd674a293a84e841a7888398fd1fbaeedbdeff3a372c2e6ab665556e2b1",
+    "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean": "ab9cca25c9b6f57b944a912e1e8a239b4bb46bd7a73727542af056760331b7cf",
+    "proof/PscVerif/PscVerif/PeriodicPartnerOrdinaryProximal.lean": "cf93554a7032dd4bb34bc5f51d60330bbeb8fcaa63ad0c1ef107190d8b38d73d",
+    "proof/PscVerif/PscVerif/PeriodicPartnerOriginContinuity.lean": "8dc8686400f6a170c42e962359a406b4eaa649bf899a5d8149488e5ee8c37d50",
+    "proof/PscVerif/PscVerif/PeriodicPartnerOriginSeparation.lean": "f0304cc8f908e48a8566a9b110884469b9e82e51679ed0ee13b35ba9a44d244d",
+    "proof/PscVerif/PscVerif/PeriodicPartnerPeriodicZero.lean": "651bc59774daae1c2f363253d5734cdc47c9830134cf9784c85c483916583df8",
+    "proof/PscVerif/PscVerif/PeriodicPartnerProximal.lean": "83944b6beee8157260961fc8c4d6e27573836f6f45f1811390bc0deac202feae",
+    "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean": "3b983148f0e3bc048984c15cb5350bcb77cb272b3bd77058ba02020008cd764d",
+    "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean": "8d779d4d0ebb448ddb784f35b4e135cc5c7ce78ba97fd3c55537d1cbbb5a2d04",
+    "proof/PscVerif/PscVerif/PeriodicPartnerRealizationFinite.lean": "df8a3538f890eb6c5a25349c806e8b0eb54a9a1b2ca8f839ea4bfeb3e774feda",
+    "proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean": "870d45802ea6b8678a90bdbb88bdfa90a986fdafad52f00962766245353eb323",
+    "proof/PscVerif/PscVerif/PeriodicPartnerRealizationOnto.lean": "ce6eac4f63139a67ab95687d5da0bba2e51efc8457f5535ca7ed6a3436a35721",
+    "proof/PscVerif/PscVerif/PeriodicPartnerRotationFactor.lean": "0d3ab745b6d63394490b39b7bc07c8680aad77cd7e51804da09d476367e340fe",
+    "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean": "b501792f12cc16d524209a20eabb834b69ee0a7188afbceb92b9459cb3fffdfd",
+    "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidHaar.lean": "891634fbc287798c73d3d76a42e4cd4a7e791a7d3cb2f68a82fa0581bc3a429f",
+    "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean": "45d12d1e6e7589bbbccfbf44798af9700c99be94a24a61ea02ece5ad8c55eafd",
+    "proof/PscVerif/PscVerif/PerronCore.lean": "1f06da1e0b57e74b31fc03d753bd314f25561a37e512b3a8f7f05fda0d75458c",
+    "proof/PscVerif/PscVerif/Reduction.lean": "357fa49ab6991513e07f249b8a4d74caabad75f68db76ce501395b3a0af87d2d",
+    "proof/PscVerif/PscVerif/SignedCocycle.lean": "eccc753e1656cc949db13d50ff8d97883f084fe18ab32ef70226cded35237e7e",
+    "proof/PscVerif/PscVerif/Termination.lean": "bdc24ad4fddd5d01aee6f986c8d5476aead0655902db7a129e14c1921d364196",
+    "proof/PscVerif/PscVerif/TerminationFactors.lean": "3415e1034becf2c937f29aa61326fa174cfcbb52a605fb467a362721d20bf831",
+    "proof/PscVerif/PscVerif/UniversalClosureReduction.lean": "aaf84f504e5609b7d74be4187ec325e195e5facc098386b42e36b469f2318e24",
+    "proof/PscVerif/C4CharacterOrbitsAudit.lean": "23c1dae1939fe054375bb8de0fa9add025b21728f38b98a98956cb0d8f50191f",
+    "proof/PscVerif/C4FamilyHaarAudit.lean": "ce2e947f905a7da206827c6c7c6fa97943eae3823dffd4bf3881da385f3f0607",
+    "proof/PscVerif/C4FamilyMeasuredSpectrumAudit.lean": "cea480792090c92694eab6d32219d52f03439a963d919b41868257b08fdca5ff",
+    "proof/PscVerif/C4FiniteHullWitnessAudit.lean": "58d7293dcc4baf9066599bf8349963512855a654ab680e357e7bd38e35d38f47",
+    "proof/PscVerif/C4FiniteProximalAudit.lean": "9d75e8645c7eebbe0f8479d267ad66f6ff4b1976f759f8b472f510f29909c851",
+    "proof/PscVerif/C4FiniteSynchronizationAudit.lean": "a04634c4d67258b9de1dd8bcb1554b8174f59336a144bd5e2cb402ac861029c9",
+    "proof/PscVerif/C4FiniteTileAutomatonAudit.lean": "03ae6c9467da09b705a6ddf5c51403797a17e559bbf81175d5544e34c1eb8b08",
+    "proof/PscVerif/C4ParameterFamilyAudit.lean": "5d63a488ad5d3a98f20e6e109049a349a440c9459dc33013ba40f915ade5c5a3",
+    "proof/PscVerif/C4SolenoidCharactersAudit.lean": "a58b05f8e660fb239f6fbb90b8c5dace255481b3818ad0c7dfcb11cdb5405dbe",
+    "proof/PscVerif/C4ZeroFibreWitnessAudit.lean": "fa9d4d6d34b745d9e485b723a242685175cb747d9146f13a979b25c25517312d"
+  },
+  "configuration_sha256": {
+    "proof/PscVerif/PscVerif.lean": "8d890a26f8afe829aac7a1fc6fa38f8708272d6862a2896d5578c12383454d14",
+    "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
+    "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
+    "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
+    "tools/check_c4_parameter_family.sh": "2dfe25e44a7b22c9ca8be660f3694ebd36def10573befe1a1a17708d918cc8f0"
+  },
+  "principal_axiom_checks": {
+    "Psc.C4FamilyMeasuredRealization.factor_inverse_ae": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Psc.C4FamilyMeasuredRealization.inverse_factor_ae": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Psc.C4FamilyMeasuredRealization.hullMeasure_eq_of_map": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Psc.C4FamilyMeasuredRealization.measurePreserving_translate": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Psc.C4FamilyMeasuredRealization.measurePreserving_inflate": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Psc.C4FamilyMeasuredSpectrum.l2Equiv": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Psc.C4FamilyMeasuredSpectrum.eigenfunctionLp_translate": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Psc.C4FamilyMeasuredSpectrum.pureDiscrete_translation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "measured_audit_output": [
+    "PSC_FAMILY_MEASURED_MODULE\tPscVerif.C4FamilyMeasuredRealization\t38",
+    "PSC_FAMILY_MEASURED_MODULE\tPscVerif.C4FamilyMeasuredSpectrum\t32",
+    "PSC_FAMILY_MEASURED_ENDPOINT\tPsc.C4FamilyMeasuredRealization.factor_inverse_ae",
+    "PSC_FAMILY_MEASURED_ENDPOINT\tPsc.C4FamilyMeasuredRealization.inverse_factor_ae",
+    "PSC_FAMILY_MEASURED_ENDPOINT\tPsc.C4FamilyMeasuredRealization.measurePreserving_factor",
+    "PSC_FAMILY_MEASURED_ENDPOINT\tPsc.C4FamilyMeasuredRealization.measurePreserving_inverse",
+    "PSC_FAMILY_MEASURED_ENDPOINT\tPsc.C4FamilyMeasuredRealization.measurePreserving_translate",
+    "PSC_FAMILY_MEASURED_ENDPOINT\tPsc.C4FamilyMeasuredRealization.measurePreserving_inflate",
+    "PSC_FAMILY_MEASURED_ENDPOINT\tPsc.C4FamilyMeasuredSpectrum.pullback_surjective",
+    "PSC_FAMILY_MEASURED_ENDPOINT\tPsc.C4FamilyMeasuredSpectrum.translationKoopman_surjective",
+    "PSC_FAMILY_MEASURED_ENDPOINT\tPsc.C4FamilyMeasuredSpectrum.eigenfunctionLp_ae",
+    "PSC_FAMILY_MEASURED_ENDPOINT\tPsc.C4FamilyMeasuredSpectrum.eigenfunctionLp_translate",
+    "PSC_FAMILY_MEASURED_ENDPOINT\tPsc.C4FamilyMeasuredSpectrum.span_eigenfunctionLp_closure_eq_top",
+    "PSC_FAMILY_MEASURED_ENDPOINT\tPsc.C4FamilyMeasuredSpectrum.pureDiscrete_translation",
+    "PSC_FAMILY_MEASURED_CONTRACT_REFUSED\tPsc.C4FamilyMeasuredRealization.inverse_factor_ae\tPsc.C4FamilyMeasuredSpectrumAudit.EverywhereInverseType",
+    "PSC_FAMILY_MEASURED_CONTRACT_REFUSED\tPsc.C4FamilyMeasuredSpectrum.eigenfunctionLp_translate\tPsc.C4FamilyMeasuredSpectrumAudit.OppositeFrequencyType",
+    "PSC_FAMILY_MEASURED_REFUSAL_CONTROLS\t26",
+    "PSC_FAMILY_MEASURED_AUDIT_COMPLETE\t70\t35"
+  ],
+  "concrete_controls": [
+    "The actual zero-fibre seam pair prevents any global left inverse.",
+    "A measure-preserving two-atom collapse has a proper L2 pullback range."
+  ],
+  "inherited_warnings": [
+    "warning: PscVerif/TerminationFactors.lean:107:8: automatically included section variable(s) unused in theorem `_private.PscVerif.TerminationFactors.0.Psc.TerminationFactors.subst_singletons`:",
+    "warning: PscVerif/FastForwardCarrier.lean:288:13: `if_neg` has been deprecated: Use `ite_eq_right` instead",
+    "warning: PscVerif/C4ParameterFamilyCarrier.lean:121:50: This simp argument is unused:",
+    "warning: PscVerif/C4ParameterFamilyCarrier.lean:121:60: This simp argument is unused:",
+    "warning: PscVerif/C4ParameterFamilyCarrier.lean:123:26: This simp argument is unused:",
+    "warning: PscVerif/C4ParameterFamilyCarrier.lean:123:36: This simp argument is unused:"
+  ],
+  "source_provenance": "passed"
+}

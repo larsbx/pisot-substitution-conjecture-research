@@ -47,7 +47,8 @@ elan run "$PSC_FAMILY_PIN" lake --no-cache build \
     PscVerif.C4FamilyTileAutomatonHull PscVerif.C4FamilyFiniteZeroFibre \
     PscVerif.C4FamilyFiniteProximal PscVerif.C4ParameterFamilyFibreDistal \
     PscVerif.C4FamilyOpenSynchronization PscVerif.C4FamilySolenoidCharacters \
-    PscVerif.C4FamilyCharacterOrbits
+    PscVerif.C4FamilyCharacterOrbits PscVerif.C4FamilyHaarSingletonFibres \
+    PscVerif.C4FamilyMeasuredSpectrum
 psc_family_check_pins
 elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
     -DautoImplicit=false -Dpp.unicode.fun=true C4ParameterFamilyAudit.lean \
@@ -134,4 +135,18 @@ elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
     | tee "$PSC_FAMILY_TMP/character-orbits-audit.log"
 test "$(grep -Fxc $'PSC_CHARACTER_ORBIT_AUDIT_COMPLETE\t23\t21' "$PSC_FAMILY_TMP/character-orbits-audit.log")" -eq 1
 test "$(grep -Fxc $'PSC_CHARACTER_ORBIT_REFUSAL_CONTROLS\t36' "$PSC_FAMILY_TMP/character-orbits-audit.log")" -eq 1
+elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
+    -DautoImplicit=false -Dpp.unicode.fun=true C4FamilyHaarAudit.lean \
+    | tee "$PSC_FAMILY_TMP/haar-audit.log"
+test "$(grep -c '^PSC_FAMILY_HAAR_MODULE' "$PSC_FAMILY_TMP/haar-audit.log")" -eq 3
+test "$(grep -c '^PSC_FAMILY_HAAR_ENDPOINT' "$PSC_FAMILY_TMP/haar-audit.log")" -eq 9
+test "$(grep -Fxc $'PSC_FAMILY_HAAR_REFUSAL_CONTROLS\t21' "$PSC_FAMILY_TMP/haar-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_FAMILY_HAAR_AUDIT_COMPLETE\t72\t40' "$PSC_FAMILY_TMP/haar-audit.log")" -eq 1
+elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
+    -DautoImplicit=false -Dpp.unicode.fun=true C4FamilyMeasuredSpectrumAudit.lean \
+    | tee "$PSC_FAMILY_TMP/measured-audit.log"
+test "$(grep -c '^PSC_FAMILY_MEASURED_MODULE' "$PSC_FAMILY_TMP/measured-audit.log")" -eq 2
+test "$(grep -c '^PSC_FAMILY_MEASURED_ENDPOINT' "$PSC_FAMILY_TMP/measured-audit.log")" -eq 12
+test "$(grep -Fxc $'PSC_FAMILY_MEASURED_REFUSAL_CONTROLS\t26' "$PSC_FAMILY_TMP/measured-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_FAMILY_MEASURED_AUDIT_COMPLETE\t70\t35' "$PSC_FAMILY_TMP/measured-audit.log")" -eq 1
 psc_family_check_pins
