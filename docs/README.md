@@ -258,6 +258,9 @@ Change the ledger entry and every surface in the same commit.
   keeps the formal-vs-realized firewall, exact lattice-drift replay target and
   contact geometry as research controls, while explicitly rejecting the stale
   obstruction-regime / nonterminating-BPA inferences as current proof status.
+- [`grh-chebotarev-auxiliary-prime-stop-go-2026-11-22.md`](grh-chebotarev-auxiliary-prime-stop-go-2026-11-22.md)
+  — stop/go note: no open obligation consumes a bound on the least prime of
+  prescribed splitting type, so GRH has no entry point. Decision: stop.
 
 These are reference/index additions only. They do not establish #84, #138,
 #139, G1, or general PSC, or change their ledger status or closure priorities.

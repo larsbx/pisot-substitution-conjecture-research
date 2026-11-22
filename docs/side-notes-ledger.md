@@ -223,6 +223,15 @@ by deleting it.
   exact closure. Zero gain by construction. Do not re-attempt. ·
   `sadic-transfer-literature-gate-2026-10-11.md` §6
 
+- 2026-11-22 · GRH / effective Chebotarev as a lever on PSC: no open
+  obligation consumes a bound on the least prime of prescribed splitting
+  type. Chebotarev gives existence unconditionally; the solenoid's profinite
+  fibre and `K_sigma` live at `p | det M` only; reduction modulo an auxiliary
+  prime is a one-sided sieve. Stop; reopening criterion recorded. Correction
+  of the session's informal framing: finite places do enter for nonunits,
+  but only at the structural primes. ·
+  `grh-chebotarev-auxiliary-prime-stop-go-2026-11-22.md` §§3, 6
+
 ## 3. Settled by the literature (do not target with new machinery)
 
 - 2026-10-04 · Specimens with a power or common-prefix/suffix conjugate in
