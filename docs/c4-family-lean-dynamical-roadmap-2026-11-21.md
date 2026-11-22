@@ -52,8 +52,8 @@ unless qualified, read from source and not rebuilt here.
 | F1 | **done**, `k ≥ 1` | `mat_eq`, `charpoly_map`, `spectral : SpectralPisot (geometry k hk)`, `pisotData` |
 | F2 compact | done | `localHull_compactSpace` (`PeriodicPartnerRealizationOnto`), from `isCompact_origin_fibre` and `totallyBounded_origin_fibre`, by the transversal route |
 | F2 recognizability | done, `k ≥ 1` | `inflateH_bijective`, proved from the literal markers; `continuous_desub` |
-| F2 Hausdorff, packaged action laws | not located as named instances | state `T2Space (LocalHull S)` and the action structure, or record where they are implied |
-| F3 | open, unchanged | one `FullFactorCriterion` structure consumed by the final theorem |
+| F2 Hausdorff, packaged action laws | **done**, generic | `T2Space (LocalHull S)` ([Hausdorff note](c4-ordinary-hull-hausdorff-2026-11-21.md)); `AddAction ℝ`, `ContinuousVAdd ℝ`, `inflate_vadd`, and `inflateHomeomorph` from bijectivity, with `ParameterFamilyFlow.inflate_isHomeomorph` for σₖ ([flow note](c4-hull-flow-homeomorphism-2026-11-22.md)) |
+| F3 | **done** | `Psc.FullFactorCriterion`, `terminates_iff_fullFactorCriterion`, `family_fullFactorCriterion` ([flow note](c4-hull-flow-homeomorphism-2026-11-22.md)); no productive-but-infinite control in Lean |
 | F4(a) | **done**, `k ≥ 1` | `continuous_solenoidRealize`, `solenoidRealize_surjective`, `solenoidRealize_finite_fibres`, `solenoidRealize_translate`, `solenoidRealize_inflate` |
 | F4(b) | partly | `denseRange_translate`; uniqueness of the invariant measure on the target is not stated |
 | F4(c) | open | the four interfaces of the zero-fibre note: witnesses for *every* pair over zero (`k ≥ 2`), propagation to coincidence rank one, rank one to a.e. singleton fibres, and the `L²` endpoint. `common_tile_of_zero_fibre_witnesses` and `exactProximal_of_periodic_common_tile` consume the witnesses and do not construct them |

@@ -44070,7 +44070,7 @@
       "module": "PscVerif.PeriodicPartnerLocalAction",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalAction.lean",
-      "line": 94,
+      "line": 96,
       "declaration": "theorem doubling_not_injective : ¬ Injective (inflateH (S := doubling)) := by"
     },
     {
@@ -59193,7 +59193,7 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean": "59d86f345c47142bdd7a74200c04b48f4ae975d1d5afe2dc29331048d7f37988",
     "proof/PscVerif/PscVerif/PeriodicPartnerLegalCoincidence.lean": "3c81c675054bea4b16fa83e8d912525b4d456218997d9e21697d8847e148e23d",
     "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean": "0c9d009618b409578d573a94e2f15b8052610eaa8c4f9d28aa77c3045644b9bb",
-    "proof/PscVerif/PscVerif/PeriodicPartnerLocalAction.lean": "d17c3312c2e852783abca7c515855be47a7f7fb59cabedac4936211fa56f9fbb",
+    "proof/PscVerif/PscVerif/PeriodicPartnerLocalAction.lean": "a96c6b34f9a997e4426ef4f67f80eb6389707f2e296ebb9972c8acbe710ccbcc",
     "proof/PscVerif/PscVerif/PeriodicPartnerLocalHausdorff.lean": "d073e519b2f24c5d2e08ca81ede2beefc16598c801c049044b7f1b924e4c800d",
     "proof/PscVerif/PscVerif/PeriodicPartnerLocalRealization.lean": "472eacd674a293a84e841a7888398fd1fbaeedbdeff3a372c2e6ab665556e2b1",
     "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean": "ab9cca25c9b6f57b944a912e1e8a239b4bb46bd7a73727542af056760331b7cf",

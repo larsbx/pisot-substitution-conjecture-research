@@ -83,7 +83,9 @@ theorem doubling_translate_one (V : doubling.Hull) : LengthSubst.translate 1 V =
   · intro h
     obtain ⟨c, hc⟩ := endsAt_of_startsAt (T := V) (y := x + 1) (b := a) h
     have : (c, x + 1 - doubling.ℓ c) = (a, x) := by
-      simp only [doubling, Prod.mk.injEq]; exact ⟨Subsingleton.elim _ _, by ring⟩
+      refine Prod.ext (Subsingleton.elim _ _) ?_
+      show x + 1 - 1 = x
+      ring
     exact this ▸ hc
   · intro h
     obtain ⟨b, hb⟩ := startsAt_of_endsAt (T := V) (y := x + 1) (b := a)
