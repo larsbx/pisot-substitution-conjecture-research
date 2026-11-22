@@ -121,7 +121,7 @@ The [BH escape roadmap](bh-escape-roadmap-2026-11-14.md) retains this dated
 priority and its acceptance contract. At the November 14 observation the
 #573 family result and #574 conditional BH finite-carrier/A1′ work were
 unmerged; #574 subsequently integrated that stack and #572/#573 are closed
-predecessor branches. The November 21 section above gives the current work.
+predecessor branches. The current priorities are recorded above.
 
 Prioritize [#452](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/452):
 every required nonzero cyclic seed-reachable minus-Class-A state reaches one

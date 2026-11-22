@@ -154,6 +154,17 @@ elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
     -DautoImplicit=false -Dpp.unicode.fun=true \
     "$PSC_FAMILY_ROOT/evidence/c4-zero-fibre-anchor-proof-2026-11-22/OriginCycleAxioms.lean" \
     | tee "$PSC_FAMILY_TMP/origin-cycle-audit.log"
-test "$(grep -Fc 'depends on axioms:' "$PSC_FAMILY_TMP/origin-cycle-audit.log")" -eq 14
-test "$(grep -Fc 'depends on axioms: [propext, Classical.choice, Quot.sound]' "$PSC_FAMILY_TMP/origin-cycle-audit.log")" -eq 14
+python3 - "$PSC_FAMILY_TMP/origin-cycle-audit.log" <<'PY'
+from pathlib import Path
+import re
+import sys
+
+log = Path(sys.argv[1]).read_text(encoding="utf-8")
+closures = re.findall(r"^'([^']+)' depends on axioms:\s*\[([^]]*)\]", log, re.MULTILINE)
+allowed = {"propext", "Classical.choice", "Quot.sound"}
+if len(closures) != 14 or len({name for name, _ in closures}) != 14 or any(
+    {axiom.strip() for axiom in axioms.split(",")} != allowed for _, axioms in closures
+):
+    raise SystemExit("The origin-cycle audit requires fourteen distinct standard axiom closures")
+PY
 psc_family_check_pins
