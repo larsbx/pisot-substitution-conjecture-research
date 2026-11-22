@@ -1,0 +1,87 @@
+{
+  "source_commit": "4b02c2d4c55fb62bf37f25aa0bbc4e44bec0b6a7",
+  "source_tree": "698170297425bc85ad27c719b298dbfdae66b450",
+  "compiler_sha256": "e8baaa71855a616dc351028f3ad2200051b0671f423a1696a100e809302d5550",
+  "modules": [
+    {
+      "module": "PscVerif.PeriodicPartnerOrdinaryProximal",
+      "path": "/workspace/scratch/af5a9d959e4d/psc-finite-automata/proof/PscVerif/PscVerif/PeriodicPartnerOrdinaryProximal.lean",
+      "sha256": "cf93554a7032dd4bb34bc5f51d60330bbeb8fcaa63ad0c1ef107190d8b38d73d",
+      "source_module_exists": true,
+      "unchanged_from_source": true,
+      "source_sha256": "cf93554a7032dd4bb34bc5f51d60330bbeb8fcaa63ad0c1ef107190d8b38d73d"
+    },
+    {
+      "module": "PscVerif.C4ParameterFamilyOrdinaryProximal",
+      "path": "/workspace/scratch/af5a9d959e4d/psc-finite-automata/proof/PscVerif/PscVerif/C4ParameterFamilyOrdinaryProximal.lean",
+      "sha256": "7636d2c4c641deb791407072755958df0c8e3e26b4d3b753439a868f20829c6a",
+      "source_module_exists": true,
+      "unchanged_from_source": true,
+      "source_sha256": "7636d2c4c641deb791407072755958df0c8e3e26b4d3b753439a868f20829c6a"
+    },
+    {
+      "module": "PscVerif.PeriodicPartnerRotationFactor",
+      "path": "/workspace/scratch/af5a9d959e4d/psc-finite-automata/proof/PscVerif/PscVerif/PeriodicPartnerRotationFactor.lean",
+      "sha256": "0d3ab745b6d63394490b39b7bc07c8680aad77cd7e51804da09d476367e340fe",
+      "source_module_exists": true,
+      "unchanged_from_source": true,
+      "source_sha256": "0d3ab745b6d63394490b39b7bc07c8680aad77cd7e51804da09d476367e340fe"
+    },
+    {
+      "module": "PscVerif.C4ParameterFamilyRotationFactor",
+      "path": "/workspace/scratch/af5a9d959e4d/psc-finite-automata/proof/PscVerif/PscVerif/C4ParameterFamilyRotationFactor.lean",
+      "sha256": "dda99b8395b96881a2078a3f5e296c7bf296d3523fef779c5298640ec1dd0bed",
+      "source_module_exists": true,
+      "unchanged_from_source": true,
+      "source_sha256": "dda99b8395b96881a2078a3f5e296c7bf296d3523fef779c5298640ec1dd0bed"
+    },
+    {
+      "module": "PscVerif.PeriodicPartnerEquicontinuousFactor",
+      "path": "/workspace/scratch/af5a9d959e4d/psc-finite-automata/proof/PscVerif/PscVerif/PeriodicPartnerEquicontinuousFactor.lean",
+      "sha256": "7bb8ff4ad0ee87a2421df93384511253cc88c7836d7b900c37971f96c5196071",
+      "source_module_exists": true,
+      "unchanged_from_source": true,
+      "source_sha256": "7bb8ff4ad0ee87a2421df93384511253cc88c7836d7b900c37971f96c5196071"
+    },
+    {
+      "module": "PscVerif.C4ParameterFamilyEquicontinuousFactor",
+      "path": "/workspace/scratch/af5a9d959e4d/psc-finite-automata/proof/PscVerif/PscVerif/C4ParameterFamilyEquicontinuousFactor.lean",
+      "sha256": "d581184210ba15a673591078d0050b3be8a3f58c13878e39814818b6d414268f",
+      "source_module_exists": true,
+      "unchanged_from_source": true,
+      "source_sha256": "d581184210ba15a673591078d0050b3be8a3f58c13878e39814818b6d414268f"
+    },
+    {
+      "module": "PscVerif.PeriodicPartnerFibreDistal",
+      "path": "/workspace/scratch/af5a9d959e4d/psc-finite-automata/proof/PscVerif/PscVerif/PeriodicPartnerFibreDistal.lean",
+      "sha256": "4819d353bd09427da45695d11143746d9ead187f4d90802e915a2c83e1b0deef",
+      "source_module_exists": true,
+      "unchanged_from_source": true,
+      "source_sha256": "4819d353bd09427da45695d11143746d9ead187f4d90802e915a2c83e1b0deef"
+    },
+    {
+      "module": "PscVerif.C4FamilyFiniteProximal",
+      "path": "/workspace/scratch/af5a9d959e4d/psc-finite-automata/proof/PscVerif/PscVerif/C4FamilyFiniteProximal.lean",
+      "sha256": "f0626913d31535e076e6afd0ce495ad5d4c49b1214d81c9b3b3f5b533244dc1c",
+      "source_module_exists": false
+    },
+    {
+      "module": "PscVerif.C4ParameterFamilyFibreDistal",
+      "path": "/workspace/scratch/af5a9d959e4d/psc-finite-automata/proof/PscVerif/PscVerif/C4ParameterFamilyFibreDistal.lean",
+      "sha256": "556923495164687e8b52258cc00ccf52b0411f348cdaf0031674a369090be9fc",
+      "source_module_exists": true,
+      "unchanged_from_source": false,
+      "source_sha256": "c535b958789d7982bcc6b9c4ceacbcfd87c98c741fd524a78a7dd191d6755232"
+    }
+  ],
+  "verification_scope": "Nine owned sources recompiled against accepted baseline project artifacts and pinned external package artifacts; parent full fresh replay needed for current dependency export.",
+  "original_core_dependencies": {
+    "total": 47,
+    "unchanged": 46,
+    "changed": [
+      "PscVerif.PeriodicPartnerRealizationFinite"
+    ]
+  },
+  "acceptance_in_this_increment": "Full current project closure freshly rebuilt; prior objects not reused",
+  "existing_dependency_change": "PeriodicPartnerRealizationFinite exports finite_lattice_ball without changing its proof body; other 46 original dependencies unchanged"
+}

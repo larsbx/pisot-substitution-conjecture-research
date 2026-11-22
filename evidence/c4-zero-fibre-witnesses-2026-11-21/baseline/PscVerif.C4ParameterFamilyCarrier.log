@@ -1,0 +1,32 @@
+PscVerif/C4ParameterFamilyCarrier.lean:121:50: warning: This simp argument is unused:
+  Prod.fst
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [state, ite_eq_right hb, Prod.swap, Prod.snd] at h
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+PscVerif/C4ParameterFamilyCarrier.lean:121:60: warning: This simp argument is unused:
+  Prod.snd
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [state, ite_eq_right hb, Prod.swap, Prod.fst] at h
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+PscVerif/C4ParameterFamilyCarrier.lean:123:26: warning: This simp argument is unused:
+  Prod.fst
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Prod.swap, Prod.snd]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+PscVerif/C4ParameterFamilyCarrier.lean:123:36: warning: This simp argument is unused:
+  Prod.snd
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Prod.swap, Prod.fst]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'Psc.ParameterFamily.terminates_with_coincidence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ParameterFamilyCarrier.children_eq_red' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ParameterFamily.finite_and_productive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ParameterFamily.coincidence_child' depends on axioms: [propext, Classical.choice, Quot.sound]

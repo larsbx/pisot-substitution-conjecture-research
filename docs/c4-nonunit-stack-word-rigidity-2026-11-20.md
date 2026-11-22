@@ -36,8 +36,9 @@ By (W4), the partners have the same stack image, and the positions
 of their eventual tile coincidences form a dense set. Write
 `q : Ω → X` for the stack quotient.
 
-Take a common positive inflation power fixing `T,T′` and the original
-eventual-range graph and inducing a proper return substitution.
+Take a common positive inflation power fixing `T,T′`, the marking
+seam and the oriented cells of the original eventual-range graph.
+Increase it as needed to induce a proper return substitution.
 Use `M` and `β` for the powered original incidence and dilation.
 The original unpowered incidence has irreducible characteristic
 polynomial and three conjugate eigenvalues. The eigenvalues of `M` are their corresponding powers,
@@ -91,12 +92,16 @@ chains is `im ∂`, an invariant subspace of the vertex chains. A map
 of a finite set of vertices has only zero and roots of unity in its
 spectrum.
 
-On `R` the Barge–Diamond exact sequence has the incidence part
-`Mᵗ` and fixed eventual-range terms. In particular its cohomology
-has only eigenvalues of `M` and roots of unity, and `β` has
-multiplicity one. Proposition 19 injects `H¹(X; ℚ)` equivariantly
-into this space. Thus on `A,R,S` every edge eigenvalue is zero, a
-root of unity or an eigenvalue of `M`.
+Apply the Barge–Diamond exact sequence to the original powered
+substitution. Its incidence part is `Mᵗ` and its eventual-range
+terms are fixed. Transfer that hull cohomology action to the return
+presentation via the equivariant reblocking. It has only eigenvalues
+of `M` and roots of unity, and `β` has algebraic multiplicity
+one. Proposition 19 injects `H¹(X; ℚ)` equivariantly into this
+space. Thus on `A,R,S` every edge eigenvalue is zero, a root of
+unity or an eigenvalue of `M`. The boundary image accounts for any
+extra edge factors due to subdivision. The [graph-spectrum review](c4-graph-spectrum-review-2026-11-21.md)
+gives the factorization and an exact control.
 The multiplicity of `β` on the stack edge chains is at most one
 and is exactly one because the positive length row is a left
 `β`-eigenvector.
@@ -244,3 +249,14 @@ the identification of the norms with Galois conjugates, and the
 assembly of the graded lift are written mathematics. Independent review
 is pending. Higher coincidence ranks and extraction of a finite strict
 carrier from arbitrary nonproductivity are separate obligations.
+
+**Review, 2026-11-20.** A [step-by-step check](c4-stack-rigidity-review-2026-11-20.md)
+against Barge's text found no gap. It records a rank-free form of the core lemma and the
+resulting higher-rank obligation in the nonunit case.
+
+**Review, 2026-11-21.** A [second pass](c4-graded-lift-review-2026-11-21.md) checked the
+letter cuts, the literal path maps, the spectrum transfer, the correction at each finite
+degree and the truncations, and found no gap. The graded step and the word separation
+are now in Lean (`graded_step_exists_unique`, `word_separation`). Each interval uses one
+finite truncation; no inverse limit of the truncated algebras is formed. The status
+above is unchanged.

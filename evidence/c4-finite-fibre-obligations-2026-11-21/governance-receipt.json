@@ -1,0 +1,40 @@
+{
+  "scope": "Repository governance and source-integrity checks for the finite-fibre continuation",
+  "checks": [
+    {
+      "name": "vendoring",
+      "command": "python3 tools/vendoring/check_vendored_sync.py",
+      "exit_code": 0,
+      "output": "OK: vendored packages match their pins (finite_exact, substitution_dynamics, finite_linear_algebra, claim_governance, proof_records, oracle_refinement, parallel_fold, proof_architecture, finite_graph, finite_automata, mojo_smoke, vendoring, polyglot_envelope).\n"
+    },
+    {
+      "name": "governance",
+      "command": "PYTHONPATH=tools python3 -m claim_governance.cli --root .",
+      "exit_code": 0,
+      "output": "OK: claim governance audit of larsbx/pisot-substitution-conjecture-research passed [terminology, claims, coverage, promotion, numerics, consistency]\n"
+    },
+    {
+      "name": "markdown",
+      "command": "python3 tools/check_markdown_source.py",
+      "exit_code": 0,
+      "output": "OK Markdown source integrity: 673 file(s) checked\n"
+    },
+    {
+      "name": "proof_bank",
+      "command": "python3 tools/make_proof_bank.py --check",
+      "exit_code": 0,
+      "output": "Proof bank: 132 claims, 6694 named Lean proofs, 544 source openings\n"
+    }
+  ],
+  "proof_bank": {
+    "claims": 132,
+    "named_lean_proofs": 6694,
+    "source_openings": 544
+  },
+  "claim_status_changed": false,
+  "vendored_sources_changed": false,
+  "compiler_and_external_pin_check": "Nine exact revisions and tracked source trees checked; configuration digests in configuration-sha256.json",
+  "shell_syntax_check": "bash -n tools/check_c4_parameter_family.sh",
+  "full_repository_test_suite_run": false,
+  "hosted_acceptance": false
+}
