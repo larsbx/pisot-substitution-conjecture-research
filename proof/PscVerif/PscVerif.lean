@@ -260,3 +260,6 @@ import PscVerif.C4FamilyOpenSynchronization
 import PscVerif.PeriodicPartnerSolenoidCharacters
 import PscVerif.C4FamilySolenoidCharacters
 import PscVerif.C4FamilyCharacterOrbits
+import PscVerif.PeriodicPartnerSolenoidHaar
+import PscVerif.C4FamilyHaarErgodicity
+import PscVerif.C4FamilyHaarSingletonFibres
