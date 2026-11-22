@@ -168,6 +168,44 @@ def cycle_census(mut system: OriginSystem, box: Int, cap: Int) raises -> CycleCe
     return out^
 
 
+def window_range(key: Int) -> Int:
+    """Range of `{0, 3 v1 - 1, 3 (v1 + v2) - 2}`: the Lyapunov value of the tile.
+
+    Lean (`Psc.ShiftedRadixCycle.R_window`) proves that for `k >= 2` it does
+    not increase along an orbit. It is at least two, with equality exactly
+    when `(v1, v2)` is `(0, 0)`, `(1, 0)` or `(0, 1)`."""
+    var t = unpack_tile(key)
+    var x = 3 * t[2] - 1
+    var y = 3 * (t[2] + t[3]) - 2
+    var hi = 0
+    var lo = 0
+    if x > hi:
+        hi = x
+    if y > hi:
+        hi = y
+    if x < lo:
+        lo = x
+    if y < lo:
+        lo = y
+    return hi - lo
+
+
+def window_increases(mut system: OriginSystem, box: Int) raises -> Int:
+    """Number of interior tiles with `|v_i| <= box` whose origin child has a
+    larger window range."""
+    var count = 0
+    for a in range(3):
+        for v0 in range(-box, box + 1):
+            for v1 in range(-box, box + 1):
+                for v2 in range(-box, box + 1):
+                    if not system.is_interior(a, v0, v1, v2):
+                        continue
+                    var key = pack_tile(a, v0, v1, v2)
+                    if window_range(system.child(key)) > window_range(key):
+                        count += 1
+    return count
+
+
 def interior_cycles(census: CycleCensus) -> List[List[Int]]:
     """The cycles other than the vertex cycle, in the order found."""
     var out = List[List[Int]]()

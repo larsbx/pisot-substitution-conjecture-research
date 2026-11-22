@@ -17,7 +17,7 @@ proved.
 | `AnchorAxioms.lean` | `#check` and `#print axioms` for the new declarations |
 | `anchor-axioms.log` | its output: ten closures, each `propext, Classical.choice, Quot.sound` |
 | `origin-cycle-census.log` | `kernel/c4_family_origin_cycles.mojo`, `k = 1..12`, box 8, step cap 4096 |
-| `SHA256SUMS` | digests of the three files above and of the sources they were produced from |
+| `SHA256SUMS` | digests of the files of this packet |
 
 These are local receipts. Hosted CI has not run on this revision.
 
@@ -32,3 +32,17 @@ cd ../../kernel
 mojo run -I . -I tests tests/test_origin_cycle.mojo
 mojo run -I . c4_family_origin_cycles.mojo
 ```
+
+## Correction, 2026-11-22
+
+The manifest first committed with this packet pinned four source files
+outside the packet and omitted this README, against the rule that a
+packet pins exactly the files it holds
+(`tests/test_recorded_data_integrity.py`). The manifest now pins the four
+files of the packet. The three recorded outputs are byte-identical to
+the first commit. Two of the sources they came from,
+`kernel/psc/origin_cycle.mojo` and `kernel/tests/test_origin_cycle.mojo`,
+gained the window-range check on 2026-11-22; the census driver and its
+log are unchanged. The premise this packet calls unproved has since been
+proved: see
+[the proof note](../../docs/c4-zero-fibre-anchor-proof-2026-11-22.md).

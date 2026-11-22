@@ -221,3 +221,14 @@ nothing.
   argument in the manner of Frougny–Solomyak adapted to the shifted map.
   Neither was carried out.
 - Independent human review is pending for everything in this note.
+
+## Correction, 2026-11-22
+
+Lean now establishes C(k) for every `k ≥ 2`, in the declaration
+`periodicLatticeOriginsClassified` of the module
+`C4ParameterFamilyOriginCycle`. The anchor theorem and the all-pairs
+witness statement therefore hold without a premise. The sentences above that call C(k), the anchor theorem and the
+witness statement unproved describe the state of 2026-11-21. The two
+routes named in the last section were not needed: the proof is a
+one-step convex-window argument.
+[Proof, replay and remaining gaps](c4-zero-fibre-anchor-proof-2026-11-22.md)

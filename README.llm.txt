@@ -22,9 +22,11 @@ The family solenoid realization is continuous, onto, finite-to-one
 and equivariant for translation and inflation (k>=1). Recognizability
 and stable contraction are proved for the literal geometry. Every tiling
 in the zero fibre is inflation-periodic.
-NEXT: derive one pair of exact origin windows and a common-shift
-window for each pair over zero, then apply
-common_tile_of_zero_fibre_witnesses (k>=2). Formalize the subsequent
+Any two tilings over zero share a labelled tile (k>=2):
+ParameterFamilyOriginCycle.zero_fibre_common_tile, by the convex-window
+proof of docs/c4-zero-fibre-anchor-proof-2026-11-22.md (mechanically
+certified, human review pending).
+NEXT: propagate from the zero fibre to every fibre, then formalize the
 coincidence-rank and invariant-measure L2 theorem.
 See docs/c4-family-solenoid-factor-2026-11-21.md.
 The written spectrum proof uses Barge–Stimac–Williams Corollary 2;

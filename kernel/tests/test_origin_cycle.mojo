@@ -2,7 +2,7 @@
 
 from std.testing import assert_equal, assert_false, assert_true
 from mojo_smoke.claims import require_contract
-from psc.origin_cycle import OriginSystem, cycle_census, interior_cycles, pack_tile, unpack_tile
+from psc.origin_cycle import OriginSystem, cycle_census, interior_cycles, pack_tile, unpack_tile, window_increases, window_range
 
 
 def phases() raises -> List[Int]:
@@ -58,6 +58,24 @@ def test_parameter_one_control() raises:
     assert_equal(interior[0][0], pack_tile(0, 1, -1, 1))
 
 
+def test_window_range() raises:
+    # The Lyapunov value is two exactly on the three phases' (v1, v2).
+    assert_equal(window_range(pack_tile(1, 1, 0, 0)), 2)
+    assert_equal(window_range(pack_tile(1, -1, 1, 0)), 2)
+    assert_equal(window_range(pack_tile(1, 0, 0, 1)), 2)
+    assert_equal(window_range(pack_tile(1, 0, 1, 1)), 4)
+    # k >= 2: no origin child has a larger window (Lean: R_window).
+    for k in range(2, 7):
+        var s = OriginSystem(k)
+        assert_equal(window_increases(s, 5), 0)
+    # k = 1: the coefficient 1 - (beta - k) is negative and the lemma fails.
+    var s1 = OriginSystem(1)
+    assert_equal(s1.child(pack_tile(0, -2, 1, 0)), pack_tile(1, 1, -1, 1))
+    assert_equal(window_range(pack_tile(0, -2, 1, 0)), 2)
+    assert_equal(window_range(pack_tile(1, 1, -1, 1)), 4)
+    assert_true(window_increases(s1, 5) > 0)
+
+
 def test_refusals() raises:
     var refused = False
     try:
@@ -86,5 +104,6 @@ def main() raises:
     test_signs_and_children()
     test_unique_cycle()
     test_parameter_one_control()
+    test_window_range()
     test_refusals()
-    require_contract("The origin-tile recurrence of 0 -> 1, 1 -> 0 1^k 2, 2 -> 001 is evaluated by exact sign queries at beta. For k = 2..6 every interior lattice tile with coordinates of absolute value at most 5 reaches the three-phase cycle (1;1,0,0) -> (1;-1,1,0) -> (1;0,0,1) or the vertex cycle (0;0,0,0) -> (1;0,0,0) and no other cycle; at k = 1 the three-phase cycle does not exist and the only interior cycle the same box reaches is one eight-cycle. A step cap, a parameter below one and a tile not covering the origin raise. Box-bounded finite evidence; periodic tiles outside the box are not excluded.")
+    require_contract("The origin-tile recurrence of 0 -> 1, 1 -> 0 1^k 2, 2 -> 001 is evaluated by exact sign queries at beta. For k = 2..6 every interior lattice tile with coordinates of absolute value at most 5 reaches the three-phase cycle (1;1,0,0) -> (1;-1,1,0) -> (1;0,0,1) or the vertex cycle (0;0,0,0) -> (1;0,0,0) and no other cycle; at k = 1 the three-phase cycle does not exist and the only interior cycle the same box reaches is one eight-cycle. For k = 2..6 no origin child in that box has a larger window range max - min of {0, 3 v1 - 1, 3 (v1 + v2) - 2}; at k = 1 the child (1;1,-1,1) of (0;-2,1,0) raises it from 2 to 4. A step cap, a parameter below one and a tile not covering the origin raise. Box-bounded finite evidence; periodic tiles outside the box are not excluded.")

@@ -5994,6 +5994,126 @@
       "declaration": "theorem seam_and_interior_zero_witnesses :"
     },
     {
+      "name": "Psc.ParameterFamilyOriginCycle.expansion_mul_len",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 38,
+      "declaration": "theorem expansion_mul_len (v₀ v₁ v₂ : ℤ) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.mem_place_ones",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 44,
+      "declaration": "theorem mem_place_ones {m : ℕ} {x : ℝ} {q : Fin 3 × ℝ}"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.place_image_one",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 56,
+      "declaration": "theorem place_image_one (x : ℝ) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.origin_step",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 64,
+      "declaration": "theorem origin_step (a : Fin 3) (v₀ v₁ v₂ : ℤ)"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.orbit_data",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 135,
+      "declaration": "theorem orbit_data (a₀ : Fin 3) (z₀ z₁ z₂ : ℤ)"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.originChild_vertex",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 193,
+      "declaration": "theorem originChild_vertex (S : LengthSubst (Fin 3)) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.originChild_vertex_iterate",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 207,
+      "declaration": "theorem originChild_vertex_iterate (S : LengthSubst (Fin 3)) (q : Fin 3 × ℝ) (hq : q.2 = 0)"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.length_le_sq",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 219,
+      "declaration": "theorem length_le_sq (a : Fin 3) : (geometry k hk).ℓ a ≤ expansion k hk ^ 2 := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.contraction_coefficients",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 227,
+      "declaration": "theorem contraction_coefficients :"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.periodicLatticeOriginsClassified",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 248,
+      "declaration": "theorem periodicLatticeOriginsClassified : PeriodicLatticeOriginsClassified k hk := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.anchor_common_tile",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 377,
+      "declaration": "theorem anchor_common_tile {V U : (geometry k hk).Hull}"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.zero_fibre_common_tile",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 386,
+      "declaration": "theorem zero_fibre_common_tile (T U : (geometry k hk).Hull)"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.all_pair_witnesses",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 397,
+      "declaration": "theorem all_pair_witnesses (T U : (geometry k hk).Hull)"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.zero_fibre_exactProximal",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 406,
+      "declaration": "theorem zero_fibre_exactProximal (T U : (geometry k hk).Hull)"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.zero_fibre_origin",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 415,
+      "declaration": "theorem zero_fibre_origin (U : (geometry k hk).Hull)"
+    },
+    {
       "name": "Psc.ParameterFamilyPisot.incidence_eq",
       "module": "PscVerif.C4ParameterFamilyPisot",
       "private": false,
@@ -51010,6 +51130,270 @@
       "declaration": "theorem control_trap_has_no_terminal_path :"
     },
     {
+      "name": "Psc.ShiftedRadixCycle.R_succ",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 45,
+      "declaration": "theorem R_succ (w : ℕ → ℤ) (i : ℕ) : R w (i + 1) = R w i + 3 * w i - 1 := rfl"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.R_succ₂",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 47,
+      "declaration": "theorem R_succ₂ (w : ℕ → ℤ) (i : ℕ) : R w (i + 2) = R w (i + 1) + 3 * w (i + 1) - 1 := rfl"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.R_succ₃",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 49,
+      "declaration": "theorem R_succ₃ (w : ℕ → ℤ) (i : ℕ) : R w (i + 3) = R w (i + 2) + 3 * w (i + 2) - 1 := rfl"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.window",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 54,
+      "declaration": "theorem window {α : ℝ} (hα : 0 < α) (hθ : 2 * α + 2 * α ^ 2 < 1) (x y z : ℤ)"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.lo_spec",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 97,
+      "declaration": "theorem lo_spec (w : ℕ → ℤ) (i : ℕ) :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.lo_spec_succ",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 106,
+      "declaration": "theorem lo_spec_succ (w : ℕ → ℤ) (i : ℕ) :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.hi_spec",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 111,
+      "declaration": "theorem hi_spec (w : ℕ → ℤ) (i : ℕ) :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.hi_spec_succ",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 120,
+      "declaration": "theorem hi_spec_succ (w : ℕ → ℤ) (i : ℕ) :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.R_window",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 129,
+      "declaration": "theorem R_window (hα : 0 < α) (hθ : 2 * α + 2 * α ^ 2 < 1) (hE : Bounded α w) (i : ℕ) :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.nested_succ",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 139,
+      "declaration": "theorem nested_succ (hα : 0 < α) (hθ : 2 * α + 2 * α ^ 2 < 1) (hE : Bounded α w) (i : ℕ) :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.nested",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 148,
+      "declaration": "theorem nested (hα : 0 < α) (hθ : 2 * α + 2 * α ^ 2 < 1) (hE : Bounded α w) {i j : ℕ}"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.lo_le_hi",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 156,
+      "declaration": "theorem lo_le_hi (w : ℕ → ℤ) (i : ℕ) : lo w i ≤ hi w i :="
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.eventually_constant",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 160,
+      "declaration": "theorem eventually_constant (hα : 0 < α) (hθ : 2 * α + 2 * α ^ 2 < 1) (hE : Bounded α w) :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.lo_recurs",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 173,
+      "declaration": "theorem lo_recurs {i₀ : ℕ} (hc : ∀ i, i₀ ≤ i → lo w i = lo w i₀ ∧ hi w i = hi w i₀)"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.hi_recurs",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 181,
+      "declaration": "theorem hi_recurs {i₀ : ℕ} (hc : ∀ i, i₀ ≤ i → lo w i = lo w i₀ ∧ hi w i = hi w i₀)"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.lo_recurs_mul",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 189,
+      "declaration": "theorem lo_recurs_mul {i₀ : ℕ} (hc : ∀ i, i₀ ≤ i → lo w i = lo w i₀ ∧ hi w i = hi w i₀)"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.hi_recurs_mul",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 197,
+      "declaration": "theorem hi_recurs_mul {i₀ : ℕ} (hc : ∀ i, i₀ ≤ i → lo w i = lo w i₀ ∧ hi w i = hi w i₀)"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.frozen",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 215,
+      "declaration": "theorem frozen (hα : 0 < α) (hθ : 2 * α + 2 * α ^ 2 < 1) (hE : Bounded α w) :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.child_bounds",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 272,
+      "declaration": "theorem child_bounds {a a' d' e' : ℤ} (h : Child k a a' d' e') (hk : 0 ≤ k) :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.child_d_two",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 276,
+      "declaration": "theorem child_d_two {a a' d' e' : ℤ} (h : Child k a a' d' e') : d' = 2 → a = 2 := by"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.child_into_two",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 279,
+      "declaration": "theorem child_into_two {a a' d' e' : ℤ} (h : Child k a a' d' e') :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.child_of_two",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 283,
+      "declaration": "theorem child_of_two {a a' d' e' : ℤ} (h : Child k a a' d' e') :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.child_e_eq",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 287,
+      "declaration": "theorem child_e_eq {a a' d' e' : ℤ} (h : Child k a a' d' e') (hk : 2 ≤ k) :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.child_d_zero",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 291,
+      "declaration": "theorem child_d_zero {a a' d' e' : ℤ} (h : Child k a a' d' e') :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.child_of_zero",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 295,
+      "declaration": "theorem child_of_zero {a a' d' e' : ℤ} (h : Child k a a' d' e') :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.child_into_zero",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 299,
+      "declaration": "theorem child_into_zero {a a' d' e' : ℤ} (h : Child k a a' d' e') :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.child_e_pos",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 303,
+      "declaration": "theorem child_e_pos {a a' d' e' : ℤ} (h : Child k a a' d' e') :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.patternII_false",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 317,
+      "declaration": "theorem patternII_false (hk : 2 ≤ k) (hD : Digits k a d e w) {b : ℕ} {γ : ℤ}"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.patternI_one",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 384,
+      "declaration": "theorem patternI_one (hk : 2 ≤ k) (hD : Digits k a d e w) {b : ℕ} {g : ℤ}"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.patternI_types",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 468,
+      "declaration": "theorem patternI_types (hk : 2 ≤ k) (hD : Digits k a d e w) {b : ℕ}"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.PatternI.shift",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 526,
+      "declaration": "theorem PatternI.shift {b : ℕ} {g : ℤ} (h : PatternI w b g) (j : ℕ) :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.eventually_cycle",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 537,
+      "declaration": "theorem eventually_cycle {α : ℝ} {k : ℤ} {a d e w : ℕ → ℤ} (hα : 0 < α)"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.bounded_alone_insufficient",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 563,
+      "declaration": "theorem bounded_alone_insufficient :"
+    },
+    {
       "name": "Psc.N_mul_N",
       "module": "PscVerif.Shuffle",
       "private": false,
@@ -57025,6 +57409,7 @@
     "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorProximal.lean": "68ce95f9f0cdf53603f79cff4d3a6b38c1e6e51ae4750b4fc68108b30fa4a9b2",
     "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorSeed.lean": "6cc2b07ef323a93901d647b211fa0621566bf93b1c980a4fa6e8a530c12e2ad0",
     "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorZero.lean": "a84c06f8694a66eaa0b488ba8b2673c9dcc062bec9996d3dc5443cf97ce8b52e",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean": "5372fee98158493f577de849504c752cc0a99c9507705263cb13103a56de2e78",
     "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean": "17c1a41e6726dfef7f04f3ccc0594f0cbfc5eb90fd61325114179541c763423c",
     "proof/PscVerif/PscVerif/C4ParameterFamilyRecognizability.lean": "b6889e7a4bf84e33cb154b36229be3f8c7992ce0d6afb1b241ff6e3d89ca2532",
     "proof/PscVerif/PscVerif/C4ParameterFamilySolenoid.lean": "9b3b06d944c2b531ab6d3649144f5361244dc89a554ba9354e564dae26f52917",
@@ -57255,6 +57640,7 @@
     "proof/PscVerif/PscVerif/SectorBridge.lean": "52402b9cf47212fae4fc351435bd721babb702aea48e4b5c1f2d1ed40d4e6800",
     "proof/PscVerif/PscVerif/Seeds.lean": "224a67ea3d89c8cd54747164d4e1fbbc9b733aa5eb404465119999b738dce747",
     "proof/PscVerif/PscVerif/SelectedRank.lean": "0ab6fc76698ebcfd14ce1b319b121f0eaee9d2d64fceb26d3cf9e6a59b26c396",
+    "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean": "9e8d223b5589eb7a773fd9dd543f61f96ca1a4ab255b5d018f85cbd967b26034",
     "proof/PscVerif/PscVerif/Shuffle.lean": "fe99c7b71174cd665633b425c0f9d1e6f6893f541387e261fb5d945bba48614c",
     "proof/PscVerif/PscVerif/SignedCocycle.lean": "eccc753e1656cc949db13d50ff8d97883f084fe18ab32ef70226cded35237e7e",
     "proof/PscVerif/PscVerif/SignedIntertwiner.lean": "9db35d26a6a8d434ab893b31218fcc50ba73872a74a305da366d5f95543d5280",
@@ -57272,7 +57658,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "592a58ceb7266da4ca997eb3cc40e50d80eff751dc995c3ae521a752097c5b84",
+    "proof/PscVerif/PscVerif.lean": "c10b99abce821cc08fe0defa172fb192fec0efb367bfe21a5d156fad7cf819ae",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
