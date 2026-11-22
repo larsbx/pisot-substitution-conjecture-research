@@ -42,6 +42,8 @@ import PscVerif.PeriodicPartnerSpectralCensus
 import PscVerif.PeriodicPartnerHullNonempty
 import PscVerif.PeriodicPartnerLocalHausdorff
 import PscVerif.PeriodicPartnerHullLeft
+import PscVerif.PeriodicPartnerHullNonemptyCensus
+import PscVerif.PeriodicPartnerLocalAction
 import PscVerif.PeriodicPartnerHullContinuity
 import PscVerif.PeriodicPartnerLocalTopology
 import PscVerif.PeriodicPartnerLocalTopologyControls
@@ -75,7 +77,8 @@ run_cmd do
     `PscVerif.PeriodicPartnerHullContinuity, `PscVerif.PeriodicPartnerLocalTopology,
     `PscVerif.PeriodicPartnerLocalTopologyControls, `PscVerif.PeriodicPartnerLocalRealization,
     `PscVerif.PeriodicPartnerHullNonempty, `PscVerif.PeriodicPartnerLocalHausdorff,
-    `PscVerif.PeriodicPartnerHullLeft]
+    `PscVerif.PeriodicPartnerHullLeft, `PscVerif.PeriodicPartnerHullNonemptyCensus,
+    `PscVerif.PeriodicPartnerLocalAction]
   for mod in required do
     unless (env.getModuleIdx? mod).isSome do
       throwError "Missing compiled periodic-partner module: {mod}"

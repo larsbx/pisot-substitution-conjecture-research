@@ -7,6 +7,8 @@ import PscVerif.C4ParameterFamilyControls
 import PscVerif.C4ParameterFamilySolenoid
 import PscVerif.PeriodicPartnerRealizationModels
 import PscVerif.UniversalClosureReduction
+import PscVerif.C4FullFactorCriterion
+import PscVerif.C4ParameterFamilyFlow
 import Lean.Util.CollectAxioms
 
 namespace Psc.ParameterFamilyAudit
@@ -237,6 +239,23 @@ def SolenoidCommonTileType : Prop :=
     Agree 1 (LengthSubst.translate t T') (LengthSubst.translate t U') →
     (T.1 ∩ U.1).Nonempty
 
+/-- The bundled criterion is exactly termination with coincidence, at every universe. -/
+def CriterionEquivalenceType : Prop :=
+  ∀ {α : Type u} [DecidableEq α] [Finite α] {s : α → List α}
+    {T : List α × List α}, IsBlock T →
+    (Psc.StrictSystem.TerminatesWithCoincidence s T ↔ Psc.FullFactorCriterion s T)
+
+def FamilyCriterionType : Prop :=
+  ∀ k : Nat, 2 ≤ k → Psc.FullFactorCriterion (literalSubstitution k) ([0, 1], [1, 0])
+
+def IdentityCriterionControlType : Prop :=
+  {U | ∃ n, U ∈ red ((subst (fun a : Fin 2 => [a]))^[n] [0, 1])
+    ((subst (fun a : Fin 2 => [a]))^[n] [1, 0])}.Finite ∧
+    ¬ Psc.FullFactorCriterion (fun a : Fin 2 => [a]) ([0, 1], [1, 0])
+
+def InflateHomeomorphType : Prop :=
+  ∀ (k : ℕ) (hk : 1 ≤ k), IsHomeomorph (inflate (geometry k hk))
+
 /-- Independent literal binding for the two-letter non-Pisot control. -/
 def controlSubstitution : Fin 2 → List (Fin 2)
   | 0 => [0, 0, 0, 0, 1]
@@ -288,6 +307,10 @@ example : SolenoidFibreComparisonType := Psc.ParameterFamilySolenoid.solenoidRea
 example : SolenoidCommonTileType := Psc.ParameterFamilySolenoid.common_tile_of_zero_fibre_witnesses
 example : AllBlocksProductiveControlType := Psc.UniversalClosureReduction.all_blocks_productive
 example : InfiniteSeedControlType := Psc.UniversalClosureReduction.infinite_seed_reachability
+example : CriterionEquivalenceType.{u} := Psc.FullFactorCriterion.terminates_iff_fullFactorCriterion
+example : FamilyCriterionType := Psc.FullFactorCriterion.family_fullFactorCriterion
+example : IdentityCriterionControlType := Psc.FullFactorCriterion.identity_not_fullFactorCriterion
+example : InflateHomeomorphType := Psc.ParameterFamilyFlow.inflate_isHomeomorph
 
 -- At the child seam, the interior of the common region persists even
 -- though the interiors of the individual common tiles miss the point.
@@ -410,7 +433,15 @@ run_cmd do
       (``Psc.UniversalClosureReduction.all_blocks_productive, ``AllBlocksProductiveControlType,
         `PscVerif.UniversalClosureReduction),
       (``Psc.UniversalClosureReduction.infinite_seed_reachability, ``InfiniteSeedControlType,
-        `PscVerif.UniversalClosureReduction)]
+        `PscVerif.UniversalClosureReduction),
+      (``Psc.FullFactorCriterion.terminates_iff_fullFactorCriterion, ``CriterionEquivalenceType,
+        `PscVerif.C4FullFactorCriterion),
+      (``Psc.FullFactorCriterion.family_fullFactorCriterion, ``FamilyCriterionType,
+        `PscVerif.C4FullFactorCriterion),
+      (``Psc.FullFactorCriterion.identity_not_fullFactorCriterion, ``IdentityCriterionControlType,
+        `PscVerif.C4FullFactorCriterion),
+      (``Psc.ParameterFamilyFlow.inflate_isHomeomorph, ``InflateHomeomorphType,
+        `PscVerif.C4ParameterFamilyFlow)]
     let env ← getEnv
     let matchesType (name expected : Name) : Term.TermElabM Bool := do
       let some info := env.find? name | return false
@@ -436,7 +467,9 @@ run_cmd do
       `PscVerif.PeriodicPartnerHullComplete, `PscVerif.PeriodicPartnerOriginContinuity,
       `PscVerif.PeriodicPartnerHullCompact, `PscVerif.PeriodicPartnerDesubContinuity,
       `PscVerif.PeriodicPartnerRealizationContinuity, `PscVerif.PeriodicPartnerRealizationFinite,
-      `PscVerif.PeriodicPartnerRealizationOnto]
+      `PscVerif.PeriodicPartnerRealizationOnto, `PscVerif.C4FullFactorCriterion,
+      `PscVerif.PeriodicPartnerLocalHausdorff, `PscVerif.PeriodicPartnerLocalAction,
+      `PscVerif.C4ParameterFamilyFlow]
     let mut declarations := 0
     let mut proofs := 0
     for mod in modules do

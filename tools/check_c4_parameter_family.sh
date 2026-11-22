@@ -48,12 +48,12 @@ elan run "$PSC_FAMILY_PIN" lake --no-cache build \
     PscVerif.C4FamilyFiniteProximal PscVerif.C4ParameterFamilyFibreDistal \
     PscVerif.C4FamilyOpenSynchronization PscVerif.C4FamilySolenoidCharacters \
     PscVerif.C4FamilyCharacterOrbits PscVerif.C4FamilyHaarSingletonFibres \
-    PscVerif.C4FamilyMeasuredSpectrum
+    PscVerif.C4FamilyMeasuredSpectrum PscVerif.C4FullFactorCriterion PscVerif.C4ParameterFamilyFlow
 psc_family_check_pins
 elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
     -DautoImplicit=false -Dpp.unicode.fun=true C4ParameterFamilyAudit.lean \
     | tee "$PSC_FAMILY_TMP/family-audit.log"
-test "$(grep -c '^PSC_PARAMETER_FAMILY_ENDPOINT' "$PSC_FAMILY_TMP/family-audit.log")" -eq 35
+test "$(grep -c '^PSC_PARAMETER_FAMILY_ENDPOINT' "$PSC_FAMILY_TMP/family-audit.log")" -eq 39
 for PSC_FAMILY_ENDPOINT in \
     Psc.ParameterFamily.finite_and_productive \
     Psc.ParameterFamily.coincidence_child \
@@ -89,15 +89,19 @@ for PSC_FAMILY_ENDPOINT in \
     Psc.ParameterFamilySolenoid.solenoidRealize_fibres_eq_of_equivariant \
     Psc.ParameterFamilySolenoid.common_tile_of_zero_fibre_witnesses \
     Psc.UniversalClosureReduction.all_blocks_productive \
-    Psc.UniversalClosureReduction.infinite_seed_reachability; do
+    Psc.UniversalClosureReduction.infinite_seed_reachability \
+    Psc.FullFactorCriterion.terminates_iff_fullFactorCriterion \
+    Psc.FullFactorCriterion.family_fullFactorCriterion \
+    Psc.FullFactorCriterion.identity_not_fullFactorCriterion \
+    Psc.ParameterFamilyFlow.inflate_isHomeomorph; do
     test "$(awk -F '\t' -v name="$PSC_FAMILY_ENDPOINT" \
         '$1 == "PSC_PARAMETER_FAMILY_ENDPOINT" && $2 == name {n++} END {print n+0}' \
         "$PSC_FAMILY_TMP/family-audit.log")" -eq 1
 done
-test "$(grep -c '^PSC_PARAMETER_FAMILY_MODULE' "$PSC_FAMILY_TMP/family-audit.log")" -eq 23
-test "$(awk -F '\t' '$1 == "PSC_PARAMETER_FAMILY_DECLARATIONS" && $2 == 23 {n++} END {print n+0}' \
+test "$(grep -c '^PSC_PARAMETER_FAMILY_MODULE' "$PSC_FAMILY_TMP/family-audit.log")" -eq 27
+test "$(awk -F '\t' '$1 == "PSC_PARAMETER_FAMILY_DECLARATIONS" && $2 == 27 {n++} END {print n+0}' \
     "$PSC_FAMILY_TMP/family-audit.log")" -eq 1
-test "$(grep -Fxc $'PSC_PARAMETER_FAMILY_AUDIT_COMPLETE\t35\t70' "$PSC_FAMILY_TMP/family-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_PARAMETER_FAMILY_AUDIT_COMPLETE\t39\t78' "$PSC_FAMILY_TMP/family-audit.log")" -eq 1
 elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
     -DautoImplicit=false -Dpp.unicode.fun=true C4ZeroFibreWitnessAudit.lean \
     | tee "$PSC_FAMILY_TMP/zero-fibre-audit.log"

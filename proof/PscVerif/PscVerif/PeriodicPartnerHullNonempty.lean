@@ -12,10 +12,12 @@ on the finite set `α × α` is eventually periodic: for some `m` and `k > 0` th
 `b = g_Rᵐ x`, `a = g_Lᵐ y` satisfy `g_Rᵏ b = b`, `g_Lᵏ a = a`.  The two-tile patch `b.a`
 occurs in `σᵐ⁺¹(c)` and lies inside its own `k`-fold inflation.
 
+The PIP3, census and Tribonacci corollaries are in `PeriodicPartnerHullNonemptyCensus`, so
+that this module does not depend on the census.
+
 See `docs/c4-hull-nonempty-stop-go-2026-11-21.md` for the source decision.
 -/
-import PscVerif.PeriodicPartnerSpectralCensus
-import PscVerif.PeriodicPartnerSpectralModels
+import PscVerif.PeriodicPartnerHull
 
 namespace Psc.PeriodicPartnerHull
 
@@ -229,29 +231,5 @@ theorem hull_nonempty [Finite α] [Nonempty α] (hβ : 1 < S.β) : Nonempty S.Hu
     · right; left; simp
 
 end LengthSubst
-
-/-! ## The census class -/
-
-open Psc.PeriodicPartnerSpectralCertificate
-
-/-- Every PIP3 length substitution has a nonempty legal hull. -/
-theorem PIP3.hull_nonempty {α : Type*} [Fintype α] [DecidableEq α] [Nonempty α]
-    {S : LengthSubst α} (h : PIP3 S) : Nonempty S.Hull :=
-  S.hull_nonempty h.2.2.2.1
-
-/-- Every member of the 4,554-specimen census underlies a PIP3 length substitution with
-derived `PisotData` and a nonempty legal hull. -/
-theorem census_hull_nonempty (σ : Fin 3 → List (Fin 3))
-    (hlen : ∀ a, 1 ≤ (σ a).length ∧ (σ a).length ≤ 3)
-    (hmem : (σ 0, σ 1, σ 2) ∈ Psc.PeriodicPartnerSpectralCensus.corpus) :
-    ∃ S : LengthSubst (Fin 3), S.σ = σ ∧ PIP3 S ∧
-      Nonempty (Psc.PeriodicPartnerRealization.PisotData S) ∧ Nonempty S.Hull := by
-  obtain ⟨S, hσ, hP, hD⟩ := (Psc.PeriodicPartnerSpectralCensus.census σ hlen).2 hmem
-  exact ⟨S, hσ, hP, hD, PIP3.hull_nonempty hP⟩
-
-/-- The Tribonacci hull is nonempty. -/
-theorem tribonacci_hull_nonempty : Nonempty Psc.PeriodicPartnerSpectralModels.tribonacci.Hull :=
-  Psc.PeriodicPartnerSpectralModels.tribonacci.hull_nonempty
-    Psc.PeriodicPartnerSpectralModels.one_lt_τ
 
 end Psc.PeriodicPartnerHull
