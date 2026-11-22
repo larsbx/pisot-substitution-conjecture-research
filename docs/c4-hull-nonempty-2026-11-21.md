@@ -12,7 +12,9 @@ Starting revision: `main@8bbc05b8`. [Source decision](c4-hull-nonempty-stop-go-2
 
 ## Work shown
 
-Module [`PeriodicPartnerHullNonempty.lean`](../proof/PscVerif/PscVerif/PeriodicPartnerHullNonempty.lean).
+Module [`PeriodicPartnerHullNonempty.lean`](../proof/PscVerif/PscVerif/PeriodicPartnerHullNonempty.lean). The PIP3, census and Tribonacci corollaries are in
+[`PeriodicPartnerHullNonemptyCensus.lean`](../proof/PscVerif/PscVerif/PeriodicPartnerHullNonemptyCensus.lean), so the generic
+theorem does not depend on the census.
 
 | Step | Lean | Argument |
 | --- | --- | --- |

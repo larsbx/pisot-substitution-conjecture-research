@@ -24,6 +24,7 @@ Source decision: `docs/c4-hull-left-consumers-stop-go-2026-11-21.md`.
 import PscVerif.PeriodicPartnerHullNonempty
 import PscVerif.PeriodicPartnerHullSelection
 import PscVerif.PeriodicPartnerReflection
+import PscVerif.PeriodicPartnerRealization
 
 namespace Psc.PeriodicPartnerHull
 

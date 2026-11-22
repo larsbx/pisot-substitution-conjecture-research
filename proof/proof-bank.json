@@ -43294,7 +43294,7 @@
       "module": "PscVerif.PeriodicPartnerHullLeft",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
-      "line": 43,
+      "line": 44,
       "declaration": "theorem startsAt_unique {T : S.Hull} {y : ℝ} {b c : α}"
     },
     {
@@ -43302,7 +43302,7 @@
       "module": "PscVerif.PeriodicPartnerHullLeft",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
-      "line": 48,
+      "line": 49,
       "declaration": "theorem agree_start {T U : S.Hull} {r y : ℝ} {b c : α} (h : AgreeLeft T U r)"
     },
     {
@@ -43310,7 +43310,7 @@
       "module": "PscVerif.PeriodicPartnerHullLeft",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
-      "line": 53,
+      "line": 54,
       "declaration": "theorem leftBranchLaws [Nonempty α] :"
     },
     {
@@ -43318,7 +43318,7 @@
       "module": "PscVerif.PeriodicPartnerHullLeft",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
-      "line": 78,
+      "line": 79,
       "declaration": "theorem left_common_patch {T U : S.Hull} {a : α} (hray : AgreeLeft T U 0)"
     },
     {
@@ -43326,7 +43326,7 @@
       "module": "PscVerif.PeriodicPartnerHullLeft",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
-      "line": 93,
+      "line": 94,
       "declaration": "theorem reflected_common_patch [Nonempty α] {T U : S.Hull} {a : α}"
     },
     {
@@ -43334,7 +43334,7 @@
       "module": "PscVerif.PeriodicPartnerHullLeft",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
-      "line": 101,
+      "line": 102,
       "declaration": "theorem reflected_window_of_ray {R r : ℝ} {T U : S.Hull} (_hR : 0 < R) (hr : r ≤ -R)"
     },
     {
@@ -43342,7 +43342,7 @@
       "module": "PscVerif.PeriodicPartnerHullLeft",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
-      "line": 106,
+      "line": 107,
       "declaration": "theorem leftAsymptotic_iff_metric [Nonempty α] {T U : S.Hull} :"
     },
     {
@@ -43350,7 +43350,7 @@
       "module": "PscVerif.PeriodicPartnerHullLeft",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
-      "line": 130,
+      "line": 131,
       "declaration": "theorem left_bds_ray_iff_metric [Nonempty α] :"
     },
     {
@@ -43358,7 +43358,7 @@
       "module": "PscVerif.PeriodicPartnerHullLeft",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
-      "line": 143,
+      "line": 144,
       "declaration": "theorem endsAt_of_startsAt [Fintype α] [DecidableEq α] [Nonempty α] {T : S.Hull} {y : ℝ}"
     },
     {
@@ -43366,7 +43366,7 @@
       "module": "PscVerif.PeriodicPartnerHullLeft",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
-      "line": 170,
+      "line": 171,
       "declaration": "theorem r4_startsAt_iff_endsAt [Fintype α] [DecidableEq α] [Nonempty α] {Y : Type*}"
     },
     {
@@ -43374,7 +43374,7 @@
       "module": "PscVerif.PeriodicPartnerHullLeft",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
-      "line": 197,
+      "line": 198,
       "declaration": "theorem hull_left_two_step_iff_pairPeriodic (hβ : 1 < S.β) (hBDS : LeftBDS S)"
     },
     {
@@ -43382,7 +43382,7 @@
       "module": "PscVerif.PeriodicPartnerHullLeft",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
-      "line": 206,
+      "line": 207,
       "declaration": "theorem hull_left_two_step_iff_zero_fibre (hβ : 1 < S.β) (P : PublishedInputs S Y)"
     },
     {
@@ -43390,7 +43390,7 @@
       "module": "PscVerif.PeriodicPartnerHullLeft",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
-      "line": 215,
+      "line": 216,
       "declaration": "theorem hull_left_collapse_of_merge (hβ : 1 < S.β) {T U : S.Hull} {a b : Fin 3}"
     },
     {
@@ -43398,7 +43398,7 @@
       "module": "PscVerif.PeriodicPartnerHullLeft",
       "private": false,
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean",
-      "line": 225,
+      "line": 226,
       "declaration": "theorem hull_left_branch_triple_dichotomy (hβ : 1 < S.β) (P : PublishedInputs S Y)"
     },
     {
@@ -59186,7 +59186,7 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerHullCompact.lean": "3be4cdd1c79f495bf3a00e3a12ffe858c7a00676aea0f31126f340e047d9bba8",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullComplete.lean": "800e0ff78b0e0bf9ea8f477b734952ef92d4b96e034ea6fc0be310c6fc8070c0",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullContinuity.lean": "80e0f040cd0ea768a0d5ddf74710dc659c9a9431fb667740953f41369a652386",
-    "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean": "7842763150d594e1401d2d1e518a1ebc0b789578f83b15f6dd8dc13f388405a2",
+    "proof/PscVerif/PscVerif/PeriodicPartnerHullLeft.lean": "567839fcbcc453817a73dccedaae3b0585b04ac6ddb08fb3d5f6725d98c5b845",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullNonempty.lean": "cfa10599952a6ddb20b2c932e33a971e8b45e221208607bd5bf7bbffe2b585fc",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullNonemptyCensus.lean": "8989e9bdbfb6e15cb3b7e98abb39edd109a9921128329edffadd20554850db7a",
     "proof/PscVerif/PscVerif/PeriodicPartnerHullPatches.lean": "07ce32643bfcec7aac4f9e9cc36969a888cd726462aa32077c3fbd2b44a03698",
