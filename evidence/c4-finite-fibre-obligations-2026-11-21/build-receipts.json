@@ -1,0 +1,1490 @@
+[
+  {
+    "module": "PscVerif.C4ParameterFamilyWords",
+    "source_sha256": "e49cc02bc7b82b8f44101ce153d93982f02e31684501ffe7499cfb53d55c86d7",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/C4ParameterFamilyWords.olean",
+      "PscVerif/C4ParameterFamilyWords.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 28.518,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.C4ParameterFamilyWords.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "ade9964a3c4d7f4020a4ce9b310a655d7ed583d2686d9dad82eab9a7f149e484"
+  },
+  {
+    "module": "PscVerif.C4FiniteTileAutomaton",
+    "source_sha256": "b8123aec4c0e1c2a9a1b5937a17cd0c9c26189e0d884c8a27bf1465e3b8b5b24",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/C4FiniteTileAutomaton.olean",
+      "PscVerif/C4FiniteTileAutomaton.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.79,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.C4FiniteTileAutomaton.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "ba0f3e8233743382d4f0bf11c283d754d903ca3295a426ee52b2d0f3097d7e9a"
+  },
+  {
+    "module": "PscVerif.C4FamilyTileAutomatonWords",
+    "source_sha256": "9b97606079e367b743a2f863403dff677a58c096068ad1715160eeef5a8b9559",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/C4FamilyTileAutomatonWords.olean",
+      "PscVerif/C4FamilyTileAutomatonWords.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 1.527,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.C4FamilyTileAutomatonWords.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "18d21aae2fa747084b5dff37481aaba22ba17f621c29271feb7fea11f8c50fb8"
+  },
+  {
+    "module": "PscVerif.Binomial",
+    "source_sha256": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/Binomial.olean",
+      "PscVerif/Binomial.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.431,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.Binomial.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "273d5129cfd23c70dbc398ab6efb74d180a7199212cc3c786738c82fff1d37be"
+  },
+  {
+    "module": "PscVerif.Incidence",
+    "source_sha256": "b0c865d4177dac9485a2ddbd35201143ee3d263ad735af05785b077e1f6bd6ff",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/Incidence.olean",
+      "PscVerif/Incidence.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.113,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.Incidence.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "ea87aedd8b415ed8224dff217cf5dbb6ba5b7018b3b1f39016481765e1a5db18"
+  },
+  {
+    "module": "PscVerif.C4ParameterFamilyPisot",
+    "source_sha256": "17c1a41e6726dfef7f04f3ccc0594f0cbfc5eb90fd61325114179541c763423c",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/C4ParameterFamilyPisot.olean",
+      "PscVerif/C4ParameterFamilyPisot.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 8.722,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.C4ParameterFamilyPisot.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "a5b170c9eaeb8cea120c48227201fe9e201bfecf34e08729bde54df70ecc6098"
+  },
+  {
+    "module": "PscVerif.PerronCore",
+    "source_sha256": "1f06da1e0b57e74b31fc03d753bd314f25561a37e512b3a8f7f05fda0d75458c",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PerronCore.olean",
+      "PscVerif/PerronCore.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.201,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PerronCore.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "f2c8265f8b42bf0871fb9119c6df53413d6fbf3af677469eb2f7f50b3d43ac23"
+  },
+  {
+    "module": "PscVerif.ConcentrationAlgebra",
+    "source_sha256": "301a1a13eca8a554d1313afc96e0a374dfc0774dfa8d2a2e8e60b97345c921b2",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/ConcentrationAlgebra.olean",
+      "PscVerif/ConcentrationAlgebra.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.442,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.ConcentrationAlgebra.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "55cd6f04ac528dc064ee19b25edc6982ea341e21aec3c328c1b096daf11a03e4"
+  },
+  {
+    "module": "PscVerif.ParikhIntertwiner",
+    "source_sha256": "bc7120433f0c103c966fc6faf41407b969537fd0881971a5d36b98169b220d96",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/ParikhIntertwiner.olean",
+      "PscVerif/ParikhIntertwiner.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.341,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.ParikhIntertwiner.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "cb4d0b6d0b42a1455d6b7e9ff09b89596ac44ee26b54e8211b83e60d508edeb5"
+  },
+  {
+    "module": "PscVerif.SignedCocycle",
+    "source_sha256": "eccc753e1656cc949db13d50ff8d97883f084fe18ab32ef70226cded35237e7e",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/SignedCocycle.olean",
+      "PscVerif/SignedCocycle.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.652,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.SignedCocycle.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "436710ab0dc06401b66040ed92b3bb0af61e8ba2818f0645b5e265784ed6a9aa"
+  },
+  {
+    "module": "PscVerif.FixedPointLimit",
+    "source_sha256": "cd4a824f288d4c1072fd375e0e7b9014f56028e23e00cb4336fd678a210b7bbe",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/FixedPointLimit.olean",
+      "PscVerif/FixedPointLimit.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 1.7,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.FixedPointLimit.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "2136547f1db53dbf2c9f21d524b41a79215b9f63fa67e0dfef28ac5304f73cd7"
+  },
+  {
+    "module": "PscVerif.Reduction",
+    "source_sha256": "357fa49ab6991513e07f249b8a4d74caabad75f68db76ce501395b3a0af87d2d",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/Reduction.olean",
+      "PscVerif/Reduction.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.486,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.Reduction.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "f0829d7f9a33f32910f98a9a4a6be1c7b43cf2dba59037ea131df6b1124372b8"
+  },
+  {
+    "module": "PscVerif.Descendants",
+    "source_sha256": "6641b65d81d90be34c13937b6ab8ebc029fcce91babd7c2ce398738dac783a40",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/Descendants.olean",
+      "PscVerif/Descendants.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 4.566,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.Descendants.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "296f684908b2b41e2ed594c633ce0cf4e93e32c04286f07cd9897f26ef10c8f5"
+  },
+  {
+    "module": "PscVerif.Termination",
+    "source_sha256": "bdc24ad4fddd5d01aee6f986c8d5476aead0655902db7a129e14c1921d364196",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/Termination.olean",
+      "PscVerif/Termination.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.108,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.Termination.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "55313c7aeb868a86161bada6f504a2706e6bab2037946b0c2d4c7e5d64334d4b"
+  },
+  {
+    "module": "PscVerif.ForwardCarrier",
+    "source_sha256": "df91e154ecb52a909c2ec7c06af1813f99ff2b38bd7053fb1df78928741c890e",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/ForwardCarrier.olean",
+      "PscVerif/ForwardCarrier.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.428,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.ForwardCarrier.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "32444ba46c41345ffeebee4712262fc7d801a31c7847f1fa0156e79d16bb05d9"
+  },
+  {
+    "module": "PscVerif.FastForwardCarrier",
+    "source_sha256": "fba7b08223e333d9380ff1e090ad85cad6aadbe8eadd1a2dde8d6b92bfcf0689",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/FastForwardCarrier.olean",
+      "PscVerif/FastForwardCarrier.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.505,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.FastForwardCarrier.log",
+    "log_sha256": "bed83996002436351258577996fb96eb06a4c4ad10b2129baca9fef28dd80e7a",
+    "compiler_output": "PscVerif/FastForwardCarrier.lean:288:13: warning: `if_neg` has been deprecated: Use `ite_eq_right` instead\n",
+    "artifact_sha256": "0848c0c5ff8c8ed0a0c242eabdfe0b84f8f278d6409a73bde20996a8ffee8dd5"
+  },
+  {
+    "module": "PscVerif.C4ParameterFamilyCarrier",
+    "source_sha256": "fba5f9b5a2a20c08107aa3e7714c20f2e92a4aeacd28e816e1a4e331e5e03208",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/C4ParameterFamilyCarrier.olean",
+      "PscVerif/C4ParameterFamilyCarrier.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 91.525,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.C4ParameterFamilyCarrier.log",
+    "log_sha256": "1e47faec64aacdaeaa012c85e99624858d82678b608f7c20da67f87cce11063a",
+    "compiler_output": "PscVerif/C4ParameterFamilyCarrier.lean:121:50: warning: This simp argument is unused:\n  Prod.fst\n\nHint: Omit it from the simp argument list.\n  [apply] simp only [state, ite_eq_right hb, Prod.swap, Prod.snd] at h\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nPscVerif/C4ParameterFamilyCarrier.lean:121:60: warning: This simp argument is unused:\n  Prod.snd\n\nHint: Omit it from the simp argument list.\n  [apply] simp only [state, ite_eq_right hb, Prod.swap, Prod.fst] at h\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nPscVerif/C4ParameterFamilyCarrier.lean:123:26: warning: This simp argument is unused:\n  Prod.fst\n\nHint: Omit it from the simp argument list.\n  [apply] simp only [Prod.swap, Prod.snd]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nPscVerif/C4ParameterFamilyCarrier.lean:123:36: warning: This simp argument is unused:\n  Prod.snd\n\nHint: Omit it from the simp argument list.\n  [apply] simp only [Prod.swap, Prod.fst]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\n'Psc.ParameterFamily.terminates_with_coincidence' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Psc.ParameterFamilyCarrier.children_eq_red' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Psc.ParameterFamily.finite_and_productive' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Psc.ParameterFamily.coincidence_child' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+    "artifact_sha256": "4d4b05db2f886ce899c7175b0c5d5b299f747f59564388e4d70c74ca967b6b6b"
+  },
+  {
+    "module": "PscVerif.TerminationFactors",
+    "source_sha256": "3415e1034becf2c937f29aa61326fa174cfcbb52a605fb467a362721d20bf831",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/TerminationFactors.olean",
+      "PscVerif/TerminationFactors.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.861,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.TerminationFactors.log",
+    "log_sha256": "32dc7672183fd5593167390ca84b550fffeae5758b41d198e8600e8023e22247",
+    "compiler_output": "PscVerif/TerminationFactors.lean:107:8: warning: automatically included section variable(s) unused in theorem `_private.PscVerif.TerminationFactors.0.Psc.TerminationFactors.subst_singletons`:\n  [DecidableEq α]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [DecidableEq α] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\n",
+    "artifact_sha256": "852eafd0541ded5d08c7f25219f97a6df50caa2c5a329be5d2414feda05f1b58"
+  },
+  {
+    "module": "PscVerif.C4ParameterFamilyBridge",
+    "source_sha256": "eb29f8b3bf9c325163a1e932dcfc324bd094f0b754ed28a2789daadb45e0354a",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/C4ParameterFamilyBridge.olean",
+      "PscVerif/C4ParameterFamilyBridge.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.847,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.C4ParameterFamilyBridge.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "632e3b53680d5befd96407efaafa4e79a93fc740e373af806f6cafadd6cdbd71"
+  },
+  {
+    "module": "PscVerif.PeriodicPartner",
+    "source_sha256": "8b4cfa2dbed0bf629a0a0f0dfd57ecb63b0d83bc02b48ee3392faa90404f4aaf",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartner.olean",
+      "PscVerif/PeriodicPartner.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.18,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartner.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "d8fe0c8f3ce5eb38598bdd1892f381c507f04106fb73c096ff8cb9bbabdbe590"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerDynamics",
+    "source_sha256": "812599f6a9dfb4ab5d0da0924fa6c3901128f74644e76d14eb2996de17f55c44",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerDynamics.olean",
+      "PscVerif/PeriodicPartnerDynamics.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 1.48,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerDynamics.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "36a867549a7542c820030ef595713c0cbbbb94d9c277200084ab55d846603273"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerCollapse",
+    "source_sha256": "a0b3df8c6040977532413191864a2ba002ebf45a6fb79cd3a40fe9a8fb45fd91",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerCollapse.olean",
+      "PscVerif/PeriodicPartnerCollapse.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.137,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerCollapse.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "241c653ef56bf00b8be92b0c755d2eaa5f85a3c5b2beb4a26d377aaf4c3b85ff"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerAsymptotic",
+    "source_sha256": "0ad011b1e6eb02418699a4838c22ae630f28954696810c470fdb054e077b4c23",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerAsymptotic.olean",
+      "PscVerif/PeriodicPartnerAsymptotic.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 1.667,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerAsymptotic.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "38dad70036cae3f46ab4c2960c64943c34feaba204b5e0d899e966dcdaa2cd3b"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerDichotomy",
+    "source_sha256": "d74034c65d26d8b98916f6fdca046c6772e9a3389fb53fdd03bcf3baeea2339b",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerDichotomy.olean",
+      "PscVerif/PeriodicPartnerDichotomy.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 1.706,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerDichotomy.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "d86e444d4d6acfd188bb0cb91d8b0eb370cd501c04c33d9020099c5c6857a40f"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerHull",
+    "source_sha256": "6124e92faa7ace36663a57ff5dda39f281fd86237cc30006912cf4c2a0a65b6e",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerHull.olean",
+      "PscVerif/PeriodicPartnerHull.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 4.057,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerHull.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "179fafd88d1bf8615907141f85279ae54ce45019cf7bff89dc99f7b1093c7ed9"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerLiteralDefect",
+    "source_sha256": "0c9d009618b409578d573a94e2f15b8052610eaa8c4f9d28aa77c3045644b9bb",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerLiteralDefect.olean",
+      "PscVerif/PeriodicPartnerLiteralDefect.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.375,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerLiteralDefect.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "1d4a6159e7f288c344f7f2f8082a602d0c914eb4195cb7414fe8dda27eaff501"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerEvenTails",
+    "source_sha256": "5519f5698c83b43956df8e04263f873e4879a1ec4e48533fe96e36b330f7d626",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerEvenTails.olean",
+      "PscVerif/PeriodicPartnerEvenTails.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.567,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerEvenTails.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "a0a179658fcd0a021caf0a5d603b5d70ba17abd05b57022fc288a5deefce7ea3"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerBalancedGeometry",
+    "source_sha256": "168cfad4dcda3241055411e9f40502926f2738740287ebcebd382f16258104e2",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerBalancedGeometry.olean",
+      "PscVerif/PeriodicPartnerBalancedGeometry.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 3.013,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerBalancedGeometry.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "0d5a330cafa31a993f43757bf8bc69f47b4ae3475f4a9dd7f8b9f5f3fa171a98"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerHullContinuity",
+    "source_sha256": "80e0f040cd0ea768a0d5ddf74710dc659c9a9431fb667740953f41369a652386",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerHullContinuity.olean",
+      "PscVerif/PeriodicPartnerHullContinuity.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.015,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerHullContinuity.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "87daf09517bbee7ba02e853d91a4cd6fb47717228096d9159719ee724595ee1d"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerEventualCoincidence",
+    "source_sha256": "d25e97d6a1c338a452fc61c987bfc9addb569cde5a7e2df3eaed5d485f92238a",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerEventualCoincidence.olean",
+      "PscVerif/PeriodicPartnerEventualCoincidence.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.52,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerEventualCoincidence.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "d4e5c42c47243010bd7d4c7a8aabd37ea16fc700589083468aed9fa7270d88b9"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerHullPatches",
+    "source_sha256": "07ce32643bfcec7aac4f9e9cc36969a888cd726462aa32077c3fbd2b44a03698",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerHullPatches.olean",
+      "PscVerif/PeriodicPartnerHullPatches.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.935,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerHullPatches.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "604a2040d814ccda350066a4d1790b123a2a0b11de04d6946f2707ce7ff41d90"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerLegalCoincidence",
+    "source_sha256": "3c81c675054bea4b16fa83e8d912525b4d456218997d9e21697d8847e148e23d",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerLegalCoincidence.olean",
+      "PscVerif/PeriodicPartnerLegalCoincidence.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.2,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerLegalCoincidence.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "e8a0a906932c82e20e7010a1569c2f9b613d0118f2cd0bf6d61adc0277193579"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerLocalTopology",
+    "source_sha256": "ab9cca25c9b6f57b944a912e1e8a239b4bb46bd7a73727542af056760331b7cf",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerLocalTopology.olean",
+      "PscVerif/PeriodicPartnerLocalTopology.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.012,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerLocalTopology.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "7770586aecfba09e278128e670462e59cc45c3f411525265f340c43086c3f799"
+  },
+  {
+    "module": "PscVerif.C4ParameterFamilyTiling",
+    "source_sha256": "421b9833f2d132206d0a34ee9ff9dcf511594cb5c7e14540f4c5a1fb9a83ba1c",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/C4ParameterFamilyTiling.olean",
+      "PscVerif/C4ParameterFamilyTiling.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 3.928,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.C4ParameterFamilyTiling.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "75f7ac320528eb75d3abd991f55ab7b7b6dd3f029134770f3142f26634d46fa9"
+  },
+  {
+    "module": "PscVerif.C4FamilyTileAutomatonHull",
+    "source_sha256": "02d57375d81d07073d12dc864a8632abfd6068808c051500ac1895d0f99d737c",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/C4FamilyTileAutomatonHull.olean",
+      "PscVerif/C4FamilyTileAutomatonHull.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.323,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.C4FamilyTileAutomatonHull.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "339fa329124267219ebd04725b6d62bd28eda97d01cf29cc142a169544b7eee9"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerHullComplete",
+    "source_sha256": "800e0ff78b0e0bf9ea8f477b734952ef92d4b96e034ea6fc0be310c6fc8070c0",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerHullComplete.olean",
+      "PscVerif/PeriodicPartnerHullComplete.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.065,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerHullComplete.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "7026e3caf4c2b3d18dc1b16dee8b8fd0b1e186ad5a7eb4dfce23a100d46daed9"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerRealization",
+    "source_sha256": "3b983148f0e3bc048984c15cb5350bcb77cb272b3bd77058ba02020008cd764d",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerRealization.olean",
+      "PscVerif/PeriodicPartnerRealization.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 4.027,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerRealization.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "89faf4c3138c6c8b805283e3a9c2dc85efe84954ecb28b9aeae4acc35dda19f0"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerOriginContinuity",
+    "source_sha256": "8dc8686400f6a170c42e962359a406b4eaa649bf899a5d8149488e5ee8c37d50",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerOriginContinuity.olean",
+      "PscVerif/PeriodicPartnerOriginContinuity.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.187,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerOriginContinuity.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "6bef7762d84fbc6cab160e5b5c99236b8fe9a44c32f1c4264185d1b851a03b74"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerHullCompact",
+    "source_sha256": "3be4cdd1c79f495bf3a00e3a12ffe858c7a00676aea0f31126f340e047d9bba8",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerHullCompact.olean",
+      "PscVerif/PeriodicPartnerHullCompact.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.322,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerHullCompact.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "bcd02f564d927490c903db4623e614c5ed6100af3dfa0cf935257a1ee0620303"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerDesubContinuity",
+    "source_sha256": "57bd1013e5cc26d2ece86c44ded9b20e57ed2df9068a3cf6d243aed3fc87fcfe",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerDesubContinuity.olean",
+      "PscVerif/PeriodicPartnerDesubContinuity.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.079,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerDesubContinuity.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "fd601f11b2e738f4c3c7b94384cff16c92a5edb2f69084d5ac9c20e19b13308c"
+  },
+  {
+    "module": "PscVerif.C4ParameterFamilyRecognizability",
+    "source_sha256": "b6889e7a4bf84e33cb154b36229be3f8c7992ce0d6afb1b241ff6e3d89ca2532",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/C4ParameterFamilyRecognizability.olean",
+      "PscVerif/C4ParameterFamilyRecognizability.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.496,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.C4ParameterFamilyRecognizability.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "208a407ffda131aa8217eda73dd16081c23095491e3a6b9ecabb32fcd5558438"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerLocalRealization",
+    "source_sha256": "472eacd674a293a84e841a7888398fd1fbaeedbdeff3a372c2e6ab665556e2b1",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerLocalRealization.olean",
+      "PscVerif/PeriodicPartnerLocalRealization.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 1.91,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerLocalRealization.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "7ebcb0457a649e48005220630f97213ef77db189f5979d9373c495f7a46bf3f6"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerRealizationContinuity",
+    "source_sha256": "8d779d4d0ebb448ddb784f35b4e135cc5c7ce78ba97fd3c55537d1cbbb5a2d04",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerRealizationContinuity.olean",
+      "PscVerif/PeriodicPartnerRealizationContinuity.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.193,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerRealizationContinuity.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "d76c0ecada7d09ad10b7810c1fa7a5b1dea8f7ba605fa4c19926d41eb8e3a120"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerRealizationFinite",
+    "source_sha256": "df8a3538f890eb6c5a25349c806e8b0eb54a9a1b2ca8f839ea4bfeb3e774feda",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerRealizationFinite.olean",
+      "PscVerif/PeriodicPartnerRealizationFinite.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.195,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerRealizationFinite.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "aff70d118a26688f2eadde6717734a41f995c7a5097d8340107491e270dd2611"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerRealizationOnto",
+    "source_sha256": "ce6eac4f63139a67ab95687d5da0bba2e51efc8457f5535ca7ed6a3436a35721",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerRealizationOnto.olean",
+      "PscVerif/PeriodicPartnerRealizationOnto.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.544,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerRealizationOnto.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "3e247789a71b267009536067a4e4b00bf9c391128a9de94572344f85c7ec78d7"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerSpectral",
+    "source_sha256": "45d12d1e6e7589bbbccfbf44798af9700c99be94a24a61ea02ece5ad8c55eafd",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerSpectral.olean",
+      "PscVerif/PeriodicPartnerSpectral.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 4.811,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerSpectral.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "1498af07c6c298c998a11980897545d63d9a935bd7421bf6069edf451c3e8bb8"
+  },
+  {
+    "module": "PscVerif.C4ParameterFamilySolenoid",
+    "source_sha256": "9b3b06d944c2b531ab6d3649144f5361244dc89a554ba9354e564dae26f52917",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/C4ParameterFamilySolenoid.olean",
+      "PscVerif/C4ParameterFamilySolenoid.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 3.803,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.C4ParameterFamilySolenoid.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "0369b1b4b5514e70c5493c3514fe75d65f4b74b91f221f622f5568cc30316aee"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerProximal",
+    "source_sha256": "83944b6beee8157260961fc8c4d6e27573836f6f45f1811390bc0deac202feae",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerProximal.olean",
+      "PscVerif/PeriodicPartnerProximal.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.923,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerProximal.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "4ed063bc8f11a1bbf333ea0f534b58ee07a3de1913a74318119dbb73d5b5431a"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerPeriodicZero",
+    "source_sha256": "651bc59774daae1c2f363253d5734cdc47c9830134cf9784c85c483916583df8",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerPeriodicZero.olean",
+      "PscVerif/PeriodicPartnerPeriodicZero.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.338,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerPeriodicZero.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "69d855e3bbd93741175d9e0fcddc363315cc4e95ae57a6cb360b7a3a28282114"
+  },
+  {
+    "module": "PscVerif.C4ParameterFamilyZeroFibreWitnesses",
+    "source_sha256": "3510a37f7bc609c962a88ab184f3b7591479abdcae0de0abfb6490fb90a6fb3d",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/C4ParameterFamilyZeroFibreWitnesses.olean",
+      "PscVerif/C4ParameterFamilyZeroFibreWitnesses.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 3.844,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.C4ParameterFamilyZeroFibreWitnesses.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "ab785dfa2cfdd64b35221d20680e0ebf73be8441b11fee1d01b4c713f88bf91a"
+  },
+  {
+    "module": "PscVerif.C4FamilyFiniteZeroFibre",
+    "source_sha256": "47832e3754b2cf087dced965641afc954537b94949d990f264f9bd91835221b8",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/C4FamilyFiniteZeroFibre.olean",
+      "PscVerif/C4FamilyFiniteZeroFibre.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 3.941,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.C4FamilyFiniteZeroFibre.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "1bde18c8d6314dcaddfc217960436cd3470f04b972fbc140d91ac2f529acd1e3"
+  },
+  {
+    "module": "PscVerif.C4ParameterFamilyControls",
+    "source_sha256": "98b75297c14f75b6a2c87c651d06b3da13131616cf1b53c2630d7b498a1b5540",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/C4ParameterFamilyControls.olean",
+      "PscVerif/C4ParameterFamilyControls.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 7.383,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.C4ParameterFamilyControls.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "02da17bc77addff2bda512acb52120d0ef304d62ffcb9cb23cfd652357d49ddb"
+  },
+  {
+    "module": "PscVerif.C4ParameterFamilyZeroFibreControls",
+    "source_sha256": "dd990353621f404c2adb759c5cf207b7dd95ac2639b09e2450921bbfa8939427",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/C4ParameterFamilyZeroFibreControls.olean",
+      "PscVerif/C4ParameterFamilyZeroFibreControls.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 3.577,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.C4ParameterFamilyZeroFibreControls.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "9ea9af44c14541c67024ad82b5cac3a385cd2c442105de1b87e318588a2a067e"
+  },
+  {
+    "module": "PscVerif.C4ParameterFamilyInteriorSeed",
+    "source_sha256": "6cc2b07ef323a93901d647b211fa0621566bf93b1c980a4fa6e8a530c12e2ad0",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/C4ParameterFamilyInteriorSeed.olean",
+      "PscVerif/C4ParameterFamilyInteriorSeed.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 3.54,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.C4ParameterFamilyInteriorSeed.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "475ebf6966095aeb5dbc2b3ff62eaf11267b81a747cdf37f273944f8c3eeb2df"
+  },
+  {
+    "module": "PscVerif.C4ParameterFamilyInteriorProximal",
+    "source_sha256": "68ce95f9f0cdf53603f79cff4d3a6b38c1e6e51ae4750b4fc68108b30fa4a9b2",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/C4ParameterFamilyInteriorProximal.olean",
+      "PscVerif/C4ParameterFamilyInteriorProximal.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 3.034,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.C4ParameterFamilyInteriorProximal.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "decb8769f04352770bc5fa9c30c666eb5d27ac4c4642e793e02d511816d46bc0"
+  },
+  {
+    "module": "PscVerif.C4ParameterFamilyInteriorZero",
+    "source_sha256": "a84c06f8694a66eaa0b488ba8b2673c9dcc062bec9996d3dc5443cf97ce8b52e",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/C4ParameterFamilyInteriorZero.olean",
+      "PscVerif/C4ParameterFamilyInteriorZero.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 3.105,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.C4ParameterFamilyInteriorZero.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "e10715a5d49ed0fafa1a647e15555c0ac00f43b9a5f6880578ed716f64f2b9dd"
+  },
+  {
+    "module": "PscVerif.Cyclicity",
+    "source_sha256": "a31b77d0fcb06d1dcb582156679c7316d2847fab2ff9b06db2b998ca6effa770",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/Cyclicity.olean",
+      "PscVerif/Cyclicity.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 3.585,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.Cyclicity.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "331daa591fbc502e7b83ab91c556b2a472cabe2619c8b5e3e3028f81a65a5363"
+  },
+  {
+    "module": "PscVerif.Intertwiner2",
+    "source_sha256": "4fdc6a9497a5c3fd4b39101b033e6814b70aec8391f0cbc8691028319b1143d6",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/Intertwiner2.olean",
+      "PscVerif/Intertwiner2.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 3.513,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.Intertwiner2.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "b5fbf125a999ca47ca5372aee83583e3cc6fa8265f82e27e2e4badbaf3cfef62"
+  },
+  {
+    "module": "PscVerif.UniversalClosureReduction",
+    "source_sha256": "aaf84f504e5609b7d74be4187ec325e195e5facc098386b42e36b469f2318e24",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/UniversalClosureReduction.olean",
+      "PscVerif/UniversalClosureReduction.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 3.335,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.UniversalClosureReduction.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "e65194c5f9299cae462b25f01bdf708ed8d62473a47d91cf84bbbbc026bbadb1"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerRealizationModels",
+    "source_sha256": "870d45802ea6b8678a90bdbb88bdfa90a986fdafad52f00962766245353eb323",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerRealizationModels.olean",
+      "PscVerif/PeriodicPartnerRealizationModels.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 3.749,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerRealizationModels.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "7951825b3876da8ea92d8dc6508e9a61fe1a34858414515b3ba8d98e61e5d13a"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerOrdinaryProximal",
+    "source_sha256": "cf93554a7032dd4bb34bc5f51d60330bbeb8fcaa63ad0c1ef107190d8b38d73d",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerOrdinaryProximal.olean",
+      "PscVerif/PeriodicPartnerOrdinaryProximal.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 3.217,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerOrdinaryProximal.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "541df28c25c1fdf8357c7c5099f135fc11df65746a2f3a812f1bc796af049ed9"
+  },
+  {
+    "module": "PscVerif.C4ParameterFamilyOrdinaryProximal",
+    "source_sha256": "7636d2c4c641deb791407072755958df0c8e3e26b4d3b753439a868f20829c6a",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/C4ParameterFamilyOrdinaryProximal.olean",
+      "PscVerif/C4ParameterFamilyOrdinaryProximal.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 3.41,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.C4ParameterFamilyOrdinaryProximal.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "9953a799ee073ffc9cbe6de60656d4276e015e90c83707101942e5f9ef1c5d0d"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerRotationFactor",
+    "source_sha256": "0d3ab745b6d63394490b39b7bc07c8680aad77cd7e51804da09d476367e340fe",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerRotationFactor.olean",
+      "PscVerif/PeriodicPartnerRotationFactor.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.712,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerRotationFactor.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "cf4a4628ef56da3da148539d0092a83f49af43c45bca9e2ac153803ff3b8d823"
+  },
+  {
+    "module": "PscVerif.C4ParameterFamilyRotationFactor",
+    "source_sha256": "dda99b8395b96881a2078a3f5e296c7bf296d3523fef779c5298640ec1dd0bed",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/C4ParameterFamilyRotationFactor.olean",
+      "PscVerif/C4ParameterFamilyRotationFactor.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 3.306,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.C4ParameterFamilyRotationFactor.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "11b4b772aac28d6c130ba1493adecd2bafa84fd5753367e38071981ed10abfc2"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerEquicontinuousFactor",
+    "source_sha256": "7bb8ff4ad0ee87a2421df93384511253cc88c7836d7b900c37971f96c5196071",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerEquicontinuousFactor.olean",
+      "PscVerif/PeriodicPartnerEquicontinuousFactor.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.365,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerEquicontinuousFactor.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "57cf2366124f994c636fc5ae6402b09ba3b2dc1bfbfee7d22d08b92703267ca4"
+  },
+  {
+    "module": "PscVerif.C4ParameterFamilyEquicontinuousFactor",
+    "source_sha256": "d581184210ba15a673591078d0050b3be8a3f58c13878e39814818b6d414268f",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/C4ParameterFamilyEquicontinuousFactor.olean",
+      "PscVerif/C4ParameterFamilyEquicontinuousFactor.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.635,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.C4ParameterFamilyEquicontinuousFactor.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "069bbff59b8a92568b78900541a9dfe42c868e7fa1b03d296e7b73626a58676c"
+  },
+  {
+    "module": "PscVerif.C4FamilyFiniteProximal",
+    "source_sha256": "f0626913d31535e076e6afd0ce495ad5d4c49b1214d81c9b3b3f5b533244dc1c",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/C4FamilyFiniteProximal.olean",
+      "PscVerif/C4FamilyFiniteProximal.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.912,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.C4FamilyFiniteProximal.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "d99fd903f844b2c001658f487426783c31968d9a798314dd8d140306ad3c535b"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerFibreDistal",
+    "source_sha256": "4819d353bd09427da45695d11143746d9ead187f4d90802e915a2c83e1b0deef",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerFibreDistal.olean",
+      "PscVerif/PeriodicPartnerFibreDistal.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.013,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerFibreDistal.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "4acf6d730e92c5fcbad57c99075082b9ca55dd72e5e12d05552252f92b2b52ed"
+  },
+  {
+    "module": "PscVerif.C4ParameterFamilyFibreDistal",
+    "source_sha256": "556923495164687e8b52258cc00ccf52b0411f348cdaf0031674a369090be9fc",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/C4ParameterFamilyFibreDistal.olean",
+      "PscVerif/C4ParameterFamilyFibreDistal.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.538,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.C4ParameterFamilyFibreDistal.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "7d38ac8963a2380d9ad417886b3d7559fbbdb917014d2ba5e9f1f8ff561ffb36"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerFiniteCoincidence",
+    "source_sha256": "ae5c8796441d2334e157976498067e4dfd8359e0362b801c312c1cafb93bad0e",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerFiniteCoincidence.olean",
+      "PscVerif/PeriodicPartnerFiniteCoincidence.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 1.917,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerFiniteCoincidence.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "84deb393b4dfedb6c0dcf9a92fd7f1687ac8fb506b94b16c105724f93f80f2b2"
+  },
+  {
+    "module": "PscVerif.C4FamilyFiniteFibreSynchronization",
+    "source_sha256": "9dd07cf862829b61a18e82409893ebd9fba6855a3d0bda2543d786c92355f390",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/C4FamilyFiniteFibreSynchronization.olean",
+      "PscVerif/C4FamilyFiniteFibreSynchronization.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.783,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.C4FamilyFiniteFibreSynchronization.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "83ad87b03d0ab51caaa32f72f45aa6e5bd23d5de7db1bb83b8e62293ef9324e3"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerOriginSeparation",
+    "source_sha256": "f0304cc8f908e48a8566a9b110884469b9e82e51679ed0ee13b35ba9a44d244d",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerOriginSeparation.olean",
+      "PscVerif/PeriodicPartnerOriginSeparation.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.136,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerOriginSeparation.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "890089489a15e9a12a6fe2342b65e168db956150740fe24ab709cc76073cbd09"
+  },
+  {
+    "module": "PscVerif.C4FamilyOpenSynchronization",
+    "source_sha256": "d67995845d97872e01484eca0e3eb8d78dafb7c25c29dedbce2668c8e47ab923",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/C4FamilyOpenSynchronization.olean",
+      "PscVerif/C4FamilyOpenSynchronization.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 3.804,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.C4FamilyOpenSynchronization.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "0a475677b1191718b0762d89e7205e0d83e93cfb5f41cb73768b9993c7d8dcce"
+  },
+  {
+    "module": "PscVerif.PeriodicPartnerSolenoidCharacters",
+    "source_sha256": "b501792f12cc16d524209a20eabb834b69ee0a7188afbceb92b9459cb3fffdfd",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/PeriodicPartnerSolenoidCharacters.olean",
+      "PscVerif/PeriodicPartnerSolenoidCharacters.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 4.032,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.PeriodicPartnerSolenoidCharacters.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "b2b6456189b817c5e3f897cf4a5929bc7bf59aa69717dcc9c469f106c03f7ae1"
+  },
+  {
+    "module": "PscVerif.C4FamilySolenoidCharacters",
+    "source_sha256": "4309de68886bf368e18470e0d903877ec46fe47cd553e9dac37de95fda6e4903",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/C4FamilySolenoidCharacters.olean",
+      "PscVerif/C4FamilySolenoidCharacters.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 4.353,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.C4FamilySolenoidCharacters.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "f699475d60b807f05bd6e5187741b5b0d861e624e26114bd6b3653135da69bb1"
+  },
+  {
+    "module": "PscVerif.C4FamilyCharacterOrbits",
+    "source_sha256": "a8604253adf021654c5b0cb572c54b7a7b9aad7fc255648c5460a6e53de2ebd6",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "-o",
+      "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/objects/PscVerif/C4FamilyCharacterOrbits.olean",
+      "PscVerif/C4FamilyCharacterOrbits.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 3.057,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/PscVerif.C4FamilyCharacterOrbits.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compiler_output": "",
+    "artifact_sha256": "6cd64858f07baf654ce8b8d4246b0165798e20eab39fc2cd929593089d081a86"
+  },
+  {
+    "module": "C4ParameterFamilyAudit",
+    "source_sha256": "5d63a488ad5d3a98f20e6e109049a349a440c9459dc33013ba40f915ade5c5a3",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "C4ParameterFamilyAudit.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 4.038,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/C4ParameterFamilyAudit.log",
+    "log_sha256": "0b5bc5f665a0fdca05abdeb380c50083d69fe2241ad15ee0eff756b5520e2659",
+    "compiler_output": "PSC_PARAMETER_FAMILY_MODULE\tPscVerif.Termination\t2\t0\nPSC_PARAMETER_FAMILY_MODULE\tPscVerif.C4ParameterFamilyWords\t293\t270\nPSC_PARAMETER_FAMILY_MODULE\tPscVerif.C4ParameterFamilyCarrier\t219\t188\nPSC_PARAMETER_FAMILY_MODULE\tPscVerif.C4ParameterFamilyControls\t20\t16\nPSC_PARAMETER_FAMILY_MODULE\tPscVerif.C4ParameterFamilyPisot\t35\t32\nPSC_PARAMETER_FAMILY_MODULE\tPscVerif.TerminationFactors\t11\t10\nPSC_PARAMETER_FAMILY_MODULE\tPscVerif.C4ParameterFamilyBridge\t3\t3\nPSC_PARAMETER_FAMILY_MODULE\tPscVerif.UniversalClosureReduction\t35\t28\nPSC_PARAMETER_FAMILY_MODULE\tPscVerif.PeriodicPartnerHullPatches\t17\t15\nPSC_PARAMETER_FAMILY_MODULE\tPscVerif.PeriodicPartnerBalancedGeometry\t25\t23\nPSC_PARAMETER_FAMILY_MODULE\tPscVerif.C4ParameterFamilyTiling\t44\t40\nPSC_PARAMETER_FAMILY_MODULE\tPscVerif.PeriodicPartnerEventualCoincidence\t33\t28\nPSC_PARAMETER_FAMILY_MODULE\tPscVerif.PeriodicPartnerLegalCoincidence\t16\t11\nPSC_PARAMETER_FAMILY_MODULE\tPscVerif.C4ParameterFamilyRecognizability\t25\t22\nPSC_PARAMETER_FAMILY_MODULE\tPscVerif.C4ParameterFamilySolenoid\t19\t16\nPSC_PARAMETER_FAMILY_MODULE\tPscVerif.PeriodicPartnerRealization\t169\t126\nPSC_PARAMETER_FAMILY_MODULE\tPscVerif.PeriodicPartnerHullComplete\t3\t3\nPSC_PARAMETER_FAMILY_MODULE\tPscVerif.PeriodicPartnerOriginContinuity\t9\t9\nPSC_PARAMETER_FAMILY_MODULE\tPscVerif.PeriodicPartnerHullCompact\t34\t26\nPSC_PARAMETER_FAMILY_MODULE\tPscVerif.PeriodicPartnerDesubContinuity\t5\t4\nPSC_PARAMETER_FAMILY_MODULE\tPscVerif.PeriodicPartnerRealizationContinuity\t15\t15\nPSC_PARAMETER_FAMILY_MODULE\tPscVerif.PeriodicPartnerRealizationFinite\t13\t12\nPSC_PARAMETER_FAMILY_MODULE\tPscVerif.PeriodicPartnerRealizationOnto\t8\t8\nPSC_PARAMETER_FAMILY_DECLARATIONS\t23\t1053\t905\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamily.finite_and_productive\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamily.coincidence_child\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamily.terminates_with_coincidence\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilyPisot.primitive\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilyPisot.irreducible\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilyPisot.pisot\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.TerminationFactors.terminates_iff_finite_factors_and_coincidences\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilyBridge.full_factor_termination\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilyBridge.spectral_criterion_inputs\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilyTiling.geometry_image\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilyTiling.fixed_hull_tiling\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilyTiling.continuous_action\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilyTiling.action_aperiodic\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilyTiling.finite_local_complexity\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilyTiling.swap_rotation_irrational\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilyTiling.swap_rotation_dense\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilyTiling.dense_swap_coincidences\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilyTiling.periodic_swap_geometry\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilyTiling.legal_patches_dense_eventual\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilyTiling.hull_dense_eventual\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilyTiling.periodic_common_tile_of_origin_witnesses\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilyTiling.periodic_fibre_common_tiles\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilyRecognizability.inflateH_bijective\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilySolenoid.mat_eq\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilySolenoid.continuous_solenoidRealize\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilySolenoid.solenoidRealize_surjective\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilySolenoid.solenoidRealize_finite_fibres\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilySolenoid.solenoidRealize_inflate\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilySolenoid.solenoidRealize_translate\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilySolenoid.fixed_tiling_over_zero\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilySolenoid.periodic_of_realize_zero\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilySolenoid.solenoidRealize_fibres_eq_of_equivariant\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.ParameterFamilySolenoid.common_tile_of_zero_fibre_witnesses\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.UniversalClosureReduction.all_blocks_productive\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_ENDPOINT\tPsc.UniversalClosureReduction.infinite_seed_reachability\tpropext,Classical.choice,Quot.sound\nPSC_PARAMETER_FAMILY_AUDIT_COMPLETE\t35\t70\n"
+  },
+  {
+    "module": "C4ZeroFibreWitnessAudit",
+    "source_sha256": "fa9d4d6d34b745d9e485b723a242685175cb747d9146f13a979b25c25517312d",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "C4ZeroFibreWitnessAudit.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 3.861,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/C4ZeroFibreWitnessAudit.log",
+    "log_sha256": "59436c2308380e7791d3679cc7d10762aab67b4ab53d0bd9066d829447ca8b8b",
+    "compiler_output": "PSC_ZERO_FIBRE_MODULE\tPscVerif.PeriodicPartnerProximal\t8\t7\nPSC_ZERO_FIBRE_MODULE\tPscVerif.PeriodicPartnerPeriodicZero\t6\t6\nPSC_ZERO_FIBRE_MODULE\tPscVerif.C4ParameterFamilyZeroFibreWitnesses\t14\t11\nPSC_ZERO_FIBRE_MODULE\tPscVerif.C4ParameterFamilyZeroFibreControls\t5\t5\nPSC_ZERO_FIBRE_MODULE\tPscVerif.C4ParameterFamilyInteriorSeed\t7\t7\nPSC_ZERO_FIBRE_MODULE\tPscVerif.C4ParameterFamilyInteriorProximal\t6\t6\nPSC_ZERO_FIBRE_MODULE\tPscVerif.C4ParameterFamilyInteriorZero\t3\t3\nPSC_ZERO_FIBRE_DECLARATIONS\t7\t49\t45\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.PeriodicPartnerProximal.originPatch_eq_of_agree\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.PeriodicPartnerProximal.agree_at_common_tile\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.PeriodicPartnerProximal.inflateH_iterate_translate\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.PeriodicPartnerProximal.ExactProximal.inflate_iterate\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.PeriodicPartnerProximal.exactProximal_of_periodic_common_tile\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.PeriodicPartnerProximal.common_tile_of_exactProximal\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.PeriodicPartnerProximal.exactProximal_iff_common_tile_of_periodic\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.PeriodicPartnerProximal.closedOriginWitnesses_of_windowWitnesses\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.PeriodicPartnerProximal.stronglyRegionallyProximal_of_exactProximal\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.PeriodicPartnerPeriodicZero.realize_zero_of_periodic_torus_zero\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.PeriodicPartnerPeriodicZero.torusRealize_zero_of_periodic_lattice_origin\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.PeriodicPartnerPeriodicZero.realize_zero_of_periodic_lattice_origin\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.PeriodicPartnerPeriodicZero.lattice_origin_of_realize_zero\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.PeriodicPartnerPeriodicZero.realize_zero_iff_lattice_origin_of_periodic\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.ParameterFamilyZeroFibreWitnesses.realize_zero_iff_periodic_lattice_origin\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.ParameterFamilyZeroFibreWitnesses.common_tile_of_closedOriginWitnesses\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.ParameterFamilyZeroFibreWitnesses.exactProximal_iff_common_tile\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.ParameterFamilyZeroFibreWitnesses.windowWitnesses_iff_common_tile\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.ParameterFamilyZeroFibreWitnesses.closedOriginWitnesses_iff_common_tile\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.ParameterFamilyZeroFibreWitnesses.stronglyRegionallyProximal_iff_common_tile\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.ParameterFamilyZeroFibreWitnesses.common_tile_trans\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.ParameterFamilyZeroFibreWitnesses.all_pair_witnesses_iff_anchor\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.ParameterFamilyZeroFibreWitnesses.all_pair_witnesses_iff_periodic_lattice_anchor\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.ParameterFamilyZeroFibreControls.zero_fibre_seam_control\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.ParameterFamilyZeroFibreControls.solenoidRealize_not_injective\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.ParameterFamilyZeroFibreControls.seam_pair_common_tile\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.ParameterFamilyZeroFibreControls.zero_fibre_pair_with_exact_shifts\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.ParameterFamilyInteriorSeed.interior_periodic_tiling\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.ParameterFamilyInteriorSeed.interior_child_positions\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.ParameterFamilyInteriorSeed.interior_cycle_tiles\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.ParameterFamilyInteriorSeed.interior_periodic_origins\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.ParameterFamilyInteriorSeed.no_origin_vertex\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.ParameterFamilyInteriorProximal.seam_interior_common_tile\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.ParameterFamilyInteriorProximal.seam_interior_exactProximal\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.ParameterFamilyInteriorProximal.seam_interior_orbit_exactProximal\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.ParameterFamilyInteriorZero.interior_zero_cycle\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.ParameterFamilyInteriorZero.zero_fibre_not_all_vertices\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_ENDPOINT\tPsc.ParameterFamilyInteriorZero.seam_and_interior_zero_witnesses\tpropext,Classical.choice,Quot.sound\nPSC_ZERO_FIBRE_AUDIT_COMPLETE\t38\t76\n"
+  },
+  {
+    "module": "C4FiniteTileAutomatonAudit",
+    "source_sha256": "03ae6c9467da09b705a6ddf5c51403797a17e559bbf81175d5544e34c1eb8b08",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "C4FiniteTileAutomatonAudit.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 1.907,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/C4FiniteTileAutomatonAudit.log",
+    "log_sha256": "77f779c75a66f6301e85f775723d2bf714525d49ca3949ad1fb5fcdb61710eac",
+    "compiler_output": "PSC_FINITE_TILE_MODULE\tPscVerif.C4FiniteTileAutomaton\t150\t90\nPSC_FINITE_TILE_MODULE\tPscVerif.C4FamilyTileAutomatonWords\t14\t13\nPSC_FINITE_TILE_ENDPOINT\tPsc.C4FiniteTileAutomaton.certificate_replay\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_TILE_ENDPOINT\tPsc.C4FiniteTileAutomaton.exists_signed_walk\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_TILE_ENDPOINT\tPsc.C4FiniteTileAutomaton.replay_iff_walk\tpropext\nPSC_FINITE_TILE_ENDPOINT\tPsc.C4FiniteTileAutomaton.control_table_exact\tpropext\nPSC_FINITE_TILE_ENDPOINT\tPsc.C4FiniteTileAutomaton.output_table_exact\tpropext\nPSC_FINITE_TILE_ENDPOINT\tPsc.C4FiniteTileAutomaton.reduced_basis0_impossible\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_TILE_ENDPOINT\tPsc.C4FiniteTileAutomaton.disconnected_rejected\tpropext\nPSC_FINITE_TILE_ENDPOINT\tPsc.C4FiniteTileAutomaton.reversed_sign_rejected\tpropext,Quot.sound\nPSC_FINITE_TILE_ENDPOINT\tPsc.C4FamilyTileAutomatonWords.all_forward_edges_have_literal_witness\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_TILE_ENDPOINT\tPsc.C4FamilyTileAutomatonWords.all_signed_edges_have_literal_witness\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_TILE_REFUSAL_CONTROLS\t20\nPSC_FINITE_TILE_AUDIT_COMPLETE\t164\t103\n"
+  },
+  {
+    "module": "C4FiniteHullWitnessAudit",
+    "source_sha256": "58d7293dcc4baf9066599bf8349963512855a654ab680e357e7bd38e35d38f47",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "C4FiniteHullWitnessAudit.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 3.428,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/C4FiniteHullWitnessAudit.log",
+    "log_sha256": "65cbeae540f71657a9cc1cf56cbc09da5581bec7f6b10c617150bf110804e669",
+    "compiler_output": "PSC_FINITE_HULL_MODULE\tPscVerif.C4FamilyTileAutomatonHull\t12\t11\nPSC_FINITE_HULL_MODULE\tPscVerif.C4FamilyFiniteZeroFibre\t14\t14\nPSC_FINITE_HULL_ENDPOINT\tPsc.C4FamilyTileAutomatonHull.supertile_hull\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_HULL_ENDPOINT\tPsc.C4FamilyTileAutomatonHull.occurrence_hull_bridge\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_HULL_ENDPOINT\tPsc.C4FamilyTileAutomatonHull.forward_edge_hull_bridge\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_HULL_ENDPOINT\tPsc.C4FamilyTileAutomatonHull.signed_edge_hull_bridge\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_HULL_ENDPOINT\tPsc.PeriodicPartnerEventualCoincidence.dense_eventual_trans\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_HULL_ENDPOINT\tPsc.C4FamilyFiniteZeroFibre.dense_eventual_of_walk\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_HULL_ENDPOINT\tPsc.C4FamilyFiniteZeroFibre.dense_eventual_of_replay\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_HULL_ENDPOINT\tPsc.C4FamilyFiniteZeroFibre.dense_eventual_of_integer_displacement\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_HULL_ENDPOINT\tPsc.C4FamilyFiniteZeroFibre.integer_origin_of_zero\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_HULL_ENDPOINT\tPsc.C4FamilyFiniteZeroFibre.dense_eventual_of_integer_origins\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_HULL_ENDPOINT\tPsc.C4FamilyFiniteZeroFibre.dense_eventual_of_torusRealize_eq\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_HULL_ENDPOINT\tPsc.C4FamilyFiniteZeroFibre.same_fibre_dense_eventual\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_HULL_ENDPOINT\tPsc.C4FamilyFiniteZeroFibre.zero_fibre_dense_eventual\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_HULL_ENDPOINT\tPsc.C4FamilyFiniteZeroFibre.zero_fibre_common_tile\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_HULL_ENDPOINT\tPsc.C4FamilyFiniteZeroFibre.zero_fibre_exactProximal\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_HULL_ENDPOINT\tPsc.C4FamilyFiniteZeroFibre.zero_fibre_windowWitnesses\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_HULL_ENDPOINT\tPsc.C4FamilyFiniteZeroFibre.zero_fibre_closedOriginWitnesses\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_HULL_ENDPOINT\tPsc.C4FamilyFiniteZeroFibre.zero_fibre_stronglyRegionallyProximal\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_HULL_ENDPOINT\tPsc.ParameterFamilyZeroFibreControls.zero_fibre_seam_control\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_HULL_ENDPOINT\tPsc.ParameterFamilyInteriorZero.zero_fibre_not_all_vertices\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_HULL_CONTRACT_REFUSED\tPsc.C4FamilyTileAutomatonHull.signed_edge_hull_bridge\tPsc.C4FiniteHullWitnessAudit.WrongSignedEdgeType\nPSC_FINITE_HULL_CONTRACT_REFUSED\tPsc.C4FamilyFiniteZeroFibre.zero_fibre_common_tile\tPsc.C4FiniteHullWitnessAudit.MissingFamilyGuardType\nPSC_FINITE_HULL_CONTRACT_REFUSED\tPsc.C4FamilyFiniteZeroFibre.zero_fibre_common_tile\tPsc.C4FiniteHullWitnessAudit.WeakerFamilyGuardType\nPSC_FINITE_HULL_CONTRACT_REFUSED\tPsc.C4FamilyFiniteZeroFibre.zero_fibre_common_tile\tPsc.C4FiniteHullWitnessAudit.MissingZeroPremiseType\nPSC_FINITE_HULL_CONTRACT_REFUSED\tPsc.C4FamilyFiniteZeroFibre.dense_eventual_of_integer_origins\tPsc.C4FiniteHullWitnessAudit.MissingIntegerOriginsType\nPSC_FINITE_HULL_CONTRACT_REFUSED\tPsc.C4FamilyFiniteZeroFibre.zero_fibre_closedOriginWitnesses\tPsc.C4FiniteHullWitnessAudit.DirectOriginAgreementType\nPSC_FINITE_HULL_CONTRACT_REFUSED\tPsc.C4FamilyFiniteZeroFibre.zero_fibre_windowWitnesses\tPsc.C4FiniteHullWitnessAudit.DirectWindowAgreementType\nPSC_FINITE_HULL_CONTRACT_REFUSED\tPsc.C4FamilyFiniteZeroFibre.same_fibre_dense_eventual\tPsc.C4FiniteHullWitnessAudit.SameFibreCommonTileWithoutPeriodsType\nPSC_FINITE_HULL_REFUSAL_CONTROLS\t48\nPSC_FINITE_HULL_AUDIT_COMPLETE\t26\t25\n"
+  },
+  {
+    "module": "C4FiniteProximalAudit",
+    "source_sha256": "9d75e8645c7eebbe0f8479d267ad66f6ff4b1976f759f8b472f510f29909c851",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "C4FiniteProximalAudit.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 3.583,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/C4FiniteProximalAudit.log",
+    "log_sha256": "551ea3dd375556de623ab9e8daad1a6a234fe5c4f54a50e4a66067c2fcfca8b8",
+    "compiler_output": "PSC_FINITE_PROXIMAL_MODULE\tPscVerif.PeriodicPartnerOrdinaryProximal\t5\t4\nPSC_FINITE_PROXIMAL_MODULE\tPscVerif.C4ParameterFamilyOrdinaryProximal\t4\t4\nPSC_FINITE_PROXIMAL_MODULE\tPscVerif.PeriodicPartnerRotationFactor\t9\t8\nPSC_FINITE_PROXIMAL_MODULE\tPscVerif.C4ParameterFamilyRotationFactor\t6\t5\nPSC_FINITE_PROXIMAL_MODULE\tPscVerif.PeriodicPartnerEquicontinuousFactor\t4\t4\nPSC_FINITE_PROXIMAL_MODULE\tPscVerif.C4ParameterFamilyEquicontinuousFactor\t6\t6\nPSC_FINITE_PROXIMAL_MODULE\tPscVerif.PeriodicPartnerFibreDistal\t6\t4\nPSC_FINITE_PROXIMAL_MODULE\tPscVerif.C4FamilyFiniteProximal\t6\t6\nPSC_FINITE_PROXIMAL_MODULE\tPscVerif.C4ParameterFamilyFibreDistal\t4\t4\nPSC_FINITE_PROXIMAL_DECLARATIONS\t9\t50\t45\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.PeriodicPartnerOrdinaryProximal.pair_orbit_closure_invariant\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.PeriodicPartnerOrdinaryProximal.topologicallyProximal_of_anchor\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.PeriodicPartnerOrdinaryProximal.mem_patch_of_agree\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.PeriodicPartnerOrdinaryProximal.topologicallyProximal_of_exactProximal\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.ParameterFamilyOrdinaryProximal.same_fibre_proximal_of_zero_anchor\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.ParameterFamilyOrdinaryProximal.same_fibre_proximal_of_zero_anchor_common_tile\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.ParameterFamilyOrdinaryProximal.same_fibre_proximal_of_zero_anchor_witnesses\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.ParameterFamilyOrdinaryProximal.same_fibre_proximal_of_zero_fibre_witnesses\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.C4FamilyFiniteProximal.same_fibre_topologicallyProximal\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.C4FamilyFiniteProximal.same_fibre_iff_topologicallyProximal\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.C4FamilyFiniteProximal.isClosed_topologicallyProximal\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.C4FamilyFiniteProximal.concreteFibreRank_eq_one\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.C4FamilyFiniteProximal.rotation_factor_descent\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.C4FamilyFiniteProximal.equicontinuous_factor_descent\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.PeriodicPartnerRotationFactor.topologicallyProximal_map\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.PeriodicPartnerRotationFactor.eq_of_topologicallyProximal_rotation\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.PeriodicPartnerRotationFactor.eq_of_topologicallyProximal_add_rotation\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.PeriodicPartnerRotationFactor.existsUnique_continuous_equivariant_descent\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.PeriodicPartnerRotationFactor.existsUnique_rotation_descent\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.PeriodicPartnerRotationFactor.existsUnique_add_rotation_descent\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.PeriodicPartnerRotationFactor.fibreNonproximalRank_eq_one\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.PeriodicPartnerRotationFactor.fibreNonproximalRank_eq_one_of_surjective\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.ParameterFamilyRotationFactor.solenoid_flow_eq_add\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.ParameterFamilyRotationFactor.solenoidRealize_eq_of_topologicallyProximal\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.ParameterFamilyRotationFactor.same_fibre_iff_proximal_of_zero_anchor_common_tile\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.ParameterFamilyRotationFactor.concreteFibreRank_eq_one_of_zero_anchor_common_tile\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.ParameterFamilyRotationFactor.rotation_descent_of_zero_anchor_common_tile\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.PeriodicPartnerEquicontinuousFactor.eq_of_topologicallyProximal_of_equicontinuous\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.PeriodicPartnerEquicontinuousFactor.existsUnique_equicontinuous_descent\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.PeriodicPartnerEquicontinuousFactor.uniformEquicontinuous_right_rotations\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.PeriodicPartnerEquicontinuousFactor.uniformEquicontinuous_add_right_rotations\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.ParameterFamilyEquicontinuousFactor.uniformEquicontinuous_solenoid_flow\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.ParameterFamilyEquicontinuousFactor.equicontinuous_solenoid_flow\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.ParameterFamilyEquicontinuousFactor.solenoid_flow_zero\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.ParameterFamilyEquicontinuousFactor.solenoid_flow_add\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.ParameterFamilyEquicontinuousFactor.equicontinuous_factor_descent_of_zero_anchor_common_tile\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.PeriodicPartnerFibreDistal.fibreDistal_iff_subsingleton\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.PeriodicPartnerFibreDistal.fibreDistal_iff_existsUnique\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.PeriodicPartnerFibreDistal.not_fibreDistal_of_distinct_proximal\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.PeriodicPartnerFibreDistal.ae_fibreDistal_iff_ae_existsUnique\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.ParameterFamilyFibreDistal.fibreDistal_iff_unique_preimage\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.ParameterFamilyFibreDistal.ae_fibreDistal_iff_ae_unique_preimage\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.ParameterFamilyFibreDistal.ae_unique_preimage_of_ae_fibreDistal\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_ENDPOINT\tPsc.ParameterFamilyFibreDistal.zero_not_fibreDistal\tpropext,Classical.choice,Quot.sound\nPSC_FINITE_PROXIMAL_AUDIT_COMPLETE\t44\t88\n"
+  },
+  {
+    "module": "C4FiniteSynchronizationAudit",
+    "source_sha256": "a04634c4d67258b9de1dd8bcb1554b8174f59336a144bd5e2cb402ac861029c9",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "C4FiniteSynchronizationAudit.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 3.27,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/C4FiniteSynchronizationAudit.log",
+    "log_sha256": "a6b171912f9439f9bdd279a495e6118fba51c02b38de4c186588ee8701fd70ff",
+    "compiler_output": "PSC_FINITE_SYNC_MODULE\tPscVerif.PeriodicPartnerFiniteCoincidence\t3\t3\nPSC_FINITE_SYNC_MODULE\tPscVerif.C4FamilyFiniteFibreSynchronization\t4\t4\nPSC_FINITE_SYNC_MODULE\tPscVerif.PeriodicPartnerOriginSeparation\t3\t3\nPSC_FINITE_SYNC_MODULE\tPscVerif.C4FamilyOpenSynchronization\t4\t4\nPSC_FINITE_SYNC_ENDPOINT\tPsc.PeriodicPartnerFiniteCoincidence.common_tile_of_finite_eventual\nPSC_FINITE_SYNC_ENDPOINT\tPsc.PeriodicPartnerFiniteCoincidence.common_tile_of_finite_dense_eventual\nPSC_FINITE_SYNC_ENDPOINT\tPsc.PeriodicPartnerFiniteCoincidence.common_window_of_finite_dense_eventual\nPSC_FINITE_SYNC_ENDPOINT\tPsc.C4FamilyFiniteFibreSynchronization.fibre_common_tile_after_inflation\nPSC_FINITE_SYNC_ENDPOINT\tPsc.C4FamilyFiniteFibreSynchronization.fibre_common_window_after_inflation\nPSC_FINITE_SYNC_ENDPOINT\tPsc.C4FamilyFiniteFibreSynchronization.fibre_common_window_at_shifted_base\nPSC_FINITE_SYNC_ENDPOINT\tPsc.C4FamilyFiniteFibreSynchronization.exists_fibre_common_window\nPSC_FINITE_SYNC_ENDPOINT\tPsc.PeriodicPartnerOriginSeparation.exists_finite_origin_displacements\nPSC_FINITE_SYNC_ENDPOINT\tPsc.PeriodicPartnerOriginSeparation.finite_nonzero_gap\nPSC_FINITE_SYNC_ENDPOINT\tPsc.PeriodicPartnerOriginSeparation.exists_origin_separation\nPSC_FINITE_SYNC_ENDPOINT\tPsc.C4FamilyOpenSynchronization.exists_centered_tile_fibre\nPSC_FINITE_SYNC_ENDPOINT\tPsc.C4FamilyOpenSynchronization.origin_of_centered_patch\nPSC_FINITE_SYNC_ENDPOINT\tPsc.C4FamilyOpenSynchronization.open_common_window_of_centered_tile_fibre\nPSC_FINITE_SYNC_ENDPOINT\tPsc.C4FamilyOpenSynchronization.exists_open_common_window\nPSC_FINITE_SYNC_CONTRACT_REFUSED\tPsc.C4FamilyFiniteFibreSynchronization.fibre_common_tile_after_inflation\tPsc.C4FiniteSynchronizationAudit.MissingFamilyGuardType\nPSC_FINITE_SYNC_CONTRACT_REFUSED\tPsc.C4FamilyFiniteFibreSynchronization.fibre_common_tile_after_inflation\tPsc.C4FiniteSynchronizationAudit.UninflatedFibreTileType\nPSC_FINITE_SYNC_CONTRACT_REFUSED\tPsc.C4FamilyFiniteFibreSynchronization.fibre_common_window_after_inflation\tPsc.C4FiniteSynchronizationAudit.UniformAllRadiiType\nPSC_FINITE_SYNC_CONTRACT_REFUSED\tPsc.PeriodicPartnerOriginSeparation.exists_origin_separation\tPsc.C4FiniteSynchronizationAudit.MissingEqualTorusType\nPSC_FINITE_SYNC_CONTRACT_REFUSED\tPsc.PeriodicPartnerOriginSeparation.finite_nonzero_gap\tPsc.C4FiniteSynchronizationAudit.MissingFiniteSetType\nPSC_FINITE_SYNC_CONTRACT_REFUSED\tPsc.C4FamilyOpenSynchronization.exists_open_common_window\tPsc.C4FiniteSynchronizationAudit.OpenAgreementWithoutFibreType\nPSC_FINITE_SYNC_REFUSAL_CONTROLS\t34\nPSC_FINITE_SYNC_AUDIT_COMPLETE\t14\t14\n"
+  },
+  {
+    "module": "C4SolenoidCharactersAudit",
+    "source_sha256": "a58b05f8e660fb239f6fbb90b8c5dace255481b3818ad0c7dfcb11cdb5405dbe",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "C4SolenoidCharactersAudit.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 4.762,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/C4SolenoidCharactersAudit.log",
+    "log_sha256": "2fa4facc6264f1a62d27af1474d89a0e5befa87a37629240b47818e82c18f259",
+    "compiler_output": "PSC_SOLENOID_CHARACTER_MODULE\tPscVerif.PeriodicPartnerSolenoidCharacters\t51\t45\nPSC_SOLENOID_CHARACTER_MODULE\tPscVerif.C4FamilySolenoidCharacters\t21\t18\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.PeriodicPartnerSolenoidCharacters.torusCoordinate_mk\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.PeriodicPartnerSolenoidCharacters.torusCoordinate_ext\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.PeriodicPartnerSolenoidCharacters.phase_add\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.PeriodicPartnerSolenoidCharacters.phase_neg\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.PeriodicPartnerSolenoidCharacters.phase_single\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.PeriodicPartnerSolenoidCharacters.continuous_phase\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.PeriodicPartnerSolenoidCharacters.character_add\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.PeriodicPartnerSolenoidCharacters.character_neg\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.PeriodicPartnerSolenoidCharacters.character_norm\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.PeriodicPartnerSolenoidCharacters.character_map_add\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.PeriodicPartnerSolenoidCharacters.frequency_add\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.PeriodicPartnerSolenoidCharacters.frequency_single\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.PeriodicPartnerSolenoidCharacters.phase_flow_zero\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.PeriodicPartnerSolenoidCharacters.character_flow\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.PeriodicPartnerSolenoidCharacters.character_ext\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.PeriodicPartnerSolenoidCharacters.exists_single_character_ne\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.PeriodicPartnerSolenoidCharacters.characterAlgebra_toSubmodule\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.PeriodicPartnerSolenoidCharacters.span_character_closure_eq_top\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.C4FamilySolenoidCharacters.eigenfunction_norm\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.C4FamilySolenoidCharacters.eigenfunction_translate\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.C4FamilySolenoidCharacters.eigenfunctions_eq_iff\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.C4FamilySolenoidCharacters.solenoid_character_span_dense\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.C4FamilySolenoidCharacters.mat_predecessor\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.C4FamilySolenoidCharacters.nonunitHistory_coord_zero\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.C4FamilySolenoidCharacters.nonunitHistory_coord_one_two\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.C4FamilySolenoidCharacters.nonunitHistory_character\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.C4FamilySolenoidCharacters.nonunitHistory_ne_zero\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_ENDPOINT\tPsc.C4FamilySolenoidCharacters.coord_zero_not_injective\tpropext,Classical.choice,Quot.sound\nPSC_SOLENOID_CHARACTER_CONTRACT_REFUSED\tPsc.PeriodicPartnerSolenoidCharacters.character_add\tPsc.C4SolenoidCharactersAudit.WrongProductType\nPSC_SOLENOID_CHARACTER_CONTRACT_REFUSED\tPsc.PeriodicPartnerSolenoidCharacters.character_neg\tPsc.C4SolenoidCharactersAudit.MissingConjugationType\nPSC_SOLENOID_CHARACTER_CONTRACT_REFUSED\tPsc.PeriodicPartnerSolenoidCharacters.character_flow\tPsc.C4SolenoidCharactersAudit.MissingPhaseType\nPSC_SOLENOID_CHARACTER_CONTRACT_REFUSED\tPsc.PeriodicPartnerSolenoidCharacters.character_flow\tPsc.C4SolenoidCharactersAudit.MissingDenominatorType\nPSC_SOLENOID_CHARACTER_CONTRACT_REFUSED\tPsc.PeriodicPartnerSolenoidCharacters.character_ext\tPsc.C4SolenoidCharactersAudit.ZerothSeparatesType\nPSC_SOLENOID_CHARACTER_CONTRACT_REFUSED\tPsc.C4FamilySolenoidCharacters.nonunitHistory_character\tPsc.C4SolenoidCharactersAudit.WrongControlSignType\nPSC_SOLENOID_CHARACTER_CONTRACT_REFUSED\tPsc.C4FamilySolenoidCharacters.coord_zero_not_injective\tPsc.C4SolenoidCharactersAudit.ZeroProjectionInjectiveType\nPSC_SOLENOID_CHARACTER_CONTRACT_REFUSED\tPsc.C4FamilySolenoidCharacters.solenoid_character_span_dense\tPsc.C4SolenoidCharactersAudit.UnprovedHullDenseType\nPSC_SOLENOID_CHARACTER_REFUSAL_CONTROLS\t64\nPSC_SOLENOID_CHARACTER_AUDIT_COMPLETE\t72\t63\n"
+  },
+  {
+    "module": "C4CharacterOrbitsAudit",
+    "source_sha256": "23c1dae1939fe054375bb8de0fa9add025b21728f38b98a98956cb0d8f50191f",
+    "command": [
+      "/workspace/scratch/0fbd89250233/c4-lean-4.34-rc2/bin/lean",
+      "-DautoImplicit=false",
+      "-Dpp.unicode.fun=true",
+      "C4CharacterOrbitsAudit.lean"
+    ],
+    "exit_code": 0,
+    "duration_seconds": 2.876,
+    "log": "/workspace/scratch/af5a9d959e4d/finite-fibre-fresh/logs/C4CharacterOrbitsAudit.log",
+    "log_sha256": "6d8f5eee33693fc3ff1f50157aeca56d9eac734f075fa7f69e08ded989a19878",
+    "compiler_output": "PSC_CHARACTER_ORBIT_ENDPOINT\tPsc.C4FamilyCharacterOrbits.shiftS_flow\nPSC_CHARACTER_ORBIT_ENDPOINT\tPsc.C4FamilyCharacterOrbits.shiftS_iterate_flow\nPSC_CHARACTER_ORBIT_ENDPOINT\tPsc.C4FamilyCharacterOrbits.shiftS_iterate_zero\nPSC_CHARACTER_ORBIT_ENDPOINT\tPsc.C4FamilyCharacterOrbits.orbitCharacter_apply\nPSC_CHARACTER_ORBIT_ENDPOINT\tPsc.C4FamilyCharacterOrbits.orbitCharacter_zero\nPSC_CHARACTER_ORBIT_ENDPOINT\tPsc.C4FamilyCharacterOrbits.orbitCharacter_norm\nPSC_CHARACTER_ORBIT_ENDPOINT\tPsc.C4FamilyCharacterOrbits.orbitCharacter_map_add\nPSC_CHARACTER_ORBIT_ENDPOINT\tPsc.C4FamilyCharacterOrbits.orbitCharacter_flow_zero\nPSC_CHARACTER_ORBIT_ENDPOINT\tPsc.C4FamilyCharacterOrbits.scaled_frequency_eq_of_orbitCharacter_eq\nPSC_CHARACTER_ORBIT_ENDPOINT\tPsc.C4FamilyCharacterOrbits.character_eq_one_of_frequency_eq_zero\nPSC_CHARACTER_ORBIT_ENDPOINT\tPsc.C4FamilyCharacterOrbits.orbitCharacter_injective\nPSC_CHARACTER_ORBIT_ENDPOINT\tPsc.C4FamilyCharacterOrbits.character_eq_one_of_inflation_period\nPSC_CHARACTER_ORBIT_ENDPOINT\tPsc.C4FamilyCharacterOrbits.finite_orbit_injective\nPSC_CHARACTER_ORBIT_ENDPOINT\tPsc.C4FamilyCharacterOrbits.compatibilityCertificate_ne_zero\nPSC_CHARACTER_ORBIT_ENDPOINT\tPsc.C4FamilyCharacterOrbits.compatibilityCertificate_frequency\nPSC_CHARACTER_ORBIT_ENDPOINT\tPsc.C4FamilyCharacterOrbits.compatibilityCertificate_character\nPSC_CHARACTER_ORBIT_CONTRACT_REFUSED\tPsc.C4FamilyCharacterOrbits.orbitCharacter_injective\tPsc.C4CharacterOrbitsAudit.NonzeroCertificateOrbitType\nPSC_CHARACTER_ORBIT_CONTRACT_REFUSED\tPsc.C4FamilyCharacterOrbits.character_eq_one_of_inflation_period\tPsc.C4CharacterOrbitsAudit.MissingPositivePeriodType\nPSC_CHARACTER_ORBIT_CONTRACT_REFUSED\tPsc.C4FamilyCharacterOrbits.scaled_frequency_eq_of_orbitCharacter_eq\tPsc.C4CharacterOrbitsAudit.SinglePointFrequencyType\nPSC_CHARACTER_ORBIT_CONTRACT_REFUSED\tPsc.C4FamilyCharacterOrbits.shiftS_iterate_flow\tPsc.C4CharacterOrbitsAudit.InverseScalingType\nPSC_CHARACTER_ORBIT_REFUSAL_CONTROLS\t36\nPSC_CHARACTER_ORBIT_AUDIT_COMPLETE\t23\t21\n"
+  }
+]

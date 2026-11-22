@@ -44,7 +44,11 @@ elan run "$PSC_FAMILY_PIN" lake --no-cache build \
     PscVerif.C4ParameterFamilyZeroFibreWitnesses \
     PscVerif.C4ParameterFamilyZeroFibreControls PscVerif.C4ParameterFamilyInteriorZero \
     PscVerif.C4ParameterFamilyZeroFibreAnchor \
-    PscVerif.C4FiniteTileAutomaton PscVerif.C4FamilyTileAutomatonWords
+    PscVerif.C4FiniteTileAutomaton PscVerif.C4FamilyTileAutomatonWords \
+    PscVerif.C4FamilyTileAutomatonHull PscVerif.C4FamilyFiniteZeroFibre \
+    PscVerif.C4FamilyFiniteProximal PscVerif.C4ParameterFamilyFibreDistal \
+    PscVerif.C4FamilyOpenSynchronization PscVerif.C4FamilySolenoidCharacters \
+    PscVerif.C4FamilyCharacterOrbits
 psc_family_check_pins
 elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
     -DautoImplicit=false -Dpp.unicode.fun=true C4ParameterFamilyAudit.lean \
@@ -113,4 +117,29 @@ elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
     | tee "$PSC_FAMILY_TMP/finite-tile-audit.log"
 test "$(grep -Fxc $'PSC_FINITE_TILE_AUDIT_COMPLETE\t164\t103' "$PSC_FAMILY_TMP/finite-tile-audit.log")" -eq 1
 test "$(grep -Fxc $'PSC_FINITE_TILE_REFUSAL_CONTROLS\t20' "$PSC_FAMILY_TMP/finite-tile-audit.log")" -eq 1
+elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
+    -DautoImplicit=false -Dpp.unicode.fun=true C4FiniteHullWitnessAudit.lean \
+    | tee "$PSC_FAMILY_TMP/finite-hull-audit.log"
+test "$(grep -Fxc $'PSC_FINITE_HULL_AUDIT_COMPLETE\t26\t25' "$PSC_FAMILY_TMP/finite-hull-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_FINITE_HULL_REFUSAL_CONTROLS\t48' "$PSC_FAMILY_TMP/finite-hull-audit.log")" -eq 1
+elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
+    -DautoImplicit=false -Dpp.unicode.fun=true C4FiniteProximalAudit.lean \
+    | tee "$PSC_FAMILY_TMP/finite-proximal-audit.log"
+test "$(grep -Fxc $'PSC_FINITE_PROXIMAL_DECLARATIONS\t9\t50\t45' "$PSC_FAMILY_TMP/finite-proximal-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_FINITE_PROXIMAL_AUDIT_COMPLETE\t44\t88' "$PSC_FAMILY_TMP/finite-proximal-audit.log")" -eq 1
+elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
+    -DautoImplicit=false -Dpp.unicode.fun=true C4FiniteSynchronizationAudit.lean \
+    | tee "$PSC_FAMILY_TMP/finite-synchronization-audit.log"
+test "$(grep -Fxc $'PSC_FINITE_SYNC_AUDIT_COMPLETE\t14\t14' "$PSC_FAMILY_TMP/finite-synchronization-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_FINITE_SYNC_REFUSAL_CONTROLS\t34' "$PSC_FAMILY_TMP/finite-synchronization-audit.log")" -eq 1
+elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
+    -DautoImplicit=false -Dpp.unicode.fun=true C4SolenoidCharactersAudit.lean \
+    | tee "$PSC_FAMILY_TMP/solenoid-characters-audit.log"
+test "$(grep -Fxc $'PSC_SOLENOID_CHARACTER_AUDIT_COMPLETE\t72\t63' "$PSC_FAMILY_TMP/solenoid-characters-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_SOLENOID_CHARACTER_REFUSAL_CONTROLS\t64' "$PSC_FAMILY_TMP/solenoid-characters-audit.log")" -eq 1
+elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
+    -DautoImplicit=false -Dpp.unicode.fun=true C4CharacterOrbitsAudit.lean \
+    | tee "$PSC_FAMILY_TMP/character-orbits-audit.log"
+test "$(grep -Fxc $'PSC_CHARACTER_ORBIT_AUDIT_COMPLETE\t23\t21' "$PSC_FAMILY_TMP/character-orbits-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_CHARACTER_ORBIT_REFUSAL_CONTROLS\t36' "$PSC_FAMILY_TMP/character-orbits-audit.log")" -eq 1
 psc_family_check_pins

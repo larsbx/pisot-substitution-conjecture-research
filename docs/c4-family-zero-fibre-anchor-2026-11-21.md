@@ -2,6 +2,14 @@
 
 ## Result and scope
 
+> **Status after merging main at `f5ba148` (2026-11-22).** #645 proves the
+> same zero-fibre and same-image statements by finite Walk induction over
+> the tile automaton (`C4FamilyFiniteZeroFibre`), and main's later
+> proximality, synchronization and character modules build on that route.
+> This note is therefore an independent second proof, not the route in
+> use. Its "remaining gaps" list is superseded by
+> [the finite-fibre obligations note](c4-finite-fibre-obligations-2026-11-21.md).
+
 For every `k ≥ 2` and the literal `σₖ = (1, 0 1ᵏ 2, 001)` with its
 Perron-length ordinary hull `Ω` and solenoid map `g`, Lean now proves:
 

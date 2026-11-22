@@ -1,6 +1,7 @@
 PSC AGENT PRIORITY ADDENDUM — 2026-11-21 (current source reconciliation)
 =======================================================================
-Baseline: main@7de25513b127d6e72709354d95c39e3d5273e2db, through #642.
+Baseline: main@bbe0640dcef2520d57532a1a9e301b35ed97fc1f, through #647 and #645,
+with the finite-automaton continuation documented below.
 Read docs/research-roadmap-2026-09-21.md's November 21 section first,
 with AGENTS.md and claim governance. The external literature cutoff in
 docs/psc-sigma-k-research-review-2026-11-20.md remains November 20;
@@ -22,20 +23,33 @@ The family solenoid realization is continuous, onto, finite-to-one
 and equivariant for translation and inflation (k>=1). Recognizability
 and stable contraction are proved for the literal geometry. Every tiling
 in the zero fibre is inflation-periodic.
-DONE (k>=2): ParameterFamilyZeroFibreAnchor.zero_fibre_common_tile and
-zero_fibre_window_witnesses give a common tile and the three-window
-witnesses for every pair over zero; fibre_dense_eventual gives dense
-eventual coincidence for any two tilings with equal solenoid image.
-Method: coincidence shifts of a hull tiling form a group containing its
-return vectors; 00, 11 and beta*ell(1) give all three tile lengths.
-Do not re-derive witnesses or search the zero fibre.
-NEXT: from dense eventual coincidence on every fibre, formalize
-almost-everywhere singleton fibres, then the invariant-measure L2 theorem.
-See docs/c4-family-zero-fibre-anchor-2026-11-21.md and
-docs/c4-family-solenoid-factor-2026-11-21.md.
+The finite signed automaton now has an actual legal-hull interpretation.
+C4FamilyFiniteZeroFibre.zero_fibre_common_tile and
+zero_fibre_windowWitnesses prove the universal zero-fibre witnesses for
+k>=2 by finite Walk induction. Intermediate hulls need no zero or period
+hypothesis; only the final endpoints use the existing periodicity theorem.
+same_fibre_dense_eventual covers arbitrary equal solenoid images, with
+dense eventual coincidence as its conclusion. Reuse the vendored finite
+kernels and exact integer certificates; no origin-state box scan is needed.
+The finite witnesses now feed the reused ordinary-hull transport:
+C4FamilyFiniteProximal proves fibre/proximality equivalence, closed
+proximality, nonproximal fibre rank one and intrinsic equicontinuous-factor
+descent. The seven unchanged downstream support files are reused from
+the accepted local closure, with no TileChains/old ZeroFibreClosure import.
+Finite intersections and a maximum depth synchronize each whole finite
+fibre. A bounded integer-origin displacement set gives a positive gap;
+with the existing compact closed factor map this proves a nonempty open
+set of fibres agreeing on one positive window. This is not singleton
+fibres. C4FamilySolenoidCharacters gives finite-support integer character
+certificates, exact flow eigenfunctions and dense continuous span on the
+full solenoid. Its actual nonunit history refutes zeroth-coordinate
+injectivity. NEXT: prove actual Haar preservation/inflation ergodicity,
+then a.e. singleton fibres, a measurable inverse and surjective L2 pullback.
+Use the finite-character/finite-Bessel route where its premises are proved.
+See docs/c4-finite-fibre-obligations-2026-11-21.md for exact boundaries.
 The written spectrum proof uses Barge–Stimac–Williams Corollary 2;
 k=1 uses a separate published small-trace result. The combined coincidence
-and conditional-fibre Lean endpoint still has k>=2. Universal C4 is not a
+and zero-fibre witness Lean endpoint still has k>=2. Universal C4 is not a
 prerequisite for completing this family formalization.
 
 UNIVERSAL COINCIDENCE, IN PARALLEL:

@@ -5,8 +5,8 @@ from finite_exact.bigint_z import BigZ, bigz_add, bigz_eq, bigz_from_i64, bigz_m
 from finite_graph.scc import sccs
 from mojo_smoke.claims import require_contract
 from psc.family_tile_automaton import (
-    certificate_holds, edge_sources, edge_targets, generator_words, recipe_output, recipe_powers,
-    reversed_walk, terminal_word, tile_chain_automaton, walk_output,
+    certificate_holds, edge_sources, edge_targets, entry_word, generator_words, recipe_output, recipe_powers,
+    reversed_walk, terminal_word, tile_chain_automaton, walk_output, walk_output_from,
 )
 
 
@@ -115,5 +115,46 @@ def main() raises:
         for j in range(3):
             assert_true(bigz_eq(output[j], bigz_from_i64(Int64(target[j]))))
 
+    # Bind arbitrary source and target labels to the same finite certificate.
+    # The entry is the inverse zero-output tail; no new DFA engine is used.
+    for source in range(3):
+        var entry = entry_word(source)
+        var entry_output = walk_output_from(entry, source, 1)
+        for j in range(3):
+            assert_true(bigz_eq(entry_output[j], bigz_from_i64(0)))
+        for destination in range(3):
+            var full = entry.copy()
+            for edge in expanded:
+                full.append(edge)
+            for edge in terminal_word(destination):
+                full.append(edge)
+            var output = walk_output_from(full, source, destination)
+            for j in range(3):
+                assert_true(bigz_eq(output[j], bigz_from_i64(Int64(target[j]))))
+    # An empty path preserves its actual starting label, not the DFA anchor.
+    _ = walk_output_from(List[Int](), 0, 0)
+    var wrong_start_refused = False
+    try:
+        _ = walk_output_from(List[Int](), 0, 1)
+    except e:
+        wrong_start_refused = "wrong endpoint" in String(e)
+    assert_true(wrong_start_refused)
+    var invalid_source_refused = False
+    try:
+        _ = entry_word(3)
+    except e:
+        invalid_source_refused = "outside" in String(e)
+    assert_true(invalid_source_refused)
+    # Inverse traversal of 01 is legal and has negative output; the forward
+    # edge cannot be replayed from label1. This guards geometric orientation.
+    assert_true(bigz_eq(walk_output_from([6], 1, 0)[0], bigz_from_i64(-1)))
+    var wrong_orientation_refused = False
+    try:
+        _ = walk_output_from([1], 1, 0)
+    except e:
+        wrong_orientation_refused = "discontinuous" in String(e)
+    assert_true(wrong_orientation_refused)
+
     print("PSC_FINITE_TILE_AUTOMATON control_states=3 sink_states=1 edges=10 generators=3 determinant=1 tails=3 bigz_bits=151")
-    require_contract("finite signed family tile-chain automaton, exact integer generator certificate, inverse signs, composable paths, and compressed arbitrary-integer recipes; actual-hull transfer is separate")
+    print("PSC_FINITE_TILE_ENDPOINTS source_labels=3 target_labels=3 endpoint_pairs=9 entries=3 orientation_controls=1")
+    require_contract("finite signed family tile-chain automaton, exact integer generator certificate, inverse signs, arbitrary source and target labels, and compressed arbitrary-integer recipes; actual-hull transfer is checked in Lean")
