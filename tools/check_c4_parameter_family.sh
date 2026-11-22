@@ -47,7 +47,8 @@ elan run "$PSC_FAMILY_PIN" lake --no-cache build \
     PscVerif.C4FamilyTileAutomatonHull PscVerif.C4FamilyFiniteZeroFibre \
     PscVerif.C4FamilyFiniteProximal PscVerif.C4ParameterFamilyFibreDistal \
     PscVerif.C4FamilyOpenSynchronization PscVerif.C4FamilySolenoidCharacters \
-    PscVerif.C4FamilyCharacterOrbits PscVerif.C4FamilyMeasuredSpectrum
+    PscVerif.C4FamilyCharacterOrbits PscVerif.C4FamilyHaarSingletonFibres \
+    PscVerif.C4FamilyMeasuredSpectrum PscVerif.C4FamilyUniqueErgodicity
 psc_family_check_pins
 elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
     -DautoImplicit=false -Dpp.unicode.fun=true C4ParameterFamilyAudit.lean \
@@ -135,9 +136,24 @@ elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
 test "$(grep -Fxc $'PSC_CHARACTER_ORBIT_AUDIT_COMPLETE\t23\t21' "$PSC_FAMILY_TMP/character-orbits-audit.log")" -eq 1
 test "$(grep -Fxc $'PSC_CHARACTER_ORBIT_REFUSAL_CONTROLS\t36' "$PSC_FAMILY_TMP/character-orbits-audit.log")" -eq 1
 elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
-    -DautoImplicit=false -Dpp.unicode.fun=true C4MeasuredSpectrumAudit.lean \
-    | tee "$PSC_FAMILY_TMP/measured-spectrum-audit.log"
-test "$(grep -Fxc $'PSC_MEASURED_SPECTRUM_AUDIT_COMPLETE\t60\t38' "$PSC_FAMILY_TMP/measured-spectrum-audit.log")" -eq 1
-test "$(grep -Fxc $'PSC_MEASURED_SPECTRUM_REFUSAL_CONTROLS\t12' "$PSC_FAMILY_TMP/measured-spectrum-audit.log")" -eq 1
-test "$(grep -c '^PSC_MEASURED_SPECTRUM_CONTRACT_REFUSED' "$PSC_FAMILY_TMP/measured-spectrum-audit.log")" -eq 2
+    -DautoImplicit=false -Dpp.unicode.fun=true C4FamilyHaarAudit.lean \
+    | tee "$PSC_FAMILY_TMP/haar-audit.log"
+test "$(grep -c '^PSC_FAMILY_HAAR_MODULE' "$PSC_FAMILY_TMP/haar-audit.log")" -eq 3
+test "$(grep -c '^PSC_FAMILY_HAAR_ENDPOINT' "$PSC_FAMILY_TMP/haar-audit.log")" -eq 9
+test "$(grep -Fxc $'PSC_FAMILY_HAAR_REFUSAL_CONTROLS\t21' "$PSC_FAMILY_TMP/haar-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_FAMILY_HAAR_AUDIT_COMPLETE\t72\t40' "$PSC_FAMILY_TMP/haar-audit.log")" -eq 1
+elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
+    -DautoImplicit=false -Dpp.unicode.fun=true C4FamilyMeasuredSpectrumAudit.lean \
+    | tee "$PSC_FAMILY_TMP/measured-audit.log"
+test "$(grep -c '^PSC_FAMILY_MEASURED_MODULE' "$PSC_FAMILY_TMP/measured-audit.log")" -eq 2
+test "$(grep -c '^PSC_FAMILY_MEASURED_ENDPOINT' "$PSC_FAMILY_TMP/measured-audit.log")" -eq 12
+test "$(grep -Fxc $'PSC_FAMILY_MEASURED_REFUSAL_CONTROLS\t26' "$PSC_FAMILY_TMP/measured-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_FAMILY_MEASURED_AUDIT_COMPLETE\t70\t35' "$PSC_FAMILY_TMP/measured-audit.log")" -eq 1
+elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
+    -DautoImplicit=false -Dpp.unicode.fun=true C4FamilyUniqueErgodicityAudit.lean \
+    | tee "$PSC_FAMILY_TMP/unique-ergodicity-audit.log"
+test "$(grep -c '^PSC_UNIQUE_ERGODICITY_ENDPOINT' "$PSC_FAMILY_TMP/unique-ergodicity-audit.log")" -eq 3
+test "$(grep -c '^PSC_UNIQUE_ERGODICITY_CONTRACT_REFUSED' "$PSC_FAMILY_TMP/unique-ergodicity-audit.log")" -eq 3
+test "$(grep -Fxc $'PSC_UNIQUE_ERGODICITY_REFUSAL_CONTROLS\t9' "$PSC_FAMILY_TMP/unique-ergodicity-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_UNIQUE_ERGODICITY_AUDIT_COMPLETE\t23\t8' "$PSC_FAMILY_TMP/unique-ergodicity-audit.log")" -eq 1
 psc_family_check_pins
