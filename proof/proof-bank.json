@@ -6082,6 +6082,582 @@
       "declaration": "theorem coord_zero_not_injective :"
     },
     {
+      "name": "Psc.C4FamilySymbolicLanguage.itinerary_next",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 28,
+      "declaration": "@[simp] theorem itinerary_next (B : Transversal k hk) (i : ℤ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.continuous_itinerary",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 33,
+      "declaration": "theorem continuous_itinerary : Continuous (itinerary (k := k) (hk := hk)) := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.itinerary_injective",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 39,
+      "declaration": "theorem itinerary_injective : Injective (itinerary (k := k) (hk := hk)) := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.block_at",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 74,
+      "declaration": "private theorem block_at (x : ℤ → Fin 3) (i : ℤ) {n j : ℕ} (hj : j < n) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.itinerary_reindex",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 92,
+      "declaration": "private theorem itinerary_reindex (B : Transversal k hk) (i j : ℤ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.forwardWord_eq_block",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 96,
+      "declaration": "private theorem forwardWord_eq_block (B : Transversal k hk) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.placed_forwardWord",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 105,
+      "declaration": "private theorem placed_forwardWord (B : Transversal k hk) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.forwardWord_eq_of_placed",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 124,
+      "declaration": "private theorem forwardWord_eq_of_placed (B : Transversal k hk) (w : List (Fin 3))"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.prefix_of_place_subset",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 145,
+      "declaration": "private theorem prefix_of_place_subset {u v : List (Fin 3)} {x : ℝ}"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.infix_of_place_subset",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 167,
+      "declaration": "private theorem infix_of_place_subset {u v : List (Fin 3)} {x y : ℝ}"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.forwardWord_legal",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 192,
+      "declaration": "private theorem forwardWord_legal (B : Transversal k hk) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.block_reindex",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 213,
+      "declaration": "private theorem block_reindex (B : Transversal k hk) (i : ℤ) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.itinerary_legal",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 220,
+      "declaration": "theorem itinerary_legal (B : Transversal k hk) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.exists_placed_legalWord",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 226,
+      "declaration": "private theorem exists_placed_legalWord (T : (G).Hull) {w : List (Fin 3)}"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.exists_forwardWord",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 251,
+      "declaration": "private theorem exists_forwardWord {w : List (Fin 3)} (hw : LegalWord k hk w) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.exists_itinerary",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 266,
+      "declaration": "theorem exists_itinerary (x : SymbolicHull k hk) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.itineraryHomeomorph_next",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 316,
+      "declaration": "theorem itineraryHomeomorph_next (B : Transversal k hk) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.continuous_shift",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 321,
+      "declaration": "theorem continuous_shift : Continuous (shift (k := k) (hk := hk)) := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.roof_pos",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 31,
+      "declaration": "theorem roof_pos (B : Transversal k hk) : 0 < roof B := (G).ℓ_pos _"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.origin_reanchor",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 34,
+      "declaration": "theorem origin_reanchor {T : (G).Hull} {q : Fin 3 × ℝ} (hq : q ∈ T.1) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.continuous_next",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 52,
+      "declaration": "theorem continuous_next : Continuous (next (k := k) (hk := hk)) := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.mat_apply",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 66,
+      "declaration": "private theorem mat_apply (v : Fin 3 → ℝ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.mat_det",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 72,
+      "declaration": "private theorem mat_det : (mat G).det = 2 := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.eq_zero_of_lattice_of_dot_zero",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 78,
+      "declaration": "theorem eq_zero_of_lattice_of_dot_zero {v : Fin 3 → ℝ} (hv : v ∈ lattice (Fin 3))"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.right_pos",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 102,
+      "declaration": "private theorem right_pos (a : Fin 3) : 0 < (P).u a := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.meanRoof_pos",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 134,
+      "declaration": "theorem meanRoof_pos : 0 < meanRoof k hk :="
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.vec_next",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 137,
+      "declaration": "private theorem vec_next (B : Transversal k hk) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.continuous_correction",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 157,
+      "declaration": "theorem continuous_correction : Continuous (correction (k := k) (hk := hk)) := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.roof_eq_mean_add_coboundary",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 165,
+      "declaration": "theorem roof_eq_mean_add_coboundary (B : Transversal k hk) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.corrected_next",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 184,
+      "declaration": "theorem corrected_next (B : Transversal k hk) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.continuous_corrected",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 194,
+      "declaration": "theorem continuous_corrected : Continuous (corrected (k := k) (hk := hk)) :="
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.continuous_roof",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 199,
+      "declaration": "theorem continuous_roof : Continuous (roof (k := k) (hk := hk)) :="
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.origin_physical",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 210,
+      "declaration": "private theorem origin_physical {p : Transversal k hk × ℝ} (hp : p ∈ PhysicalStrip k hk) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.no_boundary_before_roof",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 221,
+      "declaration": "theorem no_boundary_before_roof (B : Transversal k hk) {s : ℝ}"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.physical_injOn",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 230,
+      "declaration": "theorem physical_injOn : InjOn (physical (k := k) (hk := hk)) (PhysicalStrip k hk) := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.exists_physical",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 240,
+      "declaration": "theorem exists_physical (T : LocalHull G) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.next_reanchor",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 260,
+      "declaration": "private theorem next_reanchor {T : (G).Hull} {q r : Fin 3 × ℝ} (hq : q ∈ T.1)"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.right_succ",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 277,
+      "declaration": "private theorem right_succ (T : (G).Hull) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.left_succ",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 281,
+      "declaration": "private theorem left_succ (T : (G).Hull) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.right_zero",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 285,
+      "declaration": "private theorem right_zero (B : Transversal k hk) : right B.1 0 = B := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.left_zero",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 290,
+      "declaration": "private theorem left_zero (B : Transversal k hk) : left B.1 0 = B := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.corrected_right",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 295,
+      "declaration": "private theorem corrected_right (B : Transversal k hk) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.corrected_left",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 305,
+      "declaration": "private theorem corrected_left (B : Transversal k hk) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.exists_right_or_left",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 321,
+      "declaration": "theorem exists_right_or_left {T : (G).Hull} {q : Fin 3 × ℝ} (hq : q ∈ T.1) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.anchored_translate_cases",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 340,
+      "declaration": "private theorem anchored_translate_cases (B D : Transversal k hk) (t : ℝ)"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.continuous_strip",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 370,
+      "declaration": "theorem continuous_strip : Continuous (strip (k := k) (hk := hk)) :="
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.continuous_physical",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 374,
+      "declaration": "theorem continuous_physical : Continuous (physical (k := k) (hk := hk)) :="
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.translate_time_injective",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 379,
+      "declaration": "private theorem translate_time_injective (T : LocalHull G) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.strip_injOn",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 388,
+      "declaration": "theorem strip_injOn : InjOn (strip (k := k) (hk := hk)) (ConstantStrip k hk) := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.exists_strip",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 429,
+      "declaration": "theorem exists_strip (T : LocalHull G) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.translate_mean_strip",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 461,
+      "declaration": "theorem translate_mean_strip (B : Transversal k hk) (s : ℝ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.isCompact_transversal",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 466,
+      "declaration": "theorem isCompact_transversal : IsCompact {T : (G).Hull | (origin T).2 = 0} := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.next_bijective",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 477,
+      "declaration": "theorem next_bijective : Bijective (next (k := k) (hk := hk)) := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.next_pow_eq_right",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 495,
+      "declaration": "private theorem next_pow_eq_right (B : Transversal k hk) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.prev_pow_eq_left",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 503,
+      "declaration": "private theorem prev_pow_eq_left (B : Transversal k hk) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.origin_pow_label",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 513,
+      "declaration": "theorem origin_pow_label (B : Transversal k hk) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.origin_neg_pow_label",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 519,
+      "declaration": "theorem origin_neg_pow_label (B : Transversal k hk) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.separate_of_tile",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 525,
+      "declaration": "private theorem separate_of_tile {T U : LocalHull G} {q : Fin 3 × ℝ}"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.measurable_symbolicFactor",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 70,
+      "declaration": "theorem measurable_symbolicFactor : Measurable (symbolicFactor k hk) :="
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.symbolicFactor_translate",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 73,
+      "declaration": "theorem symbolicFactor_translate (T : X) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.measurePreserving_symbolicFactor",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 94,
+      "declaration": "theorem measurePreserving_symbolicFactor :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.measurePreserving_next",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 98,
+      "declaration": "theorem measurePreserving_next :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.compLp_surjective",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 115,
+      "declaration": "private theorem compLp_surjective {α : Type*} [MeasurableSpace α] {m : Measure α}"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.compLp_congr",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 131,
+      "declaration": "private theorem compLp_congr {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.adjoint_intertwines",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 139,
+      "declaration": "private theorem adjoint_intertwines {E F : Type*} [NormedAddCommGroup E]"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.compLp_intertwines",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 169,
+      "declaration": "private theorem compLp_intertwines {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.pureDiscrete_factor",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 184,
+      "declaration": "private theorem pureDiscrete_factor {E F : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.pureDiscrete_next",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 220,
+      "declaration": "theorem pureDiscrete_next :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.measurePreserving_itinerary",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 261,
+      "declaration": "theorem measurePreserving_itinerary :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.measurePreserving_wordShift",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 265,
+      "declaration": "theorem measurePreserving_wordShift :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.wordShiftEquiv_apply",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 284,
+      "declaration": "private theorem wordShiftEquiv_apply (x : W) : wordShiftEquiv k hk x = shift x := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.pureDiscrete_shift",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 292,
+      "declaration": "theorem pureDiscrete_shift :"
+    },
+    {
       "name": "Psc.C4FamilyTileAutomatonHull.lengthOutput_zero",
       "module": "PscVerif.C4FamilyTileAutomatonHull",
       "private": false,
@@ -56180,6 +56756,11 @@
       "statement_heading": "**Corollary B (given these geometric inputs, proved in #480 §3 and §8):** every represented pair e={c,c'} individually satisfies"
     },
     {
+      "source": "docs/c4-family-symbolic-spectrum-2026-11-22.md",
+      "line": 60,
+      "statement_heading": "**Theorem.** For every \\(k\\ge2\\), the literal left shift \\(S\\) on \\((X_k,\\mu_k)\\) has pure discrete complex \\(L^2\\) spectrum. The closed complex span of its nonzero Koopman eigenvectors is the entire \\(L^2\\) space."
+    },
+    {
       "source": "docs/c4-fc2-orientation-2026-11-17.md",
       "line": 154,
       "statement_heading": "**Theorem O (orientation transfer).**"
@@ -58587,6 +59168,7 @@
     "proof/PscVerif/C4CharacterOrbitsAudit.lean": "23c1dae1939fe054375bb8de0fa9add025b21728f38b98a98956cb0d8f50191f",
     "proof/PscVerif/C4FamilyHaarAudit.lean": "ce2e947f905a7da206827c6c7c6fa97943eae3823dffd4bf3881da385f3f0607",
     "proof/PscVerif/C4FamilyMeasuredSpectrumAudit.lean": "cea480792090c92694eab6d32219d52f03439a963d919b41868257b08fdca5ff",
+    "proof/PscVerif/C4FamilySymbolicSpectrumAudit.lean": "e3f3e0172a5a36fdf5117d2dc44e6c4de3829fd99c5ae9574385efd197af5085",
     "proof/PscVerif/C4FiniteHullWitnessAudit.lean": "58d7293dcc4baf9066599bf8349963512855a654ab680e357e7bd38e35d38f47",
     "proof/PscVerif/C4FiniteProximalAudit.lean": "9d75e8645c7eebbe0f8479d267ad66f6ff4b1976f759f8b472f510f29909c851",
     "proof/PscVerif/C4FiniteSynchronizationAudit.lean": "a04634c4d67258b9de1dd8bcb1554b8174f59336a144bd5e2cb402ac861029c9",
@@ -58637,6 +59219,9 @@
     "proof/PscVerif/PscVerif/C4FamilyMeasuredSpectrum.lean": "be362e24a8b3ad083213a06f6c8c09f5065fc7639d3ed015c83b73a92a556617",
     "proof/PscVerif/PscVerif/C4FamilyOpenSynchronization.lean": "d67995845d97872e01484eca0e3eb8d78dafb7c25c29dedbce2668c8e47ab923",
     "proof/PscVerif/PscVerif/C4FamilySolenoidCharacters.lean": "4309de68886bf368e18470e0d903877ec46fe47cd553e9dac37de95fda6e4903",
+    "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean": "34d152bf93332d8724e62fc18ddda174a681a76f8d495265d2e1c117fce57fb1",
+    "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean": "de081c66d749e4ed78b8fdd3313e22d631d308b0530b3ce33b325b6daf929cfd",
+    "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean": "74dec3c3c57d8a36ebc5b89f10dff790c696b96921b4c5eb06d76bcb4eddc2a3",
     "proof/PscVerif/PscVerif/C4FamilyTileAutomatonHull.lean": "02d57375d81d07073d12dc864a8632abfd6068808c051500ac1895d0f99d737c",
     "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean": "9b97606079e367b743a2f863403dff677a58c096068ad1715160eeef5a8b9559",
     "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean": "b8123aec4c0e1c2a9a1b5937a17cd0c9c26189e0d884c8a27bf1465e3b8b5b24",
@@ -58904,7 +59489,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "8d890a26f8afe829aac7a1fc6fa38f8708272d6862a2896d5578c12383454d14",
+    "proof/PscVerif/PscVerif.lean": "d16808d0796a15f7a198386b6cc757ed46bb5af66af760c7d4abc6d6dd90a61d",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

@@ -48,7 +48,7 @@ elan run "$PSC_FAMILY_PIN" lake --no-cache build \
     PscVerif.C4FamilyFiniteProximal PscVerif.C4ParameterFamilyFibreDistal \
     PscVerif.C4FamilyOpenSynchronization PscVerif.C4FamilySolenoidCharacters \
     PscVerif.C4FamilyCharacterOrbits PscVerif.C4FamilyHaarSingletonFibres \
-    PscVerif.C4FamilyMeasuredSpectrum
+    PscVerif.C4FamilyMeasuredSpectrum PscVerif.C4FamilySymbolicSpectrum
 psc_family_check_pins
 elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
     -DautoImplicit=false -Dpp.unicode.fun=true C4ParameterFamilyAudit.lean \
@@ -149,4 +149,11 @@ test "$(grep -c '^PSC_FAMILY_MEASURED_MODULE' "$PSC_FAMILY_TMP/measured-audit.lo
 test "$(grep -c '^PSC_FAMILY_MEASURED_ENDPOINT' "$PSC_FAMILY_TMP/measured-audit.log")" -eq 12
 test "$(grep -Fxc $'PSC_FAMILY_MEASURED_REFUSAL_CONTROLS\t26' "$PSC_FAMILY_TMP/measured-audit.log")" -eq 1
 test "$(grep -Fxc $'PSC_FAMILY_MEASURED_AUDIT_COMPLETE\t70\t35' "$PSC_FAMILY_TMP/measured-audit.log")" -eq 1
+elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
+    -DautoImplicit=false -Dpp.unicode.fun=true C4FamilySymbolicSpectrumAudit.lean \
+    | tee "$PSC_FAMILY_TMP/symbolic-audit.log"
+test "$(grep -c '^PSC_FAMILY_SYMBOLIC_MODULE' "$PSC_FAMILY_TMP/symbolic-audit.log")" -eq 3
+test "$(grep -c '^PSC_FAMILY_SYMBOLIC_ENDPOINT' "$PSC_FAMILY_TMP/symbolic-audit.log")" -eq 7
+test "$(grep -Fxc $'PSC_FAMILY_SYMBOLIC_CONTROLS\t3' "$PSC_FAMILY_TMP/symbolic-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_FAMILY_SYMBOLIC_AUDIT_COMPLETE\t198\t125' "$PSC_FAMILY_TMP/symbolic-audit.log")" -eq 1
 psc_family_check_pins
