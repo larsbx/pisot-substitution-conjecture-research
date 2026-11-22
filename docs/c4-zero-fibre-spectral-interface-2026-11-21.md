@@ -1,5 +1,12 @@
 # From the zero fibre to coincidence rank and invariant-measure spectrum
 
+**22 November status.** The finite-automaton route supplies the zero-fibre
+witnesses and equal-fibre proximality. Merged #650 proves the measured
+real translation theorem for `k ≥ 2`. The recurrence proof in #652 gives
+another construction of the zero-fibre witnesses. The interface analysis
+below describes the historical stage after #643.
+[Measured theorem](c4-family-measured-spectrum-2026-11-21.md) · [Convex-window proof](c4-zero-fibre-anchor-proof-2026-11-22.md)
+
 This note audits the shortest remaining interfaces after PR #643 at
 `7a5025ed7b8104413477ea7fbd15b52206e0959c`. It separates the new elementary
 periodic expansion proof from the still missing witness-existence and

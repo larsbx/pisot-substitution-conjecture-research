@@ -1,14 +1,17 @@
 # PSC research roadmap — 2026-09-21
 
-**Status:** Current planning and source reconciliation, updated 21 November
-2026. The family spectral implication remains partly external; universal
-BH, residual A1′, C4 and PSC remain open. No claim is promoted by this roadmap.
+**Status.** Updated 22 November 2026. Lean proves the measured real
+translation theorem for the literal family at `k ≥ 2`. Symbolic-shift
+transfer, universal BH, residual A1′, C4 and PSC remain open.
 
-## 2026-11-21 current priorities: family spectral endpoint and universal coincidence
+<a id="2026-11-21-current-priorities-family-spectral-endpoint-and-universal-coincidence"></a>
 
-**Inspected main:**
-[`e7e6e330b80b560be70c2a5346e217f415fe4711`](https://github.com/larsbx/pisot-substitution-conjecture-research/commit/e7e6e330b80b560be70c2a5346e217f415fe4711),
-through [#641](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/641).
+## 2026-11-22 current priorities: family spectral endpoint and universal coincidence
+
+Main includes #650 at `968fabde6c1c056d5157abc77460a5a4e2a4cfd1`.
+The origin recurrence in #652 provides another proof of the zero-fibre
+witnesses and classifies the periodic interior lattice origin tiles.
+[PR #650](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/650) · [PR #652](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/652)
 The [research review](psc-sigma-k-research-review-2026-11-20.md) supplies the
 literature assessment through 20 November and its publication addendum.
 The developments below supersede its earlier family implementation targets
@@ -39,12 +42,47 @@ Barge–Štimac–Williams Corollary 2](https://doi.org/10.3934/dcds.2013.33.579
 already gives the written family conclusion. The spectral use of the
 separate published `k=1` result stays outside the combined Lean endpoint.
 
+**Finite-kernel method, 21 November.** The
+[three-label tile-chain automaton](c4-finite-tile-automaton-2026-11-21.md)
+has explicit signed loops generating all of `Z^3`; every forward edge
+has a literal family occurrence by substitution depth two for every
+`k>=2`. Its [actual-hull interpretation](c4-finite-hull-witnesses-2026-11-21.md)
+now proves the universal zero-fibre common-tile and exact-window witnesses.
+Each edge has a real legal-hull witness, and finite Walk induction composes
+the existing shared-tile coincidence transfer. Intermediate hull members
+need no zero or period premise. The integer origins select a finite path;
+periodicity of the two endpoints yields the common tile. Equal full
+solenoid histories also imply dense eventual coincidence. This supplies
+uniform coverage by reusing the hull and density theorems. The
+convex-window proof has the same zero-fibre scope and derives the
+witnesses from the periodic-tile classification.
+[Origin recurrence](c4-zero-fibre-anchor-proof-2026-11-22.md)
+
+The [next finite obligations](c4-finite-fibre-obligations-2026-11-21.md)
+now connect these witnesses to the already verified ordinary-hull
+transport and factor-descent modules. Ordinary proximality equals the
+actual fibre relation, its finite nonproximal rank is one, and the actual
+solenoid has the intrinsic maximal-equicontinuous-factor property.
+Finite intersections and a maximum depth synchronize an entire fibre.
+A finite gap for bounded equal-torus origin displacements then supplies
+an open synchronization set through the existing compact closed map.
+Finite-support integer characters separate full solenoid histories,
+have an exact flow frequency, and have dense continuous span by the
+existing Stone--Weierstrass theorem.
+
+#650 proves Haar preservation and ergodicity of solenoid inflation for
+`k ≥ 1`. At `k ≥ 2`, the synchronized open set yields a Haar-conull Gδ
+set of singleton fibres. The measurable inverse defines the invariant
+Haar lift, and character pullback spans the hull's complex `L²` with
+actual translation eigenfunctions. [Measured translation theorem](c4-family-measured-spectrum-2026-11-21.md)
+
 ### Deliverables and the premises each must discharge
 
 | Workstream | Reuse at its recorded scope | Next deliverable and completion condition |
 | --- | --- | --- |
-| **Family factor geometry** | Unique desubstitution and the onto, finite-to-one ordinary-hull map to the full solenoid. Its zero fibre is periodic. | The common-shift witnesses for each pair over zero are proved in Lean for `k>=2` ([convex-window proof](c4-zero-fibre-anchor-proof-2026-11-22.md); mechanically certified, human review pending). Propagation from the zero fibre to every fibre remains. Lean proves a fibre comparison for continuous maps into the same time-normalized solenoid. The published factor identification and same-fibre witness theorem are written inputs. |
-| **Family measured spectrum** | The nonempty fibre with pairwise common tiles once the preceding inputs are supplied. | Formalize the disjoint-pair obstruction to failure of pure discreteness, or the equivalent coincidence-rank-one theorem, for this hull. Specify the invariant probability measure and translation action, and conclude density of the translation eigenfunctions in its `L²` space for every `k>=2`. A symbolic-shift conclusion needs its own transfer theorem. |
+| **Finite tile-chain certificates** | Completed: native DFA/SCC/BigZ/Mat3 certificates, uniformly legal five-edge alphabet, exact signed replay, actual legal-hull edge realizations, and finite Walk transfer to dense eventual coincidence. | Reuse this checked route; no additional chain-realization or zero-fibre witness premise remains. A chain may use distinct legal tilings for its edges and need not be one legal word. |
+| **Family factor geometry** | Completed: unique desubstitution, the onto finite-to-one actual factor, automaton zero-fibre witnesses, ordinary proximality exactly on fibres, nonproximal fibre rank one, and intrinsic maximal equicontinuous-factor descent. | Reuse these exact interfaces. The distinct zero-fibre seam control still refutes universal injectivity; rank one counts pairwise nonproximal subsets, not all members of an exceptional fibre. |
+| **Family measured spectrum** | Merged in #650. `C4FamilyMeasuredSpectrum.pureDiscrete_translation` proves pure discrete real translation spectrum on the ordinary legal hull with its invariant Haar lift for `k ≥ 2`. | Formalize the transfer to the two-sided symbolic shift, with its measure and roof-change hypotheses. |
 | **BH and Class A** | The accepted written minus-Class-A cover, written upper plus entry/continuation, and the 70 small upper plus certificates at their complete swap-seed scope. | Bind the written upper plus original-occurrence paths to Lean; retain the recorded acceptance status of each finite certificate. Extend source coverage and an actual selected path to zero integral displacement to the remaining BH domains, including the full nonunit representation. Use the [BH roadmap](bh-escape-roadmap-2026-11-14.md) for the exact scopes. |
 | **Residual A1′** | The scoped tail witnesses and the two-obstruction completion theorem. | Prove one-sided coincidence for the prescribed residual first-letter-fixed hub pair; same-position proximality or an equal-Parikh prefix with the same next letter is a concrete target. The uncovered non-crossing Theorem K cells are a narrower starting point. Universal BH and A1′ together feed #84; #84 is not a third independent existence premise. |
 | **Nonunit rank-two C4** | The [written global residue](c4-nonunit-rank-two-residue-2026-11-21.md): `ER=K₂,₂`, both endpoint maps non-injective, and incidence nilpotent modulo two, under the named twin/cohomology/covering inputs. | Find a geometric obstruction for twins branching on the collapsed endpoint pair. Preserve the distinction between excluding rank-two **strict systems** and excluding arbitrary rank-two hulls. The unit case, higher ranks, and extraction of a finite strict carrier from arbitrary failure remain separate. |
@@ -72,15 +110,10 @@ They distinguish external results from the subsequent repository advances.
 | **Berthé–Cecchi Bernales–Yassawi, García-Ramos–León-Torres and Haupt: peer-reviewed 2025 papers. Mercat's eigenvalue algorithm: 2024 preprint.** | Use eigenvalue constructions and rank/fibre characterizations only with their hypotheses. Keep residual and almost-everywhere fibre bounds distinct, and prove completeness of the eigenfunctions rather than only their existence; see [§§7–8](psc-sigma-k-research-review-2026-11-20.md#7-eigenvalue-results-and-what-they-can-certify). |
 | **Gohlke–Mitchell–Rust–Samuel, peer-reviewed Advances in Mathematics paper, 2026 issue.** | Its random Rauzy criterion requires unimodularity, whereas `det Mₖ=2`; varying `k` also changes the incidence matrix. A nonunit transfer is a separate research problem, not a shortcut past the existing family criterion. **Nakaishi's 2024 general-proof preprint remains outside the imports** pending repair of the recorded first-entry objection; see [§9](psc-sigma-k-research-review-2026-11-20.md#9-rauzy-geometry-and-claims-of-universal-closure). |
 
-**No material external closure was identified in the checked 14–20 November
-2026 sources.** The Creutz–Pavlov correction is material, but none of the
-newly verified external results supplies the missing σₖ Lean spectral bridge
-or closes universal coincidence. This is a bounded literature-review finding,
-not a claim that the field was inactive. The later internal geometric and
-parity advances above are separate developments. Future updates should say
-explicitly when no qualifying result changes a premise or recommended task;
-the [reporting rule](psc-sigma-k-research-review-2026-11-20.md#12-reporting-when-no-material-developments-appear)
-defines that threshold.
+The checked 14–20 November 2026 sources include the material Creutz–Pavlov
+correction. The family Lean measured theorem came from the later internal
+proof in #650. The literature review's reporting rule sets the threshold
+for future updates. [Reporting rule](psc-sigma-k-research-review-2026-11-20.md#12-reporting-when-no-material-developments-appear)
 
 ## 2026-11-14 historical priority: BH escape, with A1′ in parallel
 

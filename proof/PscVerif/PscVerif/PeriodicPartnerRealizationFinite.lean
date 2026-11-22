@@ -65,7 +65,9 @@ theorem exists_realVec_bound : ∃ K : ℝ, ∀ T : S.Hull, ‖realVec P hR T‖
   · exact (norm_tsum_le_tsum_norm hsum).trans
       (hsum.tsum_le_tsum (fun n => realization_term_norm_le P hR n T) hterm)
 
-private theorem finite_lattice_ball (K : ℝ) :
+/-- Bounded integer lifts form a finite set. Exported for exact finite
+origin-displacement separation; the existing proof is unchanged. -/
+theorem finite_lattice_ball (K : ℝ) :
     {v : α → ℝ | v ∈ lattice α ∧ ‖v‖ ≤ K}.Finite := by
   classical
   let I := Finset.Icc (-⌈K⌉) ⌈K⌉

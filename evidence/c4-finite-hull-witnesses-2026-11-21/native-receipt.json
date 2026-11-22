@@ -1,0 +1,23 @@
+{
+  "base_revision": "fbaa2ef1867e191f160cc3dbf9b8e26e10af45a7",
+  "compiler": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+  "command": [
+    "/workspace/scratch/d16112039a60/runtime/pixi-cache/pkgs/mojo-compiler-1.1.0.dev2026090805-release/bin/mojo",
+    "run",
+    "-I",
+    ".",
+    "tests/test_family_tile_automaton.mojo"
+  ],
+  "exit_code": 0,
+  "source_sha256": {
+    "kernel/psc/family_tile_automaton.mojo": "7670d0a9c62e51ab6b8028566b4557342c40999a7d285f27791baec674432f36",
+    "kernel/tests/test_family_tile_automaton.mojo": "a5a5cb55e27fe9d64498fdc705d441b3a3f29928e5d44ff52ae154a95ce7c400"
+  },
+  "log_sha256": "40f6a558c1c1876e1b29f83cd7c66adb9023ae1bee9a1e094ed1d6f879a7a42a",
+  "control_table_entries": 40,
+  "output_table_entries": 30,
+  "endpoint_pairs": 9,
+  "integer_bits": 151,
+  "actual_hull_refinement": "separate Lean theorem",
+  "hosted_acceptance": false
+}

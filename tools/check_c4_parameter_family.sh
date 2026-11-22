@@ -43,7 +43,13 @@ elan run "$PSC_FAMILY_PIN" lake --no-cache build \
     PscVerif.UniversalClosureReduction PscVerif.PeriodicPartnerRealizationModels \
     PscVerif.C4ParameterFamilyZeroFibreWitnesses \
     PscVerif.C4ParameterFamilyZeroFibreControls PscVerif.C4ParameterFamilyInteriorZero \
-    PscVerif.C4ParameterFamilyZeroFibreAnchor PscVerif.C4ParameterFamilyOriginCycle
+    PscVerif.C4ParameterFamilyOriginCycle \
+    PscVerif.C4FiniteTileAutomaton PscVerif.C4FamilyTileAutomatonWords \
+    PscVerif.C4FamilyTileAutomatonHull PscVerif.C4FamilyFiniteZeroFibre \
+    PscVerif.C4FamilyFiniteProximal PscVerif.C4ParameterFamilyFibreDistal \
+    PscVerif.C4FamilyOpenSynchronization PscVerif.C4FamilySolenoidCharacters \
+    PscVerif.C4FamilyCharacterOrbits PscVerif.C4FamilyHaarSingletonFibres \
+    PscVerif.C4FamilyMeasuredSpectrum
 psc_family_check_pins
 elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
     -DautoImplicit=false -Dpp.unicode.fun=true C4ParameterFamilyAudit.lean \
@@ -100,4 +106,54 @@ test "$(grep -c '^PSC_ZERO_FIBRE_ENDPOINT' "$PSC_FAMILY_TMP/zero-fibre-audit.log
 test "$(grep -c '^PSC_ZERO_FIBRE_MODULE' "$PSC_FAMILY_TMP/zero-fibre-audit.log")" -eq 7
 test "$(grep -Fxc $'PSC_ZERO_FIBRE_DECLARATIONS\t7\t49\t45' "$PSC_FAMILY_TMP/zero-fibre-audit.log")" -eq 1
 test "$(grep -Fxc $'PSC_ZERO_FIBRE_AUDIT_COMPLETE\t38\t76' "$PSC_FAMILY_TMP/zero-fibre-audit.log")" -eq 1
+elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
+    -DautoImplicit=false -Dpp.unicode.fun=true C4FiniteTileAutomatonAudit.lean \
+    | tee "$PSC_FAMILY_TMP/finite-tile-audit.log"
+test "$(grep -Fxc $'PSC_FINITE_TILE_AUDIT_COMPLETE\t164\t103' "$PSC_FAMILY_TMP/finite-tile-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_FINITE_TILE_REFUSAL_CONTROLS\t20' "$PSC_FAMILY_TMP/finite-tile-audit.log")" -eq 1
+elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
+    -DautoImplicit=false -Dpp.unicode.fun=true C4FiniteHullWitnessAudit.lean \
+    | tee "$PSC_FAMILY_TMP/finite-hull-audit.log"
+test "$(grep -Fxc $'PSC_FINITE_HULL_AUDIT_COMPLETE\t26\t25' "$PSC_FAMILY_TMP/finite-hull-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_FINITE_HULL_REFUSAL_CONTROLS\t48' "$PSC_FAMILY_TMP/finite-hull-audit.log")" -eq 1
+elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
+    -DautoImplicit=false -Dpp.unicode.fun=true C4FiniteProximalAudit.lean \
+    | tee "$PSC_FAMILY_TMP/finite-proximal-audit.log"
+test "$(grep -Fxc $'PSC_FINITE_PROXIMAL_DECLARATIONS\t9\t50\t45' "$PSC_FAMILY_TMP/finite-proximal-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_FINITE_PROXIMAL_AUDIT_COMPLETE\t44\t88' "$PSC_FAMILY_TMP/finite-proximal-audit.log")" -eq 1
+elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
+    -DautoImplicit=false -Dpp.unicode.fun=true C4FiniteSynchronizationAudit.lean \
+    | tee "$PSC_FAMILY_TMP/finite-synchronization-audit.log"
+test "$(grep -Fxc $'PSC_FINITE_SYNC_AUDIT_COMPLETE\t14\t14' "$PSC_FAMILY_TMP/finite-synchronization-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_FINITE_SYNC_REFUSAL_CONTROLS\t34' "$PSC_FAMILY_TMP/finite-synchronization-audit.log")" -eq 1
+elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
+    -DautoImplicit=false -Dpp.unicode.fun=true C4SolenoidCharactersAudit.lean \
+    | tee "$PSC_FAMILY_TMP/solenoid-characters-audit.log"
+test "$(grep -Fxc $'PSC_SOLENOID_CHARACTER_AUDIT_COMPLETE\t72\t63' "$PSC_FAMILY_TMP/solenoid-characters-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_SOLENOID_CHARACTER_REFUSAL_CONTROLS\t64' "$PSC_FAMILY_TMP/solenoid-characters-audit.log")" -eq 1
+elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
+    -DautoImplicit=false -Dpp.unicode.fun=true C4CharacterOrbitsAudit.lean \
+    | tee "$PSC_FAMILY_TMP/character-orbits-audit.log"
+test "$(grep -Fxc $'PSC_CHARACTER_ORBIT_AUDIT_COMPLETE\t23\t21' "$PSC_FAMILY_TMP/character-orbits-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_CHARACTER_ORBIT_REFUSAL_CONTROLS\t36' "$PSC_FAMILY_TMP/character-orbits-audit.log")" -eq 1
+elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
+    -DautoImplicit=false -Dpp.unicode.fun=true C4FamilyHaarAudit.lean \
+    | tee "$PSC_FAMILY_TMP/haar-audit.log"
+test "$(grep -c '^PSC_FAMILY_HAAR_MODULE' "$PSC_FAMILY_TMP/haar-audit.log")" -eq 3
+test "$(grep -c '^PSC_FAMILY_HAAR_ENDPOINT' "$PSC_FAMILY_TMP/haar-audit.log")" -eq 9
+test "$(grep -Fxc $'PSC_FAMILY_HAAR_REFUSAL_CONTROLS\t21' "$PSC_FAMILY_TMP/haar-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_FAMILY_HAAR_AUDIT_COMPLETE\t72\t40' "$PSC_FAMILY_TMP/haar-audit.log")" -eq 1
+elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
+    -DautoImplicit=false -Dpp.unicode.fun=true C4FamilyMeasuredSpectrumAudit.lean \
+    | tee "$PSC_FAMILY_TMP/measured-audit.log"
+test "$(grep -c '^PSC_FAMILY_MEASURED_MODULE' "$PSC_FAMILY_TMP/measured-audit.log")" -eq 2
+test "$(grep -c '^PSC_FAMILY_MEASURED_ENDPOINT' "$PSC_FAMILY_TMP/measured-audit.log")" -eq 12
+test "$(grep -Fxc $'PSC_FAMILY_MEASURED_REFUSAL_CONTROLS\t26' "$PSC_FAMILY_TMP/measured-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_FAMILY_MEASURED_AUDIT_COMPLETE\t70\t35' "$PSC_FAMILY_TMP/measured-audit.log")" -eq 1
+elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
+    -DautoImplicit=false -Dpp.unicode.fun=true \
+    "$PSC_FAMILY_ROOT/evidence/c4-zero-fibre-anchor-proof-2026-11-22/OriginCycleAxioms.lean" \
+    | tee "$PSC_FAMILY_TMP/origin-cycle-audit.log"
+test "$(grep -Fc 'depends on axioms:' "$PSC_FAMILY_TMP/origin-cycle-audit.log")" -eq 14
+test "$(grep -Fc 'depends on axioms: [propext, Classical.choice, Quot.sound]' "$PSC_FAMILY_TMP/origin-cycle-audit.log")" -eq 14
 psc_family_check_pins
