@@ -1,11 +1,11 @@
 {
   "alphabet": 3,
-  "last_shard": "L0005/000000681319-000000731318.tsv",
-  "last_shard_sha256": "481a99a9baebc9ea3c7671a094eac4a462a3f82f8868bf7c9ac7b13f1b9f3f26",
+  "last_shard": "L0005/000000731319-000000781318.tsv",
+  "last_shard_sha256": "c3d0b8152210d95722ffc3ebda7b4343cbde239262cbb29af8c9258af68ba1b6",
   "max_image_length_cap": 8,
-  "next_band_offset": 731319,
+  "next_band_offset": 781319,
   "next_max_image_length": 5,
   "schema": "psc-growing-corpus-state/v1",
-  "total_accepted": 147871,
-  "total_screened": 2400000
+  "total_accepted": 148853,
+  "total_screened": 2450000
 }
