@@ -1,0 +1,44 @@
+⚠ [2265/2284] Replayed PscVerif.FastForwardCarrier
+warning: PscVerif/FastForwardCarrier.lean:288:13: `if_neg` has been deprecated: Use `ite_eq_right` instead
+⚠ [2266/2284] Replayed PscVerif.C4ParameterFamilyCarrier
+warning: PscVerif/C4ParameterFamilyCarrier.lean:121:50: This simp argument is unused:
+  Prod.fst
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [state, ite_eq_right hb, Prod.swap, Prod.snd] at h
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/C4ParameterFamilyCarrier.lean:121:60: This simp argument is unused:
+  Prod.snd
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [state, ite_eq_right hb, Prod.swap, Prod.fst] at h
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/C4ParameterFamilyCarrier.lean:123:26: This simp argument is unused:
+  Prod.fst
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Prod.swap, Prod.snd]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/C4ParameterFamilyCarrier.lean:123:36: This simp argument is unused:
+  Prod.snd
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Prod.swap, Prod.fst]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+info: PscVerif/C4ParameterFamilyCarrier.lean:661:0: 'Psc.ParameterFamily.terminates_with_coincidence' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PscVerif/C4ParameterFamilyCarrier.lean:662:0: 'Psc.ParameterFamilyCarrier.children_eq_red' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PscVerif/C4ParameterFamilyCarrier.lean:663:0: 'Psc.ParameterFamily.finite_and_productive' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PscVerif/C4ParameterFamilyCarrier.lean:664:0: 'Psc.ParameterFamily.coincidence_child' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [2267/2284] Replayed PscVerif.TerminationFactors
+warning: PscVerif/TerminationFactors.lean:107:8: automatically included section variable(s) unused in theorem `_private.PscVerif.TerminationFactors.0.Psc.TerminationFactors.subst_singletons`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+✔ [3186/3186] Built PscVerif.C4FamilyCanonicalSpectrum (3.0s)
+Build completed successfully (3186 jobs).

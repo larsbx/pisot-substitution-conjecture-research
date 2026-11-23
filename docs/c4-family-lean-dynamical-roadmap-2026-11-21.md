@@ -1,9 +1,19 @@
 # Lean roadmap: the literal C4 family's dynamical theorem
 
-**Status, 22 November 2026.** Main proves pure discrete spectrum of the
-actual real translation action on the ordinary legal tiling hull for every
-`k ≥ 2` with its invariant Haar-lift probability. The symbolic-shift
-transfer, general C4 and PSC remain open. [Measured translation theorem](c4-family-measured-spectrum-2026-11-21.md)
+**Status, 23 November 2026.** The literal family's real-translation and
+two-sided symbolic-shift spectra are formalized for `k ≥ 2`. The new
+uniqueness theorem identifies every shift-invariant Borel probability
+with the existing induced `wordMeasure`, and an explicit equality theorem
+transports the complex `L²` spectral endpoint to that probability.
+[Measured translation theorem](c4-family-measured-spectrum-2026-11-21.md) ·
+[Symbolic transfer](c4-family-symbolic-spectrum-2026-11-22.md) ·
+[Canonical-measure proof and local acceptance](c4-family-canonical-measure-2026-11-23.md)
+
+The recorded canonical-measure acceptance precedes integration with
+`main@b479faf1677e891d658ba24fd2aa654ddc5948ce`; hosted acceptance of the
+new integration is separate. Independent human review remains pending.
+General C4, universal BH, residual A1′ and PSC remain open.
+[Integration acceptance record](c4-canonical-measure-integration-2026-11-23.md)
 
 Starting revision: `main@c4cc728` (through #644). The family is
 
@@ -39,10 +49,27 @@ automaton establishes the witnesses used by this route.
 
 The #652 recurrence gives a separate deduction of the zero-fibre
 witnesses through its direct classification of periodic interior lattice
-tiles. In F5, the remaining task for `k ≥ 2` is the symbolic-shift theorem
-with the transfer stated explicitly. The sections below retain the
-historical plan and its proposed theorem signatures.
+tiles. Its proof and corrected census remain independent records of that
+route. F5 is now completed for `k ≥ 2` by the actual symbolic transfer
+and the subsequent invariant-probability identification. The sections
+below retain the historical plan and its proposed theorem signatures.
 [Convex-window proof](c4-zero-fibre-anchor-proof-2026-11-22.md)
+
+## Current F4/F5 endpoints, 23 November
+
+| Stage | Completed declaration and scope |
+| --- | --- |
+| F4(b) | `C4FamilyInvariantMeasureUniqueness.solenoidMeasure_eq_haar_of_flow_invariant`: every probability invariant under the actual dense solenoid flow is Haar, `k ≥ 1`. |
+| F4(c–d) | `C4FamilyMeasuredSpectrum.pureDiscrete_translation`: the actual ordinary hull with its invariant Haar-lift probability has pure discrete complex `L²` spectrum, `k ≥ 2`. `hullMeasure_eq_of_invariant` now identifies every invariant hull probability with that lift. |
+| F5 symbolic transfer | `C4FamilySymbolicSpectrum.pureDiscrete_shift`: the actual legal word shift with induced `wordMeasure` has pure discrete complex `L²` spectrum, `k ≥ 2`; the roof correction and itinerary conjugacy are explicit. |
+| F5 measure identification | `C4FamilySymbolicMeasureUniqueness.invariant_probability_eq_wordMeasure`: every invariant Borel probability on the actual symbolic carrier equals `wordMeasure`, `k ≥ 2`. |
+| F5 canonical spectral transport | `C4FamilyCanonicalSpectrum.pureDiscrete_shift_of_measure_eq` and `pureDiscrete_shift_of_invariant_probability` retain the original closed eigenspan conclusion under the explicit equality or probability-and-invariance hypotheses. |
+
+The identification uses an arbitrary return probability's normalized
+constant-strip suspension, its invariant Haar marginal and its recovered
+base measure. It introduces no alias for a purported independent canonical
+measure and no general primitive-substitution theorem. Physical variable-roof
+disintegration and a separate cylinder-frequency construction remain separate.
 
 ## Historical status at `main@fbaa2ef` (through #647)
 
@@ -71,7 +98,9 @@ The continuity problem of §0 is closed: `continuous_realizeLocal` holds from bi
 inflation and `PisotData`, by exactly the two ingredients listed there
 (`continuous_desub`, `isLocallyConstant_cs_of_continuous_desub`, uniform convergence of the
 series). The current status above records the completed F4 measured
-route and the remaining F5 symbolic transfer. [Live roadmap](research-roadmap-2026-09-21.md)
+route, F5 symbolic transfer and invariant-probability identification.
+The table remains the historical `main@fbaa2ef` snapshot.
+[Live roadmap](research-roadmap-2026-09-21.md)
 
 ## 0. Baseline, with two stale descriptions corrected
 
@@ -218,7 +247,9 @@ dependency and can start immediately.
 ## 3. Non-claims
 
 1. The proposed signatures in the historical plan record the original targets.
-   The current measured theorem fixes the invariant Haar-lift probability.
+   The original measured theorem fixes the invariant Haar-lift probability;
+   the current symbolic theorem and its explicit equality transport cover
+   every invariant Borel probability on the literal carrier for `k ≥ 2`.
 2. No universal PIP3 statement: every stage is for `σ_k` or for a generic `LengthSubst`, and
    F4(c) is the family's criterion, not a strict-system exclusion.
 3. Finite fibres are on this path through `periodic_fibre_common_tiles`. BDS periodicization

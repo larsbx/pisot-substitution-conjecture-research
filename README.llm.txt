@@ -1,7 +1,9 @@
-PSC AGENT PRIORITY ADDENDUM — 2026-11-22 (current source reconciliation)
+PSC AGENT PRIORITY ADDENDUM — 2026-11-23 (current source reconciliation)
 =======================================================================
-Baseline: main@968fabde6c1c056d5157abc77460a5a4e2a4cfd1, through #650.
-Read docs/research-roadmap-2026-09-21.md's November 22 section first,
+Reconciled base: main@b479faf1677e891d658ba24fd2aa654ddc5948ce, including
+#650 and #652. This integration adds #653's literal symbolic spectrum and
+the canonical-measure follow-up described below.
+Read docs/research-roadmap-2026-09-21.md's November 23 section first,
 with AGENTS.md and claim governance. The external literature cutoff in
 docs/psc-sigma-k-research-review-2026-11-20.md remains November 20;
 the current roadmap accounts separately for later repository proofs.
@@ -50,8 +52,28 @@ k>=1, and Haar-a.e. singleton fibres and the measurable Haar lift for k>=2.
 C4FamilyMeasuredSpectrum.pureDiscrete_translation proves pure discrete
 spectrum of actual real translation on the ordinary legal hull for k>=2.
 See docs/c4-family-measured-spectrum-2026-11-21.md for the measured theorem.
-The symbolic-shift transfer is a separate formal task. The written k=1
-spectrum proof uses a published small-trace result.
+C4FamilySymbolicSpectrum.pureDiscrete_shift proves pure discrete complex
+L2 spectrum for the actual two-sided legal word shift with induced wordMeasure.
+C4FamilySymbolicMeasureUniqueness.invariant_probability_eq_wordMeasure
+identifies every invariant Borel probability on that carrier with wordMeasure.
+C4FamilyCanonicalSpectrum.pureDiscrete_shift_of_measure_eq transports the
+original spectral statement through an explicit measure equality;
+pureDiscrete_shift_of_invariant_probability combines equality and spectrum.
+existsUnique_invariant_probability states unique existence on the actual carrier.
+All these final word endpoints retain k>=2. No independent canonical measure
+is created by aliasing wordMeasure. The proof uses dense-flow Haar uniqueness,
+the Haar-conull singleton fibres and recovery of an arbitrary base probability
+from its corrected constant-strip suspension. Uniform word frequencies and
+physical variable-roof disintegration remain separate constructions.
+See docs/c4-family-symbolic-spectrum-2026-11-22.md and
+docs/c4-family-canonical-measure-2026-11-23.md. The pre-integration local
+receipt in evidence/c4-canonical-measure-2026-11-23 pins proof commit
+68e5ba028e863efedd4774ce4e07bd8678dc9143. It is not hosted acceptance of
+this integration; inspect checks at the exact resulting source revision.
+docs/c4-canonical-measure-integration-2026-11-23.md tracks that reconciliation.
+Independent human review of the inherited mathematical chain remains pending.
+The written k=1 spectrum proof in docs/c4-family-spectral-closure-2026-11-14.md
+uses a published small-trace result and does not enlarge these Lean endpoints.
 
 UNIVERSAL COINCIDENCE, IN PARALLEL:
 BH (#139): bind the written upper plus-Class-A paths to Lean, preserving
@@ -84,7 +106,9 @@ The cited random-Rauzy spectral criterion assumes unimodularity, which the
 family's determinant two violates. No newly verified external result in the
 November 14–20 review closed the family Lean or universal coincidence gaps.
 Use the research review's primary sources and explicit publication labels.
-This reconciliation promotes no governed claim and asserts no new replay.
+This reconciliation changes no universal governed claim. The new family's
+local proof receipt is explicit above; historical and hosted receipts remain
+attached to their producing revisions.
 
 =======================================================================
 

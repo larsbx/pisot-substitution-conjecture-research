@@ -1,17 +1,31 @@
 # PSC research roadmap — 2026-09-21
 
-**Status.** Updated 22 November 2026. Lean proves the measured real
-translation theorem for the literal family at `k ≥ 2`. Symbolic-shift
-transfer, universal BH, residual A1′, C4 and PSC remain open.
+**Status.** Updated 23 November 2026. Lean proves the measured real
+translation and actual two-sided symbolic-shift theorems for the literal
+family at `k ≥ 2`, together with uniqueness of its invariant symbolic
+probability and explicit measure transport of the spectral conclusion.
+Universal BH, residual A1′, general C4 and PSC remain open. Independent
+human review is pending; current integration acceptance is tracked separately
+from the recorded local proof acceptance.
 
 <a id="2026-11-21-current-priorities-family-spectral-endpoint-and-universal-coincidence"></a>
 
-## 2026-11-22 current priorities: family spectral endpoint and universal coincidence
+<a id="2026-11-22-current-priorities-family-spectral-endpoint-and-universal-coincidence"></a>
+
+## 2026-11-23 current priorities: family spectral endpoint and universal coincidence
 
 Main includes #650 at `968fabde6c1c056d5157abc77460a5a4e2a4cfd1`.
 The origin recurrence in #652 provides another proof of the zero-fibre
 witnesses and classifies the periodic interior lattice origin tiles.
 [PR #650](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/650) · [PR #652](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/652)
+The current integration combines `main@b479faf1677e891d658ba24fd2aa654ddc5948ce`
+with #653's symbolic transfer and the new canonical-measure follow-up.
+The [local canonical-measure receipt](../evidence/c4-canonical-measure-2026-11-23/README.md)
+belongs to proof commit `68e5ba028e863efedd4774ce4e07bd8678dc9143`, before
+this main reconciliation; it does not establish hosted acceptance of the
+integrated revision. The [integration record](c4-canonical-measure-integration-2026-11-23.md)
+tracks that acceptance separately. The #652 anchor proof and its corrected origin-cycle
+census are retained at their recorded scopes.
 The [research review](psc-sigma-k-research-review-2026-11-20.md) supplies the
 literature assessment through 20 November and its publication addendum.
 The developments below supersede its earlier family implementation targets
@@ -76,13 +90,28 @@ set of singleton fibres. The measurable inverse defines the invariant
 Haar lift, and character pullback spans the hull's complex `L²` with
 actual translation eigenfunctions. [Measured translation theorem](c4-family-measured-spectrum-2026-11-21.md)
 
+#653's [symbolic transfer](c4-family-symbolic-spectrum-2026-11-22.md) identifies
+the actual legal two-sided word shift with the next-tile return, proves
+the roof coboundary and constant-strip factor, and establishes
+`C4FamilySymbolicSpectrum.pureDiscrete_shift` with induced `wordMeasure`.
+The [canonical-measure proof](c4-family-canonical-measure-2026-11-23.md) now
+shows that every invariant Borel probability on this carrier equals
+`wordMeasure`. Its arbitrary return probability is recovered from a
+normalized constant-strip suspension whose solenoid image is Haar;
+Haar-conull singleton fibres identify the lift. The explicit
+`pureDiscrete_shift_of_measure_eq` theorem transports the original complex
+`L²` endpoint, and `pureDiscrete_shift_of_invariant_probability` combines
+the two results for every `k ≥ 2`. No general primitive-substitution
+unique-ergodicity theorem or newly aliased canonical measure is used.
+
 ### Deliverables and the premises each must discharge
 
 | Workstream | Reuse at its recorded scope | Next deliverable and completion condition |
 | --- | --- | --- |
 | **Finite tile-chain certificates** | Completed: native DFA/SCC/BigZ/Mat3 certificates, uniformly legal five-edge alphabet, exact signed replay, actual legal-hull edge realizations, and finite Walk transfer to dense eventual coincidence. | Reuse this checked route; no additional chain-realization or zero-fibre witness premise remains. A chain may use distinct legal tilings for its edges and need not be one legal word. |
 | **Family factor geometry** | Completed: unique desubstitution, the onto finite-to-one actual factor, automaton zero-fibre witnesses, ordinary proximality exactly on fibres, nonproximal fibre rank one, and intrinsic maximal equicontinuous-factor descent. | Reuse these exact interfaces. The distinct zero-fibre seam control still refutes universal injectivity; rank one counts pairwise nonproximal subsets, not all members of an exceptional fibre. |
-| **Family measured spectrum** | Merged in #650. `C4FamilyMeasuredSpectrum.pureDiscrete_translation` proves pure discrete real translation spectrum on the ordinary legal hull with its invariant Haar lift for `k ≥ 2`. | Formalize the transfer to the two-sided symbolic shift, with its measure and roof-change hypotheses. |
+| **Family measured spectrum** | Merged in #650. `C4FamilyMeasuredSpectrum.pureDiscrete_translation` proves pure discrete real translation spectrum on the ordinary legal hull with its invariant Haar lift for `k ≥ 2`. The new `hullMeasure_eq_of_invariant` identifies every invariant hull probability with that lift. | Reuse the measured endpoint and preserve its real-flow scope. Physical variable-roof disintegration remains a separate interface. |
+| **Family symbolic spectrum and canonical measure** | `pureDiscrete_shift` proves the actual word-shift endpoint; `invariant_probability_eq_wordMeasure` and the explicit equality transport extend it to every invariant Borel probability on that carrier, `k ≥ 2`. [Proof and local receipt](c4-family-canonical-measure-2026-11-23.md) | Record acceptance at the integrated source revision and continue independent human review. A separate cylinder-frequency construction is optional additional infrastructure, not a missing premise of this family theorem. |
 | **BH and Class A** | The accepted written minus-Class-A cover, written upper plus entry/continuation, and the 70 small upper plus certificates at their complete swap-seed scope. | Bind the written upper plus original-occurrence paths to Lean; retain the recorded acceptance status of each finite certificate. Extend source coverage and an actual selected path to zero integral displacement to the remaining BH domains, including the full nonunit representation. Use the [BH roadmap](bh-escape-roadmap-2026-11-14.md) for the exact scopes. |
 | **Residual A1′** | The scoped tail witnesses and the two-obstruction completion theorem. | Prove one-sided coincidence for the prescribed residual first-letter-fixed hub pair; same-position proximality or an equal-Parikh prefix with the same next letter is a concrete target. The uncovered non-crossing Theorem K cells are a narrower starting point. Universal BH and A1′ together feed #84; #84 is not a third independent existence premise. |
 | **Nonunit rank-two C4** | The [written global residue](c4-nonunit-rank-two-residue-2026-11-21.md): `ER=K₂,₂`, both endpoint maps non-injective, and incidence nilpotent modulo two, under the named twin/cohomology/covering inputs. | Find a geometric obstruction for twins branching on the collapsed endpoint pair. Preserve the distinction between excluding rank-two **strict systems** and excluding arbitrary rank-two hulls. The unit case, higher ranks, and extraction of a finite strict carrier from arbitrary failure remain separate. |
@@ -111,8 +140,9 @@ They distinguish external results from the subsequent repository advances.
 | **Gohlke–Mitchell–Rust–Samuel, peer-reviewed Advances in Mathematics paper, 2026 issue.** | Its random Rauzy criterion requires unimodularity, whereas `det Mₖ=2`; varying `k` also changes the incidence matrix. A nonunit transfer is a separate research problem, not a shortcut past the existing family criterion. **Nakaishi's 2024 general-proof preprint remains outside the imports** pending repair of the recorded first-entry objection; see [§9](psc-sigma-k-research-review-2026-11-20.md#9-rauzy-geometry-and-claims-of-universal-closure). |
 
 The checked 14–20 November 2026 sources include the material Creutz–Pavlov
-correction. The family Lean measured theorem came from the later internal
-proof in #650. The literature review's reporting rule sets the threshold
+correction. The family Lean measured theorem, symbolic transfer and
+canonical-measure identification came from subsequent internal proofs.
+The literature review's reporting rule sets the threshold
 for future updates. [Reporting rule](psc-sigma-k-research-review-2026-11-20.md#12-reporting-when-no-material-developments-appear)
 
 ## 2026-11-14 historical priority: BH escape, with A1′ in parallel

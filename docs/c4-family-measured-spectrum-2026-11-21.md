@@ -28,7 +28,39 @@ Each certificate gives a unit L² vector represented by the existing continuous 
 
 The actual seam pair obstructs a global left inverse for π. A two-atom counting-measure factor that collapses both atoms shows that a measure-preserving map can have a proper L² pullback range. Its indicator of one atom has no preimage. The audit also refuses the everywhere inverse type and the opposite phase sign in the explicit frequency law.
 
-The measured result concerns real translation on the ordinary legal tiling hull. Transfer to the symbolic shift and universal Pisot cases are separate questions.
+The measured result concerns real translation on the ordinary legal tiling hull.
+At the #650 revision, symbolic transfer was a separate obligation; the
+dated continuation below records its subsequent completion. Universal
+Pisot cases remain separate questions.
+
+## Continuation, 23 November 2026
+
+The [symbolic transfer from #653](c4-family-symbolic-spectrum-2026-11-22.md)
+proves the itinerary conjugacy, continuous roof correction and constant-strip
+factor for the same ordinary legal hull. Its
+`C4FamilySymbolicSpectrum.pureDiscrete_shift` theorem establishes pure discrete
+complex `L²` spectrum for the actual two-sided legal word shift with its
+induced invariant `wordMeasure`, for every `k ≥ 2`.
+
+The [canonical-measure follow-up](c4-family-canonical-measure-2026-11-23.md)
+proves `hullMeasure_eq_of_invariant` and
+`invariant_probability_eq_wordMeasure`. The first identifies every
+real-translation-invariant hull probability with this note's Haar lift.
+The second identifies every invariant symbolic Borel probability with
+`wordMeasure`; its normalized corrected constant-strip suspension recovers
+the supplied base measure and has Haar solenoid marginal. An explicit
+measure-equality theorem then transports the existing symbolic spectral
+endpoint. These results retain `k ≥ 2` and do not change the original
+`pureDiscrete_translation` theorem or its historical acceptance.
+
+The [new local acceptance packet](../evidence/c4-canonical-measure-2026-11-23/README.md)
+pins proof commit `68e5ba028e863efedd4774ce4e07bd8678dc9143`, before the
+current main integration. [Integration acceptance](c4-canonical-measure-integration-2026-11-23.md)
+and independent human review are separate. The #652 periodic-origin classification and
+corrected census remain an additional zero-fibre route. The physical
+variable-roof Lebesgue disintegration, a separate frequency-defined
+canonical measure, and general PSC/BH/A1′/C4 conclusions are not supplied
+by this continuation.
 
 ## Replay
 
