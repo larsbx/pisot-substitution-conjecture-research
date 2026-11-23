@@ -56758,7 +56758,7 @@
     {
       "source": "docs/c4-family-symbolic-spectrum-2026-11-22.md",
       "line": 60,
-      "statement_heading": "**Theorem.** For every \\(k\\ge2\\), the literal left shift \\(S\\) on \\((X_k,\\mu_k)\\) has pure discrete complex \\(L^2\\) spectrum. The closed complex span of its nonzero Koopman eigenvectors is the entire \\(L^2\\) space."
+      "statement_heading": "**Theorem (Lean endpoint).** For every \\(k\\ge2\\), the literal left shift \\(S\\) on \\((X_k,\\widehat\\mu_k)\\), where \\(\\widehat\\mu_k\\) is `C4FamilySymbolicSpectrum.wordMeasure k hk hk₂`, has pure discrete complex \\(L^2\\) spectrum. The closed complex span of its nonzero Koopman eigenvectors is the entire \\(L^2\\) space. Lean constructs this probability by pushing the specified hull probability through the corrected-strip projection and the itinerary conjugacy, and proves its shift invariance."
     },
     {
       "source": "docs/c4-fc2-orientation-2026-11-17.md",
