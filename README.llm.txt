@@ -1,8 +1,7 @@
-PSC AGENT PRIORITY ADDENDUM — 2026-11-21 (current source reconciliation)
+PSC AGENT PRIORITY ADDENDUM — 2026-11-22 (current source reconciliation)
 =======================================================================
-Baseline: main@bbe0640dcef2520d57532a1a9e301b35ed97fc1f, through #647 and #645,
-with the finite-automaton continuation documented below.
-Read docs/research-roadmap-2026-09-21.md's November 21 section first,
+Baseline: main@968fabde6c1c056d5157abc77460a5a4e2a4cfd1, through #650.
+Read docs/research-roadmap-2026-09-21.md's November 22 section first,
 with AGENTS.md and claim governance. The external literature cutoff in
 docs/psc-sigma-k-research-review-2026-11-20.md remains November 20;
 the current roadmap accounts separately for later repository proofs.
@@ -30,7 +29,10 @@ k>=2 by finite Walk induction. Intermediate hulls need no zero or period
 hypothesis; only the final endpoints use the existing periodicity theorem.
 same_fibre_dense_eventual covers arbitrary equal solenoid images, with
 dense eventual coincidence as its conclusion. Reuse the vendored finite
-kernels and exact integer certificates; no origin-state box scan is needed.
+kernels and exact integer certificates.
+The convex-window proof in #652 derives the zero-fibre witnesses again
+from a classification of all periodic interior lattice tiles for k>=2.
+See docs/c4-zero-fibre-anchor-proof-2026-11-22.md for the proof and census.
 The finite witnesses now feed the reused ordinary-hull transport:
 C4FamilyFiniteProximal proves fibre/proximality equivalence, closed
 proximality, nonproximal fibre rank one and intrinsic equicontinuous-factor
@@ -39,18 +41,17 @@ the accepted local closure, with no TileChains/old ZeroFibreClosure import.
 Finite intersections and a maximum depth synchronize each whole finite
 fibre. A bounded integer-origin displacement set gives a positive gap;
 with the existing compact closed factor map this proves a nonempty open
-set of fibres agreeing on one positive window. This is not singleton
-fibres. C4FamilySolenoidCharacters gives finite-support integer character
+set of fibres agreeing on one positive window.
+C4FamilySolenoidCharacters gives finite-support integer character
 certificates, exact flow eigenfunctions and dense continuous span on the
 full solenoid. Its actual nonunit history refutes zeroth-coordinate
-injectivity. NEXT: prove actual Haar preservation/inflation ergodicity,
-then a.e. singleton fibres, a measurable inverse and surjective L2 pullback.
-Use the finite-character/finite-Bessel route where its premises are proved.
-See docs/c4-finite-fibre-obligations-2026-11-21.md for exact boundaries.
-The written spectrum proof uses Barge–Stimac–Williams Corollary 2;
-k=1 uses a separate published small-trace result. The combined coincidence
-and zero-fibre witness Lean endpoint still has k>=2. Universal C4 is not a
-prerequisite for completing this family formalization.
+injectivity. #650 merged Haar preservation and inflation ergodicity for
+k>=1, and Haar-a.e. singleton fibres and the measurable Haar lift for k>=2.
+C4FamilyMeasuredSpectrum.pureDiscrete_translation proves pure discrete
+spectrum of actual real translation on the ordinary legal hull for k>=2.
+See docs/c4-family-measured-spectrum-2026-11-21.md for the measured theorem.
+The symbolic-shift transfer is a separate formal task. The written k=1
+spectrum proof uses a published small-trace result.
 
 UNIVERSAL COINCIDENCE, IN PARALLEL:
 BH (#139): bind the written upper plus-Class-A paths to Lean, preserving

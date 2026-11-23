@@ -43,6 +43,7 @@ elan run "$PSC_FAMILY_PIN" lake --no-cache build \
     PscVerif.UniversalClosureReduction PscVerif.PeriodicPartnerRealizationModels \
     PscVerif.C4ParameterFamilyZeroFibreWitnesses \
     PscVerif.C4ParameterFamilyZeroFibreControls PscVerif.C4ParameterFamilyInteriorZero \
+    PscVerif.C4ParameterFamilyOriginCycle \
     PscVerif.C4FiniteTileAutomaton PscVerif.C4FamilyTileAutomatonWords \
     PscVerif.C4FamilyTileAutomatonHull PscVerif.C4FamilyFiniteZeroFibre \
     PscVerif.C4FamilyFiniteProximal PscVerif.C4ParameterFamilyFibreDistal \
@@ -149,4 +150,21 @@ test "$(grep -c '^PSC_FAMILY_MEASURED_MODULE' "$PSC_FAMILY_TMP/measured-audit.lo
 test "$(grep -c '^PSC_FAMILY_MEASURED_ENDPOINT' "$PSC_FAMILY_TMP/measured-audit.log")" -eq 12
 test "$(grep -Fxc $'PSC_FAMILY_MEASURED_REFUSAL_CONTROLS\t26' "$PSC_FAMILY_TMP/measured-audit.log")" -eq 1
 test "$(grep -Fxc $'PSC_FAMILY_MEASURED_AUDIT_COMPLETE\t70\t35' "$PSC_FAMILY_TMP/measured-audit.log")" -eq 1
+elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
+    -DautoImplicit=false -Dpp.unicode.fun=true \
+    "$PSC_FAMILY_ROOT/evidence/c4-zero-fibre-anchor-proof-2026-11-22/OriginCycleAxioms.lean" \
+    | tee "$PSC_FAMILY_TMP/origin-cycle-audit.log"
+python3 - "$PSC_FAMILY_TMP/origin-cycle-audit.log" <<'PY'
+from pathlib import Path
+import re
+import sys
+
+log = Path(sys.argv[1]).read_text(encoding="utf-8")
+closures = re.findall(r"^'([^']+)' depends on axioms:\s*\[([^]]*)\]", log, re.MULTILINE)
+allowed = {"propext", "Classical.choice", "Quot.sound"}
+if len(closures) != 14 or len({name for name, _ in closures}) != 14 or any(
+    {axiom.strip() for axiom in axioms.split(",")} != allowed for _, axioms in closures
+):
+    raise SystemExit("The origin-cycle audit requires fourteen distinct standard axiom closures")
+PY
 psc_family_check_pins

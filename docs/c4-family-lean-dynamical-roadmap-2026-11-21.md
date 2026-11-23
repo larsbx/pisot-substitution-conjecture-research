@@ -1,8 +1,9 @@
 # Lean roadmap: the literal C4 family's dynamical theorem
 
-**Status:** planning only. No Lean, Mojo or governed claim changes. The family statement
-remains: *family criterion inputs proved in Lean; spectral conclusion obtained by a published
-theorem.* C4 and PSC remain open. Independent human review is pending on every cited module.
+**Status, 22 November 2026.** Main proves pure discrete spectrum of the
+actual real translation action on the ordinary legal tiling hull for every
+`k ≥ 2` with its invariant Haar-lift probability. The symbolic-shift
+transfer, general C4 and PSC remain open. [Measured translation theorem](c4-family-measured-spectrum-2026-11-21.md)
 
 Starting revision: `main@c4cc728` (through #644). The family is
 
@@ -30,12 +31,18 @@ proximality, nonproximal fibre rank one and intrinsic maximal-factor
 descent. Finite synchronization and a positive origin-displacement gap
 give a nonempty open set of fibres with a common positive window.
 Explicit full-history characters give continuous eigenfunctions and
-dense continuous span on the solenoid. Haar preservation/inflation
-ergodicity, almost-everywhere singleton fibres, and the invariant-measure
-`L2` endpoint remain to be proved. These current endpoints supersede the
-open F4(c) entries in the historical table below. The top-level family
-spectral status remains partly external; the separate symbolic transfer
-also remains open.
+dense continuous span on the solenoid. Merged #650 supplies Haar
+preservation and inflation ergodicity, Haar-almost-everywhere singleton
+fibres, a measurable inverse and the measured `L²` endpoint. The finite
+automaton establishes the witnesses used by this route.
+[PR #650](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/650)
+
+The #652 recurrence gives a separate deduction of the zero-fibre
+witnesses through its direct classification of periodic interior lattice
+tiles. In F5, the remaining task for `k ≥ 2` is the symbolic-shift theorem
+with the transfer stated explicitly. The sections below retain the
+historical plan and its proposed theorem signatures.
+[Convex-window proof](c4-zero-fibre-anchor-proof-2026-11-22.md)
 
 ## Historical status at `main@fbaa2ef` (through #647)
 
@@ -43,8 +50,8 @@ Main moved again after the rebase note above: the
 [solenoid factor](c4-family-solenoid-factor-2026-11-21.md) (#643/#646), the
 [zero-fibre interface](c4-zero-fibre-spectral-interface-2026-11-21.md) and the
 [finite tile-chain automaton](c4-finite-tile-automaton-2026-11-21.md) (#647). Where the
-sections below disagree with this table, the table is current; the sections are kept as
-the record of the order that was proposed. Names are in `Psc.ParameterFamilySolenoid`
+sections below disagree with this table, the table records the later
+status at `main@fbaa2ef`. Names are in `Psc.ParameterFamilySolenoid`
 unless qualified, read from source and not rebuilt here.
 
 | Stage | Status | Declarations, or what remains |
@@ -63,10 +70,8 @@ unless qualified, read from source and not rebuilt here.
 The continuity problem of §0 is closed: `continuous_realizeLocal` holds from bijective
 inflation and `PisotData`, by exactly the two ingredients listed there
 (`continuous_desub`, `isLocallyConstant_cs_of_continuous_desub`, uniform convergence of the
-series). Main's working method for F4(c) is the finite-kernel automaton route, and the
-[live roadmap](research-roadmap-2026-09-21.md) owns that ordering. What this note still
-adds is F3, the F4(d) definitions and the F5 separation. The status sentence at the top is
-unchanged: no coincidence-rank or invariant-measure conclusion is in Lean.
+series). The current status above records the completed F4 measured
+route and the remaining F5 symbolic transfer. [Live roadmap](research-roadmap-2026-09-21.md)
 
 ## 0. Baseline, with two stale descriptions corrected
 
@@ -148,7 +153,7 @@ the non-Pisot productive-but-infinite control refutes dropping `finite`.
 `full_factor_need_not_be_terminal_reachable` stays as the guard on the factor set. The
 definition must be the one F4 consumes; no second criterion predicate.
 
-### F4. The spectral implication
+### F4. The original plan for the spectral implication
 
 Definitions to fix first, for a compact Hausdorff `X` with continuous `ℝ`-action `φ`:
 
@@ -178,7 +183,6 @@ If (b) holds, every invariant `μ` pushes forward to Haar and the conclusion can
 all invariant `μ`, which avoids proving unique ergodicity of the hull. That design choice is
 unverified and is the first question for this stage's stop/go. (c) is the mathematical core
 and the largest formalization; (d) is generic and can be developed in parallel with F1–F3.
-Until (a)–(d) are all checked the status sentence at the top stands unchanged.
 
 ### F5. Symbolic and tiling conclusions, separately
 
@@ -194,7 +198,7 @@ the genuine step. The expected visible hypothesis is contraction on the compleme
 Perron direction, which `SpectralPisot` supplies (Clark–Sadun†). The transfer theorem carries
 that hypothesis in its statement.
 
-## 2. End-to-end target
+## 2. Historical end-to-end target
 
 ```lean
 theorem family_tiling_pureDiscrete (k : ℕ) (hk : 2 ≤ k) :
@@ -213,7 +217,8 @@ dependency and can start immediately.
 
 ## 3. Non-claims
 
-1. Nothing here is proved; the signatures are targets and may change at each stop/go.
+1. The proposed signatures in the historical plan record the original targets.
+   The current measured theorem fixes the invariant Haar-lift probability.
 2. No universal PIP3 statement: every stage is for `σ_k` or for a generic `LengthSubst`, and
    F4(c) is the family's criterion, not a strict-system exclusion.
 3. Finite fibres are on this path through `periodic_fibre_common_tiles`. BDS periodicization

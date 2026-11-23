@@ -32,4 +32,7 @@ The measured result concerns real translation on the ordinary legal tiling hull.
 
 ## Replay
 
-The proof extends draft [PR #650](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/650) at `67e2bcd2629fcb4b6a48a8b9cc6f10351296e235`. The family gate includes both new modules through the measured spectrum root, plus the independent endpoint and axiom audit. [Local acceptance](../evidence/c4-family-measured-spectrum-2026-11-21/acceptance.json)
+PR #650 merged at `968fabde6c1c056d5157abc77460a5a4e2a4cfd1` from head
+`686c266f09016d0475e128cb395d6a1bccf566b3`. The proof uses the finite-automaton
+witnesses. The family gate includes the measured spectrum root and its
+endpoint and axiom audit. [PR #650](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/650) · [Local acceptance](../evidence/c4-family-measured-spectrum-2026-11-21/acceptance.json)
