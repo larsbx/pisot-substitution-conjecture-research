@@ -2,11 +2,12 @@
 
 ## Source decision and scope
 
-**Status:** repository-proved at the source-bound local scope recorded below;
-independent human review pending. This is an unpublished review candidate.
-The starting revision is
-`ce52d46bc4706fd2c15ddd3bb345f6e2067f49cd` of PR #653. Changes remain local until
-the requester approves publication.
+**Status:** repository-proved at the source-bound scope recorded below;
+independent human review pending. The starting revision is
+`ce52d46bc4706fd2c15ddd3bb345f6e2067f49cd` of PR #653. Publication and merge
+against `main` were authorized on 23 November 2026. The
+[integration note](c4-canonical-measure-integration-2026-11-23.md) separates
+the initial local acceptance from verification after combining current main.
 
 The target is the literal family `sigma_k = (1, 0 1^k 2, 001)` and its existing
 two-sided `C4FamilySymbolicLanguage.SymbolicHull`. For every `k >= 2`, prove
@@ -280,13 +281,16 @@ compiler and upstream Mathlib source-hash cache remain explicit trust inputs.
 
 The [evidence packet](../evidence/c4-canonical-measure-2026-11-23/README.md)
 records that isolated replay, exact source digests, original and new endpoint
-audit logs, governance checks and revision identity. The subsequent review
-commit adds only documentation and evidence; the accepted proof sources,
-audit, gate and dependency pins retain the recorded digests. Historical
+audit logs, governance checks and revision identity. The initial review
+commit `f88d89d9e5e3ae68a2125f8ecc7e1138016e536f` adds only documentation
+and evidence; at that checkpoint the accepted proof sources, audit, gate and
+dependency pins retain the recorded digests. Integration with later main
+preserves the theorem sources while combining its root imports and audit
+gate; acceptance for that integration is recorded separately. Historical
 hosted evidence of the starting revision
 is kept separate: its [family spectral run](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/45087039840)
 passed, while [Physical Mass](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/45087039867)
-failed. Neither run validates these new unpublished sources.
+failed. Neither historical run validates the canonical-measure follow-up.
 
 From the repository root:
 
@@ -343,5 +347,5 @@ proved here. These endpoints retain their `k >= 2` range.
 The universal PSC, BH, residual A1-prime and general C4 investigations
 retain their own obligations. No theorem here quantifies over arbitrary
 Pisot substitutions. Independent human validation of the entire inherited
-chain remains pending, and publishing these local changes requires the
-requester's approval.
+chain remains pending. The authorization to publish and merge does not
+change that human-review status.

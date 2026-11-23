@@ -1,8 +1,19 @@
 # Lean roadmap: the literal C4 family's dynamical theorem
 
-**Status:** planning only. No Lean, Mojo or governed claim changes. The family statement
-remains: *family criterion inputs proved in Lean; spectral conclusion obtained by a published
-theorem.* C4 and PSC remain open. Independent human review is pending on every cited module.
+**Status, 23 November 2026.** The literal family's real-translation and
+two-sided symbolic-shift spectra are formalized for `k ≥ 2`. The new
+uniqueness theorem identifies every shift-invariant Borel probability
+with the existing induced `wordMeasure`, and an explicit equality theorem
+transports the complex `L²` spectral endpoint to that probability.
+[Measured translation theorem](c4-family-measured-spectrum-2026-11-21.md) ·
+[Symbolic transfer](c4-family-symbolic-spectrum-2026-11-22.md) ·
+[Canonical-measure proof and local acceptance](c4-family-canonical-measure-2026-11-23.md)
+
+The recorded canonical-measure acceptance precedes integration with
+`main@b479faf1677e891d658ba24fd2aa654ddc5948ce`; hosted acceptance of the
+new integration is separate. Independent human review remains pending.
+General C4, universal BH, residual A1′ and PSC remain open.
+[Integration acceptance record](c4-canonical-measure-integration-2026-11-23.md)
 
 Starting revision: `main@c4cc728` (through #644). The family is
 
@@ -30,12 +41,35 @@ proximality, nonproximal fibre rank one and intrinsic maximal-factor
 descent. Finite synchronization and a positive origin-displacement gap
 give a nonempty open set of fibres with a common positive window.
 Explicit full-history characters give continuous eigenfunctions and
-dense continuous span on the solenoid. Haar preservation/inflation
-ergodicity, almost-everywhere singleton fibres, and the invariant-measure
-`L2` endpoint remain to be proved. These current endpoints supersede the
-open F4(c) entries in the historical table below. The top-level family
-spectral status remains partly external; the separate symbolic transfer
-also remains open.
+dense continuous span on the solenoid. Merged #650 supplies Haar
+preservation and inflation ergodicity, Haar-almost-everywhere singleton
+fibres, a measurable inverse and the measured `L²` endpoint. The finite
+automaton establishes the witnesses used by this route.
+[PR #650](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/650)
+
+The #652 recurrence gives a separate deduction of the zero-fibre
+witnesses through its direct classification of periodic interior lattice
+tiles. Its proof and corrected census remain independent records of that
+route. F5 is now completed for `k ≥ 2` by the actual symbolic transfer
+and the subsequent invariant-probability identification. The sections
+below retain the historical plan and its proposed theorem signatures.
+[Convex-window proof](c4-zero-fibre-anchor-proof-2026-11-22.md)
+
+## Current F4/F5 endpoints, 23 November
+
+| Stage | Completed declaration and scope |
+| --- | --- |
+| F4(b) | `C4FamilyInvariantMeasureUniqueness.solenoidMeasure_eq_haar_of_flow_invariant`: every probability invariant under the actual dense solenoid flow is Haar, `k ≥ 1`. |
+| F4(c–d) | `C4FamilyMeasuredSpectrum.pureDiscrete_translation`: the actual ordinary hull with its invariant Haar-lift probability has pure discrete complex `L²` spectrum, `k ≥ 2`. `hullMeasure_eq_of_invariant` now identifies every invariant hull probability with that lift. |
+| F5 symbolic transfer | `C4FamilySymbolicSpectrum.pureDiscrete_shift`: the actual legal word shift with induced `wordMeasure` has pure discrete complex `L²` spectrum, `k ≥ 2`; the roof correction and itinerary conjugacy are explicit. |
+| F5 measure identification | `C4FamilySymbolicMeasureUniqueness.invariant_probability_eq_wordMeasure`: every invariant Borel probability on the actual symbolic carrier equals `wordMeasure`, `k ≥ 2`. |
+| F5 canonical spectral transport | `C4FamilyCanonicalSpectrum.pureDiscrete_shift_of_measure_eq` and `pureDiscrete_shift_of_invariant_probability` retain the original closed eigenspan conclusion under the explicit equality or probability-and-invariance hypotheses. |
+
+The identification uses an arbitrary return probability's normalized
+constant-strip suspension, its invariant Haar marginal and its recovered
+base measure. It introduces no alias for a purported independent canonical
+measure and no general primitive-substitution theorem. Physical variable-roof
+disintegration and a separate cylinder-frequency construction remain separate.
 
 ## Historical status at `main@fbaa2ef` (through #647)
 
@@ -43,8 +77,8 @@ Main moved again after the rebase note above: the
 [solenoid factor](c4-family-solenoid-factor-2026-11-21.md) (#643/#646), the
 [zero-fibre interface](c4-zero-fibre-spectral-interface-2026-11-21.md) and the
 [finite tile-chain automaton](c4-finite-tile-automaton-2026-11-21.md) (#647). Where the
-sections below disagree with this table, the table is current; the sections are kept as
-the record of the order that was proposed. Names are in `Psc.ParameterFamilySolenoid`
+sections below disagree with this table, the table records the later
+status at `main@fbaa2ef`. Names are in `Psc.ParameterFamilySolenoid`
 unless qualified, read from source and not rebuilt here.
 
 | Stage | Status | Declarations, or what remains |
@@ -63,10 +97,10 @@ unless qualified, read from source and not rebuilt here.
 The continuity problem of §0 is closed: `continuous_realizeLocal` holds from bijective
 inflation and `PisotData`, by exactly the two ingredients listed there
 (`continuous_desub`, `isLocallyConstant_cs_of_continuous_desub`, uniform convergence of the
-series). Main's working method for F4(c) is the finite-kernel automaton route, and the
-[live roadmap](research-roadmap-2026-09-21.md) owns that ordering. What this note still
-adds is F3, the F4(d) definitions and the F5 separation. The status sentence at the top is
-unchanged: no coincidence-rank or invariant-measure conclusion is in Lean.
+series). The current status above records the completed F4 measured
+route, F5 symbolic transfer and invariant-probability identification.
+The table remains the historical `main@fbaa2ef` snapshot.
+[Live roadmap](research-roadmap-2026-09-21.md)
 
 ## 0. Baseline, with two stale descriptions corrected
 
@@ -148,7 +182,7 @@ the non-Pisot productive-but-infinite control refutes dropping `finite`.
 `full_factor_need_not_be_terminal_reachable` stays as the guard on the factor set. The
 definition must be the one F4 consumes; no second criterion predicate.
 
-### F4. The spectral implication
+### F4. The original plan for the spectral implication
 
 Definitions to fix first, for a compact Hausdorff `X` with continuous `ℝ`-action `φ`:
 
@@ -178,7 +212,6 @@ If (b) holds, every invariant `μ` pushes forward to Haar and the conclusion can
 all invariant `μ`, which avoids proving unique ergodicity of the hull. That design choice is
 unverified and is the first question for this stage's stop/go. (c) is the mathematical core
 and the largest formalization; (d) is generic and can be developed in parallel with F1–F3.
-Until (a)–(d) are all checked the status sentence at the top stands unchanged.
 
 ### F5. Symbolic and tiling conclusions, separately
 
@@ -194,7 +227,7 @@ the genuine step. The expected visible hypothesis is contraction on the compleme
 Perron direction, which `SpectralPisot` supplies (Clark–Sadun†). The transfer theorem carries
 that hypothesis in its statement.
 
-## 2. End-to-end target
+## 2. Historical end-to-end target
 
 ```lean
 theorem family_tiling_pureDiscrete (k : ℕ) (hk : 2 ≤ k) :
@@ -213,7 +246,10 @@ dependency and can start immediately.
 
 ## 3. Non-claims
 
-1. Nothing here is proved; the signatures are targets and may change at each stop/go.
+1. The proposed signatures in the historical plan record the original targets.
+   The original measured theorem fixes the invariant Haar-lift probability;
+   the current symbolic theorem and its explicit equality transport cover
+   every invariant Borel probability on the literal carrier for `k ≥ 2`.
 2. No universal PIP3 statement: every stage is for `σ_k` or for a generic `LengthSubst`, and
    F4(c) is the family's criterion, not a strict-system exclusion.
 3. Finite fibres are on this path through `periodic_fibre_common_tiles`. BDS periodicization
