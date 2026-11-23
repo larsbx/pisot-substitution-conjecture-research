@@ -266,3 +266,6 @@ import PscVerif.C4FamilyHaarSingletonFibres
 import PscVerif.C4FamilyMeasuredRealization
 import PscVerif.C4FamilyMeasuredSpectrum
 import PscVerif.C4FamilySymbolicSpectrum
+import PscVerif.C4FamilyInvariantMeasureUniqueness
+import PscVerif.C4FamilySymbolicMeasureUniqueness
+import PscVerif.C4FamilyCanonicalSpectrum

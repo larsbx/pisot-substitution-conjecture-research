@@ -5338,6 +5338,30 @@
       "declaration": "theorem selected_stage_rank_decreases (i : ℕ) (hi : i < 6) :"
     },
     {
+      "name": "Psc.C4FamilyCanonicalSpectrum.pureDiscrete_shift_of_measure_eq",
+      "module": "PscVerif.C4FamilyCanonicalSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyCanonicalSpectrum.lean",
+      "line": 30,
+      "declaration": "theorem pureDiscrete_shift_of_measure_eq"
+    },
+    {
+      "name": "Psc.C4FamilyCanonicalSpectrum.pureDiscrete_shift_of_invariant_probability",
+      "module": "PscVerif.C4FamilyCanonicalSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyCanonicalSpectrum.lean",
+      "line": 45,
+      "declaration": "theorem pureDiscrete_shift_of_invariant_probability"
+    },
+    {
+      "name": "Psc.C4FamilyCanonicalSpectrum.existsUnique_invariant_probability",
+      "module": "PscVerif.C4FamilyCanonicalSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyCanonicalSpectrum.lean",
+      "line": 57,
+      "declaration": "theorem existsUnique_invariant_probability :"
+    },
+    {
       "name": "Psc.C4FamilyCharacterOrbits.shiftS_flow",
       "module": "PscVerif.C4FamilyCharacterOrbits",
       "private": false,
@@ -5786,6 +5810,30 @@
       "declaration": "theorem ae_singleton_fibre (hk₂ : 2 ≤ k) :"
     },
     {
+      "name": "Psc.C4FamilyInvariantMeasureUniqueness.integral_add_eq_of_flow_invariant",
+      "module": "PscVerif.C4FamilyInvariantMeasureUniqueness",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilyInvariantMeasureUniqueness.lean",
+      "line": 35,
+      "declaration": "private theorem integral_add_eq_of_flow_invariant"
+    },
+    {
+      "name": "Psc.C4FamilyInvariantMeasureUniqueness.solenoidMeasure_eq_haar_of_flow_invariant",
+      "module": "PscVerif.C4FamilyInvariantMeasureUniqueness",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyInvariantMeasureUniqueness.lean",
+      "line": 56,
+      "declaration": "theorem solenoidMeasure_eq_haar_of_flow_invariant"
+    },
+    {
+      "name": "Psc.C4FamilyInvariantMeasureUniqueness.hullMeasure_eq_of_invariant",
+      "module": "PscVerif.C4FamilyInvariantMeasureUniqueness",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyInvariantMeasureUniqueness.lean",
+      "line": 76,
+      "declaration": "theorem hullMeasure_eq_of_invariant (hk₂ : 2 ≤ k)"
+    },
+    {
       "name": "Psc.C4FamilyMeasuredRealization.singletonSet_spec",
       "module": "PscVerif.C4FamilyMeasuredRealization",
       "private": false,
@@ -6224,6 +6272,94 @@
       "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
       "line": 321,
       "declaration": "theorem continuous_shift : Continuous (shift (k := k) (hk := hk)) := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicMeasureUniqueness.timeMeasure_ae_mem",
+      "module": "PscVerif.C4FamilySymbolicMeasureUniqueness",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicMeasureUniqueness.lean",
+      "line": 52,
+      "declaration": "theorem timeMeasure_ae_mem : ∀ᵐ s ∂timeMeasure k hk, s ∈ Ico 0 c :="
+    },
+    {
+      "name": "Psc.C4FamilySymbolicMeasureUniqueness.symbolicFactor_strip",
+      "module": "PscVerif.C4FamilySymbolicMeasureUniqueness",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicMeasureUniqueness.lean",
+      "line": 63,
+      "declaration": "theorem symbolicFactor_strip {p : B × ℝ} (hp : p ∈ ConstantStrip k hk) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicMeasureUniqueness.map_symbolicFactor_suspensionMeasure",
+      "module": "PscVerif.C4FamilySymbolicMeasureUniqueness",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicMeasureUniqueness.lean",
+      "line": 69,
+      "declaration": "theorem map_symbolicFactor_suspensionMeasure (μ : Measure B) [IsProbabilityMeasure μ] :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicMeasureUniqueness.integral_timeMeasure",
+      "module": "PscVerif.C4FamilySymbolicMeasureUniqueness",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicMeasureUniqueness.lean",
+      "line": 80,
+      "declaration": "private theorem integral_timeMeasure (f : ℝ → ℝ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicMeasureUniqueness.integral_suspensionMeasure",
+      "module": "PscVerif.C4FamilySymbolicMeasureUniqueness",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicMeasureUniqueness.lean",
+      "line": 86,
+      "declaration": "private theorem integral_suspensionMeasure (μ : Measure B) [IsProbabilityMeasure μ]"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicMeasureUniqueness.strip_next_eq",
+      "module": "PscVerif.C4FamilySymbolicMeasureUniqueness",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicMeasureUniqueness.lean",
+      "line": 96,
+      "declaration": "private theorem strip_next_eq (b : B) (s : ℝ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicMeasureUniqueness.integral_translate_suspensionMeasure",
+      "module": "PscVerif.C4FamilySymbolicMeasureUniqueness",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicMeasureUniqueness.lean",
+      "line": 104,
+      "declaration": "theorem integral_translate_suspensionMeasure (μ : Measure B) [IsProbabilityMeasure μ]"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicMeasureUniqueness.measurePreserving_flow_suspensionFactor",
+      "module": "PscVerif.C4FamilySymbolicMeasureUniqueness",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicMeasureUniqueness.lean",
+      "line": 135,
+      "declaration": "theorem measurePreserving_flow_suspensionFactor (μ : Measure B) [IsProbabilityMeasure μ]"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicMeasureUniqueness.suspensionMeasure_eq_hullMeasure",
+      "module": "PscVerif.C4FamilySymbolicMeasureUniqueness",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicMeasureUniqueness.lean",
+      "line": 164,
+      "declaration": "theorem suspensionMeasure_eq_hullMeasure (μ : Measure B) [IsProbabilityMeasure μ]"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicMeasureUniqueness.invariant_probability_eq_symbolicMeasure",
+      "module": "PscVerif.C4FamilySymbolicMeasureUniqueness",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicMeasureUniqueness.lean",
+      "line": 172,
+      "declaration": "theorem invariant_probability_eq_symbolicMeasure"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicMeasureUniqueness.invariant_probability_eq_wordMeasure",
+      "module": "PscVerif.C4FamilySymbolicMeasureUniqueness",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicMeasureUniqueness.lean",
+      "line": 182,
+      "declaration": "theorem invariant_probability_eq_wordMeasure"
     },
     {
       "name": "Psc.C4FamilySymbolicSection.roof_pos",
@@ -59166,6 +59302,7 @@
     "proof/PscVerif/A1PrimeTailAudit.lean": "eee41a524a6a114716a7704f169726b6484ab56c2398431dcd297fe6809a0b23",
     "proof/PscVerif/BHFiniteReachabilityAudit.lean": "5469fdefea80286841bb3b40b7944a4674de5dce03ca12b490ee72b77ca2b79d",
     "proof/PscVerif/C4CharacterOrbitsAudit.lean": "23c1dae1939fe054375bb8de0fa9add025b21728f38b98a98956cb0d8f50191f",
+    "proof/PscVerif/C4FamilyCanonicalMeasureAudit.lean": "ec64b73d643eea4b815ece6a110cbe5637edfe9c377ec921bdf3746c6b55bab4",
     "proof/PscVerif/C4FamilyHaarAudit.lean": "ce2e947f905a7da206827c6c7c6fa97943eae3823dffd4bf3881da385f3f0607",
     "proof/PscVerif/C4FamilyMeasuredSpectrumAudit.lean": "cea480792090c92694eab6d32219d52f03439a963d919b41868257b08fdca5ff",
     "proof/PscVerif/C4FamilySymbolicSpectrumAudit.lean": "e3f3e0172a5a36fdf5117d2dc44e6c4de3829fd99c5ae9574385efd197af5085",
@@ -59209,17 +59346,20 @@
     "proof/PscVerif/PscVerif/Binomial.lean": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
     "proof/PscVerif/PscVerif/BoundarySeedPath.lean": "bea69cb93d5bcd15b1b88c48062b4404a721908092af1b5f5b42e6184f7abae3",
+    "proof/PscVerif/PscVerif/C4FamilyCanonicalSpectrum.lean": "0739f8f55f80fa92abf0865ed90e8bece467d6889f494085cb6d71fa0c70cda1",
     "proof/PscVerif/PscVerif/C4FamilyCharacterOrbits.lean": "a8604253adf021654c5b0cb572c54b7a7b9aad7fc255648c5460a6e53de2ebd6",
     "proof/PscVerif/PscVerif/C4FamilyFiniteFibreSynchronization.lean": "9dd07cf862829b61a18e82409893ebd9fba6855a3d0bda2543d786c92355f390",
     "proof/PscVerif/PscVerif/C4FamilyFiniteProximal.lean": "f0626913d31535e076e6afd0ce495ad5d4c49b1214d81c9b3b3f5b533244dc1c",
     "proof/PscVerif/PscVerif/C4FamilyFiniteZeroFibre.lean": "47832e3754b2cf087dced965641afc954537b94949d990f264f9bd91835221b8",
     "proof/PscVerif/PscVerif/C4FamilyHaarErgodicity.lean": "81cf9efa86e64520927307c305696ea4692c339f974daee94f87e1a37b5538ef",
     "proof/PscVerif/PscVerif/C4FamilyHaarSingletonFibres.lean": "66323188238cb1bcbe99c98e20cfdacd5e9adedcd60b3ff3e7f93ae125fb10e1",
+    "proof/PscVerif/PscVerif/C4FamilyInvariantMeasureUniqueness.lean": "3256efcd2cc96ac7ca214850944dd5361d0b4dfeefc6b0dcdd0ec0371ed53133",
     "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean": "4dafec9bb5ec030c5bbcb1375216afa5e9e080a3ceabccf8de244005ed6ffaf0",
     "proof/PscVerif/PscVerif/C4FamilyMeasuredSpectrum.lean": "be362e24a8b3ad083213a06f6c8c09f5065fc7639d3ed015c83b73a92a556617",
     "proof/PscVerif/PscVerif/C4FamilyOpenSynchronization.lean": "d67995845d97872e01484eca0e3eb8d78dafb7c25c29dedbce2668c8e47ab923",
     "proof/PscVerif/PscVerif/C4FamilySolenoidCharacters.lean": "4309de68886bf368e18470e0d903877ec46fe47cd553e9dac37de95fda6e4903",
     "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean": "34d152bf93332d8724e62fc18ddda174a681a76f8d495265d2e1c117fce57fb1",
+    "proof/PscVerif/PscVerif/C4FamilySymbolicMeasureUniqueness.lean": "fca1abba45f0a05aa3d6d2f82b81519db3076dd5822590b739989fe8946c3ed2",
     "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean": "de081c66d749e4ed78b8fdd3313e22d631d308b0530b3ce33b325b6daf929cfd",
     "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean": "74dec3c3c57d8a36ebc5b89f10dff790c696b96921b4c5eb06d76bcb4eddc2a3",
     "proof/PscVerif/PscVerif/C4FamilyTileAutomatonHull.lean": "02d57375d81d07073d12dc864a8632abfd6068808c051500ac1895d0f99d737c",
@@ -59489,14 +59629,15 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "d16808d0796a15f7a198386b6cc757ed46bb5af66af760c7d4abc6d6dd90a61d",
+    "proof/PscVerif/PscVerif.lean": "ae87e71fd11de0e11aad4a1027d6014cea124c936727edc6429cd23e6c9d682a",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
     "proof/proof-bank.toml": "c462e211cdb2a7aca4a59d75efc7b4ffdd3c4cd2c7780588e861b15c42aa8937",
+    "tools/check_c4_parameter_family.sh": "817900803648672436512d8c9437bccd13ea8320f71bd60d99e1be24f0662929",
     "tools/check_lean.sh": "eb63ce6fb0b837eee1208b3d47e759bcf8b3617b1374685a8850e48f283cba8d",
     "tools/make_ledger.py": "7639499e905ca898e650cd40d9dd5ae405d7f0dfac15ef3547ce40044c795ed5",
-    "tools/make_proof_bank.py": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8",
+    "tools/make_proof_bank.py": "570a6779013609e8f7f9d88a8082a76cebe087191561ae8ad1016c79f7b90782",
     "tools/setup_lean.sh": "8c4e5f4a35c6daf437c612bb868410ac2ecad68984154d50493fd7f42d86a824"
   }
 }
