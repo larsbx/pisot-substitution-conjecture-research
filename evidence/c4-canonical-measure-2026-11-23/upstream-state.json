@@ -1,0 +1,35 @@
+{
+  "format": "psc-c4-canonical-upstream-context-v1",
+  "observed_at": "2026-11-23 16:16:01 UTC",
+  "scope": "Read-only upstream context. These hosted runs are for the starting revision and do not validate the new local proof.",
+  "pull_request": {
+    "number": 653,
+    "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/653",
+    "state": "open",
+    "head_sha": "ce52d46bc4706fd2c15ddd3bb345f6e2067f49cd",
+    "base_sha_reported_by_pr": "968fabde6c1c056d5157abc77460a5a4e2a4cfd1",
+    "mergeable": false,
+    "mergeable_state": "dirty"
+  },
+  "hosted_runs": [
+    {
+      "id": 45087039840,
+      "name": "C4 parameter family spectral inputs",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/45087039840",
+      "head_sha": "ce52d46bc4706fd2c15ddd3bb345f6e2067f49cd",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1
+    },
+    {
+      "id": 45087039867,
+      "name": "Physical mass Lean Quint refinement",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/45087039867",
+      "head_sha": "ce52d46bc4706fd2c15ddd3bb345f6e2067f49cd",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1
+    }
+  ],
+  "publication": "No branch push, pull-request mutation, merge or external message was performed."
+}

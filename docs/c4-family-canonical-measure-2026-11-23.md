@@ -37,7 +37,7 @@ Defining a new name to be `wordMeasure` does not discharge this obligation.
    [Periodic integration source](https://github.com/leanprover-community/mathlib4/blob/4edb0dbaa3b3cf729d86d1e2f035474d5ae2ac09/Mathlib/MeasureTheory/Integral/IntervalIntegral/Periodic.lean).
 4. Manibo, Rust and Walton, *Substitutions on compact alphabets*, Journal of
    the London Mathematical Society (2025), Section 5.3, states the invariant
-   probability correspondence for a suspension with a roof bounded away
+   probability correspondence for a suspension with a continuous roof bounded away
    from zero. For the constant positive roof here, its normalization is
    exactly `mu × Lebesgue|[0,c) / c`. We prove this specialization directly.
    [Published primary source](https://doi.org/10.1112/jlms.70123).
@@ -269,9 +269,21 @@ contracts and 22 controls**. The recursive axiom closure is limited to
 `propext`, `Classical.choice` and `Quot.sound`. The Lake run reports 3,186
 dependency jobs; this is not a count of project modules or new theorems.
 
-The evidence packet records the isolated family replay, final source
-digests, original and new endpoint audit logs, governance checks and
-revision identity. Historical hosted evidence of the starting revision
+The isolated family gate also passed, building **87 project modules** across
+the selected family import closure and completing **12 audit fixtures**.
+Its 3,211 Lake jobs include external dependencies. All **334 copied project
+source/configuration files** were byte-compared to local proof commit
+`68e5ba028e863efedd4774ce4e07bd8678dc9143`, tree
+`5e62ac3ef21a0a1fe7529dd0582f6765fcda7e2d`. No local project compilation
+artifacts were copied. The dependency checkouts were fresh, and the pinned
+compiler and upstream Mathlib source-hash cache remain explicit trust inputs.
+
+The [evidence packet](../evidence/c4-canonical-measure-2026-11-23/README.md)
+records that isolated replay, exact source digests, original and new endpoint
+audit logs, governance checks and revision identity. The subsequent review
+commit adds only documentation and evidence; the accepted proof sources,
+audit, gate and dependency pins retain the recorded digests. Historical
+hosted evidence of the starting revision
 is kept separate: its [family spectral run](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/45087039840)
 passed, while [Physical Mass](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/45087039867)
 failed. Neither run validates these new unpublished sources.
@@ -326,8 +338,7 @@ substitution unique-ergodicity theorem are not added. They are unnecessary
 for the proved family equality. The physical variable-roof Lebesgue
 disintegration formula remains a written statement; the normalized
 **corrected constant strip** lift and its equality to `hullMeasure` are
-proved here. The separately published `k = 1` result is not incorporated
-into these `k >= 2` endpoints.
+proved here. These endpoints retain their `k >= 2` range.
 
 The universal PSC, BH, residual A1-prime and general C4 investigations
 retain their own obligations. No theorem here quantifies over arbitrary
