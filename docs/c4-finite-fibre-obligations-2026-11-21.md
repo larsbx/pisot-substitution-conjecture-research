@@ -1,5 +1,10 @@
 # Next obligations after finite automaton hull replay
 
+**22 November status.** The finite-fibre and character endpoints below
+feed the measured real translation theorem merged in #650. Haar
+ergodicity, conull singleton fibres and the measured `L²` endpoint are
+complete at the scopes specified there. [Measured theorem](c4-family-measured-spectrum-2026-11-21.md)
+
 ## Source decision before implementation
 
 The starting proof tree is `7fb5bfaffab2d24bd1c0a74186438108317ca941`,

@@ -234,6 +234,9 @@ import PscVerif.C4ParameterFamilySolenoid
 import PscVerif.C4ParameterFamilyZeroFibreWitnesses
 import PscVerif.C4ParameterFamilyZeroFibreControls
 import PscVerif.C4ParameterFamilyInteriorZero
+import PscVerif.C4ParameterFamilyZeroFibreAnchor
+import PscVerif.ShiftedRadixCycle
+import PscVerif.C4ParameterFamilyOriginCycle
 import PscVerif.UniversalClosureReduction
 import PscVerif.OccurrenceAncestry
 import PscVerif.BHFiniteReachability
@@ -265,3 +268,7 @@ import PscVerif.C4FamilyHaarErgodicity
 import PscVerif.C4FamilyHaarSingletonFibres
 import PscVerif.C4FamilyMeasuredRealization
 import PscVerif.C4FamilyMeasuredSpectrum
+import PscVerif.C4FamilySymbolicSpectrum
+import PscVerif.C4FamilyInvariantMeasureUniqueness
+import PscVerif.C4FamilySymbolicMeasureUniqueness
+import PscVerif.C4FamilyCanonicalSpectrum

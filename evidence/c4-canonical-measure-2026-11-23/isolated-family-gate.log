@@ -1,0 +1,546 @@
+Prepared isolated Lean workspace from source/configuration only
+Proof bank: 132 claims, 6821 named Lean proofs, 545 source openings
+Lean (version 4.34.0-rc2, x86_64-unknown-linux-gnu, commit 6a10ac8c22beadecabdbb0919c2b50214762f91d, Release)
+Lake version 5.0.0-src+6a10ac8 (Lean version 4.34.0-rc2)
+info: mathlib: cloning https://github.com/leanprover-community/mathlib4
+info: mathlib: checking out revision '4edb0dbaa3b3cf729d86d1e2f035474d5ae2ac09'
+info: plausible: cloning https://github.com/leanprover-community/plausible
+info: plausible: checking out revision 'd9598f07b1bc701f1e3aae163d2681c1fd978793'
+info: LeanSearchClient: cloning https://github.com/leanprover-community/LeanSearchClient
+info: LeanSearchClient: checking out revision 'ba67e212be1197b84c1f1f6299488a10a3002713'
+info: importGraph: cloning https://github.com/leanprover-community/import-graph
+info: importGraph: checking out revision '1681d78dd6e65e38b143f9740d829c826673807c'
+info: proofwidgets: cloning https://github.com/leanprover-community/ProofWidgets4
+info: proofwidgets: checking out revision 'a8acbfd87375ff4abe14ce09db5b7664d383bc7f'
+info: aesop: cloning https://github.com/leanprover-community/aesop
+info: aesop: checking out revision '18889deb9e83ea7420ef51c160d6f88552e744e3'
+info: Qq: cloning https://github.com/leanprover-community/quote4
+info: Qq: checking out revision '507746ab8f4b643ccdacb2ec4cdb5853fa9f8ab3'
+info: batteries: cloning https://github.com/leanprover-community/batteries
+info: batteries: checking out revision '4cac2177c37f5530c4da76aa8e4307f3fc9e4dcb'
+info: Cli: cloning https://github.com/leanprover/lean4-cli
+info: Cli: checking out revision 'ab3a82db9fea14cf0fd7f5a2de650f4b534640af'
+✔ [3/27] Built Cache.Cli (358ms)
+✔ [4/27] Built Cache.Env (406ms)
+✔ [5/27] Built Cache.Lean (516ms)
+✔ [6/27] Built Cache.Infra (626ms)
+✔ [7/27] Built Cache.Cli:c.o (704ms)
+✔ [8/27] Built Cache.Lean:c.o (541ms)
+✔ [9/27] Built Cache.Env:c.o (651ms)
+✔ [10/27] Built Batteries.Tactic.OpenPrivate (1.2s)
+✔ [11/27] Built Cache.Infra:c.o (244ms)
+✔ [12/27] Built Batteries.Tactic.OpenPrivate:c.o (1.4s)
+✔ [13/27] Built Cache.IO (1.6s)
+✔ [14/27] Built Cache.Hashing (1.4s)
+✔ [15/27] Built Cache.IO:c.o (1.9s)
+✔ [16/27] Built Cache.Hashing:c.o (475ms)
+✔ [17/27] Built Cache.Requests (2.4s)
+✔ [18/27] Built Cache.Marker (708ms)
+✔ [19/27] Built Cache.Marker:c.o (194ms)
+✔ [20/27] Built Cache.Query (989ms)
+✔ [21/27] Built Cache.Query:c.o (325ms)
+✔ [22/27] Built Cache.Warning (779ms)
+✔ [23/27] Built Cache.Warning:c.o (282ms)
+✔ [24/27] Built Cache.Requests:c.o (3.2s)
+✔ [25/27] Built Cache.Main (1.4s)
+✔ [26/27] Built Cache.Main:c.o (905ms)
+✔ [27/27] Built cache:exe (2.6s)
+Current branch: HEAD
+Using cache from origin: (some leanprover-community/mathlib4)
+Attempting to download 8890 file(s) from leanprover-community/mathlib4 cache at https://cache.mathlib.org/mathlib4-master
+Downloaded: 1 file(s) [attempted 1/8890 = 0%, 4 KB/s], Decompressed: 0[KDownloaded: 58 file(s) [attempted 58/8890 = 0%, 293 KB/s], Decompressed: 1[KDownloaded: 109 file(s) [attempted 109/8890 = 1%, 826 KB/s], Decompressed: 31[KDownloaded: 156 file(s) [attempted 156/8890 = 1%, 123 KB/s], Decompressed: 31[KDownloaded: 203 file(s) [attempted 203/8890 = 2%, 669 KB/s], Decompressed: 31[KDownloaded: 259 file(s) [attempted 259/8890 = 2%, 65 KB/s], Decompressed: 100[KDownloaded: 317 file(s) [attempted 317/8890 = 3%, 133 KB/s], Decompressed: 100[KDownloaded: 362 file(s) [attempted 362/8890 = 4%, 48 KB/s], Decompressed: 100[KDownloaded: 389 file(s) [attempted 389/8890 = 4%, 323 KB/s], Decompressed: 100[KDownloaded: 436 file(s) [attempted 436/8890 = 4%, 711 KB/s], Decompressed: 100[KDownloaded: 477 file(s) [attempted 477/8890 = 5%, 79 KB/s], Decompressed: 100[KDownloaded: 514 file(s) [attempted 514/8890 = 5%, 1451 KB/s], Decompressed: 255[KDownloaded: 545 file(s) [attempted 545/8890 = 6%, 278 KB/s], Decompressed: 255[KDownloaded: 583 file(s) [attempted 583/8890 = 6%, 266 KB/s], Decompressed: 255[KDownloaded: 617 file(s) [attempted 617/8890 = 6%, 309 KB/s], Decompressed: 255[KDownloaded: 648 file(s) [attempted 648/8890 = 7%, 48 KB/s], Decompressed: 255[KDownloaded: 668 file(s) [attempted 668/8890 = 7%, 42 KB/s], Decompressed: 255[KDownloaded: 709 file(s) [attempted 709/8890 = 7%, 293 KB/s], Decompressed: 255[KDownloaded: 722 file(s) [attempted 722/8890 = 8%, 241 KB/s], Decompressed: 485[KDownloaded: 778 file(s) [attempted 778/8890 = 8%, 478 KB/s], Decompressed: 485[KDownloaded: 830 file(s) [attempted 830/8890 = 9%, 493 KB/s], Decompressed: 485[KDownloaded: 863 file(s) [attempted 863/8890 = 9%, 612 KB/s], Decompressed: 485[KDownloaded: 908 file(s) [attempted 908/8890 = 10%, 646 KB/s], Decompressed: 485[KDownloaded: 948 file(s) [attempted 948/8890 = 10%, 64 KB/s], Decompressed: 485[KDownloaded: 986 file(s) [attempted 986/8890 = 11%, 253 KB/s], Decompressed: 485[KDownloaded: 1029 file(s) [attempted 1029/8890 = 11%, 76 KB/s], Decompressed: 485[KDownloaded: 1087 file(s) [attempted 1087/8890 = 12%, 174 KB/s], Decompressed: 485[KDownloaded: 1134 file(s) [attempted 1134/8890 = 12%, 474 KB/s], Decompressed: 718[KDownloaded: 1187 file(s) [attempted 1187/8890 = 13%, 214 KB/s], Decompressed: 718[KDownloaded: 1243 file(s) [attempted 1243/8890 = 13%, 308 KB/s], Decompressed: 718[KDownloaded: 1290 file(s) [attempted 1290/8890 = 14%, 762 KB/s], Decompressed: 718[KDownloaded: 1337 file(s) [attempted 1337/8890 = 15%, 757 KB/s], Decompressed: 718[KDownloaded: 1364 file(s) [attempted 1364/8890 = 15%, 761 KB/s], Decompressed: 718[KDownloaded: 1426 file(s) [attempted 1426/8890 = 16%, 636 KB/s], Decompressed: 718[KDownloaded: 1487 file(s) [attempted 1487/8890 = 16%, 2343 KB/s], Decompressed: 718[KDownloaded: 1538 file(s) [attempted 1538/8890 = 17%, 857 KB/s], Decompressed: 718[KDownloaded: 1594 file(s) [attempted 1594/8890 = 17%, 136 KB/s], Decompressed: 718[KDownloaded: 1643 file(s) [attempted 1643/8890 = 18%, 445 KB/s], Decompressed: 718[KDownloaded: 1690 file(s) [attempted 1690/8890 = 19%, 550 KB/s], Decompressed: 718[KDownloaded: 1744 file(s) [attempted 1744/8890 = 19%, 708 KB/s], Decompressed: 718[KDownloaded: 1791 file(s) [attempted 1791/8890 = 20%, 222 KB/s], Decompressed: 1100[KDownloaded: 1833 file(s) [attempted 1833/8890 = 20%, 79 KB/s], Decompressed: 1100[KDownloaded: 1869 file(s) [attempted 1869/8890 = 21%, 289 KB/s], Decompressed: 1100[KDownloaded: 1911 file(s) [attempted 1911/8890 = 21%, 234 KB/s], Decompressed: 1100[KDownloaded: 1963 file(s) [attempted 1963/8890 = 22%, 1332 KB/s], Decompressed: 1100[KDownloaded: 1996 file(s) [attempted 1996/8890 = 22%, 111 KB/s], Decompressed: 1100[KDownloaded: 2039 file(s) [attempted 2039/8890 = 22%, 507 KB/s], Decompressed: 1100[KDownloaded: 2066 file(s) [attempted 2066/8890 = 23%, 191 KB/s], Decompressed: 1100[KDownloaded: 2117 file(s) [attempted 2117/8890 = 23%, 1102 KB/s], Decompressed: 1100[KDownloaded: 2171 file(s) [attempted 2171/8890 = 24%, 38 KB/s], Decompressed: 1100[KDownloaded: 2226 file(s) [attempted 2226/8890 = 25%, 155 KB/s], Decompressed: 1100[KDownloaded: 2270 file(s) [attempted 2270/8890 = 25%, 632 KB/s], Decompressed: 1100[KDownloaded: 2327 file(s) [attempted 2327/8890 = 26%, 593 KB/s], Decompressed: 1100[KDownloaded: 2369 file(s) [attempted 2369/8890 = 26%, 469 KB/s], Decompressed: 1100[KDownloaded: 2394 file(s) [attempted 2394/8890 = 26%, 354 KB/s], Decompressed: 1100[KDownloaded: 2452 file(s) [attempted 2452/8890 = 27%, 205 KB/s], Decompressed: 1100[KDownloaded: 2479 file(s) [attempted 2479/8890 = 27%, 308 KB/s], Decompressed: 1100[KDownloaded: 2539 file(s) [attempted 2539/8890 = 28%, 100 KB/s], Decompressed: 1100[KDownloaded: 2594 file(s) [attempted 2594/8890 = 29%, 917 KB/s], Decompressed: 1100[KDownloaded: 2651 file(s) [attempted 2651/8890 = 29%, 335 KB/s], Decompressed: 1100[KDownloaded: 2702 file(s) [attempted 2702/8890 = 30%, 1217 KB/s], Decompressed: 1100[KDownloaded: 2745 file(s) [attempted 2745/8890 = 30%, 195 KB/s], Decompressed: 1100[KDownloaded: 2803 file(s) [attempted 2803/8890 = 31%, 678 KB/s], Decompressed: 1100[KDownloaded: 2859 file(s) [attempted 2859/8890 = 32%, 751 KB/s], Decompressed: 1100[KDownloaded: 2915 file(s) [attempted 2915/8890 = 32%, 1837 KB/s], Decompressed: 1100[KDownloaded: 2971 file(s) [attempted 2971/8890 = 33%, 1275 KB/s], Decompressed: 1100[KDownloaded: 3026 file(s) [attempted 3026/8890 = 34%, 731 KB/s], Decompressed: 1100[KDownloaded: 3073 file(s) [attempted 3073/8890 = 34%, 853 KB/s], Decompressed: 1788[KDownloaded: 3095 file(s) [attempted 3095/8890 = 34%, 782 KB/s], Decompressed: 1788[KDownloaded: 3140 file(s) [attempted 3140/8890 = 35%, 1087 KB/s], Decompressed: 1788[KDownloaded: 3190 file(s) [attempted 3190/8890 = 35%, 858 KB/s], Decompressed: 1788[KDownloaded: 3210 file(s) [attempted 3210/8890 = 36%, 654 KB/s], Decompressed: 1788[KDownloaded: 3254 file(s) [attempted 3254/8890 = 36%, 310 KB/s], Decompressed: 1788[KDownloaded: 3310 file(s) [attempted 3310/8890 = 37%, 169 KB/s], Decompressed: 1788[KDownloaded: 3368 file(s) [attempted 3368/8890 = 37%, 332 KB/s], Decompressed: 1788[KDownloaded: 3442 file(s) [attempted 3442/8890 = 38%, 264 KB/s], Decompressed: 1788[KDownloaded: 3491 file(s) [attempted 3491/8890 = 39%, 1578 KB/s], Decompressed: 1788[KDownloaded: 3529 file(s) [attempted 3529/8890 = 39%, 62 KB/s], Decompressed: 1788[KDownloaded: 3572 file(s) [attempted 3572/8890 = 40%, 446 KB/s], Decompressed: 1788[KDownloaded: 3621 file(s) [attempted 3621/8890 = 40%, 379 KB/s], Decompressed: 1788[KDownloaded: 3661 file(s) [attempted 3661/8890 = 41%, 650 KB/s], Decompressed: 1788[KDownloaded: 3708 file(s) [attempted 3708/8890 = 41%, 115 KB/s], Decompressed: 1788[KDownloaded: 3757 file(s) [attempted 3757/8890 = 42%, 233 KB/s], Decompressed: 1788[KDownloaded: 3793 file(s) [attempted 3793/8890 = 42%, 1316 KB/s], Decompressed: 1788[KDownloaded: 3842 file(s) [attempted 3842/8890 = 43%, 83 KB/s], Decompressed: 1788[KDownloaded: 3853 file(s) [attempted 3853/8890 = 43%, 465 KB/s], Decompressed: 1788[KDownloaded: 3905 file(s) [attempted 3905/8890 = 43%, 128 KB/s], Decompressed: 1788[KDownloaded: 3969 file(s) [attempted 3969/8890 = 44%, 169 KB/s], Decompressed: 1788[KDownloaded: 4021 file(s) [attempted 4021/8890 = 45%, 128 KB/s], Decompressed: 1788[KDownloaded: 4034 file(s) [attempted 4034/8890 = 45%, 198 KB/s], Decompressed: 1788[KDownloaded: 4083 file(s) [attempted 4083/8890 = 45%, 1156 KB/s], Decompressed: 1788[KDownloaded: 4142 file(s) [attempted 4142/8890 = 46%, 1310 KB/s], Decompressed: 1788[KDownloaded: 4193 file(s) [attempted 4193/8890 = 47%, 259 KB/s], Decompressed: 1788[KDownloaded: 4235 file(s) [attempted 4235/8890 = 47%, 5671 KB/s], Decompressed: 1788[KDownloaded: 4285 file(s) [attempted 4285/8890 = 48%, 1137 KB/s], Decompressed: 1788[KDownloaded: 4311 file(s) [attempted 4311/8890 = 48%, 532 KB/s], Decompressed: 1788[KDownloaded: 4365 file(s) [attempted 4365/8890 = 49%, 154 KB/s], Decompressed: 1788[KDownloaded: 4405 file(s) [attempted 4405/8890 = 49%, 332 KB/s], Decompressed: 1788[KDownloaded: 4450 file(s) [attempted 4450/8890 = 50%, 74 KB/s], Decompressed: 1788[KDownloaded: 4506 file(s) [attempted 4506/8890 = 50%, 496 KB/s], Decompressed: 1788[KDownloaded: 4533 file(s) [attempted 4533/8890 = 50%, 219 KB/s], Decompressed: 1788[KDownloaded: 4577 file(s) [attempted 4577/8890 = 51%, 783 KB/s], Decompressed: 1788[KDownloaded: 4627 file(s) [attempted 4627/8890 = 52%, 525 KB/s], Decompressed: 1788[KDownloaded: 4664 file(s) [attempted 4664/8890 = 52%, 744 KB/s], Decompressed: 1788[KDownloaded: 4711 file(s) [attempted 4711/8890 = 52%, 349 KB/s], Decompressed: 1788[KDownloaded: 4765 file(s) [attempted 4765/8890 = 53%, 44 KB/s], Decompressed: 1788[KDownloaded: 4816 file(s) [attempted 4816/8890 = 54%, 188 KB/s], Decompressed: 1788[KDownloaded: 4861 file(s) [attempted 4861/8890 = 54%, 48 KB/s], Decompressed: 1788[KDownloaded: 4917 file(s) [attempted 4917/8890 = 55%, 229 KB/s], Decompressed: 1788[KDownloaded: 4968 file(s) [attempted 4968/8890 = 55%, 97 KB/s], Decompressed: 1788[KDownloaded: 4982 file(s) [attempted 4982/8890 = 56%, 155 KB/s], Decompressed: 1788[KDownloaded: 5042 file(s) [attempted 5042/8890 = 56%, 318 KB/s], Decompressed: 3071[KDownloaded: 5087 file(s) [attempted 5087/8890 = 57%, 125 KB/s], Decompressed: 3071[KDownloaded: 5133 file(s) [attempted 5133/8890 = 57%, 459 KB/s], Decompressed: 3071[KDownloaded: 5174 file(s) [attempted 5174/8890 = 58%, 525 KB/s], Decompressed: 3071[KDownloaded: 5219 file(s) [attempted 5219/8890 = 58%, 218 KB/s], Decompressed: 3071[KDownloaded: 5259 file(s) [attempted 5259/8890 = 59%, 278 KB/s], Decompressed: 3071[KDownloaded: 5315 file(s) [attempted 5315/8890 = 59%, 678 KB/s], Decompressed: 3071[KDownloaded: 5366 file(s) [attempted 5366/8890 = 60%, 253 KB/s], Decompressed: 3071[KDownloaded: 5409 file(s) [attempted 5409/8890 = 60%, 466 KB/s], Decompressed: 3071[KDownloaded: 5456 file(s) [attempted 5456/8890 = 61%, 591 KB/s], Decompressed: 3071[KDownloaded: 5503 file(s) [attempted 5503/8890 = 61%, 104 KB/s], Decompressed: 3071[KDownloaded: 5561 file(s) [attempted 5561/8890 = 62%, 652 KB/s], Decompressed: 3071[KDownloaded: 5619 file(s) [attempted 5619/8890 = 63%, 581 KB/s], Decompressed: 3071[KDownloaded: 5654 file(s) [attempted 5654/8890 = 63%, 103 KB/s], Decompressed: 3071[KDownloaded: 5697 file(s) [attempted 5697/8890 = 64%, 487 KB/s], Decompressed: 3071[KDownloaded: 5730 file(s) [attempted 5730/8890 = 64%, 69 KB/s], Decompressed: 3071[KDownloaded: 5768 file(s) [attempted 5768/8890 = 64%, 601 KB/s], Decompressed: 3071[KDownloaded: 5818 file(s) [attempted 5818/8890 = 65%, 289 KB/s], Decompressed: 3071[KDownloaded: 5840 file(s) [attempted 5840/8890 = 65%, 467 KB/s], Decompressed: 3071[KDownloaded: 5844 file(s) [attempted 5844/8890 = 65%, 227 KB/s], Decompressed: 3071[KDownloaded: 5894 file(s) [attempted 5894/8890 = 66%, 199 KB/s], Decompressed: 3071[KDownloaded: 5947 file(s) [attempted 5947/8890 = 66%, 152 KB/s], Decompressed: 3071[KDownloaded: 6003 file(s) [attempted 6003/8890 = 67%, 97 KB/s], Decompressed: 3071[KDownloaded: 6055 file(s) [attempted 6055/8890 = 68%, 388 KB/s], Decompressed: 3071[KDownloaded: 6108 file(s) [attempted 6108/8890 = 68%, 505 KB/s], Decompressed: 3071[KDownloaded: 6157 file(s) [attempted 6157/8890 = 69%, 780 KB/s], Decompressed: 3071[KDownloaded: 6213 file(s) [attempted 6213/8890 = 69%, 116 KB/s], Decompressed: 3071[KDownloaded: 6265 file(s) [attempted 6265/8890 = 70%, 119 KB/s], Decompressed: 3071[KDownloaded: 6316 file(s) [attempted 6316/8890 = 71%, 220 KB/s], Decompressed: 3071[KDownloaded: 6367 file(s) [attempted 6367/8890 = 71%, 149 KB/s], Decompressed: 3071[KDownloaded: 6419 file(s) [attempted 6419/8890 = 72%, 1551 KB/s], Decompressed: 3071[KDownloaded: 6470 file(s) [attempted 6470/8890 = 72%, 555 KB/s], Decompressed: 3071[KDownloaded: 6501 file(s) [attempted 6501/8890 = 73%, 717 KB/s], Decompressed: 3071[KDownloaded: 6551 file(s) [attempted 6551/8890 = 73%, 3084 KB/s], Decompressed: 3071[KDownloaded: 6600 file(s) [attempted 6600/8890 = 74%, 156 KB/s], Decompressed: 3071[KDownloaded: 6644 file(s) [attempted 6644/8890 = 74%, 95 KB/s], Decompressed: 3071[KDownloaded: 6681 file(s) [attempted 6681/8890 = 75%, 392 KB/s], Decompressed: 3071[KDownloaded: 6709 file(s) [attempted 6709/8890 = 75%, 191 KB/s], Decompressed: 3071[KDownloaded: 6763 file(s) [attempted 6763/8890 = 76%, 104 KB/s], Decompressed: 3071[KDownloaded: 6810 file(s) [attempted 6810/8890 = 76%, 1045 KB/s], Decompressed: 3071[KDownloaded: 6830 file(s) [attempted 6830/8890 = 76%, 934 KB/s], Decompressed: 3071[KDownloaded: 6881 file(s) [attempted 6881/8890 = 77%, 506 KB/s], Decompressed: 3071[KDownloaded: 6935 file(s) [attempted 6935/8890 = 78%, 83 KB/s], Decompressed: 3071[KDownloaded: 6977 file(s) [attempted 6977/8890 = 78%, 116 KB/s], Decompressed: 3071[KDownloaded: 7011 file(s) [attempted 7011/8890 = 78%, 516 KB/s], Decompressed: 3071[KDownloaded: 7058 file(s) [attempted 7058/8890 = 79%, 1335 KB/s], Decompressed: 3071[KDownloaded: 7127 file(s) [attempted 7127/8890 = 80%, 384 KB/s], Decompressed: 3071[KDownloaded: 7161 file(s) [attempted 7161/8890 = 80%, 481 KB/s], Decompressed: 3071[KDownloaded: 7212 file(s) [attempted 7212/8890 = 81%, 308 KB/s], Decompressed: 3071[KDownloaded: 7272 file(s) [attempted 7272/8890 = 81%, 695 KB/s], Decompressed: 3071[KDownloaded: 7331 file(s) [attempted 7331/8890 = 82%, 872 KB/s], Decompressed: 3071[KDownloaded: 7366 file(s) [attempted 7366/8890 = 82%, 198 KB/s], Decompressed: 3071[KDownloaded: 7420 file(s) [attempted 7420/8890 = 83%, 241 KB/s], Decompressed: 3071[KDownloaded: 7469 file(s) [attempted 7469/8890 = 84%, 697 KB/s], Decompressed: 3071[KDownloaded: 7509 file(s) [attempted 7509/8890 = 84%, 87 KB/s], Decompressed: 3071[KDownloaded: 7563 file(s) [attempted 7563/8890 = 85%, 1568 KB/s], Decompressed: 3071[KDownloaded: 7605 file(s) [attempted 7605/8890 = 85%, 623 KB/s], Decompressed: 3071[KDownloaded: 7659 file(s) [attempted 7659/8890 = 86%, 582 KB/s], Decompressed: 3071[KDownloaded: 7706 file(s) [attempted 7706/8890 = 86%, 368 KB/s], Decompressed: 3071[KDownloaded: 7762 file(s) [attempted 7762/8890 = 87%, 163 KB/s], Decompressed: 3071[KDownloaded: 7807 file(s) [attempted 7807/8890 = 87%, 167 KB/s], Decompressed: 3071[KDownloaded: 7853 file(s) [attempted 7853/8890 = 88%, 338 KB/s], Decompressed: 3071[KDownloaded: 7907 file(s) [attempted 7907/8890 = 88%, 105 KB/s], Decompressed: 3071[KDownloaded: 7943 file(s) [attempted 7943/8890 = 89%, 2071 KB/s], Decompressed: 3071[KDownloaded: 7985 file(s) [attempted 7985/8890 = 89%, 169 KB/s], Decompressed: 3071[KDownloaded: 8041 file(s) [attempted 8041/8890 = 90%, 130 KB/s], Decompressed: 3071[KDownloaded: 8106 file(s) [attempted 8106/8890 = 91%, 367 KB/s], Decompressed: 3071[KDownloaded: 8135 file(s) [attempted 8135/8890 = 91%, 852 KB/s], Decompressed: 3071[KDownloaded: 8175 file(s) [attempted 8175/8890 = 91%, 244 KB/s], Decompressed: 5020[KDownloaded: 8229 file(s) [attempted 8229/8890 = 92%, 812 KB/s], Decompressed: 5020[KDownloaded: 8287 file(s) [attempted 8287/8890 = 93%, 1146 KB/s], Decompressed: 5020[KDownloaded: 8343 file(s) [attempted 8343/8890 = 93%, 727 KB/s], Decompressed: 5020[KDownloaded: 8385 file(s) [attempted 8385/8890 = 94%, 186 KB/s], Decompressed: 5020[KDownloaded: 8447 file(s) [attempted 8447/8890 = 95%, 236 KB/s], Decompressed: 5020[KDownloaded: 8484 file(s) [attempted 8484/8890 = 95%, 208 KB/s], Decompressed: 5020[KDownloaded: 8537 file(s) [attempted 8537/8890 = 96%, 662 KB/s], Decompressed: 5020[KDownloaded: 8595 file(s) [attempted 8595/8890 = 96%, 1055 KB/s], Decompressed: 5020[KDownloaded: 8647 file(s) [attempted 8647/8890 = 97%, 258 KB/s], Decompressed: 5020[KDownloaded: 8680 file(s) [attempted 8680/8890 = 97%, 113 KB/s], Decompressed: 5020[KDownloaded: 8732 file(s) [attempted 8732/8890 = 98%, 499 KB/s], Decompressed: 5020[KDownloaded: 8781 file(s) [attempted 8781/8890 = 98%, 756 KB/s], Decompressed: 5020[KDownloaded: 8828 file(s) [attempted 8828/8890 = 99%, 563 KB/s], Decompressed: 5020[KDownloaded: 8879 file(s) [attempted 8879/8890 = 99%, 717 KB/s], Decompressed: 5020[KDownloaded: 8890 file(s) [attempted 8890/8890 = 100%, 717 KB/s], Decompressed: 5020[K
+Decompressed 8890 file(s)
+Already decompressed 8890 file(s)
+✔ [3125/3211] Built PscVerif.PeriodicPartnerLiteralDefect (10s)
+✔ [3126/3211] Built PscVerif.PeriodicPartner (10s)
+✔ [3127/3211] Built PscVerif.Binomial (10s)
+✔ [3128/3211] Built PscVerif.C4FiniteTileAutomaton (9.6s)
+✔ [3129/3211] Built PscVerif.PerronCore (10s)
+✔ [3130/3211] Built PscVerif.ConcentrationAlgebra (10s)
+✔ [3131/3211] Built PscVerif.PeriodicPartnerDynamics (2.9s)
+✔ [3132/3211] Built PscVerif.PeriodicPartnerCollapse (3.1s)
+✔ [3133/3211] Built PscVerif.FixedPointLimit (2.8s)
+✔ [3134/3211] Built PscVerif.Incidence (3.1s)
+✔ [3135/3211] Built PscVerif.PeriodicPartnerAsymptotic (2.5s)
+✔ [3136/3211] Built PscVerif.PeriodicPartnerDichotomy (2.5s)
+✔ [3137/3211] Built PscVerif.Cyclicity (5.4s)
+✔ [3138/3211] Built PscVerif.ParikhIntertwiner (4.0s)
+✔ [3139/3211] Built PscVerif.Intertwiner2 (4.3s)
+✔ [3140/3211] Built PscVerif.PeriodicPartnerHull (5.6s)
+✔ [3141/3211] Built PscVerif.SignedCocycle (3.7s)
+✔ [3142/3211] Built PscVerif.PeriodicPartnerHullContinuity (3.0s)
+✔ [3143/3211] Built PscVerif.Reduction (4.8s)
+✔ [3144/3211] Built PscVerif.PeriodicPartnerEvenTails (4.0s)
+✔ [3145/3211] Built PscVerif.PeriodicPartnerRealization (6.6s)
+✔ [3146/3211] Built PscVerif.PeriodicPartnerLocalTopology (4.2s)
+✔ [3147/3211] Built PscVerif.PeriodicPartnerHullComplete (4.5s)
+✔ [3148/3211] Built PscVerif.PeriodicPartnerEventualCoincidence (4.6s)
+✔ [3149/3211] Built PscVerif.PeriodicPartnerBalancedGeometry (6.8s)
+✔ [3150/3211] Built PscVerif.PeriodicPartnerHullPatches (6.9s)
+✔ [3151/3211] Built PscVerif.PeriodicPartnerOriginContinuity (5.9s)
+✔ [3152/3211] Built PscVerif.Descendants (7.9s)
+✔ [3153/3211] Built PscVerif.PeriodicPartnerSolenoidHaar (8.8s)
+✔ [3154/3211] Built PscVerif.PeriodicPartnerLocalRealization (5.1s)
+✔ [3155/3211] Built PscVerif.PeriodicPartnerSolenoidCharacters (9.7s)
+✔ [3156/3211] Built PscVerif.PeriodicPartnerRealizationModels (9.6s)
+✔ [3157/3211] Built PscVerif.PeriodicPartnerLegalCoincidence (5.4s)
+✔ [3158/3211] Built PscVerif.ForwardCarrier (5.8s)
+✔ [3159/3211] Built PscVerif.PeriodicPartnerHullCompact (7.1s)
+✔ [3160/3211] Built PscVerif.C4ParameterFamilyWords (41s)
+✔ [3161/3211] Built PscVerif.Termination (4.8s)
+✔ [3162/3211] Built PscVerif.PeriodicPartnerSpectral (12s)
+✔ [3163/3211] Built PscVerif.PeriodicPartnerProximal (3.8s)
+✔ [3164/3211] Built PscVerif.C4FamilyTileAutomatonWords (2.4s)
+⚠ [3165/3211] Built PscVerif.FastForwardCarrier (4.4s)
+warning: PscVerif/FastForwardCarrier.lean:288:13: `if_neg` has been deprecated: Use `ite_eq_right` instead
+✔ [3166/3211] Built PscVerif.PeriodicPartnerDesubContinuity (3.2s)
+⚠ [3167/3211] Built PscVerif.TerminationFactors (3.7s)
+warning: PscVerif/TerminationFactors.lean:107:8: automatically included section variable(s) unused in theorem `_private.PscVerif.TerminationFactors.0.Psc.TerminationFactors.subst_singletons`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+✔ [3168/3211] Built PscVerif.PeriodicPartnerFiniteCoincidence (4.0s)
+✔ [3169/3211] Built PscVerif.UniversalClosureReduction (5.1s)
+✔ [3170/3211] Built PscVerif.PeriodicPartnerRealizationContinuity (4.1s)
+✔ [3171/3211] Built PscVerif.PeriodicPartnerRealizationFinite (2.9s)
+✔ [3172/3211] Built PscVerif.PeriodicPartnerRealizationOnto (3.1s)
+✔ [3173/3211] Built PscVerif.C4ParameterFamilyControls (8.2s)
+✔ [3174/3211] Built PscVerif.PeriodicPartnerOriginSeparation (3.0s)
+✔ [3175/3211] Built PscVerif.C4ParameterFamilyPisot (13s)
+✔ [3176/3211] Built PscVerif.PeriodicPartnerPeriodicZero (3.4s)
+✔ [3177/3211] Built PscVerif.PeriodicPartnerOrdinaryProximal (3.3s)
+✔ [3178/3211] Built PscVerif.PeriodicPartnerFibreDistal (2.8s)
+✔ [3179/3211] Built PscVerif.PeriodicPartnerRotationFactor (3.8s)
+✔ [3180/3211] Built PscVerif.PeriodicPartnerEquicontinuousFactor (2.8s)
+⚠ [3181/3211] Built PscVerif.C4ParameterFamilyCarrier (93s)
+warning: PscVerif/C4ParameterFamilyCarrier.lean:121:50: This simp argument is unused:
+  Prod.fst
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [state, ite_eq_right hb, Prod.swap, Prod.snd] at h
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/C4ParameterFamilyCarrier.lean:121:60: This simp argument is unused:
+  Prod.snd
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [state, ite_eq_right hb, Prod.swap, Prod.fst] at h
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/C4ParameterFamilyCarrier.lean:123:26: This simp argument is unused:
+  Prod.fst
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Prod.swap, Prod.snd]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/C4ParameterFamilyCarrier.lean:123:36: This simp argument is unused:
+  Prod.snd
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Prod.swap, Prod.fst]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+info: PscVerif/C4ParameterFamilyCarrier.lean:661:0: 'Psc.ParameterFamily.terminates_with_coincidence' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PscVerif/C4ParameterFamilyCarrier.lean:662:0: 'Psc.ParameterFamilyCarrier.children_eq_red' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PscVerif/C4ParameterFamilyCarrier.lean:663:0: 'Psc.ParameterFamily.finite_and_productive' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PscVerif/C4ParameterFamilyCarrier.lean:664:0: 'Psc.ParameterFamily.coincidence_child' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [3182/3211] Built PscVerif.C4ParameterFamilyBridge (2.9s)
+✔ [3183/3211] Built PscVerif.C4ParameterFamilyTiling (4.6s)
+✔ [3184/3211] Built PscVerif.C4FamilyTileAutomatonHull (2.8s)
+✔ [3185/3211] Built PscVerif.C4ParameterFamilyRecognizability (3.0s)
+✔ [3186/3211] Built PscVerif.C4ParameterFamilySolenoid (4.2s)
+✔ [3187/3211] Built PscVerif.C4ParameterFamilyZeroFibreWitnesses (4.6s)
+✔ [3188/3211] Built PscVerif.C4ParameterFamilyInteriorProximal (4.7s)
+✔ [3189/3211] Built PscVerif.C4ParameterFamilyInteriorSeed (5.2s)
+✔ [3190/3211] Built PscVerif.C4ParameterFamilyZeroFibreControls (5.5s)
+✔ [3191/3211] Built PscVerif.C4FamilySolenoidCharacters (5.0s)
+✔ [3192/3211] Built PscVerif.C4FamilySymbolicSection (7.2s)
+✔ [3193/3211] Built PscVerif.C4ParameterFamilyOrdinaryProximal (3.5s)
+✔ [3194/3211] Built PscVerif.C4FamilyFiniteZeroFibre (3.6s)
+✔ [3195/3211] Built PscVerif.C4ParameterFamilyInteriorZero (3.8s)
+✔ [3196/3211] Built PscVerif.C4FamilyCharacterOrbits (3.7s)
+✔ [3197/3211] Built PscVerif.C4FamilySymbolicLanguage (3.9s)
+✔ [3198/3211] Built PscVerif.C4FamilyFiniteFibreSynchronization (3.5s)
+✔ [3199/3211] Built PscVerif.C4ParameterFamilyRotationFactor (3.8s)
+✔ [3200/3211] Built PscVerif.C4ParameterFamilyEquicontinuousFactor (2.9s)
+✔ [3201/3211] Built PscVerif.C4FamilyOpenSynchronization (3.9s)
+✔ [3202/3211] Built PscVerif.C4FamilyHaarErgodicity (6.0s)
+✔ [3203/3211] Built PscVerif.C4FamilyFiniteProximal (3.2s)
+✔ [3204/3211] Built PscVerif.C4FamilyHaarSingletonFibres (4.0s)
+✔ [3205/3211] Built PscVerif.C4ParameterFamilyFibreDistal (3.4s)
+✔ [3206/3211] Built PscVerif.C4FamilyMeasuredRealization (4.1s)
+✔ [3207/3211] Built PscVerif.C4FamilyMeasuredSpectrum (4.4s)
+✔ [3208/3211] Built PscVerif.C4FamilyInvariantMeasureUniqueness (4.6s)
+✔ [3209/3211] Built PscVerif.C4FamilySymbolicSpectrum (7.0s)
+✔ [3210/3211] Built PscVerif.C4FamilySymbolicMeasureUniqueness (3.6s)
+✔ [3211/3211] Built PscVerif.C4FamilyCanonicalSpectrum (2.9s)
+Build completed successfully (3211 jobs).
+PSC_PARAMETER_FAMILY_MODULE	PscVerif.Termination	2	0
+PSC_PARAMETER_FAMILY_MODULE	PscVerif.C4ParameterFamilyWords	293	270
+PSC_PARAMETER_FAMILY_MODULE	PscVerif.C4ParameterFamilyCarrier	219	188
+PSC_PARAMETER_FAMILY_MODULE	PscVerif.C4ParameterFamilyControls	20	16
+PSC_PARAMETER_FAMILY_MODULE	PscVerif.C4ParameterFamilyPisot	35	32
+PSC_PARAMETER_FAMILY_MODULE	PscVerif.TerminationFactors	11	10
+PSC_PARAMETER_FAMILY_MODULE	PscVerif.C4ParameterFamilyBridge	3	3
+PSC_PARAMETER_FAMILY_MODULE	PscVerif.UniversalClosureReduction	35	28
+PSC_PARAMETER_FAMILY_MODULE	PscVerif.PeriodicPartnerHullPatches	17	15
+PSC_PARAMETER_FAMILY_MODULE	PscVerif.PeriodicPartnerBalancedGeometry	25	23
+PSC_PARAMETER_FAMILY_MODULE	PscVerif.C4ParameterFamilyTiling	44	40
+PSC_PARAMETER_FAMILY_MODULE	PscVerif.PeriodicPartnerEventualCoincidence	33	28
+PSC_PARAMETER_FAMILY_MODULE	PscVerif.PeriodicPartnerLegalCoincidence	16	11
+PSC_PARAMETER_FAMILY_MODULE	PscVerif.C4ParameterFamilyRecognizability	25	22
+PSC_PARAMETER_FAMILY_MODULE	PscVerif.C4ParameterFamilySolenoid	19	16
+PSC_PARAMETER_FAMILY_MODULE	PscVerif.PeriodicPartnerRealization	169	126
+PSC_PARAMETER_FAMILY_MODULE	PscVerif.PeriodicPartnerHullComplete	3	3
+PSC_PARAMETER_FAMILY_MODULE	PscVerif.PeriodicPartnerOriginContinuity	9	9
+PSC_PARAMETER_FAMILY_MODULE	PscVerif.PeriodicPartnerHullCompact	34	26
+PSC_PARAMETER_FAMILY_MODULE	PscVerif.PeriodicPartnerDesubContinuity	5	4
+PSC_PARAMETER_FAMILY_MODULE	PscVerif.PeriodicPartnerRealizationContinuity	15	15
+PSC_PARAMETER_FAMILY_MODULE	PscVerif.PeriodicPartnerRealizationFinite	13	12
+PSC_PARAMETER_FAMILY_MODULE	PscVerif.PeriodicPartnerRealizationOnto	8	8
+PSC_PARAMETER_FAMILY_DECLARATIONS	23	1053	905
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamily.finite_and_productive	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamily.coincidence_child	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamily.terminates_with_coincidence	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilyPisot.primitive	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilyPisot.irreducible	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilyPisot.pisot	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.TerminationFactors.terminates_iff_finite_factors_and_coincidences	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilyBridge.full_factor_termination	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilyBridge.spectral_criterion_inputs	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilyTiling.geometry_image	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilyTiling.fixed_hull_tiling	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilyTiling.continuous_action	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilyTiling.action_aperiodic	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilyTiling.finite_local_complexity	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilyTiling.swap_rotation_irrational	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilyTiling.swap_rotation_dense	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilyTiling.dense_swap_coincidences	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilyTiling.periodic_swap_geometry	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilyTiling.legal_patches_dense_eventual	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilyTiling.hull_dense_eventual	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilyTiling.periodic_common_tile_of_origin_witnesses	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilyTiling.periodic_fibre_common_tiles	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilyRecognizability.inflateH_bijective	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilySolenoid.mat_eq	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilySolenoid.continuous_solenoidRealize	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilySolenoid.solenoidRealize_surjective	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilySolenoid.solenoidRealize_finite_fibres	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilySolenoid.solenoidRealize_inflate	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilySolenoid.solenoidRealize_translate	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilySolenoid.fixed_tiling_over_zero	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilySolenoid.periodic_of_realize_zero	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilySolenoid.solenoidRealize_fibres_eq_of_equivariant	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.ParameterFamilySolenoid.common_tile_of_zero_fibre_witnesses	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.UniversalClosureReduction.all_blocks_productive	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_ENDPOINT	Psc.UniversalClosureReduction.infinite_seed_reachability	propext,Classical.choice,Quot.sound
+PSC_PARAMETER_FAMILY_AUDIT_COMPLETE	35	70
+PSC_ZERO_FIBRE_MODULE	PscVerif.PeriodicPartnerProximal	8	7
+PSC_ZERO_FIBRE_MODULE	PscVerif.PeriodicPartnerPeriodicZero	6	6
+PSC_ZERO_FIBRE_MODULE	PscVerif.C4ParameterFamilyZeroFibreWitnesses	14	11
+PSC_ZERO_FIBRE_MODULE	PscVerif.C4ParameterFamilyZeroFibreControls	5	5
+PSC_ZERO_FIBRE_MODULE	PscVerif.C4ParameterFamilyInteriorSeed	7	7
+PSC_ZERO_FIBRE_MODULE	PscVerif.C4ParameterFamilyInteriorProximal	6	6
+PSC_ZERO_FIBRE_MODULE	PscVerif.C4ParameterFamilyInteriorZero	3	3
+PSC_ZERO_FIBRE_DECLARATIONS	7	49	45
+PSC_ZERO_FIBRE_ENDPOINT	Psc.PeriodicPartnerProximal.originPatch_eq_of_agree	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.PeriodicPartnerProximal.agree_at_common_tile	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.PeriodicPartnerProximal.inflateH_iterate_translate	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.PeriodicPartnerProximal.ExactProximal.inflate_iterate	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.PeriodicPartnerProximal.exactProximal_of_periodic_common_tile	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.PeriodicPartnerProximal.common_tile_of_exactProximal	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.PeriodicPartnerProximal.exactProximal_iff_common_tile_of_periodic	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.PeriodicPartnerProximal.closedOriginWitnesses_of_windowWitnesses	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.PeriodicPartnerProximal.stronglyRegionallyProximal_of_exactProximal	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.PeriodicPartnerPeriodicZero.realize_zero_of_periodic_torus_zero	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.PeriodicPartnerPeriodicZero.torusRealize_zero_of_periodic_lattice_origin	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.PeriodicPartnerPeriodicZero.realize_zero_of_periodic_lattice_origin	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.PeriodicPartnerPeriodicZero.lattice_origin_of_realize_zero	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.PeriodicPartnerPeriodicZero.realize_zero_iff_lattice_origin_of_periodic	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.ParameterFamilyZeroFibreWitnesses.realize_zero_iff_periodic_lattice_origin	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.ParameterFamilyZeroFibreWitnesses.common_tile_of_closedOriginWitnesses	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.ParameterFamilyZeroFibreWitnesses.exactProximal_iff_common_tile	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.ParameterFamilyZeroFibreWitnesses.windowWitnesses_iff_common_tile	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.ParameterFamilyZeroFibreWitnesses.closedOriginWitnesses_iff_common_tile	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.ParameterFamilyZeroFibreWitnesses.stronglyRegionallyProximal_iff_common_tile	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.ParameterFamilyZeroFibreWitnesses.common_tile_trans	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.ParameterFamilyZeroFibreWitnesses.all_pair_witnesses_iff_anchor	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.ParameterFamilyZeroFibreWitnesses.all_pair_witnesses_iff_periodic_lattice_anchor	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.ParameterFamilyZeroFibreControls.zero_fibre_seam_control	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.ParameterFamilyZeroFibreControls.solenoidRealize_not_injective	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.ParameterFamilyZeroFibreControls.seam_pair_common_tile	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.ParameterFamilyZeroFibreControls.zero_fibre_pair_with_exact_shifts	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.ParameterFamilyInteriorSeed.interior_periodic_tiling	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.ParameterFamilyInteriorSeed.interior_child_positions	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.ParameterFamilyInteriorSeed.interior_cycle_tiles	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.ParameterFamilyInteriorSeed.interior_periodic_origins	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.ParameterFamilyInteriorSeed.no_origin_vertex	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.ParameterFamilyInteriorProximal.seam_interior_common_tile	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.ParameterFamilyInteriorProximal.seam_interior_exactProximal	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.ParameterFamilyInteriorProximal.seam_interior_orbit_exactProximal	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.ParameterFamilyInteriorZero.interior_zero_cycle	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.ParameterFamilyInteriorZero.zero_fibre_not_all_vertices	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_ENDPOINT	Psc.ParameterFamilyInteriorZero.seam_and_interior_zero_witnesses	propext,Classical.choice,Quot.sound
+PSC_ZERO_FIBRE_AUDIT_COMPLETE	38	76
+PSC_FINITE_TILE_MODULE	PscVerif.C4FiniteTileAutomaton	150	90
+PSC_FINITE_TILE_MODULE	PscVerif.C4FamilyTileAutomatonWords	14	13
+PSC_FINITE_TILE_ENDPOINT	Psc.C4FiniteTileAutomaton.certificate_replay	propext,Classical.choice,Quot.sound
+PSC_FINITE_TILE_ENDPOINT	Psc.C4FiniteTileAutomaton.exists_signed_walk	propext,Classical.choice,Quot.sound
+PSC_FINITE_TILE_ENDPOINT	Psc.C4FiniteTileAutomaton.replay_iff_walk	propext
+PSC_FINITE_TILE_ENDPOINT	Psc.C4FiniteTileAutomaton.control_table_exact	propext
+PSC_FINITE_TILE_ENDPOINT	Psc.C4FiniteTileAutomaton.output_table_exact	propext
+PSC_FINITE_TILE_ENDPOINT	Psc.C4FiniteTileAutomaton.reduced_basis0_impossible	propext,Classical.choice,Quot.sound
+PSC_FINITE_TILE_ENDPOINT	Psc.C4FiniteTileAutomaton.disconnected_rejected	propext
+PSC_FINITE_TILE_ENDPOINT	Psc.C4FiniteTileAutomaton.reversed_sign_rejected	propext,Quot.sound
+PSC_FINITE_TILE_ENDPOINT	Psc.C4FamilyTileAutomatonWords.all_forward_edges_have_literal_witness	propext,Classical.choice,Quot.sound
+PSC_FINITE_TILE_ENDPOINT	Psc.C4FamilyTileAutomatonWords.all_signed_edges_have_literal_witness	propext,Classical.choice,Quot.sound
+PSC_FINITE_TILE_REFUSAL_CONTROLS	20
+PSC_FINITE_TILE_AUDIT_COMPLETE	164	103
+PSC_FINITE_HULL_MODULE	PscVerif.C4FamilyTileAutomatonHull	12	11
+PSC_FINITE_HULL_MODULE	PscVerif.C4FamilyFiniteZeroFibre	14	14
+PSC_FINITE_HULL_ENDPOINT	Psc.C4FamilyTileAutomatonHull.supertile_hull	propext,Classical.choice,Quot.sound
+PSC_FINITE_HULL_ENDPOINT	Psc.C4FamilyTileAutomatonHull.occurrence_hull_bridge	propext,Classical.choice,Quot.sound
+PSC_FINITE_HULL_ENDPOINT	Psc.C4FamilyTileAutomatonHull.forward_edge_hull_bridge	propext,Classical.choice,Quot.sound
+PSC_FINITE_HULL_ENDPOINT	Psc.C4FamilyTileAutomatonHull.signed_edge_hull_bridge	propext,Classical.choice,Quot.sound
+PSC_FINITE_HULL_ENDPOINT	Psc.PeriodicPartnerEventualCoincidence.dense_eventual_trans	propext,Classical.choice,Quot.sound
+PSC_FINITE_HULL_ENDPOINT	Psc.C4FamilyFiniteZeroFibre.dense_eventual_of_walk	propext,Classical.choice,Quot.sound
+PSC_FINITE_HULL_ENDPOINT	Psc.C4FamilyFiniteZeroFibre.dense_eventual_of_replay	propext,Classical.choice,Quot.sound
+PSC_FINITE_HULL_ENDPOINT	Psc.C4FamilyFiniteZeroFibre.dense_eventual_of_integer_displacement	propext,Classical.choice,Quot.sound
+PSC_FINITE_HULL_ENDPOINT	Psc.C4FamilyFiniteZeroFibre.integer_origin_of_zero	propext,Classical.choice,Quot.sound
+PSC_FINITE_HULL_ENDPOINT	Psc.C4FamilyFiniteZeroFibre.dense_eventual_of_integer_origins	propext,Classical.choice,Quot.sound
+PSC_FINITE_HULL_ENDPOINT	Psc.C4FamilyFiniteZeroFibre.dense_eventual_of_torusRealize_eq	propext,Classical.choice,Quot.sound
+PSC_FINITE_HULL_ENDPOINT	Psc.C4FamilyFiniteZeroFibre.same_fibre_dense_eventual	propext,Classical.choice,Quot.sound
+PSC_FINITE_HULL_ENDPOINT	Psc.C4FamilyFiniteZeroFibre.zero_fibre_dense_eventual	propext,Classical.choice,Quot.sound
+PSC_FINITE_HULL_ENDPOINT	Psc.C4FamilyFiniteZeroFibre.zero_fibre_common_tile	propext,Classical.choice,Quot.sound
+PSC_FINITE_HULL_ENDPOINT	Psc.C4FamilyFiniteZeroFibre.zero_fibre_exactProximal	propext,Classical.choice,Quot.sound
+PSC_FINITE_HULL_ENDPOINT	Psc.C4FamilyFiniteZeroFibre.zero_fibre_windowWitnesses	propext,Classical.choice,Quot.sound
+PSC_FINITE_HULL_ENDPOINT	Psc.C4FamilyFiniteZeroFibre.zero_fibre_closedOriginWitnesses	propext,Classical.choice,Quot.sound
+PSC_FINITE_HULL_ENDPOINT	Psc.C4FamilyFiniteZeroFibre.zero_fibre_stronglyRegionallyProximal	propext,Classical.choice,Quot.sound
+PSC_FINITE_HULL_ENDPOINT	Psc.ParameterFamilyZeroFibreControls.zero_fibre_seam_control	propext,Classical.choice,Quot.sound
+PSC_FINITE_HULL_ENDPOINT	Psc.ParameterFamilyInteriorZero.zero_fibre_not_all_vertices	propext,Classical.choice,Quot.sound
+PSC_FINITE_HULL_CONTRACT_REFUSED	Psc.C4FamilyTileAutomatonHull.signed_edge_hull_bridge	Psc.C4FiniteHullWitnessAudit.WrongSignedEdgeType
+PSC_FINITE_HULL_CONTRACT_REFUSED	Psc.C4FamilyFiniteZeroFibre.zero_fibre_common_tile	Psc.C4FiniteHullWitnessAudit.MissingFamilyGuardType
+PSC_FINITE_HULL_CONTRACT_REFUSED	Psc.C4FamilyFiniteZeroFibre.zero_fibre_common_tile	Psc.C4FiniteHullWitnessAudit.WeakerFamilyGuardType
+PSC_FINITE_HULL_CONTRACT_REFUSED	Psc.C4FamilyFiniteZeroFibre.zero_fibre_common_tile	Psc.C4FiniteHullWitnessAudit.MissingZeroPremiseType
+PSC_FINITE_HULL_CONTRACT_REFUSED	Psc.C4FamilyFiniteZeroFibre.dense_eventual_of_integer_origins	Psc.C4FiniteHullWitnessAudit.MissingIntegerOriginsType
+PSC_FINITE_HULL_CONTRACT_REFUSED	Psc.C4FamilyFiniteZeroFibre.zero_fibre_closedOriginWitnesses	Psc.C4FiniteHullWitnessAudit.DirectOriginAgreementType
+PSC_FINITE_HULL_CONTRACT_REFUSED	Psc.C4FamilyFiniteZeroFibre.zero_fibre_windowWitnesses	Psc.C4FiniteHullWitnessAudit.DirectWindowAgreementType
+PSC_FINITE_HULL_CONTRACT_REFUSED	Psc.C4FamilyFiniteZeroFibre.same_fibre_dense_eventual	Psc.C4FiniteHullWitnessAudit.SameFibreCommonTileWithoutPeriodsType
+PSC_FINITE_HULL_REFUSAL_CONTROLS	48
+PSC_FINITE_HULL_AUDIT_COMPLETE	26	25
+PSC_FINITE_PROXIMAL_MODULE	PscVerif.PeriodicPartnerOrdinaryProximal	5	4
+PSC_FINITE_PROXIMAL_MODULE	PscVerif.C4ParameterFamilyOrdinaryProximal	4	4
+PSC_FINITE_PROXIMAL_MODULE	PscVerif.PeriodicPartnerRotationFactor	9	8
+PSC_FINITE_PROXIMAL_MODULE	PscVerif.C4ParameterFamilyRotationFactor	6	5
+PSC_FINITE_PROXIMAL_MODULE	PscVerif.PeriodicPartnerEquicontinuousFactor	4	4
+PSC_FINITE_PROXIMAL_MODULE	PscVerif.C4ParameterFamilyEquicontinuousFactor	6	6
+PSC_FINITE_PROXIMAL_MODULE	PscVerif.PeriodicPartnerFibreDistal	6	4
+PSC_FINITE_PROXIMAL_MODULE	PscVerif.C4FamilyFiniteProximal	6	6
+PSC_FINITE_PROXIMAL_MODULE	PscVerif.C4ParameterFamilyFibreDistal	4	4
+PSC_FINITE_PROXIMAL_DECLARATIONS	9	50	45
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.PeriodicPartnerOrdinaryProximal.pair_orbit_closure_invariant	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.PeriodicPartnerOrdinaryProximal.topologicallyProximal_of_anchor	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.PeriodicPartnerOrdinaryProximal.mem_patch_of_agree	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.PeriodicPartnerOrdinaryProximal.topologicallyProximal_of_exactProximal	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.ParameterFamilyOrdinaryProximal.same_fibre_proximal_of_zero_anchor	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.ParameterFamilyOrdinaryProximal.same_fibre_proximal_of_zero_anchor_common_tile	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.ParameterFamilyOrdinaryProximal.same_fibre_proximal_of_zero_anchor_witnesses	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.ParameterFamilyOrdinaryProximal.same_fibre_proximal_of_zero_fibre_witnesses	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.C4FamilyFiniteProximal.same_fibre_topologicallyProximal	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.C4FamilyFiniteProximal.same_fibre_iff_topologicallyProximal	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.C4FamilyFiniteProximal.isClosed_topologicallyProximal	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.C4FamilyFiniteProximal.concreteFibreRank_eq_one	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.C4FamilyFiniteProximal.rotation_factor_descent	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.C4FamilyFiniteProximal.equicontinuous_factor_descent	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.PeriodicPartnerRotationFactor.topologicallyProximal_map	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.PeriodicPartnerRotationFactor.eq_of_topologicallyProximal_rotation	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.PeriodicPartnerRotationFactor.eq_of_topologicallyProximal_add_rotation	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.PeriodicPartnerRotationFactor.existsUnique_continuous_equivariant_descent	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.PeriodicPartnerRotationFactor.existsUnique_rotation_descent	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.PeriodicPartnerRotationFactor.existsUnique_add_rotation_descent	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.PeriodicPartnerRotationFactor.fibreNonproximalRank_eq_one	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.PeriodicPartnerRotationFactor.fibreNonproximalRank_eq_one_of_surjective	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.ParameterFamilyRotationFactor.solenoid_flow_eq_add	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.ParameterFamilyRotationFactor.solenoidRealize_eq_of_topologicallyProximal	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.ParameterFamilyRotationFactor.same_fibre_iff_proximal_of_zero_anchor_common_tile	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.ParameterFamilyRotationFactor.concreteFibreRank_eq_one_of_zero_anchor_common_tile	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.ParameterFamilyRotationFactor.rotation_descent_of_zero_anchor_common_tile	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.PeriodicPartnerEquicontinuousFactor.eq_of_topologicallyProximal_of_equicontinuous	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.PeriodicPartnerEquicontinuousFactor.existsUnique_equicontinuous_descent	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.PeriodicPartnerEquicontinuousFactor.uniformEquicontinuous_right_rotations	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.PeriodicPartnerEquicontinuousFactor.uniformEquicontinuous_add_right_rotations	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.ParameterFamilyEquicontinuousFactor.uniformEquicontinuous_solenoid_flow	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.ParameterFamilyEquicontinuousFactor.equicontinuous_solenoid_flow	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.ParameterFamilyEquicontinuousFactor.solenoid_flow_zero	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.ParameterFamilyEquicontinuousFactor.solenoid_flow_add	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.ParameterFamilyEquicontinuousFactor.equicontinuous_factor_descent_of_zero_anchor_common_tile	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.PeriodicPartnerFibreDistal.fibreDistal_iff_subsingleton	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.PeriodicPartnerFibreDistal.fibreDistal_iff_existsUnique	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.PeriodicPartnerFibreDistal.not_fibreDistal_of_distinct_proximal	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.PeriodicPartnerFibreDistal.ae_fibreDistal_iff_ae_existsUnique	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.ParameterFamilyFibreDistal.fibreDistal_iff_unique_preimage	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.ParameterFamilyFibreDistal.ae_fibreDistal_iff_ae_unique_preimage	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.ParameterFamilyFibreDistal.ae_unique_preimage_of_ae_fibreDistal	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_ENDPOINT	Psc.ParameterFamilyFibreDistal.zero_not_fibreDistal	propext,Classical.choice,Quot.sound
+PSC_FINITE_PROXIMAL_AUDIT_COMPLETE	44	88
+PSC_FINITE_SYNC_MODULE	PscVerif.PeriodicPartnerFiniteCoincidence	3	3
+PSC_FINITE_SYNC_MODULE	PscVerif.C4FamilyFiniteFibreSynchronization	4	4
+PSC_FINITE_SYNC_MODULE	PscVerif.PeriodicPartnerOriginSeparation	3	3
+PSC_FINITE_SYNC_MODULE	PscVerif.C4FamilyOpenSynchronization	4	4
+PSC_FINITE_SYNC_ENDPOINT	Psc.PeriodicPartnerFiniteCoincidence.common_tile_of_finite_eventual
+PSC_FINITE_SYNC_ENDPOINT	Psc.PeriodicPartnerFiniteCoincidence.common_tile_of_finite_dense_eventual
+PSC_FINITE_SYNC_ENDPOINT	Psc.PeriodicPartnerFiniteCoincidence.common_window_of_finite_dense_eventual
+PSC_FINITE_SYNC_ENDPOINT	Psc.C4FamilyFiniteFibreSynchronization.fibre_common_tile_after_inflation
+PSC_FINITE_SYNC_ENDPOINT	Psc.C4FamilyFiniteFibreSynchronization.fibre_common_window_after_inflation
+PSC_FINITE_SYNC_ENDPOINT	Psc.C4FamilyFiniteFibreSynchronization.fibre_common_window_at_shifted_base
+PSC_FINITE_SYNC_ENDPOINT	Psc.C4FamilyFiniteFibreSynchronization.exists_fibre_common_window
+PSC_FINITE_SYNC_ENDPOINT	Psc.PeriodicPartnerOriginSeparation.exists_finite_origin_displacements
+PSC_FINITE_SYNC_ENDPOINT	Psc.PeriodicPartnerOriginSeparation.finite_nonzero_gap
+PSC_FINITE_SYNC_ENDPOINT	Psc.PeriodicPartnerOriginSeparation.exists_origin_separation
+PSC_FINITE_SYNC_ENDPOINT	Psc.C4FamilyOpenSynchronization.exists_centered_tile_fibre
+PSC_FINITE_SYNC_ENDPOINT	Psc.C4FamilyOpenSynchronization.origin_of_centered_patch
+PSC_FINITE_SYNC_ENDPOINT	Psc.C4FamilyOpenSynchronization.open_common_window_of_centered_tile_fibre
+PSC_FINITE_SYNC_ENDPOINT	Psc.C4FamilyOpenSynchronization.exists_open_common_window
+PSC_FINITE_SYNC_CONTRACT_REFUSED	Psc.C4FamilyFiniteFibreSynchronization.fibre_common_tile_after_inflation	Psc.C4FiniteSynchronizationAudit.MissingFamilyGuardType
+PSC_FINITE_SYNC_CONTRACT_REFUSED	Psc.C4FamilyFiniteFibreSynchronization.fibre_common_tile_after_inflation	Psc.C4FiniteSynchronizationAudit.UninflatedFibreTileType
+PSC_FINITE_SYNC_CONTRACT_REFUSED	Psc.C4FamilyFiniteFibreSynchronization.fibre_common_window_after_inflation	Psc.C4FiniteSynchronizationAudit.UniformAllRadiiType
+PSC_FINITE_SYNC_CONTRACT_REFUSED	Psc.PeriodicPartnerOriginSeparation.exists_origin_separation	Psc.C4FiniteSynchronizationAudit.MissingEqualTorusType
+PSC_FINITE_SYNC_CONTRACT_REFUSED	Psc.PeriodicPartnerOriginSeparation.finite_nonzero_gap	Psc.C4FiniteSynchronizationAudit.MissingFiniteSetType
+PSC_FINITE_SYNC_CONTRACT_REFUSED	Psc.C4FamilyOpenSynchronization.exists_open_common_window	Psc.C4FiniteSynchronizationAudit.OpenAgreementWithoutFibreType
+PSC_FINITE_SYNC_REFUSAL_CONTROLS	34
+PSC_FINITE_SYNC_AUDIT_COMPLETE	14	14
+PSC_SOLENOID_CHARACTER_MODULE	PscVerif.PeriodicPartnerSolenoidCharacters	51	45
+PSC_SOLENOID_CHARACTER_MODULE	PscVerif.C4FamilySolenoidCharacters	21	18
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.PeriodicPartnerSolenoidCharacters.torusCoordinate_mk	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.PeriodicPartnerSolenoidCharacters.torusCoordinate_ext	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.PeriodicPartnerSolenoidCharacters.phase_add	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.PeriodicPartnerSolenoidCharacters.phase_neg	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.PeriodicPartnerSolenoidCharacters.phase_single	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.PeriodicPartnerSolenoidCharacters.continuous_phase	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.PeriodicPartnerSolenoidCharacters.character_add	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.PeriodicPartnerSolenoidCharacters.character_neg	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.PeriodicPartnerSolenoidCharacters.character_norm	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.PeriodicPartnerSolenoidCharacters.character_map_add	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.PeriodicPartnerSolenoidCharacters.frequency_add	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.PeriodicPartnerSolenoidCharacters.frequency_single	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.PeriodicPartnerSolenoidCharacters.phase_flow_zero	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.PeriodicPartnerSolenoidCharacters.character_flow	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.PeriodicPartnerSolenoidCharacters.character_ext	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.PeriodicPartnerSolenoidCharacters.exists_single_character_ne	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.PeriodicPartnerSolenoidCharacters.characterAlgebra_toSubmodule	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.PeriodicPartnerSolenoidCharacters.span_character_closure_eq_top	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.C4FamilySolenoidCharacters.eigenfunction_norm	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.C4FamilySolenoidCharacters.eigenfunction_translate	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.C4FamilySolenoidCharacters.eigenfunctions_eq_iff	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.C4FamilySolenoidCharacters.solenoid_character_span_dense	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.C4FamilySolenoidCharacters.mat_predecessor	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.C4FamilySolenoidCharacters.nonunitHistory_coord_zero	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.C4FamilySolenoidCharacters.nonunitHistory_coord_one_two	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.C4FamilySolenoidCharacters.nonunitHistory_character	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.C4FamilySolenoidCharacters.nonunitHistory_ne_zero	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_ENDPOINT	Psc.C4FamilySolenoidCharacters.coord_zero_not_injective	propext,Classical.choice,Quot.sound
+PSC_SOLENOID_CHARACTER_CONTRACT_REFUSED	Psc.PeriodicPartnerSolenoidCharacters.character_add	Psc.C4SolenoidCharactersAudit.WrongProductType
+PSC_SOLENOID_CHARACTER_CONTRACT_REFUSED	Psc.PeriodicPartnerSolenoidCharacters.character_neg	Psc.C4SolenoidCharactersAudit.MissingConjugationType
+PSC_SOLENOID_CHARACTER_CONTRACT_REFUSED	Psc.PeriodicPartnerSolenoidCharacters.character_flow	Psc.C4SolenoidCharactersAudit.MissingPhaseType
+PSC_SOLENOID_CHARACTER_CONTRACT_REFUSED	Psc.PeriodicPartnerSolenoidCharacters.character_flow	Psc.C4SolenoidCharactersAudit.MissingDenominatorType
+PSC_SOLENOID_CHARACTER_CONTRACT_REFUSED	Psc.PeriodicPartnerSolenoidCharacters.character_ext	Psc.C4SolenoidCharactersAudit.ZerothSeparatesType
+PSC_SOLENOID_CHARACTER_CONTRACT_REFUSED	Psc.C4FamilySolenoidCharacters.nonunitHistory_character	Psc.C4SolenoidCharactersAudit.WrongControlSignType
+PSC_SOLENOID_CHARACTER_CONTRACT_REFUSED	Psc.C4FamilySolenoidCharacters.coord_zero_not_injective	Psc.C4SolenoidCharactersAudit.ZeroProjectionInjectiveType
+PSC_SOLENOID_CHARACTER_CONTRACT_REFUSED	Psc.C4FamilySolenoidCharacters.solenoid_character_span_dense	Psc.C4SolenoidCharactersAudit.UnprovedHullDenseType
+PSC_SOLENOID_CHARACTER_REFUSAL_CONTROLS	64
+PSC_SOLENOID_CHARACTER_AUDIT_COMPLETE	72	63
+PSC_CHARACTER_ORBIT_ENDPOINT	Psc.C4FamilyCharacterOrbits.shiftS_flow
+PSC_CHARACTER_ORBIT_ENDPOINT	Psc.C4FamilyCharacterOrbits.shiftS_iterate_flow
+PSC_CHARACTER_ORBIT_ENDPOINT	Psc.C4FamilyCharacterOrbits.shiftS_iterate_zero
+PSC_CHARACTER_ORBIT_ENDPOINT	Psc.C4FamilyCharacterOrbits.orbitCharacter_apply
+PSC_CHARACTER_ORBIT_ENDPOINT	Psc.C4FamilyCharacterOrbits.orbitCharacter_zero
+PSC_CHARACTER_ORBIT_ENDPOINT	Psc.C4FamilyCharacterOrbits.orbitCharacter_norm
+PSC_CHARACTER_ORBIT_ENDPOINT	Psc.C4FamilyCharacterOrbits.orbitCharacter_map_add
+PSC_CHARACTER_ORBIT_ENDPOINT	Psc.C4FamilyCharacterOrbits.orbitCharacter_flow_zero
+PSC_CHARACTER_ORBIT_ENDPOINT	Psc.C4FamilyCharacterOrbits.scaled_frequency_eq_of_orbitCharacter_eq
+PSC_CHARACTER_ORBIT_ENDPOINT	Psc.C4FamilyCharacterOrbits.character_eq_one_of_frequency_eq_zero
+PSC_CHARACTER_ORBIT_ENDPOINT	Psc.C4FamilyCharacterOrbits.orbitCharacter_injective
+PSC_CHARACTER_ORBIT_ENDPOINT	Psc.C4FamilyCharacterOrbits.character_eq_one_of_inflation_period
+PSC_CHARACTER_ORBIT_ENDPOINT	Psc.C4FamilyCharacterOrbits.finite_orbit_injective
+PSC_CHARACTER_ORBIT_ENDPOINT	Psc.C4FamilyCharacterOrbits.compatibilityCertificate_ne_zero
+PSC_CHARACTER_ORBIT_ENDPOINT	Psc.C4FamilyCharacterOrbits.compatibilityCertificate_frequency
+PSC_CHARACTER_ORBIT_ENDPOINT	Psc.C4FamilyCharacterOrbits.compatibilityCertificate_character
+PSC_CHARACTER_ORBIT_CONTRACT_REFUSED	Psc.C4FamilyCharacterOrbits.orbitCharacter_injective	Psc.C4CharacterOrbitsAudit.NonzeroCertificateOrbitType
+PSC_CHARACTER_ORBIT_CONTRACT_REFUSED	Psc.C4FamilyCharacterOrbits.character_eq_one_of_inflation_period	Psc.C4CharacterOrbitsAudit.MissingPositivePeriodType
+PSC_CHARACTER_ORBIT_CONTRACT_REFUSED	Psc.C4FamilyCharacterOrbits.scaled_frequency_eq_of_orbitCharacter_eq	Psc.C4CharacterOrbitsAudit.SinglePointFrequencyType
+PSC_CHARACTER_ORBIT_CONTRACT_REFUSED	Psc.C4FamilyCharacterOrbits.shiftS_iterate_flow	Psc.C4CharacterOrbitsAudit.InverseScalingType
+PSC_CHARACTER_ORBIT_REFUSAL_CONTROLS	36
+PSC_CHARACTER_ORBIT_AUDIT_COMPLETE	23	21
+PSC_FAMILY_HAAR_MODULE	PscVerif.PeriodicPartnerSolenoidHaar	15
+PSC_FAMILY_HAAR_MODULE	PscVerif.C4FamilyHaarErgodicity	39
+PSC_FAMILY_HAAR_MODULE	PscVerif.C4FamilyHaarSingletonFibres	18
+PSC_FAMILY_HAAR_ENDPOINT	Psc.PeriodicPartnerSolenoidHaar.measurePreserving_shiftS
+PSC_FAMILY_HAAR_ENDPOINT	Psc.C4FamilyHaarErgodicity.span_characterLp_closure_eq_top
+PSC_FAMILY_HAAR_ENDPOINT	Psc.C4FamilyHaarErgodicity.haar_inner_eq_zero
+PSC_FAMILY_HAAR_ENDPOINT	Psc.C4FamilyHaarErgodicity.orthonormal_finite_orbit
+PSC_FAMILY_HAAR_ENDPOINT	Psc.C4FamilyHaarErgodicity.finite_bessel_bound
+PSC_FAMILY_HAAR_ENDPOINT	Psc.C4FamilyHaarErgodicity.fixed_eq_smul_one
+PSC_FAMILY_HAAR_ENDPOINT	Psc.C4FamilyHaarErgodicity.ergodic_shiftS
+PSC_FAMILY_HAAR_ENDPOINT	Psc.C4FamilyHaarSingletonFibres.exists_conull_singleton_fibres
+PSC_FAMILY_HAAR_ENDPOINT	Psc.C4FamilyHaarSingletonFibres.ae_singleton_fibre
+PSC_FAMILY_HAAR_CONTRACT_REFUSED	Psc.C4FamilyHaarErgodicity.orthonormal_finite_orbit	Psc.C4FamilyHaarAudit.NonzeroCertificateType
+PSC_FAMILY_HAAR_CONTRACT_REFUSED	Psc.C4FamilyHaarSingletonFibres.ae_singleton_fibre	Psc.C4FamilyHaarAudit.MissingGeometryType
+PSC_FAMILY_HAAR_CONTRACT_REFUSED	Psc.C4FamilyHaarSingletonFibres.ae_singleton_fibre	Psc.C4FamilyHaarAudit.EveryFibreType
+PSC_FAMILY_HAAR_REFUSAL_CONTROLS	21
+PSC_FAMILY_HAAR_AUDIT_COMPLETE	72	40
+PSC_FAMILY_MEASURED_MODULE	PscVerif.C4FamilyMeasuredRealization	38
+PSC_FAMILY_MEASURED_MODULE	PscVerif.C4FamilyMeasuredSpectrum	32
+PSC_FAMILY_MEASURED_ENDPOINT	Psc.C4FamilyMeasuredRealization.factor_inverse_ae
+PSC_FAMILY_MEASURED_ENDPOINT	Psc.C4FamilyMeasuredRealization.inverse_factor_ae
+PSC_FAMILY_MEASURED_ENDPOINT	Psc.C4FamilyMeasuredRealization.measurePreserving_factor
+PSC_FAMILY_MEASURED_ENDPOINT	Psc.C4FamilyMeasuredRealization.measurePreserving_inverse
+PSC_FAMILY_MEASURED_ENDPOINT	Psc.C4FamilyMeasuredRealization.measurePreserving_translate
+PSC_FAMILY_MEASURED_ENDPOINT	Psc.C4FamilyMeasuredRealization.measurePreserving_inflate
+PSC_FAMILY_MEASURED_ENDPOINT	Psc.C4FamilyMeasuredSpectrum.pullback_surjective
+PSC_FAMILY_MEASURED_ENDPOINT	Psc.C4FamilyMeasuredSpectrum.translationKoopman_surjective
+PSC_FAMILY_MEASURED_ENDPOINT	Psc.C4FamilyMeasuredSpectrum.eigenfunctionLp_ae
+PSC_FAMILY_MEASURED_ENDPOINT	Psc.C4FamilyMeasuredSpectrum.eigenfunctionLp_translate
+PSC_FAMILY_MEASURED_ENDPOINT	Psc.C4FamilyMeasuredSpectrum.span_eigenfunctionLp_closure_eq_top
+PSC_FAMILY_MEASURED_ENDPOINT	Psc.C4FamilyMeasuredSpectrum.pureDiscrete_translation
+PSC_FAMILY_MEASURED_CONTRACT_REFUSED	Psc.C4FamilyMeasuredRealization.inverse_factor_ae	Psc.C4FamilyMeasuredSpectrumAudit.EverywhereInverseType
+PSC_FAMILY_MEASURED_CONTRACT_REFUSED	Psc.C4FamilyMeasuredSpectrum.eigenfunctionLp_translate	Psc.C4FamilyMeasuredSpectrumAudit.OppositeFrequencyType
+PSC_FAMILY_MEASURED_REFUSAL_CONTROLS	26
+PSC_FAMILY_MEASURED_AUDIT_COMPLETE	70	35
+PSC_FAMILY_SYMBOLIC_MODULE	PscVerif.C4FamilySymbolicSection	82
+PSC_FAMILY_SYMBOLIC_MODULE	PscVerif.C4FamilySymbolicLanguage	52
+PSC_FAMILY_SYMBOLIC_MODULE	PscVerif.C4FamilySymbolicSpectrum	64
+PSC_FAMILY_SYMBOLIC_ENDPOINT	Psc.C4FamilySymbolicSection.roof_eq_mean_add_coboundary
+PSC_FAMILY_SYMBOLIC_ENDPOINT	Psc.C4FamilySymbolicSection.no_boundary_before_roof
+PSC_FAMILY_SYMBOLIC_ENDPOINT	Psc.C4FamilySymbolicLanguage.exists_itinerary
+PSC_FAMILY_SYMBOLIC_ENDPOINT	Psc.C4FamilySymbolicLanguage.itineraryHomeomorph_next
+PSC_FAMILY_SYMBOLIC_ENDPOINT	Psc.C4FamilySymbolicSpectrum.symbolicFactor_translate
+PSC_FAMILY_SYMBOLIC_ENDPOINT	Psc.C4FamilySymbolicSpectrum.measurePreserving_wordShift
+PSC_FAMILY_SYMBOLIC_ENDPOINT	Psc.C4FamilySymbolicSpectrum.pureDiscrete_shift
+PSC_FAMILY_SYMBOLIC_CONTROLS	3
+PSC_FAMILY_SYMBOLIC_AUDIT_COMPLETE	198	125
+'Psc.C4FamilySymbolicSpectrum.pureDiscrete_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+PSC_FAMILY_CANONICAL_MODULE	PscVerif.C4FamilyInvariantMeasureUniqueness	11
+PSC_FAMILY_CANONICAL_MODULE	PscVerif.C4FamilySymbolicMeasureUniqueness	31
+PSC_FAMILY_CANONICAL_MODULE	PscVerif.C4FamilyCanonicalSpectrum	3
+PSC_FAMILY_CANONICAL_ENDPOINT	Psc.C4FamilySymbolicMeasureUniqueness.map_symbolicFactor_suspensionMeasure
+PSC_FAMILY_CANONICAL_ENDPOINT	Psc.C4FamilySymbolicMeasureUniqueness.measurePreserving_flow_suspensionFactor
+PSC_FAMILY_CANONICAL_ENDPOINT	Psc.C4FamilySymbolicMeasureUniqueness.suspensionMeasure_eq_hullMeasure
+PSC_FAMILY_CANONICAL_ENDPOINT	Psc.C4FamilySymbolicMeasureUniqueness.invariant_probability_eq_symbolicMeasure
+PSC_FAMILY_CANONICAL_ENDPOINT	Psc.C4FamilySymbolicMeasureUniqueness.invariant_probability_eq_wordMeasure
+PSC_FAMILY_CANONICAL_ENDPOINT	Psc.C4FamilyCanonicalSpectrum.pureDiscrete_shift_of_measure_eq
+PSC_FAMILY_CANONICAL_ENDPOINT	Psc.C4FamilyCanonicalSpectrum.pureDiscrete_shift_of_invariant_probability
+PSC_FAMILY_CANONICAL_ENDPOINT	Psc.C4FamilyCanonicalSpectrum.existsUnique_invariant_probability
+PSC_FAMILY_CANONICAL_CONTRACT_REFUSED	Psc.C4FamilySymbolicMeasureUniqueness.invariant_probability_eq_wordMeasure	Psc.C4FamilyCanonicalMeasureAudit.InvarianceWithoutProbabilityType
+PSC_FAMILY_CANONICAL_CONTRACT_REFUSED	Psc.C4FamilySymbolicMeasureUniqueness.invariant_probability_eq_wordMeasure	Psc.C4FamilyCanonicalMeasureAudit.ProbabilityWithoutInvarianceType
+PSC_FAMILY_CANONICAL_CONTRACT_REFUSED	Psc.C4FamilyCanonicalSpectrum.existsUnique_invariant_probability	Psc.C4FamilyCanonicalMeasureAudit.UniqueExistenceWithoutKTwoType
+PSC_FAMILY_CANONICAL_CONTROLS	22
+PSC_FAMILY_CANONICAL_AUDIT_COMPLETE	45	25
+'Psc.C4FamilySymbolicMeasureUniqueness.invariant_probability_eq_wordMeasure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Psc.C4FamilyCanonicalSpectrum.pureDiscrete_shift_of_invariant_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

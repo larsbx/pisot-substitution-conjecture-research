@@ -43,12 +43,14 @@ elan run "$PSC_FAMILY_PIN" lake --no-cache build \
     PscVerif.UniversalClosureReduction PscVerif.PeriodicPartnerRealizationModels \
     PscVerif.C4ParameterFamilyZeroFibreWitnesses \
     PscVerif.C4ParameterFamilyZeroFibreControls PscVerif.C4ParameterFamilyInteriorZero \
+    PscVerif.C4ParameterFamilyOriginCycle \
     PscVerif.C4FiniteTileAutomaton PscVerif.C4FamilyTileAutomatonWords \
     PscVerif.C4FamilyTileAutomatonHull PscVerif.C4FamilyFiniteZeroFibre \
     PscVerif.C4FamilyFiniteProximal PscVerif.C4ParameterFamilyFibreDistal \
     PscVerif.C4FamilyOpenSynchronization PscVerif.C4FamilySolenoidCharacters \
     PscVerif.C4FamilyCharacterOrbits PscVerif.C4FamilyHaarSingletonFibres \
-    PscVerif.C4FamilyMeasuredSpectrum
+    PscVerif.C4FamilyMeasuredSpectrum PscVerif.C4FamilySymbolicSpectrum \
+    PscVerif.C4FamilyCanonicalSpectrum
 psc_family_check_pins
 elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
     -DautoImplicit=false -Dpp.unicode.fun=true C4ParameterFamilyAudit.lean \
@@ -149,4 +151,66 @@ test "$(grep -c '^PSC_FAMILY_MEASURED_MODULE' "$PSC_FAMILY_TMP/measured-audit.lo
 test "$(grep -c '^PSC_FAMILY_MEASURED_ENDPOINT' "$PSC_FAMILY_TMP/measured-audit.log")" -eq 12
 test "$(grep -Fxc $'PSC_FAMILY_MEASURED_REFUSAL_CONTROLS\t26' "$PSC_FAMILY_TMP/measured-audit.log")" -eq 1
 test "$(grep -Fxc $'PSC_FAMILY_MEASURED_AUDIT_COMPLETE\t70\t35' "$PSC_FAMILY_TMP/measured-audit.log")" -eq 1
+elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
+    -DautoImplicit=false -Dpp.unicode.fun=true C4FamilySymbolicSpectrumAudit.lean \
+    | tee "$PSC_FAMILY_TMP/symbolic-audit.log"
+test "$(grep -c '^PSC_FAMILY_SYMBOLIC_MODULE' "$PSC_FAMILY_TMP/symbolic-audit.log")" -eq 3
+test "$(grep -c '^PSC_FAMILY_SYMBOLIC_ENDPOINT' "$PSC_FAMILY_TMP/symbolic-audit.log")" -eq 7
+test "$(grep -Fxc $'PSC_FAMILY_SYMBOLIC_CONTROLS\t3' "$PSC_FAMILY_TMP/symbolic-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_FAMILY_SYMBOLIC_AUDIT_COMPLETE\t198\t125' "$PSC_FAMILY_TMP/symbolic-audit.log")" -eq 1
+elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
+    -DautoImplicit=false -Dpp.unicode.fun=true C4FamilyCanonicalMeasureAudit.lean \
+    | tee "$PSC_FAMILY_TMP/canonical-audit.log"
+test "$(grep -c '^PSC_FAMILY_CANONICAL_MODULE' "$PSC_FAMILY_TMP/canonical-audit.log")" -eq 3
+for PSC_FAMILY_MODULE in \
+    PscVerif.C4FamilyInvariantMeasureUniqueness \
+    PscVerif.C4FamilySymbolicMeasureUniqueness \
+    PscVerif.C4FamilyCanonicalSpectrum; do
+    test "$(awk -F '\t' -v name="$PSC_FAMILY_MODULE" \
+        '$1 == "PSC_FAMILY_CANONICAL_MODULE" && $2 == name && NF == 3 && $3 > 0 {n++} END {print n+0}' \
+        "$PSC_FAMILY_TMP/canonical-audit.log")" -eq 1
+done
+test "$(grep -c '^PSC_FAMILY_CANONICAL_ENDPOINT' "$PSC_FAMILY_TMP/canonical-audit.log")" -eq 8
+for PSC_FAMILY_ENDPOINT in \
+    Psc.C4FamilySymbolicMeasureUniqueness.map_symbolicFactor_suspensionMeasure \
+    Psc.C4FamilySymbolicMeasureUniqueness.measurePreserving_flow_suspensionFactor \
+    Psc.C4FamilySymbolicMeasureUniqueness.suspensionMeasure_eq_hullMeasure \
+    Psc.C4FamilySymbolicMeasureUniqueness.invariant_probability_eq_symbolicMeasure \
+    Psc.C4FamilySymbolicMeasureUniqueness.invariant_probability_eq_wordMeasure \
+    Psc.C4FamilyCanonicalSpectrum.pureDiscrete_shift_of_measure_eq \
+    Psc.C4FamilyCanonicalSpectrum.pureDiscrete_shift_of_invariant_probability \
+    Psc.C4FamilyCanonicalSpectrum.existsUnique_invariant_probability; do
+    test "$(awk -F '\t' -v name="$PSC_FAMILY_ENDPOINT" \
+        '$1 == "PSC_FAMILY_CANONICAL_ENDPOINT" && $2 == name && NF == 2 {n++} END {print n+0}' \
+        "$PSC_FAMILY_TMP/canonical-audit.log")" -eq 1
+done
+test "$(grep -c '^PSC_FAMILY_CANONICAL_CONTRACT_REFUSED' "$PSC_FAMILY_TMP/canonical-audit.log")" -eq 3
+for PSC_FAMILY_REFUSED in InvarianceWithoutProbabilityType ProbabilityWithoutInvarianceType; do
+    test "$(awk -F '\t' -v contract="Psc.C4FamilyCanonicalMeasureAudit.$PSC_FAMILY_REFUSED" \
+        '$1 == "PSC_FAMILY_CANONICAL_CONTRACT_REFUSED" && \
+         $2 == "Psc.C4FamilySymbolicMeasureUniqueness.invariant_probability_eq_wordMeasure" && \
+         $3 == contract && NF == 3 {n++} END {print n+0}' \
+        "$PSC_FAMILY_TMP/canonical-audit.log")" -eq 1
+done
+test "$(grep -Fxc $'PSC_FAMILY_CANONICAL_CONTRACT_REFUSED\tPsc.C4FamilyCanonicalSpectrum.existsUnique_invariant_probability\tPsc.C4FamilyCanonicalMeasureAudit.UniqueExistenceWithoutKTwoType' \
+    "$PSC_FAMILY_TMP/canonical-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_FAMILY_CANONICAL_CONTROLS\t22' "$PSC_FAMILY_TMP/canonical-audit.log")" -eq 1
+test "$(grep -Fxc $'PSC_FAMILY_CANONICAL_AUDIT_COMPLETE\t45\t25' "$PSC_FAMILY_TMP/canonical-audit.log")" -eq 1
+elan run "$PSC_FAMILY_PIN" lake --no-cache env lean \
+    -DautoImplicit=false -Dpp.unicode.fun=true \
+    "$PSC_FAMILY_ROOT/evidence/c4-zero-fibre-anchor-proof-2026-11-22/OriginCycleAxioms.lean" \
+    | tee "$PSC_FAMILY_TMP/origin-cycle-audit.log"
+python3 - "$PSC_FAMILY_TMP/origin-cycle-audit.log" <<'PY'
+from pathlib import Path
+import re
+import sys
+
+log = Path(sys.argv[1]).read_text(encoding="utf-8")
+closures = re.findall(r"^'([^']+)' depends on axioms:\s*\[([^]]*)\]", log, re.MULTILINE)
+allowed = {"propext", "Classical.choice", "Quot.sound"}
+if len(closures) != 14 or len({name for name, _ in closures}) != 14 or any(
+    {axiom.strip() for axiom in axioms.split(",")} != allowed for _, axioms in closures
+):
+    raise SystemExit("The origin-cycle audit requires fourteen distinct standard axiom closures")
+PY
 psc_family_check_pins
