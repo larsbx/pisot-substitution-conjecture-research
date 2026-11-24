@@ -1,0 +1,8 @@
+{
+  "local_proof_commit": "7c939df6f87b2636d2ab8d71f45dcf7df60d6071",
+  "local_proof_tree": "65c89c4adff9cf1bbb2113f9bd9fd0256f3ddb20",
+  "project_source_bindings": 349,
+  "source_bindings_sha256": "8d1aaa3665ee341c5ea15a244198735290d18b20e85dc3acf21e6af9c8dd8222",
+  "all_project_bindings_equal_proof_commit": true,
+  "all_gate_bindings_equal_proof_commit": true
+}

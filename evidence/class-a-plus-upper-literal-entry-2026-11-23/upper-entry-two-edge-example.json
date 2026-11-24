@@ -1,0 +1,93 @@
+{
+  "n": 7,
+  "J": 1,
+  "d": 25,
+  "source": [
+    2,
+    1,
+    0,
+    1,
+    0
+  ],
+  "steps": [
+    [
+      [
+        9,
+        0
+      ],
+      "reverse_last_first",
+      [
+        1,
+        1,
+        0,
+        1,
+        -1
+      ]
+    ],
+    [
+      [
+        1,
+        2
+      ],
+      "direct",
+      [
+        2,
+        2,
+        0,
+        0,
+        0
+      ]
+    ]
+  ],
+  "top_prefix": [
+    10,
+    9,
+    96
+  ],
+  "bottom_prefix": [
+    0,
+    1,
+    1
+  ],
+  "reversed_steps": [
+    [
+      [
+        0,
+        9
+      ],
+      "reverse_last_first",
+      [
+        1,
+        1,
+        0,
+        -1,
+        1
+      ]
+    ],
+    [
+      [
+        2,
+        1
+      ],
+      "direct",
+      [
+        2,
+        2,
+        0,
+        0,
+        0
+      ]
+    ]
+  ],
+  "reversed_top_prefix": [
+    0,
+    1,
+    1
+  ],
+  "reversed_bottom_prefix": [
+    10,
+    9,
+    96
+  ],
+  "one_edge_pairs_exhaustively_rejected": 90
+}

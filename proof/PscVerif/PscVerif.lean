@@ -146,6 +146,10 @@ import PscVerif.ClassAPlusUpperCycles
 import PscVerif.ClassAPlusUpperRecurrence
 import PscVerif.ClassAPlusUpperCycleCompletion
 import PscVerif.ClassAPlusUpperEntry
+import PscVerif.ClassAPlusUpperEntryBound
+import PscVerif.ClassAPlusUpperEntryControls
+import PscVerif.ClassAPlusUpperCentralCompletion
+import PscVerif.ClassAPlusUpperCentralControls
 import PscVerif.BPrimeCore
 import PscVerif.BPrimeBinding
 import PscVerif.BPrime

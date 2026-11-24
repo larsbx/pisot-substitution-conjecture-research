@@ -1,0 +1,1 @@
+{"composed_to_zero": 22748, "entry_edges": 47412, "maximum_entry_depth": 37, "members": 24, "negative_controls": 96, "refinement_cap": 512, "selector_cases": {"direct": 32508, "growth": 10530, "last_first_run": 666, "last_run_first": 638, "reverse_last_first": 3070}, "sources": 33684, "step_cap": 128}
