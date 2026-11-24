@@ -3090,6 +3090,102 @@
       "declaration": "theorem same_matrix_wrong_literal_source_refused :"
     },
     {
+      "name": "Psc.BHBoundedFactors.WholeStep.packet",
+      "module": "PscVerif.BHBoundedFactors",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHBoundedFactors.lean",
+      "line": 26,
+      "declaration": "theorem WholeStep.packet {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ} {m m' : MarkedPair}"
+    },
+    {
+      "name": "Psc.BHBoundedFactors.path_at_scaled_point",
+      "module": "PscVerif.BHBoundedFactors",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHBoundedFactors.lean",
+      "line": 36,
+      "declaration": "private theorem path_at_scaled_point (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.BHBoundedFactors.partition_cut",
+      "module": "PscVerif.BHBoundedFactors",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHBoundedFactors.lean",
+      "line": 81,
+      "declaration": "private theorem partition_cut (ℓ : Fin 3 → ℝ) (B : ℝ) (bs : List WordPair)"
+    },
+    {
+      "name": "Psc.BHBoundedFactors.whole_zero_hit_of_bound",
+      "module": "PscVerif.BHBoundedFactors",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHBoundedFactors.lean",
+      "line": 113,
+      "declaration": "theorem whole_zero_hit_of_bound (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.BHBoundedFactors.seedPackets_closed",
+      "module": "PscVerif.BHBoundedFactors",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHBoundedFactors.lean",
+      "line": 191,
+      "declaration": "theorem seedPackets_closed {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ} {T : WordPair}"
+    },
+    {
+      "name": "Psc.BHBoundedFactors.seedPackets_finite_of_finite_factors",
+      "module": "PscVerif.BHBoundedFactors",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHBoundedFactors.lean",
+      "line": 206,
+      "declaration": "theorem seedPackets_finite_of_finite_factors (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.BHBoundedFactors.seedPackets_zero_hits_of_bound",
+      "module": "PscVerif.BHBoundedFactors",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHBoundedFactors.lean",
+      "line": 220,
+      "declaration": "theorem seedPackets_zero_hits_of_bound (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.BHBoundedFactors.finite_reachable_iff_closed_packet_cover",
+      "module": "PscVerif.BHBoundedFactors",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHBoundedFactors.lean",
+      "line": 241,
+      "declaration": "theorem finite_reachable_iff_closed_packet_cover (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.BHBoundedFactors.occursIn_of_factor",
+      "module": "PscVerif.BHBoundedFactors",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHBoundedFactors.lean",
+      "line": 268,
+      "declaration": "private theorem occursIn_of_factor (ℓ : Fin 3 → ℝ) {u v : Word}"
+    },
+    {
+      "name": "Psc.BHBoundedFactors.terminates_of_closed_diagonal_cover",
+      "module": "PscVerif.BHBoundedFactors",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHBoundedFactors.lean",
+      "line": 302,
+      "declaration": "theorem terminates_of_closed_diagonal_cover (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.BHBoundedFactors.swap_reachable",
+      "module": "PscVerif.BHBoundedFactors",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHBoundedFactors.lean",
+      "line": 338,
+      "declaration": "private theorem swap_reachable (U : WordPair)"
+    },
+    {
+      "name": "Psc.BHBoundedFactors.expanding_zero_cover_without_coincidence",
+      "module": "PscVerif.BHBoundedFactors",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHBoundedFactors.lean",
+      "line": 359,
+      "declaration": "theorem expanding_zero_cover_without_coincidence :"
+    },
+    {
       "name": "Psc.BHFiniteCarrier.covers_seed_iterates_of_closed",
       "module": "PscVerif.BHFiniteCarrier",
       "private": false,
@@ -3240,6 +3336,182 @@
       "source": "proof/PscVerif/PscVerif/BHFiniteReachability.lean",
       "line": 395,
       "declaration": "theorem physical_zero_does_not_supply_tileCut :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalDescent.energy_ge_half",
+      "module": "PscVerif.BHNearDiagonalDescent",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalDescent.lean",
+      "line": 26,
+      "declaration": "theorem energy_ge_half {a b θ : ℝ} (h : Window a b θ) (z y : ℝ) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalDescent.energy_pos",
+      "module": "PscVerif.BHNearDiagonalDescent",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalDescent.lean",
+      "line": 35,
+      "declaration": "private theorem energy_pos {a b θ z y : ℝ} (h : Window a b θ)"
+    },
+    {
+      "name": "Psc.BHNearDiagonalDescent.zero_endpoint_decreases",
+      "module": "PscVerif.BHNearDiagonalDescent",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalDescent.lean",
+      "line": 42,
+      "declaration": "private theorem zero_endpoint_decreases {a b θ z y : ℝ} (h : Window a b θ)"
+    },
+    {
+      "name": "Psc.BHNearDiagonalDescent.truncate_decreases",
+      "module": "PscVerif.BHNearDiagonalDescent",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalDescent.lean",
+      "line": 56,
+      "declaration": "private theorem truncate_decreases {a b θ z y n : ℝ} (h : Window a b θ)"
+    },
+    {
+      "name": "Psc.BHNearDiagonalDescent.away_decreases",
+      "module": "PscVerif.BHNearDiagonalDescent",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalDescent.lean",
+      "line": 90,
+      "declaration": "private theorem away_decreases {a b θ z y t : ℝ} (h : Window a b θ)"
+    },
+    {
+      "name": "Psc.BHNearDiagonalDescent.small_truncation",
+      "module": "PscVerif.BHNearDiagonalDescent",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalDescent.lean",
+      "line": 128,
+      "declaration": "private theorem small_truncation {a b θ : ℝ} (h : Window a b θ) (z y : ℤ)"
+    },
+    {
+      "name": "Psc.BHNearDiagonalDescent.rounding_nonneg",
+      "module": "PscVerif.BHNearDiagonalDescent",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalDescent.lean",
+      "line": 163,
+      "declaration": "private theorem rounding_nonneg {a b θ : ℝ} (h : Window a b θ) (z y : ℤ)"
+    },
+    {
+      "name": "Psc.BHNearDiagonalDescent.choose_rounding",
+      "module": "PscVerif.BHNearDiagonalDescent",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalDescent.lean",
+      "line": 193,
+      "declaration": "theorem choose_rounding {a b θ : ℝ} (h : Window a b θ) (z y : ℤ)"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.beta_gt_thirteen",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 31,
+      "declaration": "theorem beta_gt_thirteen {r k β} (h : Family r k β) : 13 < β := by"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.quadratic_eq",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 35,
+      "declaration": "theorem quadratic_eq {r k β} (h : Family r k β) : β ^ 2 = k * β + 2 + r / β := by"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.family_window",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 43,
+      "declaration": "theorem family_window {r k β} (h : Family r k β) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.physical_replicate",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 70,
+      "declaration": "private theorem physical_replicate (ℓ : Fin 3 → ℝ) (n : ℕ) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.lengths_ge_one",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 76,
+      "declaration": "theorem lengths_ge_one {r k β} (h : Family r k β) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.lengths_scale",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 81,
+      "declaration": "theorem lengths_scale {r k β} (h : Family r k β) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.offset_run",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 97,
+      "declaration": "theorem offset_run (r : ℕ) (β : ℝ) (x y z : ℤ) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.ordinals_of_difference",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 115,
+      "declaration": "private theorem ordinals_of_difference {k : ℕ} (hk : 0 < k) (d : ℤ)"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.incidence_run",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 122,
+      "declaration": "private theorem incidence_run (r k : ℕ) (x y z : ℤ) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.run_residual",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 129,
+      "declaration": "private theorem run_residual (r k i j : ℕ) (hi : i < k) (hj : j < k) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.literal_rounding_step",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 137,
+      "declaration": "theorem literal_rounding_step {r k β} (h : Family r k β) (x y z t : ℤ)"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.packet_from_central",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 190,
+      "declaration": "private theorem packet_from_central {r k β p} (hp : Central r k β p) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.central_hits_zero",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 204,
+      "declaration": "theorem central_hits_zero {r k β} (h : Family r k β) {p : Packet}"
+    },
+    {
+      "name": "Psc.BHWindowChoice.exists_clean_slot",
+      "module": "PscVerif.BHWindowChoice",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHWindowChoice.lean",
+      "line": 9,
+      "declaration": "theorem exists_clean_slot (F G : Fin 3 → Prop)"
     },
     {
       "name": "Psc.BPrime.IsPisot.isPisotOrSalem",
@@ -36068,17 +36340,17 @@
     {
       "name": "Psc.OccurrenceAncestry.inflate_interval_bounds",
       "module": "PscVerif.OccurrenceAncestry",
-      "private": true,
+      "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceAncestry.lean",
-      "line": 92,
-      "declaration": "private theorem inflate_interval_bounds (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+      "line": 93,
+      "declaration": "theorem inflate_interval_bounds (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
     },
     {
       "name": "Psc.OccurrenceAncestry.overlapping_parent",
       "module": "PscVerif.OccurrenceAncestry",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceAncestry.lean",
-      "line": 109,
+      "line": 110,
       "declaration": "theorem overlapping_parent (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
     },
     {
@@ -36086,7 +36358,7 @@
       "module": "PscVerif.OccurrenceAncestry",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceAncestry.lean",
-      "line": 143,
+      "line": 144,
       "declaration": "theorem covers_iterates_of_closed (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
     },
     {
@@ -60892,7 +61164,10 @@
   "input_digests": {
     "claim_governance.toml": "895eb1950ccd19725ad600b1d40d988652d5e15524a336288bef7761411d8a7c",
     "proof/PscVerif/A1PrimeTailAudit.lean": "eee41a524a6a114716a7704f169726b6484ab56c2398431dcd297fe6809a0b23",
+    "proof/PscVerif/BHBoundedFactorsAudit.lean": "a46b4035a1213e116db881d3ba4707de47ef112592162faa494728fcb2e01888",
     "proof/PscVerif/BHFiniteReachabilityAudit.lean": "5469fdefea80286841bb3b40b7944a4674de5dce03ca12b490ee72b77ca2b79d",
+    "proof/PscVerif/BHNearDiagonalAudit.lean": "f7daf9d0d9998813d39db7335054ad4f4c94dd828723633eea7bb656aa76579e",
+    "proof/PscVerif/BHWindowChoiceAudit.lean": "2c28a7a1f0efaf78eea797c6d0ffefbd016d3646e98c53ba05f7ad30adca6f0f",
     "proof/PscVerif/C4CharacterOrbitsAudit.lean": "23c1dae1939fe054375bb8de0fa9add025b21728f38b98a98956cb0d8f50191f",
     "proof/PscVerif/C4FamilyCanonicalMeasureAudit.lean": "ec64b73d643eea4b815ece6a110cbe5637edfe9c377ec921bdf3746c6b55bab4",
     "proof/PscVerif/C4FamilyHaarAudit.lean": "ce2e947f905a7da206827c6c7c6fa97943eae3823dffd4bf3881da385f3f0607",
@@ -60932,8 +61207,12 @@
     "proof/PscVerif/PscVerif/ArchivedPayloadConsumer.lean": "39768a54a2c022ef460e08dbd1879177fdf598bb8645702233264738ddf43e49",
     "proof/PscVerif/PscVerif/ArchivedPayloadControls.lean": "c1687369bb8feec4b5c784c3ac6f4cc6dccb9ece05af539a13f11d1cffb83371",
     "proof/PscVerif/PscVerif/ArchivedPayloadEmit.lean": "3d56413774e33215a1fb507ca418f08b4d048b3986c2c309a9cc9d626a15a6e3",
+    "proof/PscVerif/PscVerif/BHBoundedFactors.lean": "cce5578ad9f622d6d365a70e8e7d340fa80dcf697c84e87dcfb079befc2ccf01",
     "proof/PscVerif/PscVerif/BHFiniteCarrier.lean": "58ca13926d84d3107cf69408c457a4e7da3ca96761818e5cc0086d2c017537fe",
     "proof/PscVerif/PscVerif/BHFiniteReachability.lean": "5b9f2fd96957c25211ebadb767ba7747dd2966b474bce2922c56e87d4f623e94",
+    "proof/PscVerif/PscVerif/BHNearDiagonalDescent.lean": "853edcc974582ca697e1ead30cdb38604e5e9e420720f699ec7a4931ba5012a7",
+    "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean": "e8ac40b14bcd6f5afcc94a0c890f617911c13f44b087e745626b70e59df6801d",
+    "proof/PscVerif/PscVerif/BHWindowChoice.lean": "54d92d8910380661a90ca4433be0a5f952f49bc3871766d5e5aad075eb3f4b1c",
     "proof/PscVerif/PscVerif/BPrime.lean": "77ec2e5e0cab8e7ff1221b698f315ef0bcd2ea61ec88e2f88efd2053cc0c9138",
     "proof/PscVerif/PscVerif/BPrimeBinding.lean": "f9c9723bc6bd59b95ec83c632aa81b5d47dcef1e3c805a692279c4dec2448048",
     "proof/PscVerif/PscVerif/BPrimeCore.lean": "c3cfe60af11561d1a5b54fde4b2d3281d251dbc930316f6c30ea894600b651f3",
@@ -61107,7 +61386,7 @@
     "proof/PscVerif/PscVerif/NeutralRankSeamCycle.lean": "db67bc7a06a7e20572de8bcd20e0ee611d9b0f85213930f80cf3a4c23b1645fc",
     "proof/PscVerif/PscVerif/OccurrenceAddress.lean": "fd8d4020fc3f720c8a81d23c9811056802c901eec35a48efcbb40954c5a375ad",
     "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean": "0843e0a255a2a13675132264eb1385d9a155b7122138359b02158916541e2b4e",
-    "proof/PscVerif/PscVerif/OccurrenceAncestry.lean": "7576fc3fd0b96bd17d3359e1179bde0c909626a7cdd6c7b0fb2cce8c0f03acb3",
+    "proof/PscVerif/PscVerif/OccurrenceAncestry.lean": "1b4323181a2bac78235875750da7da558eecff02dee50fc2aded4ee26a9873e2",
     "proof/PscVerif/PscVerif/OccurrenceCover.lean": "c66e2937532b2b289351b9ab10a18a1485b73434e362fd1e88edbfd3b6479cb6",
     "proof/PscVerif/PscVerif/OccurrenceFinite.lean": "65ef11444d2f03c9a49febf9a859eb8d48bd8dd0e1a37fd972c47935526b48a0",
     "proof/PscVerif/PscVerif/OccurrenceGraph.lean": "515855dbc6ca0021b30353c053910d338064e1f14120dd3bc27fc1a938cca575",
@@ -61236,7 +61515,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "db4f3cb25a57b2f726a81ddaec52266255ca5ff3f2cbb8b2613d59a6262c0bb0",
+    "proof/PscVerif/PscVerif.lean": "081fa3f8d92e4fef9c5fb925342aaddb6be982d2a03fc3282f88b865c972e19a",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

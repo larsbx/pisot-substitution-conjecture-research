@@ -89,7 +89,8 @@ private theorem physicalLength_subst (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) 
   | nil => simp [subst]
   | cons a w ih => simp only [subst_cons, physicalLength_append, physicalLength_cons, hscale, ih]; ring
 
-private theorem inflate_interval_bounds (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)
+/-- Each literal image tile lies inside the scaled interval of its own source mark. -/
+theorem inflate_interval_bounds (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)
     (hpos : ∀ a, 0 < ℓ a) (hscale : ∀ a, physicalLength ℓ (s a) = β * ℓ a)
     {w : Word} (m : Mark w) (d : Mark (s m.letter)) :
     β * physicalLength ℓ m.before ≤ physicalLength ℓ (m.inflate s d).before ∧
