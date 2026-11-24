@@ -1,0 +1,31 @@
+{
+  "kind": "upper-plus-literal-proof-publication-v1",
+  "base_main": "7bfcd8c15e845f148b3c0ee405ca839ae6039e2d",
+  "accepted_base": "1bdaa34c63e6de97a0f17998c4f06887a18f099c",
+  "local_review_head": "d2ce5c805437d9b2263135f363a2bfbbe75e1a4b",
+  "publication_snapshot": "d26b1e04f8dff02d6837ed887760d2550e889fb7",
+  "identical_tree": "00617042bb4341234faa0e35bdc4757630f1aba4",
+  "original_commits": [
+    "d723cc4bd1860b4e9c42f80b3d1c03cd7cb292f5",
+    "5b8bd353f1934e67b8fbac518a9737eb7abf127d",
+    "7c939df6f87b2636d2ab8d71f45dcf7df60d6071",
+    "d2ce5c805437d9b2263135f363a2bfbbe75e1a4b"
+  ],
+  "bundle": {
+    "file": "local-history.bundle",
+    "sha256": "b01d4a1430b6e8c6e13088581fb78df09bed5e37ec56acc5bc1b44b9525dcdee",
+    "bytes": 849429,
+    "prerequisite": "1bdaa34c63e6de97a0f17998c4f06887a18f099c"
+  },
+  "prepublication_checks": {
+    "entry_archive_hashes": 28,
+    "central_archive_hashes": 59,
+    "entry_source_bindings": 344,
+    "central_source_bindings": 349,
+    "gate_bindings_match": true,
+    "clean_merge_tree_equals_local_review_tree": true
+  },
+  "hosted_acceptance": "not established by the local receipts; inspect exact-revision PR workflows",
+  "historical_receipts": "retained without rewriting their original unpublished/check-time labels",
+  "proof_source_changes_in_publication_record": false
+}
