@@ -1,0 +1,151 @@
+{
+  "status": "local-acceptance-passed-unpublished",
+  "published_merge_baseline": "7bfcd8c15e845f148b3c0ee405ca839ae6039e2d",
+  "source_equivalent_accepted_baseline": "1bdaa34c63e6de97a0f17998c4f06887a18f099c",
+  "prior_local_entry_review_commit": "5b8bd353f1934e67b8fbac518a9737eb7abf127d",
+  "local_proof_commit": "7c939df6f87b2636d2ab8d71f45dcf7df60d6071",
+  "local_proof_tree": "65c89c4adff9cf1bbb2113f9bd9fd0256f3ddb20",
+  "project_source_bindings": 349,
+  "source_bindings_sha256": "8d1aaa3665ee341c5ea15a244198735290d18b20e85dc3acf21e6af9c8dd8222",
+  "all_project_bindings_equal_proof_commit": true,
+  "all_gate_bindings_equal_proof_commit": true,
+  "gate_exit_code": 0,
+  "fresh_project_modules": [
+    "PscVerif.Binomial",
+    "PscVerif.PerronCore",
+    "PscVerif.ConcentrationAlgebra",
+    "PscVerif.ClassAPlusUpperEntry",
+    "PscVerif.FixedPointLimit",
+    "PscVerif.Incidence",
+    "PscVerif.Cyclicity",
+    "PscVerif.ParikhIntertwiner",
+    "PscVerif.SignedCocycle",
+    "PscVerif.Reduction",
+    "PscVerif.Descendants",
+    "PscVerif.OccurrenceNewborn",
+    "PscVerif.OccurrenceAddress",
+    "PscVerif.OccurrenceTransport",
+    "PscVerif.OccurrenceFinite",
+    "PscVerif.OccurrenceSuccessor",
+    "PscVerif.ClassAZeroDefectEscape",
+    "PscVerif.ClassACentralRecurrence",
+    "PscVerif.ClassAMinusConstantRecurrence",
+    "PscVerif.ClassAMinusPrefixAssembly",
+    "PscVerif.ClassAPlusConstantRecurrence",
+    "PscVerif.ClassAPlusUpperCycles",
+    "PscVerif.ClassAPlusUpperEntryTransport",
+    "PscVerif.ClassAPlusUpperCycleCompletion",
+    "PscVerif.ClassAPlusUpperRecurrence",
+    "PscVerif.ClassAPlusUpperCentralBound",
+    "PscVerif.ClassAPlusUpperNoHalfTies",
+    "PscVerif.ClassAPlusUpperLiteralEntry",
+    "PscVerif.ClassAPlusUpperEntryBound",
+    "PscVerif.ClassAPlusUpperCentralControls",
+    "PscVerif.ClassAPlusUpperCentralOrbit",
+    "PscVerif.ClassAPlusUpperEntryControls",
+    "PscVerif.ClassAPlusUpperCentralCompletion"
+  ],
+  "fresh_project_module_count": 33,
+  "lake_jobs": 2286,
+  "audits": {
+    "fixtures": 6,
+    "new_owned_modules": 4,
+    "new_owned_declarations": 127,
+    "new_compiled_theorem_declarations": 95,
+    "new_independent_endpoint_types": 13,
+    "new_contract_refusals": 44,
+    "allowed_recursive_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "completion_receipts": {
+      "audit.log": [
+        "PSC_UPPER_CENTRAL_AUDIT_COMPLETE\t4\t127\t95\t13\t44"
+      ],
+      "entry-audit.log": [
+        "PSC_UPPER_LITERAL_AUDIT_COMPLETE\t5\t208\t168\t12\t39"
+      ],
+      "controls-audit.log": [],
+      "arithmetic-audit.log": [],
+      "recurrence-audit.log": [
+        "PSC_CLASS_A_PLUS_UPPER_RECURRENCE_AUDIT_COMPLETE\t13\t39"
+      ],
+      "cycle-audit.log": [
+        "PSC_CLASS_A_PLUS_UPPER_COMPLETION_AUDIT_COMPLETE\t4\t12"
+      ]
+    }
+  },
+  "compile_policy": {
+    "project_artifacts": "empty before isolated compilation",
+    "upstream": "manifest-pinned cached packages; tracked source bytes and checkout pins checked before and after",
+    "compiler": "Lean 4.34.0-rc2, commit 6a10ac8c22beadecabdbb0919c2b50214762f91d",
+    "whole_repository_build": false
+  },
+  "source_inventory": {
+    "named_lean_proofs_before": 6969,
+    "named_lean_proofs_after": 7020,
+    "added_named_proofs": 51,
+    "claims": 132,
+    "source_openings": 545
+  },
+  "strongest_theorem": "Psc.ClassAPlusUpperCentralCompletion.exists_root_all_source_completion",
+  "fixed_root_theorem": "Psc.ClassAPlusUpperCentralCompletion.all_source_completion_nd",
+  "scope": "Every strict full-integral typed source for n>=7 and n+5<=d<=2*n+11; positive literal eigenlengths, actual ordered paths to typed y/y zero, both original traces and complete offset identities.",
+  "bounds": {
+    "entry": "least k with beta^k*m>=4; entry length<=k+1",
+    "central": "(2*B+1)^2+2*n-1, B=(n+7)*(abs(p)+abs(2*p+q+r)+1)",
+    "combined": "entry budget plus central budget at the actual reached central packet"
+  },
+  "no_additional_caller_premises": [
+    "root existence",
+    "positive scaling",
+    "half-tie exclusion",
+    "supplied central orbit",
+    "supplied scalar recurrence",
+    "finite carrier",
+    "tail classification",
+    "cycle height range",
+    "zero hit"
+  ],
+  "remaining_outside_scope": [
+    "Universal BH",
+    "Residual A1 prime",
+    "General C4",
+    "All-strict enlargement of the separate n<=6 swap-seed results",
+    "General realization/spectral applications",
+    "Earliest-cutoff implementation refinement",
+    "Hosted acceptance of these local changes",
+    "Independent human review"
+  ],
+  "claim_registry_and_ledger_unchanged": true,
+  "hosted_acceptance": "not run; local changes only",
+  "publication": "none",
+  "focused_proof_bank_tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "57",
+    "time": "95.095",
+    "timestamp": "2026-11-23T22:31:08.086666+00:00",
+    "hostname": "6912f9db151a"
+  },
+  "initial_gate_attempt": {
+    "exit_code": 1,
+    "preserved": "initial-isolated-attempt/",
+    "reason": "missing explicit build target for a legacy entry-control audit import",
+    "corrected_in_final_run": true
+  },
+  "recorded_data_integrity_tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "209",
+    "time": "1.991",
+    "timestamp": "2026-11-23T22:39:05.703959+00:00",
+    "hostname": "6912f9db151a"
+  },
+  "metadata_test_total": 266
+}

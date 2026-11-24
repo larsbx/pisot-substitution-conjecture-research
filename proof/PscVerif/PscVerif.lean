@@ -146,6 +146,10 @@ import PscVerif.ClassAPlusUpperCycles
 import PscVerif.ClassAPlusUpperRecurrence
 import PscVerif.ClassAPlusUpperCycleCompletion
 import PscVerif.ClassAPlusUpperEntry
+import PscVerif.ClassAPlusUpperEntryBound
+import PscVerif.ClassAPlusUpperEntryControls
+import PscVerif.ClassAPlusUpperCentralCompletion
+import PscVerif.ClassAPlusUpperCentralControls
 import PscVerif.BPrimeCore
 import PscVerif.BPrimeBinding
 import PscVerif.BPrime
@@ -241,6 +245,10 @@ import PscVerif.UniversalClosureReduction
 import PscVerif.OccurrenceAncestry
 import PscVerif.BHFiniteReachability
 import PscVerif.BHFiniteCarrier
+import PscVerif.BHBoundedFactors
+import PscVerif.BHNearDiagonalDescent
+import PscVerif.BHNearDiagonalLiteral
+import PscVerif.BHWindowChoice
 import PscVerif.A1PrimeTailCoincidence
 import PscVerif.A1PrimeTailPisot
 import PscVerif.C4FiniteTileAutomaton
