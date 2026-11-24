@@ -1,0 +1,476 @@
+{
+  "scope": "independent finite exact replay; no universal mathematical verdict",
+  "source_records_checked_for_reversal": 33684,
+  "edges_checked_for_reversal": 47412,
+  "reversal_preserves_depth_indices_complete_targets_and_both_prefix_tracks": true,
+  "two_edge_control_parameter_members": 24,
+  "one_edge_alternatives_exhaustively_rejected": 9192,
+  "mutated_complete_target_offsets_rejected": 72,
+  "mutated_original_prefix_coordinates_rejected": 6,
+  "offset_controls": [
+    {
+      "n": 7,
+      "J": 1,
+      "coordinate": 0,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 7,
+      "J": 1,
+      "coordinate": 1,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 7,
+      "J": 1,
+      "coordinate": 2,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 7,
+      "J": 2,
+      "coordinate": 0,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 7,
+      "J": 2,
+      "coordinate": 1,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 7,
+      "J": 2,
+      "coordinate": 2,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 7,
+      "J": 3,
+      "coordinate": 0,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 7,
+      "J": 3,
+      "coordinate": 1,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 7,
+      "J": 3,
+      "coordinate": 2,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 7,
+      "J": 4,
+      "coordinate": 0,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 7,
+      "J": 4,
+      "coordinate": 1,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 7,
+      "J": 4,
+      "coordinate": 2,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 7,
+      "J": 5,
+      "coordinate": 0,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 7,
+      "J": 5,
+      "coordinate": 1,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 7,
+      "J": 5,
+      "coordinate": 2,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 7,
+      "J": 14,
+      "coordinate": 0,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 7,
+      "J": 14,
+      "coordinate": 1,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 7,
+      "J": 14,
+      "coordinate": 2,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 8,
+      "J": 1,
+      "coordinate": 0,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 8,
+      "J": 1,
+      "coordinate": 1,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 8,
+      "J": 1,
+      "coordinate": 2,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 8,
+      "J": 2,
+      "coordinate": 0,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 8,
+      "J": 2,
+      "coordinate": 1,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 8,
+      "J": 2,
+      "coordinate": 2,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 8,
+      "J": 3,
+      "coordinate": 0,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 8,
+      "J": 3,
+      "coordinate": 1,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 8,
+      "J": 3,
+      "coordinate": 2,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 8,
+      "J": 4,
+      "coordinate": 0,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 8,
+      "J": 4,
+      "coordinate": 1,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 8,
+      "J": 4,
+      "coordinate": 2,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 8,
+      "J": 5,
+      "coordinate": 0,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 8,
+      "J": 5,
+      "coordinate": 1,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 8,
+      "J": 5,
+      "coordinate": 2,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 8,
+      "J": 15,
+      "coordinate": 0,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 8,
+      "J": 15,
+      "coordinate": 1,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 8,
+      "J": 15,
+      "coordinate": 2,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 12,
+      "J": 1,
+      "coordinate": 0,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 12,
+      "J": 1,
+      "coordinate": 1,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 12,
+      "J": 1,
+      "coordinate": 2,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 12,
+      "J": 2,
+      "coordinate": 0,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 12,
+      "J": 2,
+      "coordinate": 1,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 12,
+      "J": 2,
+      "coordinate": 2,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 12,
+      "J": 3,
+      "coordinate": 0,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 12,
+      "J": 3,
+      "coordinate": 1,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 12,
+      "J": 3,
+      "coordinate": 2,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 12,
+      "J": 4,
+      "coordinate": 0,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 12,
+      "J": 4,
+      "coordinate": 1,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 12,
+      "J": 4,
+      "coordinate": 2,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 12,
+      "J": 5,
+      "coordinate": 0,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 12,
+      "J": 5,
+      "coordinate": 1,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 12,
+      "J": 5,
+      "coordinate": 2,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 12,
+      "J": 19,
+      "coordinate": 0,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 12,
+      "J": 19,
+      "coordinate": 1,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 12,
+      "J": 19,
+      "coordinate": 2,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 31,
+      "J": 1,
+      "coordinate": 0,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 31,
+      "J": 1,
+      "coordinate": 1,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 31,
+      "J": 1,
+      "coordinate": 2,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 31,
+      "J": 2,
+      "coordinate": 0,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 31,
+      "J": 2,
+      "coordinate": 1,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 31,
+      "J": 2,
+      "coordinate": 2,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 31,
+      "J": 3,
+      "coordinate": 0,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 31,
+      "J": 3,
+      "coordinate": 1,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 31,
+      "J": 3,
+      "coordinate": 2,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 31,
+      "J": 4,
+      "coordinate": 0,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 31,
+      "J": 4,
+      "coordinate": 1,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 31,
+      "J": 4,
+      "coordinate": 2,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 31,
+      "J": 5,
+      "coordinate": 0,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 31,
+      "J": 5,
+      "coordinate": 1,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 31,
+      "J": 5,
+      "coordinate": 2,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 31,
+      "J": 38,
+      "coordinate": 0,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 31,
+      "J": 38,
+      "coordinate": 1,
+      "rejection": "wrong literal target"
+    },
+    {
+      "n": 31,
+      "J": 38,
+      "coordinate": 2,
+      "rejection": "wrong literal target"
+    }
+  ],
+  "prefix_controls": [
+    {
+      "field": "top_prefix",
+      "coordinate": 0,
+      "rejection": "wrong supplied original prefix"
+    },
+    {
+      "field": "top_prefix",
+      "coordinate": 1,
+      "rejection": "wrong supplied original prefix"
+    },
+    {
+      "field": "top_prefix",
+      "coordinate": 2,
+      "rejection": "wrong supplied original prefix"
+    },
+    {
+      "field": "bottom_prefix",
+      "coordinate": 0,
+      "rejection": "wrong supplied original prefix"
+    },
+    {
+      "field": "bottom_prefix",
+      "coordinate": 1,
+      "rejection": "wrong supplied original prefix"
+    },
+    {
+      "field": "bottom_prefix",
+      "coordinate": 2,
+      "rejection": "wrong supplied original prefix"
+    }
+  ]
+}

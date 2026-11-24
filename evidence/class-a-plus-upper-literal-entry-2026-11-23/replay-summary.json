@@ -1,0 +1,157 @@
+{
+  "created_utc": "2026-11-23T21:46:47.007767+00:00",
+  "scope": "fresh finite exact executable replay; Lean theorem validation is a separate receipt",
+  "base_source_commit": "1bdaa34c63e6de97a0f17998c4f06887a18f099c",
+  "source_equivalent_main_commit": "7bfcd8c15e845f148b3c0ee405ca839ae6039e2d",
+  "base_tree": "225e933c2ca2d8aaa8be550c003e824ac93fa201",
+  "executables_and_existing_tests_unchanged_from_base": true,
+  "runtime": {
+    "python": "3.12.14",
+    "pixi": "0.84.2",
+    "mojo": "1.1.0.dev2026090805 (34562fa1)",
+    "pytest": "9.2.0"
+  },
+  "native": {
+    "sources": 33324,
+    "entry_edges": 41232,
+    "documented_stdout_hash_reproduced": true
+  },
+  "independent_oracle": {
+    "composed_to_zero": 22748,
+    "entry_edges": 47412,
+    "maximum_entry_depth": 37,
+    "members": 24,
+    "negative_controls": 96,
+    "refinement_cap": 512,
+    "selector_cases": {
+      "direct": 32508,
+      "growth": 10530,
+      "last_first_run": 666,
+      "last_run_first": 638,
+      "reverse_last_first": 3070
+    },
+    "sources": 33684,
+    "step_cap": 128
+  },
+  "standalone_transcript_replay": {
+    "entry_edges": 47412,
+    "sources": 33684
+  },
+  "independent_native_comparison": {
+    "composed_to_zero": 22748,
+    "entry_edges": 47412,
+    "maximum_entry_depth": 37,
+    "members": 24,
+    "native_paths_matched": 33324,
+    "negative_controls": 96,
+    "refinement_cap": 512,
+    "selector_cases": {
+      "direct": 32508,
+      "growth": 10530,
+      "last_first_run": 666,
+      "last_run_first": 638,
+      "reverse_last_first": 3070
+    },
+    "sources": 33684,
+    "step_cap": 128
+  },
+  "focused_regressions": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "148",
+    "time": "12.106",
+    "timestamp": "2026-11-23T21:36:20.694131+00:00",
+    "hostname": "6912f9db151a"
+  },
+  "extra_controls": {
+    "scope": "independent finite exact replay; no universal mathematical verdict",
+    "source_records_checked_for_reversal": 33684,
+    "edges_checked_for_reversal": 47412,
+    "reversal_preserves_depth_indices_complete_targets_and_both_prefix_tracks": true,
+    "two_edge_control_parameter_members": 24,
+    "one_edge_alternatives_exhaustively_rejected": 9192,
+    "mutated_complete_target_offsets_rejected": 72,
+    "mutated_original_prefix_coordinates_rejected": 6
+  },
+  "source_sha256": {
+    "oracles/python/class_a_plus_upper_entry_independent.py": "02701f07bb9f964b19aae46f8b9728ef133719f17d004f15925e368d72994478",
+    "oracles/python/class_a_plus_upper_recurrence_independent.py": "cc97a3f956ab3fd8d8cf22e61e090664d4a3f614112a03c6068e85adb8dc152c",
+    "kernel/psc/class_a_plus_upper_entry.mojo": "7773e6622dffff20ae590a8d0eed583c2220b2c7ee593f91458a58b794191b6e",
+    "kernel/psc/class_a_plus_upper_recurrence.mojo": "7e9f3d65b51f6fe0680b3eb6e341125f8eed8e0b92578d2b93ba8d4231e5bd2b",
+    "kernel/tests/test_class_a_plus_upper_entry.mojo": "10f6ee1fcec2ded9b88da7c58d2bbdb88340c0fc547149ba1c927fe3f1d55649",
+    "kernel/pixi.toml": "7b392a6680cb3ac7a021ef8d255b3c16451073f4f3ef2ffe76d623d1cd97c737",
+    "kernel/pixi.lock": "1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8",
+    "proof/PscVerif/PscVerif/ClassAPlusUpperEntry.lean": "35e27f3fc973e5668e883f8e3df312920ff1abd945a52a98c4ee133e7bd5f204",
+    "docs/class-a-plus-upper-all-source-entry-2026-11-16.md": "101686b5da7af71075a0878c4558cf3dcdd01debc196dd788cf9432db66598db",
+    "tests/test_class_a_plus_upper_cycles.py": "0b1fb28e378c39adb11896b10b69aacc5c66969c2d333a03e9dfb7b78a2960f3",
+    "tests/test_class_a_plus_upper_symbolic.py": "e4a51b16b6bd4a9a608688cd24682f219cbcee7701c3c497e70c7344a576df3c",
+    "tests/test_class_a_plus_upper_recurrence.py": "94ab0e2fd7df147da2e6567a631df801f4c8427c2da9aa6238217a247380004c",
+    "tests/test_class_a_plus_upper_recurrence_independent.py": "d8de4b447dc7352299a20a3074d48cbf0e131228dac32d7654cbf12f86cff6e7"
+  },
+  "artifact_sha256": {
+    "upper-entry-native.txt": "36ef371410b3817ddcde53403c25d972c4a9b4e035e7a7f3a93bb2d5e83d5acb",
+    "upper-entry-native.err": "2ae6373f021730d7d70807704313e2c7c8bc65926b7cfc266fa7e115c3987444",
+    "upper-entry.jsonl": "c1dccf0c6f7f1ae8fcc953733035d705741e14787f5cf56c9890a3617015688d",
+    "upper-entry-oracle.log": "5b1325f8a534961c9e564ecc4c1e662ba32310e9d484179fbd4d97c7d7f8c581",
+    "upper-entry-standalone-replay.log": "35227f2e1af9f7b604986c9091dff1047cbf93f15c8c14de02ad3306737e0551",
+    "upper-entry-native-comparison.log": "75ed855299d975924ea2d59654e74b87f4c559ab3bd66f839cda6e9b40accff7",
+    "upper-entry-extra-controls.json": "4f470bdecf96fa7ec5a508f4263cb3a774f497f5f2e0f1445ecd4a5ff490273b",
+    "upper-entry-extra-controls.log": "4fc7f0b7dea4a711d16b587050f5deae895d2f2ebd9a77f6acc3f63a11294819",
+    "upper-entry-two-edge-example.json": "bcffa1530ff6d4ca6daf56c352ede99afff8ec9e853ab0d4cac102aed5715661",
+    "upper-regression.log": "85bec7cd6c16e7c39eb5afcd5862b1eaf8300e6fc29869ceadd7733321d81541",
+    "upper-regression.xml": "4c009524d65e1219b56606054feee5aae9ab89ad0e42a19f82457976e3cb8a5f",
+    "verify-entry-extra-controls.py": "fb9251880ba2ec432989b53d269d0e53053803f174b24efea359f3ee960cb28f"
+  },
+  "commands": [
+    {
+      "cwd": "/workspace/scratch/c388c36ccd77/psc-upper-entry/kernel",
+      "command": "MODULAR_TELEMETRY_ENABLED=0 MODULAR_CRASH_REPORTING_ENABLED=0 /workspace/scratch/402f1bb377be/psc-ray-runtime/pixi/pixi run --locked mojo run -I . tests/test_class_a_plus_upper_entry.mojo --emit",
+      "stdout": "upper-entry-native.txt",
+      "stderr": "upper-entry-native.err",
+      "exit_code": 0
+    },
+    {
+      "cwd": "/workspace/scratch/c388c36ccd77/psc-upper-entry",
+      "command": "python3 oracles/python/class_a_plus_upper_entry_independent.py --transcripts /workspace/scratch/c388c36ccd77/checks/upper-entry.jsonl",
+      "stdout": "upper-entry-oracle.log",
+      "exit_code": 0
+    },
+    {
+      "cwd": "/workspace/scratch/c388c36ccd77/psc-upper-entry",
+      "command": "python3 oracles/python/class_a_plus_upper_entry_independent.py --replay-transcripts /workspace/scratch/c388c36ccd77/checks/upper-entry.jsonl",
+      "stdout": "upper-entry-standalone-replay.log",
+      "exit_code": 0
+    },
+    {
+      "cwd": "/workspace/scratch/c388c36ccd77/psc-upper-entry",
+      "command": "python3 oracles/python/class_a_plus_upper_entry_independent.py --native /workspace/scratch/c388c36ccd77/checks/upper-entry-native.txt",
+      "stdout": "upper-entry-native-comparison.log",
+      "exit_code": 0
+    },
+    {
+      "cwd": "/workspace/scratch/c388c36ccd77/psc-upper-entry",
+      "command": "PYTHONPATH=/workspace/scratch/402f1bb377be/psc-ray-runtime/python-checks python3 -m pytest tests/test_class_a_plus_upper_cycles.py tests/test_class_a_plus_upper_symbolic.py tests/test_class_a_plus_upper_recurrence.py tests/test_class_a_plus_upper_recurrence_independent.py -q --junitxml=/workspace/scratch/c388c36ccd77/checks/upper-regression.xml",
+      "stdout": "upper-regression.log",
+      "exit_code": 0
+    },
+    {
+      "cwd": "/workspace/scratch/c388c36ccd77/psc-upper-entry",
+      "command": "python3 /workspace/scratch/c388c36ccd77/checks/verify-entry-extra-controls.py --root /workspace/scratch/c388c36ccd77/psc-upper-entry --transcript /workspace/scratch/c388c36ccd77/checks/upper-entry.jsonl --output /workspace/scratch/c388c36ccd77/checks/upper-entry-extra-controls.json",
+      "stdout": "upper-entry-extra-controls.log",
+      "exit_code": 0
+    }
+  ],
+  "limitations": [
+    "The native and oracle grids are finite; they do not prove universal entry or BH.",
+    "The 22748 fresh oracle compositions to zero do not replace the open general central-source Lean assembly.",
+    "Some existing cycle/central regression tests replay archived native transcripts; only the entry native transcript was freshly generated here.",
+    "New Lean files are validated and source-bound separately from this executable replay manifest.",
+    "No repository modifications were published by this replay task."
+  ],
+  "nonblocking_environment_messages": [
+    "pixi skipped optional gdk-pixbuf/librsvg post-link scripts; native test passed.",
+    "The installed AnyIO pytest plugin emits a CallSpec2 deprecation warning; all 148 tests passed."
+  ]
+}
