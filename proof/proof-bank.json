@@ -5810,6 +5810,390 @@
       "declaration": "theorem eq_zero_of_isUnique_of_lt_one {d : ℕ → Bool} (h : IsUnique d) (hlt : value d < 1) :"
     },
     {
+      "name": "Psc.BetaMetallicUnique.cons_zero",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 55,
+      "declaration": "@[simp] theorem cons_zero (b : Fin (m + 1)) (t : ℕ → Fin (m + 1)) : cons b t 0 = b := rfl"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.cons_succ",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 56,
+      "declaration": "@[simp] theorem cons_succ (b : Fin (m + 1)) (t : ℕ → Fin (m + 1)) (k : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.tail_apply",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 58,
+      "declaration": "@[simp] theorem tail_apply (d : ℕ → Fin (m + 1)) (k : ℕ) : tail d k = d (k + 1) := rfl"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.tail_cons",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 59,
+      "declaration": "@[simp] theorem tail_cons (b : Fin (m + 1)) (t : ℕ → Fin (m + 1)) : tail (cons b t) = t := rfl"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.cons_head_tail",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 61,
+      "declaration": "theorem cons_head_tail (d : ℕ → Fin (m + 1)) : cons (d 0) (tail d) = d := by"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.shift_zero",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 64,
+      "declaration": "theorem shift_zero (d : ℕ → Fin (m + 1)) : shift d 0 = d := by"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.shift_succ",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 67,
+      "declaration": "theorem shift_succ (d : ℕ → Fin (m + 1)) (n : ℕ) : shift d (n + 1) = tail (shift d n) := by"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.digit_le",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 73,
+      "declaration": "theorem digit_le (a : Fin (m + 1)) : ((a : ℕ) : ℝ) ≤ m := by"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.m_pos",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 80,
+      "declaration": "theorem m_pos (B : Base m) : (0 : ℝ) < m := by exact_mod_cast B.one_le"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.r_lt_one",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 82,
+      "declaration": "theorem r_lt_one : B.r < 1 := by"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.summable_pow",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 97,
+      "declaration": "theorem summable_pow : Summable fun n : ℕ => B.r ^ (n + 1) :="
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.term_nonneg",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 100,
+      "declaration": "theorem term_nonneg (d : ℕ → Fin (m + 1)) (n : ℕ) : 0 ≤ ((d n : ℕ) : ℝ) * B.r ^ (n + 1) :="
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.summable_value",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 103,
+      "declaration": "theorem summable_value (d : ℕ → Fin (m + 1)) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.value_cons",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 110,
+      "declaration": "theorem value_cons (b : Fin (m + 1)) (t : ℕ → Fin (m + 1)) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.value_eq_step",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 119,
+      "declaration": "theorem value_eq_step (d : ℕ → Fin (m + 1)) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.value_const",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 124,
+      "declaration": "theorem value_const (a : Fin (m + 1)) : B.value (fun _ => a) = ((a : ℕ) : ℝ) * B.G := by"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.value_nonneg",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 128,
+      "declaration": "theorem value_nonneg (d : ℕ → Fin (m + 1)) : 0 ≤ B.value d := tsum_nonneg (B.term_nonneg d)"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.G_step",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 130,
+      "declaration": "theorem G_step : B.G = B.r + B.r * B.G := by"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.G_pos",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 138,
+      "declaration": "theorem G_pos : 0 < B.G := by"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.r_lt_G",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 143,
+      "declaration": "theorem r_lt_G : B.r < B.G := by"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.top",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 148,
+      "declaration": "theorem top : (m : ℝ) * B.G = 1 + B.r := by"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.const_mul_G",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 155,
+      "declaration": "theorem const_mul_G : (m : ℝ) * B.G = ∑' n : ℕ, (m : ℝ) * B.r ^ (n + 1) := by"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.value_le_top",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 160,
+      "declaration": "theorem value_le_top (d : ℕ → Fin (m + 1)) : B.value d ≤ 1 + B.r := by"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.value_lt_one",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 167,
+      "declaration": "theorem value_lt_one {t : ℕ → Fin (m + 1)} (h : ∀ k, (t k : ℕ) < m) : B.value t < 1 := by"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.lt_value",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 182,
+      "declaration": "theorem lt_value {t : ℕ → Fin (m + 1)} (h : ∀ k, 0 < (t k : ℕ)) : B.r < B.value t := by"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.value_carry",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 193,
+      "declaration": "theorem value_carry (a a' z l c c' : Fin (m + 1)) (t : ℕ → Fin (m + 1))"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.value_zero_top",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 202,
+      "declaration": "theorem value_zero_top {v : ℕ → Fin (m + 1)}"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.value_top_zero",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 225,
+      "declaration": "theorem value_top_zero {v : ℕ → Fin (m + 1)}"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.IsUnique.of_tail",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 251,
+      "declaration": "theorem IsUnique.of_tail {d : ℕ → Fin (m + 1)} (h : B.IsUnique d) : B.IsUnique (tail d) := by"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.IsUnique.of_shift",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 258,
+      "declaration": "theorem IsUnique.of_shift {d : ℕ → Fin (m + 1)} (h : B.IsUnique d) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.IsUnique.head_zero",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 267,
+      "declaration": "theorem IsUnique.head_zero {u : ℕ → Fin (m + 1)} (h : B.IsUnique u) (h0 : 0 < (u 0 : ℕ))"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.IsUnique.head_top",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 290,
+      "declaration": "theorem IsUnique.head_top {u : ℕ → Fin (m + 1)} (h : B.IsUnique u) (h0 : (u 0 : ℕ) < m)"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.IsUnique.zero_at",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 312,
+      "declaration": "theorem IsUnique.zero_at {d : ℕ → Fin (m + 1)} (h : B.IsUnique d) (n : ℕ)"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.IsUnique.top_at",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 316,
+      "declaration": "theorem IsUnique.top_at {d : ℕ → Fin (m + 1)} (h : B.IsUnique d) (n : ℕ)"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.IsUnique.zero_pred",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 321,
+      "declaration": "theorem IsUnique.zero_pred {d : ℕ → Fin (m + 1)} (h : B.IsUnique d) (n : ℕ)"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.IsUnique.top_pred",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 360,
+      "declaration": "theorem IsUnique.top_pred {d : ℕ → Fin (m + 1)} (h : B.IsUnique d) (n : ℕ)"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.IsUnique.endpointsInitial",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 399,
+      "declaration": "theorem IsUnique.endpointsInitial {d : ℕ → Fin (m + 1)} (h : B.IsUnique d) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.value_shift_eq",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 406,
+      "declaration": "theorem value_shift_eq {d e : ℕ → Fin (m + 1)} (n : ℕ) (hpre : ∀ k < n, e k = d k)"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.EndpointsInitial.lt_top_from",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 419,
+      "declaration": "theorem EndpointsInitial.lt_top_from {d : ℕ → Fin (m + 1)} (S : EndpointsInitial d) {n : ℕ}"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.EndpointsInitial.pos_from",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 430,
+      "declaration": "theorem EndpointsInitial.pos_from {d : ℕ → Fin (m + 1)} (S : EndpointsInitial d) {n : ℕ}"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.EndpointsInitial.interior_from",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 441,
+      "declaration": "theorem EndpointsInitial.interior_from {d : ℕ → Fin (m + 1)} (S : EndpointsInitial d) {n : ℕ}"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.EndpointsInitial.const_of_one",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 446,
+      "declaration": "theorem EndpointsInitial.const_of_one {d : ℕ → Fin (m + 1)} (S : EndpointsInitial d)"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.tail_lt_one",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 458,
+      "declaration": "theorem tail_lt_one {d : ℕ → Fin (m + 1)} (S : EndpointsInitial d) {n : ℕ}"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.lt_tail",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 462,
+      "declaration": "theorem lt_tail {d : ℕ → Fin (m + 1)} (S : EndpointsInitial d) {n : ℕ}"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.isUnique_of_endpointsInitial",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 467,
+      "declaration": "theorem isUnique_of_endpointsInitial {d : ℕ → Fin (m + 1)} (S : EndpointsInitial d) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.isUnique_iff",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 500,
+      "declaration": "theorem isUnique_iff (d : ℕ → Fin (m + 1)) : B.IsUnique d ↔ EndpointsInitial d :="
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.interior",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 505,
+      "declaration": "theorem interior {d : ℕ → Fin (m + 1)} (h : ∀ n, 0 < (d n : ℕ) ∧ (d n : ℕ) < m) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.IsUnique.const_of_one",
+      "module": "PscVerif.BetaMetallicUnique",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicUnique.lean",
+      "line": 512,
+      "declaration": "theorem IsUnique.const_of_one {d : ℕ → Fin (m + 1)} (h : B.IsUnique d) (hm : m = 1) (n : ℕ) :"
+    },
+    {
       "name": "Psc.Binomial.n2_append",
       "module": "PscVerif.Binomial",
       "private": false,
@@ -61770,6 +62154,7 @@
     "proof/PscVerif/PscVerif/BargeDiamondBridgeControls.lean": "45bd1684ecbdfabdc02658405874358b5bfccd80b57d435f2c108f707b59f059",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
     "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean": "9dd31daca70efc75cc5413ffadef7bee210ac47c2724efead22c1a84497a7270",
+    "proof/PscVerif/PscVerif/BetaMetallicUnique.lean": "4dfc01ba47b2830afb8fd4c8cf91e9eef8bdc68d9ac1bf82b05340a2cc0eb0fd",
     "proof/PscVerif/PscVerif/Binomial.lean": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
     "proof/PscVerif/PscVerif/BoundarySeedPath.lean": "bea69cb93d5bcd15b1b88c48062b4404a721908092af1b5f5b42e6184f7abae3",
@@ -62070,7 +62455,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "9b2b856c0abb259aef8b1d4913c72bdce709e567ddcd2d9ae4e520e79221bd92",
+    "proof/PscVerif/PscVerif.lean": "d92bf9490cd63713e3b45817f528684daebe23d2a9b6384482a2ee6c870792b1",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
