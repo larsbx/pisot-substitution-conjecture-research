@@ -258,6 +258,9 @@ Change the ledger entry and every surface in the same commit.
   keeps the formal-vs-realized firewall, exact lattice-drift replay target and
   contact geometry as research controls, while explicitly rejecting the stale
   obstruction-regime / nonterminating-BPA inferences as current proof status.
+- [`grh-chebotarev-auxiliary-prime-stop-go-2026-11-22.md`](grh-chebotarev-auxiliary-prime-stop-go-2026-11-22.md)
+  — stop/go note: no open obligation consumes a bound on the least prime of
+  prescribed splitting type, so GRH has no entry point. Decision: stop.
 
 These are reference/index additions only. They do not establish #84, #138,
 #139, G1, or general PSC, or change their ledger status or closure priorities.
@@ -517,8 +520,10 @@ closed on caps and retain a replayable record for every survivor.
 - [Geometric realization](c4-geometric-realization-2026-11-19.md): the realization map of the hull into the solenoid of `M`, with semiconjugacy, translation equivariance and (R4) proved under the Pisot contraction and recognizability; finite fibres stay an input. Fibonacci (unit), Thue–Morse (nonunit) and a non-Pisot control.
 - [Realization source decision](c4-geometric-realization-stop-go-2026-11-19.md): Baker–Barge–Kwapisz Definition 3.1 specialised to `Σ = ℤᵈ`, and what stays imported.
 - [Realization target topology](c4-geometric-realization-topology-2026-11-19.md) proves compactness, the shift homeomorphism and continuity of the target flow. A checked Thue–Morse pair shows that depth zero loses information on the hull.
-- [Ordinary hull topology](c4-ordinary-hull-topology-2026-11-19.md): the local-neighbourhood criterion, an open quotient chart, joint translation continuity and inflation continuity; controls distinguish it from the finer exact metric. Concrete realization continuity remains a separate obligation.
+- [Ordinary hull topology](c4-ordinary-hull-topology-2026-11-19.md): the local-neighbourhood criterion, an open quotient chart, joint translation continuity and inflation continuity; controls distinguish it from the finer exact metric.
 - [Ordinary-topology source decision](c4-ordinary-hull-topology-stop-go-2026-11-19.md): three primary sources, the open-quotient route and the boundary between continuity and recognizability.
+- [Concrete realization continuity](c4-realization-continuity-2026-11-19.md): compact exact origin fibres, finite parent possibilities and derived inverse continuity discharge the actual solenoid-map continuity obligation under the existing hypotheses; inflation becomes a homeomorphism. A universal seam control keeps the origin coordinate on the exact presentation.
+- [Continuity source decision](c4-realization-continuity-stop-go-2026-11-19.md): primary sources and the anchored compactness route, preserving recognizability and BBK-identification boundaries.
 - [Pisot contraction, derived](c4-pisot-contraction-2026-11-19.md): `PisotData` from `χ_M = (X − β) Q` through Gelfand's formula, and from the PIP3 conditions; Tribonacci `01/02/0` proved a PIP3 member and instantiated.
 - [Contraction source decision](c4-pisot-contraction-stop-go-2026-11-19.md): deflation `M − β u ℓᵀ`, simplicity from separability, and what stays imported.
 - [Family Lean dynamical roadmap](c4-family-lean-dynamical-roadmap-2026-11-21.md): planning. Starts from the derived contraction and the ordinary hull topology, then orders the literal family's instantiation, hull properties, one criterion definition, the spectral implication and the separate symbolic/tiling statements.
