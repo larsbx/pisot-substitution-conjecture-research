@@ -24,12 +24,14 @@ at `ffd3f9b` (run 45442126274). Independent human review remains pending.
 | Scope | Result | Verification boundary |
 | --- | --- | --- |
 | `r>=12`, `k=r+1,r+2` | [Written all-source exit](bh-near-diagonal-exit-2026-11-24.md) to `1/1` at full integral displacement zero | Lean checks the quadratic descent and its literal realization in the central window; the third-level mark entry is written only |
-| `r>=12`, `k=r` | [Sufficient region](bh-diagonal-run-reduction-2026-11-24.md): run window with `max(\|y\|,\|z\|)<=⌊(r-2)/3⌋` | The uniform exit from the remaining run-window packets is open |
+| `r>=12`, `k=r` | [Written uniform residual exit](bh-diagonal-residual-exit-2026-11-27.md), completing the earlier sufficient region and composing with written entry | Lean checks the literal steps, exceptional two-step paths, positive-axis progress and congruence-elimination core; the full classification and all-source assembly remain written |
 | Both bands and `k=r` | [Three-window entry](bh-third-level-windows-2026-11-24.md) on the original occurrence tracks | Written construction with exact literal replay |
 | 24 members | [Bounded-factor bridge](bh-higher-determinant-carrier-2026-11-24.md): finite actual factor bound implies literal zero hits | Lean implications checked locally; a proof uniform in the remaining parameters is open |
 
-**Active BH work.** Bind the minus-Class-A paths to Lean (#442). Give the
-`k=r` band a uniform exit and formalize the third-level mark entry. Then
+**Active BH work.** Bind the minus-Class-A paths to Lean (#442). Assemble the
+diagonal residual classification into its full Lean endpoint and formalize
+the third-level mark entry. The [local diagonal evidence](../evidence/bh-diagonal-residual-2026-11-27/README.md)
+separates the uniform written proof from the seven-parameter replay. Then
 extend source coverage and actual zero-hit paths to the remaining BH
 domains in the full nonunit representation. No residual A1′ (#138)
 result has merged since November 21. #624 adds a Lean

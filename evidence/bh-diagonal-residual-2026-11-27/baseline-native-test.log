@@ -1,0 +1,8 @@
+r,square_states,edges,disk_pairs,uncovered_disk,uncovered_square,max_rank,source_packets,max_total_edges
+12,625,1061,437,0,56,24,1311,45
+13,729,1257,517,0,56,27,1551,47
+16,1089,1933,793,0,86,32,2379,59
+20,1681,3057,1245,0,148,40,3735,75
+32,4225,7969,3205,0,376,62,9615,113
+exact finite residual certificates: 6197 disk pairs; 18591 full packet paths
+contract-receipt: At r=12,13,16,20,32 every integer pair in z^2+y^2<r^2 has a checked finite-square rank to the diagonal small box; central and extreme full packets replay literal paths to labelled coincidence. Forged ranks, ordinals, endpoints and exhausted budgets are refused. No uniform parameter theorem is asserted.

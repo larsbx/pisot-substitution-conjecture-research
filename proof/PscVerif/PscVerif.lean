@@ -257,6 +257,11 @@ import PscVerif.BHFiniteCarrier
 import PscVerif.BHBoundedFactors
 import PscVerif.BHNearDiagonalDescent
 import PscVerif.BHNearDiagonalLiteral
+import PscVerif.BHDiagonalLiteral
+import PscVerif.BHDiagonalCertificate
+import PscVerif.BHDiagonalDescent
+import PscVerif.BHDiagonalAxis
+import PscVerif.BHDiagonalClassification
 import PscVerif.BHWindowChoice
 import PscVerif.A1PrimeTailCoincidence
 import PscVerif.A1PrimeTailPisot

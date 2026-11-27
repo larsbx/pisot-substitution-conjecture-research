@@ -1,0 +1,8 @@
+'Psc.BHNearDiagonalLiteral.literal_rounding_step_of_runFamily' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Psc.BHDiagonalLiteral.literal_rounding_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.BHDiagonalLiteral.unit_injection_hits_labelled_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.BHDiagonalLiteral.central_zero_pair_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+PSC_BH_DIAGONAL_LITERAL_AUDIT	PscVerif.BHNearDiagonalLiteral	58	41
+PSC_BH_DIAGONAL_LITERAL_AUDIT	PscVerif.BHDiagonalLiteral	69	57

@@ -1,0 +1,36 @@
+✔ [2181/2203] Built PscVerif.Binomial (3.9s)
+✔ [2182/2203] Built PscVerif.PerronCore (3.6s)
+✔ [2183/2203] Built PscVerif.ConcentrationAlgebra (3.6s)
+✔ [2184/2203] Built PscVerif.FixedPointLimit (1.0s)
+✔ [2185/2203] Built PscVerif.Incidence (2.6s)
+✔ [2186/2203] Built PscVerif.Cyclicity (4.0s)
+✔ [2187/2203] Built PscVerif.ParikhIntertwiner (2.6s)
+✔ [2188/2203] Built PscVerif.SignedCocycle (3.0s)
+✔ [2189/2203] Built PscVerif.Reduction (2.8s)
+✔ [2190/2203] Built PscVerif.Descendants (4.3s)
+⚠ [2191/2203] Built PscVerif.OccurrenceNewborn (4.1s)
+warning: PscVerif/OccurrenceNewborn.lean:53:0: automatically included section variable(s) unused in theorem `Psc.OccurrenceNewborn.SyncPlus.eventual`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: PscVerif/OccurrenceNewborn.lean:61:0: automatically included section variable(s) unused in theorem `Psc.OccurrenceNewborn.SyncMinus.eventual`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+✔ [2192/2203] Built PscVerif.OccurrenceAddress (3.8s)
+✔ [2193/2203] Built PscVerif.OccurrenceTransport (3.9s)
+✔ [2194/2203] Built PscVerif.OccurrenceFinite (2.0s)
+✔ [2195/2203] Built PscVerif.OccurrenceSuccessor (3.2s)
+✔ [2196/2203] Built PscVerif.OccurrenceMass (5.7s)
+✔ [2197/2203] Built PscVerif.BHNearDiagonalDescent (13s)
+✔ [2198/2203] Built PscVerif.BHNearDiagonalLiteral (6.1s)
+✔ [2199/2203] Built PscVerif.BHDiagonalClassification (6.3s)
+✔ [2200/2203] Built PscVerif.BHDiagonalLiteral (3.2s)
+✔ [2201/2203] Built PscVerif.BHDiagonalCertificate (2.6s)
+✔ [2202/2203] Built PscVerif.BHDiagonalAxis (3.5s)
+✔ [2203/2203] Built PscVerif.BHDiagonalDescent (3.9s)
+Build completed successfully (2203 jobs).

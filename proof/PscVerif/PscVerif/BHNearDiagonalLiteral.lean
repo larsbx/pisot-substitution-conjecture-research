@@ -28,6 +28,34 @@ structure Family (r k : ℕ) (β : ℝ) : Prop where
   upper : β < (k : ℝ) + 1
   cubic : β ^ 3 = (k : ℝ) * β ^ 2 + 2 * β + r
 
+/-- Only the literal scaling and nonempty-run assumptions are needed to
+realize a selected digit. No near-diagonal energy hypothesis is used. -/
+structure RunFamily (r k : ℕ) (β : ℝ) : Prop where
+  run_pos : 0 < k
+  lower : (k : ℝ) < β
+  cubic : β ^ 3 = (k : ℝ) * β ^ 2 + 2 * β + r
+
+theorem Family.toRunFamily {r k β} (h : Family r k β) : RunFamily r k β :=
+  ⟨by have := h.above; omega, h.lower, h.cubic⟩
+
+theorem RunFamily.beta_pos {r k β} (h : RunFamily r k β) : 0 < β := by
+  exact lt_trans (by exact_mod_cast h.run_pos : (0 : ℝ) < k) h.lower
+
+theorem RunFamily.quadratic_eq {r k β} (h : RunFamily r k β) :
+    β ^ 2 = k * β + 2 + r / β := by
+  have hb : β ≠ 0 := h.beta_pos.ne'
+  apply mul_right_cancel₀ hb
+  calc
+    β ^ 2 * β = β ^ 3 := by ring
+    _ = (k : ℝ) * β ^ 2 + 2 * β + r := h.cubic
+    _ = (k * β + 2 + r / β) * β := by rw [add_mul, div_mul_cancel₀ _ hb]; ring
+
+theorem RunFamily.lengths_ge_one {r k β} (h : RunFamily r k β) (a : Fin 3) :
+    1 ≤ lengths r β a := by
+  have hk : (1 : ℝ) ≤ k := by exact_mod_cast (show 1 ≤ k from h.run_pos)
+  have hdiv : (0 : ℝ) ≤ r / β := div_nonneg (Nat.cast_nonneg r) h.beta_pos.le
+  fin_cases a <;> simp [lengths] <;> linarith [h.lower]
+
 theorem beta_gt_thirteen {r k β} (h : Family r k β) : 13 < β := by
   have hk : 13 ≤ k := by have := h.large; have := h.above; omega
   exact (by exact_mod_cast hk : (13 : ℝ) ≤ k).trans_lt h.lower
@@ -132,15 +160,38 @@ private theorem run_residual (r k i j : ℕ) (hi : i < k) (hj : j < k) :
   funext a
   fin_cases a <;> simp [runMark, OccurrenceTransport.residual, parikhZ, List.count_replicate]
 
+/-- A literal run edge can leave the central window while remaining strict.
+The ordinal-difference bounds are retained explicitly in this endpoint. -/
+theorem literal_run_step {r k β} (h : RunFamily r k β) (x y z t : ℤ)
+    (hleft : -(k : ℤ) < t - (x + (k : ℤ)*y + z))
+    (hright : t - (x + (k : ℤ)*y + z) < (k : ℤ))
+    (hstrict : |offset (lengths r β) (runPacket (y+(r : ℤ)*z) t y).delta| < β) :
+    InteriorStep (sigma r k) (lengths r β) (runPacket x y z)
+      (runPacket (y+(r : ℤ)*z) t y) := by
+  obtain ⟨i, j, hi, hj, hd⟩ := ordinals_of_difference h.run_pos
+    (t - (x + (k : ℤ)*y + z)) hleft hright
+  refine ⟨?_, ?_⟩
+  · refine ⟨runMark r k i hi, runMark r k j hj, ?_⟩
+    change runPacket (y+(r : ℤ)*z) t y =
+      ⟨1, 1, incidenceZ (sigma r k) *ᵥ (runPacket x y z).delta +
+        residual (runMark r k i hi).before (runMark r k j hj).before⟩
+    rw [incidence_run, run_residual, hd]
+    apply congrArg (fun d => (⟨1, 1, d⟩ : Packet))
+    funext a
+    fin_cases a <;> simp
+  · apply (Packet.interior_iff_bounds (lengths r β)
+      (fun a => zero_lt_one.trans_le (h.lengths_ge_one a)) _).mpr
+    exact abs_lt.mp hstrict
+
 /-- Each chosen integer update inside the window is a strict ordered child
 at genuine positions of the two copies of the image of 1. -/
-theorem literal_rounding_step {r k β} (h : Family r k β) (x y z t : ℤ)
+theorem literal_rounding_step_of_runFamily {r k β} (h : RunFamily r k β) (x y z t : ℤ)
     (hsource : Central r k β (runPacket x y z))
     (ht : |(t : ℝ) + ((β-k)*y+(r/β)*z)| ≤ ((k : ℝ)-1)/β) :
     InteriorStep (sigma r k) (lengths r β) (runPacket x y z)
       (runPacket (y+(r : ℤ)*z) t y) ∧ Central r k β (runPacket (y+(r : ℤ)*z) t y) := by
-  have hβ : 0 < β := by linarith [beta_gt_thirteen h]
-  have hwidth : ((k : ℝ)-1)/β < 1 := (family_window h).window_lt_one
+  have hβ : 0 < β := h.beta_pos
+  have hwidth : ((k : ℝ)-1)/β < 1 := (div_lt_one hβ).mpr (by linarith [h.lower])
   let d := t - (x+(k : ℤ)*y+z)
   have hsh : (d : ℝ) = (t : ℝ) + ((β-k)*y+(r/β)*z) -
       offset (lengths r β) (runPacket x y z).delta := by
@@ -157,14 +208,14 @@ theorem literal_rounding_step {r k β} (h : Family r k β) (x y z t : ℤ)
       rw [hsh]
       linarith [(abs_le.mp ht).2, (abs_le.mp hsource.2.2).1]
     exact_mod_cast hh
-  have hk : 0 < k := by have := h.above; omega
+  have hk : 0 < k := h.run_pos
   obtain ⟨i, j, hi, hj, hd⟩ := ordinals_of_difference hk d hlo hhi
   have hscale_shift :
       offset (lengths r β) (runPacket (y+(r : ℤ)*z) t y).delta =
         β*((t : ℝ) + ((β-k)*y+(r/β)*z)) := by
     rw [offset_run]
     push_cast
-    have ha : (β-(k : ℝ))*β = 2+r/β := by nlinarith only [quadratic_eq h]
+    have ha : (β-(k : ℝ))*β = 2+r/β := by nlinarith only [h.quadratic_eq]
     have hb : (r : ℝ)/β*β = r := div_mul_cancel₀ _ hβ.ne'
     have h₁ := congrArg (fun s : ℝ => s * (y : ℝ)) ha
     have h₂ := congrArg (fun s : ℝ => s * (z : ℝ)) hb
@@ -182,10 +233,18 @@ theorem literal_rounding_step {r k β} (h : Family r k β) (x y z t : ℤ)
     funext a
     fin_cases a <;> simp [d]
   · apply (Packet.interior_iff_bounds (lengths r β)
-      (fun a => zero_lt_one.trans_le (lengths_ge_one h a)) _).mpr
+      (fun a => zero_lt_one.trans_le (h.lengths_ge_one a)) _).mpr
     change -β < offset (lengths r β) (runPacket (y+(r : ℤ)*z) t y).delta ∧
       offset (lengths r β) (runPacket (y+(r : ℤ)*z) t y).delta < β
     constructor <;> linarith only [(abs_le.mp hdst).1, (abs_le.mp hdst).2, h.lower]
+
+/-- Compatibility endpoint for the two previously proved off-diagonal bands. -/
+theorem literal_rounding_step {r k β} (h : Family r k β) (x y z t : ℤ)
+    (hsource : Central r k β (runPacket x y z))
+    (ht : |(t : ℝ) + ((β-k)*y+(r/β)*z)| ≤ ((k : ℝ)-1)/β) :
+    InteriorStep (sigma r k) (lengths r β) (runPacket x y z)
+      (runPacket (y+(r : ℤ)*z) t y) ∧ Central r k β (runPacket (y+(r : ℤ)*z) t y) :=
+  literal_rounding_step_of_runFamily h.toRunFamily x y z t hsource ht
 
 private theorem packet_from_central {r k β p} (hp : Central r k β p) :
     p = runPacket (p.delta 0) (p.delta 1) (p.delta 2) := by

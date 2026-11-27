@@ -1,5 +1,11 @@
 # Literal return paths in the diagonal determinant band
 
+**November 27 continuation.** The [uniform residual exit](bh-diagonal-residual-exit-2026-11-27.md)
+now supplies a written completion of the residual problem described below.
+The original sufficient-region argument and its replay remain unchanged.
+The continuation distinguishes its compiled Lean components from the full
+written classification and third-level entry.
+
 **Status.** Written sufficient region and a reduction of the remaining
 diagonal band. The exact replay checks the stated literal choices.
 [Source review](bh-third-level-and-diagonal-stop-go-2026-11-24.md)
