@@ -2,6 +2,38 @@
 
 **Status:** planning and source reconciliation; universal BH and A1′ remain open.
 
+## November 27: upper plus Lean assembly and higher-determinant bands
+
+This section supersedes the active-work paragraph of the November 21
+snapshot below, which is retained as history.
+
+**Upper plus Class A is formalized.** #655 merged the
+[central completion](class-a-plus-upper-central-completion-2026-11-23.md).
+`Psc.ClassAPlusUpperCentralCompletion.exists_root_all_source_completion`
+proves, for every `n>=7`, `n+5<=d<=2n+11`, a bracketed cubic root,
+positive literal eigenlengths and a finite original-occurrence path from
+every strict integral typed source to typed `y/y` zero. Its only outer
+premises are the three parameter inequalities. The merge record states
+that the accepted head passed the hosted Lean build and axiom audit. The 70
+small members `n<=6` keep their complete swap-seed certificate scope; their
+Mojo and pytest checks run in main's hosted research checks, which passed
+at `ffd3f9b` (run 45442126274). Independent human review remains pending.
+
+**Higher-determinant family (#656).** For `σ_{k,r}=(1,01^k2,0^r1)`:
+
+| Scope | Result | Verification boundary |
+| --- | --- | --- |
+| `r>=12`, `k=r+1,r+2` | [Written all-source exit](bh-near-diagonal-exit-2026-11-24.md) to `1/1` at full integral displacement zero | Lean checks the quadratic descent and its literal realization in the central window; the third-level mark entry is written only |
+| `r>=12`, `k=r` | [Sufficient region](bh-diagonal-run-reduction-2026-11-24.md): run window with `max(\|y\|,\|z\|)<=⌊(r-2)/3⌋` | The uniform exit from the remaining run-window packets is open |
+| Both bands and `k=r` | [Three-window entry](bh-third-level-windows-2026-11-24.md) on the original occurrence tracks | Written construction with exact literal replay |
+| 24 members | [Bounded-factor bridge](bh-higher-determinant-carrier-2026-11-24.md): finite actual factor bound implies literal zero hits | Lean implications checked locally; a proof uniform in the remaining parameters is open |
+
+**Active BH work.** Bind the minus-Class-A paths to Lean (#442). Give the
+`k=r` band a uniform exit and formalize the third-level mark entry. Then
+extend source coverage and actual zero-hit paths to the remaining BH
+domains in the full nonunit representation. Residual A1′ (#138) is
+unchanged since November 21.
+
 ## November 21: current family boundary and universal work
 
 At main
