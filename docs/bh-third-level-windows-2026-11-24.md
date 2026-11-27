@@ -1,5 +1,7 @@
 # Three-window entry on the original occurrence tracks
 
+**Formal continuation, 27 November:** the [complete three-band Lean assembly](bh-diagonal-closure-2026-11-27.md) now discharges the actual entry, diagonal classification, signed progress and termination obligations. The dated component scope below is retained as the record of the earlier contribution. The [spectral transfer](bh-three-band-spectral-transfer-2026-11-27.md) states the resulting family conclusion and its verification boundaries.
+
 **Status.** Written deterministic construction and exact literal
 replay. The Lean work is recorded at its separate verification scope.
 [Source review](bh-third-level-and-diagonal-stop-go-2026-11-24.md)

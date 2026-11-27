@@ -1,0 +1,101 @@
+✔ [2956/3015] Built PscVerif.BHWindowChoice (666ms)
+✔ [2957/3015] Built PscVerif.PerronCore (4.3s)
+✔ [2958/3015] Built PscVerif.ConcentrationAlgebra (4.2s)
+✔ [2959/3015] Built PscVerif.Binomial (5.0s)
+✔ [2960/3015] Built PscVerif.FixedPointLimit (2.5s)
+✔ [2961/3015] Built PscVerif.Incidence (3.0s)
+✔ [2962/3015] Built PscVerif.Cyclicity (5.1s)
+✔ [2963/3015] Built PscVerif.PrimitiveExpansion (2.4s)
+✔ [2964/3015] Built PscVerif.ParikhIntertwiner (3.4s)
+✔ [2965/3015] Built PscVerif.SignedCocycle (2.9s)
+✔ [2966/3015] Built PscVerif.Reduction (2.6s)
+✔ [2967/3015] Built PscVerif.Descendants (4.0s)
+✔ [2968/3015] Built PscVerif.Termination (2.1s)
+✔ [2969/3015] Built PscVerif.StrictSystemCore (3.5s)
+⚠ [2970/3015] Built PscVerif.OccurrenceNewborn (3.9s)
+warning: PscVerif/OccurrenceNewborn.lean:53:0: automatically included section variable(s) unused in theorem `Psc.OccurrenceNewborn.SyncPlus.eventual`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: PscVerif/OccurrenceNewborn.lean:61:0: automatically included section variable(s) unused in theorem `Psc.OccurrenceNewborn.SyncMinus.eventual`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+✔ [2971/3015] Built PscVerif.BPrimeBinding (4.5s)
+⚠ [2972/3015] Built PscVerif.TerminationFactors (3.1s)
+warning: PscVerif/TerminationFactors.lean:107:8: automatically included section variable(s) unused in theorem `_private.PscVerif.TerminationFactors.0.Psc.TerminationFactors.subst_singletons`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+✔ [2973/3015] Built PscVerif.OccurrenceAddress (2.9s)
+✔ [2974/3015] Built PscVerif.GeometricFInclusion (6.6s)
+✔ [2975/3015] Built PscVerif.OccurrenceTransport (5.2s)
+✔ [2976/3015] Built PscVerif.GeometricFLength (3.2s)
+✔ [2977/3015] Built PscVerif.GeometricFRank (3.2s)
+✔ [2978/3015] Built PscVerif.OccurrenceFinite (2.7s)
+✔ [2979/3015] Built PscVerif.OccurrenceSuccessor (3.1s)
+✔ [2980/3015] Built PscVerif.OccurrenceMass (4.0s)
+✔ [2981/3015] Built PscVerif.ZeroFibreOverlap (5.7s)
+⚠ [2982/3015] Built PscVerif.OccurrenceAncestry (5.5s)
+warning: PscVerif/OccurrenceAncestry.lean:80:6: Unused tactic linter: `change
+  (s a).length + (subst s parent.before).length + digit.before.length = child.index` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+✔ [2983/3015] Built PscVerif.GeometricFPisotCore (9.5s)
+✔ [2984/3015] Built PscVerif.BHFiniteReachability (8.7s)
+✔ [2985/3015] Built PscVerif.OccurrenceWidth (4.8s)
+✔ [2986/3015] Built PscVerif.OccurrenceInverse (4.9s)
+✔ [2987/3015] Built PscVerif.BHFiniteCarrier (2.7s)
+✔ [2988/3015] Built PscVerif.BHBoundedFactors (2.8s)
+✔ [2989/3015] Built PscVerif.BHNearDiagonalDescent (17s)
+✔ [2990/3015] Built PscVerif.BHPisotFiniteBPA (3.9s)
+⚠ [2991/3015] Built PscVerif.ClassAZeroDefectEscape (22s)
+warning: PscVerif/ClassAZeroDefectEscape.lean:233:37: Unused tactic linter: `omega` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PscVerif/ClassAZeroDefectEscape.lean:252:54: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PscVerif/ClassAZeroDefectEscape.lean:233:37: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PscVerif/ClassAZeroDefectEscape.lean:252:54: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PscVerif/ClassAZeroDefectEscape.lean:231:50: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAZeroDefectEscape.lean:241:50: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [2992/3015] Built PscVerif.BHNearDiagonalLiteral (6.3s)
+✔ [2993/3015] Built PscVerif.BHDiagonalClassification (6.4s)
+✔ [2994/3015] Built PscVerif.BHDiagonalLiteral (3.6s)
+✔ [2995/3015] Built PscVerif.ClassACentralRecurrence (5.8s)
+✔ [2996/3015] Built PscVerif.BHDiagonalCertificate (3.6s)
+✔ [2997/3015] Built PscVerif.BHDiagonalParameters (4.9s)
+✔ [2998/3015] Built PscVerif.BHThirdLevelGeometry (4.9s)
+✔ [2999/3015] Built PscVerif.BHDiagonalAxis (6.3s)
+✔ [3000/3015] Built PscVerif.BHDiagonalDescent (6.6s)
+✔ [3001/3015] Built PscVerif.BHDiagonalOuter (7.3s)
+✔ [3002/3015] Built PscVerif.ClassAMinusConstantRecurrence (10s)
+✔ [3003/3015] Built PscVerif.BHDiagonalPisot (6.9s)
+✔ [3004/3015] Built PscVerif.BHNearDiagonalPisot (8.3s)
+✔ [3005/3015] Built PscVerif.ClassAMinusPrefixAssembly (3.6s)
+✔ [3006/3015] Built PscVerif.BHHigherDeterminantPisot (4.1s)
+✔ [3007/3015] Built PscVerif.BHThirdLevelTransport (2.9s)
+✔ [3008/3015] Built PscVerif.BHThirdLevelEntry (5.6s)
+✔ [3009/3015] Built PscVerif.BHDiagonalClassificationFull (31s)
+✔ [3010/3015] Built PscVerif.BHDiagonalProgress (2.6s)
+✔ [3011/3015] Built PscVerif.BHDiagonalTermination (3.3s)
+✔ [3012/3015] Built PscVerif.BHDiagonalAllSources (1.9s)
+✔ [3013/3015] Built PscVerif.BHDiagonalConsequences (2.3s)
+✔ [3014/3015] Built PscVerif.BHThreeBandClosure (2.4s)
+✔ [3015/3015] Built PscVerif.BHThreeBandBPA (2.3s)
+Build completed successfully (3015 jobs).

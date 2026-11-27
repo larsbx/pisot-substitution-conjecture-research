@@ -1,5 +1,7 @@
 # Uniform selectable exit in the diagonal determinant band
 
+**Formal continuation, 27 November:** the [complete three-band Lean assembly](bh-diagonal-closure-2026-11-27.md) now discharges the actual entry, diagonal classification, signed progress and termination obligations. The dated component scope below is retained as the record of the earlier contribution. The [spectral transfer](bh-three-band-spectral-transfer-2026-11-27.md) states the resulting family conclusion and its verification boundaries.
+
 **Status: written proof, with separately scoped Lean components and exact replay.**
 The argument below closes the residual *written* exit obligation for the
 literal family `sigma=(1,0 1^r 2,0^r 1)`, `r>=12`. It does not assert that the

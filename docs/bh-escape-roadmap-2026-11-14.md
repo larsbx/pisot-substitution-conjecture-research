@@ -19,21 +19,28 @@ small members `n<=6` keep their complete swap-seed certificate scope; their
 Mojo and pytest checks run in main's hosted research checks, which passed
 at `ffd3f9b` (run 45442126274). Independent human review remains pending.
 
-**Higher-determinant family (#656).** For `σ_{k,r}=(1,01^k2,0^r1)`:
+**Higher-determinant family (continuation of #656 and #659).** For
+`σ_{k,r}=(1,01^k2,0^r1)`, the missing diagonal and entry proofs are now
+assembled. The [closure note](bh-diagonal-closure-2026-11-27.md) gives exact
+Lean signatures and the [spectral transfer](bh-three-band-spectral-transfer-2026-11-27.md)
+gives the complete written argument with primary-source hypotheses.
 
 | Scope | Result | Verification boundary |
 | --- | --- | --- |
-| `r>=12`, `k=r+1,r+2` | [Written all-source exit](bh-near-diagonal-exit-2026-11-24.md) to `1/1` at full integral displacement zero | Lean checks the quadratic descent and its literal realization in the central window; the third-level mark entry is written only |
-| `r>=12`, `k=r` | [Written uniform residual exit](bh-diagonal-residual-exit-2026-11-27.md), completing the earlier sufficient region and composing with written entry | Lean checks the literal steps, exceptional two-step paths, positive-axis progress and congruence-elimination core; the full classification and all-source assembly remain written |
-| Both bands and `k=r` | [Three-window entry](bh-third-level-windows-2026-11-24.md) on the original occurrence tracks | Written construction with exact literal replay |
-| 24 members | [Bounded-factor bridge](bh-higher-determinant-carrier-2026-11-24.md): finite actual factor bound implies literal zero hits | Lean implications checked locally; a proof uniform in the remaining parameters is open |
+| `r>=12`, `r<=k<=r+2` | Every strict full integral typed packet has a finite original-occurrence path to equal-letter zero | Complete Lean assembly: actual root, entry, full diagonal classification, signed progress and termination; original ordinals and all coordinates retained |
+| Same three bands | All-pairs literal strong coincidence, finite strict-system exclusion and full-factor BPA termination for every irreducible balanced seed | Checked on the original words and one constructed root; finite all-child carrier derived from actual Pisot contraction |
+| `r>=4`, `k>=r` | Actual primitive irreducible Pisot arithmetic and positive literal eigenlengths | Root, actual characteristic polynomial, irreducibility and contracting conjugates constructed in Lean |
+| `4<=r<=11`, `r<=k<=r+2` | Complete finite carriers for all three unordered swap seeds | All 24 exact members; existing native certificates, not imported into Lean |
+| `r>=4`, `k>=r+3` | Full finite canonical `01/10` termination with coincidence | Existing bivariate word certificate and written productivity argument; no new all-source quantifier |
+| `r>=4`, `k>=r` | Canonical-seed termination and pure discrete tiling-flow spectrum | Written family-domain conclusion combining the preceding regions and the published Barge–Štimac–Williams criterion; exact formal boundary in the transfer note |
 
-**Active BH work.** Bind the minus-Class-A paths to Lean (#442). Assemble the
-diagonal residual classification into its full Lean endpoint and formalize
-the third-level mark entry. The [local diagonal evidence](../evidence/bh-diagonal-residual-2026-11-27/README.md)
-separates the uniform written proof from the seven-parameter replay. Then
-extend source coverage and actual zero-hit paths to the remaining BH
-domains in the full nonunit representation. No residual A1′ (#138)
+**Active BH work.** The full diagonal classification, signed composition,
+outer termination and original third-level mark entry are discharged for
+the three bands. Bind the minus-Class-A paths to Lean (#442), and extend
+actual zero-hit paths to remaining BH source domains in the full nonunit
+representation. The [new local evidence](../evidence/bh-diagonal-closure-2026-11-27/README.md)
+keeps fresh-source formal verification separate from hosted acceptance.
+No residual A1′ (#138)
 result has merged since November 21. #624 adds a Lean
 [correspondence](barge-diamond-correspondence-2026-11-19.md) between the
 Barge–Diamond word conclusion and vertex coincidence. It is an interface

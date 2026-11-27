@@ -80,4 +80,4 @@ python3 -m pytest -q tests/test_bh_diagonal_residual_oracle.py \
 python3 tools/make_proof_bank.py --pins-only --require-packages
 psc_diagonal_bindings > "$PSC_DIAGONAL_TMP/source-bindings-after.json"
 cmp "$PSC_DIAGONAL_OUT/source-bindings.json" "$PSC_DIAGONAL_TMP/source-bindings-after.json"
-printf '%s\n' 'Scoped diagonal Lean and exact finite replay passed; uniform classification assembly remains written.'
+printf '%s\n' 'Scoped diagonal components and exact finite replay passed; complete family assembly is checked by check_bh_diagonal_closure.sh.'

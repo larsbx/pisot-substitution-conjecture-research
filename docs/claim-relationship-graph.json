@@ -513,6 +513,16 @@
       "source": "source: docs/c4-barge-diamond-endpoint-eliminator.md"
     },
     {
+      "id": "HigherDeterminantPisotArithmetic",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "for every r>=4 and k>=r, the actual substitution (1,01^k2,0^r1) is primitive with irreducible rational incidence characteristic polynomial X^3-kX^2-2X-r, a constructed root beta in (k,k+1), all other complex roots contracting, and positive literal eigenlengths",
+      "scope": "the actual literal family (1,01^k2,0^r1), natural parameters 4<=r<=k; no upper bound on k",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/bh-three-band-spectral-transfer-2026-11-27.md, section 2; Psc.BHHigherDeterminantPisot.primitive_irreducible_pisot; evidence/bh-diagonal-closure-2026-11-27/README.md; local source-isolated Lean verification, hosted acceptance recorded separately, human review pending"
+    },
+    {
       "id": "InterBlockCancellation",
       "kind": "claim",
       "label": "Repository-proved",
@@ -932,6 +942,16 @@
       "source": "source: archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, section 3 semisimplicity lemma; not formalized in Lean"
     },
     {
+      "id": "PisotAllSourceFiniteBPA",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "for a three-letter substitution with positive scaling eigenlengths, irreducible rational incidence characteristic polynomial and contracting other complex roots, actual labelled-zero paths from every strict integral packet imply finite termination with coincidence of every irreducible balanced seed; a finite all-child closed packet carrier is derived before productivity is used",
+      "scope": "three-letter substitutions with the stated actual Pisot arithmetic and positive scaling lengths; conditional on actual labelled exits from every strict integral packet",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/bh-diagonal-closure-2026-11-27.md; Psc.BHPisotFiniteBPA.terminates_of_pisot_all_source_exit; evidence/bh-diagonal-closure-2026-11-27/README.md; conditional implication fully Lean-checked, no universal exit premise discharged, human review pending"
+    },
+    {
       "id": "PisotMeyerProperty",
       "kind": "claim",
       "label": "Imported theorem",
@@ -1144,6 +1164,26 @@
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
       "source": "source: archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, section 5 certified intertwining identity; kernel/verify.mojo check C7; not formalized in Lean"
+    },
+    {
+      "id": "ThreeBandFiniteBPA",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "for every r>=12 and r<=k<=r+2, every irreducible balanced seed for the actual substitution (1,01^k2,0^r1) has finitely many full-iterate irreducible factors and every such factor reaches a literal singleton coincidence; in particular every distinct-letter swap seed terminates with coincidence",
+      "scope": "the actual literal family (1,01^k2,0^r1), r>=12 and r<=k<=r+2; every irreducible balanced seed",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/bh-diagonal-closure-2026-11-27.md; Psc.BHThreeBandBPA.all_blocks_terminate and all_blocks_full_factor_coincidence; evidence/bh-diagonal-closure-2026-11-27/README.md; local source-isolated Lean verification, external spectral implication separate, human review pending"
+    },
+    {
+      "id": "ThreeBandLiteralClosure",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "for every r>=12 and r<=k<=r+2, every strict integral typed packet of the actual substitution (1,01^k2,0^r1) has a finite original-occurrence interior path to equal-letter full integral zero; a bracketed root is constructed, original ordinals are retained, and actual all-pairs left strong coincidence and finite strict-system exclusion follow",
+      "scope": "the actual literal family (1,01^k2,0^r1), r>=12 and r<=k<=r+2; every strict full integral typed source",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/bh-diagonal-closure-2026-11-27.md; Psc.BHThreeBandClosure.family_closure; evidence/bh-diagonal-closure-2026-11-27/README.md; local source-isolated Lean verification, hosted acceptance recorded separately, human review pending"
     },
     {
       "id": "TwoObstructionCompletion",
@@ -2549,6 +2589,14 @@
     },
     {
       "type": "implicative",
+      "source": "HigherDeterminantPisotArithmetic",
+      "target": "ThreeBandFiniteBPA",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "proof/PscVerif/PscVerif/BHThreeBandBPA.lean:Psc.BHThreeBandBPA.terminates_of_family_closure uses FamilyClosure.positive_lengths, expanding, lengths_scale, irreducible, contracting; checked scope restriction r>=12 implies r>=4 and r<=k<=r+2 implies r<=k; these same-root facts are independently rederived in Psc.BHThreeBandClosure.family_closure from BHDiagonalPisot/BHNearDiagonalPisot"
+    },
+    {
+      "type": "implicative",
       "source": "InterBlockCancellation",
       "target": "LoadBearingSCC",
       "provenance": "theorem-backed",
@@ -2749,6 +2797,14 @@
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "W3LowGrowth/PhiSemisimplicity"
+    },
+    {
+      "type": "implicative",
+      "source": "PisotAllSourceFiniteBPA",
+      "target": "ThreeBandFiniteBPA",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "proof/PscVerif/PscVerif/BHThreeBandBPA.lean:Psc.BHThreeBandBPA.terminates_of_family_closure applies Psc.BHPisotFiniteBPA.terminates_of_pisot_all_source_exit to sigma r k, lengths r beta, and the same beta using the FamilyClosure fields"
     },
     {
       "type": "implicative",
@@ -3000,6 +3056,14 @@
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "SeedCentralizer/ThetaIntertwining"
+    },
+    {
+      "type": "implicative",
+      "source": "ThreeBandLiteralClosure",
+      "target": "ThreeBandFiniteBPA",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "proof/PscVerif/PscVerif/BHThreeBandBPA.lean:Psc.BHThreeBandBPA.all_blocks_terminate applies Psc.BHThreeBandClosure.family_closure; terminates_of_family_closure uses FamilyClosure.all_source and OrderedInteriorPath.interiorPath"
     },
     {
       "type": "implicative",

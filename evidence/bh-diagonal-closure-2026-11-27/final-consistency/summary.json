@@ -1,0 +1,74 @@
+[
+  {
+    "name": "proof-bank",
+    "argv": [
+      "/workspace/scratch/332183132e70/psc-python/bin/python",
+      "tools/make_proof_bank.py",
+      "--check"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "ledger",
+    "argv": [
+      "/workspace/scratch/332183132e70/psc-python/bin/python",
+      "tools/make_ledger.py",
+      "--check"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "math-catalogue",
+    "argv": [
+      "/workspace/scratch/332183132e70/psc-python/bin/python",
+      "tools/make_math_catalogue.py",
+      "--check"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "claim-governance",
+    "argv": [
+      "/workspace/scratch/332183132e70/psc-python/bin/python",
+      "-m",
+      "claim_governance.cli",
+      "--root",
+      "."
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "manuscript",
+    "argv": [
+      "/workspace/scratch/332183132e70/psc-python/bin/python",
+      "tools/audit_manuscript.py"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "markdown-source",
+    "argv": [
+      "/workspace/scratch/332183132e70/psc-python/bin/python",
+      "tools/check_markdown_source.py"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "vendored-pins",
+    "argv": [
+      "/workspace/scratch/332183132e70/psc-python/bin/python",
+      "tools/vendoring/check_vendored_sync.py"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "diff-whitespace",
+    "argv": [
+      "git",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "exit_code": 0
+  }
+]

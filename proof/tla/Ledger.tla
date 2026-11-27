@@ -55,6 +55,7 @@ ResultSet == {
     "G1b2RenewalFiniteness",
     "GaloisWedgePropagation",
     "GlobalEndpointSync",
+    "HigherDeterminantPisotArithmetic",
     "InterBlockCancellation",
     "LatticeLift",
     "LeftmostChainCycleStructure",
@@ -96,6 +97,7 @@ ResultSet == {
     "ParitySieve",
     "PeriodicPairOneFibre",
     "PhiSemisimplicity",
+    "PisotAllSourceFiniteBPA",
     "PisotMeyerProperty",
     "PlusClassDBoundaryHitting",
     "PlusClassDBoundaryLine",
@@ -117,6 +119,8 @@ ResultSet == {
     "SwapOverlapFiniteness",
     "Target1",
     "ThetaIntertwining",
+    "ThreeBandFiniteBPA",
+    "ThreeBandLiteralClosure",
     "TwoObstructionCompletion",
     "UDForPowers",
     "UniqueDecodability",
@@ -175,6 +179,7 @@ RequiresDef == [r \in ResultSet |->
       [] r = "G1b2RenewalFiniteness" -> {{"G1b1BoundedDiscrepancy"}}
       [] r = "GaloisWedgePropagation" -> {{}}
       [] r = "GlobalEndpointSync" -> {{"EndpointCore"}}
+      [] r = "HigherDeterminantPisotArithmetic" -> {{}}
       [] r = "InterBlockCancellation" -> {{}}
       [] r = "LatticeLift" -> {{"MeanAreaLift"}}
       [] r = "LeftmostChainCycleStructure" -> {{}}
@@ -216,6 +221,7 @@ RequiresDef == [r \in ResultSet |->
       [] r = "ParitySieve" -> {{"DefectIntertwiner"}}
       [] r = "PeriodicPairOneFibre" -> {{"ReturnModuleFullRank"}}
       [] r = "PhiSemisimplicity" -> {{}}
+      [] r = "PisotAllSourceFiniteBPA" -> {{}}
       [] r = "PisotMeyerProperty" -> {{}}
       [] r = "PlusClassDBoundaryHitting" -> {{"PlusClassDBoundaryLine", "PlusClassDPositiveBBoundaryHitting", "ClassDWedgeBoundaryHitting"}}
       [] r = "PlusClassDBoundaryLine" -> {{}}
@@ -237,6 +243,8 @@ RequiresDef == [r \in ResultSet |->
       [] r = "SwapOverlapFiniteness" -> {{"G1b1BoundedDiscrepancy"}}
       [] r = "Target1" -> {{"SeedCentralizer"}}
       [] r = "ThetaIntertwining" -> {{}}
+      [] r = "ThreeBandFiniteBPA" -> {{"HigherDeterminantPisotArithmetic", "ThreeBandLiteralClosure", "PisotAllSourceFiniteBPA"}}
+      [] r = "ThreeBandLiteralClosure" -> {{}}
       [] r = "TwoObstructionCompletion" -> {{"UniversalAlignedCoincidence", "UniversalBoundaryHitting", "SwapOverlapFiniteness", "AlignedOverlapsAreStrongCoincidence", "DensityToPDSBridge"}}
       [] r = "UDForPowers" -> {{"UniqueDecodability"}}
       [] r = "UniqueDecodability" -> {{"DefectTheorem"}}
@@ -285,6 +293,7 @@ ProvedDef == {
     "G1b1BoundedDiscrepancy",
     "GaloisWedgePropagation",
     "GlobalEndpointSync",
+    "HigherDeterminantPisotArithmetic",
     "InterBlockCancellation",
     "LatticeLift",
     "LeftmostChainCycleStructure",
@@ -324,6 +333,7 @@ ProvedDef == {
     "ParitySieve",
     "PeriodicPairOneFibre",
     "PhiSemisimplicity",
+    "PisotAllSourceFiniteBPA",
     "PlusClassDBoundaryHitting",
     "PlusClassDBoundaryLine",
     "PlusClassDPositiveBBoundaryHitting",
@@ -339,6 +349,8 @@ ProvedDef == {
     "SwapOverlapFiniteness",
     "Target1",
     "ThetaIntertwining",
+    "ThreeBandFiniteBPA",
+    "ThreeBandLiteralClosure",
     "TwoObstructionCompletion",
     "UDForPowers",
     "UniqueDecodability",
@@ -466,6 +478,7 @@ G1b1BoundedDiscrepancyNotEstablished == "G1b1BoundedDiscrepancy" \notin establis
 G1b2RenewalFinitenessNotEstablished == "G1b2RenewalFiniteness" \notin established
 GaloisWedgePropagationNotEstablished == "GaloisWedgePropagation" \notin established
 GlobalEndpointSyncNotEstablished == "GlobalEndpointSync" \notin established
+HigherDeterminantPisotArithmeticNotEstablished == "HigherDeterminantPisotArithmetic" \notin established
 InterBlockCancellationNotEstablished == "InterBlockCancellation" \notin established
 LatticeLiftNotEstablished == "LatticeLift" \notin established
 LeftmostChainCycleStructureNotEstablished == "LeftmostChainCycleStructure" \notin established
@@ -507,6 +520,7 @@ ParikhIntertwinerNotEstablished == "ParikhIntertwiner" \notin established
 ParitySieveNotEstablished == "ParitySieve" \notin established
 PeriodicPairOneFibreNotEstablished == "PeriodicPairOneFibre" \notin established
 PhiSemisimplicityNotEstablished == "PhiSemisimplicity" \notin established
+PisotAllSourceFiniteBPANotEstablished == "PisotAllSourceFiniteBPA" \notin established
 PisotMeyerPropertyNotEstablished == "PisotMeyerProperty" \notin established
 PlusClassDBoundaryHittingNotEstablished == "PlusClassDBoundaryHitting" \notin established
 PlusClassDBoundaryLineNotEstablished == "PlusClassDBoundaryLine" \notin established
@@ -528,6 +542,8 @@ StrongCoincidenceFromPDSNotEstablished == "StrongCoincidenceFromPDS" \notin esta
 SwapOverlapFinitenessNotEstablished == "SwapOverlapFiniteness" \notin established
 Target1NotEstablished == "Target1" \notin established
 ThetaIntertwiningNotEstablished == "ThetaIntertwining" \notin established
+ThreeBandFiniteBPANotEstablished == "ThreeBandFiniteBPA" \notin established
+ThreeBandLiteralClosureNotEstablished == "ThreeBandLiteralClosure" \notin established
 TwoObstructionCompletionNotEstablished == "TwoObstructionCompletion" \notin established
 UDForPowersNotEstablished == "UDForPowers" \notin established
 UniqueDecodabilityNotEstablished == "UniqueDecodability" \notin established

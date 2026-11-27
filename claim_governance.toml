@@ -1238,6 +1238,20 @@ anchor = '| GlobalEndpointSync |'
 window_lines = 0
 
 [[claim]]
+name = "HigherDeterminantPisotArithmetic"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"HigherDeterminantPisotArithmetic"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| HigherDeterminantPisotArithmetic |'
+window_lines = 0
+
+[[claim]]
 name = "InterBlockCancellation"
 status = "proved"
 [[claim.surfaces]]
@@ -1972,6 +1986,20 @@ anchor = '| PhiSemisimplicity |'
 window_lines = 0
 
 [[claim]]
+name = "PisotAllSourceFiniteBPA"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"PisotAllSourceFiniteBPA"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| PisotAllSourceFiniteBPA |'
+window_lines = 0
+
+[[claim]]
 name = "PisotMeyerProperty"
 status = "imported"
 aliases = ["Pisot Meyer property"]
@@ -2345,6 +2373,34 @@ expect = "present"
 [[claim.surfaces]]
 path = "docs/ledger-index.md"
 anchor = '| ThetaIntertwining |'
+window_lines = 0
+
+[[claim]]
+name = "ThreeBandFiniteBPA"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"ThreeBandFiniteBPA"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| ThreeBandFiniteBPA |'
+window_lines = 0
+
+[[claim]]
+name = "ThreeBandLiteralClosure"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"ThreeBandLiteralClosure"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| ThreeBandLiteralClosure |'
 window_lines = 0
 
 [[claim]]

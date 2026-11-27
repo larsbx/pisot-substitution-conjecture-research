@@ -74,6 +74,7 @@ system when a periodic pair is not coincident").  Universal C4 is open: nothing 
 excludes a strict system on PIP3.
 -/
 import PscVerif.GeometricFInclusion
+import PscVerif.GeometricFLength
 import PscVerif.StrictSystem
 
 namespace Psc.GeometricF
@@ -582,39 +583,6 @@ end Equivalence
 section Binding
 
 variable [Fintype α]
-
-/-- The additive functional `v ↦ ℓ·v` on integer vectors. -/
-def lenHom (ℓ : α → ℝ) : (α → ℤ) →+ ℝ where
-  toFun v := ∑ a, ℓ a * (v a : ℝ)
-  map_zero' := by simp
-  map_add' v w := by simp [mul_add, Finset.sum_add_distrib]
-
-omit [DecidableEq α] in
-theorem lenHom_apply (ℓ : α → ℝ) (v : α → ℤ) : lenHom ℓ v = ∑ a, ℓ a * (v a : ℝ) := rfl
-
-theorem lenHom_single (ℓ : α → ℝ) (a : α) : lenHom ℓ (pvec [a]) = ℓ a := by
-  rw [lenHom_apply, Finset.sum_eq_single a]
-  · simp [pvec]
-  · intro b _ hb
-    simp [pvec, Ne.symm hb]
-  · intro h; exact absurd (Finset.mem_univ a) h
-
-theorem lengthData_of_left_eigen {s : α → List α} {ℓ : α → ℝ} {β : ℝ} (hβ : 0 < β)
-    (hℓ : ∀ a, 0 < ℓ a) (h : ℓ ᵥ* (inc s).map (Nat.cast : ℕ → ℝ) = β • ℓ) :
-    LengthData s (lenHom ℓ) β where
-  beta_pos := hβ
-  pos a := by rw [lenHom_single]; exact hℓ a
-  eigen v := by
-    have hc : ∀ c, ∑ a, ℓ a * ((inc s a c : ℕ) : ℝ) = β * ℓ c := fun c => by
-      have := congrFun h c
-      simpa [Matrix.vecMul, dotProduct] using this
-    simp only [lenHom_apply, Matrix.mulVec, dotProduct, Matrix.map_apply]
-    push_cast
-    simp only [Finset.mul_sum]
-    rw [Finset.sum_comm]
-    refine Finset.sum_congr rfl fun c _ => ?_
-    rw [← mul_assoc, ← hc c, Finset.sum_mul]
-    refine Finset.sum_congr rfl fun a _ => by ring
 
 /-- **Length data from the left Perron eigenvector of a primitive substitution**
 (`Psc.PerronExistence.exists_pos_left_eigen_inc`). -/

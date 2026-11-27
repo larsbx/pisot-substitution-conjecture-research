@@ -1,0 +1,13 @@
+{
+  "status": "blocked_after_completed_lean_audit",
+  "action": "second full closure gate: native Mojo residual replay",
+  "reason": "Automatic approval review rejected the execution because Mojo attempted a telemetry request to telemetry.modular.com and the exported metadata was not authorized.",
+  "completed_scope": "Fresh Lean project build, 18-module/44-endpoint recursive axiom audit and inherited Lean audits; native residual log contains only its CSV header. No completed native/oracle/final gate claim is made for this attempt.",
+  "safer_resolution": "The final gate sets the vendor-supported MODULAR_TELEMETRY_ENABLED=false and MODULAR_CRASH_REPORTING_ENABLED=false before every Mojo invocation. This disables telemetry and crash reporting; no network policy or review rule was changed.",
+  "sources": [
+    "https://mojolang.static.modular.com/nightly/docs/faq/",
+    "https://mojolang.static.modular.com/releases/v1.0.0/"
+  ],
+  "archive_sha256": "26a5ff10076266b96e2db3af9565dc2a60cf8636b0109db0b264c158de8da16e",
+  "files": 17
+}

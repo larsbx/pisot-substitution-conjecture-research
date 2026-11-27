@@ -1,0 +1,146 @@
+name: BH three-band literal closure
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/bh-diagonal-closure.yml'
+      - 'proof/PscVerif/**'
+      - 'proof/proof-bank.json'
+      - 'proof/proof-bank.toml'
+      - 'kernel/**'
+      - 'oracles/python/bh_diagonal_residual.py'
+      - 'tests/test_bh_diagonal_residual_oracle.py'
+      - 'tools/**'
+      - 'claim_governance.toml'
+      - 'vendored.toml'
+      - 'docs/bh-*.md'
+      - 'docs/proof-bank.md'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/bh-diagonal-closure.yml'
+      - 'proof/PscVerif/**'
+      - 'proof/proof-bank.json'
+      - 'proof/proof-bank.toml'
+      - 'kernel/**'
+      - 'oracles/python/bh_diagonal_residual.py'
+      - 'tests/test_bh_diagonal_residual_oracle.py'
+      - 'tools/check_bh_diagonal_closure.sh'
+      - 'tools/setup_lean.sh'
+      - 'tools/make_proof_bank.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  closure:
+    name: Fresh literal proofs and exact replay
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Bind the exact source revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test -z "$(git status --porcelain)"
+          mkdir -p "$RUNNER_TEMP/bh-diagonal-closure"
+          git rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/bh-diagonal-closure/source.txt"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install the independent oracle test runner
+        run: python -m pip install 'pytest==8.4.2'
+      - name: Provision the exact Lean release
+        run: |
+          ./tools/setup_lean.sh --toolchain-only
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Select only the required upstream cache
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - "$RUNNER_TEMP/bh-diagonal-closure/upstream-roots.txt" <<'PY'
+          import pathlib, re, sys
+          root = pathlib.Path.cwd()
+          sys.path.insert(0, str(root / 'tools'))
+          from make_proof_bank import lean_code
+          project = root / 'proof/PscVerif'
+          visited, external = set(), set()
+          def visit(module):
+              if module in visited:
+                  return
+              path = project / (module.replace('.', '/') + '.lean')
+              if not path.is_file():
+                  raise SystemExit('missing local import: ' + module)
+              visited.add(module)
+              for match in re.finditer(r'(?m)^\s*(?:public\s+)?import\s+([^\n]+)$',
+                                       lean_code(path.read_text())):
+                  for name in match[1].split():
+                      if not re.fullmatch(r'[A-Za-z_][A-Za-z0-9_\x27.]*', name):
+                          raise SystemExit('unsupported import syntax: ' + name)
+                      if name.startswith('PscVerif.'):
+                          visit(name)
+                      elif name.split('.')[0] not in {'Lean', 'Init', 'Lake'}:
+                          external.add(name)
+          visit('BHDiagonalClosureAudit')
+          visit('BHDiagonalResidualAudit')
+          visit('BHDiagonalLiteralAudit')
+          visit('BHNearDiagonalAudit')
+          if not external or 'Mathlib' in external:
+              raise SystemExit('refuse empty or whole-Mathlib cache request')
+          pathlib.Path(sys.argv[1]).write_text('\n'.join(sorted(external)) + '\n')
+          print('Local modules:', len(visited), 'upstream roots:', len(external))
+          PY
+          cd proof/PscVerif
+          pin=$(cat lean-toolchain)
+          elan run "$pin" lake --no-cache env true
+          python3 ../../tools/make_proof_bank.py --pins-only --require-packages
+          mapfile -t roots < "$RUNNER_TEMP/bh-diagonal-closure/upstream-roots.txt"
+          RAYON_NUM_THREADS=2 elan run "$pin" lake --no-cache exe cache get "${roots[@]}" \
+            > "$RUNNER_TEMP/bh-diagonal-closure/upstream-cache.log" 2>&1
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          pixi-version: v0.84.2
+          manifest-path: kernel/pixi.toml
+          locked: true
+      - name: Bind the locked Mojo executable
+        shell: bash
+        run: |
+          cat > "$RUNNER_TEMP/bh-diagonal-closure-mojo" <<'SH'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          exec pixi run --locked --manifest-path "$GITHUB_WORKSPACE/kernel/pixi.toml" mojo "$@"
+          SH
+          chmod +x "$RUNNER_TEMP/bh-diagonal-closure-mojo"
+      - name: Build isolated sources and replay exact certificates
+        shell: bash
+        env:
+          PSC_DIAGONAL_CLOSURE_EVIDENCE_DIR: ${{ runner.temp }}/bh-diagonal-closure/receipts
+          PSC_MOJO: ${{ runner.temp }}/bh-diagonal-closure-mojo
+        run: |
+          set -euo pipefail
+          ./tools/check_bh_diagonal_closure.sh \
+            | tee "$RUNNER_TEMP/bh-diagonal-closure/gate.log"
+      - name: Recheck the producing revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test -z "$(git status --porcelain --untracked-files=no)"
+      - name: Retain source bindings, proof audit and exact replay
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bh-diagonal-closure-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/bh-diagonal-closure
+          if-no-files-found: error
+          retention-days: 30

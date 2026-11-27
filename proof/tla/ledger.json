@@ -976,6 +976,132 @@
     ]
   },
   "records": {
+    "HigherDeterminantPisotArithmetic": {
+      "id": "sha256:183554a569ef474f9c611ff66872d064c70a73e539d43a925c36f4eb146c8e1e",
+      "kind": "repository_theorem",
+      "statement": "for every r>=4 and k>=r, the actual substitution (1,01^k2,0^r1) is primitive with irreducible rational incidence characteristic polynomial X^3-kX^2-2X-r, a constructed root beta in (k,k+1), all other complex roots contracting, and positive literal eigenlengths",
+      "scope": "the actual literal family (1,01^k2,0^r1), natural parameters 4<=r<=k; no upper bound on k",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/bh-three-band-spectral-transfer-2026-11-27.md, section 2; Psc.BHHigherDeterminantPisot.primitive_irreducible_pisot; evidence/bh-diagonal-closure-2026-11-27/README.md; local source-isolated Lean verification, hosted acceptance recorded separately, human review pending"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "lean_checked",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "ThreeBandLiteralClosure": {
+      "id": "sha256:0ccc31a19fd8140291b7031eaf648a685864adb9ed2f99914a0ddee8eb518a55",
+      "kind": "repository_theorem",
+      "statement": "for every r>=12 and r<=k<=r+2, every strict integral typed packet of the actual substitution (1,01^k2,0^r1) has a finite original-occurrence interior path to equal-letter full integral zero; a bracketed root is constructed, original ordinals are retained, and actual all-pairs left strong coincidence and finite strict-system exclusion follow",
+      "scope": "the actual literal family (1,01^k2,0^r1), r>=12 and r<=k<=r+2; every strict full integral typed source",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/bh-diagonal-closure-2026-11-27.md; Psc.BHThreeBandClosure.family_closure; evidence/bh-diagonal-closure-2026-11-27/README.md; local source-isolated Lean verification, hosted acceptance recorded separately, human review pending"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "lean_checked",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "PisotAllSourceFiniteBPA": {
+      "id": "sha256:75b4eaf3359391d4f2f58badc12611ec7454802d9d2fd30776476bda8a74efd8",
+      "kind": "repository_theorem",
+      "statement": "for a three-letter substitution with positive scaling eigenlengths, irreducible rational incidence characteristic polynomial and contracting other complex roots, actual labelled-zero paths from every strict integral packet imply finite termination with coincidence of every irreducible balanced seed; a finite all-child closed packet carrier is derived before productivity is used",
+      "scope": "three-letter substitutions with the stated actual Pisot arithmetic and positive scaling lengths; conditional on actual labelled exits from every strict integral packet",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/bh-diagonal-closure-2026-11-27.md; Psc.BHPisotFiniteBPA.terminates_of_pisot_all_source_exit; evidence/bh-diagonal-closure-2026-11-27/README.md; conditional implication fully Lean-checked, no universal exit premise discharged, human review pending"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "lean_checked",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "ThreeBandFiniteBPA": {
+      "id": "sha256:da8621266680d94d57e9a0714428eda41558a5912fa39e25dcd1e50f3410d463",
+      "kind": "repository_theorem",
+      "statement": "for every r>=12 and r<=k<=r+2, every irreducible balanced seed for the actual substitution (1,01^k2,0^r1) has finitely many full-iterate irreducible factors and every such factor reaches a literal singleton coincidence; in particular every distinct-letter swap seed terminates with coincidence",
+      "scope": "the actual literal family (1,01^k2,0^r1), r>=12 and r<=k<=r+2; every irreducible balanced seed",
+      "depends_on": [
+        [
+          "sha256:183554a569ef474f9c611ff66872d064c70a73e539d43a925c36f4eb146c8e1e",
+          "for every r>=4 and k>=r, the actual substitution (1,01^k2,0^r1) is primitive with irreducible rational incidence characteristic polynomial X^3-kX^2-2X-r, a constructed root beta in (k,k+1), all other complex roots contracting, and positive literal eigenlengths",
+          "proof/PscVerif/PscVerif/BHThreeBandBPA.lean:Psc.BHThreeBandBPA.terminates_of_family_closure uses FamilyClosure.positive_lengths, expanding, lengths_scale, irreducible, contracting; checked scope restriction r>=12 implies r>=4 and r<=k<=r+2 implies r<=k; these same-root facts are independently rederived in Psc.BHThreeBandClosure.family_closure from BHDiagonalPisot/BHNearDiagonalPisot",
+          "scope=the actual literal family (1,01^k2,0^r1), natural parameters 4<=r<=k; no upper bound on k",
+          "accepted"
+        ],
+        [
+          "sha256:0ccc31a19fd8140291b7031eaf648a685864adb9ed2f99914a0ddee8eb518a55",
+          "for every r>=12 and r<=k<=r+2, every strict integral typed packet of the actual substitution (1,01^k2,0^r1) has a finite original-occurrence interior path to equal-letter full integral zero; a bracketed root is constructed, original ordinals are retained, and actual all-pairs left strong coincidence and finite strict-system exclusion follow",
+          "proof/PscVerif/PscVerif/BHThreeBandBPA.lean:Psc.BHThreeBandBPA.all_blocks_terminate applies Psc.BHThreeBandClosure.family_closure; terminates_of_family_closure uses FamilyClosure.all_source and OrderedInteriorPath.interiorPath",
+          "scope=the actual literal family (1,01^k2,0^r1), r>=12 and r<=k<=r+2; every strict full integral typed source",
+          "accepted"
+        ],
+        [
+          "sha256:75b4eaf3359391d4f2f58badc12611ec7454802d9d2fd30776476bda8a74efd8",
+          "for a three-letter substitution with positive scaling eigenlengths, irreducible rational incidence characteristic polynomial and contracting other complex roots, actual labelled-zero paths from every strict integral packet imply finite termination with coincidence of every irreducible balanced seed; a finite all-child closed packet carrier is derived before productivity is used",
+          "proof/PscVerif/PscVerif/BHThreeBandBPA.lean:Psc.BHThreeBandBPA.terminates_of_family_closure applies Psc.BHPisotFiniteBPA.terminates_of_pisot_all_source_exit to sigma r k, lengths r beta, and the same beta using the FamilyClosure fields",
+          "scope=three-letter substitutions with the stated actual Pisot arithmetic and positive scaling lengths; conditional on actual labelled exits from every strict integral packet",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/bh-diagonal-closure-2026-11-27.md; Psc.BHThreeBandBPA.all_blocks_terminate and all_blocks_full_factor_coincidence; evidence/bh-diagonal-closure-2026-11-27/README.md; local source-isolated Lean verification, external spectral implication separate, human review pending"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "lean_checked",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
     "DefectTheorem": {
       "id": "sha256:a4f2760ea5de08a5abc2de46140b4122a838348b4986d05d5a2539513888473e",
       "kind": "repository_theorem",
