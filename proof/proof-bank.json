@@ -5514,6 +5514,222 @@
       "declaration": "@[simp] theorem K₁_eq_zero (a : Letter) : s.K₁ a = 0 := by"
     },
     {
+      "name": "Psc.BetaFamilyFixedWord.substitution_ne_nil",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 53,
+      "declaration": "theorem substitution_ne_nil (k : ℕ) (a : Fin 3) : substitution k a ≠ [] := by"
+    },
+    {
+      "name": "Psc.BetaFamilyFixedWord.square_zero",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 56,
+      "declaration": "theorem square_zero (k : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaFamilyFixedWord.seed_prefix",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 60,
+      "declaration": "theorem seed_prefix (k : ℕ) : [0] <+: (subst (substitution k))^[2] [0] := by"
+    },
+    {
+      "name": "Psc.BetaFamilyFixedWord.seed_grows",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 64,
+      "declaration": "theorem seed_grows (k : ℕ) : [0].length < ((subst (substitution k))^[2] [0]).length := by"
+    },
+    {
+      "name": "Psc.BetaFamilyFixedWord.growth",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 68,
+      "declaration": "theorem growth (k : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaFamilyFixedWord.word_zero",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 80,
+      "declaration": "theorem word_zero (k : ℕ) : word k 0 = 0 :="
+    },
+    {
+      "name": "Psc.BetaFamilyFixedWord.word_prefix",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 84,
+      "declaration": "theorem word_prefix (k n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaFamilyFixedWord.word_fixed",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 90,
+      "declaration": "theorem word_fixed (k L : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaFamilyFixedWord.pref_succ",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 97,
+      "declaration": "theorem pref_succ (k L : ℕ) : pref k (L + 1) = pref k L ++ [word k L] := by"
+    },
+    {
+      "name": "Psc.BetaFamilyFixedWord.count_pref_succ",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 102,
+      "declaration": "theorem count_pref_succ (k L : ℕ) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.BetaFamilyFixedWord.count_iterate",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 108,
+      "declaration": "theorem count_iterate (k n : ℕ) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.BetaFamilyFixedWord.window_succ",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 123,
+      "declaration": "theorem window_succ {N p : ℕ} (hper : ∀ i, N ≤ i → word k (i + p) = word k i) {L : ℕ}"
+    },
+    {
+      "name": "Psc.BetaFamilyFixedWord.window_const",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 130,
+      "declaration": "theorem window_const {N p : ℕ} (hper : ∀ i, N ≤ i → word k (i + p) = word k i) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.BetaFamilyFixedWord.functional_periodic",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 141,
+      "declaration": "theorem functional_periodic {N p : ℕ} (hper : ∀ i, N ≤ i → word k (i + p) = word k i)"
+    },
+    {
+      "name": "Psc.BetaFamilyFixedWord.bounded_of_periodic",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 152,
+      "declaration": "theorem bounded_of_periodic (f : ℕ → ℤ) {N p : ℕ} (hp : 0 < p)"
+    },
+    {
+      "name": "Psc.BetaFamilyFixedWord.exists_orthogonal",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 166,
+      "declaration": "theorem exists_orthogonal (q : Fin 3 → ℤ) : ∃ y : Fin 3 → ℤ, y ≠ 0 ∧ ∑ a, y a * q a = 0 := by"
+    },
+    {
+      "name": "Psc.BetaFamilyFixedWord.det_pow_sub_one_ne_zero",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 178,
+      "declaration": "theorem det_pow_sub_one_ne_zero (k : ℕ) (hk : 1 ≤ k) {N : ℕ} (hN : 1 ≤ N) :"
+    },
+    {
+      "name": "Psc.BetaFamilyFixedWord.incidenceQ_pow",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 205,
+      "declaration": "theorem incidenceQ_pow (k n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaFamilyFixedWord.sq_col",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 210,
+      "declaration": "theorem sq_col (k : ℕ) (b : Fin 3) :"
+    },
+    {
+      "name": "Psc.BetaFamilyFixedWord.fourth_col",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 215,
+      "declaration": "theorem fourth_col (k : ℕ) (b : Fin 3) :"
+    },
+    {
+      "name": "Psc.BetaFamilyFixedWord.samples_determine",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 224,
+      "declaration": "theorem samples_determine (k : ℕ) {d : Fin 3 → ℚ}"
+    },
+    {
+      "name": "Psc.BetaFamilyFixedWord.vecMul_pow_eq",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 248,
+      "declaration": "theorem vecMul_pow_eq (k : ℕ) (y : Fin 3 → ℚ) {n n' : ℕ}"
+    },
+    {
+      "name": "Psc.BetaFamilyFixedWord.sample_eq",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 258,
+      "declaration": "theorem sample_eq (k : ℕ) (y : Fin 3 → ℚ) (n j : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaFamilyFixedWord.word_not_eventuallyPeriodic",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 265,
+      "declaration": "theorem word_not_eventuallyPeriodic (k : ℕ) (hk : 1 ≤ k) : ¬ EventuallyPeriodic (word k) := by"
+    },
+    {
+      "name": "Psc.BetaFamilyFixedWord.shifted_not_eventuallyPeriodic",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 331,
+      "declaration": "theorem shifted_not_eventuallyPeriodic (k m : ℕ) (hk : 1 ≤ k) (hm : 3 ≤ m) :"
+    },
+    {
+      "name": "Psc.BetaFamilyFixedWord.shifted_interior",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 340,
+      "declaration": "theorem shifted_interior (k m : ℕ) (hm : 4 ≤ m) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaFamilyFixedWord.xi_unique",
+      "module": "PscVerif.BetaFamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
+      "line": 350,
+      "declaration": "theorem xi_unique (k m : ℕ) (hk : 1 ≤ k) (hm : 4 ≤ m) (B : Psc.BetaMetallicUnique.Base m) :"
+    },
+    {
       "name": "Psc.BetaGoldenEndpoint.digit_true",
       "module": "PscVerif.BetaGoldenEndpoint",
       "private": false,
@@ -62153,6 +62369,7 @@
     "proof/PscVerif/PscVerif/BargeDiamondBridge.lean": "d182a18512ffcd6989664f3e6786a0f4aa82b8ba9c03ab776321f39a415971fe",
     "proof/PscVerif/PscVerif/BargeDiamondBridgeControls.lean": "45bd1684ecbdfabdc02658405874358b5bfccd80b57d435f2c108f707b59f059",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
+    "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean": "5682dd074352aefb0a1757927e5de82e84ff1c288cbf854a109c73cbd3b97b79",
     "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean": "9dd31daca70efc75cc5413ffadef7bee210ac47c2724efead22c1a84497a7270",
     "proof/PscVerif/PscVerif/BetaMetallicUnique.lean": "4dfc01ba47b2830afb8fd4c8cf91e9eef8bdc68d9ac1bf82b05340a2cc0eb0fd",
     "proof/PscVerif/PscVerif/Binomial.lean": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
@@ -62455,7 +62672,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "d92bf9490cd63713e3b45817f528684daebe23d2a9b6384482a2ee6c870792b1",
+    "proof/PscVerif/PscVerif.lean": "77e3ed4f75e6a0eb088ae312923563e1c5ede76ec866ddab831b504b09faa21d",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

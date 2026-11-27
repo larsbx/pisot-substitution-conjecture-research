@@ -291,3 +291,4 @@ import PscVerif.C4FamilySymbolicMeasureUniqueness
 import PscVerif.C4FamilyCanonicalSpectrum
 import PscVerif.BetaGoldenEndpoint
 import PscVerif.BetaMetallicUnique
+import PscVerif.BetaFamilyFixedWord
