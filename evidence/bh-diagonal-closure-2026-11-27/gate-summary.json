@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "lean_scope": {
+    "literal_exits_coincidence_finite_bpa": "all natural r >= 12 and r <= k <= r+2",
+    "primitive_irreducible_pisot_arithmetic": "all natural 4 <= r <= k",
+    "contracts": "exact compiled endpoint signatures; no spectral dynamical axiom"
+  },
+  "native_scope": "finite parameters and declared source packets only; not the uniform proof",
+  "modules": 18,
+  "endpoints": 44,
+  "declarations": 401,
+  "theorems": 365,
+  "source_inputs": 8211,
+  "source_bindings_sha256": "76c50234f26c5c895728042de85ae2e6954944973bcd17ed362fa9f9eb478d81",
+  "sources_unchanged": true,
+  "native_export_sha256": "325d8541ab37a3e90384afa239338269762a54afc008299759b2bfa6319ffca3",
+  "finite_square_states": 10679,
+  "finite_disk_pairs": 7899
+}

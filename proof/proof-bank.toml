@@ -2,6 +2,27 @@
 # dependency edges remain owned by claim_governance.toml / tools/make_ledger.py.
 format = "psc-proof-bank-bindings-v1"
 
+[[lean_support]]
+claim = "HigherDeterminantPisotArithmetic"
+coverage = "full"
+declarations = ["Psc.BHHigherDeterminantPisot.primitive_irreducible_pisot", "Psc.BHHigherDeterminantPisot.other_root"]
+note = "Actual incidence arithmetic on all natural parameters 4<=r<=k, with the bracketed root constructed and determinant r. No spectral conclusion or larger all-source path domain is inferred."
+[[lean_support]]
+claim = "ThreeBandLiteralClosure"
+coverage = "full"
+declarations = ["Psc.BHThreeBandClosure.family_closure", "Psc.BHDiagonalAllSources.three_band_all_source_exit", "Psc.BHDiagonalConsequences.three_band_strong_coincidence", "Psc.BHDiagonalConsequences.three_band_no_strict_system"]
+note = "Parameter-only actual all-source closure for r>=12,r<=k<=r+2. Root, complete residual classification, signed progress, outer descent, finite termination, actual third-level entry and ordered occurrence assembly are discharged. No common depth across all parameters or all integral sources is asserted."
+[[lean_support]]
+claim = "PisotAllSourceFiniteBPA"
+coverage = "full"
+declarations = ["Psc.BHPisotFiniteBPA.terminates_of_pisot_all_source_exit"]
+note = "The explicit conditional implication derives a finite carrier closed under every actual strict child from Pisot contraction, then uses the all-source labelled-exit hypothesis for productivity. It does not prove the universal exit hypothesis."
+[[lean_support]]
+claim = "ThreeBandFiniteBPA"
+coverage = "full"
+declarations = ["Psc.BHThreeBandBPA.all_blocks_terminate", "Psc.BHThreeBandBPA.all_blocks_full_factor_coincidence", "Psc.BHThreeBandBPA.all_swap_seeds_terminate"]
+note = "Every irreducible balanced seed in the three bands has finite full-factor termination with coincidence, with no supplied carrier or root premise. The published tiling spectral implication and older finite/bivariate parameter regions remain at their separately stated scopes."
+
 [[evidence]]
 claim = "HistoricalDegree3Capture"
 source = "archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, sections 8-10"

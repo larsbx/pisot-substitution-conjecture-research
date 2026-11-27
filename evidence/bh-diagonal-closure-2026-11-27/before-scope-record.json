@@ -1,0 +1,13 @@
+{
+  "status": "preserved-byte-for-byte",
+  "files": 42,
+  "archive_sha256": "ae6573698c31844814b6f054d120aa587ebe7487973a6a5bc357febc4b626be8",
+  "prior_gate_status": "passed",
+  "prior_focused_tests": 294,
+  "source_bindings_sha256": "4c9314e91dd62d5672cf62a3e44027f7bf80dcdf6e540a70ce49f98bd27b1767",
+  "reason": "Preserve the first successful gate and tests before correcting three explicit ledger scope applications. No Lean mathematical proof changed in that correction. The final packet contains a separate complete fresh gate on the corrected source tree.",
+  "preserved_failures": [
+    "preinventory-failed/proof-bank-check.log: stale generated inventory refused before Lean compilation",
+    "repository-checks/vendored-pins.log: unsupported check argument refused with usage; corrected no-argument invocation passed"
+  ]
+}

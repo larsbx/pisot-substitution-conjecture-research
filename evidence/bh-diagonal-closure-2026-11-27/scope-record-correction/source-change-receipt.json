@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "source_inputs": 8211,
+  "added_since_first_gate": [
+    "tests/test_bh_three_band_ledger.py"
+  ],
+  "changed_since_first_gate": [
+    "claim_governance.toml",
+    "docs/claim-relationship-graph.json",
+    "docs/ledger-index.md",
+    "docs/proof-bank.md",
+    "docs/side-notes-ledger.md",
+    "proof/proof-bank.json",
+    "proof/tla/ledger.json",
+    "tools/make_ledger.py"
+  ],
+  "removed_since_first_gate": [],
+  "lean_sources_unchanged": true,
+  "vendored_proof_and_governance_sources_unchanged": true,
+  "family_status": "proved",
+  "family_closure_complete": true,
+  "family_closure": [
+    "HigherDeterminantPisotArithmetic",
+    "PisotAllSourceFiniteBPA",
+    "ThreeBandFiniteBPA",
+    "ThreeBandLiteralClosure"
+  ],
+  "generic_scope": "three-letter substitutions with the stated actual Pisot arithmetic and positive scaling lengths; conditional on actual labelled exits from every strict integral packet",
+  "universal_boundary_hitting_status": "open",
+  "psc_status": "open",
+  "changed_file_hashes": {
+    "claim_governance.toml": "4bf8c4e4520b9d9887c4029b4838538e314b15b17c3782194e45c74f120fc1fe",
+    "docs/claim-relationship-graph.json": "2f568ce1a4ab7ead07904f651f9b893f1062782249e45a5f9daa1cff22154042",
+    "docs/ledger-index.md": "bf3927055d685bd4b53c0539e96d986f3cae7e731bc29959ae1b93176a0729f9",
+    "docs/proof-bank.md": "15ee58370f616349f08e4fb184999c1b5d36c838a317485c76f304b0df69aeba",
+    "docs/side-notes-ledger.md": "42fd2f2f768aa7521d9aaabbdd8e7134adc3935d5ff55dbfc4a9974b2f938df1",
+    "proof/proof-bank.json": "6c0b487db072837d7adf11e6823321b91470cdb82d4bac86c7bcac3945970212",
+    "proof/tla/ledger.json": "6a5e9611468021ce27d8387cc5afc2d5646f907cda41c95ffc5a77bfbe000d46",
+    "tools/make_ledger.py": "868610723f22cf08feb373c931d96a10bfdb152571757ee93ea73b0de3c96c0d",
+    "tests/test_bh_three_band_ledger.py": "806076f31235acd83e50956b36f1e62fb2948601077ddcf8c0719cf061d67ab3"
+  }
+}

@@ -61,6 +61,24 @@ BPRIME_SRC = ("docs/c4-bprime-lean-2026-11-09.md; Lean {decls} in proof/PscVerif
 # conditional theorem: its implication is proved, its premises are not.
 T, I, P = Kind.REPOSITORY, Kind.IMPORTED, Kind.PENDING
 TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
+    # The three-band closure is family-specific; none of these records is a
+    # dependency that silently discharges a universal BH/A1-prime/PSC premise.
+    "HigherDeterminantPisotArithmetic": (T,
+        "for every r>=4 and k>=r, the actual substitution (1,01^k2,0^r1) is primitive with irreducible rational incidence characteristic polynomial X^3-kX^2-2X-r, a constructed root beta in (k,k+1), all other complex roots contracting, and positive literal eigenlengths",
+        "docs/bh-three-band-spectral-transfer-2026-11-27.md, section 2; Psc.BHHigherDeterminantPisot.primitive_irreducible_pisot; evidence/bh-diagonal-closure-2026-11-27/README.md; local source-isolated Lean verification, hosted acceptance recorded separately, human review pending",
+        (), ()),
+    "ThreeBandLiteralClosure": (T,
+        "for every r>=12 and r<=k<=r+2, every strict integral typed packet of the actual substitution (1,01^k2,0^r1) has a finite original-occurrence interior path to equal-letter full integral zero; a bracketed root is constructed, original ordinals are retained, and actual all-pairs left strong coincidence and finite strict-system exclusion follow",
+        "docs/bh-diagonal-closure-2026-11-27.md; Psc.BHThreeBandClosure.family_closure; evidence/bh-diagonal-closure-2026-11-27/README.md; local source-isolated Lean verification, hosted acceptance recorded separately, human review pending",
+        (), ()),
+    "PisotAllSourceFiniteBPA": (T,
+        "for a three-letter substitution with positive scaling eigenlengths, irreducible rational incidence characteristic polynomial and contracting other complex roots, actual labelled-zero paths from every strict integral packet imply finite termination with coincidence of every irreducible balanced seed; a finite all-child closed packet carrier is derived before productivity is used",
+        "docs/bh-diagonal-closure-2026-11-27.md; Psc.BHPisotFiniteBPA.terminates_of_pisot_all_source_exit; evidence/bh-diagonal-closure-2026-11-27/README.md; conditional implication fully Lean-checked, no universal exit premise discharged, human review pending",
+        (), ()),
+    "ThreeBandFiniteBPA": (T,
+        "for every r>=12 and r<=k<=r+2, every irreducible balanced seed for the actual substitution (1,01^k2,0^r1) has finitely many full-iterate irreducible factors and every such factor reaches a literal singleton coincidence; in particular every distinct-letter swap seed terminates with coincidence",
+        "docs/bh-diagonal-closure-2026-11-27.md; Psc.BHThreeBandBPA.all_blocks_terminate and all_blocks_full_factor_coincidence; evidence/bh-diagonal-closure-2026-11-27/README.md; local source-isolated Lean verification, external spectral implication separate, human review pending",
+        ("HigherDeterminantPisotArithmetic", "ThreeBandLiteralClosure", "PisotAllSourceFiniteBPA"), ()),
     # --- symbolic side, repository theorem-grade ------------------------------------
     "DefectTheorem": (T, "det M_sigma != 0 gives full incidence rank and letter injectivity, so the defect theorem applies to the image code",
                       f"{MANUSCRIPT}, standing algebraic setup", (), ()),
@@ -504,11 +522,52 @@ SURFACES = {  # prose surfaces on which each claim's status is spelled out (labe
 
 # Records whose statement is not confined to the standing regime carry their own scope.
 SCOPES = {
+    "HigherDeterminantPisotArithmetic": "the actual literal family (1,01^k2,0^r1), natural parameters 4<=r<=k; no upper bound on k",
+    "ThreeBandLiteralClosure": "the actual literal family (1,01^k2,0^r1), r>=12 and r<=k<=r+2; every strict full integral typed source",
+    "PisotAllSourceFiniteBPA": "three-letter substitutions with the stated actual Pisot arithmetic and positive scaling lengths; conditional on actual labelled exits from every strict integral packet",
+    "ThreeBandFiniteBPA": "the actual literal family (1,01^k2,0^r1), r>=12 and r<=k<=r+2; every irreducible balanced seed",
     "PrefixBPATerminationPisotOrSalem": "primitive substitutions on a finite alphabet with irreducible incidence characteristic polynomial (not restricted to PIP; vacuous on it)",
     "NonPisotPrefixBPANontermination": "primitive substitutions on a finite alphabet with irreducible incidence characteristic polynomial (not restricted to PIP; vacuous on it)",
     "MinusClassAWholeChamberEntry": "the literal minus-Class-A chamber n+2<=d<=2n-1; all strict integral overlaps for n>=6, and only the complete S18 seed graphs for the six n<6 members",
 }
-LEAN_CHECKED = frozenset({"PrefixBPATerminationPisotOrSalem", "NonPisotPrefixBPANontermination"})
+LEAN_CHECKED = frozenset({"PrefixBPATerminationPisotOrSalem", "NonPisotPrefixBPANontermination",
+                          "HigherDeterminantPisotArithmetic", "ThreeBandLiteralClosure",
+                          "PisotAllSourceFiniteBPA", "ThreeBandFiniteBPA"})
+
+# These three applications have been checked in the actual Lean specialization.
+# The dependency must retain exactly the scope named here; this is not a general
+# subset rule and all other edges still require the default identical scope.
+# In particular, the generic BPA theorem remains an implication whose all-source
+# exit premise is supplied only for this family by FamilyClosure.all_source.
+# The arithmetic edge records a checked restriction of the broader claim;
+# FamilyClosure independently rederives its needed same-root arithmetic facts
+# from the diagonal and near-diagonal theorems rather than calling that broad
+# theorem. The ledger retains this explicit redundant arithmetic dependency.
+CHECKED_SCOPE_APPLICATIONS = {
+    ("ThreeBandFiniteBPA", "HigherDeterminantPisotArithmetic"): (
+        SCOPES["HigherDeterminantPisotArithmetic"],
+        "proof/PscVerif/PscVerif/BHThreeBandBPA.lean:"
+        "Psc.BHThreeBandBPA.terminates_of_family_closure uses "
+        "FamilyClosure.positive_lengths, expanding, lengths_scale, irreducible, contracting; "
+        "checked scope restriction r>=12 implies r>=4 and r<=k<=r+2 implies r<=k; "
+        "these same-root facts are independently rederived in "
+        "Psc.BHThreeBandClosure.family_closure from BHDiagonalPisot/BHNearDiagonalPisot",
+    ),
+    ("ThreeBandFiniteBPA", "ThreeBandLiteralClosure"): (
+        SCOPES["ThreeBandLiteralClosure"],
+        "proof/PscVerif/PscVerif/BHThreeBandBPA.lean:"
+        "Psc.BHThreeBandBPA.all_blocks_terminate applies "
+        "Psc.BHThreeBandClosure.family_closure; terminates_of_family_closure "
+        "uses FamilyClosure.all_source and OrderedInteriorPath.interiorPath",
+    ),
+    ("ThreeBandFiniteBPA", "PisotAllSourceFiniteBPA"): (
+        SCOPES["PisotAllSourceFiniteBPA"],
+        "proof/PscVerif/PscVerif/BHThreeBandBPA.lean:"
+        "Psc.BHThreeBandBPA.terminates_of_family_closure applies "
+        "Psc.BHPisotFiniteBPA.terminates_of_pisot_all_source_exit to sigma r k, "
+        "lengths r beta, and the same beta using the FamilyClosure fields",
+    ),
+}
 
 
 def records() -> dict[str, Record]:
@@ -518,7 +577,17 @@ def records() -> dict[str, Record]:
         if name in built:
             return built[name]
         kind, statement, source, deps, tags = TABLE[name]
-        edges = tuple(Edge(build(d).id, build(d).statement, f"{name}/{d}") for d in deps)
+
+        def dependency(d: str) -> Edge:
+            target = build(d)
+            application = CHECKED_SCOPE_APPLICATIONS.get((name, d))
+            if application is None:
+                return Edge(target.id, target.statement, f"{name}/{d}")
+            required_scope, use_site = application
+            return Edge(target.id, target.statement, use_site,
+                        scope_relation="scope=" + required_scope)
+
+        edges = tuple(dependency(d) for d in deps)
         if kind is Kind.PENDING:
             evidence = (("reason", source),)
         elif kind is Kind.IMPORTED:

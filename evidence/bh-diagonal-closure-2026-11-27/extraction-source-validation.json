@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "base_commit": "f0b3348265b0050ca28e0b51a7527e8b0c1224f0",
+  "moves": [
+    {
+      "original": "GeometricFStrict",
+      "extracted": "GeometricFLength",
+      "block_sha256": "98852684bc35aa00278329af8375c0dc92c314077f124b4c3884b9229b19332b",
+      "original_sha256": "d21956f722083b84473d633854cd43173ebe99c1cde99e7292c57cd046221abb",
+      "legacy_after_sha256": "af08fe9f5895674a9dccc8879f8a1ef973292a42a717b25bbfc6fe572dafa55d",
+      "extracted_file_sha256": "0354cabcc25a0400205c1caf2dbd9c6cfda29aeef1754772702a7764745ed062",
+      "original_matches_git_HEAD": true,
+      "moved_block_byte_identical": true,
+      "legacy_other_content_byte_identical": true
+    },
+    {
+      "original": "GeometricFPisot",
+      "extracted": "GeometricFPisotCore",
+      "block_sha256": "fb100ffe81693dc6184def4213ddd4870ae0e6ba1b0319a4d68b1be878ade9ce",
+      "original_sha256": "bf0a0f22acc5f1217d6340b2f5acf5302e4bf9753ef35106d1d790aef5d73bcc",
+      "legacy_after_sha256": "94ba522575f76ad77afb0ff29110841a25ba1c92d15cad16977697e56a4d4329",
+      "extracted_file_sha256": "79f48afa1d822716565375c13f45e6a9cc92b7e43083ce119b45db1e3a56b4fc",
+      "original_matches_git_HEAD": true,
+      "moved_block_byte_identical": true,
+      "legacy_other_content_byte_identical": true
+    }
+  ],
+  "new_helper": {
+    "name": "Psc.GeometricFPisot.aeval_charpoly",
+    "statement_and_proof_match": "Psc.BPrime.aeval_charpoly",
+    "sha256": "fe1bc0c6099debaf8d9659f524a771a3c65fac7822a58a73b69c93de4b57577f"
+  },
+  "independent_review": "diagonal_math reported exact moved-block, public-name, binder, helper, and retained-remainder comparison passed",
+  "scope": "source preservation; fresh gate separately compiles and audits the extracted modules; full legacy application suite not replayed"
+}

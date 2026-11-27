@@ -1,0 +1,5 @@
+'Psc.BHNearDiagonalDescent.choose_rounding' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.BHNearDiagonalLiteral.literal_rounding_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.BHNearDiagonalLiteral.central_hits_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+PSC_BH_NEAR_DIAGONAL_AUDIT	PscVerif.BHNearDiagonalDescent	29	22
+PSC_BH_NEAR_DIAGONAL_AUDIT	PscVerif.BHNearDiagonalLiteral	58	41

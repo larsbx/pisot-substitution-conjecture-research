@@ -1,0 +1,31 @@
+{
+  "python": "/workspace/scratch/332183132e70/psc-python/bin/python",
+  "command": [
+    "python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_bh_three_band_ledger.py",
+    "tests/test_proof_bank.py",
+    "tests/test_claim_governance.py",
+    "tests/test_markdown_links.py",
+    "tests/test_recorded_data_integrity.py",
+    "tests/test_check_markdown_source.py",
+    "tests/test_math_catalogue.py",
+    "tests/test_claim_coverage.py"
+  ],
+  "exit_code": 0,
+  "passed": 302,
+  "skipped": 0,
+  "collected_by_file": {
+    "tests/test_bh_three_band_ledger.py": 12,
+    "tests/test_check_markdown_source.py": 4,
+    "tests/test_claim_coverage.py": 7,
+    "tests/test_claim_governance.py": 2,
+    "tests/test_markdown_links.py": 4,
+    "tests/test_math_catalogue.py": 2,
+    "tests/test_proof_bank.py": 57,
+    "tests/test_recorded_data_integrity.py": 214
+  },
+  "scope": "Resolved combined source tree before this receipt packet was added. Later hosted acceptance must identify the published integration commit; this is not that receipt."
+}

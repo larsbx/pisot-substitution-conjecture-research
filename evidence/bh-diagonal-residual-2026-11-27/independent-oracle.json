@@ -1,0 +1,137 @@
+{
+  "status": "passed",
+  "scope": "finite sampled parameters; not a uniform theorem",
+  "native_sha256": "325d8541ab37a3e90384afa239338269762a54afc008299759b2bfa6319ffca3",
+  "parameters": [
+    {
+      "r": 12,
+      "square_states": 625,
+      "edges": 1061,
+      "disk_pairs": 437,
+      "uncovered_disk": 0,
+      "uncovered_square": 56,
+      "max_disk_rank": 24,
+      "one_step_failures": 14,
+      "nonaxis_one_step_failures": [
+        [
+          -6,
+          4
+        ],
+        [
+          -3,
+          -4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          6,
+          -4
+        ]
+      ]
+    },
+    {
+      "r": 13,
+      "square_states": 729,
+      "edges": 1257,
+      "disk_pairs": 517,
+      "uncovered_disk": 0,
+      "uncovered_square": 56,
+      "max_disk_rank": 27,
+      "one_step_failures": 10,
+      "nonaxis_one_step_failures": []
+    },
+    {
+      "r": 15,
+      "square_states": 961,
+      "edges": 1689,
+      "disk_pairs": 697,
+      "uncovered_disk": 0,
+      "uncovered_square": 86,
+      "max_disk_rank": 29,
+      "one_step_failures": 16,
+      "nonaxis_one_step_failures": [
+        [
+          -7,
+          5
+        ],
+        [
+          -4,
+          -5
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          7,
+          -5
+        ]
+      ]
+    },
+    {
+      "r": 16,
+      "square_states": 1089,
+      "edges": 1933,
+      "disk_pairs": 793,
+      "uncovered_disk": 0,
+      "uncovered_square": 86,
+      "max_disk_rank": 32,
+      "one_step_failures": 12,
+      "nonaxis_one_step_failures": []
+    },
+    {
+      "r": 18,
+      "square_states": 1369,
+      "edges": 2461,
+      "disk_pairs": 1005,
+      "uncovered_disk": 0,
+      "uncovered_square": 120,
+      "max_disk_rank": 34,
+      "one_step_failures": 18,
+      "nonaxis_one_step_failures": [
+        [
+          -8,
+          6
+        ],
+        [
+          -5,
+          -6
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          8,
+          -6
+        ]
+      ]
+    },
+    {
+      "r": 20,
+      "square_states": 1681,
+      "edges": 3057,
+      "disk_pairs": 1245,
+      "uncovered_disk": 0,
+      "uncovered_square": 148,
+      "max_disk_rank": 40,
+      "one_step_failures": 14,
+      "nonaxis_one_step_failures": []
+    },
+    {
+      "r": 32,
+      "square_states": 4225,
+      "edges": 7969,
+      "disk_pairs": 3205,
+      "uncovered_disk": 0,
+      "uncovered_square": 376,
+      "max_disk_rank": 62,
+      "one_step_failures": 22,
+      "nonaxis_one_step_failures": []
+    }
+  ],
+  "total_square_states": 10679,
+  "total_disk_pairs": 7899
+}

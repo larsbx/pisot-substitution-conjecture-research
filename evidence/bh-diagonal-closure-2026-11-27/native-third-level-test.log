@@ -1,0 +1,12 @@
+r,k,source_packets,first_window,second_window,third_window
+12,12,531,531,0,0
+12,13,531,531,0,0
+12,14,525,459,66,0
+16,16,675,675,0,0
+16,17,675,675,0,0
+16,18,675,585,90,0
+20,20,819,819,0,0
+20,21,819,819,0,0
+20,22,819,705,114,0
+exact third-level choices and the two original digit triples verified
+contract-receipt: A selected common window replays three literal inflation steps on both tracks and preserves all displacement coordinates, with last-window, wrong-ordinal and contact controls.

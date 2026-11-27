@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "exit_code": 0,
+  "base_revision": "8bf2a627913bb7a9eb2f05b0ed3f08c54dc647d7",
+  "scope": "isolated project closure; validated upstream cache reused; complete uniform classification remains written",
+  "command": "PSC_DIAGONAL_EVIDENCE_DIR=<empty-output-directory> tools/check_bh_diagonal_residual.sh",
+  "bound_source_files": 1230,
+  "audited_modules": 6,
+  "audited_declarations": 214,
+  "audited_theorem_constants": 161,
+  "named_endpoints": 18,
+  "native_export_matches_preliminary_frozen_export": true,
+  "focused_repository_tests_passed": 284
+}

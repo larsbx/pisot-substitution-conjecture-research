@@ -862,6 +862,22 @@
       }
     },
     {
+      "name": "HigherDeterminantPisotArithmetic",
+      "status": "proved",
+      "source": "docs/bh-three-band-spectral-transfer-2026-11-27.md, section 2; Psc.BHHigherDeterminantPisot.primitive_irreducible_pisot; evidence/bh-diagonal-closure-2026-11-27/README.md; local source-isolated Lean verification, hosted acceptance recorded separately, human review pending",
+      "dependencies": [],
+      "ledger_node": true,
+      "lean_support": {
+        "claim": "HigherDeterminantPisotArithmetic",
+        "coverage": "full",
+        "declarations": [
+          "Psc.BHHigherDeterminantPisot.primitive_irreducible_pisot",
+          "Psc.BHHigherDeterminantPisot.other_root"
+        ],
+        "note": "Actual incidence arithmetic on all natural parameters 4<=r<=k, with the bracketed root constructed and determinant r. No spectral conclusion or larger all-source path domain is inferred."
+      }
+    },
+    {
       "name": "HistoricalDegree3Capture",
       "status": "historical",
       "source": "archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, sections 8-10",
@@ -1555,6 +1571,21 @@
       }
     },
     {
+      "name": "PisotAllSourceFiniteBPA",
+      "status": "proved",
+      "source": "docs/bh-diagonal-closure-2026-11-27.md; Psc.BHPisotFiniteBPA.terminates_of_pisot_all_source_exit; evidence/bh-diagonal-closure-2026-11-27/README.md; conditional implication fully Lean-checked, no universal exit premise discharged, human review pending",
+      "dependencies": [],
+      "ledger_node": true,
+      "lean_support": {
+        "claim": "PisotAllSourceFiniteBPA",
+        "coverage": "full",
+        "declarations": [
+          "Psc.BHPisotFiniteBPA.terminates_of_pisot_all_source_exit"
+        ],
+        "note": "The explicit conditional implication derives a finite carrier closed under every actual strict child from Pisot contraction, then uses the all-source labelled-exit hypothesis for productivity. It does not prove the universal exit hypothesis."
+      }
+    },
+    {
       "name": "PisotMeyerProperty",
       "status": "imported",
       "source": "Lee-Solomyak, arXiv:1002.0039, Definition 2.3 and Theorem 4.3; docs/review-box-leftmost-ledger-2026-10-08.md, section 1 (scalar expansion hypotheses and return-vector transfer checked)",
@@ -1873,6 +1904,45 @@
         "coverage": "none",
         "declarations": [],
         "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "ThreeBandFiniteBPA",
+      "status": "proved",
+      "source": "docs/bh-diagonal-closure-2026-11-27.md; Psc.BHThreeBandBPA.all_blocks_terminate and all_blocks_full_factor_coincidence; evidence/bh-diagonal-closure-2026-11-27/README.md; local source-isolated Lean verification, external spectral implication separate, human review pending",
+      "dependencies": [
+        "HigherDeterminantPisotArithmetic",
+        "ThreeBandLiteralClosure",
+        "PisotAllSourceFiniteBPA"
+      ],
+      "ledger_node": true,
+      "lean_support": {
+        "claim": "ThreeBandFiniteBPA",
+        "coverage": "full",
+        "declarations": [
+          "Psc.BHThreeBandBPA.all_blocks_terminate",
+          "Psc.BHThreeBandBPA.all_blocks_full_factor_coincidence",
+          "Psc.BHThreeBandBPA.all_swap_seeds_terminate"
+        ],
+        "note": "Every irreducible balanced seed in the three bands has finite full-factor termination with coincidence, with no supplied carrier or root premise. The published tiling spectral implication and older finite/bivariate parameter regions remain at their separately stated scopes."
+      }
+    },
+    {
+      "name": "ThreeBandLiteralClosure",
+      "status": "proved",
+      "source": "docs/bh-diagonal-closure-2026-11-27.md; Psc.BHThreeBandClosure.family_closure; evidence/bh-diagonal-closure-2026-11-27/README.md; local source-isolated Lean verification, hosted acceptance recorded separately, human review pending",
+      "dependencies": [],
+      "ledger_node": true,
+      "lean_support": {
+        "claim": "ThreeBandLiteralClosure",
+        "coverage": "full",
+        "declarations": [
+          "Psc.BHThreeBandClosure.family_closure",
+          "Psc.BHDiagonalAllSources.three_band_all_source_exit",
+          "Psc.BHDiagonalConsequences.three_band_strong_coincidence",
+          "Psc.BHDiagonalConsequences.three_band_no_strict_system"
+        ],
+        "note": "Parameter-only actual all-source closure for r>=12,r<=k<=r+2. Root, complete residual classification, signed progress, outer descent, finite termination, actual third-level entry and ordered occurrence assembly are discharged. No common depth across all parameters or all integral sources is asserted."
       }
     },
     {
@@ -3186,6 +3256,1278 @@
       "declaration": "theorem expanding_zero_cover_without_coincidence :"
     },
     {
+      "name": "Psc.BHDiagonalAllSources.diagonal_entry_bounds",
+      "module": "PscVerif.BHDiagonalAllSources",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalAllSources.lean",
+      "line": 22,
+      "declaration": "theorem diagonal_entry_bounds {r β} (h : BHDiagonalLiteral.Family r β) :"
+    },
+    {
+      "name": "Psc.BHDiagonalAllSources.near_diagonal_entry_bounds",
+      "module": "PscVerif.BHDiagonalAllSources",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalAllSources.lean",
+      "line": 27,
+      "declaration": "theorem near_diagonal_entry_bounds {r k β} (h : Family r k β) :"
+    },
+    {
+      "name": "Psc.BHDiagonalAllSources.all_source_exit",
+      "module": "PscVerif.BHDiagonalAllSources",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalAllSources.lean",
+      "line": 36,
+      "declaration": "theorem all_source_exit {r β} (h : BHDiagonalLiteral.Family r β)"
+    },
+    {
+      "name": "Psc.BHDiagonalAllSources.all_source_exit_ordered",
+      "module": "PscVerif.BHDiagonalAllSources",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalAllSources.lean",
+      "line": 47,
+      "declaration": "theorem all_source_exit_ordered {r β} (h : BHDiagonalLiteral.Family r β)"
+    },
+    {
+      "name": "Psc.BHDiagonalAllSources.exists_root_all_source_exit",
+      "module": "PscVerif.BHDiagonalAllSources",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalAllSources.lean",
+      "line": 59,
+      "declaration": "theorem exists_root_all_source_exit (r : ℕ) (hr : 12 ≤ r) :"
+    },
+    {
+      "name": "Psc.BHDiagonalAllSources.near_diagonal_all_source_exit",
+      "module": "PscVerif.BHDiagonalAllSources",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalAllSources.lean",
+      "line": 68,
+      "declaration": "theorem near_diagonal_all_source_exit {r k β} (h : Family r k β)"
+    },
+    {
+      "name": "Psc.BHDiagonalAllSources.exists_root_near_diagonal_all_source_exit",
+      "module": "PscVerif.BHDiagonalAllSources",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalAllSources.lean",
+      "line": 77,
+      "declaration": "theorem exists_root_near_diagonal_all_source_exit (r k : ℕ)"
+    },
+    {
+      "name": "Psc.BHDiagonalAllSources.three_band_all_source_exit",
+      "module": "PscVerif.BHDiagonalAllSources",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalAllSources.lean",
+      "line": 87,
+      "declaration": "theorem three_band_all_source_exit (r k : ℕ) (hr : 12 ≤ r)"
+    },
+    {
+      "name": "Psc.BHDiagonalAxis.delta_identity",
+      "module": "PscVerif.BHDiagonalAxis",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalAxis.lean",
+      "line": 19,
+      "declaration": "private theorem delta_identity {r β} (h : BHDiagonalLiteral.Family r β) :"
+    },
+    {
+      "name": "Psc.BHDiagonalAxis.small_axis_gap",
+      "module": "PscVerif.BHDiagonalAxis",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalAxis.lean",
+      "line": 24,
+      "declaration": "theorem small_axis_gap {r β} (h : BHDiagonalLiteral.Family r β) (z : ℝ)"
+    },
+    {
+      "name": "Psc.BHDiagonalAxis.axis_choices_of_bounds",
+      "module": "PscVerif.BHDiagonalAxis",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalAxis.lean",
+      "line": 32,
+      "declaration": "theorem axis_choices_of_bounds {a b θ z : ℝ}"
+    },
+    {
+      "name": "Psc.BHDiagonalAxis.family_axis_choices",
+      "module": "PscVerif.BHDiagonalAxis",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalAxis.lean",
+      "line": 50,
+      "declaration": "theorem family_axis_choices {r β} (h : BHDiagonalLiteral.Family r β) (z : ℤ)"
+    },
+    {
+      "name": "Psc.BHDiagonalAxis.gap_times_r",
+      "module": "PscVerif.BHDiagonalAxis",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalAxis.lean",
+      "line": 60,
+      "declaration": "theorem gap_times_r {r β} (h : BHDiagonalLiteral.Family r β) :"
+    },
+    {
+      "name": "Psc.BHDiagonalAxis.residual_axis_gap",
+      "module": "PscVerif.BHDiagonalAxis",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalAxis.lean",
+      "line": 65,
+      "declaration": "theorem residual_axis_gap {r β} (h : BHDiagonalLiteral.Family r β) (z : ℝ)"
+    },
+    {
+      "name": "Psc.BHDiagonalAxis.axis_decreases_of_bounds",
+      "module": "PscVerif.BHDiagonalAxis",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalAxis.lean",
+      "line": 75,
+      "declaration": "theorem axis_decreases_of_bounds {a b z : ℝ}"
+    },
+    {
+      "name": "Psc.BHDiagonalAxis.family_axis_decreases",
+      "module": "PscVerif.BHDiagonalAxis",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalAxis.lean",
+      "line": 86,
+      "declaration": "theorem family_axis_decreases {r β} (h : BHDiagonalLiteral.Family r β) (z : ℤ)"
+    },
+    {
+      "name": "Psc.BHDiagonalAxis.axis_path",
+      "module": "PscVerif.BHDiagonalAxis",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalAxis.lean",
+      "line": 95,
+      "declaration": "theorem axis_path {r β} (h : BHDiagonalLiteral.Family r β) (x z : ℤ)"
+    },
+    {
+      "name": "Psc.BHDiagonalAxis.axis_decreasing_path",
+      "module": "PscVerif.BHDiagonalAxis",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalAxis.lean",
+      "line": 115,
+      "declaration": "theorem axis_decreasing_path {r β} (h : BHDiagonalLiteral.Family r β) (x z : ℤ)"
+    },
+    {
+      "name": "Psc.BHDiagonalAxis.unit_axis_hits_labelled_zero",
+      "module": "PscVerif.BHDiagonalAxis",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalAxis.lean",
+      "line": 127,
+      "declaration": "theorem unit_axis_hits_labelled_zero {r β} (h : BHDiagonalLiteral.Family r β) (x : ℤ)"
+    },
+    {
+      "name": "Psc.BHDiagonalAxis.large_axis_gap",
+      "module": "PscVerif.BHDiagonalAxis",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalAxis.lean",
+      "line": 137,
+      "declaration": "theorem large_axis_gap {r β} (h : BHDiagonalLiteral.Family r β) (z : ℝ)"
+    },
+    {
+      "name": "Psc.BHDiagonalAxis.large_axis_choice",
+      "module": "PscVerif.BHDiagonalAxis",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalAxis.lean",
+      "line": 145,
+      "declaration": "theorem large_axis_choice {r β} (h : BHDiagonalLiteral.Family r β) (z : ℤ)"
+    },
+    {
+      "name": "Psc.BHDiagonalAxis.toward_axis_decreases_of_bounds",
+      "module": "PscVerif.BHDiagonalAxis",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalAxis.lean",
+      "line": 154,
+      "declaration": "theorem toward_axis_decreases_of_bounds {a b z : ℝ}"
+    },
+    {
+      "name": "Psc.BHDiagonalAxis.family_toward_axis_decreases",
+      "module": "PscVerif.BHDiagonalAxis",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalAxis.lean",
+      "line": 165,
+      "declaration": "theorem family_toward_axis_decreases {r β} (h : BHDiagonalLiteral.Family r β) (z : ℤ)"
+    },
+    {
+      "name": "Psc.BHDiagonalAxis.large_axis_step",
+      "module": "PscVerif.BHDiagonalAxis",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalAxis.lean",
+      "line": 171,
+      "declaration": "theorem large_axis_step {r β} (h : BHDiagonalLiteral.Family r β) (x z : ℤ)"
+    },
+    {
+      "name": "Psc.BHDiagonalAxis.positive_axis_progress",
+      "module": "PscVerif.BHDiagonalAxis",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalAxis.lean",
+      "line": 183,
+      "declaration": "theorem positive_axis_progress {r β} (h : BHDiagonalLiteral.Family r β) (x z : ℤ)"
+    },
+    {
+      "name": "Psc.BHDiagonalCertificate.ranked_region_reaches_small",
+      "module": "PscVerif.BHDiagonalCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalCertificate.lean",
+      "line": 41,
+      "declaration": "theorem ranked_region_reaches_small {r : ℕ} {β : ℝ}"
+    },
+    {
+      "name": "Psc.BHDiagonalCertificate.projected_zero_is_not_full_zero",
+      "module": "PscVerif.BHDiagonalCertificate",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalCertificate.lean",
+      "line": 71,
+      "declaration": "theorem projected_zero_is_not_full_zero :"
+    },
+    {
+      "name": "Psc.BHDiagonalClassification.change_completed_square",
+      "module": "PscVerif.BHDiagonalClassification",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalClassification.lean",
+      "line": 19,
+      "declaration": "theorem change_completed_square (k m z y : ℝ) :"
+    },
+    {
+      "name": "Psc.BHDiagonalClassification.change_congruence_identity",
+      "module": "PscVerif.BHDiagonalClassification",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalClassification.lean",
+      "line": 27,
+      "declaration": "theorem change_congruence_identity (k m z y q s u : ℝ)"
+    },
+    {
+      "name": "Psc.BHDiagonalClassification.positive_congruence_bound",
+      "module": "PscVerif.BHDiagonalClassification",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalClassification.lean",
+      "line": 36,
+      "declaration": "theorem positive_congruence_bound {s u c q y : ℝ}"
+    },
+    {
+      "name": "Psc.BHDiagonalClassification.negative_congruence_bound",
+      "module": "PscVerif.BHDiagonalClassification",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalClassification.lean",
+      "line": 65,
+      "declaration": "theorem negative_congruence_bound {s u q y : ℝ}"
+    },
+    {
+      "name": "Psc.BHDiagonalClassification.congruence_zero_of_nondec",
+      "module": "PscVerif.BHDiagonalClassification",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalClassification.lean",
+      "line": 88,
+      "declaration": "theorem congruence_zero_of_nondec {s u c k z y : ℝ} (q : ℤ)"
+    },
+    {
+      "name": "Psc.BHDiagonalClassification.upper_bound_sign_symmetry",
+      "module": "PscVerif.BHDiagonalClassification",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalClassification.lean",
+      "line": 115,
+      "declaration": "theorem upper_bound_sign_symmetry (s u m q y : ℝ) :"
+    },
+    {
+      "name": "Psc.BHDiagonalClassification.nonintegral_congruence_control",
+      "module": "PscVerif.BHDiagonalClassification",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalClassification.lean",
+      "line": 123,
+      "declaration": "theorem nonintegral_congruence_control :"
+    },
+    {
+      "name": "Psc.BHDiagonalClassificationFull.family_arithmetic",
+      "module": "PscVerif.BHDiagonalClassificationFull",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalClassificationFull.lean",
+      "line": 45,
+      "declaration": "private theorem family_arithmetic {r : ℕ} {β : ℝ}"
+    },
+    {
+      "name": "Psc.BHDiagonalClassificationFull.Arithmetic.ds_eq",
+      "module": "PscVerif.BHDiagonalClassificationFull",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalClassificationFull.lean",
+      "line": 131,
+      "declaration": "private theorem Arithmetic.ds_eq {r a b θ s u c : ℝ}"
+    },
+    {
+      "name": "Psc.BHDiagonalClassificationFull.Arithmetic.du_eq",
+      "module": "PscVerif.BHDiagonalClassificationFull",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalClassificationFull.lean",
+      "line": 137,
+      "declaration": "private theorem Arithmetic.du_eq {r a b θ s u c : ℝ}"
+    },
+    {
+      "name": "Psc.BHDiagonalClassificationFull.disk_bounds",
+      "module": "PscVerif.BHDiagonalClassificationFull",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalClassificationFull.lean",
+      "line": 141,
+      "declaration": "private theorem disk_bounds {r z y : ℝ} (hr : 0 < r)"
+    },
+    {
+      "name": "Psc.BHDiagonalClassificationFull.away_change",
+      "module": "PscVerif.BHDiagonalClassificationFull",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalClassificationFull.lean",
+      "line": 151,
+      "declaration": "private theorem away_change (a b z y m k : ℝ)"
+    },
+    {
+      "name": "Psc.BHDiagonalClassificationFull.congruence_from_square",
+      "module": "PscVerif.BHDiagonalClassificationFull",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalClassificationFull.lean",
+      "line": 158,
+      "declaration": "private theorem congruence_from_square {r a b θ s u c : ℝ}"
+    },
+    {
+      "name": "Psc.BHDiagonalClassificationFull.away_resonant",
+      "module": "PscVerif.BHDiagonalClassificationFull",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalClassificationFull.lean",
+      "line": 198,
+      "declaration": "private theorem away_resonant {r : ℕ} {a b θ s u c : ℝ}"
+    },
+    {
+      "name": "Psc.BHDiagonalClassificationFull.nonnegative_residual_classification",
+      "module": "PscVerif.BHDiagonalClassificationFull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalClassificationFull.lean",
+      "line": 420,
+      "declaration": "theorem nonnegative_residual_classification {r : ℕ} {β : ℝ}"
+    },
+    {
+      "name": "Psc.BHDiagonalClassificationFull.residual_classification",
+      "module": "PscVerif.BHDiagonalClassificationFull",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalClassificationFull.lean",
+      "line": 473,
+      "declaration": "theorem residual_classification {r : ℕ} {β : ℝ}"
+    },
+    {
+      "name": "Psc.BHDiagonalConsequences.equal_prefix_marks_of_ordered_exit",
+      "module": "PscVerif.BHDiagonalConsequences",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalConsequences.lean",
+      "line": 24,
+      "declaration": "theorem equal_prefix_marks_of_ordered_exit {s : Fin 3 → Word} (a b : Fin 3)"
+    },
+    {
+      "name": "Psc.BHDiagonalConsequences.strong_coincidence_of_ordered_exit",
+      "module": "PscVerif.BHDiagonalConsequences",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalConsequences.lean",
+      "line": 39,
+      "declaration": "theorem strong_coincidence_of_ordered_exit {s : Fin 3 → Word} (a b : Fin 3)"
+    },
+    {
+      "name": "Psc.BHDiagonalConsequences.equal_prefix_marks_of_labelled_exit",
+      "module": "PscVerif.BHDiagonalConsequences",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalConsequences.lean",
+      "line": 52,
+      "declaration": "theorem equal_prefix_marks_of_labelled_exit {r β} (a b : Fin 3)"
+    },
+    {
+      "name": "Psc.BHDiagonalConsequences.strong_coincidence_of_labelled_exit",
+      "module": "PscVerif.BHDiagonalConsequences",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalConsequences.lean",
+      "line": 68,
+      "declaration": "theorem strong_coincidence_of_labelled_exit {r β} (a b : Fin 3)"
+    },
+    {
+      "name": "Psc.BHDiagonalConsequences.strong_coincidence_of_interior_exit",
+      "module": "PscVerif.BHDiagonalConsequences",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalConsequences.lean",
+      "line": 78,
+      "declaration": "theorem strong_coincidence_of_interior_exit (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.BHDiagonalConsequences.zero_source_interior",
+      "module": "PscVerif.BHDiagonalConsequences",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalConsequences.lean",
+      "line": 88,
+      "declaration": "theorem zero_source_interior {r k : ℕ} {β : ℝ} (h : RunFamily r k β)"
+    },
+    {
+      "name": "Psc.BHDiagonalConsequences.all_pairs_equal_prefix_marks",
+      "module": "PscVerif.BHDiagonalConsequences",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalConsequences.lean",
+      "line": 99,
+      "declaration": "theorem all_pairs_equal_prefix_marks {r β} (h : BHDiagonalLiteral.Family r β)"
+    },
+    {
+      "name": "Psc.BHDiagonalConsequences.all_pairs_strong_coincidence",
+      "module": "PscVerif.BHDiagonalConsequences",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalConsequences.lean",
+      "line": 110,
+      "declaration": "theorem all_pairs_strong_coincidence {r β} (h : BHDiagonalLiteral.Family r β)"
+    },
+    {
+      "name": "Psc.BHDiagonalConsequences.all_pairs_strong_coincidence_for_all_parameters",
+      "module": "PscVerif.BHDiagonalConsequences",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalConsequences.lean",
+      "line": 118,
+      "declaration": "theorem all_pairs_strong_coincidence_for_all_parameters (r : ℕ) (hr : 12 ≤ r)"
+    },
+    {
+      "name": "Psc.BHDiagonalConsequences.no_strict_system",
+      "module": "PscVerif.BHDiagonalConsequences",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalConsequences.lean",
+      "line": 126,
+      "declaration": "theorem no_strict_system {r β} (h : BHDiagonalLiteral.Family r β)"
+    },
+    {
+      "name": "Psc.BHDiagonalConsequences.no_strict_system_for_all_parameters",
+      "module": "PscVerif.BHDiagonalConsequences",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalConsequences.lean",
+      "line": 131,
+      "declaration": "theorem no_strict_system_for_all_parameters (r : ℕ) (hr : 12 ≤ r)"
+    },
+    {
+      "name": "Psc.BHDiagonalConsequences.three_band_strong_coincidence",
+      "module": "PscVerif.BHDiagonalConsequences",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalConsequences.lean",
+      "line": 138,
+      "declaration": "theorem three_band_strong_coincidence (r k : ℕ) (hr : 12 ≤ r)"
+    },
+    {
+      "name": "Psc.BHDiagonalConsequences.three_band_no_strict_system",
+      "module": "PscVerif.BHDiagonalConsequences",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalConsequences.lean",
+      "line": 151,
+      "declaration": "theorem three_band_no_strict_system (r k : ℕ) (hr : 12 ≤ r)"
+    },
+    {
+      "name": "Psc.BHDiagonalDescent.family_block_parameters",
+      "module": "PscVerif.BHDiagonalDescent",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalDescent.lean",
+      "line": 29,
+      "declaration": "theorem family_block_parameters {q : ℕ} {β : ℝ}"
+    },
+    {
+      "name": "Psc.BHDiagonalDescent.first_pair_choices",
+      "module": "PscVerif.BHDiagonalDescent",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalDescent.lean",
+      "line": 70,
+      "declaration": "theorem first_pair_choices {a b q θ : ℝ} (h : BlockParameters a b q θ) :"
+    },
+    {
+      "name": "Psc.BHDiagonalDescent.first_pair_decreases",
+      "module": "PscVerif.BHDiagonalDescent",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalDescent.lean",
+      "line": 78,
+      "declaration": "theorem first_pair_decreases {a b q θ : ℝ} (h : BlockParameters a b q θ) :"
+    },
+    {
+      "name": "Psc.BHDiagonalDescent.second_pair_choices",
+      "module": "PscVerif.BHDiagonalDescent",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalDescent.lean",
+      "line": 86,
+      "declaration": "theorem second_pair_choices {a b q θ : ℝ} (h : BlockParameters a b q θ) :"
+    },
+    {
+      "name": "Psc.BHDiagonalDescent.second_pair_decreases",
+      "module": "PscVerif.BHDiagonalDescent",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalDescent.lean",
+      "line": 95,
+      "declaration": "theorem second_pair_decreases {a b q θ : ℝ} (h : BlockParameters a b q θ) :"
+    },
+    {
+      "name": "Psc.BHDiagonalDescent.two_selected_steps",
+      "module": "PscVerif.BHDiagonalDescent",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalDescent.lean",
+      "line": 104,
+      "declaration": "theorem two_selected_steps {r : ℕ} {β : ℝ}"
+    },
+    {
+      "name": "Psc.BHDiagonalDescent.first_pair_literal_path",
+      "module": "PscVerif.BHDiagonalDescent",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalDescent.lean",
+      "line": 117,
+      "declaration": "theorem first_pair_literal_path {q : ℕ} {β : ℝ}"
+    },
+    {
+      "name": "Psc.BHDiagonalDescent.second_pair_literal_path",
+      "module": "PscVerif.BHDiagonalDescent",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalDescent.lean",
+      "line": 130,
+      "declaration": "theorem second_pair_literal_path {q : ℕ} {β : ℝ}"
+    },
+    {
+      "name": "Psc.BHDiagonalLiteral.Family.toRunFamily",
+      "module": "PscVerif.BHDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalLiteral.lean",
+      "line": 24,
+      "declaration": "theorem Family.toRunFamily {r β} (h : Family r β) : RunFamily r r β :="
+    },
+    {
+      "name": "Psc.BHDiagonalLiteral.beta_pos",
+      "module": "PscVerif.BHDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalLiteral.lean",
+      "line": 27,
+      "declaration": "theorem beta_pos {r β} (h : Family r β) : 0 < β := h.toRunFamily.beta_pos"
+    },
+    {
+      "name": "Psc.BHDiagonalLiteral.a_pos",
+      "module": "PscVerif.BHDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalLiteral.lean",
+      "line": 29,
+      "declaration": "theorem a_pos {r β} (h : Family r β) : 0 < β - r := sub_pos.mpr h.lower"
+    },
+    {
+      "name": "Psc.BHDiagonalLiteral.b_pos",
+      "module": "PscVerif.BHDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalLiteral.lean",
+      "line": 31,
+      "declaration": "theorem b_pos {r β} (h : Family r β) : 0 < (r : ℝ)/β := by"
+    },
+    {
+      "name": "Psc.BHDiagonalLiteral.b_lt_one",
+      "module": "PscVerif.BHDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalLiteral.lean",
+      "line": 36,
+      "declaration": "theorem b_lt_one {r β} (h : Family r β) : (r : ℝ)/β < 1 :="
+    },
+    {
+      "name": "Psc.BHDiagonalLiteral.a_identity",
+      "module": "PscVerif.BHDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalLiteral.lean",
+      "line": 39,
+      "declaration": "theorem a_identity {r β} (h : Family r β) : (β-(r : ℝ))*β = 2+r/β := by"
+    },
+    {
+      "name": "Psc.BHDiagonalLiteral.a_small",
+      "module": "PscVerif.BHDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalLiteral.lean",
+      "line": 42,
+      "declaration": "theorem a_small {r β} (h : Family r β) : β-(r : ℝ) < 1/4 := by"
+    },
+    {
+      "name": "Psc.BHDiagonalLiteral.b_large",
+      "module": "PscVerif.BHDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalLiteral.lean",
+      "line": 48,
+      "declaration": "theorem b_large {r β} (h : Family r β) : (48/49 : ℝ) < r/β := by"
+    },
+    {
+      "name": "Psc.BHDiagonalLiteral.theta_bounds",
+      "module": "PscVerif.BHDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalLiteral.lean",
+      "line": 53,
+      "declaration": "theorem theta_bounds {r β} (h : Family r β) :"
+    },
+    {
+      "name": "Psc.BHDiagonalLiteral.theta_lt_b",
+      "module": "PscVerif.BHDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalLiteral.lean",
+      "line": 61,
+      "declaration": "theorem theta_lt_b {r β} (h : Family r β) : ((r : ℝ)-1)/β < r/β :="
+    },
+    {
+      "name": "Psc.BHDiagonalLiteral.not_near_diagonal_window",
+      "module": "PscVerif.BHDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalLiteral.lean",
+      "line": 65,
+      "declaration": "theorem not_near_diagonal_window {r β} (h : Family r β) :"
+    },
+    {
+      "name": "Psc.BHDiagonalLiteral.gap_identity",
+      "module": "PscVerif.BHDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalLiteral.lean",
+      "line": 70,
+      "declaration": "theorem gap_identity {r β} (h : Family r β) :"
+    },
+    {
+      "name": "Psc.BHDiagonalLiteral.small_gap",
+      "module": "PscVerif.BHDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalLiteral.lean",
+      "line": 74,
+      "declaration": "theorem small_gap {r β} (h : Family r β) :"
+    },
+    {
+      "name": "Psc.BHDiagonalLiteral.literal_rounding_step",
+      "module": "PscVerif.BHDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalLiteral.lean",
+      "line": 83,
+      "declaration": "theorem literal_rounding_step {r β} (h : Family r β) (x y z t : ℤ)"
+    },
+    {
+      "name": "Psc.BHDiagonalLiteral.central_zero_pair_step",
+      "module": "PscVerif.BHDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalLiteral.lean",
+      "line": 92,
+      "declaration": "theorem central_zero_pair_step {r β} (h : Family r β) (x : ℤ)"
+    },
+    {
+      "name": "Psc.BHDiagonalLiteral.unit_saturation_step",
+      "module": "PscVerif.BHDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalLiteral.lean",
+      "line": 103,
+      "declaration": "theorem unit_saturation_step {r β} (h : Family r β) :"
+    },
+    {
+      "name": "Psc.BHDiagonalLiteral.unit_injection_step",
+      "module": "PscVerif.BHDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalLiteral.lean",
+      "line": 117,
+      "declaration": "theorem unit_injection_step {r β} (h : Family r β) :"
+    },
+    {
+      "name": "Psc.BHDiagonalLiteral.saturation_to_zero12",
+      "module": "PscVerif.BHDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalLiteral.lean",
+      "line": 153,
+      "declaration": "theorem saturation_to_zero12 {r β} (h : Family r β) :"
+    },
+    {
+      "name": "Psc.BHDiagonalLiteral.zero12_to_zero00",
+      "module": "PscVerif.BHDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalLiteral.lean",
+      "line": 194,
+      "declaration": "theorem zero12_to_zero00 {r β} (h : Family r β) :"
+    },
+    {
+      "name": "Psc.BHDiagonalLiteral.unit_saturation_hits_labelled_zero",
+      "module": "PscVerif.BHDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalLiteral.lean",
+      "line": 206,
+      "declaration": "theorem unit_saturation_hits_labelled_zero {r β} (h : Family r β) :"
+    },
+    {
+      "name": "Psc.BHDiagonalLiteral.unit_injection_hits_labelled_zero",
+      "module": "PscVerif.BHDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalLiteral.lean",
+      "line": 212,
+      "declaration": "theorem unit_injection_hits_labelled_zero {r β} (h : Family r β) :"
+    },
+    {
+      "name": "Psc.BHDiagonalLiteral.saturation_not_central",
+      "module": "PscVerif.BHDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalLiteral.lean",
+      "line": 220,
+      "declaration": "theorem saturation_not_central (r : ℕ) (β : ℝ) :"
+    },
+    {
+      "name": "Psc.BHDiagonalLiteral.saturation_not_zero",
+      "module": "PscVerif.BHDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalLiteral.lean",
+      "line": 227,
+      "declaration": "theorem saturation_not_zero {r β} (h : Family r β) : (runPacket r 0 0).delta ≠ 0 := by"
+    },
+    {
+      "name": "Psc.BHDiagonalLiteral.zero12_not_labelled",
+      "module": "PscVerif.BHDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalLiteral.lean",
+      "line": 234,
+      "declaration": "theorem zero12_not_labelled : zero12.top ≠ zero12.bottom := by decide"
+    },
+    {
+      "name": "Psc.BHDiagonalOuter.square_identity",
+      "module": "PscVerif.BHDiagonalOuter",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalOuter.lean",
+      "line": 18,
+      "declaration": "theorem square_identity {r β} (h : Family r β) :"
+    },
+    {
+      "name": "Psc.BHDiagonalOuter.a_times_r",
+      "module": "PscVerif.BHDiagonalOuter",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalOuter.lean",
+      "line": 29,
+      "declaration": "theorem a_times_r {r β} (h : Family r β) :"
+    },
+    {
+      "name": "Psc.BHDiagonalOuter.energy_ge_disk",
+      "module": "PscVerif.BHDiagonalOuter",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalOuter.lean",
+      "line": 37,
+      "declaration": "theorem energy_ge_disk {r β} (h : Family r β) (z y : ℝ) :"
+    },
+    {
+      "name": "Psc.BHDiagonalOuter.energy_ge_half",
+      "module": "PscVerif.BHDiagonalOuter",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalOuter.lean",
+      "line": 47,
+      "declaration": "theorem energy_ge_half {r β} (h : Family r β) (z y : ℝ) :"
+    },
+    {
+      "name": "Psc.BHDiagonalOuter.energy_pos",
+      "module": "PscVerif.BHDiagonalOuter",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalOuter.lean",
+      "line": 52,
+      "declaration": "theorem energy_pos {r β} (h : Family r β) (z y : ℝ)"
+    },
+    {
+      "name": "Psc.BHDiagonalOuter.zero_endpoint_decreases",
+      "module": "PscVerif.BHDiagonalOuter",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalOuter.lean",
+      "line": 61,
+      "declaration": "theorem zero_endpoint_decreases {r β} (h : Family r β) (z y : ℝ)"
+    },
+    {
+      "name": "Psc.BHDiagonalOuter.truncate_decreases",
+      "module": "PscVerif.BHDiagonalOuter",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalOuter.lean",
+      "line": 85,
+      "declaration": "theorem truncate_decreases {r β} (h : Family r β) (z y n : ℝ)"
+    },
+    {
+      "name": "Psc.BHDiagonalOuter.window_gap_scale",
+      "module": "PscVerif.BHDiagonalOuter",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalOuter.lean",
+      "line": 126,
+      "declaration": "theorem window_gap_scale {r β} (h : Family r β) :"
+    },
+    {
+      "name": "Psc.BHDiagonalOuter.scale_lt_radius",
+      "module": "PscVerif.BHDiagonalOuter",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalOuter.lean",
+      "line": 143,
+      "declaration": "theorem scale_lt_radius {r β} (h : Family r β) :"
+    },
+    {
+      "name": "Psc.BHDiagonalOuter.cutoff_lt_disk_bound",
+      "module": "PscVerif.BHDiagonalOuter",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalOuter.lean",
+      "line": 155,
+      "declaration": "theorem cutoff_lt_disk_bound {r β} (h : Family r β) :"
+    },
+    {
+      "name": "Psc.BHDiagonalOuter.cutoff_implies_disk",
+      "module": "PscVerif.BHDiagonalOuter",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalOuter.lean",
+      "line": 166,
+      "declaration": "theorem cutoff_implies_disk {r β} (h : Family r β) (z y : ℝ)"
+    },
+    {
+      "name": "Psc.BHDiagonalOuter.away_decreases_of_bounds",
+      "module": "PscVerif.BHDiagonalOuter",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalOuter.lean",
+      "line": 173,
+      "declaration": "private theorem away_decreases_of_bounds {a b K z y t : ℝ}"
+    },
+    {
+      "name": "Psc.BHDiagonalOuter.away_decreases",
+      "module": "PscVerif.BHDiagonalOuter",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalOuter.lean",
+      "line": 222,
+      "declaration": "theorem away_decreases {r β} (h : Family r β) (z y t : ℝ)"
+    },
+    {
+      "name": "Psc.BHDiagonalOuter.rounding_nonneg",
+      "module": "PscVerif.BHDiagonalOuter",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalOuter.lean",
+      "line": 235,
+      "declaration": "private theorem rounding_nonneg {r β} (h : Family r β) (z y : ℤ)"
+    },
+    {
+      "name": "Psc.BHDiagonalOuter.choose_rounding",
+      "module": "PscVerif.BHDiagonalOuter",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalOuter.lean",
+      "line": 266,
+      "declaration": "theorem choose_rounding {r β} (h : Family r β) (z y : ℤ)"
+    },
+    {
+      "name": "Psc.BHDiagonalOuter.outer_step",
+      "module": "PscVerif.BHDiagonalOuter",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalOuter.lean",
+      "line": 289,
+      "declaration": "theorem outer_step {r β} (h : Family r β) (x y z : ℤ)"
+    },
+    {
+      "name": "Psc.BHDiagonalParameters.bracketed_root_exists",
+      "module": "PscVerif.BHDiagonalParameters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalParameters.lean",
+      "line": 13,
+      "declaration": "theorem bracketed_root_exists (r k : ℕ) (hr : 12 ≤ r) (hk : r ≤ k) :"
+    },
+    {
+      "name": "Psc.BHDiagonalParameters.family_root_exists",
+      "module": "PscVerif.BHDiagonalParameters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalParameters.lean",
+      "line": 32,
+      "declaration": "theorem family_root_exists (r : ℕ) (hr : 12 ≤ r) :"
+    },
+    {
+      "name": "Psc.BHDiagonalParameters.near_diagonal_root_exists",
+      "module": "PscVerif.BHDiagonalParameters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalParameters.lean",
+      "line": 37,
+      "declaration": "theorem near_diagonal_root_exists (r k : ℕ) (hr : 12 ≤ r)"
+    },
+    {
+      "name": "Psc.BHDiagonalParameters.cubic_factor",
+      "module": "PscVerif.BHDiagonalParameters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalParameters.lean",
+      "line": 43,
+      "declaration": "theorem cubic_factor {r β} (h : Family r β) (x : ℝ) :"
+    },
+    {
+      "name": "Psc.BHDiagonalParameters.positive_root_unique",
+      "module": "PscVerif.BHDiagonalParameters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalParameters.lean",
+      "line": 51,
+      "declaration": "theorem positive_root_unique {r β} (h : Family r β) {x : ℝ}"
+    },
+    {
+      "name": "Psc.BHDiagonalParameters.family_root_unique",
+      "module": "PscVerif.BHDiagonalParameters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalParameters.lean",
+      "line": 60,
+      "declaration": "theorem family_root_unique {r β γ} (hβ : Family r β) (hγ : Family r γ) :"
+    },
+    {
+      "name": "Psc.BHDiagonalParameters.quadratic_factor_pos",
+      "module": "PscVerif.BHDiagonalParameters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalParameters.lean",
+      "line": 64,
+      "declaration": "theorem quadratic_factor_pos {r β} (h : Family r β) (x : ℝ) :"
+    },
+    {
+      "name": "Psc.BHDiagonalParameters.real_root_unique",
+      "module": "PscVerif.BHDiagonalParameters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalParameters.lean",
+      "line": 70,
+      "declaration": "theorem real_root_unique {r β} (h : Family r β) {x : ℝ}"
+    },
+    {
+      "name": "Psc.BHDiagonalParameters.root_not_integer",
+      "module": "PscVerif.BHDiagonalParameters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalParameters.lean",
+      "line": 77,
+      "declaration": "theorem root_not_integer {r β} (h : Family r β) (z : ℤ) : (z : ℝ) ≠ β := by"
+    },
+    {
+      "name": "Psc.BHDiagonalParameters.no_integer_root",
+      "module": "PscVerif.BHDiagonalParameters",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalParameters.lean",
+      "line": 83,
+      "declaration": "theorem no_integer_root {r β} (h : Family r β) (z : ℤ) :"
+    },
+    {
+      "name": "Psc.BHDiagonalPisot.incidence_eq",
+      "module": "PscVerif.BHDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalPisot.lean",
+      "line": 30,
+      "declaration": "theorem incidence_eq (r : ℕ) :"
+    },
+    {
+      "name": "Psc.BHDiagonalPisot.incidence_sq",
+      "module": "PscVerif.BHDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalPisot.lean",
+      "line": 38,
+      "declaration": "theorem incidence_sq (r : ℕ) :"
+    },
+    {
+      "name": "Psc.BHDiagonalPisot.primitive",
+      "module": "PscVerif.BHDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalPisot.lean",
+      "line": 45,
+      "declaration": "theorem primitive (r : ℕ) (hr : 12 ≤ r) :"
+    },
+    {
+      "name": "Psc.BHDiagonalPisot.incidenceQ_eq",
+      "module": "PscVerif.BHDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalPisot.lean",
+      "line": 56,
+      "declaration": "theorem incidenceQ_eq (r : ℕ) :"
+    },
+    {
+      "name": "Psc.BHDiagonalPisot.determinant",
+      "module": "PscVerif.BHDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalPisot.lean",
+      "line": 63,
+      "declaration": "theorem determinant (r : ℕ) : (incidenceQ r).det = r := by"
+    },
+    {
+      "name": "Psc.BHDiagonalPisot.charpoly_eq",
+      "module": "PscVerif.BHDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalPisot.lean",
+      "line": 73,
+      "declaration": "theorem charpoly_eq (r : ℕ) : (incidenceQ r).charpoly = polynomial r := by"
+    },
+    {
+      "name": "Psc.BHDiagonalPisot.polynomial_natDegree",
+      "module": "PscVerif.BHDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalPisot.lean",
+      "line": 78,
+      "declaration": "theorem polynomial_natDegree (r : ℕ) : (polynomial r).natDegree = 3 := by"
+    },
+    {
+      "name": "Psc.BHDiagonalPisot.integerPolynomial_monic",
+      "module": "PscVerif.BHDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalPisot.lean",
+      "line": 82,
+      "declaration": "theorem integerPolynomial_monic (r : ℕ) : (integerPolynomial r).Monic := by"
+    },
+    {
+      "name": "Psc.BHDiagonalPisot.polynomial_eq_map",
+      "module": "PscVerif.BHDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalPisot.lean",
+      "line": 86,
+      "declaration": "theorem polynomial_eq_map (r : ℕ) :"
+    },
+    {
+      "name": "Psc.BHDiagonalPisot.polynomial_monic",
+      "module": "PscVerif.BHDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalPisot.lean",
+      "line": 91,
+      "declaration": "theorem polynomial_monic (r : ℕ) : (polynomial r).Monic := by"
+    },
+    {
+      "name": "Psc.BHDiagonalPisot.aeval_polynomial",
+      "module": "PscVerif.BHDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalPisot.lean",
+      "line": 95,
+      "declaration": "theorem aeval_polynomial {A : Type*} [CommRing A] [Algebra ℚ A]"
+    },
+    {
+      "name": "Psc.BHDiagonalPisot.aeval_integerPolynomial",
+      "module": "PscVerif.BHDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalPisot.lean",
+      "line": 100,
+      "declaration": "theorem aeval_integerPolynomial {A : Type*} [CommRing A] [Algebra ℤ A]"
+    },
+    {
+      "name": "Psc.BHDiagonalPisot.no_rational_root",
+      "module": "PscVerif.BHDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalPisot.lean",
+      "line": 108,
+      "declaration": "theorem no_rational_root (r : ℕ) (hr : 12 ≤ r) (x : ℚ) :"
+    },
+    {
+      "name": "Psc.BHDiagonalPisot.polynomial_irreducible",
+      "module": "PscVerif.BHDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalPisot.lean",
+      "line": 123,
+      "declaration": "theorem polynomial_irreducible (r : ℕ) (hr : 12 ≤ r) :"
+    },
+    {
+      "name": "Psc.BHDiagonalPisot.irreducible",
+      "module": "PscVerif.BHDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalPisot.lean",
+      "line": 130,
+      "declaration": "theorem irreducible (r : ℕ) (hr : 12 ≤ r) :"
+    },
+    {
+      "name": "Psc.BHDiagonalPisot.complex_cubic_factor",
+      "module": "PscVerif.BHDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalPisot.lean",
+      "line": 136,
+      "declaration": "theorem complex_cubic_factor {r β} (h : Family r β) (z : ℂ) :"
+    },
+    {
+      "name": "Psc.BHDiagonalPisot.other_root",
+      "module": "PscVerif.BHDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalPisot.lean",
+      "line": 148,
+      "declaration": "theorem other_root {r β} (h : Family r β) {z : ℂ}"
+    },
+    {
+      "name": "Psc.BHDiagonalPisot.pisot",
+      "module": "PscVerif.BHDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalPisot.lean",
+      "line": 184,
+      "declaration": "theorem pisot (r : ℕ) (hr : 12 ≤ r) :"
+    },
+    {
+      "name": "Psc.BHDiagonalPisot.root_not_rational",
+      "module": "PscVerif.BHDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalPisot.lean",
+      "line": 201,
+      "declaration": "theorem root_not_rational {r β} (h : Family r β) (q : ℚ) : (q : ℝ) ≠ β := by"
+    },
+    {
+      "name": "Psc.BHDiagonalPisot.positive_left_eigenvector",
+      "module": "PscVerif.BHDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalPisot.lean",
+      "line": 212,
+      "declaration": "theorem positive_left_eigenvector {r β} (h : Family r β) :"
+    },
+    {
+      "name": "Psc.BHDiagonalPisot.primitive_irreducible_pisot",
+      "module": "PscVerif.BHDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalPisot.lean",
+      "line": 225,
+      "declaration": "theorem primitive_irreducible_pisot (r : ℕ) (hr : 12 ≤ r) :"
+    },
+    {
+      "name": "Psc.BHDiagonalProgress.packet_swap_swap",
+      "module": "PscVerif.BHDiagonalProgress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalProgress.lean",
+      "line": 36,
+      "declaration": "@[simp] theorem packet_swap_swap (p : Packet) : p.swap.swap = p := by"
+    },
+    {
+      "name": "Psc.BHDiagonalProgress.runPacket_swap",
+      "module": "PscVerif.BHDiagonalProgress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalProgress.lean",
+      "line": 40,
+      "declaration": "@[simp] theorem runPacket_swap (x y z : ℤ) :"
+    },
+    {
+      "name": "Psc.BHDiagonalProgress.path_swap",
+      "module": "PscVerif.BHDiagonalProgress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalProgress.lean",
+      "line": 47,
+      "declaration": "theorem path_swap {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ} {p q : Packet}"
+    },
+    {
+      "name": "Psc.BHDiagonalProgress.central_swap",
+      "module": "PscVerif.BHDiagonalProgress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalProgress.lean",
+      "line": 54,
+      "declaration": "theorem central_swap {r k β} {p : Packet} (hp : Central r k β p) :"
+    },
+    {
+      "name": "Psc.BHDiagonalProgress.energy_swap",
+      "module": "PscVerif.BHDiagonalProgress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalProgress.lean",
+      "line": 59,
+      "declaration": "theorem energy_swap (a b : ℝ) (p : Packet) :"
+    },
+    {
+      "name": "Psc.BHDiagonalProgress.LabelledExit.swap",
+      "module": "PscVerif.BHDiagonalProgress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalProgress.lean",
+      "line": 65,
+      "declaration": "theorem LabelledExit.swap {r β} {p : Packet} (hp : LabelledExit r β p) :"
+    },
+    {
+      "name": "Psc.BHDiagonalProgress.Progress.swap",
+      "module": "PscVerif.BHDiagonalProgress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalProgress.lean",
+      "line": 71,
+      "declaration": "theorem Progress.swap {r β} {p : Packet} (hp : Progress r β p) :"
+    },
+    {
+      "name": "Psc.BHDiagonalProgress.packet_from_central",
+      "module": "PscVerif.BHDiagonalProgress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalProgress.lean",
+      "line": 78,
+      "declaration": "theorem packet_from_central {r k β} {p : Packet} (hp : Central r k β p) :"
+    },
+    {
+      "name": "Psc.BHDiagonalProgress.zero_pair_exit",
+      "module": "PscVerif.BHDiagonalProgress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalProgress.lean",
+      "line": 90,
+      "declaration": "theorem zero_pair_exit {r β} (h : BHDiagonalLiteral.Family r β) (x : ℤ)"
+    },
+    {
+      "name": "Psc.BHDiagonalProgress.positive_axis_progress",
+      "module": "PscVerif.BHDiagonalProgress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalProgress.lean",
+      "line": 98,
+      "declaration": "theorem positive_axis_progress {r β} (h : BHDiagonalLiteral.Family r β)"
+    },
+    {
+      "name": "Psc.BHDiagonalProgress.axis_progress",
+      "module": "PscVerif.BHDiagonalProgress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalProgress.lean",
+      "line": 110,
+      "declaration": "theorem axis_progress {r β} (h : BHDiagonalLiteral.Family r β) (x z : ℤ)"
+    },
+    {
+      "name": "Psc.BHDiagonalProgress.one_step_progress",
+      "module": "PscVerif.BHDiagonalProgress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalProgress.lean",
+      "line": 129,
+      "declaration": "theorem one_step_progress {r β} (h : BHDiagonalLiteral.Family r β)"
+    },
+    {
+      "name": "Psc.BHDiagonalProgress.first_pair_progress",
+      "module": "PscVerif.BHDiagonalProgress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalProgress.lean",
+      "line": 137,
+      "declaration": "theorem first_pair_progress {N : ℕ} {β : ℝ}"
+    },
+    {
+      "name": "Psc.BHDiagonalProgress.second_pair_progress",
+      "module": "PscVerif.BHDiagonalProgress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalProgress.lean",
+      "line": 146,
+      "declaration": "theorem second_pair_progress {N : ℕ} {β : ℝ}"
+    },
+    {
+      "name": "Psc.BHDiagonalProgress.neg_first_pair_progress",
+      "module": "PscVerif.BHDiagonalProgress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalProgress.lean",
+      "line": 155,
+      "declaration": "theorem neg_first_pair_progress {N : ℕ} {β : ℝ}"
+    },
+    {
+      "name": "Psc.BHDiagonalProgress.neg_second_pair_progress",
+      "module": "PscVerif.BHDiagonalProgress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalProgress.lean",
+      "line": 165,
+      "declaration": "theorem neg_second_pair_progress {N : ℕ} {β : ℝ}"
+    },
+    {
+      "name": "Psc.BHDiagonalProgress.run_packet_residual_progress",
+      "module": "PscVerif.BHDiagonalProgress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalProgress.lean",
+      "line": 177,
+      "declaration": "theorem run_packet_residual_progress {r β} (h : BHDiagonalLiteral.Family r β)"
+    },
+    {
+      "name": "Psc.BHDiagonalProgress.residual_progress",
+      "module": "PscVerif.BHDiagonalProgress",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalProgress.lean",
+      "line": 199,
+      "declaration": "theorem residual_progress {r β} (h : BHDiagonalLiteral.Family r β) {p : Packet}"
+    },
+    {
+      "name": "Psc.BHDiagonalTermination.finite_energy_sublevel",
+      "module": "PscVerif.BHDiagonalTermination",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalTermination.lean",
+      "line": 20,
+      "declaration": "theorem finite_energy_sublevel {r β} (h : BHDiagonalLiteral.Family r β) (L : ℝ) :"
+    },
+    {
+      "name": "Psc.BHDiagonalTermination.central_exit_of_progress",
+      "module": "PscVerif.BHDiagonalTermination",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalTermination.lean",
+      "line": 39,
+      "declaration": "theorem central_exit_of_progress {r β} (h : BHDiagonalLiteral.Family r β)"
+    },
+    {
+      "name": "Psc.BHDiagonalTermination.outer_progress",
+      "module": "PscVerif.BHDiagonalTermination",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalTermination.lean",
+      "line": 61,
+      "declaration": "theorem outer_progress {r β} (h : BHDiagonalLiteral.Family r β)"
+    },
+    {
+      "name": "Psc.BHDiagonalTermination.central_progress",
+      "module": "PscVerif.BHDiagonalTermination",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalTermination.lean",
+      "line": 77,
+      "declaration": "theorem central_progress {r β} (h : BHDiagonalLiteral.Family r β)"
+    },
+    {
+      "name": "Psc.BHDiagonalTermination.central_hits_labelled_zero",
+      "module": "PscVerif.BHDiagonalTermination",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalTermination.lean",
+      "line": 90,
+      "declaration": "theorem central_hits_labelled_zero {r β} (h : BHDiagonalLiteral.Family r β)"
+    },
+    {
+      "name": "Psc.BHDiagonalTermination.run_window_exit_for_all_parameters",
+      "module": "PscVerif.BHDiagonalTermination",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHDiagonalTermination.lean",
+      "line": 96,
+      "declaration": "theorem run_window_exit_for_all_parameters (r : ℕ) (hr : 12 ≤ r) :"
+    },
+    {
       "name": "Psc.BHFiniteCarrier.covers_seed_iterates_of_closed",
       "module": "PscVerif.BHFiniteCarrier",
       "private": false,
@@ -3338,6 +4680,206 @@
       "declaration": "theorem physical_zero_does_not_supply_tileCut :"
     },
     {
+      "name": "Psc.BHHigherDeterminantPisot.bracketed_root_exists",
+      "module": "PscVerif.BHHigherDeterminantPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHHigherDeterminantPisot.lean",
+      "line": 35,
+      "declaration": "theorem bracketed_root_exists (r k : ℕ) (hr : 4 ≤ r) (hk : r ≤ k) :"
+    },
+    {
+      "name": "Psc.BHHigherDeterminantPisot.family_root_exists",
+      "module": "PscVerif.BHHigherDeterminantPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHHigherDeterminantPisot.lean",
+      "line": 54,
+      "declaration": "theorem family_root_exists (r k : ℕ) (hr : 4 ≤ r) (hk : r ≤ k) :"
+    },
+    {
+      "name": "Psc.BHHigherDeterminantPisot.beta_gt_four",
+      "module": "PscVerif.BHHigherDeterminantPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHHigherDeterminantPisot.lean",
+      "line": 59,
+      "declaration": "theorem beta_gt_four {r k : ℕ} {β : ℝ} (h : Family r k β) : 4 < β := by"
+    },
+    {
+      "name": "Psc.BHHigherDeterminantPisot.a_identity",
+      "module": "PscVerif.BHHigherDeterminantPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHHigherDeterminantPisot.lean",
+      "line": 63,
+      "declaration": "theorem a_identity {r k : ℕ} {β : ℝ} (h : RunFamily r k β) :"
+    },
+    {
+      "name": "Psc.BHHigherDeterminantPisot.b_pos",
+      "module": "PscVerif.BHHigherDeterminantPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHHigherDeterminantPisot.lean",
+      "line": 67,
+      "declaration": "theorem b_pos {r k : ℕ} {β : ℝ} (h : Family r k β) :"
+    },
+    {
+      "name": "Psc.BHHigherDeterminantPisot.b_lt_one",
+      "module": "PscVerif.BHHigherDeterminantPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHHigherDeterminantPisot.lean",
+      "line": 72,
+      "declaration": "theorem b_lt_one {r k : ℕ} {β : ℝ} (h : Family r k β) :"
+    },
+    {
+      "name": "Psc.BHHigherDeterminantPisot.quadratic_discriminant",
+      "module": "PscVerif.BHHigherDeterminantPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHHigherDeterminantPisot.lean",
+      "line": 79,
+      "declaration": "theorem quadratic_discriminant {r k : ℕ} {β : ℝ} (h : Family r k β) :"
+    },
+    {
+      "name": "Psc.BHHigherDeterminantPisot.cubic_factor",
+      "module": "PscVerif.BHHigherDeterminantPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHHigherDeterminantPisot.lean",
+      "line": 107,
+      "declaration": "theorem cubic_factor {r k : ℕ} {β : ℝ} (h : RunFamily r k β) (x : ℝ) :"
+    },
+    {
+      "name": "Psc.BHHigherDeterminantPisot.quadratic_factor_pos",
+      "module": "PscVerif.BHHigherDeterminantPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHHigherDeterminantPisot.lean",
+      "line": 114,
+      "declaration": "theorem quadratic_factor_pos {r k : ℕ} {β : ℝ} (h : Family r k β) (x : ℝ) :"
+    },
+    {
+      "name": "Psc.BHHigherDeterminantPisot.real_root_unique",
+      "module": "PscVerif.BHHigherDeterminantPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHHigherDeterminantPisot.lean",
+      "line": 119,
+      "declaration": "theorem real_root_unique {r k : ℕ} {β : ℝ} (h : Family r k β) {x : ℝ}"
+    },
+    {
+      "name": "Psc.BHHigherDeterminantPisot.family_root_unique",
+      "module": "PscVerif.BHHigherDeterminantPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHHigherDeterminantPisot.lean",
+      "line": 126,
+      "declaration": "theorem family_root_unique {r k : ℕ} {β γ : ℝ}"
+    },
+    {
+      "name": "Psc.BHHigherDeterminantPisot.root_not_integer",
+      "module": "PscVerif.BHHigherDeterminantPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHHigherDeterminantPisot.lean",
+      "line": 130,
+      "declaration": "theorem root_not_integer {r k : ℕ} {β : ℝ} (h : Family r k β) (z : ℤ) :"
+    },
+    {
+      "name": "Psc.BHHigherDeterminantPisot.no_integer_root",
+      "module": "PscVerif.BHHigherDeterminantPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHHigherDeterminantPisot.lean",
+      "line": 137,
+      "declaration": "theorem no_integer_root {r k : ℕ} {β : ℝ} (h : Family r k β) (z : ℤ) :"
+    },
+    {
+      "name": "Psc.BHHigherDeterminantPisot.no_rational_root",
+      "module": "PscVerif.BHHigherDeterminantPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHHigherDeterminantPisot.lean",
+      "line": 144,
+      "declaration": "theorem no_rational_root (r k : ℕ) (hr : 4 ≤ r) (hk : r ≤ k) (x : ℚ) :"
+    },
+    {
+      "name": "Psc.BHHigherDeterminantPisot.polynomial_irreducible",
+      "module": "PscVerif.BHHigherDeterminantPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHHigherDeterminantPisot.lean",
+      "line": 159,
+      "declaration": "theorem polynomial_irreducible (r k : ℕ) (hr : 4 ≤ r) (hk : r ≤ k) :"
+    },
+    {
+      "name": "Psc.BHHigherDeterminantPisot.irreducible",
+      "module": "PscVerif.BHHigherDeterminantPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHHigherDeterminantPisot.lean",
+      "line": 166,
+      "declaration": "theorem irreducible (r k : ℕ) (hr : 4 ≤ r) (hk : r ≤ k) :"
+    },
+    {
+      "name": "Psc.BHHigherDeterminantPisot.complex_cubic_factor",
+      "module": "PscVerif.BHHigherDeterminantPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHHigherDeterminantPisot.lean",
+      "line": 171,
+      "declaration": "theorem complex_cubic_factor {r k : ℕ} {β : ℝ} (h : RunFamily r k β) (z : ℂ) :"
+    },
+    {
+      "name": "Psc.BHHigherDeterminantPisot.other_root",
+      "module": "PscVerif.BHHigherDeterminantPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHHigherDeterminantPisot.lean",
+      "line": 182,
+      "declaration": "theorem other_root {r k : ℕ} {β : ℝ} (h : Family r k β) {z : ℂ}"
+    },
+    {
+      "name": "Psc.BHHigherDeterminantPisot.pisot",
+      "module": "PscVerif.BHHigherDeterminantPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHHigherDeterminantPisot.lean",
+      "line": 213,
+      "declaration": "theorem pisot (r k : ℕ) (hr : 4 ≤ r) (hk : r ≤ k) :"
+    },
+    {
+      "name": "Psc.BHHigherDeterminantPisot.root_not_rational",
+      "module": "PscVerif.BHHigherDeterminantPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHHigherDeterminantPisot.lean",
+      "line": 227,
+      "declaration": "theorem root_not_rational {r k : ℕ} {β : ℝ} (h : Family r k β) (q : ℚ) :"
+    },
+    {
+      "name": "Psc.BHHigherDeterminantPisot.positive_literal_lengths",
+      "module": "PscVerif.BHHigherDeterminantPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHHigherDeterminantPisot.lean",
+      "line": 237,
+      "declaration": "theorem positive_literal_lengths {r k : ℕ} {β : ℝ} (h : RunFamily r k β) :"
+    },
+    {
+      "name": "Psc.BHHigherDeterminantPisot.literal_left_eigenvector",
+      "module": "PscVerif.BHHigherDeterminantPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHHigherDeterminantPisot.lean",
+      "line": 242,
+      "declaration": "theorem literal_left_eigenvector {r k : ℕ} {β : ℝ} (h : RunFamily r k β) :"
+    },
+    {
+      "name": "Psc.BHHigherDeterminantPisot.literal_lengths_scale",
+      "module": "PscVerif.BHHigherDeterminantPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHHigherDeterminantPisot.lean",
+      "line": 252,
+      "declaration": "theorem literal_lengths_scale {r k : ℕ} {β : ℝ} (h : RunFamily r k β) :"
+    },
+    {
+      "name": "Psc.BHHigherDeterminantPisot.positive_left_eigenvector",
+      "module": "PscVerif.BHHigherDeterminantPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHHigherDeterminantPisot.lean",
+      "line": 261,
+      "declaration": "theorem positive_left_eigenvector {r k : ℕ} {β : ℝ} (h : RunFamily r k β) :"
+    },
+    {
+      "name": "Psc.BHHigherDeterminantPisot.primitive_irreducible_pisot",
+      "module": "PscVerif.BHHigherDeterminantPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHHigherDeterminantPisot.lean",
+      "line": 276,
+      "declaration": "theorem primitive_irreducible_pisot (r k : ℕ) (hr : 4 ≤ r) (hk : r ≤ k) :"
+    },
+    {
       "name": "Psc.BHNearDiagonalDescent.energy_ge_half",
       "module": "PscVerif.BHNearDiagonalDescent",
       "private": false,
@@ -3402,11 +4944,43 @@
       "declaration": "theorem choose_rounding {a b θ : ℝ} (h : Window a b θ) (z y : ℤ)"
     },
     {
+      "name": "Psc.BHNearDiagonalLiteral.Family.toRunFamily",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 38,
+      "declaration": "theorem Family.toRunFamily {r k β} (h : Family r k β) : RunFamily r k β :="
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.RunFamily.beta_pos",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 41,
+      "declaration": "theorem RunFamily.beta_pos {r k β} (h : RunFamily r k β) : 0 < β := by"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.RunFamily.quadratic_eq",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 44,
+      "declaration": "theorem RunFamily.quadratic_eq {r k β} (h : RunFamily r k β) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.RunFamily.lengths_ge_one",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 53,
+      "declaration": "theorem RunFamily.lengths_ge_one {r k β} (h : RunFamily r k β) (a : Fin 3) :"
+    },
+    {
       "name": "Psc.BHNearDiagonalLiteral.beta_gt_thirteen",
       "module": "PscVerif.BHNearDiagonalLiteral",
       "private": false,
       "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
-      "line": 31,
+      "line": 59,
       "declaration": "theorem beta_gt_thirteen {r k β} (h : Family r k β) : 13 < β := by"
     },
     {
@@ -3414,7 +4988,7 @@
       "module": "PscVerif.BHNearDiagonalLiteral",
       "private": false,
       "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
-      "line": 35,
+      "line": 63,
       "declaration": "theorem quadratic_eq {r k β} (h : Family r k β) : β ^ 2 = k * β + 2 + r / β := by"
     },
     {
@@ -3422,7 +4996,7 @@
       "module": "PscVerif.BHNearDiagonalLiteral",
       "private": false,
       "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
-      "line": 43,
+      "line": 71,
       "declaration": "theorem family_window {r k β} (h : Family r k β) :"
     },
     {
@@ -3430,7 +5004,7 @@
       "module": "PscVerif.BHNearDiagonalLiteral",
       "private": true,
       "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
-      "line": 70,
+      "line": 98,
       "declaration": "private theorem physical_replicate (ℓ : Fin 3 → ℝ) (n : ℕ) (a : Fin 3) :"
     },
     {
@@ -3438,7 +5012,7 @@
       "module": "PscVerif.BHNearDiagonalLiteral",
       "private": false,
       "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
-      "line": 76,
+      "line": 104,
       "declaration": "theorem lengths_ge_one {r k β} (h : Family r k β) (a : Fin 3) :"
     },
     {
@@ -3446,7 +5020,7 @@
       "module": "PscVerif.BHNearDiagonalLiteral",
       "private": false,
       "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
-      "line": 81,
+      "line": 109,
       "declaration": "theorem lengths_scale {r k β} (h : Family r k β) (a : Fin 3) :"
     },
     {
@@ -3454,7 +5028,7 @@
       "module": "PscVerif.BHNearDiagonalLiteral",
       "private": false,
       "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
-      "line": 97,
+      "line": 125,
       "declaration": "theorem offset_run (r : ℕ) (β : ℝ) (x y z : ℤ) :"
     },
     {
@@ -3462,7 +5036,7 @@
       "module": "PscVerif.BHNearDiagonalLiteral",
       "private": true,
       "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
-      "line": 115,
+      "line": 143,
       "declaration": "private theorem ordinals_of_difference {k : ℕ} (hk : 0 < k) (d : ℤ)"
     },
     {
@@ -3470,7 +5044,7 @@
       "module": "PscVerif.BHNearDiagonalLiteral",
       "private": true,
       "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
-      "line": 122,
+      "line": 150,
       "declaration": "private theorem incidence_run (r k : ℕ) (x y z : ℤ) :"
     },
     {
@@ -3478,15 +5052,31 @@
       "module": "PscVerif.BHNearDiagonalLiteral",
       "private": true,
       "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
-      "line": 129,
+      "line": 157,
       "declaration": "private theorem run_residual (r k i j : ℕ) (hi : i < k) (hj : j < k) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.literal_run_step",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 165,
+      "declaration": "theorem literal_run_step {r k β} (h : RunFamily r k β) (x y z t : ℤ)"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.literal_rounding_step_of_runFamily",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 188,
+      "declaration": "theorem literal_rounding_step_of_runFamily {r k β} (h : RunFamily r k β) (x y z t : ℤ)"
     },
     {
       "name": "Psc.BHNearDiagonalLiteral.literal_rounding_step",
       "module": "PscVerif.BHNearDiagonalLiteral",
       "private": false,
       "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
-      "line": 137,
+      "line": 242,
       "declaration": "theorem literal_rounding_step {r k β} (h : Family r k β) (x y z t : ℤ)"
     },
     {
@@ -3494,7 +5084,7 @@
       "module": "PscVerif.BHNearDiagonalLiteral",
       "private": true,
       "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
-      "line": 190,
+      "line": 249,
       "declaration": "private theorem packet_from_central {r k β p} (hp : Central r k β p) :"
     },
     {
@@ -3502,8 +5092,672 @@
       "module": "PscVerif.BHNearDiagonalLiteral",
       "private": false,
       "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
-      "line": 204,
+      "line": 263,
       "declaration": "theorem central_hits_zero {r k β} (h : Family r k β) {p : Packet}"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.incidence_eq",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 29,
+      "declaration": "theorem incidence_eq (r k : ℕ) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.incidence_sq",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 35,
+      "declaration": "theorem incidence_sq (r k : ℕ) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.primitive",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 43,
+      "declaration": "theorem primitive (r k : ℕ) (hk : 0 < k) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.incidenceQ_eq",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 53,
+      "declaration": "theorem incidenceQ_eq (r k : ℕ) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.determinant",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 60,
+      "declaration": "theorem determinant (r k : ℕ) : (incidenceQ r k).det = r := by"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.charpoly_eq",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 70,
+      "declaration": "theorem charpoly_eq (r k : ℕ) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.polynomial_natDegree",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 76,
+      "declaration": "theorem polynomial_natDegree (r k : ℕ) : (polynomial r k).natDegree = 3 := by"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.integerPolynomial_monic",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 80,
+      "declaration": "theorem integerPolynomial_monic (r k : ℕ) : (integerPolynomial r k).Monic := by"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.polynomial_eq_map",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 84,
+      "declaration": "theorem polynomial_eq_map (r k : ℕ) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.polynomial_monic",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 89,
+      "declaration": "theorem polynomial_monic (r k : ℕ) : (polynomial r k).Monic := by"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.aeval_polynomial",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 93,
+      "declaration": "theorem aeval_polynomial {A : Type*} [CommRing A] [Algebra ℚ A]"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.aeval_integerPolynomial",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 98,
+      "declaration": "theorem aeval_integerPolynomial {A : Type*} [CommRing A] [Algebra ℤ A]"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.a_identity",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 103,
+      "declaration": "theorem a_identity {r k : ℕ} {β : ℝ} (h : Family r k β) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.cubic_factor",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 107,
+      "declaration": "theorem cubic_factor {r k : ℕ} {β : ℝ} (h : Family r k β) (x : ℝ) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.quadratic_factor_pos",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 116,
+      "declaration": "theorem quadratic_factor_pos {r k : ℕ} {β : ℝ} (h : Family r k β) (x : ℝ) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.real_root_unique",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 124,
+      "declaration": "theorem real_root_unique {r k : ℕ} {β : ℝ} (h : Family r k β) {x : ℝ}"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.family_root_unique",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 131,
+      "declaration": "theorem family_root_unique {r k : ℕ} {β γ : ℝ}"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.root_not_integer",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 135,
+      "declaration": "theorem root_not_integer {r k : ℕ} {β : ℝ} (h : Family r k β) (z : ℤ) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.no_integer_root",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 142,
+      "declaration": "theorem no_integer_root {r k : ℕ} {β : ℝ} (h : Family r k β) (z : ℤ) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.no_rational_root",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 149,
+      "declaration": "theorem no_rational_root (r k : ℕ) (hr : 12 ≤ r)"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.polynomial_irreducible",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 165,
+      "declaration": "theorem polynomial_irreducible (r k : ℕ) (hr : 12 ≤ r)"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.irreducible",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 172,
+      "declaration": "theorem irreducible (r k : ℕ) (hr : 12 ≤ r)"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.complex_cubic_factor",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 177,
+      "declaration": "theorem complex_cubic_factor {r k : ℕ} {β : ℝ} (h : Family r k β) (z : ℂ) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.other_root",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 188,
+      "declaration": "theorem other_root {r k : ℕ} {β : ℝ} (h : Family r k β) {z : ℂ}"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.pisot",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 225,
+      "declaration": "theorem pisot (r k : ℕ) (hr : 12 ≤ r) (hklo : r+1 ≤ k) (hkhi : k ≤ r+2) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.root_not_rational",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 239,
+      "declaration": "theorem root_not_rational {r k : ℕ} {β : ℝ} (h : Family r k β) (q : ℚ) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.positive_left_eigenvector",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 251,
+      "declaration": "theorem positive_left_eigenvector {r k : ℕ} {β : ℝ} (h : Family r k β) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalPisot.primitive_irreducible_pisot",
+      "module": "PscVerif.BHNearDiagonalPisot",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean",
+      "line": 265,
+      "declaration": "theorem primitive_irreducible_pisot (r k : ℕ) (hr : 12 ≤ r)"
+    },
+    {
+      "name": "Psc.BHPisotFiniteBPA.lenHom_offset",
+      "module": "PscVerif.BHPisotFiniteBPA",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHPisotFiniteBPA.lean",
+      "line": 30,
+      "declaration": "theorem lenHom_offset (ℓ : Fin 3 → ℝ) (v : Fin 3 → ℤ) :"
+    },
+    {
+      "name": "Psc.BHPisotFiniteBPA.pvec_parikh",
+      "module": "PscVerif.BHPisotFiniteBPA",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHPisotFiniteBPA.lean",
+      "line": 33,
+      "declaration": "theorem pvec_parikh (w : Word) : GeometricF.pvec w = parikhZ w := rfl"
+    },
+    {
+      "name": "Psc.BHPisotFiniteBPA.incZ_incidence",
+      "module": "PscVerif.BHPisotFiniteBPA",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHPisotFiniteBPA.lean",
+      "line": 35,
+      "declaration": "theorem incZ_incidence (s : Fin 3 → Word) :"
+    },
+    {
+      "name": "Psc.BHPisotFiniteBPA.overlapPacket_packetOverlap",
+      "module": "PscVerif.BHPisotFiniteBPA",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHPisotFiniteBPA.lean",
+      "line": 45,
+      "declaration": "@[simp] theorem overlapPacket_packetOverlap (p : Packet) :"
+    },
+    {
+      "name": "Psc.BHPisotFiniteBPA.packetOverlap_overlapPacket",
+      "module": "PscVerif.BHPisotFiniteBPA",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHPisotFiniteBPA.lean",
+      "line": 50,
+      "declaration": "@[simp] theorem packetOverlap_overlapPacket (u : GeometricF.OverlapCoordinates (Fin 3)) :"
+    },
+    {
+      "name": "Psc.BHPisotFiniteBPA.packetOverlap_interior_iff",
+      "module": "PscVerif.BHPisotFiniteBPA",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHPisotFiniteBPA.lean",
+      "line": 56,
+      "declaration": "theorem packetOverlap_interior_iff (ℓ : Fin 3 → ℝ) (hpos : ∀ a, 0 < ℓ a)"
+    },
+    {
+      "name": "Psc.BHPisotFiniteBPA.digitStep_overlap",
+      "module": "PscVerif.BHPisotFiniteBPA",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHPisotFiniteBPA.lean",
+      "line": 70,
+      "declaration": "theorem digitStep_overlap {s : Fin 3 → Word} {p q : Packet} (h : DigitStep s p q) :"
+    },
+    {
+      "name": "Psc.BHPisotFiniteBPA.interior_path_target",
+      "module": "PscVerif.BHPisotFiniteBPA",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHPisotFiniteBPA.lean",
+      "line": 80,
+      "declaration": "theorem interior_path_target {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ} {p q : Packet}"
+    },
+    {
+      "name": "Psc.BHPisotFiniteBPA.interior_path_overlap",
+      "module": "PscVerif.BHPisotFiniteBPA",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHPisotFiniteBPA.lean",
+      "line": 89,
+      "declaration": "theorem interior_path_overlap (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.BHPisotFiniteBPA.packet_reach_finite",
+      "module": "PscVerif.BHPisotFiniteBPA",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHPisotFiniteBPA.lean",
+      "line": 103,
+      "declaration": "theorem packet_reach_finite (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.BHPisotFiniteBPA.finite_closed_packet_cover_of_contraction",
+      "module": "PscVerif.BHPisotFiniteBPA",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHPisotFiniteBPA.lean",
+      "line": 117,
+      "declaration": "theorem finite_closed_packet_cover_of_contraction (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.BHPisotFiniteBPA.left_eigen_of_scaling",
+      "module": "PscVerif.BHPisotFiniteBPA",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHPisotFiniteBPA.lean",
+      "line": 147,
+      "declaration": "theorem left_eigen_of_scaling (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.BHPisotFiniteBPA.contraction_of_pisot",
+      "module": "PscVerif.BHPisotFiniteBPA",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHPisotFiniteBPA.lean",
+      "line": 156,
+      "declaration": "theorem contraction_of_pisot (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.BHPisotFiniteBPA.finite_closed_packet_cover_of_pisot",
+      "module": "PscVerif.BHPisotFiniteBPA",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHPisotFiniteBPA.lean",
+      "line": 173,
+      "declaration": "theorem finite_closed_packet_cover_of_pisot (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.BHPisotFiniteBPA.terminates_of_pisot_all_source_exit",
+      "module": "PscVerif.BHPisotFiniteBPA",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHPisotFiniteBPA.lean",
+      "line": 189,
+      "declaration": "theorem terminates_of_pisot_all_source_exit (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.BHThirdLevelEntry.physical_replicate",
+      "module": "PscVerif.BHThirdLevelEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelEntry.lean",
+      "line": 23,
+      "declaration": "theorem physical_replicate (ℓ : Fin 3 → ℝ) (n : ℕ) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.BHThirdLevelEntry.run_lengths_scale",
+      "module": "PscVerif.BHThirdLevelEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelEntry.lean",
+      "line": 30,
+      "declaration": "theorem run_lengths_scale {r k : ℕ} {β : ℝ} (h : RunFamily r k β) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.BHThirdLevelEntry.physical_subst",
+      "module": "PscVerif.BHThirdLevelEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelEntry.lean",
+      "line": 40,
+      "declaration": "theorem physical_subst (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.BHThirdLevelEntry.run_reaches_half_mass",
+      "module": "PscVerif.BHThirdLevelEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelEntry.lean",
+      "line": 51,
+      "declaration": "theorem run_reaches_half_mass {r k : ℕ} {β : ℝ} (h : RunFamily r k β)"
+    },
+    {
+      "name": "Psc.BHThirdLevelEntry.mark_containing_halfopen",
+      "module": "PscVerif.BHThirdLevelEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelEntry.lean",
+      "line": 59,
+      "declaration": "theorem mark_containing_halfopen (ℓ : Fin 3 → ℝ) (w : Word) (x : ℝ)"
+    },
+    {
+      "name": "Psc.BHThirdLevelEntry.last_mark_unique",
+      "module": "PscVerif.BHThirdLevelEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelEntry.lean",
+      "line": 80,
+      "declaration": "theorem last_mark_unique (u : Word) (a : Fin 3) (ha : a ∉ u)"
+    },
+    {
+      "name": "Psc.BHThirdLevelEntry.two_digit_structure",
+      "module": "PscVerif.BHThirdLevelEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelEntry.lean",
+      "line": 98,
+      "declaration": "theorem two_digit_structure (r k : ℕ) (a : Fin 3) (m : Mark (sigma r k a))"
+    },
+    {
+      "name": "Psc.BHThirdLevelEntry.two_mark_parent",
+      "module": "PscVerif.BHThirdLevelEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelEntry.lean",
+      "line": 113,
+      "declaration": "theorem two_mark_parent {r k : ℕ} {β : ℝ} (h : RunFamily r k β) (w : Word)"
+    },
+    {
+      "name": "Psc.BHThirdLevelEntry.two_mark_separation",
+      "module": "PscVerif.BHThirdLevelEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelEntry.lean",
+      "line": 130,
+      "declaration": "theorem two_mark_separation {r k : ℕ} {β : ℝ} (h : RunFamily r k β) (w : Word)"
+    },
+    {
+      "name": "Psc.BHThirdLevelEntry.badStarts_separated",
+      "module": "PscVerif.BHThirdLevelEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelEntry.lean",
+      "line": 169,
+      "declaration": "theorem badStarts_separated {r k : ℕ} {β : ℝ} (h : RunFamily r k β)"
+    },
+    {
+      "name": "Psc.BHThirdLevelEntry.mark_letter_mem",
+      "module": "PscVerif.BHThirdLevelEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelEntry.lean",
+      "line": 186,
+      "declaration": "theorem mark_letter_mem {w : Word} (m : Mark w) : m.letter ∈ w := by"
+    },
+    {
+      "name": "Psc.BHThirdLevelEntry.first_one_digit",
+      "module": "PscVerif.BHThirdLevelEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelEntry.lean",
+      "line": 191,
+      "declaration": "theorem first_one_digit (r k : ℕ) (hk : 0 < k) (β : ℝ) (a : Fin 3) (ha : a ≠ 2) :"
+    },
+    {
+      "name": "Psc.BHThirdLevelEntry.mark_word_length",
+      "module": "PscVerif.BHThirdLevelEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelEntry.lean",
+      "line": 210,
+      "declaration": "theorem mark_word_length (ℓ : Fin 3 → ℝ) {w : Word} (m : Mark w) :"
+    },
+    {
+      "name": "Psc.BHThirdLevelEntry.inflate_start",
+      "module": "PscVerif.BHThirdLevelEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelEntry.lean",
+      "line": 217,
+      "declaration": "theorem inflate_start {r k : ℕ} {β : ℝ} (h : RunFamily r k β)"
+    },
+    {
+      "name": "Psc.BHThirdLevelEntry.clean_window_locator",
+      "module": "PscVerif.BHThirdLevelEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelEntry.lean",
+      "line": 229,
+      "declaration": "theorem clean_window_locator {r k : ℕ} {β : ℝ} (h : RunFamily r k β)"
+    },
+    {
+      "name": "Psc.BHThirdLevelEntry.image_three",
+      "module": "PscVerif.BHThirdLevelEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelEntry.lean",
+      "line": 352,
+      "declaration": "theorem image_three (s : Fin 3 → Word) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.BHThirdLevelEntry.third_level_marks",
+      "module": "PscVerif.BHThirdLevelEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelEntry.lean",
+      "line": 358,
+      "declaration": "theorem third_level_marks {r k : ℕ} {β : ℝ} (h : RunFamily r k β)"
+    },
+    {
+      "name": "Psc.BHThirdLevelEntry.half_mass_entry",
+      "module": "PscVerif.BHThirdLevelEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelEntry.lean",
+      "line": 399,
+      "declaration": "theorem half_mass_entry {r k : ℕ} {β : ℝ} (h : RunFamily r k β)"
+    },
+    {
+      "name": "Psc.BHThirdLevelEntry.run_family_entry",
+      "module": "PscVerif.BHThirdLevelEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelEntry.lean",
+      "line": 417,
+      "declaration": "theorem run_family_entry {r k : ℕ} {β : ℝ} (h : RunFamily r k β)"
+    },
+    {
+      "name": "Psc.BHThirdLevelEntry.interior_path_ordered",
+      "module": "PscVerif.BHThirdLevelEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelEntry.lean",
+      "line": 428,
+      "declaration": "theorem interior_path_ordered (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.BHThirdLevelEntry.run_family_entry_ordered",
+      "module": "PscVerif.BHThirdLevelEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelEntry.lean",
+      "line": 444,
+      "declaration": "theorem run_family_entry_ordered {r k : ℕ} {β : ℝ} (h : RunFamily r k β)"
+    },
+    {
+      "name": "Psc.BHThirdLevelGeometry.window_bounds",
+      "module": "PscVerif.BHThirdLevelGeometry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelGeometry.lean",
+      "line": 24,
+      "declaration": "theorem window_bounds {β L : ℝ} (hβ : 0 < β) (i : Fin 3) :"
+    },
+    {
+      "name": "Psc.BHThirdLevelGeometry.cube_spacing",
+      "module": "PscVerif.BHThirdLevelGeometry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelGeometry.lean",
+      "line": 31,
+      "declaration": "theorem cube_spacing {β : ℝ} (hβ : 12 < β) : 20*β < β^3 := by"
+    },
+    {
+      "name": "Psc.BHThirdLevelGeometry.one_interval_one_slot",
+      "module": "PscVerif.BHThirdLevelGeometry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelGeometry.lean",
+      "line": 37,
+      "declaration": "theorem one_interval_one_slot {β L b : ℝ} (hβ : 0 < β)"
+    },
+    {
+      "name": "Psc.BHThirdLevelGeometry.separated_one_slot",
+      "module": "PscVerif.BHThirdLevelGeometry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelGeometry.lean",
+      "line": 44,
+      "declaration": "theorem separated_one_slot {β L : ℝ} (hβ : 12 < β) (B : Set ℝ)"
+    },
+    {
+      "name": "Psc.BHThirdLevelGeometry.exists_clean_window",
+      "module": "PscVerif.BHThirdLevelGeometry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelGeometry.lean",
+      "line": 63,
+      "declaration": "theorem exists_clean_window (β L : ℝ) (B₀ B₁ : Set ℝ) (hβ : 12 < β)"
+    },
+    {
+      "name": "Psc.BHThirdLevelTransport.image_mark_uninflate",
+      "module": "PscVerif.BHThirdLevelTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelTransport.lean",
+      "line": 25,
+      "declaration": "theorem image_mark_uninflate (s : Fin 3 → Word) (n : ℕ) (a : Fin 3)"
+    },
+    {
+      "name": "Psc.BHThirdLevelTransport.assembled_has_ordered_path",
+      "module": "PscVerif.BHThirdLevelTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelTransport.lean",
+      "line": 38,
+      "declaration": "theorem assembled_has_ordered_path (s : Fin 3 → Word) (p : Packet) (n : ℕ)"
+    },
+    {
+      "name": "Psc.BHThirdLevelTransport.assembled_has_ordered_interior_path",
+      "module": "PscVerif.BHThirdLevelTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelTransport.lean",
+      "line": 67,
+      "declaration": "theorem assembled_has_ordered_interior_path (s : Fin 3 → Word)"
+    },
+    {
+      "name": "Psc.BHThirdLevelTransport.offset_incidence_pow",
+      "module": "PscVerif.BHThirdLevelTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelTransport.lean",
+      "line": 78,
+      "declaration": "theorem offset_incidence_pow (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.BHThirdLevelTransport.assembled_offset",
+      "module": "PscVerif.BHThirdLevelTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelTransport.lean",
+      "line": 88,
+      "declaration": "theorem assembled_offset (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.BHThirdLevelTransport.positioned_run_marks",
+      "module": "PscVerif.BHThirdLevelTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelTransport.lean",
+      "line": 101,
+      "declaration": "theorem positioned_run_marks {r k : ℕ} {β : ℝ} (h : RunFamily r k β)"
+    },
+    {
+      "name": "Psc.BHThirdLevelTransport.physical_subst_scale",
+      "module": "PscVerif.BHThirdLevelTransport",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelTransport.lean",
+      "line": 139,
+      "declaration": "private theorem physical_subst_scale (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.BHThirdLevelTransport.physical_image_scale",
+      "module": "PscVerif.BHThirdLevelTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelTransport.lean",
+      "line": 148,
+      "declaration": "theorem physical_image_scale (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.BHThirdLevelTransport.half_mass_common_interval",
+      "module": "PscVerif.BHThirdLevelTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThirdLevelTransport.lean",
+      "line": 160,
+      "declaration": "theorem half_mass_common_interval {r k : ℕ} {β : ℝ} (h : RunFamily r k β)"
+    },
+    {
+      "name": "Psc.BHThreeBandBPA.terminates_of_family_closure",
+      "module": "PscVerif.BHThreeBandBPA",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThreeBandBPA.lean",
+      "line": 22,
+      "declaration": "theorem terminates_of_family_closure {r k : ℕ} {β : ℝ}"
+    },
+    {
+      "name": "Psc.BHThreeBandBPA.all_blocks_terminate",
+      "module": "PscVerif.BHThreeBandBPA",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThreeBandBPA.lean",
+      "line": 34,
+      "declaration": "theorem all_blocks_terminate (r k : ℕ) (hr : 12 ≤ r)"
+    },
+    {
+      "name": "Psc.BHThreeBandBPA.all_blocks_full_factor_coincidence",
+      "module": "PscVerif.BHThreeBandBPA",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThreeBandBPA.lean",
+      "line": 42,
+      "declaration": "theorem all_blocks_full_factor_coincidence (r k : ℕ) (hr : 12 ≤ r)"
+    },
+    {
+      "name": "Psc.BHThreeBandBPA.all_swap_seeds_terminate",
+      "module": "PscVerif.BHThreeBandBPA",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThreeBandBPA.lean",
+      "line": 55,
+      "declaration": "theorem all_swap_seeds_terminate (r k : ℕ) (hr : 12 ≤ r)"
+    },
+    {
+      "name": "Psc.BHThreeBandClosure.family_closure",
+      "module": "PscVerif.BHThreeBandClosure",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHThreeBandClosure.lean",
+      "line": 49,
+      "declaration": "theorem family_closure (r k : ℕ) (hr : 12 ≤ r)"
     },
     {
       "name": "Psc.BHWindowChoice.exists_clean_slot",
@@ -21770,6 +24024,30 @@
       "declaration": "theorem carrier_lengthData_gt_one : ∃ (β : ℝ) (ℓ : Fin 3 → ℝ), (∀ a, 0 < ℓ a) ∧"
     },
     {
+      "name": "Psc.GeometricF.lenHom_apply",
+      "module": "PscVerif.GeometricFLength",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLength.lean",
+      "line": 23,
+      "declaration": "theorem lenHom_apply (ℓ : α → ℝ) (v : α → ℤ) : lenHom ℓ v = ∑ a, ℓ a * (v a : ℝ) := rfl"
+    },
+    {
+      "name": "Psc.GeometricF.lenHom_single",
+      "module": "PscVerif.GeometricFLength",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLength.lean",
+      "line": 25,
+      "declaration": "theorem lenHom_single (ℓ : α → ℝ) (a : α) : lenHom ℓ (pvec [a]) = ℓ a := by"
+    },
+    {
+      "name": "Psc.GeometricF.lengthData_of_left_eigen",
+      "module": "PscVerif.GeometricFLength",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFLength.lean",
+      "line": 32,
+      "declaration": "theorem lengthData_of_left_eigen {s : α → List α} {ℓ : α → ℝ} {β : ℝ} (hβ : 0 < β)"
+    },
+    {
       "name": "Psc.GeometricF.edgeDescendant_translate",
       "module": "PscVerif.GeometricFOrientation",
       "private": false,
@@ -22178,131 +24456,11 @@
       "declaration": "theorem bd_reverse_not_propertyF :"
     },
     {
-      "name": "Psc.GeometricFPisot.dotHom_apply",
-      "module": "PscVerif.GeometricFPisot",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 129,
-      "declaration": "theorem dotHom_apply (w : α → ℂ) (v : α → ℤ) : dotHom w v = ∑ a, w a * (v a : ℂ) := rfl"
-    },
-    {
-      "name": "Psc.GeometricFPisot.dotHom_mulVec",
-      "module": "PscVerif.GeometricFPisot",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 133,
-      "declaration": "theorem dotHom_mulVec {s : α → List α} {w : α → ℂ} {z : ℂ}"
-    },
-    {
-      "name": "Psc.GeometricFPisot.ofReal_left_eigen",
-      "module": "PscVerif.GeometricFPisot",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 148,
-      "declaration": "theorem ofReal_left_eigen {s : α → List α} {ℓ : α → ℝ} {β : ℝ}"
-    },
-    {
-      "name": "Psc.GeometricFPisot.dotHom_ofReal",
-      "module": "PscVerif.GeometricFPisot",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 158,
-      "declaration": "theorem dotHom_ofReal (ℓ : α → ℝ) (v : α → ℤ) :"
-    },
-    {
-      "name": "Psc.GeometricFPisot.finite_of_span_eq_top",
-      "module": "PscVerif.GeometricFPisot",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 167,
-      "declaration": "theorem finite_of_span_eq_top {κ : Type*} [Fintype κ] (W : κ → α → ℂ)"
-    },
-    {
-      "name": "Psc.GeometricFPisot.span_eq_top_of_left_eigen",
-      "module": "PscVerif.GeometricFPisot",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 211,
-      "declaration": "theorem span_eq_top_of_left_eigen {κ : Type*} [Fintype κ] (A : Matrix α α ℂ) (μ : κ → ℂ)"
-    },
-    {
-      "name": "Psc.GeometricFPisot.card_roots_toFinset",
-      "module": "PscVerif.GeometricFPisot",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 221,
-      "declaration": "theorem card_roots_toFinset (A : Matrix α α ℂ) (hsep : A.charpoly.Separable) :"
-    },
-    {
-      "name": "Psc.GeometricFPisot.charpoly_separable_of_irreducible",
-      "module": "PscVerif.GeometricFPisot",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 227,
-      "declaration": "theorem charpoly_separable_of_irreducible (s : α → List α)"
-    },
-    {
-      "name": "Psc.GeometricFPisot.nonempty_of_irreducible",
-      "module": "PscVerif.GeometricFPisot",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 237,
-      "declaration": "theorem nonempty_of_irreducible (s : α → List α)"
-    },
-    {
-      "name": "Psc.GeometricFPisot.proper_of_span",
-      "module": "PscVerif.GeometricFPisot",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 249,
-      "declaration": "theorem proper_of_span {κ : Type*} [Fintype κ] (W : κ → α → ℂ)"
-    },
-    {
-      "name": "Psc.GeometricFPisot.contractionData_of_eigenrows",
-      "module": "PscVerif.GeometricFPisot",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 270,
-      "declaration": "theorem contractionData_of_eigenrows {κ : Type*} [Fintype κ] (s : α → List α) (μ : κ → ℂ)"
-    },
-    {
-      "name": "Psc.GeometricFPisot.exists_bound_lt_one",
-      "module": "PscVerif.GeometricFPisot",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 282,
-      "declaration": "theorem exists_bound_lt_one {ι : Type*} [Finite ι] (f : ι → ℝ) (hf : ∀ i, f i < 1) :"
-    },
-    {
-      "name": "Psc.GeometricFPisot.exists_eigenfunctionals_of_separable",
-      "module": "PscVerif.GeometricFPisot",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 301,
-      "declaration": "theorem exists_eigenfunctionals_of_separable (s : α → List α)"
-    },
-    {
-      "name": "Psc.GeometricFPisot.exists_contractionData_of_separable",
-      "module": "PscVerif.GeometricFPisot",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 362,
-      "declaration": "theorem exists_contractionData_of_separable (s : α → List α)"
-    },
-    {
-      "name": "Psc.GeometricFPisot.exists_contractionData_of_pisot",
-      "module": "PscVerif.GeometricFPisot",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 377,
-      "declaration": "theorem exists_contractionData_of_pisot (s : α → List α)"
-    },
-    {
       "name": "Psc.GeometricFPisot.pisot_roots_of_isPisot",
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 393,
+      "line": 127,
       "declaration": "theorem pisot_roots_of_isPisot (s : α → List α)"
     },
     {
@@ -22310,7 +24468,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 411,
+      "line": 145,
       "declaration": "theorem perron_eq_pisot_root (s : α → List α) {r : ℝ} {ℓ : α → ℝ} (hℓ : ∀ a, 0 < ℓ a)"
     },
     {
@@ -22318,7 +24476,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 441,
+      "line": 175,
       "declaration": "theorem pisot_roots_of_pisot_root (s : α → List α) {r : ℝ} {ℓ : α → ℝ} (hℓ : ∀ a, 0 < ℓ a)"
     },
     {
@@ -22326,7 +24484,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 464,
+      "line": 198,
       "declaration": "theorem fc1_hypotheses_of_primitive_pisot [Nontrivial α]"
     },
     {
@@ -22334,7 +24492,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 483,
+      "line": 217,
       "declaration": "theorem exists_fc1_data_of_primitive_pisot"
     },
     {
@@ -22342,7 +24500,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 503,
+      "line": 237,
       "declaration": "theorem fc1_equivalence_of_pisot"
     },
     {
@@ -22350,7 +24508,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 523,
+      "line": 257,
       "declaration": "theorem fc1_equivalence_of_primitive_pisot [Nontrivial α]"
     },
     {
@@ -22358,7 +24516,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 540,
+      "line": 274,
       "declaration": "theorem fc1_equivalence_of_isPisot"
     },
     {
@@ -22366,7 +24524,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 556,
+      "line": 290,
       "declaration": "theorem fc1_equivalence_of_pisot_root"
     },
     {
@@ -22374,7 +24532,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 576,
+      "line": 310,
       "declaration": "theorem fc1_inclusion_gap_of_pisot"
     },
     {
@@ -22382,7 +24540,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 598,
+      "line": 332,
       "declaration": "theorem fc1_strictSystem_of_pisot"
     },
     {
@@ -22390,7 +24548,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 616,
+      "line": 350,
       "declaration": "theorem fc1_inclusion_gap_of_primitive_pisot [Nontrivial α]"
     },
     {
@@ -22398,7 +24556,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 639,
+      "line": 373,
       "declaration": "theorem fc1_pip3 {s : Fin 3 → List (Fin 3)} {β : ℝ} {ℓ : Fin 3 → ℝ}"
     },
     {
@@ -22406,7 +24564,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 661,
+      "line": 395,
       "declaration": "theorem step_bound_proper (hc : ContractionData s L ν ρ)"
     },
     {
@@ -22414,7 +24572,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 672,
+      "line": 406,
       "declaration": "theorem stepN_bound_pow (hc : ContractionData s L ν ρ)"
     },
     {
@@ -22422,7 +24580,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 688,
+      "line": 422,
       "declaration": "theorem periodic_bound (hc : ContractionData s L ν ρ)"
     },
     {
@@ -22430,7 +24588,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 699,
+      "line": 433,
       "declaration": "theorem periodicStates_finite (hc : ContractionData s L ν ρ) :"
     },
     {
@@ -22438,7 +24596,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 714,
+      "line": 448,
       "declaration": "theorem periodicStates_finite_of_pisot"
     },
     {
@@ -22446,7 +24604,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 736,
+      "line": 470,
       "declaration": "theorem trib_fc1_hypotheses : ∃ (β : ℝ) (ℓ : Fin 3 → ℝ) (ν : (Fin 3 → ℤ) → ℝ) (ρ : ℝ),"
     },
     {
@@ -22454,7 +24612,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 752,
+      "line": 486,
       "declaration": "theorem trib_fc1_of_propertyF {β : ℝ} {ℓ : Fin 3 → ℝ} (hℓ : ∀ a, 0 < ℓ a)"
     },
     {
@@ -22462,7 +24620,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 768,
+      "line": 502,
       "declaration": "theorem trib_fc1_statements :"
     },
     {
@@ -22470,7 +24628,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 787,
+      "line": 521,
       "declaration": "theorem carrier_not_pisot_roots {β : ℝ} {ℓ : Fin 3 → ℝ} (hℓ : ∀ a, 0 < ℓ a)"
     },
     {
@@ -22478,7 +24636,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 807,
+      "line": 541,
       "declaration": "theorem fib_mulVec (v : Fin 2 → ℤ) : incZ fibSubst *ᵥ v = ![v 0 + v 1, v 0] := by"
     },
     {
@@ -22486,7 +24644,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 820,
+      "line": 554,
       "declaration": "theorem fib_perron (hℓ : ∀ a, 0 < ℓ a)"
     },
     {
@@ -22494,7 +24652,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 845,
+      "line": 579,
       "declaration": "theorem fibX_mulVec (hsq : β ^ 2 = β + 1) (v : Fin 2 → ℤ) :"
     },
     {
@@ -22502,7 +24660,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 852,
+      "line": 586,
       "declaration": "theorem fibY_mulVec (hsq : β ^ 2 = β + 1) (v : Fin 2 → ℤ) :"
     },
     {
@@ -22510,7 +24668,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 859,
+      "line": 593,
       "declaration": "theorem fib_pvec_zero : pvec [(0 : Fin 2)] = ![1, 0] := by"
     },
     {
@@ -22518,7 +24676,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 865,
+      "line": 599,
       "declaration": "theorem fib_state (hℓ : ∀ a, 0 < ℓ a)"
     },
     {
@@ -22526,7 +24684,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 884,
+      "line": 618,
       "declaration": "theorem fib_step_cases {L : (Fin 2 → ℤ) →+ ℝ} {x y : Fin 2 × (Fin 2 → ℤ)}"
     },
     {
@@ -22534,7 +24692,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 912,
+      "line": 646,
       "declaration": "theorem fibY_step (hsq : β ^ 2 = β + 1) (h1 : 1 < β) {L : (Fin 2 → ℤ) →+ ℝ}"
     },
     {
@@ -22542,7 +24700,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 932,
+      "line": 666,
       "declaration": "theorem fibY_stepN (hsq : β ^ 2 = β + 1) (h1 : 1 < β) {L : (Fin 2 → ℤ) →+ ℝ}"
     },
     {
@@ -22550,7 +24708,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 945,
+      "line": 679,
       "declaration": "theorem fibY_periodic (hsq : β ^ 2 = β + 1) (h1 : 1 < β) (h2 : β < 2)"
     },
     {
@@ -22558,7 +24716,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 956,
+      "line": 690,
       "declaration": "theorem fib_candidates (h32 : 3 / 2 < β) (h2 : β < 2) {v : Fin 2 → ℤ}"
     },
     {
@@ -22566,7 +24724,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 999,
+      "line": 733,
       "declaration": "theorem fib_reach_one (hℓ : ∀ a, 0 < ℓ a)"
     },
     {
@@ -22574,7 +24732,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 1021,
+      "line": 755,
       "declaration": "theorem fib_reach (hℓ : ∀ a, 0 < ℓ a)"
     },
     {
@@ -22582,7 +24740,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 1047,
+      "line": 781,
       "declaration": "theorem fib_propertyF (hℓ : ∀ a, 0 < ℓ a)"
     },
     {
@@ -22590,7 +24748,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 1074,
+      "line": 808,
       "declaration": "theorem fib_pisot_roots (hℓ : ∀ a, 0 < ℓ a)"
     },
     {
@@ -22598,7 +24756,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 1098,
+      "line": 832,
       "declaration": "theorem fib_fc1_hypotheses : ∃ (β : ℝ) (ℓ : Fin 2 → ℝ),"
     },
     {
@@ -22606,7 +24764,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 1112,
+      "line": 846,
       "declaration": "theorem fib_fc1 :"
     },
     {
@@ -22614,7 +24772,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 1126,
+      "line": 860,
       "declaration": "theorem fib_fc1_statements :"
     },
     {
@@ -22622,7 +24780,7 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 1148,
+      "line": 882,
       "declaration": "theorem pvec_eq_parikhCast (w : List α) :"
     },
     {
@@ -22630,8 +24788,136 @@
       "module": "PscVerif.GeometricFPisot",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFPisot.lean",
-      "line": 1153,
+      "line": 887,
       "declaration": "theorem incZ_eq_degree2Sector (S : Psc.Binomial.ChildSystem (Fin 3)) :"
+    },
+    {
+      "name": "Psc.GeometricFPisot.dotHom_apply",
+      "module": "PscVerif.GeometricFPisotCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisotCore.lean",
+      "line": 30,
+      "declaration": "theorem dotHom_apply (w : α → ℂ) (v : α → ℤ) : dotHom w v = ∑ a, w a * (v a : ℂ) := rfl"
+    },
+    {
+      "name": "Psc.GeometricFPisot.dotHom_mulVec",
+      "module": "PscVerif.GeometricFPisotCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisotCore.lean",
+      "line": 34,
+      "declaration": "theorem dotHom_mulVec {s : α → List α} {w : α → ℂ} {z : ℂ}"
+    },
+    {
+      "name": "Psc.GeometricFPisot.ofReal_left_eigen",
+      "module": "PscVerif.GeometricFPisotCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisotCore.lean",
+      "line": 49,
+      "declaration": "theorem ofReal_left_eigen {s : α → List α} {ℓ : α → ℝ} {β : ℝ}"
+    },
+    {
+      "name": "Psc.GeometricFPisot.dotHom_ofReal",
+      "module": "PscVerif.GeometricFPisotCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisotCore.lean",
+      "line": 59,
+      "declaration": "theorem dotHom_ofReal (ℓ : α → ℝ) (v : α → ℤ) :"
+    },
+    {
+      "name": "Psc.GeometricFPisot.finite_of_span_eq_top",
+      "module": "PscVerif.GeometricFPisotCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisotCore.lean",
+      "line": 68,
+      "declaration": "theorem finite_of_span_eq_top {κ : Type*} [Fintype κ] (W : κ → α → ℂ)"
+    },
+    {
+      "name": "Psc.GeometricFPisot.span_eq_top_of_left_eigen",
+      "module": "PscVerif.GeometricFPisotCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisotCore.lean",
+      "line": 112,
+      "declaration": "theorem span_eq_top_of_left_eigen {κ : Type*} [Fintype κ] (A : Matrix α α ℂ) (μ : κ → ℂ)"
+    },
+    {
+      "name": "Psc.GeometricFPisot.card_roots_toFinset",
+      "module": "PscVerif.GeometricFPisotCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisotCore.lean",
+      "line": 122,
+      "declaration": "theorem card_roots_toFinset (A : Matrix α α ℂ) (hsep : A.charpoly.Separable) :"
+    },
+    {
+      "name": "Psc.GeometricFPisot.charpoly_separable_of_irreducible",
+      "module": "PscVerif.GeometricFPisotCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisotCore.lean",
+      "line": 128,
+      "declaration": "theorem charpoly_separable_of_irreducible (s : α → List α)"
+    },
+    {
+      "name": "Psc.GeometricFPisot.nonempty_of_irreducible",
+      "module": "PscVerif.GeometricFPisotCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisotCore.lean",
+      "line": 138,
+      "declaration": "theorem nonempty_of_irreducible (s : α → List α)"
+    },
+    {
+      "name": "Psc.GeometricFPisot.proper_of_span",
+      "module": "PscVerif.GeometricFPisotCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisotCore.lean",
+      "line": 150,
+      "declaration": "theorem proper_of_span {κ : Type*} [Fintype κ] (W : κ → α → ℂ)"
+    },
+    {
+      "name": "Psc.GeometricFPisot.contractionData_of_eigenrows",
+      "module": "PscVerif.GeometricFPisotCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisotCore.lean",
+      "line": 171,
+      "declaration": "theorem contractionData_of_eigenrows {κ : Type*} [Fintype κ] (s : α → List α) (μ : κ → ℂ)"
+    },
+    {
+      "name": "Psc.GeometricFPisot.exists_bound_lt_one",
+      "module": "PscVerif.GeometricFPisotCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisotCore.lean",
+      "line": 183,
+      "declaration": "theorem exists_bound_lt_one {ι : Type*} [Finite ι] (f : ι → ℝ) (hf : ∀ i, f i < 1) :"
+    },
+    {
+      "name": "Psc.GeometricFPisot.exists_eigenfunctionals_of_separable",
+      "module": "PscVerif.GeometricFPisotCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisotCore.lean",
+      "line": 202,
+      "declaration": "theorem exists_eigenfunctionals_of_separable (s : α → List α)"
+    },
+    {
+      "name": "Psc.GeometricFPisot.exists_contractionData_of_separable",
+      "module": "PscVerif.GeometricFPisotCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisotCore.lean",
+      "line": 263,
+      "declaration": "theorem exists_contractionData_of_separable (s : α → List α)"
+    },
+    {
+      "name": "Psc.GeometricFPisot.exists_contractionData_of_pisot",
+      "module": "PscVerif.GeometricFPisotCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisotCore.lean",
+      "line": 278,
+      "declaration": "theorem exists_contractionData_of_pisot (s : α → List α)"
+    },
+    {
+      "name": "Psc.GeometricFPisot.aeval_charpoly",
+      "module": "PscVerif.GeometricFPisotCore",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/GeometricFPisotCore.lean",
+      "line": 290,
+      "declaration": "theorem aeval_charpoly {K : Type*} [Field K] [Algebra ℚ K] (s : α → List α) (x : K) :"
     },
     {
       "name": "Psc.GeometricF.reverseSubstitution_reverse",
@@ -22830,7 +25116,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 90,
+      "line": 91,
       "declaration": "theorem win_split {X : ℕ → α} {b n : ℕ} {p w : List α}"
     },
     {
@@ -22838,7 +25124,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 109,
+      "line": 110,
       "declaration": "theorem cutBlocks_closed {t : α → List α} {X X' : ℕ → α} (hX : IsFixed t X)"
     },
     {
@@ -22846,7 +25132,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 155,
+      "line": 156,
       "declaration": "theorem cutBlocks_length_le {X X' : ℕ → α} {G : ℕ}"
     },
     {
@@ -22854,7 +25140,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 169,
+      "line": 170,
       "declaration": "theorem cutBlocks_finite [Finite α] {X X' : ℕ → α} {G : ℕ}"
     },
     {
@@ -22862,7 +25148,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 177,
+      "line": 178,
       "declaration": "theorem cutBlocks_nonempty {X X' : ℕ → α} {G : ℕ}"
     },
     {
@@ -22870,7 +25156,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 204,
+      "line": 205,
       "declaration": "theorem exists_long (hL : LengthData s L β) (hβ : 1 < β) {m : ℕ} (hm : 1 ≤ m) (a : ℕ) :"
     },
     {
@@ -22878,7 +25164,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 226,
+      "line": 227,
       "declaration": "theorem prefixOf_iterate_first {m : ℕ} {X : ℕ → α} (hX : IsFixed (power s m) X) (n : ℕ) :"
     },
     {
@@ -22886,7 +25172,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 234,
+      "line": 235,
       "declaration": "theorem prefix_split {X : ℕ → α} {W : List α} (hW : PrefixOf X W) {a : ℕ} (ha : a < W.length) :"
     },
     {
@@ -22894,7 +25180,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 245,
+      "line": 246,
       "declaration": "theorem witness_of_coincident_cutBlock (hL : LengthData s L β) (hβ : 1 < β) {m : ℕ}"
     },
     {
@@ -22902,7 +25188,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 275,
+      "line": 276,
       "declaration": "theorem strictSystem_power_of_inclusion (hL : LengthData s L β) (hβ : 1 < β) {m : ℕ}"
     },
     {
@@ -22910,7 +25196,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 307,
+      "line": 308,
       "declaration": "theorem mem_powerBlocks {m : ℕ} {C : Finset (List α × List α)} {U : List α × List α} :"
     },
     {
@@ -22918,7 +25204,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 315,
+      "line": 316,
       "declaration": "theorem strictSystem_of_power (hs : ∀ a, s a ≠ []) {m : ℕ} (hm : 1 ≤ m)"
     },
     {
@@ -22926,7 +25212,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 377,
+      "line": 378,
       "declaration": "theorem fc1_strictSystem (hL : LengthData s L β) (hβ : 1 < β) {m : ℕ} (hm : 1 ≤ m)"
     },
     {
@@ -22934,7 +25220,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 404,
+      "line": 405,
       "declaration": "theorem iterate_first (hs : ∀ a, s a ≠ []) (k : ℕ) (c : α) :"
     },
     {
@@ -22942,7 +25228,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 418,
+      "line": 419,
       "declaration": "theorem isPeriodicLetter_iff (hs : ∀ a, s a ≠ []) (c : α) :"
     },
     {
@@ -22950,7 +25236,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 431,
+      "line": 432,
       "declaration": "theorem prefix_iterate_mul {c : α} {k : ℕ} (h : [c] <+: (subst s)^[k] [c]) (n : ℕ) :"
     },
     {
@@ -22958,7 +25244,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 438,
+      "line": 439,
       "declaration": "theorem isFixed_limit {u : List α} {p : ℕ} (hu : u <+: (subst s)^[p] u)"
     },
     {
@@ -22966,7 +25252,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 448,
+      "line": 449,
       "declaration": "theorem exists_fixed_ray [Fintype α] {L : (α → ℤ) →+ ℝ} {β : ℝ} (hL : LengthData s L β)"
     },
     {
@@ -22974,7 +25260,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 460,
+      "line": 461,
       "declaration": "theorem witness_of_iterate_first (hs : ∀ a, s a ≠ []) (n : ℕ) {a b : α}"
     },
     {
@@ -22982,7 +25268,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 477,
+      "line": 478,
       "declaration": "theorem witness_of_iterate_first_eq (hs : ∀ a, s a ≠ []) (n : ℕ) {a b : α}"
     },
     {
@@ -22990,7 +25276,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 488,
+      "line": 489,
       "declaration": "theorem exists_periodic_pair [Finite α] (hs : ∀ a, s a ≠ []) {a b : α}"
     },
     {
@@ -22998,7 +25284,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 513,
+      "line": 514,
       "declaration": "theorem strictSystem_of_periodic_pair (hL : LengthData s L β) (hβ : 1 < β)"
     },
     {
@@ -23006,7 +25292,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 538,
+      "line": 539,
       "declaration": "theorem fc1_equivalence (hL : LengthData s L β) (hβ : 1 < β)"
     },
     {
@@ -23014,39 +25300,15 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 567,
+      "line": 568,
       "declaration": "theorem fc1_equivalence_of_contraction {ν : (α → ℤ) → ℝ} {ρ : ℝ} (hL : LengthData s L β)"
-    },
-    {
-      "name": "Psc.GeometricF.lenHom_apply",
-      "module": "PscVerif.GeometricFStrict",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 593,
-      "declaration": "theorem lenHom_apply (ℓ : α → ℝ) (v : α → ℤ) : lenHom ℓ v = ∑ a, ℓ a * (v a : ℝ) := rfl"
-    },
-    {
-      "name": "Psc.GeometricF.lenHom_single",
-      "module": "PscVerif.GeometricFStrict",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 595,
-      "declaration": "theorem lenHom_single (ℓ : α → ℝ) (a : α) : lenHom ℓ (pvec [a]) = ℓ a := by"
-    },
-    {
-      "name": "Psc.GeometricF.lengthData_of_left_eigen",
-      "module": "PscVerif.GeometricFStrict",
-      "private": false,
-      "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 602,
-      "declaration": "theorem lengthData_of_left_eigen {s : α → List α} {ℓ : α → ℝ} {β : ℝ} (hβ : 0 < β)"
     },
     {
       "name": "Psc.GeometricF.exists_lengthData_of_primitive",
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 621,
+      "line": 589,
       "declaration": "theorem exists_lengthData_of_primitive (s : α → List α)"
     },
     {
@@ -23054,7 +25316,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 635,
+      "line": 603,
       "declaration": "theorem tmL_apply (v : Fin 2 → ℤ) : tmL v = ((v 0 + v 1 : ℤ) : ℝ) := by"
     },
     {
@@ -23062,7 +25324,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 638,
+      "line": 606,
       "declaration": "theorem tm_mulVec (v : Fin 2 → ℤ) (a : Fin 2) : (incZ thueMorseSubst *ᵥ v) a = v 0 + v 1 := by"
     },
     {
@@ -23070,7 +25332,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 641,
+      "line": 609,
       "declaration": "theorem tm_lengthData : LengthData thueMorseSubst tmL 2 := by"
     },
     {
@@ -23078,7 +25340,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 647,
+      "line": 615,
       "declaration": "theorem tm_contractionData : ContractionData thueMorseSubst tmL tmNu 0 where"
     },
     {
@@ -23086,7 +25348,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 689,
+      "line": 657,
       "declaration": "theorem tm_step_vertex {x y : Fin 2 × (Fin 2 → ℤ)} (hx : IsState tmL x)"
     },
     {
@@ -23094,7 +25356,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 712,
+      "line": 680,
       "declaration": "theorem tm_propertyF : PropertyF thueMorseSubst tmL := by"
     },
     {
@@ -23102,7 +25364,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 723,
+      "line": 691,
       "declaration": "theorem tm_fc1 :"
     },
     {
@@ -23110,7 +25372,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 734,
+      "line": 702,
       "declaration": "theorem tm_periodic_pair : ∃ c c' : Fin 2, c ≠ c' ∧ IsPeriodicLetter thueMorseSubst c ∧"
     },
     {
@@ -23118,7 +25380,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 751,
+      "line": 719,
       "declaration": "theorem not_contractionData_of_unit_eigenvector {s : α → List α} {L : (α → ℤ) →+ ℝ} {β : ℝ}"
     },
     {
@@ -23126,7 +25388,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 807,
+      "line": 775,
       "declaration": "theorem carrier_not_contractionData {L : (Fin 3 → ℤ) →+ ℝ} {β : ℝ} {ν : (Fin 3 → ℤ) → ℝ}"
     },
     {
@@ -23134,7 +25396,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 816,
+      "line": 784,
       "declaration": "theorem carrier_lengthData : ∃ (β : ℝ) (ℓ : Fin 3 → ℝ), (∀ a, 0 < ℓ a) ∧"
     },
     {
@@ -23142,7 +25404,7 @@
       "module": "PscVerif.GeometricFStrict",
       "private": false,
       "source": "proof/PscVerif/PscVerif/GeometricFStrict.lean",
-      "line": 837,
+      "line": 805,
       "declaration": "theorem reducible_controls_not_contractionData {L : (Fin 3 → ℤ) →+ ℝ} {β : ℝ}"
     },
     {
@@ -61711,9 +63973,12 @@
     }
   ],
   "input_digests": {
-    "claim_governance.toml": "895eb1950ccd19725ad600b1d40d988652d5e15524a336288bef7761411d8a7c",
+    "claim_governance.toml": "4bf8c4e4520b9d9887c4029b4838538e314b15b17c3782194e45c74f120fc1fe",
     "proof/PscVerif/A1PrimeTailAudit.lean": "eee41a524a6a114716a7704f169726b6484ab56c2398431dcd297fe6809a0b23",
     "proof/PscVerif/BHBoundedFactorsAudit.lean": "a46b4035a1213e116db881d3ba4707de47ef112592162faa494728fcb2e01888",
+    "proof/PscVerif/BHDiagonalClosureAudit.lean": "b94c34a2bf9b67fa43d9e067967c0631744da282ccca05f801ba192d12c355f4",
+    "proof/PscVerif/BHDiagonalLiteralAudit.lean": "0ca84c6af78d4ddbb3ca715f67853420934ac774bf0fcbaed2059ffa35556705",
+    "proof/PscVerif/BHDiagonalResidualAudit.lean": "0148a79d4eccc40c9aab3dcf2852dba1383614e67603c0c5b6cebdbb61ecd317",
     "proof/PscVerif/BHFiniteReachabilityAudit.lean": "5469fdefea80286841bb3b40b7944a4674de5dce03ca12b490ee72b77ca2b79d",
     "proof/PscVerif/BHNearDiagonalAudit.lean": "f7daf9d0d9998813d39db7335054ad4f4c94dd828723633eea7bb656aa76579e",
     "proof/PscVerif/BHWindowChoiceAudit.lean": "2c28a7a1f0efaf78eea797c6d0ffefbd016d3646e98c53ba05f7ad30adca6f0f",
@@ -61758,10 +64023,31 @@
     "proof/PscVerif/PscVerif/ArchivedPayloadControls.lean": "c1687369bb8feec4b5c784c3ac6f4cc6dccb9ece05af539a13f11d1cffb83371",
     "proof/PscVerif/PscVerif/ArchivedPayloadEmit.lean": "3d56413774e33215a1fb507ca418f08b4d048b3986c2c309a9cc9d626a15a6e3",
     "proof/PscVerif/PscVerif/BHBoundedFactors.lean": "cce5578ad9f622d6d365a70e8e7d340fa80dcf697c84e87dcfb079befc2ccf01",
+    "proof/PscVerif/PscVerif/BHDiagonalAllSources.lean": "251bcb3701bf68fc3d3dec80bf6dc7c9dbf5075282516a63da62f646779cbd2d",
+    "proof/PscVerif/PscVerif/BHDiagonalAxis.lean": "6ce6a0ab0721f7c246145112d6224714b00d763a45623c76559e08328aac2723",
+    "proof/PscVerif/PscVerif/BHDiagonalCertificate.lean": "8ca8df5ca01a45a19cd79714f268faed8b2c5a79e1bf1e76ec3f8ab537cfcfb6",
+    "proof/PscVerif/PscVerif/BHDiagonalClassification.lean": "87d92d23195922c2f4b860e764547a0737f04811edf5a3f6e2fff404ef54e007",
+    "proof/PscVerif/PscVerif/BHDiagonalClassificationFull.lean": "3612696b113b2f7c47b5f8d66513a4c2938727c25e0bb9f4a96963ea88310504",
+    "proof/PscVerif/PscVerif/BHDiagonalConsequences.lean": "e01c01815e6acc20608f9d72d5122cdae275f6b99f3ddab1348a149c2151543f",
+    "proof/PscVerif/PscVerif/BHDiagonalDescent.lean": "b5e6b2b169ae1ee335efdf7eb2ce487a0f2b6f90b8b3f150ab73bf85a6ce42ca",
+    "proof/PscVerif/PscVerif/BHDiagonalLiteral.lean": "ff4f39f8beb60811316e10200e85cf3069f3618ae4bf0b5dafbb89dd0ef21009",
+    "proof/PscVerif/PscVerif/BHDiagonalOuter.lean": "6168e7c28051087fa4c054a507f9cfa4d79c8dd9280ee5d9c01ccd4f9de812ef",
+    "proof/PscVerif/PscVerif/BHDiagonalParameters.lean": "4830c587718ec6f436b367dae6a687bf66b60b439ccca6c1c51b5b50933aa468",
+    "proof/PscVerif/PscVerif/BHDiagonalPisot.lean": "1bc8a11c1b1bebd2374f387903a3a50fa1bb31802b0784a5bbcc19f22292ee03",
+    "proof/PscVerif/PscVerif/BHDiagonalProgress.lean": "f6d0c63bf8c4b20c22ea5e010b4b891fa923bfa6d6b30740a035edd949be783d",
+    "proof/PscVerif/PscVerif/BHDiagonalTermination.lean": "6ddeeb9a227b1cae8f841116f8992a403e398c684f34af7dbfbe1b31aef5405a",
     "proof/PscVerif/PscVerif/BHFiniteCarrier.lean": "58ca13926d84d3107cf69408c457a4e7da3ca96761818e5cc0086d2c017537fe",
     "proof/PscVerif/PscVerif/BHFiniteReachability.lean": "5b9f2fd96957c25211ebadb767ba7747dd2966b474bce2922c56e87d4f623e94",
+    "proof/PscVerif/PscVerif/BHHigherDeterminantPisot.lean": "a0390dc74026833bc33c2cbbe9981c5d7a5007076ffec61edc7cba1d2d0fc9a6",
     "proof/PscVerif/PscVerif/BHNearDiagonalDescent.lean": "853edcc974582ca697e1ead30cdb38604e5e9e420720f699ec7a4931ba5012a7",
-    "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean": "e8ac40b14bcd6f5afcc94a0c890f617911c13f44b087e745626b70e59df6801d",
+    "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean": "ab4fc58a3923f2fc25d5d1ba88a407d59fe2f30b7b61ff46e21a31e8db44feec",
+    "proof/PscVerif/PscVerif/BHNearDiagonalPisot.lean": "353484082be9b3257be5f0549bb997a00faa01c2795c609fadef50c7e2a2d363",
+    "proof/PscVerif/PscVerif/BHPisotFiniteBPA.lean": "13ea94e7cea12c23a1c27cf14ae5c8bca925ed21685e18ecf268ccd8589f9ea0",
+    "proof/PscVerif/PscVerif/BHThirdLevelEntry.lean": "8377231bc615bd740a6b10e4469c8c9ea7b416081d9f4d8e0182e7a86f665bc0",
+    "proof/PscVerif/PscVerif/BHThirdLevelGeometry.lean": "39b8e81dd9d3d9de7956cd1bdfe850fe84f11c3465a9a27a9ed21f3422b02f99",
+    "proof/PscVerif/PscVerif/BHThirdLevelTransport.lean": "d8d0658aa4f20e6111be4ee2680dda25cd7d0d30b6b0a69ada66ac655f3a4b6a",
+    "proof/PscVerif/PscVerif/BHThreeBandBPA.lean": "cb7fac6d5395ab44c3c4775b4d236e9fcdd70d0e19d2d0d297cfa93f3ea4cd63",
+    "proof/PscVerif/PscVerif/BHThreeBandClosure.lean": "09680584dfa9485406243027fbd224cb16f880e9bd1a14d3ca09c080eea9d404",
     "proof/PscVerif/PscVerif/BHWindowChoice.lean": "54d92d8910380661a90ca4433be0a5f952f49bc3871766d5e5aad075eb3f4b1c",
     "proof/PscVerif/PscVerif/BPrime.lean": "77ec2e5e0cab8e7ff1221b698f315ef0bcd2ea61ec88e2f88efd2053cc0c9138",
     "proof/PscVerif/PscVerif/BPrimeBinding.lean": "f9c9723bc6bd59b95ec83c632aa81b5d47dcef1e3c805a692279c4dec2448048",
@@ -61882,10 +64168,12 @@
     "proof/PscVerif/PscVerif/GaloisOrbit.lean": "4d3b5474dbd14205f4bf2d33e98149ebbdd6d7e0fb8fd3a33787b878bcad5f07",
     "proof/PscVerif/PscVerif/GeometricFInclusion.lean": "4b96ca14c725dbcfd473ba1af7b2f9c93489a1fae2e6af7fe285008ca0685c54",
     "proof/PscVerif/PscVerif/GeometricFLemmas.lean": "60ba09cf00ca5049cc3155361381106844dfc7d26a751c2d289beb3b70aa43a7",
+    "proof/PscVerif/PscVerif/GeometricFLength.lean": "0354cabcc25a0400205c1caf2dbd9c6cfda29aeef1754772702a7764745ed062",
     "proof/PscVerif/PscVerif/GeometricFOrientation.lean": "39520919cc78934d87f30b1651322826236751b85c757b8970400b0f1365189b",
-    "proof/PscVerif/PscVerif/GeometricFPisot.lean": "bf0a0f22acc5f1217d6340b2f5acf5302e4bf9753ef35106d1d790aef5d73bcc",
+    "proof/PscVerif/PscVerif/GeometricFPisot.lean": "94ba522575f76ad77afb0ff29110841a25ba1c92d15cad16977697e56a4d4329",
+    "proof/PscVerif/PscVerif/GeometricFPisotCore.lean": "79f48afa1d822716565375c13f45e6a9cc92b7e43083ce119b45db1e3a56b4fc",
     "proof/PscVerif/PscVerif/GeometricFRank.lean": "2f2cfca2ad6e05ce8347e97b1968c09b7bbb671f4e0d8f0a366966c0503d47b9",
-    "proof/PscVerif/PscVerif/GeometricFStrict.lean": "d21956f722083b84473d633854cd43173ebe99c1cde99e7292c57cd046221abb",
+    "proof/PscVerif/PscVerif/GeometricFStrict.lean": "af08fe9f5895674a9dccc8879f8a1ef973292a42a717b25bbfc6fe572dafa55d",
     "proof/PscVerif/PscVerif/GeometricFTriple.lean": "2e2b8d5cfb4a7c5ca2925c98c70093f4b5fc55f9a7a440c5e7e4d74dd42b4754",
     "proof/PscVerif/PscVerif/GeometricPacketCarrier.lean": "c3b266fc203b69f632063b38d044c0f76e7ec50825a16c6c04949fa696e275ec",
     "proof/PscVerif/PscVerif/GraphEmbedding.lean": "ab4f4774921dbf755b0c93c1f7c1180d076194c4906f7d4ea96210635d37caee",
@@ -62070,14 +64358,14 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "9b2b856c0abb259aef8b1d4913c72bdce709e567ddcd2d9ae4e520e79221bd92",
+    "proof/PscVerif/PscVerif.lean": "2f130038e25297326a0eb9ffe01c576d5dc884ee5c9ee9fd3cf5e6e7844c45d4",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
-    "proof/proof-bank.toml": "c462e211cdb2a7aca4a59d75efc7b4ffdd3c4cd2c7780588e861b15c42aa8937",
+    "proof/proof-bank.toml": "c102d5dc18f104f6fd02bd0d19ae3147a56b3b1c776fbe20c275bbb9d8964ea9",
     "tools/check_c4_parameter_family.sh": "2028139e5ea0fa76f4822757f77fd2995ebc0d6d6f7d3bb2fa4c3fe9ac9bf1fa",
     "tools/check_lean.sh": "eb63ce6fb0b837eee1208b3d47e759bcf8b3617b1374685a8850e48f283cba8d",
-    "tools/make_ledger.py": "7639499e905ca898e650cd40d9dd5ae405d7f0dfac15ef3547ce40044c795ed5",
+    "tools/make_ledger.py": "868610723f22cf08feb373c931d96a10bfdb152571757ee93ea73b0de3c96c0d",
     "tools/make_proof_bank.py": "570a6779013609e8f7f9d88a8082a76cebe087191561ae8ad1016c79f7b90782",
     "tools/setup_lean.sh": "8c4e5f4a35c6daf437c612bb868410ac2ecad68984154d50493fd7f42d86a824"
   }
