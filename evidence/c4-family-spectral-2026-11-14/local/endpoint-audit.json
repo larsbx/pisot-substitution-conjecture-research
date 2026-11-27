@@ -1,0 +1,28 @@
+{
+  "exit": 0,
+  "elapsed": 20.414315462112427,
+  "command": [
+    "/workspace/scratch/gnr-next.qHyoM1/toolchains/lean-4.34.0-rc2-linux/bin/lean",
+    "-j2",
+    "-DautoImplicit=false",
+    "C4ParameterFamilyAudit.lean"
+  ],
+  "audit_source_sha256": "71861a4249ef9a84e9f4357f227e038000ca6b32f5ed2a5e947cd140bc7edb8a",
+  "compiled_control_source_sha256": "aaf84f504e5609b7d74be4187ec325e195e5facc098386b42e36b469f2318e24",
+  "compiled_control_object_sha256": "e65194c5f9299cae462b25f01bdf708ed8d62473a47d91cf84bbbbc026bbadb1",
+  "module_source_hashes": {
+    "Termination": "bdc24ad4fddd5d01aee6f986c8d5476aead0655902db7a129e14c1921d364196",
+    "C4ParameterFamilyWords": "e49cc02bc7b82b8f44101ce153d93982f02e31684501ffe7499cfb53d55c86d7",
+    "C4ParameterFamilyCarrier": "fba5f9b5a2a20c08107aa3e7714c20f2e92a4aeacd28e816e1a4e331e5e03208",
+    "C4ParameterFamilyControls": "98b75297c14f75b6a2c87c651d06b3da13131616cf1b53c2630d7b498a1b5540",
+    "C4ParameterFamilyPisot": "17c1a41e6726dfef7f04f3ccc0594f0cbfc5eb90fd61325114179541c763423c",
+    "TerminationFactors": "3415e1034becf2c937f29aa61326fa174cfcbb52a605fb467a362721d20bf831",
+    "C4ParameterFamilyBridge": "eb29f8b3bf9c325163a1e932dcfc324bd094f0b754ed28a2789daadb45e0354a",
+    "UniversalClosureReduction": "aaf84f504e5609b7d74be4187ec325e195e5facc098386b42e36b469f2318e24"
+  },
+  "all_module_sources_unchanged": true,
+  "log_sha256": "c02813f0fcfed54b6a942018ec809f1cd8e5c1684250bb5efcbb3a3ca4a1acff",
+  "audit_source_matches_compiled_copy": true,
+  "actual_shell_receipt_parser_exit": 0,
+  "gate_source_sha256": "ee8ec32e2c2d977a823ed1e56d59bce2d12df034a8f9f3c9eabb8c0af7ad2f61"
+}

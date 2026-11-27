@@ -53,13 +53,13 @@ letter family is injective and has at most `|α|` members; with (LR) and the abs
   reversed rank realisation dropped; `fc2_rank_lower_bounds_one_sided` (FC2 (1), no (F), one
   rank input, positivity only); **`leftAll_iff_rightAll`** (Corollary E (ii) ⟺ (iii): all pairs
   left strongly coincident iff all pairs right strongly coincident);
-* (Z) injectivity of `L` from the standing hypotheses: `eq_zero_of_length_eq_zero`
-  (length data, contraction data, `det M ≠ 0`), `det_incZ_ne_zero_of_irreducible`
-  (`χ_M` irreducible over `ℚ`, at least two letters), **`lenHom_injective_of_pisot`**;
+* (Z) injectivity of `L` from the standing hypotheses: `lenHom_zero_of_pos_eigen`, a wrapper
+  around round 4's `Psc.GeometricFLemmas.lenHom_eq_zero_iff` (Lemma 1 (1));
 * on the standing class: **`fc2_integer_rank_of_primitive_pisot`**,
   **`fc1_right_of_primitive_pisot`** (Theorem FC1 with right strong coincidence: a strict system
   exists iff some pair of distinct letters has no right strong-coincidence witness),
-  `fc2_integer_rank_pip3`;
+  `fc2_integer_rank_pip3`; **`fc2_pip3_rank_le_two`** (three letters, with one Barge–Diamond pair
+  as hypothesis: `1 ≤ r ≤ 2` in all four forms, and `σ` has a strict system iff `r = 2`);
 * non-vacuity: **`trib_right_all`** (every pair of Tribonacci letters is right strongly
   coincident, obtained from the transfer) cross-checked by explicit right witnesses on words
   (`trib_right_witness_01`, `_02`, `_12`, at levels 4, 4, 3), and `trib_integer_rank_one`;
@@ -79,16 +79,17 @@ contraction data enter only in the absorption step (`leftLetterFamily_of_stateFa
 embeddings into the zero slice need neither; length data give the positivity of tile lengths in
 the state inequalities and enter through the absorption; a nonempty alphabet gives `r ≥ 1`.  The
 reflection of arbitrary families (`stateFamily_reverse_of_stateFamily` and its corollaries) uses
-injectivity of `L` and at least two letters, for density (`exists_small_length`).  Lemma Z
-(`eq_zero_of_length_eq_zero`) uses length data, contraction data and `det M ≠ 0`; at least two
-letters enter `det_incZ_ne_zero_of_irreducible`, and on the standing class also `β > 1`
-(`fc1_hypotheses_of_primitive_pisot`).  The Pisot hypothesis enters only through contraction
-data.
+injectivity of `L` and at least two letters, for density (`exists_small_length`).  (Z) uses
+irreducibility of `χ_M` and a positive left eigen-row only (round 4's Lemma 1 (1)); at least two
+letters enter the standing-class theorems through `β > 1` (`fc1_hypotheses_of_primitive_pisot`).
+The Pisot hypothesis enters only through contraction data.  On three letters, the bound
+`r ≤ 2` uses one left strongly coincident pair of distinct letters as a hypothesis (Barge–Diamond
+2002, Theorem 1, not formalised).
 
 **Prior art** (the stop/go record of the note).  (T) is the translation equivariance of
 coincidence (Barge–Kwapisz 2006, (7.3)); (D′) is the density step in the proofs of BBK
 Remark 4.3 and Minervino–Thuswaldner Lemma 9.1; injectivity of `ℓ` is Akiyama–Lee 2014
-Lemma 4.3 (by a Galois argument; here through contraction data).  `ν_L = ν_R` on (F) was not
+Lemma 4.3 (by a Galois argument; here round 4's cyclic-vector proof).  `ν_L = ν_R` on (F) was not
 found in the sources read; for unit `σ` its rank-one case follows by composing printed results.
 
 **Not proved here.**  That the BBK coincidence rank equals the zero-slice maximum (BBK Def. 4.1,
@@ -98,8 +99,7 @@ geometric input left, and the consequence `cr = ν_L = ν_R` is conditional on i
 (F) for any three-letter specimen other than Tribonacci (it is proved for the two-letter
 Fibonacci and Thue–Morse `01/10`, `10/01`).  Excluding rank two on (F).  Universal C4 is open.
 -/
-import PscVerif.GeometricFRank
-import PscVerif.GeometricFTriple
+import PscVerif.GeometricFLemmas
 
 namespace Psc.GeometricF
 
@@ -481,104 +481,16 @@ theorem leftAll_iff_rightAll [Nonempty α] {s : α → List α} {L : (α → ℤ
 
 /-! ### (Z) Injectivity of the length functional on the standing class -/
 
-section Injective
-
-variable {s : α → List α} {L : (α → ℤ) →+ ℝ} {β : ℝ} {ν : (α → ℤ) → ℝ} {ρ : ℝ}
-
-/-- **(Z)** With length data, contraction data and `det M ≠ 0`, an integer vector of length
-zero is zero.  Its orbit stays in the finite set `{|L| ≤ 0, ν ≤ ν v}`, so it is periodic after
-cancelling `Mⁱ`; the contraction forces `ν v = 0`, and then all multiples of `v` lie in the
-finite set `{|L| ≤ 0, ν ≤ 0}`. -/
-theorem eq_zero_of_length_eq_zero (hL : LengthData s L β) (hC : ContractionData s L ν ρ)
-    (hdet : (incZ s).det ≠ 0) {v : α → ℤ} (hv : L v = 0) : v = 0 := by
-  have hlen (k : ℕ) : L (incZ s ^ k *ᵥ v) = 0 := by rw [hL.eigen_pow, hv, mul_zero]
-  have hν (k : ℕ) : ν (incZ s ^ k *ᵥ v) ≤ ν v := by
-    refine (hC.contract_pow k v).trans ?_
-    have h1 : ρ ^ k ≤ 1 := pow_le_one₀ hC.rho_nonneg hC.rho_lt_one.le
-    nlinarith [hC.nonneg v]
-  have hmem (k : ℕ) : incZ s ^ k *ᵥ v ∈ {w : α → ℤ | |L w| ≤ 0 ∧ ν w ≤ ν v} :=
-    ⟨by simp [hlen k], hν k⟩
-  obtain ⟨i, j, hij, he⟩ := (hC.proper 0 (ν v)).exists_lt_map_eq_of_forall_mem hmem
-  obtain ⟨p, rfl⟩ := Nat.exists_eq_add_of_lt hij
-  -- `Mⁱ (M^{p+1} v − v) = 0`
-  have hper : incZ s ^ (p + 1) *ᵥ v = v := by
-    have hdeti : (incZ s ^ i).det ≠ 0 := by rw [Matrix.det_pow]; exact pow_ne_zero _ hdet
-    have h0 : incZ s ^ i *ᵥ (incZ s ^ (p + 1) *ᵥ v - v) = 0 := by
-      rw [Matrix.mulVec_sub, Matrix.mulVec_mulVec, ← pow_add, sub_eq_zero]
-      have : i + (p + 1) = i + p + 1 := by omega
-      rw [this]
-      exact he.symm
-    exact sub_eq_zero.mp (Matrix.eq_zero_of_mulVec_eq_zero hdeti h0)
-  have hν0 : ν v = 0 := by
-    have h1 := hC.contract_pow (p + 1) v
-    rw [hper] at h1
-    have h2 : ρ ^ (p + 1) < 1 := pow_lt_one₀ hC.rho_nonneg hC.rho_lt_one (by omega)
-    nlinarith [hC.nonneg v]
-  have hν00 : ν 0 ≤ 0 := by
-    have h := hC.add_le v (-v)
-    rw [add_neg_cancel, hC.neg, hν0] at h
-    linarith
-  have hmul (k : ℕ) : ν (k • v) ≤ 0 := by
-    induction k with
-    | zero => rw [zero_smul]; exact hν00
-    | succ k ih =>
-      rw [succ_nsmul]
-      exact (hC.add_le _ _).trans (by linarith [hν0])
-  have hmem' (k : ℕ) : k • v ∈ {w : α → ℤ | |L w| ≤ 0 ∧ ν w ≤ 0} :=
-    ⟨by rw [map_nsmul, hv, smul_zero, abs_zero], hmul k⟩
-  obtain ⟨a, b, hab, hmab⟩ := (hC.proper 0 0).exists_lt_map_eq_of_forall_mem hmem'
-  obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_lt hab
-  have hd : (d + 1) • v = 0 := by
-    have : (a + d + 1) • v = a • v + (d + 1) • v := by rw [← add_nsmul, Nat.add_assoc]
-    rw [this] at hmab
-    exact (add_eq_left.mp hmab.symm)
-  funext c
-  have := congrFun hd c
-  simp only [Pi.smul_apply, nsmul_eq_mul, Pi.zero_apply] at this
-  rcases mul_eq_zero.mp this with h | h
-  · exact absurd h (by positivity)
-  · exact h
-
-/-- `det M ≠ 0` from irreducibility of `χ_M` over `ℚ` on at least two letters: otherwise `X`
-divides `χ_M`, and an irreducible `χ_M` would have degree one. -/
-theorem det_incZ_ne_zero_of_irreducible [Nontrivial α] (s : α → List α)
-    (hirr : Irreducible ((inc s).map (Nat.cast : ℕ → ℚ)).charpoly) : (incZ s).det ≠ 0 := by
-  intro hdet
-  set A := (inc s).map (Nat.cast : ℕ → ℚ)
-  have hA : A = (Int.castRingHom ℚ).mapMatrix (incZ s) := by
-    ext a b
-    simp [A, incZ]
-  have hdetA : A.det = 0 := by
-    rw [hA, ← RingHom.map_det, hdet, map_zero]
-  have hcoeff : A.charpoly.coeff 0 = 0 := by
-    have h := Matrix.det_eq_sign_charpoly_coeff A
-    rw [hdetA] at h
-    rcases mul_eq_zero.mp h.symm with h' | h'
-    · exact absurd h' (pow_ne_zero _ (by norm_num))
-    · exact h'
-  obtain ⟨q, hq⟩ := Polynomial.X_dvd_iff.mpr hcoeff
-  rcases hirr.isUnit_or_isUnit hq with hX | hqu
-  · exact Polynomial.not_isUnit_X hX
-  · have hdeg := congrArg Polynomial.natDegree hq
-    rw [Matrix.charpoly_natDegree_eq_dim, Polynomial.natDegree_mul Polynomial.X_ne_zero
-      hqu.ne_zero, Polynomial.natDegree_X, Polynomial.natDegree_eq_zero_of_isUnit hqu] at hdeg
-    have := Fintype.one_lt_card (α := α)
-    omega
-
-/-- **(Z) on the standing class**: for `χ_M` irreducible over `ℚ` on at least two letters, a
-positive left eigen-row `ℓ` for `β > 0` and every other complex root of `χ_M` in the open unit
-disc, `v ↦ ℓ·v` is injective on integer vectors. -/
-theorem lenHom_injective_of_pisot [Nontrivial α] {ℓ : α → ℝ}
-    (hirr : Irreducible ((inc s).map (Nat.cast : ℕ → ℚ)).charpoly) (hβ : 0 < β)
-    (hℓ : ∀ a, 0 < ℓ a) (hℓM : ℓ ᵥ* (inc s).map (Nat.cast : ℕ → ℝ) = β • ℓ)
-    (hpisot : ∀ z : ℂ, ((inc s).map (Nat.cast : ℕ → ℂ)).charpoly.eval z = 0 → z ≠ β →
-      ‖z‖ < 1) :
-    ∀ v, lenHom ℓ v = 0 → v = 0 := by
-  obtain ⟨ν', ρ', hc⟩ := Psc.GeometricFPisot.exists_contractionData_of_pisot s hirr hℓ hℓM hpisot
-  exact fun v hv => eq_zero_of_length_eq_zero (lengthData_of_left_eigen hβ hℓ hℓM) hc
-    (det_incZ_ne_zero_of_irreducible s hirr) hv
-
-end Injective
+/-- **(Z)** `v ↦ ℓ·v` is injective on integer vectors when `χ_M` is irreducible over `ℚ` and `ℓ`
+is a positive left eigen-row: Lemma 1 (1) of the class note, machine-checked in round 4
+(`Psc.GeometricFLemmas.lenHom_eq_zero_iff`; no Pisot or contraction input).  This wrapper only
+supplies `ℓ ≠ 0` from positivity. -/
+theorem lenHom_zero_of_pos_eigen [Nonempty α] {s : α → List α} {β : ℝ} {ℓ : α → ℝ}
+    (hirr : Irreducible ((inc s).map (Nat.cast : ℕ → ℚ)).charpoly)
+    (hℓ : ∀ a, 0 < ℓ a) (hℓM : ℓ ᵥ* (inc s).map (Nat.cast : ℕ → ℝ) = β • ℓ) :
+    ∀ v, lenHom ℓ v = 0 → v = 0 :=
+  fun _ hv => (Psc.GeometricFLemmas.lenHom_eq_zero_iff s hirr
+    (fun h => (hℓ (Classical.arbitrary α)).ne' (by simp [h])) hℓM).1 hv
 
 /-! ### The standing class -/
 
@@ -604,7 +516,7 @@ theorem fc2_integer_rank_of_primitive_pisot [Nontrivial α]
   obtain ⟨hL, hβ, ν, ρ, hC⟩ :=
     Psc.GeometricFPisot.fc1_hypotheses_of_primitive_pisot hprim hirr hℓ hℓM hpisot
   exact fc2_integer_rank hL hC
-    (lenHom_injective_of_pisot hirr (by linarith) hℓ hℓM hpisot) hF
+    (lenHom_zero_of_pos_eigen hirr hℓ hℓM) hF
 
 theorem vertexCoincident_iff_strongCoincidenceWitness {a b : α} :
     VertexCoincident s a b ↔ Psc.StrictSystem.StrongCoincidenceWitness s a b := by
@@ -625,7 +537,7 @@ theorem fc1_right_of_primitive_pisot [Nontrivial α]
       ¬ ∀ c c', c ≠ c' → RightStrongCoincidenceWitness s c c' := by
   obtain ⟨hL, hβ, ν, ρ, hC⟩ :=
     Psc.GeometricFPisot.fc1_hypotheses_of_primitive_pisot hprim hirr hℓ hℓM hpisot
-  have hzero := lenHom_injective_of_pisot hirr (by linarith) hℓ hℓM hpisot
+  have hzero := lenHom_zero_of_pos_eigen hirr hℓ hℓM
   rw [(Psc.GeometricFPisot.fc1_equivalence_of_primitive_pisot hprim hirr hℓ hℓM hpisot hF).2]
   have key := leftAll_iff_rightAll hL hC hzero hF
   have hl : (∀ c c', c ≠ c' → Psc.StrictSystem.StrongCoincidenceWitness s c c') ↔
@@ -665,6 +577,51 @@ theorem fc2_integer_rank_pip3 {s : Fin 3 → List (Fin 3)} {β : ℝ} {ℓ : Fin
       IsMaximumSize (LetterFamily (RightStrongCoincidenceWitness s)) r := by
   simpa using fc2_integer_rank_of_primitive_pisot hprim hirr hℓ hℓM hpisot hF
 
+/-- **FC2 (2) on PIP3 in integer form, with Barge–Diamond as a hypothesis.**  On the standing class
+on three letters with (F), suppose two distinct letters are left strongly coincident (Barge–Diamond
+2002, Theorem 1, which holds for every substitution of Pisot type; imported, not formalised here).
+Then the integer rank `r` of `fc2_integer_rank_pip3` satisfies `1 ≤ r ≤ 2`, and `σ` has a strict
+system iff `r = 2`.  With `cr(σ) = S(σ)` (BBK Remark 4.3 at `q = 0`) this is Corollary E of the
+class note: `cr = 1` iff no strict system, and otherwise `cr = 2`. -/
+theorem fc2_pip3_rank_le_two {s : Fin 3 → List (Fin 3)} {β : ℝ} {ℓ : Fin 3 → ℝ}
+    (hprim : ∃ k ≥ 1, ∀ a c, 0 < (inc s ^ k) a c)
+    (hirr : Irreducible ((inc s).map (Nat.cast : ℕ → ℚ)).charpoly)
+    (hℓ : ∀ a, 0 < ℓ a) (hℓM : ℓ ᵥ* (inc s).map (Nat.cast : ℕ → ℝ) = β • ℓ)
+    (hpisot : ∀ z : ℂ, ((inc s).map (Nat.cast : ℕ → ℂ)).charpoly.eval z = 0 → z ≠ β →
+      ‖z‖ < 1)
+    (hF : PropertyF s (lenHom ℓ)) (hBD : ∃ a b, a ≠ b ∧ VertexCoincident s a b) :
+    ∃ r, 1 ≤ r ∧ r ≤ 2 ∧
+      IsMaximumSize (StateFamily s (lenHom ℓ)) r ∧
+      IsMaximumSize (StateFamily (reverseSubstitution s) (lenHom ℓ)) r ∧
+      IsMaximumSize (LetterFamily (VertexCoincident s)) r ∧
+      IsMaximumSize (LetterFamily (RightStrongCoincidenceWitness s)) r ∧
+      ((∃ C : Finset (List (Fin 3) × List (Fin 3)), Psc.StrictSystem.StrictSystem s C) ↔
+        r = 2) := by
+  obtain ⟨r, hr1, hr3, hS, hSrev, hl, hr⟩ := fc2_integer_rank_pip3 hprim hirr hℓ hℓM hpisot hF
+  have hr2 : r ≤ 2 := by
+    by_contra h
+    have h3 : r = 3 := by omega
+    subst h3
+    obtain ⟨a, ha⟩ := hl.1
+    have hinj : Function.Injective a := fun i j hij => by
+      by_contra hne; exact ha hne (by rw [hij]; exact edgeCoincident_refl s _)
+    obtain ⟨x, y, hxy, hc⟩ := hBD
+    obtain ⟨i, rfl⟩ := (Finite.injective_iff_surjective.mp hinj) x
+    obtain ⟨j, rfl⟩ := (Finite.injective_iff_surjective.mp hinj) y
+    exact ha (fun e => hxy (congrArg a e)) hc
+  refine ⟨r, hr1, hr2, hS, hSrev, hl, hr, ?_⟩
+  have e := isMaximumSize_one_iff (C := VertexCoincident s) (fun a => edgeCoincident_refl s _)
+    (fun _ _ => edgeCoincident_symm)
+  have hone : (∀ c c', c ≠ c' → Psc.StrictSystem.StrongCoincidenceWitness s c c') ↔ r = 1 := by
+    constructor
+    · intro h
+      exact hl.unique (e.mpr fun a b hab =>
+        vertexCoincident_iff_strongCoincidenceWitness.mpr (h a b hab))
+    · rintro rfl c c' hcc
+      exact vertexCoincident_iff_strongCoincidenceWitness.mp (e.mp hl c c' hcc)
+  rw [(Psc.GeometricFPisot.fc1_pip3 hprim hirr hℓ hℓM hpisot hF).2, hone]
+  omega
+
 /-! ### Non-vacuity: Tribonacci -/
 
 section Tribonacci
@@ -680,7 +637,7 @@ theorem trib_right_all : ∀ a b : Fin 3, RightStrongCoincidenceWitness tribSubs
     Psc.GeometricFTriple.trib_fc1_hypotheses_complete
   obtain ⟨hL, hβ, ν, ρ, hC⟩ :=
     Psc.GeometricFPisot.fc1_hypotheses_of_primitive_pisot hprim hirr hℓ hℓM hroots
-  have hzero := lenHom_injective_of_pisot hirr (by linarith) hℓ hℓM hroots
+  have hzero := lenHom_zero_of_pos_eigen hirr hℓ hℓM
   refine (leftAll_iff_rightAll hL hC hzero hF).mp fun a b => ?_
   by_cases hab : a = b
   · subst hab; exact edgeCoincident_refl _ _

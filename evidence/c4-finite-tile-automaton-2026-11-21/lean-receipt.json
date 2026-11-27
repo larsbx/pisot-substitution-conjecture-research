@@ -1,0 +1,28 @@
+{
+  "scope": "fresh local compilation of the two new modules and C4ParameterFamilyWords; immutable pinned dependency artifacts reused",
+  "base_revision": "f5ca04063db75722e7736cfbad36629b7cd36d35",
+  "lean_version": "4.34.0-rc2",
+  "lean_commit": "6a10ac8c22beadecabdbb0919c2b50214762f91d",
+  "lean_executable_sha256": "e8baaa71855a616dc351028f3ad2200051b0671f423a1696a100e809302d5550",
+  "mathlib_revision": "4edb0dbaa3b3cf729d86d1e2f035474d5ae2ac09",
+  "source_sha256": {
+    "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean": "b8123aec4c0e1c2a9a1b5937a17cd0c9c26189e0d884c8a27bf1465e3b8b5b24",
+    "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean": "9b97606079e367b743a2f863403dff677a58c096068ad1715160eeef5a8b9559",
+    "proof/PscVerif/C4FiniteTileAutomatonAudit.lean": "03ae6c9467da09b705a6ddf5c51403797a17e559bbf81175d5544e34c1eb8b08",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyWords.lean": "e49cc02bc7b82b8f44101ce153d93982f02e31684501ffe7499cfb53d55c86d7"
+  },
+  "audited_declarations": 164,
+  "audited_theorem_constants": 103,
+  "source_named_proofs": 44,
+  "endpoint_types_and_owners_checked": 10,
+  "refusal_controls": 20,
+  "allowed_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "hosted_acceptance": false,
+  "full_repository_acceptance": false,
+  "actual_hull_transfer": false,
+  "spectral_closure": false
+}

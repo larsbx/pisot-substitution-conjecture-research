@@ -1,0 +1,101 @@
+@window : ∀ {α : ℝ},
+  0 < α →
+    2 * α + 2 * α ^ 2 < 1 →
+      ∀ (x y z : ℤ),
+        0 < ↑z + (2 * α + 2 * α ^ 2) * ↑y + 2 * α * ↑x →
+          ↑z + (2 * α + 2 * α ^ 2) * ↑y + 2 * α * ↑x < 1 + 2 * α →
+            (0 ≤ 3 * (x + y + z) - 3 ∨ 3 * x - 1 ≤ 3 * (x + y + z) - 3 ∨ 3 * (x + y) - 2 ≤ 3 * (x + y + z) - 3) ∧
+              (3 * (x + y + z) - 3 ≤ 0 ∨ 3 * (x + y + z) - 3 ≤ 3 * x - 1 ∨ 3 * (x + y + z) - 3 ≤ 3 * (x + y) - 2)
+@frozen : ∀ {α : ℝ} {w : ℕ → ℤ},
+  0 < α → 2 * α + 2 * α ^ 2 < 1 → Bounded α w → ∃ b₀, (∃ g, 1 ≤ g ∧ PatternI w b₀ g) ∨ ∃ γ ≤ -1, PatternII w b₀ γ
+@eventually_cycle : ∀ {α : ℝ} {k : ℤ} {a d e w : ℕ → ℤ},
+  0 < α →
+    2 * α + 2 * α ^ 2 < 1 →
+      2 ≤ k →
+        Bounded α w →
+          Digits k a d e w →
+            ∃ b,
+              ∀ (j : ℕ),
+                w (b + 3 * j) = 1 ∧
+                  w (b + 3 * j + 1) = 0 ∧
+                    w (b + 3 * j + 2) = 0 ∧
+                      a (b + 3 * j) = 1 ∧
+                        a (b + 3 * j + 1) = 1 ∧
+                          a (b + 3 * j + 2) = 1 ∧ d (b + 3 * j) = 1 ∧ d (b + 3 * j + 1) = 1 ∧ d (b + 3 * j + 2) = 1
+origin_step : ∀ (k : ℕ) (hk : 1 ≤ k) (a : Fin 3) (v₀ v₁ v₂ : ℤ),
+  -len k hk v₀ v₁ v₂ ≤ 0 →
+    0 < -len k hk v₀ v₁ v₂ + (Psc.ParameterFamilyTiling.geometry k hk).ℓ a →
+      ∃ a' d' e',
+        Child (↑k) (↑↑a) (↑↑a') d' e' ∧
+          Psc.PeriodicPartnerRealization.originChild (Psc.ParameterFamilyTiling.geometry k hk) (a, -len k hk v₀ v₁ v₂) =
+              (a', -len k hk (v₁ + 2 * v₂ - d') (v₀ + ↑k * v₁ + v₂ - e') v₁) ∧
+            -len k hk (v₁ + 2 * v₂ - d') (v₀ + ↑k * v₁ + v₂ - e') v₁ ≤ 0 ∧
+              0 <
+                -len k hk (v₁ + 2 * v₂ - d') (v₀ + ↑k * v₁ + v₂ - e') v₁ +
+                  (Psc.ParameterFamilyTiling.geometry k hk).ℓ a'
+orbit_data : ∀ (k : ℕ) (hk : 1 ≤ k) (a₀ : Fin 3) (z₀ z₁ z₂ : ℤ),
+  -len k hk z₀ z₁ z₂ ≤ 0 →
+    0 < -len k hk z₀ z₁ z₂ + (Psc.ParameterFamilyTiling.geometry k hk).ℓ a₀ →
+      ∃ A V₀ W V₂ D E,
+        (∀ (i : ℕ),
+            (Psc.PeriodicPartnerRealization.originChild (Psc.ParameterFamilyTiling.geometry k hk))^[i]
+                (a₀, -len k hk z₀ z₁ z₂) =
+              (A i, -len k hk (V₀ i) (W i) (V₂ i))) ∧
+          (∀ (i : ℕ),
+              -len k hk (V₀ i) (W i) (V₂ i) ≤ 0 ∧
+                0 < -len k hk (V₀ i) (W i) (V₂ i) + (Psc.ParameterFamilyTiling.geometry k hk).ℓ (A i)) ∧
+            (∀ (i : ℕ), Child (↑k) (↑↑(A i)) (↑↑(A (i + 1))) (D (i + 1)) (E (i + 1))) ∧
+              (∀ (i : ℕ), V₀ (i + 1) = W i + 2 * V₂ i - D (i + 1)) ∧
+                (∀ (i : ℕ), W (i + 1) = V₀ i + ↑k * W i + V₂ i - E (i + 1)) ∧ ∀ (i : ℕ), V₂ (i + 1) = W i
+periodicLatticeOriginsClassified : ∀ (k : ℕ) (hk : 1 ≤ k),
+  2 ≤ k → Psc.ParameterFamilyZeroFibreAnchor.PeriodicLatticeOriginsClassified k hk
+anchor_common_tile : ∀ (k : ℕ) (hk : 1 ≤ k),
+  2 ≤ k →
+    ∀ {V U : (Psc.ParameterFamilyTiling.geometry k hk).Hull},
+      (1, 0) ∈ ↑V →
+        Psc.PeriodicPartnerHull.LengthSubst.inflateH^[2] V = V →
+          Psc.PeriodicPartnerRealization.realize (Psc.ParameterFamilySolenoid.pisotData k hk) ⋯ V = 0 →
+            Psc.PeriodicPartnerRealization.realize (Psc.ParameterFamilySolenoid.pisotData k hk) ⋯ U = 0 →
+              (↑V ∩ ↑U).Nonempty
+zero_fibre_common_tile : ∀ (k : ℕ) (hk : 1 ≤ k),
+  2 ≤ k →
+    ∀ (T U : (Psc.ParameterFamilyTiling.geometry k hk).Hull),
+      Psc.PeriodicPartnerRealization.realize (Psc.ParameterFamilySolenoid.pisotData k hk) ⋯ T = 0 →
+        Psc.PeriodicPartnerRealization.realize (Psc.ParameterFamilySolenoid.pisotData k hk) ⋯ U = 0 → (↑T ∩ ↑U).Nonempty
+all_pair_witnesses : ∀ (k : ℕ) (hk : 1 ≤ k),
+  2 ≤ k →
+    ∀ (T U : (Psc.ParameterFamilyTiling.geometry k hk).Hull),
+      Psc.PeriodicPartnerRealization.realize (Psc.ParameterFamilySolenoid.pisotData k hk) ⋯ T = 0 →
+        Psc.PeriodicPartnerRealization.realize (Psc.ParameterFamilySolenoid.pisotData k hk) ⋯ U = 0 →
+          Psc.PeriodicPartnerProximal.WindowWitnesses (Psc.ParameterFamilyTiling.geometry k hk) 1 T U
+zero_fibre_exactProximal : ∀ (k : ℕ) (hk : 1 ≤ k),
+  2 ≤ k →
+    ∀ (T U : (Psc.ParameterFamilyTiling.geometry k hk).Hull),
+      Psc.PeriodicPartnerRealization.realize (Psc.ParameterFamilySolenoid.pisotData k hk) ⋯ T = 0 →
+        Psc.PeriodicPartnerRealization.realize (Psc.ParameterFamilySolenoid.pisotData k hk) ⋯ U = 0 →
+          Psc.PeriodicPartnerProximal.ExactProximal (Psc.ParameterFamilyTiling.geometry k hk) T U
+zero_fibre_origin : ∀ (k : ℕ) (hk : 1 ≤ k),
+  2 ≤ k →
+    ∀ (U : (Psc.ParameterFamilyTiling.geometry k hk).Hull),
+      Psc.PeriodicPartnerRealization.realize (Psc.ParameterFamilySolenoid.pisotData k hk) ⋯ U = 0 →
+        (Psc.PeriodicPartnerRealization.origin U).2 = 0 ∨
+          Psc.PeriodicPartnerRealization.origin U = (1, -(Psc.ParameterFamilyTiling.geometry k hk).ℓ 0) ∨
+            Psc.PeriodicPartnerRealization.origin U =
+                (1, (Psc.ParameterFamilyTiling.geometry k hk).ℓ 0 - (Psc.ParameterFamilyTiling.geometry k hk).ℓ 1) ∨
+              Psc.PeriodicPartnerRealization.origin U = (1, -(Psc.ParameterFamilyTiling.geometry k hk).ℓ 2)
+'Psc.ShiftedRadixCycle.window' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ShiftedRadixCycle.frozen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ShiftedRadixCycle.patternII_false' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ShiftedRadixCycle.patternI_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ShiftedRadixCycle.patternI_types' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ShiftedRadixCycle.eventually_cycle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ParameterFamilyOriginCycle.origin_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ParameterFamilyOriginCycle.orbit_data' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ParameterFamilyOriginCycle.periodicLatticeOriginsClassified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Psc.ParameterFamilyOriginCycle.anchor_common_tile' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ParameterFamilyOriginCycle.zero_fibre_common_tile' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ParameterFamilyOriginCycle.all_pair_witnesses' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ParameterFamilyOriginCycle.zero_fibre_exactProximal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ParameterFamilyOriginCycle.zero_fibre_origin' depends on axioms: [propext, Classical.choice, Quot.sound]

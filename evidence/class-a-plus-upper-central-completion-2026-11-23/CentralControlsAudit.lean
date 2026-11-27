@@ -1,0 +1,16 @@
+import PscVerif.ClassAPlusUpperCentralControls
+
+#print axioms Psc.ClassAPlusUpperCentralControls.source_shift
+#print axioms Psc.ClassAPlusUpperCentralControls.target_shift
+#print axioms Psc.ClassAPlusUpperCentralControls.source_central
+#print axioms Psc.ClassAPlusUpperCentralControls.target_central
+#print axioms Psc.ClassAPlusUpperCentralControls.actual_first_edge
+#print axioms Psc.ClassAPlusUpperCentralControls.target_signed_cycle
+#print axioms Psc.ClassAPlusUpperCentralControls.original_scalar_pair
+#print axioms Psc.ClassAPlusUpperCentralControls.transformed_scalar_pair
+#print axioms Psc.ClassAPlusUpperCentralControls.source_not_full_cycle
+#print axioms Psc.ClassAPlusUpperCentralControls.source_ne_cycle_one
+#print axioms Psc.ClassAPlusUpperCentralControls.strict_reconstruction_prefix
+#print axioms Psc.ClassAPlusUpperCentralControls.reconstruction_delay_control
+#print axioms Psc.ClassAPlusUpperCentralControls.retained_nonzero_cycle_control
+#print axioms Psc.ClassAPlusUpperCentralControls.retained_half_tie_control

@@ -1,0 +1,8 @@
+{
+  "exit_code": 1,
+  "source_snapshot_sha256": "8d1aaa3665ee341c5ea15a244198735290d18b20e85dc3acf21e6af9c8dd8222",
+  "new_proof_chain_compiled": true,
+  "new_audit_passed": true,
+  "failure": "The gate omitted the build target for the existing ClassAPlusUpperEntryControls import required by the next legacy audit fixture.",
+  "correction": "Added PscVerif.ClassAPlusUpperEntryControls as an explicit build target; repeated entire source-isolated gate."
+}

@@ -1,0 +1,189 @@
+{
+  "scope": "finite independent calibration; universal claims require the separate Lean proof",
+  "oracle_source_sha256": "cc97a3f956ab3fd8d8cf22e61e090664d4a3f614112a03c6068e85adb8dc152c",
+  "native_stdout_sha256": "65acc78ac1e03747c254a2feb86fd1915d6941a67b99beffff7018130af2c3a6",
+  "independent_jsonl_sha256": "125a6720fe751493bc5c02a48861d93eb5a898699cec1a156fae063a4dd13698",
+  "native_and_independent_full_paths_identical": 818,
+  "central_depth_pair_count_checks": 818,
+  "signed_cycle_depth_formula_and_bound_checks": 818,
+  "full_depth_K_plus_2n_minus_1_checks": 818,
+  "maximum_signed_cycle_height": 18,
+  "maximum_cycle_suffix_depth": 35,
+  "reversal_sources_checked": 818,
+  "reversal_edges_checked": 4728,
+  "nonzero_actual_nearest_cycle": {
+    "n": 7,
+    "J": 1,
+    "source": [
+      2,
+      2,
+      4,
+      12,
+      -24
+    ],
+    "edges": [
+      {
+        "source": [
+          2,
+          2,
+          4,
+          12,
+          -24
+        ],
+        "gap": -4,
+        "indices": [
+          1,
+          5
+        ],
+        "target": [
+          2,
+          2,
+          -4,
+          -12,
+          24
+        ],
+        "top_prefix": [
+          1,
+          0,
+          0
+        ],
+        "bottom_prefix": [
+          1,
+          0,
+          4
+        ]
+      },
+      {
+        "source": [
+          2,
+          2,
+          -4,
+          -12,
+          24
+        ],
+        "gap": 4,
+        "indices": [
+          5,
+          1
+        ],
+        "target": [
+          2,
+          2,
+          4,
+          12,
+          -24
+        ],
+        "top_prefix": [
+          1,
+          0,
+          4
+        ],
+        "bottom_prefix": [
+          1,
+          0,
+          0
+        ]
+      }
+    ],
+    "actual_alternative_exit_depth": 7
+  },
+  "one_step_reconstruction_delay": {
+    "n": 7,
+    "J": 1,
+    "source": [
+      2,
+      2,
+      1,
+      2,
+      -5
+    ],
+    "transformed_initial_pair": [
+      1,
+      1
+    ],
+    "first_edge": {
+      "source": [
+        2,
+        2,
+        1,
+        2,
+        -5
+      ],
+      "indices": [
+        1,
+        1
+      ],
+      "target": [
+        2,
+        2,
+        -1,
+        -3,
+        6
+      ],
+      "top_prefix": [
+        1,
+        0,
+        0
+      ],
+      "bottom_prefix": [
+        1,
+        0,
+        0
+      ]
+    },
+    "premature_cutoff_rejection": "cycle cutoff is not the full strictly central W packet"
+  },
+  "both_initial_coordinates_required": {
+    "n": 7,
+    "J": 1,
+    "source": [
+      2,
+      2,
+      0,
+      1000,
+      -917
+    ],
+    "gap": 3,
+    "indices": [
+      4,
+      1
+    ],
+    "target": [
+      2,
+      2,
+      83,
+      83,
+      -339
+    ],
+    "top_prefix": [
+      1,
+      0,
+      3
+    ],
+    "bottom_prefix": [
+      1,
+      0,
+      0
+    ],
+    "full_reserve": 1176,
+    "incomplete_p_only_reserve": 14
+  },
+  "synthetic_half_tie_control": {
+    "A": "1/8",
+    "C": "1",
+    "input": [
+      4,
+      0,
+      0
+    ],
+    "absolute_error": "1/2",
+    "strict_nearest": false,
+    "is_literal_integral_family_input": false
+  },
+  "low_J_absolute_contraction_reserve_signs": {
+    "1": -1,
+    "2": -1,
+    "3": -1,
+    "4": -1
+  }
+}

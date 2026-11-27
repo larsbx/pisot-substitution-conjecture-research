@@ -17,6 +17,11 @@ form an unbounded-image-length PIP3 family satisfying the nilpotent and
 complete-square necessary conditions. This does not assign them coincidence
 rank two. The arbitrary even-determinant case remains open.
 
+**Follow-up, 2026-11-20.** The [stack word rigidity proof](c4-nonunit-stack-word-rigidity-2026-11-20.md)
+uses nonunit norm and the subdivision at original letter cuts to exclude
+the rank-two strict residue in writing. Its finite algebra has scoped
+Lean checks. The results and controls below describe the earlier routes.
+
 ## Work shown
 
 ### Assumptions and hypotheses

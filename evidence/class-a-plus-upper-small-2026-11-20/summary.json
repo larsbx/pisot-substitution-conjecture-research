@@ -1,0 +1,2191 @@
+{
+  "independent_full_json_sha256": "b43c044f7318701cd2bd34161cdcd87978c6d938d253f36e3a15266de19d704b",
+  "members": [
+    {
+      "complete": true,
+      "d": 5,
+      "graph_sha256": "2fb6ccc2a69d3fee4404fd211c6615568c07033fa3397027c736612fa8447adb",
+      "indexed_edges": 1524,
+      "max_distance": 6,
+      "n": 0,
+      "occurrence_pairs": 8178,
+      "original_prefix_certificates": 378,
+      "path_edges": 1106,
+      "paths": 378,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 378
+    },
+    {
+      "complete": true,
+      "d": 6,
+      "graph_sha256": "2f72ecb507e26956a8ccb95ffb3b4af3ececf6fe5a509df675de18ef598f268d",
+      "indexed_edges": 2088,
+      "max_distance": 6,
+      "n": 0,
+      "occurrence_pairs": 12462,
+      "original_prefix_certificates": 478,
+      "path_edges": 1434,
+      "paths": 478,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 478
+    },
+    {
+      "complete": true,
+      "d": 7,
+      "graph_sha256": "5f5925e7e1624d18d47c258c658391c4f67a83dab1a41f0364c65f00af174712",
+      "indexed_edges": 2376,
+      "max_distance": 6,
+      "n": 0,
+      "occurrence_pairs": 15742,
+      "original_prefix_certificates": 518,
+      "path_edges": 1556,
+      "paths": 518,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 518
+    },
+    {
+      "complete": true,
+      "d": 8,
+      "graph_sha256": "8c708b464e724dc397989d353b41d8be7d83e4f4e78b8078942aad9d2eef9663",
+      "indexed_edges": 2522,
+      "max_distance": 5,
+      "n": 0,
+      "occurrence_pairs": 18814,
+      "original_prefix_certificates": 518,
+      "path_edges": 1588,
+      "paths": 518,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 518
+    },
+    {
+      "complete": true,
+      "d": 9,
+      "graph_sha256": "caca8388609464b285032fa72fa8b69b3f69b7cae7b96d70125d3f25051de6ad",
+      "indexed_edges": 3238,
+      "max_distance": 5,
+      "n": 0,
+      "occurrence_pairs": 25248,
+      "original_prefix_certificates": 616,
+      "path_edges": 1882,
+      "paths": 616,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 616
+    },
+    {
+      "complete": true,
+      "d": 10,
+      "graph_sha256": "edcfb1c1e1b4797a64251502e6aaea76e70ad4c1123d4fb866c4a7184a2b9005",
+      "indexed_edges": 5386,
+      "max_distance": 6,
+      "n": 0,
+      "occurrence_pairs": 47310,
+      "original_prefix_certificates": 980,
+      "path_edges": 3174,
+      "paths": 980,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 980
+    },
+    {
+      "complete": true,
+      "d": 11,
+      "graph_sha256": "682991ad14208d7af1c6bf073ca398004be0e4327b1a1464dbb7a07730a3be18",
+      "indexed_edges": 11178,
+      "max_distance": 7,
+      "n": 0,
+      "occurrence_pairs": 105574,
+      "original_prefix_certificates": 1912,
+      "path_edges": 7258,
+      "paths": 1912,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 1912
+    },
+    {
+      "complete": true,
+      "d": 6,
+      "graph_sha256": "1721c3ce70385f2eef0f3c9fb7a18a045e8d90d928ef32b1530e75841c058b31",
+      "indexed_edges": 1840,
+      "max_distance": 4,
+      "n": 1,
+      "occurrence_pairs": 12770,
+      "original_prefix_certificates": 352,
+      "path_edges": 890,
+      "paths": 352,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 352
+    },
+    {
+      "complete": true,
+      "d": 7,
+      "graph_sha256": "b10e87880f3056b7a83021126e0649bc67f7963045e706747fca0d9c7435805b",
+      "indexed_edges": 2140,
+      "max_distance": 4,
+      "n": 1,
+      "occurrence_pairs": 16420,
+      "original_prefix_certificates": 390,
+      "path_edges": 1016,
+      "paths": 390,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 390
+    },
+    {
+      "complete": true,
+      "d": 8,
+      "graph_sha256": "bc4e0978491d30c3b188e1e4c8f0346bb890abaa08c3bcf90f47e497b3b8258f",
+      "indexed_edges": 2484,
+      "max_distance": 4,
+      "n": 1,
+      "occurrence_pairs": 19954,
+      "original_prefix_certificates": 432,
+      "path_edges": 1142,
+      "paths": 432,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 432
+    },
+    {
+      "complete": true,
+      "d": 9,
+      "graph_sha256": "ea1e9649efe467077fb2b1ee99eaaacb5a911186b03083375e7341202389041a",
+      "indexed_edges": 2742,
+      "max_distance": 4,
+      "n": 1,
+      "occurrence_pairs": 23832,
+      "original_prefix_certificates": 456,
+      "path_edges": 1204,
+      "paths": 456,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 456
+    },
+    {
+      "complete": true,
+      "d": 10,
+      "graph_sha256": "98c05a5c486bbec40443d995b903f278dd9b51fe4e5b1b48ae5d206b31666ccc",
+      "indexed_edges": 4520,
+      "max_distance": 5,
+      "n": 1,
+      "occurrence_pairs": 43152,
+      "original_prefix_certificates": 698,
+      "path_edges": 1932,
+      "paths": 698,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 698
+    },
+    {
+      "complete": true,
+      "d": 11,
+      "graph_sha256": "f779bffb181e64c630bd5c950d308507b1f0f0ae210c29688a425fb09b1db26c",
+      "indexed_edges": 5488,
+      "max_distance": 6,
+      "n": 1,
+      "occurrence_pairs": 56896,
+      "original_prefix_certificates": 828,
+      "path_edges": 2422,
+      "paths": 828,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 828
+    },
+    {
+      "complete": true,
+      "d": 12,
+      "graph_sha256": "c165d138c7af7167a714d1f8a6d85d5b348e26360b04b049873665b0acf94497",
+      "indexed_edges": 7860,
+      "max_distance": 5,
+      "n": 1,
+      "occurrence_pairs": 83372,
+      "original_prefix_certificates": 1120,
+      "path_edges": 3458,
+      "paths": 1120,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 1120
+    },
+    {
+      "complete": true,
+      "d": 13,
+      "graph_sha256": "5f7bbd8ea14e55a537b2803ec421a973e31044d9230bb72b3e5861a755e8d045",
+      "indexed_edges": 15432,
+      "max_distance": 6,
+      "n": 1,
+      "occurrence_pairs": 173976,
+      "original_prefix_certificates": 2096,
+      "path_edges": 8108,
+      "paths": 2096,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 2096
+    },
+    {
+      "complete": true,
+      "d": 7,
+      "graph_sha256": "cc6b6032aabdf706af5cdfc690def2704806862615be10554fd090dd8c2d6eb5",
+      "indexed_edges": 2142,
+      "max_distance": 4,
+      "n": 2,
+      "occurrence_pairs": 18402,
+      "original_prefix_certificates": 334,
+      "path_edges": 790,
+      "paths": 334,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 334
+    },
+    {
+      "complete": true,
+      "d": 8,
+      "graph_sha256": "af9b038a22c30c341c5f591188266dcfb43ed94e9a0c9582ce6ef0d436f888a5",
+      "indexed_edges": 2424,
+      "max_distance": 4,
+      "n": 2,
+      "occurrence_pairs": 21988,
+      "original_prefix_certificates": 360,
+      "path_edges": 862,
+      "paths": 360,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 360
+    },
+    {
+      "complete": true,
+      "d": 9,
+      "graph_sha256": "213199a8fb261e18f099308f05be47092176485a234586a58aa0abb5ed36f994",
+      "indexed_edges": 2874,
+      "max_distance": 5,
+      "n": 2,
+      "occurrence_pairs": 28314,
+      "original_prefix_certificates": 412,
+      "path_edges": 1014,
+      "paths": 412,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 412
+    },
+    {
+      "complete": true,
+      "d": 10,
+      "graph_sha256": "b8fc99f1e31a3ea30597c2b03758c64bacedebce961360027592d9edf91003d4",
+      "indexed_edges": 3124,
+      "max_distance": 4,
+      "n": 2,
+      "occurrence_pairs": 33302,
+      "original_prefix_certificates": 444,
+      "path_edges": 1118,
+      "paths": 444,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 444
+    },
+    {
+      "complete": true,
+      "d": 11,
+      "graph_sha256": "8101c6e9aeffae4509195515984a89b439b5826ce878f507f5595ed706bb54a4",
+      "indexed_edges": 3308,
+      "max_distance": 5,
+      "n": 2,
+      "occurrence_pairs": 35796,
+      "original_prefix_certificates": 450,
+      "path_edges": 1172,
+      "paths": 450,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 450
+    },
+    {
+      "complete": true,
+      "d": 12,
+      "graph_sha256": "bfeaab7f38bfb8c88553bd65341926ad1415f361fe5c8f75d92e852399eef523",
+      "indexed_edges": 5504,
+      "max_distance": 4,
+      "n": 2,
+      "occurrence_pairs": 63708,
+      "original_prefix_certificates": 704,
+      "path_edges": 1896,
+      "paths": 704,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 704
+    },
+    {
+      "complete": true,
+      "d": 13,
+      "graph_sha256": "845cc3f68eff99849298add173e1b956191044ea4918999b68a472cd9402ecab",
+      "indexed_edges": 6368,
+      "max_distance": 5,
+      "n": 2,
+      "occurrence_pairs": 77666,
+      "original_prefix_certificates": 794,
+      "path_edges": 2264,
+      "paths": 794,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 794
+    },
+    {
+      "complete": true,
+      "d": 14,
+      "graph_sha256": "d46f40aa525a21245ac1eeba5ee6e78dfc96cecaa1213ae74f5bb6eccaf2a22b",
+      "indexed_edges": 9864,
+      "max_distance": 5,
+      "n": 2,
+      "occurrence_pairs": 126070,
+      "original_prefix_certificates": 1170,
+      "path_edges": 3616,
+      "paths": 1170,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 1170
+    },
+    {
+      "complete": true,
+      "d": 15,
+      "graph_sha256": "8c87ebf8d33be992711b1ff51a00af7d6967d0dd652ce053a5ec7ee0e54906d6",
+      "indexed_edges": 19846,
+      "max_distance": 7,
+      "n": 2,
+      "occurrence_pairs": 260914,
+      "original_prefix_certificates": 2254,
+      "path_edges": 9010,
+      "paths": 2254,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 2254
+    },
+    {
+      "complete": true,
+      "d": 8,
+      "graph_sha256": "9be20179d57eaaec6759fb5ad50508a817adc93554cb89d32ba918487ad2b554",
+      "indexed_edges": 2480,
+      "max_distance": 4,
+      "n": 3,
+      "occurrence_pairs": 24882,
+      "original_prefix_certificates": 326,
+      "path_edges": 750,
+      "paths": 326,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 326
+    },
+    {
+      "complete": true,
+      "d": 9,
+      "graph_sha256": "a6f95a95264f37e1db95af9035eb502a36eff0bc371f904fae96dcc29a22f628",
+      "indexed_edges": 2690,
+      "max_distance": 4,
+      "n": 3,
+      "occurrence_pairs": 29072,
+      "original_prefix_certificates": 346,
+      "path_edges": 800,
+      "paths": 346,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 346
+    },
+    {
+      "complete": true,
+      "d": 10,
+      "graph_sha256": "7fb921d965f8a14e498a561ec7917ba1084d2a58724ab6f02f39389fc6514a83",
+      "indexed_edges": 2990,
+      "max_distance": 4,
+      "n": 3,
+      "occurrence_pairs": 33278,
+      "original_prefix_certificates": 376,
+      "path_edges": 900,
+      "paths": 376,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 376
+    },
+    {
+      "complete": true,
+      "d": 11,
+      "graph_sha256": "1d31d6c7163fbfbfcf46bb50e0946c9fc0eaa57380aeb125e7636a7effc0cda4",
+      "indexed_edges": 3078,
+      "max_distance": 4,
+      "n": 3,
+      "occurrence_pairs": 34872,
+      "original_prefix_certificates": 366,
+      "path_edges": 866,
+      "paths": 366,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 366
+    },
+    {
+      "complete": true,
+      "d": 12,
+      "graph_sha256": "4147b1e9b0a170a8b781e13d71f41adcd4978a56e33d301d92bb894aa6f41f68",
+      "indexed_edges": 3422,
+      "max_distance": 4,
+      "n": 3,
+      "occurrence_pairs": 41848,
+      "original_prefix_certificates": 402,
+      "path_edges": 990,
+      "paths": 402,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 402
+    },
+    {
+      "complete": true,
+      "d": 13,
+      "graph_sha256": "2dfe867a9ce4760048e9424875775a4ca81ee717786c1acf2985ed5d4505773b",
+      "indexed_edges": 5692,
+      "max_distance": 4,
+      "n": 3,
+      "occurrence_pairs": 73962,
+      "original_prefix_certificates": 644,
+      "path_edges": 1640,
+      "paths": 644,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 644
+    },
+    {
+      "complete": true,
+      "d": 14,
+      "graph_sha256": "806370b1d4e56dff8360b5687913c41d3203e8e4396ee2c7d1676c15dcc6780d",
+      "indexed_edges": 6418,
+      "max_distance": 4,
+      "n": 3,
+      "occurrence_pairs": 85160,
+      "original_prefix_certificates": 696,
+      "path_edges": 1834,
+      "paths": 696,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 696
+    },
+    {
+      "complete": true,
+      "d": 15,
+      "graph_sha256": "50bed8bb16f8f4e19a1b9175159c58310a7878cf5d60abcfe5dca36b2c5d2dec",
+      "indexed_edges": 7886,
+      "max_distance": 5,
+      "n": 3,
+      "occurrence_pairs": 108688,
+      "original_prefix_certificates": 818,
+      "path_edges": 2304,
+      "paths": 818,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 818
+    },
+    {
+      "complete": true,
+      "d": 16,
+      "graph_sha256": "fdad740d48c68b93b08de95e94a1f6e7ad7078c22996ad70604fd9e270a87013",
+      "indexed_edges": 12304,
+      "max_distance": 5,
+      "n": 3,
+      "occurrence_pairs": 179836,
+      "original_prefix_certificates": 1256,
+      "path_edges": 3968,
+      "paths": 1256,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 1256
+    },
+    {
+      "complete": true,
+      "d": 17,
+      "graph_sha256": "159bfaffd23c10b6acf804c68301648a33e3211856676ca4420702fad8a3e72f",
+      "indexed_edges": 24648,
+      "max_distance": 7,
+      "n": 3,
+      "occurrence_pairs": 371628,
+      "original_prefix_certificates": 2406,
+      "path_edges": 10068,
+      "paths": 2406,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 2406
+    },
+    {
+      "complete": true,
+      "d": 9,
+      "graph_sha256": "f457f04b50f62b7e5c0e4d60fc1bbae38df63656743c36b09fa3e257196d814f",
+      "indexed_edges": 2818,
+      "max_distance": 4,
+      "n": 4,
+      "occurrence_pairs": 32300,
+      "original_prefix_certificates": 320,
+      "path_edges": 720,
+      "paths": 320,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 320
+    },
+    {
+      "complete": true,
+      "d": 10,
+      "graph_sha256": "e5456319e5ac6b42adfdb9d93a46bcea1733b5066cfec3f47e756071b269eaef",
+      "indexed_edges": 3038,
+      "max_distance": 4,
+      "n": 4,
+      "occurrence_pairs": 36768,
+      "original_prefix_certificates": 338,
+      "path_edges": 768,
+      "paths": 338,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 338
+    },
+    {
+      "complete": true,
+      "d": 11,
+      "graph_sha256": "cb911843e8ff30572667beac702eb61ada0417b59997198d4841c3ca2fee4644",
+      "indexed_edges": 3258,
+      "max_distance": 4,
+      "n": 4,
+      "occurrence_pairs": 41660,
+      "original_prefix_certificates": 362,
+      "path_edges": 830,
+      "paths": 362,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 362
+    },
+    {
+      "complete": true,
+      "d": 12,
+      "graph_sha256": "f7c6954e4356b8547fc282e6b8856fb099e1afecec0f63ae8ad40b3b2aaff758",
+      "indexed_edges": 3434,
+      "max_distance": 4,
+      "n": 4,
+      "occurrence_pairs": 45818,
+      "original_prefix_certificates": 364,
+      "path_edges": 830,
+      "paths": 364,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 364
+    },
+    {
+      "complete": true,
+      "d": 13,
+      "graph_sha256": "9d7a3ae02df1b918a6f1dc2d83ca600ee63d4d86f35a015528072faf445a4c39",
+      "indexed_edges": 3758,
+      "max_distance": 5,
+      "n": 4,
+      "occurrence_pairs": 50264,
+      "original_prefix_certificates": 380,
+      "path_edges": 890,
+      "paths": 380,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 380
+    },
+    {
+      "complete": true,
+      "d": 14,
+      "graph_sha256": "7fdbb20e45be05b4f76b84296f5f9a9c711bd524619b15cd3acd9f0e8c26668c",
+      "indexed_edges": 4000,
+      "max_distance": 4,
+      "n": 4,
+      "occurrence_pairs": 57366,
+      "original_prefix_certificates": 400,
+      "path_edges": 950,
+      "paths": 400,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 400
+    },
+    {
+      "complete": true,
+      "d": 15,
+      "graph_sha256": "acdaf88cbda15ddc071f3409cce15e9b97721d46ae92ef0cbe84e39a3a71af37",
+      "indexed_edges": 6548,
+      "max_distance": 4,
+      "n": 4,
+      "occurrence_pairs": 95750,
+      "original_prefix_certificates": 626,
+      "path_edges": 1558,
+      "paths": 626,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 626
+    },
+    {
+      "complete": true,
+      "d": 16,
+      "graph_sha256": "f81781f4523a7e7b21e3547b3d41c0725ad47e87a1963088de342f59509a7b85",
+      "indexed_edges": 7280,
+      "max_distance": 5,
+      "n": 4,
+      "occurrence_pairs": 112948,
+      "original_prefix_certificates": 684,
+      "path_edges": 1806,
+      "paths": 684,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 684
+    },
+    {
+      "complete": true,
+      "d": 17,
+      "graph_sha256": "4610c74eda481024e48091791b7fe1a9207c587e1a12630070f790bf1bacc40b",
+      "indexed_edges": 9834,
+      "max_distance": 5,
+      "n": 4,
+      "occurrence_pairs": 158038,
+      "original_prefix_certificates": 906,
+      "path_edges": 2548,
+      "paths": 906,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 906
+    },
+    {
+      "complete": true,
+      "d": 18,
+      "graph_sha256": "45993502a58d22cc136dae0b8fd7c57cfa326f03ec383b696230fcaae9949546",
+      "indexed_edges": 15166,
+      "max_distance": 6,
+      "n": 4,
+      "occurrence_pairs": 250134,
+      "original_prefix_certificates": 1348,
+      "path_edges": 4316,
+      "paths": 1348,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 1348
+    },
+    {
+      "complete": true,
+      "d": 19,
+      "graph_sha256": "ef7f17a9bf0726558621ce315f458c65b5c7ef79dd42484db98a226a2862d206",
+      "indexed_edges": 30100,
+      "max_distance": 8,
+      "n": 4,
+      "occurrence_pairs": 510172,
+      "original_prefix_certificates": 2590,
+      "path_edges": 11260,
+      "paths": 2590,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 2590
+    },
+    {
+      "complete": true,
+      "d": 10,
+      "graph_sha256": "885d062402582ffb3ce3f46c11b38d87eb975febae1aaf562dfb0b05986b315c",
+      "indexed_edges": 3192,
+      "max_distance": 4,
+      "n": 5,
+      "occurrence_pairs": 41426,
+      "original_prefix_certificates": 318,
+      "path_edges": 714,
+      "paths": 318,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 318
+    },
+    {
+      "complete": true,
+      "d": 11,
+      "graph_sha256": "c9d34ce85c629d2d02988c8569e2484c84313b65c7f4eae3b7ffd76f4e928956",
+      "indexed_edges": 3438,
+      "max_distance": 4,
+      "n": 5,
+      "occurrence_pairs": 47372,
+      "original_prefix_certificates": 338,
+      "path_edges": 766,
+      "paths": 338,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 338
+    },
+    {
+      "complete": true,
+      "d": 12,
+      "graph_sha256": "5e7316e6e5beab0aafc90713e8420d3556ca776aae490d309925cec3e14545a4",
+      "indexed_edges": 3662,
+      "max_distance": 4,
+      "n": 5,
+      "occurrence_pairs": 51780,
+      "original_prefix_certificates": 358,
+      "path_edges": 822,
+      "paths": 358,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 358
+    },
+    {
+      "complete": true,
+      "d": 13,
+      "graph_sha256": "8209059759e5da69c1176b25e758d113419809cffc6b32bcbfee641b1c51453c",
+      "indexed_edges": 3480,
+      "max_distance": 4,
+      "n": 5,
+      "occurrence_pairs": 51102,
+      "original_prefix_certificates": 338,
+      "path_edges": 762,
+      "paths": 338,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 338
+    },
+    {
+      "complete": true,
+      "d": 14,
+      "graph_sha256": "b14f2b54ca431a38f7e875445d9dc88043b891ca70b9871a6311e74e8b2ca297",
+      "indexed_edges": 3636,
+      "max_distance": 4,
+      "n": 5,
+      "occurrence_pairs": 53252,
+      "original_prefix_certificates": 332,
+      "path_edges": 782,
+      "paths": 332,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 332
+    },
+    {
+      "complete": true,
+      "d": 15,
+      "graph_sha256": "d8e626b715142b3e3a11a08dad96a180a3c5a3f124124ba0524f8dcd0992f1df",
+      "indexed_edges": 4010,
+      "max_distance": 4,
+      "n": 5,
+      "occurrence_pairs": 59940,
+      "original_prefix_certificates": 350,
+      "path_edges": 822,
+      "paths": 350,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 350
+    },
+    {
+      "complete": true,
+      "d": 16,
+      "graph_sha256": "eb0ad358fd0e90412d0771c39ef1caa857cc6c68c7828fc2c7a3a8df2dd09fbd",
+      "indexed_edges": 4720,
+      "max_distance": 4,
+      "n": 5,
+      "occurrence_pairs": 77520,
+      "original_prefix_certificates": 414,
+      "path_edges": 1008,
+      "paths": 414,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 414
+    },
+    {
+      "complete": true,
+      "d": 17,
+      "graph_sha256": "90ce43e7c997d5a66e0c4e22a6b02dea563d9fecba2e08a65e04f9fea8ea0119",
+      "indexed_edges": 7218,
+      "max_distance": 4,
+      "n": 5,
+      "occurrence_pairs": 118804,
+      "original_prefix_certificates": 614,
+      "path_edges": 1554,
+      "paths": 614,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 614
+    },
+    {
+      "complete": true,
+      "d": 18,
+      "graph_sha256": "a4af0cad15ab61962f0d69ddbed5b504c6bb1c36d34381ed1965469a410c013e",
+      "indexed_edges": 8228,
+      "max_distance": 5,
+      "n": 5,
+      "occurrence_pairs": 141826,
+      "original_prefix_certificates": 686,
+      "path_edges": 1816,
+      "paths": 686,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 686
+    },
+    {
+      "complete": true,
+      "d": 19,
+      "graph_sha256": "f616f1427b13319339f11316fbf92d22c5ba957ac7d32e94edc5ca87e9054283",
+      "indexed_edges": 11420,
+      "max_distance": 6,
+      "n": 5,
+      "occurrence_pairs": 203910,
+      "original_prefix_certificates": 926,
+      "path_edges": 2672,
+      "paths": 926,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 926
+    },
+    {
+      "complete": true,
+      "d": 20,
+      "graph_sha256": "e4624c0bd43b3e1f100b9fc8d20f7a417738b152ee4f5d0bae58436c0c839fca",
+      "indexed_edges": 18006,
+      "max_distance": 5,
+      "n": 5,
+      "occurrence_pairs": 328060,
+      "original_prefix_certificates": 1428,
+      "path_edges": 4694,
+      "paths": 1428,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 1428
+    },
+    {
+      "complete": true,
+      "d": 21,
+      "graph_sha256": "3030c1141056a228ed58b76bd4848860af358f798a80453d1d42ee4ab797a93d",
+      "indexed_edges": 35756,
+      "max_distance": 8,
+      "n": 5,
+      "occurrence_pairs": 671892,
+      "original_prefix_certificates": 2754,
+      "path_edges": 12622,
+      "paths": 2754,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 2754
+    },
+    {
+      "complete": true,
+      "d": 11,
+      "graph_sha256": "ebbcca599c522daa3c0de58ca4ae1d7194039250d99cd211d5590852a7451de6",
+      "indexed_edges": 3580,
+      "max_distance": 4,
+      "n": 6,
+      "occurrence_pairs": 52258,
+      "original_prefix_certificates": 318,
+      "path_edges": 714,
+      "paths": 318,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 318
+    },
+    {
+      "complete": true,
+      "d": 12,
+      "graph_sha256": "126e805a6bb380334da406d69f88e09f8304172b8d18077752564dc298e46bfe",
+      "indexed_edges": 3832,
+      "max_distance": 4,
+      "n": 6,
+      "occurrence_pairs": 58516,
+      "original_prefix_certificates": 336,
+      "path_edges": 760,
+      "paths": 336,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 336
+    },
+    {
+      "complete": true,
+      "d": 13,
+      "graph_sha256": "fa487827426cb5add3f5b495b5fd2683b92849eba9e4195c6611c63f6e913291",
+      "indexed_edges": 4018,
+      "max_distance": 4,
+      "n": 6,
+      "occurrence_pairs": 63554,
+      "original_prefix_certificates": 356,
+      "path_edges": 816,
+      "paths": 356,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 356
+    },
+    {
+      "complete": true,
+      "d": 14,
+      "graph_sha256": "01bbfc5a503b4c5a26de3616313e6beb2d95b68a442e1f56b614a195d800d6bf",
+      "indexed_edges": 3802,
+      "max_distance": 4,
+      "n": 6,
+      "occurrence_pairs": 60374,
+      "original_prefix_certificates": 330,
+      "path_edges": 738,
+      "paths": 330,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 330
+    },
+    {
+      "complete": true,
+      "d": 15,
+      "graph_sha256": "ac4b693ade8f80a43df37c928e0d1295ca205ae4c0e0b1c8214d91b9c25f81a8",
+      "indexed_edges": 4016,
+      "max_distance": 5,
+      "n": 6,
+      "occurrence_pairs": 65974,
+      "original_prefix_certificates": 340,
+      "path_edges": 788,
+      "paths": 340,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 340
+    },
+    {
+      "complete": true,
+      "d": 16,
+      "graph_sha256": "8eb41a5ea550d5be7de6e045d8d0ccc05d2a4ed9cda410367c4eb79a46fcab80",
+      "indexed_edges": 4434,
+      "max_distance": 4,
+      "n": 6,
+      "occurrence_pairs": 72678,
+      "original_prefix_certificates": 348,
+      "path_edges": 806,
+      "paths": 348,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 348
+    },
+    {
+      "complete": true,
+      "d": 17,
+      "graph_sha256": "cd6580f759fe4442349c9cc85dfe0e9af2ad4222a97251b122b06b2cfe123715",
+      "indexed_edges": 4622,
+      "max_distance": 4,
+      "n": 6,
+      "occurrence_pairs": 78530,
+      "original_prefix_certificates": 356,
+      "path_edges": 838,
+      "paths": 356,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 356
+    },
+    {
+      "complete": true,
+      "d": 18,
+      "graph_sha256": "88e5592a5e9ecd221819be8775adf23243e7a7bd203ec9a1897a3d6a7cb149bd",
+      "indexed_edges": 7488,
+      "max_distance": 4,
+      "n": 6,
+      "occurrence_pairs": 135114,
+      "original_prefix_certificates": 574,
+      "path_edges": 1398,
+      "paths": 574,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 574
+    },
+    {
+      "complete": true,
+      "d": 19,
+      "graph_sha256": "795f9facf731eb4a24c6fc8e066761348bfa2742e845709ab1a831c5efd48084",
+      "indexed_edges": 8138,
+      "max_distance": 4,
+      "n": 6,
+      "occurrence_pairs": 149974,
+      "original_prefix_certificates": 620,
+      "path_edges": 1580,
+      "paths": 620,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 620
+    },
+    {
+      "complete": true,
+      "d": 20,
+      "graph_sha256": "5ea8ecbd0446f2365921bdabbcc6f21cb0d9fd356a52257672b4baef4cf67da7",
+      "indexed_edges": 9720,
+      "max_distance": 4,
+      "n": 6,
+      "occurrence_pairs": 181496,
+      "original_prefix_certificates": 712,
+      "path_edges": 1882,
+      "paths": 712,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 712
+    },
+    {
+      "complete": true,
+      "d": 21,
+      "graph_sha256": "a981293ad483a12f41d0208275886f1b8281723924aaf05939868bed561f480f",
+      "indexed_edges": 13630,
+      "max_distance": 5,
+      "n": 6,
+      "occurrence_pairs": 266854,
+      "original_prefix_certificates": 990,
+      "path_edges": 2888,
+      "paths": 990,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 990
+    },
+    {
+      "complete": true,
+      "d": 22,
+      "graph_sha256": "0635f6b79aebc494417d8207feef14e1c226feef2c306835f9b9e4450c1d7fde",
+      "indexed_edges": 21166,
+      "max_distance": 6,
+      "n": 6,
+      "occurrence_pairs": 428050,
+      "original_prefix_certificates": 1516,
+      "path_edges": 5152,
+      "paths": 1516,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 1516
+    },
+    {
+      "complete": true,
+      "d": 23,
+      "graph_sha256": "d53be6faf7a2254460a0381c1f7de75ea48591b02fc52d4e734d7cb89e531247",
+      "indexed_edges": 41896,
+      "max_distance": 9,
+      "n": 6,
+      "occurrence_pairs": 862600,
+      "original_prefix_certificates": 2922,
+      "path_edges": 14052,
+      "paths": 2922,
+      "sources": 18,
+      "target_policy": "typed full integral zero",
+      "terminal_labels": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "vertices": 2922
+    }
+  ],
+  "native_emit_transcript": {
+    "lines": 630808,
+    "sha256": "4385f8f0a32ad4b595c68105c4185477ad42c1d15cfd4964a8f70b64c7a53fab",
+    "sha256_reported_by_oracle": "4385f8f0a32ad4b595c68105c4185477ad42c1d15cfd4964a8f70b64c7a53fab"
+  },
+  "note": "The full emit transcript and independent JSON are deterministic; regenerate with the replay commands in README.md and compare these digests.",
+  "scope": "exactly 70 complete literal S18 graphs n=0..6,n+5<=d<=2n+11; not arbitrary strict sources",
+  "total": {
+    "indexed_edges": 524222,
+    "max_distance": 9,
+    "native_refusals": 4,
+    "occurrence_pairs": 8027160,
+    "path_edges": 171954,
+    "paths": 53222,
+    "vertices": 53222
+  }
+}

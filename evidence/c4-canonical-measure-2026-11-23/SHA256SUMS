@@ -1,0 +1,11 @@
+98f2bbce424c007ebd152d0aa6d9382d8f416136f27012215fa0b089324c70ec  ./README.md
+1b6b17a886b23ae4437967ce2ce1b916534fb9d8f80ce7a2785c6b13b5b76bf8  ./acceptance.json
+d177fbd0fff481857ad7df6a28ad70f70f13cd3403da86cb36d5f72e9e3333d0  ./canonical-audit.log
+2de31f1ea7fc363abbba40545fa28022d324a8be19de9f75927cec46a7c558f9  ./focused-tests.log
+d925d49de6ba722045a145249e935412b60c069afaaab14010c7c95dfb4870b6  ./focused-tests.xml
+c50f5f234d5448bbab0fcc0be51d8d457fb970919ae31f012520d33cd63ba8fe  ./isolated-family-gate.log
+d3cc85f87bdc35bfebd5dc5dc4a291954f53b030a138b6669afc4bf758c2f471  ./metadata-checks.log
+4172444edb1a7bd58c024f3182967d34c6be6bfecc6fe85fe4e613376e345b60  ./scoped-canonical-build.log
+83b6536956986040058233722eab1a438af88a075bb754fc02bf39b37519ec39  ./source-snapshot.json
+718a7f2f2737c8f272e296e84de2e30de163ea93ffffa46b42ea16146197a0b8  ./symbolic-audit.log
+c9e70f1adb0e6bfac46ad427f65761dfb07940fccb2bed971f7fd897439368fd  ./upstream-state.json

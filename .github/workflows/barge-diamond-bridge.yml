@@ -1,0 +1,98 @@
+name: Barge-Diamond word correspondence
+
+on:
+  pull_request:
+    paths:
+      - 'proof/PscVerif/**'
+      - 'tools/make_proof_bank.py'
+      - 'tools/setup_lean.sh'
+      - '.github/workflows/barge-diamond-bridge.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  isolated-bridge:
+    name: Fresh word-to-vertex Lean bridge
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Bind revision and provision pinned compiler
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test -z "$(git status --porcelain)"
+          mkdir -p "$RUNNER_TEMP/bd-evidence"
+          git rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/bd-evidence/revision.txt"
+          ./tools/setup_lean.sh --toolchain-only
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Build actual modules from fresh sources and audit their closure
+        shell: bash
+        run: |
+          set -euo pipefail
+          export BD_SOURCE_ROOT="$PWD"
+          export BD_FRESH_ROOT="$RUNNER_TEMP/bd-fresh"
+          python3 tools/make_proof_bank.py --check \
+            --prepare-audit-workspace "$BD_FRESH_ROOT/proof/PscVerif"
+          export LAKE_CONFIG="" LAKE_CACHE_DIR="" LAKE_ARTIFACT_CACHE=false LAKE_RESTORE_ARTIFACTS=false
+          export MATHLIB_CACHE_DIR="$RUNNER_TEMP/bd-upstream-cache"
+          export MATHLIB_CACHE_GET_URL="https://cache.mathlib.org/mathlib4-master"
+          cd "$BD_FRESH_ROOT/proof/PscVerif"
+          BD_PIN=$(cat lean-toolchain)
+          elan run "$BD_PIN" lake --no-cache env true
+          python3 - <<'PY'
+          import os, pathlib, sys
+          sys.path.insert(0, str(pathlib.Path(os.environ['BD_SOURCE_ROOT']) / 'tools'))
+          from make_proof_bank import check_pins
+          check_pins(pathlib.Path(os.environ['BD_FRESH_ROOT']), require_packages=True)
+          PY
+          RAYON_NUM_THREADS=2 elan run "$BD_PIN" lake --no-cache exe cache get
+          test ! -d .lake/build/lib/lean/PscVerif
+          elan run "$BD_PIN" lake --no-cache build PscVerif.BargeDiamondBridgeControls \
+            2>&1 | tee "$RUNNER_TEMP/bd-evidence/build.log"
+          elan run "$BD_PIN" lake --no-cache env lean BargeDiamondBridgeAudit.lean \
+            2>&1 | tee "$RUNNER_TEMP/bd-evidence/axioms.log"
+          python3 - <<'PY'
+          import json, os, pathlib, sys
+          root = pathlib.Path(os.environ['BD_SOURCE_ROOT'])
+          fresh = pathlib.Path(os.environ['BD_FRESH_ROOT'])
+          sys.path.insert(0, str(root / 'tools'))
+          from make_proof_bank import check_pins
+          check_pins(fresh, require_packages=True)
+          source = root / 'proof/PscVerif'
+          for pin in ('lean-toolchain', 'lakefile.toml', 'lake-manifest.json'):
+              if (source / pin).read_bytes() != (fresh / 'proof/PscVerif' / pin).read_bytes():
+                  raise SystemExit('Fresh pin changed: ' + pin)
+          for p in source.rglob('*.lean'):
+              if '.lake' in p.parts:
+                  continue
+              if p.read_bytes() != (fresh / 'proof/PscVerif' / p.relative_to(source)).read_bytes():
+                  raise SystemExit('Fresh source changed: ' + str(p))
+          modules = {'PscVerif.BargeDiamondBridge', 'PscVerif.BargeDiamondBridgeControls'}
+          bank = json.loads((root / 'proof/proof-bank.json').read_text())
+          expected = {d['name'] for d in bank['lean_declarations'] if d['module'] in modules}
+          log = (pathlib.Path(os.environ['RUNNER_TEMP']) / 'bd-evidence/axioms.log').read_text()
+          rows = [s.split('\t') for s in log.splitlines() if s.startswith('BD_AXIOMS\t')]
+          reached = {r[3] for r in rows if r[1] == 'theorem'}
+          if not expected or not expected <= reached or 'BD_AUDIT_COMPLETE\t' not in log:
+              raise SystemExit('Incomplete bridge axiom audit: ' + repr(sorted(expected - reached)))
+          print('BD_NAMED_PROOFS_REACHED', len(expected))
+          PY
+          cd "$BD_SOURCE_ROOT"
+          test -z "$(git status --porcelain)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: barge-diamond-bridge-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/bd-evidence
+          if-no-files-found: error
+          retention-days: 30

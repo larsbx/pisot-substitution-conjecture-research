@@ -1,0 +1,109 @@
+{
+  "base_revision": "6b175ce350b8691563d8ea254e33bd84445860ef",
+  "scope": "Source-extracted word/edge correspondence, primitivity, nonzero roots and controls; existing rank theorem excluded; no full-module acceptance",
+  "generated_sha256": "5f53c88c309c1f0eb184c244433dfe8e01c15960500a53aeb18c7f74045433b3",
+  "bindings": [
+    {
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "source_sha256": "4b96ca14c725dbcfd473ba1af7b2f9c93489a1fae2e6af7fe285008ca0685c54",
+      "start_line": 98,
+      "end_line_exclusive": 120,
+      "chunk_sha256": "2990bcadcc09b573bb65a5005469488d5f7f891e5032bbd98996e7a417875958",
+      "proposed": false
+    },
+    {
+      "source": "proof/PscVerif/PscVerif/GeometricFInclusion.lean",
+      "source_sha256": "4b96ca14c725dbcfd473ba1af7b2f9c93489a1fae2e6af7fe285008ca0685c54",
+      "start_line": 146,
+      "end_line_exclusive": 146,
+      "chunk_sha256": "42850d435fca96f4e886949822597b9eb153c7820994d9fb3feb16f6f5a5aee9",
+      "proposed": false
+    },
+    {
+      "source": "proof/PscVerif/PscVerif/GeometricFRank.lean",
+      "source_sha256": "2f2cfca2ad6e05ce8347e97b1968c09b7bbb671f4e0d8f0a366966c0503d47b9",
+      "start_line": 59,
+      "end_line_exclusive": 78,
+      "chunk_sha256": "d8dfc13c6ef0c3ff996eef2bdd870f8387ae73ebf49b3ccaf2cf442694314870",
+      "proposed": false
+    },
+    {
+      "source": "proof/PscVerif/PscVerif/GeometricFRank.lean",
+      "source_sha256": "2f2cfca2ad6e05ce8347e97b1968c09b7bbb671f4e0d8f0a366966c0503d47b9",
+      "start_line": 127,
+      "end_line_exclusive": 139,
+      "chunk_sha256": "ce3aea79a9f72d28cf35cd0f405bdb1a994176c4130b7e1877e1b8afb4c9919a",
+      "proposed": false
+    },
+    {
+      "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
+      "source_sha256": "39520919cc78934d87f30b1651322826236751b85c757b8970400b0f1365189b",
+      "start_line": 133,
+      "end_line_exclusive": 136,
+      "chunk_sha256": "e317d626d7d69bd371e872a998cd28221904adbec5583876fecdcc76b5da0b81",
+      "proposed": false
+    },
+    {
+      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
+      "source_sha256": "657d6c9f4041b04a2e478f19dea2ecb813952caf2fe1455789778306ad6c3a48",
+      "start_line": 403,
+      "end_line_exclusive": 407,
+      "chunk_sha256": "4c8c837dbe59d7e1d1f5b8640b4647bd4be32ad0327be8138a8ce376d2232462",
+      "proposed": false
+    },
+    {
+      "source": "proof/PscVerif/PscVerif/StrictSystem.lean",
+      "source_sha256": "657d6c9f4041b04a2e478f19dea2ecb813952caf2fe1455789778306ad6c3a48",
+      "start_line": 1434,
+      "end_line_exclusive": 1493,
+      "chunk_sha256": "3e3891478aebb23dd4d6bd149e78f9c1b74996375c8b4f39de47f42f4c026559",
+      "proposed": false
+    },
+    {
+      "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
+      "source_sha256": "39520919cc78934d87f30b1651322826236751b85c757b8970400b0f1365189b",
+      "start_line": 521,
+      "end_line_exclusive": 526,
+      "chunk_sha256": "5e172a8fd722fb0cff0ecbef4935f54d487591b7448cd36600647b1cb06774d9",
+      "proposed": false
+    },
+    {
+      "source": "proof/PscVerif/PscVerif/GeometricFOrientation.lean",
+      "source_sha256": "39520919cc78934d87f30b1651322826236751b85c757b8970400b0f1365189b",
+      "start_line": 757,
+      "end_line_exclusive": 806,
+      "chunk_sha256": "ef0e69f97fe4abbcdca598d49ffb14180c2fd07b2fc78802855ee13f7b50f6a4",
+      "proposed": false
+    },
+    {
+      "source": "proof/PscVerif/PscVerif/Descendants.lean",
+      "source_sha256": "6641b65d81d90be34c13937b6ab8ebc029fcce91babd7c2ce398738dac783a40",
+      "start_line": 808,
+      "end_line_exclusive": 809,
+      "chunk_sha256": "f970b4c713967c0605dc04b25318acac54fe3294474a9351077ef629d57625cb",
+      "proposed": false
+    },
+    {
+      "source": "proof/PscVerif/PscVerif/BPrime.lean",
+      "source_sha256": "77ec2e5e0cab8e7ff1221b698f315ef0bcd2ea61ec88e2f88efd2053cc0c9138",
+      "start_line": 193,
+      "end_line_exclusive": 201,
+      "chunk_sha256": "8249e7b393a22c5463a515104c7c51891fa454f93cfd12536b33b6b4982b6dbd",
+      "proposed": false
+    },
+    {
+      "source": "proof/PscVerif/PscVerif/BargeDiamondBridge.lean",
+      "source_sha256": "d11cbeb4a843d3163d7360e6d1f775c8f5eb3980961ce63918a3713885432c29",
+      "start_line": 23,
+      "end_line_exclusive": 151,
+      "chunk_sha256": "3087ada0b1df254f3e2767cd57ba9c76e1a2fda997053bece9b79dc4f1e85b77",
+      "proposed": true
+    },
+    {
+      "source": "proof/PscVerif/PscVerif/BargeDiamondBridgeControls.lean",
+      "source_sha256": "45bd1684ecbdfabdc02658405874358b5bfccd80b57d435f2c108f707b59f059",
+      "chunk_sha256": "013d05a05feb7140ff431c1c7df5f1b201ef98efa936fa240232a41aeab6d6e0",
+      "proposed": true
+    }
+  ]
+}

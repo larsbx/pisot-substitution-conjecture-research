@@ -1,0 +1,375 @@
+{
+  "created_utc": "2026-11-23T22:23:24.041977+00:00",
+  "scope": "fresh finite central native/oracle replay, control-only Lean audit and independent source review of completion assembly",
+  "base_local_commit": "5b8bd353f1934e67b8fbac518a9737eb7abf127d",
+  "base_tree": "864056322209048593cf1d0946cf9bfcea1e65b2",
+  "canonical_executables_and_oracles_unchanged_from_base": true,
+  "runtime": {
+    "python": "3.12.14",
+    "pixi": "0.84.2",
+    "mojo": "1.1.0.dev2026090805 (34562fa1)",
+    "lean": "4.34.0-rc2",
+    "pytest": "9.2.0"
+  },
+  "fresh_native_replay": {
+    "adapter_sha256": "6f1d5b341eca97c3fc8c46c107edd6bbe30cc999c6ceebbe6d18111b076e8494",
+    "all_source_entry": false,
+    "central_edges": 1806,
+    "complete_original_prefixes": true,
+    "edges": 4728,
+    "maximum_central_depth": 62,
+    "maximum_depth": 93,
+    "maximum_prefix_digits": 144,
+    "native_controls": 28,
+    "oracle_sha256": "cc97a3f956ab3fd8d8cf22e61e090664d4a3f614112a03c6068e85adb8dc152c",
+    "paths": 818,
+    "recurrence_executed": true,
+    "status": "accepted_finite_native_central_replay",
+    "transcript_sha256": "65acc78ac1e03747c254a2feb86fd1915d6941a67b99beffff7018130af2c3a6",
+    "universal_BH": false
+  },
+  "independent_replay": {
+    "paths": 818,
+    "edges": 4728,
+    "central_edges": 1806,
+    "maximum_depth": 93,
+    "maximum_central_depth": 62,
+    "maximum_refinements": 12,
+    "maximum_initial_reserve": 7942,
+    "transcripts_sha256": "125a6720fe751493bc5c02a48861d93eb5a898699cec1a156fae063a4dd13698",
+    "source_set_sha256": "d617b2e590214a833903fa8d6cc9f7b448ba5cae848ae7fda57644b82ba7f761",
+    "rejected_mutations": {
+      "arbitrary_type_masquerading_as_central": "source is not a strictly central integral y/y packet",
+      "continued_first_zero": "continued the first integral zero",
+      "continued_nearest_cycle": "nearest phase continued beyond its first cycle packet",
+      "dropped_second_initial_coordinate": "invalid central cutoff or both-coordinate reserve",
+      "false_coincidence": "wrong child letters or complete integral offset",
+      "false_original_prefix": "false original local occurrence prefix",
+      "last_c_relabelled_run_y": "wrong unique nearest original RUN choice",
+      "negative_index": "wrong unique nearest original RUN choice",
+      "noncomposable_middle": "noncomposable full middle packet",
+      "omitted_middle_coordinate": "wrong child letters or complete integral offset",
+      "past_last_index": "wrong unique nearest original RUN choice",
+      "premature_full_packet_reconstruction": "cycle cutoff is not the full strictly central W packet",
+      "truncated_nonzero_path": "incomplete central-source path to y/y zero",
+      "wrong_child_type": "wrong child letters or complete integral offset",
+      "wrong_member_parameters": "record is bound to different upper parameters"
+    },
+    "resource_refusals": {
+      "path_steps": "literal path step cap exhausted",
+      "root_refinement": "exact root refinement cap exhausted",
+      "word_occurrences": "literal word occurrence cap exhausted"
+    }
+  },
+  "documented_native_stdout_hash_reproduced": true,
+  "focused_regressions": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "80",
+    "time": "8.636",
+    "timestamp": "2026-11-23T22:18:16.609987+00:00",
+    "hostname": "6912f9db151a"
+  },
+  "extra_controls": {
+    "scope": "finite independent calibration; universal claims require the separate Lean proof",
+    "oracle_source_sha256": "cc97a3f956ab3fd8d8cf22e61e090664d4a3f614112a03c6068e85adb8dc152c",
+    "native_stdout_sha256": "65acc78ac1e03747c254a2feb86fd1915d6941a67b99beffff7018130af2c3a6",
+    "independent_jsonl_sha256": "125a6720fe751493bc5c02a48861d93eb5a898699cec1a156fae063a4dd13698",
+    "native_and_independent_full_paths_identical": 818,
+    "central_depth_pair_count_checks": 818,
+    "signed_cycle_depth_formula_and_bound_checks": 818,
+    "full_depth_K_plus_2n_minus_1_checks": 818,
+    "maximum_signed_cycle_height": 18,
+    "maximum_cycle_suffix_depth": 35,
+    "reversal_sources_checked": 818,
+    "reversal_edges_checked": 4728,
+    "nonzero_actual_nearest_cycle": {
+      "n": 7,
+      "J": 1,
+      "source": [
+        2,
+        2,
+        4,
+        12,
+        -24
+      ],
+      "edges": [
+        {
+          "source": [
+            2,
+            2,
+            4,
+            12,
+            -24
+          ],
+          "gap": -4,
+          "indices": [
+            1,
+            5
+          ],
+          "target": [
+            2,
+            2,
+            -4,
+            -12,
+            24
+          ],
+          "top_prefix": [
+            1,
+            0,
+            0
+          ],
+          "bottom_prefix": [
+            1,
+            0,
+            4
+          ]
+        },
+        {
+          "source": [
+            2,
+            2,
+            -4,
+            -12,
+            24
+          ],
+          "gap": 4,
+          "indices": [
+            5,
+            1
+          ],
+          "target": [
+            2,
+            2,
+            4,
+            12,
+            -24
+          ],
+          "top_prefix": [
+            1,
+            0,
+            4
+          ],
+          "bottom_prefix": [
+            1,
+            0,
+            0
+          ]
+        }
+      ],
+      "actual_alternative_exit_depth": 7
+    },
+    "one_step_reconstruction_delay": {
+      "n": 7,
+      "J": 1,
+      "source": [
+        2,
+        2,
+        1,
+        2,
+        -5
+      ],
+      "transformed_initial_pair": [
+        1,
+        1
+      ],
+      "first_edge": {
+        "source": [
+          2,
+          2,
+          1,
+          2,
+          -5
+        ],
+        "indices": [
+          1,
+          1
+        ],
+        "target": [
+          2,
+          2,
+          -1,
+          -3,
+          6
+        ],
+        "top_prefix": [
+          1,
+          0,
+          0
+        ],
+        "bottom_prefix": [
+          1,
+          0,
+          0
+        ]
+      },
+      "premature_cutoff_rejection": "cycle cutoff is not the full strictly central W packet"
+    },
+    "both_initial_coordinates_required": {
+      "n": 7,
+      "J": 1,
+      "source": [
+        2,
+        2,
+        0,
+        1000,
+        -917
+      ],
+      "gap": 3,
+      "indices": [
+        4,
+        1
+      ],
+      "target": [
+        2,
+        2,
+        83,
+        83,
+        -339
+      ],
+      "top_prefix": [
+        1,
+        0,
+        3
+      ],
+      "bottom_prefix": [
+        1,
+        0,
+        0
+      ],
+      "full_reserve": 1176,
+      "incomplete_p_only_reserve": 14
+    },
+    "synthetic_half_tie_control": {
+      "A": "1/8",
+      "C": "1",
+      "input": [
+        4,
+        0,
+        0
+      ],
+      "absolute_error": "1/2",
+      "strict_nearest": false,
+      "is_literal_integral_family_input": false
+    },
+    "low_J_absolute_contraction_reserve_signs": {
+      "1": -1,
+      "2": -1,
+      "3": -1,
+      "4": -1
+    }
+  },
+  "formal_controls": {
+    "module": "PscVerif.ClassAPlusUpperCentralControls",
+    "source_sha256": "f22bcfc4ecad9d0645744dde67bc728afc2d441d03996dcda60533f1625e7402",
+    "theorems": [
+      "source_shift",
+      "target_shift",
+      "source_central",
+      "target_central",
+      "actual_first_edge",
+      "target_signed_cycle",
+      "original_scalar_pair",
+      "transformed_scalar_pair",
+      "source_not_full_cycle",
+      "source_ne_cycle_one",
+      "strict_reconstruction_prefix",
+      "reconstruction_delay_control",
+      "retained_nonzero_cycle_control",
+      "retained_half_tie_control"
+    ],
+    "axiom_reports": 14,
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "own_module_linter_warnings_after_cleanup": 0
+  },
+  "source_sha256": {
+    "kernel/pixi.lock": "1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8",
+    "kernel/psc/class_a_plus_upper_recurrence.mojo": "7e9f3d65b51f6fe0680b3eb6e341125f8eed8e0b92578d2b93ba8d4231e5bd2b",
+    "kernel/tests/test_class_a_plus_upper_recurrence.mojo": "7ac30c2a44c1b3722c33f7ef5598d27f1c13b9d4f8b32491ca54e4b94c678d68",
+    "oracles/python/class_a_plus_upper_recurrence.py": "6f1d5b341eca97c3fc8c46c107edd6bbe30cc999c6ceebbe6d18111b076e8494",
+    "oracles/python/class_a_plus_upper_recurrence_independent.py": "cc97a3f956ab3fd8d8cf22e61e090664d4a3f614112a03c6068e85adb8dc152c",
+    "tests/test_class_a_plus_upper_recurrence.py": "94ab0e2fd7df147da2e6567a631df801f4c8427c2da9aa6238217a247380004c",
+    "tests/test_class_a_plus_upper_recurrence_independent.py": "d8de4b447dc7352299a20a3074d48cbf0e131228dac32d7654cbf12f86cff6e7",
+    "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean": "a220ded84ea5545cc405f4533959fa15e7dc181637e959bbcf012ac31ff29173",
+    "proof/PscVerif/PscVerif/ClassAPlusUpperCycleCompletion.lean": "d80243eca779241325231f64b5472c197c8f81b3919309d1c2e97512579f3a58",
+    "proof/PscVerif/PscVerif/ClassAPlusUpperCentralControls.lean": "f22bcfc4ecad9d0645744dde67bc728afc2d441d03996dcda60533f1625e7402"
+  },
+  "artifact_sha256": {
+    "central-native.txt": "65acc78ac1e03747c254a2feb86fd1915d6941a67b99beffff7018130af2c3a6",
+    "central-native.err": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native-independent-replay.json": "62cd7d0bdf10fa2ee3ff00e390f4a2a9c526def6e41881996d3685e65f97d107",
+    "native-independent-replay.err": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "independent/exact-transcripts.jsonl": "125a6720fe751493bc5c02a48861d93eb5a898699cec1a156fae063a4dd13698",
+    "independent/summary.json": "f08f8199ce84a8ad627cac1f61c62ae307b05316a0075f96c4ef9407a103284e",
+    "independent/manifest.json": "19e83fd732a30548cfebad403f94e2e134a5ef32f80e8b5e2323b70ea5a6cea8",
+    "regression.log": "fd7508b69c2d10bdc5882451353dc077b134ae4d5c4bb6c0fea2f133a24fce53",
+    "regression.xml": "246a1a8eb55a25dcb59e3bb04b2d35d99c5d8c883f2ab2a97766a34e45de65ce",
+    "extra-controls.json": "93f87db7ea2b8d67005c421d639298f3e6dd2113192c15da3d9a288b48113699",
+    "extra-controls.log": "fba919529cfd039d6e2fcb19defd054d605d773ec25488c5fb4affea2fba0b81",
+    "verify-central-extra-controls.py": "f45370c954840346291b2a1febd7cca8fb63c264ebe7f06b160b25bdded786f6",
+    "central-controls-build-clean.log": "133535c383d539154cb763c061264e52645accd539128bb033828e11535a069f",
+    "CentralControlsAudit.lean": "7072fb2c1f145ff8d85f2fdc8710ced558c36ce82b1134275a504b1957aa4738",
+    "central-controls-axioms.log": "00df08b4cfc625e3738cd77338fe889fe690603989e7c6774665357bad60088c"
+  },
+  "commands": [
+    {
+      "cwd": "/workspace/scratch/c388c36ccd77/psc-upper-entry/kernel",
+      "command": "MODULAR_TELEMETRY_ENABLED=0 MODULAR_CRASH_REPORTING_ENABLED=0 /workspace/scratch/402f1bb377be/psc-ray-runtime/pixi/pixi run --locked mojo run -I . tests/test_class_a_plus_upper_recurrence.mojo --emit",
+      "stdout": "central-native.txt",
+      "stderr": "central-native.err",
+      "exit_code": 0
+    },
+    {
+      "cwd": "/workspace/scratch/c388c36ccd77/psc-upper-entry",
+      "command": "python3 oracles/python/class_a_plus_upper_recurrence_independent.py --output-dir /workspace/scratch/c388c36ccd77/checks/central-completion/independent",
+      "stdout": "independent.log",
+      "exit_code": 0
+    },
+    {
+      "cwd": "/workspace/scratch/c388c36ccd77/psc-upper-entry",
+      "command": "python3 oracles/python/class_a_plus_upper_recurrence.py --native /workspace/scratch/c388c36ccd77/checks/central-completion/central-native.txt",
+      "stdout": "native-independent-replay.json",
+      "exit_code": 0
+    },
+    {
+      "cwd": "/workspace/scratch/c388c36ccd77/psc-upper-entry",
+      "command": "PYTHONPATH=/workspace/scratch/402f1bb377be/psc-ray-runtime/python-checks PSC_UPPER_CENTRAL_NATIVE=/workspace/scratch/c388c36ccd77/checks/central-completion/central-native.txt python3 -m pytest tests/test_class_a_plus_upper_recurrence.py tests/test_class_a_plus_upper_recurrence_independent.py -q --junitxml=/workspace/scratch/c388c36ccd77/checks/central-completion/regression.xml",
+      "stdout": "regression.log",
+      "exit_code": 0
+    },
+    {
+      "cwd": "/workspace/scratch/c388c36ccd77/psc-upper-entry",
+      "command": "python3 /workspace/scratch/c388c36ccd77/checks/central-completion/verify-central-extra-controls.py --root /workspace/scratch/c388c36ccd77/psc-upper-entry --native /workspace/scratch/c388c36ccd77/checks/central-completion/central-native.txt --transcripts /workspace/scratch/c388c36ccd77/checks/central-completion/independent/exact-transcripts.jsonl --output /workspace/scratch/c388c36ccd77/checks/central-completion/extra-controls.json",
+      "stdout": "extra-controls.log",
+      "exit_code": 0
+    },
+    {
+      "cwd": "/workspace/scratch/c388c36ccd77/psc-upper-entry/proof/PscVerif",
+      "command": "/workspace/scratch/b5ec043e7cbe/psc-toolchain/bin/lake build PscVerif.ClassAPlusUpperCentralControls",
+      "stdout": "central-controls-build-clean.log",
+      "exit_code": 0
+    },
+    {
+      "cwd": "/workspace/scratch/c388c36ccd77/psc-upper-entry/proof/PscVerif",
+      "command": "/workspace/scratch/b5ec043e7cbe/psc-toolchain/bin/lake env /workspace/scratch/b5ec043e7cbe/psc-toolchain/bin/lean /workspace/scratch/c388c36ccd77/checks/central-completion/CentralControlsAudit.lean",
+      "stdout": "central-controls-axioms.log",
+      "exit_code": 0
+    }
+  ],
+  "review": {
+    "actual_orbit_full_coordinates": "checked in source; selected gap updates prose coordinates by Mw-e_y e while stored delta receives +e_y e",
+    "reconstruction_delay": "checked at N+1; a full packet uses the preceding scalar coordinate",
+    "quantitative_tail": "new finite K+1 pair argument keeps the same bounded N through both periodic classification branches",
+    "cycle_height": "derived from strict amplitude and root bounds, not assumed",
+    "prefix_composition": "recomposed globally from the complete concatenated ordered path",
+    "termination_policy": "existential paths need not be the earliest executable stopping point; zero has its separate empty-path endpoint",
+    "remaining_acceptance": "final combined central proof module audit is owned by root and is not asserted by this control-only audit"
+  },
+  "publication": "none"
+}
