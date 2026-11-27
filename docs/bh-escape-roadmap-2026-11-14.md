@@ -31,8 +31,11 @@ at `ffd3f9b` (run 45442126274). Independent human review remains pending.
 **Active BH work.** Bind the minus-Class-A paths to Lean (#442). Give the
 `k=r` band a uniform exit and formalize the third-level mark entry. Then
 extend source coverage and actual zero-hit paths to the remaining BH
-domains in the full nonunit representation. Residual A1′ (#138) is
-unchanged since November 21.
+domains in the full nonunit representation. No residual A1′ (#138)
+result has merged since November 21. #624 adds a Lean
+[correspondence](barge-diamond-correspondence-2026-11-19.md) between the
+Barge–Diamond word conclusion and vertex coincidence. It is an interface
+only; Barge–Diamond Theorem 1's existence proof remains external.
 
 ## November 21: current family boundary and universal work
 
