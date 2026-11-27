@@ -1,0 +1,45 @@
+{
+  "assessed_main": "ec026774e666fb8e8ac43b1ba975b9a4df8891b2",
+  "pr608": {
+    "state": "open",
+    "mergeable": false,
+    "head": "6b175ce350b8691563d8ea254e33bd84445860ef"
+  },
+  "prior_slice": {
+    "status": "passed",
+    "base": "6b175ce350b8691563d8ea254e33bd84445860ef",
+    "named_proofs": 24,
+    "owned_declarations": 212,
+    "owned_theorems": 147
+  },
+  "actual_module_replay": "pending at initial publication",
+  "isolated_hosted_acceptance": "pending",
+  "unchanged_claims": 132,
+  "unchanged_source_openings": 525,
+  "new_named_proofs": [
+    "Psc.GeometricF.BargeDiamond.edgeDescendant_of_occurrence",
+    "Psc.GeometricF.BargeDiamond.edgeDescendant_origin_iff",
+    "Psc.GeometricF.BargeDiamond.edgeDescendant_origin_nonneg",
+    "Psc.GeometricF.BargeDiamond.edgeDescendant_origin_zero_iff",
+    "Psc.GeometricF.BargeDiamond.witnessAt_iff_shared_descendant",
+    "Psc.GeometricF.BargeDiamond.witnessAt_iff_aligned_index",
+    "Psc.GeometricF.BargeDiamond.vertexCoincident_iff_aligned_index",
+    "Psc.GeometricF.BargeDiamond.wordConclusion_iff_hBD",
+    "Psc.GeometricF.BargeDiamond.indexWitness_level_pos",
+    "Psc.GeometricF.BargeDiamond.primitive_word_iteration",
+    "Psc.GeometricF.BargeDiamond.pip3_complex_root_ne_zero",
+    "Psc.GeometricF.BargeDiamond.trib_wordConclusion",
+    "Psc.GeometricF.BargeDiamond.trib_hBD",
+    "Psc.GeometricF.BargeDiamond.equal_length_wrong_parikh",
+    "Psc.GeometricF.BargeDiamond.correct_prefix_offset",
+    "Psc.GeometricF.BargeDiamond.wrong_negative_offset",
+    "Psc.GeometricF.BargeDiamond.wrong_zero_offset",
+    "Psc.GeometricF.BargeDiamond.wrong_matching_label",
+    "Psc.GeometricF.BargeDiamond.wrong_coincidence_orientation",
+    "Psc.GeometricF.BargeDiamond.bd_no_shared_descendant",
+    "Psc.GeometricF.BargeDiamond.swap_power",
+    "Psc.GeometricF.BargeDiamond.swap_not_vertexCoincident",
+    "Psc.GeometricF.BargeDiamond.wrong_iteration_levels",
+    "Psc.GeometricF.BargeDiamond.permuted_prefixes_are_allowed"
+  ]
+}

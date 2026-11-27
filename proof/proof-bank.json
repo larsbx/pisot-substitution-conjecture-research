@@ -5290,6 +5290,198 @@
       "declaration": "theorem one_letter_consistent :"
     },
     {
+      "name": "Psc.GeometricF.BargeDiamond.edgeDescendant_of_occurrence",
+      "module": "PscVerif.BargeDiamondBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BargeDiamondBridge.lean",
+      "line": 33,
+      "declaration": "theorem edgeDescendant_of_occurrence {s : α → List α} {n : ℕ} {a c : α}"
+    },
+    {
+      "name": "Psc.GeometricF.BargeDiamond.edgeDescendant_origin_iff",
+      "module": "PscVerif.BargeDiamondBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BargeDiamondBridge.lean",
+      "line": 40,
+      "declaration": "theorem edgeDescendant_origin_iff {s : α → List α} {n : ℕ} {a c : α} {v : α → ℤ} :"
+    },
+    {
+      "name": "Psc.GeometricF.BargeDiamond.edgeDescendant_origin_nonneg",
+      "module": "PscVerif.BargeDiamondBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BargeDiamondBridge.lean",
+      "line": 46,
+      "declaration": "theorem edgeDescendant_origin_nonneg {s : α → List α} {n : ℕ} {a c : α} {v : α → ℤ}"
+    },
+    {
+      "name": "Psc.GeometricF.BargeDiamond.edgeDescendant_origin_zero_iff",
+      "module": "PscVerif.BargeDiamondBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BargeDiamondBridge.lean",
+      "line": 52,
+      "declaration": "theorem edgeDescendant_origin_zero_iff {s : α → List α} {n : ℕ} {a c : α} :"
+    },
+    {
+      "name": "Psc.GeometricF.BargeDiamond.witnessAt_iff_shared_descendant",
+      "module": "PscVerif.BargeDiamondBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BargeDiamondBridge.lean",
+      "line": 65,
+      "declaration": "theorem witnessAt_iff_shared_descendant {s : α → List α} {a b : α} {n : ℕ} :"
+    },
+    {
+      "name": "Psc.GeometricF.BargeDiamond.witnessAt_iff_aligned_index",
+      "module": "PscVerif.BargeDiamondBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BargeDiamondBridge.lean",
+      "line": 81,
+      "declaration": "theorem witnessAt_iff_aligned_index {s : α → List α} {a b : α} {n : ℕ} :"
+    },
+    {
+      "name": "Psc.GeometricF.BargeDiamond.vertexCoincident_iff_aligned_index",
+      "module": "PscVerif.BargeDiamondBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BargeDiamondBridge.lean",
+      "line": 94,
+      "declaration": "theorem vertexCoincident_iff_aligned_index {s : α → List α} {a b : α} :"
+    },
+    {
+      "name": "Psc.GeometricF.BargeDiamond.wordConclusion_iff_hBD",
+      "module": "PscVerif.BargeDiamondBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BargeDiamondBridge.lean",
+      "line": 108,
+      "declaration": "theorem wordConclusion_iff_hBD {s : α → List α} :"
+    },
+    {
+      "name": "Psc.GeometricF.BargeDiamond.indexWitness_level_pos",
+      "module": "PscVerif.BargeDiamondBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BargeDiamondBridge.lean",
+      "line": 115,
+      "declaration": "theorem indexWitness_level_pos {s : α → List α} {a b : α} {n i j : ℕ}"
+    },
+    {
+      "name": "Psc.GeometricF.BargeDiamond.primitive_word_iteration",
+      "module": "PscVerif.BargeDiamondBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BargeDiamondBridge.lean",
+      "line": 129,
+      "declaration": "theorem primitive_word_iteration {s : α → List α}"
+    },
+    {
+      "name": "Psc.GeometricF.BargeDiamond.pip3_complex_root_ne_zero",
+      "module": "PscVerif.BargeDiamondBridge",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BargeDiamondBridge.lean",
+      "line": 139,
+      "declaration": "theorem pip3_complex_root_ne_zero {s : Fin 3 → List (Fin 3)}"
+    },
+    {
+      "name": "Psc.GeometricF.BargeDiamond.trib_wordConclusion",
+      "module": "PscVerif.BargeDiamondBridgeControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BargeDiamondBridgeControls.lean",
+      "line": 15,
+      "declaration": "theorem trib_wordConclusion : WordConclusion Psc.Descendants.tribSubst :="
+    },
+    {
+      "name": "Psc.GeometricF.BargeDiamond.trib_hBD",
+      "module": "PscVerif.BargeDiamondBridgeControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BargeDiamondBridgeControls.lean",
+      "line": 19,
+      "declaration": "theorem trib_hBD : ∃ a b, a ≠ b ∧ VertexCoincident Psc.Descendants.tribSubst a b :="
+    },
+    {
+      "name": "Psc.GeometricF.BargeDiamond.equal_length_wrong_parikh",
+      "module": "PscVerif.BargeDiamondBridgeControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BargeDiamondBridgeControls.lean",
+      "line": 24,
+      "declaration": "theorem equal_length_wrong_parikh :"
+    },
+    {
+      "name": "Psc.GeometricF.BargeDiamond.correct_prefix_offset",
+      "module": "PscVerif.BargeDiamondBridgeControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BargeDiamondBridgeControls.lean",
+      "line": 31,
+      "declaration": "theorem correct_prefix_offset :"
+    },
+    {
+      "name": "Psc.GeometricF.BargeDiamond.wrong_negative_offset",
+      "module": "PscVerif.BargeDiamondBridgeControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BargeDiamondBridgeControls.lean",
+      "line": 36,
+      "declaration": "theorem wrong_negative_offset :"
+    },
+    {
+      "name": "Psc.GeometricF.BargeDiamond.wrong_zero_offset",
+      "module": "PscVerif.BargeDiamondBridgeControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BargeDiamondBridgeControls.lean",
+      "line": 43,
+      "declaration": "theorem wrong_zero_offset : ¬ EdgeDescendant bdSubst 1 (0, 0) (1, 0) := by"
+    },
+    {
+      "name": "Psc.GeometricF.BargeDiamond.wrong_matching_label",
+      "module": "PscVerif.BargeDiamondBridgeControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BargeDiamondBridgeControls.lean",
+      "line": 51,
+      "declaration": "theorem wrong_matching_label :"
+    },
+    {
+      "name": "Psc.GeometricF.BargeDiamond.wrong_coincidence_orientation",
+      "module": "PscVerif.BargeDiamondBridgeControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BargeDiamondBridgeControls.lean",
+      "line": 58,
+      "declaration": "theorem wrong_coincidence_orientation :"
+    },
+    {
+      "name": "Psc.GeometricF.BargeDiamond.bd_no_shared_descendant",
+      "module": "PscVerif.BargeDiamondBridgeControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BargeDiamondBridgeControls.lean",
+      "line": 63,
+      "declaration": "theorem bd_no_shared_descendant (n : ℕ) :"
+    },
+    {
+      "name": "Psc.GeometricF.BargeDiamond.swap_power",
+      "module": "PscVerif.BargeDiamondBridgeControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BargeDiamondBridgeControls.lean",
+      "line": 72,
+      "declaration": "theorem swap_power (n : ℕ) :"
+    },
+    {
+      "name": "Psc.GeometricF.BargeDiamond.swap_not_vertexCoincident",
+      "module": "PscVerif.BargeDiamondBridgeControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BargeDiamondBridgeControls.lean",
+      "line": 90,
+      "declaration": "theorem swap_not_vertexCoincident : ¬ VertexCoincident swapSubst 0 1 := by"
+    },
+    {
+      "name": "Psc.GeometricF.BargeDiamond.wrong_iteration_levels",
+      "module": "PscVerif.BargeDiamondBridgeControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BargeDiamondBridgeControls.lean",
+      "line": 107,
+      "declaration": "theorem wrong_iteration_levels :"
+    },
+    {
+      "name": "Psc.GeometricF.BargeDiamond.permuted_prefixes_are_allowed",
+      "module": "PscVerif.BargeDiamondBridgeControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BargeDiamondBridgeControls.lean",
+      "line": 117,
+      "declaration": "theorem permuted_prefixes_are_allowed :"
+    },
+    {
       "name": "Psc.ind_self",
       "module": "PscVerif.Basic",
       "private": false,
@@ -46066,6 +46258,46 @@
       "declaration": "theorem period_doubling_marked_count_control :"
     },
     {
+      "name": "Psc.PeriodicPartnerLocalInflation.desubLocal_chart",
+      "module": "PscVerif.PeriodicPartnerLocalInflation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalInflation.lean",
+      "line": 30,
+      "declaration": "theorem desubLocal_chart (p : ℝ × S.Hull) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalInflation.continuous_desubLocal",
+      "module": "PscVerif.PeriodicPartnerLocalInflation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalInflation.lean",
+      "line": 36,
+      "declaration": "theorem continuous_desubLocal : Continuous (desubLocal hR) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalInflation.desubLocal_translate",
+      "module": "PscVerif.PeriodicPartnerLocalInflation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalInflation.lean",
+      "line": 44,
+      "declaration": "theorem desubLocal_translate (t : ℝ) (T : LocalHull S) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalInflation.inflate_desubLocal",
+      "module": "PscVerif.PeriodicPartnerLocalInflation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalInflation.lean",
+      "line": 50,
+      "declaration": "@[simp] theorem inflate_desubLocal (T : LocalHull S) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerLocalInflation.desubLocal_inflate",
+      "module": "PscVerif.PeriodicPartnerLocalInflation",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerLocalInflation.lean",
+      "line": 55,
+      "declaration": "@[simp] theorem desubLocal_inflate (T : LocalHull S) :"
+    },
+    {
       "name": "Psc.PeriodicPartnerLocalRealization.realizeLocal_inflate",
       "module": "PscVerif.PeriodicPartnerLocalRealization",
       "private": false,
@@ -48168,6 +48400,22 @@
       "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean",
       "line": 135,
       "declaration": "theorem continuous_realizeLocal (hβ : 1 < S.β) : Continuous (realizeLocal P hR) :="
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuityControls.not_continuousAt_local_originStart_of_zero",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuityControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuityControls.lean",
+      "line": 21,
+      "declaration": "theorem not_continuousAt_local_originStart_of_zero (T : S.Hull)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealizationContinuityControls.not_continuous_local_originStart",
+      "module": "PscVerif.PeriodicPartnerRealizationContinuityControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuityControls.lean",
+      "line": 64,
+      "declaration": "theorem not_continuous_local_originStart (T : S.Hull) :"
     },
     {
       "name": "Psc.PeriodicPartnerRealizationFinite.dot_realVec",
@@ -59836,6 +60084,11 @@
       "statement_heading": "**Corollary FP″** (2026-10-04; adds the import of"
     },
     {
+      "source": "docs/grh-chebotarev-auxiliary-prime-stop-go-2026-11-22.md",
+      "line": 89,
+      "statement_heading": "*Lemma.* Let `M ∈ M_d(ℤ)` with `det M ≠ 0` and"
+    },
+    {
       "source": "docs/issue139-ac-gap4-2026-10-22.md",
       "line": 61,
       "statement_heading": "**Theorem A4.** On `x -> x y^(n+4) x`, `c -> c y^n x`,"
@@ -61168,6 +61421,7 @@
     "proof/PscVerif/BHFiniteReachabilityAudit.lean": "5469fdefea80286841bb3b40b7944a4674de5dce03ca12b490ee72b77ca2b79d",
     "proof/PscVerif/BHNearDiagonalAudit.lean": "f7daf9d0d9998813d39db7335054ad4f4c94dd828723633eea7bb656aa76579e",
     "proof/PscVerif/BHWindowChoiceAudit.lean": "2c28a7a1f0efaf78eea797c6d0ffefbd016d3646e98c53ba05f7ad30adca6f0f",
+    "proof/PscVerif/BargeDiamondBridgeAudit.lean": "848f69a4b29250196404182dd0013b324ff0da147657927943c1f10d1641b70d",
     "proof/PscVerif/C4CharacterOrbitsAudit.lean": "23c1dae1939fe054375bb8de0fa9add025b21728f38b98a98956cb0d8f50191f",
     "proof/PscVerif/C4FamilyCanonicalMeasureAudit.lean": "ec64b73d643eea4b815ece6a110cbe5637edfe9c377ec921bdf3746c6b55bab4",
     "proof/PscVerif/C4FamilyHaarAudit.lean": "ce2e947f905a7da206827c6c7c6fa97943eae3823dffd4bf3881da385f3f0607",
@@ -61197,7 +61451,7 @@
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "81efe5b8745576f8f15a59a263563b31e08307e9c432e78fa2ef9021a613b2d1",
     "proof/PscVerif/EvenRankTwoAudit.lean": "cfc2c3b6dfae0305e1ab27989607917e4ffe8944a513aa861dc5ca781ba620ca",
     "proof/PscVerif/MarkerReachabilityReplay.lean": "4d21e06344eff182c78196d2f8eb815e1dbb8f517920dedf6849cc1546d831a3",
-    "proof/PscVerif/PeriodicPartnerAudit.lean": "90c468d13edb763a1de277fecfd6bda47f582527d88cfa16f7cc2505bc31b0a1",
+    "proof/PscVerif/PeriodicPartnerAudit.lean": "27b1da536c8e712dfb271770cdf44082cca8375a4b7a8f89a2ab25cadb45318e",
     "proof/PscVerif/ProofBankAudit.lean": "7439ac51ecf1f83b356ffdd078a8cea6542a66e26cb5b6ba9c0f7063fd113824",
     "proof/PscVerif/PscVerif/A1PrimeTailCoincidence.lean": "f1c4480b95159800bb52cd42164763d01e6ab6045dc72b07874f164409a0eaf1",
     "proof/PscVerif/PscVerif/A1PrimeTailPisot.lean": "6387c221871d7b70efca50349c815fac07421bb44a28122f9157ff0652cb074f",
@@ -61216,6 +61470,8 @@
     "proof/PscVerif/PscVerif/BPrime.lean": "77ec2e5e0cab8e7ff1221b698f315ef0bcd2ea61ec88e2f88efd2053cc0c9138",
     "proof/PscVerif/PscVerif/BPrimeBinding.lean": "f9c9723bc6bd59b95ec83c632aa81b5d47dcef1e3c805a692279c4dec2448048",
     "proof/PscVerif/PscVerif/BPrimeCore.lean": "c3cfe60af11561d1a5b54fde4b2d3281d251dbc930316f6c30ea894600b651f3",
+    "proof/PscVerif/PscVerif/BargeDiamondBridge.lean": "d182a18512ffcd6989664f3e6786a0f4aa82b8ba9c03ab776321f39a415971fe",
+    "proof/PscVerif/PscVerif/BargeDiamondBridgeControls.lean": "45bd1684ecbdfabdc02658405874358b5bfccd80b57d435f2c108f707b59f059",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
     "proof/PscVerif/PscVerif/Binomial.lean": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
@@ -61446,6 +61702,7 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerHullSelection.lean": "59d86f345c47142bdd7a74200c04b48f4ae975d1d5afe2dc29331048d7f37988",
     "proof/PscVerif/PscVerif/PeriodicPartnerLegalCoincidence.lean": "3c81c675054bea4b16fa83e8d912525b4d456218997d9e21697d8847e148e23d",
     "proof/PscVerif/PscVerif/PeriodicPartnerLiteralDefect.lean": "0c9d009618b409578d573a94e2f15b8052610eaa8c4f9d28aa77c3045644b9bb",
+    "proof/PscVerif/PscVerif/PeriodicPartnerLocalInflation.lean": "ae8cbbab23f406aa1b93e377106c23e13109d12b63a4512c488d4eae6aec6193",
     "proof/PscVerif/PscVerif/PeriodicPartnerLocalRealization.lean": "472eacd674a293a84e841a7888398fd1fbaeedbdeff3a372c2e6ab665556e2b1",
     "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopology.lean": "ab9cca25c9b6f57b944a912e1e8a239b4bb46bd7a73727542af056760331b7cf",
     "proof/PscVerif/PscVerif/PeriodicPartnerLocalTopologyControls.lean": "1573603e555c519d258421eaa50e01e06828166794811a1b6e5028a6040ee509",
@@ -61461,6 +61718,7 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerProximal.lean": "83944b6beee8157260961fc8c4d6e27573836f6f45f1811390bc0deac202feae",
     "proof/PscVerif/PscVerif/PeriodicPartnerRealization.lean": "3b983148f0e3bc048984c15cb5350bcb77cb272b3bd77058ba02020008cd764d",
     "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuity.lean": "8d779d4d0ebb448ddb784f35b4e135cc5c7ce78ba97fd3c55537d1cbbb5a2d04",
+    "proof/PscVerif/PscVerif/PeriodicPartnerRealizationContinuityControls.lean": "a415026c3cd498c372aafb4854fa18f0aec03853686de6c540d330d29dd442b5",
     "proof/PscVerif/PscVerif/PeriodicPartnerRealizationFinite.lean": "df8a3538f890eb6c5a25349c806e8b0eb54a9a1b2ca8f839ea4bfeb3e774feda",
     "proof/PscVerif/PscVerif/PeriodicPartnerRealizationModels.lean": "870d45802ea6b8678a90bdbb88bdfa90a986fdafad52f00962766245353eb323",
     "proof/PscVerif/PscVerif/PeriodicPartnerRealizationOnto.lean": "ce6eac4f63139a67ab95687d5da0bba2e51efc8457f5535ca7ed6a3436a35721",
@@ -61515,7 +61773,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "081fa3f8d92e4fef9c5fb925342aaddb6be982d2a03fc3282f88b865c972e19a",
+    "proof/PscVerif/PscVerif.lean": "bca5aa4914930156378561bee8ae76e3fa45bc615d1b6eabdad8162d6152677e",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

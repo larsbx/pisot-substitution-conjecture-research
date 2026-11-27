@@ -176,6 +176,8 @@ import PscVerif.ZeroFibreOverlap
 import PscVerif.PhaseDisplacement
 import PscVerif.GeometricFLemmas
 import PscVerif.GeometricFOrientation
+import PscVerif.BargeDiamondBridge
+import PscVerif.BargeDiamondBridgeControls
 import PscVerif.NeutralRankSeam
 import PscVerif.NeutralRankSeamCycle
 import PscVerif.SeamCycleSpectrum
@@ -222,6 +224,13 @@ import PscVerif.PeriodicPartnerHullContinuity
 import PscVerif.PeriodicPartnerLocalTopology
 import PscVerif.PeriodicPartnerLocalTopologyControls
 import PscVerif.PeriodicPartnerLocalRealization
+import PscVerif.PeriodicPartnerHullComplete
+import PscVerif.PeriodicPartnerOriginContinuity
+import PscVerif.PeriodicPartnerHullCompact
+import PscVerif.PeriodicPartnerDesubContinuity
+import PscVerif.PeriodicPartnerLocalInflation
+import PscVerif.PeriodicPartnerRealizationContinuity
+import PscVerif.PeriodicPartnerRealizationContinuityControls
 import PscVerif.EvenCompanionWords
 import PscVerif.EvenCompanionFamily
 import PscVerif.EvenSeamCycles

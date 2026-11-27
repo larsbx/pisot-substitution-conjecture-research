@@ -1,0 +1,61 @@
+{
+  "accepted_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "audit": {
+    "declarations": 1536,
+    "modules": 31,
+    "source_named_proofs": 630,
+    "theorem_declarations": 1135
+  },
+  "base_revision": "c8d582ff502b18745f7b0a73037458c92e705ad9",
+  "focused_regression": {
+    "command": "python -m pytest -q tests/test_markdown_links.py tests/test_check_markdown_source.py tests/test_proof_bank.py tests/test_recorded_data_integrity.py --junitxml=/workspace/scratch/ad388b20f266/realization-continuity-tests.xml",
+    "duration_seconds": 84.794,
+    "errors": 0,
+    "failures": 0,
+    "output_order": "Run completed before logs and counts were archived; complete packet checksums and Git tracking rechecked after staging.",
+    "passed": 253,
+    "skipped": 0,
+    "test_files": [
+      "tests/test_markdown_links.py",
+      "tests/test_check_markdown_source.py",
+      "tests/test_proof_bank.py",
+      "tests/test_recorded_data_integrity.py"
+    ],
+    "tests": 253
+  },
+  "hosted_acceptance": "not claimed by this packet",
+  "independent_human_review": "pending; agent review is not independent human review",
+  "lean_toolchain": "leanprover/lean4:v4.34.0-rc2",
+  "local_artifacts_reused": false,
+  "mathlib_revision": "4edb0dbaa3b3cf729d86d1e2f035474d5ae2ac09",
+  "new_modules": {
+    "PscVerif.PeriodicPartnerDesubContinuity": 4,
+    "PscVerif.PeriodicPartnerHullCompact": 16,
+    "PscVerif.PeriodicPartnerHullComplete": 2,
+    "PscVerif.PeriodicPartnerLocalInflation": 5,
+    "PscVerif.PeriodicPartnerOriginContinuity": 9,
+    "PscVerif.PeriodicPartnerRealizationContinuity": 15,
+    "PscVerif.PeriodicPartnerRealizationContinuityControls": 2
+  },
+  "new_named_proofs": 53,
+  "published_source_revision": "4e5b0dd9ec474b42c3a58d779d5747e2b0c8544b",
+  "recorded_at_utc": "2026-11-20T01:52:44.063811+00:00",
+  "scope": "fresh periodic-partner local import closure; not a full root-library build",
+  "source_rechecks": [
+    "after-clone",
+    "after-upstream-cache",
+    "after-build",
+    "after-audit"
+  ],
+  "source_snapshot": {
+    "files": 243,
+    "sha256": "e55d0dd7d8deef9b15b60bf4ffebd82e48342638a32f922c2cf429fb198b3f20"
+  },
+  "upstream_cache": "selected upstream source-hash artifacts; freshly cloned pinned dependencies",
+  "verified_and_published_tree": "05be35058b81bb62c7e2f2fa234dfcc78ee3c47d",
+  "verified_source_revision": "5697ae4ef9757e5f02be32387975853b3dca376a"
+}

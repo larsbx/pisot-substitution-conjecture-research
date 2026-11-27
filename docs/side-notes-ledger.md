@@ -223,6 +223,15 @@ by deleting it.
   exact closure. Zero gain by construction. Do not re-attempt. ·
   `sadic-transfer-literature-gate-2026-10-11.md` §6
 
+- 2026-11-22 · GRH / effective Chebotarev as a lever on PSC: no open
+  obligation consumes a bound on the least prime of prescribed splitting
+  type. Chebotarev gives existence unconditionally; the solenoid's profinite
+  fibre and `K_sigma` live at `p | det M` only; reduction modulo an auxiliary
+  prime is a one-sided sieve. Stop; reopening criterion recorded. Correction
+  of the session's informal framing: finite places do enter for nonunits,
+  but only at the structural primes. ·
+  `grh-chebotarev-auxiliary-prime-stop-go-2026-11-22.md` §§3, 6
+
 ## 3. Settled by the literature (do not target with new machinery)
 
 - 2026-10-04 · Specimens with a power or common-prefix/suffix conjugate in
@@ -3531,3 +3540,7 @@ claim-ledger promotion. Evidence: `docs/occurrence-path-replay-2026-10-16.md`,
 - **2026-11-24 — two higher determinant bands admit an all-source literal exit.** For \(r\ge12\) and \(k=r+1,r+2\), the long-gap geometry supplies two wide overlapping \(1\)-tiles. A quadratic integer descent chooses actual positions in both runs and clears all three coordinates. The typed zero gives actual swap-seed termination through the closed carrier contract. Lean checks the literal central descent. The third-level two-mark premise remains to be bound in Lean. The \(k=r\) band remains separate. [Proof and replay](bh-near-diagonal-exit-2026-11-24.md).
 
 - **2026-11-24 — the diagonal determinant band has a uniform small-coordinate exit.** For \(k=r\ge12\), opposite signs allow a literal choice that decreases one absolute coordinate. An axis uses a short excursion and the unit axis escapes through \(1/2\) at zero before reaching \(0/0\). A fixed nearest choice has a genuine four-cycle of full packets. In the run window, the outer energy descent reduces the remaining problem to the bounded region outside the small box. Three separated windows also give deterministic literal entry in all three bands. The exact replay keeps both original ordinal tracks. [Diagonal reduction](bh-diagonal-run-reduction-2026-11-24.md) · [Three-window entry](bh-third-level-windows-2026-11-24.md).
+
+- **2026-11-19 — BD word/vertex correspondence can be ported independently of conflicted #608.** The matching label, equal prefix counts and synchronized iterate are exactly the vertex-coincidence premise; zero/sign offsets, suffix substitution and mixed levels have explicit negative controls. The degree-three irreducibility adapter supplies the paper's nonzero-root bound. This does not prove the existence theorem or the BBK rank identification. The prior source-bound replay passed; actual-module and isolated acceptance are recorded separately. Locators: [correspondence](barge-diamond-correspondence-2026-11-19.md), `PscVerif.BargeDiamondBridge`, `PscVerif.BargeDiamondBridgeControls`, [evidence](../evidence/barge-diamond-bridge-2026-11-19/README.md).
+
+- **2026-11-19 — actual realization continuity follows from compact exact origin fibres, without a new inverse-continuity premise.** Exact Cauchy windows stabilize to legal tilings. Finite adjacent-tile choices give compactness after fixing the origin tile; finite substitution prefixes bound all possible parent origins. These compact preimages make exact inflation a closed map, so its already-assumed bijectivity yields continuity of the existing desubstitution. The actual chosen prefix count is locally constant by equal choice predicates and proof irrelevance; the whole stable series has a uniform summable geometric majorant, including rho = 0. Lean therefore proves continuity of the concrete solenoid realization on the ordinary hull, and packages inflation as a homeomorphism under the original bijectivity input. The ordinary scalar origin start is proved discontinuous at seams, so continuity of that coordinate or of an ordinary vector lift must not be substituted for the quotient argument. Recognizability, normalized BBK identification and finite fibres remain separate; C4/PSC status is unchanged. Locator: [proof, assumptions and acceptance boundary](c4-realization-continuity-2026-11-19.md), [source decision](c4-realization-continuity-stop-go-2026-11-19.md).
