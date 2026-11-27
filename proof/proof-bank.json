@@ -3090,6 +3090,102 @@
       "declaration": "theorem same_matrix_wrong_literal_source_refused :"
     },
     {
+      "name": "Psc.BHBoundedFactors.WholeStep.packet",
+      "module": "PscVerif.BHBoundedFactors",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHBoundedFactors.lean",
+      "line": 26,
+      "declaration": "theorem WholeStep.packet {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ} {m m' : MarkedPair}"
+    },
+    {
+      "name": "Psc.BHBoundedFactors.path_at_scaled_point",
+      "module": "PscVerif.BHBoundedFactors",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHBoundedFactors.lean",
+      "line": 36,
+      "declaration": "private theorem path_at_scaled_point (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.BHBoundedFactors.partition_cut",
+      "module": "PscVerif.BHBoundedFactors",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHBoundedFactors.lean",
+      "line": 81,
+      "declaration": "private theorem partition_cut (ℓ : Fin 3 → ℝ) (B : ℝ) (bs : List WordPair)"
+    },
+    {
+      "name": "Psc.BHBoundedFactors.whole_zero_hit_of_bound",
+      "module": "PscVerif.BHBoundedFactors",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHBoundedFactors.lean",
+      "line": 113,
+      "declaration": "theorem whole_zero_hit_of_bound (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.BHBoundedFactors.seedPackets_closed",
+      "module": "PscVerif.BHBoundedFactors",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHBoundedFactors.lean",
+      "line": 191,
+      "declaration": "theorem seedPackets_closed {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ} {T : WordPair}"
+    },
+    {
+      "name": "Psc.BHBoundedFactors.seedPackets_finite_of_finite_factors",
+      "module": "PscVerif.BHBoundedFactors",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHBoundedFactors.lean",
+      "line": 206,
+      "declaration": "theorem seedPackets_finite_of_finite_factors (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.BHBoundedFactors.seedPackets_zero_hits_of_bound",
+      "module": "PscVerif.BHBoundedFactors",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHBoundedFactors.lean",
+      "line": 220,
+      "declaration": "theorem seedPackets_zero_hits_of_bound (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.BHBoundedFactors.finite_reachable_iff_closed_packet_cover",
+      "module": "PscVerif.BHBoundedFactors",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHBoundedFactors.lean",
+      "line": 241,
+      "declaration": "theorem finite_reachable_iff_closed_packet_cover (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.BHBoundedFactors.occursIn_of_factor",
+      "module": "PscVerif.BHBoundedFactors",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHBoundedFactors.lean",
+      "line": 268,
+      "declaration": "private theorem occursIn_of_factor (ℓ : Fin 3 → ℝ) {u v : Word}"
+    },
+    {
+      "name": "Psc.BHBoundedFactors.terminates_of_closed_diagonal_cover",
+      "module": "PscVerif.BHBoundedFactors",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHBoundedFactors.lean",
+      "line": 302,
+      "declaration": "theorem terminates_of_closed_diagonal_cover (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ)"
+    },
+    {
+      "name": "Psc.BHBoundedFactors.swap_reachable",
+      "module": "PscVerif.BHBoundedFactors",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHBoundedFactors.lean",
+      "line": 338,
+      "declaration": "private theorem swap_reachable (U : WordPair)"
+    },
+    {
+      "name": "Psc.BHBoundedFactors.expanding_zero_cover_without_coincidence",
+      "module": "PscVerif.BHBoundedFactors",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHBoundedFactors.lean",
+      "line": 359,
+      "declaration": "theorem expanding_zero_cover_without_coincidence :"
+    },
+    {
       "name": "Psc.BHFiniteCarrier.covers_seed_iterates_of_closed",
       "module": "PscVerif.BHFiniteCarrier",
       "private": false,
@@ -3240,6 +3336,182 @@
       "source": "proof/PscVerif/PscVerif/BHFiniteReachability.lean",
       "line": 395,
       "declaration": "theorem physical_zero_does_not_supply_tileCut :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalDescent.energy_ge_half",
+      "module": "PscVerif.BHNearDiagonalDescent",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalDescent.lean",
+      "line": 26,
+      "declaration": "theorem energy_ge_half {a b θ : ℝ} (h : Window a b θ) (z y : ℝ) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalDescent.energy_pos",
+      "module": "PscVerif.BHNearDiagonalDescent",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalDescent.lean",
+      "line": 35,
+      "declaration": "private theorem energy_pos {a b θ z y : ℝ} (h : Window a b θ)"
+    },
+    {
+      "name": "Psc.BHNearDiagonalDescent.zero_endpoint_decreases",
+      "module": "PscVerif.BHNearDiagonalDescent",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalDescent.lean",
+      "line": 42,
+      "declaration": "private theorem zero_endpoint_decreases {a b θ z y : ℝ} (h : Window a b θ)"
+    },
+    {
+      "name": "Psc.BHNearDiagonalDescent.truncate_decreases",
+      "module": "PscVerif.BHNearDiagonalDescent",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalDescent.lean",
+      "line": 56,
+      "declaration": "private theorem truncate_decreases {a b θ z y n : ℝ} (h : Window a b θ)"
+    },
+    {
+      "name": "Psc.BHNearDiagonalDescent.away_decreases",
+      "module": "PscVerif.BHNearDiagonalDescent",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalDescent.lean",
+      "line": 90,
+      "declaration": "private theorem away_decreases {a b θ z y t : ℝ} (h : Window a b θ)"
+    },
+    {
+      "name": "Psc.BHNearDiagonalDescent.small_truncation",
+      "module": "PscVerif.BHNearDiagonalDescent",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalDescent.lean",
+      "line": 128,
+      "declaration": "private theorem small_truncation {a b θ : ℝ} (h : Window a b θ) (z y : ℤ)"
+    },
+    {
+      "name": "Psc.BHNearDiagonalDescent.rounding_nonneg",
+      "module": "PscVerif.BHNearDiagonalDescent",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalDescent.lean",
+      "line": 163,
+      "declaration": "private theorem rounding_nonneg {a b θ : ℝ} (h : Window a b θ) (z y : ℤ)"
+    },
+    {
+      "name": "Psc.BHNearDiagonalDescent.choose_rounding",
+      "module": "PscVerif.BHNearDiagonalDescent",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalDescent.lean",
+      "line": 193,
+      "declaration": "theorem choose_rounding {a b θ : ℝ} (h : Window a b θ) (z y : ℤ)"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.beta_gt_thirteen",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 31,
+      "declaration": "theorem beta_gt_thirteen {r k β} (h : Family r k β) : 13 < β := by"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.quadratic_eq",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 35,
+      "declaration": "theorem quadratic_eq {r k β} (h : Family r k β) : β ^ 2 = k * β + 2 + r / β := by"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.family_window",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 43,
+      "declaration": "theorem family_window {r k β} (h : Family r k β) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.physical_replicate",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 70,
+      "declaration": "private theorem physical_replicate (ℓ : Fin 3 → ℝ) (n : ℕ) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.lengths_ge_one",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 76,
+      "declaration": "theorem lengths_ge_one {r k β} (h : Family r k β) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.lengths_scale",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 81,
+      "declaration": "theorem lengths_scale {r k β} (h : Family r k β) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.offset_run",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 97,
+      "declaration": "theorem offset_run (r : ℕ) (β : ℝ) (x y z : ℤ) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.ordinals_of_difference",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 115,
+      "declaration": "private theorem ordinals_of_difference {k : ℕ} (hk : 0 < k) (d : ℤ)"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.incidence_run",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 122,
+      "declaration": "private theorem incidence_run (r k : ℕ) (x y z : ℤ) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.run_residual",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 129,
+      "declaration": "private theorem run_residual (r k i j : ℕ) (hi : i < k) (hj : j < k) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.literal_rounding_step",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 137,
+      "declaration": "theorem literal_rounding_step {r k β} (h : Family r k β) (x y z t : ℤ)"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.packet_from_central",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 190,
+      "declaration": "private theorem packet_from_central {r k β p} (hp : Central r k β p) :"
+    },
+    {
+      "name": "Psc.BHNearDiagonalLiteral.central_hits_zero",
+      "module": "PscVerif.BHNearDiagonalLiteral",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean",
+      "line": 204,
+      "declaration": "theorem central_hits_zero {r k β} (h : Family r k β) {p : Packet}"
+    },
+    {
+      "name": "Psc.BHWindowChoice.exists_clean_slot",
+      "module": "PscVerif.BHWindowChoice",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BHWindowChoice.lean",
+      "line": 9,
+      "declaration": "theorem exists_clean_slot (F G : Fin 3 → Prop)"
     },
     {
       "name": "Psc.BPrime.IsPisot.isPisotOrSalem",
@@ -5338,6 +5610,30 @@
       "declaration": "theorem selected_stage_rank_decreases (i : ℕ) (hi : i < 6) :"
     },
     {
+      "name": "Psc.C4FamilyCanonicalSpectrum.pureDiscrete_shift_of_measure_eq",
+      "module": "PscVerif.C4FamilyCanonicalSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyCanonicalSpectrum.lean",
+      "line": 30,
+      "declaration": "theorem pureDiscrete_shift_of_measure_eq"
+    },
+    {
+      "name": "Psc.C4FamilyCanonicalSpectrum.pureDiscrete_shift_of_invariant_probability",
+      "module": "PscVerif.C4FamilyCanonicalSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyCanonicalSpectrum.lean",
+      "line": 45,
+      "declaration": "theorem pureDiscrete_shift_of_invariant_probability"
+    },
+    {
+      "name": "Psc.C4FamilyCanonicalSpectrum.existsUnique_invariant_probability",
+      "module": "PscVerif.C4FamilyCanonicalSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyCanonicalSpectrum.lean",
+      "line": 57,
+      "declaration": "theorem existsUnique_invariant_probability :"
+    },
+    {
       "name": "Psc.C4FamilyCharacterOrbits.shiftS_flow",
       "module": "PscVerif.C4FamilyCharacterOrbits",
       "private": false,
@@ -5666,6 +5962,326 @@
       "declaration": "theorem zero_fibre_stronglyRegionallyProximal (hk₂ : 2 ≤ k) {T U : (geometry k hk).Hull}"
     },
     {
+      "name": "Psc.C4FamilyHaarErgodicity.mul_conj_eq_one",
+      "module": "PscVerif.C4FamilyHaarErgodicity",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilyHaarErgodicity.lean",
+      "line": 37,
+      "declaration": "private theorem mul_conj_eq_one {z : ℂ} (hz : ‖z‖ = 1) : z * conj z = 1 := by"
+    },
+    {
+      "name": "Psc.C4FamilyHaarErgodicity.haar_inner_eq_zero",
+      "module": "PscVerif.C4FamilyHaarErgodicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyHaarErgodicity.lean",
+      "line": 41,
+      "declaration": "theorem haar_inner_eq_zero {f g : C(G, ℂ)} (hne : f ≠ g)"
+    },
+    {
+      "name": "Psc.C4FamilyHaarErgodicity.haar_inner_self",
+      "module": "PscVerif.C4FamilyHaarErgodicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyHaarErgodicity.lean",
+      "line": 74,
+      "declaration": "theorem haar_inner_self {f : C(G, ℂ)} (hnorm : ∀ x, ‖f x‖ = 1) :"
+    },
+    {
+      "name": "Psc.C4FamilyHaarErgodicity.span_characterLp_closure_eq_top",
+      "module": "PscVerif.C4FamilyHaarErgodicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyHaarErgodicity.lean",
+      "line": 84,
+      "declaration": "theorem span_characterLp_closure_eq_top :"
+    },
+    {
+      "name": "Psc.C4FamilyHaarErgodicity.orthonormal_finite_orbit",
+      "module": "PscVerif.C4FamilyHaarErgodicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyHaarErgodicity.lean",
+      "line": 93,
+      "declaration": "theorem orthonormal_finite_orbit (c : Certificate (Fin 3))"
+    },
+    {
+      "name": "Psc.C4FamilyHaarErgodicity.orbit_toLp_eq",
+      "module": "PscVerif.C4FamilyHaarErgodicity",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilyHaarErgodicity.lean",
+      "line": 106,
+      "declaration": "private theorem orbit_toLp_eq (c : Certificate (Fin 3)) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilyHaarErgodicity.finite_bessel_bound",
+      "module": "PscVerif.C4FamilyHaarErgodicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyHaarErgodicity.lean",
+      "line": 121,
+      "declaration": "theorem finite_bessel_bound (u : H)"
+    },
+    {
+      "name": "Psc.C4FamilyHaarErgodicity.fixed_coefficient_eq_zero",
+      "module": "PscVerif.C4FamilyHaarErgodicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyHaarErgodicity.lean",
+      "line": 142,
+      "declaration": "theorem fixed_coefficient_eq_zero (u : H)"
+    },
+    {
+      "name": "Psc.C4FamilyHaarErgodicity.fixed_eq_smul_one",
+      "module": "PscVerif.C4FamilyHaarErgodicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyHaarErgodicity.lean",
+      "line": 152,
+      "declaration": "theorem fixed_eq_smul_one (u : H)"
+    },
+    {
+      "name": "Psc.C4FamilyHaarErgodicity.ergodic_shiftS",
+      "module": "PscVerif.C4FamilyHaarErgodicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyHaarErgodicity.lean",
+      "line": 181,
+      "declaration": "theorem ergodic_shiftS : Ergodic σ μₛ where"
+    },
+    {
+      "name": "Psc.C4FamilyHaarSingletonFibres.isOpen_forwardTail",
+      "module": "PscVerif.C4FamilyHaarSingletonFibres",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyHaarSingletonFibres.lean",
+      "line": 33,
+      "declaration": "theorem isOpen_forwardTail {W : Set G} (hW : IsOpen W) (N : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilyHaarSingletonFibres.ae_mem_forwardTail",
+      "module": "PscVerif.C4FamilyHaarSingletonFibres",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyHaarSingletonFibres.lean",
+      "line": 47,
+      "declaration": "theorem ae_mem_forwardTail {W : Set G} (hW : IsOpen W) (hne : W.Nonempty) (N : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilyHaarSingletonFibres.fibre_agree_of_mem_image",
+      "module": "PscVerif.C4FamilyHaarSingletonFibres",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilyHaarSingletonFibres.lean",
+      "line": 64,
+      "declaration": "private theorem fibre_agree_of_mem_image {r : ℝ} (hr : 0 < r) {W : Set G}"
+    },
+    {
+      "name": "Psc.C4FamilyHaarSingletonFibres.exists_conull_singleton_fibres",
+      "module": "PscVerif.C4FamilyHaarSingletonFibres",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyHaarSingletonFibres.lean",
+      "line": 88,
+      "declaration": "theorem exists_conull_singleton_fibres (hk₂ : 2 ≤ k) :"
+    },
+    {
+      "name": "Psc.C4FamilyHaarSingletonFibres.ae_singleton_fibre",
+      "module": "PscVerif.C4FamilyHaarSingletonFibres",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyHaarSingletonFibres.lean",
+      "line": 108,
+      "declaration": "theorem ae_singleton_fibre (hk₂ : 2 ≤ k) :"
+    },
+    {
+      "name": "Psc.C4FamilyInvariantMeasureUniqueness.integral_add_eq_of_flow_invariant",
+      "module": "PscVerif.C4FamilyInvariantMeasureUniqueness",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilyInvariantMeasureUniqueness.lean",
+      "line": 35,
+      "declaration": "private theorem integral_add_eq_of_flow_invariant"
+    },
+    {
+      "name": "Psc.C4FamilyInvariantMeasureUniqueness.solenoidMeasure_eq_haar_of_flow_invariant",
+      "module": "PscVerif.C4FamilyInvariantMeasureUniqueness",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyInvariantMeasureUniqueness.lean",
+      "line": 56,
+      "declaration": "theorem solenoidMeasure_eq_haar_of_flow_invariant"
+    },
+    {
+      "name": "Psc.C4FamilyInvariantMeasureUniqueness.hullMeasure_eq_of_invariant",
+      "module": "PscVerif.C4FamilyInvariantMeasureUniqueness",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyInvariantMeasureUniqueness.lean",
+      "line": 76,
+      "declaration": "theorem hullMeasure_eq_of_invariant (hk₂ : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredRealization.singletonSet_spec",
+      "module": "PscVerif.C4FamilyMeasuredRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean",
+      "line": 43,
+      "declaration": "theorem singletonSet_spec :"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredRealization.restrictPreimage_bijective",
+      "module": "PscVerif.C4FamilyMeasuredRealization",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean",
+      "line": 48,
+      "declaration": "private theorem restrictPreimage_bijective :"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredRealization.measurable_measurableInverse",
+      "module": "PscVerif.C4FamilyMeasuredRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean",
+      "line": 79,
+      "declaration": "theorem measurable_measurableInverse : Measurable (measurableInverse k hk hk₂) :="
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredRealization.factor_inverse_on",
+      "module": "PscVerif.C4FamilyMeasuredRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean",
+      "line": 84,
+      "declaration": "theorem factor_inverse_on {z : G} (hz : z ∈ singletonSet k hk hk₂) :"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredRealization.factor_inverse_ae",
+      "module": "PscVerif.C4FamilyMeasuredRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean",
+      "line": 92,
+      "declaration": "theorem factor_inverse_ae : (π ∘ measurableInverse k hk hk₂) =ᵐ[μₛ] id :="
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredRealization.measurePreserving_inverse",
+      "module": "PscVerif.C4FamilyMeasuredRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean",
+      "line": 98,
+      "declaration": "theorem measurePreserving_inverse :"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredRealization.measurePreserving_factor",
+      "module": "PscVerif.C4FamilyMeasuredRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean",
+      "line": 107,
+      "declaration": "theorem measurePreserving_factor : MeasurePreserving π (hullMeasure k hk hk₂) μₛ := by"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredRealization.inverse_factor_ae_of_measurePreserving",
+      "module": "PscVerif.C4FamilyMeasuredRealization",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean",
+      "line": 113,
+      "declaration": "private theorem inverse_factor_ae_of_measurePreserving (ν : Measure X)"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredRealization.inverse_factor_ae",
+      "module": "PscVerif.C4FamilyMeasuredRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean",
+      "line": 119,
+      "declaration": "theorem inverse_factor_ae : (measurableInverse k hk hk₂ ∘ π) =ᵐ[hullMeasure k hk hk₂] id :="
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredRealization.hullMeasure_eq_of_map",
+      "module": "PscVerif.C4FamilyMeasuredRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean",
+      "line": 123,
+      "declaration": "theorem hullMeasure_eq_of_map (ν : Measure X) (hν : Measure.map π ν = μₛ) :"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredRealization.measurePreserving_of_semiconj",
+      "module": "PscVerif.C4FamilyMeasuredRealization",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean",
+      "line": 134,
+      "declaration": "private theorem measurePreserving_of_semiconj {f : X → X} {g : G → G}"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredRealization.measurePreserving_translate",
+      "module": "PscVerif.C4FamilyMeasuredRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean",
+      "line": 142,
+      "declaration": "theorem measurePreserving_translate (t : ℝ) :"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredRealization.measurePreserving_inflate",
+      "module": "PscVerif.C4FamilyMeasuredRealization",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean",
+      "line": 155,
+      "declaration": "theorem measurePreserving_inflate :"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredSpectrum.compL2_surjective_of_ae_leftInverse",
+      "module": "PscVerif.C4FamilyMeasuredSpectrum",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredSpectrum.lean",
+      "line": 19,
+      "declaration": "private theorem compL2_surjective_of_ae_leftInverse"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredSpectrum.pullback_surjective",
+      "module": "PscVerif.C4FamilyMeasuredSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredSpectrum.lean",
+      "line": 43,
+      "declaration": "theorem pullback_surjective : Surjective (pullback k hk hk₂) :="
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredSpectrum.translationKoopman_surjective",
+      "module": "PscVerif.C4FamilyMeasuredSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredSpectrum.lean",
+      "line": 56,
+      "declaration": "theorem translationKoopman_surjective (t : ℝ) : Surjective (translationKoopman k hk hk₂ t) :="
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredSpectrum.eigenfunctionLp_ae",
+      "module": "PscVerif.C4FamilyMeasuredSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredSpectrum.lean",
+      "line": 66,
+      "declaration": "theorem eigenfunctionLp_ae (c : Certificate (Fin 3)) :"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredSpectrum.eigenfunctionLp_inner_self",
+      "module": "PscVerif.C4FamilyMeasuredSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredSpectrum.lean",
+      "line": 73,
+      "declaration": "theorem eigenfunctionLp_inner_self (c : Certificate (Fin 3)) :"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredSpectrum.eigenfunctionLp_ne_zero",
+      "module": "PscVerif.C4FamilyMeasuredSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredSpectrum.lean",
+      "line": 78,
+      "declaration": "theorem eigenfunctionLp_ne_zero (c : Certificate (Fin 3)) : eigenfunctionLp k hk hk₂ c ≠ 0 := by"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredSpectrum.eigenfunctionLp_translate",
+      "module": "PscVerif.C4FamilyMeasuredSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredSpectrum.lean",
+      "line": 88,
+      "declaration": "theorem eigenfunctionLp_translate (c : Certificate (Fin 3)) (t : ℝ) :"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredSpectrum.span_eigenfunctionLp_closure_eq_top",
+      "module": "PscVerif.C4FamilyMeasuredSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredSpectrum.lean",
+      "line": 108,
+      "declaration": "theorem span_eigenfunctionLp_closure_eq_top :"
+    },
+    {
+      "name": "Psc.C4FamilyMeasuredSpectrum.pureDiscrete_translation",
+      "module": "PscVerif.C4FamilyMeasuredSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyMeasuredSpectrum.lean",
+      "line": 122,
+      "declaration": "theorem pureDiscrete_translation :"
+    },
+    {
       "name": "Psc.C4FamilyOpenSynchronization.exists_centered_tile_fibre",
       "module": "PscVerif.C4FamilyOpenSynchronization",
       "private": false,
@@ -5784,6 +6400,670 @@
       "source": "proof/PscVerif/PscVerif/C4FamilySolenoidCharacters.lean",
       "line": 118,
       "declaration": "theorem coord_zero_not_injective :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.itinerary_next",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 28,
+      "declaration": "@[simp] theorem itinerary_next (B : Transversal k hk) (i : ℤ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.continuous_itinerary",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 33,
+      "declaration": "theorem continuous_itinerary : Continuous (itinerary (k := k) (hk := hk)) := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.itinerary_injective",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 39,
+      "declaration": "theorem itinerary_injective : Injective (itinerary (k := k) (hk := hk)) := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.block_at",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 74,
+      "declaration": "private theorem block_at (x : ℤ → Fin 3) (i : ℤ) {n j : ℕ} (hj : j < n) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.itinerary_reindex",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 92,
+      "declaration": "private theorem itinerary_reindex (B : Transversal k hk) (i j : ℤ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.forwardWord_eq_block",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 96,
+      "declaration": "private theorem forwardWord_eq_block (B : Transversal k hk) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.placed_forwardWord",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 105,
+      "declaration": "private theorem placed_forwardWord (B : Transversal k hk) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.forwardWord_eq_of_placed",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 124,
+      "declaration": "private theorem forwardWord_eq_of_placed (B : Transversal k hk) (w : List (Fin 3))"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.prefix_of_place_subset",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 145,
+      "declaration": "private theorem prefix_of_place_subset {u v : List (Fin 3)} {x : ℝ}"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.infix_of_place_subset",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 167,
+      "declaration": "private theorem infix_of_place_subset {u v : List (Fin 3)} {x y : ℝ}"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.forwardWord_legal",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 192,
+      "declaration": "private theorem forwardWord_legal (B : Transversal k hk) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.block_reindex",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 213,
+      "declaration": "private theorem block_reindex (B : Transversal k hk) (i : ℤ) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.itinerary_legal",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 220,
+      "declaration": "theorem itinerary_legal (B : Transversal k hk) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.exists_placed_legalWord",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 226,
+      "declaration": "private theorem exists_placed_legalWord (T : (G).Hull) {w : List (Fin 3)}"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.exists_forwardWord",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 251,
+      "declaration": "private theorem exists_forwardWord {w : List (Fin 3)} (hw : LegalWord k hk w) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.exists_itinerary",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 266,
+      "declaration": "theorem exists_itinerary (x : SymbolicHull k hk) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.itineraryHomeomorph_next",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 316,
+      "declaration": "theorem itineraryHomeomorph_next (B : Transversal k hk) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicLanguage.continuous_shift",
+      "module": "PscVerif.C4FamilySymbolicLanguage",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean",
+      "line": 321,
+      "declaration": "theorem continuous_shift : Continuous (shift (k := k) (hk := hk)) := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicMeasureUniqueness.timeMeasure_ae_mem",
+      "module": "PscVerif.C4FamilySymbolicMeasureUniqueness",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicMeasureUniqueness.lean",
+      "line": 52,
+      "declaration": "theorem timeMeasure_ae_mem : ∀ᵐ s ∂timeMeasure k hk, s ∈ Ico 0 c :="
+    },
+    {
+      "name": "Psc.C4FamilySymbolicMeasureUniqueness.symbolicFactor_strip",
+      "module": "PscVerif.C4FamilySymbolicMeasureUniqueness",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicMeasureUniqueness.lean",
+      "line": 63,
+      "declaration": "theorem symbolicFactor_strip {p : B × ℝ} (hp : p ∈ ConstantStrip k hk) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicMeasureUniqueness.map_symbolicFactor_suspensionMeasure",
+      "module": "PscVerif.C4FamilySymbolicMeasureUniqueness",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicMeasureUniqueness.lean",
+      "line": 69,
+      "declaration": "theorem map_symbolicFactor_suspensionMeasure (μ : Measure B) [IsProbabilityMeasure μ] :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicMeasureUniqueness.integral_timeMeasure",
+      "module": "PscVerif.C4FamilySymbolicMeasureUniqueness",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicMeasureUniqueness.lean",
+      "line": 80,
+      "declaration": "private theorem integral_timeMeasure (f : ℝ → ℝ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicMeasureUniqueness.integral_suspensionMeasure",
+      "module": "PscVerif.C4FamilySymbolicMeasureUniqueness",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicMeasureUniqueness.lean",
+      "line": 86,
+      "declaration": "private theorem integral_suspensionMeasure (μ : Measure B) [IsProbabilityMeasure μ]"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicMeasureUniqueness.strip_next_eq",
+      "module": "PscVerif.C4FamilySymbolicMeasureUniqueness",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicMeasureUniqueness.lean",
+      "line": 96,
+      "declaration": "private theorem strip_next_eq (b : B) (s : ℝ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicMeasureUniqueness.integral_translate_suspensionMeasure",
+      "module": "PscVerif.C4FamilySymbolicMeasureUniqueness",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicMeasureUniqueness.lean",
+      "line": 104,
+      "declaration": "theorem integral_translate_suspensionMeasure (μ : Measure B) [IsProbabilityMeasure μ]"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicMeasureUniqueness.measurePreserving_flow_suspensionFactor",
+      "module": "PscVerif.C4FamilySymbolicMeasureUniqueness",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicMeasureUniqueness.lean",
+      "line": 135,
+      "declaration": "theorem measurePreserving_flow_suspensionFactor (μ : Measure B) [IsProbabilityMeasure μ]"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicMeasureUniqueness.suspensionMeasure_eq_hullMeasure",
+      "module": "PscVerif.C4FamilySymbolicMeasureUniqueness",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicMeasureUniqueness.lean",
+      "line": 164,
+      "declaration": "theorem suspensionMeasure_eq_hullMeasure (μ : Measure B) [IsProbabilityMeasure μ]"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicMeasureUniqueness.invariant_probability_eq_symbolicMeasure",
+      "module": "PscVerif.C4FamilySymbolicMeasureUniqueness",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicMeasureUniqueness.lean",
+      "line": 172,
+      "declaration": "theorem invariant_probability_eq_symbolicMeasure"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicMeasureUniqueness.invariant_probability_eq_wordMeasure",
+      "module": "PscVerif.C4FamilySymbolicMeasureUniqueness",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicMeasureUniqueness.lean",
+      "line": 182,
+      "declaration": "theorem invariant_probability_eq_wordMeasure"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.roof_pos",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 31,
+      "declaration": "theorem roof_pos (B : Transversal k hk) : 0 < roof B := (G).ℓ_pos _"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.origin_reanchor",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 34,
+      "declaration": "theorem origin_reanchor {T : (G).Hull} {q : Fin 3 × ℝ} (hq : q ∈ T.1) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.continuous_next",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 52,
+      "declaration": "theorem continuous_next : Continuous (next (k := k) (hk := hk)) := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.mat_apply",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 66,
+      "declaration": "private theorem mat_apply (v : Fin 3 → ℝ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.mat_det",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 72,
+      "declaration": "private theorem mat_det : (mat G).det = 2 := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.eq_zero_of_lattice_of_dot_zero",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 78,
+      "declaration": "theorem eq_zero_of_lattice_of_dot_zero {v : Fin 3 → ℝ} (hv : v ∈ lattice (Fin 3))"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.right_pos",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 102,
+      "declaration": "private theorem right_pos (a : Fin 3) : 0 < (P).u a := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.meanRoof_pos",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 134,
+      "declaration": "theorem meanRoof_pos : 0 < meanRoof k hk :="
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.vec_next",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 137,
+      "declaration": "private theorem vec_next (B : Transversal k hk) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.continuous_correction",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 157,
+      "declaration": "theorem continuous_correction : Continuous (correction (k := k) (hk := hk)) := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.roof_eq_mean_add_coboundary",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 165,
+      "declaration": "theorem roof_eq_mean_add_coboundary (B : Transversal k hk) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.corrected_next",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 184,
+      "declaration": "theorem corrected_next (B : Transversal k hk) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.continuous_corrected",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 194,
+      "declaration": "theorem continuous_corrected : Continuous (corrected (k := k) (hk := hk)) :="
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.continuous_roof",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 199,
+      "declaration": "theorem continuous_roof : Continuous (roof (k := k) (hk := hk)) :="
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.origin_physical",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 210,
+      "declaration": "private theorem origin_physical {p : Transversal k hk × ℝ} (hp : p ∈ PhysicalStrip k hk) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.no_boundary_before_roof",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 221,
+      "declaration": "theorem no_boundary_before_roof (B : Transversal k hk) {s : ℝ}"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.physical_injOn",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 230,
+      "declaration": "theorem physical_injOn : InjOn (physical (k := k) (hk := hk)) (PhysicalStrip k hk) := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.exists_physical",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 240,
+      "declaration": "theorem exists_physical (T : LocalHull G) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.next_reanchor",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 260,
+      "declaration": "private theorem next_reanchor {T : (G).Hull} {q r : Fin 3 × ℝ} (hq : q ∈ T.1)"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.right_succ",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 277,
+      "declaration": "private theorem right_succ (T : (G).Hull) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.left_succ",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 281,
+      "declaration": "private theorem left_succ (T : (G).Hull) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.right_zero",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 285,
+      "declaration": "private theorem right_zero (B : Transversal k hk) : right B.1 0 = B := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.left_zero",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 290,
+      "declaration": "private theorem left_zero (B : Transversal k hk) : left B.1 0 = B := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.corrected_right",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 295,
+      "declaration": "private theorem corrected_right (B : Transversal k hk) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.corrected_left",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 305,
+      "declaration": "private theorem corrected_left (B : Transversal k hk) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.exists_right_or_left",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 321,
+      "declaration": "theorem exists_right_or_left {T : (G).Hull} {q : Fin 3 × ℝ} (hq : q ∈ T.1) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.anchored_translate_cases",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 340,
+      "declaration": "private theorem anchored_translate_cases (B D : Transversal k hk) (t : ℝ)"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.continuous_strip",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 370,
+      "declaration": "theorem continuous_strip : Continuous (strip (k := k) (hk := hk)) :="
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.continuous_physical",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 374,
+      "declaration": "theorem continuous_physical : Continuous (physical (k := k) (hk := hk)) :="
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.translate_time_injective",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 379,
+      "declaration": "private theorem translate_time_injective (T : LocalHull G) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.strip_injOn",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 388,
+      "declaration": "theorem strip_injOn : InjOn (strip (k := k) (hk := hk)) (ConstantStrip k hk) := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.exists_strip",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 429,
+      "declaration": "theorem exists_strip (T : LocalHull G) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.translate_mean_strip",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 461,
+      "declaration": "theorem translate_mean_strip (B : Transversal k hk) (s : ℝ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.isCompact_transversal",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 466,
+      "declaration": "theorem isCompact_transversal : IsCompact {T : (G).Hull | (origin T).2 = 0} := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.next_bijective",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 477,
+      "declaration": "theorem next_bijective : Bijective (next (k := k) (hk := hk)) := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.next_pow_eq_right",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 495,
+      "declaration": "private theorem next_pow_eq_right (B : Transversal k hk) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.prev_pow_eq_left",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 503,
+      "declaration": "private theorem prev_pow_eq_left (B : Transversal k hk) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.origin_pow_label",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 513,
+      "declaration": "theorem origin_pow_label (B : Transversal k hk) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.origin_neg_pow_label",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 519,
+      "declaration": "theorem origin_neg_pow_label (B : Transversal k hk) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSection.separate_of_tile",
+      "module": "PscVerif.C4FamilySymbolicSection",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean",
+      "line": 525,
+      "declaration": "private theorem separate_of_tile {T U : LocalHull G} {q : Fin 3 × ℝ}"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.measurable_symbolicFactor",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 70,
+      "declaration": "theorem measurable_symbolicFactor : Measurable (symbolicFactor k hk) :="
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.symbolicFactor_translate",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 73,
+      "declaration": "theorem symbolicFactor_translate (T : X) :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.measurePreserving_symbolicFactor",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 94,
+      "declaration": "theorem measurePreserving_symbolicFactor :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.measurePreserving_next",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 98,
+      "declaration": "theorem measurePreserving_next :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.compLp_surjective",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 115,
+      "declaration": "private theorem compLp_surjective {α : Type*} [MeasurableSpace α] {m : Measure α}"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.compLp_congr",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 131,
+      "declaration": "private theorem compLp_congr {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.adjoint_intertwines",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 139,
+      "declaration": "private theorem adjoint_intertwines {E F : Type*} [NormedAddCommGroup E]"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.compLp_intertwines",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 169,
+      "declaration": "private theorem compLp_intertwines {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.pureDiscrete_factor",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 184,
+      "declaration": "private theorem pureDiscrete_factor {E F : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.pureDiscrete_next",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 220,
+      "declaration": "theorem pureDiscrete_next :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.measurePreserving_itinerary",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 261,
+      "declaration": "theorem measurePreserving_itinerary :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.measurePreserving_wordShift",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 265,
+      "declaration": "theorem measurePreserving_wordShift :"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.wordShiftEquiv_apply",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 284,
+      "declaration": "private theorem wordShiftEquiv_apply (x : W) : wordShiftEquiv k hk x = shift x := by"
+    },
+    {
+      "name": "Psc.C4FamilySymbolicSpectrum.pureDiscrete_shift",
+      "module": "PscVerif.C4FamilySymbolicSpectrum",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean",
+      "line": 292,
+      "declaration": "theorem pureDiscrete_shift :"
     },
     {
       "name": "Psc.C4FamilyTileAutomatonHull.lengthOutput_zero",
@@ -6960,6 +8240,126 @@
       "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOrdinaryProximal.lean",
       "line": 83,
       "declaration": "theorem same_fibre_proximal_of_zero_fibre_witnesses (hk₂ : 2 ≤ k)"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.expansion_mul_len",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 38,
+      "declaration": "theorem expansion_mul_len (v₀ v₁ v₂ : ℤ) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.mem_place_ones",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 44,
+      "declaration": "theorem mem_place_ones {m : ℕ} {x : ℝ} {q : Fin 3 × ℝ}"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.place_image_one",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 56,
+      "declaration": "theorem place_image_one (x : ℝ) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.origin_step",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 64,
+      "declaration": "theorem origin_step (a : Fin 3) (v₀ v₁ v₂ : ℤ)"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.orbit_data",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 135,
+      "declaration": "theorem orbit_data (a₀ : Fin 3) (z₀ z₁ z₂ : ℤ)"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.originChild_vertex",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 193,
+      "declaration": "theorem originChild_vertex (S : LengthSubst (Fin 3)) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.originChild_vertex_iterate",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 207,
+      "declaration": "theorem originChild_vertex_iterate (S : LengthSubst (Fin 3)) (q : Fin 3 × ℝ) (hq : q.2 = 0)"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.length_le_sq",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 219,
+      "declaration": "theorem length_le_sq (a : Fin 3) : (geometry k hk).ℓ a ≤ expansion k hk ^ 2 := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.contraction_coefficients",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 227,
+      "declaration": "theorem contraction_coefficients :"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.periodicLatticeOriginsClassified",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 248,
+      "declaration": "theorem periodicLatticeOriginsClassified : PeriodicLatticeOriginsClassified k hk := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.anchor_common_tile",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 377,
+      "declaration": "theorem anchor_common_tile {V U : (geometry k hk).Hull}"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.zero_fibre_common_tile",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 386,
+      "declaration": "theorem zero_fibre_common_tile (T U : (geometry k hk).Hull)"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.all_pair_witnesses",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 397,
+      "declaration": "theorem all_pair_witnesses (T U : (geometry k hk).Hull)"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.zero_fibre_exactProximal",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 406,
+      "declaration": "theorem zero_fibre_exactProximal (T U : (geometry k hk).Hull)"
+    },
+    {
+      "name": "Psc.ParameterFamilyOriginCycle.zero_fibre_origin",
+      "module": "PscVerif.C4ParameterFamilyOriginCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean",
+      "line": 415,
+      "declaration": "theorem zero_fibre_origin (U : (geometry k hk).Hull)"
     },
     {
       "name": "Psc.ParameterFamilyPisot.incidence_eq",
@@ -8432,6 +9832,118 @@
       "source": "proof/PscVerif/PscVerif/C4ParameterFamilyWords.lean",
       "line": 456,
       "declaration": "theorem base_exit (n i : Nat) (hi : i < 25)"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.origin_inflateH",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 39,
+      "declaration": "theorem origin_inflateH (U : S.Hull) : origin (inflateH U) = originChild S (origin U) := by"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.originChild_eq",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 51,
+      "declaration": "theorem originChild_eq {q p : α × ℝ} (hp : p ∈ S.place (S.σ q.1) (S.β * q.2))"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.origin_inflateH_iterate",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 58,
+      "declaration": "theorem origin_inflateH_iterate (U : S.Hull) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.PeriodicPartnerRealization.originChild_periodic_of_periodic",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 65,
+      "declaration": "theorem originChild_periodic_of_periodic {U : S.Hull} {n : ℕ}"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.head_child",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 98,
+      "declaration": "theorem head_child {V : (geometry k hk).Hull} {a : Fin 3} {x : ℝ}"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.origin_vertex_iterate",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 115,
+      "declaration": "theorem origin_vertex_iterate {U : (geometry k hk).Hull} {a : Fin 3}"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.origin_vertex_ne_two",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 128,
+      "declaration": "theorem origin_vertex_ne_two {U : (geometry k hk).Hull} {n : ℕ} (hn : 0 < n)"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.vertex_tile_periodic",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 144,
+      "declaration": "theorem vertex_tile_periodic :"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.interior_phase_periodic",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 168,
+      "declaration": "theorem interior_phase_periodic :"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.anchor_common_tile_of_origin_vertex",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 190,
+      "declaration": "theorem anchor_common_tile_of_origin_vertex"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.anchor_common_tile_of_interior_phase",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 215,
+      "declaration": "theorem anchor_common_tile_of_interior_phase"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.anchor_common_tile_of_classified",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 243,
+      "declaration": "theorem anchor_common_tile_of_classified"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.all_pair_witnesses_of_classified",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 265,
+      "declaration": "theorem all_pair_witnesses_of_classified"
+    },
+    {
+      "name": "Psc.ParameterFamilyZeroFibreAnchor.zero_fibre_exactProximal_of_classified",
+      "module": "PscVerif.C4ParameterFamilyZeroFibreAnchor",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean",
+      "line": 283,
+      "declaration": "theorem zero_fibre_exactProximal_of_classified"
     },
     {
       "name": "Psc.ParameterFamilyZeroFibreControls.zero_fibre_seam_control",
@@ -10354,6 +11866,414 @@
       "declaration": "theorem constant_composable_path (n d : ℕ) (hd : 5 ≤ d) (H : ℤ)"
     },
     {
+      "name": "Psc.ClassAPlusUpperCentralBound.bounded_periodic_tail",
+      "module": "PscVerif.ClassAPlusUpperCentralBound",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralBound.lean",
+      "line": 24,
+      "declaration": "theorem bounded_periodic_tail (n J : ℕ) (β : ℝ) (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralBound.bounded_constant_tail",
+      "module": "PscVerif.ClassAPlusUpperCentralBound",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralBound.lean",
+      "line": 66,
+      "declaration": "theorem bounded_constant_tail (n J : ℕ) (β : ℝ) (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralBound.bounded_alternating_tail",
+      "module": "PscVerif.ClassAPlusUpperCentralBound",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralBound.lean",
+      "line": 89,
+      "declaration": "theorem bounded_alternating_tail (n J : ℕ) (β : ℝ) (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralBound.all_indices_length_le",
+      "module": "PscVerif.ClassAPlusUpperCentralBound",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralBound.lean",
+      "line": 108,
+      "declaration": "theorem all_indices_length_le (n J H : ℕ) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralBound.signed_indices_length_le",
+      "module": "PscVerif.ClassAPlusUpperCentralBound",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralBound.lean",
+      "line": 124,
+      "declaration": "theorem signed_indices_length_le (reversed : Bool) (n J H : ℕ) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralCompletion.amplitude_exit_range",
+      "module": "PscVerif.ClassAPlusUpperCentralCompletion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralCompletion.lean",
+      "line": 35,
+      "declaration": "theorem amplitude_exit_range {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralCompletion.signed_packet_of_abs",
+      "module": "PscVerif.ClassAPlusUpperCentralCompletion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralCompletion.lean",
+      "line": 52,
+      "declaration": "theorem signed_packet_of_abs (h : ℤ) (H : ℕ) (ha : |h|=(H : ℤ)) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralCompletion.completion_of_interior",
+      "module": "PscVerif.ClassAPlusUpperCentralCompletion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralCompletion.lean",
+      "line": 76,
+      "declaration": "theorem completion_of_interior {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ}"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralCompletion.interior_path_trans",
+      "module": "PscVerif.ClassAPlusUpperCentralCompletion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralCompletion.lean",
+      "line": 84,
+      "declaration": "theorem interior_path_trans {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ}"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralCompletion.completion_concat",
+      "module": "PscVerif.ClassAPlusUpperCentralCompletion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralCompletion.lean",
+      "line": 94,
+      "declaration": "theorem completion_concat {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ}"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralCompletion.completion_from_tail",
+      "module": "PscVerif.ClassAPlusUpperCentralCompletion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralCompletion.lean",
+      "line": 102,
+      "declaration": "theorem completion_from_tail {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralCompletion.central_completion",
+      "module": "PscVerif.ClassAPlusUpperCentralCompletion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralCompletion.lean",
+      "line": 133,
+      "declaration": "theorem central_completion {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralCompletion.central_completion_closed",
+      "module": "PscVerif.ClassAPlusUpperCentralCompletion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralCompletion.lean",
+      "line": 160,
+      "declaration": "theorem central_completion_closed {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralCompletion.zero_empty_completion",
+      "module": "PscVerif.ClassAPlusUpperCentralCompletion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralCompletion.lean",
+      "line": 180,
+      "declaration": "theorem zero_empty_completion {n J : ℕ} {β : ℝ} (hp : Family n J β) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralCompletion.all_source_completion",
+      "module": "PscVerif.ClassAPlusUpperCentralCompletion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralCompletion.lean",
+      "line": 188,
+      "declaration": "theorem all_source_completion {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralCompletion.all_source_completion_nd",
+      "module": "PscVerif.ClassAPlusUpperCentralCompletion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralCompletion.lean",
+      "line": 203,
+      "declaration": "theorem all_source_completion_nd (n d : ℕ) (β : ℝ) (hn : 7 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralCompletion.exists_root_all_source_completion",
+      "module": "PscVerif.ClassAPlusUpperCentralCompletion",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralCompletion.lean",
+      "line": 229,
+      "declaration": "theorem exists_root_all_source_completion (n d : ℕ) (hn : 7 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralControls.source_shift",
+      "module": "PscVerif.ClassAPlusUpperCentralControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralControls.lean",
+      "line": 26,
+      "declaration": "theorem source_shift (n : ℕ) (β : ℝ) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralControls.target_shift",
+      "module": "PscVerif.ClassAPlusUpperCentralControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralControls.lean",
+      "line": 32,
+      "declaration": "theorem target_shift (n : ℕ) (β : ℝ) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralControls.source_central",
+      "module": "PscVerif.ClassAPlusUpperCentralControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralControls.lean",
+      "line": 39,
+      "declaration": "theorem source_central {n : ℕ} {β : ℝ} (hp : Family n 1 β) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralControls.target_central",
+      "module": "PscVerif.ClassAPlusUpperCentralControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralControls.lean",
+      "line": 53,
+      "declaration": "theorem target_central {n : ℕ} {β : ℝ} (hp : Family n 1 β) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralControls.actual_first_edge",
+      "module": "PscVerif.ClassAPlusUpperCentralControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralControls.lean",
+      "line": 63,
+      "declaration": "theorem actual_first_edge (n : ℕ) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralControls.target_signed_cycle",
+      "module": "PscVerif.ClassAPlusUpperCentralControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralControls.lean",
+      "line": 72,
+      "declaration": "theorem target_signed_cycle : target = signedSource true 1 := by"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralControls.original_scalar_pair",
+      "module": "PscVerif.ClassAPlusUpperCentralControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralControls.lean",
+      "line": 78,
+      "declaration": "theorem original_scalar_pair :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralControls.transformed_scalar_pair",
+      "module": "PscVerif.ClassAPlusUpperCentralControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralControls.lean",
+      "line": 83,
+      "declaration": "theorem transformed_scalar_pair :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralControls.source_not_full_cycle",
+      "module": "PscVerif.ClassAPlusUpperCentralControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralControls.lean",
+      "line": 89,
+      "declaration": "theorem source_not_full_cycle (H : ℤ) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralControls.source_ne_cycle_one",
+      "module": "PscVerif.ClassAPlusUpperCentralControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralControls.lean",
+      "line": 97,
+      "declaration": "theorem source_ne_cycle_one : source ≠ cyclePacket 1 := by"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralControls.strict_reconstruction_prefix",
+      "module": "PscVerif.ClassAPlusUpperCentralControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralControls.lean",
+      "line": 101,
+      "declaration": "theorem strict_reconstruction_prefix {n : ℕ} {β : ℝ} (hp : Family n 1 β) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralControls.reconstruction_delay_control",
+      "module": "PscVerif.ClassAPlusUpperCentralControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralControls.lean",
+      "line": 109,
+      "declaration": "theorem reconstruction_delay_control {n : ℕ} {β : ℝ} (hp : Family n 1 β) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralControls.retained_nonzero_cycle_control",
+      "module": "PscVerif.ClassAPlusUpperCentralControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralControls.lean",
+      "line": 120,
+      "declaration": "theorem retained_nonzero_cycle_control :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralControls.retained_half_tie_control",
+      "module": "PscVerif.ClassAPlusUpperCentralControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralControls.lean",
+      "line": 126,
+      "declaration": "theorem retained_half_tie_control :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralOrbit.coordinates_packet",
+      "module": "PscVerif.ClassAPlusUpperCentralOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralOrbit.lean",
+      "line": 25,
+      "declaration": "@[simp] theorem coordinates_packet (a b : Fin 3) (p q r : ℤ) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralOrbit.central_packet",
+      "module": "PscVerif.ClassAPlusUpperCentralOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralOrbit.lean",
+      "line": 30,
+      "declaration": "theorem central_packet {n : ℕ} {β : ℝ} {p : Packet} (hc : Central n β p) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralOrbit.shift_packet",
+      "module": "PscVerif.ClassAPlusUpperCentralOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralOrbit.lean",
+      "line": 42,
+      "declaration": "theorem shift_packet (n : ℕ) (β : ℝ) (a b : Fin 3) (p q r : ℤ) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralOrbit.advance_packet",
+      "module": "PscVerif.ClassAPlusUpperCentralOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralOrbit.lean",
+      "line": 53,
+      "declaration": "theorem advance_packet (n J : ℕ) (e : ℤ) (p : Packet) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralOrbit.advance_first",
+      "module": "PscVerif.ClassAPlusUpperCentralOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralOrbit.lean",
+      "line": 67,
+      "declaration": "theorem advance_first (n J : ℕ) (e : ℤ) (p : Packet) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralOrbit.advance_physical",
+      "module": "PscVerif.ClassAPlusUpperCentralOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralOrbit.lean",
+      "line": 72,
+      "declaration": "theorem advance_physical {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralOrbit.inflated_shift_no_half",
+      "module": "PscVerif.ClassAPlusUpperCentralOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralOrbit.lean",
+      "line": 82,
+      "declaration": "theorem inflated_shift_no_half {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralOrbit.nearestGap_error",
+      "module": "PscVerif.ClassAPlusUpperCentralOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralOrbit.lean",
+      "line": 90,
+      "declaration": "theorem nearestGap_error {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralOrbit.advance_central",
+      "module": "PscVerif.ClassAPlusUpperCentralOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralOrbit.lean",
+      "line": 103,
+      "declaration": "theorem advance_central {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralOrbit.central_indexed_step",
+      "module": "PscVerif.ClassAPlusUpperCentralOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralOrbit.lean",
+      "line": 113,
+      "declaration": "theorem central_indexed_step {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralOrbit.orbit_central",
+      "module": "PscVerif.ClassAPlusUpperCentralOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralOrbit.lean",
+      "line": 130,
+      "declaration": "theorem orbit_central {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralOrbit.orbit_step",
+      "module": "PscVerif.ClassAPlusUpperCentralOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralOrbit.lean",
+      "line": 138,
+      "declaration": "theorem orbit_step {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralOrbit.advance_reconstruction",
+      "module": "PscVerif.ClassAPlusUpperCentralOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralOrbit.lean",
+      "line": 152,
+      "declaration": "theorem advance_reconstruction (n J : ℕ) (e f : ℤ) (p : Packet) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralOrbit.orbit_reconstruction",
+      "module": "PscVerif.ClassAPlusUpperCentralOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralOrbit.lean",
+      "line": 164,
+      "declaration": "theorem orbit_reconstruction (n J : ℕ) (β : ℝ) (source : Packet) (k : ℕ) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralOrbit.reconstructed_recurrence",
+      "module": "PscVerif.ClassAPlusUpperCentralOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralOrbit.lean",
+      "line": 173,
+      "declaration": "theorem reconstructed_recurrence (n : ℕ) (β : ℝ) (a b c : ℤ)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralOrbit.orbit_recurrence",
+      "module": "PscVerif.ClassAPlusUpperCentralOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralOrbit.lean",
+      "line": 186,
+      "declaration": "theorem orbit_recurrence {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralOrbit.exists_literal_central_orbit",
+      "module": "PscVerif.ClassAPlusUpperCentralOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralOrbit.lean",
+      "line": 228,
+      "declaration": "theorem exists_literal_central_orbit {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralOrbit.prefixIndices_length",
+      "module": "PscVerif.ClassAPlusUpperCentralOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralOrbit.lean",
+      "line": 247,
+      "declaration": "@[simp] theorem prefixIndices_length {n J : ℕ} {β : ℝ} {source : Packet}"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralOrbit.orbit_prefix_path",
+      "module": "PscVerif.ClassAPlusUpperCentralOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralOrbit.lean",
+      "line": 251,
+      "declaration": "theorem orbit_prefix_path {n J : ℕ} {β : ℝ} {source : Packet}"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperCentralOrbit.orbit_prefix_strict_path",
+      "module": "PscVerif.ClassAPlusUpperCentralOrbit",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperCentralOrbit.lean",
+      "line": 260,
+      "declaration": "theorem orbit_prefix_strict_path {n J : ℕ} {β : ℝ} {source : Packet}"
+    },
+    {
       "name": "Psc.ClassAPlusUpperCycleCompletion.decrement_path",
       "module": "PscVerif.ClassAPlusUpperCycleCompletion",
       "private": false,
@@ -10552,6 +12472,694 @@
       "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntry.lean",
       "line": 182,
       "declaration": "theorem exists_entry_power (β m : ℝ) (hβ : 1 < β) (hm : 0 < m) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryBound.swap_swap",
+      "module": "PscVerif.ClassAPlusUpperEntryBound",
+      "private": true,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryBound.lean",
+      "line": 38,
+      "declaration": "private theorem swap_swap (p : Packet) : p.swap.swap = p := by"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryBound.actual_orient",
+      "module": "PscVerif.ClassAPlusUpperEntryBound",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryBound.lean",
+      "line": 50,
+      "declaration": "theorem actual_orient (n : ℕ) (β : ℝ) (p : Packet)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryBound.actual_interior",
+      "module": "PscVerif.ClassAPlusUpperEntryBound",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryBound.lean",
+      "line": 56,
+      "declaration": "theorem actual_interior {n : ℕ} {β : ℝ} (a : State n β) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryBound.margin_pos",
+      "module": "PscVerif.ClassAPlusUpperEntryBound",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryBound.lean",
+      "line": 63,
+      "declaration": "theorem margin_pos {n J : ℕ} {β : ℝ} (hp : Family n J β) (a : State n β) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryBound.margin_lt_four",
+      "module": "PscVerif.ClassAPlusUpperEntryBound",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryBound.lean",
+      "line": 69,
+      "declaration": "theorem margin_lt_four {n J : ℕ} {β : ℝ} (hp : Family n J β) (a : State n β) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryBound.state_alternative",
+      "module": "PscVerif.ClassAPlusUpperEntryBound",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryBound.lean",
+      "line": 83,
+      "declaration": "theorem state_alternative {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryBound.state_entry_for_power",
+      "module": "PscVerif.ClassAPlusUpperEntryBound",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryBound.lean",
+      "line": 116,
+      "declaration": "theorem state_entry_for_power {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryBound.margin_orient",
+      "module": "PscVerif.ClassAPlusUpperEntryBound",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryBound.lean",
+      "line": 135,
+      "declaration": "theorem margin_orient (n : ℕ) (β : ℝ) (p : Packet)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryBound.source_margin_pos",
+      "module": "PscVerif.ClassAPlusUpperEntryBound",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryBound.lean",
+      "line": 145,
+      "declaration": "theorem source_margin_pos {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryBound.entry_for_power",
+      "module": "PscVerif.ClassAPlusUpperEntryBound",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryBound.lean",
+      "line": 150,
+      "declaration": "theorem entry_for_power {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryBound.least_entry_power_spec",
+      "module": "PscVerif.ClassAPlusUpperEntryBound",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryBound.lean",
+      "line": 167,
+      "declaration": "theorem least_entry_power_spec {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryBound.all_source_entry",
+      "module": "PscVerif.ClassAPlusUpperEntryBound",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryBound.lean",
+      "line": 180,
+      "declaration": "theorem all_source_entry {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryBound.central_empty_entry",
+      "module": "PscVerif.ClassAPlusUpperEntryBound",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryBound.lean",
+      "line": 189,
+      "declaration": "theorem central_empty_entry {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryBound.family_of_nd",
+      "module": "PscVerif.ClassAPlusUpperEntryBound",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryBound.lean",
+      "line": 197,
+      "declaration": "theorem family_of_nd (n d : ℕ) (β : ℝ) (hn : 7 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryBound.upper_sigma_original",
+      "module": "PscVerif.ClassAPlusUpperEntryBound",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryBound.lean",
+      "line": 205,
+      "declaration": "theorem upper_sigma_original (n d : ℕ) (hdhi : d ≤ 2*n+12) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryBound.entry_for_power_nd",
+      "module": "PscVerif.ClassAPlusUpperEntryBound",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryBound.lean",
+      "line": 210,
+      "declaration": "theorem entry_for_power_nd (n d : ℕ) (β : ℝ) (hn : 7 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryBound.all_source_entry_nd",
+      "module": "PscVerif.ClassAPlusUpperEntryBound",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryBound.lean",
+      "line": 225,
+      "declaration": "theorem all_source_entry_nd (n d : ℕ) (β : ℝ) (hn : 7 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryBound.exists_root_all_source_entry",
+      "module": "PscVerif.ClassAPlusUpperEntryBound",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryBound.lean",
+      "line": 247,
+      "declaration": "theorem exists_root_all_source_entry (n d : ℕ) (hn : 7 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryControls.first_edge",
+      "module": "PscVerif.ClassAPlusUpperEntryControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryControls.lean",
+      "line": 25,
+      "declaration": "theorem first_edge (n d : ℕ) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryControls.second_edge",
+      "module": "PscVerif.ClassAPlusUpperEntryControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryControls.lean",
+      "line": 42,
+      "declaration": "theorem second_edge (n d : ℕ) (hn : 2 ≤ n) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryControls.two_edge_path",
+      "module": "PscVerif.ClassAPlusUpperEntryControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryControls.lean",
+      "line": 53,
+      "declaration": "theorem two_edge_path (n d : ℕ) (hn : 2 ≤ n) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryControls.top_trace",
+      "module": "PscVerif.ClassAPlusUpperEntryControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryControls.lean",
+      "line": 65,
+      "declaration": "theorem top_trace (n d : ℕ) (hn : 2 ≤ n) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryControls.bottom_trace",
+      "module": "PscVerif.ClassAPlusUpperEntryControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryControls.lean",
+      "line": 82,
+      "declaration": "theorem bottom_trace (n d : ℕ) (hn : 2 ≤ n) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryControls.top_prefix_coordinates",
+      "module": "PscVerif.ClassAPlusUpperEntryControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryControls.lean",
+      "line": 100,
+      "declaration": "theorem top_prefix_coordinates (n d : ℕ) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryControls.bottom_prefix_coordinates",
+      "module": "PscVerif.ClassAPlusUpperEntryControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryControls.lean",
+      "line": 110,
+      "declaration": "theorem bottom_prefix_coordinates : parikhZ bottomPrefix = ![0,1,1] := by"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryControls.composed_offset_identity",
+      "module": "PscVerif.ClassAPlusUpperEntryControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryControls.lean",
+      "line": 115,
+      "declaration": "theorem composed_offset_identity (n d : ℕ) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryControls.wrong_last_index_rejected",
+      "module": "PscVerif.ClassAPlusUpperEntryControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryControls.lean",
+      "line": 127,
+      "declaration": "theorem wrong_last_index_rejected (n d : ℕ) (q : Packet) (hq : q.top = 1) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryControls.y_mark_is_run",
+      "module": "PscVerif.ClassAPlusUpperEntryControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryControls.lean",
+      "line": 143,
+      "declaration": "theorem y_mark_is_run (n d : ℕ) (a : Fin 3) (m : Mark (plusSigma n d a))"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryControls.source_shift",
+      "module": "PscVerif.ClassAPlusUpperEntryControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryControls.lean",
+      "line": 174,
+      "declaration": "@[simp] theorem source_shift (n : ℕ) (β : ℝ) : shift n β source = cLength β := by"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryControls.middle_shift",
+      "module": "PscVerif.ClassAPlusUpperEntryControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryControls.lean",
+      "line": 177,
+      "declaration": "@[simp] theorem middle_shift (n : ℕ) (β : ℝ) : shift n β middle = cLength β-1 := by"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryControls.target_shift",
+      "module": "PscVerif.ClassAPlusUpperEntryControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryControls.lean",
+      "line": 181,
+      "declaration": "@[simp] theorem target_shift (n : ℕ) (β : ℝ) : shift n β target = 0 := by"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryControls.source_not_central",
+      "module": "PscVerif.ClassAPlusUpperEntryControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryControls.lean",
+      "line": 184,
+      "declaration": "theorem source_not_central (n : ℕ) (β : ℝ) : ¬Central n β source := by"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryControls.source_strict",
+      "module": "PscVerif.ClassAPlusUpperEntryControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryControls.lean",
+      "line": 187,
+      "declaration": "theorem source_strict {n J : ℕ} {β : ℝ} (hp : Family n J β) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryControls.one_edge_central_impossible",
+      "module": "PscVerif.ClassAPlusUpperEntryControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryControls.lean",
+      "line": 197,
+      "declaration": "theorem one_edge_central_impossible {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryControls.two_edge_strict_path",
+      "module": "PscVerif.ClassAPlusUpperEntryControls",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryControls.lean",
+      "line": 223,
+      "declaration": "theorem two_edge_strict_path {n J : ℕ} {β : ℝ} (hp : Family n J β) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryTransport.steps_snoc",
+      "module": "PscVerif.ClassAPlusUpperEntryTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryTransport.lean",
+      "line": 24,
+      "declaration": "theorem steps_snoc {α : Type} {edge : α → α → Prop}"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryTransport.ordered_interior_to_steps",
+      "module": "PscVerif.ClassAPlusUpperEntryTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryTransport.lean",
+      "line": 36,
+      "declaration": "theorem ordered_interior_to_steps {α : Type} {edge : α → α → Prop}"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryTransport.steps_ordered_path",
+      "module": "PscVerif.ClassAPlusUpperEntryTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryTransport.lean",
+      "line": 60,
+      "declaration": "theorem steps_ordered_path {α : Type} {edge : α → α → Prop}"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryTransport.original_traces_of_ordered",
+      "module": "PscVerif.ClassAPlusUpperEntryTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryTransport.lean",
+      "line": 88,
+      "declaration": "theorem original_traces_of_ordered {s : Fin 3 → Word} {source target : Packet}"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryTransport.steps_traced_interior",
+      "module": "PscVerif.ClassAPlusUpperEntryTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryTransport.lean",
+      "line": 95,
+      "declaration": "theorem steps_traced_interior {α : Type} {edge : α → α → Prop}"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryTransport.ordered_interior_path_swap",
+      "module": "PscVerif.ClassAPlusUpperEntryTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryTransport.lean",
+      "line": 113,
+      "declaration": "theorem ordered_interior_path_swap {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ}"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryTransport.original_traces_swap",
+      "module": "PscVerif.ClassAPlusUpperEntryTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryTransport.lean",
+      "line": 125,
+      "declaration": "theorem original_traces_swap {s : Fin 3 → Word} {source target : Packet}"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryTransport.swap_preserves_count_and_tracks",
+      "module": "PscVerif.ClassAPlusUpperEntryTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryTransport.lean",
+      "line": 139,
+      "declaration": "theorem swap_preserves_count_and_tracks {s : Fin 3 → Word} {ℓ : Fin 3 → ℝ}"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperEntryTransport.original_traces_bottom_minus_top",
+      "module": "PscVerif.ClassAPlusUpperEntryTransport",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperEntryTransport.lean",
+      "line": 150,
+      "declaration": "theorem original_traces_bottom_minus_top {s : Fin 3 → Word}"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.lengths_x",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 33,
+      "declaration": "@[simp] theorem lengths_x (n : ℕ) (β : ℝ) : lengths n β 0 = xLength n β := rfl"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.lengths_c",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 34,
+      "declaration": "@[simp] theorem lengths_c (n : ℕ) (β : ℝ) : lengths n β 1 = cLength β := rfl"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.lengths_y",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 35,
+      "declaration": "@[simp] theorem lengths_y (n : ℕ) (β : ℝ) : lengths n β 2 = 1 := rfl"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.length_bounds",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 37,
+      "declaration": "theorem length_bounds {n J : ℕ} {β : ℝ} (hp : Family n J β) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.lengths_pos",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 56,
+      "declaration": "theorem lengths_pos {n J : ℕ} {β : ℝ} (hp : Family n J β) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.lengths_lt_four",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 62,
+      "declaration": "theorem lengths_lt_four {n J : ℕ} {β : ℝ} (hp : Family n J β) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.lengths_first_lt",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 68,
+      "declaration": "theorem lengths_first_lt {n J : ℕ} {β : ℝ} (hp : Family n J β) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.run_length_lower",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 74,
+      "declaration": "theorem run_length_lower {n J : ℕ} {β : ℝ} (hp : Family n J β) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.physical_replicate_y",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 79,
+      "declaration": "theorem physical_replicate_y (n : ℕ) (β : ℝ) (r : ℕ) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.literal_length_formula",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 83,
+      "declaration": "theorem literal_length_formula (n J : ℕ) (β : ℝ) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.literal_scaling",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 90,
+      "declaration": "theorem literal_scaling {n J : ℕ} {β : ℝ} (hp : Family n J β) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.shift_swap",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 106,
+      "declaration": "@[simp] theorem shift_swap (n : ℕ) (β : ℝ) (p : Packet) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.shift_no_half",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 110,
+      "declaration": "theorem shift_no_half {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.interior_iff",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 117,
+      "declaration": "theorem interior_iff {n J : ℕ} {β : ℝ} (hp : Family n J β) (p : Packet) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.marked_edge",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 130,
+      "declaration": "theorem marked_edge (n J : ℕ) (p : Packet)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.marked_shift",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 135,
+      "declaration": "theorem marked_shift {n J : ℕ} {β : ℝ} (hp : Family n J β) (p : Packet)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.central_swap",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 146,
+      "declaration": "theorem central_swap {n : ℕ} {β : ℝ} {p : Packet} (hc : Central n β p) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.central_interior",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 151,
+      "declaration": "theorem central_interior {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.threshold_formula",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 163,
+      "declaration": "theorem threshold_formula (n : ℕ) (β : ℝ) (a b : Fin 3) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.run_prefix_length",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 167,
+      "declaration": "theorem run_prefix_length (n J : ℕ) (β : ℝ) (a : Fin 3) (i : ℕ)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.last_prefix_length",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 173,
+      "declaration": "theorem last_prefix_length (n J : ℕ) (β : ℝ) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.direct_entry",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 180,
+      "declaration": "theorem direct_entry {n J : ℕ} {β : ℝ} (hp : Family n J β) (p : Packet)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.direct_path",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 236,
+      "declaration": "theorem direct_path {n J : ℕ} {β : ℝ} (hp : Family n J β) (p : Packet)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.reversed_direct_path",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 247,
+      "declaration": "theorem reversed_direct_path {n J : ℕ} {β : ℝ} (hp : Family n J β) (p : Packet)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.prepend_direct",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 262,
+      "declaration": "theorem prepend_direct {n J : ℕ} {β : ℝ} (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.last_first_child",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 274,
+      "declaration": "theorem last_first_child {n J : ℕ} {β : ℝ} (hp : Family n J β) (p : Packet) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.runlast_first_child",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 291,
+      "declaration": "theorem runlast_first_child {n J : ℕ} {β : ℝ} (hp : Family n J β) (p : Packet) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.last_runfirst_child",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 315,
+      "declaration": "theorem last_runfirst_child {n J : ℕ} {β : ℝ} (hp : Family n J β) (p : Packet) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperLiteralEntry.oriented_alternative",
+      "module": "PscVerif.ClassAPlusUpperLiteralEntry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean",
+      "line": 338,
+      "declaration": "theorem oriented_alternative {n J : ℕ} {β : ℝ} (hp : Family n J β) (p : Packet)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperNoHalfTies.polyZ_monic",
+      "module": "PscVerif.ClassAPlusUpperNoHalfTies",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperNoHalfTies.lean",
+      "line": 32,
+      "declaration": "theorem polyZ_monic (n J : ℕ) : (polyZ n J).Monic := by"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperNoHalfTies.polyQ_monic",
+      "module": "PscVerif.ClassAPlusUpperNoHalfTies",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperNoHalfTies.lean",
+      "line": 36,
+      "declaration": "theorem polyQ_monic (n J : ℕ) : (polyQ n J).Monic := by"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperNoHalfTies.polyQ_degree",
+      "module": "PscVerif.ClassAPlusUpperNoHalfTies",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperNoHalfTies.lean",
+      "line": 40,
+      "declaration": "theorem polyQ_degree (n J : ℕ) : (polyQ n J).natDegree = 3 := by"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperNoHalfTies.polyQ_irreducible",
+      "module": "PscVerif.ClassAPlusUpperNoHalfTies",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperNoHalfTies.lean",
+      "line": 46,
+      "declaration": "theorem polyQ_irreducible (n J : ℕ) (hn : 7 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperNoHalfTies.polyQ_aeval_root",
+      "module": "PscVerif.ClassAPlusUpperNoHalfTies",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperNoHalfTies.lean",
+      "line": 71,
+      "declaration": "theorem polyQ_aeval_root {n J : ℕ} {β : ℝ} (hp : Family n J β) :"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperNoHalfTies.rational_quadratic_zero",
+      "module": "PscVerif.ClassAPlusUpperNoHalfTies",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperNoHalfTies.lean",
+      "line": 76,
+      "declaration": "theorem rational_quadratic_zero (n J : ℕ) (β : ℝ) (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperNoHalfTies.integral_quadratic_zero",
+      "module": "PscVerif.ClassAPlusUpperNoHalfTies",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperNoHalfTies.lean",
+      "line": 95,
+      "declaration": "theorem integral_quadratic_zero (n J : ℕ) (β : ℝ) (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperNoHalfTies.physical_shift_ne_half_integer",
+      "module": "PscVerif.ClassAPlusUpperNoHalfTies",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperNoHalfTies.lean",
+      "line": 104,
+      "declaration": "theorem physical_shift_ne_half_integer (n J : ℕ) (β : ℝ) (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperNoHalfTies.vector_shift_ne_half_integer",
+      "module": "PscVerif.ClassAPlusUpperNoHalfTies",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperNoHalfTies.lean",
+      "line": 121,
+      "declaration": "theorem vector_shift_ne_half_integer (n J : ℕ) (β : ℝ) (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperNoHalfTies.physical_abs_ne_half",
+      "module": "PscVerif.ClassAPlusUpperNoHalfTies",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperNoHalfTies.lean",
+      "line": 128,
+      "declaration": "theorem physical_abs_ne_half (n J : ℕ) (β : ℝ) (hp : Family n J β)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperNoHalfTies.family_of_parameters",
+      "module": "PscVerif.ClassAPlusUpperNoHalfTies",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperNoHalfTies.lean",
+      "line": 143,
+      "declaration": "theorem family_of_parameters (n d : ℕ) (β : ℝ)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperNoHalfTies.family_root_exists",
+      "module": "PscVerif.ClassAPlusUpperNoHalfTies",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperNoHalfTies.lean",
+      "line": 155,
+      "declaration": "theorem family_root_exists (n J : ℕ) (hn : 7 ≤ n)"
+    },
+    {
+      "name": "Psc.ClassAPlusUpperNoHalfTies.literal_shift_ne_half_integer",
+      "module": "PscVerif.ClassAPlusUpperNoHalfTies",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassAPlusUpperNoHalfTies.lean",
+      "line": 185,
+      "declaration": "theorem literal_shift_ne_half_integer (n d : ℕ) (β : ℝ)"
     },
     {
       "name": "Psc.ClassAPlusUpperRecurrence.Family.beta_gt_eleven",
@@ -33732,17 +36340,17 @@
     {
       "name": "Psc.OccurrenceAncestry.inflate_interval_bounds",
       "module": "PscVerif.OccurrenceAncestry",
-      "private": true,
+      "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceAncestry.lean",
-      "line": 92,
-      "declaration": "private theorem inflate_interval_bounds (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
+      "line": 93,
+      "declaration": "theorem inflate_interval_bounds (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
     },
     {
       "name": "Psc.OccurrenceAncestry.overlapping_parent",
       "module": "PscVerif.OccurrenceAncestry",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceAncestry.lean",
-      "line": 109,
+      "line": 110,
       "declaration": "theorem overlapping_parent (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
     },
     {
@@ -33750,7 +36358,7 @@
       "module": "PscVerif.OccurrenceAncestry",
       "private": false,
       "source": "proof/PscVerif/PscVerif/OccurrenceAncestry.lean",
-      "line": 143,
+      "line": 144,
       "declaration": "theorem covers_iterates_of_closed (s : Fin 3 → Word) (ℓ : Fin 3 → ℝ) (β : ℝ)"
     },
     {
@@ -46402,6 +49010,14 @@
       "declaration": "theorem span_character_closure_eq_top :"
     },
     {
+      "name": "Psc.PeriodicPartnerSolenoidHaar.measurePreserving_shiftS",
+      "module": "PscVerif.PeriodicPartnerSolenoidHaar",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidHaar.lean",
+      "line": 39,
+      "declaration": "theorem measurePreserving_shiftS : MeasurePreserving (shiftS S) (haar S) (haar S) :="
+    },
+    {
       "name": "Psc.PeriodicPartnerSpectral.pow_mulVec_eigen",
       "module": "PscVerif.PeriodicPartnerSpectral",
       "private": false,
@@ -52306,6 +54922,270 @@
       "declaration": "theorem control_trap_has_no_terminal_path :"
     },
     {
+      "name": "Psc.ShiftedRadixCycle.R_succ",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 45,
+      "declaration": "theorem R_succ (w : ℕ → ℤ) (i : ℕ) : R w (i + 1) = R w i + 3 * w i - 1 := rfl"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.R_succ₂",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 47,
+      "declaration": "theorem R_succ₂ (w : ℕ → ℤ) (i : ℕ) : R w (i + 2) = R w (i + 1) + 3 * w (i + 1) - 1 := rfl"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.R_succ₃",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 49,
+      "declaration": "theorem R_succ₃ (w : ℕ → ℤ) (i : ℕ) : R w (i + 3) = R w (i + 2) + 3 * w (i + 2) - 1 := rfl"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.window",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 54,
+      "declaration": "theorem window {α : ℝ} (hα : 0 < α) (hθ : 2 * α + 2 * α ^ 2 < 1) (x y z : ℤ)"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.lo_spec",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 97,
+      "declaration": "theorem lo_spec (w : ℕ → ℤ) (i : ℕ) :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.lo_spec_succ",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 106,
+      "declaration": "theorem lo_spec_succ (w : ℕ → ℤ) (i : ℕ) :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.hi_spec",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 111,
+      "declaration": "theorem hi_spec (w : ℕ → ℤ) (i : ℕ) :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.hi_spec_succ",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 120,
+      "declaration": "theorem hi_spec_succ (w : ℕ → ℤ) (i : ℕ) :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.R_window",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 129,
+      "declaration": "theorem R_window (hα : 0 < α) (hθ : 2 * α + 2 * α ^ 2 < 1) (hE : Bounded α w) (i : ℕ) :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.nested_succ",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 139,
+      "declaration": "theorem nested_succ (hα : 0 < α) (hθ : 2 * α + 2 * α ^ 2 < 1) (hE : Bounded α w) (i : ℕ) :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.nested",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 148,
+      "declaration": "theorem nested (hα : 0 < α) (hθ : 2 * α + 2 * α ^ 2 < 1) (hE : Bounded α w) {i j : ℕ}"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.lo_le_hi",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 156,
+      "declaration": "theorem lo_le_hi (w : ℕ → ℤ) (i : ℕ) : lo w i ≤ hi w i :="
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.eventually_constant",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 160,
+      "declaration": "theorem eventually_constant (hα : 0 < α) (hθ : 2 * α + 2 * α ^ 2 < 1) (hE : Bounded α w) :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.lo_recurs",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 173,
+      "declaration": "theorem lo_recurs {i₀ : ℕ} (hc : ∀ i, i₀ ≤ i → lo w i = lo w i₀ ∧ hi w i = hi w i₀)"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.hi_recurs",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 181,
+      "declaration": "theorem hi_recurs {i₀ : ℕ} (hc : ∀ i, i₀ ≤ i → lo w i = lo w i₀ ∧ hi w i = hi w i₀)"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.lo_recurs_mul",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 189,
+      "declaration": "theorem lo_recurs_mul {i₀ : ℕ} (hc : ∀ i, i₀ ≤ i → lo w i = lo w i₀ ∧ hi w i = hi w i₀)"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.hi_recurs_mul",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 197,
+      "declaration": "theorem hi_recurs_mul {i₀ : ℕ} (hc : ∀ i, i₀ ≤ i → lo w i = lo w i₀ ∧ hi w i = hi w i₀)"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.frozen",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 215,
+      "declaration": "theorem frozen (hα : 0 < α) (hθ : 2 * α + 2 * α ^ 2 < 1) (hE : Bounded α w) :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.child_bounds",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 272,
+      "declaration": "theorem child_bounds {a a' d' e' : ℤ} (h : Child k a a' d' e') (hk : 0 ≤ k) :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.child_d_two",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 276,
+      "declaration": "theorem child_d_two {a a' d' e' : ℤ} (h : Child k a a' d' e') : d' = 2 → a = 2 := by"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.child_into_two",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 279,
+      "declaration": "theorem child_into_two {a a' d' e' : ℤ} (h : Child k a a' d' e') :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.child_of_two",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 283,
+      "declaration": "theorem child_of_two {a a' d' e' : ℤ} (h : Child k a a' d' e') :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.child_e_eq",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 287,
+      "declaration": "theorem child_e_eq {a a' d' e' : ℤ} (h : Child k a a' d' e') (hk : 2 ≤ k) :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.child_d_zero",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 291,
+      "declaration": "theorem child_d_zero {a a' d' e' : ℤ} (h : Child k a a' d' e') :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.child_of_zero",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 295,
+      "declaration": "theorem child_of_zero {a a' d' e' : ℤ} (h : Child k a a' d' e') :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.child_into_zero",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 299,
+      "declaration": "theorem child_into_zero {a a' d' e' : ℤ} (h : Child k a a' d' e') :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.child_e_pos",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 303,
+      "declaration": "theorem child_e_pos {a a' d' e' : ℤ} (h : Child k a a' d' e') :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.patternII_false",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 317,
+      "declaration": "theorem patternII_false (hk : 2 ≤ k) (hD : Digits k a d e w) {b : ℕ} {γ : ℤ}"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.patternI_one",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 384,
+      "declaration": "theorem patternI_one (hk : 2 ≤ k) (hD : Digits k a d e w) {b : ℕ} {g : ℤ}"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.patternI_types",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 468,
+      "declaration": "theorem patternI_types (hk : 2 ≤ k) (hD : Digits k a d e w) {b : ℕ}"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.PatternI.shift",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 526,
+      "declaration": "theorem PatternI.shift {b : ℕ} {g : ℤ} (h : PatternI w b g) (j : ℕ) :"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.eventually_cycle",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 537,
+      "declaration": "theorem eventually_cycle {α : ℝ} {k : ℤ} {a d e w : ℕ → ℤ} (hα : 0 < α)"
+    },
+    {
+      "name": "Psc.ShiftedRadixCycle.bounded_alone_insufficient",
+      "module": "PscVerif.ShiftedRadixCycle",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean",
+      "line": 563,
+      "declaration": "theorem bounded_alone_insufficient :"
+    },
+    {
       "name": "Psc.N_mul_N",
       "module": "PscVerif.Shuffle",
       "private": false,
@@ -55876,6 +58756,11 @@
       "statement_heading": "**Corollary B (given these geometric inputs, proved in #480 §3 and §8):** every represented pair e={c,c'} individually satisfies"
     },
     {
+      "source": "docs/c4-family-symbolic-spectrum-2026-11-22.md",
+      "line": 60,
+      "statement_heading": "**Theorem (Lean endpoint).** For every \\(k\\ge2\\), the literal left shift \\(S\\) on \\((X_k,\\widehat\\mu_k)\\), where \\(\\widehat\\mu_k\\) is `C4FamilySymbolicSpectrum.wordMeasure k hk hk₂`, has pure discrete complex \\(L^2\\) spectrum. The closed complex span of its nonzero Koopman eigenvectors is the entire \\(L^2\\) space. Lean constructs this probability by pushing the specified hull probability through the corrected-strip projection and the itinerary conjugacy, and proves its shift invariance."
+    },
+    {
       "source": "docs/c4-fc2-orientation-2026-11-17.md",
       "line": 154,
       "statement_heading": "**Theorem O (orientation transfer).**"
@@ -56949,6 +59834,11 @@
       "source": "docs/formal-productivity-reduction-2026-10-04.md",
       "line": 86,
       "statement_heading": "**Corollary FP″** (2026-10-04; adds the import of"
+    },
+    {
+      "source": "docs/grh-chebotarev-auxiliary-prime-stop-go-2026-11-22.md",
+      "line": 89,
+      "statement_heading": "*Lemma.* Let `M ∈ M_d(ℤ)` with `det M ≠ 0` and"
     },
     {
       "source": "docs/issue139-ac-gap4-2026-10-22.md",
@@ -58279,8 +61169,15 @@
   "input_digests": {
     "claim_governance.toml": "895eb1950ccd19725ad600b1d40d988652d5e15524a336288bef7761411d8a7c",
     "proof/PscVerif/A1PrimeTailAudit.lean": "eee41a524a6a114716a7704f169726b6484ab56c2398431dcd297fe6809a0b23",
+    "proof/PscVerif/BHBoundedFactorsAudit.lean": "a46b4035a1213e116db881d3ba4707de47ef112592162faa494728fcb2e01888",
     "proof/PscVerif/BHFiniteReachabilityAudit.lean": "5469fdefea80286841bb3b40b7944a4674de5dce03ca12b490ee72b77ca2b79d",
+    "proof/PscVerif/BHNearDiagonalAudit.lean": "f7daf9d0d9998813d39db7335054ad4f4c94dd828723633eea7bb656aa76579e",
+    "proof/PscVerif/BHWindowChoiceAudit.lean": "2c28a7a1f0efaf78eea797c6d0ffefbd016d3646e98c53ba05f7ad30adca6f0f",
     "proof/PscVerif/C4CharacterOrbitsAudit.lean": "23c1dae1939fe054375bb8de0fa9add025b21728f38b98a98956cb0d8f50191f",
+    "proof/PscVerif/C4FamilyCanonicalMeasureAudit.lean": "ec64b73d643eea4b815ece6a110cbe5637edfe9c377ec921bdf3746c6b55bab4",
+    "proof/PscVerif/C4FamilyHaarAudit.lean": "ce2e947f905a7da206827c6c7c6fa97943eae3823dffd4bf3881da385f3f0607",
+    "proof/PscVerif/C4FamilyMeasuredSpectrumAudit.lean": "cea480792090c92694eab6d32219d52f03439a963d919b41868257b08fdca5ff",
+    "proof/PscVerif/C4FamilySymbolicSpectrumAudit.lean": "e3f3e0172a5a36fdf5117d2dc44e6c4de3829fd99c5ae9574385efd197af5085",
     "proof/PscVerif/C4FiniteHullWitnessAudit.lean": "58d7293dcc4baf9066599bf8349963512855a654ab680e357e7bd38e35d38f47",
     "proof/PscVerif/C4FiniteProximalAudit.lean": "9d75e8645c7eebbe0f8479d267ad66f6ff4b1976f759f8b472f510f29909c851",
     "proof/PscVerif/C4FiniteSynchronizationAudit.lean": "a04634c4d67258b9de1dd8bcb1554b8174f59336a144bd5e2cb402ac861029c9",
@@ -58294,9 +61191,12 @@
     "proof/PscVerif/ClassAMinusLiteralEntryAudit.lean": "118ac35be0083152782fda109158afaebdf6f8a1cad899d315eac573528904b4",
     "proof/PscVerif/ClassAMinusUpperEscapeAudit.lean": "97ca05c3631797ebc4c0ec6553a91fd008f0caf64021778d9ed49163f993f000",
     "proof/PscVerif/ClassAPlusConstantRecurrenceAudit.lean": "abdabdd452dedc3de239263c8c2f052b84216552baf205106606a45635b1b631",
+    "proof/PscVerif/ClassAPlusUpperCentralCompletionAudit.lean": "8994cd2aaa56d47a80bfed3dc85895ef769a88c56fa4ea2a9233771ad09b5c1e",
     "proof/PscVerif/ClassAPlusUpperCycleCompletionAudit.lean": "6ac8660fe4babef37c7e6fd191507bb1898852837b63d622e465762d881dd040",
     "proof/PscVerif/ClassAPlusUpperCyclesAudit.lean": "f1674a21d8c96382b5c3ea009525c43baf210a2a6db427dd3bbb60923b087c6e",
     "proof/PscVerif/ClassAPlusUpperEntryAudit.lean": "9912e29a73985c09d655922df3adc7eb6afafe5b1ee8c75dd66408c0068203c5",
+    "proof/PscVerif/ClassAPlusUpperEntryControlsAudit.lean": "474e6d6c3ed953fcc1ab519941a8481c3bfb4aa63836542a83e9b46f4baf5a3a",
+    "proof/PscVerif/ClassAPlusUpperLiteralEntryAudit.lean": "cb5f7e321aff782039de0f04fdef4bc9fe1cf8865eee4d2ee05c951e81205828",
     "proof/PscVerif/ClassAPlusUpperRecurrenceAudit.lean": "ef12f802e6eb10dbf2b02ce84cccbcdf9164aed9356f4fe2917ee513923824aa",
     "proof/PscVerif/ClassARunDescentAudit.lean": "a1fe09a772c2112929a6f892993da045628ef410f15cd53b1d8eba74343959fc",
     "proof/PscVerif/ClassAZeroDefectEscapeAudit.lean": "81efe5b8745576f8f15a59a263563b31e08307e9c432e78fa2ef9021a613b2d1",
@@ -58312,8 +61212,12 @@
     "proof/PscVerif/PscVerif/ArchivedPayloadConsumer.lean": "39768a54a2c022ef460e08dbd1879177fdf598bb8645702233264738ddf43e49",
     "proof/PscVerif/PscVerif/ArchivedPayloadControls.lean": "c1687369bb8feec4b5c784c3ac6f4cc6dccb9ece05af539a13f11d1cffb83371",
     "proof/PscVerif/PscVerif/ArchivedPayloadEmit.lean": "3d56413774e33215a1fb507ca418f08b4d048b3986c2c309a9cc9d626a15a6e3",
+    "proof/PscVerif/PscVerif/BHBoundedFactors.lean": "cce5578ad9f622d6d365a70e8e7d340fa80dcf697c84e87dcfb079befc2ccf01",
     "proof/PscVerif/PscVerif/BHFiniteCarrier.lean": "58ca13926d84d3107cf69408c457a4e7da3ca96761818e5cc0086d2c017537fe",
     "proof/PscVerif/PscVerif/BHFiniteReachability.lean": "5b9f2fd96957c25211ebadb767ba7747dd2966b474bce2922c56e87d4f623e94",
+    "proof/PscVerif/PscVerif/BHNearDiagonalDescent.lean": "853edcc974582ca697e1ead30cdb38604e5e9e420720f699ec7a4931ba5012a7",
+    "proof/PscVerif/PscVerif/BHNearDiagonalLiteral.lean": "e8ac40b14bcd6f5afcc94a0c890f617911c13f44b087e745626b70e59df6801d",
+    "proof/PscVerif/PscVerif/BHWindowChoice.lean": "54d92d8910380661a90ca4433be0a5f952f49bc3871766d5e5aad075eb3f4b1c",
     "proof/PscVerif/PscVerif/BPrime.lean": "77ec2e5e0cab8e7ff1221b698f315ef0bcd2ea61ec88e2f88efd2053cc0c9138",
     "proof/PscVerif/PscVerif/BPrimeBinding.lean": "f9c9723bc6bd59b95ec83c632aa81b5d47dcef1e3c805a692279c4dec2448048",
     "proof/PscVerif/PscVerif/BPrimeCore.lean": "c3cfe60af11561d1a5b54fde4b2d3281d251dbc930316f6c30ea894600b651f3",
@@ -58321,12 +61225,22 @@
     "proof/PscVerif/PscVerif/Binomial.lean": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
     "proof/PscVerif/PscVerif/BoundarySeedPath.lean": "bea69cb93d5bcd15b1b88c48062b4404a721908092af1b5f5b42e6184f7abae3",
+    "proof/PscVerif/PscVerif/C4FamilyCanonicalSpectrum.lean": "0739f8f55f80fa92abf0865ed90e8bece467d6889f494085cb6d71fa0c70cda1",
     "proof/PscVerif/PscVerif/C4FamilyCharacterOrbits.lean": "a8604253adf021654c5b0cb572c54b7a7b9aad7fc255648c5460a6e53de2ebd6",
     "proof/PscVerif/PscVerif/C4FamilyFiniteFibreSynchronization.lean": "9dd07cf862829b61a18e82409893ebd9fba6855a3d0bda2543d786c92355f390",
     "proof/PscVerif/PscVerif/C4FamilyFiniteProximal.lean": "f0626913d31535e076e6afd0ce495ad5d4c49b1214d81c9b3b3f5b533244dc1c",
     "proof/PscVerif/PscVerif/C4FamilyFiniteZeroFibre.lean": "47832e3754b2cf087dced965641afc954537b94949d990f264f9bd91835221b8",
+    "proof/PscVerif/PscVerif/C4FamilyHaarErgodicity.lean": "81cf9efa86e64520927307c305696ea4692c339f974daee94f87e1a37b5538ef",
+    "proof/PscVerif/PscVerif/C4FamilyHaarSingletonFibres.lean": "66323188238cb1bcbe99c98e20cfdacd5e9adedcd60b3ff3e7f93ae125fb10e1",
+    "proof/PscVerif/PscVerif/C4FamilyInvariantMeasureUniqueness.lean": "3256efcd2cc96ac7ca214850944dd5361d0b4dfeefc6b0dcdd0ec0371ed53133",
+    "proof/PscVerif/PscVerif/C4FamilyMeasuredRealization.lean": "4dafec9bb5ec030c5bbcb1375216afa5e9e080a3ceabccf8de244005ed6ffaf0",
+    "proof/PscVerif/PscVerif/C4FamilyMeasuredSpectrum.lean": "be362e24a8b3ad083213a06f6c8c09f5065fc7639d3ed015c83b73a92a556617",
     "proof/PscVerif/PscVerif/C4FamilyOpenSynchronization.lean": "d67995845d97872e01484eca0e3eb8d78dafb7c25c29dedbce2668c8e47ab923",
     "proof/PscVerif/PscVerif/C4FamilySolenoidCharacters.lean": "4309de68886bf368e18470e0d903877ec46fe47cd553e9dac37de95fda6e4903",
+    "proof/PscVerif/PscVerif/C4FamilySymbolicLanguage.lean": "34d152bf93332d8724e62fc18ddda174a681a76f8d495265d2e1c117fce57fb1",
+    "proof/PscVerif/PscVerif/C4FamilySymbolicMeasureUniqueness.lean": "fca1abba45f0a05aa3d6d2f82b81519db3076dd5822590b739989fe8946c3ed2",
+    "proof/PscVerif/PscVerif/C4FamilySymbolicSection.lean": "de081c66d749e4ed78b8fdd3313e22d631d308b0530b3ce33b325b6daf929cfd",
+    "proof/PscVerif/PscVerif/C4FamilySymbolicSpectrum.lean": "74dec3c3c57d8a36ebc5b89f10dff790c696b96921b4c5eb06d76bcb4eddc2a3",
     "proof/PscVerif/PscVerif/C4FamilyTileAutomatonHull.lean": "02d57375d81d07073d12dc864a8632abfd6068808c051500ac1895d0f99d737c",
     "proof/PscVerif/PscVerif/C4FamilyTileAutomatonWords.lean": "9b97606079e367b743a2f863403dff677a58c096068ad1715160eeef5a8b9559",
     "proof/PscVerif/PscVerif/C4FiniteTileAutomaton.lean": "b8123aec4c0e1c2a9a1b5937a17cd0c9c26189e0d884c8a27bf1465e3b8b5b24",
@@ -58339,12 +61253,14 @@
     "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorSeed.lean": "6cc2b07ef323a93901d647b211fa0621566bf93b1c980a4fa6e8a530c12e2ad0",
     "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorZero.lean": "a84c06f8694a66eaa0b488ba8b2673c9dcc062bec9996d3dc5443cf97ce8b52e",
     "proof/PscVerif/PscVerif/C4ParameterFamilyOrdinaryProximal.lean": "7636d2c4c641deb791407072755958df0c8e3e26b4d3b753439a868f20829c6a",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyOriginCycle.lean": "5372fee98158493f577de849504c752cc0a99c9507705263cb13103a56de2e78",
     "proof/PscVerif/PscVerif/C4ParameterFamilyPisot.lean": "17c1a41e6726dfef7f04f3ccc0594f0cbfc5eb90fd61325114179541c763423c",
     "proof/PscVerif/PscVerif/C4ParameterFamilyRecognizability.lean": "b6889e7a4bf84e33cb154b36229be3f8c7992ce0d6afb1b241ff6e3d89ca2532",
     "proof/PscVerif/PscVerif/C4ParameterFamilyRotationFactor.lean": "dda99b8395b96881a2078a3f5e296c7bf296d3523fef779c5298640ec1dd0bed",
     "proof/PscVerif/PscVerif/C4ParameterFamilySolenoid.lean": "9b3b06d944c2b531ab6d3649144f5361244dc89a554ba9354e564dae26f52917",
     "proof/PscVerif/PscVerif/C4ParameterFamilyTiling.lean": "421b9833f2d132206d0a34ee9ff9dcf511594cb5c7e14540f4c5a1fb9a83ba1c",
     "proof/PscVerif/PscVerif/C4ParameterFamilyWords.lean": "e49cc02bc7b82b8f44101ce153d93982f02e31684501ffe7499cfb53d55c86d7",
+    "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreAnchor.lean": "f3bf88fd143cd7287c550cf2305138c47c4df1074d00c441b174bc079dc181b7",
     "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreControls.lean": "dd990353621f404c2adb759c5cf207b7dd95ac2639b09e2450921bbfa8939427",
     "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreWitnesses.lean": "3510a37f7bc609c962a88ab184f3b7591479abdcae0de0abfb6490fb90a6fb3d",
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
@@ -58361,9 +61277,18 @@
     "proof/PscVerif/PscVerif/ClassAMinusUpperEscape.lean": "042b605b23945e03b9775ccdf2bba05a244c355bf39dee7e1bf2cdd76d66a345",
     "proof/PscVerif/PscVerif/ClassAMinusUpperRecurrence.lean": "416f11852f85023271a5ee66d809b0732e42a96a03cae0d8cecf81dacf044c76",
     "proof/PscVerif/PscVerif/ClassAPlusConstantRecurrence.lean": "c6dbd0f1065e698ee58a04c1781d63692129f2b5c17c97d0a74cc832fd25f79a",
+    "proof/PscVerif/PscVerif/ClassAPlusUpperCentralBound.lean": "5595de40026e66483f4bab22042b057827ab574e2361f4e85ec7287432ddd6e3",
+    "proof/PscVerif/PscVerif/ClassAPlusUpperCentralCompletion.lean": "b5878a9e89af9434752dc8fe09a36044324bfb99e2681e1242bfdfa98eff5e42",
+    "proof/PscVerif/PscVerif/ClassAPlusUpperCentralControls.lean": "f22bcfc4ecad9d0645744dde67bc728afc2d441d03996dcda60533f1625e7402",
+    "proof/PscVerif/PscVerif/ClassAPlusUpperCentralOrbit.lean": "4107f948d6a36e5679c96319b1d4ff1b8982d6c712d518e2a7217e2955e2ee17",
     "proof/PscVerif/PscVerif/ClassAPlusUpperCycleCompletion.lean": "d80243eca779241325231f64b5472c197c8f81b3919309d1c2e97512579f3a58",
     "proof/PscVerif/PscVerif/ClassAPlusUpperCycles.lean": "5d3cf8f6ce61e49f654710965d03761de7c046e931498bbc2aa09b872471384b",
     "proof/PscVerif/PscVerif/ClassAPlusUpperEntry.lean": "35e27f3fc973e5668e883f8e3df312920ff1abd945a52a98c4ee133e7bd5f204",
+    "proof/PscVerif/PscVerif/ClassAPlusUpperEntryBound.lean": "1ba58310a787a96cf0499efb3b9eba258f26af7a15393b19649081a027e9c653",
+    "proof/PscVerif/PscVerif/ClassAPlusUpperEntryControls.lean": "300d2905157425dc7ee6091b3984b1351ab4b4a70e16710c46a2212190baa25c",
+    "proof/PscVerif/PscVerif/ClassAPlusUpperEntryTransport.lean": "e71229ba155f6721870d34277b71868b5f2dc18d3b37a060c16874662bd0c055",
+    "proof/PscVerif/PscVerif/ClassAPlusUpperLiteralEntry.lean": "d3697a0e3782945d40a41933ab9939f829c379f720ae6c31aaf24a2a8be99e31",
+    "proof/PscVerif/PscVerif/ClassAPlusUpperNoHalfTies.lean": "88faa81f3426018d0196bd3997d801ed9449374fc1cf90a628d2b7164a395e61",
     "proof/PscVerif/PscVerif/ClassAPlusUpperRecurrence.lean": "a220ded84ea5545cc405f4533959fa15e7dc181637e959bbcf012ac31ff29173",
     "proof/PscVerif/PscVerif/ClassARunDescent.lean": "3c061edddf00f76298b34e81021b46c4f7aff61203d769e50652c1dd4205654b",
     "proof/PscVerif/PscVerif/ClassAZeroDefectEscape.lean": "04c10c8f84a07b5712dd1e5f05f713478d511a526496f4c1cb082a14d86188a7",
@@ -58466,7 +61391,7 @@
     "proof/PscVerif/PscVerif/NeutralRankSeamCycle.lean": "db67bc7a06a7e20572de8bcd20e0ee611d9b0f85213930f80cf3a4c23b1645fc",
     "proof/PscVerif/PscVerif/OccurrenceAddress.lean": "fd8d4020fc3f720c8a81d23c9811056802c901eec35a48efcbb40954c5a375ad",
     "proof/PscVerif/PscVerif/OccurrenceAdmissibility.lean": "0843e0a255a2a13675132264eb1385d9a155b7122138359b02158916541e2b4e",
-    "proof/PscVerif/PscVerif/OccurrenceAncestry.lean": "7576fc3fd0b96bd17d3359e1179bde0c909626a7cdd6c7b0fb2cce8c0f03acb3",
+    "proof/PscVerif/PscVerif/OccurrenceAncestry.lean": "1b4323181a2bac78235875750da7da558eecff02dee50fc2aded4ee26a9873e2",
     "proof/PscVerif/PscVerif/OccurrenceCover.lean": "c66e2937532b2b289351b9ab10a18a1485b73434e362fd1e88edbfd3b6479cb6",
     "proof/PscVerif/PscVerif/OccurrenceFinite.lean": "65ef11444d2f03c9a49febf9a859eb8d48bd8dd0e1a37fd972c47935526b48a0",
     "proof/PscVerif/PscVerif/OccurrenceGraph.lean": "515855dbc6ca0021b30353c053910d338064e1f14120dd3bc27fc1a938cca575",
@@ -58550,6 +61475,7 @@
     "proof/PscVerif/PscVerif/PeriodicPartnerSeamCycles.lean": "15693988e36bb7e4ba0e3d7e6e2e15fb2cc85ff2b36552ccd8b395cf08260ef7",
     "proof/PscVerif/PscVerif/PeriodicPartnerSelection.lean": "13c39c9aea34b64f377cbfd3eb074fe436a952e8f0d806eb9ed37f6c2ef70e41",
     "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidCharacters.lean": "b501792f12cc16d524209a20eabb834b69ee0a7188afbceb92b9459cb3fffdfd",
+    "proof/PscVerif/PscVerif/PeriodicPartnerSolenoidHaar.lean": "891634fbc287798c73d3d76a42e4cd4a7e791a7d3cb2f68a82fa0581bc3a429f",
     "proof/PscVerif/PscVerif/PeriodicPartnerSpectral.lean": "45d12d1e6e7589bbbccfbf44798af9700c99be94a24a61ea02ece5ad8c55eafd",
     "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCensus.lean": "af195787b8856b750f4f513e80a3045873a05743d86f245204fdf278386f79ba",
     "proof/PscVerif/PscVerif/PeriodicPartnerSpectralCertificate.lean": "90fb4042c25c01e906e828c6e1da15d782ae9301f591b34270283dcc18786ebd",
@@ -58576,6 +61502,7 @@
     "proof/PscVerif/PscVerif/SectorBridge.lean": "52402b9cf47212fae4fc351435bd721babb702aea48e4b5c1f2d1ed40d4e6800",
     "proof/PscVerif/PscVerif/Seeds.lean": "224a67ea3d89c8cd54747164d4e1fbbc9b733aa5eb404465119999b738dce747",
     "proof/PscVerif/PscVerif/SelectedRank.lean": "0ab6fc76698ebcfd14ce1b319b121f0eaee9d2d64fceb26d3cf9e6a59b26c396",
+    "proof/PscVerif/PscVerif/ShiftedRadixCycle.lean": "9e8d223b5589eb7a773fd9dd543f61f96ca1a4ab255b5d018f85cbd967b26034",
     "proof/PscVerif/PscVerif/Shuffle.lean": "fe99c7b71174cd665633b425c0f9d1e6f6893f541387e261fb5d945bba48614c",
     "proof/PscVerif/PscVerif/SignedCocycle.lean": "eccc753e1656cc949db13d50ff8d97883f084fe18ab32ef70226cded35237e7e",
     "proof/PscVerif/PscVerif/SignedIntertwiner.lean": "9db35d26a6a8d434ab893b31218fcc50ba73872a74a305da366d5f95543d5280",
@@ -58593,14 +61520,15 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "b118070fae353198c12c6991ca71a867672cb3b5921d90ac4f3a6a1a7a644d5c",
+    "proof/PscVerif/PscVerif.lean": "081fa3f8d92e4fef9c5fb925342aaddb6be982d2a03fc3282f88b865c972e19a",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
     "proof/proof-bank.toml": "c462e211cdb2a7aca4a59d75efc7b4ffdd3c4cd2c7780588e861b15c42aa8937",
+    "tools/check_c4_parameter_family.sh": "2028139e5ea0fa76f4822757f77fd2995ebc0d6d6f7d3bb2fa4c3fe9ac9bf1fa",
     "tools/check_lean.sh": "eb63ce6fb0b837eee1208b3d47e759bcf8b3617b1374685a8850e48f283cba8d",
     "tools/make_ledger.py": "7639499e905ca898e650cd40d9dd5ae405d7f0dfac15ef3547ce40044c795ed5",
-    "tools/make_proof_bank.py": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8",
+    "tools/make_proof_bank.py": "570a6779013609e8f7f9d88a8082a76cebe087191561ae8ad1016c79f7b90782",
     "tools/setup_lean.sh": "8c4e5f4a35c6daf437c612bb868410ac2ecad68984154d50493fd7f42d86a824"
   }
 }

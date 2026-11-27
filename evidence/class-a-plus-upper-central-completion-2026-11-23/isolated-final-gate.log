@@ -1,0 +1,282 @@
+PSC_UPPER_CENTRAL_SOURCE_SNAPSHOT	349	8d1aaa3665ee341c5ea15a244198735290d18b20e85dc3acf21e6af9c8dd8222
+PSC_UPPER_CENTRAL_LOCAL_IMPORTS	39
+PSC_UPPER_CENTRAL_CACHE_POLICY	pinned-upstream-cache	no-project-artifacts
+Lean (version 4.34.0-rc2, x86_64-unknown-linux-gnu, commit 6a10ac8c22beadecabdbb0919c2b50214762f91d, Release)
+Lake version 5.0.0-src+6a10ac8 (Lean version 4.34.0-rc2)
+✔ [2254/2286] Built PscVerif.Binomial (3.0s)
+✔ [2255/2286] Built PscVerif.PerronCore (4.7s)
+✔ [2256/2286] Built PscVerif.ConcentrationAlgebra (4.7s)
+✔ [2257/2286] Built PscVerif.ClassAPlusUpperEntry (4.6s)
+✔ [2258/2286] Built PscVerif.FixedPointLimit (2.0s)
+✔ [2259/2286] Built PscVerif.Incidence (3.4s)
+✔ [2260/2286] Built PscVerif.Cyclicity (3.9s)
+✔ [2261/2286] Built PscVerif.ParikhIntertwiner (2.7s)
+✔ [2262/2286] Built PscVerif.SignedCocycle (3.2s)
+✔ [2263/2286] Built PscVerif.Reduction (3.9s)
+✔ [2264/2286] Built PscVerif.Descendants (10s)
+⚠ [2265/2286] Built PscVerif.OccurrenceNewborn (9.8s)
+warning: PscVerif/OccurrenceNewborn.lean:53:0: automatically included section variable(s) unused in theorem `Psc.OccurrenceNewborn.SyncPlus.eventual`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: PscVerif/OccurrenceNewborn.lean:61:0: automatically included section variable(s) unused in theorem `Psc.OccurrenceNewborn.SyncMinus.eventual`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+✔ [2266/2286] Built PscVerif.OccurrenceAddress (7.9s)
+✔ [2267/2286] Built PscVerif.OccurrenceTransport (9.6s)
+✔ [2268/2286] Built PscVerif.OccurrenceFinite (5.5s)
+✔ [2269/2286] Built PscVerif.OccurrenceSuccessor (6.1s)
+⚠ [2270/2286] Built PscVerif.ClassAZeroDefectEscape (32s)
+warning: PscVerif/ClassAZeroDefectEscape.lean:233:37: Unused tactic linter: `omega` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PscVerif/ClassAZeroDefectEscape.lean:252:54: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PscVerif/ClassAZeroDefectEscape.lean:233:37: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PscVerif/ClassAZeroDefectEscape.lean:252:54: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PscVerif/ClassAZeroDefectEscape.lean:231:50: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAZeroDefectEscape.lean:241:50: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [2271/2286] Built PscVerif.ClassACentralRecurrence (11s)
+✔ [2272/2286] Built PscVerif.ClassAMinusConstantRecurrence (11s)
+✔ [2273/2286] Built PscVerif.ClassAMinusPrefixAssembly (7.4s)
+✔ [2274/2286] Built PscVerif.ClassAPlusConstantRecurrence (12s)
+⚠ [2275/2286] Built PscVerif.ClassAPlusUpperCycles (28s)
+warning: PscVerif/ClassAPlusUpperCycles.lean:55:8: This simp argument is unused:
+  plusRunLength
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [packet, incidenceZ, inc, plusSigma, ClassAPlusConstantRecurrence.sigma,
+    ClassAPlusConstantRecurrence.runLength, first, last, OccurrenceTransport.residual, parikhZ, plusRunMark,
+    ClassAPlusConstantRecurrence.runMark, Matrix.mulVec, dotProduct, Fin.sum_univ_three, delta, List.count_replicate,
+    Nat.cast_sub hi0, Nat.cast_sub hj0]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:93:36: This simp argument is unused:
+  parikhZ
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [packet, incidenceZ, inc, plusSigma, ClassAPlusConstantRecurrence.sigma, plusRunLength,
+    ClassAPlusConstantRecurrence.runLength, first, last, OccurrenceTransport.residual, firstMark, Matrix.mulVec,
+    dotProduct, Fin.sum_univ_three, List.count_replicate]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:125:74: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:136:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:151:44: This simp argument is unused:
+  Nat.cast_sub (show 1 ≤ 2 * n + 12 by omega)
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [upperSigma, cyclePacket, first, Nat.cast_add, Nat.cast_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:163:31: This simp argument is unused:
+  Nat.cast_sub (show 1 ≤ 2 * n + 12 by omega)
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [upperSigma, delta, Nat.cast_add, Nat.cast_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:152:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:164:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:172:71: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:173:14: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:187:44: This simp argument is unused:
+  Nat.cast_sub (show 2 ≤ 2 * n + 12 by omega)
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [upperSigma, cyclePacket, first, Nat.cast_add, Nat.cast_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:195:31: This simp argument is unused:
+  Nat.cast_sub (show 2 ≤ 2 * n + 12 by omega)
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [upperSigma, first, Nat.cast_add, Nat.cast_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:204:61: Unused tactic linter: `congr 1` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:204:73: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:204:61: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:204:73: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:188:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:188:48: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:196:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycles.lean:196:48: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [2276/2286] Built PscVerif.ClassAPlusUpperEntryTransport (62s)
+warning: PscVerif/ClassAPlusUpperEntryTransport.lean:73:18: This simp argument is unused:
+  Nat.add_comm
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hlen]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [2277/2286] Built PscVerif.ClassAPlusUpperCycleCompletion (67s)
+warning: PscVerif/ClassAPlusUpperCycleCompletion.lean:24:49: Variable name `hJ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hJ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: PscVerif/ClassAPlusUpperCycleCompletion.lean:43:74: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperCycleCompletion.lean:54:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [2278/2286] Built PscVerif.ClassAPlusUpperRecurrence (73s)
+warning: PscVerif/ClassAPlusUpperRecurrence.lean:380:6: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: PscVerif/ClassAPlusUpperRecurrence.lean:310:23: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperRecurrence.lean:310:52: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperRecurrence.lean:310:64: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PscVerif/ClassAPlusUpperRecurrence.lean:470:30: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [2279/2286] Built PscVerif.ClassAPlusUpperCentralBound (156s)
+✔ [2280/2286] Built PscVerif.ClassAPlusUpperNoHalfTies (157s)
+✔ [2281/2286] Built PscVerif.ClassAPlusUpperLiteralEntry (298s)
+✔ [2282/2286] Built PscVerif.ClassAPlusUpperEntryBound (55s)
+✔ [2283/2286] Built PscVerif.ClassAPlusUpperCentralControls (55s)
+✔ [2284/2286] Built PscVerif.ClassAPlusUpperCentralOrbit (56s)
+✔ [2285/2286] Built PscVerif.ClassAPlusUpperEntryControls (57s)
+✔ [2286/2286] Built PscVerif.ClassAPlusUpperCentralCompletion (59s)
+Build completed successfully (2286 jobs).
+PSC_UPPER_CENTRAL_MODULE	PscVerif.ClassAPlusUpperCentralOrbit	63	37
+PSC_UPPER_CENTRAL_MODULE	PscVerif.ClassAPlusUpperCentralBound	17	16
+PSC_UPPER_CENTRAL_MODULE	PscVerif.ClassAPlusUpperCentralCompletion	24	21
+PSC_UPPER_CENTRAL_MODULE	PscVerif.ClassAPlusUpperCentralControls	23	21
+PSC_UPPER_CENTRAL_ENDPOINT	Psc.ClassAPlusUpperCentralOrbit.inflated_shift_no_half
+PSC_UPPER_CENTRAL_ENDPOINT	Psc.ClassAPlusUpperCentralOrbit.exists_literal_central_orbit
+PSC_UPPER_CENTRAL_ENDPOINT	Psc.ClassAPlusUpperCentralBound.bounded_alternating_tail
+PSC_UPPER_CENTRAL_ENDPOINT	Psc.ClassAPlusUpperCentralBound.signed_indices_length_le
+PSC_UPPER_CENTRAL_ENDPOINT	Psc.ClassAPlusUpperCentralCompletion.central_completion
+PSC_UPPER_CENTRAL_ENDPOINT	Psc.ClassAPlusUpperCentralCompletion.central_completion_closed
+PSC_UPPER_CENTRAL_ENDPOINT	Psc.ClassAPlusUpperCentralCompletion.all_source_completion_nd
+PSC_UPPER_CENTRAL_ENDPOINT	Psc.ClassAPlusUpperCentralCompletion.exists_root_all_source_completion
+PSC_UPPER_CENTRAL_ENDPOINT	Psc.ClassAPlusUpperCentralCompletion.zero_empty_completion
+PSC_UPPER_CENTRAL_ENDPOINT	Psc.ClassAPlusUpperCentralControls.reconstruction_delay_control
+PSC_UPPER_CENTRAL_ENDPOINT	Psc.ClassAPlusUpperCentralControls.source_not_full_cycle
+PSC_UPPER_CENTRAL_ENDPOINT	Psc.ClassAPlusUpperCentralControls.retained_nonzero_cycle_control
+PSC_UPPER_CENTRAL_ENDPOINT	Psc.ClassAPlusUpperCentralControls.retained_half_tie_control
+PSC_UPPER_CENTRAL_CONTRACT_REFUSED	Psc.ClassAPlusUpperCentralCompletionAudit.OmittedDelayType
+PSC_UPPER_CENTRAL_CONTRACT_REFUSED	Psc.ClassAPlusUpperCentralCompletionAudit.DroppedSecondCoordinateType
+PSC_UPPER_CENTRAL_CONTRACT_REFUSED	Psc.ClassAPlusUpperCentralCompletionAudit.DroppedOriginalTracesType
+PSC_UPPER_CENTRAL_CONTRACT_REFUSED	Psc.ClassAPlusUpperCentralCompletionAudit.WeakenedEntryBoundType
+PSC_UPPER_CENTRAL_CONTRACT_REFUSED	Psc.ClassAPlusUpperCentralCompletionAudit.DroppedMinimalityType
+PSC_UPPER_CENTRAL_AUDIT_COMPLETE	4	127	95	13	44
+PSC_UPPER_LITERAL_MODULE	PscVerif.ClassAPlusUpperNoHalfTies	28	26
+PSC_UPPER_LITERAL_MODULE	PscVerif.ClassAPlusUpperEntryTransport	13	11
+PSC_UPPER_LITERAL_MODULE	PscVerif.ClassAPlusUpperLiteralEntry	62	53
+PSC_UPPER_LITERAL_MODULE	PscVerif.ClassAPlusUpperEntryBound	59	38
+PSC_UPPER_LITERAL_MODULE	PscVerif.ClassAPlusUpperEntryControls	46	40
+PSC_UPPER_LITERAL_ENDPOINT	Psc.ClassAPlusUpperNoHalfTies.polyQ_irreducible
+PSC_UPPER_LITERAL_ENDPOINT	Psc.ClassAPlusUpperNoHalfTies.literal_shift_ne_half_integer
+PSC_UPPER_LITERAL_ENDPOINT	Psc.ClassAPlusUpperLiteralEntry.direct_entry
+PSC_UPPER_LITERAL_ENDPOINT	Psc.ClassAPlusUpperEntryBound.all_source_entry_nd
+PSC_UPPER_LITERAL_ENDPOINT	Psc.ClassAPlusUpperEntryBound.exists_root_all_source_entry
+PSC_UPPER_LITERAL_ENDPOINT	Psc.ClassAPlusUpperEntryTransport.swap_preserves_count_and_tracks
+PSC_UPPER_LITERAL_ENDPOINT	Psc.ClassAPlusUpperEntryTransport.original_traces_bottom_minus_top
+PSC_UPPER_LITERAL_ENDPOINT	Psc.ClassAPlusUpperEntryControls.one_edge_central_impossible
+PSC_UPPER_LITERAL_ENDPOINT	Psc.ClassAPlusUpperEntryControls.two_edge_strict_path
+PSC_UPPER_LITERAL_ENDPOINT	Psc.ClassAPlusUpperEntryControls.wrong_last_index_rejected
+PSC_UPPER_LITERAL_ENDPOINT	Psc.ClassAPlusUpperEntryControls.top_prefix_coordinates
+PSC_UPPER_LITERAL_ENDPOINT	Psc.ClassAPlusUpperEntryControls.composed_offset_identity
+PSC_UPPER_LITERAL_CONTRACT_REFUSED	Psc.ClassAPlusUpperLiteralEntryAudit.WeakerDepthBoundType
+PSC_UPPER_LITERAL_CONTRACT_REFUSED	Psc.ClassAPlusUpperLiteralEntryAudit.DroppedOriginalTracesType
+PSC_UPPER_LITERAL_CONTRACT_REFUSED	Psc.ClassAPlusUpperLiteralEntryAudit.ClosedCentralType
+PSC_UPPER_LITERAL_AUDIT_COMPLETE	5	208	168	12	39
+'Psc.ClassAPlusUpperNoHalfTies.polyQ_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperNoHalfTies.vector_shift_ne_half_integer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperNoHalfTies.family_root_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperEntryControls.two_edge_path' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperEntryControls.top_trace' depends on axioms: [propext, Quot.sound]
+'Psc.ClassAPlusUpperEntryControls.bottom_trace' depends on axioms: [propext, Quot.sound]
+'Psc.ClassAPlusUpperEntryControls.composed_offset_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperEntryControls.wrong_last_index_rejected' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperEntryControls.one_edge_central_impossible' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Psc.ClassAPlusUpperEntryControls.two_edge_strict_path' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperEntry.direct_gap_window' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperEntry.ordered_run_indices' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperEntry.boundary_cases' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperEntry.bounded_entry_of_growth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperEntry.exists_entry_power' depends on axioms: [propext, Classical.choice, Quot.sound]
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_MODULE	PscVerif.ClassAPlusUpperRecurrence	96	80
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_DECLARATIONS	1	96	80
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_ENDPOINT	Psc.ClassAPlusUpperRecurrence.family_coefficients
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_ENDPOINT	Psc.ClassAPlusUpperRecurrence.forward_integer_bound
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_ENDPOINT	Psc.ClassAPlusUpperRecurrence.eventual_constant_tail
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_ENDPOINT	Psc.ClassAPlusUpperRecurrence.eventual_alternating_tail
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_ENDPOINT	Psc.ClassAPlusUpperRecurrence.energy_periodic_constant
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_ENDPOINT	Psc.ClassAPlusUpperRecurrence.shear_bound
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_ENDPOINT	Psc.ClassAPlusUpperRecurrence.twist_recurrence
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_ENDPOINT	Psc.ClassAPlusUpperRecurrence.reconstruction_delay
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_ENDPOINT	Psc.ClassAPlusUpperRecurrence.central_coordinate_recurrence
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_ENDPOINT	Psc.ClassAPlusUpperRecurrence.central_gap_in_run
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_ENDPOINT	Psc.ClassAPlusUpperRecurrence.run_gap_digit_step
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_ENDPOINT	Psc.ClassAPlusUpperRecurrence.nonzero_upper_cycle_control
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_ENDPOINT	Psc.ClassAPlusUpperRecurrence.half_tie_control
+PSC_CLASS_A_PLUS_UPPER_RECURRENCE_AUDIT_COMPLETE	13	39
+PSC_CLASS_A_PLUS_UPPER_COMPLETION_MODULE	PscVerif.ClassAPlusUpperCycleCompletion	20	18
+PSC_CLASS_A_PLUS_UPPER_COMPLETION_ENDPOINT	Psc.ClassAPlusUpperCycleCompletion.decrement_path
+PSC_CLASS_A_PLUS_UPPER_COMPLETION_ENDPOINT	Psc.ClassAPlusUpperCycleCompletion.all_ordered_paths
+PSC_CLASS_A_PLUS_UPPER_COMPLETION_ENDPOINT	Psc.ClassAPlusUpperCycleCompletion.all_signed_ordered_paths
+PSC_CLASS_A_PLUS_UPPER_COMPLETION_ENDPOINT	Psc.ClassAPlusUpperCycleCompletion.all_traced_strict_prefixes
+PSC_CLASS_A_PLUS_UPPER_COMPLETION_AUDIT_COMPLETE	4	12
+PSC_UPPER_CENTRAL_SOURCE_RECHECK	349	8d1aaa3665ee341c5ea15a244198735290d18b20e85dc3acf21e6af9c8dd8222
+PSC_UPPER_CENTRAL_GATE_COMPLETE	6-audit-fixtures	fresh-project-compilation
+PSC_UPPER_CENTRAL_EVIDENCE	/workspace/scratch/c388c36ccd77/checks/central-completion/isolated-final

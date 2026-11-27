@@ -1,0 +1,17 @@
+{
+  "adapter_sha256": "6f1d5b341eca97c3fc8c46c107edd6bbe30cc999c6ceebbe6d18111b076e8494",
+  "all_source_entry": false,
+  "central_edges": 1806,
+  "complete_original_prefixes": true,
+  "edges": 4728,
+  "maximum_central_depth": 62,
+  "maximum_depth": 93,
+  "maximum_prefix_digits": 144,
+  "native_controls": 28,
+  "oracle_sha256": "cc97a3f956ab3fd8d8cf22e61e090664d4a3f614112a03c6068e85adb8dc152c",
+  "paths": 818,
+  "recurrence_executed": true,
+  "status": "accepted_finite_native_central_replay",
+  "transcript_sha256": "65acc78ac1e03747c254a2feb86fd1915d6941a67b99beffff7018130af2c3a6",
+  "universal_BH": false
+}

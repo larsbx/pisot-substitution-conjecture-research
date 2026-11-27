@@ -1,0 +1,23 @@
+import PscVerif.C4ParameterFamilyZeroFibreAnchor
+open Psc.ParameterFamilyZeroFibreAnchor Psc.PeriodicPartnerRealization
+#check @origin_inflateH
+#check @originChild_periodic_of_periodic
+#check @PeriodicLatticeOriginsClassified
+#check @anchor_common_tile_of_origin_vertex
+#check @anchor_common_tile_of_interior_phase
+#check @anchor_common_tile_of_classified
+#check @all_pair_witnesses_of_classified
+#check @zero_fibre_exactProximal_of_classified
+#print axioms origin_inflateH
+#print axioms originChild_periodic_of_periodic
+#print axioms origin_vertex_ne_two
+#print axioms anchor_common_tile_of_origin_vertex
+#print axioms anchor_common_tile_of_interior_phase
+#print axioms anchor_common_tile_of_classified
+#print axioms all_pair_witnesses_of_classified
+#print axioms zero_fibre_exactProximal_of_classified
+#check @originChild_eq
+#check @vertex_tile_periodic
+#check @interior_phase_periodic
+#print axioms vertex_tile_periodic
+#print axioms interior_phase_periodic

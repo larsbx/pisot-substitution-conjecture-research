@@ -1,0 +1,235 @@
+{
+  "format": "psc-c4-canonical-acceptance-v1",
+  "status": "local-isolated-family-gate-passed; unpublished-review-candidate",
+  "starting_revision": "ce52d46bc4706fd2c15ddd3bb345f6e2067f49cd",
+  "source_commit": "68e5ba028e863efedd4774ce4e07bd8678dc9143",
+  "source_tree": "5e62ac3ef21a0a1fe7529dd0582f6765fcda7e2d",
+  "source_identity": "source-snapshot.json records SHA-256 digests for all 334 copied project sources/configuration and both verification scripts; all matched the clean source checkpoint and the isolated copies before compilation.",
+  "isolated_gate": {
+    "command": "tools/check_c4_parameter_family.sh",
+    "exit_code": 0,
+    "source_only_project_copy": true,
+    "project_artifacts_reused": false,
+    "dependency_checkouts": "Fresh checkouts at exact manifest pins; checked before and after compilation and audits.",
+    "external_artifact_cache": "Fresh empty download directory populated from https://cache.mathlib.org/mathlib4-master at the checked Mathlib source hashes.",
+    "project_modules_built": 87,
+    "project_modules": [
+      "PscVerif.Binomial",
+      "PscVerif.C4FamilyCanonicalSpectrum",
+      "PscVerif.C4FamilyCharacterOrbits",
+      "PscVerif.C4FamilyFiniteFibreSynchronization",
+      "PscVerif.C4FamilyFiniteProximal",
+      "PscVerif.C4FamilyFiniteZeroFibre",
+      "PscVerif.C4FamilyHaarErgodicity",
+      "PscVerif.C4FamilyHaarSingletonFibres",
+      "PscVerif.C4FamilyInvariantMeasureUniqueness",
+      "PscVerif.C4FamilyMeasuredRealization",
+      "PscVerif.C4FamilyMeasuredSpectrum",
+      "PscVerif.C4FamilyOpenSynchronization",
+      "PscVerif.C4FamilySolenoidCharacters",
+      "PscVerif.C4FamilySymbolicLanguage",
+      "PscVerif.C4FamilySymbolicMeasureUniqueness",
+      "PscVerif.C4FamilySymbolicSection",
+      "PscVerif.C4FamilySymbolicSpectrum",
+      "PscVerif.C4FamilyTileAutomatonHull",
+      "PscVerif.C4FamilyTileAutomatonWords",
+      "PscVerif.C4FiniteTileAutomaton",
+      "PscVerif.C4ParameterFamilyBridge",
+      "PscVerif.C4ParameterFamilyCarrier",
+      "PscVerif.C4ParameterFamilyControls",
+      "PscVerif.C4ParameterFamilyEquicontinuousFactor",
+      "PscVerif.C4ParameterFamilyFibreDistal",
+      "PscVerif.C4ParameterFamilyInteriorProximal",
+      "PscVerif.C4ParameterFamilyInteriorSeed",
+      "PscVerif.C4ParameterFamilyInteriorZero",
+      "PscVerif.C4ParameterFamilyOrdinaryProximal",
+      "PscVerif.C4ParameterFamilyPisot",
+      "PscVerif.C4ParameterFamilyRecognizability",
+      "PscVerif.C4ParameterFamilyRotationFactor",
+      "PscVerif.C4ParameterFamilySolenoid",
+      "PscVerif.C4ParameterFamilyTiling",
+      "PscVerif.C4ParameterFamilyWords",
+      "PscVerif.C4ParameterFamilyZeroFibreControls",
+      "PscVerif.C4ParameterFamilyZeroFibreWitnesses",
+      "PscVerif.ConcentrationAlgebra",
+      "PscVerif.Cyclicity",
+      "PscVerif.Descendants",
+      "PscVerif.FastForwardCarrier",
+      "PscVerif.FixedPointLimit",
+      "PscVerif.ForwardCarrier",
+      "PscVerif.Incidence",
+      "PscVerif.Intertwiner2",
+      "PscVerif.ParikhIntertwiner",
+      "PscVerif.PeriodicPartner",
+      "PscVerif.PeriodicPartnerAsymptotic",
+      "PscVerif.PeriodicPartnerBalancedGeometry",
+      "PscVerif.PeriodicPartnerCollapse",
+      "PscVerif.PeriodicPartnerDesubContinuity",
+      "PscVerif.PeriodicPartnerDichotomy",
+      "PscVerif.PeriodicPartnerDynamics",
+      "PscVerif.PeriodicPartnerEquicontinuousFactor",
+      "PscVerif.PeriodicPartnerEvenTails",
+      "PscVerif.PeriodicPartnerEventualCoincidence",
+      "PscVerif.PeriodicPartnerFibreDistal",
+      "PscVerif.PeriodicPartnerFiniteCoincidence",
+      "PscVerif.PeriodicPartnerHull",
+      "PscVerif.PeriodicPartnerHullCompact",
+      "PscVerif.PeriodicPartnerHullComplete",
+      "PscVerif.PeriodicPartnerHullContinuity",
+      "PscVerif.PeriodicPartnerHullPatches",
+      "PscVerif.PeriodicPartnerLegalCoincidence",
+      "PscVerif.PeriodicPartnerLiteralDefect",
+      "PscVerif.PeriodicPartnerLocalRealization",
+      "PscVerif.PeriodicPartnerLocalTopology",
+      "PscVerif.PeriodicPartnerOrdinaryProximal",
+      "PscVerif.PeriodicPartnerOriginContinuity",
+      "PscVerif.PeriodicPartnerOriginSeparation",
+      "PscVerif.PeriodicPartnerPeriodicZero",
+      "PscVerif.PeriodicPartnerProximal",
+      "PscVerif.PeriodicPartnerRealization",
+      "PscVerif.PeriodicPartnerRealizationContinuity",
+      "PscVerif.PeriodicPartnerRealizationFinite",
+      "PscVerif.PeriodicPartnerRealizationModels",
+      "PscVerif.PeriodicPartnerRealizationOnto",
+      "PscVerif.PeriodicPartnerRotationFactor",
+      "PscVerif.PeriodicPartnerSolenoidCharacters",
+      "PscVerif.PeriodicPartnerSolenoidHaar",
+      "PscVerif.PeriodicPartnerSpectral",
+      "PscVerif.PerronCore",
+      "PscVerif.Reduction",
+      "PscVerif.SignedCocycle",
+      "PscVerif.Termination",
+      "PscVerif.TerminationFactors",
+      "PscVerif.UniversalClosureReduction"
+    ],
+    "lake_jobs": 3211,
+    "audit_fixtures_passed": 12,
+    "completion_receipts": [
+      "PSC_PARAMETER_FAMILY_AUDIT_COMPLETE\t35\t70",
+      "PSC_ZERO_FIBRE_AUDIT_COMPLETE\t38\t76",
+      "PSC_FINITE_TILE_AUDIT_COMPLETE\t164\t103",
+      "PSC_FINITE_HULL_AUDIT_COMPLETE\t26\t25",
+      "PSC_FINITE_PROXIMAL_AUDIT_COMPLETE\t44\t88",
+      "PSC_FINITE_SYNC_AUDIT_COMPLETE\t14\t14",
+      "PSC_SOLENOID_CHARACTER_AUDIT_COMPLETE\t72\t63",
+      "PSC_CHARACTER_ORBIT_AUDIT_COMPLETE\t23\t21",
+      "PSC_FAMILY_HAAR_AUDIT_COMPLETE\t72\t40",
+      "PSC_FAMILY_MEASURED_AUDIT_COMPLETE\t70\t35",
+      "PSC_FAMILY_SYMBOLIC_AUDIT_COMPLETE\t198\t125",
+      "PSC_FAMILY_CANONICAL_AUDIT_COMPLETE\t45\t25"
+    ]
+  },
+  "new_canonical_audit": {
+    "modules": 3,
+    "owned_declarations": 45,
+    "theorem_constants": 25,
+    "independent_endpoint_contracts": 8,
+    "controls": 22,
+    "permitted_recursive_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "endpoints": [
+      "Psc.C4FamilySymbolicMeasureUniqueness.map_symbolicFactor_suspensionMeasure",
+      "Psc.C4FamilySymbolicMeasureUniqueness.measurePreserving_flow_suspensionFactor",
+      "Psc.C4FamilySymbolicMeasureUniqueness.suspensionMeasure_eq_hullMeasure",
+      "Psc.C4FamilySymbolicMeasureUniqueness.invariant_probability_eq_symbolicMeasure",
+      "Psc.C4FamilySymbolicMeasureUniqueness.invariant_probability_eq_wordMeasure",
+      "Psc.C4FamilyCanonicalSpectrum.pureDiscrete_shift_of_measure_eq",
+      "Psc.C4FamilyCanonicalSpectrum.pureDiscrete_shift_of_invariant_probability",
+      "Psc.C4FamilyCanonicalSpectrum.existsUnique_invariant_probability"
+    ],
+    "control_breakdown": {
+      "absent_or_wrong_type_endpoint_refusals": 16,
+      "altered_contract_refusals": 3,
+      "proved_measure_counterexamples": 3
+    }
+  },
+  "unchanged_original_symbolic_audit": {
+    "owned_declarations": 198,
+    "theorem_constants": 125,
+    "independent_endpoint_contracts": 7,
+    "controls": 3
+  },
+  "lean_toolchain": "leanprover/lean4:v4.34.0-rc2",
+  "lean_compiler_commit": "6a10ac8c22beadecabdbb0919c2b50214762f91d",
+  "compiler_options": [
+    "-DautoImplicit=false",
+    "-Dpp.unicode.fun=true"
+  ],
+  "pinned_external_sources": [
+    {
+      "name": "mathlib",
+      "url": "https://github.com/leanprover-community/mathlib4",
+      "rev": "4edb0dbaa3b3cf729d86d1e2f035474d5ae2ac09"
+    },
+    {
+      "name": "plausible",
+      "url": "https://github.com/leanprover-community/plausible",
+      "rev": "d9598f07b1bc701f1e3aae163d2681c1fd978793"
+    },
+    {
+      "name": "LeanSearchClient",
+      "url": "https://github.com/leanprover-community/LeanSearchClient",
+      "rev": "ba67e212be1197b84c1f1f6299488a10a3002713"
+    },
+    {
+      "name": "importGraph",
+      "url": "https://github.com/leanprover-community/import-graph",
+      "rev": "1681d78dd6e65e38b143f9740d829c826673807c"
+    },
+    {
+      "name": "proofwidgets",
+      "url": "https://github.com/leanprover-community/ProofWidgets4",
+      "rev": "a8acbfd87375ff4abe14ce09db5b7664d383bc7f"
+    },
+    {
+      "name": "aesop",
+      "url": "https://github.com/leanprover-community/aesop",
+      "rev": "18889deb9e83ea7420ef51c160d6f88552e744e3"
+    },
+    {
+      "name": "Qq",
+      "url": "https://github.com/leanprover-community/quote4",
+      "rev": "507746ab8f4b643ccdacb2ec4cdb5853fa9f8ab3"
+    },
+    {
+      "name": "batteries",
+      "url": "https://github.com/leanprover-community/batteries",
+      "rev": "4cac2177c37f5530c4da76aa8e4307f3fc9e4dcb"
+    },
+    {
+      "name": "Cli",
+      "url": "https://github.com/leanprover/lean4-cli",
+      "rev": "ab3a82db9fea14cf0fd7f5a2de650f4b534640af"
+    }
+  ],
+  "original_spectral_endpoint_source_unchanged": true,
+  "warnings": "Inherited linter/deprecation warnings are retained in the full log. No new module proof error occurred.",
+  "verification_scope": "Selected family import closure and 12 audit fixtures; not the whole-repository Lean gate or a claim that all hosted workflows pass.",
+  "remaining_gaps": [
+    "No separately defined cylinder-frequency canonical measure is added. Any independently supplied invariant Borel probability on this carrier is identified by the proved universal equality.",
+    "No general primitive-substitution unique-ergodicity theorem or uniform-frequency construction is added.",
+    "The physical variable-roof Lebesgue disintegration remains a written statement; the corrected constant-strip lift is proved.",
+    "All final word uniqueness and spectral endpoints retain k >= 2; no arbitrary Pisot-substitution conclusion is proved.",
+    "Independent human review of the inherited mathematical chain remains pending."
+  ],
+  "focused_regressions": {
+    "command": "python3 -m pytest -o addopts= -q --junitxml=focused-tests.xml tests/test_proof_bank.py tests/test_recorded_data_integrity.py",
+    "exit_code": 0,
+    "tests": 262,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 75.981,
+    "scope": "The accepted proof sources plus the review documentation/evidence candidate. Recorded-data integrity is replayed after its result files and checksums are finalized."
+  },
+  "metadata_checks": {
+    "proof_bank": "passed: 132 governed claims, 6821 named Lean proofs, 545 source openings; inventory is not whole-repository Lean acceptance",
+    "claim_governance": "passed: terminology, claims, coverage, promotion, numerics, consistency",
+    "markdown_source_integrity": "passed: 677 files",
+    "family_gate_shell_syntax": "passed",
+    "git_diff_whitespace": "passed"
+  }
+}
