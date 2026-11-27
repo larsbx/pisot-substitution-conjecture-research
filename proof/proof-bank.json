@@ -5514,6 +5514,54 @@
       "declaration": "@[simp] theorem K₁_eq_zero (a : Letter) : s.K₁ a = 0 := by"
     },
     {
+      "name": "Psc.BetaFactorBounded.factor_take",
+      "module": "PscVerif.BetaFactorBounded",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFactorBounded.lean",
+      "line": 33,
+      "declaration": "theorem factor_take (x : ℕ → β) (s n : ℕ) : (factor x s (n + 1)).take n = factor x s n := by"
+    },
+    {
+      "name": "Psc.BetaFactorBounded.factor_drop",
+      "module": "PscVerif.BetaFactorBounded",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFactorBounded.lean",
+      "line": 39,
+      "declaration": "theorem factor_drop (x : ℕ → β) (s n : ℕ) : (factor x s (n + 1)).drop 1 = factor x (s + 1) n := by"
+    },
+    {
+      "name": "Psc.BetaFactorBounded.factor_head",
+      "module": "PscVerif.BetaFactorBounded",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFactorBounded.lean",
+      "line": 48,
+      "declaration": "theorem factor_head (x : ℕ → β) (s n : ℕ) : (factor x s (n + 1))[0]? = some (x s) := by"
+    },
+    {
+      "name": "Psc.BetaFactorBounded.factors_eq_image",
+      "module": "PscVerif.BetaFactorBounded",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFactorBounded.lean",
+      "line": 51,
+      "declaration": "theorem factors_eq_image (x : ℕ → β) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaFactorBounded.eventuallyPeriodic_of_bounded",
+      "module": "PscVerif.BetaFactorBounded",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFactorBounded.lean",
+      "line": 60,
+      "declaration": "theorem eventuallyPeriodic_of_bounded (x : ℕ → β) {C : ℕ}"
+    },
+    {
+      "name": "Psc.BetaFactorBounded.xi_complexity_unbounded",
+      "module": "PscVerif.BetaFactorBounded",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFactorBounded.lean",
+      "line": 120,
+      "declaration": "theorem xi_complexity_unbounded (k m : ℕ) (hk : 1 ≤ k) (hm : 3 ≤ m) :"
+    },
+    {
       "name": "Psc.BetaFamilyComplexity.it_append",
       "module": "PscVerif.BetaFamilyComplexity",
       "private": false,
@@ -62577,6 +62625,7 @@
     "proof/PscVerif/PscVerif/BargeDiamondBridge.lean": "d182a18512ffcd6989664f3e6786a0f4aa82b8ba9c03ab776321f39a415971fe",
     "proof/PscVerif/PscVerif/BargeDiamondBridgeControls.lean": "45bd1684ecbdfabdc02658405874358b5bfccd80b57d435f2c108f707b59f059",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
+    "proof/PscVerif/PscVerif/BetaFactorBounded.lean": "cf1f4c14e26fdb793c3a466d2d113cdff8c9ecb7452a67762282d2b8ebb00eec",
     "proof/PscVerif/PscVerif/BetaFamilyComplexity.lean": "0b2a08f40c1b2b9b706ff5ef8b5ac4c3c295d5725f40ae7c5556421266687eaf",
     "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean": "5682dd074352aefb0a1757927e5de82e84ff1c288cbf854a109c73cbd3b97b79",
     "proof/PscVerif/PscVerif/BetaFamilyXi.lean": "69f2f15e87aa18e94dc7772b6f61e187ec2c4b1c72601a3952da8104de43795a",
@@ -62882,7 +62931,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "c04cc98c4426114bd695322f3db9b537b6a164f0441e40c50148a77cc19a6e63",
+    "proof/PscVerif/PscVerif.lean": "eff743010b7f029a0c348949b0abb41a4a81aeb9e305312cb8e34762cec6381d",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

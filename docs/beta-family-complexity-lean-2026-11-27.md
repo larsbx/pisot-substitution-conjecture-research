@@ -6,7 +6,7 @@ Source decision: [beta-numeration research route](beta-numeration-research-route
 
 ## Assumptions and hypotheses
 
-Modules [`PscVerif.BetaFamilyComplexity`](../proof/PscVerif/PscVerif/BetaFamilyComplexity.lean) and [`PscVerif.BetaFamilyXi`](../proof/PscVerif/PscVerif/BetaFamilyXi.lean). `k ≥ 1`. `factor x s n` is the list `x_s … x_{s+n-1}`; `factors x n` is the set of all of them. `ξ_{k,m} = B.value (w + 1)` for a `Base m` (`m r + r² = 1`, `r = β⁻¹`) with `m ≥ 4`.
+Modules [`PscVerif.BetaFamilyComplexity`](../proof/PscVerif/PscVerif/BetaFamilyComplexity.lean), [`PscVerif.BetaFamilyXi`](../proof/PscVerif/PscVerif/BetaFamilyXi.lean) and [`PscVerif.BetaFactorBounded`](../proof/PscVerif/PscVerif/BetaFactorBounded.lean). `k ≥ 1`. `factor x s n` is the list `x_s … x_{s+n-1}`; `factors x n` is the set of all of them. `ξ_{k,m} = B.value (w + 1)` for a `Base m` (`m r + r² = 1`, `r = β⁻¹`) with `m ≥ 4`.
 
 ## Statement
 
@@ -17,6 +17,8 @@ Modules [`PscVerif.BetaFamilyComplexity`](../proof/PscVerif/PscVerif/BetaFamilyC
 | `pisot_facts` | `β = r⁻¹ > 1`, `β² = mβ + 1`, `(-r)² = m(-r) + 1`, `|-r| < 1`, `β + (-r) = m`, `β(-r) = -1` |
 | `greedy` | every remainder of `w + 1` is in `[0,1)` and every digit is `⌊β · remainder⌋` |
 | `xi_inputs` | uniqueness, `β⁻¹ < ξ < 1`, greedy digits, not eventually periodic, linear complexity |
+| `eventuallyPeriodic_of_bounded` | any sequence whose factor sets are finite of bounded size is eventually periodic (Morse–Hedlund, the direction used) |
+| `xi_complexity_unbounded` | the factor counts of `w + 1` are unbounded |
 
 ## Derivation / reduction
 
@@ -32,9 +34,11 @@ Greedy digits: interior digits give every remainder in `[0,1)` (`Base.value_lt_o
 
 Pisot facts: from `m r + r² = 1` alone; `X² - mX - 1 = (X - β)(X + r)`.
 
+Bounded complexity: prefixes map length-`n+1` factors onto length-`n` factors, so counts are nondecreasing. Bounded counts are then equal at some `n ≥ 1`, where the prefix map is injective (`Set.ncard_image_iff`). So each window determines the next, and pigeonhole on windows gives eventual periodicity.
+
 ## External implication (not formalized)
 
-[Adamczewski–Bugeaud, Corollary 1](https://doi.org/10.1017/S0143385707000223): for `β` Pisot or Salem and algebraic `ξ ∈ [0,1]`, the greedy `β`-expansion has bounded complexity or `liminf p(n)/n = ∞`. Morse–Hedlund turns non-eventual periodicity into `p(n) ≥ n + 1`, which is unbounded, and `xi_inputs` excludes the other case. Hence `ξ_{k,m}` is transcendental for `k ≥ 1`, `m ≥ 4`. Neither Morse–Hedlund, the corollary, nor transcendence is a Lean declaration, and no axiom or hypothesis stands for them.
+[Adamczewski–Bugeaud, Corollary 1](https://doi.org/10.1017/S0143385707000223): for `β` Pisot or Salem and algebraic `ξ ∈ [0,1]`, the greedy `β`-expansion has bounded complexity or `liminf p(n)/n = ∞`. `xi_complexity_unbounded` excludes the bounded alternative and `xi_inputs` the superlinear one. Hence `ξ_{k,m}` is transcendental for `k ≥ 1`, `m ≥ 4`. Only the corollary is external. Neither it nor transcendence is a Lean declaration, and no axiom or hypothesis stands for them.
 
 ## Evidence and replay
 
@@ -53,7 +57,7 @@ Both modules are in the root import closure. Accepted axioms: `propext`, `Classi
 
 ## Non-claims / remaining gaps
 
-- Transcendence of `ξ_{k,m}` rests on the external corollary and on Morse–Hedlund, neither formalized.
+- Transcendence of `ξ_{k,m}` rests on the external corollary, which is not formalized. Every hypothesis it places on `β` and on the expansion, and both of its alternatives' negations, are compiled.
 - Whether `ξ_{k,m}` or the family is new is not addressed.
 - The constant `27 (k²+2)²` is not optimized.
 - Irreducibility of `X² - mX - 1` is not proved. The Pisot conclusion does not need it: a rational root would be an integer `> 1`.
