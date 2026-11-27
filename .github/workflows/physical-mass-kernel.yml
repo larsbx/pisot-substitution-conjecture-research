@@ -39,7 +39,7 @@ jobs:
   lean:
     name: Universal Lean implication and compiled axiom audit
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
         with:
@@ -53,6 +53,8 @@ jobs:
           git rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/physical-mass-lean-revision.txt"
       - name: Acquire the pinned Lean releases through the official asset API
         shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           test "$(uname -m)" = x86_64
@@ -60,6 +62,7 @@ jobs:
           mkdir -p "$PSC_LEAN_TOOLS"
           fetch_release() {
             curl --retry 5 --retry-all-errors --retry-delay 3 -fLSs \
+              -H "Authorization: Bearer $GH_TOKEN" \
               -H 'Accept: application/octet-stream' "$1" -o "$3"
             printf '%s  %s\n' "$2" "$3" | sha256sum --check --strict
           }
@@ -132,12 +135,15 @@ jobs:
           python-version: '3.12'
       - name: Acquire the pinned Pixi release through the official asset API
         shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           test "$(uname -m)" = x86_64
           PSC_PIXI_TOOLS="$RUNNER_TEMP/physical-mass-pixi-tools"
           mkdir -p "$PSC_PIXI_TOOLS"
           curl --retry 5 --retry-all-errors --retry-delay 3 -fLSs \
+            -H "Authorization: Bearer $GH_TOKEN" \
             -H 'Accept: application/octet-stream' \
             https://api.github.com/repos/prefix-dev/pixi/releases/assets/565929974 \
             -o "$PSC_PIXI_TOOLS/pixi"
