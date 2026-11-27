@@ -50,7 +50,6 @@ The module is in the root import closure. Accepted axioms: `propext`, `Classical
 
 ## Non-claims / remaining gaps
 
-- No factor-complexity bound, linear or otherwise. That is the next obligation, and the one Adamczewski–Bugeaud Corollary 1 needs.
-- No greedy admissibility for `w + 1` in base `β_m`, and no Pisot hypothesis for `β_m` stated in Lean. Both are inputs to the external theorem, which is not formalized.
+- This module has no complexity bound, greedy admissibility or Pisot statement; those are in the [complexity and Adamczewski–Bugeaud inputs note](beta-family-complexity-lean-2026-11-27.md). The external theorem itself is not formalized.
 - No transcendence statement and no novelty claim for `ξ_{k,m}`.
 - The golden-ratio block coding `0 ↦ 0000, 1 ↦ 0010, 2 ↦ 0100` is not treated.

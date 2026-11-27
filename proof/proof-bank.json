@@ -5514,6 +5514,190 @@
       "declaration": "@[simp] theorem K₁_eq_zero (a : Letter) : s.K₁ a = 0 := by"
     },
     {
+      "name": "Psc.BetaFamilyComplexity.it_append",
+      "module": "PscVerif.BetaFamilyComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyComplexity.lean",
+      "line": 52,
+      "declaration": "theorem it_append (k J : ℕ) (x y : List (Fin 3)) : it k J (x ++ y) = it k J x ++ it k J y :="
+    },
+    {
+      "name": "Psc.BetaFamilyComplexity.it_nil",
+      "module": "PscVerif.BetaFamilyComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyComplexity.lean",
+      "line": 55,
+      "declaration": "theorem it_nil (k J : ℕ) : it k J [] = [] := Psc.Binomial.iterate_subst_nil _ _"
+    },
+    {
+      "name": "Psc.BetaFamilyComplexity.it_succ",
+      "module": "PscVerif.BetaFamilyComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyComplexity.lean",
+      "line": 57,
+      "declaration": "theorem it_succ (k J : ℕ) (u : List (Fin 3)) :"
+    },
+    {
+      "name": "Psc.BetaFamilyComplexity.it_succ_outer",
+      "module": "PscVerif.BetaFamilyComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyComplexity.lean",
+      "line": 62,
+      "declaration": "theorem it_succ_outer (k J : ℕ) (u : List (Fin 3)) :"
+    },
+    {
+      "name": "Psc.BetaFamilyComplexity.length_it",
+      "module": "PscVerif.BetaFamilyComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyComplexity.lean",
+      "line": 67,
+      "declaration": "theorem length_it (k J : ℕ) (u : List (Fin 3)) :"
+    },
+    {
+      "name": "Psc.BetaFamilyComplexity.blockLen_zero",
+      "module": "PscVerif.BetaFamilyComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyComplexity.lean",
+      "line": 79,
+      "declaration": "theorem blockLen_zero (k : ℕ) (a : Fin 3) : blockLen k 0 a = 1 := rfl"
+    },
+    {
+      "name": "Psc.BetaFamilyComplexity.total_zero",
+      "module": "PscVerif.BetaFamilyComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyComplexity.lean",
+      "line": 81,
+      "declaration": "theorem total_zero (k : ℕ) : total k 0 = 3 := rfl"
+    },
+    {
+      "name": "Psc.BetaFamilyComplexity.blockLen_succ",
+      "module": "PscVerif.BetaFamilyComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyComplexity.lean",
+      "line": 83,
+      "declaration": "theorem blockLen_succ (k J : ℕ) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.BetaFamilyComplexity.entry_bounds",
+      "module": "PscVerif.BetaFamilyComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyComplexity.lean",
+      "line": 92,
+      "declaration": "theorem entry_bounds (k : ℕ) (hk : 1 ≤ k) (c a : Fin 3) :"
+    },
+    {
+      "name": "Psc.BetaFamilyComplexity.total_le_blockLen",
+      "module": "PscVerif.BetaFamilyComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyComplexity.lean",
+      "line": 99,
+      "declaration": "theorem total_le_blockLen (k J : ℕ) (hk : 1 ≤ k) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.BetaFamilyComplexity.blockLen_le_total",
+      "module": "PscVerif.BetaFamilyComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyComplexity.lean",
+      "line": 105,
+      "declaration": "theorem blockLen_le_total (k J : ℕ) (hk : 1 ≤ k) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.BetaFamilyComplexity.total_succ_le",
+      "module": "PscVerif.BetaFamilyComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyComplexity.lean",
+      "line": 111,
+      "declaration": "theorem total_succ_le (k J : ℕ) (hk : 1 ≤ k) : total k (J + 1) ≤ 3 * E k * total k J := by"
+    },
+    {
+      "name": "Psc.BetaFamilyComplexity.blockLen_pos",
+      "module": "PscVerif.BetaFamilyComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyComplexity.lean",
+      "line": 117,
+      "declaration": "theorem blockLen_pos (k J : ℕ) (a : Fin 3) : 0 < blockLen k J a :="
+    },
+    {
+      "name": "Psc.BetaFamilyComplexity.le_total",
+      "module": "PscVerif.BetaFamilyComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyComplexity.lean",
+      "line": 121,
+      "declaration": "theorem le_total (k J : ℕ) (hk : 1 ≤ k) : J ≤ total k J := by"
+    },
+    {
+      "name": "Psc.BetaFamilyComplexity.pref_it",
+      "module": "PscVerif.BetaFamilyComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyComplexity.lean",
+      "line": 136,
+      "declaration": "theorem pref_it (k J L : ℕ) : pref k (it k J (pref k L)).length = it k J (pref k L) := by"
+    },
+    {
+      "name": "Psc.BetaFamilyComplexity.pos_zero",
+      "module": "PscVerif.BetaFamilyComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyComplexity.lean",
+      "line": 150,
+      "declaration": "theorem pos_zero (k J : ℕ) : pos k J 0 = 0 := by"
+    },
+    {
+      "name": "Psc.BetaFamilyComplexity.pos_succ",
+      "module": "PscVerif.BetaFamilyComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyComplexity.lean",
+      "line": 153,
+      "declaration": "theorem pos_succ (k J i : ℕ) : pos k J (i + 1) = pos k J i + blockLen k J (word k i) := by"
+    },
+    {
+      "name": "Psc.BetaFamilyComplexity.le_pos",
+      "module": "PscVerif.BetaFamilyComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyComplexity.lean",
+      "line": 157,
+      "declaration": "theorem le_pos (k J i : ℕ) : i ≤ pos k J i := by"
+    },
+    {
+      "name": "Psc.BetaFamilyComplexity.exists_block",
+      "module": "PscVerif.BetaFamilyComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyComplexity.lean",
+      "line": 162,
+      "declaration": "theorem exists_block (k J s : ℕ) : ∃ i, pos k J i ≤ s ∧ s < pos k J (i + 1) := by"
+    },
+    {
+      "name": "Psc.BetaFamilyComplexity.word_eq_get",
+      "module": "PscVerif.BetaFamilyComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyComplexity.lean",
+      "line": 171,
+      "declaration": "theorem word_eq_get (k L x : ℕ) (hx : x < L) : (pref k L)[x]? = some (word k x) := by"
+    },
+    {
+      "name": "Psc.BetaFamilyComplexity.factor_in_blocks",
+      "module": "PscVerif.BetaFamilyComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyComplexity.lean",
+      "line": 175,
+      "declaration": "theorem factor_in_blocks (k J n : ℕ) (hn : ∀ b, n ≤ blockLen k J b) (s : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaFamilyComplexity.factors_finite_and_linear",
+      "module": "PscVerif.BetaFamilyComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyComplexity.lean",
+      "line": 205,
+      "declaration": "theorem factors_finite_and_linear (k : ℕ) (hk : 1 ≤ k) (n : ℕ) (hn : 1 ≤ n) :"
+    },
+    {
+      "name": "Psc.BetaFamilyComplexity.shifted_factors_linear",
+      "module": "PscVerif.BetaFamilyComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyComplexity.lean",
+      "line": 245,
+      "declaration": "theorem shifted_factors_linear (k m : ℕ) (hk : 1 ≤ k) (hm : 3 ≤ m) (n : ℕ) (hn : 1 ≤ n) :"
+    },
+    {
       "name": "Psc.BetaFamilyFixedWord.substitution_ne_nil",
       "module": "PscVerif.BetaFamilyFixedWord",
       "private": false,
@@ -5728,6 +5912,30 @@
       "source": "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean",
       "line": 350,
       "declaration": "theorem xi_unique (k m : ℕ) (hk : 1 ≤ k) (hm : 4 ≤ m) (B : Psc.BetaMetallicUnique.Base m) :"
+    },
+    {
+      "name": "Psc.BetaFamilyXi.pisot_facts",
+      "module": "PscVerif.BetaFamilyXi",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyXi.lean",
+      "line": 43,
+      "declaration": "theorem pisot_facts (B : Base m) :"
+    },
+    {
+      "name": "Psc.BetaFamilyXi.greedy",
+      "module": "PscVerif.BetaFamilyXi",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyXi.lean",
+      "line": 65,
+      "declaration": "theorem greedy (k : ℕ) (hm : 4 ≤ m) (B : Base m) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaFamilyXi.xi_inputs",
+      "module": "PscVerif.BetaFamilyXi",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaFamilyXi.lean",
+      "line": 87,
+      "declaration": "theorem xi_inputs (k : ℕ) (hk : 1 ≤ k) (hm : 4 ≤ m) (B : Base m) :"
     },
     {
       "name": "Psc.BetaGoldenEndpoint.digit_true",
@@ -62369,7 +62577,9 @@
     "proof/PscVerif/PscVerif/BargeDiamondBridge.lean": "d182a18512ffcd6989664f3e6786a0f4aa82b8ba9c03ab776321f39a415971fe",
     "proof/PscVerif/PscVerif/BargeDiamondBridgeControls.lean": "45bd1684ecbdfabdc02658405874358b5bfccd80b57d435f2c108f707b59f059",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
+    "proof/PscVerif/PscVerif/BetaFamilyComplexity.lean": "0b2a08f40c1b2b9b706ff5ef8b5ac4c3c295d5725f40ae7c5556421266687eaf",
     "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean": "5682dd074352aefb0a1757927e5de82e84ff1c288cbf854a109c73cbd3b97b79",
+    "proof/PscVerif/PscVerif/BetaFamilyXi.lean": "69f2f15e87aa18e94dc7772b6f61e187ec2c4b1c72601a3952da8104de43795a",
     "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean": "9dd31daca70efc75cc5413ffadef7bee210ac47c2724efead22c1a84497a7270",
     "proof/PscVerif/PscVerif/BetaMetallicUnique.lean": "4dfc01ba47b2830afb8fd4c8cf91e9eef8bdc68d9ac1bf82b05340a2cc0eb0fd",
     "proof/PscVerif/PscVerif/Binomial.lean": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
@@ -62672,7 +62882,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "77e3ed4f75e6a0eb088ae312923563e1c5ede76ec866ddab831b504b09faa21d",
+    "proof/PscVerif/PscVerif.lean": "c04cc98c4426114bd695322f3db9b537b6a164f0441e40c50148a77cc19a6e63",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
