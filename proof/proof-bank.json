@@ -5514,6 +5514,302 @@
       "declaration": "@[simp] theorem K₁_eq_zero (a : Letter) : s.K₁ a = 0 := by"
     },
     {
+      "name": "Psc.BetaGoldenEndpoint.digit_true",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 51,
+      "declaration": "@[simp] theorem digit_true : digit true = 1 := rfl"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.digit_false",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 52,
+      "declaration": "@[simp] theorem digit_false : digit false = 0 := rfl"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.cons_zero",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 53,
+      "declaration": "@[simp] theorem cons_zero (b : Bool) (t : ℕ → Bool) : cons b t 0 = b := rfl"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.cons_succ",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 54,
+      "declaration": "@[simp] theorem cons_succ (b : Bool) (t : ℕ → Bool) (k : ℕ) : cons b t (k + 1) = t k := rfl"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.tail_apply",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 55,
+      "declaration": "@[simp] theorem tail_apply (d : ℕ → Bool) (k : ℕ) : tail d k = d (k + 1) := rfl"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.digit_nonneg",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 57,
+      "declaration": "theorem digit_nonneg (b : Bool) : 0 ≤ digit b := by cases b <;> simp"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.digit_le_one",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 58,
+      "declaration": "theorem digit_le_one (b : Bool) : digit b ≤ 1 := by cases b <;> simp"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.cons_head_tail",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 60,
+      "declaration": "theorem cons_head_tail (d : ℕ → Bool) : cons (d 0) (tail d) = d := by"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.tail_cons",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 63,
+      "declaration": "@[simp] theorem tail_cons (b : Bool) (t : ℕ → Bool) : tail (cons b t) = t := rfl"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.r_pos",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 65,
+      "declaration": "theorem r_pos : 0 < r := inv_pos.mpr Real.goldenRatio_pos"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.r_lt_one",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 67,
+      "declaration": "theorem r_lt_one : r < 1 := inv_lt_one_of_one_lt₀ Real.one_lt_goldenRatio"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.r_sq_add",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 70,
+      "declaration": "theorem r_sq_add : r ^ 2 + r = 1 := by"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.summable_pow",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 75,
+      "declaration": "theorem summable_pow : Summable fun n : ℕ => r ^ (n + 1) :="
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.term_nonneg",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 78,
+      "declaration": "theorem term_nonneg (d : ℕ → Bool) (n : ℕ) : 0 ≤ digit (d n) * r ^ (n + 1) :="
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.summable_value",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 81,
+      "declaration": "theorem summable_value (d : ℕ → Bool) : Summable fun n => digit (d n) * r ^ (n + 1) :="
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.value_cons",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 86,
+      "declaration": "theorem value_cons (b : Bool) (t : ℕ → Bool) :"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.value_eq_step",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 95,
+      "declaration": "theorem value_eq_step (d : ℕ → Bool) :"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.value_zero",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 100,
+      "declaration": "@[simp] theorem value_zero : value (fun _ => false) = 0 := by"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.value_nonneg",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 103,
+      "declaration": "theorem value_nonneg (d : ℕ → Bool) : 0 ≤ value d := tsum_nonneg (term_nonneg d)"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.value_one",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 106,
+      "declaration": "theorem value_one : value (fun _ => true) = φ := by"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.value_le",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 123,
+      "declaration": "theorem value_le (d : ℕ → Bool) : value d ≤ φ := by"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.value_100_eq_011",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 132,
+      "declaration": "theorem value_100_eq_011 (t : ℕ → Bool) :"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.value_alternating",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 139,
+      "declaration": "theorem value_alternating {v : ℕ → Bool} (h0 : v 0 = false)"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.value_one_zeros",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 165,
+      "declaration": "theorem value_one_zeros : value (cons true fun _ => false) = r := by"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.value_01_periodic_eq_one_zeros",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 169,
+      "declaration": "theorem value_01_periodic_eq_one_zeros {v : ℕ → Bool} (h0 : v 0 = false)"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.IsUnique.tail",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 175,
+      "declaration": "theorem IsUnique.tail {d : ℕ → Bool} (h : IsUnique d) : IsUnique (tail d) := by"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.IsUnique.shift",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 182,
+      "declaration": "theorem IsUnique.shift {d : ℕ → Bool} (h : IsUnique d) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.IsUnique.head_change",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 196,
+      "declaration": "theorem IsUnique.head_change {u : ℕ → Bool} (h : IsUnique u) (h01 : u 0 ≠ u 1) :"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.IsUnique.change_at",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 222,
+      "declaration": "theorem IsUnique.change_at {d : ℕ → Bool} (h : IsUnique d) (m : ℕ) (hm : d m ≠ d (m + 1)) :"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.IsUnique.not_alternating",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 230,
+      "declaration": "theorem IsUnique.not_alternating {v : ℕ → Bool} (h : IsUnique v) (h0 : v 0 = false) :"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.IsUnique.not_alternating_from",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 237,
+      "declaration": "theorem IsUnique.not_alternating_from {d : ℕ → Bool} (h : IsUnique d) (m : ℕ)"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.IsUnique.constant",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 250,
+      "declaration": "theorem IsUnique.constant {d : ℕ → Bool} (h : IsUnique d) : ∀ n, d n = d 0 := by"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.isUnique_zero",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 277,
+      "declaration": "theorem isUnique_zero : IsUnique (fun _ => false) := by"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.isUnique_one",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 290,
+      "declaration": "theorem isUnique_one : IsUnique (fun _ => true) := by"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.isUnique_iff",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 315,
+      "declaration": "theorem isUnique_iff (d : ℕ → Bool) :"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.value_of_isUnique",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 328,
+      "declaration": "theorem value_of_isUnique {d : ℕ → Bool} (h : IsUnique d) : value d = 0 ∨ value d = φ := by"
+    },
+    {
+      "name": "Psc.BetaGoldenEndpoint.eq_zero_of_isUnique_of_lt_one",
+      "module": "PscVerif.BetaGoldenEndpoint",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean",
+      "line": 334,
+      "declaration": "theorem eq_zero_of_isUnique_of_lt_one {d : ℕ → Bool} (h : IsUnique d) (hlt : value d < 1) :"
+    },
+    {
       "name": "Psc.Binomial.n2_append",
       "module": "PscVerif.Binomial",
       "private": false,
@@ -61473,6 +61769,7 @@
     "proof/PscVerif/PscVerif/BargeDiamondBridge.lean": "d182a18512ffcd6989664f3e6786a0f4aa82b8ba9c03ab776321f39a415971fe",
     "proof/PscVerif/PscVerif/BargeDiamondBridgeControls.lean": "45bd1684ecbdfabdc02658405874358b5bfccd80b57d435f2c108f707b59f059",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
+    "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean": "9dd31daca70efc75cc5413ffadef7bee210ac47c2724efead22c1a84497a7270",
     "proof/PscVerif/PscVerif/Binomial.lean": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
     "proof/PscVerif/PscVerif/BoundarySeedPath.lean": "bea69cb93d5bcd15b1b88c48062b4404a721908092af1b5f5b42e6184f7abae3",
@@ -61773,7 +62070,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "bca5aa4914930156378561bee8ae76e3fa45bc615d1b6eabdad8162d6152677e",
+    "proof/PscVerif/PscVerif.lean": "9b2b856c0abb259aef8b1d4913c72bdce709e567ddcd2d9ae4e520e79221bd92",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
