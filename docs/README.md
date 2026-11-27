@@ -19,6 +19,13 @@ for source-linked theorem scopes, non-unit/strong-coincidence cautions,
 the Nakaishi audit and the open #84/#138/#139/#461 interfaces. It adds
 no proof claim or ledger promotion.
 
+The [sigma-k spectral and coincidence research review](psc-sigma-k-research-review-2026-11-20.md)
+assesses literature through 20 November, distinguishes publications from
+preprints, derives the low-complexity exclusion for the literal family, and
+maps the remaining formal spectral bridge. Its 21 November publication
+addendum reconciles the merged marker, parity and graph-spectrum work with
+the original dated assessment. It adds no proof claim or ledger promotion.
+
 **New collaborator?** Start with [`project-onboarding-2026-10-23.md`](project-onboarding-2026-10-23.md). It gives the current live theorem lane, the v6/v9 salvage firewall, the Tier-2 Plastic-A/Growth-Bridge lane, and the non-load-bearing Penrose interface map in one status-safe document.
 
 For definitions and implementation authority, use the generated
@@ -251,6 +258,9 @@ Change the ledger entry and every surface in the same commit.
   keeps the formal-vs-realized firewall, exact lattice-drift replay target and
   contact geometry as research controls, while explicitly rejecting the stale
   obstruction-regime / nonterminating-BPA inferences as current proof status.
+- [`grh-chebotarev-auxiliary-prime-stop-go-2026-11-22.md`](grh-chebotarev-auxiliary-prime-stop-go-2026-11-22.md)
+  — stop/go note: no open obligation consumes a bound on the least prime of
+  prescribed splitting type, so GRH has no entry point. Decision: stop.
 
 These are reference/index additions only. They do not establish #84, #138,
 #139, G1, or general PSC, or change their ledger status or closure priorities.
@@ -510,12 +520,26 @@ closed on caps and retain a replayable record for every survivor.
 - [Geometric realization](c4-geometric-realization-2026-11-19.md): the realization map of the hull into the solenoid of `M`, with semiconjugacy, translation equivariance and (R4) proved under the Pisot contraction and recognizability; finite fibres stay an input. Fibonacci (unit), Thue–Morse (nonunit) and a non-Pisot control.
 - [Realization source decision](c4-geometric-realization-stop-go-2026-11-19.md): Baker–Barge–Kwapisz Definition 3.1 specialised to `Σ = ℤᵈ`, and what stays imported.
 - [Realization target topology](c4-geometric-realization-topology-2026-11-19.md) proves compactness, the shift homeomorphism and continuity of the target flow. A checked Thue–Morse pair shows that depth zero loses information on the hull.
+- [Ordinary hull topology](c4-ordinary-hull-topology-2026-11-19.md): the local-neighbourhood criterion, an open quotient chart, joint translation continuity and inflation continuity; controls distinguish it from the finer exact metric. Concrete realization continuity remains a separate obligation.
+- [Ordinary-topology source decision](c4-ordinary-hull-topology-stop-go-2026-11-19.md): three primary sources, the open-quotient route and the boundary between continuity and recognizability.
 - [Pisot contraction, derived](c4-pisot-contraction-2026-11-19.md): `PisotData` from `χ_M = (X − β) Q` through Gelfand's formula, and from the PIP3 conditions; Tribonacci `01/02/0` proved a PIP3 member and instantiated.
 - [Contraction source decision](c4-pisot-contraction-stop-go-2026-11-19.md): deflation `M − β u ℓᵀ`, simplicity from separability, and what stays imported.
+- [Family Lean dynamical roadmap](c4-family-lean-dynamical-roadmap-2026-11-21.md): planning. Starts from the derived contraction and the ordinary hull topology, then orders the literal family's instantiation, hull properties, one criterion definition, the spectral implication and the separate symbolic/tiling statements.
+- [Finite fibre obligations and solenoid characters](c4-finite-fibre-obligations-2026-11-21.md): automaton witnesses discharge ordinary proximality, nonproximal rank one and intrinsic maximal-factor descent; finite synchronization and an origin gap give an open synchronized set, while full-history integer certificates give continuous eigenfunctions. The actual Haar-a.e. and measured `L2` conclusions remain explicit obligations.
 - [The census in Lean](c4-pisot-census-2026-11-19.md): a kernel-evaluated certificate (Jury's conditions, a dyadic bracket of `β`, a positive `ℓ = 𝟙ᵀ Q(M)`) and a rejection certificate decide PIP3 on all 59,319 specimens; exactly 4,554 are members, each with `PisotData`.
 - [Census source decision](c4-pisot-census-stop-go-2026-11-19.md): the cofactor at any root, positivity without Perron–Frobenius, completeness without primitivity, and the memory split of the kernel evaluation.
 - [Witness selection under (NM_V)](c4-witness-selection-2026-11-19.md): Theorem S in Lean. A vertex leaf forces the branch to the origin, and failing branches have interior leaves on the collapsed endpoint pair. The exact census of that residual finds it in `F₀` on 12 in-scope specimens; selection stays open.
 - [Selection source decision](c4-witness-selection-stop-go-2026-11-19.md): what transfers from BDS, BBK and Barge–Diamond, the local contracts, and why selection itself is deferred.
+- [Vertex-type common partner](c4-vertex-partner-2026-11-20.md): in the origin case of Theorem S, a common partner with a vertex at the origin forces the last-letter map to be a permutation (Lean, determinant-free).
+- [Even incidence on literal tilings](c4-even-tails-2026-11-20.md): the interval argument of the literal-defect note in Lean; two inflation-fixed tilings agreeing on both tails are equal, and origin-vertex tilings sharing a right tail agree on `(0, ∞)`.
+- [Review of the nonunit stack rigidity](c4-stack-rigidity-review-2026-11-20.md): step-by-step check of #633 against Barge's text (no gap found); its core lemma is rank-free, so in the nonunit case a strict system forces `cr ≥ 3`, and higher rank reduces to dense coincidence of two periodic fibre-mates.
+- [Review of the graded lift and word separation](c4-graded-lift-review-2026-11-21.md): second pass on #633 at its letter cuts, literal path maps, spectrum transfer, per-degree correction and truncations (no gap found); the graded step and word separation at one finite truncation are in Lean, and no inverse limit is used.
+- [Trivial stack relation, nonunit](c4-nonunit-trivial-stack-2026-11-21.md): for nonunit PIP3 hulls without pure discrete spectrum the stack relation is trivial; at rank two Barge's twin structure then holds with no strict system assumed, and the case reduces to whether some tiling shares a vertex with its twin.
+- [Nonunit rank two, injective endpoint map](c4-nonunit-twin-endpoint-2026-11-21.md): with twins vertex-disjoint, an injective endpoint map and two letters on the opposite side of `ER` rule out rank two; the residue is a single-edge `ER` or both endpoint maps non-injective (Lean finite core).
+- [Nonunit rank-two residue](c4-nonunit-rank-two-residue-2026-11-21.md): the twin involution is free on `Fix(Φⁿ)`, so the fixed-tiling count is even; with Theorem E and Theorem H3 the residue without a strict system is `ER = K₂,₂`, both endpoint maps non-injective, `M` nilpotent modulo two (24 corpus classes, all pure discrete).
+- [Lean review of nonunit rank-two parity](c4-nonunit-parity-lean-review-2026-11-21.md) proves the finite count and cubic implications and checks the hypotheses needed on the original legal hull.
+- [Homoclinic winding](c4-homoclinic-winding-2026-11-20.md) constructs normalized circle lifts in Lean and derives odd winding from the opposite-sheet seam hypothesis in the even-determinant reduction.
+- [Literal finite differences](c4-literal-periodic-defect-2026-11-20.md) rules out a periodic finite difference in the original tiling at nilpotent incidence modulo two and gives coincidence witnesses in a companion family of unbounded even determinant.
 
 ## Primary completion route: finite seed-patch overlaps
 

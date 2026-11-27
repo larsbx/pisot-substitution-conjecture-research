@@ -1,0 +1,7 @@
+d2e360af34e6a9274795a4aa6fddc67cfe34e6db88a586e09273d5abc96602b0  ./acceptance.json
+0b5bc5f665a0fdca05abdeb380c50083d69fe2241ad15ee0eff756b5520e2659  ./baseline-audit.log
+59436c2308380e7791d3679cc7d10762aab67b4ab53d0bd9066d829447ca8b8b  ./candidate-audit.log
+815c8b3a524863cf5db6a9ce59357d524e1cf874d47af4d99d78b2e1f13f0f60  ./integration-checks.json
+c6c094df6cd3e1fe0267612b9e2abbc761091de48eeed579e04eb75ec9aeb2cf  ./pins-check.log
+ba0a47b78d06385fd217fd348bcca1d6161e567a47d87e54f3b9f15abfa2b8c9  ./proof-bank-check.log
+7d4362f44dd047744e77eb9070d77253d224f4e620ee2c0e2323dfe8a6abe15f  ./reconciled-source-sha256.json

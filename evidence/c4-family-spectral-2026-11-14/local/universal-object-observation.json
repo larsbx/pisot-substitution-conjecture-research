@@ -1,0 +1,31 @@
+{
+  "source": "/workspace/scratch/640fcc79ecb3/psc/proof/PscVerif/PscVerif/UniversalClosureReduction.lean",
+  "source_sha256": "aaf84f504e5609b7d74be4187ec325e195e5facc098386b42e36b469f2318e24",
+  "private_source": "/workspace/scratch/640fcc79ecb3/universal-closure-dev/PscVerif/UniversalClosureReduction.lean",
+  "private_source_matches": true,
+  "object": "/workspace/scratch/640fcc79ecb3/universal-closure-dev/PscVerif/UniversalClosureReduction.olean",
+  "object_sha256": "e65194c5f9299cae462b25f01bdf708ed8d62473a47d91cf84bbbbc026bbadb1",
+  "profile_log": "/workspace/scratch/640fcc79ecb3/universal-closure-dev/attempt5-profile.log",
+  "profile_log_sha256": "f0a824d9e4daa0f90c31b1df9df39ef978116ac5b54a9d5c72b8f868c107e499",
+  "profile_has_serialization": true,
+  "profile_has_error_or_warning": false,
+  "recorded_process": {
+    "pid": 6,
+    "start": 1794682624.2221878,
+    "command": [
+      "/workspace/scratch/gnr-next.qHyoM1/toolchains/lean-4.34.0-rc2-linux/bin/lean",
+      "-j2",
+      "-DautoImplicit=false",
+      "-Dprofiler=true",
+      "-Dprofiler.threshold=100",
+      "-o",
+      "PscVerif/UniversalClosureReduction.olean",
+      "PscVerif/UniversalClosureReduction.lean"
+    ]
+  },
+  "terminal_exit": null,
+  "terminal_exit_limitation": "The original final write_stdin output was consumed at context compaction; its explicit exit integer and elapsed field were not retained. Session61931 is closed.",
+  "object_mtime_minus_recorded_launch_seconds": 29.727112531661987,
+  "acceptance_scope": "Private development replay; independent source-isolated endpoint and axiom gate pending.",
+  "previous_attempts": "Attempts1 through4 failed; no acceptance credit."
+}

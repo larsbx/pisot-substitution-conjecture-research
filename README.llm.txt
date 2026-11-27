@@ -1,4 +1,118 @@
-PSC AGENT PRIORITY ADDENDUM — 2026-11-14 (planning, not proof)
+PSC AGENT PRIORITY ADDENDUM — 2026-11-23 (current source reconciliation)
+=======================================================================
+Reconciled base: main@b479faf1677e891d658ba24fd2aa654ddc5948ce, including
+#650 and #652. This integration adds #653's literal symbolic spectrum and
+the canonical-measure follow-up described below.
+Read docs/research-roadmap-2026-09-21.md's November 23 section first,
+with AGENTS.md and claim governance. The external literature cutoff in
+docs/psc-sigma-k-research-review-2026-11-20.md remains November 20;
+the current roadmap accounts separately for later repository proofs.
+Older dated priorities below are historical where superseded here.
+
+FAMILY SPECTRAL ENDPOINT (sigma_k = (1, 0 1^k 2, 001)):
+Reuse ParameterFamilyBridge.spectral_criterion_inputs and
+full_factor_termination: for every k>=2, the arithmetic and finite set of
+all full-iterate balanced factors, each with eventual coincidence, are
+already proved. #574 merged the family stack; #572/#573 are closed
+predecessors. No new finite-carrier discovery or sampled-k census is needed.
+Reuse ParameterFamilyTiling.geometry, tiling_space_nonempty,
+continuous_action, action_aperiodic and finite_local_complexity (k>=1).
+#639 supplies the concrete ordinary hull and periodic swap density;
+#641 supplies legal_patches_dense_eventual, hull_dense_eventual and
+periodic_common_tile_of_origin_witnesses (k>=2).
+The family solenoid realization is continuous, onto, finite-to-one
+and equivariant for translation and inflation (k>=1). Recognizability
+and stable contraction are proved for the literal geometry. Every tiling
+in the zero fibre is inflation-periodic.
+The finite signed automaton now has an actual legal-hull interpretation.
+C4FamilyFiniteZeroFibre.zero_fibre_common_tile and
+zero_fibre_windowWitnesses prove the universal zero-fibre witnesses for
+k>=2 by finite Walk induction. Intermediate hulls need no zero or period
+hypothesis; only the final endpoints use the existing periodicity theorem.
+same_fibre_dense_eventual covers arbitrary equal solenoid images, with
+dense eventual coincidence as its conclusion. Reuse the vendored finite
+kernels and exact integer certificates.
+The convex-window proof in #652 derives the zero-fibre witnesses again
+from a classification of all periodic interior lattice tiles for k>=2.
+See docs/c4-zero-fibre-anchor-proof-2026-11-22.md for the proof and census.
+The finite witnesses now feed the reused ordinary-hull transport:
+C4FamilyFiniteProximal proves fibre/proximality equivalence, closed
+proximality, nonproximal fibre rank one and intrinsic equicontinuous-factor
+descent. The seven unchanged downstream support files are reused from
+the accepted local closure, with no TileChains/old ZeroFibreClosure import.
+Finite intersections and a maximum depth synchronize each whole finite
+fibre. A bounded integer-origin displacement set gives a positive gap;
+with the existing compact closed factor map this proves a nonempty open
+set of fibres agreeing on one positive window.
+C4FamilySolenoidCharacters gives finite-support integer character
+certificates, exact flow eigenfunctions and dense continuous span on the
+full solenoid. Its actual nonunit history refutes zeroth-coordinate
+injectivity. #650 merged Haar preservation and inflation ergodicity for
+k>=1, and Haar-a.e. singleton fibres and the measurable Haar lift for k>=2.
+C4FamilyMeasuredSpectrum.pureDiscrete_translation proves pure discrete
+spectrum of actual real translation on the ordinary legal hull for k>=2.
+See docs/c4-family-measured-spectrum-2026-11-21.md for the measured theorem.
+C4FamilySymbolicSpectrum.pureDiscrete_shift proves pure discrete complex
+L2 spectrum for the actual two-sided legal word shift with induced wordMeasure.
+C4FamilySymbolicMeasureUniqueness.invariant_probability_eq_wordMeasure
+identifies every invariant Borel probability on that carrier with wordMeasure.
+C4FamilyCanonicalSpectrum.pureDiscrete_shift_of_measure_eq transports the
+original spectral statement through an explicit measure equality;
+pureDiscrete_shift_of_invariant_probability combines equality and spectrum.
+existsUnique_invariant_probability states unique existence on the actual carrier.
+All these final word endpoints retain k>=2. No independent canonical measure
+is created by aliasing wordMeasure. The proof uses dense-flow Haar uniqueness,
+the Haar-conull singleton fibres and recovery of an arbitrary base probability
+from its corrected constant-strip suspension. Uniform word frequencies and
+physical variable-roof disintegration remain separate constructions.
+See docs/c4-family-symbolic-spectrum-2026-11-22.md and
+docs/c4-family-canonical-measure-2026-11-23.md. The pre-integration local
+receipt in evidence/c4-canonical-measure-2026-11-23 pins proof commit
+68e5ba028e863efedd4774ce4e07bd8678dc9143. It is not hosted acceptance of
+this integration; inspect checks at the exact resulting source revision.
+docs/c4-canonical-measure-integration-2026-11-23.md tracks that reconciliation.
+Independent human review of the inherited mathematical chain remains pending.
+The written k=1 spectrum proof in docs/c4-family-spectral-closure-2026-11-14.md
+uses a published small-trace result and does not enlarge these Lean endpoints.
+
+UNIVERSAL COINCIDENCE, IN PARALLEL:
+BH (#139): bind the written upper plus-Class-A paths to Lean, preserving
+actual occurrence addresses and the smaller members' complete seed scope;
+extend coverage to the remaining BH domains. The accepted written #452
+minus entry result is no longer a mathematical existence target.
+Residual A1-prime (#138) still needs one-sided coincidence for the prescribed
+fixed-hub pair. The #84 assembly consumes these two universal premises.
+C4 (#461): the written nonunit rank-two reduction leaves K2,2, two
+non-injective endpoint maps and incidence nilpotent modulo two under its
+geometric/cohomological inputs. #640 formalizes finite parity and algebra;
+the original-hull fixed-tiling/origin-seed classification is still supplied.
+All-power parity alone leaves X^3 OR X(X+1)^2; nilpotence also needs the
+signed-factor and degree/dimension inputs. The residue is not excluded.
+The marker product and its one-orientation Lean correspondence are built.
+Next prove concrete reserve/refusal refinement, two-sided geometric meaning
+and uniform witness existence, retaining ExactParikh and mod-two nilpotence.
+Finite graph-spectrum algebra is formalized; geometric graph/cohomology
+identification and all-degree word assembly remain separate. Unit cases,
+higher rank and arbitrary-failure finite-carrier extraction remain open.
+
+LITERATURE STOP/GO, AS CHECKED THROUGH NOVEMBER 20:
+Peer-reviewed recurrence automata can certify exact arithmetic predicates;
+a recognizer for each fixed parameter is not a uniform existence theorem.
+Creutz–Pavlov v3 (November 15) is a preprint correction; the literal family
+has factor complexity >=2n+1 and fails its older <3/2 slope hypothesis.
+Walton's recognizability result is a preprint; inflation preimages are not
+realization fibres. Eigenvalue criteria do not prove L2 completeness.
+The cited random-Rauzy spectral criterion assumes unimodularity, which the
+family's determinant two violates. No newly verified external result in the
+November 14–20 review closed the family Lean or universal coincidence gaps.
+Use the research review's primary sources and explicit publication labels.
+This reconciliation changes no universal governed claim. The new family's
+local proof receipt is explicit above; historical and hosted receipts remain
+attached to their producing revisions.
+
+=======================================================================
+
+HISTORICAL PSC AGENT PRIORITY ADDENDUM — 2026-11-19
 =======================================================================
 Read docs/bh-escape-roadmap-2026-11-14.md first, with AGENTS.md and current
 claim governance. This overlay supersedes the November 9 task ordering;
@@ -12,13 +126,19 @@ from every required cyclic seed-reachable strict-zipper source to ZERO
 INTEGRAL DISPLACEMENT. Terminal letters may differ; physical zero alone is
 not the contract. Retain original prefix addresses in M^m w=p-q and the
 sign conversion delta=-w to the Lean packet convention.
-P0 CONCRETE TARGET (#452): For minus Class A, prove uniform entry of every
-required nonzero cyclic source into the nine classified zero-return
-predecessor segments, intersected with the actual seed graph. Prove source
-coverage separately from a selected escape rule; complete child closure or
-an independent coverage theorem is required. A parameter-dependent rank
-or an escape from each child-closed target-free terminal SCC may suffice.
-Do not require every edge to decrease: productive cycles are valid controls.
+COMPLETED SCOPED TARGET (#452): Minus-Class-A entry on n+2<=d<=2n-1 is
+repository-proved by the written theorem integrated through #577. For n>=6
+it covers every strict integral overlap; for n<6 it covers the six complete
+S18 seed graphs. At integrated head 59adf93f61ea5b7cecc78526b2099fa410c36bc0,
+central-entry run 43864432132, literal Lean run 43864432245 and research run
+43864432043 all passed. The merge is 75ebe17cea95fcce35df4be333d55aa77f3c8f8e.
+The full theorem is not end-to-end Lean formalized; human review is pending.
+NEXT CONCRETE WORK: complete source coverage in the remaining BH domains
+and the actual geometric/occurrence assembly of the written family proofs
+in Lean. Do not re-prove #452's accepted entry theorem. Source coverage and
+a selected escape rule remain separate obligations; complete child closure
+or an independent coverage theorem is required. Productive cycles remain
+valid controls, so not every edge must decrease.
 P1 RESIDUAL A1-PRIME (#138), IN PARALLEL: Prove same-position proximality of
 the prescribed fixed-hub rays under the residual hub hypotheses, or supply
 direct one-sided coincidence. New family witnesses do not cover all hubs.
@@ -31,10 +151,11 @@ OccurrenceTransport.packet_path_lift and AddressedPath.child_path already
 provide mainline occurrence decoding and coherent finite path composition
 at their stated hypotheses. A supplied original transcript has a narrower
 preservation contract; constructing ordinary finite lifting is not the gap.
-Draft #574 adds BHFiniteCarrier and scoped A1 tail results at fd23a668;
-its focused workflow 43638030436 passed, while full-library 43638030298
-was in progress at this snapshot. Draft #573 family, full-library and
-original-archive gates passed at 6bf0b970. These sources are not mainline.
+Historical November 14 source snapshot: draft #574 added BHFiniteCarrier
+and scoped A1 tail results at fd23a668; its focused workflow 43638030436
+passed, while full-library 43638030298 was in progress. Draft #573 family,
+full-library and original-archive gates passed at 6bf0b970. Their then-open
+state is historical; recheck current merge/acceptance before integration.
 The roadmap pins full revisions, exact premises and workflow URLs.
 
 QUANTIFIERS AND SCOPE:

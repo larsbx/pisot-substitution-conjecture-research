@@ -1,0 +1,4 @@
+PscVerif/OccurrenceAncestry.lean:80:6: warning: Unused tactic linter: `change
+  (s a).length + (subst s parent.before).length + digit.before.length = child.index` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`

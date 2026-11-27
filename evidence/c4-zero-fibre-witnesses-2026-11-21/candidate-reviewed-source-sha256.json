@@ -1,0 +1,18 @@
+{
+  "docs/c4-zero-fibre-spectral-interface-2026-11-21.md": "b5e2e2c427d01f58b6bd3b9c5074a6931233adb1b4c5690afe024183046be881",
+  "docs/c4-zero-fibre-witness-review-2026-11-21.md": "c25dd6ed75ba706d2fccf89740d63f1dbd25a4d1c51606b5cb4793d30babaaca",
+  "docs/c4-zero-fibre-witness-stop-go-2026-11-21.md": "fcde64fe36acfacbc922ce23c1b7e73d0b9a73a715ddc12b38aef7dd153c3f99",
+  "docs/proof-bank.md": "95c7e0a58e72d670835bfdcfacf0ef248782565333992b6dca15042ff4656565",
+  "docs/side-notes-ledger.md": "21c3e89e82b316f23fcdeba1e644354758d92c3c2582a408d1b5192acc8441fa",
+  "proof/PscVerif/C4ZeroFibreWitnessAudit.lean": "fa9d4d6d34b745d9e485b723a242685175cb747d9146f13a979b25c25517312d",
+  "proof/PscVerif/PscVerif.lean": "e8a2272cb075d2400edf8cd656a848da72eb1d28b116e0d6aaa9a1423b18ccce",
+  "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorProximal.lean": "68ce95f9f0cdf53603f79cff4d3a6b38c1e6e51ae4750b4fc68108b30fa4a9b2",
+  "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorSeed.lean": "6cc2b07ef323a93901d647b211fa0621566bf93b1c980a4fa6e8a530c12e2ad0",
+  "proof/PscVerif/PscVerif/C4ParameterFamilyInteriorZero.lean": "a84c06f8694a66eaa0b488ba8b2673c9dcc062bec9996d3dc5443cf97ce8b52e",
+  "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreControls.lean": "dd990353621f404c2adb759c5cf207b7dd95ac2639b09e2450921bbfa8939427",
+  "proof/PscVerif/PscVerif/C4ParameterFamilyZeroFibreWitnesses.lean": "3510a37f7bc609c962a88ab184f3b7591479abdcae0de0abfb6490fb90a6fb3d",
+  "proof/PscVerif/PscVerif/PeriodicPartnerPeriodicZero.lean": "651bc59774daae1c2f363253d5734cdc47c9830134cf9784c85c483916583df8",
+  "proof/PscVerif/PscVerif/PeriodicPartnerProximal.lean": "83944b6beee8157260961fc8c4d6e27573836f6f45f1811390bc0deac202feae",
+  "proof/proof-bank.json": "42b4c60b6c6821a9a0366af6ac66d8182a421ab62e53d290b6430069116d0975",
+  "tools/check_c4_parameter_family.sh": "b9061e6ebcb726221a8c3950befbfaf15705241ebdf72b2239e9eba5753f77a6"
+}

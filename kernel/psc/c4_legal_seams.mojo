@@ -1,4 +1,4 @@
-"""Exact ternary letter-language test for two-sided phase-zero cuts."""
+"""Exact ternary legality and residue filters for two-sided hub phases."""
 
 from psc.bpa import sigma3, substitution_incidence
 from psc.c4_cut_alignment import _det3, _integral_column_lift, _prefix_counts
@@ -29,7 +29,7 @@ def legal_bigrams(sigma: List[List[Int]]) -> List[Bool]:
     return legal^
 
 
-def _hub_pairs(endpoint: List[Int], hub: Int, top_has_hub: Bool) -> List[Int]:
+def _hub_pairs(endpoint: List[Int], hub: Int, top_has_hub: Bool, phase: Int) -> List[Int]:
     var out = List[Int]()
     for leaf in range(3):
         if leaf == hub:
@@ -38,13 +38,17 @@ def _hub_pairs(endpoint: List[Int], hub: Int, top_has_hub: Bool) -> List[Int]:
         var b = leaf if top_has_hub else hub
         var pair = 3 * a + b
         var viable = True
-        # At most six distinct ordered noncoincident pairs can occur.
-        for _ in range(7):
-            if a == b or (a != hub if top_has_hub else b != hub):
+        var expected_on_top = top_has_hub
+        # At most six distinct ordered noncoincident pairs per hub side.
+        for _ in range(13):
+            var missing_hub = a != hub and b != hub
+            var wrong_side = phase >= 0 and (a != hub if expected_on_top else b != hub)
+            if a == b or missing_hub or wrong_side:
                 viable = False
                 break
             a = endpoint[a]
             b = endpoint[b]
+            expected_on_top = expected_on_top != (phase == 1)
         if viable:
             out.append(pair)
     return out^
@@ -60,9 +64,14 @@ def phase_zero_legal_seams(sigma: List[List[Int]], left_hub: Int,
     if left_hub < 0 or left_hub >= 3 or right_hub < 0 or right_hub >= 3:
         raise Error("seam hub lies outside 0..2")
     var substitution = sigma3(sigma)
-    var initial = _hub_pairs(substitution.prefix_endpoint_map(), left_hub, True)
-    var terminal = _hub_pairs(substitution.suffix_endpoint_map(), right_hub, right_on_top)
-    var legal = legal_bigrams(sigma)
+    var initial = _hub_pairs(substitution.prefix_endpoint_map(), left_hub, True, 0)
+    var terminal = _hub_pairs(substitution.suffix_endpoint_map(), right_hub, right_on_top, 0)
+    return _legal_seams(terminal, initial, legal_bigrams(sigma))
+
+
+def _legal_seams(
+    terminal: List[Int], initial: List[Int], legal: List[Bool],
+) -> List[Int]:
     var seams = List[Int]()
     for i in range(len(terminal)):
         for j in range(len(initial)):
@@ -85,18 +94,62 @@ def _preceding_matches(sigma: List[List[Int]], legal: List[Bool],
 def phase_zero_birth_seams(sigma: List[List[Int]], left_hub: Int,
                            right_hub: Int, right_on_top: Bool) raises -> List[Int]:
     """Local legal newborn overapproximation with exact integer residues."""
-    for a in range(len(sigma)):
-        if len(sigma[a]) > 64:
+    return _birth_seams(sigma, left_hub, right_hub, right_on_top, 0)
+
+
+def phase_one_birth_seams(sigma: List[List[Int]], left_hub: Int,
+                          right_hub: Int, right_on_top: Bool) raises -> List[Int]:
+    """Candidate newborns when both hubs flip at each actual child.
+
+    Use child order with the left hub on top. The complementary coincidence
+    witnesses are supplied by the caller's mathematical application.
+    """
+    return _birth_seams(sigma, left_hub, right_hub, right_on_top, 1)
+
+
+def strict_birth_seams(sigma: List[List[Int]], left_hub: Int,
+                       right_hub: Int, right_on_top: Bool) raises -> List[Int]:
+    """Local candidates without a hub-phase restriction.
+
+    Orient the seam so the right factor starts with the left hub on top.
+    right_on_top then selects the terminal hub's track on the left factor.
+    """
+    return _birth_seams(sigma, left_hub, right_hub, right_on_top, -1)
+
+
+def _birth_seams(
+    sigma: List[List[Int]], left_hub: Int, right_hub: Int,
+    right_on_top: Bool, phase: Int,
+) raises -> List[Int]:
+    if len(sigma) != 3:
+        raise Error("newborn seam test requires ternary substitution")
+    if left_hub < 0 or left_hub >= 3 or right_hub < 0 or right_hub >= 3:
+        raise Error("seam hub lies outside 0..2")
+    for a in range(3):
+        if len(sigma[a]) == 0 or len(sigma[a]) > 64:
             raise Error("image outside checked seam arithmetic budget")
-    var allowed = phase_zero_legal_seams(sigma, left_hub, right_hub, right_on_top)
+        for j in range(len(sigma[a])):
+            if sigma[a][j] < 0 or sigma[a][j] >= 3:
+                raise Error("newborn seam test has a letter outside 0..2")
+    var substitution = sigma3(sigma)
+    var f = substitution.prefix_endpoint_map()
+    var g = substitution.suffix_endpoint_map()
+    var legal = legal_bigrams(sigma)
+    var allowed = _legal_seams(_hub_pairs(g, right_hub, right_on_top, phase),
+                               _hub_pairs(f, left_hub, True, phase), legal)
     var m = substitution_incidence(sigma)
     var det = _det3(m)
     if det == 0:
         raise Error("newborn seam test requires nonsingular incidence")
-    var substitution = sigma3(sigma)
-    var first = _hub_pairs(substitution.prefix_endpoint_map(), left_hub, True)
-    var last = _hub_pairs(substitution.suffix_endpoint_map(), right_hub, right_on_top)
-    var legal = legal_bigrams(sigma)
+
+    # Children in the output have their left hub on top. For phase one
+    # the parent of such a newborn has its left hub on the bottom.
+    var flip = phase == 1
+    var first = _hub_pairs(f, left_hub, not flip, phase)
+    var last = _hub_pairs(g, right_hub, right_on_top != flip, phase)
+    if phase < 0:
+        first.extend(_hub_pairs(f, left_hub, False, phase))
+        last.extend(_hub_pairs(g, right_hub, not right_on_top, phase))
     var births = List[Int]()
     for index in range(len(allowed)):
         var seam = allowed[index]

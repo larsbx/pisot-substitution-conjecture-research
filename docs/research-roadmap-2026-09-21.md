@@ -1,11 +1,157 @@
 # PSC research roadmap — 2026-09-21
 
-## 2026-11-14 current priority: BH escape, with A1′ in parallel
+**Status.** Updated 23 November 2026. Lean proves the measured real
+translation and actual two-sided symbolic-shift theorems for the literal
+family at `k ≥ 2`, together with uniqueness of its invariant symbolic
+probability and explicit measure transport of the spectral conclusion.
+Universal BH, residual A1′, general C4 and PSC remain open. Independent
+human review is pending; current integration acceptance is tracked separately
+from the recorded local proof acceptance.
 
-The [BH escape roadmap](bh-escape-roadmap-2026-11-14.md) gives the current
-next theorem and acceptance contract. It distinguishes `main` from the
-unmerged #573 family result and #574 conditional BH finite-carrier/A1′ work;
-earlier dated frontiers below retain their historical evidence.
+<a id="2026-11-21-current-priorities-family-spectral-endpoint-and-universal-coincidence"></a>
+
+<a id="2026-11-22-current-priorities-family-spectral-endpoint-and-universal-coincidence"></a>
+
+## 2026-11-23 current priorities: family spectral endpoint and universal coincidence
+
+Main includes #650 at `968fabde6c1c056d5157abc77460a5a4e2a4cfd1`.
+The origin recurrence in #652 provides another proof of the zero-fibre
+witnesses and classifies the periodic interior lattice origin tiles.
+[PR #650](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/650) · [PR #652](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/652)
+The current integration combines `main@b479faf1677e891d658ba24fd2aa654ddc5948ce`
+with #653's symbolic transfer and the new canonical-measure follow-up.
+The [local canonical-measure receipt](../evidence/c4-canonical-measure-2026-11-23/README.md)
+belongs to proof commit `68e5ba028e863efedd4774ce4e07bd8678dc9143`, before
+this main reconciliation; it does not establish hosted acceptance of the
+integrated revision. The [integration record](c4-canonical-measure-integration-2026-11-23.md)
+tracks that acceptance separately. The #652 anchor proof and its corrected origin-cycle
+census are retained at their recorded scopes.
+The [research review](psc-sigma-k-research-review-2026-11-20.md) supplies the
+literature assessment through 20 November and its publication addendum.
+The developments below supersede its earlier family implementation targets
+and the task ordering in the dated snapshots that follow. Historical test
+receipts remain attached to their producing revisions.
+
+For `σₖ=(1,0 1^k 2,001)`, the all-parameter arithmetic and full-factor
+termination endpoint for `k>=2` has been on main since
+[#574](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/574);
+#572 and #573 are closed predecessor branches. The
+[ordinary family hull](c4-family-tiling-2026-11-21.md), merged through #639,
+now supplies the literal positive-length substitution, an inhabited legal
+hull, aperiodicity, finite local complexity and its continuous translation
+action for `k>=1`. For `k>=2` it supplies dense eventual coincidence of the
+periodic swap tracks. The [#641 legal-patch transfer](c4-family-legal-coincidence-2026-11-21.md)
+extends this to legal patches sharing a tile and their open overlap, and to
+legal hull tilings sharing a tile. These are completed formal components,
+not new requests to discover a family carrier or construct the hull.
+
+The [solenoid realization](c4-family-solenoid-factor-2026-11-21.md)
+establishes recognizability and a continuous, onto, finite-to-one factor
+for the ordinary hull at `k>=1`. The zero fibre is nonempty and all its
+tilings are inflation-periodic. For `k>=2`,
+[`common_tile_of_zero_fibre_witnesses`](../proof/PscVerif/PscVerif/C4ParameterFamilySolenoid.lean)
+takes exact origin agreements and an exact agreement after a common shift.
+It gives a common tile for the pair over zero. The [published
+Barge–Štimac–Williams Corollary 2](https://doi.org/10.3934/dcds.2013.33.579)
+already gives the written family conclusion. The spectral use of the
+separate published `k=1` result stays outside the combined Lean endpoint.
+
+**Finite-kernel method, 21 November.** The
+[three-label tile-chain automaton](c4-finite-tile-automaton-2026-11-21.md)
+has explicit signed loops generating all of `Z^3`; every forward edge
+has a literal family occurrence by substitution depth two for every
+`k>=2`. Its [actual-hull interpretation](c4-finite-hull-witnesses-2026-11-21.md)
+now proves the universal zero-fibre common-tile and exact-window witnesses.
+Each edge has a real legal-hull witness, and finite Walk induction composes
+the existing shared-tile coincidence transfer. Intermediate hull members
+need no zero or period premise. The integer origins select a finite path;
+periodicity of the two endpoints yields the common tile. Equal full
+solenoid histories also imply dense eventual coincidence. This supplies
+uniform coverage by reusing the hull and density theorems. The
+convex-window proof has the same zero-fibre scope and derives the
+witnesses from the periodic-tile classification.
+[Origin recurrence](c4-zero-fibre-anchor-proof-2026-11-22.md)
+
+The [next finite obligations](c4-finite-fibre-obligations-2026-11-21.md)
+now connect these witnesses to the already verified ordinary-hull
+transport and factor-descent modules. Ordinary proximality equals the
+actual fibre relation, its finite nonproximal rank is one, and the actual
+solenoid has the intrinsic maximal-equicontinuous-factor property.
+Finite intersections and a maximum depth synchronize an entire fibre.
+A finite gap for bounded equal-torus origin displacements then supplies
+an open synchronization set through the existing compact closed map.
+Finite-support integer characters separate full solenoid histories,
+have an exact flow frequency, and have dense continuous span by the
+existing Stone--Weierstrass theorem.
+
+#650 proves Haar preservation and ergodicity of solenoid inflation for
+`k ≥ 1`. At `k ≥ 2`, the synchronized open set yields a Haar-conull Gδ
+set of singleton fibres. The measurable inverse defines the invariant
+Haar lift, and character pullback spans the hull's complex `L²` with
+actual translation eigenfunctions. [Measured translation theorem](c4-family-measured-spectrum-2026-11-21.md)
+
+#653's [symbolic transfer](c4-family-symbolic-spectrum-2026-11-22.md) identifies
+the actual legal two-sided word shift with the next-tile return, proves
+the roof coboundary and constant-strip factor, and establishes
+`C4FamilySymbolicSpectrum.pureDiscrete_shift` with induced `wordMeasure`.
+The [canonical-measure proof](c4-family-canonical-measure-2026-11-23.md) now
+shows that every invariant Borel probability on this carrier equals
+`wordMeasure`. Its arbitrary return probability is recovered from a
+normalized constant-strip suspension whose solenoid image is Haar;
+Haar-conull singleton fibres identify the lift. The explicit
+`pureDiscrete_shift_of_measure_eq` theorem transports the original complex
+`L²` endpoint, and `pureDiscrete_shift_of_invariant_probability` combines
+the two results for every `k ≥ 2`. No general primitive-substitution
+unique-ergodicity theorem or newly aliased canonical measure is used.
+
+### Deliverables and the premises each must discharge
+
+| Workstream | Reuse at its recorded scope | Next deliverable and completion condition |
+| --- | --- | --- |
+| **Finite tile-chain certificates** | Completed: native DFA/SCC/BigZ/Mat3 certificates, uniformly legal five-edge alphabet, exact signed replay, actual legal-hull edge realizations, and finite Walk transfer to dense eventual coincidence. | Reuse this checked route; no additional chain-realization or zero-fibre witness premise remains. A chain may use distinct legal tilings for its edges and need not be one legal word. |
+| **Family factor geometry** | Completed: unique desubstitution, the onto finite-to-one actual factor, automaton zero-fibre witnesses, ordinary proximality exactly on fibres, nonproximal fibre rank one, and intrinsic maximal equicontinuous-factor descent. | Reuse these exact interfaces. The distinct zero-fibre seam control still refutes universal injectivity; rank one counts pairwise nonproximal subsets, not all members of an exceptional fibre. |
+| **Family measured spectrum** | Merged in #650. `C4FamilyMeasuredSpectrum.pureDiscrete_translation` proves pure discrete real translation spectrum on the ordinary legal hull with its invariant Haar lift for `k ≥ 2`. The new `hullMeasure_eq_of_invariant` identifies every invariant hull probability with that lift. | Reuse the measured endpoint and preserve its real-flow scope. Physical variable-roof disintegration remains a separate interface. |
+| **Family symbolic spectrum and canonical measure** | `pureDiscrete_shift` proves the actual word-shift endpoint; `invariant_probability_eq_wordMeasure` and the explicit equality transport extend it to every invariant Borel probability on that carrier, `k ≥ 2`. [Proof and local receipt](c4-family-canonical-measure-2026-11-23.md) | Record acceptance at the integrated source revision and continue independent human review. A separate cylinder-frequency construction is optional additional infrastructure, not a missing premise of this family theorem. |
+| **BH and Class A** | The accepted written minus-Class-A cover, written upper plus entry/continuation, and the 70 small upper plus certificates at their complete swap-seed scope. | Bind the written upper plus original-occurrence paths to Lean; retain the recorded acceptance status of each finite certificate. Extend source coverage and an actual selected path to zero integral displacement to the remaining BH domains, including the full nonunit representation. Use the [BH roadmap](bh-escape-roadmap-2026-11-14.md) for the exact scopes. |
+| **Residual A1′** | The scoped tail witnesses and the two-obstruction completion theorem. | Prove one-sided coincidence for the prescribed residual first-letter-fixed hub pair; same-position proximality or an equal-Parikh prefix with the same next letter is a concrete target. The uncovered non-crossing Theorem K cells are a narrower starting point. Universal BH and A1′ together feed #84; #84 is not a third independent existence premise. |
+| **Nonunit rank-two C4** | The [written global residue](c4-nonunit-rank-two-residue-2026-11-21.md): `ER=K₂,₂`, both endpoint maps non-injective, and incidence nilpotent modulo two, under the named twin/cohomology/covering inputs. | Find a geometric obstruction for twins branching on the collapsed endpoint pair. Preserve the distinction between excluding rank-two **strict systems** and excluding arbitrary rank-two hulls. The unit case, higher ranks, and extraction of a finite strict carrier from arbitrary failure remain separate. |
+| **Parity and graph formalization** | [#640's finite parity results](c4-nonunit-parity-lean-review-2026-11-21.md) and [#637's finite graph-spectrum results](c4-graph-spectrum-review-2026-11-21.md). | Supply the origin-seed bijections at all positive powers, the concrete twin and original-hull identifications, and the signed factor/dimension hypotheses. Parity alone leaves `X³` or `X(X+1)²`; nilpotence needs the additional signed-factor argument. Graph construction, hull cohomology and all-degree word-rigidity assembly remain written deductions beyond the finite Lean core. |
+| **Marker and address automata** | The executable [marker product](c4-marker-reachability-2026-11-20.md) and one-orientation Lean correspondence under `ExactParikh` and three-step nilpotence. | Prove the Perron-reserve/executable representation contract and the required two-sided geometric identification, then a uniform theorem forcing a violating cut in every remaining presentation. A target-free finite certificate decides its prescribed pair; it does not prove witness existence for the whole residue. A fixed-`k` construction is not one automaton for unbounded `k`. |
+
+For the broader realization route, the [ordinary hull topology](c4-ordinary-hull-topology-2026-11-19.md)
+and [derived Pisot contraction](c4-pisot-contraction-2026-11-19.md) are available.
+The ordinary hull is now compact, and bijective inflation with the Pisot
+data supplies continuity and finite fibres for the constructed map.
+Applying the published factor relation to a general substitution still needs
+the corresponding identification and hypotheses.
+
+### Literature decisions that change the work plan
+
+Publication labels and version dates in this table are those verified in the
+[20 November review](psc-sigma-k-research-review-2026-11-20.md#3-recent-work-ranked-by-relevance).
+They distinguish external results from the subsequent repository advances.
+
+| Result and verified status | Consequence for the next proof task |
+| --- | --- |
+| **Creutz–Pavlov, preprint v3, 15 November 2026.** The revision repairs a product-decomposition assertion and a proof step. | Retain the possible twisted group extension. The literal σₖ coding has `p(n)>=2n+1` by rationally independent frequencies and Tijdeman's bound, so the slope-below-`3/2` theorem cannot close this family. This exclusion is the review's mathematical deduction, not an added Lean theorem; see [§4](psc-sigma-k-research-review-2026-11-20.md#4-the-november-revision-and-an-exact-exclusion-for-sigma-k). |
+| **Carton–Couvreur–Delacourt–Ollinger, refereed WORDS 2025 proceedings.** **Couvreur et al., generalized abelian complexity, preprint v2 (2025).** | Use exact synchronized arithmetic and Parikh predicates for a specified certificate contract. Check the induced block substitution hypotheses where required. Regularity and successful generation do not imply literal coincidence or a uniform witness theorem; see [§5](psc-sigma-k-research-review-2026-11-20.md#5-effective-automata-and-the-coincidence-programme). |
+| **Walton, recognizability preprint v2 (May 2026); Solomyak's classical unique-composition theorem is peer reviewed.** | Choose the theorem requiring the least new infrastructure for the primitive family. Verify its ordinary-hull hypotheses and prove unique desubstitution. Neither theorem gives finite or singleton maximal-equicontinuous-factor fibres; see [§6](psc-sigma-k-research-review-2026-11-20.md#6-recognizability-and-the-two-different-fibre-problems). |
+| **Berthé–Cecchi Bernales–Yassawi, García-Ramos–León-Torres and Haupt: peer-reviewed 2025 papers. Mercat's eigenvalue algorithm: 2024 preprint.** | Use eigenvalue constructions and rank/fibre characterizations only with their hypotheses. Keep residual and almost-everywhere fibre bounds distinct, and prove completeness of the eigenfunctions rather than only their existence; see [§§7–8](psc-sigma-k-research-review-2026-11-20.md#7-eigenvalue-results-and-what-they-can-certify). |
+| **Gohlke–Mitchell–Rust–Samuel, peer-reviewed Advances in Mathematics paper, 2026 issue.** | Its random Rauzy criterion requires unimodularity, whereas `det Mₖ=2`; varying `k` also changes the incidence matrix. A nonunit transfer is a separate research problem, not a shortcut past the existing family criterion. **Nakaishi's 2024 general-proof preprint remains outside the imports** pending repair of the recorded first-entry objection; see [§9](psc-sigma-k-research-review-2026-11-20.md#9-rauzy-geometry-and-claims-of-universal-closure). |
+
+The checked 14–20 November 2026 sources include the material Creutz–Pavlov
+correction. The family Lean measured theorem, symbolic transfer and
+canonical-measure identification came from subsequent internal proofs.
+The literature review's reporting rule sets the threshold
+for future updates. [Reporting rule](psc-sigma-k-research-review-2026-11-20.md#12-reporting-when-no-material-developments-appear)
+
+## 2026-11-14 historical priority: BH escape, with A1′ in parallel
+
+The [BH escape roadmap](bh-escape-roadmap-2026-11-14.md) retains this dated
+priority and its acceptance contract. At the November 14 observation the
+#573 family result and #574 conditional BH finite-carrier/A1′ work were
+unmerged; #574 subsequently integrated that stack and #572/#573 are closed
+predecessor branches. The current priorities are recorded above.
 
 Prioritize [#452](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/452):
 every required nonzero cyclic seed-reachable minus-Class-A state reaches one
@@ -23,7 +169,7 @@ further developments. C4 still needs uniform strict-system exclusion and
 separate finite-carrier extraction where required; a finite overlap graph
 alone supplies neither a hit nor a uniform balanced-factor bound.
 
-## 2026-11-11 current frontier through #541
+## 2026-11-11 historical frontier through #541
 
 **Accepted mainline baseline at that review:**
 `2848e5f67b605669a550f362a1de4bf1c1529f7c`. The

@@ -1,0 +1,22 @@
+'Psc.ClassAPlusUpperCentralControls.source_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperCentralControls.target_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperCentralControls.source_central' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperCentralControls.target_central' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperCentralControls.actual_first_edge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperCentralControls.target_signed_cycle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperCentralControls.original_scalar_pair' depends on axioms: [propext]
+'Psc.ClassAPlusUpperCentralControls.transformed_scalar_pair' depends on axioms: [propext]
+'Psc.ClassAPlusUpperCentralControls.source_not_full_cycle' depends on axioms: [propext, Quot.sound]
+'Psc.ClassAPlusUpperCentralControls.source_ne_cycle_one' depends on axioms: [propext, Quot.sound]
+'Psc.ClassAPlusUpperCentralControls.strict_reconstruction_prefix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Psc.ClassAPlusUpperCentralControls.reconstruction_delay_control' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Psc.ClassAPlusUpperCentralControls.retained_nonzero_cycle_control' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Psc.ClassAPlusUpperCentralControls.retained_half_tie_control' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

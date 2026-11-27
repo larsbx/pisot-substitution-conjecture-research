@@ -1,0 +1,16 @@
+{
+  "parent_commit": "6bf0b9704501eb763cbb4323c3fd1f939d6f11c8",
+  "parent_tree": "16856ab6885b091b971fdd30c9a800014073970c",
+  "run_id": 43630544688,
+  "job_id": 132555946132,
+  "artifact_id": 14129340218,
+  "artifact_bytes": 112748,
+  "artifact_sha256": "ba4aae65ae9a52415fe8a1f740ebd2190ded21cf39346b2192cbf6846fcb5c7b",
+  "parent_inventory_sha256": "faaf07670393313033938dbf919c570aeb9bce5f64f296def82dc83c8a167d3a",
+  "compiled_declarations": 11937,
+  "compiled_theorems": 7819,
+  "expected_named_proofs": 3822,
+  "checker": "unchanged tools/make_proof_bank.py check_audit",
+  "source_binding": "Provider artifact metadata names exact run and head; the archive contains the audit log only. Checkout/job log supplies exact source binding.",
+  "recovery": "Original artifact redownloaded and replayed after execution workspace reset; no lost local terminal result reconstructed."
+}

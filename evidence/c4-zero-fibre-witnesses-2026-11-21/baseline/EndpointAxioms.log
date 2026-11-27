@@ -1,0 +1,66 @@
+'Psc.ParameterFamilySolenoid.common_tile_of_zero_fibre_witnesses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Psc.ParameterFamilySolenoid.periodic_of_realize_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ParameterFamilySolenoid.solenoidRealize_fibres_eq_of_equivariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Psc.ParameterFamilySolenoid.solenoidRealize_finite_fibres' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ParameterFamilySolenoid.continuous_solenoidRealize' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ParameterFamilySolenoid.solenoidRealize_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ParameterFamilyTiling.periodic_common_tile_of_origin_witnesses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Psc.ParameterFamilyTiling.periodic_fibre_common_tiles' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.PeriodicPartnerLegalCoincidence.periodic_common_tile_of_local_witnesses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Psc.ParameterFamilySolenoid.common_tile_of_zero_fibre_witnesses (k : ℕ) (hk : 1 ≤ k) (hk₂ : 2 ≤ k)
+  {T U T' U' : (Psc.ParameterFamilyTiling.geometry k hk).Hull} {t : ℝ}
+  (hT : Psc.PeriodicPartnerRealization.realize (Psc.ParameterFamilySolenoid.pisotData k hk) ⋯ T = 0)
+  (hU : Psc.PeriodicPartnerRealization.realize (Psc.ParameterFamilySolenoid.pisotData k hk) ⋯ U = 0)
+  (h₁ : Psc.PeriodicPartnerHull.LengthSubst.Agree 1 T T') (h₂ : Psc.PeriodicPartnerHull.LengthSubst.Agree 1 U U')
+  (h₃ :
+    Psc.PeriodicPartnerHull.LengthSubst.Agree 1 (Psc.PeriodicPartnerHull.LengthSubst.translate t T')
+      (Psc.PeriodicPartnerHull.LengthSubst.translate t U')) :
+  (↑T ∩ ↑U).Nonempty
+Psc.ParameterFamilyTiling.periodic_common_tile_of_origin_witnesses (k : ℕ) (hk : 2 ≤ k) :
+  have S := Psc.ParameterFamilyTiling.geometry k ⋯;
+  ∀ {T U T' U' : S.Hull} {m n : ℕ},
+    0 < m →
+      0 < n →
+        Psc.PeriodicPartnerHull.LengthSubst.inflateH^[m] T = T →
+          Psc.PeriodicPartnerHull.LengthSubst.inflateH^[n] U = U →
+            ∀ {v : ℝ},
+              Psc.PeriodicPartnerLegalCoincidence.originPatch S ↑T =
+                  Psc.PeriodicPartnerLegalCoincidence.originPatch S ↑T' →
+                Psc.PeriodicPartnerLegalCoincidence.originPatch S ↑U =
+                    Psc.PeriodicPartnerLegalCoincidence.originPatch S ↑U' →
+                  Psc.PeriodicPartnerLegalCoincidence.originPatch S (Psc.PeriodicPartnerHull.LengthSubst.shift v ↑T') =
+                      Psc.PeriodicPartnerLegalCoincidence.originPatch S
+                        (Psc.PeriodicPartnerHull.LengthSubst.shift v ↑U') →
+                    (↑T ∩ ↑U).Nonempty
+Psc.PeriodicPartnerLegalCoincidence.periodic_common_tile_of_local_witnesses.{u_1} {α : Type u_1}
+  (S : Psc.PeriodicPartnerHull.LengthSubst α) [Nonempty α]
+  (hd : ∀ {T U : S.Hull}, (↑T ∩ ↑U).Nonempty → Dense (Psc.PeriodicPartnerEventualCoincidence.eventual S ↑T ↑U))
+  {T U T' U' : S.Hull} {m : ℕ} (hm : 0 < m) (hT : Psc.PeriodicPartnerHull.LengthSubst.inflateH^[m] T = T)
+  (hU : Psc.PeriodicPartnerHull.LengthSubst.inflateH^[m] U = U) {W : Set ℝ} (hW : IsOpen W) (hw : W.Nonempty)
+  (h₁ : S.AgreeOn W ↑T ↑T') (h₂ : S.AgreeOn W ↑U ↑U') (hc : (↑T' ∩ ↑U').Nonempty) : (↑T ∩ ↑U).Nonempty
+Psc.ParameterFamilyTiling.periodic_fibre_common_tiles.{u_1} {Y : Type u_1} (k : ℕ) (hk : 2 ≤ k) :
+  have S := Psc.ParameterFamilyTiling.geometry k ⋯;
+  ∀ (g : S.Hull → Y) (f : Y → Y),
+    Function.Injective Psc.PeriodicPartnerHull.LengthSubst.inflateH →
+      Function.Semiconj g Psc.PeriodicPartnerHull.LengthSubst.inflateH f →
+        (∀ (y : Y), {T | g T = y}.Finite) →
+          (∀ {T U : S.Hull},
+              g T = g U →
+                ∃ T' U' v,
+                  Psc.PeriodicPartnerLegalCoincidence.originPatch S ↑T =
+                      Psc.PeriodicPartnerLegalCoincidence.originPatch S ↑T' ∧
+                    Psc.PeriodicPartnerLegalCoincidence.originPatch S ↑U =
+                        Psc.PeriodicPartnerLegalCoincidence.originPatch S ↑U' ∧
+                      Psc.PeriodicPartnerLegalCoincidence.originPatch S
+                          (Psc.PeriodicPartnerHull.LengthSubst.shift v ↑T') =
+                        Psc.PeriodicPartnerLegalCoincidence.originPatch S
+                          (Psc.PeriodicPartnerHull.LengthSubst.shift v ↑U')) →
+            ∃ y, {T | g T = y}.Nonempty ∧ ∀ (T U : S.Hull), g T = y → g U = y → (↑T ∩ ↑U).Nonempty

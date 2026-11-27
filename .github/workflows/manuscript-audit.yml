@@ -1,0 +1,33 @@
+name: Live manuscript consistency
+
+# Run on every source change: live text is not limited to docs/ or manuscripts/,
+# and the auditor's traversal rules and metadata can change independently.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref == 'refs/heads/main' && github.run_id || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  live-manuscript-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install audit regression dependency
+        run: python -m pip install 'pytest>=7,<10'
+      - name: Verify stale-claim guards and live/history scope controls
+        run: python -m pytest -q tests/test_audit_manuscript.py
+      - name: Audit all live text and report preserved history separately
+        run: python tools/audit_manuscript.py --root . --report-history

@@ -1,0 +1,54 @@
+{
+  "checks": [
+    {
+      "name": "proof-bank-current",
+      "command": [
+        "python3",
+        "tools/make_proof_bank.py",
+        "--check"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "markdown",
+      "command": [
+        "python3",
+        "tools/check_markdown_source.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "shell-syntax",
+      "command": [
+        "bash",
+        "-n",
+        "tools/check_bh_a1_progress.sh"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "whitespace",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "governed_claims": 126,
+  "claim_records_unchanged": true,
+  "named_proof_count": 3909,
+  "inventory_sha256": "4241ef1f0ef717ae21c66b917df71c3968367bdd827aad61d1a354d883b63c7e",
+  "pytest_followup": {
+    "test": "test_bank_is_current_and_includes_every_governed_claim_and_lean_proof",
+    "exit_code": 0,
+    "scope": "The previously failed inventory-freshness guard passed after regeneration; the other 56 tests passed in the preceding suite."
+  },
+  "integrity_first_attempt": {
+    "exit_code": 1,
+    "failed_test": "test_every_evidence_packet_is_pinned",
+    "cause": "Inherited evidence/c4-family-termination-2026-11-14 lacked its top-level SHA256SUMS. The new packet checksum and tracked-file tests passed.",
+    "repair": "Added only the missing predecessor manifest after verifying all nine packet files byte-identical to published source 6bf0b970. No historical receipt or existing packet file was edited."
+  }
+}

@@ -1,0 +1,12 @@
+'Psc.ClassAPlusUpperNoHalfTies.polyQ_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperNoHalfTies.vector_shift_ne_half_integer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperNoHalfTies.family_root_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperEntryControls.two_edge_path' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperEntryControls.top_trace' depends on axioms: [propext, Quot.sound]
+'Psc.ClassAPlusUpperEntryControls.bottom_trace' depends on axioms: [propext, Quot.sound]
+'Psc.ClassAPlusUpperEntryControls.composed_offset_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperEntryControls.wrong_last_index_rejected' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperEntryControls.one_edge_central_impossible' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Psc.ClassAPlusUpperEntryControls.two_edge_strict_path' depends on axioms: [propext, Classical.choice, Quot.sound]

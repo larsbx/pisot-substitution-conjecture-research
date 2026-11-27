@@ -1,0 +1,5 @@
+'Psc.ClassAPlusUpperEntry.direct_gap_window' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperEntry.ordered_run_indices' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperEntry.boundary_cases' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperEntry.bounded_entry_of_growth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Psc.ClassAPlusUpperEntry.exists_entry_power' depends on axioms: [propext, Classical.choice, Quot.sound]
