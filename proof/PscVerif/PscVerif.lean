@@ -299,3 +299,4 @@ import PscVerif.BetaMetallicNormalForm
 import PscVerif.BetaGoldenCoding
 import PscVerif.BetaGoldenMultiplicity
 import PscVerif.BetaMetallicCarry
+import PscVerif.BetaMetallicSchmidt

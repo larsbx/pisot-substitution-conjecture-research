@@ -7122,6 +7122,94 @@
       "declaration": "theorem unique_not_countable (hm : 3 ≤ m) (B : Base m) : ¬ B.uniqueSet.Countable := by"
     },
     {
+      "name": "Psc.BetaMetallicUnique.Base.rem_succ",
+      "module": "PscVerif.BetaMetallicSchmidt",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicSchmidt.lean",
+      "line": 47,
+      "declaration": "theorem rem_succ (d : ℕ → Fin (m + 1)) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.digit_eq_floor",
+      "module": "PscVerif.BetaMetallicSchmidt",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicSchmidt.lean",
+      "line": 57,
+      "declaration": "theorem digit_eq_floor (d : ℕ → Fin (m + 1)) (hg : ∀ n, B.rem d n < 1) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.rem_coords",
+      "module": "PscVerif.BetaMetallicSchmidt",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicSchmidt.lean",
+      "line": 73,
+      "declaration": "theorem rem_coords (d : ℕ → Fin (m + 1)) {a₀ b₀ q : ℤ}"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.conj_coords_step",
+      "module": "PscVerif.BetaMetallicSchmidt",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicSchmidt.lean",
+      "line": 86,
+      "declaration": "theorem conj_coords_step (d : ℕ → Fin (m + 1)) (a₀ b₀ q : ℤ) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.conj_coords_bound",
+      "module": "PscVerif.BetaMetallicSchmidt",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicSchmidt.lean",
+      "line": 92,
+      "declaration": "theorem conj_coords_bound (d : ℕ → Fin (m + 1)) (a₀ b₀ q : ℤ) (hq : 0 < q) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.eventuallyPeriodic_of_mem",
+      "module": "PscVerif.BetaMetallicSchmidt",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicSchmidt.lean",
+      "line": 118,
+      "declaration": "theorem eventuallyPeriodic_of_mem (d : ℕ → Fin (m + 1)) (hg : ∀ n, B.rem d n < 1)"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.xi_not_mem",
+      "module": "PscVerif.BetaMetallicSchmidt",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicSchmidt.lean",
+      "line": 211,
+      "declaration": "theorem xi_not_mem (k m : ℕ) (hk : 1 ≤ k) (hm : 4 ≤ m) (B : Base m) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.xi_irrational",
+      "module": "PscVerif.BetaMetallicSchmidt",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicSchmidt.lean",
+      "line": 220,
+      "declaration": "theorem xi_irrational (k m : ℕ) (hk : 1 ≤ k) (hm : 4 ≤ m) (B : Base m) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.goldenBase_value",
+      "module": "PscVerif.BetaMetallicSchmidt",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicSchmidt.lean",
+      "line": 242,
+      "declaration": "theorem goldenBase_value (c : ℕ → Bool) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.shift_toFin",
+      "module": "PscVerif.BetaMetallicSchmidt",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicSchmidt.lean",
+      "line": 249,
+      "declaration": "theorem shift_toFin (c : ℕ → Bool) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.golden_code_not_mem",
+      "module": "PscVerif.BetaMetallicSchmidt",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicSchmidt.lean",
+      "line": 253,
+      "declaration": "theorem golden_code_not_mem (k : ℕ) (hk : 1 ≤ k) :"
+    },
+    {
       "name": "Psc.BetaMetallicUnique.cons_zero",
       "module": "PscVerif.BetaMetallicUnique",
       "private": false,
@@ -63474,6 +63562,7 @@
     "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean": "d10c7cc72baa4543993364dba005933a83225120ae59681823c2845e6cea5c90",
     "proof/PscVerif/PscVerif/BetaMetallicCarry.lean": "8c7036f5ab2e872ee1d3c419accc75eca6790eb9b0246df2505d20fba7d2bab5",
     "proof/PscVerif/PscVerif/BetaMetallicNormalForm.lean": "4b4cb9db59ba8b2b54728faead17fdc8383600ad0ac8c9d78404aa101d34dded",
+    "proof/PscVerif/PscVerif/BetaMetallicSchmidt.lean": "acca9ddea664115013b679eb4e6c91890d251b571601be16494412cce573cbac",
     "proof/PscVerif/PscVerif/BetaMetallicUnique.lean": "4dfc01ba47b2830afb8fd4c8cf91e9eef8bdc68d9ac1bf82b05340a2cc0eb0fd",
     "proof/PscVerif/PscVerif/Binomial.lean": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
@@ -63775,7 +63864,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "7ff945c2bc5c1408f06d85c6f1f3a4c6a4822f7add36f38391c5a380389c0ea6",
+    "proof/PscVerif/PscVerif.lean": "842304fcf1c3d62603f44eb223f20955778feae002a058424c3c572371dce281",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
