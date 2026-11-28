@@ -297,3 +297,4 @@ import PscVerif.BetaFamilyXi
 import PscVerif.BetaFactorBounded
 import PscVerif.BetaMetallicNormalForm
 import PscVerif.BetaGoldenCoding
+import PscVerif.BetaGoldenMultiplicity

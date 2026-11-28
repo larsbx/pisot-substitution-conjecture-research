@@ -6426,6 +6426,390 @@
       "declaration": "theorem eq_zero_of_isUnique_of_lt_one {d : ℕ → Bool} (h : IsUnique d) (hlt : value d < 1) :"
     },
     {
+      "name": "Psc.BetaGoldenMultiplicity.ph_pos",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 58,
+      "declaration": "theorem ph_pos : 0 < ph := Real.goldenRatio_pos"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.one_lt_ph",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 60,
+      "declaration": "theorem one_lt_ph : 1 < ph := Real.one_lt_goldenRatio"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.phi_sq",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 62,
+      "declaration": "theorem phi_sq : ph ^ 2 = ph + 1 := Real.goldenRatio_sq"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.phi_r",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 64,
+      "declaration": "theorem phi_r : ph * r = 1 := mul_inv_cancel₀ Real.goldenRatio_pos.ne'"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.r_eq",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 69,
+      "declaration": "theorem r_eq : r = ph - 1 := by"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.phi_bounds",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 75,
+      "declaration": "theorem phi_bounds : 1.6 < ph ∧ ph < 1.62 := by"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.digit_eq",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 80,
+      "declaration": "theorem digit_eq (b : Bool) : digit b = (b.toNat : ℝ) := by cases b <;> simp"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.tail_gshift",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 87,
+      "declaration": "theorem tail_gshift (d : ℕ → Bool) (n : ℕ) : tail (gshift d n) = gshift d (n + 1) := by"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.st_zero",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 90,
+      "declaration": "theorem st_zero (d : ℕ → Bool) : st d 0 = value d := by"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.st_succ",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 93,
+      "declaration": "theorem st_succ (d : ℕ → Bool) (n : ℕ) : st d (n + 1) = ph * st d n - digit (d n) := by"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.st_mem",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 101,
+      "declaration": "theorem st_mem (d : ℕ → Bool) (n : ℕ) : 0 ≤ st d n ∧ st d n ≤ ph :="
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.next_of_zero",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 110,
+      "declaration": "theorem next_of_zero (d : ℕ → Bool) {n : ℕ} (h : st d n = 0) :"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.next_of_phi",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 120,
+      "declaration": "theorem next_of_phi (d : ℕ → Bool) {n : ℕ} (h : st d n = ph) :"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.next_of_r",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 130,
+      "declaration": "theorem next_of_r (d : ℕ → Bool) {n : ℕ} (h : st d n = r) :"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.next_of_one",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 138,
+      "declaration": "theorem next_of_one (d : ℕ → Bool) {n : ℕ} (h : st d n = 1) :"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.isT_succ",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 146,
+      "declaration": "theorem isT_succ (d : ℕ → Bool) {n : ℕ} (h : IsT (st d n)) : IsT (st d (n + 1)) := by"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.isT_add",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 157,
+      "declaration": "theorem isT_add (d : ℕ → Bool) {n : ℕ} (h : IsT (st d n)) : ∀ j, IsT (st d (n + j)) := by"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.eventually_two_periodic",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 164,
+      "declaration": "theorem eventually_two_periodic (d : ℕ → Bool) {n : ℕ} (h : IsT (st d n)) :"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.countable_eventually_two_periodic",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 221,
+      "declaration": "theorem countable_eventually_two_periodic :"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.st_eq_ev",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 265,
+      "declaration": "theorem st_eq_ev (d : ℕ → Bool) {a₀ b₀ : ℤ} (hx : value d = a₀ + b₀ * ph) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.cj_succ",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 275,
+      "declaration": "theorem cj_succ (d : ℕ → Bool) (a₀ b₀ : ℤ) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.abs_conj",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 282,
+      "declaration": "theorem abs_conj : |1 - ph| = r := by"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.cj_step",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 285,
+      "declaration": "theorem cj_step (d : ℕ → Bool) (a₀ b₀ : ℤ) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.cj_iter",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 294,
+      "declaration": "theorem cj_iter (d : ℕ → Bool) (a₀ b₀ : ℤ) (m k : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.five",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 311,
+      "declaration": "theorem five (a b : ℤ) (hy0 : 0 ≤ (a : ℝ) + b * ph) (hy1 : (a : ℝ) + b * ph ≤ ph)"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.isT_of_cycle",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 351,
+      "declaration": "theorem isT_of_cycle (hx : value d = a₀ + b₀ * ph) {n p : ℕ} (hp : 1 ≤ p)"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.exists_isT",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 385,
+      "declaration": "theorem exists_isT (hx : value d = a₀ + b₀ * ph) : ∃ n, IsT (st d n) := by"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.expansions_countable",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 425,
+      "declaration": "theorem expansions_countable {x : ℝ} (hx : InZ x) : (expansions x).Countable := by"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.run_snd_succ",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 448,
+      "declaration": "theorem run_snd_succ (x : ℝ) (b : ℕ → Bool) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.run_succ_fst",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 452,
+      "declaration": "theorem run_succ_fst (x : ℝ) (b : ℕ → Bool) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.run_mem",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 455,
+      "declaration": "theorem run_mem {x : ℝ} (h0 : 0 ≤ x) (h1 : x ≤ ph) (b : ℕ → Bool) :"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.run_value",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 482,
+      "declaration": "theorem run_value {x : ℝ} (h0 : 0 ≤ x) (h1 : x ≤ ph) (b : ℕ → Bool) :"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.inZ_of_succ",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 509,
+      "declaration": "theorem inZ_of_succ {y y' : ℝ} (b : Bool) (h : y' = ph * y - digit b) (hz : InZ y') : InZ y := by"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.isT_inZ",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 518,
+      "declaration": "theorem isT_inZ {y : ℝ} (h : IsT y) : InZ y := by"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.run_not_inZ",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 531,
+      "declaration": "theorem run_not_inZ (b : ℕ → Bool) : ∀ n, ¬ InZ (run x b n).1 := by"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.run_branches",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 538,
+      "declaration": "theorem run_branches (b : ℕ → Bool) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.count_mono",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 617,
+      "declaration": "theorem count_mono (b : ℕ → Bool) (n : ℕ) : (run x b n).2 ≤ (run x b (n + 1)).2 := by"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.count_unbounded",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 621,
+      "declaration": "theorem count_unbounded (b : ℕ → Bool) : ∀ K, ∃ n, K < (run x b n).2 := by"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.run_agree",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 644,
+      "declaration": "theorem run_agree {b b' : ℕ → Bool} {K : ℕ} (hb : ∀ i < K, b i = b' i) :"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.runD_injective",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 675,
+      "declaration": "theorem runD_injective : Function.Injective (runD x) := by"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.expansions_not_countable",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 717,
+      "declaration": "theorem expansions_not_countable {x : ℝ} (h0 : 0 ≤ x) (h1 : x ≤ ph) (hx : ¬ InZ x) :"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.value_altR",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 733,
+      "declaration": "theorem value_altR (j : ℕ) : value (altR j) = r := by"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.altR_even",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 740,
+      "declaration": "theorem altR_even (j : ℕ) : altR j (2 * j) = true ∧ ∀ i < j, altR j (2 * i) = false := by"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.altR_injective",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 749,
+      "declaration": "theorem altR_injective : Function.Injective altR := by"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.value_splice",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 764,
+      "declaration": "theorem value_splice (d : ℕ → Bool) (n : ℕ) (e : ℕ → Bool) :"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.splice_injective",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 775,
+      "declaration": "theorem splice_injective (d : ℕ → Bool) (n : ℕ) : Function.Injective (splice d n) := by"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.expansions_infinite",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 782,
+      "declaration": "theorem expansions_infinite {x : ℝ} (hx : InZ x) (h0 : 0 < x) (h1 : x < ph) :"
+    },
+    {
+      "name": "Psc.BetaGoldenMultiplicity.golden_classification",
+      "module": "PscVerif.BetaGoldenMultiplicity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean",
+      "line": 858,
+      "declaration": "theorem golden_classification {x : ℝ} (h0 : 0 < x) (h1 : x < φ) :"
+    },
+    {
       "name": "Psc.BetaMetallicUnique.isEnd_or_isInterior",
       "module": "PscVerif.BetaMetallicNormalForm",
       "private": false,
@@ -62863,6 +63247,7 @@
     "proof/PscVerif/PscVerif/BetaFamilyXi.lean": "69f2f15e87aa18e94dc7772b6f61e187ec2c4b1c72601a3952da8104de43795a",
     "proof/PscVerif/PscVerif/BetaGoldenCoding.lean": "8c8892585c36cb94f2cb18ca80e862fd04f94eea52c4606360fc9e0197c75ab7",
     "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean": "9dd31daca70efc75cc5413ffadef7bee210ac47c2724efead22c1a84497a7270",
+    "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean": "d10c7cc72baa4543993364dba005933a83225120ae59681823c2845e6cea5c90",
     "proof/PscVerif/PscVerif/BetaMetallicNormalForm.lean": "4b4cb9db59ba8b2b54728faead17fdc8383600ad0ac8c9d78404aa101d34dded",
     "proof/PscVerif/PscVerif/BetaMetallicUnique.lean": "4dfc01ba47b2830afb8fd4c8cf91e9eef8bdc68d9ac1bf82b05340a2cc0eb0fd",
     "proof/PscVerif/PscVerif/Binomial.lean": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
@@ -63165,7 +63550,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "287f4b76f219eb134761e37b6be48cd287fcc4dd4dd9f81ae6a615e5ba5d54fe",
+    "proof/PscVerif/PscVerif.lean": "27856acbfdc9d27fe6326d7eb381d3c5df8cc13d4293e4b5dffde3f343ccc63c",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
