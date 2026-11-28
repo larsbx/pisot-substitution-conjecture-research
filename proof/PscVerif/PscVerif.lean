@@ -290,3 +290,8 @@ import PscVerif.C4FamilyInvariantMeasureUniqueness
 import PscVerif.C4FamilySymbolicMeasureUniqueness
 import PscVerif.C4FamilyCanonicalSpectrum
 import PscVerif.BetaGoldenEndpoint
+import PscVerif.WordComplexity
+import PscVerif.BetaNumeration
+import PscVerif.BetaMetallic
+import PscVerif.C4FamilyFixedWord
+import PscVerif.C4FamilyBetaTranscendence
