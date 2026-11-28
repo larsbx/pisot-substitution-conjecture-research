@@ -6914,11 +6914,75 @@
       "declaration": "theorem value_eq_iff_states (d e : ℕ → Fin (m + 1)) :"
     },
     {
+      "name": "Psc.BetaMetallicUnique.Base.beta_eq",
+      "module": "PscVerif.BetaMetallicCarry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicCarry.lean",
+      "line": 226,
+      "declaration": "theorem beta_eq : B.beta = m + B.r := by"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.delta_bounds",
+      "module": "PscVerif.BetaMetallicCarry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicCarry.lean",
+      "line": 230,
+      "declaration": "theorem delta_bounds (d e : ℕ → Fin (m + 1)) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.seven_of_b0",
+      "module": "PscVerif.BetaMetallicCarry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicCarry.lean",
+      "line": 237,
+      "declaration": "theorem seven_of_b0 (q : ℤ × ℤ) (hb : q.2 = 0) (hz : |B.zval q| ≤ 1 + B.r) : q ∈ seven m := by"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.seven_of_b1",
+      "module": "PscVerif.BetaMetallicCarry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicCarry.lean",
+      "line": 251,
+      "declaration": "theorem seven_of_b1 (q : ℤ × ℤ) (hb : q.2 = 1) (ha : -(m : ℤ) ≤ q.1)"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.seven_of_bm1",
+      "module": "PscVerif.BetaMetallicCarry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicCarry.lean",
+      "line": 264,
+      "declaration": "theorem seven_of_bm1 (q : ℤ × ℤ) (hb : q.2 = -1) (ha : q.1 ≤ m)"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.seven_step",
+      "module": "PscVerif.BetaMetallicCarry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicCarry.lean",
+      "line": 278,
+      "declaration": "theorem seven_step {p : ℤ × ℤ} (hp : p ∈ seven m) {δ : ℤ} (hδ : -(m : ℤ) ≤ δ ∧ δ ≤ m)"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.seven_bound",
+      "module": "PscVerif.BetaMetallicCarry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicCarry.lean",
+      "line": 290,
+      "declaration": "theorem seven_bound {q : ℤ × ℤ} (hq : q ∈ seven m) : |B.zval q| ≤ 1 + B.r := by"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.value_eq_iff_seven",
+      "module": "PscVerif.BetaMetallicCarry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicCarry.lean",
+      "line": 299,
+      "declaration": "theorem value_eq_iff_seven (d e : ℕ → Fin (m + 1)) :"
+    },
+    {
       "name": "Psc.BetaMetallicUnique.Base.carry_100_011",
       "module": "PscVerif.BetaMetallicCarry",
       "private": false,
       "source": "proof/PscVerif/PscVerif/BetaMetallicCarry.lean",
-      "line": 220,
+      "line": 314,
       "declaration": "theorem carry_100_011 (t : ℕ → Fin 2) :"
     },
     {
@@ -63360,7 +63424,7 @@
     "proof/PscVerif/PscVerif/BetaGoldenCoding.lean": "8c8892585c36cb94f2cb18ca80e862fd04f94eea52c4606360fc9e0197c75ab7",
     "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean": "9dd31daca70efc75cc5413ffadef7bee210ac47c2724efead22c1a84497a7270",
     "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean": "d10c7cc72baa4543993364dba005933a83225120ae59681823c2845e6cea5c90",
-    "proof/PscVerif/PscVerif/BetaMetallicCarry.lean": "acd3758473acf5ffde0c678d60e07e2487e3193f298b6689934601f7217e1684",
+    "proof/PscVerif/PscVerif/BetaMetallicCarry.lean": "2220a8bc3c597905a553f09a996fde97cae5c65956a19493a9f2818240a40bab",
     "proof/PscVerif/PscVerif/BetaMetallicNormalForm.lean": "4b4cb9db59ba8b2b54728faead17fdc8383600ad0ac8c9d78404aa101d34dded",
     "proof/PscVerif/PscVerif/BetaMetallicUnique.lean": "4dfc01ba47b2830afb8fd4c8cf91e9eef8bdc68d9ac1bf82b05340a2cc0eb0fd",
     "proof/PscVerif/PscVerif/Binomial.lean": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",

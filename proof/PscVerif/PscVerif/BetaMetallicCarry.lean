@@ -215,6 +215,100 @@ theorem value_eq_iff_states (d e : ℕ → Fin (m + 1)) :
   · intro h n
     exact (h n).2
 
+
+/-! ## The seven-state automaton, uniformly in `m` -/
+
+/-- The seven carries `0, ±1, ±r, ±(1 + r)` in coordinates `a + bβ`. -/
+def seven (m : ℕ) : Set (ℤ × ℤ) :=
+  {((0 : ℤ), (0 : ℤ)), ((1 : ℤ), (0 : ℤ)), ((-1 : ℤ), (0 : ℤ)), (-(m : ℤ), (1 : ℤ)),
+    (1 - (m : ℤ), (1 : ℤ)), ((m : ℤ), (-1 : ℤ)), ((m : ℤ) - 1, (-1 : ℤ))}
+
+theorem beta_eq : B.beta = m + B.r := by
+  have := (Psc.BetaFamilyXi.pisot_facts B).2.2.2.2.1
+  unfold beta; linarith
+
+theorem delta_bounds (d e : ℕ → Fin (m + 1)) (n : ℕ) :
+    -(m : ℤ) ≤ delta d e n ∧ delta d e n ≤ m := by
+  unfold delta
+  have h1 := Nat.lt_succ_iff.mp (d n).2
+  have h2 := Nat.lt_succ_iff.mp (e n).2
+  omega
+
+theorem seven_of_b0 (q : ℤ × ℤ) (hb : q.2 = 0) (hz : |B.zval q| ≤ 1 + B.r) : q ∈ seven m := by
+  obtain ⟨a, b⟩ := q
+  simp only at hb
+  subst hb
+  simp only [zval, Int.cast_zero, zero_mul, add_zero] at hz
+  obtain ⟨h1, h2⟩ := abs_le.mp hz
+  have hr := B.r_lt_one
+  have u : a < 2 := by have : (a : ℝ) < 2 := by linarith
+                       exact_mod_cast this
+  have l : -2 < a := by have : (-2 : ℝ) < a := by linarith
+                        exact_mod_cast this
+  have : a = 0 ∨ a = 1 ∨ a = -1 := by omega
+  rcases this with rfl | rfl | rfl <;> simp [seven]
+
+theorem seven_of_b1 (q : ℤ × ℤ) (hb : q.2 = 1) (ha : -(m : ℤ) ≤ q.1)
+    (hz : |B.zval q| ≤ 1 + B.r) : q ∈ seven m := by
+  obtain ⟨a, b⟩ := q
+  simp only at hb ha
+  subst hb
+  simp only [zval, Int.cast_one, one_mul, B.beta_eq] at hz
+  have h2 := (abs_le.mp hz).2
+  have u : a ≤ 1 - m := by
+    have : (a : ℝ) ≤ 1 - m := by linarith
+    exact_mod_cast this
+  have : a = -(m : ℤ) ∨ a = 1 - m := by omega
+  rcases this with rfl | rfl <;> simp [seven]
+
+theorem seven_of_bm1 (q : ℤ × ℤ) (hb : q.2 = -1) (ha : q.1 ≤ m)
+    (hz : |B.zval q| ≤ 1 + B.r) : q ∈ seven m := by
+  obtain ⟨a, b⟩ := q
+  simp only at hb ha
+  subst hb
+  simp only [zval, Int.cast_neg, Int.cast_one, neg_mul, one_mul, B.beta_eq] at hz
+  have h1 := (abs_le.mp hz).1
+  have l : (m : ℤ) - 1 ≤ a := by
+    have : (m : ℝ) - 1 ≤ a := by linarith
+    exact_mod_cast this
+  have : a = (m : ℤ) ∨ a = m - 1 := by omega
+  rcases this with rfl | rfl <;> simp [seven]
+
+/-- A bounded transition from one of the seven carries stays among them. -/
+theorem seven_step {p : ℤ × ℤ} (hp : p ∈ seven m) {δ : ℤ} (hδ : -(m : ℤ) ≤ δ ∧ δ ≤ m)
+    (hz : |B.zval (p.2 + δ, p.1 + m * p.2)| ≤ 1 + B.r) : (p.2 + δ, p.1 + m * p.2) ∈ seven m := by
+  simp only [seven, Set.mem_insert_iff, Set.mem_singleton_iff] at hp
+  rcases hp with rfl | rfl | rfl | rfl | rfl | rfl | rfl
+  · exact B.seven_of_b0 _ (by simp) hz
+  · exact B.seven_of_b1 _ (by simp) (by simp; omega) hz
+  · exact B.seven_of_bm1 _ (by simp) (by simp; omega) hz
+  · exact B.seven_of_b0 _ (by simp) hz
+  · exact B.seven_of_b1 _ (by simp) (by simp; omega) hz
+  · exact B.seven_of_b0 _ (by simp) hz
+  · exact B.seven_of_bm1 _ (by simp; ring) (by simp; omega) hz
+
+theorem seven_bound {q : ℤ × ℤ} (hq : q ∈ seven m) : |B.zval q| ≤ 1 + B.r := by
+  have hr := B.r_pos
+  have hβ := B.beta_eq
+  simp only [seven, Set.mem_insert_iff, Set.mem_singleton_iff] at hq
+  rcases hq with rfl | rfl | rfl | rfl | rfl | rfl | rfl <;>
+    simp only [zval, hβ] <;> push_cast <;> rw [abs_le] <;> constructor <;> linarith
+
+/-- **Seven-state equality criterion**, uniformly in `m ≥ 1`. Equal values iff
+every carry is one of `0, ±1, ±r, ±(1 + r)`. -/
+theorem value_eq_iff_seven (d e : ℕ → Fin (m + 1)) :
+    B.value d = B.value e ↔ ∀ n, carryPair d e n ∈ seven m := by
+  constructor
+  · intro h n
+    have hb := (B.value_eq_iff_bounded d e).1.mp h
+    induction n with
+    | zero => simp [carryPair, seven]
+    | succ n ih =>
+      have := B.seven_step ih (delta_bounds d e n) (hb (n + 1))
+      exact this
+  · intro h
+    exact (B.value_eq_iff_bounded d e).1.mpr fun n => B.seven_bound (h n)
+
 /-- Negative control: `1 0 0 …` and `0 m 1 0 …`-type carries. At `m = 1`
 the prefixes `100` and `011` leave the carry at `0` after three digits. -/
 theorem carry_100_011 (t : ℕ → Fin 2) :
