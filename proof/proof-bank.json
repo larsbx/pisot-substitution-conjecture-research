@@ -63502,6 +63502,7 @@
     "proof/PscVerif/BHNearDiagonalAudit.lean": "f7daf9d0d9998813d39db7335054ad4f4c94dd828723633eea7bb656aa76579e",
     "proof/PscVerif/BHWindowChoiceAudit.lean": "2c28a7a1f0efaf78eea797c6d0ffefbd016d3646e98c53ba05f7ad30adca6f0f",
     "proof/PscVerif/BargeDiamondBridgeAudit.lean": "848f69a4b29250196404182dd0013b324ff0da147657927943c1f10d1641b70d",
+    "proof/PscVerif/BetaNumerationAudit.lean": "66a0bce4c10011220ab849db785d5277549055eb6e5482390e4482568e9afa24",
     "proof/PscVerif/C4CharacterOrbitsAudit.lean": "23c1dae1939fe054375bb8de0fa9add025b21728f38b98a98956cb0d8f50191f",
     "proof/PscVerif/C4FamilyCanonicalMeasureAudit.lean": "ec64b73d643eea4b815ece6a110cbe5637edfe9c377ec921bdf3746c6b55bab4",
     "proof/PscVerif/C4FamilyHaarAudit.lean": "ce2e947f905a7da206827c6c7c6fa97943eae3823dffd4bf3881da385f3f0607",
