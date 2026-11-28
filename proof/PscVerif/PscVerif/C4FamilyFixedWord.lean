@@ -250,7 +250,7 @@ theorem complexity_le (hk : 1 ≤ k) (j : ℕ) (a₀ : Fin 3) (hmin : ∀ c, len
     show block (fixedWord k) i n ∈ Set.range g
     have hlen := le_length_iter k ((j + 1) + (i + n))
     rw [block_eq k ((j + 1) + (i + n)) i n (by omega), iter_split k (j + 1) (i + n)]
-    rw [iter_split k (j + 1) (i + n)] at hlen
+    rw [iter_split k (j + 1) (i + n), ← hP] at hlen
     have hmem : ∀ w ∈ (iter k (i + n)).map P, n ≤ w.length := by
       intro w hw
       obtain ⟨c, -, rfl⟩ := List.mem_map.mp hw

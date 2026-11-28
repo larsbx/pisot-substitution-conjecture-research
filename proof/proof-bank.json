@@ -62614,7 +62614,7 @@
     "proof/PscVerif/PscVerif/C4FamilyFiniteFibreSynchronization.lean": "9dd07cf862829b61a18e82409893ebd9fba6855a3d0bda2543d786c92355f390",
     "proof/PscVerif/PscVerif/C4FamilyFiniteProximal.lean": "f0626913d31535e076e6afd0ce495ad5d4c49b1214d81c9b3b3f5b533244dc1c",
     "proof/PscVerif/PscVerif/C4FamilyFiniteZeroFibre.lean": "47832e3754b2cf087dced965641afc954537b94949d990f264f9bd91835221b8",
-    "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean": "bcfde6120dfe4768c69085cf853930b9b5d10df2d1894fda80f8df6720a44723",
+    "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean": "efdd2c5996fbf7f8d0a066f5edeced006957c6416888a4a62b61c0e5a5b52a78",
     "proof/PscVerif/PscVerif/C4FamilyHaarErgodicity.lean": "81cf9efa86e64520927307c305696ea4692c339f974daee94f87e1a37b5538ef",
     "proof/PscVerif/PscVerif/C4FamilyHaarSingletonFibres.lean": "66323188238cb1bcbe99c98e20cfdacd5e9adedcd60b3ff3e7f93ae125fb10e1",
     "proof/PscVerif/PscVerif/C4FamilyInvariantMeasureUniqueness.lean": "3256efcd2cc96ac7ca214850944dd5361d0b4dfeefc6b0dcdd0ec0371ed53133",
