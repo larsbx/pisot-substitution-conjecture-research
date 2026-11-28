@@ -6282,6 +6282,94 @@
       "declaration": "theorem eq_zero_of_isUnique_of_lt_one {d : ℕ → Bool} (h : IsUnique d) (hlt : value d < 1) :"
     },
     {
+      "name": "Psc.BetaMetallicUnique.isEnd_or_isInterior",
+      "module": "PscVerif.BetaMetallicNormalForm",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicNormalForm.lean",
+      "line": 35,
+      "declaration": "theorem isEnd_or_isInterior (a : Fin (m + 1)) : IsEnd a ∨ IsInterior a := by"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.EndpointsInitial.eq_of_end",
+      "module": "PscVerif.BetaMetallicNormalForm",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicNormalForm.lean",
+      "line": 47,
+      "declaration": "theorem EndpointsInitial.eq_of_end {d : ℕ → Fin (m + 1)} (_hm : 1 ≤ m) (S : EndpointsInitial d)"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.endpointsInitial_iff",
+      "module": "PscVerif.BetaMetallicNormalForm",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicNormalForm.lean",
+      "line": 61,
+      "declaration": "theorem endpointsInitial_iff (hm : 1 ≤ m) (d : ℕ → Fin (m + 1)) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.value_lt_one_iff",
+      "module": "PscVerif.BetaMetallicNormalForm",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicNormalForm.lean",
+      "line": 111,
+      "declaration": "theorem value_lt_one_iff {d : ℕ → Fin (m + 1)} (h : B.IsUnique d) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.mem_uniqueSet_iff",
+      "module": "PscVerif.BetaMetallicNormalForm",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicNormalForm.lean",
+      "line": 138,
+      "declaration": "theorem Base.mem_uniqueSet_iff (B : Base m) (d : ℕ → Fin (m + 1)) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.unique_one",
+      "module": "PscVerif.BetaMetallicNormalForm",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicNormalForm.lean",
+      "line": 143,
+      "declaration": "theorem unique_one (B : Base 1) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.unique_two_subset",
+      "module": "PscVerif.BetaMetallicNormalForm",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicNormalForm.lean",
+      "line": 162,
+      "declaration": "theorem unique_two_subset (B : Base 2) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.unique_two_countable",
+      "module": "PscVerif.BetaMetallicNormalForm",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicNormalForm.lean",
+      "line": 187,
+      "declaration": "theorem unique_two_countable (B : Base 2) : B.uniqueSet.Countable :="
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.unique_two_infinite",
+      "module": "PscVerif.BetaMetallicNormalForm",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicNormalForm.lean",
+      "line": 191,
+      "declaration": "theorem unique_two_infinite (B : Base 2) : B.uniqueSet.Infinite := by"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.not_countable_bool_seq",
+      "module": "PscVerif.BetaMetallicNormalForm",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicNormalForm.lean",
+      "line": 206,
+      "declaration": "theorem not_countable_bool_seq : ¬ Countable (ℕ → Bool) := by"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.unique_not_countable",
+      "module": "PscVerif.BetaMetallicNormalForm",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicNormalForm.lean",
+      "line": 215,
+      "declaration": "theorem unique_not_countable (hm : 3 ≤ m) (B : Base m) : ¬ B.uniqueSet.Countable := by"
+    },
+    {
       "name": "Psc.BetaMetallicUnique.cons_zero",
       "module": "PscVerif.BetaMetallicUnique",
       "private": false,
@@ -62630,6 +62718,7 @@
     "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean": "5682dd074352aefb0a1757927e5de82e84ff1c288cbf854a109c73cbd3b97b79",
     "proof/PscVerif/PscVerif/BetaFamilyXi.lean": "69f2f15e87aa18e94dc7772b6f61e187ec2c4b1c72601a3952da8104de43795a",
     "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean": "9dd31daca70efc75cc5413ffadef7bee210ac47c2724efead22c1a84497a7270",
+    "proof/PscVerif/PscVerif/BetaMetallicNormalForm.lean": "4b4cb9db59ba8b2b54728faead17fdc8383600ad0ac8c9d78404aa101d34dded",
     "proof/PscVerif/PscVerif/BetaMetallicUnique.lean": "4dfc01ba47b2830afb8fd4c8cf91e9eef8bdc68d9ac1bf82b05340a2cc0eb0fd",
     "proof/PscVerif/PscVerif/Binomial.lean": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
@@ -62931,7 +63020,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "eff743010b7f029a0c348949b0abb41a4a81aeb9e305312cb8e34762cec6381d",
+    "proof/PscVerif/PscVerif.lean": "9c2b905cfe7ec20389893f65c72a27b507a02bc288a03319aa749477ea5ccfa5",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

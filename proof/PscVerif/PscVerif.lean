@@ -295,3 +295,4 @@ import PscVerif.BetaFamilyFixedWord
 import PscVerif.BetaFamilyComplexity
 import PscVerif.BetaFamilyXi
 import PscVerif.BetaFactorBounded
+import PscVerif.BetaMetallicNormalForm
