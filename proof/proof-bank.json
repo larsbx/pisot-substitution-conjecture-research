@@ -6810,6 +6810,118 @@
       "declaration": "theorem golden_classification {x : ℝ} (h0 : 0 < x) (h1 : x < φ) :"
     },
     {
+      "name": "Psc.BetaMetallicUnique.Base.beta_sq",
+      "module": "PscVerif.BetaMetallicCarry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicCarry.lean",
+      "line": 47,
+      "declaration": "theorem beta_sq : B.beta ^ 2 = m * B.beta + 1 := (Psc.BetaFamilyXi.pisot_facts B).2.1"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.beta_r",
+      "module": "PscVerif.BetaMetallicCarry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicCarry.lean",
+      "line": 49,
+      "declaration": "theorem beta_r : B.beta * B.r = 1 := inv_mul_cancel₀ B.r_pos.ne'"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.one_lt_beta",
+      "module": "PscVerif.BetaMetallicCarry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicCarry.lean",
+      "line": 51,
+      "declaration": "theorem one_lt_beta : 1 < B.beta := (Psc.BetaFamilyXi.pisot_facts B).1"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.zval_succ",
+      "module": "PscVerif.BetaMetallicCarry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicCarry.lean",
+      "line": 59,
+      "declaration": "theorem zval_succ (d e : ℕ → Fin (m + 1)) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.zconj_succ",
+      "module": "PscVerif.BetaMetallicCarry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicCarry.lean",
+      "line": 65,
+      "declaration": "theorem zconj_succ (d e : ℕ → Fin (m + 1)) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.abs_delta_le",
+      "module": "PscVerif.BetaMetallicCarry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicCarry.lean",
+      "line": 71,
+      "declaration": "theorem abs_delta_le (d e : ℕ → Fin (m + 1)) (n : ℕ) : |(delta d e n : ℝ)| ≤ m := by"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.value_split",
+      "module": "PscVerif.BetaMetallicCarry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicCarry.lean",
+      "line": 84,
+      "declaration": "theorem value_split (d : ℕ → Fin (m + 1)) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.psum_diff",
+      "module": "PscVerif.BetaMetallicCarry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicCarry.lean",
+      "line": 97,
+      "declaration": "theorem psum_diff (d e : ℕ → Fin (m + 1)) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.value_eq_iff_bounded",
+      "module": "PscVerif.BetaMetallicCarry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicCarry.lean",
+      "line": 111,
+      "declaration": "theorem value_eq_iff_bounded (d e : ℕ → Fin (m + 1)) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.conj_bound",
+      "module": "PscVerif.BetaMetallicCarry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicCarry.lean",
+      "line": 147,
+      "declaration": "theorem conj_bound (d e : ℕ → Fin (m + 1)) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.states_finite",
+      "module": "PscVerif.BetaMetallicCarry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicCarry.lean",
+      "line": 172,
+      "declaration": "theorem states_finite : B.states.Finite :="
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.mem_box",
+      "module": "PscVerif.BetaMetallicCarry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicCarry.lean",
+      "line": 175,
+      "declaration": "theorem mem_box (p : ℤ × ℤ) (hz : |B.zval p| ≤ 1 + B.r) (hc : |B.zconj p| ≤ m / (1 - B.r)) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.value_eq_iff_states",
+      "module": "PscVerif.BetaMetallicCarry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicCarry.lean",
+      "line": 209,
+      "declaration": "theorem value_eq_iff_states (d e : ℕ → Fin (m + 1)) :"
+    },
+    {
+      "name": "Psc.BetaMetallicUnique.Base.carry_100_011",
+      "module": "PscVerif.BetaMetallicCarry",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallicCarry.lean",
+      "line": 220,
+      "declaration": "theorem carry_100_011 (t : ℕ → Fin 2) :"
+    },
+    {
       "name": "Psc.BetaMetallicUnique.isEnd_or_isInterior",
       "module": "PscVerif.BetaMetallicNormalForm",
       "private": false,
@@ -63248,6 +63360,7 @@
     "proof/PscVerif/PscVerif/BetaGoldenCoding.lean": "8c8892585c36cb94f2cb18ca80e862fd04f94eea52c4606360fc9e0197c75ab7",
     "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean": "9dd31daca70efc75cc5413ffadef7bee210ac47c2724efead22c1a84497a7270",
     "proof/PscVerif/PscVerif/BetaGoldenMultiplicity.lean": "d10c7cc72baa4543993364dba005933a83225120ae59681823c2845e6cea5c90",
+    "proof/PscVerif/PscVerif/BetaMetallicCarry.lean": "acd3758473acf5ffde0c678d60e07e2487e3193f298b6689934601f7217e1684",
     "proof/PscVerif/PscVerif/BetaMetallicNormalForm.lean": "4b4cb9db59ba8b2b54728faead17fdc8383600ad0ac8c9d78404aa101d34dded",
     "proof/PscVerif/PscVerif/BetaMetallicUnique.lean": "4dfc01ba47b2830afb8fd4c8cf91e9eef8bdc68d9ac1bf82b05340a2cc0eb0fd",
     "proof/PscVerif/PscVerif/Binomial.lean": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
@@ -63550,7 +63663,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "27856acbfdc9d27fe6326d7eb381d3c5df8cc13d4293e4b5dffde3f343ccc63c",
+    "proof/PscVerif/PscVerif.lean": "7ff945c2bc5c1408f06d85c6f1f3a4c6a4822f7add36f38391c5a380389c0ea6",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
