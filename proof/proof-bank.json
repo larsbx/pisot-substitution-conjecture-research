@@ -59630,7 +59630,7 @@
       "module": "PscVerif.WordComplexity",
       "private": false,
       "source": "proof/PscVerif/PscVerif/WordComplexity.lean",
-      "line": 184,
+      "line": 183,
       "declaration": "theorem succ_le_complexity (u : ℕ → α) (hfin : ∀ n, (Factors u n).Finite)"
     },
     {
@@ -59638,7 +59638,7 @@
       "module": "PscVerif.WordComplexity",
       "private": false,
       "source": "proof/PscVerif/PscVerif/WordComplexity.lean",
-      "line": 202,
+      "line": 201,
       "declaration": "theorem window_flatten (L : List (List α)) (n : ℕ) (hL : ∀ w ∈ L, n ≤ w.length) :"
     },
     {
@@ -62906,7 +62906,7 @@
     "proof/PscVerif/PscVerif/VertexAsymptoteRange.lean": "c8328ddb30c748ed93c4399880b473b954c000f7f81b1035a70e1fbee0ba3191",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
-    "proof/PscVerif/PscVerif/WordComplexity.lean": "ba9fdcb58065cc0bb964a402f4f03d7a69bfea9501ea3e7f27258c269cc03dfb",
+    "proof/PscVerif/PscVerif/WordComplexity.lean": "f9cdd56ece62dc3b004e42cbbc2a38b28c4522de98a6066d7a77db797704f649",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
     "proof/PscVerif/PscVerif.lean": "94463bf23ec94314bd6130c8fef6135371dce453dd417638187d1dc87dbf418f",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",

@@ -176,7 +176,6 @@ theorem eventuallyPeriodic_of_complexity_succ_le (u : ℕ → α) (n : ℕ)
     congr 2
     omega
   have h' := congrArg (fun w : List α => w[0]?) (hall (N - a))
-  simp only at h'
   rw [e1, e2] at h'
   exact (Option.some.inj h').symm
 

@@ -7354,8 +7354,8 @@ Each declaration below must be present in a fresh compiled-environment audit. Ge
 | `Psc.WordComplexity.image_take_factors` | `PscVerif.WordComplexity` | no | [proof/PscVerif/PscVerif/WordComplexity.lean:126](../proof/PscVerif/PscVerif/WordComplexity.lean#L126) |
 | `Psc.WordComplexity.complexity_le_succ` | `PscVerif.WordComplexity` | no | [proof/PscVerif/PscVerif/WordComplexity.lean:135](../proof/PscVerif/PscVerif/WordComplexity.lean#L135) |
 | `Psc.WordComplexity.eventuallyPeriodic_of_complexity_succ_le` | `PscVerif.WordComplexity` | no | [proof/PscVerif/PscVerif/WordComplexity.lean:143](../proof/PscVerif/PscVerif/WordComplexity.lean#L143) |
-| `Psc.WordComplexity.succ_le_complexity` | `PscVerif.WordComplexity` | no | [proof/PscVerif/PscVerif/WordComplexity.lean:184](../proof/PscVerif/PscVerif/WordComplexity.lean#L184) |
-| `Psc.WordComplexity.window_flatten` | `PscVerif.WordComplexity` | no | [proof/PscVerif/PscVerif/WordComplexity.lean:202](../proof/PscVerif/PscVerif/WordComplexity.lean#L202) |
+| `Psc.WordComplexity.succ_le_complexity` | `PscVerif.WordComplexity` | no | [proof/PscVerif/PscVerif/WordComplexity.lean:183](../proof/PscVerif/PscVerif/WordComplexity.lean#L183) |
+| `Psc.WordComplexity.window_flatten` | `PscVerif.WordComplexity` | no | [proof/PscVerif/PscVerif/WordComplexity.lean:201](../proof/PscVerif/PscVerif/WordComplexity.lean#L201) |
 | `Psc.GeometricF.edgeDescendant_zero_iff` | `PscVerif.ZeroFibreOverlap` | no | [proof/PscVerif/PscVerif/ZeroFibreOverlap.lean:22](../proof/PscVerif/PscVerif/ZeroFibreOverlap.lean#L22) |
 | `Psc.GeometricF.edgeDescendant_one_iff` | `PscVerif.ZeroFibreOverlap` | no | [proof/PscVerif/PscVerif/ZeroFibreOverlap.lean:35](../proof/PscVerif/PscVerif/ZeroFibreOverlap.lean#L35) |
 | `Psc.GeometricF.edgeDescendant_succ_iff` | `PscVerif.ZeroFibreOverlap` | no | [proof/PscVerif/PscVerif/ZeroFibreOverlap.lean:41](../proof/PscVerif/PscVerif/ZeroFibreOverlap.lean#L41) |
