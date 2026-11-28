@@ -75,7 +75,7 @@ theorem rinv_lt_one : β⁻¹ < 1 := inv_lt_one_of_one_lt₀ hβ
 
 theorem summable_rpow : Summable fun n : ℕ => β⁻¹ ^ (n + 1) :=
   (summable_nat_add_iff 1).mpr
-    (summable_rpowetric_of_lt_one (rinv_pos hβ).le (rinv_lt_one hβ))
+    (summable_geometric_of_lt_one (rinv_pos hβ).le (rinv_lt_one hβ))
 
 /-- `∑ c β^{-(n+1)} = c/(β-1)`. -/
 theorem tsum_const_rpow (c : ℝ) : ∑' n : ℕ, c * β⁻¹ ^ (n + 1) = c / (β - 1) := by
