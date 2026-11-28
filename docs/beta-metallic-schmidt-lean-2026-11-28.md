@@ -36,7 +36,7 @@ The module is in the root import closure. Accepted axioms: `propext`, `Classical
 
 ## Negative controls
 
-- The greedy hypothesis is essential. At `m = 1` the non-greedy `(01)^∞` has value `φ⁻¹ ∈ ℚ(φ)` and is periodic; the non-greedy, non-periodic expansions of `φ⁻¹` produced by `BetaGoldenMultiplicity.expansions_infinite` are eventually periodic too. But for `x ∉ ℤ[φ]`, `expansions_not_countable` yields non-eventually-periodic non-greedy expansions of elements of `ℚ(φ) \ ℤ[φ]`, such as `x = 1/2`. Uniqueness or greediness of the selected expansion is what forces periodicity.
+- The greedy hypothesis is essential. At `m = 1` every expansion of an element of `ℤ[φ]` is eventually periodic (`BetaGoldenMultiplicity.expansions_countable`). But `1/2 ∈ ℚ(φ) \ ℤ[φ]` has uncountably many expansions (`expansions_not_countable`), and eventually periodic streams form a countable set, so most of them are not eventually periodic. Greediness of the selected expansion is what forces periodicity.
 - For bases that are neither Pisot nor Salem the conclusion fails (Schmidt, as recalled by Adamczewski–Bugeaud). Here the Pisot property enters through `|-r| < 1` in step 2.
 
 ## Non-claims / remaining gaps
