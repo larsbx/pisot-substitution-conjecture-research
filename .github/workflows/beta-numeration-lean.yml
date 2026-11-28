@@ -1,0 +1,63 @@
+name: Beta-numeration Lean endpoints
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/beta-numeration-lean.yml'
+      - 'proof/PscVerif/**'
+      - 'proof/proof-bank.json'
+      - 'proof/proof-bank.toml'
+      - 'tools/check_beta_numeration.sh'
+      - 'tools/setup_lean.sh'
+      - 'tools/make_proof_bank.py'
+      - 'docs/beta-*.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lean-beta:
+    name: Metallic uniqueness, fixed-word complexity and conditional transcendence
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Bind the exact source revision
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test -z "$(git status --porcelain)"
+          mkdir -p "$RUNNER_TEMP/beta-numeration"
+          git rev-parse HEAD HEAD^{tree} > "$RUNNER_TEMP/beta-numeration/source.txt"
+      - name: Provision the pinned release
+        run: |
+          ./tools/setup_lean.sh
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Compile isolated sources and audit endpoints
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./tools/check_beta_numeration.sh 2>&1 | tee "$RUNNER_TEMP/beta-numeration/lean.log"
+      - name: Recheck source identity after verification
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test -z "$(git status --porcelain --untracked-files=no)"
+      - name: Retain the exact source and terminal log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: beta-numeration-lean-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/beta-numeration
+          if-no-files-found: error
+          retention-days: 30

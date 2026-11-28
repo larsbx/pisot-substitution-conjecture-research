@@ -5810,6 +5810,302 @@
       "declaration": "theorem eq_zero_of_isUnique_of_lt_one {d : ℕ → Bool} (h : IsUnique d) (hlt : value d < 1) :"
     },
     {
+      "name": "Psc.BetaMetallic.sqrt_sq",
+      "module": "PscVerif.BetaMetallic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallic.lean",
+      "line": 39,
+      "declaration": "theorem sqrt_sq (m : ℕ) : √((m : ℝ) ^ 2 + 4) ^ 2 = (m : ℝ) ^ 2 + 4 :="
+    },
+    {
+      "name": "Psc.BetaMetallic.beta_sq",
+      "module": "PscVerif.BetaMetallic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallic.lean",
+      "line": 42,
+      "declaration": "theorem beta_sq (m : ℕ) : beta m ^ 2 = m * beta m + 1 := by"
+    },
+    {
+      "name": "Psc.BetaMetallic.lt_beta",
+      "module": "PscVerif.BetaMetallic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallic.lean",
+      "line": 46,
+      "declaration": "theorem lt_beta (m : ℕ) : (m : ℝ) < beta m := by"
+    },
+    {
+      "name": "Psc.BetaMetallic.one_lt_beta",
+      "module": "PscVerif.BetaMetallic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallic.lean",
+      "line": 54,
+      "declaration": "theorem one_lt_beta {m : ℕ} (hm : 1 ≤ m) : 1 < beta m :="
+    },
+    {
+      "name": "Psc.BetaMetallic.beta_pos",
+      "module": "PscVerif.BetaMetallic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallic.lean",
+      "line": 57,
+      "declaration": "theorem beta_pos {m : ℕ} (hm : 1 ≤ m) : 0 < beta m := by linarith [one_lt_beta hm]"
+    },
+    {
+      "name": "Psc.BetaMetallic.beta_sub",
+      "module": "PscVerif.BetaMetallic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallic.lean",
+      "line": 60,
+      "declaration": "theorem beta_sub (m : ℕ) (hm : 1 ≤ m) : beta m - m = (beta m)⁻¹ := by"
+    },
+    {
+      "name": "Psc.BetaMetallic.top_sub_one",
+      "module": "PscVerif.BetaMetallic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallic.lean",
+      "line": 65,
+      "declaration": "theorem top_sub_one {m : ℕ} (hm : 1 ≤ m) : (m : ℝ) / (beta m - 1) - 1 = (beta m)⁻¹ := by"
+    },
+    {
+      "name": "Psc.BetaMetallic.beta_one",
+      "module": "PscVerif.BetaMetallic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallic.lean",
+      "line": 70,
+      "declaration": "theorem beta_one : beta 1 = Real.goldenRatio := by"
+    },
+    {
+      "name": "Psc.BetaMetallic.poly_monic",
+      "module": "PscVerif.BetaMetallic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallic.lean",
+      "line": 79,
+      "declaration": "theorem poly_monic (m : ℕ) : (poly m).Monic := by"
+    },
+    {
+      "name": "Psc.BetaMetallic.aeval_poly",
+      "module": "PscVerif.BetaMetallic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallic.lean",
+      "line": 83,
+      "declaration": "theorem aeval_poly {A : Type*} [CommRing A] [Algebra ℤ A] (m : ℕ) (z : A) :"
+    },
+    {
+      "name": "Psc.BetaMetallic.isPisot",
+      "module": "PscVerif.BetaMetallic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallic.lean",
+      "line": 87,
+      "declaration": "theorem isPisot {m : ℕ} (hm : 1 ≤ m) : IsPisot (beta m) := by"
+    },
+    {
+      "name": "Psc.BetaMetallic.low_top_lt_one",
+      "module": "PscVerif.BetaMetallic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallic.lean",
+      "line": 107,
+      "declaration": "theorem low_top_lt_one {m : ℕ} (hm : 1 ≤ m) : ((m - 1 : ℕ) : ℝ) / (beta m - 1) < 1 := by"
+    },
+    {
+      "name": "Psc.BetaMetallic.value_lt_one_of_low",
+      "module": "PscVerif.BetaMetallic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallic.lean",
+      "line": 113,
+      "declaration": "theorem value_lt_one_of_low {m : ℕ} (hm : 1 ≤ m) {d : ℕ → ℕ} (hd : Bounded (m - 1) d) :"
+    },
+    {
+      "name": "Psc.BetaMetallic.inv_lt_value_of_pos",
+      "module": "PscVerif.BetaMetallic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallic.lean",
+      "line": 118,
+      "declaration": "theorem inv_lt_value_of_pos {m : ℕ} (hm : 1 ≤ m) {d : ℕ → ℕ} (hd : Bounded m d)"
+    },
+    {
+      "name": "Psc.BetaMetallic.isUnique_of_low",
+      "module": "PscVerif.BetaMetallic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallic.lean",
+      "line": 128,
+      "declaration": "theorem isUnique_of_low {m : ℕ} (hm : 2 ≤ m) {d : ℕ → ℕ} (hd : Bounded (m - 1) d)"
+    },
+    {
+      "name": "Psc.BetaMetallic.isUnique_interior",
+      "module": "PscVerif.BetaMetallic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallic.lean",
+      "line": 139,
+      "declaration": "theorem isUnique_interior {m : ℕ} (hm : 2 ≤ m) {d : ℕ → ℕ}"
+    },
+    {
+      "name": "Psc.BetaMetallic.interior_value_mem",
+      "module": "PscVerif.BetaMetallic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallic.lean",
+      "line": 145,
+      "declaration": "theorem interior_value_mem {m : ℕ} (hm : 2 ≤ m) {d : ℕ → ℕ}"
+    },
+    {
+      "name": "Psc.BetaMetallic.interior_renyi",
+      "module": "PscVerif.BetaMetallic",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaMetallic.lean",
+      "line": 153,
+      "declaration": "theorem interior_renyi {m : ℕ} (hm : 2 ≤ m) {d : ℕ → ℕ}"
+    },
+    {
+      "name": "Psc.BetaNumeration.shift_apply",
+      "module": "PscVerif.BetaNumeration",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaNumeration.lean",
+      "line": 53,
+      "declaration": "@[simp] theorem shift_apply (d : ℕ → ℕ) (n k : ℕ) : shift d n k = d (k + n) := rfl"
+    },
+    {
+      "name": "Psc.BetaNumeration.shift_zero",
+      "module": "PscVerif.BetaNumeration",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaNumeration.lean",
+      "line": 55,
+      "declaration": "@[simp] theorem shift_zero (d : ℕ → ℕ) : shift d 0 = d := by"
+    },
+    {
+      "name": "Psc.BetaNumeration.shift_shift",
+      "module": "PscVerif.BetaNumeration",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaNumeration.lean",
+      "line": 58,
+      "declaration": "theorem shift_shift (d : ℕ → ℕ) (n k : ℕ) : shift (shift d n) k = shift d (k + n) := by"
+    },
+    {
+      "name": "Psc.BetaNumeration.shift_shift_one",
+      "module": "PscVerif.BetaNumeration",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaNumeration.lean",
+      "line": 61,
+      "declaration": "theorem shift_shift_one (d : ℕ → ℕ) (n : ℕ) : shift (shift d n) 1 = shift d (n + 1) := by"
+    },
+    {
+      "name": "Psc.BetaNumeration.Bounded.shift",
+      "module": "PscVerif.BetaNumeration",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaNumeration.lean",
+      "line": 64,
+      "declaration": "theorem Bounded.shift {m : ℕ} {d : ℕ → ℕ} (hd : Bounded m d) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaNumeration.rinv_pos",
+      "module": "PscVerif.BetaNumeration",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaNumeration.lean",
+      "line": 72,
+      "declaration": "theorem rinv_pos : 0 < β⁻¹ := inv_pos.mpr (by linarith)"
+    },
+    {
+      "name": "Psc.BetaNumeration.rinv_lt_one",
+      "module": "PscVerif.BetaNumeration",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaNumeration.lean",
+      "line": 74,
+      "declaration": "theorem rinv_lt_one : β⁻¹ < 1 := inv_lt_one_of_one_lt₀ hβ"
+    },
+    {
+      "name": "Psc.BetaNumeration.summable_rpow",
+      "module": "PscVerif.BetaNumeration",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaNumeration.lean",
+      "line": 76,
+      "declaration": "theorem summable_rpow : Summable fun n : ℕ => β⁻¹ ^ (n + 1) :="
+    },
+    {
+      "name": "Psc.BetaNumeration.tsum_const_rpow",
+      "module": "PscVerif.BetaNumeration",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaNumeration.lean",
+      "line": 81,
+      "declaration": "theorem tsum_const_rpow (c : ℝ) : ∑' n : ℕ, c * β⁻¹ ^ (n + 1) = c / (β - 1) := by"
+    },
+    {
+      "name": "Psc.BetaNumeration.term_nonneg",
+      "module": "PscVerif.BetaNumeration",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaNumeration.lean",
+      "line": 92,
+      "declaration": "theorem term_nonneg (d : ℕ → ℕ) (n : ℕ) : 0 ≤ (d n : ℝ) * β⁻¹ ^ (n + 1) :="
+    },
+    {
+      "name": "Psc.BetaNumeration.summable_value",
+      "module": "PscVerif.BetaNumeration",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaNumeration.lean",
+      "line": 95,
+      "declaration": "theorem summable_value {m : ℕ} {d : ℕ → ℕ} (hd : Bounded m d) :"
+    },
+    {
+      "name": "Psc.BetaNumeration.value_nonneg",
+      "module": "PscVerif.BetaNumeration",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaNumeration.lean",
+      "line": 102,
+      "declaration": "theorem value_nonneg (d : ℕ → ℕ) : 0 ≤ value β d := tsum_nonneg (term_nonneg hβ d)"
+    },
+    {
+      "name": "Psc.BetaNumeration.value_le_of_le",
+      "module": "PscVerif.BetaNumeration",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaNumeration.lean",
+      "line": 105,
+      "declaration": "theorem value_le_of_le {b : ℕ} {d : ℕ → ℕ} (hd : Bounded b d) :"
+    },
+    {
+      "name": "Psc.BetaNumeration.le_value_of_le",
+      "module": "PscVerif.BetaNumeration",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaNumeration.lean",
+      "line": 114,
+      "declaration": "theorem le_value_of_le {a m : ℕ} {d : ℕ → ℕ} (hd : Bounded m d) (ha : ∀ n, a ≤ d n) :"
+    },
+    {
+      "name": "Psc.BetaNumeration.value_step",
+      "module": "PscVerif.BetaNumeration",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaNumeration.lean",
+      "line": 123,
+      "declaration": "theorem value_step {m : ℕ} {d : ℕ → ℕ} (hd : Bounded m d) :"
+    },
+    {
+      "name": "Psc.BetaNumeration.mul_value_shift",
+      "module": "PscVerif.BetaNumeration",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaNumeration.lean",
+      "line": 134,
+      "declaration": "theorem mul_value_shift {m : ℕ} {d : ℕ → ℕ} (hd : Bounded m d) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaNumeration.renyiExpansion_value",
+      "module": "PscVerif.BetaNumeration",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaNumeration.lean",
+      "line": 159,
+      "declaration": "theorem renyiExpansion_value {m : ℕ} {d : ℕ → ℕ} (hd : Bounded m d)"
+    },
+    {
+      "name": "Psc.BetaNumeration.isUnique_of_tails",
+      "module": "PscVerif.BetaNumeration",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaNumeration.lean",
+      "line": 190,
+      "declaration": "theorem isUnique_of_tails {m : ℕ} {d : ℕ → ℕ} (hd : Bounded m d)"
+    },
+    {
+      "name": "Psc.BetaNumeration.transcendental_of_greedy",
+      "module": "PscVerif.BetaNumeration",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaNumeration.lean",
+      "line": 243,
+      "declaration": "theorem transcendental_of_greedy (hAB : ABCorollary1) {β : ℝ} (hP : IsPisot β)"
+    },
+    {
       "name": "Psc.Binomial.n2_append",
       "module": "PscVerif.Binomial",
       "private": false,
@@ -6096,6 +6392,70 @@
       "source": "proof/PscVerif/PscVerif/BoundarySeedPath.lean",
       "line": 46,
       "declaration": "theorem selected_stage_rank_decreases (i : ℕ) (hi : i < 6) :"
+    },
+    {
+      "name": "Psc.FamilyBetaTranscendence.code_injective",
+      "module": "PscVerif.C4FamilyBetaTranscendence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyBetaTranscendence.lean",
+      "line": 35,
+      "declaration": "theorem code_injective : Function.Injective code := fun a b h => by"
+    },
+    {
+      "name": "Psc.FamilyBetaTranscendence.digits_interior",
+      "module": "PscVerif.C4FamilyBetaTranscendence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyBetaTranscendence.lean",
+      "line": 45,
+      "declaration": "theorem digits_interior (k : ℕ) {m : ℕ} (hm : 4 ≤ m) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.FamilyBetaTranscendence.xi_isUnique",
+      "module": "PscVerif.C4FamilyBetaTranscendence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyBetaTranscendence.lean",
+      "line": 51,
+      "declaration": "theorem xi_isUnique (k : ℕ) {m : ℕ} (hm : 4 ≤ m) : IsUnique (beta m) m (digits k) :="
+    },
+    {
+      "name": "Psc.FamilyBetaTranscendence.xi_mem",
+      "module": "PscVerif.C4FamilyBetaTranscendence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyBetaTranscendence.lean",
+      "line": 54,
+      "declaration": "theorem xi_mem (k : ℕ) {m : ℕ} (hm : 4 ≤ m) : (beta m)⁻¹ < xi k m ∧ xi k m < 1 :="
+    },
+    {
+      "name": "Psc.FamilyBetaTranscendence.renyi_xi",
+      "module": "PscVerif.C4FamilyBetaTranscendence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyBetaTranscendence.lean",
+      "line": 57,
+      "declaration": "theorem renyi_xi (k : ℕ) {m : ℕ} (hm : 4 ≤ m) : renyiExpansion (beta m) (xi k m) = digits k :="
+    },
+    {
+      "name": "Psc.FamilyBetaTranscendence.digits_not_eventuallyPeriodic",
+      "module": "PscVerif.C4FamilyBetaTranscendence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyBetaTranscendence.lean",
+      "line": 60,
+      "declaration": "theorem digits_not_eventuallyPeriodic {k : ℕ} (hk : 1 ≤ k) : ¬ EventuallyPeriodic (digits k) :="
+    },
+    {
+      "name": "Psc.FamilyBetaTranscendence.digits_frequently_linear",
+      "module": "PscVerif.C4FamilyBetaTranscendence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyBetaTranscendence.lean",
+      "line": 63,
+      "declaration": "theorem digits_frequently_linear {k : ℕ} (hk : 1 ≤ k) :"
+    },
+    {
+      "name": "Psc.FamilyBetaTranscendence.xi_transcendental",
+      "module": "PscVerif.C4FamilyBetaTranscendence",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyBetaTranscendence.lean",
+      "line": 71,
+      "declaration": "theorem xi_transcendental (hAB : ABCorollary1) {k m : ℕ} (hk : 1 ≤ k) (hm : 4 ≤ m) :"
     },
     {
       "name": "Psc.C4FamilyCanonicalSpectrum.pureDiscrete_shift_of_measure_eq",
@@ -6448,6 +6808,326 @@
       "source": "proof/PscVerif/PscVerif/C4FamilyFiniteZeroFibre.lean",
       "line": 216,
       "declaration": "theorem zero_fibre_stronglyRegionallyProximal (hk₂ : 2 ≤ k) {T U : (geometry k hk).Hull}"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.tau_zero",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 67,
+      "declaration": "theorem tau_zero : tau k [0] = [0] ++ Psc.ParameterFamilyWords.ones k ++ [2] := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.count_tau",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 72,
+      "declaration": "theorem count_tau (a b : Fin 3) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.length_eq_counts",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 76,
+      "declaration": "theorem length_eq_counts (w : List (Fin 3)) : w.length = w.count 0 + w.count 1 + w.count 2 := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.length_tau",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 82,
+      "declaration": "theorem length_tau (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.two_le_length_tau",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 87,
+      "declaration": "theorem two_le_length_tau (a : Fin 3) : 2 ≤ (tau k [a]).length := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.length_tau_le",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 90,
+      "declaration": "theorem length_tau_le (a : Fin 3) : (tau k [a]).length ≤ L k := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.mem_tau",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 93,
+      "declaration": "theorem mem_tau (hk : 1 ≤ k) (a b : Fin 3) : b ∈ tau k [a] := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.tau_eq_subst",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 100,
+      "declaration": "theorem tau_eq_subst (w : List (Fin 3)) : tau k w = subst (power (substitution k) 2) w := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.length_le_length_subst",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 104,
+      "declaration": "theorem length_le_length_subst (P : Fin 3 → List (Fin 3)) {w : List (Fin 3)} {b : Fin 3}"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.length_subst_le",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 114,
+      "declaration": "theorem length_subst_le (P : Fin 3 → List (Fin 3)) (w : List (Fin 3)) (K : ℕ)"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.two_mul_length_le",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 124,
+      "declaration": "theorem two_mul_length_le (w : List (Fin 3)) : 2 * w.length ≤ (tau k w).length := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.iter_succ",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 135,
+      "declaration": "theorem iter_succ (j : ℕ) : iter k (j + 1) = tau k (iter k j) := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.tau_prefix",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 139,
+      "declaration": "theorem tau_prefix {x y : List (Fin 3)} (h : x <+: y) : tau k x <+: tau k y :="
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.iter_prefix_succ",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 142,
+      "declaration": "theorem iter_prefix_succ (j : ℕ) : iter k j <+: iter k (j + 1) := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.iter_prefix",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 153,
+      "declaration": "theorem iter_prefix {j J : ℕ} (h : j ≤ J) : iter k j <+: iter k J := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.length_iter_pos",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 158,
+      "declaration": "theorem length_iter_pos (j : ℕ) : 0 < (iter k j).length := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.length_iter_lt",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 163,
+      "declaration": "theorem length_iter_lt (j : ℕ) : (iter k j).length < (iter k (j + 1)).length := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.length_iter_strictMono",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 169,
+      "declaration": "theorem length_iter_strictMono : StrictMono fun j => (iter k j).length :="
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.le_length_iter",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 172,
+      "declaration": "theorem le_length_iter (j : ℕ) : j + 1 ≤ (iter k j).length := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.fixedWord_eq",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 180,
+      "declaration": "theorem fixedWord_eq (J i : ℕ) (h : i < (iter k J).length) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.block_eq",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 188,
+      "declaration": "theorem block_eq (J i n : ℕ) (h : i + n ≤ (iter k J).length) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.block_zero_iter",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 195,
+      "declaration": "theorem block_zero_iter (j : ℕ) : block (fixedWord k) 0 (iter k j).length = iter k j := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.iter_split",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 201,
+      "declaration": "theorem iter_split (j t : ℕ) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.power_succ",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 207,
+      "declaration": "theorem power_succ (j : ℕ) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.power_succ'",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 213,
+      "declaration": "theorem power_succ' (j : ℕ) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.le_len",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 219,
+      "declaration": "theorem le_len (j : ℕ) (a : Fin 3) : j + 1 ≤ len k j a := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.len_le",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 229,
+      "declaration": "theorem len_le (hk : 1 ≤ k) (j : ℕ) (a b : Fin 3) : len k (j + 1) a ≤ L k * len k (j + 1) b := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.complexity_le",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 241,
+      "declaration": "theorem complexity_le (hk : 1 ≤ k) (j : ℕ) (a₀ : Fin 3) (hmin : ∀ c, len k (j + 1) a₀ ≤ len k (j + 1) c) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.frequently_linear",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 276,
+      "declaration": "theorem frequently_linear (hk : 1 ≤ k) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.A_eq",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 290,
+      "declaration": "theorem A_eq : A k = !![1, (k : ℚ) + 2, 1; (k : ℚ), (k : ℚ) ^ 2 + 2, (k : ℚ) + 2; 1, (k : ℚ), 1] := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.charpoly_identity",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 296,
+      "declaration": "theorem charpoly_identity :"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.count_iter",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 307,
+      "declaration": "theorem count_iter (j : ℕ) (a : Fin 3) : ((iter k j).count a : ℚ) = x k j a := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.length_iter",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 311,
+      "declaration": "theorem length_iter (j : ℕ) : ((iter k j).length : ℚ) = x k j 0 + x k j 1 + x k j 2 := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.x_rec",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 316,
+      "declaration": "theorem x_rec (j : ℕ) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.x_succ",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 327,
+      "declaration": "theorem x_succ (j : ℕ) (a : Fin 3) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.gPoly_monic",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 337,
+      "declaration": "theorem gPoly_monic : (gPoly k).Monic := by"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.aeval_gPoly",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 341,
+      "declaration": "theorem aeval_gPoly {R : Type*} [CommRing R] [Algebra ℤ R] (z : R) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.no_rational_root",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 346,
+      "declaration": "theorem no_rational_root (hk : 1 ≤ k) (μ : ℚ) :"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.count_block_add_period",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 365,
+      "declaration": "theorem count_block_add_period {u : ℕ → Fin 3} {q p : ℕ} (hu : ∀ n, q ≤ n → u (n + p) = u n)"
+    },
+    {
+      "name": "Psc.ParameterFamilyFixedWord.not_eventuallyPeriodic",
+      "module": "PscVerif.C4FamilyFixedWord",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
+      "line": 376,
+      "declaration": "theorem not_eventuallyPeriodic (hk : 1 ≤ k) : ¬ EventuallyPeriodic (fixedWord k) := by"
     },
     {
       "name": "Psc.C4FamilyHaarErgodicity.mul_conj_eq_one",
@@ -58810,6 +59490,158 @@
       "declaration": "theorem no_220_eigenvalue (f : Polynomial ℚ) (hf : Irreducible f) (hdeg : f.natDegree = 3)"
     },
     {
+      "name": "Psc.WordComplexity.length_block",
+      "module": "PscVerif.WordComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WordComplexity.lean",
+      "line": 49,
+      "declaration": "@[simp] theorem length_block (u : ℕ → α) (i n : ℕ) : (block u i n).length = n := by"
+    },
+    {
+      "name": "Psc.WordComplexity.getElem_block",
+      "module": "PscVerif.WordComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WordComplexity.lean",
+      "line": 52,
+      "declaration": "@[simp] theorem getElem_block (u : ℕ → α) (i n j : ℕ) (h : j < (block u i n).length) :"
+    },
+    {
+      "name": "Psc.WordComplexity.block_mem",
+      "module": "PscVerif.WordComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WordComplexity.lean",
+      "line": 56,
+      "declaration": "theorem block_mem (u : ℕ → α) (i n : ℕ) : block u i n ∈ Factors u n := ⟨i, rfl⟩"
+    },
+    {
+      "name": "Psc.WordComplexity.block_succ",
+      "module": "PscVerif.WordComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WordComplexity.lean",
+      "line": 58,
+      "declaration": "theorem block_succ (u : ℕ → α) (i n : ℕ) :"
+    },
+    {
+      "name": "Psc.WordComplexity.take_block",
+      "module": "PscVerif.WordComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WordComplexity.lean",
+      "line": 62,
+      "declaration": "theorem take_block (u : ℕ → α) (i n : ℕ) : (block u i (n + 1)).take n = block u i n := by"
+    },
+    {
+      "name": "Psc.WordComplexity.drop_one_block",
+      "module": "PscVerif.WordComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WordComplexity.lean",
+      "line": 66,
+      "declaration": "theorem drop_one_block (u : ℕ → α) (i n : ℕ) :"
+    },
+    {
+      "name": "Psc.WordComplexity.block_eq_ofFn",
+      "module": "PscVerif.WordComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WordComplexity.lean",
+      "line": 74,
+      "declaration": "theorem block_eq_ofFn (u : ℕ → α) (i n : ℕ) :"
+    },
+    {
+      "name": "Psc.WordComplexity.factors_finite",
+      "module": "PscVerif.WordComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WordComplexity.lean",
+      "line": 80,
+      "declaration": "theorem factors_finite [Finite α] (u : ℕ → α) (n : ℕ) : (Factors u n).Finite := by"
+    },
+    {
+      "name": "Psc.WordComplexity.block_comp",
+      "module": "PscVerif.WordComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WordComplexity.lean",
+      "line": 87,
+      "declaration": "theorem block_comp (f : α → β) (u : ℕ → α) (i n : ℕ) :"
+    },
+    {
+      "name": "Psc.WordComplexity.factors_comp",
+      "module": "PscVerif.WordComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WordComplexity.lean",
+      "line": 91,
+      "declaration": "theorem factors_comp (f : α → β) (u : ℕ → α) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.WordComplexity.complexity_comp",
+      "module": "PscVerif.WordComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WordComplexity.lean",
+      "line": 100,
+      "declaration": "theorem complexity_comp {f : α → β} (hf : Function.Injective f) (u : ℕ → α) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.WordComplexity.factors_finite_comp",
+      "module": "PscVerif.WordComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WordComplexity.lean",
+      "line": 106,
+      "declaration": "theorem factors_finite_comp (f : α → β) {u : ℕ → α} {n : ℕ} (h : (Factors u n).Finite) :"
+    },
+    {
+      "name": "Psc.WordComplexity.EventuallyPeriodic.of_comp",
+      "module": "PscVerif.WordComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WordComplexity.lean",
+      "line": 111,
+      "declaration": "theorem EventuallyPeriodic.of_comp {f : α → β} (hf : Function.Injective f) {u : ℕ → α}"
+    },
+    {
+      "name": "Psc.WordComplexity.factors_finite_of_bounded",
+      "module": "PscVerif.WordComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WordComplexity.lean",
+      "line": 117,
+      "declaration": "theorem factors_finite_of_bounded {d : ℕ → ℕ} {m : ℕ} (hd : ∀ n, d n ≤ m) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.WordComplexity.image_take_factors",
+      "module": "PscVerif.WordComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WordComplexity.lean",
+      "line": 126,
+      "declaration": "theorem image_take_factors (u : ℕ → α) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.WordComplexity.complexity_le_succ",
+      "module": "PscVerif.WordComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WordComplexity.lean",
+      "line": 135,
+      "declaration": "theorem complexity_le_succ (u : ℕ → α) (n : ℕ) (hfin : (Factors u (n + 1)).Finite) :"
+    },
+    {
+      "name": "Psc.WordComplexity.eventuallyPeriodic_of_complexity_succ_le",
+      "module": "PscVerif.WordComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WordComplexity.lean",
+      "line": 143,
+      "declaration": "theorem eventuallyPeriodic_of_complexity_succ_le (u : ℕ → α) (n : ℕ)"
+    },
+    {
+      "name": "Psc.WordComplexity.succ_le_complexity",
+      "module": "PscVerif.WordComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WordComplexity.lean",
+      "line": 183,
+      "declaration": "theorem succ_le_complexity (u : ℕ → α) (hfin : ∀ n, (Factors u n).Finite)"
+    },
+    {
+      "name": "Psc.WordComplexity.window_flatten",
+      "module": "PscVerif.WordComplexity",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/WordComplexity.lean",
+      "line": 201,
+      "declaration": "theorem window_flatten (L : List (List α)) (n : ℕ) (hL : ∀ w ∈ L, n ≤ w.length) :"
+    },
+    {
       "name": "Psc.GeometricF.edgeDescendant_zero_iff",
       "module": "PscVerif.ZeroFibreOverlap",
       "private": false,
@@ -61718,6 +62550,7 @@
     "proof/PscVerif/BHNearDiagonalAudit.lean": "f7daf9d0d9998813d39db7335054ad4f4c94dd828723633eea7bb656aa76579e",
     "proof/PscVerif/BHWindowChoiceAudit.lean": "2c28a7a1f0efaf78eea797c6d0ffefbd016d3646e98c53ba05f7ad30adca6f0f",
     "proof/PscVerif/BargeDiamondBridgeAudit.lean": "848f69a4b29250196404182dd0013b324ff0da147657927943c1f10d1641b70d",
+    "proof/PscVerif/BetaNumerationAudit.lean": "610c5b4fece6ad1f13cd65df8a868192587ec286b71352618e1818ea6eee6cca",
     "proof/PscVerif/C4CharacterOrbitsAudit.lean": "23c1dae1939fe054375bb8de0fa9add025b21728f38b98a98956cb0d8f50191f",
     "proof/PscVerif/C4FamilyCanonicalMeasureAudit.lean": "ec64b73d643eea4b815ece6a110cbe5637edfe9c377ec921bdf3746c6b55bab4",
     "proof/PscVerif/C4FamilyHaarAudit.lean": "ce2e947f905a7da206827c6c7c6fa97943eae3823dffd4bf3881da385f3f0607",
@@ -61770,14 +62603,18 @@
     "proof/PscVerif/PscVerif/BargeDiamondBridgeControls.lean": "45bd1684ecbdfabdc02658405874358b5bfccd80b57d435f2c108f707b59f059",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
     "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean": "9dd31daca70efc75cc5413ffadef7bee210ac47c2724efead22c1a84497a7270",
+    "proof/PscVerif/PscVerif/BetaMetallic.lean": "543e71e8ccbde595b4154d481759aa071e8e8295d63fbb4b7d9cab38e6a0e99a",
+    "proof/PscVerif/PscVerif/BetaNumeration.lean": "f591bfbd2554de58c50c44a7c18b93e448bb5bd165c9af3c26af60de5c1bd162",
     "proof/PscVerif/PscVerif/Binomial.lean": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
     "proof/PscVerif/PscVerif/BoundarySeedPath.lean": "bea69cb93d5bcd15b1b88c48062b4404a721908092af1b5f5b42e6184f7abae3",
+    "proof/PscVerif/PscVerif/C4FamilyBetaTranscendence.lean": "c1d5c8fdc7deac91a0d18fb188b679fb84f8cba484dcb5d7332b0071411b0333",
     "proof/PscVerif/PscVerif/C4FamilyCanonicalSpectrum.lean": "0739f8f55f80fa92abf0865ed90e8bece467d6889f494085cb6d71fa0c70cda1",
     "proof/PscVerif/PscVerif/C4FamilyCharacterOrbits.lean": "a8604253adf021654c5b0cb572c54b7a7b9aad7fc255648c5460a6e53de2ebd6",
     "proof/PscVerif/PscVerif/C4FamilyFiniteFibreSynchronization.lean": "9dd07cf862829b61a18e82409893ebd9fba6855a3d0bda2543d786c92355f390",
     "proof/PscVerif/PscVerif/C4FamilyFiniteProximal.lean": "f0626913d31535e076e6afd0ce495ad5d4c49b1214d81c9b3b3f5b533244dc1c",
     "proof/PscVerif/PscVerif/C4FamilyFiniteZeroFibre.lean": "47832e3754b2cf087dced965641afc954537b94949d990f264f9bd91835221b8",
+    "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean": "efdd2c5996fbf7f8d0a066f5edeced006957c6416888a4a62b61c0e5a5b52a78",
     "proof/PscVerif/PscVerif/C4FamilyHaarErgodicity.lean": "81cf9efa86e64520927307c305696ea4692c339f974daee94f87e1a37b5538ef",
     "proof/PscVerif/PscVerif/C4FamilyHaarSingletonFibres.lean": "66323188238cb1bcbe99c98e20cfdacd5e9adedcd60b3ff3e7f93ae125fb10e1",
     "proof/PscVerif/PscVerif/C4FamilyInvariantMeasureUniqueness.lean": "3256efcd2cc96ac7ca214850944dd5361d0b4dfeefc6b0dcdd0ec0371ed53133",
@@ -62069,8 +62906,9 @@
     "proof/PscVerif/PscVerif/VertexAsymptoteRange.lean": "c8328ddb30c748ed93c4399880b473b954c000f7f81b1035a70e1fbee0ba3191",
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
+    "proof/PscVerif/PscVerif/WordComplexity.lean": "f9cdd56ece62dc3b004e42cbbc2a38b28c4522de98a6066d7a77db797704f649",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "9b2b856c0abb259aef8b1d4913c72bdce709e567ddcd2d9ae4e520e79221bd92",
+    "proof/PscVerif/PscVerif.lean": "94463bf23ec94314bd6130c8fef6135371dce453dd417638187d1dc87dbf418f",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
