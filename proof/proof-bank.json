@@ -5986,6 +5986,150 @@
       "declaration": "theorem xi_inputs (k : ℕ) (hk : 1 ≤ k) (hm : 4 ≤ m) (B : Base m) :"
     },
     {
+      "name": "Psc.BetaGoldenCoding.partial_succ",
+      "module": "PscVerif.BetaGoldenCoding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenCoding.lean",
+      "line": 51,
+      "declaration": "theorem partial_succ (t : ℕ → Bool) (N : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaGoldenCoding.partial_le",
+      "module": "PscVerif.BetaGoldenCoding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenCoding.lean",
+      "line": 60,
+      "declaration": "theorem partial_le (N : ℕ) : ∀ t : ℕ → Bool, NoOneOne t → psum t N ≤ 1 - r ^ (N + 1) := by"
+    },
+    {
+      "name": "Psc.BetaGoldenCoding.value_le_one",
+      "module": "PscVerif.BetaGoldenCoding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenCoding.lean",
+      "line": 87,
+      "declaration": "theorem value_le_one {t : ℕ → Bool} (ht : NoOneOne t) : value t ≤ 1 :="
+    },
+    {
+      "name": "Psc.BetaGoldenCoding.value_split",
+      "module": "PscVerif.BetaGoldenCoding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenCoding.lean",
+      "line": 94,
+      "declaration": "theorem value_split (t : ℕ → Bool) (j : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaGoldenCoding.noOneOne_gshift",
+      "module": "PscVerif.BetaGoldenCoding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenCoding.lean",
+      "line": 111,
+      "declaration": "theorem noOneOne_gshift {t : ℕ → Bool} (ht : NoOneOne t) (j : ℕ) : NoOneOne (gshift t j) :="
+    },
+    {
+      "name": "Psc.BetaGoldenCoding.tail_lt_one",
+      "module": "PscVerif.BetaGoldenCoding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenCoding.lean",
+      "line": 117,
+      "declaration": "theorem tail_lt_one {t : ℕ → Bool} (ht : NoOneOne t) {j : ℕ} (hj0 : t j = false)"
+    },
+    {
+      "name": "Psc.BetaGoldenCoding.block_ends",
+      "module": "PscVerif.BetaGoldenCoding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenCoding.lean",
+      "line": 156,
+      "declaration": "theorem block_ends (a : Fin 3) : block a 0 = false ∧ block a 3 = false := by"
+    },
+    {
+      "name": "Psc.BetaGoldenCoding.code_no_one_one",
+      "module": "PscVerif.BetaGoldenCoding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenCoding.lean",
+      "line": 159,
+      "declaration": "theorem code_no_one_one (k : ℕ) : NoOneOne (code k) := by"
+    },
+    {
+      "name": "Psc.BetaGoldenCoding.code_zero_zero",
+      "module": "PscVerif.BetaGoldenCoding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenCoding.lean",
+      "line": 174,
+      "declaration": "theorem code_zero_zero (k : ℕ) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaGoldenCoding.code_greedy",
+      "module": "PscVerif.BetaGoldenCoding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenCoding.lean",
+      "line": 192,
+      "declaration": "theorem code_greedy (k n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaGoldenCoding.decode_code",
+      "module": "PscVerif.BetaGoldenCoding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenCoding.lean",
+      "line": 225,
+      "declaration": "theorem decode_code (k i : ℕ) : decode (code k (4 * i + 1)) (code k (4 * i + 2)) = word k i := by"
+    },
+    {
+      "name": "Psc.BetaGoldenCoding.code_not_eventuallyPeriodic",
+      "module": "PscVerif.BetaGoldenCoding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenCoding.lean",
+      "line": 232,
+      "declaration": "theorem code_not_eventuallyPeriodic (k : ℕ) (hk : 1 ≤ k) : ¬ EventuallyPeriodic (code k) := by"
+    },
+    {
+      "name": "Psc.BetaGoldenCoding.factor_code",
+      "module": "PscVerif.BetaGoldenCoding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenCoding.lean",
+      "line": 253,
+      "declaration": "theorem factor_code (k s n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaGoldenCoding.code_factors_linear",
+      "module": "PscVerif.BetaGoldenCoding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenCoding.lean",
+      "line": 264,
+      "declaration": "theorem code_factors_linear (k : ℕ) (hk : 1 ≤ k) (n : ℕ) :"
+    },
+    {
+      "name": "Psc.BetaGoldenCoding.word_one",
+      "module": "PscVerif.BetaGoldenCoding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenCoding.lean",
+      "line": 288,
+      "declaration": "theorem word_one (k : ℕ) (hk : 1 ≤ k) : word k 1 = 1 := by"
+    },
+    {
+      "name": "Psc.BetaGoldenCoding.code_not_unique",
+      "module": "PscVerif.BetaGoldenCoding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenCoding.lean",
+      "line": 300,
+      "declaration": "theorem code_not_unique (k : ℕ) (hk : 1 ≤ k) : ¬ IsUnique (code k) := by"
+    },
+    {
+      "name": "Psc.BetaGoldenCoding.golden_pisot",
+      "module": "PscVerif.BetaGoldenCoding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenCoding.lean",
+      "line": 310,
+      "declaration": "theorem golden_pisot :"
+    },
+    {
+      "name": "Psc.BetaGoldenCoding.code_complexity_unbounded",
+      "module": "PscVerif.BetaGoldenCoding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BetaGoldenCoding.lean",
+      "line": 318,
+      "declaration": "theorem code_complexity_unbounded (k : ℕ) (hk : 1 ≤ k) :"
+    },
+    {
       "name": "Psc.BetaGoldenEndpoint.digit_true",
       "module": "PscVerif.BetaGoldenEndpoint",
       "private": false,
@@ -62717,6 +62861,7 @@
     "proof/PscVerif/PscVerif/BetaFamilyComplexity.lean": "0b2a08f40c1b2b9b706ff5ef8b5ac4c3c295d5725f40ae7c5556421266687eaf",
     "proof/PscVerif/PscVerif/BetaFamilyFixedWord.lean": "5682dd074352aefb0a1757927e5de82e84ff1c288cbf854a109c73cbd3b97b79",
     "proof/PscVerif/PscVerif/BetaFamilyXi.lean": "69f2f15e87aa18e94dc7772b6f61e187ec2c4b1c72601a3952da8104de43795a",
+    "proof/PscVerif/PscVerif/BetaGoldenCoding.lean": "8c8892585c36cb94f2cb18ca80e862fd04f94eea52c4606360fc9e0197c75ab7",
     "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean": "9dd31daca70efc75cc5413ffadef7bee210ac47c2724efead22c1a84497a7270",
     "proof/PscVerif/PscVerif/BetaMetallicNormalForm.lean": "4b4cb9db59ba8b2b54728faead17fdc8383600ad0ac8c9d78404aa101d34dded",
     "proof/PscVerif/PscVerif/BetaMetallicUnique.lean": "4dfc01ba47b2830afb8fd4c8cf91e9eef8bdc68d9ac1bf82b05340a2cc0eb0fd",
@@ -63020,7 +63165,7 @@
     "proof/PscVerif/PscVerif/WeightModulus.lean": "97c282aad3c9e3b9d8f61de0c061bdb7330d07dc83c540063ac43ee56ea21ebf",
     "proof/PscVerif/PscVerif/Wielandt.lean": "9ce9994e540f660f451ee6a364fb665d25c7422d3f0b1c7ffdf66fb8cd71f6d6",
     "proof/PscVerif/PscVerif/ZeroFibreOverlap.lean": "75edcb83b73bb41c2f99d0ee6e2ae13697b4e724ff52eb6f2da1e445d443bc89",
-    "proof/PscVerif/PscVerif.lean": "9c2b905cfe7ec20389893f65c72a27b507a02bc288a03319aa749477ea5ccfa5",
+    "proof/PscVerif/PscVerif.lean": "287f4b76f219eb134761e37b6be48cd287fcc4dd4dd9f81ae6a615e5ba5d54fe",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
