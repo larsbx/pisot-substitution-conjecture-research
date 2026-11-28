@@ -2,6 +2,7 @@ import PscVerif.C4ParameterFamilyPisot
 import PscVerif.Incidence
 import PscVerif.WordComplexity
 import Mathlib.RingTheory.Polynomial.RationalRoot
+import Mathlib.Data.List.GetD
 import Mathlib.Tactic.ComputeDegree
 import Mathlib.Tactic.IntervalCases
 import Mathlib.Tactic.Linarith
@@ -246,6 +247,7 @@ theorem complexity_le (hk : 1 ≤ k) (j : ℕ) (a₀ : Fin 3) (hmin : ∀ c, len
     ((P x.1 ++ x.2.1.elim [] P).drop x.2.2).take n
   have hsub : Factors (fixedWord k) n ⊆ Set.range g := by
     rintro _ ⟨i, rfl⟩
+    show block (fixedWord k) i n ∈ Set.range g
     have hlen := le_length_iter k ((j + 1) + (i + n))
     rw [block_eq k ((j + 1) + (i + n)) i n (by omega), iter_split k (j + 1) (i + n)]
     rw [iter_split k (j + 1) (i + n)] at hlen

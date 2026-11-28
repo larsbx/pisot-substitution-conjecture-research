@@ -152,7 +152,7 @@ theorem interior_value_mem {m : ℕ} (hm : 2 ≤ m) {d : ℕ → ℕ}
 /-- Interior streams are greedy: they are the Rényi expansion of their value. -/
 theorem interior_renyi {m : ℕ} (hm : 2 ≤ m) {d : ℕ → ℕ}
     (hd : ∀ n, 1 ≤ d n ∧ d n + 1 ≤ m) : renyiExpansion (beta m) (value (beta m) d) = d :=
-  renyiExpansion_value (one_lt_beta (by omega)) (fun n => by have := hd n; omega)
+  renyiExpansion_value (one_lt_beta (by omega)) (m := m) (fun n => by have := hd n; omega)
     (fun n => value_lt_one_of_low (by omega)
       (fun k => show d (k + n) ≤ m - 1 by have := hd (k + n); omega))
 

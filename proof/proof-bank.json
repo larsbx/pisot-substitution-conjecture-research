@@ -6814,7 +6814,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 66,
+      "line": 67,
       "declaration": "theorem tau_zero : tau k [0] = [0] ++ Psc.ParameterFamilyWords.ones k ++ [2] := by"
     },
     {
@@ -6822,7 +6822,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 71,
+      "line": 72,
       "declaration": "theorem count_tau (a b : Fin 3) :"
     },
     {
@@ -6830,7 +6830,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 75,
+      "line": 76,
       "declaration": "theorem length_eq_counts (w : List (Fin 3)) : w.length = w.count 0 + w.count 1 + w.count 2 := by"
     },
     {
@@ -6838,7 +6838,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 81,
+      "line": 82,
       "declaration": "theorem length_tau (a : Fin 3) :"
     },
     {
@@ -6846,7 +6846,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 86,
+      "line": 87,
       "declaration": "theorem two_le_length_tau (a : Fin 3) : 2 ≤ (tau k [a]).length := by"
     },
     {
@@ -6854,7 +6854,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 89,
+      "line": 90,
       "declaration": "theorem length_tau_le (a : Fin 3) : (tau k [a]).length ≤ L k := by"
     },
     {
@@ -6862,7 +6862,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 92,
+      "line": 93,
       "declaration": "theorem mem_tau (hk : 1 ≤ k) (a b : Fin 3) : b ∈ tau k [a] := by"
     },
     {
@@ -6870,7 +6870,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 99,
+      "line": 100,
       "declaration": "theorem tau_eq_subst (w : List (Fin 3)) : tau k w = subst (power (substitution k) 2) w := by"
     },
     {
@@ -6878,7 +6878,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 103,
+      "line": 104,
       "declaration": "theorem length_le_length_subst (P : Fin 3 → List (Fin 3)) {w : List (Fin 3)} {b : Fin 3}"
     },
     {
@@ -6886,7 +6886,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 113,
+      "line": 114,
       "declaration": "theorem length_subst_le (P : Fin 3 → List (Fin 3)) (w : List (Fin 3)) (K : ℕ)"
     },
     {
@@ -6894,7 +6894,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 123,
+      "line": 124,
       "declaration": "theorem two_mul_length_le (w : List (Fin 3)) : 2 * w.length ≤ (tau k w).length := by"
     },
     {
@@ -6902,7 +6902,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 134,
+      "line": 135,
       "declaration": "theorem iter_succ (j : ℕ) : iter k (j + 1) = tau k (iter k j) := by"
     },
     {
@@ -6910,7 +6910,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 138,
+      "line": 139,
       "declaration": "theorem tau_prefix {x y : List (Fin 3)} (h : x <+: y) : tau k x <+: tau k y :="
     },
     {
@@ -6918,7 +6918,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 141,
+      "line": 142,
       "declaration": "theorem iter_prefix_succ (j : ℕ) : iter k j <+: iter k (j + 1) := by"
     },
     {
@@ -6926,7 +6926,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 152,
+      "line": 153,
       "declaration": "theorem iter_prefix {j J : ℕ} (h : j ≤ J) : iter k j <+: iter k J := by"
     },
     {
@@ -6934,7 +6934,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 157,
+      "line": 158,
       "declaration": "theorem length_iter_pos (j : ℕ) : 0 < (iter k j).length := by"
     },
     {
@@ -6942,7 +6942,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 162,
+      "line": 163,
       "declaration": "theorem length_iter_lt (j : ℕ) : (iter k j).length < (iter k (j + 1)).length := by"
     },
     {
@@ -6950,7 +6950,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 168,
+      "line": 169,
       "declaration": "theorem length_iter_strictMono : StrictMono fun j => (iter k j).length :="
     },
     {
@@ -6958,7 +6958,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 171,
+      "line": 172,
       "declaration": "theorem le_length_iter (j : ℕ) : j + 1 ≤ (iter k j).length := by"
     },
     {
@@ -6966,7 +6966,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 179,
+      "line": 180,
       "declaration": "theorem fixedWord_eq (J i : ℕ) (h : i < (iter k J).length) :"
     },
     {
@@ -6974,7 +6974,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 187,
+      "line": 188,
       "declaration": "theorem block_eq (J i n : ℕ) (h : i + n ≤ (iter k J).length) :"
     },
     {
@@ -6982,7 +6982,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 194,
+      "line": 195,
       "declaration": "theorem block_zero_iter (j : ℕ) : block (fixedWord k) 0 (iter k j).length = iter k j := by"
     },
     {
@@ -6990,7 +6990,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 200,
+      "line": 201,
       "declaration": "theorem iter_split (j t : ℕ) :"
     },
     {
@@ -6998,7 +6998,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 206,
+      "line": 207,
       "declaration": "theorem power_succ (j : ℕ) (a : Fin 3) :"
     },
     {
@@ -7006,7 +7006,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 212,
+      "line": 213,
       "declaration": "theorem power_succ' (j : ℕ) (a : Fin 3) :"
     },
     {
@@ -7014,7 +7014,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 218,
+      "line": 219,
       "declaration": "theorem le_len (j : ℕ) (a : Fin 3) : j + 1 ≤ len k j a := by"
     },
     {
@@ -7022,7 +7022,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 228,
+      "line": 229,
       "declaration": "theorem len_le (hk : 1 ≤ k) (j : ℕ) (a b : Fin 3) : len k (j + 1) a ≤ L k * len k (j + 1) b := by"
     },
     {
@@ -7030,7 +7030,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 240,
+      "line": 241,
       "declaration": "theorem complexity_le (hk : 1 ≤ k) (j : ℕ) (a₀ : Fin 3) (hmin : ∀ c, len k (j + 1) a₀ ≤ len k (j + 1) c) :"
     },
     {
@@ -7038,7 +7038,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 274,
+      "line": 276,
       "declaration": "theorem frequently_linear (hk : 1 ≤ k) :"
     },
     {
@@ -7046,7 +7046,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 288,
+      "line": 290,
       "declaration": "theorem A_eq : A k = !![1, (k : ℚ) + 2, 1; (k : ℚ), (k : ℚ) ^ 2 + 2, (k : ℚ) + 2; 1, (k : ℚ), 1] := by"
     },
     {
@@ -7054,7 +7054,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 294,
+      "line": 296,
       "declaration": "theorem charpoly_identity :"
     },
     {
@@ -7062,7 +7062,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 305,
+      "line": 307,
       "declaration": "theorem count_iter (j : ℕ) (a : Fin 3) : ((iter k j).count a : ℚ) = x k j a := by"
     },
     {
@@ -7070,7 +7070,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 309,
+      "line": 311,
       "declaration": "theorem length_iter (j : ℕ) : ((iter k j).length : ℚ) = x k j 0 + x k j 1 + x k j 2 := by"
     },
     {
@@ -7078,7 +7078,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 314,
+      "line": 316,
       "declaration": "theorem x_rec (j : ℕ) (a : Fin 3) :"
     },
     {
@@ -7086,7 +7086,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 325,
+      "line": 327,
       "declaration": "theorem x_succ (j : ℕ) (a : Fin 3) :"
     },
     {
@@ -7094,7 +7094,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 335,
+      "line": 337,
       "declaration": "theorem gPoly_monic : (gPoly k).Monic := by"
     },
     {
@@ -7102,7 +7102,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 339,
+      "line": 341,
       "declaration": "theorem aeval_gPoly {R : Type*} [CommRing R] [Algebra ℤ R] (z : R) :"
     },
     {
@@ -7110,7 +7110,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 344,
+      "line": 346,
       "declaration": "theorem no_rational_root (hk : 1 ≤ k) (μ : ℚ) :"
     },
     {
@@ -7118,7 +7118,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 363,
+      "line": 365,
       "declaration": "theorem count_block_add_period {u : ℕ → Fin 3} {q p : ℕ} (hu : ∀ n, q ≤ n → u (n + p) = u n)"
     },
     {
@@ -7126,7 +7126,7 @@
       "module": "PscVerif.C4FamilyFixedWord",
       "private": false,
       "source": "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean",
-      "line": 374,
+      "line": 376,
       "declaration": "theorem not_eventuallyPeriodic (hk : 1 ≤ k) : ¬ EventuallyPeriodic (fixedWord k) := by"
     },
     {
@@ -62603,7 +62603,7 @@
     "proof/PscVerif/PscVerif/BargeDiamondBridgeControls.lean": "45bd1684ecbdfabdc02658405874358b5bfccd80b57d435f2c108f707b59f059",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
     "proof/PscVerif/PscVerif/BetaGoldenEndpoint.lean": "9dd31daca70efc75cc5413ffadef7bee210ac47c2724efead22c1a84497a7270",
-    "proof/PscVerif/PscVerif/BetaMetallic.lean": "968987bff0aac44552189917c300f61ebb5efd975807988821522fc8cdfc7759",
+    "proof/PscVerif/PscVerif/BetaMetallic.lean": "543e71e8ccbde595b4154d481759aa071e8e8295d63fbb4b7d9cab38e6a0e99a",
     "proof/PscVerif/PscVerif/BetaNumeration.lean": "f591bfbd2554de58c50c44a7c18b93e448bb5bd165c9af3c26af60de5c1bd162",
     "proof/PscVerif/PscVerif/Binomial.lean": "9aa1afee2d53a4f89cf47e26940b0a6f661f3469a04b4ce15cfa1100950771a8",
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
@@ -62614,7 +62614,7 @@
     "proof/PscVerif/PscVerif/C4FamilyFiniteFibreSynchronization.lean": "9dd07cf862829b61a18e82409893ebd9fba6855a3d0bda2543d786c92355f390",
     "proof/PscVerif/PscVerif/C4FamilyFiniteProximal.lean": "f0626913d31535e076e6afd0ce495ad5d4c49b1214d81c9b3b3f5b533244dc1c",
     "proof/PscVerif/PscVerif/C4FamilyFiniteZeroFibre.lean": "47832e3754b2cf087dced965641afc954537b94949d990f264f9bd91835221b8",
-    "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean": "84d89261064db2c366143ee28f752c9fcb4f6f70ddabde932881240c380383ff",
+    "proof/PscVerif/PscVerif/C4FamilyFixedWord.lean": "bcfde6120dfe4768c69085cf853930b9b5d10df2d1894fda80f8df6720a44723",
     "proof/PscVerif/PscVerif/C4FamilyHaarErgodicity.lean": "81cf9efa86e64520927307c305696ea4692c339f974daee94f87e1a37b5538ef",
     "proof/PscVerif/PscVerif/C4FamilyHaarSingletonFibres.lean": "66323188238cb1bcbe99c98e20cfdacd5e9adedcd60b3ff3e7f93ae125fb10e1",
     "proof/PscVerif/PscVerif/C4FamilyInvariantMeasureUniqueness.lean": "3256efcd2cc96ac7ca214850944dd5361d0b4dfeefc6b0dcdd0ec0371ed53133",
