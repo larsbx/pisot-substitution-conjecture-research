@@ -23,6 +23,7 @@ with value `zval (a,b) = a + bβ` and conjugate `zconj (a,b) = a - b r`.
 | `value_eq_iff_states` | `value d = value e ↔ ∀ n, carryPair n ∈ states B` |
 | `states_finite` | `states B` (box pairs with `|a + bβ| ≤ 1 + r`) is finite |
 | `value_eq_iff_seven` | for every `m ≥ 1`: `value d = value e ↔` every carry lies in `seven m = {(0,0), (±1,0), (-m,1), (1-m,1), (m,-1), (m-1,-1)}`, the values `0, ±1, ±r, ±(1+r)` |
+| `seven_reachable` | for every `m ≥ 1`, each of the seven carries occurs for some pair of streams with equal values |
 | `carry_100_011` | at `m = 1`, `100t` against `011t` returns the carry to `(0,0)` after three digits |
 
 ## Derivation / reduction
@@ -34,6 +35,7 @@ with value `zval (a,b) = a + bβ` and conjugate `zconj (a,b) = a - b r`.
 5. `|z'_{n+1}| ≤ r |z'_n| + m` and `m/(1-r)` is the fixed point, so `conj_bound` holds by induction from `z'_0 = 0`.
 6. `b(β + r) = z - z'` and `a = z' + b r` turn both bounds into `|a|, |b| ≤ side B = ⌈1 + r + 2m/(1-r)⌉`.
 7. Seven states (`seven_step`). From a state in `seven m` the next second coordinate `a + m b` is `0` or `±1`, and the first is `b + δ` with `|δ| ≤ m`. With `β = m + r`, the bound `|z| ≤ 1 + r` cancels `r` and leaves integer conditions: `|a'| ≤ 1` when `b' = 0`, `a' ≤ 1 - m` when `b' = 1`, `a' ≥ m - 1` when `b' = -1`. The digit bound supplies the other side, so the next state is again in `seven m`. Induction from `(0,0)` and the bounded criterion give `value_eq_iff_seven`.
+8. Reachability (`seven_reachable`). Four difference walks, `(1, -m, -1, 0, …)`, `(1, 1-m, -m, -m, …)` and their negatives, stay in `seven m` and visit all seven states. `±(1+r)` is absorbing under `δ = ∓m`. A bounded difference sequence is realized by `d = δ⁺`, `e = δ⁻` (`delta_real`), so the converse of step 7 makes the two streams equal in value.
 
 ## Evidence and replay
 
@@ -52,4 +54,4 @@ The module is in the root import closure. Accepted axioms: `propext`, `Classical
 ## Non-claims / remaining gaps
 
 - No Mojo implementation; Mojo is not available in this environment, and the canonical kernel belongs upstream.
-- `value_eq_iff_seven` places the carries in the seven states; it does not prove that all seven are reachable for every `m`. Quint checks reachability for `m ≤ 6`.
+- None on the automaton itself: containment and reachability of the seven states are both compiled for every `m ≥ 1`. Quint replays them independently for `m ≤ 6`.

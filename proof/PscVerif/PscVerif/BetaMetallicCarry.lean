@@ -309,6 +309,139 @@ theorem value_eq_iff_seven (d e : ℕ → Fin (m + 1)) :
   · intro h
     exact (B.value_eq_iff_bounded d e).1.mpr fun n => B.seven_bound (h n)
 
+
+/-! ## All seven states are reached, uniformly in `m` -/
+
+/-- The carry driven by an integer difference sequence. -/
+def carryOf (m : ℕ) (δ : ℕ → ℤ) : ℕ → ℤ × ℤ
+  | 0 => (0, 0)
+  | n + 1 => ((carryOf m δ n).2 + δ n, (carryOf m δ n).1 + m * (carryOf m δ n).2)
+
+omit B in
+theorem carryPair_eq (d e : ℕ → Fin (m + 1)) : carryPair d e = carryOf m (delta d e) := by
+  funext n
+  induction n with
+  | zero => rfl
+  | succ n ih => simp only [carryPair, carryOf, ih]
+
+/-- Realize a bounded difference sequence by two digit streams. -/
+def realD (δ : ℕ → ℤ) (h : ∀ n, -(m : ℤ) ≤ δ n ∧ δ n ≤ m) : ℕ → Fin (m + 1) :=
+  fun n => ⟨(δ n).toNat, by have := h n; omega⟩
+
+def realE (δ : ℕ → ℤ) (h : ∀ n, -(m : ℤ) ≤ δ n ∧ δ n ≤ m) : ℕ → Fin (m + 1) :=
+  fun n => ⟨(-δ n).toNat, by have := h n; omega⟩
+
+omit B in
+theorem delta_real (δ : ℕ → ℤ) (h : ∀ n, -(m : ℤ) ≤ δ n ∧ δ n ≤ m) :
+    delta (realD δ h) (realE δ h) = δ := by
+  funext n
+  simp only [delta, realD, realE]
+  omega
+
+omit B in
+theorem stay (δ : ℕ → ℤ) {k : ℕ} {q : ℤ × ℤ} {c : ℤ} (hq : (q.2 + c, q.1 + m * q.2) = q)
+    (hk : carryOf m δ k = q) (hc : ∀ j, k ≤ j → δ j = c) : ∀ i, carryOf m δ (k + i) = q := by
+  intro i
+  induction i with
+  | zero => exact hk
+  | succ i ih =>
+    rw [← add_assoc]
+    simp only [carryOf, ih, hc (k + i) (by omega)]
+    exact hq
+
+/-- A difference sequence whose carry stays among the seven states yields two
+streams with equal values. -/
+theorem equal_of_walk (δ : ℕ → ℤ) (h : ∀ n, -(m : ℤ) ≤ δ n ∧ δ n ≤ m)
+    (hw : ∀ n, carryOf m δ n ∈ seven m) :
+    B.value (realD δ h) = B.value (realE δ h) := by
+  rw [B.value_eq_iff_seven, carryPair_eq, delta_real]
+  exact hw
+
+omit B in
+theorem walk_mem (δ : ℕ → ℤ) (k : ℕ) (hlow : ∀ n ≤ k, carryOf m δ n ∈ seven m)
+    {q : ℤ × ℤ} {c : ℤ} (hq : (q.2 + c, q.1 + m * q.2) = q) (hqs : q ∈ seven m)
+    (hk : carryOf m δ k = q) (hc : ∀ j, k ≤ j → δ j = c) : ∀ n, carryOf m δ n ∈ seven m := by
+  intro n
+  by_cases hn : n ≤ k
+  · exact hlow n hn
+  · obtain ⟨i, rfl⟩ := Nat.exists_eq_add_of_le (show k ≤ n by omega)
+    rw [stay δ hq hk hc i]; exact hqs
+
+/-- **Every one of the seven carries occurs** for a pair of streams with equal
+values, for every `m ≥ 1`. -/
+theorem seven_reachable (hm : 1 ≤ m) {q : ℤ × ℤ} (hq : q ∈ seven m) :
+    ∃ d e : ℕ → Fin (m + 1), B.value d = B.value e ∧ ∃ n, carryPair d e n = q := by
+  -- Four explicit walks, each eventually constant at an absorbing state.
+  have hm' : (1 : ℤ) ≤ m := by exact_mod_cast hm
+  let w1 : ℕ → ℤ := fun n => if n = 0 then 1 else if n = 1 then -m else if n = 2 then -1 else 0
+  let w2 : ℕ → ℤ := fun n => if n = 0 then 1 else if n = 1 then 1 - m else -m
+  let w3 : ℕ → ℤ := fun n => -w1 n
+  let w4 : ℕ → ℤ := fun n => -w2 n
+  have b1 : ∀ n, -(m : ℤ) ≤ w1 n ∧ w1 n ≤ m := fun n => by
+    simp only [w1]; split_ifs <;> omega
+  have b2 : ∀ n, -(m : ℤ) ≤ w2 n ∧ w2 n ≤ m := fun n => by
+    simp only [w2]; split_ifs <;> omega
+  have b3 : ∀ n, -(m : ℤ) ≤ w3 n ∧ w3 n ≤ m := fun n => by
+    have := b1 n; simp only [w3]; omega
+  have b4 : ∀ n, -(m : ℤ) ≤ w4 n ∧ w4 n ≤ m := fun n => by
+    have := b2 n; simp only [w4]; omega
+  have c1 : carryOf m w1 1 = (1, 0) ∧ carryOf m w1 2 = (-(m : ℤ), 1) ∧ carryOf m w1 3 = (0, 0) := by
+    simp [carryOf, w1]
+  have c2 : carryOf m w2 1 = (1, 0) ∧ carryOf m w2 2 = (1 - (m : ℤ), 1) := by
+    simp [carryOf, w2]
+  have c3 : carryOf m w3 1 = (-1, 0) ∧ carryOf m w3 2 = ((m : ℤ), -1) ∧ carryOf m w3 3 = (0, 0) := by
+    simp [carryOf, w3, w1]
+  have c4 : carryOf m w4 1 = (-1, 0) ∧ carryOf m w4 2 = ((m : ℤ) - 1, -1) := by
+    simp [carryOf, w4, w2]
+  have s7 : ∀ q, q ∈ seven m ↔ q = (0, 0) ∨ q = (1, 0) ∨ q = (-1, 0) ∨ q = (-(m : ℤ), 1) ∨
+      q = (1 - (m : ℤ), 1) ∨ q = ((m : ℤ), -1) ∨ q = ((m : ℤ) - 1, -1) := fun q => by
+    simp [seven]
+  have m1 : ∀ n, carryOf m w1 n ∈ seven m := by
+    refine walk_mem w1 3 (fun n hn => ?_) (q := (0, 0)) (c := 0) (by simp) ((s7 _).2 (Or.inl rfl))
+      c1.2.2 (fun j hj => by simp only [w1]; split_ifs <;> omega)
+    interval_cases n
+    · exact (s7 _).2 (Or.inl rfl)
+    · rw [c1.1]; exact (s7 _).2 (Or.inr (Or.inl rfl))
+    · rw [c1.2.1]; exact (s7 _).2 (Or.inr (Or.inr (Or.inr (Or.inl rfl))))
+    · rw [c1.2.2]; exact (s7 _).2 (Or.inl rfl)
+  have m2 : ∀ n, carryOf m w2 n ∈ seven m := by
+    refine walk_mem w2 2 (fun n hn => ?_) (q := (1 - (m : ℤ), 1)) (c := -m) (by ext <;> simp <;> ring)
+      ((s7 _).2 (Or.inr (Or.inr (Or.inr (Or.inr (Or.inl rfl)))))) c2.2
+      (fun j hj => by simp only [w2]; split_ifs <;> omega)
+    interval_cases n
+    · exact (s7 _).2 (Or.inl rfl)
+    · rw [c2.1]; exact (s7 _).2 (Or.inr (Or.inl rfl))
+    · rw [c2.2]; exact (s7 _).2 (Or.inr (Or.inr (Or.inr (Or.inr (Or.inl rfl)))))
+  have m3 : ∀ n, carryOf m w3 n ∈ seven m := by
+    refine walk_mem w3 3 (fun n hn => ?_) (q := (0, 0)) (c := 0) (by simp) ((s7 _).2 (Or.inl rfl))
+      c3.2.2 (fun j hj => by simp only [w3, w1]; split_ifs <;> omega)
+    interval_cases n
+    · exact (s7 _).2 (Or.inl rfl)
+    · rw [c3.1]; exact (s7 _).2 (Or.inr (Or.inr (Or.inl rfl)))
+    · rw [c3.2.1]; exact (s7 _).2 (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inl rfl))))))
+    · rw [c3.2.2]; exact (s7 _).2 (Or.inl rfl)
+  have m4 : ∀ n, carryOf m w4 n ∈ seven m := by
+    refine walk_mem w4 2 (fun n hn => ?_) (q := ((m : ℤ) - 1, -1)) (c := m) (by ext <;> simp <;> ring)
+      ((s7 _).2 (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr rfl))))))) c4.2
+      (fun j hj => by simp only [w4, w2]; split_ifs <;> omega)
+    interval_cases n
+    · exact (s7 _).2 (Or.inl rfl)
+    · rw [c4.1]; exact (s7 _).2 (Or.inr (Or.inr (Or.inl rfl)))
+    · rw [c4.2]; exact (s7 _).2 (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr rfl))))))
+  have use : ∀ (δ : ℕ → ℤ) (h : ∀ n, -(m : ℤ) ≤ δ n ∧ δ n ≤ m), (∀ n, carryOf m δ n ∈ seven m) →
+      ∀ k, carryOf m δ k = q →
+        ∃ d e : ℕ → Fin (m + 1), B.value d = B.value e ∧ ∃ n, carryPair d e n = q :=
+    fun δ h hw k hk => ⟨realD δ h, realE δ h, B.equal_of_walk δ h hw,
+      k, by rw [carryPair_eq, delta_real]; exact hk⟩
+  rcases (s7 q).1 hq with rfl | rfl | rfl | rfl | rfl | rfl | rfl
+  · exact use w1 b1 m1 0 rfl
+  · exact use w1 b1 m1 1 c1.1
+  · exact use w3 b3 m3 1 c3.1
+  · exact use w1 b1 m1 2 c1.2.1
+  · exact use w2 b2 m2 2 c2.2
+  · exact use w3 b3 m3 2 c3.2.1
+  · exact use w4 b4 m4 2 c4.2
+
 /-- Negative control: `1 0 0 …` and `0 m 1 0 …`-type carries. At `m = 1`
 the prefixes `100` and `011` leave the carry at `0` after three digits. -/
 theorem carry_100_011 (t : ℕ → Fin 2) :

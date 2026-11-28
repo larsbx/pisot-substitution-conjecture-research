@@ -18,7 +18,7 @@ Elements `u + v√D` are compared through the integer sign function `sgn`, so no
 | | `entryTest` | `0` is entered only from `{0, φ⁻¹}`, `φ` only from `{1, φ}` | the first-visit step of `expansions_infinite` |
 | | `twoMinusPhiTest` | `2 - φ` moves only to `φ⁻¹` and lies on no cycle | `isT_of_cycle`, last case |
 | `MetallicCarry` | `everyBoundedStateContinuesTest` | every box state with `|z| ≤ 1 + r` has a successor in the set | the real-interval continuation behind `value_eq_iff_bounded` |
-| | `sevenReachableStatesTest` | for each `m ≤ 6`, exactly 7 states are reachable from `(0,0)`: `0, ±1, ±r, ±(1+r)`, that is `(0,0), (±1,0), (-m,1), (1-m,1), (m,-1), (m-1,-1)` | `value_eq_iff_seven` (containment, every `m`) |
+| | `sevenReachableStatesTest` | for each `m ≤ 6`, exactly 7 states are reachable from `(0,0)`: `0, ±1, ±r, ±(1+r)`, that is `(0,0), (±1,0), (-m,1), (1-m,1), (m,-1), (m-1,-1)` | `value_eq_iff_seven`, `seven_reachable` (every `m`) |
 | | `collision100Test`, `metallicCollisionTest` | `100/011` (`m = 1`) and `a 0 c / (a-1) m (c+1)` (`m ≥ 2`) return the carry to `(0,0)` | `carry_100_011`, `value_carry` |
 | `BetaAdversarial` | `conjugateBoundIsSharpTest` | `2 - φ` meets the conjugate bound with equality | negative control of the multiplicity note |
 | | `unboundedCarryRejectedTest` | `1 0^∞` against `0^∞` leaves the state set | negative control of the carry note |
@@ -40,5 +40,5 @@ A side finding from the mutation run: loosening the upper carry bound from `1 + 
 
 ## Non-claims / remaining gaps
 
-- Lean proves containment in the seven states for every `m` (`value_eq_iff_seven`); reachability of all seven is checked here only for `m ≤ 6`.
+- The seven-state count is a Lean theorem for every `m` (`value_eq_iff_seven`, `seven_reachable`); this model is an independent replay for `m ≤ 6`.
 - The golden checks are confined to the coordinate box; their universal versions are the Lean theorems in the table.
